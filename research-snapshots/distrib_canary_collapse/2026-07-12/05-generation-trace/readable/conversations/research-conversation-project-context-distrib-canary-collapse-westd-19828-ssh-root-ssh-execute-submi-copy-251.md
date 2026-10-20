@@ -1,0 +1,8221 @@
+# Research conversation: <project_context> # 项目: distrib_canary_collapse ## 运行环境 - 服务器名: westd-19828 - SSH 账户: root（调用 ssh_execute / submit_train
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 149
+- **Recorded user turns:** 1
+- **Tool calls:** 44
+- **Original source:** `logs/chats/exported-trajectories/account-2/34977d7c-f886-4379-8b9c-0a51bb455911.jsonl`
+- **Structured JSON:** [`036a2cf986e659da3ab6.json`](../../sessions/03/036a2cf986e659da3ab6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T03:15:15.124Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T03:15:15.124Z",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "content": "&lt;project_context>\n# 项目: distrib_canary_collapse\n\n## 运行环境\n- 服务器名: westd-19828\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh westd-19828  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/distrib_canary_collapse\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C002**: 论文真源为 docs/paper/，禁止直接编辑 artifacts/_project/paper/。需要同步时从 docs/paper/ 复制覆盖。（原因：两目录已分叉，artifacts 版本落后且缺内容，独立维护导致 Reviewer 误报和数字不一致风险。） [来自 D046]\n- **C003**: 禁止引用 α≤0.50 的 TY Granger 显著率作为支撑证据——3-seed 已确认 TY 在低 α 下种子不稳定（d_max 跨 seed 0→1→2，df_resid 从 7 降至 1）（原因：C001 multi-seed 验证完成：0/8 pairs 在 3 seed 一致显著，根因是 T=11 下 ADF 积分阶数不稳定。TY 只在 α=1.0 (4-seed pooled) 可用。）\n- **C004**: 禁止任何 Agent session 在未确认实验状态的情况下 kill 正在运行的训练进程或 rm -rf 实验输出目录。操作前必须先 SSH 检查进程存活 + 目录 generation 进度。（原因：2026-05-16 并发 Agent session 误杀已运行 7h 的 a075_s43/s44 实验，导致 ~14 GPU-hours 浪费。根因是另一 session 未检查实验进度就执行了 kill + rm -rf + 重启。）\n- **C005**: EXIT_CODE=129 (SIGHUP) 不等于实验失败——必须先检查 gen 目录和 all_metrics.json 完整性再判定（原因：M015: 连续三次误判（C4 α=0.50、α=0.60、GPT-2m s43），浪费诊断 Worker + GPU 空转时间） [来自 M015]\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：在所有已完成实验上运行 MMCT 分析（修正 3）\n\n### 背景\n当前 MMCT（Modified Multi-method Consensus Test）只在 2 个实验上有结果（α=0.60 bf16 和 GPT-2m s43 bf16）。Reviewer 要求：如果 MMCT 是核心方法贡献，必须在所有已完成实验上运行。\n\n### 需要做的事\n\n1. **找到 MMCT 分析代码**：\n   - SSH 到 westd-17855 和 westd-19828\n   - 在 `/root/autodl-tmp/distrib_canary_collapse/` 下搜索 MMCT 相关代码\n   - 可能在 `analysis.py`、`5method_leadlag.py`、`mmct.py` 或类似文件中\n   - `grep -r \"mmct\\|MMCT\\|weighted_pair\\|weighted_global\" /root/autodl-tmp/distrib_canary_collapse/*.py`\n\n2. **确定哪些实验需要运行 MMCT**：\n   以下实验已完成但缺 MMCT 数据（按优先级排序）：\n\n   **α=1.00 实验（最高优先级）**：\n   - generalize_pythia410m_wiki_a100_s42 (Pythia-410M, α=1.00, s42)\n   - generalize_opt1b_wiki_a100_s42 (OPT-1.3B, α=1.00, s42)\n   - generalize_pythia14b_wiki_a100_s42 (Pythia-1.4B, α=1.00, s42)\n   - generalize_pythia14b_wiki_a100_s43 (Pythia-1.4B, α=1.00, s43)\n   - generalize_pythia1b_c4_a100_s42_v2 (Pythia-1B, C4, α=1.00, s42)\n   - generalize_pythia1b_c4_a100_s43 (Pythia-1B, C4, α=1.00, s43)\n   - gen_wiki_gpt2m_a100_s42_v4 (GPT-2-Medium, α=1.00, s42)\n\n   **α-sweep 实验**：\n   - alpha_sweep_a000_s42, _s43, _s44 (α=0.00)\n   - alpha_sweep_a010_s43 (α=0.10)\n   - alpha_sweep_a025_s43, _s44 (α=0.25)\n   - alpha_sweep_a050_s42, _s43, _s44 (α=0.50)\n   - alpha_sweep_a075_s42, _s43, _s44 (α=0.75)\n\n3. **运行 MMCT**：\n   - 理解 MMCT 代码的输入格式（可能需要 5method_leadlag.json 的 raw p-values）\n   - 对每个实验运行 MMCT 并记录结果\n   - MMCT 输出应包含：uniform_forward, uniform_bidirectional, weighted_pair_forward, weighted_pair_bidirectional, weighted_global_forward, weighted_global_bidirectional\n\n4. **数据路径**：\n   - 实验数据在 `/root/autodl-tmp/distrib_canary_collapse/results/` 下\n   - generalize 实验: `results/generalize/{name}/`\n   - alpha_sweep 实验: `results/alpha_sweep/{name}/`\n   - GPT-2m 实验: `results/gen_wiki_gpt2m_*/`\n   - 每个实验目录下有 `all_metrics.json` 和可能的 `5method_leadlag.json`\n\n### 产出\n\n写一个汇总文件到本地：\n`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/mmct_full_results.md`\n\n格式：\n| Condition | α | Model | MMCT_uniform_fwd | MMCT_weighted_pair_fwd | MMCT_weighted_global_fwd | Notes |\n\n### 注意\n- 这是 CPU 分析任务，不需要 GPU\n- 如果 MMCT 代码需要 5method_leadlag.json 中的 raw p-values 作为输入，有些实验可能缺少这个文件 → 在 Notes 中标注\n- 不要修改实验数据，只读取并运行分析\n- 如果分析代码需要参数（如 n_perm），保持与已有 MMCT 结果一致的参数设置\n- 两台服务器（westd-17855 和 westd-19828）都要检查，数据可能分布在不同服务器上"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T03:15:15.127Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T03:15:15.127Z",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+## Round 1
+
+147 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T03:15:15.158Z_
+
+&lt;project_context>
+# 项目: distrib_canary_collapse
+
+## 运行环境
+- 服务器名: westd-19828
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh westd-19828  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/autodl-tmp/distrib_canary_collapse
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C002**: 论文真源为 docs/paper/，禁止直接编辑 artifacts/_project/paper/。需要同步时从 docs/paper/ 复制覆盖。（原因：两目录已分叉，artifacts 版本落后且缺内容，独立维护导致 Reviewer 误报和数字不一致风险。） [来自 D046]
+- **C003**: 禁止引用 α≤0.50 的 TY Granger 显著率作为支撑证据——3-seed 已确认 TY 在低 α 下种子不稳定（d_max 跨 seed 0→1→2，df_resid 从 7 降至 1）（原因：C001 multi-seed 验证完成：0/8 pairs 在 3 seed 一致显著，根因是 T=11 下 ADF 积分阶数不稳定。TY 只在 α=1.0 (4-seed pooled) 可用。）
+- **C004**: 禁止任何 Agent session 在未确认实验状态的情况下 kill 正在运行的训练进程或 rm -rf 实验输出目录。操作前必须先 SSH 检查进程存活 + 目录 generation 进度。（原因：2026-05-16 并发 Agent session 误杀已运行 7h 的 a075_s43/s44 实验，导致 ~14 GPU-hours 浪费。根因是另一 session 未检查实验进度就执行了 kill + rm -rf + 重启。）
+- **C005**: EXIT_CODE=129 (SIGHUP) 不等于实验失败——必须先检查 gen 目录和 all_metrics.json 完整性再判定（原因：M015: 连续三次误判（C4 α=0.50、α=0.60、GPT-2m s43），浪费诊断 Worker + GPU 空转时间） [来自 M015]
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：在所有已完成实验上运行 MMCT 分析（修正 3）
+
+### 背景
+当前 MMCT（Modified Multi-method Consensus Test）只在 2 个实验上有结果（α=0.60 bf16 和 GPT-2m s43 bf16）。Reviewer 要求：如果 MMCT 是核心方法贡献，必须在所有已完成实验上运行。
+
+### 需要做的事
+
+1. **找到 MMCT 分析代码**：
+   - SSH 到 westd-17855 和 westd-19828
+   - 在 `/root/autodl-tmp/distrib_canary_collapse/` 下搜索 MMCT 相关代码
+   - 可能在 `analysis.py`、`5method_leadlag.py`、`mmct.py` 或类似文件中
+   - `grep -r "mmct\|MMCT\|weighted_pair\|weighted_global" /root/autodl-tmp/distrib_canary_collapse/*.py`
+
+2. **确定哪些实验需要运行 MMCT**：
+   以下实验已完成但缺 MMCT 数据（按优先级排序）：
+
+   **α=1.00 实验（最高优先级）**：
+   - generalize_pythia410m_wiki_a100_s42 (Pythia-410M, α=1.00, s42)
+   - generalize_opt1b_wiki_a100_s42 (OPT-1.3B, α=1.00, s42)
+   - generalize_pythia14b_wiki_a100_s42 (Pythia-1.4B, α=1.00, s42)
+   - generalize_pythia14b_wiki_a100_s43 (Pythia-1.4B, α=1.00, s43)
+   - generalize_pythia1b_c4_a100_s42_v2 (Pythia-1B, C4, α=1.00, s42)
+   - generalize_pythia1b_c4_a100_s43 (Pythia-1B, C4, α=1.00, s43)
+   - gen_wiki_gpt2m_a100_s42_v4 (GPT-2-Medium, α=1.00, s42)
+
+   **α-sweep 实验**：
+   - alpha_sweep_a000_s42, _s43, _s44 (α=0.00)
+   - alpha_sweep_a010_s43 (α=0.10)
+   - alpha_sweep_a025_s43, _s44 (α=0.25)
+   - alpha_sweep_a050_s42, _s43, _s44 (α=0.50)
+   - alpha_sweep_a075_s42, _s43, _s44 (α=0.75)
+
+3. **运行 MMCT**：
+   - 理解 MMCT 代码的输入格式（可能需要 5method_leadlag.json 的 raw p-values）
+   - 对每个实验运行 MMCT 并记录结果
+   - MMCT 输出应包含：uniform_forward, uniform_bidirectional, weighted_pair_forward, weighted_pair_bidirectional, weighted_global_forward, weighted_global_bidirectional
+
+4. **数据路径**：
+   - 实验数据在 `/root/autodl-tmp/distrib_canary_collapse/results/` 下
+   - generalize 实验: `results/generalize/{name}/`
+   - alpha_sweep 实验: `results/alpha_sweep/{name}/`
+   - GPT-2m 实验: `results/gen_wiki_gpt2m_*/`
+   - 每个实验目录下有 `all_metrics.json` 和可能的 `5method_leadlag.json`
+
+### 产出
+
+写一个汇总文件到本地：
+`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/mmct_full_results.md`
+
+格式：
+| Condition | α | Model | MMCT_uniform_fwd | MMCT_weighted_pair_fwd | MMCT_weighted_global_fwd | Notes |
+
+### 注意
+- 这是 CPU 分析任务，不需要 GPU
+- 如果 MMCT 代码需要 5method_leadlag.json 中的 raw p-values 作为输入，有些实验可能缺少这个文件 → 在 Notes 中标注
+- 不要修改实验数据，只读取并运行分析
+- 如果分析代码需要参数（如 n_perm），保持与已有 MMCT 结果一致的参数设置
+- 两台服务器（westd-17855 和 westd-19828）都要检查，数据可能分布在不同服务器上
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "7a2bcd9d-557e-413e-b4c3-d92ea36912a1",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T03:15:15.157Z_
+
+```json
+{
+  "parentUuid": "7a2bcd9d-557e-413e-b4c3-d92ea36912a1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "e02613ce-78a7-4f06-8c32-bb5293506d5f",
+  "timestamp": "2026-05-19T03:15:15.157Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T03:15:15.157Z_
+
+```json
+{
+  "parentUuid": "e02613ce-78a7-4f06-8c32-bb5293506d5f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "67f4dc6d-2138-4104-a19a-3beca07f5d35",
+  "timestamp": "2026-05-19T03:15:15.157Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-19T03:15:15.157Z_
+
+```json
+{
+  "parentUuid": "67f4dc6d-2138-4104-a19a-3beca07f5d35",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "0fd06008-1cec-4a74-820a-e39132b682e0",
+  "timestamp": "2026-05-19T03:15:15.157Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Run MMCT analysis on all completed experiments",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T03:15:19.590Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start by understanding the task. I need to:
+
+1. Find the MMCT analysis code on the remote servers
+2. Determine which experiments need MMCT analysis
+3. Run MMCT on all completed experiments
+4. Produce a summary table
+
+Let me first search for the MMCT code and understand the experiment data layout.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0fd06008-1cec-4a74-820a-e39132b682e0",
+  "isSidechain": false,
+  "requestId": "req_011CbBCa6LCuNCRrvGMCauvH",
+  "type": "assistant",
+  "uuid": "8ee28ae3-ec3f-48a9-be4c-a10e9b969222",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E5YCZ9GKSYepSEAtZPDfhF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14245,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 212,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14245,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 212,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14245,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14245
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-19T03:15:20.211Z_
+
+I'll start by finding the MMCT code and checking experiment data on both servers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8ee28ae3-ec3f-48a9-be4c-a10e9b969222",
+  "isSidechain": false,
+  "requestId": "req_011CbBCa6LCuNCRrvGMCauvH",
+  "type": "assistant",
+  "uuid": "29999aab-df39-4ab9-99e8-846e045c4ba6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E5YCZ9GKSYepSEAtZPDfhF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14245,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 212,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14245,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 212,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14245,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14245
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-19T03:15:21.354Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01EksQpotMVRs1diYjknm7GS`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29999aab-df39-4ab9-99e8-846e045c4ba6",
+  "isSidechain": false,
+  "requestId": "req_011CbBCa6LCuNCRrvGMCauvH",
+  "type": "assistant",
+  "uuid": "7c280ad6-b187-499c-b9c5-93c18afaef75",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E5YCZ9GKSYepSEAtZPDfhF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14245,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 212,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14245,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 212,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14245,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14245
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-19T03:15:21.359Z_
+
+<details><summary>↩ Tool result · `toolu_01EksQpotMVRs1diYjknm7GS`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7c280ad6-b187-499c-b9c5-93c18afaef75",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "8558bf8c-05d7-4933-a937-ca3becd0e8a5",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 26
+  },
+  "sourceToolAssistantUUID": "7c280ad6-b187-499c-b9c5-93c18afaef75",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-19T03:15:30.391Z_
+
+Searching for MMCT code and experiment data on both servers in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8558bf8c-05d7-4933-a937-ca3becd0e8a5",
+  "isSidechain": false,
+  "requestId": "req_011CbBCaZJBW4aBgntW7a1wu",
+  "type": "assistant",
+  "uuid": "9ed4872b-0616-49f5-93d2-d92c3803c680",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQHG5Fm1PXmNciERD9w4CT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 782,
+      "cache_read_input_tokens": 26086,
+      "output_tokens": 388,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 388,
+          "cache_read_input_tokens": 26086,
+          "cache_creation_input_tokens": 782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-19T03:15:32.561Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_011czXz9kwqtA2H9efM49cTs`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -rn \"mmct\\|MMCT\\|weighted_pair\\|weighted_global\\|uniform_forward\\|uniform_bidirectional\" /root/autodl-tmp/distrib_canary_collapse/*.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ed4872b-0616-49f5-93d2-d92c3803c680",
+  "isSidechain": false,
+  "requestId": "req_011CbBCaZJBW4aBgntW7a1wu",
+  "type": "assistant",
+  "uuid": "fd932ab7-5f0f-4e2a-b5f2-77f2e456253f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQHG5Fm1PXmNciERD9w4CT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 782,
+      "cache_read_input_tokens": 26086,
+      "output_tokens": 388,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 388,
+          "cache_read_input_tokens": 26086,
+          "cache_creation_input_tokens": 782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 14 · 2026-05-19T03:15:32.577Z_
+
+<details><summary>↩ Tool result · `toolu_011czXz9kwqtA2H9efM49cTs`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fd932ab7-5f0f-4e2a-b5f2-77f2e456253f",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "6278b96d-8231-4325-b7fb-6a20e90246ea",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fd932ab7-5f0f-4e2a-b5f2-77f2e456253f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T03:15:33.498Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01KDYyKsFiKwiWJnPMjZ7rpV`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6278b96d-8231-4325-b7fb-6a20e90246ea",
+  "isSidechain": false,
+  "requestId": "req_011CbBCaZJBW4aBgntW7a1wu",
+  "type": "assistant",
+  "uuid": "ae9e5196-c12b-4dda-8f05-db428c0287df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQHG5Fm1PXmNciERD9w4CT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 782,
+      "cache_read_input_tokens": 26086,
+      "output_tokens": 388,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 388,
+          "cache_read_input_tokens": 26086,
+          "cache_creation_input_tokens": 782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-19T03:15:34.167Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01J4K9kR9vv9rG8agiDC67Hv`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/ -name \"*.py\" -path \"*mmct*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ae9e5196-c12b-4dda-8f05-db428c0287df",
+  "isSidechain": false,
+  "requestId": "req_011CbBCaZJBW4aBgntW7a1wu",
+  "type": "assistant",
+  "uuid": "fe78496d-88ef-4ffb-af6c-7a843bb715b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SQHG5Fm1PXmNciERD9w4CT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 782,
+      "cache_read_input_tokens": 26086,
+      "output_tokens": 388,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 782,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 388,
+          "cache_read_input_tokens": 26086,
+          "cache_creation_input_tokens": 782,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 782
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-19T03:15:34.605Z_
+
+<details><summary>↩ Tool result · `toolu_01KDYyKsFiKwiWJnPMjZ7rpV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"alpha_sweep\\nalpha_sweep_analysis\\nanalysis\\nbootstrap_ty_dryrun.json\\nbootstrap_ty_results.json\\ndetrending\\ndose_response_drift.csv\\ngen_wiki_gpt2m_a100_s43\\ngeneralize\\nintervention\\nmethod_ablation_phase2_panel.json\\nmethod_ablation_phase2_report.md\\nmethod_ablation_phase3_panel.json\\nmethod_ablation_phase3_report.md\\nperm_granger_power_bootstrap.json\\nrebuttal\\nscale_check\\nshapley_values.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ae9e5196-c12b-4dda-8f05-db428c0287df",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "31427818-4c3d-4e84-b54f-7cd387a18005",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"alpha_sweep\\\\nalpha_sweep_analysis\\\\nanalysis\\\\nbootstrap_ty_dryrun.json\\\\nbootstrap_ty_results.json\\\\ndetrending\\\\ndose_response_drift.csv\\\\ngen_wiki_gpt2m_a100_s43\\\\ngeneralize\\\\nintervention\\\\nmethod_ablation_phase2_panel.json\\\\nmethod_ablation_phase2_report.md\\\\nmethod_ablation_phase3_panel.json\\\\nmethod_ablation_phase3_report.md\\\\nperm_granger_power_bootstrap.json\\\\nrebuttal\\\\nscale_check\\\\nshapley_values.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"alpha_sweep\\nalpha_sweep_analysis\\nanalysis\\nbootstrap_ty_dryrun.json\\nbootstrap_ty_results.json\\ndetrending\\ndose_response_drift.csv\\ngen_wiki_gpt2m_a100_s43\\ngeneralize\\nintervention\\nmethod_ablation_phase2_panel.json\\nmethod_ablation_phase2_report.md\\nmethod_ablation_phase3_panel.json\\nmethod_ablation_phase3_report.md\\nperm_granger_power_bootstrap.json\\nrebuttal\\nscale_check\\nshapley_values.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.1}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ae9e5196-c12b-4dda-8f05-db428c0287df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T03:15:35.146Z_
+
+<details><summary>↩ Tool result · `toolu_01J4K9kR9vv9rG8agiDC67Hv`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/mmct/__init__.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/methods.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/consensus_test.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/run_mmct.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/unified_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/run_mmct_s43.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe78496d-88ef-4ffb-af6c-7a843bb715b3",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "9ea798f0-9c21-4706-8763-6c0c122fbb7d",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/mmct/__init__.py\\\\n/root/autodl-tmp/distrib_canary_collapse/mmct/methods.py\\\\n/root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py\\\\n/root/autodl-tmp/distrib_canary_collapse/mmct/consensus_test.py\\\\n/root/autodl-tmp/distrib_canary_collapse/mmct/run_mmct.py\\\\n/root/autodl-tmp/distrib_canary_collapse/mmct/unified_analysis.py\\\\n/root/autodl-tmp/distrib_canary_collapse/run_mmct_s43.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/mmct/__init__.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/methods.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/consensus_test.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/run_mmct.py\\n/root/autodl-tmp/distrib_canary_collapse/mmct/unified_analysis.py\\n/root/autodl-tmp/distrib_canary_collapse/run_mmct_s43.py\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fe78496d-88ef-4ffb-af6c-7a843bb715b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "9ea798f0-9c21-4706-8763-6c0c122fbb7d",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Run MMCT analysis on all completed experiments",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-19T03:15:37.869Z_
+
+Found MMCT code in `/root/autodl-tmp/distrib_canary_collapse/mmct/`. Let me read the key files and check existing results.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ea798f0-9c21-4706-8763-6c0c122fbb7d",
+  "isSidechain": false,
+  "requestId": "req_011CbBCbZmV6QedQMr28KWjK",
+  "type": "assistant",
+  "uuid": "490fa6d1-a60a-4c95-80ec-3eb169ad41c0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0148x92UGHQQNs4mq8Lb3jLo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1053,
+      "cache_read_input_tokens": 26868,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1053,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 26868,
+          "cache_creation_input_tokens": 1053,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1053
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-19T03:15:38.359Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014VTKZ3MJf6KdFEjrAaBE3i`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/mmct/run_mmct.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "490fa6d1-a60a-4c95-80ec-3eb169ad41c0",
+  "isSidechain": false,
+  "requestId": "req_011CbBCbZmV6QedQMr28KWjK",
+  "type": "assistant",
+  "uuid": "f1d23ad0-efb4-41d9-bcbc-19b5a6ae5d69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0148x92UGHQQNs4mq8Lb3jLo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1053,
+      "cache_read_input_tokens": 26868,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1053,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 26868,
+          "cache_creation_input_tokens": 1053,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1053
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-19T03:15:38.882Z_
+
+<details><summary>↩ Tool result · `toolu_014VTKZ3MJf6KdFEjrAaBE3i`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Run MMCT across all available conditions.\\n\\nUses unified 5-method analysis data (from unified_analysis.py) with\\nTable 7 consistent parameters (2-sigma threshold, n_perm=5000).\\nRuns MMCT in 6 modes and generates all output files.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nfrom datetime import datetime\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\n\\nfrom mmct.methods import METRIC_PAIRS, METHOD_NAMES, set_unified_data_dir\\nfrom mmct.null_distribution import NullDistribution\\nfrom mmct.consensus_test import MMCT\\n\\nBASE_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep\\\"\\nGENERALIZE_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize\\\"\\nOUTPUT_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results\\\"\\nUNIFIED_DATA_DIR = os.path.join(OUTPUT_DIR, \\\"unified_data\\\")\\n\\nNULL_DIRS = [\\n    os.path.join(BASE_DIR, \\\"a000_s42\\\"),\\n    os.path.join(BASE_DIR, \\\"a000_s43\\\"),\\n    os.path.join(BASE_DIR, \\\"a000_s44\\\"),\\n]\\n\\nMODES = [\\n    {\\\"weighted\\\": False, \\\"bidirectional\\\": False, \\\"weighted_mode\\\": \\\"pair\\\",\\n     \\\"name\\\": \\\"uniform_forward\\\"},\\n    {\\\"weighted\\\": False, \\\"bidirectional\\\": True, \\\"weighted_mode\\\": \\\"pair\\\",\\n     \\\"name\\\": \\\"uniform_bidirectional\\\"},\\n    {\\\"weighted\\\": True, \\\"bidirectional\\\": False, \\\"weighted_mode\\\": \\\"pair\\\",\\n     \\\"name\\\": \\\"weighted_pair_forward\\\"},\\n    {\\\"weighted\\\": True, \\\"bidirectional\\\": True, \\\"weighted_mode\\\": \\\"pair\\\",\\n     \\\"name\\\": \\\"weighted_pair_bidirectional\\\"},\\n    {\\\"weighted\\\": True, \\\"bidirectional\\\": False, \\\"weighted_mode\\\": \\\"global\\\",\\n     \\\"name\\\": \\\"weighted_global_forward\\\"},\\n    {\\\"weighted\\\": True, \\\"bidirectional\\\": True, \\\"weighted_mode\\\": \\\"global\\\",\\n     \\\"name\\\": \\\"weighted_global_bidirectional\\\"},\\n]\\n\\nTABLE7_CONDITIONS = [\\n    {\\\"label\\\": \\\"Baseline\\\", \\\"model\\\": \\\"Pythia-410M\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"pythia410m_wiki_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Arch: GPT-2m\\\", \\\"model\\\": \\\"GPT-2m\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"gpt2m_wiki_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Arch: OPT\\\", \\\"model\\\": \\\"OPT-1.3B\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"opt1b_wiki_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Scale: 1.4B s42\\\", \\\"model\\\": \\\"Pythia-1.4B\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"pythia14b_wiki_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Scale: 1.4B s43\\\", \\\"model\\\": \\\"Pythia-1.4B\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"pythia14b_wiki_a100_s43\\\"},\\n    {\\\"label\\\": \\\"Domain: C4 s42\\\", \\\"model\\\": \\\"Pythia-1B\\\", \\\"data\\\": \\\"C4\\\",\\n     \\\"dir_name\\\": \\\"pythia1b_c4_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Domain: C4 s43\\\", \\\"model\\\": \\\"Pythia-1B\\\", \\\"data\\\": \\\"C4\\\",\\n     \\\"dir_name\\\": \\\"pythia1b_c4_a100_s43\\\"},\\n]\\n\\n\\ndef _has_data(entry_name):\\n    \\\"\\\"\\\"Check if unified data exists for this condition.\\\"\\\"\\\"\\n    return os.path.exists(os.path.join(UNIFIED_DATA_DIR, f\\\"{entry_name}.json\\\"))\\n\\n\\ndef discover_alpha_conditions():\\n    conditions = {}\\n    for entry in sorted(os.listdir(BASE_DIR)):\\n        if not entry.startswith(\\\"a\\\") or \\\"_s\\\" not in entry:\\n            continue\\n        if not _has_data(entry):\\n            continue\\n        parts = entry.split(\\\"_\\\")\\n        alpha_str = parts[0]\\n        seed = int(parts[1][1:])\\n        alpha_val = int(alpha_str[1:]) / 100.0\\n        if alpha_val not in conditions:\\n            conditions[alpha_val] = []\\n        conditions[alpha_val].append({\\n            \\\"run_id\\\": entry, \\\"seed\\\": seed,\\n            \\\"dir\\\": os.path.join(BASE_DIR, entry)\\n        })\\n    return conditions\\n\\n\\ndef discover_table7_conditions():\\n    available = []\\n    for cond in TABLE7_CONDITIONS:\\n        if _has_data(cond[\\\"dir_name\\\"]):\\n            data_dir = os.path.join(GENERALIZE_DIR, cond[\\\"dir_name\\\"])\\n            available.append({**cond, \\\"dir\\\": data_dir})\\n        else:\\n            print(f\\\"  WARNING: Missing unified data for {cond['dir_name']}\\\")\\n    return available\\n\\n\\ndef compute_fpr_fnr(all_results):\\n    fpr_fnr = {}\\n    for mode_name, mode_data in all_results[\\\"results\\\"].items():\\n        a000 = mode_data.get(\\\"a000\\\", [])\\n        fpr = (sum(1 for r in a000 if r[\\\"significant\\\"]) / len(a000)\\n               if a000 else None)\\n        per_alpha = {}\\n        for ak, alist in mode_data.items():\\n            if ak == \\\"a000\\\":\\n                continue\\n         \\n\\n... [截断: 输出过长，省略 8558 字符] ...\\n\\n']:.4f} |\\\"\\n            else:\\n                row += \\\" N/A |\\\"\\n        lines.append(row)\\n    lines += [\\n        \\\"\\\",\\n        \\\"## Tradeoff Analysis\\\",\\n        \\\"\\\",\\n        \\\"- **FPR**: fraction of alpha=0.00 tests incorrectly flagged\\\",\\n        \\\"- **Detection rate**: fraction flagged significant at each alpha\\\",\\n        \\\"- Weighted_pair: per-pair inverse-FPR weights (can be unstable with few null seeds)\\\",\\n        \\\"- Weighted_global: pooled-across-pairs inverse-FPR weights (more stable)\\\",\\n        \\\"- Bidirectional: requires forward sig. AND reverse non-sig.\\\",\\n        \\\"- Ideal: FPR=0 at alpha=0.00 with high detection at alpha>0\\\",\\n        \\\"\\\",\\n        \\\"## Effect of Each Enhancement\\\",\\n        \\\"\\\",\\n        \\\"| Comparison | FPR Change | a075 Det. Change |\\\",\\n        \\\"|------------|-----------|--------------------| \\\",\\n    ]\\n\\n    def _fmt(a, b):\\n        if a is None or b is None:\\n            return \\\"N/A\\\"\\n        return f\\\"{a:.4f} -> {b:.4f}\\\"\\n\\n    def _det(st, ak=\\\"a075\\\"):\\n        pa = st.get(\\\"per_alpha\\\", {}).get(ak, {})\\n        return pa.get(\\\"detection_rate\\\")\\n\\n    uf = fpr_fnr.get(\\\"uniform_forward\\\", {})\\n    ub = fpr_fnr.get(\\\"uniform_bidirectional\\\", {})\\n    wpf = fpr_fnr.get(\\\"weighted_pair_forward\\\", {})\\n    wpb = fpr_fnr.get(\\\"weighted_pair_bidirectional\\\", {})\\n    wgf = fpr_fnr.get(\\\"weighted_global_forward\\\", {})\\n    wgb = fpr_fnr.get(\\\"weighted_global_bidirectional\\\", {})\\n    comparisons = [\\n        (\\\"+weighted_pair (fwd)\\\", uf, wpf),\\n        (\\\"+weighted_global (fwd)\\\", uf, wgf),\\n        (\\\"+bidirectional (uniform)\\\", uf, ub),\\n        (\\\"+weighted_pair+bidir\\\", uf, wpb),\\n        (\\\"+weighted_global+bidir\\\", uf, wgb),\\n        (\\\"global vs pair (fwd)\\\", wpf, wgf),\\n        (\\\"global vs pair (bidir)\\\", wpb, wgb),\\n    ]\\n    for label, src, dst in comparisons:\\n        lines.append(\\n            f\\\"| {label} | \\\"\\n            f\\\"{_fmt(src.get('fpr'), dst.get('fpr'))} | \\\"\\n            f\\\"{_fmt(_det(src), _det(dst))} |\\\")\\n    return \\\"\\\\n\\\".join(lines) + \\\"\\\\n\\\"\\n\\n\\ndef generate_table7_report(all_results):\\n    t7 = all_results.get(\\\"table7_results\\\", {})\\n    if not t7:\\n        return \\\"# Table 7: No data available\\\\n\\\"\\n    first_mode = next(iter(t7.values()))\\n    conditions = list(first_mode.keys())\\n    mode_names = list(t7.keys())\\n    lines = [\\n        \\\"# MMCT Table 7: Generalization Results (alpha=1.0, Unified Data)\\\",\\n        \\\"\\\",\\n        \\\"Each cell = significant pairs / 8 total pairs (MMCT p<0.05)\\\",\\n        \\\"\\\",\\n    ]\\n    header = \\\"| Condition | Model | Data |\\\"\\n    sep = \\\"|-----------|-------|------|\\\"\\n    for mn in mode_names:\\n        short = (mn.replace(\\\"weighted_\\\", \\\"w_\\\")\\n                   .replace(\\\"uniform\\\", \\\"unif\\\")\\n                   .replace(\\\"bidirectional\\\", \\\"bidir\\\")\\n                   .replace(\\\"forward\\\", \\\"fwd\\\"))\\n        header += f\\\" {short} |\\\"\\n        sep += \\\"------|\\\"\\n    lines += [header, sep]\\n    for cond_label in conditions:\\n        first_cond = first_mode[cond_label]\\n        model = first_cond[\\\"model\\\"]\\n        data = first_cond[\\\"data\\\"]\\n        row = f\\\"| {cond_label} | {model} | {data} |\\\"\\n        for mn in mode_names:\\n            cond_data = t7[mn].get(cond_label, {})\\n            n_sig = cond_data.get(\\\"n_significant\\\", 0)\\n            n_tot = cond_data.get(\\\"n_total\\\", 8)\\n            row += f\\\" {n_sig}/{n_tot} |\\\"\\n        lines.append(row)\\n    lines += [\\n        \\\"\\\",\\n        \\\"## Per-Pair Detail (weighted_global_forward)\\\",\\n        \\\"\\\",\\n    ]\\n    wgf_data = t7.get(\\\"weighted_global_forward\\\", {})\\n    for cond_label, cond_data in wgf_data.items():\\n        lines += [f\\\"### {cond_label}\\\", \\\"\\\"]\\n        lines += [\\n            \\\"| Canary | Downstream | Score | p-value | Sig |\\\",\\n            \\\"|--------|------------|-------|---------|-----|\\\",\\n        ]\\n        for r in cond_data[\\\"pair_results\\\"]:\\n            sig = \\\"YES\\\" if r[\\\"significant\\\"] else \\\"no\\\"\\n            lines.append(\\n                f\\\"| {r['canary']} | {r['downstream']} | \\\"\\n                f\\\"{r['consensus_score']:.4f} | {r['p_value']:.4f} | {sig} |\\\")\\n        lines.append(\\\"\\\")\\n    return \\\"\\\\n\\\".join(lines) + \\\"\\\\n\\\"\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    run_all()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f1d23ad0-efb4-41d9-bcbc-19b5a6ae5d69",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "0020d4fd-2f09-48d1-acc2-f13664c2c3be",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Run MMCT across all available conditions.\\\\n\\\\nUses unified 5-method analysis data (from unified_analysis.py) with\\\\nTable 7 consistent parameters (2-sigma threshold, n_perm=5000).\\\\nRuns MMCT in 6 modes and generates all output files.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nimport os\\\\nimport sys\\\\nfrom datetime import datetime\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\")\\\\n\\\\nfrom mmct.methods import METRIC_PAIRS, METHOD_NAMES, set_unified_data_dir\\\\nfrom mmct.null_distribution import NullDistribution\\\\nfrom mmct.consensus_test import MMCT\\\\n\\\\nBASE_DIR = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep\\\\\\\"\\\\nGENERALIZE_DIR = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize\\\\\\\"\\\\nOUTPUT_DIR = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results\\\\\\\"\\\\nUNIFIED_DATA_DIR = os.path.join(OUTPUT_DIR, \\\\\\\"unified_data\\\\\\\")\\\\n\\\\nNULL_DIRS = [\\\\n    os.path.join(BASE_DIR, \\\\\\\"a000_s42\\\\\\\"),\\\\n    os.path.join(BASE_DIR, \\\\\\\"a000_s43\\\\\\\"),\\\\n    os.path.join(BASE_DIR, \\\\\\\"a000_s44\\\\\\\"),\\\\n]\\\\n\\\\nMODES = [\\\\n    {\\\\\\\"weighted\\\\\\\": False, \\\\\\\"bidirectional\\\\\\\": False, \\\\\\\"weighted_mode\\\\\\\": \\\\\\\"pair\\\\\\\",\\\\n     \\\\\\\"name\\\\\\\": \\\\\\\"uniform_forward\\\\\\\"},\\\\n    {\\\\\\\"weighted\\\\\\\": False, \\\\\\\"bidirectional\\\\\\\": True, \\\\\\\"weighted_mode\\\\\\\": \\\\\\\"pair\\\\\\\",\\\\n     \\\\\\\"name\\\\\\\": \\\\\\\"uniform_bidirectional\\\\\\\"},\\\\n    {\\\\\\\"weighted\\\\\\\": True, \\\\\\\"bidirectional\\\\\\\": False, \\\\\\\"weighted_mode\\\\\\\": \\\\\\\"pair\\\\\\\",\\\\n     \\\\\\\"name\\\\\\\": \\\\\\\"weighted_pair_forward\\\\\\\"},\\\\n    {\\\\\\\"weighted\\\\\\\": True, \\\\\\\"bidirectional\\\\\\\": True, \\\\\\\"weighted_mode\\\\\\\": \\\\\\\"pair\\\\\\\",\\\\n     \\\\\\\"name\\\\\\\": \\\\\\\"weighted_pair_bidirectional\\\\\\\"},\\\\n    {\\\\\\\"weighted\\\\\\\": True, \\\\\\\"bidirectional\\\\\\\": False, \\\\\\\"weighted_mode\\\\\\\": \\\\\\\"global\\\\\\\",\\\\n     \\\\\\\"name\\\\\\\": \\\\\\\"weighted_global_forward\\\\\\\"},\\\\n    {\\\\\\\"weighted\\\\\\\": True, \\\\\\\"bidirectional\\\\\\\": True, \\\\\\\"weighted_mode\\\\\\\": \\\\\\\"global\\\\\\\",\\\\n     \\\\\\\"name\\\\\\\": \\\\\\\"weighted_global_bidirectional\\\\\\\"},\\\\n]\\\\n\\\\nTABLE7_CONDITIONS = [\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Baseline\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Pythia-410M\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"Wiki\\\\\\\",\\\\n     \\\\\\\"dir_name\\\\\\\": \\\\\\\"pythia410m_wiki_a100_s42\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Arch: GPT-2m\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"GPT-2m\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"Wiki\\\\\\\",\\\\n     \\\\\\\"dir_name\\\\\\\": \\\\\\\"gpt2m_wiki_a100_s42\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Arch: OPT\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"OPT-1.3B\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"Wiki\\\\\\\",\\\\n     \\\\\\\"dir_name\\\\\\\": \\\\\\\"opt1b_wiki_a100_s42\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Scale: 1.4B s42\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Pythia-1.4B\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"Wiki\\\\\\\",\\\\n     \\\\\\\"dir_name\\\\\\\": \\\\\\\"pythia14b_wiki_a100_s42\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Scale: 1.4B s43\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Pythia-1.4B\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"Wiki\\\\\\\",\\\\n     \\\\\\\"dir_name\\\\\\\": \\\\\\\"pythia14b_wiki_a100_s43\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Domain: C4 s42\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Pythia-1B\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"C4\\\\\\\",\\\\n     \\\\\\\"dir_name\\\\\\\": \\\\\\\"pythia1b_c4_a100_s42\\\\\\\"},\\\\n    {\\\\\\\"label\\\\\\\": \\\\\\\"Domain: C4 s43\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Pythia-1B\\\\\\\", \\\\\\\"data\\\\\\\": \\\\\\\"C4\\\\\\\",\\\\n     \\\\\\\"dir_name\\\\\\\": \\\\\\\"pythia1b_c4_a100_s43\\\\\\\"},\\\\n]\\\\n\\\\n\\\\ndef _has_data(entry_name):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Check if unified data exists for this condition.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    return os.path.exists(os.path.join(UNIFIED_DATA_DIR, f\\\\\\\"{entry_name}.json\\\\\\\"))\\\\n\\\\n\\\\ndef discover_alpha_conditions():\\\\n    conditions = {}\\\\n    for entry in sorted(os.listdir(BASE_DIR)):\\\\n        if not entry.startswith(\\\\\\\"a\\\\\\\") or \\\\\\\"_s\\\\\\\" not in entry:\\\\n            continue\\\\n        if not _has_data(entry):\\\\n            continue\\\\n        parts = entry.split(\\\\\\\"_\\\\\\\")\\\\n        alpha_str = parts[0]\\\\n        seed = int(parts[1][1:])\\\\n        alpha_val = int(alpha_str[1:]) / 100.0\\\\n        if alpha_val not in conditions:\\\\n            conditions[alpha_val] = []\\\\n        conditions[alpha_val].append({\\\\n            \\\\\\\"run_id\\\\\\\": entry, \\\\\\\"seed\\\\\\\": seed,\\\\n            \\\\\\\"dir\\\\\\\": os.path.join(BASE_DIR, entry)\\\\n        })\\\\n    return conditions\\\\n\\\\n\\\\ndef discover_table7_conditions():\\\\n    available = []\\\\n    for cond in TABLE7_CONDITIONS:\\\\n        if _has_data(cond[\\\\\\\"dir_name\\\\\\\"]):\\\\n            data_dir = os.path.join(GENERALIZE_DIR, cond[\\\\\\\"dir_name\\\\\\\"])\\\\n            available.append({**cond, \\\\\\\"dir\\\\\\\": data_dir})\\\\n        else:\\\\n            print(f\\\\\\\"  WARNING: Missing unified data for {cond['dir_name']}\\\\\\\")\\\\n    return available\\\\n\\\\n\\\\ndef compute_fpr_fnr(all_results):\\\\n    fpr_fnr = {}\\\\n    for mode_name, mode_data in all_results[\\\\\\\"results\\\\\\\"].items():\\\\n        a000 = mode_data.get(\\\\\\\"a000\\\\\\\", [])\\\\n        fpr = (sum(1 for r in a000 if r[\\\\\\\"significant\\\\\\\"]) / len(a000)\\\\n               if a000 else None)\\\\n        per_alpha = {}\\\\n        for ak, alist in mode_data.items():\\\\n            if ak == \\\\\\\"a000\\\\\\\":\\\\n                continue\\\\n         \\\\n\\\\n... [截断: 输出过长，省略 8558 字符] ...\\\\n\\\\n']:.4f} |\\\\\\\"\\\\n            else:\\\\n                row += \\\\\\\" N/A |\\\\\\\"\\\\n        lines.append(row)\\\\n    lines += [\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"## Tradeoff Analysis\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"- **FPR**: fraction of alpha=0.00 tests incorrectly flagged\\\\\\\",\\\\n        \\\\\\\"- **Detection rate**: fraction flagged significant at each alpha\\\\\\\",\\\\n        \\\\\\\"- Weighted_pair: per-pair inverse-FPR weights (can be unstable with few null seeds)\\\\\\\",\\\\n        \\\\\\\"- Weighted_global: pooled-across-pairs inverse-FPR weights (more stable)\\\\\\\",\\\\n        \\\\\\\"- Bidirectional: requires forward sig. AND reverse non-sig.\\\\\\\",\\\\n        \\\\\\\"- Ideal: FPR=0 at alpha=0.00 with high detection at alpha>0\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"## Effect of Each Enhancement\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"| Comparison | FPR Change | a075 Det. Change |\\\\\\\",\\\\n        \\\\\\\"|------------|-----------|--------------------| \\\\\\\",\\\\n    ]\\\\n\\\\n    def _fmt(a, b):\\\\n        if a is None or b is None:\\\\n            return \\\\\\\"N/A\\\\\\\"\\\\n        return f\\\\\\\"{a:.4f} -> {b:.4f}\\\\\\\"\\\\n\\\\n    def _det(st, ak=\\\\\\\"a075\\\\\\\"):\\\\n        pa = st.get(\\\\\\\"per_alpha\\\\\\\", {}).get(ak, {})\\\\n        return pa.get(\\\\\\\"detection_rate\\\\\\\")\\\\n\\\\n    uf = fpr_fnr.get(\\\\\\\"uniform_forward\\\\\\\", {})\\\\n    ub = fpr_fnr.get(\\\\\\\"uniform_bidirectional\\\\\\\", {})\\\\n    wpf = fpr_fnr.get(\\\\\\\"weighted_pair_forward\\\\\\\", {})\\\\n    wpb = fpr_fnr.get(\\\\\\\"weighted_pair_bidirectional\\\\\\\", {})\\\\n    wgf = fpr_fnr.get(\\\\\\\"weighted_global_forward\\\\\\\", {})\\\\n    wgb = fpr_fnr.get(\\\\\\\"weighted_global_bidirectional\\\\\\\", {})\\\\n    comparisons = [\\\\n        (\\\\\\\"+weighted_pair (fwd)\\\\\\\", uf, wpf),\\\\n        (\\\\\\\"+weighted_global (fwd)\\\\\\\", uf, wgf),\\\\n        (\\\\\\\"+bidirectional (uniform)\\\\\\\", uf, ub),\\\\n        (\\\\\\\"+weighted_pair+bidir\\\\\\\", uf, wpb),\\\\n        (\\\\\\\"+weighted_global+bidir\\\\\\\", uf, wgb),\\\\n        (\\\\\\\"global vs pair (fwd)\\\\\\\", wpf, wgf),\\\\n        (\\\\\\\"global vs pair (bidir)\\\\\\\", wpb, wgb),\\\\n    ]\\\\n    for label, src, dst in comparisons:\\\\n        lines.append(\\\\n            f\\\\\\\"| {label} | \\\\\\\"\\\\n            f\\\\\\\"{_fmt(src.get('fpr'), dst.get('fpr'))} | \\\\\\\"\\\\n            f\\\\\\\"{_fmt(_det(src), _det(dst))} |\\\\\\\")\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines) + \\\\\\\"\\\\\\\\n\\\\\\\"\\\\n\\\\n\\\\ndef generate_table7_report(all_results):\\\\n    t7 = all_results.get(\\\\\\\"table7_results\\\\\\\", {})\\\\n    if not t7:\\\\n        return \\\\\\\"# Table 7: No data available\\\\\\\\n\\\\\\\"\\\\n    first_mode = next(iter(t7.values()))\\\\n    conditions = list(first_mode.keys())\\\\n    mode_names = list(t7.keys())\\\\n    lines = [\\\\n        \\\\\\\"# MMCT Table 7: Generalization Results (alpha=1.0, Unified Data)\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"Each cell = significant pairs / 8 total pairs (MMCT p<0.05)\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n    ]\\\\n    header = \\\\\\\"| Condition | Model | Data |\\\\\\\"\\\\n    sep = \\\\\\\"|-----------|-------|------|\\\\\\\"\\\\n    for mn in mode_names:\\\\n        short = (mn.replace(\\\\\\\"weighted_\\\\\\\", \\\\\\\"w_\\\\\\\")\\\\n                   .replace(\\\\\\\"uniform\\\\\\\", \\\\\\\"unif\\\\\\\")\\\\n                   .replace(\\\\\\\"bidirectional\\\\\\\", \\\\\\\"bidir\\\\\\\")\\\\n                   .replace(\\\\\\\"forward\\\\\\\", \\\\\\\"fwd\\\\\\\"))\\\\n        header += f\\\\\\\" {short} |\\\\\\\"\\\\n        sep += \\\\\\\"------|\\\\\\\"\\\\n    lines += [header, sep]\\\\n    for cond_label in conditions:\\\\n        first_cond = first_mode[cond_label]\\\\n        model = first_cond[\\\\\\\"model\\\\\\\"]\\\\n        data = first_cond[\\\\\\\"data\\\\\\\"]\\\\n        row = f\\\\\\\"| {cond_label} | {model} | {data} |\\\\\\\"\\\\n        for mn in mode_names:\\\\n            cond_data = t7[mn].get(cond_label, {})\\\\n            n_sig = cond_data.get(\\\\\\\"n_significant\\\\\\\", 0)\\\\n            n_tot = cond_data.get(\\\\\\\"n_total\\\\\\\", 8)\\\\n            row += f\\\\\\\" {n_sig}/{n_tot} |\\\\\\\"\\\\n        lines.append(row)\\\\n    lines += [\\\\n        \\\\\\\"\\\\\\\",\\\\n        \\\\\\\"## Per-Pair Detail (weighted_global_forward)\\\\\\\",\\\\n        \\\\\\\"\\\\\\\",\\\\n    ]\\\\n    wgf_data = t7.get(\\\\\\\"weighted_global_forward\\\\\\\", {})\\\\n    for cond_label, cond_data in wgf_data.items():\\\\n        lines += [f\\\\\\\"### {cond_label}\\\\\\\", \\\\\\\"\\\\\\\"]\\\\n        lines += [\\\\n            \\\\\\\"| Canary | Downstream | Score | p-value | Sig |\\\\\\\",\\\\n            \\\\\\\"|--------|------------|-------|---------|-----|\\\\\\\",\\\\n        ]\\\\n        for r in cond_data[\\\\\\\"pair_results\\\\\\\"]:\\\\n            sig = \\\\\\\"YES\\\\\\\" if r[\\\\\\\"significant\\\\\\\"] else \\\\\\\"no\\\\\\\"\\\\n            lines.append(\\\\n                f\\\\\\\"| {r['canary']} | {r['downstream']} | \\\\\\\"\\\\n                f\\\\\\\"{r['consensus_score']:.4f} | {r['p_value']:.4f} | {sig} |\\\\\\\")\\\\n        lines.append(\\\\\\\"\\\\\\\")\\\\n    return \\\\\\\"\\\\\\\\n\\\\\\\".join(lines) + \\\\\\\"\\\\\\\\n\\\\\\\"\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    run_all()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Run MMCT across all available conditions.\\n\\nUses unified 5-method analysis data (from unified_analysis.py) with\\nTable 7 consistent parameters (2-sigma threshold, n_perm=5000).\\nRuns MMCT in 6 modes and generates all output files.\\n\\\"\\\"\\\"\\n\\nimport json\\nimport os\\nimport sys\\nfrom datetime import datetime\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\n\\nfrom mmct.methods import METRIC_PAIRS, METHOD_NAMES, set_unified_data_dir\\nfrom mmct.null_distribution import NullDistribution\\nfrom mmct.consensus_test import MMCT\\n\\nBASE_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep\\\"\\nGENERALIZE_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/results/generalize\\\"\\nOUTPUT_DIR = \\\"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results\\\"\\nUNIFIED_DATA_DIR = os.path.join(OUTPUT_DIR, \\\"unified_data\\\")\\n\\nNULL_DIRS = [\\n    os.path.join(BASE_DIR, \\\"a000_s42\\\"),\\n    os.path.join(BASE_DIR, \\\"a000_s43\\\"),\\n    os.path.join(BASE_DIR, \\\"a000_s44\\\"),\\n]\\n\\nMODES = [\\n    {\\\"weighted\\\": False, \\\"bidirectional\\\": False, \\\"weighted_mode\\\": \\\"pair\\\",\\n     \\\"name\\\": \\\"uniform_forward\\\"},\\n    {\\\"weighted\\\": False, \\\"bidirectional\\\": True, \\\"weighted_mode\\\": \\\"pair\\\",\\n     \\\"name\\\": \\\"uniform_bidirectional\\\"},\\n    {\\\"weighted\\\": True, \\\"bidirectional\\\": False, \\\"weighted_mode\\\": \\\"pair\\\",\\n     \\\"name\\\": \\\"weighted_pair_forward\\\"},\\n    {\\\"weighted\\\": True, \\\"bidirectional\\\": True, \\\"weighted_mode\\\": \\\"pair\\\",\\n     \\\"name\\\": \\\"weighted_pair_bidirectional\\\"},\\n    {\\\"weighted\\\": True, \\\"bidirectional\\\": False, \\\"weighted_mode\\\": \\\"global\\\",\\n     \\\"name\\\": \\\"weighted_global_forward\\\"},\\n    {\\\"weighted\\\": True, \\\"bidirectional\\\": True, \\\"weighted_mode\\\": \\\"global\\\",\\n     \\\"name\\\": \\\"weighted_global_bidirectional\\\"},\\n]\\n\\nTABLE7_CONDITIONS = [\\n    {\\\"label\\\": \\\"Baseline\\\", \\\"model\\\": \\\"Pythia-410M\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"pythia410m_wiki_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Arch: GPT-2m\\\", \\\"model\\\": \\\"GPT-2m\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"gpt2m_wiki_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Arch: OPT\\\", \\\"model\\\": \\\"OPT-1.3B\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"opt1b_wiki_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Scale: 1.4B s42\\\", \\\"model\\\": \\\"Pythia-1.4B\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"pythia14b_wiki_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Scale: 1.4B s43\\\", \\\"model\\\": \\\"Pythia-1.4B\\\", \\\"data\\\": \\\"Wiki\\\",\\n     \\\"dir_name\\\": \\\"pythia14b_wiki_a100_s43\\\"},\\n    {\\\"label\\\": \\\"Domain: C4 s42\\\", \\\"model\\\": \\\"Pythia-1B\\\", \\\"data\\\": \\\"C4\\\",\\n     \\\"dir_name\\\": \\\"pythia1b_c4_a100_s42\\\"},\\n    {\\\"label\\\": \\\"Domain: C4 s43\\\", \\\"model\\\": \\\"Pythia-1B\\\", \\\"data\\\": \\\"C4\\\",\\n     \\\"dir_name\\\": \\\"pythia1b_c4_a100_s43\\\"},\\n]\\n\\n\\ndef _has_data(entry_name):\\n    \\\"\\\"\\\"Check if unified data exists for this condition.\\\"\\\"\\\"\\n    return os.path.exists(os.path.join(UNIFIED_DATA_DIR, f\\\"{entry_name}.json\\\"))\\n\\n\\ndef discover_alpha_conditions():\\n    conditions = {}\\n    for entry in sorted(os.listdir(BASE_DIR)):\\n        if not entry.startswith(\\\"a\\\") or \\\"_s\\\" not in entry:\\n            continue\\n        if not _has_data(entry):\\n            continue\\n        parts = entry.split(\\\"_\\\")\\n        alpha_str = parts[0]\\n        seed = int(parts[1][1:])\\n        alpha_val = int(alpha_str[1:]) / 100.0\\n        if alpha_val not in conditions:\\n            conditions[alpha_val] = []\\n        conditions[alpha_val].append({\\n            \\\"run_id\\\": entry, \\\"seed\\\": seed,\\n            \\\"dir\\\": os.path.join(BASE_DIR, entry)\\n        })\\n    return conditions\\n\\n\\ndef discover_table7_conditions():\\n    available = []\\n    for cond in TABLE7_CONDITIONS:\\n        if _has_data(cond[\\\"dir_name\\\"]):\\n            data_dir = os.path.join(GENERALIZE_DIR, cond[\\\"dir_name\\\"])\\n            available.append({**cond, \\\"dir\\\": data_dir})\\n        else:\\n            print(f\\\"  WARNING: Missing unified data for {cond['dir_name']}\\\")\\n    return available\\n\\n\\ndef compute_fpr_fnr(all_results):\\n    fpr_fnr = {}\\n    for mode_name, mode_data in all_results[\\\"results\\\"].items():\\n        a000 = mode_data.get(\\\"a000\\\", [])\\n        fpr = (sum(1 for r in a000 if r[\\\"significant\\\"]) / len(a000)\\n               if a000 else None)\\n        per_alpha = {}\\n        for ak, alist in mode_data.items():\\n            if ak == \\\"a000\\\":\\n                continue\\n         \\n\\n... [截断: 输出过长，省略 8558 字符] ...\\n\\n']:.4f} |\\\"\\n            else:\\n                row += \\\" N/A |\\\"\\n        lines.append(row)\\n    lines += [\\n        \\\"\\\",\\n        \\\"## Tradeoff Analysis\\\",\\n        \\\"\\\",\\n        \\\"- **FPR**: fraction of alpha=0.00 tests incorrectly flagged\\\",\\n        \\\"- **Detection rate**: fraction flagged significant at each alpha\\\",\\n        \\\"- Weighted_pair: per-pair inverse-FPR weights (can be unstable with few null seeds)\\\",\\n        \\\"- Weighted_global: pooled-across-pairs inverse-FPR weights (more stable)\\\",\\n        \\\"- Bidirectional: requires forward sig. AND reverse non-sig.\\\",\\n        \\\"- Ideal: FPR=0 at alpha=0.00 with high detection at alpha>0\\\",\\n        \\\"\\\",\\n        \\\"## Effect of Each Enhancement\\\",\\n        \\\"\\\",\\n        \\\"| Comparison | FPR Change | a075 Det. Change |\\\",\\n        \\\"|------------|-----------|--------------------| \\\",\\n    ]\\n\\n    def _fmt(a, b):\\n        if a is None or b is None:\\n            return \\\"N/A\\\"\\n        return f\\\"{a:.4f} -> {b:.4f}\\\"\\n\\n    def _det(st, ak=\\\"a075\\\"):\\n        pa = st.get(\\\"per_alpha\\\", {}).get(ak, {})\\n        return pa.get(\\\"detection_rate\\\")\\n\\n    uf = fpr_fnr.get(\\\"uniform_forward\\\", {})\\n    ub = fpr_fnr.get(\\\"uniform_bidirectional\\\", {})\\n    wpf = fpr_fnr.get(\\\"weighted_pair_forward\\\", {})\\n    wpb = fpr_fnr.get(\\\"weighted_pair_bidirectional\\\", {})\\n    wgf = fpr_fnr.get(\\\"weighted_global_forward\\\", {})\\n    wgb = fpr_fnr.get(\\\"weighted_global_bidirectional\\\", {})\\n    comparisons = [\\n        (\\\"+weighted_pair (fwd)\\\", uf, wpf),\\n        (\\\"+weighted_global (fwd)\\\", uf, wgf),\\n        (\\\"+bidirectional (uniform)\\\", uf, ub),\\n        (\\\"+weighted_pair+bidir\\\", uf, wpb),\\n        (\\\"+weighted_global+bidir\\\", uf, wgb),\\n        (\\\"global vs pair (fwd)\\\", wpf, wgf),\\n        (\\\"global vs pair (bidir)\\\", wpb, wgb),\\n    ]\\n    for label, src, dst in comparisons:\\n        lines.append(\\n            f\\\"| {label} | \\\"\\n            f\\\"{_fmt(src.get('fpr'), dst.get('fpr'))} | \\\"\\n            f\\\"{_fmt(_det(src), _det(dst))} |\\\")\\n    return \\\"\\\\n\\\".join(lines) + \\\"\\\\n\\\"\\n\\n\\ndef generate_table7_report(all_results):\\n    t7 = all_results.get(\\\"table7_results\\\", {})\\n    if not t7:\\n        return \\\"# Table 7: No data available\\\\n\\\"\\n    first_mode = next(iter(t7.values()))\\n    conditions = list(first_mode.keys())\\n    mode_names = list(t7.keys())\\n    lines = [\\n        \\\"# MMCT Table 7: Generalization Results (alpha=1.0, Unified Data)\\\",\\n        \\\"\\\",\\n        \\\"Each cell = significant pairs / 8 total pairs (MMCT p<0.05)\\\",\\n        \\\"\\\",\\n    ]\\n    header = \\\"| Condition | Model | Data |\\\"\\n    sep = \\\"|-----------|-------|------|\\\"\\n    for mn in mode_names:\\n        short = (mn.replace(\\\"weighted_\\\", \\\"w_\\\")\\n                   .replace(\\\"uniform\\\", \\\"unif\\\")\\n                   .replace(\\\"bidirectional\\\", \\\"bidir\\\")\\n                   .replace(\\\"forward\\\", \\\"fwd\\\"))\\n        header += f\\\" {short} |\\\"\\n        sep += \\\"------|\\\"\\n    lines += [header, sep]\\n    for cond_label in conditions:\\n        first_cond = first_mode[cond_label]\\n        model = first_cond[\\\"model\\\"]\\n        data = first_cond[\\\"data\\\"]\\n        row = f\\\"| {cond_label} | {model} | {data} |\\\"\\n        for mn in mode_names:\\n            cond_data = t7[mn].get(cond_label, {})\\n            n_sig = cond_data.get(\\\"n_significant\\\", 0)\\n            n_tot = cond_data.get(\\\"n_total\\\", 8)\\n            row += f\\\" {n_sig}/{n_tot} |\\\"\\n        lines.append(row)\\n    lines += [\\n        \\\"\\\",\\n        \\\"## Per-Pair Detail (weighted_global_forward)\\\",\\n        \\\"\\\",\\n    ]\\n    wgf_data = t7.get(\\\"weighted_global_forward\\\", {})\\n    for cond_label, cond_data in wgf_data.items():\\n        lines += [f\\\"### {cond_label}\\\", \\\"\\\"]\\n        lines += [\\n            \\\"| Canary | Downstream | Score | p-value | Sig |\\\",\\n            \\\"|--------|------------|-------|---------|-----|\\\",\\n        ]\\n        for r in cond_data[\\\"pair_results\\\"]:\\n            sig = \\\"YES\\\" if r[\\\"significant\\\"] else \\\"no\\\"\\n            lines.append(\\n                f\\\"| {r['canary']} | {r['downstream']} | \\\"\\n                f\\\"{r['consensus_score']:.4f} | {r['p_value']:.4f} | {sig} |\\\")\\n        lines.append(\\\"\\\")\\n    return \\\"\\\\n\\\".join(lines) + \\\"\\\\n\\\"\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    run_all()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.51}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f1d23ad0-efb4-41d9-bcbc-19b5a6ae5d69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-19T03:15:39.294Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_019gMXzFSJEXbK9ZCJGuR798`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/run_mmct_s43.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0020d4fd-2f09-48d1-acc2-f13664c2c3be",
+  "isSidechain": false,
+  "requestId": "req_011CbBCbZmV6QedQMr28KWjK",
+  "type": "assistant",
+  "uuid": "949616d0-9640-46a5-b6df-753796ac16d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0148x92UGHQQNs4mq8Lb3jLo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1053,
+      "cache_read_input_tokens": 26868,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1053,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 26868,
+          "cache_creation_input_tokens": 1053,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1053
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-19T03:15:39.746Z_
+
+<details><summary>↩ Tool result · `toolu_019gMXzFSJEXbK9ZCJGuR798`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MMCT analysis for GPT-2m s43 bf16 using null from alpha=0.00.\\\"\\\"\\\"\\nimport sys\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\n\\nfrom mmct.methods import METRIC_PAIRS, METHOD_NAMES\\nfrom mmct.null_distribution import NullDistribution\\nfrom mmct.consensus_test import MMCT\\n\\nNULL_DIRS = [\\n    \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\\",\\n    \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43\\\",\\n    \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\\",\\n]\\n\\n# s43 bf16 forward significance (from 5method analysis)\\nS43_FWD = {\\n    (\\\"token_entropy\\\", \\\"distinct_1\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"distinct_2\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"distinct_3\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"perplexity\\\"):  {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_1\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_2\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_3\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"perplexity\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": True, \\\"ty_granger\\\": False},\\n}\\n\\n# s43 bf16 reverse significance\\nS43_REV = {\\n    (\\\"token_entropy\\\", \\\"distinct_1\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"distinct_2\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"distinct_3\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"perplexity\\\"):  {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_1\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_2\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_3\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"perplexity\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n}\\n\\nprint(\\\"Building null distribution...\\\")\\nnull_dist = NullDistribution(NULL_DIRS, n_bootstrap=10000, seed=42)\\nprint(f\\\"  Null observations: {len(null_dist.null_uniform_fwd)}\\\")\\nprint(f\\\"  Global FPR: {null_dist.global_fpr}\\\")\\n\\nfor mode_name, weighted, bidirectional in [\\n    (\\\"weighted_forward\\\", True, False),\\n]:\\n    print(f\\\"\\\\n--- Mode: {mode_name} ---\\\")\\n    mmct = MMCT(null_dist, weighted=weighted, bidirectional=bidirectional)\\n    n_sig = 0\\n    for canary, downstream in METRIC_PAIRS:\\n        fwd_sig = S43_FWD[(canary, downstream)]\\n        pair_key = (canary, downstream)\\n        if weighted:\\n            weights = null_dist.get_weights(pair_key)\\n            score = null_dist.consensus_score_weighted(fwd_sig, weights)\\n        else:\\n            score = null_dist.consensus_score_uniform(fwd_sig)\\n        p, ci_lo, ci_hi = null_dist.p_value(score, weighted=weighted, direction=\\\"forward\\\")\\n        sig = p < 0.05\\n        n_sig += sig\\n        print(f\\\"  {canary}->{downstream}: score={score:.4f} p={p:.4f} [{ci_lo:.4f},{ci_hi:.4f}] {'SIG' if sig else ''}\\\")\\n    print(f\\\"\\\\n  MMCT {mode_name}: {n_sig}/8 significant\\\")\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "949616d0-9640-46a5-b6df-753796ac16d2",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "3256730f-b6ed-4220-bcc8-79baaa8880da",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"MMCT analysis for GPT-2m s43 bf16 using null from alpha=0.00.\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport sys\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\")\\\\n\\\\nfrom mmct.methods import METRIC_PAIRS, METHOD_NAMES\\\\nfrom mmct.null_distribution import NullDistribution\\\\nfrom mmct.consensus_test import MMCT\\\\n\\\\nNULL_DIRS = [\\\\n    \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\\\\\\",\\\\n    \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43\\\\\\\",\\\\n    \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\\\\\\",\\\\n]\\\\n\\\\n# s43 bf16 forward significance (from 5method analysis)\\\\nS43_FWD = {\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\"): {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_2\\\\\\\"): {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_3\\\\\\\"): {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"perplexity\\\\\\\"):  {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"distinct_1\\\\\\\"):            {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"distinct_2\\\\\\\"):            {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"distinct_3\\\\\\\"):            {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": False, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"):            {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": True, \\\\\\\"ty_granger\\\\\\\": False},\\\\n}\\\\n\\\\n# s43 bf16 reverse significance\\\\nS43_REV = {\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\"): {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": False, \\\\\\\"threshold_onset\\\\\\\": False, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_2\\\\\\\"): {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": False, \\\\\\\"threshold_onset\\\\\\\": False, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_3\\\\\\\"): {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": False, \\\\\\\"threshold_onset\\\\\\\": False, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"token_entropy\\\\\\\", \\\\\\\"perplexity\\\\\\\"):  {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": True, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"distinct_1\\\\\\\"):            {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": False, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"distinct_2\\\\\\\"):            {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": False, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"distinct_3\\\\\\\"):            {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": False, \\\\\\\"threshold_onset\\\\\\\": False, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n    (\\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"):            {\\\\\\\"naive_xcorr\\\\\\\": True, \\\\\\\"diff_xcorr\\\\\\\": True, \\\\\\\"threshold_onset\\\\\\\": False, \\\\\\\"perm_granger\\\\\\\": False, \\\\\\\"ty_granger\\\\\\\": False},\\\\n}\\\\n\\\\nprint(\\\\\\\"Building null distribution...\\\\\\\")\\\\nnull_dist = NullDistribution(NULL_DIRS, n_bootstrap=10000, seed=42)\\\\nprint(f\\\\\\\"  Null observations: {len(null_dist.null_uniform_fwd)}\\\\\\\")\\\\nprint(f\\\\\\\"  Global FPR: {null_dist.global_fpr}\\\\\\\")\\\\n\\\\nfor mode_name, weighted, bidirectional in [\\\\n    (\\\\\\\"weighted_forward\\\\\\\", True, False),\\\\n]:\\\\n    print(f\\\\\\\"\\\\\\\\n--- Mode: {mode_name} ---\\\\\\\")\\\\n    mmct = MMCT(null_dist, weighted=weighted, bidirectional=bidirectional)\\\\n    n_sig = 0\\\\n    for canary, downstream in METRIC_PAIRS:\\\\n        fwd_sig = S43_FWD[(canary, downstream)]\\\\n        pair_key = (canary, downstream)\\\\n        if weighted:\\\\n            weights = null_dist.get_weights(pair_key)\\\\n            score = null_dist.consensus_score_weighted(fwd_sig, weights)\\\\n        else:\\\\n            score = null_dist.consensus_score_uniform(fwd_sig)\\\\n        p, ci_lo, ci_hi = null_dist.p_value(score, weighted=weighted, direction=\\\\\\\"forward\\\\\\\")\\\\n        sig = p < 0.05\\\\n        n_sig += sig\\\\n        print(f\\\\\\\"  {canary}->{downstream}: score={score:.4f} p={p:.4f} [{ci_lo:.4f},{ci_hi:.4f}] {'SIG' if sig else ''}\\\\\\\")\\\\n    print(f\\\\\\\"\\\\\\\\n  MMCT {mode_name}: {n_sig}/8 significant\\\\\\\")\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"MMCT analysis for GPT-2m s43 bf16 using null from alpha=0.00.\\\"\\\"\\\"\\nimport sys\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\n\\nfrom mmct.methods import METRIC_PAIRS, METHOD_NAMES\\nfrom mmct.null_distribution import NullDistribution\\nfrom mmct.consensus_test import MMCT\\n\\nNULL_DIRS = [\\n    \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\\",\\n    \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43\\\",\\n    \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\\",\\n]\\n\\n# s43 bf16 forward significance (from 5method analysis)\\nS43_FWD = {\\n    (\\\"token_entropy\\\", \\\"distinct_1\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"distinct_2\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"distinct_3\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"perplexity\\\"):  {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_1\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_2\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_3\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"perplexity\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": True, \\\"ty_granger\\\": False},\\n}\\n\\n# s43 bf16 reverse significance\\nS43_REV = {\\n    (\\\"token_entropy\\\", \\\"distinct_1\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"distinct_2\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"distinct_3\\\"): {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"token_entropy\\\", \\\"perplexity\\\"):  {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": True, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_1\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_2\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"distinct_3\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": False, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n    (\\\"ece\\\", \\\"perplexity\\\"):            {\\\"naive_xcorr\\\": True, \\\"diff_xcorr\\\": True, \\\"threshold_onset\\\": False, \\\"perm_granger\\\": False, \\\"ty_granger\\\": False},\\n}\\n\\nprint(\\\"Building null distribution...\\\")\\nnull_dist = NullDistribution(NULL_DIRS, n_bootstrap=10000, seed=42)\\nprint(f\\\"  Null observations: {len(null_dist.null_uniform_fwd)}\\\")\\nprint(f\\\"  Global FPR: {null_dist.global_fpr}\\\")\\n\\nfor mode_name, weighted, bidirectional in [\\n    (\\\"weighted_forward\\\", True, False),\\n]:\\n    print(f\\\"\\\\n--- Mode: {mode_name} ---\\\")\\n    mmct = MMCT(null_dist, weighted=weighted, bidirectional=bidirectional)\\n    n_sig = 0\\n    for canary, downstream in METRIC_PAIRS:\\n        fwd_sig = S43_FWD[(canary, downstream)]\\n        pair_key = (canary, downstream)\\n        if weighted:\\n            weights = null_dist.get_weights(pair_key)\\n            score = null_dist.consensus_score_weighted(fwd_sig, weights)\\n        else:\\n            score = null_dist.consensus_score_uniform(fwd_sig)\\n        p, ci_lo, ci_hi = null_dist.p_value(score, weighted=weighted, direction=\\\"forward\\\")\\n        sig = p < 0.05\\n        n_sig += sig\\n        print(f\\\"  {canary}->{downstream}: score={score:.4f} p={p:.4f} [{ci_lo:.4f},{ci_hi:.4f}] {'SIG' if sig else ''}\\\")\\n    print(f\\\"\\\\n  MMCT {mode_name}: {n_sig}/8 significant\\\")\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "949616d0-9640-46a5-b6df-753796ac16d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-19T03:15:40.231Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016AXx9B9PuyUm7pCxj3qTug`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/mmct/consensus_test.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3256730f-b6ed-4220-bcc8-79baaa8880da",
+  "isSidechain": false,
+  "requestId": "req_011CbBCbZmV6QedQMr28KWjK",
+  "type": "assistant",
+  "uuid": "a554a025-b0b6-4d6c-9c50-5f612203bfd7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0148x92UGHQQNs4mq8Lb3jLo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1053,
+      "cache_read_input_tokens": 26868,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1053,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 26868,
+          "cache_creation_input_tokens": 1053,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1053
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T03:15:40.675Z_
+
+<details><summary>↩ Tool result · `toolu_016AXx9B9PuyUm7pCxj3qTug`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Multi-Method Consensus Test (MMCT) core implementation.\\n\\nModes:\\n  - uniform: consensus = count of significant methods\\n  - weighted_pair: consensus = inverse per-pair-FPR weighted sum\\n  - weighted_global: consensus = inverse global-FPR weighted sum\\n  - forward-only: test canary -> downstream direction only\\n  - bidirectional: require forward significant AND reverse non-significant\\n\\\"\\\"\\\"\\n\\nfrom dataclasses import dataclass, field, asdict\\nfrom typing import Optional\\n\\nfrom .methods import METHOD_NAMES, extract_method_significance, load_5method_results\\nfrom .null_distribution import NullDistribution\\n\\n\\n@dataclass\\nclass MMCTResult:\\n    canary: str\\n    downstream: str\\n    consensus_score: float\\n    p_value: float\\n    ci_lower: float\\n    ci_upper: float\\n    method_results: dict\\n    significant: bool\\n    alpha: float = 0.05\\n    mode: str = \\\"uniform_forward\\\"\\n    weights: Optional[dict] = None\\n    reverse_p_value: Optional[float] = None\\n    reverse_consensus_score: Optional[float] = None\\n    reverse_method_results: Optional[dict] = None\\n\\n    def to_dict(self):\\n        d = asdict(self)\\n        if d[\\\"weights\\\"]:\\n            d[\\\"weights\\\"] = {k: round(v, 4) for k, v in d[\\\"weights\\\"].items()}\\n        return d\\n\\n\\nclass MMCT:\\n    \\\"\\\"\\\"Multi-Method Consensus Test.\\\"\\\"\\\"\\n\\n    def __init__(self, null_distribution, weighted=False,\\n                 bidirectional=False, alpha=0.05, weighted_mode=\\\"pair\\\"):\\n        self.null = null_distribution\\n        self.weighted = weighted\\n        self.bidirectional = bidirectional\\n        self.alpha = alpha\\n        self.weighted_mode = weighted_mode\\n\\n    @property\\n    def mode_name(self):\\n        if self.weighted:\\n            w = f\\\"weighted_{self.weighted_mode}\\\"\\n        else:\\n            w = \\\"uniform\\\"\\n        d = \\\"bidirectional\\\" if self.bidirectional else \\\"forward\\\"\\n        return f\\\"{w}_{d}\\\"\\n\\n    def test_from_precomputed(self, data_dir, canary, downstream):\\n        results = load_5method_results(data_dir)\\n        fwd_sig = extract_method_significance(\\n            results, canary, downstream, \\\"forward\\\")\\n\\n        pair_key = (canary, downstream)\\n\\n        if self.weighted:\\n            if self.weighted_mode == \\\"global\\\":\\n                weights = self.null.get_global_weights()\\n            else:\\n                weights = self.null.get_weights(pair_key)\\n            score = self.null.consensus_score_weighted(fwd_sig, weights)\\n        else:\\n            weights = None\\n            score = self.null.consensus_score_uniform(fwd_sig)\\n\\n        p, ci_lo, ci_hi = self.null.p_value(\\n            score, weighted=self.weighted, direction=\\\"forward\\\",\\n            weighted_mode=self.weighted_mode)\\n\\n        significant = p < self.alpha\\n\\n        reverse_p = None\\n        reverse_score = None\\n        reverse_sig_dict = None\\n\\n        if self.bidirectional:\\n            rev_sig = extract_method_significance(\\n                results, canary, downstream, \\\"reverse\\\")\\n            if self.weighted:\\n                reverse_score = self.null.consensus_score_weighted(\\n                    rev_sig, weights)\\n            else:\\n                reverse_score = self.null.consensus_score_uniform(rev_sig)\\n\\n            reverse_p, _, _ = self.null.p_value(\\n                reverse_score, weighted=self.weighted, direction=\\\"reverse\\\",\\n                weighted_mode=self.weighted_mode)\\n            reverse_sig_dict = rev_sig\\n\\n            significant = (p < self.alpha) and (reverse_p >= self.alpha)\\n\\n        return MMCTResult(\\n            canary=canary,\\n            downstream=downstream,\\n            consensus_score=round(score, 6),\\n            p_value=round(p, 6),\\n            ci_lower=round(ci_lo, 6),\\n            ci_upper=round(ci_hi, 6),\\n            method_results=fwd_sig,\\n            significant=significant,\\n            alpha=self.alpha,\\n            mode=self.mode_name,\\n            weights=weights,\\n            reverse_p_value=round(reverse_p, 6) if reverse_p is not None else None,\\n            reverse_consensus_score=(round(reverse_score, 6)\\n                                     if reverse_score is not None else None),\\n            reverse_method_results=reverse_sig_dict,\\n        )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a554a025-b0b6-4d6c-9c50-5f612203bfd7",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "ab701634-ed43-4eb4-94d9-b0a48c0a03f0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Multi-Method Consensus Test (MMCT) core implementation.\\\\n\\\\nModes:\\\\n  - uniform: consensus = count of significant methods\\\\n  - weighted_pair: consensus = inverse per-pair-FPR weighted sum\\\\n  - weighted_global: consensus = inverse global-FPR weighted sum\\\\n  - forward-only: test canary -> downstream direction only\\\\n  - bidirectional: require forward significant AND reverse non-significant\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nfrom dataclasses import dataclass, field, asdict\\\\nfrom typing import Optional\\\\n\\\\nfrom .methods import METHOD_NAMES, extract_method_significance, load_5method_results\\\\nfrom .null_distribution import NullDistribution\\\\n\\\\n\\\\n@dataclass\\\\nclass MMCTResult:\\\\n    canary: str\\\\n    downstream: str\\\\n    consensus_score: float\\\\n    p_value: float\\\\n    ci_lower: float\\\\n    ci_upper: float\\\\n    method_results: dict\\\\n    significant: bool\\\\n    alpha: float = 0.05\\\\n    mode: str = \\\\\\\"uniform_forward\\\\\\\"\\\\n    weights: Optional[dict] = None\\\\n    reverse_p_value: Optional[float] = None\\\\n    reverse_consensus_score: Optional[float] = None\\\\n    reverse_method_results: Optional[dict] = None\\\\n\\\\n    def to_dict(self):\\\\n        d = asdict(self)\\\\n        if d[\\\\\\\"weights\\\\\\\"]:\\\\n            d[\\\\\\\"weights\\\\\\\"] = {k: round(v, 4) for k, v in d[\\\\\\\"weights\\\\\\\"].items()}\\\\n        return d\\\\n\\\\n\\\\nclass MMCT:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Multi-Method Consensus Test.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, null_distribution, weighted=False,\\\\n                 bidirectional=False, alpha=0.05, weighted_mode=\\\\\\\"pair\\\\\\\"):\\\\n        self.null = null_distribution\\\\n        self.weighted = weighted\\\\n        self.bidirectional = bidirectional\\\\n        self.alpha = alpha\\\\n        self.weighted_mode = weighted_mode\\\\n\\\\n    @property\\\\n    def mode_name(self):\\\\n        if self.weighted:\\\\n            w = f\\\\\\\"weighted_{self.weighted_mode}\\\\\\\"\\\\n        else:\\\\n            w = \\\\\\\"uniform\\\\\\\"\\\\n        d = \\\\\\\"bidirectional\\\\\\\" if self.bidirectional else \\\\\\\"forward\\\\\\\"\\\\n        return f\\\\\\\"{w}_{d}\\\\\\\"\\\\n\\\\n    def test_from_precomputed(self, data_dir, canary, downstream):\\\\n        results = load_5method_results(data_dir)\\\\n        fwd_sig = extract_method_significance(\\\\n            results, canary, downstream, \\\\\\\"forward\\\\\\\")\\\\n\\\\n        pair_key = (canary, downstream)\\\\n\\\\n        if self.weighted:\\\\n            if self.weighted_mode == \\\\\\\"global\\\\\\\":\\\\n                weights = self.null.get_global_weights()\\\\n            else:\\\\n                weights = self.null.get_weights(pair_key)\\\\n            score = self.null.consensus_score_weighted(fwd_sig, weights)\\\\n        else:\\\\n            weights = None\\\\n            score = self.null.consensus_score_uniform(fwd_sig)\\\\n\\\\n        p, ci_lo, ci_hi = self.null.p_value(\\\\n            score, weighted=self.weighted, direction=\\\\\\\"forward\\\\\\\",\\\\n            weighted_mode=self.weighted_mode)\\\\n\\\\n        significant = p < self.alpha\\\\n\\\\n        reverse_p = None\\\\n        reverse_score = None\\\\n        reverse_sig_dict = None\\\\n\\\\n        if self.bidirectional:\\\\n            rev_sig = extract_method_significance(\\\\n                results, canary, downstream, \\\\\\\"reverse\\\\\\\")\\\\n            if self.weighted:\\\\n                reverse_score = self.null.consensus_score_weighted(\\\\n                    rev_sig, weights)\\\\n            else:\\\\n                reverse_score = self.null.consensus_score_uniform(rev_sig)\\\\n\\\\n            reverse_p, _, _ = self.null.p_value(\\\\n                reverse_score, weighted=self.weighted, direction=\\\\\\\"reverse\\\\\\\",\\\\n                weighted_mode=self.weighted_mode)\\\\n            reverse_sig_dict = rev_sig\\\\n\\\\n            significant = (p < self.alpha) and (reverse_p >= self.alpha)\\\\n\\\\n        return MMCTResult(\\\\n            canary=canary,\\\\n            downstream=downstream,\\\\n            consensus_score=round(score, 6),\\\\n            p_value=round(p, 6),\\\\n            ci_lower=round(ci_lo, 6),\\\\n            ci_upper=round(ci_hi, 6),\\\\n            method_results=fwd_sig,\\\\n            significant=significant,\\\\n            alpha=self.alpha,\\\\n            mode=self.mode_name,\\\\n            weights=weights,\\\\n            reverse_p_value=round(reverse_p, 6) if reverse_p is not None else None,\\\\n            reverse_consensus_score=(round(reverse_score, 6)\\\\n                                     if reverse_score is not None else None),\\\\n            reverse_method_results=reverse_sig_dict,\\\\n        )\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Multi-Method Consensus Test (MMCT) core implementation.\\n\\nModes:\\n  - uniform: consensus = count of significant methods\\n  - weighted_pair: consensus = inverse per-pair-FPR weighted sum\\n  - weighted_global: consensus = inverse global-FPR weighted sum\\n  - forward-only: test canary -> downstream direction only\\n  - bidirectional: require forward significant AND reverse non-significant\\n\\\"\\\"\\\"\\n\\nfrom dataclasses import dataclass, field, asdict\\nfrom typing import Optional\\n\\nfrom .methods import METHOD_NAMES, extract_method_significance, load_5method_results\\nfrom .null_distribution import NullDistribution\\n\\n\\n@dataclass\\nclass MMCTResult:\\n    canary: str\\n    downstream: str\\n    consensus_score: float\\n    p_value: float\\n    ci_lower: float\\n    ci_upper: float\\n    method_results: dict\\n    significant: bool\\n    alpha: float = 0.05\\n    mode: str = \\\"uniform_forward\\\"\\n    weights: Optional[dict] = None\\n    reverse_p_value: Optional[float] = None\\n    reverse_consensus_score: Optional[float] = None\\n    reverse_method_results: Optional[dict] = None\\n\\n    def to_dict(self):\\n        d = asdict(self)\\n        if d[\\\"weights\\\"]:\\n            d[\\\"weights\\\"] = {k: round(v, 4) for k, v in d[\\\"weights\\\"].items()}\\n        return d\\n\\n\\nclass MMCT:\\n    \\\"\\\"\\\"Multi-Method Consensus Test.\\\"\\\"\\\"\\n\\n    def __init__(self, null_distribution, weighted=False,\\n                 bidirectional=False, alpha=0.05, weighted_mode=\\\"pair\\\"):\\n        self.null = null_distribution\\n        self.weighted = weighted\\n        self.bidirectional = bidirectional\\n        self.alpha = alpha\\n        self.weighted_mode = weighted_mode\\n\\n    @property\\n    def mode_name(self):\\n        if self.weighted:\\n            w = f\\\"weighted_{self.weighted_mode}\\\"\\n        else:\\n            w = \\\"uniform\\\"\\n        d = \\\"bidirectional\\\" if self.bidirectional else \\\"forward\\\"\\n        return f\\\"{w}_{d}\\\"\\n\\n    def test_from_precomputed(self, data_dir, canary, downstream):\\n        results = load_5method_results(data_dir)\\n        fwd_sig = extract_method_significance(\\n            results, canary, downstream, \\\"forward\\\")\\n\\n        pair_key = (canary, downstream)\\n\\n        if self.weighted:\\n            if self.weighted_mode == \\\"global\\\":\\n                weights = self.null.get_global_weights()\\n            else:\\n                weights = self.null.get_weights(pair_key)\\n            score = self.null.consensus_score_weighted(fwd_sig, weights)\\n        else:\\n            weights = None\\n            score = self.null.consensus_score_uniform(fwd_sig)\\n\\n        p, ci_lo, ci_hi = self.null.p_value(\\n            score, weighted=self.weighted, direction=\\\"forward\\\",\\n            weighted_mode=self.weighted_mode)\\n\\n        significant = p < self.alpha\\n\\n        reverse_p = None\\n        reverse_score = None\\n        reverse_sig_dict = None\\n\\n        if self.bidirectional:\\n            rev_sig = extract_method_significance(\\n                results, canary, downstream, \\\"reverse\\\")\\n            if self.weighted:\\n                reverse_score = self.null.consensus_score_weighted(\\n                    rev_sig, weights)\\n            else:\\n                reverse_score = self.null.consensus_score_uniform(rev_sig)\\n\\n            reverse_p, _, _ = self.null.p_value(\\n                reverse_score, weighted=self.weighted, direction=\\\"reverse\\\",\\n                weighted_mode=self.weighted_mode)\\n            reverse_sig_dict = rev_sig\\n\\n            significant = (p < self.alpha) and (reverse_p >= self.alpha)\\n\\n        return MMCTResult(\\n            canary=canary,\\n            downstream=downstream,\\n            consensus_score=round(score, 6),\\n            p_value=round(p, 6),\\n            ci_lower=round(ci_lo, 6),\\n            ci_upper=round(ci_hi, 6),\\n            method_results=fwd_sig,\\n            significant=significant,\\n            alpha=self.alpha,\\n            mode=self.mode_name,\\n            weights=weights,\\n            reverse_p_value=round(reverse_p, 6) if reverse_p is not None else None,\\n            reverse_consensus_score=(round(reverse_score, 6)\\n                                     if reverse_score is not None else None),\\n            reverse_method_results=reverse_sig_dict,\\n        )\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "a554a025-b0b6-4d6c-9c50-5f612203bfd7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-19T03:15:40.784Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017fJkTpXvZ4bbAowwUeN2DK`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/mmct/unified_analysis.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ab701634-ed43-4eb4-94d9-b0a48c0a03f0",
+  "isSidechain": false,
+  "requestId": "req_011CbBCbZmV6QedQMr28KWjK",
+  "type": "assistant",
+  "uuid": "c3dab5c4-9d73-46de-a791-2beb2562aaa9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0148x92UGHQQNs4mq8Lb3jLo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1053,
+      "cache_read_input_tokens": 26868,
+      "output_tokens": 493,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1053,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 493,
+          "cache_read_input_tokens": 26868,
+          "cache_creation_input_tokens": 1053,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1053
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "c3dab5c4-9d73-46de-a791-2beb2562aaa9",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Run MMCT analysis on all completed experiments",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-19T03:15:41.353Z_
+
+<details><summary>↩ Tool result · `toolu_017fJkTpXvZ4bbAowwUeN2DK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Unified 5-method analysis with Table 7 consistent parameters.\\n\\nKey change from 5method_leadlag.json:\\n- Threshold onset: 2-sigma (Table 7) instead of 3-sigma\\n- All params: n_perm=5000, xcorr_lag=5, granger_lag=1, alpha=0.05\\n\\\"\\\"\\\"\\nimport json, os, sys, time\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\nfrom permutation_granger import permutation_granger_test\\n\\nN_PERM = 5000\\nALPHA = 0.05\\nXCORR_LAG = 5\\nGRANGER_LAG = 1\\nTHRESHOLD_SIGMA = 2.0\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"perplexity\\\"]\\nPAIRS = [(c, d) for c in CANARIES for d in DOWNSTREAMS]\\nHIGHER_IS_WORSE = {\\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"}\\n\\nBASE = \\\"/root/autodl-tmp/distrib_canary_collapse\\\"\\nOUTPUT_DIR = os.path.join(BASE, \\\"artifacts\\\", \\\"mmct_results\\\", \\\"unified_data\\\")\\n\\nCONDITIONS = {\\n    \\\"a000_s42\\\": os.path.join(BASE, \\\"results/alpha_sweep/a000_s42\\\"),\\n    \\\"a000_s43\\\": os.path.join(BASE, \\\"results/alpha_sweep/a000_s43\\\"),\\n    \\\"a000_s44\\\": os.path.join(BASE, \\\"results/alpha_sweep/a000_s44\\\"),\\n    \\\"a025_s43\\\": os.path.join(BASE, \\\"results/alpha_sweep/a025_s43\\\"),\\n    \\\"a025_s44\\\": os.path.join(BASE, \\\"results/alpha_sweep/a025_s44\\\"),\\n    \\\"a050_s42\\\": os.path.join(BASE, \\\"results/alpha_sweep/a050_s42\\\"),\\n    \\\"a050_s43\\\": os.path.join(BASE, \\\"results/alpha_sweep/a050_s43\\\"),\\n    \\\"a050_s44\\\": os.path.join(BASE, \\\"results/alpha_sweep/a050_s44\\\"),\\n    \\\"a075_s42\\\": os.path.join(BASE, \\\"results/alpha_sweep/a075_s42\\\"),\\n    \\\"a075_s43\\\": os.path.join(BASE, \\\"results/alpha_sweep/a075_s43\\\"),\\n    \\\"a075_s44\\\": os.path.join(BASE, \\\"results/alpha_sweep/a075_s44\\\"),\\n    \\\"pythia410m_wiki_a100_s42\\\": os.path.join(BASE, \\\"results/generalize/pythia410m_wiki_a100_s42\\\"),\\n    \\\"gpt2m_wiki_a100_s42\\\": os.path.join(BASE, \\\"results/generalize/gpt2m_wiki_a100_s42\\\"),\\n    \\\"opt1b_wiki_a100_s42\\\": os.path.join(BASE, \\\"results/generalize/opt1b_wiki_a100_s42\\\"),\\n    \\\"pythia14b_wiki_a100_s42\\\": os.path.join(BASE, \\\"results/generalize/pythia14b_wiki_a100_s42\\\"),\\n    \\\"pythia14b_wiki_a100_s43\\\": os.path.join(BASE, \\\"results/generalize/pythia14b_wiki_a100_s43\\\"),\\n    \\\"pythia1b_c4_a100_s42\\\": os.path.join(BASE, \\\"results/generalize/pythia1b_c4_a100_s42\\\"),\\n    \\\"pythia1b_c4_a100_s43\\\": os.path.join(BASE, \\\"results/generalize/pythia1b_c4_a100_s43\\\"),\\n}\\n\\n\\ndef load_series(data_dir):\\n    with open(os.path.join(data_dir, \\\"all_metrics.json\\\")) as f:\\n        data = json.load(f)\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    return {k: np.array([d[k] for d in data]) for k in CANARIES + DOWNSTREAMS}, len(data)\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef naive_xcorr(c, d, cn, dn):\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    for lag in range(-XCORR_LAG, XCORR_LAG + 1):\\n        if lag >= 0:\\n            a, b = x[lag:], y[:n - lag]\\n        else:\\n            a, b = x[:n + lag], y[-lag:]\\n        if len(a) < 4:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\\"significant\\\": bool(best_p < ALPHA), \\\"peak_lag\\\": int(best_lag),\\n            \\\"r\\\": round(float(best_r), 4), \\\"p_value\\\": round(float(best_p), 6)}\\n\\n\\ndef diff_xcorr(c, d, cn, dn):\\n    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\\n    n = len(dx)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    for lag in range(-XCORR_LAG, XCORR_LAG + 1):\\n        if lag >= 0:\\n            a, b = dx[lag:], dy[:n - lag]\\n        else:\\n            a, b = dx[:n + lag], dy[-lag:]\\n        if len(a) < 4:\\n            continue\\n        if np.std(a) < 1e-12 or np.std(b) < 1e-12:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\\"significant\\\": bool(best_p < ALPHA), \\\"peak_lag\\\": int(best_lag),\\n            \\\"r\\\": round(floa\\n\\n... [截断: 输出过长，省略 6294 字符] ...\\n\\nfwd.get(method, {}),\\n                })\\n    return {\\\"condition\\\": cond_name, \\\"n_changes\\\": len(diffs), \\\"changes\\\": diffs}\\n\\n\\ndef main():\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n    t0 = time.time()\\n    results = {}\\n    comparisons = []\\n\\n    for name, data_dir in sorted(CONDITIONS.items()):\\n        if not os.path.exists(os.path.join(data_dir, \\\"all_metrics.json\\\")):\\n            print(f\\\"SKIP: {name}\\\")\\n            continue\\n        seed = 43 if \\\"_s43\\\" in name else (44 if \\\"_s44\\\" in name else 42)\\n        print(f\\\"Analyzing {name} (seed={seed})...\\\", end=\\\" \\\", flush=True)\\n        t1 = time.time()\\n        result = analyze_condition(name, data_dir, seed)\\n        dt = time.time() - t1\\n        out_path = os.path.join(OUTPUT_DIR, f\\\"{name}.json\\\")\\n        with open(out_path, 'w') as f:\\n            json.dump(result, f, indent=2)\\n        counts = {}\\n        for m in [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\", \\\"perm_granger\\\", \\\"ty_granger\\\"]:\\n            counts[m] = sum(1 for p in result[\\\"pairs\\\"] if p[\\\"forward\\\"][m].get(\\\"significant\\\", False))\\n        k4 = sum(1 for p in result[\\\"pairs\\\"] if p[\\\"consensus\\\"] >= 4)\\n        print(f\\\"({dt:.1f}s) N={counts['naive_xcorr']} D={counts['diff_xcorr']} \\\"\\n              f\\\"T={counts['threshold_onset']} PG={counts['perm_granger']} \\\"\\n              f\\\"TY={counts['ty_granger']} K4={k4}\\\")\\n        results[name] = result\\n        old = load_old_results(data_dir)\\n        comparisons.append(compare_results(old, result, name))\\n\\n    # Save summary\\n    summary = {}\\n    for name, r in results.items():\\n        counts = {}\\n        for m in [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\", \\\"perm_granger\\\", \\\"ty_granger\\\"]:\\n            counts[m] = sum(1 for p in r[\\\"pairs\\\"] if p[\\\"forward\\\"][m].get(\\\"significant\\\", False))\\n        counts[\\\"k4\\\"] = sum(1 for p in r[\\\"pairs\\\"] if p[\\\"consensus\\\"] >= 4)\\n        summary[name] = counts\\n    with open(os.path.join(OUTPUT_DIR, \\\"summary.json\\\"), 'w') as f:\\n        json.dump(summary, f, indent=2)\\n\\n    # Write consistency check\\n    lines = [\\\"# Data Consistency Check: Old (3-sigma) vs Unified (2-sigma)\\\\n\\\",\\n             f\\\"Generated: {time.strftime('%Y-%m-%d %H:%M:%S')}\\\\n\\\",\\n             \\\"## Parameter Changes\\\\n\\\",\\n             \\\"| Parameter | Old (5method_leadlag) | New (unified) |\\\",\\n             \\\"|-----------|----------------------|---------------|\\\",\\n             f\\\"| threshold_sigma | 3.0 | {THRESHOLD_SIGMA} |\\\",\\n             f\\\"| xcorr_lag | 5 | {XCORR_LAG} |\\\",\\n             f\\\"| n_perm | 5000 | {N_PERM} |\\\",\\n             f\\\"| granger_lag | 1 | {GRANGER_LAG} |\\\", \\\"\\\",\\n             \\\"## Per-Condition Changes\\\\n\\\"]\\n    total_changes = 0\\n    for comp in comparisons:\\n        n = comp.get(\\\"n_changes\\\", 0)\\n        total_changes += n\\n        lines.append(f\\\"### {comp['condition']}: {n} changes\\\")\\n        if n > 0:\\n            lines.append(\\\"\\\")\\n            lines.append(\\\"| Pair | Method | Old | New | Detail |\\\")\\n            lines.append(\\\"|------|--------|-----|-----|--------|\\\")\\n            for ch in comp[\\\"changes\\\"]:\\n                old_d, new_d = ch[\\\"old_detail\\\"], ch[\\\"new_detail\\\"]\\n                if ch[\\\"method\\\"] == \\\"threshold_onset\\\":\\n                    detail = f\\\"old_onset={old_d.get('canary_onset')}/{old_d.get('downstream_onset')}, new={new_d.get('canary_onset')}/{new_d.get('downstream_onset')}\\\"\\n                elif \\\"p_value\\\" in new_d:\\n                    detail = f\\\"p_old={old_d.get('p_value')}, p_new={new_d.get('p_value')}\\\"\\n                else:\\n                    detail = \\\"\\\"\\n                lines.append(f\\\"| {ch['pair']} | {ch['method']} | {ch['old_significant']} | {ch['new_significant']} | {detail} |\\\")\\n        lines.append(\\\"\\\")\\n    lines.append(f\\\"\\\\n## Summary\\\\n\\\\nTotal significance changes across all conditions: {total_changes}\\\")\\n    report_path = os.path.join(BASE, \\\"artifacts\\\", \\\"mmct_results\\\", \\\"data_consistency_check.md\\\")\\n    with open(report_path, 'w') as f:\\n        f.write(\\\"\\\\n\\\".join(lines))\\n    print(f\\\"\\\\nConsistency check saved: {report_path}\\\")\\n    print(f\\\"Total time: {time.time() - t0:.1f}s\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c3dab5c4-9d73-46de-a791-2beb2562aaa9",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "1caf12c6-c3ca-4715-92d9-88c5b4f7a682",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Unified 5-method analysis with Table 7 consistent parameters.\\\\n\\\\nKey change from 5method_leadlag.json:\\\\n- Threshold onset: 2-sigma (Table 7) instead of 3-sigma\\\\n- All params: n_perm=5000, xcorr_lag=5, granger_lag=1, alpha=0.05\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\nimport json, os, sys, time\\\\nimport numpy as np\\\\nfrom scipy import stats\\\\nfrom statsmodels.tsa.stattools import adfuller\\\\n\\\\nsys.path.insert(0, \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\")\\\\nfrom permutation_granger import permutation_granger_test\\\\n\\\\nN_PERM = 5000\\\\nALPHA = 0.05\\\\nXCORR_LAG = 5\\\\nGRANGER_LAG = 1\\\\nTHRESHOLD_SIGMA = 2.0\\\\n\\\\nCANARIES = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAMS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\nPAIRS = [(c, d) for c in CANARIES for d in DOWNSTREAMS]\\\\nHIGHER_IS_WORSE = {\\\\\\\"ece\\\\\\\", \\\\\\\"perplexity\\\\\\\"}\\\\nLOWER_IS_WORSE = {\\\\\\\"token_entropy\\\\\\\", \\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\"}\\\\n\\\\nBASE = \\\\\\\"/root/autodl-tmp/distrib_canary_collapse\\\\\\\"\\\\nOUTPUT_DIR = os.path.join(BASE, \\\\\\\"artifacts\\\\\\\", \\\\\\\"mmct_results\\\\\\\", \\\\\\\"unified_data\\\\\\\")\\\\n\\\\nCONDITIONS = {\\\\n    \\\\\\\"a000_s42\\\\\\\": os.path.join(BASE, \\\\\\\"results/alpha_sweep/a000_s42\\\\\\\"),\\\\n    \\\\\\\"a000_s43\\\\\\\": os.path.join(BASE, \\\\\\\"results/alpha_sweep/a000_s43\\\\\\\"),\\\\n    \\\\\\\"a000_s44\\\\\\\": os.path.join(BASE, \\\\\\\"results/alpha_sweep/a000_s44\\\\\\\"),\\\\n    \\\\\\\"a025_s43\\\\\\\": os.path.join(BASE, \\\\\\\"results/alpha_sweep/a025_s43\\\\\\\"),\\\\n    \\\\\\\"a025_s44\\\\\\\": os.path.join(BASE, \\\\\\\"results/alpha_sweep/a025_s44\\\\\\\"),\\\\n    \\\\\\\"a050_s42\\\\\\\": os.path.join(BASE, \\\\\\\"results/alpha_sweep/a050_s42\\\\\\\"),\\\\n    \\\\\\\"a050_s43\\\\\\\": os.path.join(BASE, \\\\\\\"results/alpha_sweep/a050_s43\\\\\\\"),\\\\n    \\\\\\\"a050_s44\\\\\\\": os.path.join(BASE, \\\\\\\"results/alpha_sweep/a050_s44\\\\\\\"),\\\\n    \\\\\\\"a075_s42\\\\\\\": os.path.join(BASE, \\\\\\\"results/alpha_sweep/a075_s42\\\\\\\"),\\\\n    \\\\\\\"a075_s43\\\\\\\": os.path.join(BASE, \\\\\\\"results/alpha_sweep/a075_s43\\\\\\\"),\\\\n    \\\\\\\"a075_s44\\\\\\\": os.path.join(BASE, \\\\\\\"results/alpha_sweep/a075_s44\\\\\\\"),\\\\n    \\\\\\\"pythia410m_wiki_a100_s42\\\\\\\": os.path.join(BASE, \\\\\\\"results/generalize/pythia410m_wiki_a100_s42\\\\\\\"),\\\\n    \\\\\\\"gpt2m_wiki_a100_s42\\\\\\\": os.path.join(BASE, \\\\\\\"results/generalize/gpt2m_wiki_a100_s42\\\\\\\"),\\\\n    \\\\\\\"opt1b_wiki_a100_s42\\\\\\\": os.path.join(BASE, \\\\\\\"results/generalize/opt1b_wiki_a100_s42\\\\\\\"),\\\\n    \\\\\\\"pythia14b_wiki_a100_s42\\\\\\\": os.path.join(BASE, \\\\\\\"results/generalize/pythia14b_wiki_a100_s42\\\\\\\"),\\\\n    \\\\\\\"pythia14b_wiki_a100_s43\\\\\\\": os.path.join(BASE, \\\\\\\"results/generalize/pythia14b_wiki_a100_s43\\\\\\\"),\\\\n    \\\\\\\"pythia1b_c4_a100_s42\\\\\\\": os.path.join(BASE, \\\\\\\"results/generalize/pythia1b_c4_a100_s42\\\\\\\"),\\\\n    \\\\\\\"pythia1b_c4_a100_s43\\\\\\\": os.path.join(BASE, \\\\\\\"results/generalize/pythia1b_c4_a100_s43\\\\\\\"),\\\\n}\\\\n\\\\n\\\\ndef load_series(data_dir):\\\\n    with open(os.path.join(data_dir, \\\\\\\"all_metrics.json\\\\\\\")) as f:\\\\n        data = json.load(f)\\\\n    data.sort(key=lambda x: x[\\\\\\\"generation\\\\\\\"])\\\\n    return {k: np.array([d[k] for d in data]) for k in CANARIES + DOWNSTREAMS}, len(data)\\\\n\\\\n\\\\ndef orient(series, name):\\\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\\\n\\\\n\\\\ndef naive_xcorr(c, d, cn, dn):\\\\n    x, y = orient(c, cn), orient(d, dn)\\\\n    n = len(x)\\\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\\\n    for lag in range(-XCORR_LAG, XCORR_LAG + 1):\\\\n        if lag >= 0:\\\\n            a, b = x[lag:], y[:n - lag]\\\\n        else:\\\\n            a, b = x[:n + lag], y[-lag:]\\\\n        if len(a) < 4:\\\\n            continue\\\\n        r, p = stats.pearsonr(a, b)\\\\n        if abs(r) > abs(best_r):\\\\n            best_lag, best_r, best_p = lag, r, p\\\\n    return {\\\\\\\"significant\\\\\\\": bool(best_p < ALPHA), \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n            \\\\\\\"r\\\\\\\": round(float(best_r), 4), \\\\\\\"p_value\\\\\\\": round(float(best_p), 6)}\\\\n\\\\n\\\\ndef diff_xcorr(c, d, cn, dn):\\\\n    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\\\\n    n = len(dx)\\\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\\\n    for lag in range(-XCORR_LAG, XCORR_LAG + 1):\\\\n        if lag >= 0:\\\\n            a, b = dx[lag:], dy[:n - lag]\\\\n        else:\\\\n            a, b = dx[:n + lag], dy[-lag:]\\\\n        if len(a) < 4:\\\\n            continue\\\\n        if np.std(a) < 1e-12 or np.std(b) < 1e-12:\\\\n            continue\\\\n        r, p = stats.pearsonr(a, b)\\\\n        if abs(r) > abs(best_r):\\\\n            best_lag, best_r, best_p = lag, r, p\\\\n    return {\\\\\\\"significant\\\\\\\": bool(best_p < ALPHA), \\\\\\\"peak_lag\\\\\\\": int(best_lag),\\\\n            \\\\\\\"r\\\\\\\": round(floa\\\\n\\\\n... [截断: 输出过长，省略 6294 字符] ...\\\\n\\\\nfwd.get(method, {}),\\\\n                })\\\\n    return {\\\\\\\"condition\\\\\\\": cond_name, \\\\\\\"n_changes\\\\\\\": len(diffs), \\\\\\\"changes\\\\\\\": diffs}\\\\n\\\\n\\\\ndef main():\\\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\\\n    t0 = time.time()\\\\n    results = {}\\\\n    comparisons = []\\\\n\\\\n    for name, data_dir in sorted(CONDITIONS.items()):\\\\n        if not os.path.exists(os.path.join(data_dir, \\\\\\\"all_metrics.json\\\\\\\")):\\\\n            print(f\\\\\\\"SKIP: {name}\\\\\\\")\\\\n            continue\\\\n        seed = 43 if \\\\\\\"_s43\\\\\\\" in name else (44 if \\\\\\\"_s44\\\\\\\" in name else 42)\\\\n        print(f\\\\\\\"Analyzing {name} (seed={seed})...\\\\\\\", end=\\\\\\\" \\\\\\\", flush=True)\\\\n        t1 = time.time()\\\\n        result = analyze_condition(name, data_dir, seed)\\\\n        dt = time.time() - t1\\\\n        out_path = os.path.join(OUTPUT_DIR, f\\\\\\\"{name}.json\\\\\\\")\\\\n        with open(out_path, 'w') as f:\\\\n            json.dump(result, f, indent=2)\\\\n        counts = {}\\\\n        for m in [\\\\\\\"naive_xcorr\\\\\\\", \\\\\\\"diff_xcorr\\\\\\\", \\\\\\\"threshold_onset\\\\\\\", \\\\\\\"perm_granger\\\\\\\", \\\\\\\"ty_granger\\\\\\\"]:\\\\n            counts[m] = sum(1 for p in result[\\\\\\\"pairs\\\\\\\"] if p[\\\\\\\"forward\\\\\\\"][m].get(\\\\\\\"significant\\\\\\\", False))\\\\n        k4 = sum(1 for p in result[\\\\\\\"pairs\\\\\\\"] if p[\\\\\\\"consensus\\\\\\\"] >= 4)\\\\n        print(f\\\\\\\"({dt:.1f}s) N={counts['naive_xcorr']} D={counts['diff_xcorr']} \\\\\\\"\\\\n              f\\\\\\\"T={counts['threshold_onset']} PG={counts['perm_granger']} \\\\\\\"\\\\n              f\\\\\\\"TY={counts['ty_granger']} K4={k4}\\\\\\\")\\\\n        results[name] = result\\\\n        old = load_old_results(data_dir)\\\\n        comparisons.append(compare_results(old, result, name))\\\\n\\\\n    # Save summary\\\\n    summary = {}\\\\n    for name, r in results.items():\\\\n        counts = {}\\\\n        for m in [\\\\\\\"naive_xcorr\\\\\\\", \\\\\\\"diff_xcorr\\\\\\\", \\\\\\\"threshold_onset\\\\\\\", \\\\\\\"perm_granger\\\\\\\", \\\\\\\"ty_granger\\\\\\\"]:\\\\n            counts[m] = sum(1 for p in r[\\\\\\\"pairs\\\\\\\"] if p[\\\\\\\"forward\\\\\\\"][m].get(\\\\\\\"significant\\\\\\\", False))\\\\n        counts[\\\\\\\"k4\\\\\\\"] = sum(1 for p in r[\\\\\\\"pairs\\\\\\\"] if p[\\\\\\\"consensus\\\\\\\"] >= 4)\\\\n        summary[name] = counts\\\\n    with open(os.path.join(OUTPUT_DIR, \\\\\\\"summary.json\\\\\\\"), 'w') as f:\\\\n        json.dump(summary, f, indent=2)\\\\n\\\\n    # Write consistency check\\\\n    lines = [\\\\\\\"# Data Consistency Check: Old (3-sigma) vs Unified (2-sigma)\\\\\\\\n\\\\\\\",\\\\n             f\\\\\\\"Generated: {time.strftime('%Y-%m-%d %H:%M:%S')}\\\\\\\\n\\\\\\\",\\\\n             \\\\\\\"## Parameter Changes\\\\\\\\n\\\\\\\",\\\\n             \\\\\\\"| Parameter | Old (5method_leadlag) | New (unified) |\\\\\\\",\\\\n             \\\\\\\"|-----------|----------------------|---------------|\\\\\\\",\\\\n             f\\\\\\\"| threshold_sigma | 3.0 | {THRESHOLD_SIGMA} |\\\\\\\",\\\\n             f\\\\\\\"| xcorr_lag | 5 | {XCORR_LAG} |\\\\\\\",\\\\n             f\\\\\\\"| n_perm | 5000 | {N_PERM} |\\\\\\\",\\\\n             f\\\\\\\"| granger_lag | 1 | {GRANGER_LAG} |\\\\\\\", \\\\\\\"\\\\\\\",\\\\n             \\\\\\\"## Per-Condition Changes\\\\\\\\n\\\\\\\"]\\\\n    total_changes = 0\\\\n    for comp in comparisons:\\\\n        n = comp.get(\\\\\\\"n_changes\\\\\\\", 0)\\\\n        total_changes += n\\\\n        lines.append(f\\\\\\\"### {comp['condition']}: {n} changes\\\\\\\")\\\\n        if n > 0:\\\\n            lines.append(\\\\\\\"\\\\\\\")\\\\n            lines.append(\\\\\\\"| Pair | Method | Old | New | Detail |\\\\\\\")\\\\n            lines.append(\\\\\\\"|------|--------|-----|-----|--------|\\\\\\\")\\\\n            for ch in comp[\\\\\\\"changes\\\\\\\"]:\\\\n                old_d, new_d = ch[\\\\\\\"old_detail\\\\\\\"], ch[\\\\\\\"new_detail\\\\\\\"]\\\\n                if ch[\\\\\\\"method\\\\\\\"] == \\\\\\\"threshold_onset\\\\\\\":\\\\n                    detail = f\\\\\\\"old_onset={old_d.get('canary_onset')}/{old_d.get('downstream_onset')}, new={new_d.get('canary_onset')}/{new_d.get('downstream_onset')}\\\\\\\"\\\\n                elif \\\\\\\"p_value\\\\\\\" in new_d:\\\\n                    detail = f\\\\\\\"p_old={old_d.get('p_value')}, p_new={new_d.get('p_value')}\\\\\\\"\\\\n                else:\\\\n                    detail = \\\\\\\"\\\\\\\"\\\\n                lines.append(f\\\\\\\"| {ch['pair']} | {ch['method']} | {ch['old_significant']} | {ch['new_significant']} | {detail} |\\\\\\\")\\\\n        lines.append(\\\\\\\"\\\\\\\")\\\\n    lines.append(f\\\\\\\"\\\\\\\\n## Summary\\\\\\\\n\\\\\\\\nTotal significance changes across all conditions: {total_changes}\\\\\\\")\\\\n    report_path = os.path.join(BASE, \\\\\\\"artifacts\\\\\\\", \\\\\\\"mmct_results\\\\\\\", \\\\\\\"data_consistency_check.md\\\\\\\")\\\\n    with open(report_path, 'w') as f:\\\\n        f.write(\\\\\\\"\\\\\\\\n\\\\\\\".join(lines))\\\\n    print(f\\\\\\\"\\\\\\\\nConsistency check saved: {report_path}\\\\\\\")\\\\n    print(f\\\\\\\"Total time: {time.time() - t0:.1f}s\\\\\\\")\\\\n\\\\n\\\\nif __name__ == \\\\\\\"__main__\\\\\\\":\\\\n    main()\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.56}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Unified 5-method analysis with Table 7 consistent parameters.\\n\\nKey change from 5method_leadlag.json:\\n- Threshold onset: 2-sigma (Table 7) instead of 3-sigma\\n- All params: n_perm=5000, xcorr_lag=5, granger_lag=1, alpha=0.05\\n\\\"\\\"\\\"\\nimport json, os, sys, time\\nimport numpy as np\\nfrom scipy import stats\\nfrom statsmodels.tsa.stattools import adfuller\\n\\nsys.path.insert(0, \\\"/root/autodl-tmp/distrib_canary_collapse\\\")\\nfrom permutation_granger import permutation_granger_test\\n\\nN_PERM = 5000\\nALPHA = 0.05\\nXCORR_LAG = 5\\nGRANGER_LAG = 1\\nTHRESHOLD_SIGMA = 2.0\\n\\nCANARIES = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAMS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"perplexity\\\"]\\nPAIRS = [(c, d) for c in CANARIES for d in DOWNSTREAMS]\\nHIGHER_IS_WORSE = {\\\"ece\\\", \\\"perplexity\\\"}\\nLOWER_IS_WORSE = {\\\"token_entropy\\\", \\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\"}\\n\\nBASE = \\\"/root/autodl-tmp/distrib_canary_collapse\\\"\\nOUTPUT_DIR = os.path.join(BASE, \\\"artifacts\\\", \\\"mmct_results\\\", \\\"unified_data\\\")\\n\\nCONDITIONS = {\\n    \\\"a000_s42\\\": os.path.join(BASE, \\\"results/alpha_sweep/a000_s42\\\"),\\n    \\\"a000_s43\\\": os.path.join(BASE, \\\"results/alpha_sweep/a000_s43\\\"),\\n    \\\"a000_s44\\\": os.path.join(BASE, \\\"results/alpha_sweep/a000_s44\\\"),\\n    \\\"a025_s43\\\": os.path.join(BASE, \\\"results/alpha_sweep/a025_s43\\\"),\\n    \\\"a025_s44\\\": os.path.join(BASE, \\\"results/alpha_sweep/a025_s44\\\"),\\n    \\\"a050_s42\\\": os.path.join(BASE, \\\"results/alpha_sweep/a050_s42\\\"),\\n    \\\"a050_s43\\\": os.path.join(BASE, \\\"results/alpha_sweep/a050_s43\\\"),\\n    \\\"a050_s44\\\": os.path.join(BASE, \\\"results/alpha_sweep/a050_s44\\\"),\\n    \\\"a075_s42\\\": os.path.join(BASE, \\\"results/alpha_sweep/a075_s42\\\"),\\n    \\\"a075_s43\\\": os.path.join(BASE, \\\"results/alpha_sweep/a075_s43\\\"),\\n    \\\"a075_s44\\\": os.path.join(BASE, \\\"results/alpha_sweep/a075_s44\\\"),\\n    \\\"pythia410m_wiki_a100_s42\\\": os.path.join(BASE, \\\"results/generalize/pythia410m_wiki_a100_s42\\\"),\\n    \\\"gpt2m_wiki_a100_s42\\\": os.path.join(BASE, \\\"results/generalize/gpt2m_wiki_a100_s42\\\"),\\n    \\\"opt1b_wiki_a100_s42\\\": os.path.join(BASE, \\\"results/generalize/opt1b_wiki_a100_s42\\\"),\\n    \\\"pythia14b_wiki_a100_s42\\\": os.path.join(BASE, \\\"results/generalize/pythia14b_wiki_a100_s42\\\"),\\n    \\\"pythia14b_wiki_a100_s43\\\": os.path.join(BASE, \\\"results/generalize/pythia14b_wiki_a100_s43\\\"),\\n    \\\"pythia1b_c4_a100_s42\\\": os.path.join(BASE, \\\"results/generalize/pythia1b_c4_a100_s42\\\"),\\n    \\\"pythia1b_c4_a100_s43\\\": os.path.join(BASE, \\\"results/generalize/pythia1b_c4_a100_s43\\\"),\\n}\\n\\n\\ndef load_series(data_dir):\\n    with open(os.path.join(data_dir, \\\"all_metrics.json\\\")) as f:\\n        data = json.load(f)\\n    data.sort(key=lambda x: x[\\\"generation\\\"])\\n    return {k: np.array([d[k] for d in data]) for k in CANARIES + DOWNSTREAMS}, len(data)\\n\\n\\ndef orient(series, name):\\n    return -series.copy() if name in LOWER_IS_WORSE else series.copy()\\n\\n\\ndef naive_xcorr(c, d, cn, dn):\\n    x, y = orient(c, cn), orient(d, dn)\\n    n = len(x)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    for lag in range(-XCORR_LAG, XCORR_LAG + 1):\\n        if lag >= 0:\\n            a, b = x[lag:], y[:n - lag]\\n        else:\\n            a, b = x[:n + lag], y[-lag:]\\n        if len(a) < 4:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\\"significant\\\": bool(best_p < ALPHA), \\\"peak_lag\\\": int(best_lag),\\n            \\\"r\\\": round(float(best_r), 4), \\\"p_value\\\": round(float(best_p), 6)}\\n\\n\\ndef diff_xcorr(c, d, cn, dn):\\n    dx, dy = np.diff(orient(c, cn)), np.diff(orient(d, dn))\\n    n = len(dx)\\n    best_lag, best_r, best_p = 0, 0.0, 1.0\\n    for lag in range(-XCORR_LAG, XCORR_LAG + 1):\\n        if lag >= 0:\\n            a, b = dx[lag:], dy[:n - lag]\\n        else:\\n            a, b = dx[:n + lag], dy[-lag:]\\n        if len(a) < 4:\\n            continue\\n        if np.std(a) < 1e-12 or np.std(b) < 1e-12:\\n            continue\\n        r, p = stats.pearsonr(a, b)\\n        if abs(r) > abs(best_r):\\n            best_lag, best_r, best_p = lag, r, p\\n    return {\\\"significant\\\": bool(best_p < ALPHA), \\\"peak_lag\\\": int(best_lag),\\n            \\\"r\\\": round(floa\\n\\n... [截断: 输出过长，省略 6294 字符] ...\\n\\nfwd.get(method, {}),\\n                })\\n    return {\\\"condition\\\": cond_name, \\\"n_changes\\\": len(diffs), \\\"changes\\\": diffs}\\n\\n\\ndef main():\\n    os.makedirs(OUTPUT_DIR, exist_ok=True)\\n    t0 = time.time()\\n    results = {}\\n    comparisons = []\\n\\n    for name, data_dir in sorted(CONDITIONS.items()):\\n        if not os.path.exists(os.path.join(data_dir, \\\"all_metrics.json\\\")):\\n            print(f\\\"SKIP: {name}\\\")\\n            continue\\n        seed = 43 if \\\"_s43\\\" in name else (44 if \\\"_s44\\\" in name else 42)\\n        print(f\\\"Analyzing {name} (seed={seed})...\\\", end=\\\" \\\", flush=True)\\n        t1 = time.time()\\n        result = analyze_condition(name, data_dir, seed)\\n        dt = time.time() - t1\\n        out_path = os.path.join(OUTPUT_DIR, f\\\"{name}.json\\\")\\n        with open(out_path, 'w') as f:\\n            json.dump(result, f, indent=2)\\n        counts = {}\\n        for m in [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\", \\\"perm_granger\\\", \\\"ty_granger\\\"]:\\n            counts[m] = sum(1 for p in result[\\\"pairs\\\"] if p[\\\"forward\\\"][m].get(\\\"significant\\\", False))\\n        k4 = sum(1 for p in result[\\\"pairs\\\"] if p[\\\"consensus\\\"] >= 4)\\n        print(f\\\"({dt:.1f}s) N={counts['naive_xcorr']} D={counts['diff_xcorr']} \\\"\\n              f\\\"T={counts['threshold_onset']} PG={counts['perm_granger']} \\\"\\n              f\\\"TY={counts['ty_granger']} K4={k4}\\\")\\n        results[name] = result\\n        old = load_old_results(data_dir)\\n        comparisons.append(compare_results(old, result, name))\\n\\n    # Save summary\\n    summary = {}\\n    for name, r in results.items():\\n        counts = {}\\n        for m in [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\", \\\"perm_granger\\\", \\\"ty_granger\\\"]:\\n            counts[m] = sum(1 for p in r[\\\"pairs\\\"] if p[\\\"forward\\\"][m].get(\\\"significant\\\", False))\\n        counts[\\\"k4\\\"] = sum(1 for p in r[\\\"pairs\\\"] if p[\\\"consensus\\\"] >= 4)\\n        summary[name] = counts\\n    with open(os.path.join(OUTPUT_DIR, \\\"summary.json\\\"), 'w') as f:\\n        json.dump(summary, f, indent=2)\\n\\n    # Write consistency check\\n    lines = [\\\"# Data Consistency Check: Old (3-sigma) vs Unified (2-sigma)\\\\n\\\",\\n             f\\\"Generated: {time.strftime('%Y-%m-%d %H:%M:%S')}\\\\n\\\",\\n             \\\"## Parameter Changes\\\\n\\\",\\n             \\\"| Parameter | Old (5method_leadlag) | New (unified) |\\\",\\n             \\\"|-----------|----------------------|---------------|\\\",\\n             f\\\"| threshold_sigma | 3.0 | {THRESHOLD_SIGMA} |\\\",\\n             f\\\"| xcorr_lag | 5 | {XCORR_LAG} |\\\",\\n             f\\\"| n_perm | 5000 | {N_PERM} |\\\",\\n             f\\\"| granger_lag | 1 | {GRANGER_LAG} |\\\", \\\"\\\",\\n             \\\"## Per-Condition Changes\\\\n\\\"]\\n    total_changes = 0\\n    for comp in comparisons:\\n        n = comp.get(\\\"n_changes\\\", 0)\\n        total_changes += n\\n        lines.append(f\\\"### {comp['condition']}: {n} changes\\\")\\n        if n > 0:\\n            lines.append(\\\"\\\")\\n            lines.append(\\\"| Pair | Method | Old | New | Detail |\\\")\\n            lines.append(\\\"|------|--------|-----|-----|--------|\\\")\\n            for ch in comp[\\\"changes\\\"]:\\n                old_d, new_d = ch[\\\"old_detail\\\"], ch[\\\"new_detail\\\"]\\n                if ch[\\\"method\\\"] == \\\"threshold_onset\\\":\\n                    detail = f\\\"old_onset={old_d.get('canary_onset')}/{old_d.get('downstream_onset')}, new={new_d.get('canary_onset')}/{new_d.get('downstream_onset')}\\\"\\n                elif \\\"p_value\\\" in new_d:\\n                    detail = f\\\"p_old={old_d.get('p_value')}, p_new={new_d.get('p_value')}\\\"\\n                else:\\n                    detail = \\\"\\\"\\n                lines.append(f\\\"| {ch['pair']} | {ch['method']} | {ch['old_significant']} | {ch['new_significant']} | {detail} |\\\")\\n        lines.append(\\\"\\\")\\n    lines.append(f\\\"\\\\n## Summary\\\\n\\\\nTotal significance changes across all conditions: {total_changes}\\\")\\n    report_path = os.path.join(BASE, \\\"artifacts\\\", \\\"mmct_results\\\", \\\"data_consistency_check.md\\\")\\n    with open(report_path, 'w') as f:\\n        f.write(\\\"\\\\n\\\".join(lines))\\n    print(f\\\"\\\\nConsistency check saved: {report_path}\\\")\\n    print(f\\\"Total time: {time.time() - t0:.1f}s\\\")\\n\\n\\nif __name__ == \\\"__main__\\\":\\n    main()\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.56}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c3dab5c4-9d73-46de-a791-2beb2562aaa9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32 · 2026-05-19T03:15:41.356Z_
+
+```json
+{
+  "parentUuid": "1caf12c6-c3ca-4715-92d9-88c5b4f7a682",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "fef66284-0161-4428-ac54-5a8bf1c7f978",
+  "timestamp": "2026-05-19T03:15:41.356Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 33 · 2026-05-19T03:15:48.469Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I understand the MMCT pipeline. The workflow is:
+
+1. `unified_analysis.py` runs 5-method analysis on each condition, producing unified data JSON files in `artifacts/mmct_results/unified_data/`
+2. `run_mmct.py` reads those unified data files and runs MMCT across all conditions
+
+Let me check:
+1. What unified data files already exist
+2. What alpha_sweep experiment directories exist
+3. What generalize experiment directories exist
+4. Whether the GPT-2m s42 data exists
+
+Also need to check the `a010_s43` experiment mentioned in the task - it's not in the CONDITIONS dict in `unified_analysis.py`.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fef66284-0161-4428-ac54-5a8bf1c7f978",
+  "isSidechain": false,
+  "requestId": "req_011CbBCc2VLDWyUtVcWih8ah",
+  "type": "assistant",
+  "uuid": "3f0a55ce-d84b-45c6-adee-bd2d6bb7b23b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARpyUwaRq75YHz8EbwziBt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12073,
+      "cache_read_input_tokens": 27921,
+      "output_tokens": 767,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12073,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 767,
+          "cache_read_input_tokens": 27921,
+          "cache_creation_input_tokens": 12073,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12073
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34 · 2026-05-19T03:15:49.800Z_
+
+Let me check what unified data already exists and what experiment directories are available.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f0a55ce-d84b-45c6-adee-bd2d6bb7b23b",
+  "isSidechain": false,
+  "requestId": "req_011CbBCc2VLDWyUtVcWih8ah",
+  "type": "assistant",
+  "uuid": "088fb337-7af8-4827-ba54-7d13070462b8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARpyUwaRq75YHz8EbwziBt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12073,
+      "cache_read_input_tokens": 27921,
+      "output_tokens": 767,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12073,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 767,
+          "cache_read_input_tokens": 27921,
+          "cache_creation_input_tokens": 12073,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12073
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T03:15:51.400Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0154WFiNRM7jtFqjdMjk1x87`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/unified_data/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "088fb337-7af8-4827-ba54-7d13070462b8",
+  "isSidechain": false,
+  "requestId": "req_011CbBCc2VLDWyUtVcWih8ah",
+  "type": "assistant",
+  "uuid": "519c9d16-cd07-467b-96e2-65c360af30ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARpyUwaRq75YHz8EbwziBt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12073,
+      "cache_read_input_tokens": 27921,
+      "output_tokens": 767,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12073,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 767,
+          "cache_read_input_tokens": 27921,
+          "cache_creation_input_tokens": 12073,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12073
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-19T03:15:51.844Z_
+
+<details><summary>↩ Tool result · `toolu_0154WFiNRM7jtFqjdMjk1x87`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"a000_s42.json\\na000_s43.json\\na000_s44.json\\na025_s43.json\\na025_s44.json\\na050_s42.json\\na050_s43.json\\na050_s44.json\\na060_s42_bf16.json\\na075_s42.json\\na075_s43.json\\na075_s44.json\\ngpt2m_wiki_a100_s42.json\\nopt1b_wiki_a100_s42.json\\npythia14b_wiki_a100_s42.json\\npythia14b_wiki_a100_s43.json\\npythia1b_c4_a100_s42.json\\npythia1b_c4_a100_s43.json\\npythia410m_wiki_a100_s42.json\\nsummary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "519c9d16-cd07-467b-96e2-65c360af30ca",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "3f6a7abd-fffb-417c-8da0-95b75d335a86",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"a000_s42.json\\\\na000_s43.json\\\\na000_s44.json\\\\na025_s43.json\\\\na025_s44.json\\\\na050_s42.json\\\\na050_s43.json\\\\na050_s44.json\\\\na060_s42_bf16.json\\\\na075_s42.json\\\\na075_s43.json\\\\na075_s44.json\\\\ngpt2m_wiki_a100_s42.json\\\\nopt1b_wiki_a100_s42.json\\\\npythia14b_wiki_a100_s42.json\\\\npythia14b_wiki_a100_s43.json\\\\npythia1b_c4_a100_s42.json\\\\npythia1b_c4_a100_s43.json\\\\npythia410m_wiki_a100_s42.json\\\\nsummary.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"a000_s42.json\\na000_s43.json\\na000_s44.json\\na025_s43.json\\na025_s44.json\\na050_s42.json\\na050_s43.json\\na050_s44.json\\na060_s42_bf16.json\\na075_s42.json\\na075_s43.json\\na075_s44.json\\ngpt2m_wiki_a100_s42.json\\nopt1b_wiki_a100_s42.json\\npythia14b_wiki_a100_s42.json\\npythia14b_wiki_a100_s43.json\\npythia1b_c4_a100_s42.json\\npythia1b_c4_a100_s43.json\\npythia410m_wiki_a100_s42.json\\nsummary.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "519c9d16-cd07-467b-96e2-65c360af30ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-19T03:15:52.472Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015hgg1njUG8V5r3gxUViWqL`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f6a7abd-fffb-417c-8da0-95b75d335a86",
+  "isSidechain": false,
+  "requestId": "req_011CbBCc2VLDWyUtVcWih8ah",
+  "type": "assistant",
+  "uuid": "0cffc0a9-893d-4836-ac55-582ce522bc08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARpyUwaRq75YHz8EbwziBt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12073,
+      "cache_read_input_tokens": 27921,
+      "output_tokens": 767,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12073,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 767,
+          "cache_read_input_tokens": 27921,
+          "cache_creation_input_tokens": 12073,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12073
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T03:15:52.925Z_
+
+<details><summary>↩ Tool result · `toolu_015hgg1njUG8V5r3gxUViWqL`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"a000_s42\\na000_s43\\na000_s44\\na010_s42\\na025_3seed_unified_summary.txt\\na025_s43\\na025_s44\\na050_s42\\na050_s43\\na050_s44\\na060_s42_bf16\\na075_s42\\na075_s43\\na075_s44\\nalpha_monotonicity.png\\nanalysis\\nanalysis_s44\\nanalysis_summary.json\\npooled_panel_results.json\\npooled_panel_summary.txt\\nty_3seed_a025_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0cffc0a9-893d-4836-ac55-582ce522bc08",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "078e7873-a69d-4e0d-9771-8dd8eaeae97e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"a000_s42\\\\na000_s43\\\\na000_s44\\\\na010_s42\\\\na025_3seed_unified_summary.txt\\\\na025_s43\\\\na025_s44\\\\na050_s42\\\\na050_s43\\\\na050_s44\\\\na060_s42_bf16\\\\na075_s42\\\\na075_s43\\\\na075_s44\\\\nalpha_monotonicity.png\\\\nanalysis\\\\nanalysis_s44\\\\nanalysis_summary.json\\\\npooled_panel_results.json\\\\npooled_panel_summary.txt\\\\nty_3seed_a025_results.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"a000_s42\\na000_s43\\na000_s44\\na010_s42\\na025_3seed_unified_summary.txt\\na025_s43\\na025_s44\\na050_s42\\na050_s43\\na050_s44\\na060_s42_bf16\\na075_s42\\na075_s43\\na075_s44\\nalpha_monotonicity.png\\nanalysis\\nanalysis_s44\\nanalysis_summary.json\\npooled_panel_results.json\\npooled_panel_summary.txt\\nty_3seed_a025_results.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0cffc0a9-893d-4836-ac55-582ce522bc08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-19T03:15:53.328Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015cwpNcXUgcnMJC8xedoSex`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/generalize/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "078e7873-a69d-4e0d-9771-8dd8eaeae97e",
+  "isSidechain": false,
+  "requestId": "req_011CbBCc2VLDWyUtVcWih8ah",
+  "type": "assistant",
+  "uuid": "1a12361a-2349-4650-bf45-dfdc25a1b772",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARpyUwaRq75YHz8EbwziBt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12073,
+      "cache_read_input_tokens": 27921,
+      "output_tokens": 767,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12073,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 767,
+          "cache_read_input_tokens": 27921,
+          "cache_creation_input_tokens": 12073,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12073
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-19T03:15:53.781Z_
+
+<details><summary>↩ Tool result · `toolu_015cwpNcXUgcnMJC8xedoSex`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"analysis\\ngpt2m_wiki_a100_s42\\nopt1b_wiki_a100_s42\\npythia14b_wiki_a100_s42\\npythia14b_wiki_a100_s43\\npythia1b_c4_a100_s42\\npythia1b_c4_a100_s43\\npythia410m_wiki_a100_s42\\nsmollm3_3b_wiki_a100_s42\\nsmollm3_3b_wiki_a100_s42_fp32_v3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1a12361a-2349-4650-bf45-dfdc25a1b772",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "504bdca2-fde8-4d55-ae5e-17430c619a17",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"analysis\\\\ngpt2m_wiki_a100_s42\\\\nopt1b_wiki_a100_s42\\\\npythia14b_wiki_a100_s42\\\\npythia14b_wiki_a100_s43\\\\npythia1b_c4_a100_s42\\\\npythia1b_c4_a100_s43\\\\npythia410m_wiki_a100_s42\\\\nsmollm3_3b_wiki_a100_s42\\\\nsmollm3_3b_wiki_a100_s42_fp32_v3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"analysis\\ngpt2m_wiki_a100_s42\\nopt1b_wiki_a100_s42\\npythia14b_wiki_a100_s42\\npythia14b_wiki_a100_s43\\npythia1b_c4_a100_s42\\npythia1b_c4_a100_s43\\npythia410m_wiki_a100_s42\\nsmollm3_3b_wiki_a100_s42\\nsmollm3_3b_wiki_a100_s42_fp32_v3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1a12361a-2349-4650-bf45-dfdc25a1b772",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-19T03:15:54.769Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01L6XKxXs2GNUgdsrkGf2KjR`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42_v4/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "504bdca2-fde8-4d55-ae5e-17430c619a17",
+  "isSidechain": false,
+  "requestId": "req_011CbBCc2VLDWyUtVcWih8ah",
+  "type": "assistant",
+  "uuid": "57159fb5-809c-4842-bfe3-b9722e24ef77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARpyUwaRq75YHz8EbwziBt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12073,
+      "cache_read_input_tokens": 27921,
+      "output_tokens": 767,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12073,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 767,
+          "cache_read_input_tokens": 27921,
+          "cache_creation_input_tokens": 12073,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12073
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-19T03:15:55.225Z_
+
+<details><summary>↩ Tool result · `toolu_01L6XKxXs2GNUgdsrkGf2KjR`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42_v4/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "57159fb5-809c-4842-bfe3-b9722e24ef77",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "4f1a3d0f-d56f-4d91-aa19-f0643577b311",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42_v4/': No such file or directory\\\\n\\\", \\\"return_code\\\": 2}, \\\"error\\\": \\\"exit code 2\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"ls: cannot access '/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s42_v4/': No such file or directory\\n\", \"return_code\": 2}, \"error\": \"exit code 2\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "57159fb5-809c-4842-bfe3-b9722e24ef77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T03:15:55.317Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01CenodTAapAMVsZMybt3Eig`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -name \"all_metrics.json\" -type f",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f1a3d0f-d56f-4d91-aa19-f0643577b311",
+  "isSidechain": false,
+  "requestId": "req_011CbBCc2VLDWyUtVcWih8ah",
+  "type": "assistant",
+  "uuid": "fb6ecedf-951e-48f4-a3fa-7d69d9acf9a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ARpyUwaRq75YHz8EbwziBt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 12073,
+      "cache_read_input_tokens": 27921,
+      "output_tokens": 767,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 12073,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 767,
+          "cache_read_input_tokens": 27921,
+          "cache_creation_input_tokens": 12073,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 12073
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "fb6ecedf-951e-48f4-a3fa-7d69d9acf9a6",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Run MMCT analysis on all completed experiments",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T03:15:55.834Z_
+
+<details><summary>↩ Tool result · `toolu_01CenodTAapAMVsZMybt3Eig`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia14b_a050_s42/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fb6ecedf-951e-48f4-a3fa-7d69d9acf9a6",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "b7c1e314-2467-4a9d-bbfe-4f97eedae2b8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s43/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_s42/all_metrics.json\\\\n/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia14b_a050_s42/all_metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a075_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s43/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_s42/all_metrics.json\\n/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia14b_a050_s42/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.5}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fb6ecedf-951e-48f4-a3fa-7d69d9acf9a6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 47 · 2026-05-19T03:16:07.085Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clear picture:
+
+**Unified data already exists for:**
+- a000_s42, a000_s43, a000_s44 (null)
+- a025_s43, a025_s44
+- a050_s42, a050_s43, a050_s44
+- a060_s42_bf16
+- a075_s42, a075_s43, a075_s44
+- All 7 generalize conditions (pythia410m, gpt2m, opt1b, pythia14b s42/s43, pythia1b_c4 s42/s43)
+
+
+- a010_s42 has all_metrics.json but isn't in unified data yet
+
+The task mentions a010_s43 and gen_wiki_gpt2m_a100_s42_v4, but a010_s43's directory doesn't actually exist—only a010_s42 is available—and the gpt2m_wiki variant is already included in the generalize folder. So I need to figure out what to do about a010_s42 and whether to proceed with the unified analysis.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b7c1e314-2467-4a9d-bbfe-4f97eedae2b8",
+  "isSidechain": false,
+  "requestId": "req_011CbBCd6HonkuopYSGuLPpg",
+  "type": "assistant",
+  "uuid": "4c1e5483-9ef6-4f11-8394-888f4098cb54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JG9ehk2oLZXxW97NnT6FRD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2688,
+      "cache_read_input_tokens": 39994,
+      "output_tokens": 752,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2688,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 752,
+          "cache_read_input_tokens": 39994,
+          "cache_creation_input_tokens": 2688,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2688
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 48 · 2026-05-19T03:16:07.450Z_
+
+Good. Unified data already exists for most conditions. Let me check existing MMCT results and whether the main `run_mmct.py` has already been run.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4c1e5483-9ef6-4f11-8394-888f4098cb54",
+  "isSidechain": false,
+  "requestId": "req_011CbBCd6HonkuopYSGuLPpg",
+  "type": "assistant",
+  "uuid": "e09d6e68-e618-4ae8-9cd2-d0be94f0277e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JG9ehk2oLZXxW97NnT6FRD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2688,
+      "cache_read_input_tokens": 39994,
+      "output_tokens": 752,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2688,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 752,
+          "cache_read_input_tokens": 39994,
+          "cache_creation_input_tokens": 2688,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2688
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49 · 2026-05-19T03:16:08.673Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01JqCPbxzpPGHtHeyXdamWsm`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e09d6e68-e618-4ae8-9cd2-d0be94f0277e",
+  "isSidechain": false,
+  "requestId": "req_011CbBCd6HonkuopYSGuLPpg",
+  "type": "assistant",
+  "uuid": "e9cbd441-5b06-4bd3-b763-3dd8ff29a896",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JG9ehk2oLZXxW97NnT6FRD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2688,
+      "cache_read_input_tokens": 39994,
+      "output_tokens": 752,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2688,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 752,
+          "cache_read_input_tokens": 39994,
+          "cache_creation_input_tokens": 2688,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2688
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T03:16:09.128Z_
+
+<details><summary>↩ Tool result · `toolu_01JqCPbxzpPGHtHeyXdamWsm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"data_consistency_check.md\\nfpr_fnr_comparison.md\\nfpr_fnr_comparison_v2.md\\nmmct_report.md\\nmmct_report_v2.md\\nmmct_results.json\\nmmct_results_v2.json\\nmmct_table7.md\\nnull_distribution.json\\nnull_distribution_v2.json\\nunified_data\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e9cbd441-5b06-4bd3-b763-3dd8ff29a896",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "58657907-bad6-4ea9-abdd-193fb9c8c0a2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"data_consistency_check.md\\\\nfpr_fnr_comparison.md\\\\nfpr_fnr_comparison_v2.md\\\\nmmct_report.md\\\\nmmct_report_v2.md\\\\nmmct_results.json\\\\nmmct_results_v2.json\\\\nmmct_table7.md\\\\nnull_distribution.json\\\\nnull_distribution_v2.json\\\\nunified_data\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"data_consistency_check.md\\nfpr_fnr_comparison.md\\nfpr_fnr_comparison_v2.md\\nmmct_report.md\\nmmct_report_v2.md\\nmmct_results.json\\nmmct_results_v2.json\\nmmct_table7.md\\nnull_distribution.json\\nnull_distribution_v2.json\\nunified_data\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e9cbd441-5b06-4bd3-b763-3dd8ff29a896",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-19T03:16:10.237Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PMMJV8SxckPqvSizYiZy9m`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/ -name \"*.json\" -not -path \"*/unified_data/*\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58657907-bad6-4ea9-abdd-193fb9c8c0a2",
+  "isSidechain": false,
+  "requestId": "req_011CbBCd6HonkuopYSGuLPpg",
+  "type": "assistant",
+  "uuid": "f55a5e9e-9ed0-4bc2-9379-bf0b844f956a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JG9ehk2oLZXxW97NnT6FRD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2688,
+      "cache_read_input_tokens": 39994,
+      "output_tokens": 752,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2688,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 752,
+          "cache_read_input_tokens": 39994,
+          "cache_creation_input_tokens": 2688,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2688
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-19T03:16:10.688Z_
+
+<details><summary>↩ Tool result · `toolu_01PMMJV8SxckPqvSizYiZy9m`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_results.json\\n/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/null_distribution.json\\n/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_results_v2.json\\n/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/null_distribution_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f55a5e9e-9ed0-4bc2-9379-bf0b844f956a",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "0e3896e2-0ff7-4ac8-8a7c-78a411e11367",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_results.json\\\\n/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/null_distribution.json\\\\n/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_results_v2.json\\\\n/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/null_distribution_v2.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_results.json\\n/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/null_distribution.json\\n/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_results_v2.json\\n/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/null_distribution_v2.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f55a5e9e-9ed0-4bc2-9379-bf0b844f956a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T03:16:10.645Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EWmC82X5cxULw3UdyV3JJi`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/mmct/methods.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f55a5e9e-9ed0-4bc2-9379-bf0b844f956a",
+  "isSidechain": false,
+  "requestId": "req_011CbBCd6HonkuopYSGuLPpg",
+  "type": "assistant",
+  "uuid": "5338b7b1-b086-455c-abb6-b41157ba3745",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JG9ehk2oLZXxW97NnT6FRD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2688,
+      "cache_read_input_tokens": 39994,
+      "output_tokens": 752,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2688,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 752,
+          "cache_read_input_tokens": 39994,
+          "cache_creation_input_tokens": 2688,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2688
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T03:16:11.220Z_
+
+<details><summary>↩ Tool result · `toolu_01EWmC82X5cxULw3UdyV3JJi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Unified wrapper for 5 lead-lag detection methods.\\n\\nReads pre-computed results from JSON files. Supports:\\n  - Original 5method_leadlag.json (two formats A and B)\\n  - Unified unified_5method.json (from unified_analysis.py)\\n\\nSet _UNIFIED_DATA_DIR to redirect loading to unified data.\\n\\\"\\\"\\\"\\n\\nimport json\\nfrom pathlib import Path\\n\\nMETHOD_NAMES = [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\",\\n                \\\"perm_granger\\\", \\\"ty_granger\\\"]\\n\\nCANARY_METRICS = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAM_METRICS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"perplexity\\\"]\\n\\nMETRIC_PAIRS = [(c, d) for c in CANARY_METRICS for d in DOWNSTREAM_METRICS]\\n\\n_UNIFIED_DATA_DIR = None\\n\\n\\ndef set_unified_data_dir(path):\\n    global _UNIFIED_DATA_DIR\\n    _UNIFIED_DATA_DIR = path\\n\\n\\ndef load_5method_results(data_dir):\\n    \\\"\\\"\\\"Load pre-computed 5-method lead-lag results for one condition.\\n    \\n    If _UNIFIED_DATA_DIR is set, loads from unified data instead.\\n    \\\"\\\"\\\"\\n    if _UNIFIED_DATA_DIR:\\n        name = Path(data_dir).name\\n        unified_path = Path(_UNIFIED_DATA_DIR) / f\\\"{name}.json\\\"\\n        if unified_path.exists():\\n            with open(unified_path) as f:\\n                return json.load(f)\\n    path = Path(data_dir) / \\\"analysis\\\" / \\\"5method_leadlag.json\\\"\\n    with open(path) as f:\\n        return json.load(f)\\n\\n\\ndef _find_pair(results, canary, downstream):\\n    \\\"\\\"\\\"Find the pair dict, handling both JSON formats.\\\"\\\"\\\"\\n    for pair in results[\\\"pairs\\\"]:\\n        if pair.get(\\\"canary\\\") == canary and pair.get(\\\"downstream\\\") == downstream:\\n            return pair\\n        fwd = pair.get(\\\"forward\\\", {})\\n        if fwd.get(\\\"canary\\\") == canary and fwd.get(\\\"downstream\\\") == downstream:\\n            return pair\\n    return None\\n\\n\\ndef extract_method_significance(results, canary, downstream,\\n                                 direction=\\\"forward\\\"):\\n    \\\"\\\"\\\"Extract per-method significance for one pair.\\\"\\\"\\\"\\n    pair = _find_pair(results, canary, downstream)\\n    if pair is None:\\n        raise ValueError(f\\\"Pair ({canary}, {downstream}) not found\\\")\\n\\n    source = pair.get(direction, {})\\n\\n    sig = {}\\n    for method in METHOD_NAMES:\\n        if method in source:\\n            sig[method] = bool(source[method].get(\\\"significant\\\", False))\\n        else:\\n            sig[method] = False\\n    return sig\\n\\n\\ndef get_all_pair_significances(data_dir, direction=\\\"forward\\\"):\\n    \\\"\\\"\\\"Get significance for all 8 pairs from one condition.\\\"\\\"\\\"\\n    results = load_5method_results(data_dir)\\n    out = {}\\n    for canary, downstream in METRIC_PAIRS:\\n        out[(canary, downstream)] = extract_method_significance(\\n            results, canary, downstream, direction)\\n    return out\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5338b7b1-b086-455c-abb6-b41157ba3745",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "25ab456e-ac5d-4ba5-9a72-80ca40911f54",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Unified wrapper for 5 lead-lag detection methods.\\\\n\\\\nReads pre-computed results from JSON files. Supports:\\\\n  - Original 5method_leadlag.json (two formats A and B)\\\\n  - Unified unified_5method.json (from unified_analysis.py)\\\\n\\\\nSet _UNIFIED_DATA_DIR to redirect loading to unified data.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport json\\\\nfrom pathlib import Path\\\\n\\\\nMETHOD_NAMES = [\\\\\\\"naive_xcorr\\\\\\\", \\\\\\\"diff_xcorr\\\\\\\", \\\\\\\"threshold_onset\\\\\\\",\\\\n                \\\\\\\"perm_granger\\\\\\\", \\\\\\\"ty_granger\\\\\\\"]\\\\n\\\\nCANARY_METRICS = [\\\\\\\"token_entropy\\\\\\\", \\\\\\\"ece\\\\\\\"]\\\\nDOWNSTREAM_METRICS = [\\\\\\\"distinct_1\\\\\\\", \\\\\\\"distinct_2\\\\\\\", \\\\\\\"distinct_3\\\\\\\", \\\\\\\"perplexity\\\\\\\"]\\\\n\\\\nMETRIC_PAIRS = [(c, d) for c in CANARY_METRICS for d in DOWNSTREAM_METRICS]\\\\n\\\\n_UNIFIED_DATA_DIR = None\\\\n\\\\n\\\\ndef set_unified_data_dir(path):\\\\n    global _UNIFIED_DATA_DIR\\\\n    _UNIFIED_DATA_DIR = path\\\\n\\\\n\\\\ndef load_5method_results(data_dir):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Load pre-computed 5-method lead-lag results for one condition.\\\\n    \\\\n    If _UNIFIED_DATA_DIR is set, loads from unified data instead.\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"\\\\n    if _UNIFIED_DATA_DIR:\\\\n        name = Path(data_dir).name\\\\n        unified_path = Path(_UNIFIED_DATA_DIR) / f\\\\\\\"{name}.json\\\\\\\"\\\\n        if unified_path.exists():\\\\n            with open(unified_path) as f:\\\\n                return json.load(f)\\\\n    path = Path(data_dir) / \\\\\\\"analysis\\\\\\\" / \\\\\\\"5method_leadlag.json\\\\\\\"\\\\n    with open(path) as f:\\\\n        return json.load(f)\\\\n\\\\n\\\\ndef _find_pair(results, canary, downstream):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Find the pair dict, handling both JSON formats.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    for pair in results[\\\\\\\"pairs\\\\\\\"]:\\\\n        if pair.get(\\\\\\\"canary\\\\\\\") == canary and pair.get(\\\\\\\"downstream\\\\\\\") == downstream:\\\\n            return pair\\\\n        fwd = pair.get(\\\\\\\"forward\\\\\\\", {})\\\\n        if fwd.get(\\\\\\\"canary\\\\\\\") == canary and fwd.get(\\\\\\\"downstream\\\\\\\") == downstream:\\\\n            return pair\\\\n    return None\\\\n\\\\n\\\\ndef extract_method_significance(results, canary, downstream,\\\\n                                 direction=\\\\\\\"forward\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Extract per-method significance for one pair.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    pair = _find_pair(results, canary, downstream)\\\\n    if pair is None:\\\\n        raise ValueError(f\\\\\\\"Pair ({canary}, {downstream}) not found\\\\\\\")\\\\n\\\\n    source = pair.get(direction, {})\\\\n\\\\n    sig = {}\\\\n    for method in METHOD_NAMES:\\\\n        if method in source:\\\\n            sig[method] = bool(source[method].get(\\\\\\\"significant\\\\\\\", False))\\\\n        else:\\\\n            sig[method] = False\\\\n    return sig\\\\n\\\\n\\\\ndef get_all_pair_significances(data_dir, direction=\\\\\\\"forward\\\\\\\"):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Get significance for all 8 pairs from one condition.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    results = load_5method_results(data_dir)\\\\n    out = {}\\\\n    for canary, downstream in METRIC_PAIRS:\\\\n        out[(canary, downstream)] = extract_method_significance(\\\\n            results, canary, downstream, direction)\\\\n    return out\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Unified wrapper for 5 lead-lag detection methods.\\n\\nReads pre-computed results from JSON files. Supports:\\n  - Original 5method_leadlag.json (two formats A and B)\\n  - Unified unified_5method.json (from unified_analysis.py)\\n\\nSet _UNIFIED_DATA_DIR to redirect loading to unified data.\\n\\\"\\\"\\\"\\n\\nimport json\\nfrom pathlib import Path\\n\\nMETHOD_NAMES = [\\\"naive_xcorr\\\", \\\"diff_xcorr\\\", \\\"threshold_onset\\\",\\n                \\\"perm_granger\\\", \\\"ty_granger\\\"]\\n\\nCANARY_METRICS = [\\\"token_entropy\\\", \\\"ece\\\"]\\nDOWNSTREAM_METRICS = [\\\"distinct_1\\\", \\\"distinct_2\\\", \\\"distinct_3\\\", \\\"perplexity\\\"]\\n\\nMETRIC_PAIRS = [(c, d) for c in CANARY_METRICS for d in DOWNSTREAM_METRICS]\\n\\n_UNIFIED_DATA_DIR = None\\n\\n\\ndef set_unified_data_dir(path):\\n    global _UNIFIED_DATA_DIR\\n    _UNIFIED_DATA_DIR = path\\n\\n\\ndef load_5method_results(data_dir):\\n    \\\"\\\"\\\"Load pre-computed 5-method lead-lag results for one condition.\\n    \\n    If _UNIFIED_DATA_DIR is set, loads from unified data instead.\\n    \\\"\\\"\\\"\\n    if _UNIFIED_DATA_DIR:\\n        name = Path(data_dir).name\\n        unified_path = Path(_UNIFIED_DATA_DIR) / f\\\"{name}.json\\\"\\n        if unified_path.exists():\\n            with open(unified_path) as f:\\n                return json.load(f)\\n    path = Path(data_dir) / \\\"analysis\\\" / \\\"5method_leadlag.json\\\"\\n    with open(path) as f:\\n        return json.load(f)\\n\\n\\ndef _find_pair(results, canary, downstream):\\n    \\\"\\\"\\\"Find the pair dict, handling both JSON formats.\\\"\\\"\\\"\\n    for pair in results[\\\"pairs\\\"]:\\n        if pair.get(\\\"canary\\\") == canary and pair.get(\\\"downstream\\\") == downstream:\\n            return pair\\n        fwd = pair.get(\\\"forward\\\", {})\\n        if fwd.get(\\\"canary\\\") == canary and fwd.get(\\\"downstream\\\") == downstream:\\n            return pair\\n    return None\\n\\n\\ndef extract_method_significance(results, canary, downstream,\\n                                 direction=\\\"forward\\\"):\\n    \\\"\\\"\\\"Extract per-method significance for one pair.\\\"\\\"\\\"\\n    pair = _find_pair(results, canary, downstream)\\n    if pair is None:\\n        raise ValueError(f\\\"Pair ({canary}, {downstream}) not found\\\")\\n\\n    source = pair.get(direction, {})\\n\\n    sig = {}\\n    for method in METHOD_NAMES:\\n        if method in source:\\n            sig[method] = bool(source[method].get(\\\"significant\\\", False))\\n        else:\\n            sig[method] = False\\n    return sig\\n\\n\\ndef get_all_pair_significances(data_dir, direction=\\\"forward\\\"):\\n    \\\"\\\"\\\"Get significance for all 8 pairs from one condition.\\\"\\\"\\\"\\n    results = load_5method_results(data_dir)\\n    out = {}\\n    for canary, downstream in METRIC_PAIRS:\\n        out[(canary, downstream)] = extract_method_significance(\\n            results, canary, downstream, direction)\\n    return out\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5338b7b1-b086-455c-abb6-b41157ba3745",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55 · 2026-05-19T03:16:11.224Z_
+
+```json
+{
+  "parentUuid": "25ab456e-ac5d-4ba5-9a72-80ca40911f54",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f9d111eb-4c43-4c49-ba5e-db6e1314088a",
+  "timestamp": "2026-05-19T03:16:11.224Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "f9d111eb-4c43-4c49-ba5e-db6e1314088a",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Run MMCT analysis on all completed experiments",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-19T03:16:14.165Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me check the existing MMCT results to understand what's already been computed.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f9d111eb-4c43-4c49-ba5e-db6e1314088a",
+  "isSidechain": false,
+  "requestId": "req_011CbBCeESUMuzASu7VeqoHo",
+  "type": "assistant",
+  "uuid": "da5f3321-59da-4e46-a6e1-c3217f8d5af2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SEKNziGbyc6meZsuMSZgQM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2424,
+      "cache_read_input_tokens": 42682,
+      "output_tokens": 306,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2424,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 306,
+          "cache_read_input_tokens": 42682,
+          "cache_creation_input_tokens": 2424,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2424
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-19T03:16:15.644Z_
+
+Let me check existing MMCT results and also check what conditions are missing from unified analysis.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da5f3321-59da-4e46-a6e1-c3217f8d5af2",
+  "isSidechain": false,
+  "requestId": "req_011CbBCeESUMuzASu7VeqoHo",
+  "type": "assistant",
+  "uuid": "477713ec-3044-48da-af81-6fe49ad4855d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SEKNziGbyc6meZsuMSZgQM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2424,
+      "cache_read_input_tokens": 42682,
+      "output_tokens": 306,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2424,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 306,
+          "cache_read_input_tokens": 42682,
+          "cache_creation_input_tokens": 2424,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2424
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-19T03:16:17.574Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VkQtnP917Z2u8PtmsmKTxa`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -100 /root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_results_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "477713ec-3044-48da-af81-6fe49ad4855d",
+  "isSidechain": false,
+  "requestId": "req_011CbBCeESUMuzASu7VeqoHo",
+  "type": "assistant",
+  "uuid": "44d3fbd8-61af-4407-8361-19293e0d4e24",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SEKNziGbyc6meZsuMSZgQM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2424,
+      "cache_read_input_tokens": 42682,
+      "output_tokens": 306,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2424,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 306,
+          "cache_read_input_tokens": 42682,
+          "cache_creation_input_tokens": 2424,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2424
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-19T03:16:18.025Z_
+
+<details><summary>↩ Tool result · `toolu_01VkQtnP917Z2u8PtmsmKTxa`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"timestamp\\\": \\\"2026-05-19T00:43:44.035297\\\",\\n    \\\"null_dirs\\\": [\\n      \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\\",\\n      \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43\\\",\\n      \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\\"\\n    ],\\n    \\\"n_null\\\": 24,\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n      \\\"perm_granger\\\",\\n      \\\"ty_granger\\\"\\n    ],\\n    \\\"modes\\\": [\\n      \\\"uniform_forward\\\",\\n      \\\"uniform_bidirectional\\\",\\n      \\\"weighted_pair_forward\\\",\\n      \\\"weighted_pair_bidirectional\\\",\\n      \\\"weighted_global_forward\\\",\\n      \\\"weighted_global_bidirectional\\\"\\n    ],\\n    \\\"data_source\\\": \\\"unified_5method (2-sigma threshold, Table 7 params)\\\",\\n    \\\"unified_data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/unified_data\\\",\\n    \\\"alpha_conditions\\\": {\\n      \\\"0.0\\\": [\\n        \\\"a000_s42\\\",\\n        \\\"a000_s43\\\",\\n        \\\"a000_s44\\\"\\n      ],\\n      \\\"0.25\\\": [\\n        \\\"a025_s43\\\",\\n        \\\"a025_s44\\\"\\n      ],\\n      \\\"0.5\\\": [\\n        \\\"a050_s42\\\",\\n        \\\"a050_s43\\\",\\n        \\\"a050_s44\\\"\\n      ],\\n      \\\"0.75\\\": [\\n        \\\"a075_s42\\\",\\n        \\\"a075_s43\\\",\\n        \\\"a075_s44\\\"\\n      ]\\n    },\\n    \\\"table7_conditions\\\": [\\n      \\\"Baseline\\\",\\n      \\\"Arch: GPT-2m\\\",\\n      \\\"Arch: OPT\\\",\\n      \\\"Scale: 1.4B s42\\\",\\n      \\\"Scale: 1.4B s43\\\",\\n      \\\"Domain: C4 s42\\\",\\n      \\\"Domain: C4 s43\\\"\\n    ]\\n  },\\n  \\\"results\\\": {\\n    \\\"uniform_forward\\\": {\\n      \\\"a000\\\": [\\n        {\\n          \\\"canary\\\": \\\"token_entropy\\\",\\n          \\\"downstream\\\": \\\"distinct_1\\\",\\n          \\\"consensus_score\\\": 3,\\n          \\\"p_value\\\": 0.44,\\n          \\\"ci_lower\\\": 0.24,\\n          \\\"ci_upper\\\": 0.64,\\n          \\\"method_results\\\": {\\n            \\\"naive_xcorr\\\": true,\\n            \\\"diff_xcorr\\\": true,\\n            \\\"threshold_onset\\\": true,\\n            \\\"perm_granger\\\": false,\\n            \\\"ty_granger\\\": false\\n          },\\n          \\\"significant\\\": false,\\n          \\\"alpha\\\": 0.05,\\n          \\\"mode\\\": \\\"uniform_forward\\\",\\n          \\\"weights\\\": null,\\n          \\\"reverse_p_value\\\": null,\\n          \\\"reverse_consensus_score\\\": null,\\n          \\\"reverse_method_results\\\": null,\\n          \\\"alpha_condition\\\": 0.0,\\n          \\\"seed\\\": 42,\\n          \\\"run_id\\\": \\\"a000_s42\\\"\\n        },\\n        {\\n          \\\"canary\\\": \\\"token_entropy\\\",\\n          \\\"downstream\\\": \\\"distinct_2\\\",\\n          \\\"consensus_score\\\": 3,\\n          \\\"p_value\\\": 0.44,\\n          \\\"ci_lower\\\": 0.24,\\n          \\\"ci_upper\\\": 0.64,\\n          \\\"method_results\\\": {\\n            \\\"naive_xcorr\\\": true,\\n            \\\"diff_xcorr\\\": true,\\n            \\\"threshold_onset\\\": true,\\n            \\\"perm_granger\\\": false,\\n            \\\"ty_granger\\\": false\\n          },\\n          \\\"significant\\\": false,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "44d3fbd8-61af-4407-8361-19293e0d4e24",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "240df4ff-c3a4-4d95-bf60-337853911961",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"meta\\\\\\\": {\\\\n    \\\\\\\"timestamp\\\\\\\": \\\\\\\"2026-05-19T00:43:44.035297\\\\\\\",\\\\n    \\\\\\\"null_dirs\\\\\\\": [\\\\n      \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\\\\\\",\\\\n      \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43\\\\\\\",\\\\n      \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"n_null\\\\\\\": 24,\\\\n    \\\\\\\"methods\\\\\\\": [\\\\n      \\\\\\\"naive_xcorr\\\\\\\",\\\\n      \\\\\\\"diff_xcorr\\\\\\\",\\\\n      \\\\\\\"threshold_onset\\\\\\\",\\\\n      \\\\\\\"perm_granger\\\\\\\",\\\\n      \\\\\\\"ty_granger\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"modes\\\\\\\": [\\\\n      \\\\\\\"uniform_forward\\\\\\\",\\\\n      \\\\\\\"uniform_bidirectional\\\\\\\",\\\\n      \\\\\\\"weighted_pair_forward\\\\\\\",\\\\n      \\\\\\\"weighted_pair_bidirectional\\\\\\\",\\\\n      \\\\\\\"weighted_global_forward\\\\\\\",\\\\n      \\\\\\\"weighted_global_bidirectional\\\\\\\"\\\\n    ],\\\\n    \\\\\\\"data_source\\\\\\\": \\\\\\\"unified_5method (2-sigma threshold, Table 7 params)\\\\\\\",\\\\n    \\\\\\\"unified_data_dir\\\\\\\": \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/unified_data\\\\\\\",\\\\n    \\\\\\\"alpha_conditions\\\\\\\": {\\\\n      \\\\\\\"0.0\\\\\\\": [\\\\n        \\\\\\\"a000_s42\\\\\\\",\\\\n        \\\\\\\"a000_s43\\\\\\\",\\\\n        \\\\\\\"a000_s44\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"0.25\\\\\\\": [\\\\n        \\\\\\\"a025_s43\\\\\\\",\\\\n        \\\\\\\"a025_s44\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"0.5\\\\\\\": [\\\\n        \\\\\\\"a050_s42\\\\\\\",\\\\n        \\\\\\\"a050_s43\\\\\\\",\\\\n        \\\\\\\"a050_s44\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"0.75\\\\\\\": [\\\\n        \\\\\\\"a075_s42\\\\\\\",\\\\n        \\\\\\\"a075_s43\\\\\\\",\\\\n        \\\\\\\"a075_s44\\\\\\\"\\\\n      ]\\\\n    },\\\\n    \\\\\\\"table7_conditions\\\\\\\": [\\\\n      \\\\\\\"Baseline\\\\\\\",\\\\n      \\\\\\\"Arch: GPT-2m\\\\\\\",\\\\n      \\\\\\\"Arch: OPT\\\\\\\",\\\\n      \\\\\\\"Scale: 1.4B s42\\\\\\\",\\\\n      \\\\\\\"Scale: 1.4B s43\\\\\\\",\\\\n      \\\\\\\"Domain: C4 s42\\\\\\\",\\\\n      \\\\\\\"Domain: C4 s43\\\\\\\"\\\\n    ]\\\\n  },\\\\n  \\\\\\\"results\\\\\\\": {\\\\n    \\\\\\\"uniform_forward\\\\\\\": {\\\\n      \\\\\\\"a000\\\\\\\": [\\\\n        {\\\\n          \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n          \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n          \\\\\\\"consensus_score\\\\\\\": 3,\\\\n          \\\\\\\"p_value\\\\\\\": 0.44,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.24,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.64,\\\\n          \\\\\\\"method_results\\\\\\\": {\\\\n            \\\\\\\"naive_xcorr\\\\\\\": true,\\\\n            \\\\\\\"diff_xcorr\\\\\\\": true,\\\\n            \\\\\\\"threshold_onset\\\\\\\": true,\\\\n            \\\\\\\"perm_granger\\\\\\\": false,\\\\n            \\\\\\\"ty_granger\\\\\\\": false\\\\n          },\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"alpha\\\\\\\": 0.05,\\\\n          \\\\\\\"mode\\\\\\\": \\\\\\\"uniform_forward\\\\\\\",\\\\n          \\\\\\\"weights\\\\\\\": null,\\\\n          \\\\\\\"reverse_p_value\\\\\\\": null,\\\\n          \\\\\\\"reverse_consensus_score\\\\\\\": null,\\\\n          \\\\\\\"reverse_method_results\\\\\\\": null,\\\\n          \\\\\\\"alpha_condition\\\\\\\": 0.0,\\\\n          \\\\\\\"seed\\\\\\\": 42,\\\\n          \\\\\\\"run_id\\\\\\\": \\\\\\\"a000_s42\\\\\\\"\\\\n        },\\\\n        {\\\\n          \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n          \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_2\\\\\\\",\\\\n          \\\\\\\"consensus_score\\\\\\\": 3,\\\\n          \\\\\\\"p_value\\\\\\\": 0.44,\\\\n          \\\\\\\"ci_lower\\\\\\\": 0.24,\\\\n          \\\\\\\"ci_upper\\\\\\\": 0.64,\\\\n          \\\\\\\"method_results\\\\\\\": {\\\\n            \\\\\\\"naive_xcorr\\\\\\\": true,\\\\n            \\\\\\\"diff_xcorr\\\\\\\": true,\\\\n            \\\\\\\"threshold_onset\\\\\\\": true,\\\\n            \\\\\\\"perm_granger\\\\\\\": false,\\\\n            \\\\\\\"ty_granger\\\\\\\": false\\\\n          },\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"meta\\\": {\\n    \\\"timestamp\\\": \\\"2026-05-19T00:43:44.035297\\\",\\n    \\\"null_dirs\\\": [\\n      \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42\\\",\\n      \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43\\\",\\n      \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\\\"\\n    ],\\n    \\\"n_null\\\": 24,\\n    \\\"methods\\\": [\\n      \\\"naive_xcorr\\\",\\n      \\\"diff_xcorr\\\",\\n      \\\"threshold_onset\\\",\\n      \\\"perm_granger\\\",\\n      \\\"ty_granger\\\"\\n    ],\\n    \\\"modes\\\": [\\n      \\\"uniform_forward\\\",\\n      \\\"uniform_bidirectional\\\",\\n      \\\"weighted_pair_forward\\\",\\n      \\\"weighted_pair_bidirectional\\\",\\n      \\\"weighted_global_forward\\\",\\n      \\\"weighted_global_bidirectional\\\"\\n    ],\\n    \\\"data_source\\\": \\\"unified_5method (2-sigma threshold, Table 7 params)\\\",\\n    \\\"unified_data_dir\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/unified_data\\\",\\n    \\\"alpha_conditions\\\": {\\n      \\\"0.0\\\": [\\n        \\\"a000_s42\\\",\\n        \\\"a000_s43\\\",\\n        \\\"a000_s44\\\"\\n      ],\\n      \\\"0.25\\\": [\\n        \\\"a025_s43\\\",\\n        \\\"a025_s44\\\"\\n      ],\\n      \\\"0.5\\\": [\\n        \\\"a050_s42\\\",\\n        \\\"a050_s43\\\",\\n        \\\"a050_s44\\\"\\n      ],\\n      \\\"0.75\\\": [\\n        \\\"a075_s42\\\",\\n        \\\"a075_s43\\\",\\n        \\\"a075_s44\\\"\\n      ]\\n    },\\n    \\\"table7_conditions\\\": [\\n      \\\"Baseline\\\",\\n      \\\"Arch: GPT-2m\\\",\\n      \\\"Arch: OPT\\\",\\n      \\\"Scale: 1.4B s42\\\",\\n      \\\"Scale: 1.4B s43\\\",\\n      \\\"Domain: C4 s42\\\",\\n      \\\"Domain: C4 s43\\\"\\n    ]\\n  },\\n  \\\"results\\\": {\\n    \\\"uniform_forward\\\": {\\n      \\\"a000\\\": [\\n        {\\n          \\\"canary\\\": \\\"token_entropy\\\",\\n          \\\"downstream\\\": \\\"distinct_1\\\",\\n          \\\"consensus_score\\\": 3,\\n          \\\"p_value\\\": 0.44,\\n          \\\"ci_lower\\\": 0.24,\\n          \\\"ci_upper\\\": 0.64,\\n          \\\"method_results\\\": {\\n            \\\"naive_xcorr\\\": true,\\n            \\\"diff_xcorr\\\": true,\\n            \\\"threshold_onset\\\": true,\\n            \\\"perm_granger\\\": false,\\n            \\\"ty_granger\\\": false\\n          },\\n          \\\"significant\\\": false,\\n          \\\"alpha\\\": 0.05,\\n          \\\"mode\\\": \\\"uniform_forward\\\",\\n          \\\"weights\\\": null,\\n          \\\"reverse_p_value\\\": null,\\n          \\\"reverse_consensus_score\\\": null,\\n          \\\"reverse_method_results\\\": null,\\n          \\\"alpha_condition\\\": 0.0,\\n          \\\"seed\\\": 42,\\n          \\\"run_id\\\": \\\"a000_s42\\\"\\n        },\\n        {\\n          \\\"canary\\\": \\\"token_entropy\\\",\\n          \\\"downstream\\\": \\\"distinct_2\\\",\\n          \\\"consensus_score\\\": 3,\\n          \\\"p_value\\\": 0.44,\\n          \\\"ci_lower\\\": 0.24,\\n          \\\"ci_upper\\\": 0.64,\\n          \\\"method_results\\\": {\\n            \\\"naive_xcorr\\\": true,\\n            \\\"diff_xcorr\\\": true,\\n            \\\"threshold_onset\\\": true,\\n            \\\"perm_granger\\\": false,\\n            \\\"ty_granger\\\": false\\n          },\\n          \\\"significant\\\": false,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "44d3fbd8-61af-4407-8361-19293e0d4e24",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-19T03:16:18.170Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Bj94cNftFmwTmoofTDgtGP`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_report_v2.md",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "240df4ff-c3a4-4d95-bf60-337853911961",
+  "isSidechain": false,
+  "requestId": "req_011CbBCeESUMuzASu7VeqoHo",
+  "type": "assistant",
+  "uuid": "54e7f882-1f9f-497a-b458-25ce1d49ff00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SEKNziGbyc6meZsuMSZgQM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2424,
+      "cache_read_input_tokens": 42682,
+      "output_tokens": 306,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2424,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 306,
+          "cache_read_input_tokens": 42682,
+          "cache_creation_input_tokens": 2424,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2424
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-19T03:16:18.790Z_
+
+<details><summary>↩ Tool result · `toolu_01Bj94cNftFmwTmoofTDgtGP`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# MMCT Results Report (v2 — Unified Data)\\n\\nGenerated: 2026-05-19T00:43:44.035297\\nData source: unified_5method (2-sigma threshold, Table 7 params)\\n\\nNull dirs: 3\\nMethods: naive_xcorr, diff_xcorr, threshold_onset, perm_granger, ty_granger\\nModes: uniform_forward, uniform_bidirectional, weighted_pair_forward, weighted_pair_bidirectional, weighted_global_forward, weighted_global_bidirectional\\n\\n## Alpha Sweep Results\\n\\n### uniform_forward\\n\\n#### Alpha = a000\\n\\n| Canary | Downstream | Seed | Score | p-value | CI | Sig |\\n|--------|------------|------|-------|---------|----|-----|\\n| token_entropy | distinct_1 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | distinct_2 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | distinct_3 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | perplexity | 42 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_1 | 42 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_2 | 42 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\n| ece | distinct_3 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| ece | perplexity | 42 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\n| token_entropy | distinct_1 | 43 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | distinct_2 | 43 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | distinct_3 | 43 | 4.0000 | 0.1600 | [0.0400, 0.2800] | no |\\n| token_entropy | perplexity | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_1 | 43 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\n| ece | distinct_2 | 43 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\n| ece | distinct_3 | 43 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\n| ece | perplexity | 43 | 0.0000 | 1.0000 | [1.0000, 1.0000] | no |\\n| token_entropy | distinct_1 | 44 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | distinct_2 | 44 | 4.0000 | 0.1600 | [0.0400, 0.2800] | no |\\n| token_entropy | distinct_3 | 44 | 4.0000 | 0.1600 | [0.0400, 0.2800] | no |\\n| token_entropy | perplexity | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_1 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_2 | 44 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\n| ece | distinct_3 | 44 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\n| ece | perplexity | 44 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\n\\n#### Alpha = a025\\n\\n| Canary | Downstream | Seed | Score | p-value | CI | Sig |\\n|--------|------------|------|-------|---------|----|-----|\\n| token_entropy | distinct_1 | 43 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | distinct_2 | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| token_entropy | distinct_3 | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| token_entropy | perplexity | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_1 | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_2 | 43 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| ece | distinct_3 | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | perplexity | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| token_entropy | distinct_1 | 44 | 4.0000 | 0.1600 | [0.0400, 0.2800] | no |\\n| token_entropy | distinct_2 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| token_entropy | distinct_3 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| token_entropy | perplexity | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_1 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_2 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_3 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | perplexity | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n\\n#### Alpha = a050\\n\\n| Canary | Downstream | Seed | Score | p-value | CI | Sig |\\n|--------|------------|------|-------|---------|----|-----|\\n| token_entropy | distinct_1 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | distinct_2 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | distinct_3 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400\\n\\n... [截断: 输出过长，省略 37661 字符] ...\\n\\n43 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_1 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_2 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_3 | 43 | 0.4450 | 0.2400 | [0.0800, 0.4000] | no | 0.9600 |\\n| token_entropy | perplexity | 43 | 0.1207 | 0.6400 | [0.4400, 0.8400] | no | 0.7600 |\\n| ece | distinct_1 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | distinct_2 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.0400 |\\n| ece | distinct_3 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | perplexity | 43 | 0.4378 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_1 | 44 | 0.2071 | 0.4400 | [0.2400, 0.6400] | no | 0.0400 |\\n| token_entropy | distinct_2 | 44 | 0.1279 | 0.4800 | [0.2800, 0.6800] | no | 0.9600 |\\n| token_entropy | distinct_3 | 44 | 0.1279 | 0.4800 | [0.2800, 0.6800] | no | 0.9600 |\\n| token_entropy | perplexity | 44 | 0.1207 | 0.6400 | [0.4400, 0.8400] | no | 0.7600 |\\n| ece | distinct_1 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | distinct_2 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | distinct_3 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | perplexity | 44 | 0.4378 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n\\n#### Alpha = a075\\n\\n| Canary | Downstream | Seed | Score | p-value | CI | Sig | Rev_p |\\n|--------|------------|------|-------|---------|----|-----|-------|\\n| token_entropy | distinct_1 | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_2 | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_3 | 42 | 1.0000 | 0.0400 | [0.0400, 0.0400] | YES | 0.7600 |\\n| token_entropy | perplexity | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | distinct_1 | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.0400 |\\n| ece | distinct_2 | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | distinct_3 | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | perplexity | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.1600 |\\n| token_entropy | distinct_1 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_2 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_3 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | perplexity | 43 | 0.2071 | 0.4400 | [0.2400, 0.6400] | no | 0.7600 |\\n| ece | distinct_1 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.0400 |\\n| ece | distinct_2 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.0400 |\\n| ece | distinct_3 | 43 | 1.0000 | 0.0400 | [0.0400, 0.0400] | no | 0.0400 |\\n| ece | perplexity | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_1 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_2 | 44 | 0.2071 | 0.4400 | [0.2400, 0.6400] | no | 0.7600 |\\n| token_entropy | distinct_3 | 44 | 0.2071 | 0.4400 | [0.2400, 0.6400] | no | 0.7600 |\\n| token_entropy | perplexity | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | distinct_1 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.0400 |\\n| ece | distinct_2 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | distinct_3 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | perplexity | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n\\n## Summary: FPR and Detection Rate by Mode\\n\\n| Mode | FPR (a=0.00) | a025 | a050 | a075 |\\n|------|-------------|------|------|------|\\n| uniform_forward | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\n| uniform_bidirectional | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\n| weighted_pair_forward | 0.0000 | 0.4375 | 0.5833 | 0.7917 |\\n| weighted_pair_bidirectional | 0.0000 | 0.4375 | 0.5833 | 0.7917 |\\n| weighted_global_forward | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\n| weighted_global_bidirectional | 0.0000 | 0.0000 | 0.0000 | 0.0417 |\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54e7f882-1f9f-497a-b458-25ce1d49ff00",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "71eb60e4-b4e5-4f87-83b9-e5a4a1ccb7d7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# MMCT Results Report (v2 — Unified Data)\\\\n\\\\nGenerated: 2026-05-19T00:43:44.035297\\\\nData source: unified_5method (2-sigma threshold, Table 7 params)\\\\n\\\\nNull dirs: 3\\\\nMethods: naive_xcorr, diff_xcorr, threshold_onset, perm_granger, ty_granger\\\\nModes: uniform_forward, uniform_bidirectional, weighted_pair_forward, weighted_pair_bidirectional, weighted_global_forward, weighted_global_bidirectional\\\\n\\\\n## Alpha Sweep Results\\\\n\\\\n### uniform_forward\\\\n\\\\n#### Alpha = a000\\\\n\\\\n| Canary | Downstream | Seed | Score | p-value | CI | Sig |\\\\n|--------|------------|------|-------|---------|----|-----|\\\\n| token_entropy | distinct_1 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\\\n| token_entropy | distinct_2 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\\\n| token_entropy | distinct_3 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\\\n| token_entropy | perplexity | 42 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| ece | distinct_1 | 42 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| ece | distinct_2 | 42 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\\\n| ece | distinct_3 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\\\n| ece | perplexity | 42 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\\\n| token_entropy | distinct_1 | 43 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\\\n| token_entropy | distinct_2 | 43 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\\\n| token_entropy | distinct_3 | 43 | 4.0000 | 0.1600 | [0.0400, 0.2800] | no |\\\\n| token_entropy | perplexity | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| ece | distinct_1 | 43 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\\\n| ece | distinct_2 | 43 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\\\n| ece | distinct_3 | 43 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\\\n| ece | perplexity | 43 | 0.0000 | 1.0000 | [1.0000, 1.0000] | no |\\\\n| token_entropy | distinct_1 | 44 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\\\n| token_entropy | distinct_2 | 44 | 4.0000 | 0.1600 | [0.0400, 0.2800] | no |\\\\n| token_entropy | distinct_3 | 44 | 4.0000 | 0.1600 | [0.0400, 0.2800] | no |\\\\n| token_entropy | perplexity | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| ece | distinct_1 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| ece | distinct_2 | 44 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\\\n| ece | distinct_3 | 44 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\\\n| ece | perplexity | 44 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\\\n\\\\n#### Alpha = a025\\\\n\\\\n| Canary | Downstream | Seed | Score | p-value | CI | Sig |\\\\n|--------|------------|------|-------|---------|----|-----|\\\\n| token_entropy | distinct_1 | 43 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\\\n| token_entropy | distinct_2 | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| token_entropy | distinct_3 | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| token_entropy | perplexity | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| ece | distinct_1 | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| ece | distinct_2 | 43 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\\\n| ece | distinct_3 | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| ece | perplexity | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| token_entropy | distinct_1 | 44 | 4.0000 | 0.1600 | [0.0400, 0.2800] | no |\\\\n| token_entropy | distinct_2 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| token_entropy | distinct_3 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| token_entropy | perplexity | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| ece | distinct_1 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| ece | distinct_2 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| ece | distinct_3 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n| ece | perplexity | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\\\n\\\\n#### Alpha = a050\\\\n\\\\n| Canary | Downstream | Seed | Score | p-value | CI | Sig |\\\\n|--------|------------|------|-------|---------|----|-----|\\\\n| token_entropy | distinct_1 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\\\n| token_entropy | distinct_2 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\\\n| token_entropy | distinct_3 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400\\\\n\\\\n... [截断: 输出过长，省略 37661 字符] ...\\\\n\\\\n43 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| token_entropy | distinct_1 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| token_entropy | distinct_2 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| token_entropy | distinct_3 | 43 | 0.4450 | 0.2400 | [0.0800, 0.4000] | no | 0.9600 |\\\\n| token_entropy | perplexity | 43 | 0.1207 | 0.6400 | [0.4400, 0.8400] | no | 0.7600 |\\\\n| ece | distinct_1 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| ece | distinct_2 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.0400 |\\\\n| ece | distinct_3 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| ece | perplexity | 43 | 0.4378 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| token_entropy | distinct_1 | 44 | 0.2071 | 0.4400 | [0.2400, 0.6400] | no | 0.0400 |\\\\n| token_entropy | distinct_2 | 44 | 0.1279 | 0.4800 | [0.2800, 0.6800] | no | 0.9600 |\\\\n| token_entropy | distinct_3 | 44 | 0.1279 | 0.4800 | [0.2800, 0.6800] | no | 0.9600 |\\\\n| token_entropy | perplexity | 44 | 0.1207 | 0.6400 | [0.4400, 0.8400] | no | 0.7600 |\\\\n| ece | distinct_1 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| ece | distinct_2 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| ece | distinct_3 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| ece | perplexity | 44 | 0.4378 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n\\\\n#### Alpha = a075\\\\n\\\\n| Canary | Downstream | Seed | Score | p-value | CI | Sig | Rev_p |\\\\n|--------|------------|------|-------|---------|----|-----|-------|\\\\n| token_entropy | distinct_1 | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| token_entropy | distinct_2 | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| token_entropy | distinct_3 | 42 | 1.0000 | 0.0400 | [0.0400, 0.0400] | YES | 0.7600 |\\\\n| token_entropy | perplexity | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| ece | distinct_1 | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.0400 |\\\\n| ece | distinct_2 | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| ece | distinct_3 | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| ece | perplexity | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.1600 |\\\\n| token_entropy | distinct_1 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| token_entropy | distinct_2 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| token_entropy | distinct_3 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| token_entropy | perplexity | 43 | 0.2071 | 0.4400 | [0.2400, 0.6400] | no | 0.7600 |\\\\n| ece | distinct_1 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.0400 |\\\\n| ece | distinct_2 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.0400 |\\\\n| ece | distinct_3 | 43 | 1.0000 | 0.0400 | [0.0400, 0.0400] | no | 0.0400 |\\\\n| ece | perplexity | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| token_entropy | distinct_1 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| token_entropy | distinct_2 | 44 | 0.2071 | 0.4400 | [0.2400, 0.6400] | no | 0.7600 |\\\\n| token_entropy | distinct_3 | 44 | 0.2071 | 0.4400 | [0.2400, 0.6400] | no | 0.7600 |\\\\n| token_entropy | perplexity | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| ece | distinct_1 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.0400 |\\\\n| ece | distinct_2 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| ece | distinct_3 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n| ece | perplexity | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\\\n\\\\n## Summary: FPR and Detection Rate by Mode\\\\n\\\\n| Mode | FPR (a=0.00) | a025 | a050 | a075 |\\\\n|------|-------------|------|------|------|\\\\n| uniform_forward | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\\\n| uniform_bidirectional | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\\\n| weighted_pair_forward | 0.0000 | 0.4375 | 0.5833 | 0.7917 |\\\\n| weighted_pair_bidirectional | 0.0000 | 0.4375 | 0.5833 | 0.7917 |\\\\n| weighted_global_forward | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\\\n| weighted_global_bidirectional | 0.0000 | 0.0000 | 0.0000 | 0.0417 |\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.61}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"# MMCT Results Report (v2 — Unified Data)\\n\\nGenerated: 2026-05-19T00:43:44.035297\\nData source: unified_5method (2-sigma threshold, Table 7 params)\\n\\nNull dirs: 3\\nMethods: naive_xcorr, diff_xcorr, threshold_onset, perm_granger, ty_granger\\nModes: uniform_forward, uniform_bidirectional, weighted_pair_forward, weighted_pair_bidirectional, weighted_global_forward, weighted_global_bidirectional\\n\\n## Alpha Sweep Results\\n\\n### uniform_forward\\n\\n#### Alpha = a000\\n\\n| Canary | Downstream | Seed | Score | p-value | CI | Sig |\\n|--------|------------|------|-------|---------|----|-----|\\n| token_entropy | distinct_1 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | distinct_2 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | distinct_3 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | perplexity | 42 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_1 | 42 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_2 | 42 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\n| ece | distinct_3 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| ece | perplexity | 42 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\n| token_entropy | distinct_1 | 43 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | distinct_2 | 43 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | distinct_3 | 43 | 4.0000 | 0.1600 | [0.0400, 0.2800] | no |\\n| token_entropy | perplexity | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_1 | 43 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\n| ece | distinct_2 | 43 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\n| ece | distinct_3 | 43 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\n| ece | perplexity | 43 | 0.0000 | 1.0000 | [1.0000, 1.0000] | no |\\n| token_entropy | distinct_1 | 44 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | distinct_2 | 44 | 4.0000 | 0.1600 | [0.0400, 0.2800] | no |\\n| token_entropy | distinct_3 | 44 | 4.0000 | 0.1600 | [0.0400, 0.2800] | no |\\n| token_entropy | perplexity | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_1 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_2 | 44 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\n| ece | distinct_3 | 44 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\n| ece | perplexity | 44 | 1.0000 | 0.9600 | [0.8800, 1.0000] | no |\\n\\n#### Alpha = a025\\n\\n| Canary | Downstream | Seed | Score | p-value | CI | Sig |\\n|--------|------------|------|-------|---------|----|-----|\\n| token_entropy | distinct_1 | 43 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | distinct_2 | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| token_entropy | distinct_3 | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| token_entropy | perplexity | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_1 | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_2 | 43 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| ece | distinct_3 | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | perplexity | 43 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| token_entropy | distinct_1 | 44 | 4.0000 | 0.1600 | [0.0400, 0.2800] | no |\\n| token_entropy | distinct_2 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| token_entropy | distinct_3 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| token_entropy | perplexity | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_1 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_2 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | distinct_3 | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n| ece | perplexity | 44 | 2.0000 | 0.6400 | [0.4400, 0.8400] | no |\\n\\n#### Alpha = a050\\n\\n| Canary | Downstream | Seed | Score | p-value | CI | Sig |\\n|--------|------------|------|-------|---------|----|-----|\\n| token_entropy | distinct_1 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | distinct_2 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400] | no |\\n| token_entropy | distinct_3 | 42 | 3.0000 | 0.4400 | [0.2400, 0.6400\\n\\n... [截断: 输出过长，省略 37661 字符] ...\\n\\n43 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_1 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_2 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_3 | 43 | 0.4450 | 0.2400 | [0.0800, 0.4000] | no | 0.9600 |\\n| token_entropy | perplexity | 43 | 0.1207 | 0.6400 | [0.4400, 0.8400] | no | 0.7600 |\\n| ece | distinct_1 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | distinct_2 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.0400 |\\n| ece | distinct_3 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | perplexity | 43 | 0.4378 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_1 | 44 | 0.2071 | 0.4400 | [0.2400, 0.6400] | no | 0.0400 |\\n| token_entropy | distinct_2 | 44 | 0.1279 | 0.4800 | [0.2800, 0.6800] | no | 0.9600 |\\n| token_entropy | distinct_3 | 44 | 0.1279 | 0.4800 | [0.2800, 0.6800] | no | 0.9600 |\\n| token_entropy | perplexity | 44 | 0.1207 | 0.6400 | [0.4400, 0.8400] | no | 0.7600 |\\n| ece | distinct_1 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | distinct_2 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | distinct_3 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | perplexity | 44 | 0.4378 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n\\n#### Alpha = a075\\n\\n| Canary | Downstream | Seed | Score | p-value | CI | Sig | Rev_p |\\n|--------|------------|------|-------|---------|----|-----|-------|\\n| token_entropy | distinct_1 | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_2 | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_3 | 42 | 1.0000 | 0.0400 | [0.0400, 0.0400] | YES | 0.7600 |\\n| token_entropy | perplexity | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | distinct_1 | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.0400 |\\n| ece | distinct_2 | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | distinct_3 | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | perplexity | 42 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.1600 |\\n| token_entropy | distinct_1 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_2 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_3 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | perplexity | 43 | 0.2071 | 0.4400 | [0.2400, 0.6400] | no | 0.7600 |\\n| ece | distinct_1 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.0400 |\\n| ece | distinct_2 | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.0400 |\\n| ece | distinct_3 | 43 | 1.0000 | 0.0400 | [0.0400, 0.0400] | no | 0.0400 |\\n| ece | perplexity | 43 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_1 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| token_entropy | distinct_2 | 44 | 0.2071 | 0.4400 | [0.2400, 0.6400] | no | 0.7600 |\\n| token_entropy | distinct_3 | 44 | 0.2071 | 0.4400 | [0.2400, 0.6400] | no | 0.7600 |\\n| token_entropy | perplexity | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | distinct_1 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.0400 |\\n| ece | distinct_2 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | distinct_3 | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n| ece | perplexity | 44 | 0.5243 | 0.2400 | [0.0800, 0.4000] | no | 0.7600 |\\n\\n## Summary: FPR and Detection Rate by Mode\\n\\n| Mode | FPR (a=0.00) | a025 | a050 | a075 |\\n|------|-------------|------|------|------|\\n| uniform_forward | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\n| uniform_bidirectional | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\n| weighted_pair_forward | 0.0000 | 0.4375 | 0.5833 | 0.7917 |\\n| weighted_pair_bidirectional | 0.0000 | 0.4375 | 0.5833 | 0.7917 |\\n| weighted_global_forward | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\n| weighted_global_bidirectional | 0.0000 | 0.0000 | 0.0000 | 0.0417 |\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.61}}"
+    }
+  },
+  "sourceToolAssistantUUID": "54e7f882-1f9f-497a-b458-25ce1d49ff00",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "71eb60e4-b4e5-4f87-83b9-e5a4a1ccb7d7",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Run MMCT analysis on all completed experiments",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-19T03:16:27.995Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The MMCT has already been run for all conditions. The v2 report contains:
+- Alpha sweep: a000 (3 seeds), a025 (2 seeds), a050 (3 seeds), a075 (3 seeds)
+- Table 7 generalize conditions: all 7 conditions
+
+Let me also check what's in the Table 7 section of the report, and the a060 (bf16) condition and a010 conditions.
+
+Key observations:
+1. `a060_s42_bf16` has unified data but may not be in the MMCT results
+
+
+2. `a010_s42` has all_metrics.json but lacks unified data, and the task references `a010_s43` which doesn't exist
+
+I need to verify whether the report already covers a060 and the table7 conditions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71eb60e4-b4e5-4f87-83b9-e5a4a1ccb7d7",
+  "isSidechain": false,
+  "requestId": "req_011CbBCenQqN44v9yDR8Ujua",
+  "type": "assistant",
+  "uuid": "5403e53e-86d0-4474-b865-53fd4b7d642a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EuyXKPuq4UguHdS84kLizd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6618,
+      "cache_read_input_tokens": 45106,
+      "output_tokens": 798,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6618,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 798,
+          "cache_read_input_tokens": 45106,
+          "cache_creation_input_tokens": 6618,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6618
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-19T03:16:29.352Z_
+
+MMCT v2 already covers alpha sweep (a000/a025/a050/a075) and all Table 7 generalize conditions. Let me check what's missing: a060_s42_bf16, a010 conditions, and verify Table 7 details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5403e53e-86d0-4474-b865-53fd4b7d642a",
+  "isSidechain": false,
+  "requestId": "req_011CbBCenQqN44v9yDR8Ujua",
+  "type": "assistant",
+  "uuid": "667df8c3-1bd0-4407-a0d5-6f31549bbc21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EuyXKPuq4UguHdS84kLizd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6618,
+      "cache_read_input_tokens": 45106,
+      "output_tokens": 798,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6618,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 798,
+          "cache_read_input_tokens": 45106,
+          "cache_creation_input_tokens": 6618,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6618
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-19T03:16:31.751Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Ta9FPwfAW3FG4xh1wba2ZS`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_table7.md",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "667df8c3-1bd0-4407-a0d5-6f31549bbc21",
+  "isSidechain": false,
+  "requestId": "req_011CbBCenQqN44v9yDR8Ujua",
+  "type": "assistant",
+  "uuid": "95f97678-15f0-4422-9cb1-ef53db947c5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EuyXKPuq4UguHdS84kLizd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6618,
+      "cache_read_input_tokens": 45106,
+      "output_tokens": 798,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6618,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 798,
+          "cache_read_input_tokens": 45106,
+          "cache_creation_input_tokens": 6618,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6618
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-19T03:16:32.195Z_
+
+<details><summary>↩ Tool result · `toolu_01Ta9FPwfAW3FG4xh1wba2ZS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# MMCT Table 7: Generalization Results (alpha=1.0, Unified Data)\\n\\nEach cell = significant pairs / 8 total pairs (MMCT p<0.05)\\n\\n| Condition | Model | Data | unif_fwd | unif_bidir | w_pair_fwd | w_pair_bidir | w_global_fwd | w_global_bidir |\\n|-----------|-------|------|------|------|------|------|------|------|\\n| Baseline | Pythia-410M | Wiki | 1/8 | 1/8 | 6/8 | 5/8 | 2/8 | 2/8 |\\n| Arch: GPT-2m | GPT-2m | Wiki | 2/8 | 2/8 | 8/8 | 7/8 | 2/8 | 2/8 |\\n| Arch: OPT | OPT-1.3B | Wiki | 0/8 | 0/8 | 6/8 | 5/8 | 0/8 | 0/8 |\\n| Scale: 1.4B s42 | Pythia-1.4B | Wiki | 0/8 | 0/8 | 6/8 | 6/8 | 0/8 | 0/8 |\\n| Scale: 1.4B s43 | Pythia-1.4B | Wiki | 2/8 | 2/8 | 6/8 | 5/8 | 2/8 | 1/8 |\\n| Domain: C4 s42 | Pythia-1B | C4 | 1/8 | 1/8 | 7/8 | 6/8 | 1/8 | 1/8 |\\n| Domain: C4 s43 | Pythia-1B | C4 | 2/8 | 2/8 | 6/8 | 6/8 | 2/8 | 1/8 |\\n\\n## Per-Pair Detail (weighted_global_forward)\\n\\n### Baseline\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 1.0000 | 0.0400 | YES |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.6829 | 0.0400 | YES |\\n\\n### Arch: GPT-2m\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 1.0000 | 0.0400 | YES |\\n| token_entropy | distinct_3 | 1.0000 | 0.0400 | YES |\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.2071 | 0.4400 | no |\\n\\n### Arch: OPT\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.2071 | 0.4400 | no |\\n\\n### Scale: 1.4B s42\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.2071 | 0.4400 | no |\\n| token_entropy | perplexity | 0.0865 | 0.6400 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\n\\n### Scale: 1.4B s43\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 1.0000 | 0.0400 | YES |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\n| ece | distinct_1 | 1.0000 | 0.0400 | YES |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\n\\n### Domain: C4 s42\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 1.0000 | 0.0400 | YES |\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\n\\n### Domain: C4 s43\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\n| ece | distinct_1 | 1.0000 | 0.0400 | YES |\\n| ece | distinct_2 | 1.0000 | 0.0400 | YES |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "95f97678-15f0-4422-9cb1-ef53db947c5c",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "ec3a13bb-5c4e-4928-bc29-6793b3b1059e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# MMCT Table 7: Generalization Results (alpha=1.0, Unified Data)\\\\n\\\\nEach cell = significant pairs / 8 total pairs (MMCT p<0.05)\\\\n\\\\n| Condition | Model | Data | unif_fwd | unif_bidir | w_pair_fwd | w_pair_bidir | w_global_fwd | w_global_bidir |\\\\n|-----------|-------|------|------|------|------|------|------|------|\\\\n| Baseline | Pythia-410M | Wiki | 1/8 | 1/8 | 6/8 | 5/8 | 2/8 | 2/8 |\\\\n| Arch: GPT-2m | GPT-2m | Wiki | 2/8 | 2/8 | 8/8 | 7/8 | 2/8 | 2/8 |\\\\n| Arch: OPT | OPT-1.3B | Wiki | 0/8 | 0/8 | 6/8 | 5/8 | 0/8 | 0/8 |\\\\n| Scale: 1.4B s42 | Pythia-1.4B | Wiki | 0/8 | 0/8 | 6/8 | 6/8 | 0/8 | 0/8 |\\\\n| Scale: 1.4B s43 | Pythia-1.4B | Wiki | 2/8 | 2/8 | 6/8 | 5/8 | 2/8 | 1/8 |\\\\n| Domain: C4 s42 | Pythia-1B | C4 | 1/8 | 1/8 | 7/8 | 6/8 | 1/8 | 1/8 |\\\\n| Domain: C4 s43 | Pythia-1B | C4 | 2/8 | 2/8 | 6/8 | 6/8 | 2/8 | 1/8 |\\\\n\\\\n## Per-Pair Detail (weighted_global_forward)\\\\n\\\\n### Baseline\\\\n\\\\n| Canary | Downstream | Score | p-value | Sig |\\\\n|--------|------------|-------|---------|-----|\\\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_2 | 1.0000 | 0.0400 | YES |\\\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| ece | perplexity | 0.6829 | 0.0400 | YES |\\\\n\\\\n### Arch: GPT-2m\\\\n\\\\n| Canary | Downstream | Score | p-value | Sig |\\\\n|--------|------------|-------|---------|-----|\\\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_2 | 1.0000 | 0.0400 | YES |\\\\n| token_entropy | distinct_3 | 1.0000 | 0.0400 | YES |\\\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| ece | perplexity | 0.2071 | 0.4400 | no |\\\\n\\\\n### Arch: OPT\\\\n\\\\n| Canary | Downstream | Score | p-value | Sig |\\\\n|--------|------------|-------|---------|-----|\\\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| ece | perplexity | 0.2071 | 0.4400 | no |\\\\n\\\\n### Scale: 1.4B s42\\\\n\\\\n| Canary | Downstream | Score | p-value | Sig |\\\\n|--------|------------|-------|---------|-----|\\\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_3 | 0.2071 | 0.4400 | no |\\\\n| token_entropy | perplexity | 0.0865 | 0.6400 | no |\\\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\\\n\\\\n### Scale: 1.4B s43\\\\n\\\\n| Canary | Downstream | Score | p-value | Sig |\\\\n|--------|------------|-------|---------|-----|\\\\n| token_entropy | distinct_1 | 1.0000 | 0.0400 | YES |\\\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\\\n| ece | distinct_1 | 1.0000 | 0.0400 | YES |\\\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\\\n\\\\n### Domain: C4 s42\\\\n\\\\n| Canary | Downstream | Score | p-value | Sig |\\\\n|--------|------------|-------|---------|-----|\\\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_3 | 1.0000 | 0.0400 | YES |\\\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\\\n\\\\n### Domain: C4 s43\\\\n\\\\n| Canary | Downstream | Score | p-value | Sig |\\\\n|--------|------------|-------|---------|-----|\\\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\\\n| ece | distinct_1 | 1.0000 | 0.0400 | YES |\\\\n| ece | distinct_2 | 1.0000 | 0.0400 | YES |\\\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"# MMCT Table 7: Generalization Results (alpha=1.0, Unified Data)\\n\\nEach cell = significant pairs / 8 total pairs (MMCT p<0.05)\\n\\n| Condition | Model | Data | unif_fwd | unif_bidir | w_pair_fwd | w_pair_bidir | w_global_fwd | w_global_bidir |\\n|-----------|-------|------|------|------|------|------|------|------|\\n| Baseline | Pythia-410M | Wiki | 1/8 | 1/8 | 6/8 | 5/8 | 2/8 | 2/8 |\\n| Arch: GPT-2m | GPT-2m | Wiki | 2/8 | 2/8 | 8/8 | 7/8 | 2/8 | 2/8 |\\n| Arch: OPT | OPT-1.3B | Wiki | 0/8 | 0/8 | 6/8 | 5/8 | 0/8 | 0/8 |\\n| Scale: 1.4B s42 | Pythia-1.4B | Wiki | 0/8 | 0/8 | 6/8 | 6/8 | 0/8 | 0/8 |\\n| Scale: 1.4B s43 | Pythia-1.4B | Wiki | 2/8 | 2/8 | 6/8 | 5/8 | 2/8 | 1/8 |\\n| Domain: C4 s42 | Pythia-1B | C4 | 1/8 | 1/8 | 7/8 | 6/8 | 1/8 | 1/8 |\\n| Domain: C4 s43 | Pythia-1B | C4 | 2/8 | 2/8 | 6/8 | 6/8 | 2/8 | 1/8 |\\n\\n## Per-Pair Detail (weighted_global_forward)\\n\\n### Baseline\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 1.0000 | 0.0400 | YES |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.6829 | 0.0400 | YES |\\n\\n### Arch: GPT-2m\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 1.0000 | 0.0400 | YES |\\n| token_entropy | distinct_3 | 1.0000 | 0.0400 | YES |\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.2071 | 0.4400 | no |\\n\\n### Arch: OPT\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.2071 | 0.4400 | no |\\n\\n### Scale: 1.4B s42\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.2071 | 0.4400 | no |\\n| token_entropy | perplexity | 0.0865 | 0.6400 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\n\\n### Scale: 1.4B s43\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 1.0000 | 0.0400 | YES |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\n| ece | distinct_1 | 1.0000 | 0.0400 | YES |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\n\\n### Domain: C4 s42\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 1.0000 | 0.0400 | YES |\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\n\\n### Domain: C4 s43\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\n| ece | distinct_1 | 1.0000 | 0.0400 | YES |\\n| ece | distinct_2 | 1.0000 | 0.0400 | YES |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "95f97678-15f0-4422-9cb1-ef53db947c5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-19T03:16:32.460Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017FuB91Tpo3CnTHPEkx3HYS`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep -n \"a060\\|a010\\|bf16\\|gen_wiki_gpt2m\" /root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_results_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ec3a13bb-5c4e-4928-bc29-6793b3b1059e",
+  "isSidechain": false,
+  "requestId": "req_011CbBCenQqN44v9yDR8Ujua",
+  "type": "assistant",
+  "uuid": "cf7e8712-899f-4893-b315-d7307facdfa6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EuyXKPuq4UguHdS84kLizd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6618,
+      "cache_read_input_tokens": 45106,
+      "output_tokens": 798,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6618,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 798,
+          "cache_read_input_tokens": 45106,
+          "cache_creation_input_tokens": 6618,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6618
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-19T03:16:32.476Z_
+
+<details><summary>↩ Tool result · `toolu_017FuB91Tpo3CnTHPEkx3HYS`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cf7e8712-899f-4893-b315-d7307facdfa6",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "540310ca-fe81-457f-b15f-e4821a449f43",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "cf7e8712-899f-4893-b315-d7307facdfa6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-19T03:16:33.637Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0163rm91P1Caw7uVB5R55B6q`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "540310ca-fe81-457f-b15f-e4821a449f43",
+  "isSidechain": false,
+  "requestId": "req_011CbBCenQqN44v9yDR8Ujua",
+  "type": "assistant",
+  "uuid": "53ca77fe-d8b7-49b2-afbd-c93d6a2ea8c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EuyXKPuq4UguHdS84kLizd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6618,
+      "cache_read_input_tokens": 45106,
+      "output_tokens": 798,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6618,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 798,
+          "cache_read_input_tokens": 45106,
+          "cache_creation_input_tokens": 6618,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6618
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-19T03:16:34.084Z_
+
+<details><summary>↩ Tool result · `toolu_0163rm91P1Caw7uVB5R55B6q`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE\\nall_metrics.json\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "53ca77fe-d8b7-49b2-afbd-c93d6a2ea8c8",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "e337a977-28f7-4644-a480-905017a57cc7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"EXIT_CODE\\\\nall_metrics.json\\\\nconfig.json\\\\ngen_0\\\\ngen_1\\\\ngen_10\\\\ngen_2\\\\ngen_3\\\\ngen_4\\\\ngen_5\\\\ngen_6\\\\ngen_7\\\\ngen_8\\\\ngen_9\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"EXIT_CODE\\nall_metrics.json\\nconfig.json\\ngen_0\\ngen_1\\ngen_10\\ngen_2\\ngen_3\\ngen_4\\ngen_5\\ngen_6\\ngen_7\\ngen_8\\ngen_9\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "53ca77fe-d8b7-49b2-afbd-c93d6a2ea8c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-19T03:16:34.529Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01UWA5DQunQd77zsDYd2C3UD`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "find /root/autodl-tmp/distrib_canary_collapse/results/ -maxdepth 2 -name \"gen_wiki_gpt2m*\" -type d",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e337a977-28f7-4644-a480-905017a57cc7",
+  "isSidechain": false,
+  "requestId": "req_011CbBCenQqN44v9yDR8Ujua",
+  "type": "assistant",
+  "uuid": "cb259cdb-b61f-4380-baa9-03167598f798",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EuyXKPuq4UguHdS84kLizd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6618,
+      "cache_read_input_tokens": 45106,
+      "output_tokens": 798,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6618,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 798,
+          "cache_read_input_tokens": 45106,
+          "cache_creation_input_tokens": 6618,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6618
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-19T03:16:34.971Z_
+
+<details><summary>↩ Tool result · `toolu_01UWA5DQunQd77zsDYd2C3UD`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb259cdb-b61f-4380-baa9-03167598f798",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "b8cea766-bf92-49a2-9a08-bb9cde2b360b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "cb259cdb-b61f-4380-baa9-03167598f798",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-19T03:16:49.358Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a clearer picture:
+
+**Already computed in MMCT v2:**
+- Alpha sweep: a000 (s42/s43/s44), a025 (s43/s44), a050 (s42/s43/s44), a075 (s42/s43/s44)
+- Table 7 generalize: all 7 conditions (Pythia-410M, GPT-2m, OPT-1.3B, Pythia-1.4B s42/s43, Pythia-1B C4 s42/s43)
+
+
+- Some runs have the raw metrics but haven't been unified yet, like a010_s42, while a060_s42_bf16 has unified data that might not be in the MMCT results. There's also a GPT-2m wiki run that's redundant with what's already in the generalize folder. A few expected runs don't actually exist—a010_s43 is mentioned but only a010_s42 is available, and a couple of other variants I was looking for aren't there either.
+
+Let me verify whether a060 made it into the MMCT results.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8cea766-bf92-49a2-9a08-bb9cde2b360b",
+  "isSidechain": false,
+  "requestId": "req_011CbBCfybKHS6W8vyurrdxp",
+  "type": "assistant",
+  "uuid": "774b1f9c-2662-4d25-86bc-209c20980df1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y2XiLXQZ7HzTGRtzP42KPt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3734,
+      "cache_read_input_tokens": 51724,
+      "output_tokens": 845,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3734,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 845,
+          "cache_read_input_tokens": 51724,
+          "cache_creation_input_tokens": 3734,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3734
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-19T03:16:49.362Z_
+
+Let me check a few more things about the missing conditions.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "774b1f9c-2662-4d25-86bc-209c20980df1",
+  "isSidechain": false,
+  "requestId": "req_011CbBCfybKHS6W8vyurrdxp",
+  "type": "assistant",
+  "uuid": "84f7acbf-60ea-4a05-8ba5-02165ac318b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y2XiLXQZ7HzTGRtzP42KPt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3734,
+      "cache_read_input_tokens": 51724,
+      "output_tokens": 845,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3734,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 845,
+          "cache_read_input_tokens": 51724,
+          "cache_creation_input_tokens": 3734,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3734
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-19T03:16:49.892Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Va2RD5XWgFFCLBUaCZn3ur`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep \"a060\" /root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_results_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "84f7acbf-60ea-4a05-8ba5-02165ac318b6",
+  "isSidechain": false,
+  "requestId": "req_011CbBCfybKHS6W8vyurrdxp",
+  "type": "assistant",
+  "uuid": "efd4920b-44ca-424f-adc6-8a4403d486fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y2XiLXQZ7HzTGRtzP42KPt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3734,
+      "cache_read_input_tokens": 51724,
+      "output_tokens": 845,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3734,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 845,
+          "cache_read_input_tokens": 51724,
+          "cache_creation_input_tokens": 3734,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3734
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-19T03:16:50.341Z_
+
+<details><summary>↩ Tool result · `toolu_01Va2RD5XWgFFCLBUaCZn3ur`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "efd4920b-44ca-424f-adc6-8a4403d486fc",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "dd1b6824-b62a-4e25-b174-0871fe3b859f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "efd4920b-44ca-424f-adc6-8a4403d486fc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-19T03:16:50.867Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GGQ3qw8Y1LHAb91rDfCTHv`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep \"a010\" /root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_results_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dd1b6824-b62a-4e25-b174-0871fe3b859f",
+  "isSidechain": false,
+  "requestId": "req_011CbBCfybKHS6W8vyurrdxp",
+  "type": "assistant",
+  "uuid": "0d53648a-3c79-4405-a93c-8a60d968e867",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y2XiLXQZ7HzTGRtzP42KPt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3734,
+      "cache_read_input_tokens": 51724,
+      "output_tokens": 845,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3734,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 845,
+          "cache_read_input_tokens": 51724,
+          "cache_creation_input_tokens": 3734,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3734
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-19T03:16:51.316Z_
+
+<details><summary>↩ Tool result · `toolu_01GGQ3qw8Y1LHAb91rDfCTHv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0d53648a-3c79-4405-a93c-8a60d968e867",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "7f71b047-ab3e-4401-aa07-1866ce43b8d6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0d53648a-3c79-4405-a93c-8a60d968e867",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-19T03:16:51.717Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018eAqa1CyuiKYMYm2pxj4f5`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "grep \"gen_wiki_gpt2m\" /root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_results_v2.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7f71b047-ab3e-4401-aa07-1866ce43b8d6",
+  "isSidechain": false,
+  "requestId": "req_011CbBCfybKHS6W8vyurrdxp",
+  "type": "assistant",
+  "uuid": "690a53f7-3680-4b0e-b1af-a589ae13c83c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y2XiLXQZ7HzTGRtzP42KPt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3734,
+      "cache_read_input_tokens": 51724,
+      "output_tokens": 845,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3734,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 845,
+          "cache_read_input_tokens": 51724,
+          "cache_creation_input_tokens": 3734,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3734
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-19T03:16:52.168Z_
+
+<details><summary>↩ Tool result · `toolu_018eAqa1CyuiKYMYm2pxj4f5`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "690a53f7-3680-4b0e-b1af-a589ae13c83c",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "441c3465-6d6b-471e-897e-45255598becc",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "690a53f7-3680-4b0e-b1af-a589ae13c83c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-19T03:16:52.781Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Xab5Rq2y5UZ1wJH63whaw5`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "441c3465-6d6b-471e-897e-45255598becc",
+  "isSidechain": false,
+  "requestId": "req_011CbBCfybKHS6W8vyurrdxp",
+  "type": "assistant",
+  "uuid": "86b1f274-2c27-480c-9c8a-baa3dd1f2aca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y2XiLXQZ7HzTGRtzP42KPt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3734,
+      "cache_read_input_tokens": 51724,
+      "output_tokens": 845,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3734,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 845,
+          "cache_read_input_tokens": 51724,
+          "cache_creation_input_tokens": 3734,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3734
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "86b1f274-2c27-480c-9c8a-baa3dd1f2aca",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Run MMCT analysis on all completed experiments",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-19T03:16:53.223Z_
+
+<details><summary>↩ Tool result · `toolu_01Xab5Rq2y5UZ1wJH63whaw5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Null distribution construction from alpha=0.00 data.\\n\\nUses alpha=0.00 runs (no synthetic contamination) to build the empirical\\ndistribution of consensus scores under H0. Supports uniform, per-pair weighted,\\nand global weighted consensus modes.\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\nfrom pathlib import Path\\n\\nfrom .methods import (METHOD_NAMES, METRIC_PAIRS, load_5method_results,\\n                      extract_method_significance)\\n\\n\\nclass NullDistribution:\\n    \\\"\\\"\\\"Empirical null distribution for MMCT consensus scores.\\\"\\\"\\\"\\n\\n    def __init__(self, null_dirs, n_bootstrap=10000, seed=42):\\n        self.null_dirs = null_dirs\\n        self.n_bootstrap = n_bootstrap\\n        self.seed = seed\\n\\n        self._per_pair_sigs = {}\\n        self._load_null_data()\\n        self._compute_fpr_profile()\\n        self._build_distributions()\\n        self._precompute_bootstrap()\\n\\n    def _load_null_data(self):\\n        for d in self.null_dirs:\\n            results = load_5method_results(d)\\n            for canary, downstream in METRIC_PAIRS:\\n                key = (canary, downstream)\\n                if key not in self._per_pair_sigs:\\n                    self._per_pair_sigs[key] = {\\\"forward\\\": [], \\\"reverse\\\": []}\\n\\n                fwd = extract_method_significance(\\n                    results, canary, downstream, \\\"forward\\\")\\n                rev = extract_method_significance(\\n                    results, canary, downstream, \\\"reverse\\\")\\n                self._per_pair_sigs[key][\\\"forward\\\"].append(fwd)\\n                self._per_pair_sigs[key][\\\"reverse\\\"].append(rev)\\n\\n    def _compute_fpr_profile(self):\\n        self.fpr_profile = {}\\n        self.global_fpr = {}\\n\\n        method_sig_counts = {m: 0 for m in METHOD_NAMES}\\n        total_obs = 0\\n\\n        for key in METRIC_PAIRS:\\n            key = tuple(key)\\n            sigs_list = self._per_pair_sigs[key][\\\"forward\\\"]\\n            n_seeds = len(sigs_list)\\n            pair_fpr = {}\\n            for method in METHOD_NAMES:\\n                n_sig = sum(1 for s in sigs_list if s[method])\\n                pair_fpr[method] = n_sig / n_seeds if n_seeds > 0 else 0.0\\n                method_sig_counts[method] += n_sig\\n            self.fpr_profile[key] = pair_fpr\\n            total_obs += n_seeds\\n\\n        for method in METHOD_NAMES:\\n            self.global_fpr[method] = (method_sig_counts[method] / total_obs\\n                                       if total_obs > 0 else 0.0)\\n\\n    def get_weights(self, pair_key, epsilon=0.01):\\n        fpr = self.fpr_profile.get(tuple(pair_key), {})\\n        return {m: 1.0 / max(fpr.get(m, 0.0), epsilon)\\n                for m in METHOD_NAMES}\\n\\n    def get_global_weights(self, epsilon=0.01):\\n        return {m: 1.0 / max(self.global_fpr.get(m, 0.0), epsilon)\\n                for m in METHOD_NAMES}\\n\\n    def consensus_score_uniform(self, sig_dict):\\n        return sum(1 for m in METHOD_NAMES if sig_dict.get(m, False))\\n\\n    def consensus_score_weighted(self, sig_dict, weights):\\n        total_w = sum(weights[m] for m in METHOD_NAMES)\\n        if total_w == 0:\\n            return 0.0\\n        return (sum(weights[m] * (1.0 if sig_dict.get(m, False) else 0.0)\\n                    for m in METHOD_NAMES) / total_w)\\n\\n    def _build_distributions(self):\\n        uniform_fwd, uniform_rev = [], []\\n        wpair_fwd, wpair_rev = [], []\\n        wglobal_fwd, wglobal_rev = [], []\\n\\n        global_weights = self.get_global_weights()\\n\\n        for key in METRIC_PAIRS:\\n            key = tuple(key)\\n            pair_weights = self.get_weights(key)\\n\\n            for sig in self._per_pair_sigs[key][\\\"forward\\\"]:\\n                uniform_fwd.append(self.consensus_score_uniform(sig))\\n                wpair_fwd.append(\\n                    self.consensus_score_weighted(sig, pair_weights))\\n                wglobal_fwd.append(\\n                    self.consensus_score_weighted(sig, global_weights))\\n\\n            for sig in self._per_pair_sigs[key][\\\"reverse\\\"]:\\n                uniform_rev.append(self.consensus_score_uniform(sig))\\n                wpair_rev.append(\\n                    self.consensus_score_weighted(sig, pair_weights))\\n                wglobal_rev.append(\\n                    self.consensus_score_weighted(sig, global_weights))\\n\\n        self.null_uniform_fwd = np.array(uniform_fwd, dtype=float)\\n        self.null_uniform_rev = np.array(uniform_rev, dtype=float)\\n        self.null_weighted_fwd = np.array(wpair_fwd, dtype=float)\\n        self.null_weighted_rev = np.array(wpair_rev, dtype=float)\\n        self.null_weighted_global_fwd = np.array(wglobal_fwd, dtype=float)\\n        self.null_weighted_global_rev = np.array(wglobal_rev, dtype=float)\\n\\n    def _precompute_bootstrap(self):\\n        rng = np.random.default_rng(self.seed)\\n        n = len(self.null_uniform_fwd)\\n        self._boot_indices = rng.integers(0, n, size=(self.n_bootstrap, n))\\n\\n    def p_value(self, observed_score, weighted=False, direction=\\\"forward\\\",\\n                weighted_mode=\\\"pair\\\"):\\n        if weighted:\\n            if weighted_mode == \\\"global\\\":\\n                null = (self.null_weighted_global_fwd if direction == \\\"forward\\\"\\n                        else self.null_weighted_global_rev)\\n            else:\\n                null = (self.null_weighted_fwd if direction == \\\"forward\\\"\\n                        else self.null_weighted_rev)\\n        else:\\n            null = (self.null_uniform_fwd if direction == \\\"forward\\\"\\n                    else self.null_uniform_rev)\\n\\n        n = len(null)\\n        p = float((np.sum(null >= observed_score) + 1) / (n + 1))\\n\\n        boot_samples = null[self._boot_indices]\\n        boot_p = (np.sum(boot_samples >= observed_score, axis=1) + 1) / (n + 1)\\n\\n        ci_lo = float(np.percentile(boot_p, 2.5))\\n        ci_hi = float(np.percentile(boot_p, 97.5))\\n        return p, ci_lo, ci_hi\\n\\n    def to_dict(self):\\n        return {\\n            \\\"null_dirs\\\": self.null_dirs,\\n            \\\"n_null_observations\\\": int(len(self.null_uniform_fwd)),\\n            \\\"n_seeds_per_pair\\\": {\\n                f\\\"{k[0]}__{k[1]}\\\": len(self._per_pair_sigs[k][\\\"forward\\\"])\\n                for k in self._per_pair_sigs},\\n            \\\"global_fpr\\\": {m: round(v, 4) for m, v in self.global_fpr.items()},\\n            \\\"global_weights\\\": {m: round(v, 4)\\n                               for m, v in self.get_global_weights().items()},\\n            \\\"per_pair_fpr\\\": {\\n                f\\\"{k[0]}__{k[1]}\\\": {m: round(v, 4) for m, v in fpr.items()}\\n                for k, fpr in self.fpr_profile.items()},\\n            \\\"null_scores_uniform_fwd\\\": self.null_uniform_fwd.tolist(),\\n            \\\"null_scores_uniform_rev\\\": self.null_uniform_rev.tolist(),\\n            \\\"null_scores_uniform_stats\\\": {\\n                \\\"mean\\\": round(float(self.null_uniform_fwd.mean()), 4),\\n                \\\"std\\\": round(float(self.null_uniform_fwd.std()), 4),\\n                \\\"min\\\": int(self.null_uniform_fwd.min()),\\n                \\\"max\\\": int(self.null_uniform_fwd.max()),\\n            },\\n            \\\"null_scores_weighted_pair_fwd\\\": [\\n                round(x, 6) for x in self.null_weighted_fwd.tolist()],\\n            \\\"null_scores_weighted_pair_stats\\\": {\\n                \\\"mean\\\": round(float(self.null_weighted_fwd.mean()), 4),\\n                \\\"std\\\": round(float(self.null_weighted_fwd.std()), 4),\\n                \\\"min\\\": round(float(self.null_weighted_fwd.min()), 4),\\n                \\\"max\\\": round(float(self.null_weighted_fwd.max()), 4),\\n            },\\n            \\\"null_scores_weighted_global_fwd\\\": [\\n                round(x, 6) for x in self.null_weighted_global_fwd.tolist()],\\n            \\\"null_scores_weighted_global_stats\\\": {\\n                \\\"mean\\\": round(float(self.null_weighted_global_fwd.mean()), 4),\\n                \\\"std\\\": round(float(self.null_weighted_global_fwd.std()), 4),\\n                \\\"min\\\": round(float(self.null_weighted_global_fwd.min()), 4),\\n                \\\"max\\\": round(float(self.null_weighted_global_fwd.max()), 4),\\n            },\\n            \\\"n_bootstrap\\\": self.n_bootstrap,\\n        }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86b1f274-2c27-480c-9c8a-baa3dd1f2aca",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "b5be5488-ea55-406b-bfbc-1da565e0b6a9",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Null distribution construction from alpha=0.00 data.\\\\n\\\\nUses alpha=0.00 runs (no synthetic contamination) to build the empirical\\\\ndistribution of consensus scores under H0. Supports uniform, per-pair weighted,\\\\nand global weighted consensus modes.\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport numpy as np\\\\nfrom pathlib import Path\\\\n\\\\nfrom .methods import (METHOD_NAMES, METRIC_PAIRS, load_5method_results,\\\\n                      extract_method_significance)\\\\n\\\\n\\\\nclass NullDistribution:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Empirical null distribution for MMCT consensus scores.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\n    def __init__(self, null_dirs, n_bootstrap=10000, seed=42):\\\\n        self.null_dirs = null_dirs\\\\n        self.n_bootstrap = n_bootstrap\\\\n        self.seed = seed\\\\n\\\\n        self._per_pair_sigs = {}\\\\n        self._load_null_data()\\\\n        self._compute_fpr_profile()\\\\n        self._build_distributions()\\\\n        self._precompute_bootstrap()\\\\n\\\\n    def _load_null_data(self):\\\\n        for d in self.null_dirs:\\\\n            results = load_5method_results(d)\\\\n            for canary, downstream in METRIC_PAIRS:\\\\n                key = (canary, downstream)\\\\n                if key not in self._per_pair_sigs:\\\\n                    self._per_pair_sigs[key] = {\\\\\\\"forward\\\\\\\": [], \\\\\\\"reverse\\\\\\\": []}\\\\n\\\\n                fwd = extract_method_significance(\\\\n                    results, canary, downstream, \\\\\\\"forward\\\\\\\")\\\\n                rev = extract_method_significance(\\\\n                    results, canary, downstream, \\\\\\\"reverse\\\\\\\")\\\\n                self._per_pair_sigs[key][\\\\\\\"forward\\\\\\\"].append(fwd)\\\\n                self._per_pair_sigs[key][\\\\\\\"reverse\\\\\\\"].append(rev)\\\\n\\\\n    def _compute_fpr_profile(self):\\\\n        self.fpr_profile = {}\\\\n        self.global_fpr = {}\\\\n\\\\n        method_sig_counts = {m: 0 for m in METHOD_NAMES}\\\\n        total_obs = 0\\\\n\\\\n        for key in METRIC_PAIRS:\\\\n            key = tuple(key)\\\\n            sigs_list = self._per_pair_sigs[key][\\\\\\\"forward\\\\\\\"]\\\\n            n_seeds = len(sigs_list)\\\\n            pair_fpr = {}\\\\n            for method in METHOD_NAMES:\\\\n                n_sig = sum(1 for s in sigs_list if s[method])\\\\n                pair_fpr[method] = n_sig / n_seeds if n_seeds > 0 else 0.0\\\\n                method_sig_counts[method] += n_sig\\\\n            self.fpr_profile[key] = pair_fpr\\\\n            total_obs += n_seeds\\\\n\\\\n        for method in METHOD_NAMES:\\\\n            self.global_fpr[method] = (method_sig_counts[method] / total_obs\\\\n                                       if total_obs > 0 else 0.0)\\\\n\\\\n    def get_weights(self, pair_key, epsilon=0.01):\\\\n        fpr = self.fpr_profile.get(tuple(pair_key), {})\\\\n        return {m: 1.0 / max(fpr.get(m, 0.0), epsilon)\\\\n                for m in METHOD_NAMES}\\\\n\\\\n    def get_global_weights(self, epsilon=0.01):\\\\n        return {m: 1.0 / max(self.global_fpr.get(m, 0.0), epsilon)\\\\n                for m in METHOD_NAMES}\\\\n\\\\n    def consensus_score_uniform(self, sig_dict):\\\\n        return sum(1 for m in METHOD_NAMES if sig_dict.get(m, False))\\\\n\\\\n    def consensus_score_weighted(self, sig_dict, weights):\\\\n        total_w = sum(weights[m] for m in METHOD_NAMES)\\\\n        if total_w == 0:\\\\n            return 0.0\\\\n        return (sum(weights[m] * (1.0 if sig_dict.get(m, False) else 0.0)\\\\n                    for m in METHOD_NAMES) / total_w)\\\\n\\\\n    def _build_distributions(self):\\\\n        uniform_fwd, uniform_rev = [], []\\\\n        wpair_fwd, wpair_rev = [], []\\\\n        wglobal_fwd, wglobal_rev = [], []\\\\n\\\\n        global_weights = self.get_global_weights()\\\\n\\\\n        for key in METRIC_PAIRS:\\\\n            key = tuple(key)\\\\n            pair_weights = self.get_weights(key)\\\\n\\\\n            for sig in self._per_pair_sigs[key][\\\\\\\"forward\\\\\\\"]:\\\\n                uniform_fwd.append(self.consensus_score_uniform(sig))\\\\n                wpair_fwd.append(\\\\n                    self.consensus_score_weighted(sig, pair_weights))\\\\n                wglobal_fwd.append(\\\\n                    self.consensus_score_weighted(sig, global_weights))\\\\n\\\\n            for sig in self._per_pair_sigs[key][\\\\\\\"reverse\\\\\\\"]:\\\\n                uniform_rev.append(self.consensus_score_uniform(sig))\\\\n                wpair_rev.append(\\\\n                    self.consensus_score_weighted(sig, pair_weights))\\\\n                wglobal_rev.append(\\\\n                    self.consensus_score_weighted(sig, global_weights))\\\\n\\\\n        self.null_uniform_fwd = np.array(uniform_fwd, dtype=float)\\\\n        self.null_uniform_rev = np.array(uniform_rev, dtype=float)\\\\n        self.null_weighted_fwd = np.array(wpair_fwd, dtype=float)\\\\n        self.null_weighted_rev = np.array(wpair_rev, dtype=float)\\\\n        self.null_weighted_global_fwd = np.array(wglobal_fwd, dtype=float)\\\\n        self.null_weighted_global_rev = np.array(wglobal_rev, dtype=float)\\\\n\\\\n    def _precompute_bootstrap(self):\\\\n        rng = np.random.default_rng(self.seed)\\\\n        n = len(self.null_uniform_fwd)\\\\n        self._boot_indices = rng.integers(0, n, size=(self.n_bootstrap, n))\\\\n\\\\n    def p_value(self, observed_score, weighted=False, direction=\\\\\\\"forward\\\\\\\",\\\\n                weighted_mode=\\\\\\\"pair\\\\\\\"):\\\\n        if weighted:\\\\n            if weighted_mode == \\\\\\\"global\\\\\\\":\\\\n                null = (self.null_weighted_global_fwd if direction == \\\\\\\"forward\\\\\\\"\\\\n                        else self.null_weighted_global_rev)\\\\n            else:\\\\n                null = (self.null_weighted_fwd if direction == \\\\\\\"forward\\\\\\\"\\\\n                        else self.null_weighted_rev)\\\\n        else:\\\\n            null = (self.null_uniform_fwd if direction == \\\\\\\"forward\\\\\\\"\\\\n                    else self.null_uniform_rev)\\\\n\\\\n        n = len(null)\\\\n        p = float((np.sum(null >= observed_score) + 1) / (n + 1))\\\\n\\\\n        boot_samples = null[self._boot_indices]\\\\n        boot_p = (np.sum(boot_samples >= observed_score, axis=1) + 1) / (n + 1)\\\\n\\\\n        ci_lo = float(np.percentile(boot_p, 2.5))\\\\n        ci_hi = float(np.percentile(boot_p, 97.5))\\\\n        return p, ci_lo, ci_hi\\\\n\\\\n    def to_dict(self):\\\\n        return {\\\\n            \\\\\\\"null_dirs\\\\\\\": self.null_dirs,\\\\n            \\\\\\\"n_null_observations\\\\\\\": int(len(self.null_uniform_fwd)),\\\\n            \\\\\\\"n_seeds_per_pair\\\\\\\": {\\\\n                f\\\\\\\"{k[0]}__{k[1]}\\\\\\\": len(self._per_pair_sigs[k][\\\\\\\"forward\\\\\\\"])\\\\n                for k in self._per_pair_sigs},\\\\n            \\\\\\\"global_fpr\\\\\\\": {m: round(v, 4) for m, v in self.global_fpr.items()},\\\\n            \\\\\\\"global_weights\\\\\\\": {m: round(v, 4)\\\\n                               for m, v in self.get_global_weights().items()},\\\\n            \\\\\\\"per_pair_fpr\\\\\\\": {\\\\n                f\\\\\\\"{k[0]}__{k[1]}\\\\\\\": {m: round(v, 4) for m, v in fpr.items()}\\\\n                for k, fpr in self.fpr_profile.items()},\\\\n            \\\\\\\"null_scores_uniform_fwd\\\\\\\": self.null_uniform_fwd.tolist(),\\\\n            \\\\\\\"null_scores_uniform_rev\\\\\\\": self.null_uniform_rev.tolist(),\\\\n            \\\\\\\"null_scores_uniform_stats\\\\\\\": {\\\\n                \\\\\\\"mean\\\\\\\": round(float(self.null_uniform_fwd.mean()), 4),\\\\n                \\\\\\\"std\\\\\\\": round(float(self.null_uniform_fwd.std()), 4),\\\\n                \\\\\\\"min\\\\\\\": int(self.null_uniform_fwd.min()),\\\\n                \\\\\\\"max\\\\\\\": int(self.null_uniform_fwd.max()),\\\\n            },\\\\n            \\\\\\\"null_scores_weighted_pair_fwd\\\\\\\": [\\\\n                round(x, 6) for x in self.null_weighted_fwd.tolist()],\\\\n            \\\\\\\"null_scores_weighted_pair_stats\\\\\\\": {\\\\n                \\\\\\\"mean\\\\\\\": round(float(self.null_weighted_fwd.mean()), 4),\\\\n                \\\\\\\"std\\\\\\\": round(float(self.null_weighted_fwd.std()), 4),\\\\n                \\\\\\\"min\\\\\\\": round(float(self.null_weighted_fwd.min()), 4),\\\\n                \\\\\\\"max\\\\\\\": round(float(self.null_weighted_fwd.max()), 4),\\\\n            },\\\\n            \\\\\\\"null_scores_weighted_global_fwd\\\\\\\": [\\\\n                round(x, 6) for x in self.null_weighted_global_fwd.tolist()],\\\\n            \\\\\\\"null_scores_weighted_global_stats\\\\\\\": {\\\\n                \\\\\\\"mean\\\\\\\": round(float(self.null_weighted_global_fwd.mean()), 4),\\\\n                \\\\\\\"std\\\\\\\": round(float(self.null_weighted_global_fwd.std()), 4),\\\\n                \\\\\\\"min\\\\\\\": round(float(self.null_weighted_global_fwd.min()), 4),\\\\n                \\\\\\\"max\\\\\\\": round(float(self.null_weighted_global_fwd.max()), 4),\\\\n            },\\\\n            \\\\\\\"n_bootstrap\\\\\\\": self.n_bootstrap,\\\\n        }\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\\\"\\\"\\\"Null distribution construction from alpha=0.00 data.\\n\\nUses alpha=0.00 runs (no synthetic contamination) to build the empirical\\ndistribution of consensus scores under H0. Supports uniform, per-pair weighted,\\nand global weighted consensus modes.\\n\\\"\\\"\\\"\\n\\nimport numpy as np\\nfrom pathlib import Path\\n\\nfrom .methods import (METHOD_NAMES, METRIC_PAIRS, load_5method_results,\\n                      extract_method_significance)\\n\\n\\nclass NullDistribution:\\n    \\\"\\\"\\\"Empirical null distribution for MMCT consensus scores.\\\"\\\"\\\"\\n\\n    def __init__(self, null_dirs, n_bootstrap=10000, seed=42):\\n        self.null_dirs = null_dirs\\n        self.n_bootstrap = n_bootstrap\\n        self.seed = seed\\n\\n        self._per_pair_sigs = {}\\n        self._load_null_data()\\n        self._compute_fpr_profile()\\n        self._build_distributions()\\n        self._precompute_bootstrap()\\n\\n    def _load_null_data(self):\\n        for d in self.null_dirs:\\n            results = load_5method_results(d)\\n            for canary, downstream in METRIC_PAIRS:\\n                key = (canary, downstream)\\n                if key not in self._per_pair_sigs:\\n                    self._per_pair_sigs[key] = {\\\"forward\\\": [], \\\"reverse\\\": []}\\n\\n                fwd = extract_method_significance(\\n                    results, canary, downstream, \\\"forward\\\")\\n                rev = extract_method_significance(\\n                    results, canary, downstream, \\\"reverse\\\")\\n                self._per_pair_sigs[key][\\\"forward\\\"].append(fwd)\\n                self._per_pair_sigs[key][\\\"reverse\\\"].append(rev)\\n\\n    def _compute_fpr_profile(self):\\n        self.fpr_profile = {}\\n        self.global_fpr = {}\\n\\n        method_sig_counts = {m: 0 for m in METHOD_NAMES}\\n        total_obs = 0\\n\\n        for key in METRIC_PAIRS:\\n            key = tuple(key)\\n            sigs_list = self._per_pair_sigs[key][\\\"forward\\\"]\\n            n_seeds = len(sigs_list)\\n            pair_fpr = {}\\n            for method in METHOD_NAMES:\\n                n_sig = sum(1 for s in sigs_list if s[method])\\n                pair_fpr[method] = n_sig / n_seeds if n_seeds > 0 else 0.0\\n                method_sig_counts[method] += n_sig\\n            self.fpr_profile[key] = pair_fpr\\n            total_obs += n_seeds\\n\\n        for method in METHOD_NAMES:\\n            self.global_fpr[method] = (method_sig_counts[method] / total_obs\\n                                       if total_obs > 0 else 0.0)\\n\\n    def get_weights(self, pair_key, epsilon=0.01):\\n        fpr = self.fpr_profile.get(tuple(pair_key), {})\\n        return {m: 1.0 / max(fpr.get(m, 0.0), epsilon)\\n                for m in METHOD_NAMES}\\n\\n    def get_global_weights(self, epsilon=0.01):\\n        return {m: 1.0 / max(self.global_fpr.get(m, 0.0), epsilon)\\n                for m in METHOD_NAMES}\\n\\n    def consensus_score_uniform(self, sig_dict):\\n        return sum(1 for m in METHOD_NAMES if sig_dict.get(m, False))\\n\\n    def consensus_score_weighted(self, sig_dict, weights):\\n        total_w = sum(weights[m] for m in METHOD_NAMES)\\n        if total_w == 0:\\n            return 0.0\\n        return (sum(weights[m] * (1.0 if sig_dict.get(m, False) else 0.0)\\n                    for m in METHOD_NAMES) / total_w)\\n\\n    def _build_distributions(self):\\n        uniform_fwd, uniform_rev = [], []\\n        wpair_fwd, wpair_rev = [], []\\n        wglobal_fwd, wglobal_rev = [], []\\n\\n        global_weights = self.get_global_weights()\\n\\n        for key in METRIC_PAIRS:\\n            key = tuple(key)\\n            pair_weights = self.get_weights(key)\\n\\n            for sig in self._per_pair_sigs[key][\\\"forward\\\"]:\\n                uniform_fwd.append(self.consensus_score_uniform(sig))\\n                wpair_fwd.append(\\n                    self.consensus_score_weighted(sig, pair_weights))\\n                wglobal_fwd.append(\\n                    self.consensus_score_weighted(sig, global_weights))\\n\\n            for sig in self._per_pair_sigs[key][\\\"reverse\\\"]:\\n                uniform_rev.append(self.consensus_score_uniform(sig))\\n                wpair_rev.append(\\n                    self.consensus_score_weighted(sig, pair_weights))\\n                wglobal_rev.append(\\n                    self.consensus_score_weighted(sig, global_weights))\\n\\n        self.null_uniform_fwd = np.array(uniform_fwd, dtype=float)\\n        self.null_uniform_rev = np.array(uniform_rev, dtype=float)\\n        self.null_weighted_fwd = np.array(wpair_fwd, dtype=float)\\n        self.null_weighted_rev = np.array(wpair_rev, dtype=float)\\n        self.null_weighted_global_fwd = np.array(wglobal_fwd, dtype=float)\\n        self.null_weighted_global_rev = np.array(wglobal_rev, dtype=float)\\n\\n    def _precompute_bootstrap(self):\\n        rng = np.random.default_rng(self.seed)\\n        n = len(self.null_uniform_fwd)\\n        self._boot_indices = rng.integers(0, n, size=(self.n_bootstrap, n))\\n\\n    def p_value(self, observed_score, weighted=False, direction=\\\"forward\\\",\\n                weighted_mode=\\\"pair\\\"):\\n        if weighted:\\n            if weighted_mode == \\\"global\\\":\\n                null = (self.null_weighted_global_fwd if direction == \\\"forward\\\"\\n                        else self.null_weighted_global_rev)\\n            else:\\n                null = (self.null_weighted_fwd if direction == \\\"forward\\\"\\n                        else self.null_weighted_rev)\\n        else:\\n            null = (self.null_uniform_fwd if direction == \\\"forward\\\"\\n                    else self.null_uniform_rev)\\n\\n        n = len(null)\\n        p = float((np.sum(null >= observed_score) + 1) / (n + 1))\\n\\n        boot_samples = null[self._boot_indices]\\n        boot_p = (np.sum(boot_samples >= observed_score, axis=1) + 1) / (n + 1)\\n\\n        ci_lo = float(np.percentile(boot_p, 2.5))\\n        ci_hi = float(np.percentile(boot_p, 97.5))\\n        return p, ci_lo, ci_hi\\n\\n    def to_dict(self):\\n        return {\\n            \\\"null_dirs\\\": self.null_dirs,\\n            \\\"n_null_observations\\\": int(len(self.null_uniform_fwd)),\\n            \\\"n_seeds_per_pair\\\": {\\n                f\\\"{k[0]}__{k[1]}\\\": len(self._per_pair_sigs[k][\\\"forward\\\"])\\n                for k in self._per_pair_sigs},\\n            \\\"global_fpr\\\": {m: round(v, 4) for m, v in self.global_fpr.items()},\\n            \\\"global_weights\\\": {m: round(v, 4)\\n                               for m, v in self.get_global_weights().items()},\\n            \\\"per_pair_fpr\\\": {\\n                f\\\"{k[0]}__{k[1]}\\\": {m: round(v, 4) for m, v in fpr.items()}\\n                for k, fpr in self.fpr_profile.items()},\\n            \\\"null_scores_uniform_fwd\\\": self.null_uniform_fwd.tolist(),\\n            \\\"null_scores_uniform_rev\\\": self.null_uniform_rev.tolist(),\\n            \\\"null_scores_uniform_stats\\\": {\\n                \\\"mean\\\": round(float(self.null_uniform_fwd.mean()), 4),\\n                \\\"std\\\": round(float(self.null_uniform_fwd.std()), 4),\\n                \\\"min\\\": int(self.null_uniform_fwd.min()),\\n                \\\"max\\\": int(self.null_uniform_fwd.max()),\\n            },\\n            \\\"null_scores_weighted_pair_fwd\\\": [\\n                round(x, 6) for x in self.null_weighted_fwd.tolist()],\\n            \\\"null_scores_weighted_pair_stats\\\": {\\n                \\\"mean\\\": round(float(self.null_weighted_fwd.mean()), 4),\\n                \\\"std\\\": round(float(self.null_weighted_fwd.std()), 4),\\n                \\\"min\\\": round(float(self.null_weighted_fwd.min()), 4),\\n                \\\"max\\\": round(float(self.null_weighted_fwd.max()), 4),\\n            },\\n            \\\"null_scores_weighted_global_fwd\\\": [\\n                round(x, 6) for x in self.null_weighted_global_fwd.tolist()],\\n            \\\"null_scores_weighted_global_stats\\\": {\\n                \\\"mean\\\": round(float(self.null_weighted_global_fwd.mean()), 4),\\n                \\\"std\\\": round(float(self.null_weighted_global_fwd.std()), 4),\\n                \\\"min\\\": round(float(self.null_weighted_global_fwd.min()), 4),\\n                \\\"max\\\": round(float(self.null_weighted_global_fwd.max()), 4),\\n            },\\n            \\\"n_bootstrap\\\": self.n_bootstrap,\\n        }\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "86b1f274-2c27-480c-9c8a-baa3dd1f2aca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 88 · 2026-05-19T03:16:53.227Z_
+
+```json
+{
+  "parentUuid": "b5be5488-ea55-406b-bfbc-1da565e0b6a9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "7c983a88-3a74-4777-91ff-dba832bbd5a7",
+  "timestamp": "2026-05-19T03:16:53.227Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 89 · 2026-05-19T03:17:54.184Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have a complete picture:
+
+**MMCT v2 already covers:**
+- Alpha sweep: a000 (3 seeds), a025 (2 seeds: s43, s44), a050 (3 seeds), a075 (3 seeds)
+- Table 7 generalize: all 7 conditions
+
+**Missing from MMCT v2 (no grep matches):**
+- `a060_s42_bf16` - has unified data but not included in MMCT run (because `run_mmct.py`'s `discover_alpha_conditions` only looks for dirs starting with "a" containing "_s" in the UNIFIED_DATA_DIR, and `a060_s42_bf16.json` exists there, so it should be discovered... wait, let me re-check)
+
+
+- `a010_s42` - has all_metrics.json but no unified data
+
+Looking at the discovery logic, it's actually checking the results directory for entries matching the pattern, not the unified data directory. So it's looking for directories in the alpha_sweep results folder that start with "a" and contain "_s", then verifying they have the necessary data files.
+
+For `a060_s42_bf16`, the parsing extracts alpha as 0.6 and seed as 42 correctly, so that should work fine. But there's something else going on that's preventing it from being discovered.
+
+The grep search for "a060" came back empty, which means it's not in the MMCT results at all. The `discover_alpha_conditions` function should find it since the unified data file exists, but maybe the MMCT run happened before that data was created. Let me check the timestamps to see if there's a timing issue here.
+
+Actually, I should just re-run the full MMCT pipeline now and generate the missing unified data first for `a010_s42` and `a060_s42_bf16`. Looking at the discovery function more carefully, it iterates through directories matching the pattern, checks if data exists, then parses the alpha value and seed to organize conditions by alpha level.
+
+For `a060_s42_bf16` specifically, the parsing should work correctly—it extracts alpha as 0.6 and seed as 42, so the condition should be properly registered. Let me verify whether the issue is actually in how the results are being generated.
+
+Looking at the MMCT results structure, I notice that only alpha values of 0.0, 0.25, 0.5, and 0.75 are present—no 0.6 or 0.1. This suggests the a060 condition either wasn't in the unified data when MMCT ran, or it was filtered out somehow. Since grep found no matches for "a060" in the results file but the data file exists, I should check whether it was added after the MMCT run completed on 2026-05-19.
+
+Rather than trying to verify timestamps on the remote server, I'll assume this is a timing issue and move forward. My approach is to run unified_analysis.py for a010_s42 first, then re-run run_mmct.py so it picks up both a010 and a060. But I just realized that unified_analysis.py has a hardcoded CONDITIONS dictionary that doesn't include a010_s42, so I'll need to either add it to that list or run the analysis separately. Let me think about what the actual goal is here.
+
+Looking at the task requirements, I need to run MMCT on all completed experiments. Checking against the task list, I see that most of the α-sweep experiments are already covered, but a010_s43 doesn't exist and a050 is only partially done. The α=1.00 experiments are mostly in place, though there's some confusion about the naming conventions for the wiki experiments.
+
+I've identified two key gaps: a010_s42 needs to be added to the unified analysis pipeline, and a060_s42_bf16 has unified data but hasn't been processed through MMCT yet. My plan is to write a script that handles the unified analysis for a010_s42, then re-runs the full MMCT pipeline to capture both of these missing experiments, and finally compiles everything into the summary table. I need to figure out the cleanest way to handle these missing conditions. The issue is that `unified_analysis.py` has a hardcoded CONDITIONS dict, so I can't just add new conditions without modifying it. For `a010_s42`, I could call the `analyze_condition` function directly since it's in the alpha_sweep directory and would be auto-discovered by the discover function. But `gen_wiki_gpt2m_a100_s43` is trickier since it's not in the generalize directory and won't be picked up by the TABLE7_CONDITIONS logic. I think the best approach is to write a standalone script that handles both cases by directly calling the analysis functions with the appropriate paths.
+
+Actually, I'm realizing the task description might have some naming inconsistencies—it mentions `gen_wiki_gpt2m_a100_s42_v4` but the actual directory is `gpt2m_wiki_a100_s42`, and `gen_wiki_gpt2m_a100_s43` exists as a separate top-level results directory. I need to clarify which exact conditions I'm working with before proceeding.
+
+Looking at what's actually available, it seems all the Table 7 conditions are already covered in MMCT v2, but I should verify whether `gen_wiki_gpt2m_a100_s43` should be included as an additional generalize condition, and I definitely need to add the alpha sweep experiments (`a010_s42` and `a060_s42_bf16`) to the analysis. Let me write a comprehensive script that handles all of this systematically.
+
+Writing the analysis script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c983a88-3a74-4777-91ff-dba832bbd5a7",
+  "isSidechain": false,
+  "requestId": "req_011CbBChKbctMzQM2jb2p1SG",
+  "type": "assistant",
+  "uuid": "02a95568-fe23-4c34-9e02-6c4b14eb9f67",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012UEazgsWihWJQSdMivPz8h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4248,
+      "cache_read_input_tokens": 55458,
+      "output_tokens": 3494,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4248,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3494,
+          "cache_read_input_tokens": 55458,
+          "cache_creation_input_tokens": 4248,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4248
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90 · 2026-05-19T03:17:55.641Z_
+
+The MMCT v2 already covers all Table 7 generalize conditions and most alpha sweep conditions. Missing from MMCT: `a060_s42_bf16` (has unified data) and `a010_s42` (needs unified analysis first). Also `gen_wiki_gpt2m_a100_s43` exists but isn't in any MMCT run.
+
+Let me write and run a comprehensive script to fill these gaps.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02a95568-fe23-4c34-9e02-6c4b14eb9f67",
+  "isSidechain": false,
+  "requestId": "req_011CbBChKbctMzQM2jb2p1SG",
+  "type": "assistant",
+  "uuid": "734a62ff-6157-4922-b819-85059093b804",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012UEazgsWihWJQSdMivPz8h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4248,
+      "cache_read_input_tokens": 55458,
+      "output_tokens": 3494,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4248,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3494,
+          "cache_read_input_tokens": 55458,
+          "cache_creation_input_tokens": 4248,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4248
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-19T03:17:57.061Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016ptdkV3wpXvScAVb8EHThb`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "734a62ff-6157-4922-b819-85059093b804",
+  "isSidechain": false,
+  "requestId": "req_011CbBChKbctMzQM2jb2p1SG",
+  "type": "assistant",
+  "uuid": "bad2a8bb-0bd4-4090-8a05-88f7e0bbd8d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012UEazgsWihWJQSdMivPz8h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4248,
+      "cache_read_input_tokens": 55458,
+      "output_tokens": 3494,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4248,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3494,
+          "cache_read_input_tokens": 55458,
+          "cache_creation_input_tokens": 4248,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4248
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-19T03:17:57.506Z_
+
+<details><summary>↩ Tool result · `toolu_016ptdkV3wpXvScAVb8EHThb`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/all_metrics.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bad2a8bb-0bd4-4090-8a05-88f7e0bbd8d2",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "0c7052b7-9835-4a37-9644-671a783aafa3",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/all_metrics.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/all_metrics.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bad2a8bb-0bd4-4090-8a05-88f7e0bbd8d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-19T03:17:58.214Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01T7HPKggoWGhdRoG2kRoA7Y`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "head -5 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c7052b7-9835-4a37-9644-671a783aafa3",
+  "isSidechain": false,
+  "requestId": "req_011CbBChKbctMzQM2jb2p1SG",
+  "type": "assistant",
+  "uuid": "9af99eea-2ddd-4312-a181-90cf151a3c80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012UEazgsWihWJQSdMivPz8h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4248,
+      "cache_read_input_tokens": 55458,
+      "output_tokens": 3494,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4248,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3494,
+          "cache_read_input_tokens": 55458,
+          "cache_creation_input_tokens": 4248,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4248
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-19T03:17:58.657Z_
+
+<details><summary>↩ Tool result · `toolu_01T7HPKggoWGhdRoG2kRoA7Y`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.2341948700181407,\\n    \\\"self_bleu\\\": 0.010194395218435404,\\n    \\\"distinct_1\\\": 0.0982156685333268,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9af99eea-2ddd-4312-a181-90cf151a3c80",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "2a07cc44-bca5-46df-b434-2e1a1871d770",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.2341948700181407,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010194395218435404,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0982156685333268,\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.2341948700181407,\\n    \\\"self_bleu\\\": 0.010194395218435404,\\n    \\\"distinct_1\\\": 0.0982156685333268,\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9af99eea-2ddd-4312-a181-90cf151a3c80",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-19T03:17:58.694Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018JmdgyYpbnLyC16EUBFqJ2`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a07cc44-bca5-46df-b434-2e1a1871d770",
+  "isSidechain": false,
+  "requestId": "req_011CbBChKbctMzQM2jb2p1SG",
+  "type": "assistant",
+  "uuid": "8faf53c4-56f1-4d8a-ae67-4b2a2013d655",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012UEazgsWihWJQSdMivPz8h",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4248,
+      "cache_read_input_tokens": 55458,
+      "output_tokens": 3494,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4248,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3494,
+          "cache_read_input_tokens": 55458,
+          "cache_creation_input_tokens": 4248,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4248
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 96_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "8faf53c4-56f1-4d8a-ae67-4b2a2013d655",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 97_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Run MMCT analysis on all completed experiments",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-19T03:17:59.185Z_
+
+<details><summary>↩ Tool result · `toolu_018JmdgyYpbnLyC16EUBFqJ2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"166 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8faf53c4-56f1-4d8a-ae67-4b2a2013d655",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "44196c3e-4e20-4fc9-9a15-1ff0d9eca64e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"166 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42/all_metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.48}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"166 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.48}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8faf53c4-56f1-4d8a-ae67-4b2a2013d655",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99 · 2026-05-19T03:18:05.276Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, so:
+- `gen_wiki_gpt2m_a100_s43` has a directory but no `all_metrics.json` - so it can't be analyzed
+- `a010_s42` has `all_metrics.json` (166 lines) - can be analyzed but needs unified data first
+
+Let me also check what `gen_wiki_gpt2m_a100_s43` actually contains:
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44196c3e-4e20-4fc9-9a15-1ff0d9eca64e",
+  "isSidechain": false,
+  "requestId": "req_011CbBCnBdmsePGQqPgQtCsg",
+  "type": "assistant",
+  "uuid": "2697014e-7801-4403-8ef4-813bc2ef4a04",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xtvh62KDE7TPVHUzxyQagL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3957,
+      "cache_read_input_tokens": 59706,
+      "output_tokens": 429,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 429,
+          "cache_read_input_tokens": 59706,
+          "cache_creation_input_tokens": 3957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 100 · 2026-05-19T03:18:06.858Z_
+
+`gen_wiki_gpt2m_a100_s43` has no `all_metrics.json` (can't run MMCT on it). Only `a010_s42` needs unified analysis. Let me check its contents and write the script.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2697014e-7801-4403-8ef4-813bc2ef4a04",
+  "isSidechain": false,
+  "requestId": "req_011CbBCnBdmsePGQqPgQtCsg",
+  "type": "assistant",
+  "uuid": "285b1ee7-1e06-47fc-879b-d1645d652654",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xtvh62KDE7TPVHUzxyQagL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3957,
+      "cache_read_input_tokens": 59706,
+      "output_tokens": 429,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 429,
+          "cache_read_input_tokens": 59706,
+          "cache_creation_input_tokens": 3957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 101 · 2026-05-19T03:18:07.747Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BtEfs69mHrVanyZ38kZhZM`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/autodl-tmp/distrib_canary_collapse/results/gen_wiki_gpt2m_a100_s43/",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "285b1ee7-1e06-47fc-879b-d1645d652654",
+  "isSidechain": false,
+  "requestId": "req_011CbBCnBdmsePGQqPgQtCsg",
+  "type": "assistant",
+  "uuid": "77de6535-be17-450d-a6c0-62222d82f8d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xtvh62KDE7TPVHUzxyQagL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3957,
+      "cache_read_input_tokens": 59706,
+      "output_tokens": 429,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 429,
+          "cache_read_input_tokens": 59706,
+          "cache_creation_input_tokens": 3957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-19T03:18:08.198Z_
+
+<details><summary>↩ Tool result · `toolu_01BtEfs69mHrVanyZ38kZhZM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"config.json\\ngen_0\\ngen_1\\ngen_2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "77de6535-be17-450d-a6c0-62222d82f8d0",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "f48a028d-6dc9-4984-a781-02898bb32882",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"config.json\\\\ngen_0\\\\ngen_1\\\\ngen_2\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"config.json\\ngen_0\\ngen_1\\ngen_2\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "77de6535-be17-450d-a6c0-62222d82f8d0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-19T03:18:08.581Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01Jeo75utXJLvWUpSMe4tWH5`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "wc -l /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f48a028d-6dc9-4984-a781-02898bb32882",
+  "isSidechain": false,
+  "requestId": "req_011CbBCnBdmsePGQqPgQtCsg",
+  "type": "assistant",
+  "uuid": "d6c070b2-59ae-44e3-8cc1-7d3e95a9996e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xtvh62KDE7TPVHUzxyQagL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3957,
+      "cache_read_input_tokens": 59706,
+      "output_tokens": 429,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3957,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 429,
+          "cache_read_input_tokens": 59706,
+          "cache_creation_input_tokens": 3957,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3957
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-19T03:18:09.026Z_
+
+<details><summary>↩ Tool result · `toolu_01Jeo75utXJLvWUpSMe4tWH5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"13 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d6c070b2-59ae-44e3-8cc1-7d3e95a9996e",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "e600254a-d1af-4170-84bc-f694ce10fa61",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"13 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"13 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d6c070b2-59ae-44e3-8cc1-7d3e95a9996e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 105 · 2026-05-19T03:18:14.950Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+So `gen_wiki_gpt2m_a100_s43` only has 3 generations - it's incomplete, no all_metrics.json.
+
+Now let me write the comprehensive script. Here's my plan:
+
+1. Run unified analysis for `a010_s42` (generate unified data)
+2. Then re-run MMCT including a010_s42 and a060_s42_bf16
+
+Since `a060_s42_bf16` already has unified data, I just need to generate it for `a010_s42`.
+
+Let me write a script that:
+
+
+Writing the analysis script...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e600254a-d1af-4170-84bc-f694ce10fa61",
+  "isSidechain": false,
+  "requestId": "req_011CbBCnufct7EAZuATnhV7T",
+  "type": "assistant",
+  "uuid": "55ef52a8-8afc-417b-85b0-b27ce2e01dfb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FJcQe4WWafSFV8NS954qTt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 696,
+      "cache_read_input_tokens": 63663,
+      "output_tokens": 945,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 696,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 945,
+          "cache_read_input_tokens": 63663,
+          "cache_creation_input_tokens": 696,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 696
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 106 · 2026-05-19T03:18:16.288Z_
+
+`gen_wiki_gpt2m_a100_s43` is incomplete (only 3 gens, no metrics). Now I'll write a script that:
+1. Generates unified data for `a010_s42`
+2. Re-runs MMCT for all conditions (adding a010 and a060)
+3. Outputs comprehensive results
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55ef52a8-8afc-417b-85b0-b27ce2e01dfb",
+  "isSidechain": false,
+  "requestId": "req_011CbBCnufct7EAZuATnhV7T",
+  "type": "assistant",
+  "uuid": "d789d558-f5ba-419f-9ecb-f790265ce746",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FJcQe4WWafSFV8NS954qTt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 696,
+      "cache_read_input_tokens": 63663,
+      "output_tokens": 945,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 696,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 945,
+          "cache_read_input_tokens": 63663,
+          "cache_creation_input_tokens": 696,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 696
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-19T03:18:25.038Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Jd8F3aUPjqc49VifgxQrRb`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat > /root/autodl-tmp/distrib_canary_collapse/run_mmct_all.py << 'PYEOF'\n\"\"\"Run MMCT on ALL available conditions, including a010 and a060.\n\nSteps:\n1. Generate unified 5-method data for a010_s42 (missing)\n2. Re-run full MMCT with all discovered conditions\n3. Output comprehensive JSON results\n\"\"\"\nimport json, os, sys, time\n\nsys.path.insert(0, \"/root/autodl-tmp/distrib_canary_collapse\")\n\n# Step 1: Generate unified data for a010_s42\nfrom mmct.unified_analysis import analyze_condition, OUTPUT_DIR\n\nos.makedirs(OUTPUT_DIR, exist_ok=True)\n\nmissing = {\n    \"a010_s42\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42\",\n}\n\nfor name, data_dir in missing.items():\n    out_path = os.path.join(OUTPUT_DIR, f\"{name}.json\")\n    if os.path.exists(out_path):\n        print(f\"SKIP unified analysis for {name} (already exists)\")\n        continue\n    metrics_path = os.path.join(data_dir, \"all_metrics.json\")\n    if not os.path.exists(metrics_path):\n        print(f\"SKIP {name}: no all_metrics.json\")\n        continue\n    seed = 42 if \"_s42\" in name else (43 if \"_s43\" in name else 44)\n    print(f\"Running unified analysis for {name} (seed={seed})...\", end=\" \", flush=True)\n    t0 = time.time()\n    result = analyze_condition(name, data_dir, seed)\n    with open(out_path, 'w') as f:\n        json.dump(result, f, indent=2)\n    print(f\"done ({time.time()-t0:.1f}s)\")\n\n# Step 2: Re-run full MMCT\nprint(\"\\n=== Running full MMCT ===\\n\")\n\nfrom mmct.methods import set_unified_data_dir\nfrom mmct.run_mmct import run_all\n\nrun_all()\n\nprint(\"\\nDone.\")\nPYEOF\necho \"Script written.\"",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d789d558-f5ba-419f-9ecb-f790265ce746",
+  "isSidechain": false,
+  "requestId": "req_011CbBCnufct7EAZuATnhV7T",
+  "type": "assistant",
+  "uuid": "6d4d865e-351c-4f37-a391-3e14518f26eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FJcQe4WWafSFV8NS954qTt",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 696,
+      "cache_read_input_tokens": 63663,
+      "output_tokens": 945,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 696,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 945,
+          "cache_read_input_tokens": 63663,
+          "cache_creation_input_tokens": 696,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 696
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-19T03:18:25.490Z_
+
+<details><summary>↩ Tool result · `toolu_01Jd8F3aUPjqc49VifgxQrRb`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6d4d865e-351c-4f37-a391-3e14518f26eb",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "c81c20d9-4334-4996-a10e-d3ae34f1b731",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Script written.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "6d4d865e-351c-4f37-a391-3e14518f26eb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-19T03:18:28.785Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_013fCpTtj1pJNP3ShXSSKjFf`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && python run_mmct_all.py 2>&1",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c81c20d9-4334-4996-a10e-d3ae34f1b731",
+  "isSidechain": false,
+  "requestId": "req_011CbBCp86FyVEHXP12UNoey",
+  "type": "assistant",
+  "uuid": "0878ef55-9306-4e13-a9f4-dfc3959acb07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AwEACBXyGqcVJcMH6gtSFA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1022,
+      "cache_read_input_tokens": 64359,
+      "output_tokens": 146,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1022,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 146,
+          "cache_read_input_tokens": 64359,
+          "cache_creation_input_tokens": 1022,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1022
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-19T03:18:29.226Z_
+
+<details><summary>↩ Tool result · `toolu_013fCpTtj1pJNP3ShXSSKjFf`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"bash: line 1: python: command not found\\n\", \"stderr\": \"\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0878ef55-9306-4e13-a9f4-dfc3959acb07",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "b60d8df3-4511-4c2b-9594-15281374264e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"bash: line 1: python: command not found\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 127}, \\\"error\\\": \\\"exit code 127\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"bash: line 1: python: command not found\\n\", \"stderr\": \"\", \"return_code\": 127}, \"error\": \"exit code 127\", \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0878ef55-9306-4e13-a9f4-dfc3959acb07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 111 · 2026-05-19T03:18:29.230Z_
+
+```json
+{
+  "parentUuid": "b60d8df3-4511-4c2b-9594-15281374264e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "70b4b8a3-7e26-45c1-95a5-1d0844014267",
+  "timestamp": "2026-05-19T03:18:29.230Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 112 · 2026-05-19T03:18:32.724Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01D6AoyeqHSPjQgUdFzmbXm6`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "which python3",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70b4b8a3-7e26-45c1-95a5-1d0844014267",
+  "isSidechain": false,
+  "requestId": "req_011CbBCpQBdzeEiW4VcUj7NK",
+  "type": "assistant",
+  "uuid": "d1ee916a-24f7-4919-ad54-162033f17d36",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GxwzGiC8aZ8F9GrrF5vnMY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 340,
+      "cache_read_input_tokens": 65381,
+      "output_tokens": 119,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 340,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 119,
+          "cache_read_input_tokens": 65381,
+          "cache_creation_input_tokens": 340,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 340
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-19T03:18:33.169Z_
+
+<details><summary>↩ Tool result · `toolu_01D6AoyeqHSPjQgUdFzmbXm6`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/usr/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d1ee916a-24f7-4919-ad54-162033f17d36",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "4f143793-4377-4070-91b1-ced043e3f1c6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/usr/bin/python3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/usr/bin/python3\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "d1ee916a-24f7-4919-ad54-162033f17d36",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-19T03:18:35.995Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01J9cqerpiRPgjeLuD3tnkaH`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && python3 run_mmct_all.py 2>&1",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4f143793-4377-4070-91b1-ced043e3f1c6",
+  "isSidechain": false,
+  "requestId": "req_011CbBCpgtUZqBXE5NkRMpqT",
+  "type": "assistant",
+  "uuid": "ae5dcfa2-3e91-4ffa-bac1-892d1410e1f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XaBH9KGVUuU43qNB6SjShB",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 201,
+      "cache_read_input_tokens": 65721,
+      "output_tokens": 148,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 201,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 148,
+          "cache_read_input_tokens": 65721,
+          "cache_creation_input_tokens": 201,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 201
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 115 · 2026-05-19T03:18:36.467Z_
+
+<details><summary>↩ Tool result · `toolu_01J9cqerpiRPgjeLuD3tnkaH`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"Traceback (most recent call last):\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/run_mmct_all.py\\\", line 13, in &lt;module>\\n    from mmct.unified_analysis import analyze_condition, OUTPUT_DIR\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/mmct/__init__.py\\\", line 8, in &lt;module>\\n    from .consensus_test import MMCT, MMCTResult\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/mmct/consensus_test.py\\\", line 15, in &lt;module>\\n    from .null_distribution import NullDistribution\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py\\\", line 8, in &lt;module>\\n    import numpy as np\\nModuleNotFoundError: No module named 'numpy'\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.46}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ae5dcfa2-3e91-4ffa-bac1-892d1410e1f5",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "ac71a08f-3fd7-407d-8519-f711ef94f1fc",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"Traceback (most recent call last):\\\\n  File \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/run_mmct_all.py\\\\\\\", line 13, in &lt;module>\\\\n    from mmct.unified_analysis import analyze_condition, OUTPUT_DIR\\\\n  File \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/mmct/__init__.py\\\\\\\", line 8, in &lt;module>\\\\n    from .consensus_test import MMCT, MMCTResult\\\\n  File \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/mmct/consensus_test.py\\\\\\\", line 15, in &lt;module>\\\\n    from .null_distribution import NullDistribution\\\\n  File \\\\\\\"/root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py\\\\\\\", line 8, in &lt;module>\\\\n    import numpy as np\\\\nModuleNotFoundError: No module named 'numpy'\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.46}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"Traceback (most recent call last):\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/run_mmct_all.py\\\", line 13, in &lt;module>\\n    from mmct.unified_analysis import analyze_condition, OUTPUT_DIR\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/mmct/__init__.py\\\", line 8, in &lt;module>\\n    from .consensus_test import MMCT, MMCTResult\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/mmct/consensus_test.py\\\", line 15, in &lt;module>\\n    from .null_distribution import NullDistribution\\n  File \\\"/root/autodl-tmp/distrib_canary_collapse/mmct/null_distribution.py\\\", line 8, in &lt;module>\\n    import numpy as np\\nModuleNotFoundError: No module named 'numpy'\\n\", \"stderr\": \"\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.46}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ae5dcfa2-3e91-4ffa-bac1-892d1410e1f5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 116 · 2026-05-19T03:18:41.095Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016zkRrE5dycsG7ZEgoTkfzN`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "ls /root/miniconda3/bin/python 2>/dev/null; ls /root/anaconda3/bin/python 2>/dev/null; find /root -maxdepth 3 -name \"python*\" -type f 2>/dev/null | head -10",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ac71a08f-3fd7-407d-8519-f711ef94f1fc",
+  "isSidechain": false,
+  "requestId": "req_011CbBCpvz3jbGhmM56yyKWf",
+  "type": "assistant",
+  "uuid": "cb17d75f-a901-4b37-b81c-ecf602cd0654",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QyMF8pkLn2GzKR47dTmKS2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 469,
+      "cache_read_input_tokens": 65922,
+      "output_tokens": 183,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 469,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 183,
+          "cache_read_input_tokens": 65922,
+          "cache_creation_input_tokens": 469,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 469
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 117 · 2026-05-19T03:18:41.551Z_
+
+<details><summary>↩ Tool result · `toolu_016zkRrE5dycsG7ZEgoTkfzN`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1.conda\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb17d75f-a901-4b37-b81c-ecf602cd0654",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "a7a3f52d-8886-470d-8570-340daad61b50",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/miniconda3/bin/python\\\\n/root/miniconda3/bin/python3.12\\\\n/root/miniconda3/bin/python3.12-config\\\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1.conda\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"/root/miniconda3/bin/python\\n/root/miniconda3/bin/python3.12\\n/root/miniconda3/bin/python3.12-config\\n/root/miniconda3/conda-meta/python-3.12.3-h996f2a0_1.json\\n/root/miniconda3/pkgs/python-3.12.3-h996f2a0_1.conda\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  },
+  "sourceToolAssistantUUID": "cb17d75f-a901-4b37-b81c-ecf602cd0654",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 118_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "a7a3f52d-8886-470d-8570-340daad61b50",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 119_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Run MMCT analysis on all completed experiments",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Tool call
+
+_source line 120 · 2026-05-19T03:18:44.209Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01SPd7GFPpKsRdbZTguA6jeM`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && /root/miniconda3/bin/python run_mmct_all.py 2>&1",
+  "account": "root",
+  "warn": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a7a3f52d-8886-470d-8570-340daad61b50",
+  "isSidechain": false,
+  "requestId": "req_011CbBCqJjFZDvYoGhHsaTn5",
+  "type": "assistant",
+  "uuid": "091d3de9-0c3c-42a3-aaeb-29a58b6265aa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Em8nfKMkSgQckjncDTEc8U",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 366,
+      "cache_read_input_tokens": 66391,
+      "output_tokens": 156,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 366,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 156,
+          "cache_read_input_tokens": 66391,
+          "cache_creation_input_tokens": 366,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 366
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-19T03:18:49.835Z_
+
+<details><summary>↩ Tool result · `toolu_01SPd7GFPpKsRdbZTguA6jeM`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Running unified analysis for a010_s42 (seed=42)... done (2.5s)\\n\\n=== Running full MMCT ===\\n\\nAlpha sweep: {0.0: 3, 0.1: 1, 0.25: 2, 0.5: 3, 0.6: 1, 0.75: 3}\\nTable 7: 7 conditions available\\nBuilding null distribution from alpha=0.00 unified data...\\n  24 null observations (3 seeds x 8 pairs)\\n  Global FPR: {'naive_xcorr': 0.9583333333333334, 'diff_xcorr': 0.5, 'threshold_onset': 0.4583333333333333, 'perm_granger': 0.125, 'ty_granger': 0.08333333333333333}\\n  Global weights: {'naive_xcorr': 1.04, 'diff_xcorr': 2.0, 'threshold_onset': 2.18, 'perm_granger': 8.0, 'ty_granger': 12.0}\\n\\n--- Mode: uniform_forward ---\\n  alpha=0.00: 0/24 significant\\n  alpha=0.10: 0/8 significant\\n  alpha=0.25: 0/16 significant\\n  alpha=0.50: 0/24 significant\\n  alpha=0.60: 0/8 significant\\n  alpha=0.75: 2/24 significant\\n\\n--- Mode: uniform_bidirectional ---\\n  alpha=0.00: 0/24 significant\\n  alpha=0.10: 0/8 significant\\n  alpha=0.25: 0/16 significant\\n  alpha=0.50: 0/24 significant\\n  alpha=0.60: 0/8 significant\\n  alpha=0.75: 2/24 significant\\n\\n--- Mode: weighted_pair_forward ---\\n  alpha=0.00: 0/24 significant\\n  alpha=0.10: 1/8 significant\\n  alpha=0.25: 7/16 significant\\n  alpha=0.50: 14/24 significant\\n  alpha=0.60: 6/8 significant\\n  alpha=0.75: 19/24 significant\\n\\n--- Mode: weighted_pair_bidirectional ---\\n  alpha=0.00: 0/24 significant\\n  alpha=0.10: 1/8 significant\\n  alpha=0.25: 7/16 significant\\n  alpha=0.50: 14/24 significant\\n  alpha=0.60: 6/8 significant\\n  alpha=0.75: 19/24 significant\\n\\n--- Mode: weighted_global_forward ---\\n  alpha=0.00: 0/24 significant\\n  alpha=0.10: 0/8 significant\\n  alpha=0.25: 0/16 significant\\n  alpha=0.50: 0/24 significant\\n  alpha=0.60: 0/8 significant\\n  alpha=0.75: 2/24 significant\\n\\n--- Mode: weighted_global_bidirectional ---\\n  alpha=0.00: 0/24 significant\\n  alpha=0.10: 0/8 significant\\n  alpha=0.25: 0/16 significant\\n  alpha=0.50: 0/24 significant\\n  alpha=0.60: 0/8 significant\\n  alpha=0.75: 1/24 significant\\n\\n--- Table 7 Mode: uniform_forward ---\\n  Baseline: 1/8 significant\\n  Arch: GPT-2m: 2/8 significant\\n  Arch: OPT: 0/8 significant\\n  Scale: 1.4B s42: 0/8 significant\\n  Scale: 1.4B s43: 2/8 significant\\n  Domain: C4 s42: 1/8 significant\\n  Domain: C4 s43: 2/8 significant\\n\\n--- Table 7 Mode: uniform_bidirectional ---\\n  Baseline: 1/8 significant\\n  Arch: GPT-2m: 2/8 significant\\n  Arch: OPT: 0/8 significant\\n  Scale: 1.4B s42: 0/8 significant\\n  Scale: 1.4B s43: 2/8 significant\\n  Domain: C4 s42: 1/8 significant\\n  Domain: C4 s43: 2/8 significant\\n\\n--- Table 7 Mode: weighted_pair_forward ---\\n  Baseline: 6/8 significant\\n  Arch: GPT-2m: 8/8 significant\\n  Arch: OPT: 6/8 significant\\n  Scale: 1.4B s42: 6/8 significant\\n  Scale: 1.4B s43: 6/8 significant\\n  Domain: C4 s42: 7/8 significant\\n  Domain: C4 s43: 6/8 significant\\n\\n--- Table 7 Mode: weighted_pair_bidirectional ---\\n  Baseline: 5/8 significant\\n  Arch: GPT-2m: 7/8 significant\\n  Arch: OPT: 5/8 significant\\n  Scale: 1.4B s42: 6/8 significant\\n  Scale: 1.4B s43: 5/8 significant\\n  Domain: C4 s42: 6/8 significant\\n  Domain: C4 s43: 6/8 significant\\n\\n--- Table 7 Mode: weighted_global_forward ---\\n  Baseline: 2/8 significant\\n  Arch: GPT-2m: 2/8 significant\\n  Arch: OPT: 0/8 significant\\n  Scale: 1.4B s42: 0/8 significant\\n  Scale: 1.4B s43: 2/8 significant\\n  Domain: C4 s42: 1/8 significant\\n  Domain: C4 s43: 2/8 significant\\n\\n--- Table 7 Mode: weighted_global_bidirectional ---\\n  Baseline: 2/8 significant\\n  Arch: GPT-2m: 2/8 significant\\n  Arch: OPT: 0/8 significant\\n  Scale: 1.4B s42: 0/8 significant\\n  Scale: 1.4B s43: 1/8 significant\\n  Domain: C4 s42: 1/8 significant\\n  Domain: C4 s43: 1/8 significant\\n\\nSaved: mmct_results_v2.json\\nSaved: null_distribution_v2.json\\nSaved: mmct_report_v2.md\\nSaved: fpr_fnr_comparison_v2.md\\nSaved: mmct_table7.md\\n\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.62}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "091d3de9-0c3c-42a3-aaeb-29a58b6265aa",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "c61e7af9-c590-4375-ab6a-de0fa4679dbd",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Running unified analysis for a010_s42 (seed=42)... done (2.5s)\\\\n\\\\n=== Running full MMCT ===\\\\n\\\\nAlpha sweep: {0.0: 3, 0.1: 1, 0.25: 2, 0.5: 3, 0.6: 1, 0.75: 3}\\\\nTable 7: 7 conditions available\\\\nBuilding null distribution from alpha=0.00 unified data...\\\\n  24 null observations (3 seeds x 8 pairs)\\\\n  Global FPR: {'naive_xcorr': 0.9583333333333334, 'diff_xcorr': 0.5, 'threshold_onset': 0.4583333333333333, 'perm_granger': 0.125, 'ty_granger': 0.08333333333333333}\\\\n  Global weights: {'naive_xcorr': 1.04, 'diff_xcorr': 2.0, 'threshold_onset': 2.18, 'perm_granger': 8.0, 'ty_granger': 12.0}\\\\n\\\\n--- Mode: uniform_forward ---\\\\n  alpha=0.00: 0/24 significant\\\\n  alpha=0.10: 0/8 significant\\\\n  alpha=0.25: 0/16 significant\\\\n  alpha=0.50: 0/24 significant\\\\n  alpha=0.60: 0/8 significant\\\\n  alpha=0.75: 2/24 significant\\\\n\\\\n--- Mode: uniform_bidirectional ---\\\\n  alpha=0.00: 0/24 significant\\\\n  alpha=0.10: 0/8 significant\\\\n  alpha=0.25: 0/16 significant\\\\n  alpha=0.50: 0/24 significant\\\\n  alpha=0.60: 0/8 significant\\\\n  alpha=0.75: 2/24 significant\\\\n\\\\n--- Mode: weighted_pair_forward ---\\\\n  alpha=0.00: 0/24 significant\\\\n  alpha=0.10: 1/8 significant\\\\n  alpha=0.25: 7/16 significant\\\\n  alpha=0.50: 14/24 significant\\\\n  alpha=0.60: 6/8 significant\\\\n  alpha=0.75: 19/24 significant\\\\n\\\\n--- Mode: weighted_pair_bidirectional ---\\\\n  alpha=0.00: 0/24 significant\\\\n  alpha=0.10: 1/8 significant\\\\n  alpha=0.25: 7/16 significant\\\\n  alpha=0.50: 14/24 significant\\\\n  alpha=0.60: 6/8 significant\\\\n  alpha=0.75: 19/24 significant\\\\n\\\\n--- Mode: weighted_global_forward ---\\\\n  alpha=0.00: 0/24 significant\\\\n  alpha=0.10: 0/8 significant\\\\n  alpha=0.25: 0/16 significant\\\\n  alpha=0.50: 0/24 significant\\\\n  alpha=0.60: 0/8 significant\\\\n  alpha=0.75: 2/24 significant\\\\n\\\\n--- Mode: weighted_global_bidirectional ---\\\\n  alpha=0.00: 0/24 significant\\\\n  alpha=0.10: 0/8 significant\\\\n  alpha=0.25: 0/16 significant\\\\n  alpha=0.50: 0/24 significant\\\\n  alpha=0.60: 0/8 significant\\\\n  alpha=0.75: 1/24 significant\\\\n\\\\n--- Table 7 Mode: uniform_forward ---\\\\n  Baseline: 1/8 significant\\\\n  Arch: GPT-2m: 2/8 significant\\\\n  Arch: OPT: 0/8 significant\\\\n  Scale: 1.4B s42: 0/8 significant\\\\n  Scale: 1.4B s43: 2/8 significant\\\\n  Domain: C4 s42: 1/8 significant\\\\n  Domain: C4 s43: 2/8 significant\\\\n\\\\n--- Table 7 Mode: uniform_bidirectional ---\\\\n  Baseline: 1/8 significant\\\\n  Arch: GPT-2m: 2/8 significant\\\\n  Arch: OPT: 0/8 significant\\\\n  Scale: 1.4B s42: 0/8 significant\\\\n  Scale: 1.4B s43: 2/8 significant\\\\n  Domain: C4 s42: 1/8 significant\\\\n  Domain: C4 s43: 2/8 significant\\\\n\\\\n--- Table 7 Mode: weighted_pair_forward ---\\\\n  Baseline: 6/8 significant\\\\n  Arch: GPT-2m: 8/8 significant\\\\n  Arch: OPT: 6/8 significant\\\\n  Scale: 1.4B s42: 6/8 significant\\\\n  Scale: 1.4B s43: 6/8 significant\\\\n  Domain: C4 s42: 7/8 significant\\\\n  Domain: C4 s43: 6/8 significant\\\\n\\\\n--- Table 7 Mode: weighted_pair_bidirectional ---\\\\n  Baseline: 5/8 significant\\\\n  Arch: GPT-2m: 7/8 significant\\\\n  Arch: OPT: 5/8 significant\\\\n  Scale: 1.4B s42: 6/8 significant\\\\n  Scale: 1.4B s43: 5/8 significant\\\\n  Domain: C4 s42: 6/8 significant\\\\n  Domain: C4 s43: 6/8 significant\\\\n\\\\n--- Table 7 Mode: weighted_global_forward ---\\\\n  Baseline: 2/8 significant\\\\n  Arch: GPT-2m: 2/8 significant\\\\n  Arch: OPT: 0/8 significant\\\\n  Scale: 1.4B s42: 0/8 significant\\\\n  Scale: 1.4B s43: 2/8 significant\\\\n  Domain: C4 s42: 1/8 significant\\\\n  Domain: C4 s43: 2/8 significant\\\\n\\\\n--- Table 7 Mode: weighted_global_bidirectional ---\\\\n  Baseline: 2/8 significant\\\\n  Arch: GPT-2m: 2/8 significant\\\\n  Arch: OPT: 0/8 significant\\\\n  Scale: 1.4B s42: 0/8 significant\\\\n  Scale: 1.4B s43: 1/8 significant\\\\n  Domain: C4 s42: 1/8 significant\\\\n  Domain: C4 s43: 1/8 significant\\\\n\\\\nSaved: mmct_results_v2.json\\\\nSaved: null_distribution_v2.json\\\\nSaved: mmct_report_v2.md\\\\nSaved: fpr_fnr_comparison_v2.md\\\\nSaved: mmct_table7.md\\\\n\\\\nDone.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 5.62}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Running unified analysis for a010_s42 (seed=42)... done (2.5s)\\n\\n=== Running full MMCT ===\\n\\nAlpha sweep: {0.0: 3, 0.1: 1, 0.25: 2, 0.5: 3, 0.6: 1, 0.75: 3}\\nTable 7: 7 conditions available\\nBuilding null distribution from alpha=0.00 unified data...\\n  24 null observations (3 seeds x 8 pairs)\\n  Global FPR: {'naive_xcorr': 0.9583333333333334, 'diff_xcorr': 0.5, 'threshold_onset': 0.4583333333333333, 'perm_granger': 0.125, 'ty_granger': 0.08333333333333333}\\n  Global weights: {'naive_xcorr': 1.04, 'diff_xcorr': 2.0, 'threshold_onset': 2.18, 'perm_granger': 8.0, 'ty_granger': 12.0}\\n\\n--- Mode: uniform_forward ---\\n  alpha=0.00: 0/24 significant\\n  alpha=0.10: 0/8 significant\\n  alpha=0.25: 0/16 significant\\n  alpha=0.50: 0/24 significant\\n  alpha=0.60: 0/8 significant\\n  alpha=0.75: 2/24 significant\\n\\n--- Mode: uniform_bidirectional ---\\n  alpha=0.00: 0/24 significant\\n  alpha=0.10: 0/8 significant\\n  alpha=0.25: 0/16 significant\\n  alpha=0.50: 0/24 significant\\n  alpha=0.60: 0/8 significant\\n  alpha=0.75: 2/24 significant\\n\\n--- Mode: weighted_pair_forward ---\\n  alpha=0.00: 0/24 significant\\n  alpha=0.10: 1/8 significant\\n  alpha=0.25: 7/16 significant\\n  alpha=0.50: 14/24 significant\\n  alpha=0.60: 6/8 significant\\n  alpha=0.75: 19/24 significant\\n\\n--- Mode: weighted_pair_bidirectional ---\\n  alpha=0.00: 0/24 significant\\n  alpha=0.10: 1/8 significant\\n  alpha=0.25: 7/16 significant\\n  alpha=0.50: 14/24 significant\\n  alpha=0.60: 6/8 significant\\n  alpha=0.75: 19/24 significant\\n\\n--- Mode: weighted_global_forward ---\\n  alpha=0.00: 0/24 significant\\n  alpha=0.10: 0/8 significant\\n  alpha=0.25: 0/16 significant\\n  alpha=0.50: 0/24 significant\\n  alpha=0.60: 0/8 significant\\n  alpha=0.75: 2/24 significant\\n\\n--- Mode: weighted_global_bidirectional ---\\n  alpha=0.00: 0/24 significant\\n  alpha=0.10: 0/8 significant\\n  alpha=0.25: 0/16 significant\\n  alpha=0.50: 0/24 significant\\n  alpha=0.60: 0/8 significant\\n  alpha=0.75: 1/24 significant\\n\\n--- Table 7 Mode: uniform_forward ---\\n  Baseline: 1/8 significant\\n  Arch: GPT-2m: 2/8 significant\\n  Arch: OPT: 0/8 significant\\n  Scale: 1.4B s42: 0/8 significant\\n  Scale: 1.4B s43: 2/8 significant\\n  Domain: C4 s42: 1/8 significant\\n  Domain: C4 s43: 2/8 significant\\n\\n--- Table 7 Mode: uniform_bidirectional ---\\n  Baseline: 1/8 significant\\n  Arch: GPT-2m: 2/8 significant\\n  Arch: OPT: 0/8 significant\\n  Scale: 1.4B s42: 0/8 significant\\n  Scale: 1.4B s43: 2/8 significant\\n  Domain: C4 s42: 1/8 significant\\n  Domain: C4 s43: 2/8 significant\\n\\n--- Table 7 Mode: weighted_pair_forward ---\\n  Baseline: 6/8 significant\\n  Arch: GPT-2m: 8/8 significant\\n  Arch: OPT: 6/8 significant\\n  Scale: 1.4B s42: 6/8 significant\\n  Scale: 1.4B s43: 6/8 significant\\n  Domain: C4 s42: 7/8 significant\\n  Domain: C4 s43: 6/8 significant\\n\\n--- Table 7 Mode: weighted_pair_bidirectional ---\\n  Baseline: 5/8 significant\\n  Arch: GPT-2m: 7/8 significant\\n  Arch: OPT: 5/8 significant\\n  Scale: 1.4B s42: 6/8 significant\\n  Scale: 1.4B s43: 5/8 significant\\n  Domain: C4 s42: 6/8 significant\\n  Domain: C4 s43: 6/8 significant\\n\\n--- Table 7 Mode: weighted_global_forward ---\\n  Baseline: 2/8 significant\\n  Arch: GPT-2m: 2/8 significant\\n  Arch: OPT: 0/8 significant\\n  Scale: 1.4B s42: 0/8 significant\\n  Scale: 1.4B s43: 2/8 significant\\n  Domain: C4 s42: 1/8 significant\\n  Domain: C4 s43: 2/8 significant\\n\\n--- Table 7 Mode: weighted_global_bidirectional ---\\n  Baseline: 2/8 significant\\n  Arch: GPT-2m: 2/8 significant\\n  Arch: OPT: 0/8 significant\\n  Scale: 1.4B s42: 0/8 significant\\n  Scale: 1.4B s43: 1/8 significant\\n  Domain: C4 s42: 1/8 significant\\n  Domain: C4 s43: 1/8 significant\\n\\nSaved: mmct_results_v2.json\\nSaved: null_distribution_v2.json\\nSaved: mmct_report_v2.md\\nSaved: fpr_fnr_comparison_v2.md\\nSaved: mmct_table7.md\\n\\nDone.\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 5.62}}"
+    }
+  },
+  "sourceToolAssistantUUID": "091d3de9-0c3c-42a3-aaeb-29a58b6265aa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 122 · 2026-05-19T03:19:04.458Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The MMCT ran successfully. Now I have comprehensive results. Let me now read the full results to compile the summary table. Let me fetch the key data I need:
+
+1. Alpha sweep results (all modes) for all alpha conditions including a010 and a060
+2. Table 7 results (all modes)
+
+I need to create the summary table in the format requested:
+| Condition | α | Model | MMCT_uniform_fwd | MMCT_weighted_pair_fwd | MMCT_weighted_global_fwd | Notes |
+
+I need to extract per-condition aggregate numbers. 
+
+Now I'm loading the full results JSON to pull out the specific metrics I need for the summary.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c61e7af9-c590-4375-ab6a-de0fa4679dbd",
+  "isSidechain": false,
+  "requestId": "req_011CbBCqvBD7DRDUEpDHhzU8",
+  "type": "assistant",
+  "uuid": "26f1a0f9-0dcc-41b0-8a64-8fe143634170",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JN5f4Y3GnoVD8ZDWs7Yf4B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 66757,
+      "output_tokens": 439,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 439,
+          "cache_read_input_tokens": 66757,
+          "cache_creation_input_tokens": 2029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 123 · 2026-05-19T03:19:05.231Z_
+
+MMCT ran successfully with all conditions including a010 and a060. Now let me extract the detailed results to build the summary table.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26f1a0f9-0dcc-41b0-8a64-8fe143634170",
+  "isSidechain": false,
+  "requestId": "req_011CbBCqvBD7DRDUEpDHhzU8",
+  "type": "assistant",
+  "uuid": "b0bb5ae5-11cf-40ea-b146-ac7e1eacc0fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JN5f4Y3GnoVD8ZDWs7Yf4B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 66757,
+      "output_tokens": 439,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 439,
+          "cache_read_input_tokens": 66757,
+          "cache_creation_input_tokens": 2029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 124 · 2026-05-19T03:19:07.228Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NxYtGhXFUSXccyx4XLFEkU`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/fpr_fnr_comparison_v2.md",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0bb5ae5-11cf-40ea-b146-ac7e1eacc0fa",
+  "isSidechain": false,
+  "requestId": "req_011CbBCqvBD7DRDUEpDHhzU8",
+  "type": "assistant",
+  "uuid": "c46471f8-2716-4685-8c16-f70ad30d486d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JN5f4Y3GnoVD8ZDWs7Yf4B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 66757,
+      "output_tokens": 439,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 439,
+          "cache_read_input_tokens": 66757,
+          "cache_creation_input_tokens": 2029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 125 · 2026-05-19T03:19:07.677Z_
+
+<details><summary>↩ Tool result · `toolu_01NxYtGhXFUSXccyx4XLFEkU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# FPR-FNR 6-Way Comparison (v2 — Unified Data)\\n\\nuniform vs weighted_pair vs weighted_global x forward vs bidirectional\\n\\n## Detection Rate by Alpha Condition\\n\\n| Mode | FPR (a=0.00) | a010 | a025 | a050 | a060 | a075 |\\n|------|-------------|------|------|------|------|------|\\n| uniform_forward | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\n| uniform_bidirectional | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\n| weighted_pair_forward | 0.0000 | 0.1250 | 0.4375 | 0.5833 | 0.7500 | 0.7917 |\\n| weighted_pair_bidirectional | 0.0000 | 0.1250 | 0.4375 | 0.5833 | 0.7500 | 0.7917 |\\n| weighted_global_forward | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\n| weighted_global_bidirectional | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0417 |\\n\\n## Tradeoff Analysis\\n\\n- **FPR**: fraction of alpha=0.00 tests incorrectly flagged\\n- **Detection rate**: fraction flagged significant at each alpha\\n- Weighted_pair: per-pair inverse-FPR weights (can be unstable with few null seeds)\\n- Weighted_global: pooled-across-pairs inverse-FPR weights (more stable)\\n- Bidirectional: requires forward sig. AND reverse non-sig.\\n- Ideal: FPR=0 at alpha=0.00 with high detection at alpha>0\\n\\n## Effect of Each Enhancement\\n\\n| Comparison | FPR Change | a075 Det. Change |\\n|------------|-----------|--------------------| \\n| +weighted_pair (fwd) | 0.0000 -> 0.0000 | 0.0833 -> 0.7917 |\\n| +weighted_global (fwd) | 0.0000 -> 0.0000 | 0.0833 -> 0.0833 |\\n| +bidirectional (uniform) | 0.0000 -> 0.0000 | 0.0833 -> 0.0833 |\\n| +weighted_pair+bidir | 0.0000 -> 0.0000 | 0.0833 -> 0.7917 |\\n| +weighted_global+bidir | 0.0000 -> 0.0000 | 0.0833 -> 0.0417 |\\n| global vs pair (fwd) | 0.0000 -> 0.0000 | 0.7917 -> 0.0833 |\\n| global vs pair (bidir) | 0.0000 -> 0.0000 | 0.7917 -> 0.0417 |\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c46471f8-2716-4685-8c16-f70ad30d486d",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "b077b725-73d8-4dfa-8827-cd3427f06956",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# FPR-FNR 6-Way Comparison (v2 — Unified Data)\\\\n\\\\nuniform vs weighted_pair vs weighted_global x forward vs bidirectional\\\\n\\\\n## Detection Rate by Alpha Condition\\\\n\\\\n| Mode | FPR (a=0.00) | a010 | a025 | a050 | a060 | a075 |\\\\n|------|-------------|------|------|------|------|------|\\\\n| uniform_forward | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\\\n| uniform_bidirectional | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\\\n| weighted_pair_forward | 0.0000 | 0.1250 | 0.4375 | 0.5833 | 0.7500 | 0.7917 |\\\\n| weighted_pair_bidirectional | 0.0000 | 0.1250 | 0.4375 | 0.5833 | 0.7500 | 0.7917 |\\\\n| weighted_global_forward | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\\\n| weighted_global_bidirectional | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0417 |\\\\n\\\\n## Tradeoff Analysis\\\\n\\\\n- **FPR**: fraction of alpha=0.00 tests incorrectly flagged\\\\n- **Detection rate**: fraction flagged significant at each alpha\\\\n- Weighted_pair: per-pair inverse-FPR weights (can be unstable with few null seeds)\\\\n- Weighted_global: pooled-across-pairs inverse-FPR weights (more stable)\\\\n- Bidirectional: requires forward sig. AND reverse non-sig.\\\\n- Ideal: FPR=0 at alpha=0.00 with high detection at alpha>0\\\\n\\\\n## Effect of Each Enhancement\\\\n\\\\n| Comparison | FPR Change | a075 Det. Change |\\\\n|------------|-----------|--------------------| \\\\n| +weighted_pair (fwd) | 0.0000 -> 0.0000 | 0.0833 -> 0.7917 |\\\\n| +weighted_global (fwd) | 0.0000 -> 0.0000 | 0.0833 -> 0.0833 |\\\\n| +bidirectional (uniform) | 0.0000 -> 0.0000 | 0.0833 -> 0.0833 |\\\\n| +weighted_pair+bidir | 0.0000 -> 0.0000 | 0.0833 -> 0.7917 |\\\\n| +weighted_global+bidir | 0.0000 -> 0.0000 | 0.0833 -> 0.0417 |\\\\n| global vs pair (fwd) | 0.0000 -> 0.0000 | 0.7917 -> 0.0833 |\\\\n| global vs pair (bidir) | 0.0000 -> 0.0000 | 0.7917 -> 0.0417 |\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"# FPR-FNR 6-Way Comparison (v2 — Unified Data)\\n\\nuniform vs weighted_pair vs weighted_global x forward vs bidirectional\\n\\n## Detection Rate by Alpha Condition\\n\\n| Mode | FPR (a=0.00) | a010 | a025 | a050 | a060 | a075 |\\n|------|-------------|------|------|------|------|------|\\n| uniform_forward | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\n| uniform_bidirectional | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\n| weighted_pair_forward | 0.0000 | 0.1250 | 0.4375 | 0.5833 | 0.7500 | 0.7917 |\\n| weighted_pair_bidirectional | 0.0000 | 0.1250 | 0.4375 | 0.5833 | 0.7500 | 0.7917 |\\n| weighted_global_forward | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\\n| weighted_global_bidirectional | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0417 |\\n\\n## Tradeoff Analysis\\n\\n- **FPR**: fraction of alpha=0.00 tests incorrectly flagged\\n- **Detection rate**: fraction flagged significant at each alpha\\n- Weighted_pair: per-pair inverse-FPR weights (can be unstable with few null seeds)\\n- Weighted_global: pooled-across-pairs inverse-FPR weights (more stable)\\n- Bidirectional: requires forward sig. AND reverse non-sig.\\n- Ideal: FPR=0 at alpha=0.00 with high detection at alpha>0\\n\\n## Effect of Each Enhancement\\n\\n| Comparison | FPR Change | a075 Det. Change |\\n|------------|-----------|--------------------| \\n| +weighted_pair (fwd) | 0.0000 -> 0.0000 | 0.0833 -> 0.7917 |\\n| +weighted_global (fwd) | 0.0000 -> 0.0000 | 0.0833 -> 0.0833 |\\n| +bidirectional (uniform) | 0.0000 -> 0.0000 | 0.0833 -> 0.0833 |\\n| +weighted_pair+bidir | 0.0000 -> 0.0000 | 0.0833 -> 0.7917 |\\n| +weighted_global+bidir | 0.0000 -> 0.0000 | 0.0833 -> 0.0417 |\\n| global vs pair (fwd) | 0.0000 -> 0.0000 | 0.7917 -> 0.0833 |\\n| global vs pair (bidir) | 0.0000 -> 0.0000 | 0.7917 -> 0.0417 |\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c46471f8-2716-4685-8c16-f70ad30d486d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 126 · 2026-05-19T03:19:07.864Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01PeNSX9ocQyZYSeQA27VdXB`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_table7.md",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b077b725-73d8-4dfa-8827-cd3427f06956",
+  "isSidechain": false,
+  "requestId": "req_011CbBCqvBD7DRDUEpDHhzU8",
+  "type": "assistant",
+  "uuid": "1ed4fa7c-4984-4b88-9378-b362c1e1816a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JN5f4Y3GnoVD8ZDWs7Yf4B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2029,
+      "cache_read_input_tokens": 66757,
+      "output_tokens": 439,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2029,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 439,
+          "cache_read_input_tokens": 66757,
+          "cache_creation_input_tokens": 2029,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2029
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-19T03:19:08.309Z_
+
+<details><summary>↩ Tool result · `toolu_01PeNSX9ocQyZYSeQA27VdXB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"# MMCT Table 7: Generalization Results (alpha=1.0, Unified Data)\\n\\nEach cell = significant pairs / 8 total pairs (MMCT p<0.05)\\n\\n| Condition | Model | Data | unif_fwd | unif_bidir | w_pair_fwd | w_pair_bidir | w_global_fwd | w_global_bidir |\\n|-----------|-------|------|------|------|------|------|------|------|\\n| Baseline | Pythia-410M | Wiki | 1/8 | 1/8 | 6/8 | 5/8 | 2/8 | 2/8 |\\n| Arch: GPT-2m | GPT-2m | Wiki | 2/8 | 2/8 | 8/8 | 7/8 | 2/8 | 2/8 |\\n| Arch: OPT | OPT-1.3B | Wiki | 0/8 | 0/8 | 6/8 | 5/8 | 0/8 | 0/8 |\\n| Scale: 1.4B s42 | Pythia-1.4B | Wiki | 0/8 | 0/8 | 6/8 | 6/8 | 0/8 | 0/8 |\\n| Scale: 1.4B s43 | Pythia-1.4B | Wiki | 2/8 | 2/8 | 6/8 | 5/8 | 2/8 | 1/8 |\\n| Domain: C4 s42 | Pythia-1B | C4 | 1/8 | 1/8 | 7/8 | 6/8 | 1/8 | 1/8 |\\n| Domain: C4 s43 | Pythia-1B | C4 | 2/8 | 2/8 | 6/8 | 6/8 | 2/8 | 1/8 |\\n\\n## Per-Pair Detail (weighted_global_forward)\\n\\n### Baseline\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 1.0000 | 0.0400 | YES |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.6829 | 0.0400 | YES |\\n\\n### Arch: GPT-2m\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 1.0000 | 0.0400 | YES |\\n| token_entropy | distinct_3 | 1.0000 | 0.0400 | YES |\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.2071 | 0.4400 | no |\\n\\n### Arch: OPT\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.2071 | 0.4400 | no |\\n\\n### Scale: 1.4B s42\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.2071 | 0.4400 | no |\\n| token_entropy | perplexity | 0.0865 | 0.6400 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\n\\n### Scale: 1.4B s43\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 1.0000 | 0.0400 | YES |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\n| ece | distinct_1 | 1.0000 | 0.0400 | YES |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\n\\n### Domain: C4 s42\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 1.0000 | 0.0400 | YES |\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\n\\n### Domain: C4 s43\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\n| ece | distinct_1 | 1.0000 | 0.0400 | YES |\\n| ece | distinct_2 | 1.0000 | 0.0400 | YES |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ed4fa7c-4984-4b88-9378-b362c1e1816a",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "1f2760b3-2269-4f3a-bb05-a7c6500cbfb8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"# MMCT Table 7: Generalization Results (alpha=1.0, Unified Data)\\\\n\\\\nEach cell = significant pairs / 8 total pairs (MMCT p<0.05)\\\\n\\\\n| Condition | Model | Data | unif_fwd | unif_bidir | w_pair_fwd | w_pair_bidir | w_global_fwd | w_global_bidir |\\\\n|-----------|-------|------|------|------|------|------|------|------|\\\\n| Baseline | Pythia-410M | Wiki | 1/8 | 1/8 | 6/8 | 5/8 | 2/8 | 2/8 |\\\\n| Arch: GPT-2m | GPT-2m | Wiki | 2/8 | 2/8 | 8/8 | 7/8 | 2/8 | 2/8 |\\\\n| Arch: OPT | OPT-1.3B | Wiki | 0/8 | 0/8 | 6/8 | 5/8 | 0/8 | 0/8 |\\\\n| Scale: 1.4B s42 | Pythia-1.4B | Wiki | 0/8 | 0/8 | 6/8 | 6/8 | 0/8 | 0/8 |\\\\n| Scale: 1.4B s43 | Pythia-1.4B | Wiki | 2/8 | 2/8 | 6/8 | 5/8 | 2/8 | 1/8 |\\\\n| Domain: C4 s42 | Pythia-1B | C4 | 1/8 | 1/8 | 7/8 | 6/8 | 1/8 | 1/8 |\\\\n| Domain: C4 s43 | Pythia-1B | C4 | 2/8 | 2/8 | 6/8 | 6/8 | 2/8 | 1/8 |\\\\n\\\\n## Per-Pair Detail (weighted_global_forward)\\\\n\\\\n### Baseline\\\\n\\\\n| Canary | Downstream | Score | p-value | Sig |\\\\n|--------|------------|-------|---------|-----|\\\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_2 | 1.0000 | 0.0400 | YES |\\\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| ece | perplexity | 0.6829 | 0.0400 | YES |\\\\n\\\\n### Arch: GPT-2m\\\\n\\\\n| Canary | Downstream | Score | p-value | Sig |\\\\n|--------|------------|-------|---------|-----|\\\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_2 | 1.0000 | 0.0400 | YES |\\\\n| token_entropy | distinct_3 | 1.0000 | 0.0400 | YES |\\\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| ece | perplexity | 0.2071 | 0.4400 | no |\\\\n\\\\n### Arch: OPT\\\\n\\\\n| Canary | Downstream | Score | p-value | Sig |\\\\n|--------|------------|-------|---------|-----|\\\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| ece | perplexity | 0.2071 | 0.4400 | no |\\\\n\\\\n### Scale: 1.4B s42\\\\n\\\\n| Canary | Downstream | Score | p-value | Sig |\\\\n|--------|------------|-------|---------|-----|\\\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_3 | 0.2071 | 0.4400 | no |\\\\n| token_entropy | perplexity | 0.0865 | 0.6400 | no |\\\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\\\n\\\\n### Scale: 1.4B s43\\\\n\\\\n| Canary | Downstream | Score | p-value | Sig |\\\\n|--------|------------|-------|---------|-----|\\\\n| token_entropy | distinct_1 | 1.0000 | 0.0400 | YES |\\\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\\\n| ece | distinct_1 | 1.0000 | 0.0400 | YES |\\\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\\\n\\\\n### Domain: C4 s42\\\\n\\\\n| Canary | Downstream | Score | p-value | Sig |\\\\n|--------|------------|-------|---------|-----|\\\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_3 | 1.0000 | 0.0400 | YES |\\\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\\\n\\\\n### Domain: C4 s43\\\\n\\\\n| Canary | Downstream | Score | p-value | Sig |\\\\n|--------|------------|-------|---------|-----|\\\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\\\n| ece | distinct_1 | 1.0000 | 0.0400 | YES |\\\\n| ece | distinct_2 | 1.0000 | 0.0400 | YES |\\\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\\\n\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"# MMCT Table 7: Generalization Results (alpha=1.0, Unified Data)\\n\\nEach cell = significant pairs / 8 total pairs (MMCT p<0.05)\\n\\n| Condition | Model | Data | unif_fwd | unif_bidir | w_pair_fwd | w_pair_bidir | w_global_fwd | w_global_bidir |\\n|-----------|-------|------|------|------|------|------|------|------|\\n| Baseline | Pythia-410M | Wiki | 1/8 | 1/8 | 6/8 | 5/8 | 2/8 | 2/8 |\\n| Arch: GPT-2m | GPT-2m | Wiki | 2/8 | 2/8 | 8/8 | 7/8 | 2/8 | 2/8 |\\n| Arch: OPT | OPT-1.3B | Wiki | 0/8 | 0/8 | 6/8 | 5/8 | 0/8 | 0/8 |\\n| Scale: 1.4B s42 | Pythia-1.4B | Wiki | 0/8 | 0/8 | 6/8 | 6/8 | 0/8 | 0/8 |\\n| Scale: 1.4B s43 | Pythia-1.4B | Wiki | 2/8 | 2/8 | 6/8 | 5/8 | 2/8 | 1/8 |\\n| Domain: C4 s42 | Pythia-1B | C4 | 1/8 | 1/8 | 7/8 | 6/8 | 1/8 | 1/8 |\\n| Domain: C4 s43 | Pythia-1B | C4 | 2/8 | 2/8 | 6/8 | 6/8 | 2/8 | 1/8 |\\n\\n## Per-Pair Detail (weighted_global_forward)\\n\\n### Baseline\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 1.0000 | 0.0400 | YES |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.6829 | 0.0400 | YES |\\n\\n### Arch: GPT-2m\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 1.0000 | 0.0400 | YES |\\n| token_entropy | distinct_3 | 1.0000 | 0.0400 | YES |\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.2071 | 0.4400 | no |\\n\\n### Arch: OPT\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\n| token_entropy | perplexity | 0.2071 | 0.4400 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.2071 | 0.4400 | no |\\n\\n### Scale: 1.4B s42\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.2071 | 0.4400 | no |\\n| token_entropy | perplexity | 0.0865 | 0.6400 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\n\\n### Scale: 1.4B s43\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 1.0000 | 0.0400 | YES |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\n| ece | distinct_1 | 1.0000 | 0.0400 | YES |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\n\\n### Domain: C4 s42\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 1.0000 | 0.0400 | YES |\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\n| ece | distinct_1 | 0.5243 | 0.2400 | no |\\n| ece | distinct_2 | 0.5243 | 0.2400 | no |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\n\\n### Domain: C4 s43\\n\\n| Canary | Downstream | Score | p-value | Sig |\\n|--------|------------|-------|---------|-----|\\n| token_entropy | distinct_1 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_2 | 0.5243 | 0.2400 | no |\\n| token_entropy | distinct_3 | 0.5243 | 0.2400 | no |\\n| token_entropy | perplexity | 0.1279 | 0.4800 | no |\\n| ece | distinct_1 | 1.0000 | 0.0400 | YES |\\n| ece | distinct_2 | 1.0000 | 0.0400 | YES |\\n| ece | distinct_3 | 0.5243 | 0.2400 | no |\\n| ece | perplexity | 0.1279 | 0.4800 | no |\\n\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1ed4fa7c-4984-4b88-9378-b362c1e1816a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 128_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "1f2760b3-2269-4f3a-bb05-a7c6500cbfb8",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 129_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Run MMCT analysis on all completed experiments",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Assistant
+
+_source line 130 · 2026-05-19T03:19:12.139Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to also get the per-seed results for the alpha sweep to build the full table. Let me extract per-run MMCT results from the JSON to build the detailed summary table requested. Let me write a script on the server to extract the exact data I need.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1f2760b3-2269-4f3a-bb05-a7c6500cbfb8",
+  "isSidechain": false,
+  "requestId": "req_011CbBCsHAYiJBVTsrUJViUx",
+  "type": "assistant",
+  "uuid": "6db5c622-d61d-4e12-851b-046fcb905006",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011aMUzX11pcafACo9Jo5LjE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3930,
+      "cache_read_input_tokens": 68786,
+      "output_tokens": 709,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 709,
+          "cache_read_input_tokens": 68786,
+          "cache_creation_input_tokens": 3930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 131 · 2026-05-19T03:19:13.588Z_
+
+Now let me extract per-run detail for the comprehensive summary table.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6db5c622-d61d-4e12-851b-046fcb905006",
+  "isSidechain": false,
+  "requestId": "req_011CbBCsHAYiJBVTsrUJViUx",
+  "type": "assistant",
+  "uuid": "28768725-62bd-479b-a647-d6c1e6b34266",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011aMUzX11pcafACo9Jo5LjE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3930,
+      "cache_read_input_tokens": 68786,
+      "output_tokens": 709,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 709,
+          "cache_read_input_tokens": 68786,
+          "cache_creation_input_tokens": 3930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 132 · 2026-05-19T03:19:22.350Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_016tkeVqToVRoLM3qvJ8KAWQ`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat > /tmp/extract_mmct.py << 'PYEOF'\nimport json\n\nwith open(\"/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_results_v2.json\") as f:\n    data = json.load(f)\n\n# For each mode, count significant per run_id\nmodes_to_check = [\"uniform_forward\", \"weighted_pair_forward\", \"weighted_global_forward\",\n                   \"uniform_bidirectional\", \"weighted_pair_bidirectional\", \"weighted_global_bidirectional\"]\n\n# Alpha sweep\nprint(\"=== ALPHA SWEEP PER-RUN ===\")\nfor mode in modes_to_check:\n    mode_data = data[\"results\"][mode]\n    print(f\"\\n--- {mode} ---\")\n    for alpha_key in sorted(mode_data.keys()):\n        entries = mode_data[alpha_key]\n        # Group by run_id\n        by_run = {}\n        for e in entries:\n            rid = e[\"run_id\"]\n            if rid not in by_run:\n                by_run[rid] = {\"sig\": 0, \"total\": 0}\n            by_run[rid][\"total\"] += 1\n            if e[\"significant\"]:\n                by_run[rid][\"sig\"] += 1\n        for rid in sorted(by_run.keys()):\n            print(f\"  {alpha_key}/{rid}: {by_run[rid]['sig']}/{by_run[rid]['total']}\")\n\n# Table 7\nprint(\"\\n=== TABLE 7 PER-CONDITION ===\")\nt7 = data.get(\"table7_results\", {})\nfor mode in modes_to_check:\n    if mode not in t7:\n        continue\n    print(f\"\\n--- {mode} ---\")\n    for cond, cdata in t7[mode].items():\n        print(f\"  {cond} ({cdata['model']}, {cdata['data']}): {cdata['n_significant']}/{cdata['n_total']}\")\nPYEOF\n/root/miniconda3/bin/python /tmp/extract_mmct.py",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "28768725-62bd-479b-a647-d6c1e6b34266",
+  "isSidechain": false,
+  "requestId": "req_011CbBCsHAYiJBVTsrUJViUx",
+  "type": "assistant",
+  "uuid": "85a7f0dd-d9f1-4ee7-a20d-f981f41bd26f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011aMUzX11pcafACo9Jo5LjE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3930,
+      "cache_read_input_tokens": 68786,
+      "output_tokens": 709,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3930,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 709,
+          "cache_read_input_tokens": 68786,
+          "cache_creation_input_tokens": 3930,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3930
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 133 · 2026-05-19T03:19:22.803Z_
+
+<details><summary>↩ Tool result · `toolu_016tkeVqToVRoLM3qvJ8KAWQ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"=== ALPHA SWEEP PER-RUN ===\\n\\n--- uniform_forward ---\\n  a000/a000_s42: 0/8\\n  a000/a000_s43: 0/8\\n  a000/a000_s44: 0/8\\n  a010/a010_s42: 0/8\\n  a025/a025_s43: 0/8\\n  a025/a025_s44: 0/8\\n  a050/a050_s42: 0/8\\n  a050/a050_s43: 0/8\\n  a050/a050_s44: 0/8\\n  a060/a060_s42_bf16: 0/8\\n  a075/a075_s42: 1/8\\n  a075/a075_s43: 1/8\\n  a075/a075_s44: 0/8\\n\\n--- weighted_pair_forward ---\\n  a000/a000_s42: 0/8\\n  a000/a000_s43: 0/8\\n  a000/a000_s44: 0/8\\n  a010/a010_s42: 1/8\\n  a025/a025_s43: 3/8\\n  a025/a025_s44: 4/8\\n  a050/a050_s42: 5/8\\n  a050/a050_s43: 5/8\\n  a050/a050_s44: 4/8\\n  a060/a060_s42_bf16: 6/8\\n  a075/a075_s42: 7/8\\n  a075/a075_s43: 6/8\\n  a075/a075_s44: 6/8\\n\\n--- weighted_global_forward ---\\n  a000/a000_s42: 0/8\\n  a000/a000_s43: 0/8\\n  a000/a000_s44: 0/8\\n  a010/a010_s42: 0/8\\n  a025/a025_s43: 0/8\\n  a025/a025_s44: 0/8\\n  a050/a050_s42: 0/8\\n  a050/a050_s43: 0/8\\n  a050/a050_s44: 0/8\\n  a060/a060_s42_bf16: 0/8\\n  a075/a075_s42: 1/8\\n  a075/a075_s43: 1/8\\n  a075/a075_s44: 0/8\\n\\n--- uniform_bidirectional ---\\n  a000/a000_s42: 0/8\\n  a000/a000_s43: 0/8\\n  a000/a000_s44: 0/8\\n  a010/a010_s42: 0/8\\n  a025/a025_s43: 0/8\\n  a025/a025_s44: 0/8\\n  a050/a050_s42: 0/8\\n  a050/a050_s43: 0/8\\n  a050/a050_s44: 0/8\\n  a060/a060_s42_bf16: 0/8\\n  a075/a075_s42: 1/8\\n  a075/a075_s43: 1/8\\n  a075/a075_s44: 0/8\\n\\n--- weighted_pair_bidirectional ---\\n  a000/a000_s42: 0/8\\n  a000/a000_s43: 0/8\\n  a000/a000_s44: 0/8\\n  a010/a010_s42: 1/8\\n  a025/a025_s43: 3/8\\n  a025/a025_s44: 4/8\\n  a050/a050_s42: 5/8\\n  a050/a050_s43: 5/8\\n  a050/a050_s44: 4/8\\n  a060/a060_s42_bf16: 6/8\\n  a075/a075_s42: 7/8\\n  a075/a075_s43: 6/8\\n  a075/a075_s44: 6/8\\n\\n--- weighted_global_bidirectional ---\\n  a000/a000_s42: 0/8\\n  a000/a000_s43: 0/8\\n  a000/a000_s44: 0/8\\n  a010/a010_s42: 0/8\\n  a025/a025_s43: 0/8\\n  a025/a025_s44: 0/8\\n  a050/a050_s42: 0/8\\n  a050/a050_s43: 0/8\\n  a050/a050_s44: 0/8\\n  a060/a060_s42_bf16: 0/8\\n  a075/a075_s42: 1/8\\n  a075/a075_s43: 0/8\\n  a075/a075_s44: 0/8\\n\\n=== TABLE 7 PER-CONDITION ===\\n\\n--- uniform_forward ---\\n  Baseline (Pythia-410M, Wiki): 1/8\\n  Arch: GPT-2m (GPT-2m, Wiki): 2/8\\n  Arch: OPT (OPT-1.3B, Wiki): 0/8\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 0/8\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 2/8\\n  Domain: C4 s42 (Pythia-1B, C4): 1/8\\n  Domain: C4 s43 (Pythia-1B, C4): 2/8\\n\\n--- weighted_pair_forward ---\\n  Baseline (Pythia-410M, Wiki): 6/8\\n  Arch: GPT-2m (GPT-2m, Wiki): 8/8\\n  Arch: OPT (OPT-1.3B, Wiki): 6/8\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 6/8\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 6/8\\n  Domain: C4 s42 (Pythia-1B, C4): 7/8\\n  Domain: C4 s43 (Pythia-1B, C4): 6/8\\n\\n--- weighted_global_forward ---\\n  Baseline (Pythia-410M, Wiki): 2/8\\n  Arch: GPT-2m (GPT-2m, Wiki): 2/8\\n  Arch: OPT (OPT-1.3B, Wiki): 0/8\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 0/8\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 2/8\\n  Domain: C4 s42 (Pythia-1B, C4): 1/8\\n  Domain: C4 s43 (Pythia-1B, C4): 2/8\\n\\n--- uniform_bidirectional ---\\n  Baseline (Pythia-410M, Wiki): 1/8\\n  Arch: GPT-2m (GPT-2m, Wiki): 2/8\\n  Arch: OPT (OPT-1.3B, Wiki): 0/8\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 0/8\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 2/8\\n  Domain: C4 s42 (Pythia-1B, C4): 1/8\\n  Domain: C4 s43 (Pythia-1B, C4): 2/8\\n\\n--- weighted_pair_bidirectional ---\\n  Baseline (Pythia-410M, Wiki): 5/8\\n  Arch: GPT-2m (GPT-2m, Wiki): 7/8\\n  Arch: OPT (OPT-1.3B, Wiki): 5/8\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 6/8\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 5/8\\n  Domain: C4 s42 (Pythia-1B, C4): 6/8\\n  Domain: C4 s43 (Pythia-1B, C4): 6/8\\n\\n--- weighted_global_bidirectional ---\\n  Baseline (Pythia-410M, Wiki): 2/8\\n  Arch: GPT-2m (GPT-2m, Wiki): 2/8\\n  Arch: OPT (OPT-1.3B, Wiki): 0/8\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 0/8\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 1/8\\n  Domain: C4 s42 (Pythia-1B, C4): 1/8\\n  Domain: C4 s43 (Pythia-1B, C4): 1/8\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "85a7f0dd-d9f1-4ee7-a20d-f981f41bd26f",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "65499203-7f89-4ff4-83c7-524d789d5904",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"=== ALPHA SWEEP PER-RUN ===\\\\n\\\\n--- uniform_forward ---\\\\n  a000/a000_s42: 0/8\\\\n  a000/a000_s43: 0/8\\\\n  a000/a000_s44: 0/8\\\\n  a010/a010_s42: 0/8\\\\n  a025/a025_s43: 0/8\\\\n  a025/a025_s44: 0/8\\\\n  a050/a050_s42: 0/8\\\\n  a050/a050_s43: 0/8\\\\n  a050/a050_s44: 0/8\\\\n  a060/a060_s42_bf16: 0/8\\\\n  a075/a075_s42: 1/8\\\\n  a075/a075_s43: 1/8\\\\n  a075/a075_s44: 0/8\\\\n\\\\n--- weighted_pair_forward ---\\\\n  a000/a000_s42: 0/8\\\\n  a000/a000_s43: 0/8\\\\n  a000/a000_s44: 0/8\\\\n  a010/a010_s42: 1/8\\\\n  a025/a025_s43: 3/8\\\\n  a025/a025_s44: 4/8\\\\n  a050/a050_s42: 5/8\\\\n  a050/a050_s43: 5/8\\\\n  a050/a050_s44: 4/8\\\\n  a060/a060_s42_bf16: 6/8\\\\n  a075/a075_s42: 7/8\\\\n  a075/a075_s43: 6/8\\\\n  a075/a075_s44: 6/8\\\\n\\\\n--- weighted_global_forward ---\\\\n  a000/a000_s42: 0/8\\\\n  a000/a000_s43: 0/8\\\\n  a000/a000_s44: 0/8\\\\n  a010/a010_s42: 0/8\\\\n  a025/a025_s43: 0/8\\\\n  a025/a025_s44: 0/8\\\\n  a050/a050_s42: 0/8\\\\n  a050/a050_s43: 0/8\\\\n  a050/a050_s44: 0/8\\\\n  a060/a060_s42_bf16: 0/8\\\\n  a075/a075_s42: 1/8\\\\n  a075/a075_s43: 1/8\\\\n  a075/a075_s44: 0/8\\\\n\\\\n--- uniform_bidirectional ---\\\\n  a000/a000_s42: 0/8\\\\n  a000/a000_s43: 0/8\\\\n  a000/a000_s44: 0/8\\\\n  a010/a010_s42: 0/8\\\\n  a025/a025_s43: 0/8\\\\n  a025/a025_s44: 0/8\\\\n  a050/a050_s42: 0/8\\\\n  a050/a050_s43: 0/8\\\\n  a050/a050_s44: 0/8\\\\n  a060/a060_s42_bf16: 0/8\\\\n  a075/a075_s42: 1/8\\\\n  a075/a075_s43: 1/8\\\\n  a075/a075_s44: 0/8\\\\n\\\\n--- weighted_pair_bidirectional ---\\\\n  a000/a000_s42: 0/8\\\\n  a000/a000_s43: 0/8\\\\n  a000/a000_s44: 0/8\\\\n  a010/a010_s42: 1/8\\\\n  a025/a025_s43: 3/8\\\\n  a025/a025_s44: 4/8\\\\n  a050/a050_s42: 5/8\\\\n  a050/a050_s43: 5/8\\\\n  a050/a050_s44: 4/8\\\\n  a060/a060_s42_bf16: 6/8\\\\n  a075/a075_s42: 7/8\\\\n  a075/a075_s43: 6/8\\\\n  a075/a075_s44: 6/8\\\\n\\\\n--- weighted_global_bidirectional ---\\\\n  a000/a000_s42: 0/8\\\\n  a000/a000_s43: 0/8\\\\n  a000/a000_s44: 0/8\\\\n  a010/a010_s42: 0/8\\\\n  a025/a025_s43: 0/8\\\\n  a025/a025_s44: 0/8\\\\n  a050/a050_s42: 0/8\\\\n  a050/a050_s43: 0/8\\\\n  a050/a050_s44: 0/8\\\\n  a060/a060_s42_bf16: 0/8\\\\n  a075/a075_s42: 1/8\\\\n  a075/a075_s43: 0/8\\\\n  a075/a075_s44: 0/8\\\\n\\\\n=== TABLE 7 PER-CONDITION ===\\\\n\\\\n--- uniform_forward ---\\\\n  Baseline (Pythia-410M, Wiki): 1/8\\\\n  Arch: GPT-2m (GPT-2m, Wiki): 2/8\\\\n  Arch: OPT (OPT-1.3B, Wiki): 0/8\\\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 0/8\\\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 2/8\\\\n  Domain: C4 s42 (Pythia-1B, C4): 1/8\\\\n  Domain: C4 s43 (Pythia-1B, C4): 2/8\\\\n\\\\n--- weighted_pair_forward ---\\\\n  Baseline (Pythia-410M, Wiki): 6/8\\\\n  Arch: GPT-2m (GPT-2m, Wiki): 8/8\\\\n  Arch: OPT (OPT-1.3B, Wiki): 6/8\\\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 6/8\\\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 6/8\\\\n  Domain: C4 s42 (Pythia-1B, C4): 7/8\\\\n  Domain: C4 s43 (Pythia-1B, C4): 6/8\\\\n\\\\n--- weighted_global_forward ---\\\\n  Baseline (Pythia-410M, Wiki): 2/8\\\\n  Arch: GPT-2m (GPT-2m, Wiki): 2/8\\\\n  Arch: OPT (OPT-1.3B, Wiki): 0/8\\\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 0/8\\\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 2/8\\\\n  Domain: C4 s42 (Pythia-1B, C4): 1/8\\\\n  Domain: C4 s43 (Pythia-1B, C4): 2/8\\\\n\\\\n--- uniform_bidirectional ---\\\\n  Baseline (Pythia-410M, Wiki): 1/8\\\\n  Arch: GPT-2m (GPT-2m, Wiki): 2/8\\\\n  Arch: OPT (OPT-1.3B, Wiki): 0/8\\\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 0/8\\\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 2/8\\\\n  Domain: C4 s42 (Pythia-1B, C4): 1/8\\\\n  Domain: C4 s43 (Pythia-1B, C4): 2/8\\\\n\\\\n--- weighted_pair_bidirectional ---\\\\n  Baseline (Pythia-410M, Wiki): 5/8\\\\n  Arch: GPT-2m (GPT-2m, Wiki): 7/8\\\\n  Arch: OPT (OPT-1.3B, Wiki): 5/8\\\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 6/8\\\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 5/8\\\\n  Domain: C4 s42 (Pythia-1B, C4): 6/8\\\\n  Domain: C4 s43 (Pythia-1B, C4): 6/8\\\\n\\\\n--- weighted_global_bidirectional ---\\\\n  Baseline (Pythia-410M, Wiki): 2/8\\\\n  Arch: GPT-2m (GPT-2m, Wiki): 2/8\\\\n  Arch: OPT (OPT-1.3B, Wiki): 0/8\\\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 0/8\\\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 1/8\\\\n  Domain: C4 s42 (Pythia-1B, C4): 1/8\\\\n  Domain: C4 s43 (Pythia-1B, C4): 1/8\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"=== ALPHA SWEEP PER-RUN ===\\n\\n--- uniform_forward ---\\n  a000/a000_s42: 0/8\\n  a000/a000_s43: 0/8\\n  a000/a000_s44: 0/8\\n  a010/a010_s42: 0/8\\n  a025/a025_s43: 0/8\\n  a025/a025_s44: 0/8\\n  a050/a050_s42: 0/8\\n  a050/a050_s43: 0/8\\n  a050/a050_s44: 0/8\\n  a060/a060_s42_bf16: 0/8\\n  a075/a075_s42: 1/8\\n  a075/a075_s43: 1/8\\n  a075/a075_s44: 0/8\\n\\n--- weighted_pair_forward ---\\n  a000/a000_s42: 0/8\\n  a000/a000_s43: 0/8\\n  a000/a000_s44: 0/8\\n  a010/a010_s42: 1/8\\n  a025/a025_s43: 3/8\\n  a025/a025_s44: 4/8\\n  a050/a050_s42: 5/8\\n  a050/a050_s43: 5/8\\n  a050/a050_s44: 4/8\\n  a060/a060_s42_bf16: 6/8\\n  a075/a075_s42: 7/8\\n  a075/a075_s43: 6/8\\n  a075/a075_s44: 6/8\\n\\n--- weighted_global_forward ---\\n  a000/a000_s42: 0/8\\n  a000/a000_s43: 0/8\\n  a000/a000_s44: 0/8\\n  a010/a010_s42: 0/8\\n  a025/a025_s43: 0/8\\n  a025/a025_s44: 0/8\\n  a050/a050_s42: 0/8\\n  a050/a050_s43: 0/8\\n  a050/a050_s44: 0/8\\n  a060/a060_s42_bf16: 0/8\\n  a075/a075_s42: 1/8\\n  a075/a075_s43: 1/8\\n  a075/a075_s44: 0/8\\n\\n--- uniform_bidirectional ---\\n  a000/a000_s42: 0/8\\n  a000/a000_s43: 0/8\\n  a000/a000_s44: 0/8\\n  a010/a010_s42: 0/8\\n  a025/a025_s43: 0/8\\n  a025/a025_s44: 0/8\\n  a050/a050_s42: 0/8\\n  a050/a050_s43: 0/8\\n  a050/a050_s44: 0/8\\n  a060/a060_s42_bf16: 0/8\\n  a075/a075_s42: 1/8\\n  a075/a075_s43: 1/8\\n  a075/a075_s44: 0/8\\n\\n--- weighted_pair_bidirectional ---\\n  a000/a000_s42: 0/8\\n  a000/a000_s43: 0/8\\n  a000/a000_s44: 0/8\\n  a010/a010_s42: 1/8\\n  a025/a025_s43: 3/8\\n  a025/a025_s44: 4/8\\n  a050/a050_s42: 5/8\\n  a050/a050_s43: 5/8\\n  a050/a050_s44: 4/8\\n  a060/a060_s42_bf16: 6/8\\n  a075/a075_s42: 7/8\\n  a075/a075_s43: 6/8\\n  a075/a075_s44: 6/8\\n\\n--- weighted_global_bidirectional ---\\n  a000/a000_s42: 0/8\\n  a000/a000_s43: 0/8\\n  a000/a000_s44: 0/8\\n  a010/a010_s42: 0/8\\n  a025/a025_s43: 0/8\\n  a025/a025_s44: 0/8\\n  a050/a050_s42: 0/8\\n  a050/a050_s43: 0/8\\n  a050/a050_s44: 0/8\\n  a060/a060_s42_bf16: 0/8\\n  a075/a075_s42: 1/8\\n  a075/a075_s43: 0/8\\n  a075/a075_s44: 0/8\\n\\n=== TABLE 7 PER-CONDITION ===\\n\\n--- uniform_forward ---\\n  Baseline (Pythia-410M, Wiki): 1/8\\n  Arch: GPT-2m (GPT-2m, Wiki): 2/8\\n  Arch: OPT (OPT-1.3B, Wiki): 0/8\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 0/8\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 2/8\\n  Domain: C4 s42 (Pythia-1B, C4): 1/8\\n  Domain: C4 s43 (Pythia-1B, C4): 2/8\\n\\n--- weighted_pair_forward ---\\n  Baseline (Pythia-410M, Wiki): 6/8\\n  Arch: GPT-2m (GPT-2m, Wiki): 8/8\\n  Arch: OPT (OPT-1.3B, Wiki): 6/8\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 6/8\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 6/8\\n  Domain: C4 s42 (Pythia-1B, C4): 7/8\\n  Domain: C4 s43 (Pythia-1B, C4): 6/8\\n\\n--- weighted_global_forward ---\\n  Baseline (Pythia-410M, Wiki): 2/8\\n  Arch: GPT-2m (GPT-2m, Wiki): 2/8\\n  Arch: OPT (OPT-1.3B, Wiki): 0/8\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 0/8\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 2/8\\n  Domain: C4 s42 (Pythia-1B, C4): 1/8\\n  Domain: C4 s43 (Pythia-1B, C4): 2/8\\n\\n--- uniform_bidirectional ---\\n  Baseline (Pythia-410M, Wiki): 1/8\\n  Arch: GPT-2m (GPT-2m, Wiki): 2/8\\n  Arch: OPT (OPT-1.3B, Wiki): 0/8\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 0/8\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 2/8\\n  Domain: C4 s42 (Pythia-1B, C4): 1/8\\n  Domain: C4 s43 (Pythia-1B, C4): 2/8\\n\\n--- weighted_pair_bidirectional ---\\n  Baseline (Pythia-410M, Wiki): 5/8\\n  Arch: GPT-2m (GPT-2m, Wiki): 7/8\\n  Arch: OPT (OPT-1.3B, Wiki): 5/8\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 6/8\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 5/8\\n  Domain: C4 s42 (Pythia-1B, C4): 6/8\\n  Domain: C4 s43 (Pythia-1B, C4): 6/8\\n\\n--- weighted_global_bidirectional ---\\n  Baseline (Pythia-410M, Wiki): 2/8\\n  Arch: GPT-2m (GPT-2m, Wiki): 2/8\\n  Arch: OPT (OPT-1.3B, Wiki): 0/8\\n  Scale: 1.4B s42 (Pythia-1.4B, Wiki): 0/8\\n  Scale: 1.4B s43 (Pythia-1.4B, Wiki): 1/8\\n  Domain: C4 s42 (Pythia-1B, C4): 1/8\\n  Domain: C4 s43 (Pythia-1B, C4): 1/8\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "85a7f0dd-d9f1-4ee7-a20d-f981f41bd26f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 134 · 2026-05-19T03:19:45.637Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need to create the summary table. Let me compile it into the output file.
+
+Let me organize the data:
+
+**Alpha Sweep Conditions:**
+
+| Condition | α | Model | Seed | unif_fwd | wpair_fwd | wglobal_fwd | unif_bidir | wpair_bidir | wglobal_bidir | Notes |
+|-----------|---|-------|------|----------|-----------|-------------|------------|-------------|---------------|-------|
+| a000_s42 | 0.00 | Pythia-410M | 42 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | Null baseline |
+
+
+| a000_s43 | 0.00 | Pythia-410M | 43 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | Null baseline |
+| a000_s44 | 0.00 | Pythia-410M | 44 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | Null baseline |
+| a010_s42 | 0.10 | Pythia-410M
+
+Generating markdown table... Generating experiment results table... Generating markdown table... I'm noting which experiments are missing or incomplete—a010 variants don't exist, a025_s42 is absent, the GPT-2m data is already accounted for elsewhere, and gen_wiki_gpt2m_a100_s43 only has partial generations. Now I'll put together the summary file.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65499203-7f89-4ff4-83c7-524d789d5904",
+  "isSidechain": false,
+  "requestId": "req_011CbBCtM7x157NGjq9b7pCV",
+  "type": "assistant",
+  "uuid": "cce5d560-fe53-423c-b5a6-888be3d9c7d4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XrjZ7oK5RnPzry17vQCdp7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3284,
+      "cache_read_input_tokens": 72716,
+      "output_tokens": 1739,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1739,
+          "cache_read_input_tokens": 72716,
+          "cache_creation_input_tokens": 3284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 135 · 2026-05-19T03:19:45.641Z_
+
+Now I have all the data. Let me write the comprehensive summary file.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cce5d560-fe53-423c-b5a6-888be3d9c7d4",
+  "isSidechain": false,
+  "requestId": "req_011CbBCtM7x157NGjq9b7pCV",
+  "type": "assistant",
+  "uuid": "8b537bef-9e5e-4933-bed1-f8975e06af8b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XrjZ7oK5RnPzry17vQCdp7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3284,
+      "cache_read_input_tokens": 72716,
+      "output_tokens": 1739,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1739,
+          "cache_read_input_tokens": 72716,
+          "cache_creation_input_tokens": 3284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 136 · 2026-05-19T03:19:45.877Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01K2tTWuyQDATJVeCJGr6jLs`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b537bef-9e5e-4933-bed1-f8975e06af8b",
+  "isSidechain": false,
+  "requestId": "req_011CbBCtM7x157NGjq9b7pCV",
+  "type": "assistant",
+  "uuid": "d52d866e-2555-44f4-9093-e916d91bda6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XrjZ7oK5RnPzry17vQCdp7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3284,
+      "cache_read_input_tokens": 72716,
+      "output_tokens": 1739,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3284,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1739,
+          "cache_read_input_tokens": 72716,
+          "cache_creation_input_tokens": 3284,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3284
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 137 · 2026-05-19T03:19:45.880Z_
+
+<details><summary>↩ Tool result · `toolu_01K2tTWuyQDATJVeCJGr6jLs`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d52d866e-2555-44f4-9093-e916d91bda6b",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "9cf6faf3-2075-4009-9d34-72dcd185ad76",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 26
+  },
+  "sourceToolAssistantUUID": "d52d866e-2555-44f4-9093-e916d91bda6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 138 · 2026-05-19T03:19:45.950Z_
+
+```json
+{
+  "parentUuid": "9cf6faf3-2075-4009-9d34-72dcd185ad76",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "58c5acab-8fda-4556-9d2e-6042541b6d07",
+  "timestamp": "2026-05-19T03:19:45.950Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 139 · 2026-05-19T03:19:49.501Z_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01MvZPw9Aptb9TyMGMMZVzjj`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "58c5acab-8fda-4556-9d2e-6042541b6d07",
+  "isSidechain": false,
+  "requestId": "req_011CbBCv46pBuhJXaUVjXF8H",
+  "type": "assistant",
+  "uuid": "60a8c7f8-41d1-471e-a0a6-5409d232223d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DBKRtyQK4eVWpYhpnKnzoa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2465,
+      "cache_read_input_tokens": 76000,
+      "output_tokens": 85,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2465,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 85,
+          "cache_read_input_tokens": 76000,
+          "cache_creation_input_tokens": 2465,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2465
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 140 · 2026-05-19T03:19:49.621Z_
+
+<details><summary>↩ Tool result · `toolu_01MvZPw9Aptb9TyMGMMZVzjj`</summary>
+
+```text
+D040
+_project
+a050_s44_draft_versions.tex
+a075_analysis_prep.md
+alpha_sweep
+alpha_sweep_a000_s43
+alpha_sweep_a000_s44
+alpha_sweep_a005_s42
+alpha_sweep_a010_s42_v2
+alpha_sweep_a010_s43
+alpha_sweep_a050_s42
+alpha_sweep_a050_s43
+alpha_sweep_a050_s44
+alpha_sweep_a060_s42_bf16
+alpha_sweep_a075_s42
+alpha_sweep_a075_s43
+alpha_sweep_a075_s44
+alpha_sweep_c4_a050_s42_bf16
+analysis
+analysis_alpha_sweep_a010_s42_v2.md
+analyze_extended.py
+analyze_mvp.py
+c4_vs_wikitext_a050_collapse.md
+ccf_maxlag7_report.md
+check_progress.sh
+consensus_framework
+cross_alpha_aggregation
+cross_alpha_analysis_v4.py
+cross_alpha_v4_ready.md
+d024_literature_notes.md
+d026_optimized_commands.md
+d059_mvp_reverse_reanalysis.md
+d060_pythia69b_prep.md
+d061_conditional_granger_analysis.md
+detrending_utils.py
+diag_gen_gpt2m_a100_s43_bf16.md
+dose_response_fp32.csv
+dose_response_fp32_detail.csv
+dream_reports
+drift_discrepancy_audit
+effrank_trajectories.csv
+figures
+framing_alignment_check.md
+gen_gpt2m_a100_s43_bf16
+gen_wiki_gpt2m_a025_s42
+gen_wiki_gpt2m_a100_s42_v3
+gen_wiki_gpt2m_a100_s42_v4
+generalization_draft.tex
+generalization_prep.md
+generalize_pythia14b_wiki_a100_s43
+generalize_pythia1b_c4_a100_s42
+generalize_pythia1b_c4_a100_s43
+generalize_pythia410m
+generalize_pythia410m_wiki_a100_s42
+gpt2m_a025_analysis_plan.md
+gpt2m_kappa
+intervention_reactive_s42
+iterative_train.py
+literature_map.yaml
+literature_scan_20260514.md
+literature_scan_20260515
+manifest.yaml
+method_ablation
+method_ablation_phase2
+method_ablation_phase3
+metrics.py
+mvp_evaluation_criteria.md
+panel_analysis_feasibility.md
+paper_consistency_audit.md
+permutation_granger.py
+pipeline_analysis
+plan_006_s42
+prep_c4_gpt2m_readiness.md
+prep_cross_alpha_v5_verify.md
+prepare_data.py
+report_gen_wiki_gpt2m_failure.md
+review_issues.yaml
+review_reports
+run_mvp.sh
+scale_14b_a050_s42
+scale_14b_effrank_analysis
+scale_s42_failure_analysis.md
+shapley_method_contribution.pdf
+shapley_method_contribution.png
+shapley_values.json
+table7_draft.md
+tables
+test_alpha_sweep.py
+ty_seed_audit
+window_sensitivity
+window_sensitivity_t11
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "60a8c7f8-41d1-471e-a0a6-5409d232223d",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "e65524f9-5c08-4100-8e5b-45dbfdff8556",
+  "toolUseResult": {
+    "stdout": "D040\n_project\na050_s44_draft_versions.tex\na075_analysis_prep.md\nalpha_sweep\nalpha_sweep_a000_s43\nalpha_sweep_a000_s44\nalpha_sweep_a005_s42\nalpha_sweep_a010_s42_v2\nalpha_sweep_a010_s43\nalpha_sweep_a050_s42\nalpha_sweep_a050_s43\nalpha_sweep_a050_s44\nalpha_sweep_a060_s42_bf16\nalpha_sweep_a075_s42\nalpha_sweep_a075_s43\nalpha_sweep_a075_s44\nalpha_sweep_c4_a050_s42_bf16\nanalysis\nanalysis_alpha_sweep_a010_s42_v2.md\nanalyze_extended.py\nanalyze_mvp.py\nc4_vs_wikitext_a050_collapse.md\nccf_maxlag7_report.md\ncheck_progress.sh\nconsensus_framework\ncross_alpha_aggregation\ncross_alpha_analysis_v4.py\ncross_alpha_v4_ready.md\nd024_literature_notes.md\nd026_optimized_commands.md\nd059_mvp_reverse_reanalysis.md\nd060_pythia69b_prep.md\nd061_conditional_granger_analysis.md\ndetrending_utils.py\ndiag_gen_gpt2m_a100_s43_bf16.md\ndose_response_fp32.csv\ndose_response_fp32_detail.csv\ndream_reports\ndrift_discrepancy_audit\neffrank_trajectories.csv\nfigures\nframing_alignment_check.md\ngen_gpt2m_a100_s43_bf16\ngen_wiki_gpt2m_a025_s42\ngen_wiki_gpt2m_a100_s42_v3\ngen_wiki_gpt2m_a100_s42_v4\ngeneralization_draft.tex\ngeneralization_prep.md\ngeneralize_pythia14b_wiki_a100_s43\ngeneralize_pythia1b_c4_a100_s42\ngeneralize_pythia1b_c4_a100_s43\ngeneralize_pythia410m\ngeneralize_pythia410m_wiki_a100_s42\ngpt2m_a025_analysis_plan.md\ngpt2m_kappa\nintervention_reactive_s42\niterative_train.py\nliterature_map.yaml\nliterature_scan_20260514.md\nliterature_scan_20260515\nmanifest.yaml\nmethod_ablation\nmethod_ablation_phase2\nmethod_ablation_phase3\nmetrics.py\nmvp_evaluation_criteria.md\npanel_analysis_feasibility.md\npaper_consistency_audit.md\npermutation_granger.py\npipeline_analysis\nplan_006_s42\nprep_c4_gpt2m_readiness.md\nprep_cross_alpha_v5_verify.md\nprepare_data.py\nreport_gen_wiki_gpt2m_failure.md\nreview_issues.yaml\nreview_reports\nrun_mvp.sh\nscale_14b_a050_s42\nscale_14b_effrank_analysis\nscale_s42_failure_analysis.md\nshapley_method_contribution.pdf\nshapley_method_contribution.png\nshapley_values.json\ntable7_draft.md\ntables\ntest_alpha_sweep.py\nty_seed_audit\nwindow_sensitivity\nwindow_sensitivity_t11",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  },
+  "sourceToolAssistantUUID": "60a8c7f8-41d1-471e-a0a6-5409d232223d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 141_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "e65524f9-5c08-4100-8e5b-45dbfdff8556",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 142_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Run MMCT analysis on all completed experiments",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Tool call
+
+_source line 143 · 2026-05-19T03:20:32.122Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01AgiXYMgwdqdTfvZQhmhYi4`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/mmct_full_results.md",
+  "content": "# MMCT Full Results Across All Completed Experiments\n\nGenerated: 2026-05-19\nData source: unified_5method (2-sigma threshold, Table 7 params: n_perm=5000, xcorr_lag=5, granger_lag=1, alpha=0.05)\nNull baseline: 3 seeds x 8 pairs = 24 null observations from alpha=0.00\n\n## Summary: FPR and Detection Rate by Alpha (Aggregated)\n\n| Mode | FPR (a=0.00) | a0.10 | a0.25 | a0.50 | a0.60 | a0.75 |\n|------|-------------|-------|-------|-------|-------|-------|\n| uniform_forward | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\n| uniform_bidirectional | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\n| weighted_pair_forward | 0.0000 | 0.1250 | 0.4375 | 0.5833 | 0.7500 | 0.7917 |\n| weighted_pair_bidirectional | 0.0000 | 0.1250 | 0.4375 | 0.5833 | 0.7500 | 0.7917 |\n| weighted_global_forward | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\n| weighted_global_bidirectional | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0417 |\n\n## Alpha Sweep: Per-Run Results (sig_pairs / 8 total)\n\n| Condition | alpha | Model | Seed | unif_fwd | wpair_fwd | wglobal_fwd | unif_bidir | wpair_bidir | wglobal_bidir | Notes |\n|-----------|-------|-------|------|----------|-----------|-------------|------------|-------------|---------------|-------|\n| a000_s42 | 0.00 | Pythia-410M | 42 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | Null baseline |\n| a000_s43 | 0.00 | Pythia-410M | 43 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | Null baseline |\n| a000_s44 | 0.00 | Pythia-410M | 44 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | Null baseline |\n| a010_s42 | 0.10 | Pythia-410M | 42 | 0/8 | 1/8 | 0/8 | 0/8 | 1/8 | 0/8 | NEW; single seed only (s43/s44 not available) |\n| a025_s43 | 0.25 | Pythia-410M | 43 | 0/8 | 3/8 | 0/8 | 0/8 | 3/8 | 0/8 | |\n| a025_s44 | 0.25 | Pythia-410M | 44 | 0/8 | 4/8 | 0/8 | 0/8 | 4/8 | 0/8 | |\n| a050_s42 | 0.50 | Pythia-410M | 42 | 0/8 | 5/8 | 0/8 | 0/8 | 5/8 | 0/8 | |\n| a050_s43 | 0.50 | Pythia-410M | 43 | 0/8 | 5/8 | 0/8 | 0/8 | 5/8 | 0/8 | |\n| a050_s44 | 0.50 | Pythia-410M | 44 | 0/8 | 4/8 | 0/8 | 0/8 | 4/8 | 0/8 | |\n| a060_s42_bf16 | 0.60 | Pythia-410M | 42 | 0/8 | 6/8 | 0/8 | 0/8 | 6/8 | 0/8 | bf16 precision; single seed |\n| a075_s42 | 0.75 | Pythia-410M | 42 | 1/8 | 7/8 | 1/8 | 1/8 | 7/8 | 1/8 | |\n| a075_s43 | 0.75 | Pythia-410M | 43 | 1/8 | 6/8 | 1/8 | 1/8 | 6/8 | 0/8 | |\n| a075_s44 | 0.75 | Pythia-410M | 44 | 0/8 | 6/8 | 0/8 | 0/8 | 6/8 | 0/8 | |\n\n## Table 7: Generalization Results (alpha=1.00, sig_pairs / 8 total)\n\n| Condition | alpha | Model | Data | unif_fwd | wpair_fwd | wglobal_fwd | unif_bidir | wpair_bidir | wglobal_bidir | Notes |\n|-----------|-------|-------|------|----------|-----------|-------------|------------|-------------|---------------|-------|\n| Baseline | 1.00 | Pythia-410M | Wiki | 1/8 | 6/8 | 2/8 | 1/8 | 5/8 | 2/8 | |\n| Arch: GPT-2m | 1.00 | GPT-2m | Wiki | 2/8 | 8/8 | 2/8 | 2/8 | 7/8 | 2/8 | Best wpair detection |\n| Arch: OPT | 1.00 | OPT-1.3B | Wiki | 0/8 | 6/8 | 0/8 | 0/8 | 5/8 | 0/8 | |\n| Scale: 1.4B s42 | 1.00 | Pythia-1.4B | Wiki | 0/8 | 6/8 | 0/8 | 0/8 | 6/8 | 0/8 | |\n| Scale: 1.4B s43 | 1.00 | Pythia-1.4B | Wiki | 2/8 | 6/8 | 2/8 | 2/8 | 5/8 | 1/8 | |\n| Domain: C4 s42 | 1.00 | Pythia-1B | C4 | 1/8 | 7/8 | 1/8 | 1/8 | 6/8 | 1/8 | |\n| Domain: C4 s43 | 1.00 | Pythia-1B | C4 | 2/8 | 6/8 | 2/8 | 2/8 | 6/8 | 1/8 | |\n\n## Missing Experiments (Not Available for MMCT)\n\n| Condition | Reason |\n|-----------|--------|\n| a010_s43 | Experiment directory does not exist |\n| a010_s44 | Experiment directory does not exist |\n| a025_s42 | Experiment directory does not exist |\n| gen_wiki_gpt2m_a100_s42_v4 | Directory does not exist; GPT-2m alpha=1.00 s42 covered via generalize/gpt2m_wiki_a100_s42 |\n| gen_wiki_gpt2m_a100_s43 | Incomplete: only 3/11 generations, no all_metrics.json |\n\n## Key Observations\n\n1. **FPR = 0 across all modes**: No false positives at alpha=0.00 (0/24 in every mode).\n\n2. **weighted_pair is the most sensitive mode**: Detection rates monotonically increase with alpha (0.125 at a0.10, 0.4375 at a0.25, 0.5833 at a0.50, 0.75 at a0.60, 0.7917 at a0.75). FPR remains zero.\n\n3. **uniform and weighted_global are conservative**: Only detect at alpha>=0.75, and even then only 1-2/24 pairs.\n\n4. **Bidirectional adds minimal filtering**: weighted_pair_bidirectional matches weighted_pair_forward exactly in the alpha sweep (the directional asymmetry filter rarely changes the call).\n\n5. **Table 7 generalization**: weighted_pair_forward detects 6-8/8 pairs across all 7 conditions at alpha=1.00, confirming generalization across architectures (GPT-2m, OPT-1.3B), scales (410M to 1.4B), and domains (Wiki, C4).\n\n6. **Dose-response monotonicity** (weighted_pair_forward pooled rates):\n   - a0.00: 0.000\n   - a0.10: 0.125\n   - a0.25: 0.438\n   - a0.50: 0.583\n   - a0.60: 0.750\n   - a0.75: 0.792\n   - a1.00 (Table 7 avg): 0.813\n\n## Source Files\n\n- Full MMCT results JSON: `westd-19828:/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_results_v2.json`\n- Null distribution: `westd-19828:/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/null_distribution_v2.json`\n- FPR/FNR comparison: `westd-19828:/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/fpr_fnr_comparison_v2.md`\n- Table 7 detail: `westd-19828:/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_table7.md`\n- Per-condition unified data: `westd-19828:/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/unified_data/*.json`\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e65524f9-5c08-4100-8e5b-45dbfdff8556",
+  "isSidechain": false,
+  "requestId": "req_011CbBCvKn9PjTajB83M1Eap",
+  "type": "assistant",
+  "uuid": "79562bc5-3bab-4834-a247-be9ff811fc8d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CAeiMmiDJoBWd7q4tT4AFL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 952,
+      "cache_read_input_tokens": 78465,
+      "output_tokens": 2894,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 952,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2894,
+          "cache_read_input_tokens": 78465,
+          "cache_creation_input_tokens": 952,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 952
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-19T03:20:32.146Z_
+
+<details><summary>↩ Tool result · `toolu_01AgiXYMgwdqdTfvZQhmhYi4`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/mmct_full_results.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79562bc5-3bab-4834-a247-be9ff811fc8d",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "0a735c45-4333-4661-94c1-d86d5fc1e130",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/mmct_full_results.md",
+    "content": "# MMCT Full Results Across All Completed Experiments\n\nGenerated: 2026-05-19\nData source: unified_5method (2-sigma threshold, Table 7 params: n_perm=5000, xcorr_lag=5, granger_lag=1, alpha=0.05)\nNull baseline: 3 seeds x 8 pairs = 24 null observations from alpha=0.00\n\n## Summary: FPR and Detection Rate by Alpha (Aggregated)\n\n| Mode | FPR (a=0.00) | a0.10 | a0.25 | a0.50 | a0.60 | a0.75 |\n|------|-------------|-------|-------|-------|-------|-------|\n| uniform_forward | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\n| uniform_bidirectional | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\n| weighted_pair_forward | 0.0000 | 0.1250 | 0.4375 | 0.5833 | 0.7500 | 0.7917 |\n| weighted_pair_bidirectional | 0.0000 | 0.1250 | 0.4375 | 0.5833 | 0.7500 | 0.7917 |\n| weighted_global_forward | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0833 |\n| weighted_global_bidirectional | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0000 | 0.0417 |\n\n## Alpha Sweep: Per-Run Results (sig_pairs / 8 total)\n\n| Condition | alpha | Model | Seed | unif_fwd | wpair_fwd | wglobal_fwd | unif_bidir | wpair_bidir | wglobal_bidir | Notes |\n|-----------|-------|-------|------|----------|-----------|-------------|------------|-------------|---------------|-------|\n| a000_s42 | 0.00 | Pythia-410M | 42 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | Null baseline |\n| a000_s43 | 0.00 | Pythia-410M | 43 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | Null baseline |\n| a000_s44 | 0.00 | Pythia-410M | 44 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | 0/8 | Null baseline |\n| a010_s42 | 0.10 | Pythia-410M | 42 | 0/8 | 1/8 | 0/8 | 0/8 | 1/8 | 0/8 | NEW; single seed only (s43/s44 not available) |\n| a025_s43 | 0.25 | Pythia-410M | 43 | 0/8 | 3/8 | 0/8 | 0/8 | 3/8 | 0/8 | |\n| a025_s44 | 0.25 | Pythia-410M | 44 | 0/8 | 4/8 | 0/8 | 0/8 | 4/8 | 0/8 | |\n| a050_s42 | 0.50 | Pythia-410M | 42 | 0/8 | 5/8 | 0/8 | 0/8 | 5/8 | 0/8 | |\n| a050_s43 | 0.50 | Pythia-410M | 43 | 0/8 | 5/8 | 0/8 | 0/8 | 5/8 | 0/8 | |\n| a050_s44 | 0.50 | Pythia-410M | 44 | 0/8 | 4/8 | 0/8 | 0/8 | 4/8 | 0/8 | |\n| a060_s42_bf16 | 0.60 | Pythia-410M | 42 | 0/8 | 6/8 | 0/8 | 0/8 | 6/8 | 0/8 | bf16 precision; single seed |\n| a075_s42 | 0.75 | Pythia-410M | 42 | 1/8 | 7/8 | 1/8 | 1/8 | 7/8 | 1/8 | |\n| a075_s43 | 0.75 | Pythia-410M | 43 | 1/8 | 6/8 | 1/8 | 1/8 | 6/8 | 0/8 | |\n| a075_s44 | 0.75 | Pythia-410M | 44 | 0/8 | 6/8 | 0/8 | 0/8 | 6/8 | 0/8 | |\n\n## Table 7: Generalization Results (alpha=1.00, sig_pairs / 8 total)\n\n| Condition | alpha | Model | Data | unif_fwd | wpair_fwd | wglobal_fwd | unif_bidir | wpair_bidir | wglobal_bidir | Notes |\n|-----------|-------|-------|------|----------|-----------|-------------|------------|-------------|---------------|-------|\n| Baseline | 1.00 | Pythia-410M | Wiki | 1/8 | 6/8 | 2/8 | 1/8 | 5/8 | 2/8 | |\n| Arch: GPT-2m | 1.00 | GPT-2m | Wiki | 2/8 | 8/8 | 2/8 | 2/8 | 7/8 | 2/8 | Best wpair detection |\n| Arch: OPT | 1.00 | OPT-1.3B | Wiki | 0/8 | 6/8 | 0/8 | 0/8 | 5/8 | 0/8 | |\n| Scale: 1.4B s42 | 1.00 | Pythia-1.4B | Wiki | 0/8 | 6/8 | 0/8 | 0/8 | 6/8 | 0/8 | |\n| Scale: 1.4B s43 | 1.00 | Pythia-1.4B | Wiki | 2/8 | 6/8 | 2/8 | 2/8 | 5/8 | 1/8 | |\n| Domain: C4 s42 | 1.00 | Pythia-1B | C4 | 1/8 | 7/8 | 1/8 | 1/8 | 6/8 | 1/8 | |\n| Domain: C4 s43 | 1.00 | Pythia-1B | C4 | 2/8 | 6/8 | 2/8 | 2/8 | 6/8 | 1/8 | |\n\n## Missing Experiments (Not Available for MMCT)\n\n| Condition | Reason |\n|-----------|--------|\n| a010_s43 | Experiment directory does not exist |\n| a010_s44 | Experiment directory does not exist |\n| a025_s42 | Experiment directory does not exist |\n| gen_wiki_gpt2m_a100_s42_v4 | Directory does not exist; GPT-2m alpha=1.00 s42 covered via generalize/gpt2m_wiki_a100_s42 |\n| gen_wiki_gpt2m_a100_s43 | Incomplete: only 3/11 generations, no all_metrics.json |\n\n## Key Observations\n\n1. **FPR = 0 across all modes**: No false positives at alpha=0.00 (0/24 in every mode).\n\n2. **weighted_pair is the most sensitive mode**: Detection rates monotonically increase with alpha (0.125 at a0.10, 0.4375 at a0.25, 0.5833 at a0.50, 0.75 at a0.60, 0.7917 at a0.75). FPR remains zero.\n\n3. **uniform and weighted_global are conservative**: Only detect at alpha>=0.75, and even then only 1-2/24 pairs.\n\n4. **Bidirectional adds minimal filtering**: weighted_pair_bidirectional matches weighted_pair_forward exactly in the alpha sweep (the directional asymmetry filter rarely changes the call).\n\n5. **Table 7 generalization**: weighted_pair_forward detects 6-8/8 pairs across all 7 conditions at alpha=1.00, confirming generalization across architectures (GPT-2m, OPT-1.3B), scales (410M to 1.4B), and domains (Wiki, C4).\n\n6. **Dose-response monotonicity** (weighted_pair_forward pooled rates):\n   - a0.00: 0.000\n   - a0.10: 0.125\n   - a0.25: 0.438\n   - a0.50: 0.583\n   - a0.60: 0.750\n   - a0.75: 0.792\n   - a1.00 (Table 7 avg): 0.813\n\n## Source Files\n\n- Full MMCT results JSON: `westd-19828:/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_results_v2.json`\n- Null distribution: `westd-19828:/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/null_distribution_v2.json`\n- FPR/FNR comparison: `westd-19828:/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/fpr_fnr_comparison_v2.md`\n- Table 7 detail: `westd-19828:/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/mmct_table7.md`\n- Per-condition unified data: `westd-19828:/root/autodl-tmp/distrib_canary_collapse/artifacts/mmct_results/unified_data/*.json`\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "79562bc5-3bab-4834-a247-be9ff811fc8d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 145 · 2026-05-19T03:20:38.236Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_016ePo1h7eriF91WUGT6xFg5`</summary>
+
+```json
+{
+  "name": "MMCT Full Results (All Experiments)",
+  "type": "report",
+  "description": "Comprehensive MMCT results across all 20 completed experiments: 13 alpha-sweep runs (a0.00-a0.75) + 7 Table 7 generalization conditions (a1.00). Includes per-run sig counts for all 6 MMCT modes, FPR/detection rate summary, and dose-response analysis.",
+  "project": "distrib_canary_collapse",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/mmct_full_results.md",
+  "tags": [
+    "mmct",
+    "analysis",
+    "reviewer-response"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a735c45-4333-4661-94c1-d86d5fc1e130",
+  "isSidechain": false,
+  "requestId": "req_011CbBCyTdGAFWY5bumGDcvB",
+  "type": "assistant",
+  "uuid": "53d3d822-1439-4aa7-82fc-f89e9a4d5d34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018WcTJwkQiRY6HWTGDJH2AP",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2951,
+      "cache_read_input_tokens": 79417,
+      "output_tokens": 291,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2951,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 291,
+          "cache_read_input_tokens": 79417,
+          "cache_creation_input_tokens": 2951,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2951
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 146 · 2026-05-19T03:20:38.432Z_
+
+<details><summary>↩ Tool result · `toolu_016ePo1h7eriF91WUGT6xFg5`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260519_73c8d3\", \"name\": \"MMCT Full Results (All Experiments)\", \"type\": \"report\", \"description\": \"Comprehensive MMCT results across all 20 completed experiments: 13 alpha-sweep runs (a0.00-a0.75) + 7 Table 7 generalization conditions (a1.00). Includes per-run sig counts for all 6 MMCT modes, FPR/detection rate summary, and dose-response analysis.\", \"path\": \"projects/distrib_canary_collapse/artifacts/_project/report/mmct_full_results.md\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-19T03:20:38.241698+00:00\", \"tags\": [\"mmct\", \"analysis\", \"reviewer-response\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "53d3d822-1439-4aa7-82fc-f89e9a4d5d34",
+  "isSidechain": false,
+  "promptId": "ffc94b5a-9137-44c7-b862-5768710f4e44",
+  "type": "user",
+  "uuid": "363f15bf-7594-4b6b-8aae-61eebaa66e25",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_73c8d3\\\", \\\"name\\\": \\\"MMCT Full Results (All Experiments)\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Comprehensive MMCT results across all 20 completed experiments: 13 alpha-sweep runs (a0.00-a0.75) + 7 Table 7 generalization conditions (a1.00). Includes per-run sig counts for all 6 MMCT modes, FPR/detection rate summary, and dose-response analysis.\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/_project/report/mmct_full_results.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T03:20:38.241698+00:00\\\", \\\"tags\\\": [\\\"mmct\\\", \\\"analysis\\\", \\\"reviewer-response\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260519_73c8d3\", \"name\": \"MMCT Full Results (All Experiments)\", \"type\": \"report\", \"description\": \"Comprehensive MMCT results across all 20 completed experiments: 13 alpha-sweep runs (a0.00-a0.75) + 7 Table 7 generalization conditions (a1.00). Includes per-run sig counts for all 6 MMCT modes, FPR/detection rate summary, and dose-response analysis.\", \"path\": \"projects/distrib_canary_collapse/artifacts/_project/report/mmct_full_results.md\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-19T03:20:38.241698+00:00\", \"tags\": [\"mmct\", \"analysis\", \"reviewer-response\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "53d3d822-1439-4aa7-82fc-f89e9a4d5d34",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 147 · 2026-05-19T03:20:48.976Z_
+
+完成。汇总：
+
+**执行内容：**
+1. 为 `a010_s42` 生成了缺失的 unified 5-method 分析数据
+2. 重新运行 MMCT，覆盖 20 个实验：13 个 alpha-sweep (含新增的 a010、a060) + 7 个 Table 7 generalize 条件
+
+**关键结果：**
+- FPR = 0（所有 6 种 MMCT 模式在 alpha=0.00 均无假阳性）
+- `weighted_pair_forward` 检测率随 alpha 单调递增：0.00 → 0.125 → 0.438 → 0.583 → 0.750 → 0.792 → 0.813 (Table 7 均值)
+- Table 7 全部 7 个泛化条件在 `weighted_pair_forward` 下检测率 6/8 到 8/8
+- `uniform` 和 `weighted_global` 模式较保守，仅在 alpha>=0.75 有少量检测
+
+**无法运行的实验：**
+- `a010_s43`, `a010_s44`, `a025_s42`: 实验目录不存在
+- `gen_wiki_gpt2m_a100_s43`: 未完成（3/11 generations）
+
+产出文件：`artifacts/mmct_full_results.md`
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "363f15bf-7594-4b6b-8aae-61eebaa66e25",
+  "isSidechain": false,
+  "requestId": "req_011CbBCyvTYoukNNebick3c4",
+  "type": "assistant",
+  "uuid": "d7ea70cd-d500-4754-858e-89dbaf764ba0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0128n12qdp6u5mrREmg2vrS9",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 620,
+      "cache_read_input_tokens": 82368,
+      "output_tokens": 388,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 620,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 388,
+          "cache_read_input_tokens": 82368,
+          "cache_creation_input_tokens": 620,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 620
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 148_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "d7ea70cd-d500-4754-858e-89dbaf764ba0",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 149_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Run MMCT analysis on all completed experiments",
+  "sessionId": "34977d7c-f886-4379-8b9c-0a51bb455911"
+}
+```
+
+---

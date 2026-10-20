@@ -1,0 +1,3335 @@
+# Research conversation: <project_context> # 项目: distrib_canary_collapse ## 运行环境 - 服务器名: westd-19828 - SSH 账户: root（调用 ssh_execute / submit_train
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 66
+- **Recorded user turns:** 1
+- **Tool calls:** 16
+- **Original source:** `logs/chats/exported-trajectories/account-1/d7b7b753-09a6-48ee-8455-a2b274b96cf9.jsonl`
+- **Structured JSON:** [`3c13ea84a2e26e2f92f0.json`](../../sessions/3c/3c13ea84a2e26e2f92f0.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T05:17:36.214Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T05:17:36.214Z",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "content": "&lt;project_context>\n# 项目: distrib_canary_collapse\n\n## 运行环境\n- 服务器名: westd-19828\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh westd-19828  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/distrib_canary_collapse\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C002**: 论文真源为 docs/paper/，禁止直接编辑 artifacts/_project/paper/。需要同步时从 docs/paper/ 复制覆盖。（原因：两目录已分叉，artifacts 版本落后且缺内容，独立维护导致 Reviewer 误报和数字不一致风险。） [来自 D046]\n- **C003**: 禁止引用 α≤0.50 的 TY Granger 显著率作为支撑证据——3-seed 已确认 TY 在低 α 下种子不稳定（d_max 跨 seed 0→1→2，df_resid 从 7 降至 1）（原因：C001 multi-seed 验证完成：0/8 pairs 在 3 seed 一致显著，根因是 T=11 下 ADF 积分阶数不稳定。TY 只在 α=1.0 (4-seed pooled) 可用。）\n- **C004**: 禁止任何 Agent session 在未确认实验状态的情况下 kill 正在运行的训练进程或 rm -rf 实验输出目录。操作前必须先 SSH 检查进程存活 + 目录 generation 进度。（原因：2026-05-16 并发 Agent session 误杀已运行 7h 的 a075_s43/s44 实验，导致 ~14 GPU-hours 浪费。根因是另一 session 未检查实验进度就执行了 kill + rm -rf + 重启。）\n- **C005**: EXIT_CODE=129 (SIGHUP) 不等于实验失败——必须先检查 gen 目录和 all_metrics.json 完整性再判定（原因：M015: 连续三次误判（C4 α=0.50、α=0.60、GPT-2m s43），浪费诊断 Worker + GPU 空转时间） [来自 M015]\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：对 westd-17855 上 3 个已完成的 fp32 实验运行分析\n\n3 个实验刚完成，需要运行 batch_analysis.py 获取 5-method lead-lag 分析结果。\n\n### 已完成实验\n\n| exp_id | 输出目录（westd-17855 上） | alpha |\n|--------|--------------------------|-------|\n| interv_pred_a075_s42_fp32_v4 | /root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/ | 0.75 (intervention) |\n| alpha_sweep_a060_s42_fp32_v3 | /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/ | 0.60 |\n| alpha_sweep_a005_s42_v3 | /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/ | 0.05 |\n\n### 步骤\n\n1. SSH 到 westd-17855\n2. 确认 all_metrics.json 存在：\n   ```bash\n   for d in results/intervention/interv_pred_fp32_v4_d080 results/alpha_sweep/a060_s42_fp32_v3_d080 results/alpha_sweep/a005_s42_fp32_v3_d080; do\n     ls -la /root/autodl-tmp/distrib_canary_collapse/$d/all_metrics.json\n   done\n   ```\n\n3. 对每个实验运行 batch_analysis.py：\n   ```bash\n   cd /root/autodl-tmp/distrib_canary_collapse\n   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base\n   \n   # 分析每个实验\n   python batch_analysis.py --exp_dir results/alpha_sweep/a005_s42_fp32_v3_d080\n   python batch_analysis.py --exp_dir results/alpha_sweep/a060_s42_fp32_v3_d080\n   python batch_analysis.py --exp_dir results/intervention/interv_pred_fp32_v4_d080\n   ```\n   \n   注意：如果 batch_analysis.py 参数不同（如 --input_dir），先查看帮助：\n   ```bash\n   python batch_analysis.py --help\n   ```\n\n4. 检查分析输出。对每个实验，查看：\n   - 5method_leadlag.json（lead-lag 分析结果）\n   - 或类似的分析产出文件\n\n5. 收集关键指标。对每个实验提取：\n   - gen 0-10 的 perplexity, token_entropy, ece, distinct_1/2/3, effective_rank\n   - lead-lag 分析：8 pairs x 5 methods 的显著性（forward direction）\n   - 对于 intervention 实验：intervention 触发 gen 和恢复情况\n\n### 产出\n\n写分析报告到本地文件：\n`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/batch3_fp32_analysis.md`\n\n格式：\n```\n# 三个 fp32 实验分析报告 (2026-05-19)\n\n## 1. alpha_sweep_a005_s42_v3 (α=0.05)\n### 指标轨迹\n(gen-by-gen table)\n### Lead-lag 分析\n(5method results summary)\n### 关键发现\n\n## 2. alpha_sweep_a060_s42_fp32_v3 (α=0.60)\n(同上)\n\n## 3. interv_pred_a075_s42_fp32_v4 (intervention α=0.75)\n(同上)\n\n## 对 Dose-Response Map 的影响\n- α=0.05 填补了哪个格子\n- α=0.60 填补了哪个格子\n- intervention 结果与之前 bf16 版本的对比\n```"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T05:17:36.218Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T05:17:36.218Z",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9"
+}
+```
+
+---
+
+## Round 1
+
+64 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T05:17:36.250Z_
+
+&lt;project_context>
+# 项目: distrib_canary_collapse
+
+## 运行环境
+- 服务器名: westd-19828
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh westd-19828  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/autodl-tmp/distrib_canary_collapse
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C002**: 论文真源为 docs/paper/，禁止直接编辑 artifacts/_project/paper/。需要同步时从 docs/paper/ 复制覆盖。（原因：两目录已分叉，artifacts 版本落后且缺内容，独立维护导致 Reviewer 误报和数字不一致风险。） [来自 D046]
+- **C003**: 禁止引用 α≤0.50 的 TY Granger 显著率作为支撑证据——3-seed 已确认 TY 在低 α 下种子不稳定（d_max 跨 seed 0→1→2，df_resid 从 7 降至 1）（原因：C001 multi-seed 验证完成：0/8 pairs 在 3 seed 一致显著，根因是 T=11 下 ADF 积分阶数不稳定。TY 只在 α=1.0 (4-seed pooled) 可用。）
+- **C004**: 禁止任何 Agent session 在未确认实验状态的情况下 kill 正在运行的训练进程或 rm -rf 实验输出目录。操作前必须先 SSH 检查进程存活 + 目录 generation 进度。（原因：2026-05-16 并发 Agent session 误杀已运行 7h 的 a075_s43/s44 实验，导致 ~14 GPU-hours 浪费。根因是另一 session 未检查实验进度就执行了 kill + rm -rf + 重启。）
+- **C005**: EXIT_CODE=129 (SIGHUP) 不等于实验失败——必须先检查 gen 目录和 all_metrics.json 完整性再判定（原因：M015: 连续三次误判（C4 α=0.50、α=0.60、GPT-2m s43），浪费诊断 Worker + GPU 空转时间） [来自 M015]
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：对 westd-17855 上 3 个已完成的 fp32 实验运行分析
+
+3 个实验刚完成，需要运行 batch_analysis.py 获取 5-method lead-lag 分析结果。
+
+### 已完成实验
+
+| exp_id | 输出目录（westd-17855 上） | alpha |
+|--------|--------------------------|-------|
+| interv_pred_a075_s42_fp32_v4 | /root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/ | 0.75 (intervention) |
+| alpha_sweep_a060_s42_fp32_v3 | /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/ | 0.60 |
+| alpha_sweep_a005_s42_v3 | /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/ | 0.05 |
+
+### 步骤
+
+1. SSH 到 westd-17855
+2. 确认 all_metrics.json 存在：
+   ```bash
+   for d in results/intervention/interv_pred_fp32_v4_d080 results/alpha_sweep/a060_s42_fp32_v3_d080 results/alpha_sweep/a005_s42_fp32_v3_d080; do
+     ls -la /root/autodl-tmp/distrib_canary_collapse/$d/all_metrics.json
+   done
+   ```
+
+3. 对每个实验运行 batch_analysis.py：
+   ```bash
+   cd /root/autodl-tmp/distrib_canary_collapse
+   source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+   
+   # 分析每个实验
+   python batch_analysis.py --exp_dir results/alpha_sweep/a005_s42_fp32_v3_d080
+   python batch_analysis.py --exp_dir results/alpha_sweep/a060_s42_fp32_v3_d080
+   python batch_analysis.py --exp_dir results/intervention/interv_pred_fp32_v4_d080
+   ```
+   
+   注意：如果 batch_analysis.py 参数不同（如 --input_dir），先查看帮助：
+   ```bash
+   python batch_analysis.py --help
+   ```
+
+4. 检查分析输出。对每个实验，查看：
+   - 5method_leadlag.json（lead-lag 分析结果）
+   - 或类似的分析产出文件
+
+5. 收集关键指标。对每个实验提取：
+   - gen 0-10 的 perplexity, token_entropy, ece, distinct_1/2/3, effective_rank
+   - lead-lag 分析：8 pairs x 5 methods 的显著性（forward direction）
+   - 对于 intervention 实验：intervention 触发 gen 和恢复情况
+
+### 产出
+
+写分析报告到本地文件：
+`/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/batch3_fp32_analysis.md`
+
+格式：
+```
+# 三个 fp32 实验分析报告 (2026-05-19)
+
+## 1. alpha_sweep_a005_s42_v3 (α=0.05)
+### 指标轨迹
+(gen-by-gen table)
+### Lead-lag 分析
+(5method results summary)
+### 关键发现
+
+## 2. alpha_sweep_a060_s42_fp32_v3 (α=0.60)
+(同上)
+
+## 3. interv_pred_a075_s42_fp32_v4 (intervention α=0.75)
+(同上)
+
+## 对 Dose-Response Map 的影响
+- α=0.05 填补了哪个格子
+- α=0.60 填补了哪个格子
+- intervention 结果与之前 bf16 版本的对比
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "2cc57dd0-5682-47a4-902c-c95197221084",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T05:17:36.250Z_
+
+```json
+{
+  "parentUuid": "2cc57dd0-5682-47a4-902c-c95197221084",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "8b4f38c9-5129-451f-801a-68938ea25ac1",
+  "timestamp": "2026-05-19T05:17:36.250Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T05:17:36.250Z_
+
+```json
+{
+  "parentUuid": "8b4f38c9-5129-451f-801a-68938ea25ac1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "1d328d84-3019-4c54-890f-b4b1bd40c3dd",
+  "timestamp": "2026-05-19T05:17:36.250Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-19T05:17:36.250Z_
+
+```json
+{
+  "parentUuid": "1d328d84-3019-4c54-890f-b4b1bd40c3dd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "3062680b-ae38-416e-91fc-9726ffff6838",
+  "timestamp": "2026-05-19T05:17:36.250Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze three completed fp32 experiments",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T05:17:39.173Z_
+
+我先确认实验文件存在，然后运行分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3062680b-ae38-416e-91fc-9726ffff6838",
+  "isSidechain": false,
+  "requestId": "req_011CbBMuEdqwLRwKzNVcxmmC",
+  "type": "assistant",
+  "uuid": "bcc4106b-79f1-443c-9c31-5609ea8fd9dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NUUWBS2aKv3D6onTjYfp9r",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14009,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14009,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 120,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14009,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14009
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T05:17:40.206Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_019wPBSsdR6f9mGF54oig43B`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bcc4106b-79f1-443c-9c31-5609ea8fd9dd",
+  "isSidechain": false,
+  "requestId": "req_011CbBMuEdqwLRwKzNVcxmmC",
+  "type": "assistant",
+  "uuid": "e52eecda-e04c-4e59-8163-379d7093cde4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NUUWBS2aKv3D6onTjYfp9r",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14009,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14009,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 120,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14009,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14009
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T05:17:40.212Z_
+
+<details><summary>↩ Tool result · `toolu_019wPBSsdR6f9mGF54oig43B`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e52eecda-e04c-4e59-8163-379d7093cde4",
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "d62b6d3a-5859-474a-b20f-982361aed87b",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__ssh_read_only",
+    "total_deferred_tools": 24
+  },
+  "sourceToolAssistantUUID": "e52eecda-e04c-4e59-8163-379d7093cde4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-19T05:17:43.693Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me first confirm the all_metrics.json files exist on westd-17855.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d62b6d3a-5859-474a-b20f-982361aed87b",
+  "isSidechain": false,
+  "requestId": "req_011CbBMuXmyvBE6BjmgEqP3e",
+  "type": "assistant",
+  "uuid": "1fed77d7-c5d1-4819-ae64-9cc3dfd75072",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018fVWtDXEpmkn33FRZJW4Nd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 691,
+      "cache_read_input_tokens": 25850,
+      "output_tokens": 262,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 691,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 262,
+          "cache_read_input_tokens": 25850,
+          "cache_creation_input_tokens": 691,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 691
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T05:17:46.108Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018huV26vwyj79nosGQhVxPy`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "ls -la /root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/all_metrics.json /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/all_metrics.json /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1fed77d7-c5d1-4819-ae64-9cc3dfd75072",
+  "isSidechain": false,
+  "requestId": "req_011CbBMuXmyvBE6BjmgEqP3e",
+  "type": "assistant",
+  "uuid": "8befc02c-c34f-4bb8-a5b1-e5f5228ad85b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018fVWtDXEpmkn33FRZJW4Nd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 691,
+      "cache_read_input_tokens": 25850,
+      "output_tokens": 262,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 691,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 262,
+          "cache_read_input_tokens": 25850,
+          "cache_creation_input_tokens": 691,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 691
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T05:17:47.289Z_
+
+<details><summary>↩ Tool result · `toolu_018huV26vwyj79nosGQhVxPy`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 4997 May 19 12:38 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/all_metrics.json\\n-rw-r--r-- 1 root root 4961 May 19 12:34 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/all_metrics.json\\n-rw-r--r-- 1 root root 5003 May 19 12:39 /root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8befc02c-c34f-4bb8-a5b1-e5f5228ad85b",
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "4abfcc9b-a015-4141-a45b-74736500d318",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"-rw-r--r-- 1 root root 4997 May 19 12:38 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/all_metrics.json\\\\n-rw-r--r-- 1 root root 4961 May 19 12:34 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/all_metrics.json\\\\n-rw-r--r-- 1 root root 5003 May 19 12:39 /root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/all_metrics.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.17}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"-rw-r--r-- 1 root root 4997 May 19 12:38 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/all_metrics.json\\n-rw-r--r-- 1 root root 4961 May 19 12:34 /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/all_metrics.json\\n-rw-r--r-- 1 root root 5003 May 19 12:39 /root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/all_metrics.json\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.17}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8befc02c-c34f-4bb8-a5b1-e5f5228ad85b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-19T05:17:50.013Z_
+
+三个 all_metrics.json 都存在。先查看 batch_analysis.py 的参数，然后并行运行分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4abfcc9b-a015-4141-a45b-74736500d318",
+  "isSidechain": false,
+  "requestId": "req_011CbBMv3nGWmLk19cDMXVVS",
+  "type": "assistant",
+  "uuid": "26b7ad40-33cd-4739-a024-c93133e9f4cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FzNNJ7hV1ueBa1BBXJRcXd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 540,
+      "cache_read_input_tokens": 26541,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 540,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 26541,
+          "cache_creation_input_tokens": 540,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 540
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-19T05:17:50.536Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_019ojFY4KWS4HoLxFC1Anh8C`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && python batch_analysis.py --help",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26b7ad40-33cd-4739-a024-c93133e9f4cf",
+  "isSidechain": false,
+  "requestId": "req_011CbBMv3nGWmLk19cDMXVVS",
+  "type": "assistant",
+  "uuid": "afb15018-8545-4d52-b49c-999fe7baf007",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FzNNJ7hV1ueBa1BBXJRcXd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 540,
+      "cache_read_input_tokens": 26541,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 540,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 26541,
+          "cache_creation_input_tokens": 540,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 540
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-19T05:17:51.005Z_
+
+<details><summary>↩ Tool result · `toolu_019ojFY4KWS4HoLxFC1Anh8C`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/distrib_canary_collapse && python batch_analysis.py --help'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "afb15018-8545-4d52-b49c-999fe7baf007",
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "35c6eecc-8cdd-46cf-b0e0-9890bd722da7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/autodl-tmp/distrib_canary_collapse && python batch_analysis.py --help'\\\\n\\\\nExit code: 127\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nbash: line 1: python: command not found\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Encountered a bad command exit code!\\n\\nCommand: 'cd /root/autodl-tmp/distrib_canary_collapse && python batch_analysis.py --help'\\n\\nExit code: 127\\n\\nStdout:\\n\\n\\n\\nStderr:\\n\\nbash: line 1: python: command not found\\n\\n\", \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  },
+  "sourceToolAssistantUUID": "afb15018-8545-4d52-b49c-999fe7baf007",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-19T05:17:53.771Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_0121ayHXTr3C74VNP9BncF77`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python batch_analysis.py --help",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "35c6eecc-8cdd-46cf-b0e0-9890bd722da7",
+  "isSidechain": false,
+  "requestId": "req_011CbBMvKiiZH3iCEAoenKd1",
+  "type": "assistant",
+  "uuid": "c3ceb000-7e31-4fe9-81f0-0f9f4ac23b37",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X9B2e8aJXVUoYKTGAoTvhi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 301,
+      "cache_read_input_tokens": 27081,
+      "output_tokens": 147,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 301,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 147,
+          "cache_read_input_tokens": 27081,
+          "cache_creation_input_tokens": 301,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 301
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-19T05:17:55.713Z_
+
+<details><summary>↩ Tool result · `toolu_0121ayHXTr3C74VNP9BncF77`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"usage: batch_analysis.py [-h] --exp_dir EXP_DIR [--output OUTPUT]\\n                         [--null_dirs NULL_DIRS [NULL_DIRS ...]]\\n\\nBatch lead-lag analysis\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --exp_dir EXP_DIR     Experiment results directory with all_metrics.json\\n  --output OUTPUT       Output JSON path (default:\\n                        {exp_dir}/analysis_results.json)\\n  --null_dirs NULL_DIRS [NULL_DIRS ...]\\n                        Alpha=0.00 directories for full MMCT null distribution\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.93}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c3ceb000-7e31-4fe9-81f0-0f9f4ac23b37",
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "82f4b5f6-2a2a-483c-b550-9aefdcb934c3",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"usage: batch_analysis.py [-h] --exp_dir EXP_DIR [--output OUTPUT]\\\\n                         [--null_dirs NULL_DIRS [NULL_DIRS ...]]\\\\n\\\\nBatch lead-lag analysis\\\\n\\\\noptions:\\\\n  -h, --help            show this help message and exit\\\\n  --exp_dir EXP_DIR     Experiment results directory with all_metrics.json\\\\n  --output OUTPUT       Output JSON path (default:\\\\n                        {exp_dir}/analysis_results.json)\\\\n  --null_dirs NULL_DIRS [NULL_DIRS ...]\\\\n                        Alpha=0.00 directories for full MMCT null distribution\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.93}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"usage: batch_analysis.py [-h] --exp_dir EXP_DIR [--output OUTPUT]\\n                         [--null_dirs NULL_DIRS [NULL_DIRS ...]]\\n\\nBatch lead-lag analysis\\n\\noptions:\\n  -h, --help            show this help message and exit\\n  --exp_dir EXP_DIR     Experiment results directory with all_metrics.json\\n  --output OUTPUT       Output JSON path (default:\\n                        {exp_dir}/analysis_results.json)\\n  --null_dirs NULL_DIRS [NULL_DIRS ...]\\n                        Alpha=0.00 directories for full MMCT null distribution\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.93}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c3ceb000-7e31-4fe9-81f0-0f9f4ac23b37",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "82f4b5f6-2a2a-483c-b550-9aefdcb934c3",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze three completed fp32 experiments",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-19T05:17:58.019Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I'll run batch_analysis.py for all three experiments. Let me run them sequentially since they share the same conda environment activation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82f4b5f6-2a2a-483c-b550-9aefdcb934c3",
+  "isSidechain": false,
+  "requestId": "req_011CbBMvfqC95tJ6eMkqyiRB",
+  "type": "assistant",
+  "uuid": "1bbc56df-60d0-49c4-a13a-ef6325a1835a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BEmQKTPtmWCR9HjMEy3Usg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 382,
+      "cache_read_input_tokens": 27382,
+      "output_tokens": 541,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 382,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 541,
+          "cache_read_input_tokens": 27382,
+          "cache_creation_input_tokens": 382,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 382
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-19T05:17:59.036Z_
+
+参数确认。现在运行三个分析。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1bbc56df-60d0-49c4-a13a-ef6325a1835a",
+  "isSidechain": false,
+  "requestId": "req_011CbBMvfqC95tJ6eMkqyiRB",
+  "type": "assistant",
+  "uuid": "a971f9c9-863f-4c0d-bb1f-7d1cf01e156f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BEmQKTPtmWCR9HjMEy3Usg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 382,
+      "cache_read_input_tokens": 27382,
+      "output_tokens": 541,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 382,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 541,
+          "cache_read_input_tokens": 27382,
+          "cache_creation_input_tokens": 382,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 382
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-19T05:18:00.154Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01UZAV8S9JkH6XCektoBh7kJ`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python batch_analysis.py --exp_dir results/alpha_sweep/a005_s42_fp32_v3_d080 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a971f9c9-863f-4c0d-bb1f-7d1cf01e156f",
+  "isSidechain": false,
+  "requestId": "req_011CbBMvfqC95tJ6eMkqyiRB",
+  "type": "assistant",
+  "uuid": "9583693f-1830-4a0c-a68c-0b62f228242b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BEmQKTPtmWCR9HjMEy3Usg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 382,
+      "cache_read_input_tokens": 27382,
+      "output_tokens": 541,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 382,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 541,
+          "cache_read_input_tokens": 27382,
+          "cache_creation_input_tokens": 382,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 382
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-19T05:18:01.427Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01LQWyqEsAQRA3Skmhh6aedz`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python batch_analysis.py --exp_dir results/alpha_sweep/a060_s42_fp32_v3_d080 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9583693f-1830-4a0c-a68c-0b62f228242b",
+  "isSidechain": false,
+  "requestId": "req_011CbBMvfqC95tJ6eMkqyiRB",
+  "type": "assistant",
+  "uuid": "09982fd2-f8d1-4d89-bbe9-dbbbbdd70641",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BEmQKTPtmWCR9HjMEy3Usg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 382,
+      "cache_read_input_tokens": 27382,
+      "output_tokens": 541,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 382,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 541,
+          "cache_read_input_tokens": 27382,
+          "cache_creation_input_tokens": 382,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 382
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-19T05:18:02.134Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01KzRCH2RxEG1VNNaGmXSQYU`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python batch_analysis.py --exp_dir results/intervention/interv_pred_fp32_v4_d080 2>&1",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09982fd2-f8d1-4d89-bbe9-dbbbbdd70641",
+  "isSidechain": false,
+  "requestId": "req_011CbBMvfqC95tJ6eMkqyiRB",
+  "type": "assistant",
+  "uuid": "3564b619-f2bf-4334-9567-31cee0c4f0d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BEmQKTPtmWCR9HjMEy3Usg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 382,
+      "cache_read_input_tokens": 27382,
+      "output_tokens": 541,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 382,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 541,
+          "cache_read_input_tokens": 27382,
+          "cache_creation_input_tokens": 382,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 382
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-19T05:18:04.021Z_
+
+<details><summary>↩ Tool result · `toolu_01UZAV8S9JkH6XCektoBh7kJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data from results/alpha_sweep/a005_s42_fp32_v3_d080\\n  11 generations loaded\\nComputing drift...\\nRunning 5-method lead-lag analysis...\\nNo null_dirs provided, using simple K>=4 consensus as MMCT proxy\\n\\nSaved: results/alpha_sweep/a005_s42_fp32_v3_d080/analysis_results.json\\n\\n============================================================\\nSUMMARY: results/alpha_sweep/a005_s42_fp32_v3_d080\\n============================================================\\nGenerations: 11\\n\\nDrift (gen0->gen10):\\n  token_entropy       : -5.96%\\n  ece                 : +55.41%\\n  perplexity          : -22.78%\\n  distinct_1          : -24.86%\\n  distinct_2          : -28.42%\\n  distinct_3          : -19.54%\\n  effective_rank      : -2.80%\\n  mauve               : -13.08%\\n\\nLead-lag (forward significant / total):\\n  naive_xcorr         : 7/8\\n  diff_xcorr          : 3/8\\n  threshold_onset     : 5/8\\n  perm_granger_fwd    : 0/8\\n  perm_granger_rev    : 0/8\\n  ty_granger          : 3/8\\n  consensus_k4        : 0/8\\n\\nMMCT: weighted_pair_forward, detection_rate=0.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.86}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9583693f-1830-4a0c-a68c-0b62f228242b",
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "6cc65b65-71ef-49d4-89b2-3ab7995ca284",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data from results/alpha_sweep/a005_s42_fp32_v3_d080\\\\n  11 generations loaded\\\\nComputing drift...\\\\nRunning 5-method lead-lag analysis...\\\\nNo null_dirs provided, using simple K>=4 consensus as MMCT proxy\\\\n\\\\nSaved: results/alpha_sweep/a005_s42_fp32_v3_d080/analysis_results.json\\\\n\\\\n============================================================\\\\nSUMMARY: results/alpha_sweep/a005_s42_fp32_v3_d080\\\\n============================================================\\\\nGenerations: 11\\\\n\\\\nDrift (gen0->gen10):\\\\n  token_entropy       : -5.96%\\\\n  ece                 : +55.41%\\\\n  perplexity          : -22.78%\\\\n  distinct_1          : -24.86%\\\\n  distinct_2          : -28.42%\\\\n  distinct_3          : -19.54%\\\\n  effective_rank      : -2.80%\\\\n  mauve               : -13.08%\\\\n\\\\nLead-lag (forward significant / total):\\\\n  naive_xcorr         : 7/8\\\\n  diff_xcorr          : 3/8\\\\n  threshold_onset     : 5/8\\\\n  perm_granger_fwd    : 0/8\\\\n  perm_granger_rev    : 0/8\\\\n  ty_granger          : 3/8\\\\n  consensus_k4        : 0/8\\\\n\\\\nMMCT: weighted_pair_forward, detection_rate=0.0\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.86}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading data from results/alpha_sweep/a005_s42_fp32_v3_d080\\n  11 generations loaded\\nComputing drift...\\nRunning 5-method lead-lag analysis...\\nNo null_dirs provided, using simple K>=4 consensus as MMCT proxy\\n\\nSaved: results/alpha_sweep/a005_s42_fp32_v3_d080/analysis_results.json\\n\\n============================================================\\nSUMMARY: results/alpha_sweep/a005_s42_fp32_v3_d080\\n============================================================\\nGenerations: 11\\n\\nDrift (gen0->gen10):\\n  token_entropy       : -5.96%\\n  ece                 : +55.41%\\n  perplexity          : -22.78%\\n  distinct_1          : -24.86%\\n  distinct_2          : -28.42%\\n  distinct_3          : -19.54%\\n  effective_rank      : -2.80%\\n  mauve               : -13.08%\\n\\nLead-lag (forward significant / total):\\n  naive_xcorr         : 7/8\\n  diff_xcorr          : 3/8\\n  threshold_onset     : 5/8\\n  perm_granger_fwd    : 0/8\\n  perm_granger_rev    : 0/8\\n  ty_granger          : 3/8\\n  consensus_k4        : 0/8\\n\\nMMCT: weighted_pair_forward, detection_rate=0.0\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.86}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9583693f-1830-4a0c-a68c-0b62f228242b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-19T05:18:07.860Z_
+
+<details><summary>↩ Tool result · `toolu_01LQWyqEsAQRA3Skmhh6aedz`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data from results/alpha_sweep/a060_s42_fp32_v3_d080\\n  11 generations loaded\\nComputing drift...\\nRunning 5-method lead-lag analysis...\\nNo null_dirs provided, using simple K>=4 consensus as MMCT proxy\\n\\nSaved: results/alpha_sweep/a060_s42_fp32_v3_d080/analysis_results.json\\n\\n============================================================\\nSUMMARY: results/alpha_sweep/a060_s42_fp32_v3_d080\\n============================================================\\nGenerations: 11\\n\\nDrift (gen0->gen10):\\n  token_entropy       : -23.36%\\n  ece                 : +1260.23%\\n  perplexity          : +68.52%\\n  distinct_1          : -28.17%\\n  distinct_2          : -37.22%\\n  distinct_3          : -35.35%\\n  effective_rank      : +48.74%\\n  mauve               : -16.31%\\n\\nLead-lag (forward significant / total):\\n  naive_xcorr         : 7/8\\n  diff_xcorr          : 8/8\\n  threshold_onset     : 8/8\\n  perm_granger_fwd    : 3/8\\n  perm_granger_rev    : 0/8\\n  ty_granger          : 8/8\\n  consensus_k4        : 7/8\\n\\nMMCT: weighted_pair_forward, detection_rate=0.875\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.83}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "09982fd2-f8d1-4d89-bbe9-dbbbbdd70641",
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "2853086f-5912-4b4b-9d8b-720c6ff3921b",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data from results/alpha_sweep/a060_s42_fp32_v3_d080\\\\n  11 generations loaded\\\\nComputing drift...\\\\nRunning 5-method lead-lag analysis...\\\\nNo null_dirs provided, using simple K>=4 consensus as MMCT proxy\\\\n\\\\nSaved: results/alpha_sweep/a060_s42_fp32_v3_d080/analysis_results.json\\\\n\\\\n============================================================\\\\nSUMMARY: results/alpha_sweep/a060_s42_fp32_v3_d080\\\\n============================================================\\\\nGenerations: 11\\\\n\\\\nDrift (gen0->gen10):\\\\n  token_entropy       : -23.36%\\\\n  ece                 : +1260.23%\\\\n  perplexity          : +68.52%\\\\n  distinct_1          : -28.17%\\\\n  distinct_2          : -37.22%\\\\n  distinct_3          : -35.35%\\\\n  effective_rank      : +48.74%\\\\n  mauve               : -16.31%\\\\n\\\\nLead-lag (forward significant / total):\\\\n  naive_xcorr         : 7/8\\\\n  diff_xcorr          : 8/8\\\\n  threshold_onset     : 8/8\\\\n  perm_granger_fwd    : 3/8\\\\n  perm_granger_rev    : 0/8\\\\n  ty_granger          : 8/8\\\\n  consensus_k4        : 7/8\\\\n\\\\nMMCT: weighted_pair_forward, detection_rate=0.875\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.83}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading data from results/alpha_sweep/a060_s42_fp32_v3_d080\\n  11 generations loaded\\nComputing drift...\\nRunning 5-method lead-lag analysis...\\nNo null_dirs provided, using simple K>=4 consensus as MMCT proxy\\n\\nSaved: results/alpha_sweep/a060_s42_fp32_v3_d080/analysis_results.json\\n\\n============================================================\\nSUMMARY: results/alpha_sweep/a060_s42_fp32_v3_d080\\n============================================================\\nGenerations: 11\\n\\nDrift (gen0->gen10):\\n  token_entropy       : -23.36%\\n  ece                 : +1260.23%\\n  perplexity          : +68.52%\\n  distinct_1          : -28.17%\\n  distinct_2          : -37.22%\\n  distinct_3          : -35.35%\\n  effective_rank      : +48.74%\\n  mauve               : -16.31%\\n\\nLead-lag (forward significant / total):\\n  naive_xcorr         : 7/8\\n  diff_xcorr          : 8/8\\n  threshold_onset     : 8/8\\n  perm_granger_fwd    : 3/8\\n  perm_granger_rev    : 0/8\\n  ty_granger          : 8/8\\n  consensus_k4        : 7/8\\n\\nMMCT: weighted_pair_forward, detection_rate=0.875\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.83}}"
+    }
+  },
+  "sourceToolAssistantUUID": "09982fd2-f8d1-4d89-bbe9-dbbbbdd70641",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-19T05:18:11.684Z_
+
+<details><summary>↩ Tool result · `toolu_01KzRCH2RxEG1VNNaGmXSQYU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Loading data from results/intervention/interv_pred_fp32_v4_d080\\n  11 generations loaded\\nComputing drift...\\nRunning 5-method lead-lag analysis...\\nNo null_dirs provided, using simple K>=4 consensus as MMCT proxy\\n\\nSaved: results/intervention/interv_pred_fp32_v4_d080/analysis_results.json\\n\\n============================================================\\nSUMMARY: results/intervention/interv_pred_fp32_v4_d080\\n============================================================\\nGenerations: 11\\n\\nDrift (gen0->gen10):\\n  token_entropy       : -5.74%\\n  ece                 : +55.78%\\n  perplexity          : -22.76%\\n  distinct_1          : -7.97%\\n  distinct_2          : -5.22%\\n  distinct_3          : -3.90%\\n  effective_rank      : -3.86%\\n  mauve               : +13.82%\\n\\nLead-lag (forward significant / total):\\n  naive_xcorr         : 8/8\\n  diff_xcorr          : 8/8\\n  threshold_onset     : 0/8\\n  perm_granger_fwd    : 6/8\\n  perm_granger_rev    : 0/8\\n  ty_granger          : 8/8\\n  consensus_k4        : 6/8\\n\\nMMCT: weighted_pair_forward, detection_rate=0.75\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.82}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3564b619-f2bf-4334-9567-31cee0c4f0d7",
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "9532fd58-e171-4c47-a159-0f8c1b9b5502",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data from results/intervention/interv_pred_fp32_v4_d080\\\\n  11 generations loaded\\\\nComputing drift...\\\\nRunning 5-method lead-lag analysis...\\\\nNo null_dirs provided, using simple K>=4 consensus as MMCT proxy\\\\n\\\\nSaved: results/intervention/interv_pred_fp32_v4_d080/analysis_results.json\\\\n\\\\n============================================================\\\\nSUMMARY: results/intervention/interv_pred_fp32_v4_d080\\\\n============================================================\\\\nGenerations: 11\\\\n\\\\nDrift (gen0->gen10):\\\\n  token_entropy       : -5.74%\\\\n  ece                 : +55.78%\\\\n  perplexity          : -22.76%\\\\n  distinct_1          : -7.97%\\\\n  distinct_2          : -5.22%\\\\n  distinct_3          : -3.90%\\\\n  effective_rank      : -3.86%\\\\n  mauve               : +13.82%\\\\n\\\\nLead-lag (forward significant / total):\\\\n  naive_xcorr         : 8/8\\\\n  diff_xcorr          : 8/8\\\\n  threshold_onset     : 0/8\\\\n  perm_granger_fwd    : 6/8\\\\n  perm_granger_rev    : 0/8\\\\n  ty_granger          : 8/8\\\\n  consensus_k4        : 6/8\\\\n\\\\nMMCT: weighted_pair_forward, detection_rate=0.75\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.82}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Loading data from results/intervention/interv_pred_fp32_v4_d080\\n  11 generations loaded\\nComputing drift...\\nRunning 5-method lead-lag analysis...\\nNo null_dirs provided, using simple K>=4 consensus as MMCT proxy\\n\\nSaved: results/intervention/interv_pred_fp32_v4_d080/analysis_results.json\\n\\n============================================================\\nSUMMARY: results/intervention/interv_pred_fp32_v4_d080\\n============================================================\\nGenerations: 11\\n\\nDrift (gen0->gen10):\\n  token_entropy       : -5.74%\\n  ece                 : +55.78%\\n  perplexity          : -22.76%\\n  distinct_1          : -7.97%\\n  distinct_2          : -5.22%\\n  distinct_3          : -3.90%\\n  effective_rank      : -3.86%\\n  mauve               : +13.82%\\n\\nLead-lag (forward significant / total):\\n  naive_xcorr         : 8/8\\n  diff_xcorr          : 8/8\\n  threshold_onset     : 0/8\\n  perm_granger_fwd    : 6/8\\n  perm_granger_rev    : 0/8\\n  ty_granger          : 8/8\\n  consensus_k4        : 6/8\\n\\nMMCT: weighted_pair_forward, detection_rate=0.75\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.82}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3564b619-f2bf-4334-9567-31cee0c4f0d7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 29 · 2026-05-19T05:18:11.686Z_
+
+```json
+{
+  "parentUuid": "9532fd58-e171-4c47-a159-0f8c1b9b5502",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "252506a0-db66-4af9-8d65-dcc407a93766",
+  "timestamp": "2026-05-19T05:18:11.686Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 30 · 2026-05-19T05:18:14.432Z_
+
+三个分析都成功。现在获取详细的 gen-by-gen 指标和 lead-lag JSON。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "252506a0-db66-4af9-8d65-dcc407a93766",
+  "isSidechain": false,
+  "requestId": "req_011CbBMwr5sCwy1fzci1UgkD",
+  "type": "assistant",
+  "uuid": "c7f1d438-73bf-474a-928a-c63205c86ba9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSDy5CCAz6VjoUfpttRqCq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2134,
+      "cache_read_input_tokens": 27764,
+      "output_tokens": 427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 27764,
+          "cache_creation_input_tokens": 2134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-19T05:18:16.304Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01GKC8MZN5iinp4MPSowysLG`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c7f1d438-73bf-474a-928a-c63205c86ba9",
+  "isSidechain": false,
+  "requestId": "req_011CbBMwr5sCwy1fzci1UgkD",
+  "type": "assistant",
+  "uuid": "8460c8e2-68f7-4479-9546-d81341629989",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSDy5CCAz6VjoUfpttRqCq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2134,
+      "cache_read_input_tokens": 27764,
+      "output_tokens": 427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 27764,
+          "cache_creation_input_tokens": 2134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-19T05:18:16.811Z_
+
+<details><summary>↩ Tool result · `toolu_01GKC8MZN5iinp4MPSowysLG`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_dir\\\": \\\"results/alpha_sweep/a005_s42_fp32_v3_d080\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"drift_pct\\\": {\\n    \\\"token_entropy\\\": -5.96,\\n    \\\"ece\\\": 55.41,\\n    \\\"perplexity\\\": -22.78,\\n    \\\"distinct_1\\\": -24.86,\\n    \\\"distinct_2\\\": -28.42,\\n    \\\"distinct_3\\\": -19.54,\\n    \\\"effective_rank\\\": -2.8,\\n    \\\"mauve\\\": -13.08\\n  },\\n  \\\"lead_lag\\\": {\\n    \\\"naive_xcorr\\\": {\\n      \\\"forward\\\": 7,\\n      \\\"total\\\": 8\\n    },\\n    \\\"diff_xcorr\\\": {\\n      \\\"forward\\\": 3,\\n      \\\"total\\\": 8\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"forward\\\": 5,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_fwd\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_rev\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"ty_granger\\\": {\\n      \\\"sig\\\": 3,\\n      \\\"total\\\": 8\\n    },\\n    \\\"consensus_k4\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    }\\n  },\\n  \\\"mmct\\\": {\\n    \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n    \\\"detection_rate\\\": 0.0,\\n    \\\"note\\\": \\\"simple_consensus_k4 (no null distribution)\\\"\\n  },\\n  \\\"consensus_detail\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_1\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_2\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_3\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->mauve\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"thresh\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_1\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"naive\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_2\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_3\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->mauve\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    }\\n  ],\\n  \\\"pair_details\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9451,\\n          \\\"p_value\\\": 3.7e-05,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -2,\\n          \\\"r\\\": 0.9121,\\n          \\\"p_value\\\": 0.00159,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.00424,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 68.3975,\\n          \\\"p_value\\\": 0.087782,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.19996,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 1.1777,\\n          \\\"p_value\\\": 0.35013,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.612411,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 1.2695,\\n          \\\"p_value\\\": 0.259869,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4,\\n          \\\"significant\\\": false\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_2\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -2,\\n          \\\"r\\\": 0.9642,\\n          \\\"p_value\\\": 2.8e-05,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -2,\\n          \\\"r\\\": 0.9586,\\n          \\\"p_value\\\": 0.000171,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.001368,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"thresho\\n\\n... [截断: 输出过长，省略 5668 字符] ...\\n\\n\\\": -0.6533,\\n          \\\"p_value\\\": 0.159456,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.18493,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 7,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": -5,\\n          \\\"significant\\\": false\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 2.3791,\\n          \\\"p_value\\\": 0.167566,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.230887,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 3.3301,\\n          \\\"p_value\\\": 0.09918,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.39672,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 10.7934,\\n          \\\"p_value\\\": 0.001019,\\n          \\\"d_max\\\": 2,\\n          \\\"df_resid\\\": 1,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"distinct_3\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 1,\\n          \\\"r\\\": 0.9094,\\n          \\\"p_value\\\": 0.000264,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -4,\\n          \\\"r\\\": -0.6246,\\n          \\\"p_value\\\": 0.18493,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.18493,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 7,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": -5,\\n          \\\"significant\\\": false\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 2.3847,\\n          \\\"p_value\\\": 0.173165,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.230887,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 4.5665,\\n          \\\"p_value\\\": 0.057788,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.39672,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 17.2717,\\n          \\\"p_value\\\": 3.2e-05,\\n          \\\"d_max\\\": 2,\\n          \\\"df_resid\\\": 1,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"mauve\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 4,\\n          \\\"r\\\": 0.7242,\\n          \\\"p_value\\\": 0.065699,\\n          \\\"significant\\\": false\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -2,\\n          \\\"r\\\": -0.7165,\\n          \\\"p_value\\\": 0.045523,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.091046,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 7,\\n          \\\"onset_downstream\\\": null,\\n          \\\"lead_time\\\": 4,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 5.6889,\\n          \\\"p_value\\\": 0.052589,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.19996,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.0623,\\n          \\\"p_value\\\": 0.822036,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.825235,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 28.7573,\\n          \\\"p_value\\\": 0.0,\\n          \\\"d_max\\\": 2,\\n          \\\"df_resid\\\": 1,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8460c8e2-68f7-4479-9546-d81341629989",
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "b3348e0a-d2bb-42a2-a9e7-98f7acff6870",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_dir\\\\\\\": \\\\\\\"results/alpha_sweep/a005_s42_fp32_v3_d080\\\\\\\",\\\\n  \\\\\\\"n_generations\\\\\\\": 11,\\\\n  \\\\\\\"drift_pct\\\\\\\": {\\\\n    \\\\\\\"token_entropy\\\\\\\": -5.96,\\\\n    \\\\\\\"ece\\\\\\\": 55.41,\\\\n    \\\\\\\"perplexity\\\\\\\": -22.78,\\\\n    \\\\\\\"distinct_1\\\\\\\": -24.86,\\\\n    \\\\\\\"distinct_2\\\\\\\": -28.42,\\\\n    \\\\\\\"distinct_3\\\\\\\": -19.54,\\\\n    \\\\\\\"effective_rank\\\\\\\": -2.8,\\\\n    \\\\\\\"mauve\\\\\\\": -13.08\\\\n  },\\\\n  \\\\\\\"lead_lag\\\\\\\": {\\\\n    \\\\\\\"naive_xcorr\\\\\\\": {\\\\n      \\\\\\\"forward\\\\\\\": 7,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"diff_xcorr\\\\\\\": {\\\\n      \\\\\\\"forward\\\\\\\": 3,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"threshold_onset\\\\\\\": {\\\\n      \\\\\\\"forward\\\\\\\": 5,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n      \\\\\\\"sig\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n      \\\\\\\"sig\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"ty_granger\\\\\\\": {\\\\n      \\\\\\\"sig\\\\\\\": 3,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"consensus_k4\\\\\\\": {\\\\n      \\\\\\\"sig\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    }\\\\n  },\\\\n  \\\\\\\"mmct\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"weighted_pair_forward\\\\\\\",\\\\n    \\\\\\\"detection_rate\\\\\\\": 0.0,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"simple_consensus_k4 (no null distribution)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"consensus_detail\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 1,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 2,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    }\\\\n  ],\\\\n  \\\\\\\"pair_details\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"results\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.9451,\\\\n          \\\\\\\"p_value\\\\\\\": 3.7e-05,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -2,\\\\n          \\\\\\\"r\\\\\\\": 0.9121,\\\\n          \\\\\\\"p_value\\\\\\\": 0.00159,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.00424,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"onset_canary\\\\\\\": 1,\\\\n          \\\\\\\"onset_downstream\\\\\\\": 2,\\\\n          \\\\\\\"lead_time\\\\\\\": 1,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 68.3975,\\\\n          \\\\\\\"p_value\\\\\\\": 0.087782,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.19996,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 1.1777,\\\\n          \\\\\\\"p_value\\\\\\\": 0.35013,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"reverse\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.612411,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"chi2\\\\\\\": 1.2695,\\\\n          \\\\\\\"p_value\\\\\\\": 0.259869,\\\\n          \\\\\\\"d_max\\\\\\\": 1,\\\\n          \\\\\\\"df_resid\\\\\\\": 4,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"results\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -2,\\\\n          \\\\\\\"r\\\\\\\": 0.9642,\\\\n          \\\\\\\"p_value\\\\\\\": 2.8e-05,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -2,\\\\n          \\\\\\\"r\\\\\\\": 0.9586,\\\\n          \\\\\\\"p_value\\\\\\\": 0.000171,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.001368,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"thresho\\\\n\\\\n... [截断: 输出过长，省略 5668 字符] ...\\\\n\\\\n\\\\\\\": -0.6533,\\\\n          \\\\\\\"p_value\\\\\\\": 0.159456,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.18493,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"onset_canary\\\\\\\": 7,\\\\n          \\\\\\\"onset_downstream\\\\\\\": 2,\\\\n          \\\\\\\"lead_time\\\\\\\": -5,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 2.3791,\\\\n          \\\\\\\"p_value\\\\\\\": 0.167566,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.230887,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 3.3301,\\\\n          \\\\\\\"p_value\\\\\\\": 0.09918,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"reverse\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.39672,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"chi2\\\\\\\": 10.7934,\\\\n          \\\\\\\"p_value\\\\\\\": 0.001019,\\\\n          \\\\\\\"d_max\\\\\\\": 2,\\\\n          \\\\\\\"df_resid\\\\\\\": 1,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_3\\\\\\\",\\\\n      \\\\\\\"results\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 1,\\\\n          \\\\\\\"r\\\\\\\": 0.9094,\\\\n          \\\\\\\"p_value\\\\\\\": 0.000264,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -4,\\\\n          \\\\\\\"r\\\\\\\": -0.6246,\\\\n          \\\\\\\"p_value\\\\\\\": 0.18493,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.18493,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"onset_canary\\\\\\\": 7,\\\\n          \\\\\\\"onset_downstream\\\\\\\": 2,\\\\n          \\\\\\\"lead_time\\\\\\\": -5,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 2.3847,\\\\n          \\\\\\\"p_value\\\\\\\": 0.173165,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.230887,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 4.5665,\\\\n          \\\\\\\"p_value\\\\\\\": 0.057788,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"reverse\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.39672,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"chi2\\\\\\\": 17.2717,\\\\n          \\\\\\\"p_value\\\\\\\": 3.2e-05,\\\\n          \\\\\\\"d_max\\\\\\\": 2,\\\\n          \\\\\\\"df_resid\\\\\\\": 1,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"mauve\\\\\\\",\\\\n      \\\\\\\"results\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 4,\\\\n          \\\\\\\"r\\\\\\\": 0.7242,\\\\n          \\\\\\\"p_value\\\\\\\": 0.065699,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -2,\\\\n          \\\\\\\"r\\\\\\\": -0.7165,\\\\n          \\\\\\\"p_value\\\\\\\": 0.045523,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.091046,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"onset_canary\\\\\\\": 7,\\\\n          \\\\\\\"onset_downstream\\\\\\\": null,\\\\n          \\\\\\\"lead_time\\\\\\\": 4,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 5.6889,\\\\n          \\\\\\\"p_value\\\\\\\": 0.052589,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.19996,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 0.0623,\\\\n          \\\\\\\"p_value\\\\\\\": 0.822036,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"reverse\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.825235,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"chi2\\\\\\\": 28.7573,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"d_max\\\\\\\": 2,\\\\n          \\\\\\\"df_resid\\\\\\\": 1,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        }\\\\n      }\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_dir\\\": \\\"results/alpha_sweep/a005_s42_fp32_v3_d080\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"drift_pct\\\": {\\n    \\\"token_entropy\\\": -5.96,\\n    \\\"ece\\\": 55.41,\\n    \\\"perplexity\\\": -22.78,\\n    \\\"distinct_1\\\": -24.86,\\n    \\\"distinct_2\\\": -28.42,\\n    \\\"distinct_3\\\": -19.54,\\n    \\\"effective_rank\\\": -2.8,\\n    \\\"mauve\\\": -13.08\\n  },\\n  \\\"lead_lag\\\": {\\n    \\\"naive_xcorr\\\": {\\n      \\\"forward\\\": 7,\\n      \\\"total\\\": 8\\n    },\\n    \\\"diff_xcorr\\\": {\\n      \\\"forward\\\": 3,\\n      \\\"total\\\": 8\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"forward\\\": 5,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_fwd\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_rev\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"ty_granger\\\": {\\n      \\\"sig\\\": 3,\\n      \\\"total\\\": 8\\n    },\\n    \\\"consensus_k4\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    }\\n  },\\n  \\\"mmct\\\": {\\n    \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n    \\\"detection_rate\\\": 0.0,\\n    \\\"note\\\": \\\"simple_consensus_k4 (no null distribution)\\\"\\n  },\\n  \\\"consensus_detail\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_1\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_2\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_3\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->mauve\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"thresh\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_1\\\",\\n      \\\"votes\\\": 1,\\n      \\\"methods\\\": [\\n        \\\"naive\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_2\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_3\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->mauve\\\",\\n      \\\"votes\\\": 2,\\n      \\\"methods\\\": [\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    }\\n  ],\\n  \\\"pair_details\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9451,\\n          \\\"p_value\\\": 3.7e-05,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -2,\\n          \\\"r\\\": 0.9121,\\n          \\\"p_value\\\": 0.00159,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.00424,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 68.3975,\\n          \\\"p_value\\\": 0.087782,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.19996,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 1.1777,\\n          \\\"p_value\\\": 0.35013,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.612411,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 1.2695,\\n          \\\"p_value\\\": 0.259869,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4,\\n          \\\"significant\\\": false\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_2\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -2,\\n          \\\"r\\\": 0.9642,\\n          \\\"p_value\\\": 2.8e-05,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -2,\\n          \\\"r\\\": 0.9586,\\n          \\\"p_value\\\": 0.000171,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.001368,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"thresho\\n\\n... [截断: 输出过长，省略 5668 字符] ...\\n\\n\\\": -0.6533,\\n          \\\"p_value\\\": 0.159456,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.18493,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 7,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": -5,\\n          \\\"significant\\\": false\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 2.3791,\\n          \\\"p_value\\\": 0.167566,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.230887,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 3.3301,\\n          \\\"p_value\\\": 0.09918,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.39672,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 10.7934,\\n          \\\"p_value\\\": 0.001019,\\n          \\\"d_max\\\": 2,\\n          \\\"df_resid\\\": 1,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"distinct_3\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 1,\\n          \\\"r\\\": 0.9094,\\n          \\\"p_value\\\": 0.000264,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -4,\\n          \\\"r\\\": -0.6246,\\n          \\\"p_value\\\": 0.18493,\\n          \\\"significant\\\": false,\\n          \\\"p_fdr\\\": 0.18493,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 7,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": -5,\\n          \\\"significant\\\": false\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 2.3847,\\n          \\\"p_value\\\": 0.173165,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.230887,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 4.5665,\\n          \\\"p_value\\\": 0.057788,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.39672,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 17.2717,\\n          \\\"p_value\\\": 3.2e-05,\\n          \\\"d_max\\\": 2,\\n          \\\"df_resid\\\": 1,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"mauve\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 4,\\n          \\\"r\\\": 0.7242,\\n          \\\"p_value\\\": 0.065699,\\n          \\\"significant\\\": false\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -2,\\n          \\\"r\\\": -0.7165,\\n          \\\"p_value\\\": 0.045523,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.091046,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 7,\\n          \\\"onset_downstream\\\": null,\\n          \\\"lead_time\\\": 4,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 5.6889,\\n          \\\"p_value\\\": 0.052589,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.19996,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.0623,\\n          \\\"p_value\\\": 0.822036,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.825235,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 28.7573,\\n          \\\"p_value\\\": 0.0,\\n          \\\"d_max\\\": 2,\\n          \\\"df_resid\\\": 1,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  },
+  "sourceToolAssistantUUID": "8460c8e2-68f7-4479-9546-d81341629989",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-19T05:18:17.308Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01N1GpGC7tLHGtDMdkZGFj8w`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3348e0a-d2bb-42a2-a9e7-98f7acff6870",
+  "isSidechain": false,
+  "requestId": "req_011CbBMwr5sCwy1fzci1UgkD",
+  "type": "assistant",
+  "uuid": "2d59a15b-c01f-46b4-963e-1f4f877a7d81",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSDy5CCAz6VjoUfpttRqCq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2134,
+      "cache_read_input_tokens": 27764,
+      "output_tokens": 427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 27764,
+          "cache_creation_input_tokens": 2134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-19T05:18:17.809Z_
+
+<details><summary>↩ Tool result · `toolu_01N1GpGC7tLHGtDMdkZGFj8w`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_dir\\\": \\\"results/alpha_sweep/a060_s42_fp32_v3_d080\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"drift_pct\\\": {\\n    \\\"token_entropy\\\": -23.36,\\n    \\\"ece\\\": 1260.23,\\n    \\\"perplexity\\\": 68.52,\\n    \\\"distinct_1\\\": -28.17,\\n    \\\"distinct_2\\\": -37.22,\\n    \\\"distinct_3\\\": -35.35,\\n    \\\"effective_rank\\\": 48.74,\\n    \\\"mauve\\\": -16.31\\n  },\\n  \\\"lead_lag\\\": {\\n    \\\"naive_xcorr\\\": {\\n      \\\"forward\\\": 7,\\n      \\\"total\\\": 8\\n    },\\n    \\\"diff_xcorr\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_fwd\\\": {\\n      \\\"sig\\\": 3,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_rev\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"ty_granger\\\": {\\n      \\\"sig\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"consensus_k4\\\": {\\n      \\\"sig\\\": 7,\\n      \\\"total\\\": 8\\n    }\\n  },\\n  \\\"mmct\\\": {\\n    \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n    \\\"detection_rate\\\": 0.875,\\n    \\\"note\\\": \\\"simple_consensus_k4 (no null distribution)\\\"\\n  },\\n  \\\"consensus_detail\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_1\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_2\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_3\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->mauve\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_1\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_2\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_3\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->mauve\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    }\\n  ],\\n  \\\"pair_details\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 5,\\n          \\\"r\\\": -0.9198,\\n          \\\"p_value\\\": 0.009392,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9927,\\n          \\\"p_value\\\": 0.0,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.0,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 5425.9425,\\n          \\\"p_value\\\": 0.002,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.016,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.0752,\\n          \\\"p_value\\\": 0.941012,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.941012,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 37.0463,\\n          \\\"p_value\\\": 0.0,\\n          \\\"d_max\\\": 0,\\n          \\\"df_resid\\\": 7,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_2\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 5,\\n          \\\"r\\\": -0.9481,\\n          \\\"p_value\\\": 0.003975,\\n          \\\"significant\\\": true\\n        },\\n        \\\"di\\n\\n... [截断: 输出过长，省略 5877 字符] ...\\n\\n       \\\"r\\\": 0.9832,\\n          \\\"p_value\\\": 1.2e-05,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 3.2e-05,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 434.2915,\\n          \\\"p_value\\\": 0.017996,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.047989,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 1.4363,\\n          \\\"p_value\\\": 0.311138,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.941012,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 62.4419,\\n          \\\"p_value\\\": 0.0,\\n          \\\"d_max\\\": 0,\\n          \\\"df_resid\\\": 7,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"distinct_3\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.7773,\\n          \\\"p_value\\\": 0.068878,\\n          \\\"significant\\\": false\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -3,\\n          \\\"r\\\": 0.915,\\n          \\\"p_value\\\": 0.003862,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.005149,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 118.2984,\\n          \\\"p_value\\\": 0.025995,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.05199,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 1.0475,\\n          \\\"p_value\\\": 0.353729,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.941012,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 11.8958,\\n          \\\"p_value\\\": 0.000563,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"mauve\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.7958,\\n          \\\"p_value\\\": 0.005896,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": -0.9159,\\n          \\\"p_value\\\": 0.028898,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.033026,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 4,\\n          \\\"lead_time\\\": 3,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.8549,\\n          \\\"p_value\\\": 0.246751,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.282001,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.0436,\\n          \\\"p_value\\\": 0.84803,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.941012,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 8.3041,\\n          \\\"p_value\\\": 0.003955,\\n          \\\"d_max\\\": 0,\\n          \\\"df_resid\\\": 7,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2d59a15b-c01f-46b4-963e-1f4f877a7d81",
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "454bbb28-12b0-4f4b-b8f2-de3d99d88cc8",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_dir\\\\\\\": \\\\\\\"results/alpha_sweep/a060_s42_fp32_v3_d080\\\\\\\",\\\\n  \\\\\\\"n_generations\\\\\\\": 11,\\\\n  \\\\\\\"drift_pct\\\\\\\": {\\\\n    \\\\\\\"token_entropy\\\\\\\": -23.36,\\\\n    \\\\\\\"ece\\\\\\\": 1260.23,\\\\n    \\\\\\\"perplexity\\\\\\\": 68.52,\\\\n    \\\\\\\"distinct_1\\\\\\\": -28.17,\\\\n    \\\\\\\"distinct_2\\\\\\\": -37.22,\\\\n    \\\\\\\"distinct_3\\\\\\\": -35.35,\\\\n    \\\\\\\"effective_rank\\\\\\\": 48.74,\\\\n    \\\\\\\"mauve\\\\\\\": -16.31\\\\n  },\\\\n  \\\\\\\"lead_lag\\\\\\\": {\\\\n    \\\\\\\"naive_xcorr\\\\\\\": {\\\\n      \\\\\\\"forward\\\\\\\": 7,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"diff_xcorr\\\\\\\": {\\\\n      \\\\\\\"forward\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"threshold_onset\\\\\\\": {\\\\n      \\\\\\\"forward\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n      \\\\\\\"sig\\\\\\\": 3,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n      \\\\\\\"sig\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"ty_granger\\\\\\\": {\\\\n      \\\\\\\"sig\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"consensus_k4\\\\\\\": {\\\\n      \\\\\\\"sig\\\\\\\": 7,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    }\\\\n  },\\\\n  \\\\\\\"mmct\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"weighted_pair_forward\\\\\\\",\\\\n    \\\\\\\"detection_rate\\\\\\\": 0.875,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"simple_consensus_k4 (no null distribution)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"consensus_detail\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 5,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 4,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 4,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 4,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 5,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 5,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 4,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"thresh\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    }\\\\n  ],\\\\n  \\\\\\\"pair_details\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"results\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 5,\\\\n          \\\\\\\"r\\\\\\\": -0.9198,\\\\n          \\\\\\\"p_value\\\\\\\": 0.009392,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.9927,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.0,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"onset_canary\\\\\\\": 1,\\\\n          \\\\\\\"onset_downstream\\\\\\\": 2,\\\\n          \\\\\\\"lead_time\\\\\\\": 1,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 5425.9425,\\\\n          \\\\\\\"p_value\\\\\\\": 0.002,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.016,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 0.0752,\\\\n          \\\\\\\"p_value\\\\\\\": 0.941012,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"reverse\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.941012,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"chi2\\\\\\\": 37.0463,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"d_max\\\\\\\": 0,\\\\n          \\\\\\\"df_resid\\\\\\\": 7,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"results\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": 5,\\\\n          \\\\\\\"r\\\\\\\": -0.9481,\\\\n          \\\\\\\"p_value\\\\\\\": 0.003975,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"di\\\\n\\\\n... [截断: 输出过长，省略 5877 字符] ...\\\\n\\\\n       \\\\\\\"r\\\\\\\": 0.9832,\\\\n          \\\\\\\"p_value\\\\\\\": 1.2e-05,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 3.2e-05,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"onset_canary\\\\\\\": 1,\\\\n          \\\\\\\"onset_downstream\\\\\\\": 2,\\\\n          \\\\\\\"lead_time\\\\\\\": 1,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 434.2915,\\\\n          \\\\\\\"p_value\\\\\\\": 0.017996,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.047989,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 1.4363,\\\\n          \\\\\\\"p_value\\\\\\\": 0.311138,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"reverse\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.941012,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"chi2\\\\\\\": 62.4419,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"d_max\\\\\\\": 0,\\\\n          \\\\\\\"df_resid\\\\\\\": 7,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_3\\\\\\\",\\\\n      \\\\\\\"results\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -5,\\\\n          \\\\\\\"r\\\\\\\": 0.7773,\\\\n          \\\\\\\"p_value\\\\\\\": 0.068878,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -3,\\\\n          \\\\\\\"r\\\\\\\": 0.915,\\\\n          \\\\\\\"p_value\\\\\\\": 0.003862,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.005149,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"onset_canary\\\\\\\": 1,\\\\n          \\\\\\\"onset_downstream\\\\\\\": 2,\\\\n          \\\\\\\"lead_time\\\\\\\": 1,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 118.2984,\\\\n          \\\\\\\"p_value\\\\\\\": 0.025995,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.05199,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 1.0475,\\\\n          \\\\\\\"p_value\\\\\\\": 0.353729,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"reverse\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.941012,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"chi2\\\\\\\": 11.8958,\\\\n          \\\\\\\"p_value\\\\\\\": 0.000563,\\\\n          \\\\\\\"d_max\\\\\\\": 1,\\\\n          \\\\\\\"df_resid\\\\\\\": 4,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"mauve\\\\\\\",\\\\n      \\\\\\\"results\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.7958,\\\\n          \\\\\\\"p_value\\\\\\\": 0.005896,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -5,\\\\n          \\\\\\\"r\\\\\\\": -0.9159,\\\\n          \\\\\\\"p_value\\\\\\\": 0.028898,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.033026,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"onset_canary\\\\\\\": 1,\\\\n          \\\\\\\"onset_downstream\\\\\\\": 4,\\\\n          \\\\\\\"lead_time\\\\\\\": 3,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 0.8549,\\\\n          \\\\\\\"p_value\\\\\\\": 0.246751,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.282001,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 0.0436,\\\\n          \\\\\\\"p_value\\\\\\\": 0.84803,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"reverse\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.941012,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"chi2\\\\\\\": 8.3041,\\\\n          \\\\\\\"p_value\\\\\\\": 0.003955,\\\\n          \\\\\\\"d_max\\\\\\\": 0,\\\\n          \\\\\\\"df_resid\\\\\\\": 7,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        }\\\\n      }\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.49}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_dir\\\": \\\"results/alpha_sweep/a060_s42_fp32_v3_d080\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"drift_pct\\\": {\\n    \\\"token_entropy\\\": -23.36,\\n    \\\"ece\\\": 1260.23,\\n    \\\"perplexity\\\": 68.52,\\n    \\\"distinct_1\\\": -28.17,\\n    \\\"distinct_2\\\": -37.22,\\n    \\\"distinct_3\\\": -35.35,\\n    \\\"effective_rank\\\": 48.74,\\n    \\\"mauve\\\": -16.31\\n  },\\n  \\\"lead_lag\\\": {\\n    \\\"naive_xcorr\\\": {\\n      \\\"forward\\\": 7,\\n      \\\"total\\\": 8\\n    },\\n    \\\"diff_xcorr\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_fwd\\\": {\\n      \\\"sig\\\": 3,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_rev\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"ty_granger\\\": {\\n      \\\"sig\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"consensus_k4\\\": {\\n      \\\"sig\\\": 7,\\n      \\\"total\\\": 8\\n    }\\n  },\\n  \\\"mmct\\\": {\\n    \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n    \\\"detection_rate\\\": 0.875,\\n    \\\"note\\\": \\\"simple_consensus_k4 (no null distribution)\\\"\\n  },\\n  \\\"consensus_detail\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_1\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_2\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_3\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->mauve\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_1\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_2\\\",\\n      \\\"votes\\\": 5,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_3\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->mauve\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"thresh\\\",\\n        \\\"ty\\\"\\n      ]\\n    }\\n  ],\\n  \\\"pair_details\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 5,\\n          \\\"r\\\": -0.9198,\\n          \\\"p_value\\\": 0.009392,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9927,\\n          \\\"p_value\\\": 0.0,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.0,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 5425.9425,\\n          \\\"p_value\\\": 0.002,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.016,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.0752,\\n          \\\"p_value\\\": 0.941012,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.941012,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 37.0463,\\n          \\\"p_value\\\": 0.0,\\n          \\\"d_max\\\": 0,\\n          \\\"df_resid\\\": 7,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_2\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": 5,\\n          \\\"r\\\": -0.9481,\\n          \\\"p_value\\\": 0.003975,\\n          \\\"significant\\\": true\\n        },\\n        \\\"di\\n\\n... [截断: 输出过长，省略 5877 字符] ...\\n\\n       \\\"r\\\": 0.9832,\\n          \\\"p_value\\\": 1.2e-05,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 3.2e-05,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 434.2915,\\n          \\\"p_value\\\": 0.017996,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.047989,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 1.4363,\\n          \\\"p_value\\\": 0.311138,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.941012,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 62.4419,\\n          \\\"p_value\\\": 0.0,\\n          \\\"d_max\\\": 0,\\n          \\\"df_resid\\\": 7,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"distinct_3\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.7773,\\n          \\\"p_value\\\": 0.068878,\\n          \\\"significant\\\": false\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -3,\\n          \\\"r\\\": 0.915,\\n          \\\"p_value\\\": 0.003862,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.005149,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 2,\\n          \\\"lead_time\\\": 1,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 118.2984,\\n          \\\"p_value\\\": 0.025995,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.05199,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 1.0475,\\n          \\\"p_value\\\": 0.353729,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.941012,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 11.8958,\\n          \\\"p_value\\\": 0.000563,\\n          \\\"d_max\\\": 1,\\n          \\\"df_resid\\\": 4,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"mauve\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.7958,\\n          \\\"p_value\\\": 0.005896,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": -0.9159,\\n          \\\"p_value\\\": 0.028898,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.033026,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": 1,\\n          \\\"onset_downstream\\\": 4,\\n          \\\"lead_time\\\": 3,\\n          \\\"significant\\\": true\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.8549,\\n          \\\"p_value\\\": 0.246751,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.282001,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.0436,\\n          \\\"p_value\\\": 0.84803,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.941012,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 8.3041,\\n          \\\"p_value\\\": 0.003955,\\n          \\\"d_max\\\": 0,\\n          \\\"df_resid\\\": 7,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.49}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2d59a15b-c01f-46b4-963e-1f4f877a7d81",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-19T05:18:17.884Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01EDn9jr7YobPEdZKtabU35x`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/analysis_results.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "454bbb28-12b0-4f4b-b8f2-de3d99d88cc8",
+  "isSidechain": false,
+  "requestId": "req_011CbBMwr5sCwy1fzci1UgkD",
+  "type": "assistant",
+  "uuid": "487fd1b0-248f-4f06-9e21-23882b38475f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CSDy5CCAz6VjoUfpttRqCq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2134,
+      "cache_read_input_tokens": 27764,
+      "output_tokens": 427,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2134,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 427,
+          "cache_read_input_tokens": 27764,
+          "cache_creation_input_tokens": 2134,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2134
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "487fd1b0-248f-4f06-9e21-23882b38475f",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze three completed fp32 experiments",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9"
+}
+```
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-19T05:18:18.345Z_
+
+<details><summary>↩ Tool result · `toolu_01EDn9jr7YobPEdZKtabU35x`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_dir\\\": \\\"results/intervention/interv_pred_fp32_v4_d080\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"drift_pct\\\": {\\n    \\\"token_entropy\\\": -5.74,\\n    \\\"ece\\\": 55.78,\\n    \\\"perplexity\\\": -22.76,\\n    \\\"distinct_1\\\": -7.97,\\n    \\\"distinct_2\\\": -5.22,\\n    \\\"distinct_3\\\": -3.9,\\n    \\\"effective_rank\\\": -3.86,\\n    \\\"mauve\\\": 13.82\\n  },\\n  \\\"lead_lag\\\": {\\n    \\\"naive_xcorr\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"diff_xcorr\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"forward\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_fwd\\\": {\\n      \\\"sig\\\": 6,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_rev\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"ty_granger\\\": {\\n      \\\"sig\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"consensus_k4\\\": {\\n      \\\"sig\\\": 6,\\n      \\\"total\\\": 8\\n    }\\n  },\\n  \\\"mmct\\\": {\\n    \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n    \\\"detection_rate\\\": 0.75,\\n    \\\"note\\\": \\\"simple_consensus_k4 (no null distribution)\\\"\\n  },\\n  \\\"consensus_detail\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_1\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_2\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_3\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->mauve\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_1\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_2\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_3\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->mauve\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"ty\\\"\\n      ]\\n    }\\n  ],\\n  \\\"pair_details\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9543,\\n          \\\"p_value\\\": 1.8e-05,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9883,\\n          \\\"p_value\\\": 1e-06,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 2e-06,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": null,\\n          \\\"onset_downstream\\\": null,\\n          \\\"lead_time\\\": 0,\\n          \\\"significant\\\": false\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 1781.534,\\n          \\\"p_value\\\": 0.0006,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.0048,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 10.7154,\\n          \\\"p_value\\\": 0.112777,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.255416,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 246.0574,\\n          \\\"p_value\\\": 0.0,\\n          \\\"d_max\\\": 0,\\n          \\\"df_resid\\\": 7,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_2\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9949,\\n          \\\"p_value\\\": 0.0,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": \\n\\n... [截断: 输出过长，省略 5821 字符] ...\\n\\n       \\\"r\\\": 0.9919,\\n          \\\"p_value\\\": 0.0,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.0,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": null,\\n          \\\"onset_downstream\\\": null,\\n          \\\"lead_time\\\": 0,\\n          \\\"significant\\\": false\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 487.7843,\\n          \\\"p_value\\\": 0.010198,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.016957,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 6.2608,\\n          \\\"p_value\\\": 0.141972,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.255416,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 162.2482,\\n          \\\"p_value\\\": 0.0,\\n          \\\"d_max\\\": 0,\\n          \\\"df_resid\\\": 7,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"distinct_3\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.8202,\\n          \\\"p_value\\\": 0.003659,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.976,\\n          \\\"p_value\\\": 7e-06,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 1.1e-05,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": null,\\n          \\\"onset_downstream\\\": null,\\n          \\\"lead_time\\\": 0,\\n          \\\"significant\\\": false\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 116.7546,\\n          \\\"p_value\\\": 0.015597,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.020796,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 7.1133,\\n          \\\"p_value\\\": 0.191562,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.255416,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 31.0808,\\n          \\\"p_value\\\": 0.0,\\n          \\\"d_max\\\": 0,\\n          \\\"df_resid\\\": 7,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"mauve\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.8614,\\n          \\\"p_value\\\": 0.027483,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.9169,\\n          \\\"p_value\\\": 0.0284,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.032457,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": null,\\n          \\\"onset_downstream\\\": null,\\n          \\\"lead_time\\\": 0,\\n          \\\"significant\\\": false\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 7.3474,\\n          \\\"p_value\\\": 0.055189,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.063073,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.1178,\\n          \\\"p_value\\\": 0.74785,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.74785,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 9.0865,\\n          \\\"p_value\\\": 0.002575,\\n          \\\"d_max\\\": 0,\\n          \\\"df_resid\\\": 7,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "487fd1b0-248f-4f06-9e21-23882b38475f",
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "d7ce296c-9cd9-4b89-a6c9-54c87ab4c948",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"exp_dir\\\\\\\": \\\\\\\"results/intervention/interv_pred_fp32_v4_d080\\\\\\\",\\\\n  \\\\\\\"n_generations\\\\\\\": 11,\\\\n  \\\\\\\"drift_pct\\\\\\\": {\\\\n    \\\\\\\"token_entropy\\\\\\\": -5.74,\\\\n    \\\\\\\"ece\\\\\\\": 55.78,\\\\n    \\\\\\\"perplexity\\\\\\\": -22.76,\\\\n    \\\\\\\"distinct_1\\\\\\\": -7.97,\\\\n    \\\\\\\"distinct_2\\\\\\\": -5.22,\\\\n    \\\\\\\"distinct_3\\\\\\\": -3.9,\\\\n    \\\\\\\"effective_rank\\\\\\\": -3.86,\\\\n    \\\\\\\"mauve\\\\\\\": 13.82\\\\n  },\\\\n  \\\\\\\"lead_lag\\\\\\\": {\\\\n    \\\\\\\"naive_xcorr\\\\\\\": {\\\\n      \\\\\\\"forward\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"diff_xcorr\\\\\\\": {\\\\n      \\\\\\\"forward\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"threshold_onset\\\\\\\": {\\\\n      \\\\\\\"forward\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n      \\\\\\\"sig\\\\\\\": 6,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n      \\\\\\\"sig\\\\\\\": 0,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"ty_granger\\\\\\\": {\\\\n      \\\\\\\"sig\\\\\\\": 8,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    },\\\\n    \\\\\\\"consensus_k4\\\\\\\": {\\\\n      \\\\\\\"sig\\\\\\\": 6,\\\\n      \\\\\\\"total\\\\\\\": 8\\\\n    }\\\\n  },\\\\n  \\\\\\\"mmct\\\\\\\": {\\\\n    \\\\\\\"mode\\\\\\\": \\\\\\\"weighted_pair_forward\\\\\\\",\\\\n    \\\\\\\"detection_rate\\\\\\\": 0.75,\\\\n    \\\\\\\"note\\\\\\\": \\\\\\\"simple_consensus_k4 (no null distribution)\\\\\\\"\\\\n  },\\\\n  \\\\\\\"consensus_detail\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 4,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 4,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 4,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"token_entropy->mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_1\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 4,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_2\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 4,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->distinct_3\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 4,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"pg_fwd\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    },\\\\n    {\\\\n      \\\\\\\"pair\\\\\\\": \\\\\\\"ece->mauve\\\\\\\",\\\\n      \\\\\\\"votes\\\\\\\": 3,\\\\n      \\\\\\\"methods\\\\\\\": [\\\\n        \\\\\\\"naive\\\\\\\",\\\\n        \\\\\\\"diff\\\\\\\",\\\\n        \\\\\\\"ty\\\\\\\"\\\\n      ]\\\\n    }\\\\n  ],\\\\n  \\\\\\\"pair_details\\\\\\\": [\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_1\\\\\\\",\\\\n      \\\\\\\"results\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.9543,\\\\n          \\\\\\\"p_value\\\\\\\": 1.8e-05,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.9883,\\\\n          \\\\\\\"p_value\\\\\\\": 1e-06,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 2e-06,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"onset_canary\\\\\\\": null,\\\\n          \\\\\\\"onset_downstream\\\\\\\": null,\\\\n          \\\\\\\"lead_time\\\\\\\": 0,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 1781.534,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0006,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.0048,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 10.7154,\\\\n          \\\\\\\"p_value\\\\\\\": 0.112777,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"reverse\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.255416,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"chi2\\\\\\\": 246.0574,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"d_max\\\\\\\": 0,\\\\n          \\\\\\\"df_resid\\\\\\\": 7,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"token_entropy\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_2\\\\\\\",\\\\n      \\\\\\\"results\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.9949,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": \\\\n\\\\n... [截断: 输出过长，省略 5821 字符] ...\\\\n\\\\n       \\\\\\\"r\\\\\\\": 0.9919,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.0,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"onset_canary\\\\\\\": null,\\\\n          \\\\\\\"onset_downstream\\\\\\\": null,\\\\n          \\\\\\\"lead_time\\\\\\\": 0,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 487.7843,\\\\n          \\\\\\\"p_value\\\\\\\": 0.010198,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.016957,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 6.2608,\\\\n          \\\\\\\"p_value\\\\\\\": 0.141972,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"reverse\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.255416,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"chi2\\\\\\\": 162.2482,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"d_max\\\\\\\": 0,\\\\n          \\\\\\\"df_resid\\\\\\\": 7,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"distinct_3\\\\\\\",\\\\n      \\\\\\\"results\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.8202,\\\\n          \\\\\\\"p_value\\\\\\\": 0.003659,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -1,\\\\n          \\\\\\\"r\\\\\\\": 0.976,\\\\n          \\\\\\\"p_value\\\\\\\": 7e-06,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 1.1e-05,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"onset_canary\\\\\\\": null,\\\\n          \\\\\\\"onset_downstream\\\\\\\": null,\\\\n          \\\\\\\"lead_time\\\\\\\": 0,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 116.7546,\\\\n          \\\\\\\"p_value\\\\\\\": 0.015597,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.020796,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 7.1133,\\\\n          \\\\\\\"p_value\\\\\\\": 0.191562,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"reverse\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.255416,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"chi2\\\\\\\": 31.0808,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0,\\\\n          \\\\\\\"d_max\\\\\\\": 0,\\\\n          \\\\\\\"df_resid\\\\\\\": 7,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        }\\\\n      }\\\\n    },\\\\n    {\\\\n      \\\\\\\"canary\\\\\\\": \\\\\\\"ece\\\\\\\",\\\\n      \\\\\\\"downstream\\\\\\\": \\\\\\\"mauve\\\\\\\",\\\\n      \\\\\\\"results\\\\\\\": {\\\\n        \\\\\\\"naive_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"naive_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -5,\\\\n          \\\\\\\"r\\\\\\\": 0.8614,\\\\n          \\\\\\\"p_value\\\\\\\": 0.027483,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"diff_xcorr\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"diff_xcorr\\\\\\\",\\\\n          \\\\\\\"peak_lag\\\\\\\": -5,\\\\n          \\\\\\\"r\\\\\\\": 0.9169,\\\\n          \\\\\\\"p_value\\\\\\\": 0.0284,\\\\n          \\\\\\\"significant\\\\\\\": true,\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.032457,\\\\n          \\\\\\\"significant_fdr\\\\\\\": true\\\\n        },\\\\n        \\\\\\\"threshold_onset\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"threshold_onset\\\\\\\",\\\\n          \\\\\\\"onset_canary\\\\\\\": null,\\\\n          \\\\\\\"onset_downstream\\\\\\\": null,\\\\n          \\\\\\\"lead_time\\\\\\\": 0,\\\\n          \\\\\\\"significant\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"perm_granger_fwd\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 7.3474,\\\\n          \\\\\\\"p_value\\\\\\\": 0.055189,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"forward\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.063073,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"perm_granger_rev\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"perm_granger\\\\\\\",\\\\n          \\\\\\\"f_stat\\\\\\\": 0.1178,\\\\n          \\\\\\\"p_value\\\\\\\": 0.74785,\\\\n          \\\\\\\"significant\\\\\\\": false,\\\\n          \\\\\\\"direction\\\\\\\": \\\\\\\"reverse\\\\\\\",\\\\n          \\\\\\\"p_fdr\\\\\\\": 0.74785,\\\\n          \\\\\\\"significant_fdr\\\\\\\": false\\\\n        },\\\\n        \\\\\\\"ty_granger\\\\\\\": {\\\\n          \\\\\\\"method\\\\\\\": \\\\\\\"ty_granger\\\\\\\",\\\\n          \\\\\\\"chi2\\\\\\\": 9.0865,\\\\n          \\\\\\\"p_value\\\\\\\": 0.002575,\\\\n          \\\\\\\"d_max\\\\\\\": 0,\\\\n          \\\\\\\"df_resid\\\\\\\": 7,\\\\n          \\\\\\\"significant\\\\\\\": true\\\\n        }\\\\n      }\\\\n    }\\\\n  ]\\\\n}\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{\\n  \\\"exp_dir\\\": \\\"results/intervention/interv_pred_fp32_v4_d080\\\",\\n  \\\"n_generations\\\": 11,\\n  \\\"drift_pct\\\": {\\n    \\\"token_entropy\\\": -5.74,\\n    \\\"ece\\\": 55.78,\\n    \\\"perplexity\\\": -22.76,\\n    \\\"distinct_1\\\": -7.97,\\n    \\\"distinct_2\\\": -5.22,\\n    \\\"distinct_3\\\": -3.9,\\n    \\\"effective_rank\\\": -3.86,\\n    \\\"mauve\\\": 13.82\\n  },\\n  \\\"lead_lag\\\": {\\n    \\\"naive_xcorr\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"diff_xcorr\\\": {\\n      \\\"forward\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"threshold_onset\\\": {\\n      \\\"forward\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_fwd\\\": {\\n      \\\"sig\\\": 6,\\n      \\\"total\\\": 8\\n    },\\n    \\\"perm_granger_rev\\\": {\\n      \\\"sig\\\": 0,\\n      \\\"total\\\": 8\\n    },\\n    \\\"ty_granger\\\": {\\n      \\\"sig\\\": 8,\\n      \\\"total\\\": 8\\n    },\\n    \\\"consensus_k4\\\": {\\n      \\\"sig\\\": 6,\\n      \\\"total\\\": 8\\n    }\\n  },\\n  \\\"mmct\\\": {\\n    \\\"mode\\\": \\\"weighted_pair_forward\\\",\\n    \\\"detection_rate\\\": 0.75,\\n    \\\"note\\\": \\\"simple_consensus_k4 (no null distribution)\\\"\\n  },\\n  \\\"consensus_detail\\\": [\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_1\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_2\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->distinct_3\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"token_entropy->mauve\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_1\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_2\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->distinct_3\\\",\\n      \\\"votes\\\": 4,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"pg_fwd\\\",\\n        \\\"ty\\\"\\n      ]\\n    },\\n    {\\n      \\\"pair\\\": \\\"ece->mauve\\\",\\n      \\\"votes\\\": 3,\\n      \\\"methods\\\": [\\n        \\\"naive\\\",\\n        \\\"diff\\\",\\n        \\\"ty\\\"\\n      ]\\n    }\\n  ],\\n  \\\"pair_details\\\": [\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_1\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9543,\\n          \\\"p_value\\\": 1.8e-05,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9883,\\n          \\\"p_value\\\": 1e-06,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 2e-06,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": null,\\n          \\\"onset_downstream\\\": null,\\n          \\\"lead_time\\\": 0,\\n          \\\"significant\\\": false\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 1781.534,\\n          \\\"p_value\\\": 0.0006,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.0048,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 10.7154,\\n          \\\"p_value\\\": 0.112777,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.255416,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 246.0574,\\n          \\\"p_value\\\": 0.0,\\n          \\\"d_max\\\": 0,\\n          \\\"df_resid\\\": 7,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"token_entropy\\\",\\n      \\\"downstream\\\": \\\"distinct_2\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.9949,\\n          \\\"p_value\\\": 0.0,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": \\n\\n... [截断: 输出过长，省略 5821 字符] ...\\n\\n       \\\"r\\\": 0.9919,\\n          \\\"p_value\\\": 0.0,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.0,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": null,\\n          \\\"onset_downstream\\\": null,\\n          \\\"lead_time\\\": 0,\\n          \\\"significant\\\": false\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 487.7843,\\n          \\\"p_value\\\": 0.010198,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.016957,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 6.2608,\\n          \\\"p_value\\\": 0.141972,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.255416,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 162.2482,\\n          \\\"p_value\\\": 0.0,\\n          \\\"d_max\\\": 0,\\n          \\\"df_resid\\\": 7,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"distinct_3\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.8202,\\n          \\\"p_value\\\": 0.003659,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -1,\\n          \\\"r\\\": 0.976,\\n          \\\"p_value\\\": 7e-06,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 1.1e-05,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": null,\\n          \\\"onset_downstream\\\": null,\\n          \\\"lead_time\\\": 0,\\n          \\\"significant\\\": false\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 116.7546,\\n          \\\"p_value\\\": 0.015597,\\n          \\\"significant\\\": true,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.020796,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 7.1133,\\n          \\\"p_value\\\": 0.191562,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.255416,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 31.0808,\\n          \\\"p_value\\\": 0.0,\\n          \\\"d_max\\\": 0,\\n          \\\"df_resid\\\": 7,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    },\\n    {\\n      \\\"canary\\\": \\\"ece\\\",\\n      \\\"downstream\\\": \\\"mauve\\\",\\n      \\\"results\\\": {\\n        \\\"naive_xcorr\\\": {\\n          \\\"method\\\": \\\"naive_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.8614,\\n          \\\"p_value\\\": 0.027483,\\n          \\\"significant\\\": true\\n        },\\n        \\\"diff_xcorr\\\": {\\n          \\\"method\\\": \\\"diff_xcorr\\\",\\n          \\\"peak_lag\\\": -5,\\n          \\\"r\\\": 0.9169,\\n          \\\"p_value\\\": 0.0284,\\n          \\\"significant\\\": true,\\n          \\\"p_fdr\\\": 0.032457,\\n          \\\"significant_fdr\\\": true\\n        },\\n        \\\"threshold_onset\\\": {\\n          \\\"method\\\": \\\"threshold_onset\\\",\\n          \\\"onset_canary\\\": null,\\n          \\\"onset_downstream\\\": null,\\n          \\\"lead_time\\\": 0,\\n          \\\"significant\\\": false\\n        },\\n        \\\"perm_granger_fwd\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 7.3474,\\n          \\\"p_value\\\": 0.055189,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"forward\\\",\\n          \\\"p_fdr\\\": 0.063073,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"perm_granger_rev\\\": {\\n          \\\"method\\\": \\\"perm_granger\\\",\\n          \\\"f_stat\\\": 0.1178,\\n          \\\"p_value\\\": 0.74785,\\n          \\\"significant\\\": false,\\n          \\\"direction\\\": \\\"reverse\\\",\\n          \\\"p_fdr\\\": 0.74785,\\n          \\\"significant_fdr\\\": false\\n        },\\n        \\\"ty_granger\\\": {\\n          \\\"method\\\": \\\"ty_granger\\\",\\n          \\\"chi2\\\": 9.0865,\\n          \\\"p_value\\\": 0.002575,\\n          \\\"d_max\\\": 0,\\n          \\\"df_resid\\\": 7,\\n          \\\"significant\\\": true\\n        }\\n      }\\n    }\\n  ]\\n}\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.45}}"
+    }
+  },
+  "sourceToolAssistantUUID": "487fd1b0-248f-4f06-9e21-23882b38475f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "d7ce296c-9cd9-4b89-a6c9-54c87ab4c948",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 40_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze three completed fp32 experiments",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9"
+}
+```
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-19T05:18:22.093Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to get the gen-by-gen metrics from all_metrics.json for each experiment. Let me fetch those.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d7ce296c-9cd9-4b89-a6c9-54c87ab4c948",
+  "isSidechain": false,
+  "requestId": "req_011CbBMxLcr3i5hSAF7mHKvP",
+  "type": "assistant",
+  "uuid": "12b5adb6-a22c-450e-9f71-4e8fb4b20a7e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uuu5zvUjQxLb4iGiydPC1C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14421,
+      "cache_read_input_tokens": 29898,
+      "output_tokens": 454,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14421,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 454,
+          "cache_read_input_tokens": 29898,
+          "cache_creation_input_tokens": 14421,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14421
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 42 · 2026-05-19T05:18:23.021Z_
+
+现在获取 gen-by-gen 指标数据。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "12b5adb6-a22c-450e-9f71-4e8fb4b20a7e",
+  "isSidechain": false,
+  "requestId": "req_011CbBMxLcr3i5hSAF7mHKvP",
+  "type": "assistant",
+  "uuid": "9c6b43a5-1346-4642-8170-ea6cf7defd9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uuu5zvUjQxLb4iGiydPC1C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14421,
+      "cache_read_input_tokens": 29898,
+      "output_tokens": 454,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14421,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 454,
+          "cache_read_input_tokens": 29898,
+          "cache_creation_input_tokens": 14421,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14421
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-19T05:18:25.506Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01QRpQXg2eALxWeky3zKEhK2`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c6b43a5-1346-4642-8170-ea6cf7defd9b",
+  "isSidechain": false,
+  "requestId": "req_011CbBMxLcr3i5hSAF7mHKvP",
+  "type": "assistant",
+  "uuid": "af94243f-7c6f-41bb-9468-fe1493d34bb1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uuu5zvUjQxLb4iGiydPC1C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14421,
+      "cache_read_input_tokens": 29898,
+      "output_tokens": 454,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14421,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 454,
+          "cache_read_input_tokens": 29898,
+          "cache_creation_input_tokens": 14421,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14421
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-19T05:18:25.945Z_
+
+<details><summary>↩ Tool result · `toolu_01QRpQXg2eALxWeky3zKEhK2`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.010359298948078572,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.09162095491577137,\\n    \\\"distinct_2\\\": 0.5038422526068081,\\n    \\\"distinct_3\\\": 0.8318077803203662,\\n    \\\"mauve\\\": 0.027018479627034072,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0064426139661378,\\n    \\\"self_bleu\\\": 0.010555916086494104,\\n    \\\"ece\\\": 0.00920550039411654,\\n    \\\"effective_rank\\\": 47.77301738627223,\\n    \\\"perplexity\\\": 19.399703489042484,\\n    \\\"distinct_1\\\": 0.09102786749549609,\\n    \\\"distinct_2\\\": 0.4993142625278961,\\n    \\\"distinct_3\\\": 0.8310637538141921,\\n    \\\"mauve\\\": 0.02764599057188057,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.029872995904926,\\n    \\\"self_bleu\\\": 0.012009245937734959,\\n    \\\"ece\\\": 0.011299405309826005,\\n    \\\"effective_rank\\\": 48.70593494713121,\\n    \\\"perplexity\\\": 20.17537533784739,\\n    \\\"distinct_1\\\": 0.0734609375,\\n    \\\"distinct_2\\\": 0.4035812779787342,\\n    \\\"distinct_3\\\": 0.7380505945405397,\\n    \\\"mauve\\\": 0.02817080236127111,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0141371192502007,\\n    \\\"self_bleu\\\": 0.013456991576362107,\\n    \\\"ece\\\": 0.013097376336512038,\\n    \\\"effective_rank\\\": 48.68964973209647,\\n    \\\"perplexity\\\": 20.410633889586336,\\n    \\\"distinct_1\\\": 0.0678125,\\n    \\\"distinct_2\\\": 0.3557918421237666,\\n    \\\"distinct_3\\\": 0.6828622322223785,\\n    \\\"mauve\\\": 0.02275267263104825,\\n    \\\"generation\\\": 3,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0267087305292977,\\n    \\\"self_bleu\\\": 0.014147114182059628,\\n    \\\"ece\\\": 0.014402383705671358,\\n    \\\"effective_rank\\\": 48.01427970656789,\\n    \\\"perplexity\\\": 20.666000522195205,\\n    \\\"distinct_1\\\": 0.06803125,\\n    \\\"distinct_2\\\": 0.350502738302643,\\n    \\\"distinct_3\\\": 0.6682135658369662,\\n    \\\"mauve\\\": 0.020845970469100628,\\n    \\\"generation\\\": 4,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0260861170137865,\\n    \\\"self_bleu\\\": 0.015539817256161808,\\n    \\\"ece\\\": 0.015418696766435872,\\n    \\\"effective_rank\\\": 47.721942692612885,\\n    \\\"perplexity\\\": 20.828237177637913,\\n    \\\"distinct_1\\\": 0.06784375,\\n    \\\"distinct_2\\\": 0.35027617403260963,\\n    \\\"distinct_3\\\": 0.6639634994296786,\\n    \\\"mauve\\\": 0.022644954691658885,\\n    \\\"generation\\\": 5,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.032497455715914,\\n    \\\"self_bleu\\\": 0.016242836043830002,\\n    \\\"ece\\\": 0.014093632486891505,\\n    \\\"effective_rank\\\": 47.274064282868714,\\n    \\\"perplexity\\\": 20.748141847537017,\\n    \\\"distinct_1\\\": 0.0695546875,\\n    \\\"distinct_2\\\": 0.357018414206361,\\n    \\\"distinct_3\\\": 0.665471335489617,\\n    \\\"mauve\\\": 0.02353413105802408,\\n    \\\"generation\\\": 6,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.023136486886398,\\n    \\\"self_bleu\\\": 0.014787741041556269,\\n    \\\"ece\\\": 0.017351881731451267,\\n    \\\"effective_rank\\\": 46.58632817876358,\\n    \\\"perplexity\\\": 20.857057773243366,\\n    \\\"distinct_1\\\": 0.069203125,\\n    \\\"distinct_2\\\": 0.35864342690177264,\\n    \\\"distinct_3\\\": 0.6661119704995391,\\n    \\\"mauve\\\": 0.025037406148933967,\\n    \\\"generation\\\": 7,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.041382688229468,\\n    \\\"self_bleu\\\": 0.01558842007802117,\\n    \\\"ece\\\": 0.015995341455599416,\\n    \\\"effective_rank\\\": 46.034976196913746,\\n    \\\"perplexity\\\": 20.82225337640351,\\n    \\\"distinct_1\\\": 0.06940625,\\n    \\\"distinct_2\\\": 0.3640575316994664,\\n    \\\"distinct_3\\\": 0.6746433538024031,\\n    \\\"mauve\\\": 0.02203601173081359,\\n    \\\"generation\\\": 8,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0367303244263275,\\n    \\\"self_bleu\\\": 0.015381321476909137,\\n    \\\"ece\\\": 0.015600485978449544,\\n    \\\"effective_rank\\\": 46.17113140195454,\\n    \\\"perplexity\\\": 20.864757399558794,\\n    \\\"distinct_1\\\": 0.0700546875,\\n    \\\"distinct_2\\\": 0.36219814217298574,\\n    \\\"distinct_3\\\": 0.6723151924248817,\\n    \\\"mauve\\\": 0.023970043048287253,\\n    \\\"generation\\\": 9,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.041561547308373,\\n    \\\"self_bleu\\\": 0.014487237842221471,\\n    \\\"ece\\\": 0.016791207958133925,\\n    \\\"effective_rank\\\": 45.308859317330125,\\n    \\\"perplexity\\\": 20.809409829513854,\\n    \\\"distinct_1\\\": 0.06884375,\\n    \\\"distinct_2\\\": 0.360659067648966,\\n    \\\"distinct_3\\\": 0.669307332927077,\\n    \\\"mauve\\\": 0.023483215638144088,\\n    \\\"generation\\\": 10,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "af94243f-7c6f-41bb-9468-fe1493d34bb1",
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "2b9acb91-4c2d-4ab4-b8ff-54b5cfed4178",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.23419483150593,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010359298948078572,\\\\n    \\\\\\\"ece\\\\\\\": 0.010804557477709054,\\\\n    \\\\\\\"effective_rank\\\\\\\": 46.612774691899155,\\\\n    \\\\\\\"perplexity\\\\\\\": 26.948958972544652,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09162095491577137,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5038422526068081,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8318077803203662,\\\\n    \\\\\\\"mauve\\\\\\\": 0.027018479627034072,\\\\n    \\\\\\\"generation\\\\\\\": 0,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.05\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.0064426139661378,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010555916086494104,\\\\n    \\\\\\\"ece\\\\\\\": 0.00920550039411654,\\\\n    \\\\\\\"effective_rank\\\\\\\": 47.77301738627223,\\\\n    \\\\\\\"perplexity\\\\\\\": 19.399703489042484,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09102786749549609,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4993142625278961,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8310637538141921,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02764599057188057,\\\\n    \\\\\\\"generation\\\\\\\": 1,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.05\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.029872995904926,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012009245937734959,\\\\n    \\\\\\\"ece\\\\\\\": 0.011299405309826005,\\\\n    \\\\\\\"effective_rank\\\\\\\": 48.70593494713121,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.17537533784739,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0734609375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4035812779787342,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7380505945405397,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02817080236127111,\\\\n    \\\\\\\"generation\\\\\\\": 2,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.05\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.0141371192502007,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.013456991576362107,\\\\n    \\\\\\\"ece\\\\\\\": 0.013097376336512038,\\\\n    \\\\\\\"effective_rank\\\\\\\": 48.68964973209647,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.410633889586336,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0678125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3557918421237666,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6828622322223785,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02275267263104825,\\\\n    \\\\\\\"generation\\\\\\\": 3,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.05\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.0267087305292977,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.014147114182059628,\\\\n    \\\\\\\"ece\\\\\\\": 0.014402383705671358,\\\\n    \\\\\\\"effective_rank\\\\\\\": 48.01427970656789,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.666000522195205,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.06803125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.350502738302643,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6682135658369662,\\\\n    \\\\\\\"mauve\\\\\\\": 0.020845970469100628,\\\\n    \\\\\\\"generation\\\\\\\": 4,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.05\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.0260861170137865,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.015539817256161808,\\\\n    \\\\\\\"ece\\\\\\\": 0.015418696766435872,\\\\n    \\\\\\\"effective_rank\\\\\\\": 47.721942692612885,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.828237177637913,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.06784375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.35027617403260963,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6639634994296786,\\\\n    \\\\\\\"mauve\\\\\\\": 0.022644954691658885,\\\\n    \\\\\\\"generation\\\\\\\": 5,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.05\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.032497455715914,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.016242836043830002,\\\\n    \\\\\\\"ece\\\\\\\": 0.014093632486891505,\\\\n    \\\\\\\"effective_rank\\\\\\\": 47.274064282868714,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.748141847537017,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0695546875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.357018414206361,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.665471335489617,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02353413105802408,\\\\n    \\\\\\\"generation\\\\\\\": 6,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.05\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.023136486886398,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.014787741041556269,\\\\n    \\\\\\\"ece\\\\\\\": 0.017351881731451267,\\\\n    \\\\\\\"effective_rank\\\\\\\": 46.58632817876358,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.857057773243366,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.069203125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.35864342690177264,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6661119704995391,\\\\n    \\\\\\\"mauve\\\\\\\": 0.025037406148933967,\\\\n    \\\\\\\"generation\\\\\\\": 7,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.05\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.041382688229468,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01558842007802117,\\\\n    \\\\\\\"ece\\\\\\\": 0.015995341455599416,\\\\n    \\\\\\\"effective_rank\\\\\\\": 46.034976196913746,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.82225337640351,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.06940625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3640575316994664,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6746433538024031,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02203601173081359,\\\\n    \\\\\\\"generation\\\\\\\": 8,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.05\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.0367303244263275,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.015381321476909137,\\\\n    \\\\\\\"ece\\\\\\\": 0.015600485978449544,\\\\n    \\\\\\\"effective_rank\\\\\\\": 46.17113140195454,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.864757399558794,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0700546875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.36219814217298574,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6723151924248817,\\\\n    \\\\\\\"mauve\\\\\\\": 0.023970043048287253,\\\\n    \\\\\\\"generation\\\\\\\": 9,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.05\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.041561547308373,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.014487237842221471,\\\\n    \\\\\\\"ece\\\\\\\": 0.016791207958133925,\\\\n    \\\\\\\"effective_rank\\\\\\\": 45.308859317330125,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.809409829513854,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.06884375,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.360659067648966,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.669307332927077,\\\\n    \\\\\\\"mauve\\\\\\\": 0.023483215638144088,\\\\n    \\\\\\\"generation\\\\\\\": 10,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.05\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.010359298948078572,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.09162095491577137,\\n    \\\"distinct_2\\\": 0.5038422526068081,\\n    \\\"distinct_3\\\": 0.8318077803203662,\\n    \\\"mauve\\\": 0.027018479627034072,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0064426139661378,\\n    \\\"self_bleu\\\": 0.010555916086494104,\\n    \\\"ece\\\": 0.00920550039411654,\\n    \\\"effective_rank\\\": 47.77301738627223,\\n    \\\"perplexity\\\": 19.399703489042484,\\n    \\\"distinct_1\\\": 0.09102786749549609,\\n    \\\"distinct_2\\\": 0.4993142625278961,\\n    \\\"distinct_3\\\": 0.8310637538141921,\\n    \\\"mauve\\\": 0.02764599057188057,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.029872995904926,\\n    \\\"self_bleu\\\": 0.012009245937734959,\\n    \\\"ece\\\": 0.011299405309826005,\\n    \\\"effective_rank\\\": 48.70593494713121,\\n    \\\"perplexity\\\": 20.17537533784739,\\n    \\\"distinct_1\\\": 0.0734609375,\\n    \\\"distinct_2\\\": 0.4035812779787342,\\n    \\\"distinct_3\\\": 0.7380505945405397,\\n    \\\"mauve\\\": 0.02817080236127111,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0141371192502007,\\n    \\\"self_bleu\\\": 0.013456991576362107,\\n    \\\"ece\\\": 0.013097376336512038,\\n    \\\"effective_rank\\\": 48.68964973209647,\\n    \\\"perplexity\\\": 20.410633889586336,\\n    \\\"distinct_1\\\": 0.0678125,\\n    \\\"distinct_2\\\": 0.3557918421237666,\\n    \\\"distinct_3\\\": 0.6828622322223785,\\n    \\\"mauve\\\": 0.02275267263104825,\\n    \\\"generation\\\": 3,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0267087305292977,\\n    \\\"self_bleu\\\": 0.014147114182059628,\\n    \\\"ece\\\": 0.014402383705671358,\\n    \\\"effective_rank\\\": 48.01427970656789,\\n    \\\"perplexity\\\": 20.666000522195205,\\n    \\\"distinct_1\\\": 0.06803125,\\n    \\\"distinct_2\\\": 0.350502738302643,\\n    \\\"distinct_3\\\": 0.6682135658369662,\\n    \\\"mauve\\\": 0.020845970469100628,\\n    \\\"generation\\\": 4,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0260861170137865,\\n    \\\"self_bleu\\\": 0.015539817256161808,\\n    \\\"ece\\\": 0.015418696766435872,\\n    \\\"effective_rank\\\": 47.721942692612885,\\n    \\\"perplexity\\\": 20.828237177637913,\\n    \\\"distinct_1\\\": 0.06784375,\\n    \\\"distinct_2\\\": 0.35027617403260963,\\n    \\\"distinct_3\\\": 0.6639634994296786,\\n    \\\"mauve\\\": 0.022644954691658885,\\n    \\\"generation\\\": 5,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.032497455715914,\\n    \\\"self_bleu\\\": 0.016242836043830002,\\n    \\\"ece\\\": 0.014093632486891505,\\n    \\\"effective_rank\\\": 47.274064282868714,\\n    \\\"perplexity\\\": 20.748141847537017,\\n    \\\"distinct_1\\\": 0.0695546875,\\n    \\\"distinct_2\\\": 0.357018414206361,\\n    \\\"distinct_3\\\": 0.665471335489617,\\n    \\\"mauve\\\": 0.02353413105802408,\\n    \\\"generation\\\": 6,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.023136486886398,\\n    \\\"self_bleu\\\": 0.014787741041556269,\\n    \\\"ece\\\": 0.017351881731451267,\\n    \\\"effective_rank\\\": 46.58632817876358,\\n    \\\"perplexity\\\": 20.857057773243366,\\n    \\\"distinct_1\\\": 0.069203125,\\n    \\\"distinct_2\\\": 0.35864342690177264,\\n    \\\"distinct_3\\\": 0.6661119704995391,\\n    \\\"mauve\\\": 0.025037406148933967,\\n    \\\"generation\\\": 7,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.041382688229468,\\n    \\\"self_bleu\\\": 0.01558842007802117,\\n    \\\"ece\\\": 0.015995341455599416,\\n    \\\"effective_rank\\\": 46.034976196913746,\\n    \\\"perplexity\\\": 20.82225337640351,\\n    \\\"distinct_1\\\": 0.06940625,\\n    \\\"distinct_2\\\": 0.3640575316994664,\\n    \\\"distinct_3\\\": 0.6746433538024031,\\n    \\\"mauve\\\": 0.02203601173081359,\\n    \\\"generation\\\": 8,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0367303244263275,\\n    \\\"self_bleu\\\": 0.015381321476909137,\\n    \\\"ece\\\": 0.015600485978449544,\\n    \\\"effective_rank\\\": 46.17113140195454,\\n    \\\"perplexity\\\": 20.864757399558794,\\n    \\\"distinct_1\\\": 0.0700546875,\\n    \\\"distinct_2\\\": 0.36219814217298574,\\n    \\\"distinct_3\\\": 0.6723151924248817,\\n    \\\"mauve\\\": 0.023970043048287253,\\n    \\\"generation\\\": 9,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.041561547308373,\\n    \\\"self_bleu\\\": 0.014487237842221471,\\n    \\\"ece\\\": 0.016791207958133925,\\n    \\\"effective_rank\\\": 45.308859317330125,\\n    \\\"perplexity\\\": 20.809409829513854,\\n    \\\"distinct_1\\\": 0.06884375,\\n    \\\"distinct_2\\\": 0.360659067648966,\\n    \\\"distinct_3\\\": 0.669307332927077,\\n    \\\"mauve\\\": 0.023483215638144088,\\n    \\\"generation\\\": 10,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.05\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.43}}"
+    }
+  },
+  "sourceToolAssistantUUID": "af94243f-7c6f-41bb-9468-fe1493d34bb1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-19T05:18:26.488Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VxSP3G2fvaTLV2Eh512baF`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b9acb91-4c2d-4ab4-b8ff-54b5cfed4178",
+  "isSidechain": false,
+  "requestId": "req_011CbBMxLcr3i5hSAF7mHKvP",
+  "type": "assistant",
+  "uuid": "e129d219-6e0f-4b40-aeca-95773ef4934b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uuu5zvUjQxLb4iGiydPC1C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14421,
+      "cache_read_input_tokens": 29898,
+      "output_tokens": 454,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14421,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 454,
+          "cache_read_input_tokens": 29898,
+          "cache_creation_input_tokens": 14421,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14421
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-19T05:18:26.933Z_
+
+<details><summary>↩ Tool result · `toolu_01VxSP3G2fvaTLV2Eh512baF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.010359298948078572,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.09162095491577137,\\n    \\\"distinct_2\\\": 0.5038422526068081,\\n    \\\"distinct_3\\\": 0.8318077803203662,\\n    \\\"mauve\\\": 0.027018479627034072,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.2228558805560463,\\n    \\\"self_bleu\\\": 0.010555916086494104,\\n    \\\"ece\\\": 0.12435188565529644,\\n    \\\"effective_rank\\\": 65.28634392518339,\\n    \\\"perplexity\\\": 29.571844263406497,\\n    \\\"distinct_1\\\": 0.09102786749549609,\\n    \\\"distinct_2\\\": 0.4993142625278961,\\n    \\\"distinct_3\\\": 0.8310637538141921,\\n    \\\"mauve\\\": 0.02764599057188057,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.2101769106289524,\\n    \\\"self_bleu\\\": 0.011782737534716134,\\n    \\\"ece\\\": 0.1468148442619758,\\n    \\\"effective_rank\\\": 71.77320467056455,\\n    \\\"perplexity\\\": 36.330632719133895,\\n    \\\"distinct_1\\\": 0.0742421875,\\n    \\\"distinct_2\\\": 0.4093391354619958,\\n    \\\"distinct_3\\\": 0.7542070969858904,\\n    \\\"mauve\\\": 0.026473625373651978,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.2483430054350575,\\n    \\\"self_bleu\\\": 0.012125369574798216,\\n    \\\"ece\\\": 0.146501177710184,\\n    \\\"effective_rank\\\": 72.83703528254381,\\n    \\\"perplexity\\\": 38.09276363017477,\\n    \\\"distinct_1\\\": 0.0709765625,\\n    \\\"distinct_2\\\": 0.3717372791974937,\\n    \\\"distinct_3\\\": 0.7008781387209175,\\n    \\\"mauve\\\": 0.023190175359054446,\\n    \\\"generation\\\": 3,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.2721168108036944,\\n    \\\"self_bleu\\\": 0.01179118933613488,\\n    \\\"ece\\\": 0.15012351764584073,\\n    \\\"effective_rank\\\": 72.81264032649904,\\n    \\\"perplexity\\\": 40.32565090467096,\\n    \\\"distinct_1\\\": 0.06978125,\\n    \\\"distinct_2\\\": 0.35590121797826546,\\n    \\\"distinct_3\\\": 0.6613072079251239,\\n    \\\"mauve\\\": 0.022421685973555636,\\n    \\\"generation\\\": 4,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.312769565381865,\\n    \\\"self_bleu\\\": 0.011307254192552641,\\n    \\\"ece\\\": 0.1488852850125595,\\n    \\\"effective_rank\\\": 71.58788042075243,\\n    \\\"perplexity\\\": 41.57676312300779,\\n    \\\"distinct_1\\\": 0.0690625,\\n    \\\"distinct_2\\\": 0.3508308658661396,\\n    \\\"distinct_3\\\": 0.638822481601275,\\n    \\\"mauve\\\": 0.022341576219644582,\\n    \\\"generation\\\": 5,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.3367972750581476,\\n    \\\"self_bleu\\\": 0.01106864065763774,\\n    \\\"ece\\\": 0.1480238876475658,\\n    \\\"effective_rank\\\": 71.75362172684262,\\n    \\\"perplexity\\\": 41.88039382467644,\\n    \\\"distinct_1\\\": 0.0684921875,\\n    \\\"distinct_2\\\": 0.3429948671473996,\\n    \\\"distinct_3\\\": 0.6158768105751652,\\n    \\\"mauve\\\": 0.024446457345251638,\\n    \\\"generation\\\": 6,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.392630742726537,\\n    \\\"self_bleu\\\": 0.011105374334537153,\\n    \\\"ece\\\": 0.14716708186127486,\\n    \\\"effective_rank\\\": 70.77196575335644,\\n    \\\"perplexity\\\": 42.65884411424895,\\n    \\\"distinct_1\\\": 0.067640625,\\n    \\\"distinct_2\\\": 0.33823701747669904,\\n    \\\"distinct_3\\\": 0.594157721214394,\\n    \\\"mauve\\\": 0.024534520713598996,\\n    \\\"generation\\\": 7,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.401683044559177,\\n    \\\"self_bleu\\\": 0.010909670507049898,\\n    \\\"ece\\\": 0.14900752213060217,\\n    \\\"effective_rank\\\": 70.666522740735,\\n    \\\"perplexity\\\": 44.060377713232974,\\n    \\\"distinct_1\\\": 0.067,\\n    \\\"distinct_2\\\": 0.3281822514238392,\\n    \\\"distinct_3\\\": 0.5699385927905124,\\n    \\\"mauve\\\": 0.023079075957712435,\\n    \\\"generation\\\": 8,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.4560637914517307,\\n    \\\"self_bleu\\\": 0.01094114838240235,\\n    \\\"ece\\\": 0.14611748325284632,\\n    \\\"effective_rank\\\": 70.406191881145,\\n    \\\"perplexity\\\": 45.15949420162946,\\n    \\\"distinct_1\\\": 0.0661953125,\\n    \\\"distinct_2\\\": 0.32204157844983167,\\n    \\\"distinct_3\\\": 0.5531492679573118,\\n    \\\"mauve\\\": 0.02316539809417819,\\n    \\\"generation\\\": 9,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.4786094524664746,\\n    \\\"self_bleu\\\": 0.011148013825940212,\\n    \\\"ece\\\": 0.14696691086265548,\\n    \\\"effective_rank\\\": 69.33258535062814,\\n    \\\"perplexity\\\": 45.41442044485025,\\n    \\\"distinct_1\\\": 0.0658125,\\n    \\\"distinct_2\\\": 0.31631497121071256,\\n    \\\"distinct_3\\\": 0.537734964608822,\\n    \\\"mauve\\\": 0.022612965367374293,\\n    \\\"generation\\\": 10,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e129d219-6e0f-4b40-aeca-95773ef4934b",
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "f4003359-2672-45ff-b708-e91e90282e16",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.23419483150593,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010359298948078572,\\\\n    \\\\\\\"ece\\\\\\\": 0.010804557477709054,\\\\n    \\\\\\\"effective_rank\\\\\\\": 46.612774691899155,\\\\n    \\\\\\\"perplexity\\\\\\\": 26.948958972544652,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09162095491577137,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5038422526068081,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8318077803203662,\\\\n    \\\\\\\"mauve\\\\\\\": 0.027018479627034072,\\\\n    \\\\\\\"generation\\\\\\\": 0,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.6\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.2228558805560463,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010555916086494104,\\\\n    \\\\\\\"ece\\\\\\\": 0.12435188565529644,\\\\n    \\\\\\\"effective_rank\\\\\\\": 65.28634392518339,\\\\n    \\\\\\\"perplexity\\\\\\\": 29.571844263406497,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09102786749549609,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4993142625278961,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8310637538141921,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02764599057188057,\\\\n    \\\\\\\"generation\\\\\\\": 1,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.6\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.2101769106289524,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011782737534716134,\\\\n    \\\\\\\"ece\\\\\\\": 0.1468148442619758,\\\\n    \\\\\\\"effective_rank\\\\\\\": 71.77320467056455,\\\\n    \\\\\\\"perplexity\\\\\\\": 36.330632719133895,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0742421875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4093391354619958,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7542070969858904,\\\\n    \\\\\\\"mauve\\\\\\\": 0.026473625373651978,\\\\n    \\\\\\\"generation\\\\\\\": 2,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.6\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.2483430054350575,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.012125369574798216,\\\\n    \\\\\\\"ece\\\\\\\": 0.146501177710184,\\\\n    \\\\\\\"effective_rank\\\\\\\": 72.83703528254381,\\\\n    \\\\\\\"perplexity\\\\\\\": 38.09276363017477,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0709765625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3717372791974937,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7008781387209175,\\\\n    \\\\\\\"mauve\\\\\\\": 0.023190175359054446,\\\\n    \\\\\\\"generation\\\\\\\": 3,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.6\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.2721168108036944,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01179118933613488,\\\\n    \\\\\\\"ece\\\\\\\": 0.15012351764584073,\\\\n    \\\\\\\"effective_rank\\\\\\\": 72.81264032649904,\\\\n    \\\\\\\"perplexity\\\\\\\": 40.32565090467096,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.06978125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.35590121797826546,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6613072079251239,\\\\n    \\\\\\\"mauve\\\\\\\": 0.022421685973555636,\\\\n    \\\\\\\"generation\\\\\\\": 4,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.6\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.312769565381865,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011307254192552641,\\\\n    \\\\\\\"ece\\\\\\\": 0.1488852850125595,\\\\n    \\\\\\\"effective_rank\\\\\\\": 71.58788042075243,\\\\n    \\\\\\\"perplexity\\\\\\\": 41.57676312300779,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0690625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3508308658661396,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.638822481601275,\\\\n    \\\\\\\"mauve\\\\\\\": 0.022341576219644582,\\\\n    \\\\\\\"generation\\\\\\\": 5,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.6\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.3367972750581476,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01106864065763774,\\\\n    \\\\\\\"ece\\\\\\\": 0.1480238876475658,\\\\n    \\\\\\\"effective_rank\\\\\\\": 71.75362172684262,\\\\n    \\\\\\\"perplexity\\\\\\\": 41.88039382467644,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0684921875,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3429948671473996,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.6158768105751652,\\\\n    \\\\\\\"mauve\\\\\\\": 0.024446457345251638,\\\\n    \\\\\\\"generation\\\\\\\": 6,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.6\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.392630742726537,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011105374334537153,\\\\n    \\\\\\\"ece\\\\\\\": 0.14716708186127486,\\\\n    \\\\\\\"effective_rank\\\\\\\": 70.77196575335644,\\\\n    \\\\\\\"perplexity\\\\\\\": 42.65884411424895,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.067640625,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.33823701747669904,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.594157721214394,\\\\n    \\\\\\\"mauve\\\\\\\": 0.024534520713598996,\\\\n    \\\\\\\"generation\\\\\\\": 7,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.6\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.401683044559177,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010909670507049898,\\\\n    \\\\\\\"ece\\\\\\\": 0.14900752213060217,\\\\n    \\\\\\\"effective_rank\\\\\\\": 70.666522740735,\\\\n    \\\\\\\"perplexity\\\\\\\": 44.060377713232974,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.067,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.3281822514238392,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.5699385927905124,\\\\n    \\\\\\\"mauve\\\\\\\": 0.023079075957712435,\\\\n    \\\\\\\"generation\\\\\\\": 8,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.6\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.4560637914517307,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01094114838240235,\\\\n    \\\\\\\"ece\\\\\\\": 0.14611748325284632,\\\\n    \\\\\\\"effective_rank\\\\\\\": 70.406191881145,\\\\n    \\\\\\\"perplexity\\\\\\\": 45.15949420162946,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0661953125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.32204157844983167,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.5531492679573118,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02316539809417819,\\\\n    \\\\\\\"generation\\\\\\\": 9,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.6\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.4786094524664746,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011148013825940212,\\\\n    \\\\\\\"ece\\\\\\\": 0.14696691086265548,\\\\n    \\\\\\\"effective_rank\\\\\\\": 69.33258535062814,\\\\n    \\\\\\\"perplexity\\\\\\\": 45.41442044485025,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0658125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.31631497121071256,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.537734964608822,\\\\n    \\\\\\\"mauve\\\\\\\": 0.022612965367374293,\\\\n    \\\\\\\"generation\\\\\\\": 10,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.6\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.010359298948078572,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.09162095491577137,\\n    \\\"distinct_2\\\": 0.5038422526068081,\\n    \\\"distinct_3\\\": 0.8318077803203662,\\n    \\\"mauve\\\": 0.027018479627034072,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.2228558805560463,\\n    \\\"self_bleu\\\": 0.010555916086494104,\\n    \\\"ece\\\": 0.12435188565529644,\\n    \\\"effective_rank\\\": 65.28634392518339,\\n    \\\"perplexity\\\": 29.571844263406497,\\n    \\\"distinct_1\\\": 0.09102786749549609,\\n    \\\"distinct_2\\\": 0.4993142625278961,\\n    \\\"distinct_3\\\": 0.8310637538141921,\\n    \\\"mauve\\\": 0.02764599057188057,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.2101769106289524,\\n    \\\"self_bleu\\\": 0.011782737534716134,\\n    \\\"ece\\\": 0.1468148442619758,\\n    \\\"effective_rank\\\": 71.77320467056455,\\n    \\\"perplexity\\\": 36.330632719133895,\\n    \\\"distinct_1\\\": 0.0742421875,\\n    \\\"distinct_2\\\": 0.4093391354619958,\\n    \\\"distinct_3\\\": 0.7542070969858904,\\n    \\\"mauve\\\": 0.026473625373651978,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.2483430054350575,\\n    \\\"self_bleu\\\": 0.012125369574798216,\\n    \\\"ece\\\": 0.146501177710184,\\n    \\\"effective_rank\\\": 72.83703528254381,\\n    \\\"perplexity\\\": 38.09276363017477,\\n    \\\"distinct_1\\\": 0.0709765625,\\n    \\\"distinct_2\\\": 0.3717372791974937,\\n    \\\"distinct_3\\\": 0.7008781387209175,\\n    \\\"mauve\\\": 0.023190175359054446,\\n    \\\"generation\\\": 3,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.2721168108036944,\\n    \\\"self_bleu\\\": 0.01179118933613488,\\n    \\\"ece\\\": 0.15012351764584073,\\n    \\\"effective_rank\\\": 72.81264032649904,\\n    \\\"perplexity\\\": 40.32565090467096,\\n    \\\"distinct_1\\\": 0.06978125,\\n    \\\"distinct_2\\\": 0.35590121797826546,\\n    \\\"distinct_3\\\": 0.6613072079251239,\\n    \\\"mauve\\\": 0.022421685973555636,\\n    \\\"generation\\\": 4,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.312769565381865,\\n    \\\"self_bleu\\\": 0.011307254192552641,\\n    \\\"ece\\\": 0.1488852850125595,\\n    \\\"effective_rank\\\": 71.58788042075243,\\n    \\\"perplexity\\\": 41.57676312300779,\\n    \\\"distinct_1\\\": 0.0690625,\\n    \\\"distinct_2\\\": 0.3508308658661396,\\n    \\\"distinct_3\\\": 0.638822481601275,\\n    \\\"mauve\\\": 0.022341576219644582,\\n    \\\"generation\\\": 5,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.3367972750581476,\\n    \\\"self_bleu\\\": 0.01106864065763774,\\n    \\\"ece\\\": 0.1480238876475658,\\n    \\\"effective_rank\\\": 71.75362172684262,\\n    \\\"perplexity\\\": 41.88039382467644,\\n    \\\"distinct_1\\\": 0.0684921875,\\n    \\\"distinct_2\\\": 0.3429948671473996,\\n    \\\"distinct_3\\\": 0.6158768105751652,\\n    \\\"mauve\\\": 0.024446457345251638,\\n    \\\"generation\\\": 6,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.392630742726537,\\n    \\\"self_bleu\\\": 0.011105374334537153,\\n    \\\"ece\\\": 0.14716708186127486,\\n    \\\"effective_rank\\\": 70.77196575335644,\\n    \\\"perplexity\\\": 42.65884411424895,\\n    \\\"distinct_1\\\": 0.067640625,\\n    \\\"distinct_2\\\": 0.33823701747669904,\\n    \\\"distinct_3\\\": 0.594157721214394,\\n    \\\"mauve\\\": 0.024534520713598996,\\n    \\\"generation\\\": 7,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.401683044559177,\\n    \\\"self_bleu\\\": 0.010909670507049898,\\n    \\\"ece\\\": 0.14900752213060217,\\n    \\\"effective_rank\\\": 70.666522740735,\\n    \\\"perplexity\\\": 44.060377713232974,\\n    \\\"distinct_1\\\": 0.067,\\n    \\\"distinct_2\\\": 0.3281822514238392,\\n    \\\"distinct_3\\\": 0.5699385927905124,\\n    \\\"mauve\\\": 0.023079075957712435,\\n    \\\"generation\\\": 8,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.4560637914517307,\\n    \\\"self_bleu\\\": 0.01094114838240235,\\n    \\\"ece\\\": 0.14611748325284632,\\n    \\\"effective_rank\\\": 70.406191881145,\\n    \\\"perplexity\\\": 45.15949420162946,\\n    \\\"distinct_1\\\": 0.0661953125,\\n    \\\"distinct_2\\\": 0.32204157844983167,\\n    \\\"distinct_3\\\": 0.5531492679573118,\\n    \\\"mauve\\\": 0.02316539809417819,\\n    \\\"generation\\\": 9,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.4786094524664746,\\n    \\\"self_bleu\\\": 0.011148013825940212,\\n    \\\"ece\\\": 0.14696691086265548,\\n    \\\"effective_rank\\\": 69.33258535062814,\\n    \\\"perplexity\\\": 45.41442044485025,\\n    \\\"distinct_1\\\": 0.0658125,\\n    \\\"distinct_2\\\": 0.31631497121071256,\\n    \\\"distinct_3\\\": 0.537734964608822,\\n    \\\"mauve\\\": 0.022612965367374293,\\n    \\\"generation\\\": 10,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.6\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e129d219-6e0f-4b40-aeca-95773ef4934b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-19T05:18:27.508Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01MAntVWo5nmBr51bwYacz5M`</summary>
+
+```json
+{
+  "server": "westd-17855",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/all_metrics.json",
+  "account": "root"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4003359-2672-45ff-b708-e91e90282e16",
+  "isSidechain": false,
+  "requestId": "req_011CbBMxLcr3i5hSAF7mHKvP",
+  "type": "assistant",
+  "uuid": "e62916fe-00ba-40a7-9420-35fe07c70d3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uuu5zvUjQxLb4iGiydPC1C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 14421,
+      "cache_read_input_tokens": 29898,
+      "output_tokens": 454,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14421,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 454,
+          "cache_read_input_tokens": 29898,
+          "cache_creation_input_tokens": 14421,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14421
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "e62916fe-00ba-40a7-9420-35fe07c70d3a",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 49_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze three completed fp32 experiments",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9"
+}
+```
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-19T05:18:27.956Z_
+
+<details><summary>↩ Tool result · `toolu_01MAntVWo5nmBr51bwYacz5M`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.010359298948078572,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.09162095491577137,\\n    \\\"distinct_2\\\": 0.5038422526068081,\\n    \\\"distinct_3\\\": 0.8318077803203662,\\n    \\\"mauve\\\": 0.027018479627034072,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.211963036636512,\\n    \\\"self_bleu\\\": 0.010555916086494104,\\n    \\\"ece\\\": 0.13221706272448866,\\n    \\\"effective_rank\\\": 67.59978638023328,\\n    \\\"perplexity\\\": 32.6289857198483,\\n    \\\"distinct_1\\\": 0.09102786749549609,\\n    \\\"distinct_2\\\": 0.4993142625278961,\\n    \\\"distinct_3\\\": 0.8310637538141921,\\n    \\\"mauve\\\": 0.02764599057188057,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0488659071531816,\\n    \\\"self_bleu\\\": 0.011377167769186706,\\n    \\\"ece\\\": 0.014039970938785621,\\n    \\\"effective_rank\\\": 49.8256313767394,\\n    \\\"perplexity\\\": 20.79744457794288,\\n    \\\"distinct_1\\\": 0.0751953125,\\n    \\\"distinct_2\\\": 0.4120735318244674,\\n    \\\"distinct_3\\\": 0.7595196799949999,\\n    \\\"mauve\\\": 0.0249345967050612,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0525813308233998,\\n    \\\"self_bleu\\\": 0.011629891201852963,\\n    \\\"ece\\\": 0.01235892767851745,\\n    \\\"effective_rank\\\": 48.86164609187771,\\n    \\\"perplexity\\\": 20.744332040165524,\\n    \\\"distinct_1\\\": 0.08462532299741603,\\n    \\\"distinct_2\\\": 0.47855989285854966,\\n    \\\"distinct_3\\\": 0.8045677281106717,\\n    \\\"mauve\\\": 0.034102178478483965,\\n    \\\"generation\\\": 3,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.06691259012795,\\n    \\\"self_bleu\\\": 0.013663245353950443,\\n    \\\"ece\\\": 0.01112580668850693,\\n    \\\"effective_rank\\\": 47.02817159176732,\\n    \\\"perplexity\\\": 20.957972523895354,\\n    \\\"distinct_1\\\": 0.08563480707588268,\\n    \\\"distinct_2\\\": 0.48039168665067944,\\n    \\\"distinct_3\\\": 0.8020048121887465,\\n    \\\"mauve\\\": 0.029657405184893647,\\n    \\\"generation\\\": 4,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.046705325246135,\\n    \\\"self_bleu\\\": 0.0137310975785967,\\n    \\\"ece\\\": 0.013338626460725266,\\n    \\\"effective_rank\\\": 47.147702276339515,\\n    \\\"perplexity\\\": 20.767765626612285,\\n    \\\"distinct_1\\\": 0.08656279343656996,\\n    \\\"distinct_2\\\": 0.4775315322484383,\\n    \\\"distinct_3\\\": 0.7978020753756048,\\n    \\\"mauve\\\": 0.030712249976711757,\\n    \\\"generation\\\": 5,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0512406604874953,\\n    \\\"self_bleu\\\": 0.013759203442707521,\\n    \\\"ece\\\": 0.0150096445228366,\\n    \\\"effective_rank\\\": 45.73357445347566,\\n    \\\"perplexity\\\": 20.92996360434061,\\n    \\\"distinct_1\\\": 0.08593239517427129,\\n    \\\"distinct_2\\\": 0.4790227343357797,\\n    \\\"distinct_3\\\": 0.7984094603640073,\\n    \\\"mauve\\\": 0.027459158759642978,\\n    \\\"generation\\\": 6,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0553272146115247,\\n    \\\"self_bleu\\\": 0.013107374952247806,\\n    \\\"ece\\\": 0.013569044003514578,\\n    \\\"effective_rank\\\": 45.50657845916006,\\n    \\\"perplexity\\\": 20.994393921111815,\\n    \\\"distinct_1\\\": 0.08579158874786137,\\n    \\\"distinct_2\\\": 0.4768350522026993,\\n    \\\"distinct_3\\\": 0.7959860897798079,\\n    \\\"mauve\\\": 0.03231540465271493,\\n    \\\"generation\\\": 7,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0574535708843293,\\n    \\\"self_bleu\\\": 0.014290296124455721,\\n    \\\"ece\\\": 0.012382746860047682,\\n    \\\"effective_rank\\\": 44.14137780289832,\\n    \\\"perplexity\\\": 20.667999556903375,\\n    \\\"distinct_1\\\": 0.08541389822559212,\\n    \\\"distinct_2\\\": 0.48172032924512814,\\n    \\\"distinct_3\\\": 0.8022325057845038,\\n    \\\"mauve\\\": 0.0318460778365406,\\n    \\\"generation\\\": 8,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.03250388390622,\\n    \\\"self_bleu\\\": 0.01321853815669535,\\n    \\\"ece\\\": 0.019318606030004938,\\n    \\\"effective_rank\\\": 44.4790993057807,\\n    \\\"perplexity\\\": 20.95390108214654,\\n    \\\"distinct_1\\\": 0.0849937708794566,\\n    \\\"distinct_2\\\": 0.4800349150928424,\\n    \\\"distinct_3\\\": 0.7981970972631112,\\n    \\\"mauve\\\": 0.029973547105100848,\\n    \\\"generation\\\": 9,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.048690535941015,\\n    \\\"self_bleu\\\": 0.014406158585487704,\\n    \\\"ece\\\": 0.016831044205685305,\\n    \\\"effective_rank\\\": 44.8134125363209,\\n    \\\"perplexity\\\": 20.814935470959252,\\n    \\\"distinct_1\\\": 0.08432131055112685,\\n    \\\"distinct_2\\\": 0.47752954166373013,\\n    \\\"distinct_3\\\": 0.7993343774471418,\\n    \\\"mauve\\\": 0.030753621378812383,\\n    \\\"generation\\\": 10,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e62916fe-00ba-40a7-9420-35fe07c70d3a",
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "3751bf92-df92-4a56-b642-94ef93beab4c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"[\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.23419483150593,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010359298948078572,\\\\n    \\\\\\\"ece\\\\\\\": 0.010804557477709054,\\\\n    \\\\\\\"effective_rank\\\\\\\": 46.612774691899155,\\\\n    \\\\\\\"perplexity\\\\\\\": 26.948958972544652,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09162095491577137,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.5038422526068081,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8318077803203662,\\\\n    \\\\\\\"mauve\\\\\\\": 0.027018479627034072,\\\\n    \\\\\\\"generation\\\\\\\": 0,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": false,\\\\n    \\\\\\\"trigger_gen\\\\\\\": null,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.75\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 2.211963036636512,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.010555916086494104,\\\\n    \\\\\\\"ece\\\\\\\": 0.13221706272448866,\\\\n    \\\\\\\"effective_rank\\\\\\\": 67.59978638023328,\\\\n    \\\\\\\"perplexity\\\\\\\": 32.6289857198483,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.09102786749549609,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4993142625278961,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8310637538141921,\\\\n    \\\\\\\"mauve\\\\\\\": 0.02764599057188057,\\\\n    \\\\\\\"generation\\\\\\\": 1,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": true,\\\\n    \\\\\\\"trigger_gen\\\\\\\": 1,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.75\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.0488659071531816,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011377167769186706,\\\\n    \\\\\\\"ece\\\\\\\": 0.014039970938785621,\\\\n    \\\\\\\"effective_rank\\\\\\\": 49.8256313767394,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.79744457794288,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0751953125,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4120735318244674,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7595196799949999,\\\\n    \\\\\\\"mauve\\\\\\\": 0.0249345967050612,\\\\n    \\\\\\\"generation\\\\\\\": 2,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": true,\\\\n    \\\\\\\"trigger_gen\\\\\\\": 1,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.0525813308233998,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.011629891201852963,\\\\n    \\\\\\\"ece\\\\\\\": 0.01235892767851745,\\\\n    \\\\\\\"effective_rank\\\\\\\": 48.86164609187771,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.744332040165524,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.08462532299741603,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.47855989285854966,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8045677281106717,\\\\n    \\\\\\\"mauve\\\\\\\": 0.034102178478483965,\\\\n    \\\\\\\"generation\\\\\\\": 3,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": true,\\\\n    \\\\\\\"trigger_gen\\\\\\\": 1,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.06691259012795,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.013663245353950443,\\\\n    \\\\\\\"ece\\\\\\\": 0.01112580668850693,\\\\n    \\\\\\\"effective_rank\\\\\\\": 47.02817159176732,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.957972523895354,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.08563480707588268,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.48039168665067944,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8020048121887465,\\\\n    \\\\\\\"mauve\\\\\\\": 0.029657405184893647,\\\\n    \\\\\\\"generation\\\\\\\": 4,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": true,\\\\n    \\\\\\\"trigger_gen\\\\\\\": 1,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.046705325246135,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.0137310975785967,\\\\n    \\\\\\\"ece\\\\\\\": 0.013338626460725266,\\\\n    \\\\\\\"effective_rank\\\\\\\": 47.147702276339515,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.767765626612285,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.08656279343656996,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4775315322484383,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7978020753756048,\\\\n    \\\\\\\"mauve\\\\\\\": 0.030712249976711757,\\\\n    \\\\\\\"generation\\\\\\\": 5,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": true,\\\\n    \\\\\\\"trigger_gen\\\\\\\": 1,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.0512406604874953,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.013759203442707521,\\\\n    \\\\\\\"ece\\\\\\\": 0.0150096445228366,\\\\n    \\\\\\\"effective_rank\\\\\\\": 45.73357445347566,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.92996360434061,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.08593239517427129,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4790227343357797,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7984094603640073,\\\\n    \\\\\\\"mauve\\\\\\\": 0.027459158759642978,\\\\n    \\\\\\\"generation\\\\\\\": 6,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": true,\\\\n    \\\\\\\"trigger_gen\\\\\\\": 1,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.0553272146115247,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.013107374952247806,\\\\n    \\\\\\\"ece\\\\\\\": 0.013569044003514578,\\\\n    \\\\\\\"effective_rank\\\\\\\": 45.50657845916006,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.994393921111815,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.08579158874786137,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4768350522026993,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7959860897798079,\\\\n    \\\\\\\"mauve\\\\\\\": 0.03231540465271493,\\\\n    \\\\\\\"generation\\\\\\\": 7,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": true,\\\\n    \\\\\\\"trigger_gen\\\\\\\": 1,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.0574535708843293,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.014290296124455721,\\\\n    \\\\\\\"ece\\\\\\\": 0.012382746860047682,\\\\n    \\\\\\\"effective_rank\\\\\\\": 44.14137780289832,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.667999556903375,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.08541389822559212,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.48172032924512814,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.8022325057845038,\\\\n    \\\\\\\"mauve\\\\\\\": 0.0318460778365406,\\\\n    \\\\\\\"generation\\\\\\\": 8,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": true,\\\\n    \\\\\\\"trigger_gen\\\\\\\": 1,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.03250388390622,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.01321853815669535,\\\\n    \\\\\\\"ece\\\\\\\": 0.019318606030004938,\\\\n    \\\\\\\"effective_rank\\\\\\\": 44.4790993057807,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.95390108214654,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.0849937708794566,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.4800349150928424,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7981970972631112,\\\\n    \\\\\\\"mauve\\\\\\\": 0.029973547105100848,\\\\n    \\\\\\\"generation\\\\\\\": 9,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": true,\\\\n    \\\\\\\"trigger_gen\\\\\\\": 1,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.0\\\\n  },\\\\n  {\\\\n    \\\\\\\"token_entropy\\\\\\\": 3.048690535941015,\\\\n    \\\\\\\"self_bleu\\\\\\\": 0.014406158585487704,\\\\n    \\\\\\\"ece\\\\\\\": 0.016831044205685305,\\\\n    \\\\\\\"effective_rank\\\\\\\": 44.8134125363209,\\\\n    \\\\\\\"perplexity\\\\\\\": 20.814935470959252,\\\\n    \\\\\\\"distinct_1\\\\\\\": 0.08432131055112685,\\\\n    \\\\\\\"distinct_2\\\\\\\": 0.47752954166373013,\\\\n    \\\\\\\"distinct_3\\\\\\\": 0.7993343774471418,\\\\n    \\\\\\\"mauve\\\\\\\": 0.030753621378812383,\\\\n    \\\\\\\"generation\\\\\\\": 10,\\\\n    \\\\\\\"intervention_triggered\\\\\\\": true,\\\\n    \\\\\\\"trigger_gen\\\\\\\": 1,\\\\n    \\\\\\\"effective_alpha\\\\\\\": 0.0\\\\n  }\\\\n]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"[\\n  {\\n    \\\"token_entropy\\\": 3.23419483150593,\\n    \\\"self_bleu\\\": 0.010359298948078572,\\n    \\\"ece\\\": 0.010804557477709054,\\n    \\\"effective_rank\\\": 46.612774691899155,\\n    \\\"perplexity\\\": 26.948958972544652,\\n    \\\"distinct_1\\\": 0.09162095491577137,\\n    \\\"distinct_2\\\": 0.5038422526068081,\\n    \\\"distinct_3\\\": 0.8318077803203662,\\n    \\\"mauve\\\": 0.027018479627034072,\\n    \\\"generation\\\": 0,\\n    \\\"intervention_triggered\\\": false,\\n    \\\"trigger_gen\\\": null,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 2.211963036636512,\\n    \\\"self_bleu\\\": 0.010555916086494104,\\n    \\\"ece\\\": 0.13221706272448866,\\n    \\\"effective_rank\\\": 67.59978638023328,\\n    \\\"perplexity\\\": 32.6289857198483,\\n    \\\"distinct_1\\\": 0.09102786749549609,\\n    \\\"distinct_2\\\": 0.4993142625278961,\\n    \\\"distinct_3\\\": 0.8310637538141921,\\n    \\\"mauve\\\": 0.02764599057188057,\\n    \\\"generation\\\": 1,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.75\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0488659071531816,\\n    \\\"self_bleu\\\": 0.011377167769186706,\\n    \\\"ece\\\": 0.014039970938785621,\\n    \\\"effective_rank\\\": 49.8256313767394,\\n    \\\"perplexity\\\": 20.79744457794288,\\n    \\\"distinct_1\\\": 0.0751953125,\\n    \\\"distinct_2\\\": 0.4120735318244674,\\n    \\\"distinct_3\\\": 0.7595196799949999,\\n    \\\"mauve\\\": 0.0249345967050612,\\n    \\\"generation\\\": 2,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0525813308233998,\\n    \\\"self_bleu\\\": 0.011629891201852963,\\n    \\\"ece\\\": 0.01235892767851745,\\n    \\\"effective_rank\\\": 48.86164609187771,\\n    \\\"perplexity\\\": 20.744332040165524,\\n    \\\"distinct_1\\\": 0.08462532299741603,\\n    \\\"distinct_2\\\": 0.47855989285854966,\\n    \\\"distinct_3\\\": 0.8045677281106717,\\n    \\\"mauve\\\": 0.034102178478483965,\\n    \\\"generation\\\": 3,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.06691259012795,\\n    \\\"self_bleu\\\": 0.013663245353950443,\\n    \\\"ece\\\": 0.01112580668850693,\\n    \\\"effective_rank\\\": 47.02817159176732,\\n    \\\"perplexity\\\": 20.957972523895354,\\n    \\\"distinct_1\\\": 0.08563480707588268,\\n    \\\"distinct_2\\\": 0.48039168665067944,\\n    \\\"distinct_3\\\": 0.8020048121887465,\\n    \\\"mauve\\\": 0.029657405184893647,\\n    \\\"generation\\\": 4,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.046705325246135,\\n    \\\"self_bleu\\\": 0.0137310975785967,\\n    \\\"ece\\\": 0.013338626460725266,\\n    \\\"effective_rank\\\": 47.147702276339515,\\n    \\\"perplexity\\\": 20.767765626612285,\\n    \\\"distinct_1\\\": 0.08656279343656996,\\n    \\\"distinct_2\\\": 0.4775315322484383,\\n    \\\"distinct_3\\\": 0.7978020753756048,\\n    \\\"mauve\\\": 0.030712249976711757,\\n    \\\"generation\\\": 5,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0512406604874953,\\n    \\\"self_bleu\\\": 0.013759203442707521,\\n    \\\"ece\\\": 0.0150096445228366,\\n    \\\"effective_rank\\\": 45.73357445347566,\\n    \\\"perplexity\\\": 20.92996360434061,\\n    \\\"distinct_1\\\": 0.08593239517427129,\\n    \\\"distinct_2\\\": 0.4790227343357797,\\n    \\\"distinct_3\\\": 0.7984094603640073,\\n    \\\"mauve\\\": 0.027459158759642978,\\n    \\\"generation\\\": 6,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0553272146115247,\\n    \\\"self_bleu\\\": 0.013107374952247806,\\n    \\\"ece\\\": 0.013569044003514578,\\n    \\\"effective_rank\\\": 45.50657845916006,\\n    \\\"perplexity\\\": 20.994393921111815,\\n    \\\"distinct_1\\\": 0.08579158874786137,\\n    \\\"distinct_2\\\": 0.4768350522026993,\\n    \\\"distinct_3\\\": 0.7959860897798079,\\n    \\\"mauve\\\": 0.03231540465271493,\\n    \\\"generation\\\": 7,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.0574535708843293,\\n    \\\"self_bleu\\\": 0.014290296124455721,\\n    \\\"ece\\\": 0.012382746860047682,\\n    \\\"effective_rank\\\": 44.14137780289832,\\n    \\\"perplexity\\\": 20.667999556903375,\\n    \\\"distinct_1\\\": 0.08541389822559212,\\n    \\\"distinct_2\\\": 0.48172032924512814,\\n    \\\"distinct_3\\\": 0.8022325057845038,\\n    \\\"mauve\\\": 0.0318460778365406,\\n    \\\"generation\\\": 8,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.03250388390622,\\n    \\\"self_bleu\\\": 0.01321853815669535,\\n    \\\"ece\\\": 0.019318606030004938,\\n    \\\"effective_rank\\\": 44.4790993057807,\\n    \\\"perplexity\\\": 20.95390108214654,\\n    \\\"distinct_1\\\": 0.0849937708794566,\\n    \\\"distinct_2\\\": 0.4800349150928424,\\n    \\\"distinct_3\\\": 0.7981970972631112,\\n    \\\"mauve\\\": 0.029973547105100848,\\n    \\\"generation\\\": 9,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  },\\n  {\\n    \\\"token_entropy\\\": 3.048690535941015,\\n    \\\"self_bleu\\\": 0.014406158585487704,\\n    \\\"ece\\\": 0.016831044205685305,\\n    \\\"effective_rank\\\": 44.8134125363209,\\n    \\\"perplexity\\\": 20.814935470959252,\\n    \\\"distinct_1\\\": 0.08432131055112685,\\n    \\\"distinct_2\\\": 0.47752954166373013,\\n    \\\"distinct_3\\\": 0.7993343774471418,\\n    \\\"mauve\\\": 0.030753621378812383,\\n    \\\"generation\\\": 10,\\n    \\\"intervention_triggered\\\": true,\\n    \\\"trigger_gen\\\": 1,\\n    \\\"effective_alpha\\\": 0.0\\n  }\\n]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e62916fe-00ba-40a7-9420-35fe07c70d3a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 51 · 2026-05-19T05:19:05.123Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need to write the analysis report. Let me organize the data:
+
+## α=0.05 (a005_s42_fp32_v3)
+Gen-by-gen metrics:
+| gen | token_entropy | ece | perplexity | distinct_1 | distinct_2 | distinct_3 | effective_rank | mauve |
+|-----|------|-----|-----|-----|-----|-----|-----|------|
+| 0 | 3.234 | 0.0108 | 26.949 | 0.0916 | 0.5038 | 0.8318 | 46.613 | 0.0270 |
+
+
+| 1 | 3.006 | 0.0092 | 19.400 | 0.0910 | 0.4993 | 0.8311 | 47.773 | 0.0276 |
+| 2 | 3.030 | 0.0113 | 20.176 | 0.0735 | 0.4036 | 0.7381 | 48.706 | 0.0282 |
+| 3 | 3.014 | 0.0131 | 20.411 | 0.0678 |
+
+Generating metrics table... Looking at the performance metrics across these iterations, I'm seeing significant drift in several key indicators—token entropy dropped notably while perplexity improved, but the model's diversity metrics declined substantially. The lead-lag analysis suggests the naive cross-correlation is picking up the signal more reliably than the differenced version, with an onset threshold around iteration 5.
+
+For the α=0.60 configuration, the results are more dramatic: the drift is much more pronounced, particularly in ECE which spiked dramatically, and perplexity increased rather than decreased. The lead-lag detection is much stronger here—both the differenced cross-correlation and threshold onset methods are catching the signal consistently, and the Granger causality tests show much higher agreement, with consensus reaching 7 out of 8 detections.
+
+Now looking at the α=0.75 intervention results, the MMCT detection rate is quite high at 0.875, and I can see the consensus voting patterns across different metric pairs. The drift metrics are much more moderate here—token entropy and distinct metrics show only small decreases, while ECE still increases but far less dramatically than in the α=0.60 case. The perplexity actually decreased, which is interesting.
+
+The intervention triggered early at generation 1 and switched alpha to 0.0 afterward, which seems to have helped with recovery. Looking at the lead-lag detection methods, most are performing well—naive and diff cross-correlation both caught all 8 cases, and the Granger causality tests are strong too, though threshold onset didn't trigger because the intervention prevented the drift from crossing the threshold. The MMCT detection rate dropped to 0.75 here.
+
+I should note the TY Granger constraint issue when I write the report—at α=0.05, TY Granger only catches 3 out of 8 cases, and there's instability in the degrees of freedom that I need to flag.
+
+Looking at the pair-level TY results more carefully, most of the relationships aren't actually significant once I check the p-values and degrees of freedom. The ece→distinct_2 pair shows a significant result, but that's one of the cases where the constraint applies because d_max=2 with df_resid=1, so I can't cite it as reliable support.
+
+Now I'm ready to write up the full report, but first let me trace through the generation-by-generation data for the intervention condition to see how entropy evolved from baseline through the triggered intervention.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3751bf92-df92-4a56-b642-94ef93beab4c",
+  "isSidechain": false,
+  "requestId": "req_011CbBMy3hdsmaNW2dDVNJBX",
+  "type": "assistant",
+  "uuid": "83ae2476-a3df-42f5-b9b7-7504cc2b1a4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nQuuFBXFeLCGsFE7FkwNA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9312,
+      "cache_read_input_tokens": 44319,
+      "output_tokens": 2193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9312,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2193,
+          "cache_read_input_tokens": 44319,
+          "cache_creation_input_tokens": 9312,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9312
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 52 · 2026-05-19T05:19:05.124Z_
+
+所有数据收集完毕。现在写分析报告。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "83ae2476-a3df-42f5-b9b7-7504cc2b1a4f",
+  "isSidechain": false,
+  "requestId": "req_011CbBMy3hdsmaNW2dDVNJBX",
+  "type": "assistant",
+  "uuid": "5713423b-f8da-44d7-be87-a34cec14aca3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nQuuFBXFeLCGsFE7FkwNA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9312,
+      "cache_read_input_tokens": 44319,
+      "output_tokens": 2193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9312,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2193,
+          "cache_read_input_tokens": 44319,
+          "cache_creation_input_tokens": 9312,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9312
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-19T05:19:06.285Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01NQA9kuvcLyrHighJ4FjCqv`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__register_artifact",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5713423b-f8da-44d7-be87-a34cec14aca3",
+  "isSidechain": false,
+  "requestId": "req_011CbBMy3hdsmaNW2dDVNJBX",
+  "type": "assistant",
+  "uuid": "5b432b37-fbba-4200-b03e-a9726b09d1e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015nQuuFBXFeLCGsFE7FkwNA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 9312,
+      "cache_read_input_tokens": 44319,
+      "output_tokens": 2193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 9312,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2193,
+          "cache_read_input_tokens": 44319,
+          "cache_creation_input_tokens": 9312,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 9312
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-19T05:19:06.291Z_
+
+<details><summary>↩ Tool result · `toolu_01NQA9kuvcLyrHighJ4FjCqv`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__register_artifact"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5b432b37-fbba-4200-b03e-a9726b09d1e4",
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "ca795ca8-c835-4879-87e7-2e129172db9b",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__register_artifact"
+    ],
+    "query": "select:mcp__agent-ml-research__register_artifact",
+    "total_deferred_tools": 24
+  },
+  "sourceToolAssistantUUID": "5b432b37-fbba-4200-b03e-a9726b09d1e4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 55 · 2026-05-19T05:19:06.343Z_
+
+```json
+{
+  "parentUuid": "ca795ca8-c835-4879-87e7-2e129172db9b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "17b0f90c-681e-4fdb-873d-f841fa3db9d4",
+  "timestamp": "2026-05-19T05:19:06.343Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "17b0f90c-681e-4fdb-873d-f841fa3db9d4",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze three completed fp32 experiments",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9"
+}
+```
+
+---
+
+### Tool call
+
+_source line 58 · 2026-05-19T05:20:44.747Z_
+
+<details open><summary>🔧 Tool call — Write · `toolu_01VPjaLGdrizY5QZDYaVeP3J`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/batch3_fp32_analysis.md",
+  "content": "# 三个 fp32 实验分析报告 (2026-05-19)\n\n服务器: westd-17855 | 分析脚本: batch_analysis.py | 所有实验 d=0.80, seed=42\n\n---\n\n## 1. alpha_sweep_a005_s42_v3 (α=0.05)\n\n### 指标轨迹\n\n| gen | token_entropy | ece | perplexity | distinct_1 | distinct_2 | distinct_3 | eff_rank | mauve |\n|-----|--------------|-------|-----------|-----------|-----------|-----------|---------|-------|\n| 0 | 3.234 | 0.0108 | 26.95 | 0.0916 | 0.5038 | 0.8318 | 46.61 | 0.0270 |\n| 1 | 3.006 | 0.0092 | 19.40 | 0.0910 | 0.4993 | 0.8311 | 47.77 | 0.0276 |\n| 2 | 3.030 | 0.0113 | 20.18 | 0.0735 | 0.4036 | 0.7381 | 48.71 | 0.0282 |\n| 3 | 3.014 | 0.0131 | 20.41 | 0.0678 | 0.3558 | 0.6829 | 48.69 | 0.0228 |\n| 4 | 3.027 | 0.0144 | 20.67 | 0.0680 | 0.3505 | 0.6682 | 48.01 | 0.0208 |\n| 5 | 3.026 | 0.0154 | 20.83 | 0.0678 | 0.3503 | 0.6640 | 47.72 | 0.0226 |\n| 6 | 3.032 | 0.0141 | 20.75 | 0.0696 | 0.3570 | 0.6655 | 47.27 | 0.0235 |\n| 7 | 3.023 | 0.0174 | 20.86 | 0.0692 | 0.3586 | 0.6661 | 46.59 | 0.0250 |\n| 8 | 3.041 | 0.0160 | 20.82 | 0.0694 | 0.3641 | 0.6746 | 46.03 | 0.0220 |\n| 9 | 3.037 | 0.0156 | 20.86 | 0.0701 | 0.3622 | 0.6723 | 46.17 | 0.0240 |\n| 10 | 3.042 | 0.0168 | 20.81 | 0.0688 | 0.3607 | 0.6693 | 45.31 | 0.0235 |\n\n**Drift (gen0→gen10):** token_entropy -5.96%, ece +55.41%, perplexity -22.78%, distinct_1 -24.86%, distinct_2 -28.42%, distinct_3 -19.54%, eff_rank -2.80%, mauve -13.08%\n\n### Lead-lag 分析\n\n| method | forward sig / total |\n|--------|-------------------|\n| naive_xcorr | 7/8 |\n| diff_xcorr | 3/8 |\n| threshold_onset | 5/8 |\n| perm_granger_fwd | 0/8 |\n| perm_granger_rev | 0/8 |\n| ty_granger | 3/8 |\n| **consensus_k4** | **0/8** |\n\nMMCT detection_rate = **0.0**\n\n**Consensus detail** (最高 3 votes，均未达 K≥4 阈值):\n\n| pair | votes | methods |\n|------|-------|---------|\n| token_entropy→distinct_1 | 3 | naive, diff, thresh |\n| token_entropy→distinct_2 | 3 | naive, diff, thresh |\n| token_entropy→distinct_3 | 3 | naive, diff, thresh |\n| token_entropy→mauve | 2 | naive, thresh |\n| ece→distinct_2 | 2 | naive, ty |\n| ece→distinct_3 | 2 | naive, ty |\n| ece→mauve | 2 | thresh, ty |\n| ece→distinct_1 | 1 | naive |\n\n**⚠️ C003 注意**: TY 3/8 显著的 pairs (ece→distinct_2, ece→distinct_3, ece→mauve) 全部 d_max=2, df_resid=1，属于 C003 约束范围内的不可靠结果，不可作为支撑证据。\n\n### 关键发现\n\n- α=0.05 产生**极微弱的 collapse**：canary (token_entropy) 仅下降 5.96%，ece 仅从 0.011 升至 0.017\n- diversity 指标有中等下降 (distinct_1/2/3 -19%~-28%)，但主要发生在 gen 0→3，之后几乎稳定\n- perplexity 反常下降 22.78%（gen0 的 26.95 是原始模型基线，gen1 起快速降至 ~20.8 并稳定）\n- lead-lag **完全无法检测**：consensus_k4 = 0/8，MMCT = 0.0。信号太弱，5-method 无法达成共识\n- 与 α=0.00 null 控制组的区分度很低，属于近基线行为\n\n---\n\n## 2. alpha_sweep_a060_s42_fp32_v3 (α=0.60)\n\n### 指标轨迹\n\n| gen | token_entropy | ece | perplexity | distinct_1 | distinct_2 | distinct_3 | eff_rank | mauve |\n|-----|--------------|-------|-----------|-----------|-----------|-----------|---------|-------|\n| 0 | 3.234 | 0.0108 | 26.95 | 0.0916 | 0.5038 | 0.8318 | 46.61 | 0.0270 |\n| 1 | 2.223 | 0.1244 | 29.57 | 0.0910 | 0.4993 | 0.8311 | 65.29 | 0.0276 |\n| 2 | 2.210 | 0.1468 | 36.33 | 0.0742 | 0.4093 | 0.7542 | 71.77 | 0.0265 |\n| 3 | 2.248 | 0.1465 | 38.09 | 0.0710 | 0.3717 | 0.7009 | 72.84 | 0.0232 |\n| 4 | 2.272 | 0.1501 | 40.33 | 0.0698 | 0.3559 | 0.6613 | 72.81 | 0.0224 |\n| 5 | 2.313 | 0.1489 | 41.58 | 0.0691 | 0.3508 | 0.6388 | 71.59 | 0.0223 |\n| 6 | 2.337 | 0.1480 | 41.88 | 0.0685 | 0.3430 | 0.6159 | 71.75 | 0.0244 |\n| 7 | 2.393 | 0.1472 | 42.66 | 0.0676 | 0.3382 | 0.5942 | 70.77 | 0.0245 |\n| 8 | 2.402 | 0.1490 | 44.06 | 0.0670 | 0.3282 | 0.5699 | 70.67 | 0.0231 |\n| 9 | 2.456 | 0.1461 | 45.16 | 0.0662 | 0.3220 | 0.5531 | 70.41 | 0.0232 |\n| 10 | 2.479 | 0.1470 | 45.41 | 0.0658 | 0.3163 | 0.5377 | 69.33 | 0.0226 |\n\n**Drift (gen0→gen10):** token_entropy -23.36%, ece +1260.23%, perplexity +68.52%, distinct_1 -28.17%, distinct_2 -37.22%, distinct_3 -35.35%, eff_rank +48.74%, mauve -16.31%\n\n### Lead-lag 分析\n\n| method | forward sig / total |\n|--------|-------------------|\n| naive_xcorr | 7/8 |\n| diff_xcorr | 8/8 |\n| threshold_onset | 8/8 |\n| perm_granger_fwd | 3/8 |\n| perm_granger_rev | 0/8 |\n| ty_granger | 8/8 |\n| **consensus_k4** | **7/8** |\n\nMMCT detection_rate = **0.875**\n\n**Consensus detail**:\n\n| pair | votes | methods | K≥4? |\n|------|-------|---------|------|\n| token_entropy→distinct_1 | 5 | naive, diff, thresh, pg_fwd, ty | ✓ |\n| token_entropy→distinct_2 | 4 | naive, diff, thresh, ty | ✓ |\n| token_entropy→distinct_3 | 4 | naive, diff, thresh, ty | ✓ |\n| token_entropy→mauve | 4 | naive, diff, thresh, ty | ✓ |\n| ece→distinct_1 | 5 | naive, diff, thresh, pg_fwd, ty | ✓ |\n| ece→distinct_2 | 5 | naive, diff, thresh, pg_fwd, ty | ✓ |\n| ece→distinct_3 | 3 | diff, thresh, ty | ✗ |\n| ece→mauve | 4 | naive, diff, thresh, ty | ✓ |\n\n**TY Granger**: 8/8 显著，全部 d_max=0 或 d_max=1 (df_resid≥4)，结果可靠（不受 C003 约束）。\n\n### 关键发现\n\n- α=0.60 产生**强烈且持续的 collapse**：token_entropy gen0→gen1 骤降 31.3% (3.234→2.223)，ece 从 0.011 跃升至 0.124 (+1050% 单代)\n- gen1 后 canary 继续缓慢漂移但不回复，ece 稳定在 ~0.147，entropy 缓慢回升至 2.48\n- downstream diversity 持续单调下降：distinct_3 从 0.832 线性降至 0.538\n- perplexity 持续上升 (+68.5%)，effective_rank 大幅上升 (+48.7%)，表明模型输出分布变得更分散但质量更差\n- **lead-lag 检测能力极强**: 7/8 pairs consensus≥4，MMCT=0.875，最高 pair 达到 5-method 全票\n- canary (token_entropy, ece) gen1 即响应，downstream (distinct) gen2 才开始下降 → 1-gen lead time 一致\n\n---\n\n## 3. interv_pred_a075_s42_fp32_v4 (intervention α=0.75)\n\n### 指标轨迹\n\n| gen | token_entropy | ece | perplexity | distinct_1 | distinct_2 | distinct_3 | eff_rank | mauve | α_eff | interv |\n|-----|--------------|-------|-----------|-----------|-----------|-----------|---------|-------|------|--------|\n| 0 | 3.234 | 0.0108 | 26.95 | 0.0916 | 0.5038 | 0.8318 | 46.61 | 0.0270 | 0.75 | — |\n| 1 | 2.212 | 0.1322 | 32.63 | 0.0910 | 0.4993 | 0.8311 | 67.60 | 0.0276 | 0.75 | **triggered** |\n| 2 | 3.049 | 0.0140 | 20.80 | 0.0752 | 0.4121 | 0.7595 | 49.83 | 0.0249 | 0.00 | recovery |\n| 3 | 3.053 | 0.0124 | 20.74 | 0.0846 | 0.4786 | 0.8046 | 48.86 | 0.0341 | 0.00 | stable |\n| 4 | 3.067 | 0.0111 | 20.96 | 0.0856 | 0.4804 | 0.8020 | 47.03 | 0.0297 | 0.00 | stable |\n| 5 | 3.047 | 0.0133 | 20.77 | 0.0866 | 0.4775 | 0.7978 | 47.15 | 0.0307 | 0.00 | stable |\n| 6 | 3.051 | 0.0150 | 20.93 | 0.0859 | 0.4790 | 0.7984 | 45.73 | 0.0275 | 0.00 | stable |\n| 7 | 3.055 | 0.0136 | 20.99 | 0.0858 | 0.4768 | 0.7960 | 45.51 | 0.0323 | 0.00 | stable |\n| 8 | 3.057 | 0.0124 | 20.67 | 0.0854 | 0.4817 | 0.8022 | 44.14 | 0.0318 | 0.00 | stable |\n| 9 | 3.033 | 0.0193 | 20.95 | 0.0850 | 0.4800 | 0.7982 | 44.48 | 0.0300 | 0.00 | stable |\n| 10 | 3.049 | 0.0168 | 20.81 | 0.0843 | 0.4775 | 0.7993 | 44.81 | 0.0308 | 0.00 | stable |\n\n**Drift (gen0→gen10):** token_entropy -5.74%, ece +55.78%, perplexity -22.76%, distinct_1 -7.97%, distinct_2 -5.22%, distinct_3 -3.90%, eff_rank -3.86%, mauve +13.82%\n\n### Intervention 行为\n\n- **触发 gen**: gen 1（canary 检测到 token_entropy 骤降 31.6%: 3.234→2.212，ece 跃升至 0.132）\n- **α 切换**: gen 2 起 effective_alpha 从 0.75→0.00\n- **恢复速度**: **1 代完全恢复**。gen2 token_entropy 回到 3.049（接近 gen0 的 3.234），ece 回到 0.014\n- **恢复后稳定性**: gen 3-10 所有指标高度稳定，distinct_1 ~0.085, distinct_2 ~0.478, distinct_3 ~0.799\n- **diversity 保持**: 恢复后 distinct_1/2/3 仅比 gen0 低 4-8%（vs α=0.60 无干预时 -28%~-35%）\n- **mauve 上升**: 恢复后 mauve 从 0.027 升至 ~0.031 (+13.8%)，说明干预后输出分布反而更接近参考分布\n\n### Lead-lag 分析\n\n| method | forward sig / total |\n|--------|-------------------|\n| naive_xcorr | 8/8 |\n| diff_xcorr | 8/8 |\n| threshold_onset | 0/8 |\n| perm_granger_fwd | 6/8 |\n| perm_granger_rev | 0/8 |\n| ty_granger | 8/8 |\n| **consensus_k4** | **6/8** |\n\nMMCT detection_rate = **0.75**\n\n**Consensus detail**:\n\n| pair | votes | methods | K≥4? |\n|------|-------|---------|------|\n| token_entropy→distinct_1 | 4 | naive, diff, pg_fwd, ty | ✓ |\n| token_entropy→distinct_2 | 4 | naive, diff, pg_fwd, ty | ✓ |\n| token_entropy→distinct_3 | 4 | naive, diff, pg_fwd, ty | ✓ |\n| token_entropy→mauve | 3 | naive, diff, ty | ✗ |\n| ece→distinct_1 | 4 | naive, diff, pg_fwd, ty | ✓ |\n| ece→distinct_2 | 4 | naive, diff, pg_fwd, ty | ✓ |\n| ece→distinct_3 | 4 | naive, diff, pg_fwd, ty | ✓ |\n| ece→mauve | 3 | naive, diff, ty | ✗ |\n\n**注意**: threshold_onset = 0/8 是因为干预后指标回复，大部分 canary 和 downstream 均未持续超过 10% threshold。这不是方法失效，而是干预成功阻止了持续偏离。\n\n**TY Granger**: 8/8 显著，全部 d_max=0, df_resid=7，结果高度可靠。\n\n### 关键发现\n\n- intervention 在 gen1 正确触发，α→0 后 **1 代内完全恢复**\n- 即使只有 1 代的 α=0.75 暴露，lead-lag 仍能检测到 6/8 pairs 的因果方向性\n- perm_granger_fwd 6/8 显著 (vs α=0.60 的 3/8)，说明即使短暂干预的脉冲信号也被 Granger 捕捉到\n- perm_granger_rev 0/8 → 无反向因果，方向性一致\n- fp32 intervention 行为与预期完全一致：检测→触发→恢复→稳定\n\n---\n\n## 4. 对 Dose-Response Map 的影响\n\n### α=0.05 填补的格子\n\n- **位置**: dose-response 曲线最低端（近 null baseline）\n- **结果**: MMCT=0.0, consensus_k4=0/8\n- **意义**: 确认 α=0.05 在 fp32 下属于 **\"undetectable\" zone**。canary drift 过小（entropy -6%, ece +55% 但绝对值仅 0.011→0.017），5-method 无法形成共识。这为 dose-response 曲线提供了关键的下界参照——α<0.05 可安全视为无影响\n\n### α=0.60 填补的格子\n\n- **位置**: dose-response 曲线中高段\n- **结果**: MMCT=0.875, consensus_k4=7/8\n- **意义**: α=0.60 fp32 表现出**极强的 lead-lag 信号**，与之前 α=0.75/1.00 结果形成连续梯度。ece +1260% 的巨幅漂移为 canary 提供了充足的信号强度。7/8 pairs 达到 K≥4 consensus，仅 ece→distinct_3 (3 votes) 未达标\n\n### Intervention 结果与 bf16 对比\n\n- **fp32 v4**: gen1 触发, 1-gen 恢复, MMCT=0.75 (6/8 consensus)\n- **关键观察**: fp32 intervention 的 lead-lag 检测率 (0.75) 略低于 non-intervention α=0.60 (0.875)，这符合预期——干预截断了 collapse 过程，减少了可用于因果推断的时间序列长度\n- threshold_onset 0/8 是干预成功的标志（而非方法缺陷），因为指标在超过 threshold 前就被拉回\n\n### Dose-Response 汇总 (fp32, seed=42, d=0.80)\n\n| α | MMCT | K≥4 pairs | token_entropy drift | ece drift | 状态 |\n|------|------|-----------|-------------------|----------|------|\n| 0.05 | 0.00 | 0/8 | -5.96% | +55% | undetectable |\n| 0.60 | 0.875 | 7/8 | -23.36% | +1260% | strong signal |\n| 0.75 (interv) | 0.75 | 6/8 | -5.74%* | +55.8%* | intervention success |\n\n*intervention 实验的 gen0→gen10 drift 反映的是干预后恢复状态，不是持续 collapse。gen0→gen1 的单步 drift 为 entropy -31.6%, ece +1124%。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "17b0f90c-681e-4fdb-873d-f841fa3db9d4",
+  "isSidechain": false,
+  "requestId": "req_011CbBN1snfeMTWz2oML4epN",
+  "type": "assistant",
+  "uuid": "f576ca2d-0a11-4d7a-90c0-94916969d195",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uqvnrez4cek96aKcmu8JS1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2920,
+      "cache_read_input_tokens": 53631,
+      "output_tokens": 5977,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2920,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 5977,
+          "cache_read_input_tokens": 53631,
+          "cache_creation_input_tokens": 2920,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2920
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 59 · 2026-05-19T05:20:44.772Z_
+
+<details><summary>↩ Tool result · `toolu_01VPjaLGdrizY5QZDYaVeP3J`</summary>
+
+```text
+File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/batch3_fp32_analysis.md
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f576ca2d-0a11-4d7a-90c0-94916969d195",
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "4d95e197-f221-45a1-bdf6-10fa54b9fd74",
+  "toolUseResult": {
+    "type": "create",
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/batch3_fp32_analysis.md",
+    "content": "# 三个 fp32 实验分析报告 (2026-05-19)\n\n服务器: westd-17855 | 分析脚本: batch_analysis.py | 所有实验 d=0.80, seed=42\n\n---\n\n## 1. alpha_sweep_a005_s42_v3 (α=0.05)\n\n### 指标轨迹\n\n| gen | token_entropy | ece | perplexity | distinct_1 | distinct_2 | distinct_3 | eff_rank | mauve |\n|-----|--------------|-------|-----------|-----------|-----------|-----------|---------|-------|\n| 0 | 3.234 | 0.0108 | 26.95 | 0.0916 | 0.5038 | 0.8318 | 46.61 | 0.0270 |\n| 1 | 3.006 | 0.0092 | 19.40 | 0.0910 | 0.4993 | 0.8311 | 47.77 | 0.0276 |\n| 2 | 3.030 | 0.0113 | 20.18 | 0.0735 | 0.4036 | 0.7381 | 48.71 | 0.0282 |\n| 3 | 3.014 | 0.0131 | 20.41 | 0.0678 | 0.3558 | 0.6829 | 48.69 | 0.0228 |\n| 4 | 3.027 | 0.0144 | 20.67 | 0.0680 | 0.3505 | 0.6682 | 48.01 | 0.0208 |\n| 5 | 3.026 | 0.0154 | 20.83 | 0.0678 | 0.3503 | 0.6640 | 47.72 | 0.0226 |\n| 6 | 3.032 | 0.0141 | 20.75 | 0.0696 | 0.3570 | 0.6655 | 47.27 | 0.0235 |\n| 7 | 3.023 | 0.0174 | 20.86 | 0.0692 | 0.3586 | 0.6661 | 46.59 | 0.0250 |\n| 8 | 3.041 | 0.0160 | 20.82 | 0.0694 | 0.3641 | 0.6746 | 46.03 | 0.0220 |\n| 9 | 3.037 | 0.0156 | 20.86 | 0.0701 | 0.3622 | 0.6723 | 46.17 | 0.0240 |\n| 10 | 3.042 | 0.0168 | 20.81 | 0.0688 | 0.3607 | 0.6693 | 45.31 | 0.0235 |\n\n**Drift (gen0→gen10):** token_entropy -5.96%, ece +55.41%, perplexity -22.78%, distinct_1 -24.86%, distinct_2 -28.42%, distinct_3 -19.54%, eff_rank -2.80%, mauve -13.08%\n\n### Lead-lag 分析\n\n| method | forward sig / total |\n|--------|-------------------|\n| naive_xcorr | 7/8 |\n| diff_xcorr | 3/8 |\n| threshold_onset | 5/8 |\n| perm_granger_fwd | 0/8 |\n| perm_granger_rev | 0/8 |\n| ty_granger | 3/8 |\n| **consensus_k4** | **0/8** |\n\nMMCT detection_rate = **0.0**\n\n**Consensus detail** (最高 3 votes，均未达 K≥4 阈值):\n\n| pair | votes | methods |\n|------|-------|---------|\n| token_entropy→distinct_1 | 3 | naive, diff, thresh |\n| token_entropy→distinct_2 | 3 | naive, diff, thresh |\n| token_entropy→distinct_3 | 3 | naive, diff, thresh |\n| token_entropy→mauve | 2 | naive, thresh |\n| ece→distinct_2 | 2 | naive, ty |\n| ece→distinct_3 | 2 | naive, ty |\n| ece→mauve | 2 | thresh, ty |\n| ece→distinct_1 | 1 | naive |\n\n**⚠️ C003 注意**: TY 3/8 显著的 pairs (ece→distinct_2, ece→distinct_3, ece→mauve) 全部 d_max=2, df_resid=1，属于 C003 约束范围内的不可靠结果，不可作为支撑证据。\n\n### 关键发现\n\n- α=0.05 产生**极微弱的 collapse**：canary (token_entropy) 仅下降 5.96%，ece 仅从 0.011 升至 0.017\n- diversity 指标有中等下降 (distinct_1/2/3 -19%~-28%)，但主要发生在 gen 0→3，之后几乎稳定\n- perplexity 反常下降 22.78%（gen0 的 26.95 是原始模型基线，gen1 起快速降至 ~20.8 并稳定）\n- lead-lag **完全无法检测**：consensus_k4 = 0/8，MMCT = 0.0。信号太弱，5-method 无法达成共识\n- 与 α=0.00 null 控制组的区分度很低，属于近基线行为\n\n---\n\n## 2. alpha_sweep_a060_s42_fp32_v3 (α=0.60)\n\n### 指标轨迹\n\n| gen | token_entropy | ece | perplexity | distinct_1 | distinct_2 | distinct_3 | eff_rank | mauve |\n|-----|--------------|-------|-----------|-----------|-----------|-----------|---------|-------|\n| 0 | 3.234 | 0.0108 | 26.95 | 0.0916 | 0.5038 | 0.8318 | 46.61 | 0.0270 |\n| 1 | 2.223 | 0.1244 | 29.57 | 0.0910 | 0.4993 | 0.8311 | 65.29 | 0.0276 |\n| 2 | 2.210 | 0.1468 | 36.33 | 0.0742 | 0.4093 | 0.7542 | 71.77 | 0.0265 |\n| 3 | 2.248 | 0.1465 | 38.09 | 0.0710 | 0.3717 | 0.7009 | 72.84 | 0.0232 |\n| 4 | 2.272 | 0.1501 | 40.33 | 0.0698 | 0.3559 | 0.6613 | 72.81 | 0.0224 |\n| 5 | 2.313 | 0.1489 | 41.58 | 0.0691 | 0.3508 | 0.6388 | 71.59 | 0.0223 |\n| 6 | 2.337 | 0.1480 | 41.88 | 0.0685 | 0.3430 | 0.6159 | 71.75 | 0.0244 |\n| 7 | 2.393 | 0.1472 | 42.66 | 0.0676 | 0.3382 | 0.5942 | 70.77 | 0.0245 |\n| 8 | 2.402 | 0.1490 | 44.06 | 0.0670 | 0.3282 | 0.5699 | 70.67 | 0.0231 |\n| 9 | 2.456 | 0.1461 | 45.16 | 0.0662 | 0.3220 | 0.5531 | 70.41 | 0.0232 |\n| 10 | 2.479 | 0.1470 | 45.41 | 0.0658 | 0.3163 | 0.5377 | 69.33 | 0.0226 |\n\n**Drift (gen0→gen10):** token_entropy -23.36%, ece +1260.23%, perplexity +68.52%, distinct_1 -28.17%, distinct_2 -37.22%, distinct_3 -35.35%, eff_rank +48.74%, mauve -16.31%\n\n### Lead-lag 分析\n\n| method | forward sig / total |\n|--------|-------------------|\n| naive_xcorr | 7/8 |\n| diff_xcorr | 8/8 |\n| threshold_onset | 8/8 |\n| perm_granger_fwd | 3/8 |\n| perm_granger_rev | 0/8 |\n| ty_granger | 8/8 |\n| **consensus_k4** | **7/8** |\n\nMMCT detection_rate = **0.875**\n\n**Consensus detail**:\n\n| pair | votes | methods | K≥4? |\n|------|-------|---------|------|\n| token_entropy→distinct_1 | 5 | naive, diff, thresh, pg_fwd, ty | ✓ |\n| token_entropy→distinct_2 | 4 | naive, diff, thresh, ty | ✓ |\n| token_entropy→distinct_3 | 4 | naive, diff, thresh, ty | ✓ |\n| token_entropy→mauve | 4 | naive, diff, thresh, ty | ✓ |\n| ece→distinct_1 | 5 | naive, diff, thresh, pg_fwd, ty | ✓ |\n| ece→distinct_2 | 5 | naive, diff, thresh, pg_fwd, ty | ✓ |\n| ece→distinct_3 | 3 | diff, thresh, ty | ✗ |\n| ece→mauve | 4 | naive, diff, thresh, ty | ✓ |\n\n**TY Granger**: 8/8 显著，全部 d_max=0 或 d_max=1 (df_resid≥4)，结果可靠（不受 C003 约束）。\n\n### 关键发现\n\n- α=0.60 产生**强烈且持续的 collapse**：token_entropy gen0→gen1 骤降 31.3% (3.234→2.223)，ece 从 0.011 跃升至 0.124 (+1050% 单代)\n- gen1 后 canary 继续缓慢漂移但不回复，ece 稳定在 ~0.147，entropy 缓慢回升至 2.48\n- downstream diversity 持续单调下降：distinct_3 从 0.832 线性降至 0.538\n- perplexity 持续上升 (+68.5%)，effective_rank 大幅上升 (+48.7%)，表明模型输出分布变得更分散但质量更差\n- **lead-lag 检测能力极强**: 7/8 pairs consensus≥4，MMCT=0.875，最高 pair 达到 5-method 全票\n- canary (token_entropy, ece) gen1 即响应，downstream (distinct) gen2 才开始下降 → 1-gen lead time 一致\n\n---\n\n## 3. interv_pred_a075_s42_fp32_v4 (intervention α=0.75)\n\n### 指标轨迹\n\n| gen | token_entropy | ece | perplexity | distinct_1 | distinct_2 | distinct_3 | eff_rank | mauve | α_eff | interv |\n|-----|--------------|-------|-----------|-----------|-----------|-----------|---------|-------|------|--------|\n| 0 | 3.234 | 0.0108 | 26.95 | 0.0916 | 0.5038 | 0.8318 | 46.61 | 0.0270 | 0.75 | — |\n| 1 | 2.212 | 0.1322 | 32.63 | 0.0910 | 0.4993 | 0.8311 | 67.60 | 0.0276 | 0.75 | **triggered** |\n| 2 | 3.049 | 0.0140 | 20.80 | 0.0752 | 0.4121 | 0.7595 | 49.83 | 0.0249 | 0.00 | recovery |\n| 3 | 3.053 | 0.0124 | 20.74 | 0.0846 | 0.4786 | 0.8046 | 48.86 | 0.0341 | 0.00 | stable |\n| 4 | 3.067 | 0.0111 | 20.96 | 0.0856 | 0.4804 | 0.8020 | 47.03 | 0.0297 | 0.00 | stable |\n| 5 | 3.047 | 0.0133 | 20.77 | 0.0866 | 0.4775 | 0.7978 | 47.15 | 0.0307 | 0.00 | stable |\n| 6 | 3.051 | 0.0150 | 20.93 | 0.0859 | 0.4790 | 0.7984 | 45.73 | 0.0275 | 0.00 | stable |\n| 7 | 3.055 | 0.0136 | 20.99 | 0.0858 | 0.4768 | 0.7960 | 45.51 | 0.0323 | 0.00 | stable |\n| 8 | 3.057 | 0.0124 | 20.67 | 0.0854 | 0.4817 | 0.8022 | 44.14 | 0.0318 | 0.00 | stable |\n| 9 | 3.033 | 0.0193 | 20.95 | 0.0850 | 0.4800 | 0.7982 | 44.48 | 0.0300 | 0.00 | stable |\n| 10 | 3.049 | 0.0168 | 20.81 | 0.0843 | 0.4775 | 0.7993 | 44.81 | 0.0308 | 0.00 | stable |\n\n**Drift (gen0→gen10):** token_entropy -5.74%, ece +55.78%, perplexity -22.76%, distinct_1 -7.97%, distinct_2 -5.22%, distinct_3 -3.90%, eff_rank -3.86%, mauve +13.82%\n\n### Intervention 行为\n\n- **触发 gen**: gen 1（canary 检测到 token_entropy 骤降 31.6%: 3.234→2.212，ece 跃升至 0.132）\n- **α 切换**: gen 2 起 effective_alpha 从 0.75→0.00\n- **恢复速度**: **1 代完全恢复**。gen2 token_entropy 回到 3.049（接近 gen0 的 3.234），ece 回到 0.014\n- **恢复后稳定性**: gen 3-10 所有指标高度稳定，distinct_1 ~0.085, distinct_2 ~0.478, distinct_3 ~0.799\n- **diversity 保持**: 恢复后 distinct_1/2/3 仅比 gen0 低 4-8%（vs α=0.60 无干预时 -28%~-35%）\n- **mauve 上升**: 恢复后 mauve 从 0.027 升至 ~0.031 (+13.8%)，说明干预后输出分布反而更接近参考分布\n\n### Lead-lag 分析\n\n| method | forward sig / total |\n|--------|-------------------|\n| naive_xcorr | 8/8 |\n| diff_xcorr | 8/8 |\n| threshold_onset | 0/8 |\n| perm_granger_fwd | 6/8 |\n| perm_granger_rev | 0/8 |\n| ty_granger | 8/8 |\n| **consensus_k4** | **6/8** |\n\nMMCT detection_rate = **0.75**\n\n**Consensus detail**:\n\n| pair | votes | methods | K≥4? |\n|------|-------|---------|------|\n| token_entropy→distinct_1 | 4 | naive, diff, pg_fwd, ty | ✓ |\n| token_entropy→distinct_2 | 4 | naive, diff, pg_fwd, ty | ✓ |\n| token_entropy→distinct_3 | 4 | naive, diff, pg_fwd, ty | ✓ |\n| token_entropy→mauve | 3 | naive, diff, ty | ✗ |\n| ece→distinct_1 | 4 | naive, diff, pg_fwd, ty | ✓ |\n| ece→distinct_2 | 4 | naive, diff, pg_fwd, ty | ✓ |\n| ece→distinct_3 | 4 | naive, diff, pg_fwd, ty | ✓ |\n| ece→mauve | 3 | naive, diff, ty | ✗ |\n\n**注意**: threshold_onset = 0/8 是因为干预后指标回复，大部分 canary 和 downstream 均未持续超过 10% threshold。这不是方法失效，而是干预成功阻止了持续偏离。\n\n**TY Granger**: 8/8 显著，全部 d_max=0, df_resid=7，结果高度可靠。\n\n### 关键发现\n\n- intervention 在 gen1 正确触发，α→0 后 **1 代内完全恢复**\n- 即使只有 1 代的 α=0.75 暴露，lead-lag 仍能检测到 6/8 pairs 的因果方向性\n- perm_granger_fwd 6/8 显著 (vs α=0.60 的 3/8)，说明即使短暂干预的脉冲信号也被 Granger 捕捉到\n- perm_granger_rev 0/8 → 无反向因果，方向性一致\n- fp32 intervention 行为与预期完全一致：检测→触发→恢复→稳定\n\n---\n\n## 4. 对 Dose-Response Map 的影响\n\n### α=0.05 填补的格子\n\n- **位置**: dose-response 曲线最低端（近 null baseline）\n- **结果**: MMCT=0.0, consensus_k4=0/8\n- **意义**: 确认 α=0.05 在 fp32 下属于 **\"undetectable\" zone**。canary drift 过小（entropy -6%, ece +55% 但绝对值仅 0.011→0.017），5-method 无法形成共识。这为 dose-response 曲线提供了关键的下界参照——α<0.05 可安全视为无影响\n\n### α=0.60 填补的格子\n\n- **位置**: dose-response 曲线中高段\n- **结果**: MMCT=0.875, consensus_k4=7/8\n- **意义**: α=0.60 fp32 表现出**极强的 lead-lag 信号**，与之前 α=0.75/1.00 结果形成连续梯度。ece +1260% 的巨幅漂移为 canary 提供了充足的信号强度。7/8 pairs 达到 K≥4 consensus，仅 ece→distinct_3 (3 votes) 未达标\n\n### Intervention 结果与 bf16 对比\n\n- **fp32 v4**: gen1 触发, 1-gen 恢复, MMCT=0.75 (6/8 consensus)\n- **关键观察**: fp32 intervention 的 lead-lag 检测率 (0.75) 略低于 non-intervention α=0.60 (0.875)，这符合预期——干预截断了 collapse 过程，减少了可用于因果推断的时间序列长度\n- threshold_onset 0/8 是干预成功的标志（而非方法缺陷），因为指标在超过 threshold 前就被拉回\n\n### Dose-Response 汇总 (fp32, seed=42, d=0.80)\n\n| α | MMCT | K≥4 pairs | token_entropy drift | ece drift | 状态 |\n|------|------|-----------|-------------------|----------|------|\n| 0.05 | 0.00 | 0/8 | -5.96% | +55% | undetectable |\n| 0.60 | 0.875 | 7/8 | -23.36% | +1260% | strong signal |\n| 0.75 (interv) | 0.75 | 6/8 | -5.74%* | +55.8%* | intervention success |\n\n*intervention 实验的 gen0→gen10 drift 反映的是干预后恢复状态，不是持续 collapse。gen0→gen1 的单步 drift 为 entropy -31.6%, ece +1124%。\n",
+    "structuredPatch": [],
+    "originalFile": null,
+    "userModified": false
+  },
+  "sourceToolAssistantUUID": "f576ca2d-0a11-4d7a-90c0-94916969d195",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-19T05:20:50.705Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__register_artifact · `toolu_01UzMkjNmxb38B2s6mkNPC5h`</summary>
+
+```json
+{
+  "name": "batch3_fp32_analysis",
+  "type": "report",
+  "description": "三个 fp32 实验 (α=0.05/0.60/intervention 0.75) 的 5-method lead-lag 分析报告，含 gen-by-gen 指标、consensus detail、dose-response map 更新",
+  "project": "distrib_canary_collapse",
+  "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/batch3_fp32_analysis.md",
+  "tags": [
+    "fp32",
+    "lead-lag",
+    "alpha-sweep",
+    "intervention",
+    "dose-response"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d95e197-f221-45a1-bdf6-10fa54b9fd74",
+  "isSidechain": false,
+  "requestId": "req_011CbBN98eL37oqiGdXeJ9PM",
+  "type": "assistant",
+  "uuid": "122a0072-f46d-445f-a91e-2450eacf356a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DZ8DxkvwmvocxcxfZLTNcC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6037,
+      "cache_read_input_tokens": 56551,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6037,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 56551,
+          "cache_creation_input_tokens": 6037,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6037
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-19T05:20:50.930Z_
+
+<details><summary>↩ Tool result · `toolu_01UzMkjNmxb38B2s6mkNPC5h`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260519_fbb979\", \"name\": \"batch3_fp32_analysis\", \"type\": \"report\", \"description\": \"三个 fp32 实验 (α=0.05/0.60/intervention 0.75) 的 5-method lead-lag 分析报告，含 gen-by-gen 指标、consensus detail、dose-response map 更新\", \"path\": \"projects/distrib_canary_collapse/artifacts/_project/report/batch3_fp32_analysis.md\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-19T05:20:50.712056+00:00\", \"tags\": [\"fp32\", \"lead-lag\", \"alpha-sweep\", \"intervention\", \"dose-response\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "122a0072-f46d-445f-a91e-2450eacf356a",
+  "isSidechain": false,
+  "promptId": "a2e73a2a-0403-4a44-93af-b070e6677690",
+  "type": "user",
+  "uuid": "482c80a0-a4f5-499b-92fc-e8e4027422a9",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260519_fbb979\\\", \\\"name\\\": \\\"batch3_fp32_analysis\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"三个 fp32 实验 (α=0.05/0.60/intervention 0.75) 的 5-method lead-lag 分析报告，含 gen-by-gen 指标、consensus detail、dose-response map 更新\\\", \\\"path\\\": \\\"projects/distrib_canary_collapse/artifacts/_project/report/batch3_fp32_analysis.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"distrib_canary_collapse\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-19T05:20:50.712056+00:00\\\", \\\"tags\\\": [\\\"fp32\\\", \\\"lead-lag\\\", \\\"alpha-sweep\\\", \\\"intervention\\\", \\\"dose-response\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"artifact\": {\"id\": \"art_20260519_fbb979\", \"name\": \"batch3_fp32_analysis\", \"type\": \"report\", \"description\": \"三个 fp32 实验 (α=0.05/0.60/intervention 0.75) 的 5-method lead-lag 分析报告，含 gen-by-gen 指标、consensus detail、dose-response map 更新\", \"path\": \"projects/distrib_canary_collapse/artifacts/_project/report/batch3_fp32_analysis.md\", \"url\": null, \"project\": \"distrib_canary_collapse\", \"exp_id\": null, \"skill\": \"\", \"created_at\": \"2026-05-19T05:20:50.712056+00:00\", \"tags\": [\"fp32\", \"lead-lag\", \"alpha-sweep\", \"intervention\", \"dose-response\"]}, \"manifest\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/artifacts/manifest.yaml\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "122a0072-f46d-445f-a91e-2450eacf356a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-19T05:20:57.997Z_
+
+报告已写入并注册。核心结论：
+
+- **α=0.05**: 近 null baseline，MMCT=0.0，consensus_k4=0/8，canary drift 太弱无法检测
+- **α=0.60**: 强 collapse 信号，MMCT=0.875，consensus_k4=7/8，5 个 pair 达到 5-method 全票
+- **Intervention α=0.75**: gen1 触发，1 代完全恢复，MMCT=0.75，consensus_k4=6/8；threshold_onset=0/8 是干预成功的标志而非方法缺陷
+
+α=0.05 的 TY 3/8 显著结果均为 d_max=2/df_resid=1，按 C003 约束不可引用。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "482c80a0-a4f5-499b-92fc-e8e4027422a9",
+  "isSidechain": false,
+  "requestId": "req_011CbBN9ax7bQ4xNftwtXPYm",
+  "type": "assistant",
+  "uuid": "ef116ac9-431d-45a5-b01f-251988a2decd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N8DowPe4CD9av7PR6kGBQ2",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 604,
+      "cache_read_input_tokens": 62588,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 604,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 62588,
+          "cache_creation_input_tokens": 604,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 604
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "ef116ac9-431d-45a5-b01f-251988a2decd",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze three completed fp32 experiments",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "ef116ac9-431d-45a5-b01f-251988a2decd",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Analyze three completed fp32 experiments",
+  "sessionId": "d7b7b753-09a6-48ee-8455-a2b274b96cf9"
+}
+```
+
+---

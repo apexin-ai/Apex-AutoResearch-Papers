@@ -1,0 +1,1704 @@
+# Research conversation: <project_context> # 项目: distrib_canary_collapse ## 运行环境 - 服务器名: westd-19828 - SSH 账户: root（调用 ssh_execute / submit_train
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 31
+- **Recorded user turns:** 1
+- **Tool calls:** 7
+- **Original source:** `logs/chats/exported-trajectories/account-3/cfb86154-bf1a-4fdf-8faf-25503bec213d.jsonl`
+- **Structured JSON:** [`a3f55bc93a12c4105ad7.json`](../../sessions/a3/a3f55bc93a12c4105ad7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-15T12:03:20.968Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-15T12:03:20.968Z",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "content": "&lt;project_context>\n# 项目: distrib_canary_collapse\n\n## 运行环境\n- 服务器名: westd-19828\n- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account=\"root\"）\n- SSH 连接命令: ssh westd-19828  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/autodl-tmp/distrib_canary_collapse\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 论文禁止引用 Phase 2 单 seed 的 TY 跨 α 趋势——必须等 D026 multi-seed 数据确认 TY 非单调性是否可复现（原因：Reviewer Loop #7 发现 TY sig rate 跨 α 呈反直觉非单调模式（0%→62.5%→0%→59.4%），T=10 下 TY 自由度极低（df_resid≈6），单 seed 大概率是噪声。若论文引用此趋势，审稿人会攻击。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n**任务：准备 D026 multi-seed 4 组实验的提交配置**\n\n**背景**：D026 要求 a075_s42 完成后，cuda:1 串行跑 4 组 multi-seed 实验：\n1. alpha_sweep_a025_s43（α=0.25, seed=43）\n2. alpha_sweep_a050_s43（α=0.50, seed=43）\n3. alpha_sweep_a025_s44（α=0.25, seed=44）\n4. alpha_sweep_a050_s44（α=0.50, seed=44）\n\n这 4 个实验已在 registry 中（QUEUED），spec 已有。\n\n**你的任务**：\n\n1. 用 read_registry 读取这 4 个实验的完整 spec，确认无遗漏：\n   - 确认 model_name, data_path, synthetic_ratio, seed, num_generations, steps_per_gen 都正确\n\n2. 参考当前正在跑的 a075_s42 的提交命令格式（在 registry 中可以看到），为 4 组实验生成提交命令。注意：\n   - 使用 `bash -c \"...\"` 包裹\n   - `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`\n   - `HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1`\n   - output_dir 格式：`results/alpha_sweep/a{alpha}_s{seed}/`\n   - gpu_ids: [\"cuda:1\"]\n   - server: westd-19828\n   - timeout_hours: 6（每个实验 ~4h）\n\n3. 将 4 组提交配置整理成清单，格式：\n   ```\n   ## 实验 1: alpha_sweep_a025_s43\n   - exp_id: alpha_sweep_a025_s43\n   - command: bash -c \"...\"\n   - gpu_ids: [\"cuda:1\"]\n   - timeout_hours: 6\n   ```\n\n**产出**：4 组完整的提交配置清单，可直接用于 allocate_and_submit。"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-15T12:03:20.971Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-15T12:03:20.971Z",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d"
+}
+```
+
+---
+
+## Round 1
+
+29 recorded events
+
+### User
+
+_source line 3 · 2026-05-15T12:03:21.000Z_
+
+&lt;project_context>
+# 项目: distrib_canary_collapse
+
+## 运行环境
+- 服务器名: westd-19828
+- SSH 账户: root（调用 ssh_execute / submit_training_job 时传入 account="root"）
+- SSH 连接命令: ssh westd-19828  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/autodl-tmp/distrib_canary_collapse
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: 论文禁止引用 Phase 2 单 seed 的 TY 跨 α 趋势——必须等 D026 multi-seed 数据确认 TY 非单调性是否可复现（原因：Reviewer Loop #7 发现 TY sig rate 跨 α 呈反直觉非单调模式（0%→62.5%→0%→59.4%），T=10 下 TY 自由度极低（df_resid≈6），单 seed 大概率是噪声。若论文引用此趋势，审稿人会攻击。）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+**任务：准备 D026 multi-seed 4 组实验的提交配置**
+
+**背景**：D026 要求 a075_s42 完成后，cuda:1 串行跑 4 组 multi-seed 实验：
+1. alpha_sweep_a025_s43（α=0.25, seed=43）
+2. alpha_sweep_a050_s43（α=0.50, seed=43）
+3. alpha_sweep_a025_s44（α=0.25, seed=44）
+4. alpha_sweep_a050_s44（α=0.50, seed=44）
+
+这 4 个实验已在 registry 中（QUEUED），spec 已有。
+
+**你的任务**：
+
+1. 用 read_registry 读取这 4 个实验的完整 spec，确认无遗漏：
+   - 确认 model_name, data_path, synthetic_ratio, seed, num_generations, steps_per_gen 都正确
+
+2. 参考当前正在跑的 a075_s42 的提交命令格式（在 registry 中可以看到），为 4 组实验生成提交命令。注意：
+   - 使用 `bash -c "..."` 包裹
+   - `source /root/miniconda3/etc/profile.d/conda.sh && conda activate base`
+   - `HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1`
+   - output_dir 格式：`results/alpha_sweep/a{alpha}_s{seed}/`
+   - gpu_ids: ["cuda:1"]
+   - server: westd-19828
+   - timeout_hours: 6（每个实验 ~4h）
+
+3. 将 4 组提交配置整理成清单，格式：
+   ```
+   ## 实验 1: alpha_sweep_a025_s43
+   - exp_id: alpha_sweep_a025_s43
+   - command: bash -c "..."
+   - gpu_ids: ["cuda:1"]
+   - timeout_hours: 6
+   ```
+
+**产出**：4 组完整的提交配置清单，可直接用于 allocate_and_submit。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "7bc96763-024b-4edf-ac41-53905070a624",
+  "type": "user",
+  "uuid": "1a75366b-706d-4368-ad9f-6c17e55e8452",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-15T12:03:20.999Z_
+
+```json
+{
+  "parentUuid": "1a75366b-706d-4368-ad9f-6c17e55e8452",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "93b64f52-a612-46d2-b3b4-741a1ce43bc9",
+  "timestamp": "2026-05-15T12:03:20.999Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-15T12:03:20.999Z_
+
+```json
+{
+  "parentUuid": "93b64f52-a612-46d2-b3b4-741a1ce43bc9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "39c3696d-fd28-4169-8001-5a808f1ea7bf",
+  "timestamp": "2026-05-15T12:03:20.999Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-15T12:03:20.999Z_
+
+```json
+{
+  "parentUuid": "39c3696d-fd28-4169-8001-5a808f1ea7bf",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "f2b22501-b899-4251-80a1-c9aa6e205045",
+  "timestamp": "2026-05-15T12:03:20.999Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Prepare D026 multi-seed experiment submission configs",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-15T12:03:23.684Z_
+
+Looking at the registry to get the experiment specs and the running a075_s42 command format.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f2b22501-b899-4251-80a1-c9aa6e205045",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Kc8WGiM51djb4Bdjqz",
+  "type": "assistant",
+  "uuid": "fb22c59b-348c-420a-9dac-8a3aa307ec54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ZENHSwpTXMwAu8cx4PkYR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11539,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11539,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 108,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11539,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11539
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-15T12:03:24.683Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01SJfqGPAACbox8jVoukonAA`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_registry",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fb22c59b-348c-420a-9dac-8a3aa307ec54",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Kc8WGiM51djb4Bdjqz",
+  "type": "assistant",
+  "uuid": "9120af8f-3325-4d20-a014-3891cb0d83c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018ZENHSwpTXMwAu8cx4PkYR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 11539,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 108,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11539,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 108,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11539,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11539
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-15T12:03:24.689Z_
+
+<details><summary>↩ Tool result · `toolu_01SJfqGPAACbox8jVoukonAA`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9120af8f-3325-4d20-a014-3891cb0d83c1",
+  "isSidechain": false,
+  "promptId": "7bc96763-024b-4edf-ac41-53905070a624",
+  "type": "user",
+  "uuid": "f01796df-d978-4a3e-ab30-3f0cf1bee130",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_registry"
+    ],
+    "query": "select:mcp__agent-ml-research__read_registry",
+    "total_deferred_tools": 22
+  },
+  "sourceToolAssistantUUID": "9120af8f-3325-4d20-a014-3891cb0d83c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-15T12:03:31.233Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the registry for the 4 queued experiments and the running a075_s42 experiment.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f01796df-d978-4a3e-ab30-3f0cf1bee130",
+  "isSidechain": false,
+  "requestId": "req_011Cb4KcQa9zyBRfYD4GR5rd",
+  "type": "assistant",
+  "uuid": "64cef6ad-cd64-4916-b4a0-6b58164bf7ef",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CXRNWT5SDBZhBdLsi7ZcwS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 23380,
+      "output_tokens": 567,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 470,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 567,
+          "cache_read_input_tokens": 23380,
+          "cache_creation_input_tokens": 470,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 470
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-15T12:03:32.658Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_014pAt9GEEegKHXkdbL8DKGX`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": {
+    "exp_id": "alpha_sweep_a075_s42"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "64cef6ad-cd64-4916-b4a0-6b58164bf7ef",
+  "isSidechain": false,
+  "requestId": "req_011Cb4KcQa9zyBRfYD4GR5rd",
+  "type": "assistant",
+  "uuid": "5f0d9232-d23d-418f-8ec6-6e0190bda70c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CXRNWT5SDBZhBdLsi7ZcwS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 23380,
+      "output_tokens": 567,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 470,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 567,
+          "cache_read_input_tokens": 23380,
+          "cache_creation_input_tokens": 470,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 470
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-15T12:03:32.735Z_
+
+<details><summary>↩ Tool result · `toolu_014pAt9GEEegKHXkdbL8DKGX`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0655}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5f0d9232-d23d-418f-8ec6-6e0190bda70c",
+  "isSidechain": false,
+  "promptId": "7bc96763-024b-4edf-ac41-53905070a624",
+  "type": "user",
+  "uuid": "9fa616b9-54e5-4fd1-ac28-b0a4a7af69d2",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0655}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0655}}"
+    }
+  },
+  "sourceToolAssistantUUID": "5f0d9232-d23d-418f-8ec6-6e0190bda70c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-15T12:03:33.136Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01Bp63oSyrYaZJJ44XS5tjdi`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": {
+    "exp_id": "alpha_sweep_a025_s43"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9fa616b9-54e5-4fd1-ac28-b0a4a7af69d2",
+  "isSidechain": false,
+  "requestId": "req_011Cb4KcQa9zyBRfYD4GR5rd",
+  "type": "assistant",
+  "uuid": "117e2ad4-bba9-4445-901c-372171373164",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CXRNWT5SDBZhBdLsi7ZcwS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 23380,
+      "output_tokens": 567,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 470,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 567,
+          "cache_read_input_tokens": 23380,
+          "cache_creation_input_tokens": 470,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 470
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-15T12:03:33.281Z_
+
+<details><summary>↩ Tool result · `toolu_01Bp63oSyrYaZJJ44XS5tjdi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1325}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "117e2ad4-bba9-4445-901c-372171373164",
+  "isSidechain": false,
+  "promptId": "7bc96763-024b-4edf-ac41-53905070a624",
+  "type": "user",
+  "uuid": "08d29a36-6b53-4aa7-9ae0-f8ccfb1118da",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1325}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1325}}"
+    }
+  },
+  "sourceToolAssistantUUID": "117e2ad4-bba9-4445-901c-372171373164",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-15T12:03:34.083Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01SNxmXJCxWYB7BKCm81L6Fd`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": {
+    "exp_id": "alpha_sweep_a050_s43"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "08d29a36-6b53-4aa7-9ae0-f8ccfb1118da",
+  "isSidechain": false,
+  "requestId": "req_011Cb4KcQa9zyBRfYD4GR5rd",
+  "type": "assistant",
+  "uuid": "58af7d79-d0f3-4933-a7d9-da425b058e36",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CXRNWT5SDBZhBdLsi7ZcwS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 23380,
+      "output_tokens": 567,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 470,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 567,
+          "cache_read_input_tokens": 23380,
+          "cache_creation_input_tokens": 470,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 470
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-15T12:03:34.287Z_
+
+<details><summary>↩ Tool result · `toolu_01SNxmXJCxWYB7BKCm81L6Fd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1917}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "58af7d79-d0f3-4933-a7d9-da425b058e36",
+  "isSidechain": false,
+  "promptId": "7bc96763-024b-4edf-ac41-53905070a624",
+  "type": "user",
+  "uuid": "d1c70d28-f3d6-450d-99b7-dd25a4b47ab1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1917}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1917}}"
+    }
+  },
+  "sourceToolAssistantUUID": "58af7d79-d0f3-4933-a7d9-da425b058e36",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-15T12:03:35.026Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_015zCrP3RXecYLgLT2bMCkW1`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": {
+    "exp_id": "alpha_sweep_a025_s44"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1c70d28-f3d6-450d-99b7-dd25a4b47ab1",
+  "isSidechain": false,
+  "requestId": "req_011Cb4KcQa9zyBRfYD4GR5rd",
+  "type": "assistant",
+  "uuid": "9fb8c4a5-ed0a-4ed0-aa10-d7137ac98018",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CXRNWT5SDBZhBdLsi7ZcwS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 23380,
+      "output_tokens": 567,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 470,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 567,
+          "cache_read_input_tokens": 23380,
+          "cache_creation_input_tokens": 470,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 470
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-15T12:03:35.153Z_
+
+<details><summary>↩ Tool result · `toolu_015zCrP3RXecYLgLT2bMCkW1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1018}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9fb8c4a5-ed0a-4ed0-aa10-d7137ac98018",
+  "isSidechain": false,
+  "promptId": "7bc96763-024b-4edf-ac41-53905070a624",
+  "type": "user",
+  "uuid": "5875989e-72df-481d-9474-ef3f19948ca9",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1018}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1018}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9fb8c4a5-ed0a-4ed0-aa10-d7137ac98018",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-15T12:03:35.274Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01GRD2mtNboEnjUuEL7jsKmn`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "filters": {
+    "exp_id": "alpha_sweep_a050_s44"
+  },
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5875989e-72df-481d-9474-ef3f19948ca9",
+  "isSidechain": false,
+  "requestId": "req_011Cb4KcQa9zyBRfYD4GR5rd",
+  "type": "assistant",
+  "uuid": "bb79207d-76a7-46d2-a6c0-77395a6c9bbb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CXRNWT5SDBZhBdLsi7ZcwS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 23380,
+      "output_tokens": 567,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 470,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 567,
+          "cache_read_input_tokens": 23380,
+          "cache_creation_input_tokens": 470,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 470
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-15T12:03:35.471Z_
+
+<details><summary>↩ Tool result · `toolu_01GRD2mtNboEnjUuEL7jsKmn`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1738}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bb79207d-76a7-46d2-a6c0-77395a6c9bbb",
+  "isSidechain": false,
+  "promptId": "7bc96763-024b-4edf-ac41-53905070a624",
+  "type": "user",
+  "uuid": "7e282c66-d222-4ffa-a774-ad0f38a6e2db",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.1738}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.1738}}"
+    }
+  },
+  "sourceToolAssistantUUID": "bb79207d-76a7-46d2-a6c0-77395a6c9bbb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 22 · 2026-05-15T12:03:39.100Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+All 5 queries returned empty. The exp_id filter might not work as expected — maybe it's a different field name, or the experiments use a different naming convention. Let me try reading the full registry to see what's there.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7e282c66-d222-4ffa-a774-ad0f38a6e2db",
+  "isSidechain": false,
+  "requestId": "req_011Cb4KdCSgMsxTdNLN2V9Dg",
+  "type": "assistant",
+  "uuid": "3f812b7b-e71b-40e3-bf25-9d76e235903a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UZ4N5U5jSYLiNoJXMyk2sA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 23850,
+      "output_tokens": 187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 187,
+          "cache_read_input_tokens": 23850,
+          "cache_creation_input_tokens": 1076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-15T12:03:40.112Z_
+
+All 5 queries returned empty. Let me check what's actually in the registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3f812b7b-e71b-40e3-bf25-9d76e235903a",
+  "isSidechain": false,
+  "requestId": "req_011Cb4KdCSgMsxTdNLN2V9Dg",
+  "type": "assistant",
+  "uuid": "db05bdbf-f829-4e31-86f4-eb7416cc980f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UZ4N5U5jSYLiNoJXMyk2sA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 23850,
+      "output_tokens": 187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 187,
+          "cache_read_input_tokens": 23850,
+          "cache_creation_input_tokens": 1076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-15T12:03:40.413Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01XQXqmPgFdgrqCHAUdTxTFS`</summary>
+
+```json
+{
+  "project": "distrib_canary_collapse",
+  "fields": [
+    "*"
+  ],
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db05bdbf-f829-4e31-86f4-eb7416cc980f",
+  "isSidechain": false,
+  "requestId": "req_011Cb4KdCSgMsxTdNLN2V9Dg",
+  "type": "assistant",
+  "uuid": "e42166f4-6bcf-4d9f-b8d3-cefaa9e754ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UZ4N5U5jSYLiNoJXMyk2sA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1076,
+      "cache_read_input_tokens": 23850,
+      "output_tokens": 187,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1076,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 187,
+          "cache_read_input_tokens": 23850,
+          "cache_creation_input_tokens": 1076,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1076
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-15T12:03:40.504Z_
+
+<details><summary>↩ Tool result · `toolu_01XQXqmPgFdgrqCHAUdTxTFS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"gen_wiki_gpt2m_a100_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:02:06.478Z\", \"updated_at\": \"2026-05-15T12:02:32.472Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"116204\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\", \"submitted_at\": \"2026-05-15T12:02:14.440Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 18.0, \"gpu_hours\": 0.01}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T12:02:13.557Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"finished_at\": \"2026-05-15T12:02:31.643Z\", \"training_hours\": 0.01}, \"pid\": \"116204\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T12:02:32.472Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:02:33.931882+00:00\"}]}}, \"gen_wiki_gpt2m_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:35:18.700Z\", \"updated_at\": \"2026-05-15T12:01:58.523Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"115532\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\", \"submitted_at\": \"2026-05-15T11:57:48.767Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 249.8, \"gpu_hours\": 0.07}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T11:57:47.340Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\"}, \"pid\": \"115532\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:01:58.523Z\"}, \"plan_006_s42_resume\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:55:26.236Z\", \"updated_at\": \"2026-05-15T11:55:59.396Z\", \"spec\": {\"command\": \"python -u resume_plan006_s42.py\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"114844\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42_resume.log\", \"submitted_at\": \"2026-05-15T11:55:31.984Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hypothesis\": \"恢复 plan_006_s42 从 gen_17，完成 gen_18-20 + all_metrics（α=1.0, 20gen, s42）\", \"seed\": 42, \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"data/wikitext103\", \"data_count\": 0}}, \"plan_006_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:31:35.454Z\", \"updated_at\": \"2026-05-15T11:52:16.658Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"submitted_at\": \"2026-05-14T23:41:30.666Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 43212.6, \"gpu_hours\": 12.0}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T23:41:29.125Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"finished_at\": \"2026-05-15T11:41:42.336Z\", \"training_hours\": 12.0}, \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"metrics\": {\"progress\": \"14/20 gen (generating synthetic data)\", \"gen9_token_entropy\": 1.1456, \"gen9_ece\": 0.4406, \"gen9_perplexity\": 1786.72, \"gen9_distinct_1\": 0.0779, \"gen9_distinct_2\": 0.386, \"gen9_distinct_3\": 0.6342, \"distinct_1_drift_pct_gen0_9\": -20.7, \"entropy_drift_pct_gen0_1\": -52.8, \"ppl_drift_pct_gen0_9\": 6530.5, \"diversity_saturated_at_gen\": 5, \"eta_hours\": 3}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T11:41:43.235Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:41:44.300301+00:00\"}]}, \"notes\": \"gen_0-17 complete, gen_18-20 timeout (EXIT_CODE=124). T=18 sufficient per power analysis target T=15. Director D034 决定不恢复。\"}, \"method_ablation_phase2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:58:35.270Z\", \"updated_at\": \"2026-05-15T11:07:42.688Z\", \"spec\": {\"hypothesis\": \"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\", \"command\": \"python method_ablation_phase2.py\", \"server\": \"westd-19828\", \"data_path\": \"results/alpha_sweep + results/mvp\", \"data_count\": 56, \"model_name\": \"N/A (analysis)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/method_ablation_phase2_panel.json\"}, \"conclusion\": \"success\", \"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000_raw\": 0, \"perm_granger_sig_rate_a000_fdr\": 0, \"perm_granger_sig_rate_a025_raw\": 0.25, \"perm_granger_sig_rate_a025_fdr\": 0, \"perm_granger_sig_rate_a050_raw\": 0.25, \"perm_granger_sig_rate_a050_fdr\": 0, \"perm_granger_sig_rate_a100_raw\": 0.75, \"perm_granger_sig_rate_a100_fdr\": 0.75, \"TY_sig_rate_a000_raw\": 0, \"TY_sig_rate_a000_fdr\": 0, \"TY_sig_rate_a025_raw\": 0.625, \"TY_sig_rate_a025_fdr\": 0.375, \"TY_sig_rate_a050_raw\": 0, \"TY_sig_rate_a050_fdr\": 0, \"TY_sig_rate_a100_raw\": 0.5938, \"TY_sig_rate_a100_fdr\": 0.5938, \"diff_sig_rate_a000_raw\": 0.5, \"diff_sig_rate_a000_fdr\": 0.375, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true, \"fdr_correction\": \"BH q=0.05\"}, \"completed_at\": \"2026-05-15T08:58:54.741Z\"}, \"gen_wiki_gpt2m_a025_s42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:35:16.032Z\", \"updated_at\": \"2026-05-15T10:35:16.032Z\", \"spec\": {\"hypothesis\": \"Generalization: GPT-2-medium (355M) on WikiText-103 at α=0.25 — cross-architecture validation of canary→diversity lead and non-monotonic dose-response\", \"model_name\": \"gpt2-medium\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"batch_size\": 32, \"parent\": \"alpha_sweep_a025_s42_v3\", \"priority\": \"generalization-P1\"}}, \"alpha_sweep_a050_s44\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:50.550Z\", \"updated_at\": \"2026-05-15T06:58:50.550Z\", \"spec\": {\"hypothesis\": \"α=0.50 multi-seed replication (seed=44): 第三个 seed 为置信区间提供统计力\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 44, \"synthetic_ratio\": 0.5, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a050_s42\", \"priority\": \"D026-4\"}}, \"alpha_sweep_a025_s44\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:48.224Z\", \"updated_at\": \"2026-05-15T06:58:48.224Z\", \"spec\": {\"hypothesis\": \"α=0.25 multi-seed replication (seed=44): 第三个 seed 为置信区间提供统计力\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 44, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42_v3\", \"priority\": \"D026-3\"}}, \"alpha_sweep_a050_s43\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:45.880Z\", \"updated_at\": \"2026-05-15T06:58:45.880Z\", \"spec\": {\"hypothesis\": \"α=0.50 multi-seed replication (seed=43): 验证 ECE canary 定性信号和地板效应的可重复性\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 43, \"synthetic_ratio\": 0.5, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a050_s42\", \"priority\": \"D026-2\"}}, \"alpha_sweep_a025_s43\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:43.090Z\", \"updated_at\": \"2026-05-15T06:58:43.090Z\", \"spec\": {\"hypothesis\": \"α=0.25 multi-seed replication (seed=43): 验证非单调 dose-response 和 entropy canary 信号的可重复性\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 43, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42_v3\", \"priority\": \"D026-1\"}}, \"alpha_sweep_a075_s42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:17.315Z\", \"updated_at\": \"2026-05-15T06:40:57.548Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"89753\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a075_s42.log\", \"submitted_at\": \"2026-05-15T05:44:47.124Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T05:44:46.271Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\\\"\"}, \"pid\": \"89753\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a075_s42.log\", \"metrics\": {\"progress\": \"2/10 gen (training step 490/5000)\", \"eta_hours\": 3.5}}, \"alpha_sweep_a050_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:15.427Z\", \"updated_at\": \"2026-05-15T06:05:28.905Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"73737\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\", \"submitted_at\": \"2026-05-15T01:20:05.044Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 16003.6, \"gpu_hours\": 4.45}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T01:15:14.747Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\"\", \"finished_at\": \"2026-05-15T05:42:25.788Z\", \"training_hours\": 4.45}, \"pid\": \"73737\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.632, \"gen0_ece\": 0.011, \"gen10_ece\": 0.102, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 32.64, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.062, \"gen0_distinct_2\": 0.518, \"gen10_distinct_2\": 0.251, \"gen0_distinct_3\": 0.813, \"gen10_distinct_3\": 0.387, \"token_entropy_drift_pct\": -18.6, \"ece_drift_pct\": 842.8, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -37.3, \"distinct_2_drift_pct\": -51.5, \"distinct_3_drift_pct\": -52.4, \"granger_entropy_to_d1_p_raw\": 0.095, \"granger_entropy_to_d2_p_raw\": 0.097, \"granger_ece_to_d1_p_raw\": 0.019, \"granger_ece_to_d2_p_raw\": 0.039, \"granger_fdr_note\": \"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\", \"d024_non_monotonic\": true, \"d024_ece_vs_entropy_note\": \"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:42:26.715028+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_10/checkpoint\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T05:46:48.692Z\"}, \"alpha_sweep_a010_s42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:19.712Z\", \"updated_at\": \"2026-05-15T05:19:49.211Z\", \"spec\": {\"hypothesis\": \"α=0.10 极低污染: phase boundary 精确化, canary signal 是否仍可检测\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.1, \"num_generations\": 10, \"steps_per_gen\": 5000}}, \"alpha_sweep_a025_s42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:04:05.726Z\", \"updated_at\": \"2026-05-15T05:13:22.207Z\", \"spec\": {\"hypothesis\": \"α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42_v2 (failed, data corruption)\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"53069\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_v3.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T01:18:42.377Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:18:43.329069+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.1017, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.01942, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 22.32, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0586, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.2219, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.3263, \"token_entropy_drift_pct\": -4.1, \"ece_drift_pct\": 79.7, \"perplexity_drift_pct\": -17.2, \"distinct_1_drift_pct\": -40.3, \"distinct_2_drift_pct\": -57.1, \"distinct_3_drift_pct\": -59.9}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s42/gen_10/checkpoint\", \"completed_at\": \"2026-05-15T01:26:19.292Z\", \"notes\": \"实际磁盘路径为 results/alpha_sweep/a025_s42/（无 v3 后缀）。Registry ID 带 v3 是历史原因，数据已核实无误。\"}, \"method_ablation_phase1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:49:16.519Z\", \"updated_at\": \"2026-05-14T23:49:40.162Z\", \"spec\": {\"plan_id\": \"plan_002\", \"hypothesis\": \"lead-lag 结论对分析方法高度敏感——naive Pearson 100% SIG vs TY 25% SIG，方法选择改变 75% 的结论\", \"command\": \"python method_ablation.py + python permutation_granger.py (差分版)\", \"server\": \"westd-19828\", \"data_path\": \"results/mvp/rep_{42,43,44,45}/all_metrics.json\", \"data_count\": 4, \"model_name\": \"N/A (analysis on MVP data)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/mvp/analysis/method_ablation.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T23:49:37.295Z\", \"metrics\": {\"spurious_rate_5method\": 0.75, \"spurious_rate_4method\": 0.625, \"naive_sig\": \"16/16\", \"differenced_sig\": \"14/16\", \"threshold_sig\": \"9/16\", \"permutation_granger_sig\": \"6/16\", \"ty_sig\": \"4/16\", \"ty_power_T10\": \"0.05-0.20\", \"bh_fdr_flips\": 0}}, \"alpha_sweep_a000_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:01:37.470Z\", \"updated_at\": \"2026-05-14T23:42:18.748Z\", \"spec\": {\"hypothesis\": \"α=0.0 null control: 纯 real data 再训练无 canary signal，确认 signal 源于合成污染\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0, \"num_generations\": 10, \"steps_per_gen\": 5000, \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"46716\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T23:36:35.414Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T23:36:36.221435+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.0693, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.0164, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 21.11, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0847, \"token_entropy_drift_pct\": -5.1, \"ece_drift_pct\": 51.7, \"perplexity_drift_pct\": -21.7, \"distinct_1_drift_pct\": -13.8, \"distinct_2_drift_pct\": -9.8, \"distinct_3_drift_pct\": -4.5, \"gen1_10_perplexity_drift_pct\": 9.4, \"gen1_10_distinct_1_drift_pct\": -13.1, \"gen1_10_entropy_drift_pct\": 2.6}, \"completed_at\": \"2026-05-14T23:39:04.310Z\"}, \"plan_006_s43\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:31:37.257Z\", \"updated_at\": \"2026-05-14T23:31:37.258Z\", \"spec\": {\"plan_id\": \"plan_006\", \"hypothesis\": \"token_entropy→distinct_1/2 Granger-causal precedence remains robust at T=20 (N=21); ECE TY consistency improves with longer series\", \"model_name\": \"pythia-410m\", \"seed\": 43, \"data_path\": \"wikitext-103\", \"num_generations\": 20, \"synthetic_ratio\": 1, \"max_lag\": 10}}, \"alpha_sweep_a060_s42\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:22.516Z\", \"updated_at\": \"2026-05-14T21:52:22.516Z\", \"spec\": {\"hypothesis\": \"α=0.60 中高污染: phase boundary 精确化, 与 α=0.50/0.75 对比 lead time 变化\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.6, \"num_generations\": 10, \"steps_per_gen\": 5000}}, \"plan_009_bootstrap_ty\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:33:04.665Z\", \"updated_at\": \"2026-05-14T21:33:27.106Z\", \"spec\": {\"hypothesis\": \"Monte Carlo 验证 TY Granger 在短时间序列 (T=10,15,20,30) 下的 Type I error 和 statistical power\", \"command\": \"python bootstrap_ty_validation.py (N_sim=1000)\", \"server\": \"westd-19828\", \"data_path\": \"synthetic DGP (AR(1) for H0, VAR(2) for H1)\", \"data_count\": 1000, \"model_name\": \"N/A (statistical simulation)\", \"seed\": \"multiple\", \"log_path\": \"results/bootstrap_ty_results.json\", \"checkpoint_path\": \"N/A\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T21:33:24.769Z\", \"metrics\": {\"T10_d0_type1\": 0.081, \"T10_d0_power\": 0.205, \"T10_d1_type1\": 0.047, \"T10_d1_power\": 0.09, \"T10_dadapt_type1\": 0.052, \"T10_dadapt_power\": 0.05, \"T20_d0_power\": 0.409, \"T20_d1_power\": 0.172, \"T30_d0_power\": 0.606, \"T30_d1_power\": 0.283}}, \"alpha_sweep_a025_s42_v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:25:52.094Z\", \"updated_at\": \"2026-05-14T21:04:20.474Z\", \"spec\": {\"hypothesis\": \"α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持，canary→perplexity lead 是否出现\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42 (killed, subsample bias fix)\"}, \"conclusion\": \"failed\", \"failure_reason\": \"data corruption: unkilled old process PID 46802 wrote concurrently with new PID 48454\"}}, \"count\": 20, \"total\": 33, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0781}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e42166f4-6bcf-4d9f-b8d3-cefaa9e754ee",
+  "isSidechain": false,
+  "promptId": "7bc96763-024b-4edf-ac41-53905070a624",
+  "type": "user",
+  "uuid": "c0afb61f-a77c-4c15-9056-4813e6311d7c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"gen_wiki_gpt2m_a100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T12:02:06.478Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:02:32.472Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"116204\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T12:02:14.440Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 18.0, \\\"gpu_hours\\\": 0.01}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-15T12:02:13.557Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T12:02:31.643Z\\\", \\\"training_hours\\\": 0.01}, \\\"pid\\\": \\\"116204\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\\\", \\\"failure_reason\\\": \\\"EXIT_CODE=1 (generic error — check log tail)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T12:02:32.472Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T12:02:33.931882+00:00\\\"}]}}, \\\"gen_wiki_gpt2m_a100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:35:18.700Z\\\", \\\"updated_at\\\": \\\"2026-05-15T12:01:58.523Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"115532\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:57:48.767Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 249.8, \\\"gpu_hours\\\": 0.07}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-15T11:57:47.340Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\\\\\"\\\"}, \\\"pid\\\": \\\"115532\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\\\", \\\"conclusion\\\": \\\"killed\\\", \\\"completed_at\\\": \\\"2026-05-15T12:01:58.523Z\\\"}, \\\"plan_006_s42_resume\\\": {\\\"status\\\": \\\"ANALYZING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T11:55:26.236Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:55:59.396Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"python -u resume_plan006_s42.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"114844\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/plan_006_s42_resume.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T11:55:31.984Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"hypothesis\\\": \\\"恢复 plan_006_s42 从 gen_17，完成 gen_18-20 + all_metrics（α=1.0, 20gen, s42）\\\", \\\"seed\\\": 42, \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"data/wikitext103\\\", \\\"data_count\\\": 0}}, \\\"plan_006_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:31:35.454Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:52:16.658Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"68368\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/plan_006_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-14T23:41:30.666Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 43212.6, \\\"gpu_hours\\\": 12.0}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:0\\\", \\\"started_at\\\": \\\"2026-05-14T23:41:29.125Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T11:41:42.336Z\\\", \\\"training_hours\\\": 12.0}, \\\"pid\\\": \\\"68368\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/plan_006_s42.log\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"14/20 gen (generating synthetic data)\\\", \\\"gen9_token_entropy\\\": 1.1456, \\\"gen9_ece\\\": 0.4406, \\\"gen9_perplexity\\\": 1786.72, \\\"gen9_distinct_1\\\": 0.0779, \\\"gen9_distinct_2\\\": 0.386, \\\"gen9_distinct_3\\\": 0.6342, \\\"distinct_1_drift_pct_gen0_9\\\": -20.7, \\\"entropy_drift_pct_gen0_1\\\": -52.8, \\\"ppl_drift_pct_gen0_9\\\": 6530.5, \\\"diversity_saturated_at_gen\\\": 5, \\\"eta_hours\\\": 3}, \\\"failure_reason\\\": \\\"EXIT_CODE=124 (timeout — exceeded timeout_hours)\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-15T11:41:43.235Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T11:41:44.300301+00:00\\\"}]}, \\\"notes\\\": \\\"gen_0-17 complete, gen_18-20 timeout (EXIT_CODE=124). T=18 sufficient per power analysis target T=15. Director D034 决定不恢复。\\\"}, \\\"method_ablation_phase2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T08:58:35.270Z\\\", \\\"updated_at\\\": \\\"2026-05-15T11:07:42.688Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\\\", \\\"command\\\": \\\"python method_ablation_phase2.py\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/alpha_sweep + results/mvp\\\", \\\"data_count\\\": 56, \\\"model_name\\\": \\\"N/A (analysis)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/method_ablation_phase2_panel.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"n_panel_rows\\\": 56, \\\"n_alphas\\\": 4, \\\"alphas\\\": [0, 0.25, 0.5, 1], \\\"naive_sig_rate_overall\\\": 1, \\\"perm_granger_sig_rate_a000_raw\\\": 0, \\\"perm_granger_sig_rate_a000_fdr\\\": 0, \\\"perm_granger_sig_rate_a025_raw\\\": 0.25, \\\"perm_granger_sig_rate_a025_fdr\\\": 0, \\\"perm_granger_sig_rate_a050_raw\\\": 0.25, \\\"perm_granger_sig_rate_a050_fdr\\\": 0, \\\"perm_granger_sig_rate_a100_raw\\\": 0.75, \\\"perm_granger_sig_rate_a100_fdr\\\": 0.75, \\\"TY_sig_rate_a000_raw\\\": 0, \\\"TY_sig_rate_a000_fdr\\\": 0, \\\"TY_sig_rate_a025_raw\\\": 0.625, \\\"TY_sig_rate_a025_fdr\\\": 0.375, \\\"TY_sig_rate_a050_raw\\\": 0, \\\"TY_sig_rate_a050_fdr\\\": 0, \\\"TY_sig_rate_a100_raw\\\": 0.5938, \\\"TY_sig_rate_a100_fdr\\\": 0.5938, \\\"diff_sig_rate_a000_raw\\\": 0.5, \\\"diff_sig_rate_a000_fdr\\\": 0.375, \\\"mean_inter_method_kappa\\\": 0.185, \\\"naive_vs_perm_granger_flip_rate\\\": 0.5, \\\"naive_vs_TY_flip_rate\\\": 0.57, \\\"fdr_flips_perm_granger\\\": 4, \\\"pair_verdict_a100_perm_granger\\\": \\\"6/8\\\", \\\"pair_verdict_a100_TY\\\": \\\"6/8\\\", \\\"entropy_to_diversity_a100_all_5methods_sig\\\": true, \\\"fdr_correction\\\": \\\"BH q=0.05\\\"}, \\\"completed_at\\\": \\\"2026-05-15T08:58:54.741Z\\\"}, \\\"gen_wiki_gpt2m_a025_s42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T10:35:16.032Z\\\", \\\"updated_at\\\": \\\"2026-05-15T10:35:16.032Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Generalization: GPT-2-medium (355M) on WikiText-103 at α=0.25 — cross-architecture validation of canary→diversity lead and non-monotonic dose-response\\\", \\\"model_name\\\": \\\"gpt2-medium\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 42, \\\"synthetic_ratio\\\": 0.25, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"batch_size\\\": 32, \\\"parent\\\": \\\"alpha_sweep_a025_s42_v3\\\", \\\"priority\\\": \\\"generalization-P1\\\"}}, \\\"alpha_sweep_a050_s44\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:58:50.550Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:50.550Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.50 multi-seed replication (seed=44): 第三个 seed 为置信区间提供统计力\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 44, \\\"synthetic_ratio\\\": 0.5, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"parent\\\": \\\"alpha_sweep_a050_s42\\\", \\\"priority\\\": \\\"D026-4\\\"}}, \\\"alpha_sweep_a025_s44\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:58:48.224Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:48.224Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.25 multi-seed replication (seed=44): 第三个 seed 为置信区间提供统计力\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 44, \\\"synthetic_ratio\\\": 0.25, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"parent\\\": \\\"alpha_sweep_a025_s42_v3\\\", \\\"priority\\\": \\\"D026-3\\\"}}, \\\"alpha_sweep_a050_s43\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:58:45.880Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:45.880Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.50 multi-seed replication (seed=43): 验证 ECE canary 定性信号和地板效应的可重复性\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 43, \\\"synthetic_ratio\\\": 0.5, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"parent\\\": \\\"alpha_sweep_a050_s42\\\", \\\"priority\\\": \\\"D026-2\\\"}}, \\\"alpha_sweep_a025_s43\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-15T06:58:43.090Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:58:43.090Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.25 multi-seed replication (seed=43): 验证非单调 dose-response 和 entropy canary 信号的可重复性\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 43, \\\"synthetic_ratio\\\": 0.25, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"parent\\\": \\\"alpha_sweep_a025_s42_v3\\\", \\\"priority\\\": \\\"D026-1\\\"}}, \\\"alpha_sweep_a075_s42\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:52:17.315Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:40:57.548Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"89753\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a075_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T05:44:47.124Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T05:44:46.271Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\\\\\\\"\\\"}, \\\"pid\\\": \\\"89753\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a075_s42.log\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"2/10 gen (training step 490/5000)\\\", \\\"eta_hours\\\": 3.5}}, \\\"alpha_sweep_a050_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:52:15.427Z\\\", \\\"updated_at\\\": \\\"2026-05-15T06:05:28.905Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"73737\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-15T01:20:05.044Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"wall_clock_seconds\\\": 16003.6, \\\"gpu_hours\\\": 4.45}, \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"account\\\": \\\"root\\\", \\\"reproduce\\\": {\\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": \\\"cuda:1\\\", \\\"started_at\\\": \\\"2026-05-15T01:15:14.747Z\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\\\\\"\\\", \\\"finished_at\\\": \\\"2026-05-15T05:42:25.788Z\\\", \\\"training_hours\\\": 4.45}, \\\"pid\\\": \\\"73737\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\\\", \\\"metrics\\\": {\\\"progress\\\": \\\"11/11 gen (complete)\\\", \\\"gen0_token_entropy\\\": 3.234, \\\"gen10_token_entropy\\\": 2.632, \\\"gen0_ece\\\": 0.011, \\\"gen10_ece\\\": 0.102, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 32.64, \\\"gen0_distinct_1\\\": 0.098, \\\"gen10_distinct_1\\\": 0.062, \\\"gen0_distinct_2\\\": 0.518, \\\"gen10_distinct_2\\\": 0.251, \\\"gen0_distinct_3\\\": 0.813, \\\"gen10_distinct_3\\\": 0.387, \\\"token_entropy_drift_pct\\\": -18.6, \\\"ece_drift_pct\\\": 842.8, \\\"perplexity_drift_pct\\\": 21.1, \\\"distinct_1_drift_pct\\\": -37.3, \\\"distinct_2_drift_pct\\\": -51.5, \\\"distinct_3_drift_pct\\\": -52.4, \\\"granger_entropy_to_d1_p_raw\\\": 0.095, \\\"granger_entropy_to_d2_p_raw\\\": 0.097, \\\"granger_ece_to_d1_p_raw\\\": 0.019, \\\"granger_ece_to_d2_p_raw\\\": 0.039, \\\"granger_fdr_note\\\": \\\"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\\\", \\\"d024_non_monotonic\\\": true, \\\"d024_ece_vs_entropy_note\\\": \\\"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T05:42:26.715028+00:00\\\"}]}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_10/checkpoint\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-15T05:46:48.692Z\\\"}, \\\"alpha_sweep_a010_s42\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:52:19.712Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:19:49.211Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.10 极低污染: phase boundary 精确化, canary signal 是否仍可检测\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 42, \\\"synthetic_ratio\\\": 0.1, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000}}, \\\"alpha_sweep_a025_s42_v3\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:04:05.726Z\\\", \\\"updated_at\\\": \\\"2026-05-15T05:13:22.207Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 42, \\\"synthetic_ratio\\\": 0.25, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"parent\\\": \\\"alpha_sweep_a025_s42_v2 (failed, data corruption)\\\", \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"53069\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_v3.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-15T01:18:42.377Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-15T01:18:43.329069+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 3.1017, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.01942, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 22.32, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0586, \\\"gen0_distinct_2\\\": 0.5178, \\\"gen10_distinct_2\\\": 0.2219, \\\"gen0_distinct_3\\\": 0.8127, \\\"gen10_distinct_3\\\": 0.3263, \\\"token_entropy_drift_pct\\\": -4.1, \\\"ece_drift_pct\\\": 79.7, \\\"perplexity_drift_pct\\\": -17.2, \\\"distinct_1_drift_pct\\\": -40.3, \\\"distinct_2_drift_pct\\\": -57.1, \\\"distinct_3_drift_pct\\\": -59.9}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s42/gen_10/checkpoint\\\", \\\"completed_at\\\": \\\"2026-05-15T01:26:19.292Z\\\", \\\"notes\\\": \\\"实际磁盘路径为 results/alpha_sweep/a025_s42/（无 v3 后缀）。Registry ID 带 v3 是历史原因，数据已核实无误。\\\"}, \\\"method_ablation_phase1\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:49:16.519Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:49:40.162Z\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_002\\\", \\\"hypothesis\\\": \\\"lead-lag 结论对分析方法高度敏感——naive Pearson 100% SIG vs TY 25% SIG，方法选择改变 75% 的结论\\\", \\\"command\\\": \\\"python method_ablation.py + python permutation_granger.py (差分版)\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"results/mvp/rep_{42,43,44,45}/all_metrics.json\\\", \\\"data_count\\\": 4, \\\"model_name\\\": \\\"N/A (analysis on MVP data)\\\", \\\"seed\\\": \\\"42,43,44,45\\\", \\\"checkpoint_path\\\": \\\"N/A\\\", \\\"log_path\\\": \\\"results/mvp/analysis/method_ablation.json\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T23:49:37.295Z\\\", \\\"metrics\\\": {\\\"spurious_rate_5method\\\": 0.75, \\\"spurious_rate_4method\\\": 0.625, \\\"naive_sig\\\": \\\"16/16\\\", \\\"differenced_sig\\\": \\\"14/16\\\", \\\"threshold_sig\\\": \\\"9/16\\\", \\\"permutation_granger_sig\\\": \\\"6/16\\\", \\\"ty_sig\\\": \\\"4/16\\\", \\\"ty_power_T10\\\": \\\"0.05-0.20\\\", \\\"bh_fdr_flips\\\": 0}}, \\\"alpha_sweep_a000_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:01:37.470Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:42:18.748Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.0 null control: 纯 real data 再训练无 canary signal，确认 signal 源于合成污染\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 42, \\\"synthetic_ratio\\\": 0, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"command\\\": \\\"bash -c \\\\\\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s42\\\\\\\"\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"46716\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\\\"}, \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-14T23:36:35.414Z\\\"}, \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_complete\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-14T23:36:36.221435+00:00\\\"}]}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_10/checkpoint\\\", \\\"log_path\\\": \\\"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\\\", \\\"metrics\\\": {\\\"gen0_token_entropy\\\": 3.2342, \\\"gen10_token_entropy\\\": 3.0693, \\\"gen0_ece\\\": 0.0108, \\\"gen10_ece\\\": 0.0164, \\\"gen0_perplexity\\\": 26.95, \\\"gen10_perplexity\\\": 21.11, \\\"gen0_distinct_1\\\": 0.0982, \\\"gen10_distinct_1\\\": 0.0847, \\\"token_entropy_drift_pct\\\": -5.1, \\\"ece_drift_pct\\\": 51.7, \\\"perplexity_drift_pct\\\": -21.7, \\\"distinct_1_drift_pct\\\": -13.8, \\\"distinct_2_drift_pct\\\": -9.8, \\\"distinct_3_drift_pct\\\": -4.5, \\\"gen1_10_perplexity_drift_pct\\\": 9.4, \\\"gen1_10_distinct_1_drift_pct\\\": -13.1, \\\"gen1_10_entropy_drift_pct\\\": 2.6}, \\\"completed_at\\\": \\\"2026-05-14T23:39:04.310Z\\\"}, \\\"plan_006_s43\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T23:31:37.257Z\\\", \\\"updated_at\\\": \\\"2026-05-14T23:31:37.258Z\\\", \\\"spec\\\": {\\\"plan_id\\\": \\\"plan_006\\\", \\\"hypothesis\\\": \\\"token_entropy→distinct_1/2 Granger-causal precedence remains robust at T=20 (N=21); ECE TY consistency improves with longer series\\\", \\\"model_name\\\": \\\"pythia-410m\\\", \\\"seed\\\": 43, \\\"data_path\\\": \\\"wikitext-103\\\", \\\"num_generations\\\": 20, \\\"synthetic_ratio\\\": 1, \\\"max_lag\\\": 10}}, \\\"alpha_sweep_a060_s42\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:52:22.516Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:52:22.516Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.60 中高污染: phase boundary 精确化, 与 α=0.50/0.75 对比 lead time 变化\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 42, \\\"synthetic_ratio\\\": 0.6, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000}}, \\\"plan_009_bootstrap_ty\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T21:33:04.665Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:33:27.106Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"Monte Carlo 验证 TY Granger 在短时间序列 (T=10,15,20,30) 下的 Type I error 和 statistical power\\\", \\\"command\\\": \\\"python bootstrap_ty_validation.py (N_sim=1000)\\\", \\\"server\\\": \\\"westd-19828\\\", \\\"data_path\\\": \\\"synthetic DGP (AR(1) for H0, VAR(2) for H1)\\\", \\\"data_count\\\": 1000, \\\"model_name\\\": \\\"N/A (statistical simulation)\\\", \\\"seed\\\": \\\"multiple\\\", \\\"log_path\\\": \\\"results/bootstrap_ty_results.json\\\", \\\"checkpoint_path\\\": \\\"N/A\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-14T21:33:24.769Z\\\", \\\"metrics\\\": {\\\"T10_d0_type1\\\": 0.081, \\\"T10_d0_power\\\": 0.205, \\\"T10_d1_type1\\\": 0.047, \\\"T10_d1_power\\\": 0.09, \\\"T10_dadapt_type1\\\": 0.052, \\\"T10_dadapt_power\\\": 0.05, \\\"T20_d0_power\\\": 0.409, \\\"T20_d1_power\\\": 0.172, \\\"T30_d0_power\\\": 0.606, \\\"T30_d1_power\\\": 0.283}}, \\\"alpha_sweep_a025_s42_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-14T19:25:52.094Z\\\", \\\"updated_at\\\": \\\"2026-05-14T21:04:20.474Z\\\", \\\"spec\\\": {\\\"hypothesis\\\": \\\"α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持，canary→perplexity lead 是否出现\\\", \\\"model_name\\\": \\\"EleutherAI/pythia-410m\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\\\", \\\"data_count\\\": 5000, \\\"seed\\\": 42, \\\"synthetic_ratio\\\": 0.25, \\\"num_generations\\\": 10, \\\"steps_per_gen\\\": 5000, \\\"parent\\\": \\\"alpha_sweep_a025_s42 (killed, subsample bias fix)\\\"}, \\\"conclusion\\\": \\\"failed\\\", \\\"failure_reason\\\": \\\"data corruption: unkilled old process PID 46802 wrote concurrently with new PID 48454\\\"}}, \\\"count\\\": 20, \\\"total\\\": 33, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.0781}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"gen_wiki_gpt2m_a100_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:02:06.478Z\", \"updated_at\": \"2026-05-15T12:02:32.472Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"116204\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\", \"submitted_at\": \"2026-05-15T12:02:14.440Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 18.0, \"gpu_hours\": 0.01}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T12:02:13.557Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"finished_at\": \"2026-05-15T12:02:31.643Z\", \"training_hours\": 0.01}, \"pid\": \"116204\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T12:02:32.472Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:02:33.931882+00:00\"}]}}, \"gen_wiki_gpt2m_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:35:18.700Z\", \"updated_at\": \"2026-05-15T12:01:58.523Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"115532\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\", \"submitted_at\": \"2026-05-15T11:57:48.767Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 249.8, \"gpu_hours\": 0.07}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T11:57:47.340Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\"}, \"pid\": \"115532\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:01:58.523Z\"}, \"plan_006_s42_resume\": {\"status\": \"ANALYZING\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:55:26.236Z\", \"updated_at\": \"2026-05-15T11:55:59.396Z\", \"spec\": {\"command\": \"python -u resume_plan006_s42.py\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"114844\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42_resume.log\", \"submitted_at\": \"2026-05-15T11:55:31.984Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hypothesis\": \"恢复 plan_006_s42 从 gen_17，完成 gen_18-20 + all_metrics（α=1.0, 20gen, s42）\", \"seed\": 42, \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"data/wikitext103\", \"data_count\": 0}}, \"plan_006_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:31:35.454Z\", \"updated_at\": \"2026-05-15T11:52:16.658Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"submitted_at\": \"2026-05-14T23:41:30.666Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 43212.6, \"gpu_hours\": 12.0}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T23:41:29.125Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"finished_at\": \"2026-05-15T11:41:42.336Z\", \"training_hours\": 12.0}, \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"metrics\": {\"progress\": \"14/20 gen (generating synthetic data)\", \"gen9_token_entropy\": 1.1456, \"gen9_ece\": 0.4406, \"gen9_perplexity\": 1786.72, \"gen9_distinct_1\": 0.0779, \"gen9_distinct_2\": 0.386, \"gen9_distinct_3\": 0.6342, \"distinct_1_drift_pct_gen0_9\": -20.7, \"entropy_drift_pct_gen0_1\": -52.8, \"ppl_drift_pct_gen0_9\": 6530.5, \"diversity_saturated_at_gen\": 5, \"eta_hours\": 3}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T11:41:43.235Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:41:44.300301+00:00\"}]}, \"notes\": \"gen_0-17 complete, gen_18-20 timeout (EXIT_CODE=124). T=18 sufficient per power analysis target T=15. Director D034 决定不恢复。\"}, \"method_ablation_phase2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:58:35.270Z\", \"updated_at\": \"2026-05-15T11:07:42.688Z\", \"spec\": {\"hypothesis\": \"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\", \"command\": \"python method_ablation_phase2.py\", \"server\": \"westd-19828\", \"data_path\": \"results/alpha_sweep + results/mvp\", \"data_count\": 56, \"model_name\": \"N/A (analysis)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/method_ablation_phase2_panel.json\"}, \"conclusion\": \"success\", \"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000_raw\": 0, \"perm_granger_sig_rate_a000_fdr\": 0, \"perm_granger_sig_rate_a025_raw\": 0.25, \"perm_granger_sig_rate_a025_fdr\": 0, \"perm_granger_sig_rate_a050_raw\": 0.25, \"perm_granger_sig_rate_a050_fdr\": 0, \"perm_granger_sig_rate_a100_raw\": 0.75, \"perm_granger_sig_rate_a100_fdr\": 0.75, \"TY_sig_rate_a000_raw\": 0, \"TY_sig_rate_a000_fdr\": 0, \"TY_sig_rate_a025_raw\": 0.625, \"TY_sig_rate_a025_fdr\": 0.375, \"TY_sig_rate_a050_raw\": 0, \"TY_sig_rate_a050_fdr\": 0, \"TY_sig_rate_a100_raw\": 0.5938, \"TY_sig_rate_a100_fdr\": 0.5938, \"diff_sig_rate_a000_raw\": 0.5, \"diff_sig_rate_a000_fdr\": 0.375, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true, \"fdr_correction\": \"BH q=0.05\"}, \"completed_at\": \"2026-05-15T08:58:54.741Z\"}, \"gen_wiki_gpt2m_a025_s42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:35:16.032Z\", \"updated_at\": \"2026-05-15T10:35:16.032Z\", \"spec\": {\"hypothesis\": \"Generalization: GPT-2-medium (355M) on WikiText-103 at α=0.25 — cross-architecture validation of canary→diversity lead and non-monotonic dose-response\", \"model_name\": \"gpt2-medium\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"batch_size\": 32, \"parent\": \"alpha_sweep_a025_s42_v3\", \"priority\": \"generalization-P1\"}}, \"alpha_sweep_a050_s44\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:50.550Z\", \"updated_at\": \"2026-05-15T06:58:50.550Z\", \"spec\": {\"hypothesis\": \"α=0.50 multi-seed replication (seed=44): 第三个 seed 为置信区间提供统计力\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 44, \"synthetic_ratio\": 0.5, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a050_s42\", \"priority\": \"D026-4\"}}, \"alpha_sweep_a025_s44\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:48.224Z\", \"updated_at\": \"2026-05-15T06:58:48.224Z\", \"spec\": {\"hypothesis\": \"α=0.25 multi-seed replication (seed=44): 第三个 seed 为置信区间提供统计力\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 44, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42_v3\", \"priority\": \"D026-3\"}}, \"alpha_sweep_a050_s43\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:45.880Z\", \"updated_at\": \"2026-05-15T06:58:45.880Z\", \"spec\": {\"hypothesis\": \"α=0.50 multi-seed replication (seed=43): 验证 ECE canary 定性信号和地板效应的可重复性\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 43, \"synthetic_ratio\": 0.5, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a050_s42\", \"priority\": \"D026-2\"}}, \"alpha_sweep_a025_s43\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:43.090Z\", \"updated_at\": \"2026-05-15T06:58:43.090Z\", \"spec\": {\"hypothesis\": \"α=0.25 multi-seed replication (seed=43): 验证非单调 dose-response 和 entropy canary 信号的可重复性\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 43, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42_v3\", \"priority\": \"D026-1\"}}, \"alpha_sweep_a075_s42\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:17.315Z\", \"updated_at\": \"2026-05-15T06:40:57.548Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"89753\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a075_s42.log\", \"submitted_at\": \"2026-05-15T05:44:47.124Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T05:44:46.271Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\\\"\"}, \"pid\": \"89753\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a075_s42.log\", \"metrics\": {\"progress\": \"2/10 gen (training step 490/5000)\", \"eta_hours\": 3.5}}, \"alpha_sweep_a050_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:15.427Z\", \"updated_at\": \"2026-05-15T06:05:28.905Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"73737\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\", \"submitted_at\": \"2026-05-15T01:20:05.044Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 16003.6, \"gpu_hours\": 4.45}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T01:15:14.747Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\"\", \"finished_at\": \"2026-05-15T05:42:25.788Z\", \"training_hours\": 4.45}, \"pid\": \"73737\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.632, \"gen0_ece\": 0.011, \"gen10_ece\": 0.102, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 32.64, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.062, \"gen0_distinct_2\": 0.518, \"gen10_distinct_2\": 0.251, \"gen0_distinct_3\": 0.813, \"gen10_distinct_3\": 0.387, \"token_entropy_drift_pct\": -18.6, \"ece_drift_pct\": 842.8, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -37.3, \"distinct_2_drift_pct\": -51.5, \"distinct_3_drift_pct\": -52.4, \"granger_entropy_to_d1_p_raw\": 0.095, \"granger_entropy_to_d2_p_raw\": 0.097, \"granger_ece_to_d1_p_raw\": 0.019, \"granger_ece_to_d2_p_raw\": 0.039, \"granger_fdr_note\": \"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\", \"d024_non_monotonic\": true, \"d024_ece_vs_entropy_note\": \"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:42:26.715028+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_10/checkpoint\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T05:46:48.692Z\"}, \"alpha_sweep_a010_s42\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:19.712Z\", \"updated_at\": \"2026-05-15T05:19:49.211Z\", \"spec\": {\"hypothesis\": \"α=0.10 极低污染: phase boundary 精确化, canary signal 是否仍可检测\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.1, \"num_generations\": 10, \"steps_per_gen\": 5000}}, \"alpha_sweep_a025_s42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:04:05.726Z\", \"updated_at\": \"2026-05-15T05:13:22.207Z\", \"spec\": {\"hypothesis\": \"α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42_v2 (failed, data corruption)\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"53069\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_v3.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T01:18:42.377Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:18:43.329069+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.1017, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.01942, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 22.32, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0586, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.2219, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.3263, \"token_entropy_drift_pct\": -4.1, \"ece_drift_pct\": 79.7, \"perplexity_drift_pct\": -17.2, \"distinct_1_drift_pct\": -40.3, \"distinct_2_drift_pct\": -57.1, \"distinct_3_drift_pct\": -59.9}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s42/gen_10/checkpoint\", \"completed_at\": \"2026-05-15T01:26:19.292Z\", \"notes\": \"实际磁盘路径为 results/alpha_sweep/a025_s42/（无 v3 后缀）。Registry ID 带 v3 是历史原因，数据已核实无误。\"}, \"method_ablation_phase1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:49:16.519Z\", \"updated_at\": \"2026-05-14T23:49:40.162Z\", \"spec\": {\"plan_id\": \"plan_002\", \"hypothesis\": \"lead-lag 结论对分析方法高度敏感——naive Pearson 100% SIG vs TY 25% SIG，方法选择改变 75% 的结论\", \"command\": \"python method_ablation.py + python permutation_granger.py (差分版)\", \"server\": \"westd-19828\", \"data_path\": \"results/mvp/rep_{42,43,44,45}/all_metrics.json\", \"data_count\": 4, \"model_name\": \"N/A (analysis on MVP data)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/mvp/analysis/method_ablation.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T23:49:37.295Z\", \"metrics\": {\"spurious_rate_5method\": 0.75, \"spurious_rate_4method\": 0.625, \"naive_sig\": \"16/16\", \"differenced_sig\": \"14/16\", \"threshold_sig\": \"9/16\", \"permutation_granger_sig\": \"6/16\", \"ty_sig\": \"4/16\", \"ty_power_T10\": \"0.05-0.20\", \"bh_fdr_flips\": 0}}, \"alpha_sweep_a000_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:01:37.470Z\", \"updated_at\": \"2026-05-14T23:42:18.748Z\", \"spec\": {\"hypothesis\": \"α=0.0 null control: 纯 real data 再训练无 canary signal，确认 signal 源于合成污染\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0, \"num_generations\": 10, \"steps_per_gen\": 5000, \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"46716\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T23:36:35.414Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T23:36:36.221435+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.0693, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.0164, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 21.11, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0847, \"token_entropy_drift_pct\": -5.1, \"ece_drift_pct\": 51.7, \"perplexity_drift_pct\": -21.7, \"distinct_1_drift_pct\": -13.8, \"distinct_2_drift_pct\": -9.8, \"distinct_3_drift_pct\": -4.5, \"gen1_10_perplexity_drift_pct\": 9.4, \"gen1_10_distinct_1_drift_pct\": -13.1, \"gen1_10_entropy_drift_pct\": 2.6}, \"completed_at\": \"2026-05-14T23:39:04.310Z\"}, \"plan_006_s43\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:31:37.257Z\", \"updated_at\": \"2026-05-14T23:31:37.258Z\", \"spec\": {\"plan_id\": \"plan_006\", \"hypothesis\": \"token_entropy→distinct_1/2 Granger-causal precedence remains robust at T=20 (N=21); ECE TY consistency improves with longer series\", \"model_name\": \"pythia-410m\", \"seed\": 43, \"data_path\": \"wikitext-103\", \"num_generations\": 20, \"synthetic_ratio\": 1, \"max_lag\": 10}}, \"alpha_sweep_a060_s42\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:22.516Z\", \"updated_at\": \"2026-05-14T21:52:22.516Z\", \"spec\": {\"hypothesis\": \"α=0.60 中高污染: phase boundary 精确化, 与 α=0.50/0.75 对比 lead time 变化\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.6, \"num_generations\": 10, \"steps_per_gen\": 5000}}, \"plan_009_bootstrap_ty\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:33:04.665Z\", \"updated_at\": \"2026-05-14T21:33:27.106Z\", \"spec\": {\"hypothesis\": \"Monte Carlo 验证 TY Granger 在短时间序列 (T=10,15,20,30) 下的 Type I error 和 statistical power\", \"command\": \"python bootstrap_ty_validation.py (N_sim=1000)\", \"server\": \"westd-19828\", \"data_path\": \"synthetic DGP (AR(1) for H0, VAR(2) for H1)\", \"data_count\": 1000, \"model_name\": \"N/A (statistical simulation)\", \"seed\": \"multiple\", \"log_path\": \"results/bootstrap_ty_results.json\", \"checkpoint_path\": \"N/A\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T21:33:24.769Z\", \"metrics\": {\"T10_d0_type1\": 0.081, \"T10_d0_power\": 0.205, \"T10_d1_type1\": 0.047, \"T10_d1_power\": 0.09, \"T10_dadapt_type1\": 0.052, \"T10_dadapt_power\": 0.05, \"T20_d0_power\": 0.409, \"T20_d1_power\": 0.172, \"T30_d0_power\": 0.606, \"T30_d1_power\": 0.283}}, \"alpha_sweep_a025_s42_v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:25:52.094Z\", \"updated_at\": \"2026-05-14T21:04:20.474Z\", \"spec\": {\"hypothesis\": \"α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持，canary→perplexity lead 是否出现\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42 (killed, subsample bias fix)\"}, \"conclusion\": \"failed\", \"failure_reason\": \"data corruption: unkilled old process PID 46802 wrote concurrently with new PID 48454\"}}, \"count\": 20, \"total\": 33, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.0781}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e42166f4-6bcf-4d9f-b8d3-cefaa9e754ee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "c0afb61f-a77c-4c15-9056-4813e6311d7c",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Prepare D026 multi-seed experiment submission configs",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d"
+}
+```
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-15T12:04:02.273Z_
+
+<details><summary>Logged reasoning block</summary>
+
+````text
+I have all the data I need. Let me extract the key information:
+
+**Running experiment (a075_s42) command format:**
+```
+bash -c "cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42"
+
+
+```
+
+Now I'm looking at the queued experiments—there are several variations with different synthetic ratios (0.25, 0.50) and seeds (43, 44) that need to run with the same base configuration.
+
+```
+I'm following the same pattern as a075_s42 — no explicit --model_name or --batch_size flags since they'll use the defaults. Now I'll construct the four commands with the appropriate seed, synthetic_ratio, and output directory for each experiment.
+```
+1. alpha_sweep_a025_s43: --seed 43 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s43
+2. alpha_sweep_a050_s43: --seed 43 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43
+3. alpha_sweep_a025_s44: --seed 44 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s44
+4. alpha_sweep_a050_s44: --seed 44 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s44
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0afb61f-a77c-4c15-9056-4813e6311d7c",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Kda6RcXQg8NvPCaKXt",
+  "type": "assistant",
+  "uuid": "fd05d4d6-0807-4242-8fba-1e9ef74cbe09",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0184ANR6L3oB8YrwmdopNdaJ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11512,
+      "cache_read_input_tokens": 24926,
+      "output_tokens": 2220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11512,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2220,
+          "cache_read_input_tokens": 24926,
+          "cache_creation_input_tokens": 11512,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11512
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 29 · 2026-05-15T12:04:09.740Z_
+
+Registry 数据已确认。4 个实验 spec 完整，参数与 a075_s42 一致（仅 seed/synthetic_ratio/output_dir 不同）。a075_s42 未显式传 `--model_name`（默认 pythia-410m），4 个实验同理。
+
+---
+
+## 实验 1: alpha_sweep_a025_s43
+- **exp_id**: alpha_sweep_a025_s43
+- **spec 核验**: model=pythia-410m, data=wikitext103_5k, α=0.25, seed=43, gen=10, steps=5000 ✓
+- **command**:
+```
+bash -c "cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s43"
+```
+- **gpu_ids**: ["cuda:1"]
+- **server**: westd-19828
+- **timeout_hours**: 6
+
+## 实验 2: alpha_sweep_a050_s43
+- **exp_id**: alpha_sweep_a050_s43
+- **spec 核验**: model=pythia-410m, data=wikitext103_5k, α=0.50, seed=43, gen=10, steps=5000 ✓
+- **command**:
+```
+bash -c "cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43"
+```
+- **gpu_ids**: ["cuda:1"]
+- **server**: westd-19828
+- **timeout_hours**: 6
+
+## 实验 3: alpha_sweep_a025_s44
+- **exp_id**: alpha_sweep_a025_s44
+- **spec 核验**: model=pythia-410m, data=wikitext103_5k, α=0.25, seed=44, gen=10, steps=5000 ✓
+- **command**:
+```
+bash -c "cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s44"
+```
+- **gpu_ids**: ["cuda:1"]
+- **server**: westd-19828
+- **timeout_hours**: 6
+
+## 实验 4: alpha_sweep_a050_s44
+- **exp_id**: alpha_sweep_a050_s44
+- **spec 核验**: model=pythia-410m, data=wikitext103_5k, α=0.50, seed=44, gen=10, steps=5000 ✓
+- **command**:
+```
+bash -c "cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s44"
+```
+- **gpu_ids**: ["cuda:1"]
+- **server**: westd-19828
+- **timeout_hours**: 6
+
+---
+
+4 组配置就绪，命令格式与 a075_s42 完全一致，可直接用于 `allocate_and_submit` 串行提交。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd05d4d6-0807-4242-8fba-1e9ef74cbe09",
+  "isSidechain": false,
+  "requestId": "req_011Cb4Kda6RcXQg8NvPCaKXt",
+  "type": "assistant",
+  "uuid": "e09ac85c-96e8-4455-bd86-7885c2932823",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0184ANR6L3oB8YrwmdopNdaJ",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 11512,
+      "cache_read_input_tokens": 24926,
+      "output_tokens": 2220,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11512,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2220,
+          "cache_read_input_tokens": 24926,
+          "cache_creation_input_tokens": 11512,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11512
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "e09ac85c-96e8-4455-bd86-7885c2932823",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Prepare D026 multi-seed experiment submission configs",
+  "sessionId": "cfb86154-bf1a-4fdf-8faf-25503bec213d"
+}
+```
+
+---

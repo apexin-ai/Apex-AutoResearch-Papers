@@ -1,0 +1,7131 @@
+# Research conversation: [HANDOFF] 你是 Research Reviewer，这是 Loop #18。 ## 上一轮交接 (task_context) ### 1. 🔴 硬约束 / 红线 - westd-19828 只有 **1 个 GPU (cuda:0 — Part 3 of 4
+
+**Characterizing the Detectability Landscape of Iterative Model Collapse (July export snapshot)** · Conversation logs
+
+[← Part 2](part-002.md) · [Transcript overview](../research-conversation-handoff-research-reviewer-loop-18-task-context-1-westd-19828-1-gpu-cuda-0.md) · [Part 4 →](part-004.md) · [Structured JSON](../../../sessions/df/df47c149c2d1aaf0f877.json)
+
+## Round 20
+
+### Tool result
+
+_source line 438 · 2026-05-25T08:46:51.060Z_
+
+<details><summary>↩ Tool result · `toolu_01KCFwBHfaDgFpyNko4C7WcA`</summary>
+
+```text
+Error: result (442,426 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-reviewer-32964115/e3145630-65ea-4199-9de5-d999f5e77caf/tool-results/mcp-agent-ml-research-read_registry-1779698811053.txt.
+Format: JSON with schema: {result: string}
+- For targeted queries (find a value, filter by field): use jq on the file directly.
+- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-reviewer-32964115/e3145630-65ea-4199-9de5-d999f5e77caf/tool-results/mcp-agent-ml-research-read_registry-1779698811053.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.
+- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. "/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-reviewer-32964115/e3145630-65ea-4199-9de5-d999f5e77caf/tool-results/mcp-agent-ml-research-read_registry-1779698811053.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim." A vague "summarize this" may lose detail.
+
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e184e638-3b2f-4c10-a987-83fa8e619653",
+  "isSidechain": false,
+  "promptId": "a7485f9c-8f0c-413e-bd45-e6ffe397160f",
+  "type": "user",
+  "uuid": "02c9b9a8-0b5c-4158-a255-7b99afc21b96",
+  "toolUseResult": "Error: result (442,426 characters) exceeds maximum allowed tokens. Output has been saved to /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-reviewer-32964115/e3145630-65ea-4199-9de5-d999f5e77caf/tool-results/mcp-agent-ml-research-read_registry-1779698811053.txt.\nFormat: JSON with schema: {result: string}\n- For targeted queries (find a value, filter by field): use jq on the file directly.\n- For analysis or summarization that requires reading the full content: first probe the structure (e.g., jq 'type, length, keys?' /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-reviewer-32964115/e3145630-65ea-4199-9de5-d999f5e77caf/tool-results/mcp-agent-ml-research-read_registry-1779698811053.txt), then extract slices with jq or python — Read's line-based offset/limit will not chunk this file.\n- If the Agent tool is available, do this inside a subagent so the full output stays out of your main context. Give it the instruction above verbatim, and be explicit about what it must return — e.g. \"/home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-reviewer-32964115/e3145630-65ea-4199-9de5-d999f5e77caf/tool-results/mcp-agent-ml-research-read_registry-1779698811053.txt is JSON with schema: {result: string}; probe the structure with jq (type/length/keys), then extract and read the content in full with jq or python, then summarize and quote any key findings verbatim.\" A vague \"summarize this\" may lose detail.\n",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"c2_opt13b_a050_s43_fp32_v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T03:22:15.332Z\", \"updated_at\": \"2026-05-25T03:30:34.660Z\", \"hypothesis\": \"OPT-1.3B at α=0.50 seed 43: cross-seed replication of PermG forward detection in the transition region on a non-Pythia architecture. If s42 shows detection onset (≥6/8), s43 should replicate, confirming the phase diagram generalizes beyond Pythia to OPT family at the critical boundary.\", \"parent\": \"c2_opt13b_a050_s42_fp32\", \"spec\": {\"command\": \"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/distrib_canary_collapse && python iterative_train.py --model_name facebook/opt-1.3b --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --gradient_checkpointing --output_dir results/c2_opt13b/a050_s43_fp32_v2 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"facebook/opt-1.3b\", \"seed\": 43, \"precision\": \"fp32\"}}, \"c2_opt13b_a050_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-25T00:34:11.306Z\", \"updated_at\": \"2026-05-25T00:53:52.418Z\", \"hypothesis\": \"OPT-1.3B at α=0.50 seed 43 replication: cross-seed consistency of PermG forward detection in the transition region on a non-Pythia architecture\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name facebook/opt-1.3b --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --gradient_checkpointing --output_dir results/c2_opt13b/a050_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"34194\", \"log_path\": \"~/runs/distrib_canary_collapse/c2_opt13b_a050_s43_fp32.log\", \"submitted_at\": \"2026-05-25T00:34:24.331Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"facebook/opt-1.3b\", \"seed\": 43, \"wall_clock_seconds\": 1168.1, \"gpu_hours\": 0.32}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-25T00:53:52.418Z\"}, \"c2_opt13b_a050_s42_fp32\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-25T00:09:41.059Z\", \"updated_at\": \"2026-05-25T00:29:57.497Z\", \"hypothesis\": \"OPT-1.3B at α=0.50 should show PermG forward detection onset similar to Pythia-410M (6/8 at α=0.50), validating that the phase diagram structure generalizes beyond the Pythia family to the transition region\", \"spec\": {\"command\": \"python iterative_train.py --model_name facebook/opt-1.3b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --gradient_checkpointing --output_dir results/c2_opt13b/a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"32373\", \"log_path\": \"~/runs/distrib_canary_collapse/c2_opt13b_a050_s42_fp32.log\", \"submitted_at\": \"2026-05-25T00:09:57.812Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"facebook/opt-1.3b\", \"seed\": 42}}, \"null_fpr_s51_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T15:37:56.773Z\", \"updated_at\": \"2026-05-25T00:23:02.230Z\", \"spec\": {\"command\": \"python iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.0 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a000_s51_fp32 --seed 51 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"13253\", \"log_path\": \"~/runs/distrib_canary_collapse/null_fpr_s51_fp32.log\", \"submitted_at\": \"2026-05-24T15:37:55.996Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 51, \"wall_clock_seconds\": 30558.8, \"gpu_hours\": 8.49}, \"hypothesis\": \"Null experiment (α=0.00) for FPR estimation: no synthetic data contamination, all detection methods should show p>0.05, contributing to narrower FPR CI with 15 seeds\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-25T00:07:14.772Z\", \"metrics\": {\"permg_fwd\": \"0/6\", \"permg_rev\": \"0/6\", \"robust_pairs_K3\": 0, \"total_pairs\": 6}}, \"null_t15_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T03:37:51.968Z\", \"updated_at\": \"2026-05-24T09:57:59.234Z\", \"hypothesis\": \"FPR verification at T=15: null condition (α=0.00) should show 0% PermG detection rate with longer observation window, confirming FPR control generalizes across T\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --synthetic_ratio 0.00 --num_generations 15 --steps_per_gen 5000 --output_dir results/alpha_sweep/a000_t15_s42_fp32 --seed 42\", \"server\": \"westd-19828\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42}, \"metrics\": {\"permg_fwd\": \"0/6\", \"permg_rev\": \"0/6\", \"robust_pairs_K3\": 0, \"total_pairs\": 6, \"d102_6pair\": {\"robust_pairs\": 0, \"total_pairs\": 6, \"perm_granger_fwd\": 0, \"perm_granger_rev\": 0}}, \"notes\": \"D102 6-pair basis (excluding mauve). T=15 null: PermG fwd 0/6, rev 0/6, K≥3 0/6. Clean null.\", \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_t15_s42_fp32\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_t15_s42_fp32/analysis/5method_leadlag.json\", \"completed_at\": \"2026-05-24T09:57:59.234Z\"}, \"null_t15_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T03:37:53.175Z\", \"updated_at\": \"2026-05-24T09:52:38.609Z\", \"hypothesis\": \"FPR verification at T=15: null condition (α=0.00) should show 0% PermG detection rate with longer observation window, confirming FPR control generalizes across T\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --synthetic_ratio 0.00 --num_generations 15 --steps_per_gen 5000 --output_dir results/alpha_sweep/a000_t15_s43_fp32 --seed 43\", \"server\": \"westd-19828\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_t15_s43_fp32\", \"log_path\": \"results/alpha_sweep/a000_t15_s43_fp32/analysis/5method_leadlag.json\", \"completed_at\": \"2026-05-24T09:38:22.701Z\", \"metrics\": {\"permg_fwd\": \"0/6\", \"permg_rev\": \"0/6\", \"robust_pairs_K3\": 1, \"total_pairs\": 6, \"d102_6pair\": {\"robust_pairs\": 1, \"total_pairs\": 6, \"perm_granger_fwd\": 0, \"perm_granger_rev\": 0, \"fp_pair\": \"ece->distinct_1 (naive+diff+threshold)\"}}, \"notes\": \"D102 6-pair basis (excluding mauve). T=15 null: PermG fwd 0/6, rev 0/6, K≥3 1/6 (FP: ece->distinct_1 via naive+diff+threshold, not mauve-related).\"}, \"null_gpt2m_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T03:37:55.937Z\", \"updated_at\": \"2026-05-24T08:27:00.693Z\", \"hypothesis\": \"Cross-architecture FPR verification: GPT-2-medium null (α=0.00) should show 0% PermG detection rate, confirming method is not architecture-specific\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name openai-community/gpt2-medium --synthetic_ratio 0.00 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a000_gpt2m_s43_fp32 --seed 43\", \"server\": \"westd-17855\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"openai-community/gpt2-medium\", \"seed\": 43}, \"reproduce\": {\"finished_at\": \"2026-05-24T08:04:23.114Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T08:04:29.895Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-24T08:04:49.653683+00:00\"}]}, \"log_path\": \"/tmp/null_gpt2m_s43.log\", \"checkpoint_path\": \"results/alpha_sweep/a000_gpt2m_s43_fp32/\", \"metrics\": {\"PermG_fwd\": \"0/6\", \"PermG_rev\": \"0/6\", \"robust_pairs_K3\": 0, \"total_pairs\": 6, \"analysis\": \"D102_6pair\"}}, \"null_gpt2m_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T03:37:54.761Z\", \"updated_at\": \"2026-05-24T08:26:58.037Z\", \"hypothesis\": \"Cross-architecture FPR verification: GPT-2-medium null (α=0.00) should show 0% PermG detection rate, confirming method is not architecture-specific\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name openai-community/gpt2-medium --synthetic_ratio 0.00 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a000_gpt2m_s42_fp32 --seed 42\", \"server\": \"westd-17855\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"openai-community/gpt2-medium\", \"seed\": 42}, \"reproduce\": {\"finished_at\": \"2026-05-24T08:04:02.255Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T08:04:06.587Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-24T08:04:13.125409+00:00\"}]}, \"checkpoint_path\": \"results/alpha_sweep/a000_gpt2m_s42_fp32/\", \"metrics\": {\"PermG_fwd\": \"6/6\", \"PermG_rev\": \"0/6\", \"robust_pairs_K3\": 0, \"total_pairs\": 6, \"analysis\": \"D102_6pair\", \"note\": \"PermG 6/6 FP under null — architecture-specific FPR inflation; K≥3 consensus still 0/6\"}}, \"conditional_granger_d061\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T22:49:34.807Z\", \"updated_at\": \"2026-05-24T07:36:22.983Z\", \"hypothesis\": \"Conditional Granger analysis: 控制 ECE 后测 token_entropy→diversity，控制 token_entropy 后测 ECE→diversity。验证两个 canary 是否提供独立信息。\", \"conclusion\": \"success\", \"spec\": {\"command\": \"CPU analysis (zero GPU)\", \"server\": \"local\", \"data_path\": \"results/mvp/rep_42_v3 (Pythia-410M alpha=1.0 s42)\", \"data_count\": 11, \"model_name\": \"N/A (analysis)\", \"seed\": 42, \"checkpoint_path\": \"N/A\", \"log_path\": \"artifacts/d061_conditional_granger_analysis.md\"}, \"completed_at\": \"2026-05-18T23:45:27.746Z\", \"plan_id\": \"plan_022\"}, \"null_fpr_s50_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T02:15:01.660Z\", \"updated_at\": \"2026-05-24T06:23:57.029Z\", \"hypothesis\": \"Null experiment (α=0.00) for FPR estimation: no synthetic data contamination, all detection methods should show p>0.05, contributing to narrower FPR CI\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.00 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a000_s50_fp32 --seed 50 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-17855\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 50}, \"metrics\": {\"permg_fwd\": \"2/6\", \"permg_rev\": \"0/6\", \"robust_pairs_K3\": 2, \"total_pairs\": 6}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s50_fp32\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/analysis/D102_null_s50_fp32_d3.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T06:23:57.029Z\"}, \"null_fpr_s49_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T02:15:00.471Z\", \"updated_at\": \"2026-05-24T06:23:54.035Z\", \"hypothesis\": \"Null experiment (α=0.00) for FPR estimation: no synthetic data contamination, all detection methods should show p>0.05, contributing to narrower FPR CI\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.00 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a000_s49_fp32 --seed 49 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-17855\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 49}, \"metrics\": {\"permg_fwd\": \"0/6\", \"permg_rev\": \"0/6\", \"robust_pairs_K3\": 0, \"total_pairs\": 6}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s49_fp32\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/analysis/D102_null_s49_fp32_d3.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T06:23:54.035Z\"}, \"null_fpr_s48_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T02:14:59.144Z\", \"updated_at\": \"2026-05-24T06:23:51.030Z\", \"hypothesis\": \"Null experiment (α=0.00) for FPR estimation: no synthetic data contamination, all detection methods should show p>0.05, contributing to narrower FPR CI\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.00 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a000_s48_fp32 --seed 48 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-17855\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 48}, \"metrics\": {\"permg_fwd\": \"0/6\", \"permg_rev\": \"0/6\", \"robust_pairs_K3\": 0, \"total_pairs\": 6}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s48_fp32\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/analysis/D102_null_s48_fp32_d3.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T06:23:51.030Z\"}, \"null_fpr_s46_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-24T02:14:57.986Z\", \"updated_at\": \"2026-05-24T06:23:47.614Z\", \"hypothesis\": \"Null experiment (α=0.00) for FPR estimation: no synthetic data contamination, all detection methods should show p>0.05, contributing to narrower FPR CI\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.00 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a000_s46_fp32 --seed 46 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-17855\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 46}, \"metrics\": {\"permg_fwd\": \"0/6\", \"permg_rev\": \"0/6\", \"robust_pairs_K3\": 1, \"total_pairs\": 6}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s46_fp32\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/analysis/D102_null_s46_fp32_d3.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T06:23:47.614Z\"}, \"scale_14b_t10_a050_s44_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T08:18:23.933Z\", \"updated_at\": \"2026-05-24T00:19:10.014Z\", \"hypothesis\": \"Third-seed (s44) replication of 1.4B T=10 α=0.50: s42 shows PermG=4/8, s43 pending. If s44 also shows 3-5/8, confirms onset-boundary attenuation is seed-robust at 1.4B scale.\", \"parent\": \"scale_14b_t10_a050_s42_fp32_v2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s44_fp32_14b --seed 44 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\", \"server\": \"westd-17855\", \"gpu\": \"cuda:2\", \"pid\": 781724, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 44, \"precision\": \"fp32\", \"log_path\": \"results/phase_diagram/t10_a050_s44_fp32_14b.log\", \"checkpoint_path\": \"results/phase_diagram/t10_a050_s44_fp32_14b\", \"checkpoint_source\": \"scale_14b_t10_a050_s42_fp32_v2\", \"eval_data\": \"data/wikitext103_5k\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T20:55:01.460Z\", \"metrics\": {\"gen_0\": {\"token_entropy\": 2.9731, \"ece\": 0.0081, \"distinct_3\": 0.819, \"perplexity\": 19.83}, \"gen_10\": {\"token_entropy\": 2.2427, \"ece\": 0.1504, \"distinct_3\": 0.5031, \"perplexity\": 34.45}, \"n_gens\": 11, \"d102_6pair\": {\"robust_pairs\": 0, \"total_pairs\": 6, \"perm_granger_fwd\": 6, \"perm_granger_rev\": 0}}}, \"scale_14b_t10_a060_s44_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T08:18:27.298Z\", \"updated_at\": \"2026-05-24T00:19:07.913Z\", \"hypothesis\": \"Third-seed (s44) replication of 1.4B T=10 α=0.60: s42 and s43 both show PermG=4/8 (sync-dip dissolved). If s44 also shows 4/8, confirms sync-dip dissolution is seed-robust at 1.4B.\", \"parent\": \"scale_14b_t10_a060_s42_fp32_v2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a060_s44_fp32_14b --seed 44 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\", \"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"pid\": 780907, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 44, \"precision\": \"fp32\", \"log_path\": \"results/phase_diagram/t10_a060_s44_fp32_14b.log\", \"checkpoint_path\": \"results/phase_diagram/t10_a060_s44_fp32_14b\", \"checkpoint_source\": \"scale_14b_t10_a060_s42_fp32_v2\", \"eval_data\": \"data/wikitext103_5k\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T20:45:29.379Z\", \"metrics\": {\"gen_0\": {\"token_entropy\": 2.9731, \"ece\": 0.0081, \"distinct_3\": 0.819, \"perplexity\": 19.83}, \"gen_10\": {\"token_entropy\": 2.0126, \"ece\": 0.2366, \"distinct_3\": 0.598, \"perplexity\": 63.79}, \"n_gens\": 11, \"d102_6pair\": {\"robust_pairs\": 5, \"total_pairs\": 6, \"perm_granger_fwd\": 6, \"perm_granger_rev\": 0}}}, \"scale_14b_t15_a045_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T04:57:10.458Z\", \"updated_at\": \"2026-05-24T00:19:05.310Z\", \"spec\": {\"checkpoint_path\": \"results/phase_diagram/t15_a045_s43_fp32_14b\", \"log_path\": \"results/phase_diagram/t15_a045_s43_fp32_14b.log\"}, \"conclusion\": \"success\", \"hypothesis\": \"At alpha=0.45 with T=15 generations (pythia-1.4b, seed=43), canary metrics (token_entropy, ece) will show statistically significant early-warning signals of downstream collapse in distinct_3, detectable via multi-method consensus\", \"completed_at\": \"2026-05-23T22:23:45.761Z\", \"metrics\": {\"gen_0\": {\"token_entropy\": 2.9731, \"ece\": 0.0081, \"distinct_3\": 0.8167, \"perplexity\": 19.83}, \"gen_15\": {\"token_entropy\": 2.2626, \"ece\": 0.1494, \"distinct_3\": 0.4643, \"perplexity\": 34.18}, \"n_gens\": 16, \"d102_6pair\": {\"robust_pairs\": 3, \"total_pairs\": 6, \"perm_granger_fwd\": 5, \"perm_granger_rev\": 3}}}, \"scale_14b_t15_a050_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T02:50:43.126Z\", \"updated_at\": \"2026-05-24T00:19:03.091Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a050_s43_fp32_14b --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\", \"server\": \"westd-17855\", \"gpu\": \"cuda:1\", \"pid\": 750075, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 43, \"precision\": \"fp32\", \"log_path\": \"results/phase_diagram/t15_a050_s43_fp32_14b/train.log\", \"checkpoint_path\": \"results/phase_diagram/t15_a050_s43_fp32_14b\"}, \"conclusion\": \"success\", \"hypothesis\": \"At alpha=0.50 synthetic ratio with pythia-1.4b, distributional canary metrics (entropy, ece) will show statistically significant lead-lag relationships preceding downstream quality degradation (distinct_3), indicating early warning of model collapse.\", \"completed_at\": \"2026-05-23T20:19:09.895Z\", \"metrics\": {\"gen_0\": {\"token_entropy\": 2.9731, \"ece\": 0.0081, \"distinct_3\": 0.8167, \"perplexity\": 19.83}, \"gen_15\": {\"token_entropy\": 2.2712, \"ece\": 0.1568, \"distinct_3\": 0.4996, \"perplexity\": 37.09}, \"n_gens\": 16, \"d102_6pair\": {\"robust_pairs\": 3, \"total_pairs\": 6, \"perm_granger_fwd\": 3, \"perm_granger_rev\": 0}}}, \"scale_14b_t15_a060_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T03:16:03.546Z\", \"updated_at\": \"2026-05-24T00:19:00.782Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a060_s43_fp32_14b --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\", \"server\": \"westd-17855\", \"gpu\": \"cuda:0\", \"pid\": 749427, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 43, \"precision\": \"fp32\", \"log_path\": \"results/phase_diagram/t15_a060_s43_fp32_14b/\", \"checkpoint_path\": \"results/phase_diagram/t15_a060_s43_fp32_14b\"}, \"conclusion\": \"success\", \"metrics\": {\"gen_0\": {\"token_entropy\": 2.9731, \"ece\": 0.0081, \"distinct_3\": 0.8167, \"perplexity\": 19.83}, \"gen_15\": {\"token_entropy\": 2.1014, \"ece\": 0.2369, \"distinct_3\": 0.5661, \"perplexity\": 68.88}, \"n_gens\": 16, \"d102_6pair\": {\"robust_pairs\": 6, \"total_pairs\": 6, \"perm_granger_fwd\": 6, \"perm_granger_rev\": 3}}, \"hypothesis\": \"Scaling model size to 1.4B (pythia-1.4b) at alpha=0.60 with T=15 generations will exhibit similar distributional collapse trajectory as smaller models, with perplexity growth and diversity loss following power-law scaling with sqrt(T)\", \"completed_at\": \"2026-05-23T20:03:08.708Z\"}, \"scale_14b_t10_a075_s44_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T08:18:30.361Z\", \"updated_at\": \"2026-05-24T00:18:41.059Z\", \"hypothesis\": \"Third-seed (s44) replication of 1.4B T=10 α=0.75: s42 shows PermG=5/8, s43 pending. If s44 reaches 5-6/8, confirms high-α detection robustness at 1.4B scale.\", \"parent\": \"scale_14b_t10_a075_s42_fp32_v2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a075_s44_fp32_14b --seed 44 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\", \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"pid\": 865467, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 44, \"precision\": \"fp32\", \"log_path\": \"results/phase_diagram/t10_a075_s44_fp32_14b.log\", \"checkpoint_path\": \"results/phase_diagram/t10_a075_s44_fp32_14b\", \"checkpoint_source\": \"scale_14b_t10_a075_s42_fp32_v2\", \"eval_data\": \"data/wikitext103_5k\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T21:09:47.476Z\", \"metrics\": {\"gen_0\": {\"token_entropy\": 2.9731, \"ece\": 0.0081, \"distinct_3\": 0.819, \"perplexity\": 19.83}, \"gen_10\": {\"token_entropy\": 1.9102, \"ece\": 0.2677, \"distinct_3\": 0.6636, \"perplexity\": 89.59}, \"n_gens\": 11, \"d102_6pair\": {\"robust_pairs\": 6, \"total_pairs\": 6, \"perm_granger_fwd\": 6, \"perm_granger_rev\": 0}}}, \"scale_14b_t10_a045_s44_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T12:31:25.999Z\", \"updated_at\": \"2026-05-24T00:18:38.610Z\", \"hypothesis\": \"Third-seed (s44) replication of 1.4B T=10 α=0.45: s42 PermG=0/8, s43 PermG=1/8 (both blind zone). If s44 also 0-1/8, confirms blind zone is seed-robust at 1.4B scale.\", \"parent\": \"scale_14b_t10_a045_s42_fp32\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a045_s44_fp32_14b --seed 44 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\", \"server\": \"westd-17855\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 44, \"pid\": 796624, \"gpu\": \"cuda:4\", \"checkpoint_path\": \"results/phase_diagram/t10_a045_s44_fp32_14b\", \"log_path\": \"results/phase_diagram/t10_a045_s44_fp32_14b.log\", \"checkpoint_source\": \"scale_14b_t10_a045_s42_fp32\", \"eval_data\": \"data/wikitext103_5k\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T00:09:14.916Z\", \"metrics\": {\"gen_0\": {\"token_entropy\": 2.9731, \"ece\": 0.0081, \"distinct_3\": 0.819, \"perplexity\": 19.83}, \"gen_10\": {\"token_entropy\": 2.229, \"ece\": 0.1454, \"distinct_3\": 0.4813, \"perplexity\": 31.56}, \"n_gens\": 11, \"d102_6pair\": {\"robust_pairs\": 0, \"total_pairs\": 6, \"perm_granger_fwd\": 0, \"perm_granger_rev\": 0}}}, \"scale_14b_t15_a075_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T06:39:02.256Z\", \"updated_at\": \"2026-05-24T00:18:36.206Z\", \"hypothesis\": \"Cross-seed (s43) replication of 1.4B T=15 α=0.75: parent s42 shows PermG=6/8 at ceiling. If s43 also reaches 6/8, confirms high-α detection is seed-robust at 1.4B scale.\", \"parent\": \"scale_14b_t15_a075_s42_fp32\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a075_s43_fp32_14b --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\", \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"pid\": 857058, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 43, \"precision\": \"fp32\", \"log_path\": \"results/phase_diagram/t15_a075_s43_fp32_14b.log\", \"checkpoint_path\": \"results/phase_diagram/t15_a075_s43_fp32_14b\", \"checkpoint_source\": \"scale_14b_t15_a075_s42_fp32\", \"eval_data\": \"data/wikitext103_5k\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-24T00:16:42.897Z\", \"metrics\": {\"gen_0\": {\"token_entropy\": 2.9731, \"ece\": 0.0081, \"distinct_3\": 0.8167, \"perplexity\": 19.83}, \"gen_15\": {\"token_entropy\": 2.0783, \"ece\": 0.2646, \"distinct_3\": 0.6675, \"perplexity\": 99.96}, \"n_gens\": 16, \"d102_6pair\": {\"robust_pairs\": 6, \"total_pairs\": 6, \"perm_granger_fwd\": 6, \"perm_granger_rev\": 0}}}, \"scale_14b_t10_a045_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T12:32:59.333Z\", \"updated_at\": \"2026-05-23T21:48:58.910Z\", \"hypothesis\": \"1.4B scale verification: T=10 α=0.45, below α_c(10)=0.487. At 410M PermG=0/8. If 1.4B also 0/8, confirms α_c boundary is scale-robust. C2 判定点。\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a045_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\", \"server\": \"westd-17855\", \"gpu\": \"cuda:4\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 42, \"pid\": 679204, \"log_path\": \"/tmp/train_scale_14b_t10_a045_s42.log\", \"checkpoint_path\": \"results/phase_diagram/t10_a045_s42_fp32_14b\", \"progress\": \"gen_6/10 in training (gen_0-5 complete)\", \"precision\": \"fp32\", \"tmux_session\": \"nohup (no tmux)\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T00:46:45.347Z\", \"metrics\": {\"d102_downstream\": \"distinct_1,distinct_2,distinct_3,mauve\", \"d102_threshold\": \"true_3sigma_d105\", \"d102_n_perm\": 5000, \"permg_fwd_fdr\": \"0/8\", \"permg_rev_fdr\": \"0/8\", \"diffxcorr_fwd_fdr\": \"8/8\", \"diffxcorr_rev_fdr\": \"8/8\", \"threshold_fwd\": \"0/8\", \"ty_fwd\": \"2/8\", \"naive_fwd\": \"2/8\", \"robust_pairs\": \"0/8\", \"consensus_max_votes\": 2, \"note\": \"DiffXCorr 8/8 survives FDR but bidirectional (8/8 reverse), no robust pairs. Not reliable forward causation.\"}}, \"scale_14b_t10_a045_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:49:15.345Z\", \"updated_at\": \"2026-05-23T12:31:24.497Z\", \"hypothesis\": \"1.4B scale multi-seed: T=10 α=0.45 seed=43. s42 PermG=0/8 confirmed below-threshold. s43 replication for consistency check.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a045_s43_fp32_14b --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\", \"server\": \"westd-17855\", \"gpu\": \"cuda:4\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 43, \"pid\": 738796, \"log_path\": \"logs/scale_14b_t10_a045_s43_fp32.log\", \"checkpoint_path\": \"results/phase_diagram/t10_a045_s43_fp32_14b\", \"precision\": \"fp32\", \"tmux_session\": \"14b_t10_a045_s43\"}, \"checkpoint_path\": \"results/phase_diagram/t10_a045_s43_fp32_14b/\", \"log_path\": \"logs/scale_14b_t10_a045_s43_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T12:28:59.567Z\", \"metrics\": {\"PermG_fwd\": \"1/8\", \"PermG_rev\": \"0/8\", \"DiffXCorr_fwd\": \"7/8\", \"DiffXCorr_rev\": \"7/8\", \"Threshold_fwd\": \"0/8\", \"TY_fwd\": \"1/8\", \"K_ge_3\": \"2/8\", \"K_ge_4\": \"0/8\", \"ppl_drift_pct\": \"+58.2%\", \"entropy_drift_pct\": \"-24.9%\", \"ece_drift_pct\": \"+1668%\", \"mauve_drift_pct\": \"-11.0%\", \"distinct1_drift_pct\": \"-30.0%\", \"note\": \"Blind zone confirmed. PermG=1/8 marginal (ece→distinct_1 only). Consistent with s42=0/8.\"}}, \"scale_14b_t10_a075_s42_fp32_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T08:53:33.625Z\", \"updated_at\": \"2026-05-23T10:33:42.475Z\", \"hypothesis\": \"Scale verification: Pythia-1.4B T=10 α=0.75 (resume from gen 2 after MAUVE=None crash). At 410M, α=0.75 PermG=6/8 (well above α_c). Baseline control for 1.4B — expected 6/8 if detection scales. Confirms 6/8 ceiling is not model-size dependent.\", \"parent\": \"scale_14b_t10_a075_s42_fp32\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/scale/14b_t10_a075_s42_fp32\", \"server\": \"westd-17855\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 42, \"checkpoint_source\": \"results/phase_diagram/t10_a075_s42_fp32_14b/gen_1/checkpoint\", \"eval_data\": \"data/wikitext103_5k\", \"gpu\": \"cuda:2\", \"log_path\": \"/tmp/14b_t10_a075.log\", \"checkpoint_path\": \"results/scale/14b_t10_a075_s42_fp32/\", \"pid\": 679944, \"tmux_session\": \"scale_14b_s42\", \"start_gen\": 5, \"note\": \"Restarted from gen_5 after tmux server kill at ~20:37\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T20:04:10.285Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T20:04:13.599Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T20:04:24.112389+00:00\"}]}, \"notes\": \"Cron 误判 failed — 日志显示实验已完成: gen_9 checkpoint saved, metrics computed (ppl=89.37, mauve=0.0311), sentinel written. Worker 已派发验证完整结果并运行 D102 分析。worker_id: worker_diagnose_scale_14b_t10_a075_s42_fp32_v2_20260522T200658\", \"metrics\": {\"PermG_fwd\": \"5/8\", \"PermG_rev\": \"0/8\", \"DiffXCorr_fwd\": \"6/8\", \"DiffXCorr_rev\": \"6/8\", \"Threshold_fwd\": \"0/8\", \"TY_fwd\": \"3/8\", \"K_ge_3\": \"5/8\", \"K_ge_4\": \"2/8\", \"note\": \"Corrected per Reviewer #141: DiffXCorr was 8/8 (uncorrected) → 6/8 (FDR). TY was NaN → 3/8.\"}}, \"scale_14b_t10_a050_s42_fp32_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T12:13:39.827Z\", \"updated_at\": \"2026-05-23T10:33:40.677Z\", \"hypothesis\": \"Scale verification: Pythia-1.4B T=10 α=0.50 (v2, post-MAUVE fix). At 410M, α=0.50 T=10 is onset boundary (s42=6/8, s43=0/8). 1.4B result shows whether onset boundary shifts with model size.\", \"parent\": \"scale_14b_t10_a050_s42_fp32\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --start_gen 2\", \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"pid\": 776064, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 42, \"checkpoint_source\": \"results/phase_diagram/t10_a050_s42_fp32_14b/gen_1/checkpoint\", \"eval_data\": \"data/wikitext103_5k\", \"checkpoint_path\": \"results/phase_diagram/t10_a050_s42_fp32_14b\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a050_s42_fp32_14b/train.log\"}, \"conclusion\": \"success\", \"metrics\": {\"PermG_fwd\": \"4/8\", \"PermG_rev\": \"2/8\", \"DiffXCorr_fwd\": \"4/8\", \"DiffXCorr_rev\": \"4/8\", \"Threshold_fwd\": \"2/8\", \"TY_fwd\": \"0/8\", \"K_ge_3\": \"3/8\", \"K_ge_4\": \"0/8\", \"note\": \"Corrected per Reviewer #141: DiffXCorr was 8/8 (uncorrected) → 4/8 (FDR). Threshold was 1/8 → 2/8. TY was NaN → 0/8.\"}, \"completed_at\": \"2026-05-22T17:51:56.409Z\"}, \"scale_14b_t10_a075_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T20:12:24.032Z\", \"updated_at\": \"2026-05-23T10:28:44.799Z\", \"hypothesis\": \"Cross-seed verification: 1.4B T=10 α=0.75 seed 43. s42 gave PermG 5/8. If s43 also ≥5/8, confirms scale-robust detection is not seed-dependent.\", \"parent\": \"scale_14b_t10_a075_s42_fp32_v2\", \"spec\": {\"checkpoint_path\": \"results/scale/14b_t10_a075_s43_fp32/\", \"log_path\": \"/tmp/14b_t10_a075_s43.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-23T08:17:20.776Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T08:17:24.499Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-23T08:17:32.275333+00:00\"}]}, \"notes\": \"D102 complete. MAUVE recomputed (was null due to HF offline). PermG fwd=6/8, K≥3=5/8, K≥4=0/8. Drift: ppl +348%, entropy -34%, ece +3174%, mauve -11%, distinct1 -18%. Consistent with parent s42 (PermG=5/8, K≥3=5/8).\", \"metrics\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"5/8\", \"DiffXCorr_fwd\": \"7/8\", \"DiffXCorr_rev\": \"7/8\", \"Threshold_fwd\": \"0/8\", \"TY_fwd\": \"1/8\", \"K_ge_3\": \"5/8\", \"K_ge_4\": \"0/8\", \"ppl_drift_pct\": \"+348%\", \"entropy_drift_pct\": \"-34%\", \"ece_drift_pct\": \"+3174%\", \"mauve_drift_pct\": \"-11%\", \"distinct1_drift_pct\": \"-18%\", \"note\": \"MAUVE recomputed before D102. Bidirectional confounding (rev=5/8), seed-specific (s42 rev=0/8).\"}}, \"scale_14b_t10_a050_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T20:12:22.036Z\", \"updated_at\": \"2026-05-23T10:28:40.914Z\", \"hypothesis\": \"Cross-seed verification: 1.4B T=10 α=0.50 seed 43. s42 gave PermG 4/8 (onset boundary). Seed variance test.\", \"parent\": \"scale_14b_t10_a050_s42_fp32_v2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/scale/14b_t10_a050_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\", \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 43, \"pid\": 822048, \"tmux_session\": \"14b_t10_a050_s43\", \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped\", \"eval_data\": \"data/wikitext103_5k\", \"precision\": \"fp32\", \"checkpoint_path\": \"results/scale/14b_t10_a050_s43_fp32/\", \"log_path\": \"/tmp/14b_t10_a050_s43.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-23T08:20:47.284Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T20:25:37.940774+00:00\"}]}, \"notes\": \"D102 analysis: PermG=6/8 fwd (0 rev), DiffXCorr=5/8 fwd (5 rev), Threshold=0/8, TY=0/8, K≥3=1/8. MAUVE recomputed post-hoc (HF_HOME missing during training). Drift: ppl +73%, entropy -24%, ece +1762%, mauve -10.5%, distinct1 -29%. vs s42: PermG higher (6 vs 4) but K≥3 lower (1 vs 4) — seed variance at onset boundary.\", \"completed_at\": \"2026-05-23T08:20:51.218Z\", \"metrics\": {\"PermG_fwd\": \"6/8 (6/6 valid pairs)\", \"PermG_rev\": \"0/8 (0/6)\", \"DiffXCorr_fwd\": \"6/6\", \"DiffXCorr_rev\": \"0/6\", \"Threshold_fwd\": \"0/6\", \"TY_fwd\": \"0/6\", \"K_ge_3\": \"1/6\", \"K_ge_4\": \"0/6\", \"note\": \"MAUVE null, 6-pair basis. ece→distinct_1 is sole K≥3 pair.\", \"ppl_drift_pct\": \"+216%\", \"entropy_drift_pct\": \"-34%\", \"ece_drift_pct\": \"+2842%\", \"distinct1_drift_pct\": \"-24%\"}}, \"scale_14b_t10_a060_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T20:12:26.370Z\", \"updated_at\": \"2026-05-23T08:15:12.669Z\", \"hypothesis\": \"Cross-seed verification: 1.4B T=10 α=0.60 seed 43. s42 gave PermG 4/8 (sync-dip disappeared at 1.4B). If s43 also >0/8, confirms sync-dip disappearance is robust.\", \"parent\": \"scale_14b_t10_a060_s42_fp32_v2\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u iterative_train.py --model_name /root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 10 --steps_per_gen 5000 --output_dir results/scale/14b_t10_a060_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\", \"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 43, \"pid\": 719252, \"tmux_session\": \"14b_t10_a060_s43\", \"checkpoint_source\": \"/root/autodl-tmp/.ms_cache/EleutherAI/pythia-1.4b-deduped\", \"eval_data\": \"data/wikitext103_5k\", \"precision\": \"fp32\", \"checkpoint_path\": \"results/scale/14b_t10_a060_s43_fp32/\", \"log_path\": \"/tmp/14b_t10_a060_s43.log\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T08:14:57.073Z\", \"metrics\": {\"perm_granger_fdr_forward\": \"4/8\", \"perm_granger_fdr_reverse\": \"6/8\", \"diff_xcorr_fdr_forward\": \"6/8\", \"diff_xcorr_fdr_reverse\": \"6/8\", \"threshold_forward\": \"0/8\", \"ty_forward\": \"2/8\", \"robust_pairs_K_ge_3\": \"3/8\", \"robust_pairs_K_ge_4\": \"2/8\", \"ppl_drift_pct\": 216.1, \"entropy_drift_pct\": -33.9, \"ece_drift_pct\": 2842, \"mauve_drift_pct\": \"N/A (mauve null - gpt2-large load failed)\", \"distinct1_drift_pct\": -23.7, \"note\": \"mauve=null all gens (gpt2-large offline load failure on 17855). 2/8 pairs (mauve) are N/A. Effective PermG 4/6 on valid pairs.\"}}, \"scale_14b_t15_a075_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T12:02:45.511Z\", \"updated_at\": \"2026-05-23T06:19:11.443Z\", \"hypothesis\": \"1.4B T=15 α=0.75: strong contamination at longer horizon. If PermG≥5/8, confirms 1.4B detection extends to T=15.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 15 --steps_per_gen 5000 --output_dir outputs/scale_14b_t15_a075_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing\", \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"pid\": 793171, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 42, \"log_path\": \"/root/runs/distrib_canary_collapse/scale_14b_t15_a075_s42_fp32.log\", \"tmux_session\": \"scale_14b_t15_a075\", \"precision\": \"fp32\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"outputs/scale_14b_t15_a075_s42_fp32\", \"log_path\": \"/root/runs/distrib_canary_collapse/scale_14b_t15_a075_s42_fp32.log\", \"completed_at\": \"2026-05-23T06:19:06.976Z\", \"metrics\": {\"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_forward_sig\": 7, \"ty_forward_sig\": 5, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 6, \"drift_ppl_pct\": 390.5, \"drift_mauve_pct\": -3.6, \"drift_entropy_pct\": -29.5, \"drift_ece_pct\": 3091.2, \"drift_distinct1_pct\": -19.4, \"drift_distinct2_pct\": -23.3, \"drift_distinct3_pct\": -19.9}}, \"scale_14b_t15_a045_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T05:02:13.927Z\", \"updated_at\": \"2026-05-23T04:51:54.609Z\", \"hypothesis\": \"1.4B T=15 α=0.45: above α_c(15)≈0.304. If detected, extends 1.4B detection to moderate contamination at T=15.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=5 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a045_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing --start_gen 2\", \"server\": \"westd-17855\", \"gpu\": \"cuda:5\", \"pid\": 680608, \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/logs/scale_14b_t15_a045_s42_fp32.log\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 42, \"tmux_session\": \"scale_14b_t15_a045_s42_fp32\", \"start_gen\": 2, \"note\": \"restarted from gen_2 after tmux server killed at ~20:37\", \"precision\": \"fp32\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/phase_diagram/t15_a045_s42_fp32_14b\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/logs/scale_14b_t15_a045_s42_fp32.log\", \"completed_at\": \"2026-05-23T04:51:51.130Z\", \"metrics\": {\"perm_granger_fdr_forward_sig\": \"3/8\", \"perm_granger_fdr_reverse_sig\": \"0/8\", \"diff_xcorr_fdr_forward_sig\": \"6/8\", \"threshold_forward_sig\": \"2/8\", \"ty_forward_sig\": \"6/8\", \"robust_pairs_K3\": \"4/8\", \"n_gens\": 16, \"final_ppl\": 34.16, \"final_mauve\": 0.0252}}, \"scale_14b_t15_a050_s42_fp32_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:36:39.526Z\", \"updated_at\": \"2026-05-23T03:41:59.072Z\", \"hypothesis\": \"1.4B T=15 α=0.50: onset boundary test at T=15. α_c(15)≈0.304, α=0.50 above threshold.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing --start_gen 4\", \"server\": \"westd-17855\", \"gpu\": \"cuda:1\", \"pid\": 680095, \"log_path\": \"results/phase_diagram/t15_a050_s42_fp32_14b/train_restart_gen4.log\", \"account\": \"root\", \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 42, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"checkpoint_path\": \"results/phase_diagram/t15_a050_s42_fp32_14b\", \"start_gen\": 4, \"note\": \"Restarted from gen_4 after tmux server kill at ~20:37\", \"precision\": \"fp32\", \"tmux_session\": \"scale_14b_a050_s42\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T02:40:30.563Z\", \"metrics\": {\"perm_granger_fdr_forward_sig\": \"3/8\", \"perm_granger_fdr_reverse_sig\": \"0/8\", \"diff_xcorr_fdr_forward_sig\": \"8/8\", \"diff_xcorr_fdr_reverse_sig\": \"8/8\", \"threshold_forward_sig\": \"2/8\", \"ty_forward_sig\": \"3/8\", \"robust_pairs_K3\": \"2/8\", \"n_perm\": 5000, \"comparison_410M\": \"410M T=15 a=0.50 = 6/8 K>=3 vs 1.4B = 2/8 K>=3. Onset shift confirmed at T=15.\"}}, \"scale_14b_t15_a060_s42_fp32_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T10:08:53.904Z\", \"updated_at\": \"2026-05-23T03:41:53.181Z\", \"hypothesis\": \"1.4B T=15 α=0.60: at 410M this is sync-dip range (0/8 at T=15). If 1.4B >0/8, further confirms sync-dip is 410M-specific.\", \"parent\": \"scale_14b_t15_a060_s42_fp32\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a060_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch --gradient_checkpointing --start_gen 4\", \"server\": \"westd-17855\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": 679656, \"log_path\": \"/tmp/train_scale_14b_t15_a060_s42_fp32_v2.log\", \"checkpoint_path\": \"results/phase_diagram/t15_a060_s42_fp32_14b\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 42, \"checkpoint_source\": \"gen_0-1 completed, resume from gen_2\", \"eval_data\": \"data/wikitext103_5k\", \"tmux_session\": \"scale_14b_t15_a060_s42\", \"start_gen\": 4, \"note\": \"Restarted from gen_3 checkpoint after tmux server kill at ~20:37\", \"precision\": \"fp32\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T02:39:07.105Z\", \"metrics\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"K_ge_3\": \"6/8\", \"K_ge_4\": \"3/8\", \"threshold_onset_3sigma\": \"6/8\", \"diff_xcorr_fdr_fwd\": \"7/8\", \"TY_granger\": \"1/8\", \"drift_ppl\": \"+246.5%\", \"drift_mauve\": \"0.033->0.029\", \"drift_entropy\": \"-27.9%\", \"drift_ece\": \"+2791%\"}}, \"phase_diagram_t10_a050_s44_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T23:25:27.989Z\", \"updated_at\": \"2026-05-22T23:26:06.125Z\", \"hypothesis\": \"Seed variance tie-breaker: 410M α=0.50 T=10 seed 44. s42=6/8, s43=0/8 — s44 breaks the tie to determine whether α=0.50 detection is robust or seed-dependent.\", \"spec\": {\"command\": \"python iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --seed 44 --fp32\", \"server\": \"westd-17855\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 44, \"checkpoint_path\": \"results/alpha_sweep/a050_s44_fp32\", \"log_path\": \"results/alpha_sweep/a050_s44_fp32\"}, \"conclusion\": \"success\", \"metrics\": {\"permg_fwd_sig\": \"6/8\", \"permg_rev_sig\": \"0/8\", \"k_ge_3_consensus\": \"4/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset\": \"0/8\", \"ty_granger\": \"3/8\"}, \"completed_at\": \"2026-05-22T23:26:06.125Z\"}, \"14b_t10_a060_s43\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T20:13:54.353Z\", \"updated_at\": \"2026-05-22T20:13:54.353Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/bin/activate && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/scale/14b_t10_a060_s43_fp32 2>&1 | tee /tmp/14b_t10_a060_s43.log\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"pid\": \"717753\", \"log_path\": \"~/runs/distrib_canary_collapse/14b_t10_a060_s43.log\", \"submitted_at\": \"2026-05-22T20:13:53.729Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"14b_t10_a075_s43\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T20:13:51.886Z\", \"updated_at\": \"2026-05-22T20:13:51.886Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/bin/activate && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/scale/14b_t10_a075_s43_fp32 2>&1 | tee /tmp/14b_t10_a075_s43.log\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"717612\", \"log_path\": \"~/runs/distrib_canary_collapse/14b_t10_a075_s43.log\", \"submitted_at\": \"2026-05-22T20:13:50.500Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"14b_t10_a050_s43\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T20:13:47.793Z\", \"updated_at\": \"2026-05-22T20:13:47.793Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/bin/activate && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/scale/14b_t10_a050_s43_fp32 2>&1 | tee /tmp/14b_t10_a050_s43.log\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"821294\", \"log_path\": \"~/runs/distrib_canary_collapse/14b_t10_a050_s43.log\", \"submitted_at\": \"2026-05-22T20:13:47.049Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}}, \"scale_14b_t10_a060_s42_fp32_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T08:53:30.644Z\", \"updated_at\": \"2026-05-22T20:10:54.526Z\", \"hypothesis\": \"Scale verification: Pythia-1.4B T=10 α=0.60 (resume from gen 2 after MAUVE=None crash). At 410M, α=0.60 shows sync-dip (PermG=0/8). If 1.4B also shows 0/8, confirms sync-dip is scale-invariant. If >0/8, sync-dip may be a small-model artifact.\", \"parent\": \"scale_14b_t10_a060_s42_fp32\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/phase_diagram/t10_a060_s42_fp32_14b\", \"server\": \"westd-17855\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 42, \"checkpoint_source\": \"results/phase_diagram/t10_a060_s42_fp32_14b/gen_1/checkpoint\", \"eval_data\": \"data/wikitext103_5k\", \"gpu\": \"cuda:3\", \"log_path\": \"/tmp/14b_t10_a060.log\", \"checkpoint_path\": \"results/phase_diagram/t10_a060_s42_fp32_14b/\", \"pid\": 680531, \"tmux_session\": \"scale_14b_a060_s42\", \"start_gen\": 5, \"note\": \"Restarted from gen_5 after tmux server kill at ~20:37\"}, \"metrics\": {\"permg_fwd\": \"4/8\", \"permg_rev\": \"0/8\", \"k3_consensus\": \"3/8\", \"threshold_onset\": \"0/8\", \"ty_granger\": \"0/8\", \"fdr_pvalues\": {\"te_d1\": 0.04, \"ece_d1\": \"sig\", \"ece_d2\": \"sig\", \"ece_d3\": \"sig\"}, \"data_points\": \"11 (gen_0 to gen_10)\", \"note\": \"1.4B does NOT show sync-dip at α=0.60 T=10 (410M=0/8, 1.4B=4/8). Scale suppresses sync-dip; detection still works via canary-leads-downstream asymmetry.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T20:03:20.821Z\"}, \"phase_diagram_t20_a075_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:10:24.644Z\", \"updated_at\": \"2026-05-22T13:05:32.137Z\", \"hypothesis\": \"T=20 α=0.75 cross-seed validation. s42=6/8 (D102 confirmed). α=0.75 is far above α_c(20)≈0.250. If s43 also ~6/8, confirms 6/8 ceiling persistence at T=20 and completes T=20 row cross-seed coverage (4/4 α values). T=20 is the row where sync-dip shows seed-dependent dissolution (s43=3/8 at α=0.60 vs s42=0/8).\", \"parent\": \"phase_diagram_t20_a075_s42_fp32\", \"server\": \"westd-17855\", \"gpu\": \"cuda:4\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-17855\", \"gpu\": \"cuda:4\", \"started_at\": \"2026-05-22T04:10:50.974Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 20 --steps_per_gen 5000 --output_dir results/phase_diagram/t20_a075_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-22T12:20:42.946Z\", \"training_hours\": 8.16}, \"spec\": {\"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43}, \"pid\": \"603933\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t20_a075_s43_fp32.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T12:20:50.326921+00:00\"}]}, \"metrics\": {\"PermG_fwd_fdr\": \"6/8\", \"PermG_rev_fdr\": \"0/8\", \"DiffXCorr_fdr_fwd\": \"8/8\", \"Threshold_onset_3sigma\": \"6/8\", \"TY_granger_fwd\": \"3/8\", \"K_ge3_robust\": \"6/8\", \"Naive_xcorr_fwd\": \"4/8\", \"cross_seed_match\": \"exact_on_PermG_and_threshold\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t20_a075_s43_fp32\", \"completed_at\": \"2026-05-22T12:33:19.301Z\"}, \"phase_diagram_t25_a075_s43_fp32_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:21:56.236Z\", \"updated_at\": \"2026-05-22T11:18:16.351Z\", \"hypothesis\": \"T=25 α=0.75 cross-seed validation (v3 registry fix — tracking actually-running process from v2 submission, PID 731312, --start_gen 9). s42=6/8 (D102 confirmed). α=0.75 far above α_c(25)≈0.232.\", \"parent\": \"phase_diagram_t25_a075_s43_fp32_v2\", \"spec\": {\"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"account\": \"root\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a075_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --start_gen 9\\\"\", \"pid\": \"731312\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"v2 resume from gen_9\", \"eval_data\": \"data/wikitext103_5k\"}, \"metrics\": {\"robust_pairs\": \"6/8\", \"perm_granger_fwd_sig\": \"8/8\", \"perm_granger_rev_sig\": \"0/8\", \"diff_xcorr_fwd_sig\": \"7/8\", \"threshold_fwd_sig\": \"6/8\", \"ty_fwd_sig\": \"4/8\", \"n_gens\": 26, \"threshold_criterion\": \"true_3sigma_d105\", \"non_robust_pairs\": [\"token_entropy&lt;mauve (2/5)\", \"ece&lt;mauve (2/5)\"]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t25_a075_s43_fp32\", \"log_path\": \"/root/runs/distrib_canary_collapse/phase_diagram_t25_a075_s43_fp32_v2.log\", \"completed_at\": \"2026-05-22T11:18:16.351Z\"}, \"scale_14b_t15_a050_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T05:02:18.300Z\", \"updated_at\": \"2026-05-22T10:36:26.113Z\", \"hypothesis\": \"Scale verification: Pythia-1.4B T=15 α=0.50. At 410M, α=0.50 PermG=6/8 (above α_c(15)≈0.304). If 1.4B consistent, confirms detection at moderate α is robust to model scale.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:1\"], \"pid\": \"643878\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_t15_a050_s42_fp32.log\", \"submitted_at\": \"2026-05-22T07:31:40.940Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 5857.6, \"gpu_hours\": 1.63}, \"gpu\": \"cuda:1\", \"server\": \"westd-17855\", \"account\": \"root\", \"pid\": \"643878\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_t15_a050_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-22T09:09:09.056Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T09:09:18.578Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T09:09:35.556361+00:00\"}]}, \"notes\": \"Broken pipe at gen 2, EXIT_CODE=1. Replaced by v3.\"}, \"phase_diagram_t25_a045_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T00:19:23.357Z\", \"updated_at\": \"2026-05-22T10:29:22.423Z\", \"hypothesis\": \"Cross-seed validation (s43) of t25_a045: canary metrics lead downstream quality collapse at alpha=0.45 with T=25 generations, confirming s42 PermG=6/8 is seed-robust.\", \"parent\": \"phase_diagram_t25_a045_s42_fp32_v2\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a045_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"577236\", \"log_path\": \"results/phase_diagram/t25_a045_s43_fp32/analysis/5method_leadlag.json\", \"submitted_at\": \"2026-05-22T00:19:34.808Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"phase_diagram_t25_a045_s42_fp32_v2 (cross-seed, s42=6/8 D102 confirmed)\", \"eval_data\": \"data/wikitext103_5k\", \"checkpoint_path\": \"results/phase_diagram/t25_a045_s43_fp32/gen_24/checkpoint\", \"wall_clock_seconds\": 36587.6, \"gpu_hours\": 10.16}, \"conclusion\": \"success\", \"metrics\": {\"perm_granger_fwd\": 6, \"perm_granger_rev\": 0, \"robust_pairs\": 6, \"diff_xcorr_fdr_fwd\": 8, \"threshold_fwd\": 6, \"ty_fwd\": 3, \"total_pairs\": 8, \"threshold_criterion\": \"true_3sigma_d105\"}, \"completed_at\": \"2026-05-22T10:29:22.423Z\"}, \"scale_14b_t15_a060_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T05:02:20.424Z\", \"updated_at\": \"2026-05-22T09:32:20.627Z\", \"hypothesis\": \"Scale verification: Pythia-1.4B T=15 α=0.60. At 410M, α=0.60 PermG=0/8 (sync-dip). Cross-T + cross-scale test: if 1.4B also 0/8 at T=15, sync-dip is both T-invariant and scale-invariant — a fundamental structural feature.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a060_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"643570\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_t15_a060_s42_fp32.log\", \"submitted_at\": \"2026-05-22T07:31:33.499Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 5832.6, \"gpu_hours\": 1.62}, \"gpu\": \"cuda:0\", \"server\": \"westd-17855\", \"account\": \"root\", \"pid\": \"643570\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_t15_a060_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a060_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-22T09:08:44.807Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T09:08:46.094Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T09:08:57.598497+00:00\"}]}, \"notes\": \"SIGTERM (exit 143) at 09:08 UTC, same time as scale_14b_t15_a050_s42_fp32 (cuda:1). Both on westd-17855 cuda:0/1 while cuda:2-5 still running. Diagnosing via worker_diagnose_scale_14b_t15_a050_s42_fp32_20260522T093206\"}, \"scale_14b_t10_a050_s42_fp32_19828\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T07:29:15.144Z\", \"updated_at\": \"2026-05-22T09:03:13.292Z\", \"hypothesis\": \"Scale verification: Pythia-1.4B T=10 α=0.50 (retry on 19828 with local model path). At 410M, α=0.50 is the onset boundary (T=10 PermG=6/8). If 1.4B also shows 6/8, confirms detection onset is scale-invariant.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"765029\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_t10_a050_s42_fp32_19828.log\", \"submitted_at\": \"2026-05-22T07:30:06.302Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 5587.0, \"gpu_hours\": 1.55}, \"server\": \"westd-19828\", \"account\": \"root\", \"gpu\": \"cuda:1\", \"pid\": \"765029\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_t10_a050_s42_fp32_19828.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-22T09:03:08.978Z\"}, \"failure_reason\": \"Traceback → line 376, in &lt;module> try: ^ File \\\"/root/autodl-tmp/distrib_canary_collapse/iterative_train.py\\\", line 360, in main f\\\"eff_rank={metrics['effective_rank']:.1f}, \\\" ^^^^^^^^^^^^^^^^^^^^^^ TypeError: unsupported format string passed to NoneType.__format__\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T09:03:13.292Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T09:03:19.912444+00:00\"}]}}, \"scale_14b_t10_a075_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T05:01:56.128Z\", \"updated_at\": \"2026-05-22T08:32:07.328Z\", \"hypothesis\": \"Scale verification: Pythia-1.4B T=10 α=0.75. At 410M, α=0.75 PermG=6/8 (well above α_c). Baseline control for 1.4B — expected 6/8 if detection scales. Confirms 6/8 ceiling is not model-size dependent.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a075_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"635893\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_t10_a075_s42_fp32.log\", \"submitted_at\": \"2026-05-22T07:02:43.185Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 5298.5, \"gpu_hours\": 1.47}, \"server\": \"westd-17855\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"pid\": \"635893\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_t10_a075_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a075_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-22T08:30:57.649Z\"}, \"failure_reason\": \"Traceback → e_train.py\\\", line 374, in &lt;module> main() File \\\"/root/autodl-tmp/distrib_canary_collapse/iterative_train.py\\\", line 358, in main f\\\"mauve={metrics['mauve']:.4f}\\\") ^^^^^^^^^^^^^^^^^^^^^^ TypeError: unsupported format string passed to NoneType.__format__\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T08:31:01.663Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T08:31:15.263573+00:00\"}]}}, \"scale_14b_t10_a060_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T05:01:53.938Z\", \"updated_at\": \"2026-05-22T08:30:40.136Z\", \"hypothesis\": \"Scale verification: Pythia-1.4B T=10 α=0.60. At 410M, α=0.60 shows sync-dip (PermG=0/8). If 1.4B also shows 0/8, confirms sync-dip is scale-invariant. If >0/8, sync-dip may be a small-model artifact.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a060_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"pid\": \"635574\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_t10_a060_s42_fp32.log\", \"submitted_at\": \"2026-05-22T07:02:36.361Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 5274.5, \"gpu_hours\": 1.47}, \"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"pid\": \"635574\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_t10_a060_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a060_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-22T08:30:32.130Z\"}, \"failure_reason\": \"Traceback → e_train.py\\\", line 374, in &lt;module> main() File \\\"/root/autodl-tmp/distrib_canary_collapse/iterative_train.py\\\", line 358, in main f\\\"mauve={metrics['mauve']:.4f}\\\") ^^^^^^^^^^^^^^^^^^^^^^ TypeError: unsupported format string passed to NoneType.__format__\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T08:30:30.837Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T08:30:41.898027+00:00\"}]}}, \"phase_diagram_t25_a050_s42_fp32_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T01:01:00.286Z\", \"updated_at\": \"2026-05-22T07:34:48.019Z\", \"hypothesis\": \"T=25 α=0.50 phase diagram cell (v3 resume from gen_13 after v2 disk-full crash). α_c(25)≈0.16, α=0.50 far above threshold. If PermG≥5/8, confirms detection and completes 20/20 phase diagram grid.\", \"parent\": \"phase_diagram_t25_a050_s42_fp32_v2\", \"spec\": {\"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_source\": \"v2 crash残留 gen_0-12 完整, resume from gen_13 via --start_gen 13\", \"eval_data\": \"data/wikitext103_5k\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a050_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --start_gen 13\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"582618\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t25_a050_s42_fp32_v3.log\", \"checkpoint_path\": \"results/phase_diagram/t25_a050_s42_fp32/gen_24\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T07:08:21.653Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T07:08:28.623239+00:00\"}]}, \"metrics\": {\"perm_granger_fdr_forward_sig\": \"6/8\", \"perm_granger_fdr_reverse_sig\": \"0/8\", \"diff_xcorr_fdr_forward_sig\": \"6/8\", \"diff_xcorr_fdr_reverse_sig\": \"6/8\", \"threshold_forward_sig\": \"6/8\", \"ty_forward_sig\": \"6/8\", \"robust_pairs_K3\": \"6/8\", \"n_gens\": 26, \"analysis_script\": \"run_5method_analysis_d102.py\", \"downstream\": \"mauve\", \"threshold\": \"true_3sigma_d105\", \"consensus\": {\"token_entropy_distinct_1\": \"4/5\", \"token_entropy_distinct_2\": \"4/5\", \"token_entropy_distinct_3\": \"4/5\", \"token_entropy_mauve\": \"0/5\", \"ece_distinct_1\": \"5/5\", \"ece_distinct_2\": \"3/5\", \"ece_distinct_3\": \"4/5\", \"ece_mauve\": \"2/5\"}, \"final_mauve\": 0.024, \"D102_note\": \"Phase Diagram 20/20 COMPLETE. PermG=6/8 matches T=10/15/20 at α=0.50. 6/8 ceiling confirmed across all T≥10. mauve pairs (0/5, 2/5) consistently non-significant as in other experiments.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T07:34:48.019Z\"}, \"phase_diagram_t25_a060_s42_fp32_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T01:00:56.727Z\", \"updated_at\": \"2026-05-22T07:28:11.949Z\", \"hypothesis\": \"T=25 α=0.60 sync-dip dissolution test (v3 resume from gen_14). At T=10/15/20 α=0.60 all show PermG=0/8 (sync-dip zone). If T=25 PermG>0/8, confirms sync-dip dissolves with longer training horizons. If PermG=0/8, sync-dip is permanent → C3 upgrade.\", \"parent\": \"phase_diagram_t25_a060_s42_fp32_v2\", \"spec\": {\"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_source\": \"v2 crash残留 gen_0-13 完整, resume from gen_14 via --start_gen 14\", \"eval_data\": \"data/wikitext103_5k\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a060_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --start_gen 14\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"pid\": \"582540\", \"log_path\": \"results/phase_diagram/t25_a060_s42_fp32/all_metrics.json\", \"checkpoint_path\": \"results/phase_diagram/t25_a060_s42_fp32/gen_24\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T06:38:19.439Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T06:38:29.580423+00:00\"}]}, \"metrics\": {\"perm_granger_fdr_forward_sig\": \"5/8\", \"perm_granger_fdr_reverse_sig\": \"0/8\", \"diff_xcorr_fdr_forward_sig\": \"8/8\", \"threshold_forward_sig\": \"6/8\", \"ty_forward_sig\": \"4/8\", \"robust_pairs_K3\": \"6/8\", \"D102_note\": \"SCENARIO A CONFIRMED. Sync-dip dissolves at T=25: PermG 0/8(T=10/15/20) → 5/8(T=25). v2(13gens)=0/8 vs v3(25gens)=5/8. Dip is statistical power insufficiency, not structural.\", \"final_perplexity\": 61.95, \"final_loss\": 0.2753}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t25_a060_s42_fp32\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t25_a060_s42_fp32_v3.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T07:05:53.205Z\"}, \"phase_diagram_t10_a075_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T01:26:16.599Z\", \"updated_at\": \"2026-05-22T07:27:33.789Z\", \"hypothesis\": \"T=10 α=0.75 cross-seed validation: if s43 also ~6/8 PermG_fwd (matching s42), confirms seed robustness of canary lead-lag detection at high α well above α_c(10)\", \"parent\": \"alpha_sweep_a075_s42_fp32\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a075_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"586115\", \"log_path\": \"results/phase_diagram/t10_a075_s43_fp32/all_metrics.json\", \"submitted_at\": \"2026-05-22T01:26:37.183Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"alpha_sweep_a075_s42_fp32 (cross-seed, s42=6/8)\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 19000.6, \"gpu_hours\": 5.28, \"checkpoint_path\": \"results/phase_diagram/t10_a075_s43_fp32/gen_10\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T06:38:06.364Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T06:38:13.651767+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t10_a075_s43_fp32\", \"metrics\": {\"perm_granger_fdr_forward_sig\": \"6/8\", \"diff_xcorr_fdr_forward_sig\": \"7/8\", \"threshold_forward_sig\": \"0/8\", \"ty_forward_sig\": \"0/8\", \"robust_pairs_K3\": \"4/8\", \"D102_note\": \"s43 PermG=6/8 matches s42=6/8. 6/8 ceiling seed-robust at high α. K≥3 dropped 6→4 (boundary vote effect on te→d2/d3), core PermG stable.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T06:43:17.737Z\"}, \"phase_diagram_t10_a050_s43_fp32_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:17:48.057Z\", \"updated_at\": \"2026-05-22T07:27:08.758Z\", \"hypothesis\": \"T=10 α=0.50 cross-seed validation (v2 resume from gen_6). s42=6/8 (D102 confirmed). α=0.50 above α_c(10). If s43 also ~6/8, confirms detection onset at T=10 is robust across seeds.\", \"parent\": \"phase_diagram_t10_a050_s43_fp32\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --start_gen 6\", \"server\": \"westd-19828\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"results/phase_diagram/t10_a050_s43_fp32/gen_5\", \"eval_data\": \"data/wikitext103_5k\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/phase_diagram/t10_a050_s43_fp32/gen_10\", \"log_path\": \"results/phase_diagram/t10_a050_s43_fp32/all_metrics.json\", \"completed_at\": \"2026-05-22T06:40:42.655Z\", \"metrics\": {\"perm_granger_fdr_forward_sig\": \"0/8\", \"diff_xcorr_fdr_forward_sig\": \"8/8\", \"threshold_forward_sig\": \"0/8\", \"ty_forward_sig\": \"0/8\", \"robust_pairs_K3\": \"0/8\", \"D102_note\": \"s43 PermG=0/8 vs s42=6/8. Onset boundary seed sensitivity — raw p~0.05 but FDR correction pushes above threshold. Consistent with α_c theory P_pred=0.225.\"}}, \"phase_diagram_t15_a075_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T01:01:02.772Z\", \"updated_at\": \"2026-05-22T07:19:03.979Z\", \"hypothesis\": \"T=15 α=0.75 cross-seed validation. s42=6/8 (D102 confirmed). α=0.75 is far above α_c(15)≈0.304. If s43 also ~6/8, confirms 6/8 ceiling persistence at T=15 and seed robustness of high-α detection.\", \"parent\": \"phase_diagram_t15_a075_s42_fp32_v2\", \"spec\": {\"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"phase_diagram_t15_a075_s42_fp32_v2 (cross-seed, s42=6/8 D102 confirmed)\", \"eval_data\": \"data/wikitext103_5k\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a075_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:1\"], \"pid\": \"582768\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t15_a075_s43_fp32.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-22T07:14:04.492Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T07:14:13.197427+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"permg_fwd\": 6, \"permg_total\": \"6/8\", \"robust_pairs\": \"6/8\", \"mauve_consensus\": \"1/5 both pairs\"}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a075_s43_fp32\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t15_a075_s43_fp32.log\", \"completed_at\": \"2026-05-22T07:19:03.979Z\"}, \"scale_14b_t10_a050_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T05:01:51.491Z\", \"updated_at\": \"2026-05-22T07:01:13.583Z\", \"hypothesis\": \"Scale verification: Pythia-1.4B T=10 α=0.50. At 410M, α=0.50 is the onset boundary (T=10 PermG=6/8). If 1.4B also shows 6/8, confirms detection onset is scale-invariant. If different, reveals model-size dependence of α_c.\", \"spec\": {\"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"account\": \"root\", \"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b-deduped\", \"seed\": 42, \"pid\": \"752483\", \"tmux_session\": \"scale_14b_t10_a050_s42_fp32\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_t10_a050_s42_fp32.log\"}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"pid\": \"752483\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_t10_a050_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_CACHE=/root/autodl-tmp/.hf_cache && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-1.4b-deduped --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s42_fp32_14b --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 8 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-22T06:51:00.660Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T06:51:04.593Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T06:51:10.709147+00:00\"}]}}, \"phase_diagram_t25_a075_s43_fp32_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:13:23.109Z\", \"updated_at\": \"2026-05-22T04:16:31.054Z\", \"hypothesis\": \"T=25 α=0.75 cross-seed validation (v2 resume from gen_9 after v1 SIGHUP crash at gen_9/25). s42=6/8 (D102 confirmed). α=0.75 is far above α_c(25)≈0.232. If s43 also ~6/8, confirms 6/8 ceiling persistence at T=25 and seed robustness of high-α detection.\", \"parent\": \"phase_diagram_t25_a075_s43_fp32\", \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-22T04:13:49.540Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && rm -rf results/phase_diagram/t25_a075_s43_fp32/gen_9 && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a075_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --start_gen 9\\\"\"}, \"spec\": {\"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"phase_diagram_t25_a075_s43_fp32 (v2 resume from gen_9 after v1 SIGHUP crash)\", \"checkpoint_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t25_a075_s43_fp32/\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t25_a075_s43_fp32_v2.log\"}, \"pid\": \"731307\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t25_a075_s43_fp32_v2.log\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T04:16:31.054Z\"}, \"phase_diagram_t10_a050_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T01:26:18.897Z\", \"updated_at\": \"2026-05-22T04:16:15.717Z\", \"hypothesis\": \"T=10 α=0.50 cross-seed validation. s42=6/8 (D102 confirmed). α=0.50 is above α_c(10). If s43 also ~6/8, confirms detection onset at T=10 is robust across seeds. T=10 α=0.50 is a key onset cell in the phase diagram.\", \"parent\": \"alpha_sweep_a050_s42_fp32\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 10 --steps_per_gen 5000 --output_dir results/phase_diagram/t10_a050_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"720204\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t10_a050_s43_fp32.log\", \"submitted_at\": \"2026-05-22T01:26:40.421Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"alpha_sweep_a050_s42_fp32 (cross-seed, s42=6/8)\", \"eval_data\": \"data/wikitext103_5k\", \"checkpoint_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t10_a050_s43_fp32/\", \"wall_clock_seconds\": 10175.3, \"gpu_hours\": 2.83}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T04:16:15.717Z\"}, \"phase_diagram_t25_a075_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T23:57:48.937Z\", \"updated_at\": \"2026-05-22T04:13:05.535Z\", \"hypothesis\": \"T=25 α=0.75 cross-seed validation. s42=6/8 (D102 confirmed). α=0.75 is far above α_c(25)≈0.232. If s43 also ~6/8, confirms 6/8 ceiling persistence at T=25 and seed robustness of high-α detection.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a075_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"714857\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t25_a075_s43_fp32.log\", \"submitted_at\": \"2026-05-22T00:17:04.528Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"phase_diagram_t25_a075_s42_fp32 (cross-seed replication, s42=6/8 D102 confirmed)\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 13061.0, \"gpu_hours\": 3.63}, \"parent\": \"phase_diagram_t25_a075_s42_fp32\", \"reproduce\": {\"finished_at\": \"2026-05-22T03:54:42.137Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T03:54:45.507Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T03:54:52.628415+00:00\"}]}}, \"phase_diagram_t20_a060_s43_fp32_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:31:43.658Z\", \"updated_at\": \"2026-05-22T04:10:06.915Z\", \"hypothesis\": \"T=20 α=0.60 cross-seed validation for desynchronization analysis. s42=0/8 near-miss p_fdr=0.064. If s43 also shows near-miss (p<0.10), strengthens dissolution-in-progress interpretation. v2 restart after v1 disk-full crash at gen_3/20 (M065).\", \"parent\": \"phase_diagram_t20_a060_s43_fp32\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 20 --steps_per_gen 5000 --output_dir results/phase_diagram/t20_a060_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"553240\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t20_a060_s43_fp32_v2.log\", \"submitted_at\": \"2026-05-21T19:32:20.271Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"n/a (v2 restart from gen_0 after v1 disk-full crash at gen_3/20, M065)\", \"eval_data\": \"data/wikitext103_5k\", \"checkpoint_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t20_a060_s43_fp32_v2/\", \"wall_clock_seconds\": 31066.6, \"gpu_hours\": 8.63}, \"reproduce\": {\"finished_at\": \"2026-05-22T03:40:42.293Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T03:40:49.072724+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"PermG\": \"3/8\", \"MAUVE_drop\": true, \"sync_dip_dissolution\": true, \"note\": \"D184: s43 breaks sync-dip (s42=0/8 vs s43=3/8)\"}, \"completed_at\": \"2026-05-22T04:10:06.915Z\"}, \"phase_diagram_t20_a045_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T14:23:35.468Z\", \"updated_at\": \"2026-05-22T01:04:59.333Z\", \"hypothesis\": \"Cross-seed validation of T=20 α=0.45 (s42=5/8). Reviewer flagged this as the most fragile Phase Diagram cell — if s43 shows ≤2/8, the blind zone breach claim weakens. α_c(20)≈0.250, α=0.45 is above threshold. If s43≥4/8, confirms robust detection at this boundary; if ≤2/8, suggests s42=5/8 was noise and α=0.45 at T=20 is unreliable.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 20 --steps_per_gen 5000 --output_dir results/phase_diagram/t20_a045_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"688680\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t20_a045_s43_fp32.log\", \"submitted_at\": \"2026-05-21T17:20:23.568Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t20_a045_s43_fp32/\", \"wall_clock_seconds\": 27875.8, \"gpu_hours\": 7.74}, \"conclusion\": \"success\", \"metrics\": {\"permg_fwd\": \"4/8\", \"permg_rev\": \"0/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset\": \"4/8\", \"ty_granger\": \"3/8\", \"robust_k3\": \"5/8\", \"analysis_script\": \"d102\", \"downstream\": \"mauve\", \"threshold\": \"true_3sigma_d105\"}, \"completed_at\": \"2026-05-22T01:04:59.333Z\"}, \"phase_diagram_t15_a045_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:20:09.522Z\", \"updated_at\": \"2026-05-22T01:04:56.522Z\", \"hypothesis\": \"T=15 α=0.45 cross-seed validation of M063-corrected d102 value (s42=6/8). α=0.45 is near-boundary (α_c(15)≈0.304). If s43 also ~6/8, dual-seed confirms ceiling + α_c left-shift. If s43 ≤3/8 or 8/8, suggests s42=6/8 is seed-dependent and boundary behavior is noisy.\", \"parent\": \"phase_diagram_t15_a045_s42_fp32\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a045_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"550484\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t15_a045_s43_fp32.log\", \"submitted_at\": \"2026-05-21T19:20:30.707Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"phase_diagram_t15_a045_s42_fp32 (cross-seed replication, M063 d102 corrected)\", \"eval_data\": \"data/wikitext103_5k\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a045_s43_fp32/\", \"wall_clock_seconds\": 20665.8, \"gpu_hours\": 5.74}, \"conclusion\": \"success\", \"metrics\": {\"permg_fwd\": \"6/8\", \"permg_rev\": \"0/8\", \"diff_xcorr_fwd\": \"6/8\", \"threshold_onset\": \"0/8\", \"ty_granger\": \"3/8\", \"robust_k3\": \"2/8\", \"analysis_script\": \"d102\", \"downstream\": \"mauve\", \"threshold\": \"true_3sigma_d105\"}, \"completed_at\": \"2026-05-22T01:04:56.522Z\"}, \"phase_diagram_t25_a045_s42_fp32_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T13:36:44.452Z\", \"updated_at\": \"2026-05-22T00:52:18.025Z\", \"hypothesis\": \"Phase Diagram T=25 α=0.45: theory predicts α_c(25)≈0.232, α=0.45 is above threshold. At T=10 α=0.45 yields PermG=0/8 (below α_c(10)=0.487). If T=25 shows PermG>0/8, confirms that longer training enables detection at contamination levels undetectable at T=10. Key test of α_c(T) decreasing monotonically. v2 of failed v1 (HF_HOME missing in command).\", \"parent\": \"phase_diagram_t25_a045_s42_fp32\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a045_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"519272\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t25_a045_s42_fp32_v2.log\", \"submitted_at\": \"2026-05-21T13:37:38.929Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_source\": \"n/a (retry of v1, full training from scratch)\", \"eval_data\": \"n/a (training experiment, not eval)\", \"wall_clock_seconds\": 40479.1, \"gpu_hours\": 11.24}, \"reproduce\": {\"finished_at\": \"2026-05-21T23:57:47.127Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T23:57:55.054031+00:00\"}]}, \"metrics\": {\"permg_significant\": 6, \"permg_total\": 8, \"permg_reverse_significant\": 0, \"permg_reverse_total\": 8, \"permg_robust_significant\": 6, \"permg_robust_total\": 8, \"significant_pairs\": [\"token_entropy→distinct_1\", \"token_entropy→distinct_2\", \"token_entropy→distinct_3\", \"ece→distinct_1\", \"ece→distinct_2\", \"ece→distinct_3\"], \"downstreams\": [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"], \"threshold_criterion\": \"true_3sigma_d105\", \"script\": \"run_5method_analysis_d102.py\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t25_a045_s42_fp32\", \"completed_at\": \"2026-05-22T00:52:18.025Z\"}, \"phase_diagram_t15_a060_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T18:42:24.039Z\", \"updated_at\": \"2026-05-22T00:52:14.538Z\", \"hypothesis\": \"T=15 α=0.60 cross-seed validation for sync-dip robustness. s42=0/8 (PermG). If s43 also 0/8, sync-dip at T=15 gains dual-seed confirmation, joining T=10 (D148: s42=0/8, s43=0/8). Combined with T=20 s43 (RUNNING), could establish 3-T dual-seed sync-dip invariance.\", \"parent\": \"phase_diagram_t15_a060_s42_fp32\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a060_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:1\"], \"pid\": \"546619\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t15_a060_s43_fp32.log\", \"submitted_at\": \"2026-05-21T18:42:47.679Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"phase_diagram_t15_a060_s42_fp32 (cross-seed replication)\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 22166.9, \"gpu_hours\": 6.16}, \"metrics\": {\"permg_significant\": 0, \"permg_total\": 8, \"permg_reverse_significant\": 0, \"permg_reverse_total\": 8, \"permg_robust_significant\": 2, \"permg_robust_total\": 8, \"downstreams\": [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"], \"threshold_criterion\": \"true_3sigma_d105\", \"script\": \"run_5method_analysis_d102.py\"}, \"conclusion\": \"success\", \"reproduce\": {\"finished_at\": \"2026-05-22T00:50:01.573Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-22T00:50:09.921688+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a060_s43_fp32\", \"completed_at\": \"2026-05-22T00:52:14.538Z\"}, \"phase_diagram_t25_a060_s42_fp32_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:31:38.834Z\", \"updated_at\": \"2026-05-22T00:52:12.987Z\", \"hypothesis\": \"Phase Diagram T=25 α=0.60: sync-dip dissolution test. At T=10/15/20 α=0.60 = 0/8 (3-T invariant). If T=25 >0/8, dissolution confirmed; if 0/8, permanent structural feature. v2 restart after v1 disk-full crash at gen_15/25 (M065).\", \"parent\": \"phase_diagram_t25_a060_s42_fp32\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a060_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"pid\": \"552604\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t25_a060_s42_fp32_v2.log\", \"submitted_at\": \"2026-05-21T19:32:15.691Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_source\": \"n/a (v2 restart from gen_0 after M065 disk-full crash)\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 19197.3, \"gpu_hours\": 5.33}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T00:52:12.988Z\"}, \"phase_diagram_t25_a050_s42_fp32_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T19:31:41.307Z\", \"updated_at\": \"2026-05-22T00:52:10.007Z\", \"hypothesis\": \"Phase Diagram T=25 α=0.50: theory predicts α_c(25)≈0.232, α=0.50 above threshold. At T=10 PermG=6/8, T=15 6/8, T=20 6/8. If T=25 ≥6/8, confirms detection scaling and 6/8 ceiling persistence. v2 restart after v1 disk-full crash at gen_14/25 (M065).\", \"parent\": \"phase_diagram_t25_a050_s42_fp32\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a050_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"552682\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t25_a050_s42_fp32_v2.log\", \"submitted_at\": \"2026-05-21T19:32:17.943Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_source\": \"n/a (v2 restart from gen_0 after M065 disk-full crash)\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 19192.1, \"gpu_hours\": 5.33}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T00:52:10.007Z\"}, \"phase_diagram_t25_a075_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:52:28.225Z\", \"updated_at\": \"2026-05-21T23:56:57.533Z\", \"hypothesis\": \"Phase Diagram T=25 α=0.75: theory predicts α_c(25)≈0.232, α=0.75 is far above threshold. At T=10 PermG=6/8, at T=20 PermG=6/8. If T=25 shows ≥6/8, confirms robust detection at high contamination across all T. Maps the T=25 row at α=0.75, completing the high-α column of the phase diagram.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a075_s42_fp32 --seed 42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"671833\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t25_a075_s42_fp32.log\", \"submitted_at\": \"2026-05-21T12:52:55.672Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"wall_clock_seconds\": 37735.2, \"gpu_hours\": 10.48}, \"reproduce\": {\"finished_at\": \"2026-05-21T23:16:47.947Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T23:16:57.049311+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/phase_diagram/t25_a075_s42_fp32\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t25_a075_s42_fp32.log\", \"metrics\": {\"permg_significant\": 6, \"permg_total\": 8, \"permg_reverse_significant\": 0, \"permg_reverse_total\": 8, \"downstreams\": [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"], \"threshold_criterion\": \"true_3sigma_d105\", \"script\": \"run_5method_analysis_d102.py\"}, \"completed_at\": \"2026-05-21T23:21:50.887Z\"}, \"alpha_sweep_a000_s48_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:06:51.978Z\", \"updated_at\": \"2026-05-21T22:24:25.663Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.0 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a000_s48_fp32 --seed 48 --fp32\", \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"pid\": \"656188\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s48_fp32/all_metrics.json\", \"submitted_at\": \"2026-05-21T08:10:27.755Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": \"5000\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 48, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s48_fp32/\", \"wall_clock_seconds\": 16627.4, \"gpu_hours\": 4.62}, \"hypothesis\": \"D160 FPR CI narrowing: 7th null seed (α=0.0, s48, fp32) extends PermG FPR toward 0/56. With s42/s43/s44/s45/s46/s47, narrows Clopper-Pearson CI to [0%, 6.4%] (N=56), strengthening zero-FPR claim.\", \"reproduce\": {\"finished_at\": \"2026-05-21T12:39:40.809Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T12:39:46.428112+00:00\"}]}, \"metrics\": {\"permg_fwd\": \"0/8\", \"robust_pairs\": \"1/8\", \"all_permfdr_nonsig\": true, \"note\": \"1 robust pair (token_entropy→distinct_1 3/5) but PermG=0/8\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T12:47:35.122Z\"}, \"scale_69b_a100_s43_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T23:23:41.574Z\", \"updated_at\": \"2026-05-21T22:24:24.756Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-6.9b --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --gradient_checkpointing --bf16 --output_dir results/scale_check/pythia69b_wiki_a100_s43_bf16\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"pid\": \"400545\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_69b_a100_s43_bf16.log\", \"submitted_at\": \"2026-05-20T23:23:41.126Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-6.9b\", \"seed\": 43, \"checkpoint_source\": \"scale_69b_a100_s42\", \"eval_data\": \"data/wikitext103_5k\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia69b_wiki_a100_s43_bf16\", \"wall_clock_seconds\": 49360.0, \"gpu_hours\": 13.71}, \"hypothesis\": \"Pythia-6.9B s43 cross-seed 验证（bf16）：s42 PermG=7/8, K≥3=8/8，当前最强 Wiki 模型仅单 seed，审稿人可攻击可复现性。s43 验证这一结果的跨 seed 稳健性。fp32 OOM → 改 bf16，与 s42 baseline 精度一致。\", \"parent\": \"scale_69b_a100_s42\", \"reproduce\": {\"finished_at\": \"2026-05-21T13:00:18.043Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T13:00:23.982312+00:00\"}]}, \"metrics\": {\"permg_fwd\": \"6/8\", \"robust_pairs\": \"6/8\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T13:06:21.144Z\"}, \"phase_diagram_t15_a075_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:23:29.654Z\", \"updated_at\": \"2026-05-21T22:24:23.350Z\", \"hypothesis\": \"Phase Diagram T=15 α=0.75: theory predicts α_c(15)≈0.304, α=0.75 is well above threshold. At T=10 α=0.75 yields PermG=6/8, at T=20 also 6/8. If T=15 shows similar detection (≥6/8), confirms monotonic detection power across T for high contamination. Maps the T=15 row at α=0.75.\", \"server\": \"westd-17855\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-17855\", \"gpu\": \"cuda:2\", \"started_at\": \"2026-05-21T12:35:51.239Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a075_s42_fp32 --seed 42\\\"\"}, \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/bin/activate && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 15 --synthetic_ratio 0.75 --output_dir results/phase_diagram/t15_a075_s42_fp32\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"512557\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t15_a075_s42_fp32.log\", \"submitted_at\": \"2026-05-21T12:42:14.509Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"N/A - failed before training\", \"failure_reason\": \"OSError: Can't load EleutherAI/pythia-410m - command missing HF_HOME export\", \"wall_clock_seconds\": 369.6, \"gpu_hours\": 0.1}, \"pid\": \"511969\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t15_a075_s42_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T12:48:24.109Z\"}, \"phase_diagram_t15_a060_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:18:10.019Z\", \"updated_at\": \"2026-05-21T22:24:22.399Z\", \"hypothesis\": \"Phase Diagram T=15 α=0.60: theory predicts α_c(15)≈0.304, α=0.60 is well above threshold. At T=10 α=0.60 falls in sync-dip (PermG=0/8), but T=15 should overcome the dip due to longer causal accumulation. If PermG>0/8, confirms T=15 resolves the sync-dip. If 0/8, the sync-dip persists even at T=15 despite α > α_c.\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a060_s42_fp32 --seed 42\", \"server\": \"westd-17855\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a060_s42_fp32\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t15_a060_s42_fp32.log\", \"alpha\": 0.6, \"T\": 15, \"precision\": \"fp32\"}, \"reproduce\": {\"finished_at\": \"2026-05-21T18:34:51.565Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T18:34:57.416173+00:00\"}]}, \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fdr_fwd\": \"6/8\", \"threshold_onset_3sigma\": \"4/8\", \"TY_granger\": \"4/8\", \"robust_pairs_ge3\": \"3/8\", \"token_entropy_drift_pct\": -25.52, \"ece_drift_pct\": 1582.4, \"distinct_1_drift_pct\": -31.02, \"distinct_2_drift_pct\": -39.83, \"distinct_3_drift_pct\": -37.77, \"mauve_drift_pct\": -12.54, \"threshold_onset_lead_times\": {\"token_entropy_distinct_1\": 9, \"token_entropy_distinct_2\": 13, \"ece_distinct_1\": 8, \"ece_distinct_2\": 12}}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T18:40:06.504Z\"}, \"phase_diagram_t15_a050_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T11:27:36.126Z\", \"updated_at\": \"2026-05-21T22:24:21.372Z\", \"hypothesis\": \"Phase Diagram T=15 α=0.50: theory predicts α_c(15)≈0.304, so α=0.50 is well above threshold. PermG should detect contamination at T=15. If PermG>0/8, confirms theory and maps T=15 row of detection phase diagram. Combined with T=15 α=0.45 result, establishes detection power at intermediate generation counts.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a050_s42_fp32 --seed 42\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"505241\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t15_a050_s42_fp32.log\", \"submitted_at\": \"2026-05-21T11:32:11.160Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a050_s42_fp32/\", \"wall_clock_seconds\": 23196.8, \"gpu_hours\": 6.44}, \"reproduce\": {\"finished_at\": \"2026-05-21T17:51:42.833Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T17:51:48.625852+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fdr_fwd\": \"6/8\", \"K_ge_3\": \"4/8\", \"threshold_onset_3sigma\": \"2/8\", \"TY_granger\": \"2/8\", \"token_entropy_drift_pct\": -16.68, \"ece_drift_pct\": 856.36, \"distinct_2_drift_pct\": -47.19, \"mauve_drift_pct\": -15.09}, \"completed_at\": \"2026-05-21T17:58:47.960Z\"}, \"phase_diagram_t15_a045_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T10:55:07.860Z\", \"updated_at\": \"2026-05-21T22:24:20.368Z\", \"hypothesis\": \"At T=15, α=0.45 exceeds predicted α_c(15)≈0.304, so PermG should detect contamination (>0/8). At T=10, α=0.45=0/8 because α_c(10)≈0.487. This tests the T-dependent detection threshold theory.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a045_s42_fp32 --seed 42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"665099\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t15_a045_s42_fp32.log\", \"submitted_at\": \"2026-05-21T10:55:26.685Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"wall_clock_seconds\": 23024.9, \"gpu_hours\": 6.4}, \"reproduce\": {\"finished_at\": \"2026-05-21T17:15:02.412Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T17:15:08.844511+00:00\"}]}, \"metrics\": {\"permg_significant\": 6, \"permg_total\": 8, \"permg_fdr\": \"6/8\", \"robust_pairs\": \"5/8\", \"analysis_script\": \"run_5method_analysis_d102.py\", \"threshold_criterion\": \"true_3sigma_d105\", \"downstreams\": [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"], \"note\": \"CORRECTED from 8/8 (old script used perplexity+3x_sigma_drift). 6 distinct pairs sig, 2 mauve pairs not sig (F=3.3/1.8, FDR=0.201). Consistent with other T values.\", \"correction_reason\": \"M063: Worker used run_5method_analysis.py (perplexity, 3x_sigma_drift) instead of d102 (mauve, true_3sigma_d105)\"}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a045_s42_fp32\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t15_a045_s42_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T17:19:11.597Z\"}, \"phase_diagram_t05_a075_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T10:42:50.352Z\", \"updated_at\": \"2026-05-21T22:24:19.350Z\", \"hypothesis\": \"Phase Diagram T=5 α=0.75: At T=5, theory predicts α_c(5)≥1.0 (undetectable). α=0.75 yields PermG=6/8 at T=10 and 6/8 at T=20. If T=5 shows 0/8, confirms theory that 5 generations is insufficient even at high contamination. If >0/8, the α_c(T) closed-form overestimates the detection threshold at short horizons.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 5 --steps_per_gen 5000 --output_dir results/phase_diagram/t05_a075_s42_fp32 --seed 42\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"503690\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t05_a075_s42_fp32.log\", \"submitted_at\": \"2026-05-21T11:21:25.001Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t05_a075_s42_fp32\", \"wall_clock_seconds\": 8252.7, \"gpu_hours\": 2.29}, \"reproduce\": {\"finished_at\": \"2026-05-21T13:35:30.790Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T13:35:41.245196+00:00\"}]}, \"metrics\": {\"permg_significant\": 0, \"permg_total\": 8, \"permg_fdr\": \"0/8\", \"robust_pairs\": \"0/8\", \"all_permfdr\": 0.6943, \"consensus_max\": \"1/5 (naive only)\", \"note\": \"T=5 α=0.75: no detection, consistent with α_c(5)≥1.0 theory\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T13:38:57.668Z\"}, \"phase_diagram_t05_a060_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T10:42:48.245Z\", \"updated_at\": \"2026-05-21T22:23:37.253Z\", \"hypothesis\": \"Phase Diagram T=5 α=0.60: At T=5, theory predicts α_c(5)≥1.0, making even the sync-dip region undetectable. α=0.60 is the sync-dip center at T=10 (PermG=0/8). If T=5 also shows 0/8, it's consistent with both α_c theory and sync-dip structural nature. If >0/8, it would challenge the α_c(T) model since theory predicts no detection at T=5 for any α.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 5 --steps_per_gen 5000 --output_dir results/phase_diagram/t05_a060_s42_fp32 --seed 42\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"501810\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t05_a060_s42_fp32.log\", \"submitted_at\": \"2026-05-21T11:04:47.151Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t05_a060_s42_fp32\", \"wall_clock_seconds\": 8459.9, \"gpu_hours\": 2.35}, \"reproduce\": {\"finished_at\": \"2026-05-21T13:14:49.737Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T13:14:56.080070+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"permg_fwd\": \"0/8\", \"robust_pairs\": \"0/8\", \"all_permfdr_nonsig\": true}, \"completed_at\": \"2026-05-21T13:25:47.028Z\", \"checkpoint_path\": \"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t05_a060_s42_fp32\", \"log_path\": \"westd-17855:~/runs/distrib_canary_collapse/phase_diagram_t05_a060_s42_fp32.log\"}, \"phase_diagram_t20_a060_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T16:39:46.264Z\", \"updated_at\": \"2026-05-21T19:28:05.612Z\", \"hypothesis\": \"T=20 α=0.60 cross-seed validation for desynchronization analysis (D175). s42=0/8 near-miss p_fdr=0.064. If s43 also shows near-miss (p<0.10), strengthens dissolution-in-progress interpretation.\", \"parent\": \"t20_a060_s42_fp32\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 20 --steps_per_gen 5000 --output_dir results/phase_diagram/t20_a060_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"541970\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t20_a060_s43_fp32.log\", \"submitted_at\": \"2026-05-21T18:02:00Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"t20_a060_s42_fp32 (cross-seed replication)\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 4921.8, \"gpu_hours\": 1.37}, \"reproduce\": {\"finished_at\": \"2026-05-21T19:23:59.853Z\"}, \"failure_reason\": \"Disk full (os error 28) on westd-17855. Completed gen_0~2 of 20. Failed at gen_3 checkpoint save_pretrained(). Needs full restart after disk cleanup.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-21T19:24:01.803Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T19:24:11.515976+00:00\"}]}}, \"phase_diagram_t25_a050_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:23:34.127Z\", \"updated_at\": \"2026-05-21T19:28:04.632Z\", \"hypothesis\": \"Phase Diagram T=25 α=0.50: theory predicts α_c(25)≈0.232, α=0.50 is above threshold. At T=10 α=0.50 is the phase transition point (PermG=6/8), at T=20 yields 8/8. If T=25 shows ≥6/8, confirms robust detection scaling with T. Maps T=25 row at α=0.50.\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a050_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"519969\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t25_a050_s42_fp32.log\", \"submitted_at\": \"2026-05-21T13:37:45.112Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"wall_clock_seconds\": 20749.7, \"gpu_hours\": 5.76}, \"reproduce\": {\"finished_at\": \"2026-05-21T19:23:32.900Z\"}, \"failure_reason\": \"Disk full (os error 28) on westd-17855. Completed gen_0~13 of 25. Failed at gen_14 checkpoint save_pretrained(). Resumable from gen_13 after disk cleanup.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-21T19:23:34.822Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T19:23:43.317392+00:00\"}]}}, \"phase_diagram_t25_a060_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:23:26.745Z\", \"updated_at\": \"2026-05-21T19:27:01.851Z\", \"hypothesis\": \"Phase Diagram T=25 α=0.60: At T=10, α=0.60 falls in the sync-dip (PermG=0/8). At T=25, theory predicts α_c(25)≈0.232, far below 0.60. If PermG>0/8, confirms the sync-dip is a finite-T artifact that dissolves with longer training. If 0/8 despite 25 generations, the sync-dip is a structural phenomenon independent of T, challenging the α_c(T) framework.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a060_s42_fp32 --seed 42\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"pid\": \"515617\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t25_a060_s42_fp32.log\", \"submitted_at\": \"2026-05-21T13:05:23.580Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"wall_clock_seconds\": 22898.3, \"gpu_hours\": 6.36}, \"reproduce\": {\"finished_at\": \"2026-05-21T19:26:57.873Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-21T19:27:01.851Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T19:27:07.136444+00:00\"}]}}, \"phase_diagram_t15_a075_s42_fp32_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:48:52.749Z\", \"updated_at\": \"2026-05-21T19:17:07.538Z\", \"hypothesis\": \"Phase Diagram T=15 α=0.75: theory predicts α_c(15)≈0.304, α=0.75 is well above threshold. At T=10 α=0.75 yields PermG=6/8, at T=20 also 6/8. If T=15 shows similar detection (≥6/8), confirms monotonic detection power across T for high contamination. Maps the T=15 row at α=0.75. Retry of v1 which failed due to missing HF_HOME in command.\", \"parent\": \"phase_diagram_t15_a075_s42_fp32\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 15 --steps_per_gen 5000 --output_dir results/phase_diagram/t15_a075_s42_fp32 --seed 42\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"513367\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t15_a075_s42_fp32_v2.log\", \"submitted_at\": \"2026-05-21T12:49:25.166Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t15_a075_s42_fp32\", \"wall_clock_seconds\": 23262.4, \"gpu_hours\": 6.46}, \"reproduce\": {\"finished_at\": \"2026-05-21T19:13:23.859Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T19:13:31.538314+00:00\"}]}, \"metrics\": {\"permg\": \"6/8\", \"robust_pairs_K3\": \"6/8\", \"diff_xcorr_fdr\": \"7/8\", \"threshold_onset\": \"4/8\", \"ty_granger\": \"4/8\", \"perm_reverse\": \"0/8\", \"ppl_gen0\": 26.95, \"ppl_gen15\": 86.9, \"ece_gen15\": 0.217, \"eff_rank_gen15\": 76.2}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T19:17:07.538Z\"}, \"gen_gpt2m_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:14:35.399Z\", \"updated_at\": \"2026-05-21T18:12:37.656Z\", \"hypothesis\": \"D157 cross-seed validation: GPT-2-medium fp32 s43 replicates s42 fp32 result (PermG 6/8). If s43 fp32 also ≥5/8, precision-dependent claim upgrades from single-seed to 2-seed consistent. Tests whether GPT-2m canary detection is seed-robust under fp32.\", \"spec\": {\"command\": \"python run_iterative_generation.py --model gpt2-medium --dataset wikitext --alpha 1.00 --seed 43 --n_gen 10 --fp32\", \"server\": \"westd-17855\", \"gpu\": \"cuda:1\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext-103-raw-v1\", \"data_count\": \"4.4M tokens\", \"model_name\": \"gpt2-medium\", \"seed\": 43, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s43_fp32/\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s43_fp32/analysis/5method_leadlag.json\"}, \"metrics\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"4/8\", \"DiffXCorr_fwd\": \"7/8\", \"DiffXCorr_rev\": \"7/8\", \"threshold_onset_3sigma\": \"1/8\", \"TY_fwd\": \"2/8\", \"K_ge_3\": \"6/8\", \"K_ge_4\": \"2/8\", \"naive_xcorr\": \"6/8\", \"diff_xcorr\": \"7/8\", \"D105_3sigma\": \"true 3sigma (std of full series)\", \"D111_direction\": \"peak_lag < 0 (C009 corrected)\", \"analysis_script\": \"run_5method_analysis_d102.py\", \"n_perm\": 5000, \"D102_8pair\": \"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\", \"d102_reanalysis\": true, \"d102_reanalysis_date\": \"2026-05-21\", \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 4, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 1, \"ty_forward_sig\": 2, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 2, \"ppl_gen10\": 796.37, \"token_entropy_gen10\": 0.73, \"distinct_1_gen10\": 0.08, \"old_pre_d102\": {\"permg_fwd\": \"6/8\", \"permg_rev\": \"6/8\", \"ty_granger\": \"5/8\", \"threshold_onset\": \"8/8\", \"diff_xcorr\": \"2/8\", \"naive_xcorr\": \"0/8\", \"consensus_k4\": \"0/8\", \"script\": \"run_5method_analysis.py (perplexity + 3x_sigma_drift)\"}, \"note\": \"D102 reanalysis: PermG fwd unchanged 6/8. Major changes from switching perplexity→mauve downstream and 3x_sigma_drift→true_3sigma_d105 threshold criterion.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T10:07:46.836Z\"}, \"t15_a050_s42_fp32\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-21T18:00:59.782Z\", \"updated_at\": \"2026-05-21T18:00:59.782Z\", \"metrics\": {\"permg_significant\": 6, \"permg_total\": 8, \"permg_reverse_significant\": 0, \"permg_reverse_total\": 8, \"permg_robust_significant\": 4, \"permg_robust_total\": 8, \"significant_pairs\": [\"token_entropy→distinct_1\", \"token_entropy→distinct_2\", \"token_entropy→distinct_3\", \"ece→distinct_1\", \"ece→distinct_2\", \"ece→distinct_3\"], \"threshold_criterion\": \"true_3sigma_d105\", \"downstreams\": [\"distinct_1\", \"distinct_2\", \"distinct_3\", \"mauve\"], \"script\": \"run_5method_analysis_d102.py\"}}, \"phase_diagram_t25_a045_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T12:23:32.426Z\", \"updated_at\": \"2026-05-21T13:30:02.499Z\", \"hypothesis\": \"Phase Diagram T=25 α=0.45: theory predicts α_c(25)≈0.232, α=0.45 is above threshold. At T=10 α=0.45 yields PermG=0/8 (below α_c(10)=0.487). If T=25 shows PermG>0/8, confirms that longer training enables detection at contamination levels undetectable at T=10. Key test of α_c(T) decreasing monotonically.\", \"server\": \"westd-17855\", \"gpu\": \"cuda:5\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-17855\", \"gpu\": \"cuda:5\", \"started_at\": \"2026-05-21T13:27:14.244Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 25 --steps_per_gen 5000 --output_dir results/phase_diagram/t25_a045_s42_fp32 --seed 42\\\"\", \"finished_at\": \"2026-05-21T13:29:59.447Z\", \"training_hours\": 0.05}, \"spec\": {\"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42}, \"pid\": \"518182\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t25_a045_s42_fp32.log\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-21T13:30:02.499Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-21T13:30:07.402927+00:00\"}]}}, \"phase_diagram_t05_a050_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T10:17:24.865Z\", \"updated_at\": \"2026-05-21T12:47:23.840Z\", \"hypothesis\": \"Phase Diagram T=5 α=0.50: At T=5, theory predicts α_c(5)≥1.0 (undetectable). α=0.50 is the phase transition point at T=10 (α_c≈0.487). If PermG=0/8 at T=5 α=0.50, confirms theory that T=5 is fundamentally too few generations for detection even at the T=10 critical point. Combined with α=0.45 result, maps the T=5 row of the detection phase diagram.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.50 --num_generations 5 --steps_per_gen 5000 --output_dir results/phase_diagram/t05_a050_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"497281\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t05_a050_s42_fp32.log\", \"submitted_at\": \"2026-05-21T10:17:45.255Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"wall_clock_seconds\": 8225.2, \"gpu_hours\": 2.28}, \"reproduce\": {\"finished_at\": \"2026-05-21T12:28:18.306Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T12:28:23.871455+00:00\"}]}, \"metrics\": {\"permg_fwd\": \"0/8\", \"robust_pairs\": \"0/8\", \"all_permfdr_nonsig\": true}, \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t05_a050_s42_fp32.log\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t05_a050_s42_fp32\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T12:34:50.493Z\"}, \"phase_diagram_t05_a045_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T09:51:16.435Z\", \"updated_at\": \"2026-05-21T12:18:06.347Z\", \"hypothesis\": \"Phase Diagram α×T mapping: At T=5 generations, α_c shifts rightward compared to T=10 (α_c≈0.487). With only 5 generations of iterative training, the causal distributional signal is weaker, requiring higher contamination ratio for PermG detection. Expected: α=0.45 at T=5 yields PermG ≈ 0/8 (below detection threshold), establishing the T=5 row of the detection phase diagram.\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.45 --num_generations 5 --steps_per_gen 5000 --output_dir results/phase_diagram/t05_a045_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-17855\", \"gpu\": \"cuda:1\", \"pid\": \"493673\", \"log_path\": \"~/runs/distrib_canary_collapse/phase_diagram_t05_a045_s42_fp32.log\", \"submitted_at\": \"2026-05-21T09:51:58.861Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/phase_diagram/t05_a045_s42_fp32\", \"wall_clock_seconds\": 8642.3, \"gpu_hours\": 2.4}, \"reproduce\": {\"finished_at\": \"2026-05-21T12:06:52.761Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T12:06:58.243979+00:00\"}]}, \"metrics\": {\"permg_fwd\": \"0/8\", \"robust_pairs\": \"0/8\", \"all_permfdr_nonsig\": true}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T12:16:01.209Z\"}, \"alpha_sweep_a052_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T06:56:41.888Z\", \"updated_at\": \"2026-05-21T11:30:58.970Z\", \"hypothesis\": \"Cross-seed validation above α_c: α=0.52 s43 tests whether detection above the phase boundary (s42 result pending from ANALYZING) is seed-robust. If both seeds show PermG>0/8, confirms sharp transition is not seed-specific artifact.\", \"spec\": {\"command\": \"python run_iterative_generation.py --model EleutherAI/pythia-410m --dataset wikitext --alpha 0.52 --seed 43 --n_gen 10 --fp32\", \"server\": \"westd-17855\", \"gpu\": \"cuda:4\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext-103-raw-v1\", \"data_count\": \"4.4M tokens\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a052_s43_fp32\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a052_s43_fp32.log\"}, \"metrics\": {\"permg_fwd\": \"6/8\", \"permg_rev\": \"0/8\", \"diff_xcorr\": \"4/8\", \"naive_xcorr\": \"1/8\", \"threshold_onset\": \"0/8\", \"ty_granger\": \"0/8\", \"consensus_k3\": \"0/8\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T11:30:58.970Z\"}, \"alpha_sweep_a000_s47_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T06:56:39.027Z\", \"updated_at\": \"2026-05-21T11:21:31.353Z\", \"hypothesis\": \"D160 FPR CI narrowing: 6th null seed (α=0.0, s47, fp32) extends PermG FPR toward 0/48. With s45+s46+s47, narrows Clopper-Pearson CI to [0%, 7.4%] (N=48), further strengthening zero-FPR claim.\", \"spec\": {\"command\": \"python run_iterative_generation.py --model EleutherAI/pythia-410m --dataset wikitext --alpha 0.00 --seed 47 --n_gen 10 --fp32\", \"server\": \"westd-17855\", \"gpu\": \"cuda:0\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext-103-raw-v1\", \"data_count\": \"4.4M tokens\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 47, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s47_fp32/\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s47_fp32/analysis/5method_leadlag.json\"}, \"metrics\": {\"permg_fwd\": \"0/8\", \"permg_rev\": \"0/8\", \"ty_granger\": \"0/8\", \"threshold_onset\": \"1/8\", \"diff_xcorr\": \"3/8\", \"naive_xcorr\": \"2/8\", \"consensus_k3\": \"0/8\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T11:21:31.353Z\"}, \"alpha_sweep_a046_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T06:56:43.829Z\", \"updated_at\": \"2026-05-21T11:04:28.579Z\", \"hypothesis\": \"Cross-seed validation below α_c: α=0.46 s43 tests whether non-detection below the phase boundary (s42 expected 0/8) is seed-robust. If both seeds show 0/8, confirms α_c>0.46 across seeds, strengthening the [0.48,0.50] CI.\", \"spec\": {\"command\": \"python run_iterative_generation.py --model EleutherAI/pythia-410m --dataset wikitext --alpha 0.46 --seed 43 --n_gen 10 --fp32\", \"server\": \"westd-17855\", \"gpu\": \"cuda:5\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext-103-raw-v1\", \"data_count\": \"4.4M tokens\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a046_s43_fp32/\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a046_s43_fp32/analysis/5method_leadlag.json\"}, \"conclusion\": \"success\", \"metrics\": {\"permg_fwd\": \"0/8\", \"permg_rev\": \"0/8\", \"ty_granger\": \"0/8\", \"threshold_onset\": \"0/8\", \"diff_xcorr\": \"2/8\", \"naive_xcorr\": \"0/8\", \"consensus_k3\": \"0/8\"}, \"completed_at\": \"2026-05-21T11:04:28.579Z\"}, \"alpha_sweep_a000_s46_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:55:30.396Z\", \"updated_at\": \"2026-05-21T10:53:40.396Z\", \"hypothesis\": \"D160 FPR CI narrowing: 5th null seed (α=0.0, s46, fp32) extends PermG FPR to 0/40 with s45. Narrows Clopper-Pearson CI to [0%, 8.8%] (N=40), providing stronger evidence for zero-FPR than current [0%, 13.8%] (N=24).\", \"spec\": {\"command\": \"python run_iterative_generation.py --model EleutherAI/pythia-410m --dataset wikitext --alpha 0.00 --seed 46 --n_gen 10 --fp32\", \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext-103-raw-v1\", \"data_count\": \"4.4M tokens\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 46, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s46_fp32/\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s46_fp32/analysis/5method_leadlag.json\"}, \"metrics\": {\"permg_fwd\": \"0/8\", \"permg_rev\": \"0/8\", \"ty_granger\": \"0/8\", \"threshold_onset\": \"0/8\", \"diff_xcorr\": \"0/8\", \"naive_xcorr\": \"0/8\", \"consensus_k3\": \"0/8\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T10:53:40.396Z\"}, \"alpha_sweep_a000_s45_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T05:55:28.789Z\", \"updated_at\": \"2026-05-21T10:17:15.320Z\", \"hypothesis\": \"D160 FPR CI narrowing: 4th null seed (α=0.0, s45, fp32) extends PermG FPR from 0/24 (3 seeds) to 0/32. Combined with s46, narrows Clopper-Pearson CI from [0%, 13.8%] (N=24) toward [0%, 8.8%] (N=40), strengthening the zero-FPR claim.\", \"spec\": {\"command\": \"python run_iterative_generation.py --model EleutherAI/pythia-410m --dataset wikitext --alpha 0.00 --seed 45 --n_gen 10 --fp32\", \"server\": \"westd-17855\", \"gpu\": \"cuda:2\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext-103-raw-v1\", \"data_count\": \"4.4M tokens\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 45, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s45_fp32/\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s45_fp32/analysis/5method_leadlag.json\"}, \"metrics\": {\"permg_fwd\": \"2/8\", \"permg_rev\": \"0/8\", \"ty_granger\": \"1/8\", \"threshold_onset\": \"4/8\", \"diff_xcorr\": \"0/8\", \"naive_xcorr\": \"1/8\", \"consensus_k4\": \"0/8\", \"ppl_gen0\": 26.95, \"token_entropy_gen0\": 3.23}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T10:17:15.320Z\"}, \"d37b\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:55:44.808Z\", \"updated_at\": \"2026-05-21T08:56:49.324Z\", \"hypothesis\": \"Higher synthetic data ratio (α) causes progressive collapse of internal model representations, measurable via decreasing attention entropy, reduced head diversity, increasing effective rank (dimensionality expansion), and rising logit confidence (overconfidence).\", \"log_path\": \"/tmp/d37b_run.log\", \"checkpoint_path\": \"results/d37b_mech_interp/summary.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T08:56:49.324Z\"}, \"d37g\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T08:55:43.301Z\", \"updated_at\": \"2026-05-21T08:56:47.064Z\", \"hypothesis\": \"Iterative model collapse exhibits a sharp phase transition in task-level metrics (PPL, accuracy, repetition rate) around α≈0.50, where synthetic data ratio crosses a critical threshold causing nonlinear degradation in generation quality.\", \"log_path\": \"/tmp/d37g_run.log\", \"checkpoint_path\": \"results/d37g_task_degradation/summary.json\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T08:56:47.064Z\"}, \"alpha_sweep_a060_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T21:56:18.971Z\", \"updated_at\": \"2026-05-21T08:29:14.041Z\", \"hypothesis\": \"fp32 α=0.60 dose-response 主轴数据点: D079 要求 fp32 数据填补 dose-response map。与 alpha_sweep_a060_s42_bf16 完全相同配置，唯一区别 fp32 精度。bf16 的 stochastic rounding 系统性抑制 collapse 5-730x，fp32 数据是 Table 7 主轴必需。\", \"reproduce\": {\"finished_at\": \"2026-05-19T00:03:51.535Z\"}, \"failure_reason\": \"EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T22:07:40.036683+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T00:03:55.965441+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"completed_at\": \"2026-05-18T22:13:21.439Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=2 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s42_fp32_v2\", \"server\": \"westd-17855\", \"gpu\": \"cuda:2\", \"pid\": 63952, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"tmux_session\": \"a060_fp32_v2\", \"output_dir\": \"results/alpha_sweep/a060_s42_fp32_v2\", \"note\": \"v2 resubmit after gen_1 LinAlgError crash, metrics.py now fixed\"}, \"conclusion\": \"killed\", \"notes\": \"D080: torch_dtype=None bug → fp16 without GradScaler → NaN. Already failed.\"}, \"alpha_sweep_a005_s42\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-18T20:52:49.138Z\", \"updated_at\": \"2026-05-21T08:29:12.724Z\", \"hypothesis\": \"α=0.05 定位 diversity 悬崖精确位置: α=0.00 d1=-14% 到 α=0.10 d1=-40% 之间存在非线性断崖，α=0.05 确定断崖在 0-5% 还是 5-10% 区间。\", \"parent\": \"alpha_sweep_a010_s42_v2\", \"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-18T20:56:02.420Z\", \"finished_at\": \"2026-05-18T23:56:36.428Z\", \"training_hours\": 3.01}, \"failure_reason\": \"EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\", \"completed_at\": \"2026-05-18T22:07:45.970Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T22:07:49.417515+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T23:56:42.687842+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"FAILED EXIT_CODE=127 (第2次): 提交命令缺少 conda 激活（裸 `python` 在非交互 shell 找不到）。已知模式，见 memory.md \\\"westd-17855 环境提交规范\\\"。正确模板需 `bash -c '... source conda.sh && conda activate base && ...'`。将用正确模板重新提交。\"}}, \"notes\": \"D080: torch_dtype=None bug → fp16 without GradScaler → NaN. Killed and resubmitting as v3\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=3 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.05 --output_dir results/alpha_sweep/a005_s42_fp32_v3\\\"\", \"server\": \"westd-17855\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"output_dir\": \"results/alpha_sweep/a005_s42_fp32_v3\", \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\"}, \"conclusion\": \"killed\"}, \"interv_pred_a075_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 2, \"created_at\": \"2026-05-18T21:57:16.554Z\", \"updated_at\": \"2026-05-21T08:29:11.559Z\", \"hypothesis\": \"fp32 predictive intervention at α=0.75 boundary: Canary-based intervention (entropy >15% drop triggers α=0.0 switch) in the transitional regime where Granger causality becomes FDR-significant. D079 requires fp32 for Table 7 comparability. Tests if predictive intervention can prevent collapse at moderate contamination.\", \"reproduce\": {\"finished_at\": \"2026-05-18T23:54:54.865Z\"}, \"failure_reason\": \"EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T22:09:00.926905+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T22:41:16.163243+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T23:15:55.278333+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T23:54:59.299303+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"completed_at\": \"2026-05-18T22:41:13.549Z\", \"spec\": {\"command\": \"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/predictive_te_a075_s42_fp32\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"63323\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000}, \"conclusion\": \"killed\", \"notes\": \"D080: torch_dtype=None bug → fp16 without GradScaler → NaN. Already failed.\"}, \"interv_pred_14b_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T20:44:38.477Z\", \"updated_at\": \"2026-05-21T08:29:10.289Z\", \"hypothesis\": \"Cross-scale intervention validation: Tests if canary-based predictive intervention (token_entropy >15% drop → α=0.0) is effective at 1.4B scale. At 410M, intervention triggers Gen 1 and recovers by Gen 2. If 1.4B shows same pattern, validates scale-independence of canary utility (Claim 4).\", \"parent\": \"intervention_predictive_s42\", \"plan_id\": \"plan_037\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/predictive_te_14b_s42\", \"server\": \"westd-17855\", \"gpu\": \"cuda:0\", \"pid\": 191999, \"tmux_session\": \"interv_pred_14b\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"precision\": \"fp32\", \"checkpoint_source\": \"/root/autodl-tmp/.hf_cache/hub/models--EleutherAI--pythia-1.4b\", \"eval_data\": \"data/wikitext103_5k/eval\"}, \"checkpoint_path\": \"results/intervention/predictive_te_14b_s42/gen_10/checkpoint\", \"log_path\": \"results/intervention/predictive_te_14b_s42/all_metrics.json\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-20T05:43:57.316Z\", \"results\": {\"trigger_gen\": 1, \"trigger_metric\": \"token_entropy\", \"trigger_drop\": \"51.9% (2.946 → 1.418)\", \"effective_alpha_post_intervention\": 0, \"recovery_gen\": 2, \"token_entropy\": {\"gen0\": 2.946, \"gen1_trigger\": 1.418, \"gen2_recovery\": 2.892, \"gen10_final\": 2.832}, \"perplexity\": {\"gen0\": 19.68, \"gen1_spike\": 65.37, \"gen2_recovery\": 17.44, \"gen10_final\": 17.6}, \"ece\": {\"gen0\": 0.007, \"gen1_spike\": 0.281, \"gen2_recovery\": 0.017, \"gen10_final\": 0.026}, \"effective_rank\": {\"gen0\": 50.76, \"gen1_spike\": 90.17, \"gen2_recovery\": 58.29, \"gen10_final\": 51.53}, \"mauve_gen10\": 0.03, \"runtime_hours\": 9, \"validates_claim4\": true, \"pattern_matches_410m\": \"yes - intervention triggers gen1, recovery gen2, stable through gen10\"}}, \"alpha_sweep_a050_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-19T05:31:00.885Z\", \"updated_at\": \"2026-05-21T08:03:14.562Z\", \"hypothesis\": \"D091: α=0.50 fp32 s43 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s42/s44.\", \"reproduce\": {\"finished_at\": \"2026-05-19T09:40:51.007Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T09:40:54.290860+00:00\"}], \"previous_failure\": {\"conclusion\": \"success\", \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7227, \"token_entropy_drift_pct\": -15.81, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0842, \"ece_drift_pct\": 679.56, \"distinct_1_gen0\": 0.0929, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -29, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.58, \"perplexity_drift_pct\": 17.17, \"mauve_drift_pct\": -23.54, \"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"naive_xcorr_fwd_D111\": \"2/8\", \"diff_xcorr_fwd_D111\": \"6/8\", \"threshold_onset_3sigma\": \"8/8\", \"K3_3sigma\": \"6/8\", \"K4_3sigma\": \"5/8\", \"perm_granger_fdr_forward_sig\": 6, \"D105_D111_compliant\": true, \"M035_direction\": \"peak_lag < 0\", \"precision\": \"fp32\", \"n_perm\": 5000, \"pair_config\": \"canary=[token_entropy,ece] x downstream=[distinct_1,distinct_2,distinct_3,mauve]\", \"ty_forward_sig\": 1, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 6, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 1}}}, \"completed_at\": \"2026-05-19T09:49:49.922Z\", \"spec\": {\"command\": \"python run_iterative_generation.py --model EleutherAI/pythia-410m --dataset wikitext --alpha 0.50 --seed 43 --n_gen 10 --fp32\", \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext-103-raw-v1\", \"data_count\": \"4.4M tokens\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43}, \"metrics\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fwd_D111\": \"6/8\", \"threshold_onset_3sigma\": \"8/8\", \"K3_3sigma\": \"6/8\", \"K4_3sigma\": \"5/8\", \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 6, \"ty_forward_sig\": 1, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 1, \"D105_D111_compliant\": true, \"precision\": \"fp32\", \"n_perm\": 5000, \"token_entropy_drift_pct\": -15.81, \"ece_drift_pct\": 679.56, \"distinct_1_drift_pct\": -29, \"perplexity_drift_pct\": 17.17, \"mauve_drift_pct\": -23.54, \"note\": \"restored from previous_failure — completed 2026-05-19\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/gen_10\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s43_fp32/train.log\"}, \"generalize_pythia1b_c4_a100_s43_v2\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-20T09:19:05.335Z\", \"updated_at\": \"2026-05-21T07:47:26.900Z\", \"reproduce\": {\"finished_at\": \"2026-05-21T05:11:10.209Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-20T23:12:11.942Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-20T23:12:20.804076+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T05:11:15.747948+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"metrics\": {\"lead_lag\": {\"perm_granger_fdr_fwd\": \"8/8\", \"K_gte3\": \"6/8\", \"threshold_onset_3sigma\": \"2/8\", \"diff_xcorr_fdr_fwd\": \"8/8\"}, \"note\": \"M046 D120 canonical reanalysis: TY 2→4, K≥3 5→6\"}, \"notes\": \"失败原因: HF Hub 网络不可达 (Errno 101 Network is unreachable)，Pythia-1B 未本地缓存，from_pretrained 下载失败 | 错误类型: infrastructure | 建议: source /etc/network_turbo 后下载模型到本地路径，或用已有 HF cache\"}}, \"notes\": \"失败原因: HF Hub 网络不可达 (Errno 101 Network is unreachable)，Pythia-1B 未本地缓存，from_pretrained 下载失败 | 错误类型: infrastructure | 建议: source /etc/network_turbo 后下载模型到本地路径，或用已有 HF cache\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1b-local --seed 43 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s43_v2\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"620796\", \"data_path\": \"data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 43, \"checkpoint_path\": \"results/generalize/pythia1b_c4_a100_s43_v2\", \"log_path\": \"results/generalize/pythia1b_c4_a100_s43_v2/analysis/5method_leadlag.json\"}, \"metrics\": {\"5method\": {\"PermG_fwd_FDR\": \"8/8\", \"PermG_rev_FDR\": \"0/8\", \"DiffXCorr_fwd_FDR\": \"8/8\", \"DiffXCorr_rev_FDR\": \"8/8\", \"threshold_onset_3sigma\": \"0/8\", \"TY_fwd\": \"1/8\", \"K_ge3\": \"8/8\", \"K_ge4\": \"1/8\", \"robust_pairs\": 8}, \"drift\": {\"token_entropy\": {\"gen0\": 2.956, \"gen10\": 1.231, \"pct_change\": -58.4}, \"ece\": {\"gen0\": 0.012, \"gen10\": 0.448, \"pct_change\": 3510}, \"distinct_1\": {\"gen0\": 0.114, \"gen10\": 0.103, \"pct_change\": -9.2}, \"distinct_2\": {\"gen0\": 0.557, \"gen10\": 0.506, \"pct_change\": -9.2}, \"distinct_3\": {\"gen0\": 0.842, \"gen10\": 0.773, \"pct_change\": -8.2}, \"mauve\": {\"gen0\": 0.811, \"gen10\": 0.412, \"pct_change\": -49.1}, \"perplexity\": {\"gen0\": 20.6, \"gen10\": 1402.5, \"pct_change\": 6708}}, \"consensus_detail\": {\"token_entropy&lt;distinct_1\": \"3/5 [naive,diff,perm]\", \"token_entropy&lt;distinct_2\": \"3/5 [naive,diff,perm]\", \"token_entropy&lt;distinct_3\": \"3/5 [naive,diff,perm]\", \"token_entropy&lt;mauve\": \"3/5 [naive,diff,perm]\", \"ece&lt;distinct_1\": \"3/5 [naive,diff,perm]\", \"ece&lt;distinct_2\": \"3/5 [naive,diff,perm]\", \"ece&lt;distinct_3\": \"4/5 [naive,diff,perm,ty]\", \"ece&lt;mauve\": \"3/5 [naive,diff,perm]\"}}, \"conclusion\": \"success\", \"hypothesis\": \"Distributional canary collapse generalizes to Pythia-1B on C4 at alpha=1.0: canary metrics (token_entropy, ECE) lead downstream quality degradation (distinct-n, MAUVE), detectable via Permutation Granger causality with seed=43 replication of s42 result.\"}, \"alpha_sweep_a048_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T02:47:28.294Z\", \"updated_at\": \"2026-05-21T07:29:03.727Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.48 --output_dir results/alpha_sweep/a048_s43_fp32\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"635179\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a048_s43_fp32.log\", \"submitted_at\": \"2026-05-21T02:47:27.714Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"wall_clock_seconds\": 16896.0, \"gpu_hours\": 4.69}, \"hypothesis\": \"Multi-seed validation at phase boundary: α=0.48 s43 replicates s42 result at the critical transition point. If s42 shows detection (>0/8) and s43 agrees, confirms α_c<0.48 is seed-robust; if they disagree, transition sharpness is seed-dependent.\", \"reproduce\": {\"finished_at\": \"2026-05-21T07:12:55.464Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T07:13:00.825616+00:00\"}]}, \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"DiffXCorr_fwd\": \"5/8\", \"DiffXCorr_rev\": \"5/8\", \"threshold_onset_3sigma\": \"0/8\", \"TY_fwd\": \"2/8\", \"K_ge3\": \"0/8\", \"K_ge4\": \"0/8\", \"robust_pairs\": [], \"n_generations\": 11, \"alpha\": 0.48, \"seed\": 43, \"threshold_criterion\": \"true_3sigma_d105\", \"n_perm\": 5000, \"analysis_version\": \"D102+D105+D111\", \"drift_token_entropy_pct\": -19, \"drift_ece_pct\": 834.9, \"drift_perplexity_pct\": 18.1, \"drift_distinct_1_pct\": -35.2, \"drift_distinct_2_pct\": -47.5, \"drift_distinct_3_pct\": -47.7, \"drift_mauve_pct\": -15.8, \"onset_token_entropy\": 1, \"onset_ece\": 3, \"onset_distinct_1\": null, \"onset_distinct_2\": null, \"onset_distinct_3\": null, \"onset_mauve\": null}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/alpha_sweep/a048_s43_fp32\", \"completed_at\": \"2026-05-21T07:29:03.727Z\"}, \"t20_a025_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:20:28.013Z\", \"updated_at\": \"2026-05-21T07:20:36.069Z\", \"hypothesis\": \"T=20 blind zone null baseline at α=0.25: T=11 下 α=0.25 PermG=0/8（deep blind zone）。T=20 提供 2× 数据点——如果仍为 0/8 → blind zone 在 α≤0.25 对 T 不敏感，是 fundamental detection limit；如果 PermG>0 → T=20 的统计功效提升突破了 blind zone 下界。作为 T=20 dose-response null baseline 必需。\", \"parent\": \"alpha_sweep_a025_s42_v2\", \"spec\": {\"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --synthetic_ratio 0.25 --num_generations 20 --output_dir results/t20/a025_s42_fp32\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:1\"], \"checkpoint_source\": \"alpha_sweep_a025_s42_v2\", \"eval_data\": \"data/wikitext103_5k\"}, \"reproduce\": {\"finished_at\": \"2026-05-21T04:56:47.600Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T04:56:53.118558+00:00\"}]}, \"metrics\": {\"perm_granger_fdr_forward_sig\": 3, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 1, \"diff_xcorr_fdr_reverse_sig\": 1, \"threshold_onset_forward_sig\": 4, \"ty_forward_sig\": 0, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0, \"n_generations\": 20, \"alpha\": 0.25, \"seed\": 42, \"threshold_criterion\": \"true_3sigma_d105\", \"drift_pct\": {\"token_entropy\": -3.27, \"distinct_1\": -40.42, \"distinct_2\": -58.71, \"distinct_3\": -62.92, \"ece\": 84.91, \"perplexity\": -18.62, \"mauve\": -34.3}, \"final_perplexity\": 21.93, \"final_token_entropy\": 3.1286, \"final_mauve\": 0.0204, \"predicted_permg\": 0, \"observed_permg\": 3, \"prediction_verdict\": \"POSITIVE_SURPRISE\", \"blind_zone_conclusion\": \"unexpected_power_breakthrough\"}, \"checkpoint_path\": \"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/t20/a025_s42_fp32\", \"log_path\": \"westd-17855:~/runs/distrib_canary_collapse/t20_a025_s42_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T05:06:07.118Z\"}, \"alpha_sweep_a046_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T02:28:36.754Z\", \"updated_at\": \"2026-05-21T07:03:45.716Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.46 --output_dir results/alpha_sweep/a046_s42_fp32\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"421967\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a046_s42_fp32.log\", \"submitted_at\": \"2026-05-21T02:28:36.300Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"wall_clock_seconds\": 16477.2, \"gpu_hours\": 4.58}, \"hypothesis\": \"Phase transition lower bound: α=0.46 fills the gap between α=0.45 (0/8) and α=0.48 (running). If 0/8, confirms α_c>0.46; if >0/8, α_c lies in [0.45,0.46].\", \"reproduce\": {\"finished_at\": \"2026-05-21T06:53:19.236Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T06:53:28.612958+00:00\"}]}, \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"DiffXCorr_fwd\": \"0/8\", \"DiffXCorr_rev\": \"0/8\", \"threshold_onset_3sigma\": \"0/8\", \"TY_fwd\": \"0/8\", \"K_ge3\": \"0/8\", \"K_ge4\": \"0/8\", \"robust_pairs\": [], \"n_generations\": 11, \"alpha\": 0.46, \"seed\": 42, \"threshold_criterion\": \"true_3sigma_d105\", \"n_perm\": 5000, \"analysis_version\": \"D102+D105+D111\", \"drift_token_entropy_pct\": -19.4, \"drift_ece_pct\": 808.5, \"drift_perplexity_pct\": 13.4, \"drift_distinct_1_pct\": -34.7, \"drift_distinct_2_pct\": -46.3, \"drift_distinct_3_pct\": -45.8, \"drift_mauve_pct\": -22, \"onset_token_entropy\": 1, \"onset_ece\": 3, \"onset_distinct_1\": null, \"onset_distinct_2\": null, \"onset_distinct_3\": null, \"onset_mauve\": null}, \"checkpoint_path\": \"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a046_s42_fp32\", \"log_path\": \"westd-17855:~/runs/distrib_canary_collapse/alpha_sweep_a046_s42_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T07:03:13.486Z\"}, \"alpha_sweep_a052_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T02:14:05.887Z\", \"updated_at\": \"2026-05-21T07:03:25.576Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.52 --output_dir results/alpha_sweep/a052_s42_fp32\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"421887\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a052_s42_fp32.log\", \"submitted_at\": \"2026-05-21T02:28:34.161Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"wall_clock_seconds\": 16278.2, \"gpu_hours\": 4.52}, \"hypothesis\": \"Transition region microstructure: α=0.52 probes just above the estimated α_c≈0.48-0.50 boundary. If PermG>0/8, confirms sharp transition; if 0/8, the blind zone extends past 0.50 and the apparent step-function at 0.50 was seed-specific.\", \"reproduce\": {\"finished_at\": \"2026-05-21T06:52:49.505Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T06:52:55.121087+00:00\"}]}, \"metrics\": {\"PermG_fwd\": \"3/8\", \"PermG_rev\": \"0/8\", \"DiffXCorr_fwd\": \"5/8\", \"DiffXCorr_rev\": \"5/8\", \"threshold_onset_3sigma\": \"0/8\", \"TY_fwd\": \"1/8\", \"K_ge3\": \"0/8\", \"K_ge4\": \"0/8\", \"robust_pairs\": [], \"drift_token_entropy\": -26.28, \"drift_ece\": 1273.35, \"drift_perplexity\": 47.55, \"drift_distinct_1\": -32.2, \"drift_distinct_2\": -42.26, \"drift_distinct_3\": -41.48, \"drift_mauve\": -16.8, \"analysis_script\": \"run_5method_analysis_d102.py\", \"threshold_criterion\": \"true_3sigma_d105\", \"n_perm\": 5000, \"analysis_server\": \"westd-17855\"}, \"checkpoint_path\": \"results/alpha_sweep/a052_s42_fp32/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a052_s42_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T06:59:52.396Z\"}, \"alpha_sweep_a048_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T01:19:34.273Z\", \"updated_at\": \"2026-05-21T06:17:42.810Z\", \"spec\": {\"checkpoint_path\": \"results/alpha_sweep/a048_s42_fp32/gen_10/checkpoint\", \"wall_clock_seconds\": 15914, \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a048_s42_fp32.log\"}, \"hypothesis\": \"Phase transition midpoint: α=0.48 should reveal whether α_c lies closer to 0.45 (0/8) or 0.50 (6/8), narrowing the transition region CI from width 0.05 to ~0.02\", \"reproduce\": {\"finished_at\": \"2026-05-21T06:11:45.350Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T06:11:50.803832+00:00\"}]}, \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"DiffXCorr_fwd\": \"1/8\", \"DiffXCorr_rev\": \"1/8\", \"threshold_onset_3sigma\": \"0/8\", \"TY_fwd\": \"3/8\", \"K_ge3\": \"1/8\", \"K_ge4\": \"0/8\", \"robust_pairs\": [\"ece→distinct_1 (naive,diff,ty)\"], \"drift_token_entropy\": \"-18.6%\", \"drift_ece\": \"+799.6%\", \"drift_perplexity\": \"+16.5%\", \"drift_distinct_1\": \"-34.3%\", \"drift_distinct_2\": \"-46.3%\", \"drift_distinct_3\": \"-45.8%\", \"drift_mauve\": \"-18.8%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T06:17:42.810Z\"}, \"alpha_sweep_a070_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-21T01:19:32.175Z\", \"updated_at\": \"2026-05-21T05:52:54.960Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.70 --output_dir results/alpha_sweep/a070_s42_fp32\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"413167\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a070_s42_fp32.log\", \"submitted_at\": \"2026-05-21T01:19:31.627Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_path\": \"results/alpha_sweep/a070_s42_fp32/gen_10\", \"wall_clock_seconds\": 16403.3, \"gpu_hours\": 4.56}, \"hypothesis\": \"α=0.70 should show restored PermG detection (>0/8) if the sync collapse dip (PermG=0/8 at α=0.55-0.65) ends before α=0.70, confirming the dip boundary location.\", \"reproduce\": {\"finished_at\": \"2026-05-21T05:43:58.796Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T05:44:07.379922+00:00\"}]}, \"metrics\": {\"PermG_fwd\": \"5/8\", \"PermG_rev\": \"0/8\", \"DiffXCorr_fwd\": \"6/8\", \"DiffXCorr_rev\": \"6/8\", \"threshold_onset_3sigma\": \"0/8\", \"TY_fwd\": \"1/8\", \"K_ge3\": \"3/8\", \"K_ge4\": \"0/8\", \"robust_pairs\": [\"token_entropy→distinct_1 (naive,diff,ty)\", \"ece→distinct_1 (naive,diff,perm)\", \"ece→distinct_2 (naive,diff,perm)\"], \"drift_token_entropy\": \"-29.0%\", \"drift_ece\": \"+1773%\", \"drift_perplexity\": \"+151.5%\", \"drift_distinct_1\": \"-27.4%\", \"drift_distinct_2\": \"-34.6%\", \"drift_distinct_3\": \"-31.4%\", \"drift_mauve\": \"-0.7%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T05:52:54.960Z\"}, \"gen_gpt2m_a100_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:58:48.288Z\", \"updated_at\": \"2026-05-21T02:05:42.778Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name openai-community/gpt2-medium --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/gpt2m_wiki_a100_s43\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"397750\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43.log\", \"submitted_at\": \"2026-05-20T23:05:28.087Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"openai-community/gpt2-medium\", \"seed\": 43, \"wall_clock_seconds\": 10814.7, \"gpu_hours\": 3.0}, \"hypothesis\": \"GPT-2-medium multi-seed s43: GPT-2-medium × WikiText-103 × α=1.0 × seed=43. Validates s42 cross-architecture results (K≥4=6/8) are reproducible, confirming architecture-independent canary lead-lag.\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-21T02:05:42.778Z\"}, \"alpha_sweep_a010_s42_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:26:31.462Z\", \"updated_at\": \"2026-05-21T02:05:40.658Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --bf16 --output_dir results/alpha_sweep/a010_s42_bf16\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"397830\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a010_s42_bf16.log\", \"submitted_at\": \"2026-05-20T23:05:30.943Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"wall_clock_seconds\": 10809.7, \"gpu_hours\": 3.0}, \"hypothesis\": \"α=0.10 regime map gap fill with bf16: Pythia-410M WikiText s42 at synthetic_ratio=0.10. Tests whether near-zero contamination shows detectable canary signal.\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-21T02:05:40.658Z\"}, \"scale_14b_a050_s42_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:24:05.784Z\", \"updated_at\": \"2026-05-21T02:05:38.434Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-1.4b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --gradient_checkpointing --bf16 --output_dir results/scale_check/pythia14b_a050_s42_bf16\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"619318\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_a050_s42_bf16.log\", \"submitted_at\": \"2026-05-20T23:05:33.809Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"wall_clock_seconds\": 10804.6, \"gpu_hours\": 3.0}, \"hypothesis\": \"Pythia-1.4B α=0.50 s42 with bf16: Verifies whether canary lead-lag persists at 1.4B scale in the boundary regime (α=0.50). Tests if method sensitivity findings from 410M transfer to larger models.\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-21T02:05:38.434Z\"}, \"alpha_sweep_a065_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:34:26.984Z\", \"updated_at\": \"2026-05-21T01:42:53.385Z\", \"hypothesis\": \"D126 Track 3 dip recovery mapping: α=0.65 s42 fp32 填补 sync collapse dip(0.60)→detection recovery(0.75) 的过渡区。α=0.60 存在非单调 PermG dip，α=0.75 恢复到 6/8。α=0.65 确定恢复是渐进还是突变——如果 PermG 已恢复则 dip 仅限 [0.55,0.60]；如果仍被压制则 sync collapse 区扩展至 [0.55,0.65]。\", \"parent\": \"alpha_sweep_a060_s42_fp32_v4\", \"spec\": {\"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --synthetic_ratio 0.65 --num_generations 10 --output_dir results/alpha_sweep/a065_s42_fp32\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"checkpoint_source\": \"alpha_sweep_a060_s42_fp32_v4\", \"eval_data\": \"data/wikitext103_5k\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a065_s42_fp32\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a065_s42_fp32.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-21T00:51:11.120Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T00:51:16.270308+00:00\"}]}, \"metrics\": {\"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"ty_forward_sig\": 4, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0, \"robust_k3_pair\": \"ECE→D1 (naive+diff+ty)\", \"naive_xcorr_fwd\": \"2/8\"}, \"checkpoint_path\": \"results/alpha_sweep/a065_s42_fp32/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a065_s42_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-21T00:57:46.902Z\"}, \"alpha_sweep_a040_s42_fp32_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:10:58.868Z\", \"updated_at\": \"2026-05-21T01:42:50.693Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.40 --output_dir results/alpha_sweep/a040_s42_fp32\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"408486\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a040_s42_fp32_v2.log\", \"submitted_at\": \"2026-05-21T00:38:06.242Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"hypothesis\": \"Transition region gap fill: α=0.40 s42 fp32 填补 α=0.30 (0/8) 与 α=0.45 (0/8 T=10, 5/8 T=20) 之间的空白。J4 指出 α_c CI=[0.43,0.56] 过宽需更密采样。α=0.40 是 blind zone 上界测试——0/8 则 blind zone 延伸至 0.40，>0/8 则 α_c 进一步左移。\", \"parent\": \"alpha_sweep_a025_s42_fp32\", \"conclusion\": \"success\", \"checkpoint_path\": \"results/alpha_sweep/a040_s42_fp32/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a040_s42_fp32_v2.log\", \"completed_at\": \"2026-05-19T18:26:40.606Z\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K4_3sigma\": \"0/8\", \"K3_3sigma\": \"1/8\", \"threshold_onset_3sigma\": \"0/8\", \"naive_xcorr\": \"4/8\", \"diff_xcorr\": \"0/8\", \"drift_token_entropy\": \"-19.13%\", \"drift_ece\": \"+736.90%\", \"drift_distinct1\": \"-35.48%\", \"drift_distinct2\": \"-48.01%\", \"drift_distinct3\": \"-48.42%\", \"drift_mauve\": \"-23.04%\", \"drift_perplexity\": \"+5.36%\", \"D111_direction_check\": \"applied: naive 8/8→4/8, diff 3/8→0/8, K3 6/8→1/8, K4 1/8→0/8\", \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 0, \"diff_xcorr_fdr_reverse_sig\": 0, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0}}, \"interv_react_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:57:59.843Z\", \"updated_at\": \"2026-05-21T00:36:51.468Z\", \"spec\": {\"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"intervention_mode\": \"reactive\", \"intervention_metric\": \"distinct_1\", \"intervention_threshold\": 0.1, \"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --synthetic_ratio 1.0 --intervention_mode reactive --num_generations 10 --output_dir results/intervention/reactive_d1_s43_fp32\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"checkpoint_source\": \"interv_react_s42_fp32\", \"eval_data\": \"data/wikitext103_5k\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s43_fp32\", \"log_path\": \"~/runs/distrib_canary_collapse/interv_react_s43.log\"}, \"hypothesis\": \"Intervention reactive multi-seed s43: Pythia-410M WikiText α=1.0, distinct_1 >10% drop trigger, switch to α=0.0. Validates s42 result (trigger Gen 2, recovery Gen 4) is reproducible across seeds.\", \"reproduce\": {\"finished_at\": \"2026-05-21T00:32:27.872Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-21T00:32:33.993404+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"trigger_gen\": 2, \"trigger_distinct1_drop_pct\": -15.83, \"recovery_complete_by_gen\": 3, \"gen2_ppl\": 158.22, \"final_ppl\": 21.39, \"final_distinct_1\": 0.0834, \"converges_to_alpha0_baseline\": true, \"cross_seed_match\": \"s42 trigger Gen 2 (-15.58%), recovery Gen 4 — s43 consistent\"}, \"completed_at\": \"2026-05-21T00:36:51.468Z\"}, \"scale_69b_a100_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T17:44:02.526Z\", \"updated_at\": \"2026-05-20T23:24:36.312Z\", \"hypothesis\": \"Pythia-6.9B s43 cross-seed 验证：s42 PermG=7/8, K≥3=8/8，当前最强 Wiki 模型仅单 seed，审稿人可攻击可复现性。s43 验证这一结果的跨 seed 稳健性。plan_028。\", \"parent\": \"scale_69b_a100_s42\", \"spec\": {\"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-6.9b\", \"seed\": 43, \"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-6.9b --seed 43 --synthetic_ratio 1.0 --gradient_checkpointing --num_generations 10 --output_dir results/scale_check/pythia69b_wiki_a100_s43_fp32\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"checkpoint_source\": \"scale_69b_a100_s42\", \"eval_data\": \"data/wikitext103_5k\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T23:21:54.015Z\"}, \"failure_reason\": \"CUDA OOM: CUDA out of memory. Tried to allocate 256.00 MiB. GPU 0 has a total capacity of 94.97 GiB of which 247.88 MiB is free. Including non-PyTorch memory, this process has 94.72 GiB memory in use. Of the allocated memory 93.81 GiB is allocated by PyTorch, \", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-20T23:21:57.340Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-20T23:22:02.669610+00:00\"}]}, \"notes\": \"失败原因: CUDA OOM — 命令缺少 --bf16 --batch_size 4（parent s42 有这些参数），6.9B fp32 需 ~112GB+ 远超 98GB 显存 | 已有成果: 无（启动即 OOM） | 建议: 用 bf16 重提交，命令对齐 parent s42\"}, \"padding_robustness_a100_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T09:54:17.535Z\", \"updated_at\": \"2026-05-20T21:57:11.729Z\", \"hypothesis\": \"D093 padding_side='left' 修复后重跑 α=1.0 s42 fp32，对比修复前 mvp_v4_rep42 结果，验证 right-padding bug 对 collapse 轨迹和 lead-lag 信号的影响程度。预期：相对趋势不变，绝对数值可能有小幅差异\", \"spec\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --output_dir results/padding_robustness/a100_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"122877\", \"log_path\": \"~/runs/distrib_canary_collapse/padding_robustness_a100_s42_fp32.log\", \"submitted_at\": \"2026-05-19T10:04:16.220Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"wall_clock_seconds\": 16952.1, \"gpu_hours\": 4.71}, \"reproduce\": {\"finished_at\": \"2026-05-19T14:17:27.871Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:17:33.010198+00:00\"}]}, \"metrics\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"K_ge_3_3sigma\": \"6/8\", \"K_ge_4_3sigma\": \"0/8\", \"threshold_onset_3sigma\": \"0/8\", \"naive_xcorr\": \"6/8\", \"diff_xcorr\": \"6/8\", \"D105_3sigma\": \"true 3sigma (std of full series)\", \"D111_direction\": \"peak_lag < 0 (C009 corrected)\", \"analysis_script\": \"run_5method_analysis_d102.py\", \"n_perm\": 5000, \"D120_recomputed\": \"2026-05-20\", \"D102_8pair\": \"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\", \"failing_pairs\": \"token_entropy&lt;mauve (0/5), ece&lt;mauve (0/5)\", \"vs_wiki_baseline\": \"K3=6/8 matches generalize_pythia410m_wiki_a100_s42 (6/8). Both fail mauve pairs. Padding side has no detectable effect on lead-lag.\", \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 2}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/padding_robustness/a100_s42_fp32/gen_10\", \"log_path\": \"~/runs/distrib_canary_collapse/padding_robustness_a100_s42_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T14:46:48.338Z\", \"note\": \"D111 direction-checked: naive 6/8→0/8, diff 6/8→0/8 (ALL lags negative), K≥3 6/8→6/8 (unchanged), K≥4 6/8→0/8. Forward evidence from threshold+permG+TY only.\"}, \"c4_a075_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:14:59.039Z\", \"updated_at\": \"2026-05-20T21:57:08.035Z\", \"hypothesis\": \"C4 α=0.75 cross-seed validation: s42 showed PermG=8/8, K≥3=6/8 (fp32, detection regime). s43 tests seed robustness. If PermG≥6/8 → C4 detection regime is seed-robust at α=0.75; combined with c4_a050_s43 → C4 dose-response has multi-seed coverage at both onset and detection α.\", \"parent\": \"c4_a075_s42_fp32\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/c4_a075_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"484093\", \"log_path\": \"~/runs/distrib_canary_collapse/c4_a075_s43_fp32.log\", \"submitted_at\": \"2026-05-20T00:15:54.585Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"wall_clock_seconds\": 14962.4, \"gpu_hours\": 4.16}, \"checkpoint_path\": \"results/alpha_sweep/c4_a075_s43_fp32/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/c4_a075_s43_fp32.log\", \"metrics\": {\"PermG_fwd\": \"8/8\", \"PermG_rev\": \"0/8\", \"K_ge_3_3sigma\": \"8/8\", \"K_ge_4_3sigma\": \"1/8\", \"threshold_onset_3sigma\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"8/8\", \"drift_token_entropy\": -34.12, \"drift_ece\": 2781.6, \"drift_perplexity\": 2149.2, \"drift_distinct_1\": -12.6, \"drift_distinct_2\": -16.2, \"drift_distinct_3\": -15.7, \"drift_mauve\": -52.8, \"drift_effective_rank\": 111, \"gen0_token_entropy\": 3.1094, \"D111_direction_check\": \"applied: naive_xcorr peak_lag<0, diff_xcorr peak_lag<0\", \"D102_8pair\": \"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\", \"D105_3sigma\": \"true 3sigma (std of full series)\", \"analysis_script\": \"run_5method_analysis_d102.py + D105 inline recompute\", \"n_perm\": 5000, \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 8, \"robust_pairs_K4\": 3}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T04:25:16.959Z\"}, \"c4_a075_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:37:54.299Z\", \"updated_at\": \"2026-05-20T21:57:03.687Z\", \"hypothesis\": \"Claim 2 cross-domain validation: canary lead-lag generalizes from WikiText to C4 at α=0.75 regime boundary, expecting PermG_fwd signal comparable to WikiText parent (6/8)\", \"parent\": \"alpha_sweep_a075_s42_fp32\", \"spec\": {\"data_path\": \"data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}, \"server\": \"westd-17855\", \"gpu\": \"cuda:2\", \"pid\": \"151771\", \"log_path\": \"~/runs/distrib_canary_collapse/c4_a075_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/c4_a075_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-19T18:20:08.048Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:20:11.695721+00:00\"}]}, \"checkpoint_path\": \"results/alpha_sweep/c4_a075_s42_fp32/gen_10/checkpoint\", \"metrics\": {\"PermG_fwd\": \"8/8\", \"PermG_rev\": \"0/8\", \"K_ge_3_3sigma\": \"8/8\", \"K_ge_4_3sigma\": \"0/8\", \"threshold_onset_3sigma\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"8/8\", \"drift_token_entropy\": -35.32, \"drift_ece\": 2809.23, \"drift_perplexity\": 2152.6, \"drift_distinct_1\": -12.4, \"drift_distinct_2\": -15.41, \"drift_distinct_3\": -14.59, \"drift_mauve\": -42.26, \"drift_effective_rank\": 110.31, \"gen0_token_entropy\": 3.1094, \"D105_3sigma\": \"true 3sigma (std of full series)\", \"D111_direction\": \"peak_lag < 0 (C009 corrected)\", \"analysis_script\": \"run_5method_analysis_d102.py\", \"n_perm\": 5000, \"D120_recomputed\": \"2026-05-20\", \"D102_8pair\": \"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\", \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 8, \"robust_pairs_K4\": 3}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T18:26:33.496Z\"}, \"c4_a050_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T00:11:58.679Z\", \"updated_at\": \"2026-05-20T21:56:59.916Z\", \"hypothesis\": \"C4 α=0.50 cross-seed validation: s42 showed PermG=8/8, K≥3=6/8 (fp32). s43 tests seed robustness of C4 onset detection. If PermG≥6/8 → C4 onset at α=0.50 is seed-robust; if PermG drops significantly → C4 onset is seed-sensitive, weakening cross-domain claim.\", \"parent\": \"\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/c4_a050_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"483063\", \"log_path\": \"~/runs/distrib_canary_collapse/c4_a050_s43_fp32.log\", \"submitted_at\": \"2026-05-20T00:13:23.125Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"wall_clock_seconds\": 15115.5, \"gpu_hours\": 4.2}, \"checkpoint_path\": \"results/alpha_sweep/c4_a050_s43_fp32/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/c4_a050_s43_fp32.log\", \"metrics\": {\"PermG_fwd\": \"8/8\", \"PermG_rev\": \"1/8\", \"K_ge_3_3sigma\": \"3/8\", \"K_ge_4_3sigma\": \"0/8\", \"threshold_onset_3sigma\": \"0/8\", \"naive_xcorr\": \"4/8\", \"diff_xcorr\": \"6/8\", \"drift_token_entropy\": -47.98, \"drift_ece\": 3102.5, \"drift_perplexity\": 2957.1, \"drift_distinct_1\": -9.9, \"drift_distinct_2\": -16, \"drift_distinct_3\": -17.5, \"drift_mauve\": -47.5, \"drift_effective_rank\": 113.4, \"gen0_token_entropy\": 3.1094, \"D111_direction_check\": \"applied: naive_xcorr peak_lag<0, diff_xcorr peak_lag<0\", \"D102_8pair\": \"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\", \"D105_3sigma\": \"true 3sigma (std of full series)\", \"analysis_script\": \"run_5method_analysis_d102.py + D105 inline recompute\", \"n_perm\": 5000, \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 1, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 0}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T04:25:18.624Z\"}, \"c4_a050_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:37:57.965Z\", \"updated_at\": \"2026-05-20T21:56:55.722Z\", \"hypothesis\": \"bf16 precision destroys PermG causal signal at C4 α=0.50; fp32 rerun should recover non-zero PermG fwd if the 0/8 was a precision artifact rather than a true blind zone\", \"parent\": \"alpha_sweep_c4_a050_s42\", \"spec\": {\"data_path\": \"data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}, \"server\": \"westd-17855\", \"gpu\": \"cuda:5\", \"pid\": \"152615\", \"log_path\": \"~/runs/distrib_canary_collapse/c4_a050_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/c4_a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-19T18:20:17.068Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:20:20.777203+00:00\"}]}, \"metrics\": {\"PermG_fwd\": \"8/8\", \"PermG_rev\": \"7/8\", \"K_ge_3_3sigma\": \"4/8\", \"K_ge_4_3sigma\": \"0/8\", \"threshold_onset_3sigma\": \"0/8\", \"naive_xcorr\": \"4/8\", \"diff_xcorr\": \"8/8\", \"drift_token_entropy_pct\": -47.99, \"drift_ece_pct\": 3103.74, \"drift_perplexity_pct\": 2931.59, \"drift_d1_pct\": -9.78, \"drift_d2_pct\": -15.72, \"drift_d3_pct\": -17.75, \"drift_mauve_pct\": -54.25, \"gen0_token_entropy\": 3.109, \"D105_3sigma\": \"true 3sigma (std of full series)\", \"D111_direction\": \"peak_lag < 0 (C009 corrected)\", \"analysis_script\": \"run_5method_analysis_d102.py\", \"n_perm\": 5000, \"D120_recomputed\": \"2026-05-20\", \"D102_8pair\": \"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\", \"note\": \"PermG bidirectional (fwd=8/8 rev=7/8) — unique to C4 cross-domain at α=0.50\", \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 7, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 5, \"robust_pairs_K4\": 1}, \"checkpoint_path\": \"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/c4_a050_s42_fp32\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T18:26:00.846Z\"}, \"c4_a025_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T18:30:39.613Z\", \"updated_at\": \"2026-05-20T21:56:51.429Z\", \"hypothesis\": \"C4 跨域 onset 比较：WikiText onset ∈ (0.40, 0.50) 全部 PermG=0/8。C4 在 α=0.50 已是 8/8（fp32）。如果 C4 α=0.25 PermG>0 → C4 onset 显著低于 WikiText，跨域灵敏度差异是论文级发现。Claim 2 cross-domain。\", \"parent\": \"c4_a050_s42_fp32\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/c4_a025_s42_fp32\", \"server\": \"westd-17855\", \"data_path\": \"data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"gpu\": [\"cuda:5\"], \"pid\": \"178625\", \"checkpoint_source\": \"EleutherAI/pythia-410m (training from scratch)\", \"eval_data\": \"N/A (training experiment)\", \"checkpoint_path\": \"results/alpha_sweep/c4_a025_s42_fp32/gen_10/checkpoint\", \"log_path\": \"results/alpha_sweep/c4_a025_s42_fp32/analysis_results.json\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T22:14:56.027Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T22:14:59.957789+00:00\"}]}, \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_3_3sigma\": \"0/8\", \"K_ge_4_3sigma\": \"0/8\", \"threshold_onset_3sigma\": \"2/8\", \"naive_xcorr\": \"4/8\", \"diff_xcorr\": \"8/8\", \"drift_token_entropy\": \"-53.01%\", \"drift_ece\": \"+3242.80%\", \"drift_perplexity\": \"+3617.05%\", \"drift_d1\": \"-4.10%\", \"drift_d2\": \"-8.78%\", \"drift_d3\": \"-11.95%\", \"drift_mauve\": \"-52.08%\", \"drift_effective_rank\": \"+111.90%\", \"D105_3sigma\": \"true 3sigma (std of full series)\", \"D111_direction\": \"peak_lag < 0 (C009 corrected)\", \"analysis_script\": \"run_5method_analysis_d102.py\", \"n_perm\": 5000, \"D120_recomputed\": \"2026-05-20\", \"D102_8pair\": \"canary=[token_entropy,ece] x downstream=[d1,d2,d3,mauve]\", \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 2, \"robust_pairs_K4\": 0}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T22:20:21.543Z\"}, \"alpha_sweep_a075_s43\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-16T06:16:27.880Z\", \"updated_at\": \"2026-05-20T21:56:47.919Z\", \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s43\\\"\", \"finished_at\": \"2026-05-16T14:17:44.618Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-16T09:52:44.075Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T09:52:46.251192+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T14:17:47.470687+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: OSError [Errno 28] No space left on device — save_to_disk(synthetic_data) at line 231 | 已有成果: 跑了 ~3h，部分 generation 可能已完成 | 建议: 清磁盘后重跑\"}}, \"notes\": \"第三次重启 (17:57 UTC)：第二次运行 (09:56-~17:00, Gen 0-7) 被另一 Agent 会话 kill+rm-rf+重启，~7h GPU 浪费。原因：并发 Agent 会话判断需重跑。当前为第三次运行，从 Gen 0 开始，预计 ~10-12h 完成。\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"184026\", \"log_path\": \"/tmp/a075_s43.log\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"pythia-410m\", \"seed\": 43, \"checkpoint_path\": \"results/alpha_sweep/a075_s43/gen_10/checkpoint\"}, \"conclusion\": \"success\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.234, \"ece\": 0.0108, \"perplexity\": 26.95, \"distinct_1\": 0.0983, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.61, \"mauve\": 0.0335}, \"gen10\": {\"token_entropy\": 2.349, \"ece\": 0.204, \"perplexity\": 76.08, \"distinct_1\": 0.0666, \"distinct_2\": 0.2984, \"distinct_3\": 0.4838, \"effective_rank\": 79.4, \"mauve\": 0.0289}, \"drift_pct\": {\"token_entropy\": -27.38, \"ece\": 1791.96, \"perplexity\": 182.3, \"distinct_1\": -32.3, \"distinct_2\": -41.86, \"distinct_3\": -39.96, \"effective_rank\": 70.36, \"mauve\": -13.63}, \"PermG_fwd\": \"5/8\", \"PermG_rev\": \"0/8\", \"naive_xcorr_fwd_D111\": \"2/8\", \"diff_xcorr_fwd_D111\": \"6/8\", \"threshold_onset_3sigma\": \"8/8\", \"K3_3sigma\": \"7/8\", \"K4_3sigma\": \"5/8\", \"perm_granger_fdr_forward_sig\": 5, \"D105_D111_compliant\": true, \"M035_direction\": \"peak_lag < 0\", \"precision\": \"fp32\", \"n_perm\": 5000, \"pair_config\": \"canary=[token_entropy,ece] x downstream=[distinct_1,distinct_2,distinct_3,mauve]\", \"ty_forward_sig\": 2, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 2, \"robust_pairs_K4\": 0}, \"hypothesis\": \"α=0.75 multi-seed 复现: Permutation Granger 因果信号（≥4/8 FDR sig forward, 0/8 reverse）在不同随机种子下稳定存在，确认 transitional regime 非单种子偶然\", \"parent\": \"alpha_sweep_a075_s42\"}, \"alpha_sweep_a035_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:37:56.167Z\", \"updated_at\": \"2026-05-20T21:56:44.969Z\", \"hypothesis\": \"D098 onset boundary 精化：α=0.35 预期仍在 blind zone。如果 PermG=0/8 → onset ≥ 0.35；如果 PermG>0 → onset 在 [0.30, 0.35]\", \"parent\": \"alpha_sweep_a030_s42_fp32\", \"spec\": {\"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}, \"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"pid\": \"151917\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a035_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.35 --output_dir results/alpha_sweep/a035_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-19T18:59:52.648Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:59:56.803817+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/alpha_sweep/a035_s42_fp32\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"threshold_onset\": \"8/8\", \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"4/8\", \"detection_rate_k4\": 0.25, \"drift_pct\": {\"token_entropy\": -18.53, \"ece\": 651.26, \"perplexity\": -1.27, \"distinct_1\": -36.38, \"distinct_2\": -49.45, \"distinct_3\": -50.04, \"effective_rank\": 22.21, \"mauve\": -17.78}, \"gen0\": {\"token_entropy\": 3.234, \"ece\": 0.0108, \"perplexity\": 26.95, \"distinct_1\": 0.098, \"distinct_2\": 0.514, \"distinct_3\": 0.813, \"effective_rank\": 46.61, \"mauve\": 0.0311}, \"gen10\": {\"token_entropy\": 2.635, \"ece\": 0.0812, \"perplexity\": 26.61, \"distinct_1\": 0.0623, \"distinct_2\": 0.26, \"distinct_3\": 0.406, \"effective_rank\": 56.96, \"mauve\": 0.0256}, \"consensus_detail\": {\"K4_pairs\": [\"token_entropy->distinct_1\", \"ece->distinct_1\"], \"K3_pairs\": [\"token_entropy->distinct_2\", \"token_entropy->mauve\", \"ece->distinct_2\", \"ece->mauve\"], \"K2_pairs\": [\"token_entropy->distinct_3\", \"ece->distinct_3\"]}, \"n_generations\": 11, \"precision\": \"fp32\", \"onset_conclusion\": \"PermG=0/8 confirms onset >= 0.35; combined with a040(0/8) and a050(6/8), onset in [0.40, 0.50]\", \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 4, \"diff_xcorr_fdr_reverse_sig\": 4, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}, \"completed_at\": \"2026-05-19T19:05:53.445Z\", \"note\": \"D111 direction-checked: naive 8/8→8/8 (unchanged, all lag>0), diff 4/8→0/8 (all sig pairs lag<0), K≥3 6/8→4/8, K≥4 2/8→0/8\"}, \"alpha_sweep_a060_s42_fp32_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T07:24:33.768Z\", \"updated_at\": \"2026-05-20T21:56:42.129Z\", \"hypothesis\": \"α=0.60 sits in the transition zone between onset [0.45,0.50] and detection ≥0.75; expect intermediate PermG signal strength due to dose-response gradient in synthetic contamination level\", \"parent\": \"alpha_sweep_a060_s42_fp32_v3\", \"spec\": {\"command\": \"python run_iterative_training.py --model EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.60 --num_generations 10 --steps_per_gen 5000 --seed 42 --output_dir results/alpha_sweep/a060_s42_fp32_v4\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"295535\", \"log_path\": \"results/alpha_sweep/a060_s42_fp32_v4/analysis/5method_leadlag.json\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"note\": \"D125: standard params rerun replacing v3_d080 variant. Identical params to a050_s42_fp32 except alpha=0.60.\", \"checkpoint_path\": \"results/alpha_sweep/a060_s42_fp32_v4\"}, \"server\": \"westd-17855\", \"gpu\": \"cuda:5\", \"account\": \"root\", \"pid\": \"295535\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a060_s42_fp32_v4.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s42_fp32_v4 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-20T11:43:49.235Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T11:44:05.236301+00:00\"}]}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T11:52:47.473Z\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fdr\": \"6/8\", \"naive_xcorr_fwd_D111\": \"2/8\", \"threshold_onset_3sigma\": \"0/8\", \"K_ge_3\": \"0/8\", \"K_ge_4\": \"0/8\", \"robust_pairs\": 0, \"n_gens\": 11, \"n_perm\": 5000, \"threshold_criterion\": \"true_3sigma_d105\", \"D105_3sigma\": \"true 3sigma (std of full series)\", \"D111_direction\": \"peak_lag < 0 (C009 corrected)\", \"D105_D111_compliant\": true, \"precision\": \"fp32\", \"pair_config\": \"canary=[token_entropy,ece] x downstream=[distinct_1,distinct_2,distinct_3,mauve]\", \"drift_token_entropy_pct\": -28.54, \"drift_ece_pct\": 1560.77, \"drift_perplexity_pct\": 92.33, \"drift_distinct1_pct\": -30.51, \"drift_distinct2_pct\": -38.67, \"drift_distinct3_pct\": -36.27, \"drift_mauve_pct\": -16.73, \"drift_effrank_pct\": 57.25, \"gen0_token_entropy\": 3.2342, \"gen0_ece\": 0.0108, \"gen0_perplexity\": 26.949, \"gen10_token_entropy\": 2.3111, \"gen10_ece\": 0.1794, \"gen10_perplexity\": 51.832, \"note\": \"Non-monotonic PermG dip: 0/8 despite drift comparable to α=0.75 (6/8). ece→distinct_1 raw p=0.034, ece→distinct_2 raw p=0.047 — marginal but FDR-corrected to non-significant. Replaces v3 (D125 excluded).\", \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"t20_a075_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:34:23.102Z\", \"updated_at\": \"2026-05-20T21:56:39.616Z\", \"hypothesis\": \"D126 Track 1: T=20 extended generation at α=0.75 detection regime。T=11 下 PermG=6/8，T=20 提供 2× 数据点提升 Granger 统计功效。predict→verify 关键数据：理论预测 α≥0.75 在 detection regime 应展示最强最稳定的 PermG 信号，T=20 验证这一预测。当前 T=20 覆盖 α=0.50/0.60/1.00，α=0.75 是缺失的 detection boundary 数据点。\", \"parent\": \"alpha_sweep_a075_s42_fp32\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 0.75 --output_dir results/t20/a075_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"322146\", \"log_path\": \"~/runs/distrib_canary_collapse/t20_a075_s42_fp32.log\", \"submitted_at\": \"2026-05-20T10:18:58.839Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"num_generations\": 20, \"checkpoint_source\": \"N/A (training from pretrained base)\", \"eval_data\": \"N/A (training experiment)\", \"wall_clock_seconds\": 30675.5, \"gpu_hours\": 8.52}, \"reproduce\": {\"finished_at\": \"2026-05-20T18:26:57.309Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:27:05.244141+00:00\"}]}, \"metrics\": {\"PermG_fwd_fdr\": \"6/8\", \"PermG_rev_fdr\": \"0/8\", \"DiffXCorr_fdr_fwd\": \"7/8\", \"Threshold_3sigma\": \"6/8\", \"NaiveXCorr_fwd\": \"4/8\", \"verdict\": \"PASS\", \"predicted_permg\": 7, \"observed_permg\": 6, \"predicted_ci\": [6, 8], \"note\": \"T-invariance confirmed: T=10 6/8 → T=20 6/8. Mauve non-detection structural (p>0.4). Strong directionality fwd=6/8 rev=0/8.\", \"ty_forward_sig\": 5, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 6, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 6}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/t20/a075_s42_fp32/gen_20\", \"completed_at\": \"2026-05-20T18:50:14.292Z\"}, \"t20_a060_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:16:22.779Z\", \"updated_at\": \"2026-05-20T21:56:34.967Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 0.60 --output_dir results/t20/a060_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"311201\", \"log_path\": \"~/runs/distrib_canary_collapse/t20_a060_s42_fp32.log\", \"submitted_at\": \"2026-05-20T09:16:58.221Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 32971.2, \"gpu_hours\": 9.16}, \"hypothesis\": \"T=20 extended generation at α=0.60: Tests whether the non-monotonic PermG dip at α=0.60 (observed in T=11) persists with longer time series. T=20 provides 2× more data points for Granger causality, potentially resolving whether the dip is real signal attenuation or statistical power issue.\", \"parent\": \"alpha_sweep_a060_s42_fp32_v4\", \"server\": \"westd-17855\", \"gpu\": \"cuda:4\", \"account\": \"root\", \"pid\": \"311201\", \"log_path\": \"~/runs/distrib_canary_collapse/t20_a060_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 0.60 --output_dir results/t20/a060_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-20T17:38:49.066Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T17:38:57.392271+00:00\"}]}, \"metrics\": {\"PermG_fwd_fdr\": \"0/8\", \"PermG_rev_fdr\": \"0/8\", \"DiffXCorr_fdr_fwd\": \"6/8\", \"DiffXCorr_fdr_rev\": \"6/8\", \"Threshold_3sigma\": \"6/8\", \"verdict\": \"PASS\", \"predicted_permg\": 0, \"observed_permg\": 0, \"note\": \"Sync-dip structural: T=10→T=20 PermG still 0/8. TY direction fix: fwd 3→5, rev 5→3, K≥3 3→4. te→d1 PermG raw p=0.048, FDR p=0.064 near-miss.\", \"ty_forward_sig\": 5, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 6, \"robust_pairs_K3\": 4, \"robust_pairs_K4\": 0}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/t20/a060_s42_fp32/gen_20\", \"completed_at\": \"2026-05-20T18:26:29.470Z\"}, \"smollm3_3b_wiki_a100_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-19T19:10:05.988Z\", \"updated_at\": \"2026-05-20T21:56:28.406Z\", \"hypothesis\": \"SmolLM3-3B 在 iterative self-distillation 下会表现出与 SmolLM2 类似的 distributional collapse 模式（熵递减、diversity 下降），验证 collapse 现象的模型规模泛化性。\", \"parent\": \"smollm3_3b_wiki_a100_s42_v3\", \"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-19T19:10:25.279Z\", \"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name /root/autodl-tmp/models/SmolLM3-3B-Base --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/smollm3_3b_wiki_a100_s43\\\"\", \"finished_at\": \"2026-05-20T18:37:40.616Z\", \"training_hours\": 23.45}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"completed_at\": \"2026-05-19T23:23:16.597Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T23:23:22.164642+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-20T18:37:46.019228+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"note\": \"19828 磁盘满失败后转 17855:cuda:3 重跑。17855 上 EXIT_CODE=0，11代全部完成。PPL 13→449，强 collapse。等待 5-method analysis。\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=3 python -u iterative_train.py --model_name /root/autodl-tmp/models/SmolLM3-3B-Base --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/smollm3_3b_wiki_a100_s43_17855 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"pid\": \"211078\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"SmolLM3-3B-Base\", \"seed\": 43, \"precision\": \"fp32 (D079/D080)\", \"checkpoint_source\": \"/root/autodl-tmp/models/SmolLM3-3B-Base/ (training from scratch)\", \"eval_data\": \"N/A (training experiment)\"}, \"pid\": 211078, \"conclusion\": \"success\", \"checkpoint_path\": \"results/generalize/smollm3_3b_wiki_a100_s43_17855/gen_10\", \"log_path\": \"~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s43_fp32.log\", \"metrics\": {\"PermG_fwd_fdr\": \"3/8\", \"PermG_rev_fdr\": \"0/8\", \"DiffXCorr_fdr\": \"8/8\", \"note\": \"PermG 3/8 cross-seed replication (s42=3/8, s43=3/8). All via ECE channel. token_entropy U-shape confirmed both seeds. K≥3 diff driven by TY d_max instability (s43 I(0) vs s42 I(2)).\", \"ty_forward_sig\": 6, \"perm_granger_fdr_forward_sig\": 3, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 4}}, \"scale_69b_a100_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T18:03:25.659Z\", \"updated_at\": \"2026-05-20T21:56:23.512Z\", \"hypothesis\": \"Pythia-6.9B s43 cross-seed 验证：s42 PermG=7/8, K≥3=8/8（bf16+gradient_checkpointing），当前最强 Wiki 模型仅单 seed，审稿人可攻击可复现性。s43 bf16 匹配 s42 精度，验证跨 seed 稳健性。plan_028。\", \"parent\": \"scale_69b_a100_s42\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-6.9b --seed 43 --bf16 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --gradient_checkpointing --output_dir results/scale_check/pythia69b_wiki_a100_s43\", \"server\": \"westd-17855\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-6.9b\", \"seed\": 43, \"gpu_model\": \"RTX PRO 6000 Blackwell 98GB\", \"precision\": \"bf16\", \"gradient_checkpointing\": true, \"gpu\": [\"cuda:2\"], \"pid\": \"177515\", \"checkpoint_source\": \"EleutherAI/pythia-6.9b (training from scratch)\", \"eval_data\": \"N/A (training experiment)\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T07:53:59.912Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T07:54:04.734036+00:00\"}]}, \"metrics\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fdr\": \"6/8\", \"naive_xcorr\": \"6/8\", \"threshold_onset\": \"0/8\", \"d120_canonical\": true, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia69b_wiki_a100_s43/gen_10/checkpoint/\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia69b_wiki_a100_s43/gen_10/checkpoint/\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_69b_a100_s43.log\", \"completed_at\": \"2026-05-20T07:59:36.340Z\", \"notes\": \"Cross-seed validation Pythia-6.9B bf16: s43 PermG=6/8 (vs s42 7/8), K≥3=6/8 (matches s42). PermG_rev=0/8 confirms directionality. D120 canonical. Both seeds confirm canary detection at 6.9B scale.\"}, \"scale_69b_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T18:03:54.429Z\", \"updated_at\": \"2026-05-20T21:56:21.231Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-6.9b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --gradient_checkpointing --bf16 --batch_size 4 --output_dir results/scale_check/pythia69b_wiki_a100_s42\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"29028\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_69b_a100_s42.log\", \"submitted_at\": \"2026-05-18T18:03:54.276Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"EleutherAI/pythia-6.9b\", \"seed\": 42, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/scale_check/pythia69b_wiki_a100_s42/gen_10/checkpoint/\", \"wall_clock_seconds\": 50054.8, \"gpu_hours\": 13.9}, \"hypothesis\": \"Pythia-6.9B α=1.0 s42: 17× scale-up verification of canary lead-lag phenomenon. Tests if entropy-leads-diversity pattern persists at 6.9B scale with gradient_checkpointing + bf16.\", \"reproduce\": {\"finished_at\": \"2026-05-19T07:34:28.190Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T07:34:31.175241+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"PermG_fwd\": \"7/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fdr\": \"6/8\", \"naive_xcorr\": \"5/8\", \"threshold_onset\": \"2/8\", \"d120_canonical\": true, \"note\": \"D120 canonical: K≥3 dropped 8/8→5/8. mauve pairs lost consensus. Core distinct_1/2/3 retained.\"}, \"completed_at\": \"2026-05-19T07:58:09.085Z\"}, \"scale_14b_c4_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:26:29.074Z\", \"updated_at\": \"2026-05-20T21:56:03.658Z\", \"hypothesis\": \"D112 scale×domain cross: Pythia-1.4B × C4 × α=1.0 分离域效应 vs 规模效应。C4 在 410M 下 collapse 机制与 WikiText 不同（ppl-dominated, d1 仅 -4%）。1.4B 下如果 C4 仍 ppl-dominated → 域效应；如果转为 diversity-dominated → 规模效应。Claim 1 cross-domain scale validation.\", \"parent\": \"generalize_pythia1b_c4_a100_s42_v2\", \"plan_id\": \"plan_036\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=5 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/scale/14b_c4_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": 201974, \"data_path\": \"data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"precision\": \"fp32\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T06:59:34.137Z\"}, \"failure_reason\": \"process dead 5× with no sentinel/W&B — auto-resolved as failed\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T06:59:36.134Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-20T06:59:41.051846+00:00\"}]}, \"metrics\": {\"PermG_fwd\": \"8/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fdr\": \"8/8\", \"naive_xcorr\": \"8/8\", \"threshold_onset\": \"0/8\", \"note\": \"D120 TY-fixed analysis. TY=0 due to T=11 low power (dmax=1, df_resid insufficient). Threshold=0 (signal too strong, all gens exceed threshold, no onset detectable).\", \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 8, \"robust_pairs_K4\": 2}}, \"scale_14b_a050_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T05:49:21.885Z\", \"updated_at\": \"2026-05-20T21:56:01.317Z\", \"hypothesis\": \"Pythia-1.4B at onset boundary α=0.50: tests if canary lead-lag persists at 1.4B scale in the boundary regime. 410M shows PermG=6/8 at α=0.50. If 1.4B also detects → onset boundary is scale-independent; if not → onset shifts with model size. Claim 1 cross-scale dose-response.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/scale/14b_a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"538774\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_a050_s42_fp32.log\", \"submitted_at\": \"2026-05-20T05:49:48.469Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"precision\": \"fp32\", \"wall_clock_seconds\": 38384.8, \"gpu_hours\": 10.66}, \"reproduce\": {\"finished_at\": \"2026-05-20T16:19:32.507Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T16:19:37.780889+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"results/scale/14b_a050_s42_fp32/gen_10\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_a050_s42_fp32.log\", \"completed_at\": \"2026-05-20T16:29:33.239Z\", \"metrics\": {\"PermG_fwd_fdr\": \"3/8\", \"PermG_rev_fdr\": \"0/8\", \"DiffXCorr_fdr_dir\": \"3/8\", \"NaiveXCorr_dir\": \"3/8\", \"Threshold_3sigma\": \"2/8\", \"ppl_drift_pct\": 78.7, \"token_entropy_drift_pct\": -25.6, \"note\": \"CORRECTED 2026-05-20: PermG 0/8→3/8. Original analysis used non-canonical pairs (metrics→perplexity). Canonical source: scale_check/pythia14b_a050_s42/ with 8 standard pairs {te,ece}×{d1,d2,d3,mauve}. 3/8 all via ece channel (ece→d1/d2/d3 fdr_p≈0.044).\", \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"qwen35_08b_wiki_a100_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-19T17:12:33.701Z\", \"updated_at\": \"2026-05-20T21:55:57.518Z\", \"hypothesis\": \"Qwen3.5-0.8B s43 cross-seed 验证：s42 PermG=8/8, K≥3=8/8，验证这一极强信号的跨 seed 可复现性。唯一非 Pythia/GPT/OPT 家族，审稿人重点关注。\", \"parent\": \"qwen35_08b_wiki_a100_s42_v2\", \"reproduce\": {\"finished_at\": \"2026-05-20T07:59:07.936Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && rm -rf results/generalize/qwen35_08b_wiki_a100_s43_fp32/gen_10 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/Qwen3.5-0.8B-Base/ --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/qwen35_08b_wiki_a100_s43_fp32 --start_gen 10 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\"}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"completed_at\": \"2026-05-20T06:08:17.013Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-20T06:08:26.704616+00:00\"}, {\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T07:59:13.226863+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"EXIT_CODE=124 timeout. Parent s42 took 12.8h. Diagnosing: fix_worker_id: worker_diagnose_qwen35_08b_wiki_a100_s43_fp32_20260520T061050\"}}, \"notes\": \"EXIT_CODE=124 timeout. Parent s42 took 12.8h. Diagnosing: fix_worker_id: worker_diagnose_qwen35_08b_wiki_a100_s43_fp32_20260520T061050\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name /root/autodl-tmp/models/Qwen3.5-0.8B-Base/ --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/qwen35_08b_wiki_a100_s43_fp32 --start_gen 10 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:1\"], \"pid\": \"291500\", \"log_path\": \"~/runs/distrib_canary_collapse/qwen35_08b_wiki_a100_s43_fp32.log\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"Qwen/Qwen3.5-0.8B-Base\", \"seed\": 43, \"precision\": \"fp32\", \"checkpoint_source\": \"gen_9 checkpoint (gen_0-9 complete, gen_10 interrupted at 66%)\", \"recovery_from\": \"timeout at gen_10 step 3309/5000\"}, \"server\": \"westd-17855\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"pid\": \"291500\", \"log_path\": \"~/runs/distrib_canary_collapse/qwen35_08b_wiki_a100_s43_fp32.log\", \"conclusion\": \"success\", \"metrics\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fdr\": \"6/8\", \"naive_xcorr\": \"6/8\", \"threshold_onset\": \"8/8\", \"d120_canonical\": true, \"note\": \"6 distinct_* pairs all K=5/5 (perfect). mauve pairs K=1/5 (peak_lag=+1, direction filter excluded). threshold_onset=8/8 strongest of any experiment.\", \"ty_forward_sig\": 6, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 5}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/qwen35_08b_wiki_a100_s43_fp32/gen_10/checkpoint\"}, \"qwen35_08b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T00:28:45.037Z\", \"updated_at\": \"2026-05-20T21:55:54.854Z\", \"hypothesis\": \"D080 fix: Qwen3.5-0.8B fp32 cross-architecture validation. Resubmit with explicit .to(dtype=float32) cast after from_pretrained, because transformers 5.8.1 ignores dtype param for Qwen3.5 (loads bfloat16 from safetensors regardless).\", \"parent\": \"qwen35_08b_wiki_a100_s42\", \"server\": \"westd-17855\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"spec\": {\"command\": \"iterative_train.py --model_name Qwen3.5-0.8B-Base --seed 42 --synthetic_ratio 1.0\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:1\"], \"pid\": \"74455\", \"log_path\": \"~/runs/distrib_canary_collapse/qwen35_08b_wiki_a100_s42_v2.log\", \"submitted_at\": \"2026-05-19T00:29:15.328Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"Qwen3.5-0.8B-Base\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/Qwen3.5-0.8B-Base/\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 46093.9, \"gpu_hours\": 12.8}, \"reproduce\": {\"finished_at\": \"2026-05-19T13:14:24.757Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T13:14:28.349602+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"PermG_fwd\": \"8/8\", \"PermG_rev\": \"0/8\", \"diff_xcorr_fdr\": \"8/8\", \"naive_xcorr\": \"4/8\", \"threshold_onset\": \"0/8\", \"d120_canonical\": true, \"note\": \"D120 canonical: K≥3 dropped 8/8→6/8. mauve pairs lost consensus. TY=6/8 strong contributor.\", \"ty_forward_sig\": 5, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 7, \"robust_pairs_K4\": 1}, \"checkpoint_path\": \"results/generalize/qwen35_08b_wiki_a100_s42_fp32_v2\", \"log_path\": \"~/runs/distrib_canary_collapse/qwen35_08b_wiki_a100_s42_v2.log\", \"completed_at\": \"2026-05-19T13:17:29.259Z\"}, \"smollm3_3b_wiki_a100_s42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T00:24:12.263Z\", \"updated_at\": \"2026-05-20T21:55:52.999Z\", \"hypothesis\": \"D080 fix: SmolLM3-3B fp32 cross-architecture validation. Resubmit with torch_dtype=float32 to satisfy D079 fp32 requirement.\", \"parent\": \"smollm3_3b_wiki_a100_s42_v2\", \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"spec\": {\"command\": \"bash scripts/run_experiment.sh smollm3_3b_wiki_a100_s42_fp32_v3\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"408261\", \"log_path\": \"~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s42_v3.log\", \"submitted_at\": \"2026-05-19T00:24:32.263Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"SmolLM3-3B-Base\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/models/SmolLM3-3B-Base/\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 67378.6, \"gpu_hours\": 18.72}, \"reproduce\": {\"finished_at\": \"2026-05-19T19:02:21.376Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T19:02:25.372669+00:00\"}]}, \"conclusion\": \"negative\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/smollm3_3b_wiki_a100_s42_fp32_v3\", \"log_path\": \"~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s42_v3.log\", \"metrics\": {\"PermG_fwd\": \"3/8\", \"PermG_rev\": \"0/8\", \"robust_pairs_K4_3sigma\": \"0/8\", \"robust_pairs_K3_3sigma\": \"0/8\", \"robust_pairs_K3_2sigma\": \"6/8\", \"robust_pairs_K4_2sigma\": \"3/8\", \"threshold_onset_3sigma\": \"0/8\", \"threshold_onset_2sigma\": \"8/8\", \"naive_xcorr\": \"4/8\", \"diff_xcorr\": \"6/8\", \"note\": \"D105+D111: FDR per-method, 3sigma, direction-checked. K≥3 corrected 3/8→0/8: 3sigma_recompute_v2 had naive_xcorr direction-blind bug (ECE pairs peak_lag<0 wrongly counted). Authoritative source: 5method_leadlag.json with peak_lag>0 check. PermG_fwd=3/8 (ECE→d1/d2/d3 via diff_xcorr+permG). naive_xcorr corrected 8/8→4/8 (entropy pairs only, ECE pairs all lag<0).\", \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 3, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 3, \"robust_pairs_K4\": 1}, \"completed_at\": \"2026-05-19T19:07:30.862Z\"}, \"alpha_sweep_a045_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T05:49:23.885Z\", \"updated_at\": \"2026-05-20T21:55:47.690Z\", \"hypothesis\": \"Onset boundary cross-seed at α=0.45: s42 shows PermG=0/8 (blind zone). If s43 also PermG=0/8 → onset > 0.45 is seed-robust, strengthening the [0.45, 0.50] onset claim. If s43 PermG>0 → onset is seed-sensitive at the boundary.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.45 --output_dir results/alpha_sweep/a045_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"280215\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a045_s43_fp32.log\", \"submitted_at\": \"2026-05-20T05:49:51.577Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"precision\": \"fp32\", \"checkpoint_path\": \"results/alpha_sweep/a045_s43_fp32/gen_10/checkpoint\", \"wall_clock_seconds\": 15398.0, \"gpu_hours\": 4.28}, \"reproduce\": {\"finished_at\": \"2026-05-20T09:59:09.156Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T09:59:16.340543+00:00\"}]}, \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_3\": \"2/8\", \"K_ge_4\": \"0/8\", \"naive_xcorr\": \"1/8\", \"diff_xcorr\": \"1/8\", \"threshold_onset\": \"8/8\", \"drift_entropy_pct\": -19.61, \"drift_ece_pct\": 800, \"drift_perplexity_pct\": 12.37, \"drift_distinct1_pct\": -34.69, \"drift_distinct2_pct\": -47.24, \"drift_distinct3_pct\": -47.55, \"drift_mauve_pct\": -18.78, \"drift_effrank_pct\": 26.45, \"gen0_token_entropy\": 3.2342, \"gen0_ece\": 0.0108, \"gen0_distinct_1\": 0.0983, \"gen0_perplexity\": 26.95, \"gen0_mauve\": 0.0315, \"gen10_token_entropy\": 2.5999, \"gen10_ece\": 0.0972, \"gen10_distinct_1\": 0.0642, \"gen10_perplexity\": 30.28, \"gen10_mauve\": 0.0256, \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 3, \"diff_xcorr_fdr_reverse_sig\": 3, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T10:06:29.606Z\"}, \"alpha_sweep_a045_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T18:30:38.128Z\", \"updated_at\": \"2026-05-20T21:55:43.321Z\", \"hypothesis\": \"At α=0.45 (between blind α=0.40 and detected α=0.50), PermG fwd will be 0/8 if onset threshold is above 0.45, narrowing the onset boundary to [0.45, 0.50].\", \"parent\": \"alpha_sweep_a040_s42_fp32_v2\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.45 --output_dir results/alpha_sweep/a045_s42_fp32\", \"server\": \"westd-17855\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"checkpoint_path\": \"results/alpha_sweep/a045_s42_fp32/gen_10/checkpoint/\", \"log_path\": \"results/alpha_sweep/a045_s42_fp32/\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T22:42:02.573Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T22:42:06.533436+00:00\"}]}, \"metrics\": {\"permg_fwd\": 0, \"permg_rev\": 0, \"naive_xcorr\": 7, \"diff_xcorr\": 3, \"threshold_onset\": 8, \"total_pairs\": 8, \"drift_entropy_pct\": -18.73, \"drift_ece_pct\": 770.37, \"drift_d1_pct\": -35.39, \"drift_d2_pct\": -47.87, \"drift_d3_pct\": -47.79, \"drift_perplexity_pct\": 12.19, \"drift_mauve_pct\": -24.89, \"drift_effrank_pct\": 23.41, \"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 2.6283, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.094, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.0633, \"gen0_perplexity\": 26.949, \"gen10_perplexity\": 30.234, \"gen0_mauve\": 0.0311, \"gen10_mauve\": 0.0234, \"onset_boundary\": \"[0.45, 0.50]\", \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T22:52:32.386Z\"}, \"alpha_sweep_a030_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:16:27.139Z\", \"updated_at\": \"2026-05-20T21:55:39.326Z\", \"spec\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.30 --output_dir results/alpha_sweep/a030_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"148710\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a030_s42_fp32.log\", \"submitted_at\": \"2026-05-19T14:15:42.000Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"wall_clock_seconds\": 22673.7, \"gpu_hours\": 6.3}, \"hypothesis\": \"D098 onset boundary 精化：α=0.25 PermG=0/8, α=0.50 PermG=6/8。α=0.30 测试是否仍在 blind zone（预期 PermG=0/8），将 onset 下界从 0.25 收紧到 0.30。如果 PermG>0 则 onset 在 [0.25, 0.30]。\", \"parent\": \"alpha_sweep_a025_s42_fp32\", \"reproduce\": {\"finished_at\": \"2026-05-19T20:28:59.724Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T20:29:03.980658+00:00\"}]}, \"metrics\": {\"permg_fwd\": \"0/8\", \"permg_rev\": \"0/8\", \"naive_xcorr\": \"5/8\", \"diff_xcorr\": \"3/8\", \"threshold_onset\": \"8/8\", \"drift_entropy_pct\": -17.32, \"drift_ece_pct\": 549.38, \"drift_d1_pct\": -36.72, \"drift_d2_pct\": -49.75, \"drift_d3_pct\": -50.09, \"drift_mauve_pct\": -26.09, \"n_generations\": 11, \"n_perm\": 5000, \"D111_direction_check\": \"applied: naive 8/8→5/8, diff 4/8→3/8, K3 6/8→3/8, K4 unchanged 3/8\", \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 4, \"diff_xcorr_fdr_reverse_sig\": 4, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a030_s42_fp32\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a030_s42_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T20:33:35.714Z\"}, \"alpha_sweep_a060_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T12:20:24.931Z\", \"updated_at\": \"2026-05-20T21:54:31.776Z\", \"hypothesis\": \"α=0.60 同步坍缩区 cross-seed 验证：s42 PermG=3/8 (D108 non-monotonic dip)，s43 确认同步坍缩区 PermG 下降是否 seed-robust。如果 s43 也 PermG≤3/8 → 4-regime 结构中 α=0.60 dip 是机制性的；如果 s43 PermG≥6/8 → dip 是 seed-sensitive，需调整 regime boundary。\", \"parent\": \"alpha_sweep_a060_s42_fp32_v3\", \"spec\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"137269\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a060_s43_fp32.log\", \"submitted_at\": \"2026-05-19T12:40:36.499Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"N/A (training from scratch, parent is for derivation chain only)\", \"eval_data\": \"N/A (training experiment, not eval)\", \"wall_clock_seconds\": 21697.8, \"gpu_hours\": 6.03}, \"reproduce\": {\"finished_at\": \"2026-05-19T18:42:11.665Z\"}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T18:42:14.293Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T18:42:17.772816+00:00\"}]}, \"metrics\": {\"perm_granger_fwd_fdr\": \"0/8\", \"perm_granger_rev_fdr\": \"0/8\", \"consensus_k4_3sigma\": \"3/8\", \"threshold_onset_3sigma\": \"8/8\", \"naive_xcorr\": \"7/8\", \"diff_xcorr_fdr\": \"6/8\", \"drift_pct\": {\"token_entropy\": -28.61, \"distinct_1\": -31.02, \"distinct_2\": -39.02, \"distinct_3\": -37.3, \"ece\": 1530.81, \"perplexity\": 85.11, \"mauve\": -10.96, \"effective_rank\": 61}, \"gen0\": {\"token_entropy\": 3.234, \"perplexity\": 26.949, \"distinct_1\": 0.098}, \"gen9\": {\"token_entropy\": 2.309, \"perplexity\": 49.885, \"distinct_1\": 0.068}, \"note\": \"T=10 (gen_0-9, gen_10 timeout EXIT_CODE=124), D108 non-monotonicity confirmed\", \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a075_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:17.315Z\", \"updated_at\": \"2026-05-20T20:36:07.797Z\", \"spec\": {\"hypothesis\": \"α=0.75 high contamination: critical boundary point for Granger-causal detectability — determines Claim 1 scope (α≥0.75 vs α=1.0 only)\", \"seed\": 42, \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"synthetic_ratio\": 0.75, \"num_generations\": 10, \"steps_per_gen\": 5000}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T05:44:46.271Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s42\\\"\", \"finished_at\": \"2026-05-15T13:13:06.477Z\", \"training_hours\": 7.47}, \"pid\": \"89753\", \"log_path\": \"results/analysis/cross_alpha_v6_report.md\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.337, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.2063, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 76.03, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0661, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.3037, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.5011, \"token_entropy_drift_pct\": -27.7, \"ece_drift_pct\": 1809.5, \"perplexity_drift_pct\": 182.1, \"distinct_1_drift_pct\": -32.7, \"distinct_2_drift_pct\": -41.3, \"distinct_3_drift_pct\": -38.4, \"granger_ece_to_d1_p_fdr\": 0.046, \"granger_ece_to_d2_p_fdr\": 0.046, \"granger_entropy_to_d2_p_fdr\": 0.048, \"granger_entropy_to_d1_p_fdr\": 0.054, \"granger_fdr_sig_count\": \"3/8\", \"consensus_robust_pairs\": \"11/16\", \"xcorr_entropy_d1_lag\": 2, \"xcorr_entropy_d1_r\": 0.973, \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 4, \"robust_pairs_K4\": 0}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T13:13:07.582542+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/alpha_sweep/a075_s42/\", \"completed_at\": \"2026-05-15T13:29:46.421Z\"}, \"gen_wiki_gpt2m_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:35:18.700Z\", \"updated_at\": \"2026-05-20T20:35:52.301Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"115532\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\", \"submitted_at\": \"2026-05-15T11:57:48.767Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 249.8, \"gpu_hours\": 0.07}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T11:57:47.340Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\"}, \"pid\": \"115532\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42.log\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:01:58.523Z\", \"metrics\": {\"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 3, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 4}}, \"opt13b_wiki_a100_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T15:10:53.215Z\", \"updated_at\": \"2026-05-20T20:35:50.640Z\", \"hypothesis\": \"OPT-1.3B × WikiText-103 × α=1.0 × seed=43 × fp32 跨架构 multi-seed 验证。s42 已完成 K≥4=6/8，s43 验证跨 seed 稳健性。plan_030。\", \"parent\": \"gen_opt13b_a100_s43_bf16\", \"spec\": {\"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"facebook/opt-1.3b\", \"seed\": 43, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\"}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"pid\": \"452614\", \"log_path\": \"~/runs/distrib_canary_collapse/opt13b_wiki_a100_s43_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name facebook/opt-1.3b --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/gen_opt13b_wiki_a100_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-20T00:12:30.568Z\"}, \"notes\": \"D103: s42 统一 pair K≥4=0/8。s43 验证 OPT 在统一配置下的 PermG/MMCT 表现。\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T00:12:36.303992+00:00\"}]}, \"metrics\": {\"threshold_onset_3sigma_m037\": \"already_3sigma_d105\", \"K3_3sigma_m037\": \"6/8\", \"K3_3sigma_d111_detail\": \"naive=8/8 diff=6/8 thr3s=0/8 pg=6/8 ty=5/8\", \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 2}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/gen_opt13b_wiki_a100_s43_fp32/\", \"completed_at\": \"2026-05-20T00:19:48.520Z\", \"note\": \"🚨 D111 CORRECTION: Original analysis reported K≥3=6/8, K≥4=4/8 but ALL 8 pairs have naive peak_lag ≤ 0 AND diff peak_lag ≤ 0. D111 corrected: naive_fwd=0/8, diff_fwd=0/8, K≥3=0/8, K≥4=0/8. PermG=6/8 unaffected. threshold_onset needs D105 3σ verification.\"}, \"alpha_sweep_a060_s42_fp32_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T00:22:51.958Z\", \"updated_at\": \"2026-05-20T20:35:49.657Z\", \"hypothesis\": \"D080 fix: fp32 α=0.60 dose-response (torch_dtype=float32). Resubmit with dtype bug fixed.\", \"parent\": \"alpha_sweep_a060_s42_fp32\", \"server\": \"westd-17855\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"spec\": {\"command\": \"iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --synthetic_ratio 0.60\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"71336\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a060_s42_fp32_v3.log\", \"submitted_at\": \"2026-05-19T00:23:42.392Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 17713.4, \"gpu_hours\": 4.92}, \"conclusion\": \"success\", \"metrics\": {\"final_ppl\": 45.41, \"final_entropy\": 2.48, \"final_eff_rank\": 69.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -23.36, \"ece_drift\": 1260.23, \"perplexity_drift\": 68.52, \"distinct_1_drift\": -28.17, \"distinct_2_drift\": -37.22, \"distinct_3_drift\": -35.35, \"perm_granger_fwd\": \"3/8\", \"perm_granger_rev\": \"0/8\", \"threshold_onset_fwd\": \"8/8\", \"consensus_k4\": \"7/8\", \"mmct_wpair_fwd\": 0.875, \"ty_forward_sig\": 5, \"perm_granger_fdr_forward_sig\": 3, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 3, \"robust_pairs_K4\": 2}, \"checkpoint_path\": \"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_fp32_v3_d080/\", \"log_path\": \"westd-17855:~/runs/distrib_canary_collapse/alpha_sweep_a060_s42_fp32_v3.log\", \"completed_at\": \"2026-05-19T05:18:55.747Z\", \"note\": \"D111 direction-checked: naive 7/8→4/8, diff 8/8→0/8 (ALL diff lags negative), K≥3 8/8→6/8, K≥4 7/8→1/8\"}, \"alpha_sweep_a050_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:15.427Z\", \"updated_at\": \"2026-05-20T20:35:47.297Z\", \"spec\": {\"hypothesis\": \"α=0.50 moderate contamination: test canary→diversity lead at mid-range synthetic ratio, key data point for non-monotonic dose-response\", \"seed\": 42, \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"synthetic_ratio\": 0.5, \"num_generations\": 10, \"steps_per_gen\": 5000}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T01:15:14.747Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s42\\\"\", \"finished_at\": \"2026-05-15T05:42:25.788Z\", \"training_hours\": 4.45}, \"pid\": \"73737\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42.log\", \"metrics\": {\"progress\": \"11/11 gen (complete)\", \"gen0_token_entropy\": 3.234, \"gen10_token_entropy\": 2.632, \"gen0_ece\": 0.011, \"gen10_ece\": 0.102, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 32.64, \"gen0_distinct_1\": 0.098, \"gen10_distinct_1\": 0.062, \"gen0_distinct_2\": 0.518, \"gen10_distinct_2\": 0.251, \"gen0_distinct_3\": 0.813, \"gen10_distinct_3\": 0.387, \"token_entropy_drift_pct\": -18.6, \"ece_drift_pct\": 842.8, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -37.3, \"distinct_2_drift_pct\": -51.5, \"distinct_3_drift_pct\": -52.4, \"granger_entropy_to_d1_p_raw\": 0.095, \"granger_entropy_to_d2_p_raw\": 0.097, \"granger_ece_to_d1_p_raw\": 0.019, \"granger_ece_to_d2_p_raw\": 0.039, \"granger_fdr_note\": \"4 tests within alpha=0.50; BH FDR threshold rank1=0.0125, rank2=0.025 → 0/4 FDR-sig at q=0.05. Raw p pattern (ECE < entropy) is qualitative signal only.\", \"d024_non_monotonic\": true, \"d024_ece_vs_entropy_note\": \"ECE raw p < entropy raw p at α=0.50 (0.019 vs 0.095 at 5000 perms), 0/4 FDR-sig; regime switch hypothesis pending α=0.75 confirmation\", \"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 2, \"robust_pairs_K4\": 0}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T05:42:26.715028+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s42/gen_10/checkpoint\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-15T05:46:48.692Z\"}, \"alpha_sweep_a060_s42_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:26:43.407Z\", \"updated_at\": \"2026-05-20T20:35:45.734Z\", \"spec\": {\"command\": \"python iterative_train.py --alpha 0.6 --seed 42 --bf16\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"pid\": \"17523\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16/all_metrics.json\", \"submitted_at\": \"2026-05-18T17:26:43.254Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"Pythia-410M\", \"seed\": 42, \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16\", \"data_count\": 5000, \"wall_clock_seconds\": 12233.7, \"gpu_hours\": 3.4, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a060_s42_bf16\", \"checkpoint_source\": \"iterative_train\"}, \"hypothesis\": \"α=0.60 regime map with bf16: Fills gap between α=0.50 (boundary, high seed variance) and α=0.75 (3/8 FDR-sig). Pinpoints detectability threshold.\", \"reproduce\": {\"finished_at\": \"2026-05-18T20:50:35.892Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T20:50:36.935Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T20:50:40.809332+00:00\"}]}, \"metrics\": {\"gen0\": {\"token_entropy\": 3.2574, \"ece\": 0.0123, \"perplexity\": 27.68, \"distinct_1\": 0.0914, \"distinct_2\": 0.5043, \"distinct_3\": 0.8329}, \"gen10\": {\"token_entropy\": 2.6404, \"ece\": 0.0426, \"perplexity\": 20.27, \"distinct_1\": 0.0663, \"distinct_2\": 0.3157, \"distinct_3\": 0.5707}, \"drift_pct\": {\"token_entropy\": -18.9, \"ece\": 246.5, \"perplexity\": -26.8, \"distinct_1\": -27.5, \"distinct_2\": -37.4, \"distinct_3\": -31.5}, \"lead_lag_unified_2sigma\": {\"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"6/8\", \"perm_granger_fwd\": \"8/8\", \"perm_granger_rev\": \"0/8\", \"consensus_K4\": \"6/8\"}, \"mmct\": {\"uniform_forward\": \"0/8\", \"uniform_bidirectional\": \"0/8\", \"weighted_pair_forward\": \"6/8\", \"weighted_pair_bidirectional\": \"6/8\", \"weighted_global_forward\": \"0/8\", \"weighted_global_bidirectional\": \"0/8\"}, \"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 4, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 4, \"robust_pairs_K4\": 2}}, \"pythia410m_wiki_a100_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T19:07:43.365Z\", \"updated_at\": \"2026-05-20T20:35:44.894Z\", \"hypothesis\": \"Pythia-410M s43 cross-seed 验证：410M 是 dose-response 全部实验的 base model，但 Table 7 α=1.0 仅有 s42 单 seed（PermG=6/8, K≥3=6/8）。5/8 架构单 seed 是审稿攻击面。s43 验证 core model 的跨 seed 稳健性。Claim 1/3。\", \"parent\": \"generalize_pythia410m_wiki_a100_s42\", \"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"started_at\": \"2026-05-19T19:08:05.966Z\", \"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia410m_wiki_a100_s43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-19T23:16:45.663Z\", \"training_hours\": 4.14}, \"spec\": {\"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"checkpoint_source\": \"EleutherAI/pythia-410m (training from scratch)\", \"eval_data\": \"N/A (training experiment)\"}, \"pid\": \"183582\", \"log_path\": \"~/runs/distrib_canary_collapse/pythia410m_wiki_a100_s43_fp32.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T23:16:51.131993+00:00\"}]}, \"metrics\": {\"threshold_onset_3sigma_m037\": \"unknown→true_3sigma\", \"K3_3sigma_m037\": \"6/8\", \"K3_3sigma_d111_detail\": \"naive=6/8 diff=6/8 thr3s=0/8 pg=6/8 ty=6/8\", \"caveat\": \"xcorr recomputed from raw metrics without FDR\", \"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 4}, \"conclusion\": \"success\", \"checkpoint_path\": \"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s43\", \"completed_at\": \"2026-05-19T23:22:48.287Z\"}, \"alpha_sweep_a050_postd093_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T22:57:33.388Z\", \"updated_at\": \"2026-05-20T20:35:43.243Z\", \"hypothesis\": \"验证 α=0.50 PermG≥6/8 是否独立于 D093 padding 变更。如果 post-D093 仍 PermG≥6/8 → onset [0.45, 0.50] 稳健；如果 PermG=0/8 → onset 依赖 padding side，需要全面重审\", \"parent\": \"alpha_sweep_a050_s42_fp32\", \"note\": \"D093 confound check: post-D093 right padding code\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_postd093_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": 205750, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"log_path\": \"results/alpha_sweep/a050_postd093_s42_fp32/train.log\", \"checkpoint_path\": \"results/alpha_sweep/a050_postd093_s42_fp32\", \"checkpoint_source\": \"N/A - derivation rerun not eval\", \"eval_data\": \"N/A - training experiment not eval\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T03:12:21.470Z\"}, \"failure_reason\": \"\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T03:12:23.407Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-20T03:12:29.424454+00:00\"}]}, \"metrics\": {\"threshold_onset_3sigma_m037\": \"unknown→true_3sigma\", \"K3_3sigma_m037\": \"3/8\", \"K3_3sigma_d111_detail\": \"naive=3/8 diff=2/8 thr3s=0/8 pg=6/8 ty=4/8\", \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 2, \"diff_xcorr_fdr_reverse_sig\": 2, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 2, \"robust_pairs_K4\": 0}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/gen_10/checkpoint\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_postd093_s42_fp32/train.log\"}, \"interv_react_s43_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:26:47.159Z\", \"updated_at\": \"2026-05-20T20:35:42.480Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode reactive --intervention_metric distinct_1 --intervention_threshold 0.10 --intervention_alpha 0.0 --bf16 --output_dir results/intervention/reactive_d1_s43_bf16\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"17803\", \"log_path\": \"~/runs/distrib_canary_collapse/interv_react_s43_bf16.log\", \"submitted_at\": \"2026-05-18T17:26:47.009Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"wall_clock_seconds\": 12673.6, \"gpu_hours\": 3.52, \"checkpoint_path\": \"results/intervention/reactive_d1_s43_bf16\"}, \"hypothesis\": \"Intervention reactive multi-seed s43: Pythia-410M WikiText α=1.0, distinct_1 >10% drop trigger, switch to α=0.0. Validates s42 reactive result.\", \"reproduce\": {\"finished_at\": \"2026-05-18T20:57:58.969Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T20:58:00.589Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T20:58:03.100445+00:00\"}]}, \"metrics\": {\"ty_forward_sig\": 8, \"perm_granger_fdr_forward_sig\": 7, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 6, \"robust_pairs_K3\": 8, \"robust_pairs_K4\": 7}}, \"alpha_sweep_a025_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:43.090Z\", \"updated_at\": \"2026-05-20T20:35:41.697Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"121635\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s43.log\", \"submitted_at\": \"2026-05-15T13:16:31.189Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 15792.4, \"gpu_hours\": 4.39}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"pid\": \"121635\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s43.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s43\\\"\", \"finished_at\": \"2026-05-15T17:36:20.945Z\"}, \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.09833, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.61, \"mauve\": 0.03351}, \"gen10\": {\"token_entropy\": 3.0723, \"ece\": 0.02146, \"perplexity\": 21.899, \"distinct_1\": 0.05849, \"distinct_2\": 0.2236, \"distinct_3\": 0.333, \"effective_rank\": 45.37, \"mauve\": 0.01871}, \"drift_pct\": {\"token_entropy\": -5, \"ece\": 98.6, \"perplexity\": -18.7, \"distinct_1\": -40.5, \"distinct_2\": -56.4, \"distinct_3\": -58.7, \"effective_rank\": -2.7, \"mauve\": -44.2}, \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 2, \"diff_xcorr_fdr_reverse_sig\": 2, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T17:36:22.072334+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s43/gen_10/checkpoint\", \"completed_at\": \"2026-05-15T17:39:43.624Z\", \"hypothesis\": \"α=0.25 multi-seed 复现: 低污染下 diversity collapse (40-59%) 但无 Granger causal signal (0/8 PermG) 的模式跨种子稳定，定义 sub-threshold regime 下界\", \"parent\": \"alpha_sweep_a025_s42_v3\"}, \"generalize_pythia410m_wiki_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T07:08:22.930Z\", \"updated_at\": \"2026-05-20T20:35:40.898Z\", \"hypothesis\": \"Methodological pitfalls (FPR inflation from single-method reliance) generalize across model architectures and data domains — Pythia-410M on WikiText α=1.0 should reproduce canary→downstream Granger signal with perfect directionality\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia410m_wiki_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"pid\": \"247554\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia410m_wiki_a100_s42/\"}, \"metrics\": {\"threshold_onset_3sigma_m037\": \"3x_sigma_drift→true_3sigma\", \"K3_3sigma_m037\": \"6/8\", \"K3_3sigma_d111_detail\": \"naive=7/8 diff=6/8 thr3s=2/8 pg=6/8 ty=1/8\", \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 3}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T11:47:29.919Z\", \"notes\": \"D102 reanalysis: K≥4 0/8 (was 0/8, unchanged). PermG fwd 6/8 stable. DiffXCorr 8/8→6/8 (mauve pairs weak). pair_config: unified_8pair.\"}, \"alpha_sweep_a055_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:30:15.566Z\", \"updated_at\": \"2026-05-20T20:35:39.310Z\", \"hypothesis\": \"D126 Track 3 dip precision mapping: α=0.55 s42 fp32 填补 onset(0.50)→sync(0.60) 过渡区的关键缺失点。α=0.50 PermG=6/8，α=0.60 存在非单调 dip（T=11），α=0.55 确定 dip 起始位置——如果 PermG 仍为 6/8 则 dip 在 [0.55,0.60]；如果已下降则 onset→sync 过渡在 [0.50,0.55]。dose-response 精细刻画必需。\", \"parent\": \"alpha_sweep_a050_s42_fp32\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.55 --output_dir results/alpha_sweep/a055_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"554606\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a055_s42_fp32.log\", \"submitted_at\": \"2026-05-20T09:30:58.840Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"checkpoint_source\": \"N/A (training from pretrained base)\", \"eval_data\": \"N/A (training experiment, not eval)\", \"wall_clock_seconds\": 15331.0, \"gpu_hours\": 4.26}, \"reproduce\": {\"finished_at\": \"2026-05-20T13:40:24.229Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T13:40:29.098985+00:00\"}]}, \"checkpoint_path\": \"results/alpha_sweep/a055_s42_fp32/gen_10\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a055_s42_fp32.log\", \"conclusion\": \"success\", \"metrics\": {\"perm_granger_fwd\": 0, \"perm_granger_fwd_str\": \"0/8\", \"K_geq3\": 0, \"K_geq4\": 0, \"robust_pairs\": 0, \"diff_xcorr_fwd\": 8, \"threshold_onset_3sigma_fwd\": 0, \"naive_xcorr_fwd\": 1, \"perm_granger_p_fdr_range\": \"0.072\", \"token_entropy_drift_pct\": -27.1, \"ece_drift_pct\": 1402.8, \"perplexity_drift_pct\": 66.1, \"distinct_1_drift_pct\": -31.9, \"mauve_drift_pct\": -16.7, \"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0}, \"completed_at\": \"2026-05-20T13:46:29.884Z\"}, \"intervention_reactive_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T10:25:52.494Z\", \"updated_at\": \"2026-05-20T20:35:36.917Z\", \"hypothesis\": \"Reactive intervention baseline: monitoring distinct_1 drop >10% as trigger, switching α from 1.0 to 0.0 at trigger generation. Tests whether downstream-triggered intervention (without canary) can halt collapse, serving as comparison for predictive (canary-triggered) intervention.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && ... python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode reactive --intervention_metric distinct_1 --intervention_threshold 0.10 --intervention_alpha 0.0 --output_dir results/intervention/reactive_d1_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"340964\", \"log_path\": \"~/runs/distrib_canary_collapse/intervention_reactive_s42.log\", \"submitted_at\": \"2026-05-18T10:26:06.968Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s42/\", \"wall_clock_seconds\": 16125.7, \"gpu_hours\": 4.48}, \"reproduce\": {\"finished_at\": \"2026-05-18T14:50:43.171Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T14:50:46.960650+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"trigger_gen\": 2, \"trigger_distinct1_drop_pct\": -15.58, \"gen0_distinct_1\": 0.0982, \"gen0_ppl\": 26.95, \"gen0_entropy\": 3.234, \"gen2_distinct_1\": 0.0823, \"gen2_ppl\": 157.09, \"gen2_entropy\": 1.478, \"gen10_distinct_1\": 0.0844, \"gen10_ppl\": 21.24, \"gen10_entropy\": 3.071, \"gen10_ece\": 0.0152, \"gen10_mauve\": 0.0289, \"distinct_1_drift_pct\": -14.1, \"ppl_drift_pct\": -21.2, \"entropy_drift_pct\": -5, \"vs_no_intervention_ppl_gen10\": 1003.73, \"vs_no_intervention_distinct1_gen10\": 0.0704, \"recovery_complete_by_gen\": 4, \"converges_to_alpha0_baseline\": true, \"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 8, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 4}, \"completed_at\": \"2026-05-18T14:54:52.686Z\"}, \"alpha_sweep_a025_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:18:27.981Z\", \"updated_at\": \"2026-05-20T20:35:35.222Z\", \"hypothesis\": \"At α=0.25 (boundary regime between 0.10 and 0.50), fp32 training will show PermG=0/8 because the synthetic data ratio is below the phase transition threshold for statistically detectable Granger-causal lead-lag structure\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.25 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a025_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch 2>&1 | tee /root/runs/distrib_canary_collapse/alpha_sweep_a025_s42_fp32.log\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"109870\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_fp32.log\", \"submitted_at\": \"2026-05-19T07:37:07.771Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"conda_activate\": \"source conda.sh && conda activate base\", \"wall_clock_seconds\": 16971.3, \"gpu_hours\": 4.71}, \"reproduce\": {\"finished_at\": \"2026-05-19T12:15:47.782Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T12:15:51.822301+00:00\"}]}, \"checkpoint_path\": \"results/alpha_sweep/a025_s42_fp32/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_fp32.log\", \"metrics\": {\"PermG_fwd\": \"0/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"0/8\", \"MMCT\": \"0/8\", \"MMCT_detection_rate\": 0, \"d1_drift_pct\": -39.15, \"d2_drift_pct\": -54.75, \"d3_drift_pct\": -56.98, \"mauve_drift_pct\": -41.86, \"entropy_drift_pct\": -4.79, \"ece_drift_pct\": 79.17, \"ppl_drift_pct\": -18.09, \"eff_rank_drift_pct\": -3.78, \"ppl_by_gen\": [26.95, 19.39, 20.37, 20.75, 21.14, 21.3, 21.48, 21.88, 21.9, 22.25, 22.07], \"entropy_by_gen\": [3.234, 2.983, 3.015, 3.039, 3.051, 3.034, 3.049, 3.067, 3.063, 3.104, 3.079], \"d1_by_gen\": [0.098, 0.0976, 0.0815, 0.0737, 0.0688, 0.0657, 0.0635, 0.0614, 0.061, 0.0601, 0.0596], \"mauve_by_gen\": [0.0311, 0.0314, 0.0326, 0.0318, 0.0314, 0.0272, 0.0242, 0.0221, 0.0207, 0.0207, 0.0181], \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"3/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_detail_max_votes\": 3, \"hypothesis_validated\": true, \"note\": \"PermG=0/8 confirms α=0.25 is below phase transition. d1_drift=-39.15% is surprisingly large (> α=0.50's -28.7%), suggesting diversity collapse proceeds without Granger-detectable lead-lag at this α. token_entropy→distinct_1 had raw PermG p=0.007 but FDR-corrected p=0.053 (borderline).\", \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 3, \"diff_xcorr_fdr_reverse_sig\": 3, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T12:19:59.103Z\", \"note\": \"D111 direction-checked: naive 8/8→5/8, diff 3/8→2/8, K≥3 4/8→2/8, K≥4 0/8→0/8\"}, \"generalize_pythia1b_c4_a100_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T19:15:09.476Z\", \"updated_at\": \"2026-05-20T20:35:34.088Z\", \"hypothesis\": \"C4 域 multi-seed 验证——seed=43 下 Pythia-1B C4 α=1.0 是否复现 8/8 consensus 和 token_entropy 单向性 (rev=0/4)，确认 domain robustness 非单种子偶然\", \"parent\": \"generalize_pythia1b_c4_a100_s42_v2\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export TRANSFORMERS_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1b-local --seed 43 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"291511\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s43.log\", \"submitted_at\": \"2026-05-17T20:07:39.212Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 15455.0, \"gpu_hours\": 4.29}, \"reproduce\": {\"finished_at\": \"2026-05-18T00:16:50.616Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T00:16:52.976550+00:00\"}]}, \"metrics\": {\"threshold_onset_3sigma_m037\": \"3x_sigma_drift→true_3sigma\", \"K3_3sigma_m037\": \"6/8\", \"K3_3sigma_d111_detail\": \"naive=4/8 diff=8/8 thr3s=2/8 pg=8/8 ty=4/8\", \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 4, \"robust_pairs_K4\": 2}, \"checkpoint_path\": \"results/generalize/pythia1b_c4_a100_s43/\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s43.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T00:25:14.256Z\", \"notes\": \"D102 unified 8-pair. PermG fwd 8/8, rev 0/8 (perfect asymmetry). D102决策: Table 7 主指标=PermG fwd. Cross-seed confirms C4 robustness.\"}, \"alpha_sweep_a050_s44_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T05:31:02.887Z\", \"updated_at\": \"2026-05-20T20:35:32.143Z\", \"spec\": {\"command\": \"iterative_train.py --model_name EleutherAI/pythia-410m --seed 44 --synthetic_ratio 0.50\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"96734\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s44_fp32.log\", \"submitted_at\": \"2026-05-19T05:31:02.665Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 44, \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 15578.5, \"gpu_hours\": 4.33}, \"hypothesis\": \"D091: α=0.50 fp32 s44 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s42/s43.\", \"reproduce\": {\"finished_at\": \"2026-05-19T09:45:42.048Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T09:45:46.110800+00:00\"}]}, \"checkpoint_path\": \"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44_fp32/gen_10/checkpoint/\", \"log_path\": \"westd-17855:~/runs/distrib_canary_collapse/alpha_sweep_a050_s44_fp32.log\", \"metrics\": {\"token_entropy_gen0\": 3.234, \"token_entropy_gen10\": 2.697, \"token_entropy_drift_pct\": -16.61, \"distinct_1_gen0\": 0.0915, \"distinct_1_gen10\": 0.066, \"distinct_1_drift_pct\": -27.93, \"distinct_2_drift_pct\": -34.64, \"distinct_3_drift_pct\": -30.6, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0874, \"ece_drift_pct\": 709.03, \"perplexity_gen0\": 26.949, \"perplexity_gen10\": 31.424, \"perplexity_drift_pct\": 16.61, \"effective_rank_drift_pct\": 25.06, \"mauve_drift_pct\": -13.88, \"naive_xcorr_fwd\": \"8/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"8/8\", \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75, \"precision\": \"fp32\", \"n_perm\": 5000, \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 4, \"robust_pairs_K4\": 2}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T09:50:41.134Z\"}, \"interv_pred_s43_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T18:03:58.328Z\", \"updated_at\": \"2026-05-20T20:35:29.411Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --bf16 --output_dir results/intervention/predictive_te_s43_bf16\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"29174\", \"log_path\": \"~/runs/distrib_canary_collapse/interv_pred_s43_bf16.log\", \"submitted_at\": \"2026-05-18T18:03:58.167Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"checkpoint_path\": \"results/intervention/predictive_te_s43_bf16\", \"wall_clock_seconds\": 14147.3, \"gpu_hours\": 3.93}, \"hypothesis\": \"Intervention predictive multi-seed s43 (bf16): Pythia-410M WikiText α=1.0, token_entropy >15% drop trigger, switch to α=0.0. Validates s42 result (trigger Gen 1, recovery Gen 2) is reproducible across seeds.\", \"reproduce\": {\"finished_at\": \"2026-05-18T21:29:59.928Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T21:30:02.833056+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -22.54, \"gen0_ppl\": 27.68, \"gen0_entropy\": 3.2574, \"gen0_distinct_1\": 0.0917, \"gen0_ece\": 0.0123, \"gen1_ppl\": 24.65, \"gen1_entropy\": 2.5233, \"gen1_distinct_1\": 0.0897, \"gen1_ece\": 0.0469, \"gen2_ppl\": 17.49, \"gen2_entropy\": 2.9029, \"gen10_ppl\": 16.68, \"gen10_entropy\": 2.8169, \"gen10_eff_rank\": 58.8, \"gen10_mauve\": 0.0299, \"recovery_complete_by_gen\": 2, \"converges_to_alpha0_baseline\": true, \"precision_note\": \"bf16; collapse milder than fp32 s42 (entropy drop 22.54% vs 40.71%, ppl 24.65 vs 56.99) due to stochastic rounding regularization. Core pattern (G1 trigger, G2 recovery) confirmed.\", \"cross_seed_note\": \"s42(fp32): trigger G1 entropy -40.71%, ppl spike 56.99. s43(bf16): trigger G1 entropy -22.54%, no ppl spike. Pattern consistent, magnitude differs due to precision.\", \"ty_forward_sig\": 6, \"perm_granger_fdr_forward_sig\": 8, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 3, \"robust_pairs_K3\": 7, \"robust_pairs_K4\": 6}, \"completed_at\": \"2026-05-18T21:59:45.463Z\"}, \"generalize_pythia1b_c4_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T07:08:24.826Z\", \"updated_at\": \"2026-05-20T20:35:28.320Z\", \"hypothesis\": \"Methodological pitfalls generalize across data domains — Pythia-1B on C4 (vs WikiText) at α=1.0 should reproduce canary→downstream causal pattern, proving domain-independence of the framework\", \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-17T11:49:02.322Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-1b --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s42\\\"\", \"finished_at\": \"2026-05-17T12:27:50.691Z\", \"training_hours\": 0.65}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-1b --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"265619\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s42.log\", \"submitted_at\": \"2026-05-17T12:11:05.002Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 1007.5, \"gpu_hours\": 0.28}, \"pid\": \"265619\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia1b_c4_a100_s42.log\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-17T12:27:52.495Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-17T12:27:55.057137+00:00\"}]}, \"notes\": \"失败原因: hf-mirror.com 下载 Pythia-1B 权重时连接中断 (ChunkedEncodingError)，仅下载 7%。训练未开始，无可用数据。修复: 清理 .incomplete 缓存 → 预下载模型 → 重新提交。\", \"metrics\": {\"D102_reanalysis\": \"→mauve (replacing →ppl)\", \"pair_config\": \"canary=[token_entropy,ece] × downstream=[distinct_1,distinct_2,distinct_3,mauve]\", \"n_perm\": 5000, \"perm_granger_fdr_forward_sig\": 8, \"diff_xcorr_fdr_forward_sig\": 8, \"threshold_forward_sig\": \"8/8\", \"ty_forward_sig\": 1, \"robust_pairs_K3\": 7, \"robust_pairs_K4\": 0, \"D102_note\": \"ppl→mauve统一后: robust 2→8, perm_fdr 6→8, diff_fdr 6→8, ty 1→4.\", \"D116_note\": \"D105+D111 joint: threshold JSON 3x_sigma_drift=8/8 but registry threshold_onset_3sigma=0/8 (M034). D111 kills diff_fwd. Reviewer estimate ~1/8.\", \"perm_granger_fdr_reverse_sig\": 3, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0}}, \"alpha_sweep_a050_s44\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-15T06:58:50.550Z\", \"updated_at\": \"2026-05-20T20:35:26.576Z\", \"completed_at\": \"2026-05-16T00:03:52.118Z\", \"extra\": {\"previous_failure\": {\"conclusion\": \"killed\"}, \"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-17T06:34:46.264183+00:00\"}]}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.5 --output_dir results/alpha_sweep/a050_s44\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"230319\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s44.log\", \"submitted_at\": \"2026-05-17T02:07:37.713Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a050_s44/gen_10/checkpoint\", \"wall_clock_seconds\": 16393.1, \"gpu_hours\": 4.55}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"230319\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s44.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.5 --output_dir results/alpha_sweep/a050_s44\\\"\", \"finished_at\": \"2026-05-17T06:34:43.961Z\"}, \"hypothesis\": \"α=0.50 第三 seed 将确认 boundary 的 seed-dependent 性质；若 PermG sig >0/8 则 2/3 seeds 有信号（boundary 偏 transitional），若 0/8 则 1/3（boundary 偏 null）\", \"parent\": \"alpha_sweep_a050_s43\", \"conclusion\": \"success\", \"metrics\": {\"perm_granger_fdr_fwd\": \"3/8\", \"perm_granger_fdr_rev\": \"0/8\", \"consensus_ge3\": \"0/8\", \"consensus_ge4\": \"0/8\", \"naive_xcorr_fwd\": \"4/8\", \"diff_xcorr_fdr_fwd\": \"6/8\", \"threshold_onset_fwd\": \"0/8\", \"ece_d1_fdr_p\": 0.016, \"ece_d2_fdr_p\": 0.0408, \"ece_d3_fdr_p\": 0.0536, \"ece_ppl_fdr_p\": 0.0475, \"entropy_d1_fdr_p\": 0.0862, \"entropy_d2_fdr_p\": 0.0862, \"entropy_d3_fdr_p\": 0.0862, \"entropy_ppl_fdr_p\": 0.0862, \"cross_seed_note\": \"s42:0/8, s43:6/8, s44:3/8 — confirms boundary regime with high seed variance; ECE only canary with signal at α=0.50\", \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 2, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 2, \"robust_pairs_K4\": 1}}, \"alpha_sweep_a010_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T00:39:09.725Z\", \"updated_at\": \"2026-05-20T20:35:25.808Z\", \"hypothesis\": \"α=0.10 dose-response fp32 multi-seed (s43): D083 requires cross-seed variance for fp32 main axis. α=0.10 is the canary blind zone boundary (D075: entropy canary shows NO signal despite -39.7% diversity collapse). fp32 s43 validates whether this blind zone is seed-invariant.\", \"parent\": \"alpha_sweep_a010_s43\", \"server\": \"westd-17855\", \"gpu\": \"cuda:5\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-17855\", \"gpu\": \"cuda:5\", \"started_at\": \"2026-05-19T00:40:20.251Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --output_dir results/alpha_sweep/a010_s43_fp32\\\"\", \"finished_at\": \"2026-05-19T05:01:02.210Z\", \"training_hours\": 4.34}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --output_dir results/alpha_sweep/a010_s43_fp32\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"76404\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_fp32/\", \"submitted_at\": \"2026-05-19T00:46:36.088Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s43_fp32/\", \"wall_clock_seconds\": 15641.2, \"gpu_hours\": 4.34}, \"pid\": \"76404\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a010_s43_fp32.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T05:01:06.027649+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"token_entropy_drift\": -4.49, \"distinct_1_drift\": -22.08, \"distinct_2_drift\": -23.47, \"distinct_3_drift\": -16.39, \"perplexity_drift\": -18.04, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"threshold_onset_fwd\": \"4/8\", \"consensus_k4\": \"0/8 (C003 corrected)\", \"precision\": \"fp32\", \"blind_zone_confirmed_fp32\": true, \"vs_bf16_note\": \"fp32 reduces drift ~2x but does not change detection failure (PermG=0/8, k4=0/8 same as bf16)\", \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 3, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 4, \"robust_pairs_K4\": 2}, \"completed_at\": \"2026-05-19T05:07:17.324Z\"}, \"alpha_sweep_a040_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T14:07:24.253Z\", \"updated_at\": \"2026-05-20T20:35:24.111Z\", \"spec\": {\"command\": \"bash -c \\\"export HF_HOME=/root/autodl-tmp/.hf_cache && export TRANSFORMERS_OFFLINE=1 && export HF_HUB_OFFLINE=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.40 --output_dir results/alpha_sweep/a040_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:0\"], \"pid\": \"146540\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\"}, \"hypothesis\": \"D098 onset boundary 精化：与 α=0.30 配合将 phase transition onset 定位到 ±0.05 精度。α=0.40 预期仍在 blind zone 或刚进入 transition 区间。如果 PermG=0/8 → onset ≥ 0.40；如果 PermG>0 → onset 在 [0.30, 0.40]。\", \"parent\": \"alpha_sweep_a025_s42_fp32\", \"reproduce\": {\"finished_at\": \"2026-05-19T14:12:43.489Z\"}, \"failure_reason\": \"SIGHUP (exit code 129): 启动进程的 SSH 连接断开，进程未被 tmux 保护。GPU 无冲突（GPU 0 有 >80GB 空闲）。已通过 v2 重跑。\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-19T14:12:44.815Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:12:48.387429+00:00\"}]}, \"metrics\": {\"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 3, \"diff_xcorr_fdr_reverse_sig\": 3, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0}}, \"intervention_predictive_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T11:31:03.869Z\", \"updated_at\": \"2026-05-20T20:35:21.121Z\", \"hypothesis\": \"Predictive intervention: monitoring token_entropy drop >15% as early-warning trigger, switching α from 1.0 to 0.0 at trigger generation. Tests whether canary-triggered intervention halts collapse earlier than reactive (downstream-triggered) intervention, demonstrating canary's practical utility.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && ... python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/predictive_te_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"351357\", \"log_path\": \"~/runs/distrib_canary_collapse/intervention_predictive_s42.log\", \"submitted_at\": \"2026-05-18T11:50:57.141Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/intervention/predictive_te_s42/\", \"wall_clock_seconds\": 16956.6, \"gpu_hours\": 4.71}, \"conclusion\": \"success\", \"metrics\": {\"trigger_gen\": 1, \"trigger_entropy_drop_pct\": -40.71, \"gen0_ppl\": 26.95, \"gen0_entropy\": 3.234, \"gen0_distinct_1\": 0.0982, \"gen0_ece\": 0.0108, \"gen1_ppl\": 56.99, \"gen1_entropy\": 1.918, \"gen1_distinct_1\": 0.0975, \"gen1_ece\": 0.205, \"gen2_ppl\": 20.81, \"gen2_entropy\": 3.055, \"gen10_ppl\": 21.29, \"gen10_entropy\": 3.079, \"gen10_eff_rank\": 44.1, \"gen10_mauve\": 0.0272, \"recovery_complete_by_gen\": 2, \"vs_reactive_trigger_advantage\": \"1 gen earlier\", \"vs_reactive_peak_ppl_reduction\": \"63% (56.99 vs 157.09)\", \"vs_reactive_recovery_advantage\": \"1 gen faster (Gen 2 vs Gen 4)\", \"converges_to_alpha0_baseline\": true, \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 8, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}, \"completed_at\": \"2026-05-18T16:33:33.782Z\"}, \"alpha_sweep_a010_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T20:31:10.893Z\", \"updated_at\": \"2026-05-20T20:35:20.387Z\", \"hypothesis\": \"α=0.10 multi-seed s43: Validates D075 canary blind zone finding (α=0.10 diversity collapse saturated at -39.7% but entropy canary shows no signal). Single-seed → confirmed if s43 replicates same pattern.\", \"spec\": {\"checkpoint_path\": \"results/alpha_sweep/a010_s43_bf16/\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a010_s43.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-19T00:36:00.765Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T00:36:04.103044+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"token_entropy_drift\": -13.1, \"ece_drift\": -61.1, \"perplexity_drift\": -38.9, \"distinct_1_drift\": -29.1, \"distinct_2_drift\": -40.3, \"distinct_3_drift\": -31.9, \"effective_rank_drift\": 23.5, \"mauve_drift\": -46.3, \"naive_xcorr_fwd\": \"7/8\", \"diff_xcorr_fwd\": \"8/8\", \"threshold_onset_fwd\": \"3/8\", \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"k_gte4\": \"0/8\", \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}, \"completed_at\": \"2026-05-19T00:45:43.701Z\"}, \"generalize_pythia14b_wiki_a100_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T02:44:10.708Z\", \"updated_at\": \"2026-05-20T20:35:19.609Z\", \"hypothesis\": \"Pythia-1.4B s43 validates whether Scale row K>=4=5/8 is a systematic scale effect: if s43 also weak then scale is a real challenge, if s43 strong then s42 is seed noise\", \"parent\": \"generalize_pythia14b_wiki_a100_s42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1.4b-local --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 8 --seed 43 --output_dir results/generalize/pythia14b_wiki_a100_s43\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"314396\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s43.log\", \"submitted_at\": \"2026-05-18T02:46:35.941Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 43, \"wall_clock_seconds\": 27235.4, \"gpu_hours\": 7.57}, \"reproduce\": {\"finished_at\": \"2026-05-18T10:13:51.203Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T10:13:54.511136+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"lead_lag\": {\"perm_granger_fdr_fwd\": \"6/8\", \"K_gte3\": \"3/8\", \"threshold_onset_3sigma\": \"0/8\", \"diff_xcorr_fdr_fwd\": \"8/8\"}, \"note\": \"M046 D120 canonical reanalysis: TY 4→3, K≥3 7→3, Threshold 8→0\", \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 8, \"diff_xcorr_fdr_reverse_sig\": 8, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 2, \"robust_pairs_K4\": 0}, \"checkpoint_path\": \"results/generalize/pythia14b_wiki_a100_s43\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s43.log\", \"completed_at\": \"2026-05-18T10:20:31.314Z\", \"notes\": \"D102 unified 8-pair. PermG fwd 6/8 stable. D102决策: Table 7 列出两seed, s42=2/8 vs s43=6/8 标注seed sensitivity.\"}, \"alpha_sweep_a075_s44\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-16T06:16:20.468Z\", \"updated_at\": \"2026-05-20T20:35:18.640Z\", \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s44\\\"\", \"finished_at\": \"2026-05-16T14:13:08.016Z\"}, \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"completed_at\": \"2026-05-16T09:53:05.475Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T09:53:09.379555+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-16T14:13:10.811080+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\", \"notes\": \"失败原因: SafetensorError No space left on device — model.save_pretrained() at line 252 | 已有成果: 最后一轮训练已完成 (5000 steps, loss=0.3493) 但 checkpoint 未保存 | 建议: 清磁盘后重跑\"}}, \"notes\": \"第三次重启 (17:57 UTC)：第二次运行 (09:56-~17:00, Gen 0-3) 被另一 Agent 会话 kill+rm-rf+重启，~7h GPU 浪费。原因：并发 Agent 会话判断需重跑。当前为第三次运行，从 Gen 0 开始，预计 ~10-12h 完成。\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --output_dir results/alpha_sweep/a075_s44\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"184342\", \"log_path\": \"/tmp/a075_s44.log\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"pythia-410m\", \"seed\": 44, \"checkpoint_path\": \"results/alpha_sweep/a075_s44/gen_10/checkpoint\"}, \"conclusion\": \"success\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.234, \"ece\": 0.0108, \"perplexity\": 26.95, \"distinct_1\": 0.0982, \"distinct_2\": 0.5178, \"distinct_3\": 0.8127}, \"gen10\": {\"token_entropy\": 2.336, \"ece\": 0.206, \"perplexity\": 76.35, \"distinct_1\": 0.067, \"distinct_2\": 0.309, \"distinct_3\": 0.508}, \"drift_pct\": {\"token_entropy\": -27.8, \"ece\": 1774, \"perplexity\": 183.4, \"distinct_1\": -31.8, \"distinct_2\": -39.9, \"distinct_3\": -37.5}, \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0}, \"hypothesis\": \"α=0.75 multi-seed 复现: Permutation Granger 因果信号（≥4/8 FDR sig forward, 0/8 reverse）在不同随机种子下稳定存在，确认 transitional regime 非单种子偶然\", \"parent\": \"alpha_sweep_a075_s42\"}, \"generalize_pythia14b_wiki_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:25:15.889Z\", \"updated_at\": \"2026-05-20T20:35:16.834Z\", \"hypothesis\": \"方法论陷阱跨 scale 泛化——Pythia-1.4B (同家族 410M→1.4B) 在 α=1.0 WikiText 上保持 consensus ≥4/5 的 canary→downstream 因果信号，证明框架不依赖特定模型规模\", \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-17T13:57:38.626Z\"}, \"spec\": {\"command\": \"iterative_train.py --start_gen 8 (resumed)\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"292246\", \"log_path\": \"~/runs/distrib_canary_collapse/generalize_pythia14b_wiki_a100_s42.log\", \"submitted_at\": \"2026-05-17T20:11:35.916Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia14b_wiki_a100_s42/gen_10/checkpoint\", \"wall_clock_seconds\": 12846.8, \"gpu_hours\": 3.57}, \"metrics\": {\"lead_lag\": {\"perm_granger_fdr_fwd\": \"2/8\", \"K_gte3\": \"3/8\", \"threshold_onset_3sigma\": \"0/8\", \"diff_xcorr_fdr_fwd\": \"7/8\"}, \"note\": \"M046 D120 canonical reanalysis: TY 0→3, K≥3 1→3\", \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 2, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T23:45:42.719Z\", \"notes\": \"D102 unified 8-pair. PermG fwd 2/8 (weakest Wiki model). D102决策: Table 7 主指标=PermG fwd, 辅助=K≥3. 报告cross-seed range: s42=2/8, s43=6/8, 标注seed sensitivity. Threshold σ统一=3σ(低优先级, 等训练完后统一重算).\"}, \"alpha_sweep_a010_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T05:20:18.646Z\", \"updated_at\": \"2026-05-20T20:35:15.874Z\", \"hypothesis\": \"D083/D084 blind zone fp32 s42: α=0.10 canary blind zone dual-seed fp32 validation. a010_s43_fp32 confirmed PermG=0/8 (blind zone precision-invariant). s42 fp32 completes cross-seed stability check for D075 claim.\", \"parent\": \"alpha_sweep_a010_s42_v2\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --output_dir results/alpha_sweep/a010_s42_fp32\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"95313\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a010_s42_fp32.log\", \"submitted_at\": \"2026-05-19T05:20:39.341Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a010_s42_fp32/gen_10/checkpoint/\", \"wall_clock_seconds\": 16615.2, \"gpu_hours\": 4.62}, \"reproduce\": {\"finished_at\": \"2026-05-19T09:31:36.376Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T09:31:40.240029+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"token_entropy_drift_pct\": -4.59, \"distinct_1_drift_pct\": -23.8, \"distinct_2_drift_pct\": -27.15, \"distinct_3_drift_pct\": -19.36, \"perplexity_drift_pct\": -18.94, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"2/8\", \"mmct_wpair_fwd\": \"2/8\", \"mmct_detection_rate\": 0.25, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"blind_zone_confirmed\": true, \"cross_seed_permg_stable\": true, \"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}, \"completed_at\": \"2026-05-19T09:57:34.538Z\", \"note\": \"D111 direction-checked: naive 7/8→4/8, diff 6/8→1/8, K≥3 4/8→2/8, K≥4 2/8→0/8\"}, \"generalize_opt1b_wiki_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T07:08:23.938Z\", \"updated_at\": \"2026-05-20T20:35:13.558Z\", \"hypothesis\": \"Methodological pitfalls (FPR inflation from single-method reliance) generalize to OPT-1.3B architecture — different model family at α=1.0 should show same canary→downstream causal pattern as Pythia\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name facebook/opt-1.3b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/opt1b_wiki_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"pid\": \"249384\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"facebook/opt-1.3b\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/opt1b_wiki_a100_s42/\"}, \"metrics\": {\"threshold_onset_3sigma_m037\": \"3x_sigma_drift→true_3sigma\", \"K3_3sigma_m037\": \"6/8\", \"K3_3sigma_d111_detail\": \"naive=7/8 diff=6/8 thr3s=2/8 pg=6/8 ty=0/8\", \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 1}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-17T13:57:09.537Z\", \"notes\": \"D102 reanalysis: K≥4 dropped from 6/8 to 0/8 with unified pairs. →ppl inflation confirmed. PermG fwd 6/8 stable. pair_config: unified_8pair (ent/ece→d1/d2/d3/mauve).\"}, \"alpha_sweep_a010_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:19.712Z\", \"updated_at\": \"2026-05-20T20:35:11.331Z\", \"spec\": {\"hypothesis\": \"α=0.10 极低污染: phase boundary 精确化, canary signal 是否仍可检测\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.1, \"num_generations\": 10, \"steps_per_gen\": 5000}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T00:03:53.018Z\", \"metrics\": {\"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 5, \"diff_xcorr_fdr_reverse_sig\": 5, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a050_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:45.880Z\", \"updated_at\": \"2026-05-20T20:35:10.628Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"134860\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\", \"submitted_at\": \"2026-05-15T17:40:27.060Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 16523.2, \"gpu_hours\": 4.59}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"pid\": \"134860\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s43.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep/a050_s43\\\"\", \"finished_at\": \"2026-05-15T22:00:14.725Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:00:15.908424+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/alpha_sweep/a050_s43/gen_10/checkpoint/\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen10_token_entropy\": 2.672, \"gen10_ece\": 0.097, \"gen10_perplexity\": 32.633, \"gen0_distinct_1\": 0.09833, \"gen0_distinct_2\": 0.5132, \"gen0_distinct_3\": 0.8057, \"gen10_distinct_1\": 0.0624, \"gen10_distinct_2\": 0.2617, \"gen10_distinct_3\": 0.4126, \"token_entropy_drift_pct\": -17.4, \"ece_drift_pct\": 799, \"perplexity_drift_pct\": 21.1, \"distinct_1_drift_pct\": -36.5, \"distinct_2_drift_pct\": -49, \"distinct_3_drift_pct\": -48.8, \"cross_seed_note\": \"vs s42: drift direction identical, magnitude <7% deviation, ppl near-identical (32.633 vs 32.64)\", \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 1, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 4, \"diff_xcorr_fdr_reverse_sig\": 4, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0}, \"completed_at\": \"2026-05-15T22:00:14Z\", \"hypothesis\": \"α=0.50 multi-seed: 中等污染下 PermG 信号是否跨种子稳定——如 signal 出现则 boundary 在 α&lt;0.50，如无则 boundary 在 α>0.50\", \"parent\": \"alpha_sweep_a050_s42\"}, \"gen_gpt2m_a100_s43_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:25:55.336Z\", \"updated_at\": \"2026-05-20T20:35:09.872Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name openai-community/gpt2-medium --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --bf16 --output_dir results/generalize/gpt2m_wiki_a100_s43_bf16\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:1\"], \"pid\": \"16116\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_bf16.log\", \"submitted_at\": \"2026-05-18T17:25:55.193Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"openai-community/gpt2-medium\", \"seed\": 43, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"wall_clock_seconds\": 12444.6, \"gpu_hours\": 3.46, \"checkpoint_path\": \"results/generalize/gpt2m_wiki_a100_s43_bf16\"}, \"hypothesis\": \"GPT-2-medium multi-seed s43: GPT-2-medium × WikiText-103 × α=1.0 × seed=43. Validates s42 cross-architecture results (K≥4=6/8) are reproducible.\", \"reproduce\": {\"finished_at\": \"2026-05-18T20:53:18.007Z\"}, \"failure_reason\": \"EXIT_CODE=129 (non-zero)\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T20:53:19.746Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T20:53:22.622800+00:00\"}]}, \"metrics\": {\"token_entropy_gen0\": 3.6021, \"token_entropy_gen10\": 3.0035, \"token_entropy_delta_pct\": -16.6, \"distinct_1_gen0\": 0.1092, \"distinct_1_gen10\": 0.0724, \"distinct_1_delta_pct\": -33.7, \"distinct_2_delta_pct\": -39.6, \"distinct_3_delta_pct\": -33.5, \"ece_delta_pct\": 547.9, \"lead_lag\": {\"perm_granger_fdr_fwd\": \"0/8\", \"K_gte3\": \"0/8\", \"threshold_onset_3sigma\": \"0/8\", \"diff_xcorr_fdr_fwd\": \"N/A\"}, \"d120_canonical\": true, \"note\": \"M046 D120 canonical analysis on 17855. bf16 precision: PermG=0/8 vs fp32=6/8 (same config gen_gpt2m_a100_s43_fp32). bf16 stochastic rounding destroys causal signal completely.\", \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 5, \"diff_xcorr_fdr_reverse_sig\": 5, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}}, \"alpha_sweep_a005_s42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T00:22:50.997Z\", \"updated_at\": \"2026-05-20T20:35:09.130Z\", \"hypothesis\": \"D080 fix: α=0.05 diversity cliff position (fp32, torch_dtype=float32). Resubmit of a005_s42 with dtype bug fixed.\", \"parent\": \"alpha_sweep_a005_s42\", \"server\": \"westd-17855\", \"gpu\": \"cuda:3\", \"account\": \"root\", \"spec\": {\"command\": \"iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --synthetic_ratio 0.05\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"pid\": \"71245\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a005_s42_v3.log\", \"submitted_at\": \"2026-05-19T00:23:39.620Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 17717.1, \"gpu_hours\": 4.92}, \"conclusion\": \"success\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.04, \"final_eff_rank\": 45.3, \"final_mauve\": 0.023, \"precision\": \"fp32\", \"token_entropy_drift\": -5.96, \"ece_drift\": 55.41, \"perplexity_drift\": -22.78, \"distinct_1_drift\": -24.86, \"distinct_2_drift\": -28.42, \"distinct_3_drift\": -19.54, \"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"threshold_onset_fwd\": \"5/8\", \"consensus_k4\": \"0/8\", \"mmct_wpair_fwd\": 0, \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 3, \"diff_xcorr_fdr_reverse_sig\": 3, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 2, \"robust_pairs_K4\": 0}, \"checkpoint_path\": \"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a005_s42_fp32_v3_d080/\", \"log_path\": \"westd-17855:~/runs/distrib_canary_collapse/alpha_sweep_a005_s42_v3.log\", \"completed_at\": \"2026-05-19T05:18:56.721Z\", \"note\": \"D111 direction-checked: naive 7/8→3/8, diff 3/8→0/8, K≥3 3/8→0/8, K≥4 0/8→0/8\"}, \"alpha_sweep_a025_s44_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:18:29.952Z\", \"updated_at\": \"2026-05-20T20:35:07.480Z\", \"hypothesis\": \"α=0.25 位于 canary-diversity lead-lag 的 blind zone 内，PermG 应为 0/8，因为低合成比例下 calibration drift 不足以产生可检测的 Granger 因果信号\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.25 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a025_s44_fp32 --seed 44 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch 2>&1 | tee /root/runs/distrib_canary_collapse/alpha_sweep_a025_s44_fp32.log\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"124519\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s44_fp32.log\", \"submitted_at\": \"2026-05-19T09:53:53.279Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 44, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"wall_clock_seconds\": 14921.7, \"gpu_hours\": 4.14}, \"reproduce\": {\"finished_at\": \"2026-05-19T13:51:02.768Z\"}, \"metrics\": {\"drift_pct\": {\"d1\": -38.35, \"d2\": -53.44, \"d3\": -55.35, \"entropy\": -4.11, \"ece\": 68.01, \"ppl\": -16.27, \"mauve\": -40.63, \"eff_rank\": -0.87}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0974, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen9_abs\": {\"token_entropy\": 3.101, \"distinct_1\": 0.06, \"perplexity\": 22.57, \"ece\": 0.0182}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"naive_xcorr\": \"8/8\", \"diff_xcorr\": \"0/8\", \"threshold_onset\": \"0/8\"}, \"mmct_detection_rate\": 0, \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 0, \"diff_xcorr_fdr_reverse_sig\": 0, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}, \"checkpoint_path\": \"results/alpha_sweep/a025_s44_fp32\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s44_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T14:02:34.941Z\", \"notes\": \"D098 3-seed onset 第三个 seed。α=0.25 confirmed as blind zone upper bound. PermG=0/8, K≥4=0/8, MMCT=0.0 — consistent across all 3 seeds. d1 drift tightly clustered (-39.15%/-38.95%/-38.35%, σ=0.33pp). TY Granger seed-unstable (3→6→1/8), confirming C003.\"}, \"alpha_sweep_a075_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:18:30.958Z\", \"updated_at\": \"2026-05-20T20:35:06.782Z\", \"hypothesis\": \"α=0.75 pre-D080 was fp16; fp32 rerun provides D079-compliant authoritative data. PermG expected ~83% (high regime), drift magnitude may change with fp32 precision.\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.75 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a075_s42_fp32 --seed 42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch 2>&1 | tee /root/runs/distrib_canary_collapse/alpha_sweep_a075_s42_fp32.log\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"121667\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a075_s42_fp32.log\", \"submitted_at\": \"2026-05-19T09:33:47.560Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"wall_clock_seconds\": 17407.8, \"gpu_hours\": 4.84}, \"metrics\": {\"n_generations\": 11, \"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.098, \"distinct_2\": 0.5141, \"distinct_3\": 0.8127, \"effective_rank\": 46.613, \"mauve\": 0.0311}, \"gen10\": {\"token_entropy\": 2.283, \"ece\": 0.2145, \"perplexity\": 77.697, \"distinct_1\": 0.0731, \"distinct_2\": 0.357, \"distinct_3\": 0.5957, \"effective_rank\": 78.06, \"mauve\": 0.0299}, \"drift_pct\": {\"token_entropy\": -29.41, \"ece\": 1885.41, \"perplexity\": 188.31, \"distinct_1\": -25.38, \"distinct_2\": -30.55, \"distinct_3\": -26.7, \"effective_rank\": 67.47, \"mauve\": -3.73}, \"lead_lag\": {\"PermG_fwd\": \"6/8\", \"PermG_rev\": \"0/8\", \"K_ge_4\": \"6/8\", \"MMCT_detection\": 0.75, \"naive_xcorr\": \"7/8\", \"diff_xcorr\": \"6/8\", \"threshold_onset\": \"8/8\"}, \"asymmetry\": \"strong (fwd=6, rev=0)\", \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 0}, \"reproduce\": {\"finished_at\": \"2026-05-19T13:51:04.701Z\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/alpha_sweep/a075_s42_fp32/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a075_s42_fp32.log\", \"completed_at\": \"2026-05-19T14:23:55.350Z\", \"note\": \"D111 direction-checked: naive 7/8→0/8, diff 6/8→0/8 (ALL lags negative at high α), K≥3 7/8→6/8, K≥4 6/8→0/8. Forward evidence from threshold+permG+TY only.\"}, \"alpha_sweep_a050_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T05:30:58.574Z\", \"updated_at\": \"2026-05-20T20:35:04.501Z\", \"spec\": {\"command\": \"iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --synthetic_ratio 0.50\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"96513\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42_fp32.log\", \"submitted_at\": \"2026-05-19T05:30:58.346Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 16504.6, \"gpu_hours\": 4.58}, \"hypothesis\": \"D091: α=0.50 fp32 s42 boundary regime. Pre-D080 data was fp16. fp32 rerun confirms PermG step function lower bound at boundary regime. 3-seed parallel with s43/s44.\", \"reproduce\": {\"finished_at\": \"2026-05-19T09:48:21.596Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T09:48:25.167829+00:00\"}]}, \"metrics\": {\"token_entropy_gen0\": 3.2342, \"token_entropy_gen10\": 2.7075, \"token_entropy_drift_pct\": -16.3, \"distinct_1_gen0\": 0.0916, \"distinct_1_gen10\": 0.0649, \"distinct_1_drift_pct\": -29.2, \"perplexity_gen0\": 26.95, \"perplexity_gen10\": 31.46, \"perplexity_drift_pct\": 16.8, \"ece_gen0\": 0.0108, \"ece_gen10\": 0.0868, \"ece_drift_pct\": 703.4, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": \"6/8\", \"precision\": \"fp32\", \"n_perm\": 5000, \"padding_side\": \"right (D093 fix NOT applied)\", \"ty_forward_sig\": 3, \"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 4, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 3}, \"checkpoint_path\": \"results/alpha_sweep/a050_s42_fp32/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a050_s42_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T10:06:02.951Z\", \"note\": \"D111 direction-checked: naive 8/8→5/8, diff 7/8→1/8, K≥3 7/8→5/8, K≥4 6/8→2/8. ece pairs all naive_lag<0.\"}, \"alpha_sweep_a000_s44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T11:29:15.357Z\", \"updated_at\": \"2026-05-20T20:35:03.722Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s44\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"198916\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s44.log\", \"submitted_at\": \"2026-05-16T14:31:17.785Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 15749.3, \"gpu_hours\": 4.37}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"pid\": \"198916\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s44.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s44\\\"\", \"finished_at\": \"2026-05-16T18:49:31.023Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T18:49:32.632808+00:00\"}]}, \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.0981, \"distinct_2\": 0.5132, \"distinct_3\": 0.8058, \"effective_rank\": 46.613}, \"gen10\": {\"token_entropy\": 3.0957, \"ece\": 0.0134, \"perplexity\": 21.616, \"distinct_1\": 0.0838, \"distinct_2\": 0.4665, \"distinct_3\": 0.7749, \"effective_rank\": 44.498}, \"drift_pct\": {\"token_entropy\": -4.3, \"ece\": 24, \"perplexity\": -19.8, \"distinct_1\": -14.6, \"distinct_2\": -9.1, \"distinct_3\": -3.8, \"effective_rank\": -4.5}, \"five_method\": {\"perm_granger_fdr_sig\": \"0/8\", \"ty_sig\": \"0/8\", \"robust_pairs_ge3\": \"0/8\", \"fpr_controlled\": true}, \"ty_forward_sig\": 0, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 3, \"diff_xcorr_fdr_reverse_sig\": 3, \"threshold_onset_forward_sig\": 2, \"robust_pairs_K3\": 1, \"robust_pairs_K4\": 0}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s44\", \"completed_at\": \"2026-05-16T18:53:47.121Z\", \"hypothesis\": \"α=0.0 null control multi-seed: 无合成数据再训练在跨 seed 复现下仍不产生 spurious causal signal（PermG FDR 0/8），证实 signal 源于合成污染而非训练随机性\", \"parent\": \"alpha_sweep_a000_s42\"}, \"alpha_sweep_a025_s44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T06:58:48.224Z\", \"updated_at\": \"2026-05-20T20:35:01.901Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s44\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"147811\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s44.log\", \"submitted_at\": \"2026-05-15T22:04:28.318Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 17118.6, \"gpu_hours\": 4.76}, \"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-15T22:04:26.677Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s44\\\"\", \"finished_at\": \"2026-05-16T02:24:25.056Z\", \"training_hours\": 4.33}, \"pid\": \"147811\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s44.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T02:24:26.614491+00:00\"}]}, \"metrics\": {\"ty_forward_sig\": 4, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 0, \"diff_xcorr_fdr_reverse_sig\": 0, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/alpha_sweep/a025_s44/gen_10/checkpoint\", \"completed_at\": \"2026-05-16T02:49:46.894Z\", \"hypothesis\": \"α=0.25 multi-seed 复现: 低污染下 diversity collapse (40-59%) 但无 Granger causal signal (0/8 PermG) 的模式跨种子稳定，定义 sub-threshold regime 下界\", \"parent\": \"alpha_sweep_a025_s42_v3\"}, \"alpha_sweep_a025_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T06:18:28.979Z\", \"updated_at\": \"2026-05-20T20:35:00.132Z\", \"hypothesis\": \"D098 3-seed onset 确認：α=0.25 fp32 multi-seed 验证 s42 结果的 seed stability，确认 fp32 下 drift magnitude 和 PermG=0/8 跨 seed 稳定\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --data_dir data/wikitext103_5k --synthetic_ratio 0.25 --num_generations 10 --steps_per_gen 5000 --output_dir results/alpha_sweep/a025_s43_fp32 --seed 43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch 2>&1 | tee /root/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"pid\": \"123809\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log\", \"submitted_at\": \"2026-05-19T09:55:30.729Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"wall_clock_seconds\": 18430.0, \"gpu_hours\": 5.12}, \"reproduce\": {\"finished_at\": \"2026-05-19T14:21:15.014Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T14:21:18.679847+00:00\"}]}, \"metrics\": {\"drift_pct\": {\"d1\": -38.95, \"d2\": -53.35, \"d3\": -54.8, \"entropy\": -4.94, \"ece\": 64.77, \"ppl\": -18.38, \"mauve\": -35.59, \"eff_rank\": -1.99}, \"gen0_abs\": {\"token_entropy\": 3.234, \"distinct_1\": 0.0983, \"perplexity\": 26.95, \"ece\": 0.0108}, \"gen10_abs\": {\"token_entropy\": 3.069, \"distinct_1\": 0.0595, \"perplexity\": 21.95, \"ece\": 0.0218}, \"lead_lag\": {\"perm_granger_fwd\": \"0/8\", \"perm_granger_rev\": \"0/8\", \"consensus_k4\": \"0/8\", \"mmct_detection_rate\": 0, \"naive_xcorr\": \"8/8\", \"threshold_onset\": \"4/8\"}, \"max_consensus_votes\": 3, \"precision\": \"fp32\", \"padding_side_fix\": \"D093 applied\", \"ty_forward_sig\": 1, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 0, \"diff_xcorr_fdr_reverse_sig\": 0, \"threshold_onset_forward_sig\": 0, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}, \"checkpoint_path\": \"results/alpha_sweep/a025_s43_fp32/\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s43_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T15:02:40.743Z\"}, \"alpha_sweep_a000_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-16T11:29:13.444Z\", \"updated_at\": \"2026-05-20T20:34:59.067Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"198833\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s43.log\", \"submitted_at\": \"2026-05-16T14:31:15.017Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 15486.6, \"gpu_hours\": 4.3}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"pid\": \"198833\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s43.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s43\\\"\", \"finished_at\": \"2026-05-16T18:44:57.867Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T18:44:59.745869+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.2342, \"ece\": 0.0108, \"perplexity\": 26.949, \"distinct_1\": 0.0983, \"distinct_2\": 0.5132, \"distinct_3\": 0.8057, \"effective_rank\": 46.613}, \"gen10\": {\"token_entropy\": 3.0907, \"ece\": 0.0148, \"perplexity\": 21.469, \"distinct_1\": 0.0847, \"distinct_2\": 0.4631, \"distinct_3\": 0.7672, \"effective_rank\": 43.72}, \"drift_pct\": {\"token_entropy\": -4.4, \"ece\": 37.2, \"perplexity\": -20.3, \"distinct_1\": -13.9, \"distinct_2\": -9.8, \"distinct_3\": -4.8, \"effective_rank\": -6.2}, \"five_method\": {\"perm_granger_fdr_sig\": \"0/8\", \"ty_sig\": \"1/8 (df_resid=1 unreliable)\", \"robust_pairs_ge3\": \"0/8\", \"fpr_controlled\": true}, \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 2, \"diff_xcorr_fdr_reverse_sig\": 2, \"threshold_onset_forward_sig\": 1, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s43/\", \"completed_at\": \"2026-05-16T18:49:21.663Z\", \"hypothesis\": \"α=0.0 null control multi-seed: 无合成数据再训练在跨 seed 复现下仍不产生 spurious causal signal（PermG FDR 0/8），证实 signal 源于合成污染而非训练随机性\", \"parent\": \"alpha_sweep_a000_s42\"}, \"alpha_sweep_a000_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:01:37.470Z\", \"updated_at\": \"2026-05-20T20:34:53.356Z\", \"spec\": {\"hypothesis\": \"α=0.0 null control: 纯 real data 再训练无 canary signal，确认 signal 源于合成污染\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0, \"num_generations\": 10, \"steps_per_gen\": 5000, \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.0 --output_dir results/alpha_sweep/a000_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"46716\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T23:36:35.414Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T23:36:36.221435+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a000_s42/gen_10/checkpoint\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a000_s42.log\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.0693, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.0164, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 21.11, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0847, \"token_entropy_drift_pct\": -5.1, \"ece_drift_pct\": 51.7, \"perplexity_drift_pct\": -21.7, \"distinct_1_drift_pct\": -13.8, \"distinct_2_drift_pct\": -9.8, \"distinct_3_drift_pct\": -4.5, \"gen1_10_perplexity_drift_pct\": 9.4, \"gen1_10_distinct_1_drift_pct\": -13.1, \"gen1_10_entropy_drift_pct\": 2.6, \"ty_forward_sig\": 2, \"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 4, \"diff_xcorr_fdr_reverse_sig\": 4, \"threshold_onset_forward_sig\": 3, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0}, \"completed_at\": \"2026-05-14T23:39:04.310Z\", \"notes\": \"D111 direction-checked. AUTHORITATIVE analysis dir: analysis/ (5method_leadlag.json). analysis_mauve/ is DEPRECATED — uses different threshold logic (canary_onset vs onset_canary field names), TY p-values diverge, results inconsistent with analysis/. All CSV artifacts and paper figures must source from analysis/ only. FPR: naive=6/8(0.750), diff=0/8, threshold=3/8(0.375), PermG=0/8, TY=1/8(0.125), K≥3=1/8(0.125).\"}, \"t20_a045_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T10:19:01.912Z\", \"updated_at\": \"2026-05-20T20:19:20.957Z\", \"hypothesis\": \"D127 Power Theory α_c left-shift 验证: T=20 at α=0.45（blind zone 上界）。T=11 下 α=0.45 PermG=0/8（blind zone confirmed），T=20 提供 2× 数据点——如果 T=20 下 PermG 仍为 0/8 → α_c 不随 T 左移，blind zone 是 fundamental limit；如果 PermG>0 → 统计功效不足是 T=11 blind zone 的部分原因，T=20 缩小 blind zone。\", \"parent\": \"alpha_sweep_a045_s42_fp32\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 0.45 --output_dir results/t20/a045_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"332328\", \"log_path\": \"~/runs/distrib_canary_collapse/t20_a045_s42_fp32.log\", \"submitted_at\": \"2026-05-20T11:51:14.078Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"wall_clock_seconds\": 30486.9, \"gpu_hours\": 8.47}, \"reproduce\": {\"finished_at\": \"2026-05-20T20:14:37.087Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T20:14:42.093525+00:00\"}]}, \"checkpoint_path\": \"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/t20/a045_s42_fp32\", \"log_path\": \"westd-17855:~/runs/distrib_canary_collapse/t20_a045_s42_fp32.log\", \"metrics\": {\"perm_granger_fdr_forward_sig\": 5, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 7, \"diff_xcorr_fdr_reverse_sig\": 7, \"threshold_onset_forward_sig\": 4, \"ty_forward_sig\": 2, \"robust_pairs_K3\": 3, \"robust_pairs_K4\": 1, \"n_generations\": 20, \"alpha\": 0.45, \"seed\": 42, \"threshold_criterion\": \"true_3sigma_d105\", \"predicted_permg\": 0, \"observed_permg\": 5, \"prediction_verdict\": \"FAIL\", \"observed_rate_in_predicted_ci\": true, \"blind_zone_conclusion\": \"power_issue_not_fundamental\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T20:19:20.957Z\"}, \"data_strategy_ablation_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T04:45:33.830Z\", \"updated_at\": \"2026-05-20T19:41:10.276Z\", \"hypothesis\": \"数据累积策略 ablation cross-seed：accumulate 模式 α=0.50 seed=43。验证 s42 结果（data_strategy_ablation_s42）的 seed robustness。如果 s42/s43 PermG 一致 → accumulate 效果 seed-robust；如果不同 → 策略效果 seed-sensitive。Baseline: alpha_sweep_a050_s43_fp32 (replace, PermG=6/8)。\", \"parent\": \"data_strategy_ablation_s42\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/ablation/accumulate_a050_s43 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --accumulate\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"531127\", \"log_path\": \"~/runs/distrib_canary_collapse/data_strategy_ablation_s43.log\", \"submitted_at\": \"2026-05-20T05:05:18.046Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"precision\": \"fp32\", \"data_strategy\": \"accumulate\", \"checkpoint_source\": \"N/A - training from scratch, parent is derivation chain only\", \"eval_data\": \"N/A - training experiment not eval\", \"wall_clock_seconds\": 52552.2, \"gpu_hours\": 14.6}, \"metrics\": {\"perm_granger_fdr_forward_sig\": 0, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 2, \"diff_xcorr_fdr_reverse_sig\": 2, \"threshold_onset_forward_sig\": 0, \"ty_forward_sig\": 3, \"robust_pairs_K3\": 0, \"robust_pairs_K4\": 0, \"n_generations\": 10, \"alpha\": 0.5, \"seed\": 43, \"data_strategy\": \"accumulate\", \"baseline_exp\": \"alpha_sweep_a050_s43_fp32\", \"threshold_criterion\": \"true_3sigma_d105\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T09:27:03.761Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T09:27:08.767973+00:00\"}]}, \"checkpoint_path\": \"results/ablation/accumulate_a050_s43/gen_10\", \"conclusion\": \"negative\", \"completed_at\": \"2026-05-20T19:41:10.276Z\"}, \"t20_a050_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T08:23:30.831Z\", \"updated_at\": \"2026-05-20T19:41:08.293Z\", \"hypothesis\": \"D126 战线1: T=20 extended generation 在 onset boundary α=0.50。T=10 下 PermG=6/8, K≥3=6/8。T=20 提供更多数据点：(1) PermG 统计功效提升 (2) 观察 onset 后 canary-downstream lag 是否随时间拉大或收敛。boundary regime 行为对 dose-response 精细刻画至关重要。\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 0.50 --output_dir results/t20/a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:1\"], \"pid\": \"302503\", \"log_path\": \"~/runs/distrib_canary_collapse/t20_a050_s42_fp32.log\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"num_generations\": 20}, \"server\": \"westd-17855\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"pid\": \"302503\", \"log_path\": \"~/runs/distrib_canary_collapse/t20_a050_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 0.50 --output_dir results/t20/a050_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-20T16:33:02.304Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T16:33:08.433345+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/t20/a050_s42_fp32/gen_20\", \"metrics\": {\"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 6, \"ty_forward_sig\": 2, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 2, \"n_generations\": 20, \"alpha\": 0.5, \"seed\": 42, \"threshold_criterion\": \"true_3sigma_d105\"}, \"completed_at\": \"2026-05-20T19:41:08.293Z\"}, \"t20_a100_s42_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T08:23:28.680Z\", \"updated_at\": \"2026-05-20T19:41:06.528Z\", \"hypothesis\": \"D126 战线1: T=20 extended generation 验证 canary lead-lag 在长序列下的演化。α=1.0 是最强信号点，T=20 下 PermG 应保持或增强（更多数据点提升统计功效）。如果 K≥3 在 gen 11-20 下降 → collapse 饱和后 canary 失效；如果保持 → 长期监控可行。\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 1.0 --output_dir results/t20/a100_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"301936\", \"log_path\": \"~/runs/distrib_canary_collapse/t20_a100_s42_fp32.log\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"num_generations\": 20}, \"server\": \"westd-17855\", \"gpu\": \"cuda:2\", \"account\": \"root\", \"pid\": \"301936\", \"log_path\": \"~/runs/distrib_canary_collapse/t20_a100_s42_fp32.log\", \"reproduce\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 20 --synthetic_ratio 1.0 --output_dir results/t20/a100_s42_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"finished_at\": \"2026-05-20T16:52:31.202Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T16:52:35.856159+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/t20/a100_s42_fp32/gen_20\", \"metrics\": {\"perm_granger_fdr_forward_sig\": 6, \"perm_granger_fdr_reverse_sig\": 0, \"diff_xcorr_fdr_forward_sig\": 6, \"diff_xcorr_fdr_reverse_sig\": 6, \"threshold_onset_forward_sig\": 6, \"ty_forward_sig\": 2, \"robust_pairs_K3\": 6, \"robust_pairs_K4\": 6, \"n_generations\": 20, \"alpha\": 1, \"seed\": 42, \"threshold_criterion\": \"true_3sigma_d105\"}, \"completed_at\": \"2026-05-20T19:41:06.528Z\"}, \"data_strategy_ablation_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-20T04:27:03.682Z\", \"updated_at\": \"2026-05-20T09:16:06.145Z\", \"hypothesis\": \"数据累积策略（accumulate：每代叠加所有前几代生成文本）会通过缓冲训练数据多样性，减弱 canary→downstream 的 lead-lag 时序耦合，相比 replace 模式（每代只用上一代输出）降低 5-method 检测率。\", \"parent\": \"alpha_sweep_a050_s42_fp32\", \"spec\": {\"command\": \"cd /root/autodl-tmp/distrib_canary_collapse && python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/ablation/accumulate_a050_s42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch --accumulate\", \"server\": \"westd-17855\", \"log_path\": \"~/runs/distrib_canary_collapse/data_strategy_ablation_s42.log\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/ablation/accumulate_a050_s42/gen_10\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"data_strategy\": \"accumulate\"}, \"reproduce\": {\"finished_at\": \"2026-05-20T08:36:50.728Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-20T08:36:55.566462+00:00\"}]}, \"metrics\": {\"accumulate_permg_fwd\": \"0/8\", \"replace_permg_fwd\": \"6/8\", \"accumulate_K_gte3\": \"0/8\", \"replace_K_gte3\": \"6/8\", \"accumulate_TY\": \"4/8\", \"replace_TY\": \"4/8\", \"accumulate_entropy_drift\": \"-2.4%\", \"replace_entropy_drift\": \"-16.3%\", \"accumulate_ece_drift\": \"+89%\", \"replace_ece_drift\": \"+703%\", \"accumulate_distinct1_drift\": \"-27%\", \"replace_distinct1_drift\": \"-29%\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-20T08:42:32.470Z\"}, \"interv_pred_a075_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T21:01:51.433Z\", \"updated_at\": \"2026-05-20T05:52:25.482Z\", \"hypothesis\": \"Predictive intervention at α=0.75 boundary regime: Tests if canary-based intervention (switch to α=0.0 when token_entropy drops >15%) can prevent collapse in the transitional regime. At α=0.75, Granger causality becomes FDR-significant (3/8 pairs). If predictive intervention triggers and recovers quality, it validates canary as actionable early warning even in moderate contamination.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export TRANSFORMERS_OFFLINE=1 && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/predictive_te_a075_s42 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"532897\", \"log_path\": \"~/runs/distrib_canary_collapse/interv_pred_a075_s42.log\", \"submitted_at\": \"2026-05-20T05:18:50Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"precision\": \"fp32\", \"intervention_mode\": \"predictive\", \"intervention_metric\": \"token_entropy\", \"intervention_threshold\": 0.15, \"intervention_alpha\": 0, \"checkpoint_path\": \"N/A - killed before completion\", \"kill_reason\": \"Duplicate of interv_pred_a075_s42_fp32_v4 (DONE/success)\", \"wall_clock_seconds\": 2015.5, \"gpu_hours\": 0.56}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-20T05:52:25.483Z\"}, \"gen_gpt2m_a100_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T23:45:29.110Z\", \"updated_at\": \"2026-05-20T04:28:09.194Z\", \"hypothesis\": \"GPT-2-medium multi-seed s43 fp32: Table 7 gap fill. GPT-2-medium × WikiText-103 × α=1.0 × seed=43 × fp32. Validates s42 cross-architecture canary lead-lag. D079 requires fp32 for main axis comparability.\", \"parent\": \"gen_wiki_gpt2m_a100_s42_v4\", \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-18T23:50:22.092Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 43 --output_dir results/gen_wiki_gpt2m_a100_s43\\\"\", \"finished_at\": \"2026-05-19T15:07:30.624Z\", \"training_hours\": 15.29}, \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 43 --output_dir results/gen_wiki_gpt2m_a100_s43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"407859\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_fp32.log\", \"submitted_at\": \"2026-05-19T00:21:13.371Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 53472.7, \"gpu_hours\": 14.85}, \"pid\": \"407859\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_gpt2m_a100_s43_fp32.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-19T15:07:34.310909+00:00\"}]}, \"metrics\": {\"threshold_onset_3sigma_m037\": \"3x_sigma_drift→true_3sigma\", \"K3_3sigma_m037\": \"6/8\", \"K3_3sigma_d111_detail\": \"naive=7/8 diff=6/8 thr3s=0/8 pg=6/8 ty=4/8\"}, \"checkpoint_path\": \"results/gen_wiki_gpt2m_a100_s43\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T15:12:26.084Z\", \"notes\": \"D102 qualified success: PermG fwd=6/8 (unified pairs), K≥4 不适用 (extreme collapse + mauve SNR不足), PermG rev=4/8 存在双向耦合但 fwd>rev. MMCT wpair=75%. Cross-seed consistent with s42.\"}, \"method_ablation_phase3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T23:10:03.625Z\", \"updated_at\": \"2026-05-19T19:52:08.341Z\", \"hypothesis\": \"Phase 3 method ablation: 扩展 7 个 α 点（0.00-1.00）的 5 种检测方法 significance rate 矩阵，验证 permG/TY 在不同 contamination regime 下的灵敏度。\", \"conclusion\": \"success\", \"metrics\": {\"n_alpha_points\": 10, \"alphas\": [0, 0.05, 0.1, 0.25, 0.35, 0.4, 0.5, 0.6, 0.75, 1], \"naive_sig_rates\": [1, 0.875, 0.875, 1, 1, 1, 1, 0.875, 0.875, 1], \"diff_sig_rates\": [0.5, 0.375, 0.75, 0.375, 0.5, 0.375, 0.875, 1, 0.75, 0.75], \"thresh_3sigma_rates\": [0.5, 0.625, 0.625, 0.625, 1, 1, 1, 1, 1, 1], \"permG_fwd_rates\": [0, 0, 0, 0, 0, 0, 0.75, 0.375, 0.75, 0.75], \"permG_rev_rates\": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], \"TY_rates\": [0.25, 0.375, 0.375, 0.375, 0.5, 0.5, 0.5, 1, 1, 0.375], \"regime_structure\": {\"null\": \"alpha<=0.40: PermG=0%, naive=87-100% FPR. 11 data points all PermG=0/8\", \"onset\": \"alpha=[0.40,0.50]: PermG jumps 0→75%, K≥4 jumps 0→75%\", \"sync_collapse\": \"alpha=0.60: PermG drops to 37.5% (non-monotonic, D108). BUT K≥4 peaks at 87.5% — TY complements PermG (TY=100% here vs 50% at α=0.50). MMCT multi-method consensus strongest at this α\", \"detection\": \"alpha>=0.75: PermG=75%, TY non-monotonic drop to 37.5-100%\"}, \"claim3_support\": \"strong: 4-regime dose-response with non-monotonic PermG at α=0.60 (sync collapse) and TY complementarity. Method choice directly determines conclusion validity. PermG 0% FPR in null regime = cleanest discriminator.\", \"D105_standard\": \"3sigma + FDR BH + n_perm=5000 + unified 8-pair\"}, \"spec\": {\"command\": \"CPU analysis (zero GPU)\", \"server\": \"westd-17855\", \"data_path\": \"results/alpha_sweep/* (7 alpha points)\", \"data_count\": 7, \"model_name\": \"N/A (analysis)\", \"seed\": 42, \"checkpoint_path\": \"artifacts/method_ablation_phase3/\", \"log_path\": \"artifacts/method_ablation_phase3/method_ablation_phase3_summary.md\"}, \"completed_at\": \"2026-05-18T23:45:15.785Z\"}, \"qwen35_dryrun_launch\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-18T21:31:44.039Z\", \"updated_at\": \"2026-05-19T19:07:02.672Z\", \"conclusion\": \"killed\"}, \"interv_react_s43_fp32\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T13:41:42.984Z\", \"updated_at\": \"2026-05-19T18:59:55.044Z\", \"hypothesis\": \"Reactive intervention multi-seed fp32: Pythia-410M α=1.0 s43, distinct_1 drop >10% trigger → switch α=0.0. Validates s42 reactive result (trigger Gen 2, recovery Gen 4) is reproducible. fp32 for D079 compliance.\", \"parent\": \"intervention_reactive_s42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode reactive --intervention_metric distinct_1 --intervention_threshold 0.10 --intervention_alpha 0.0 --output_dir results/intervention/reactive_d1_s43_fp32 --batch_size 4 --max_length 512 --lr 5e-5 --gen_max_new_tokens 256 --gen_batch_size 16 --top_p 0.95 --optim adamw_torch\", \"server\": \"westd-17855\", \"gpu_ids\": [1], \"pid\": 143073, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\"}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/intervention/reactive_d1_s43_fp32/\", \"log_path\": \"~/runs/distrib_canary_collapse/interv_react_s43_fp32.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-19T18:05:51.990Z\", \"metrics\": {\"trigger_gen\": 2, \"trigger_distinct1_drop_pct\": -15.83, \"gen2_ppl\": 158.22, \"recovery_ppl\": 21.98, \"recovery_complete_by_gen\": 3, \"intervention_metric\": \"distinct_1\", \"intervention_threshold\": 0.1, \"intervention_alpha\": 0, \"gen0\": {\"token_entropy\": 3.234, \"perplexity\": 26.949, \"distinct_1\": 0.098}, \"gen9\": {\"token_entropy\": 3.079, \"perplexity\": 21.357, \"distinct_1\": 0.089}, \"gen10\": {\"token_entropy\": 3.088, \"perplexity\": 21.387, \"distinct_1\": 0.083}, \"note\": \"reactive intervention triggered at gen2 (d1=0.083 < threshold=0.1), alpha 1.0→0.0; ppl spike 26.9→158.2 recovered by gen3 to 22.0; d1 partial recovery 0.098→0.083→0.089\"}}, \"generalize_pythia1b_c4_a100_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-17T13:06:55.402Z\", \"updated_at\": \"2026-05-19T16:53:26.694Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/.hf_cache/pythia-1b-local --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/pythia1b_c4_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"269777\", \"log_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/\", \"submitted_at\": \"2026-05-17T13:06:55.275Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1b\", \"seed\": 42, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/pythia1b_c4_a100_s42/\", \"wall_clock_seconds\": 17465.8, \"gpu_hours\": 4.85}, \"hypothesis\": \"Methodological pitfalls generalize across data domains — Pythia-1B on C4 (vs WikiText) at α=1.0 should reproduce canary→downstream causal pattern, proving domain-independence of the framework (retry after download fix)\", \"parent\": \"generalize_pythia1b_c4_a100_s42\", \"conclusion\": \"success\", \"metrics\": {\"robust_pairs_K4_3sigma\": \"4/8\", \"robust_pairs_K3_3sigma\": \"8/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"D105 backfill: true 3sigma, fdr_permethod, unified 8-pair (canary={token_entropy,ece} x downstream={d1,d2,d3,mauve})\"}, \"completed_at\": \"2026-05-17T17:58:01.067Z\", \"notes\": \"D102 unified 8-pair. PermG fwd 8/8 (C4 mauve strong). D102决策: Table 7 主指标=PermG fwd. C4域最强信号.\"}, \"gen_wiki_gpt2m_a100_s42_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T01:20:50.055Z\", \"updated_at\": \"2026-05-19T16:40:02.123Z\", \"hypothesis\": \"GPT-2-medium 重跑以产出可审计 artifact：用统一参数 (n_perm=5000, xcorr_lag=5) 验证跨架构泛化，填充 Table 7 GPT-2m 行\", \"parent\": \"\", \"spec\": {\"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/generalize/gpt2m_wiki_a100_s42/\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v4.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-18T11:28:28.313Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T11:28:30.486134+00:00\"}]}, \"metrics\": {\"robust_pairs_K4_3sigma\": \"2/8\", \"robust_pairs_K3_3sigma\": \"6/8\", \"threshold_onset_3sigma\": \"0/8\", \"D105_3sigma_note\": \"True 3sigma recompute. threshold_onset dropped 6/8->0/8. K4 dropped 6/8->2/8. PermG/TY unchanged.\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T11:34:34.397Z\", \"notes\": \"D102: metrics updated to unified pair config (D101). K≥4 6/8→0/8 (old was inflated by →ppl). PermG fwd 6/8 unchanged. MMCT wpair 75%.\"}, \"interv_pred_a075_s42_fp32_v4\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-19T00:22:52.832Z\", \"updated_at\": \"2026-05-19T05:27:05.538Z\", \"hypothesis\": \"D080 fix: predictive intervention α=0.75 fp32 (torch_dtype=float32). Resubmit with dtype bug fixed.\", \"parent\": \"interv_pred_a075_s42_fp32\", \"server\": \"westd-17855\", \"gpu\": \"cuda:4\", \"account\": \"root\", \"spec\": {\"command\": \"iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --synthetic_ratio 0.75 --intervention_mode predictive\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:4\"], \"pid\": \"71542\", \"log_path\": \"~/runs/distrib_canary_collapse/interv_pred_a075_s42_fp32_v4.log\", \"submitted_at\": \"2026-05-19T00:23:45.454Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_source\": \"EleutherAI/pythia-410m\", \"eval_data\": \"data/wikitext103_5k\", \"wall_clock_seconds\": 17709.3, \"gpu_hours\": 4.92}, \"conclusion\": \"success\", \"metrics\": {\"final_ppl\": 20.81, \"final_entropy\": 3.05, \"final_eff_rank\": 44.8, \"final_mauve\": 0.031, \"precision\": \"fp32\", \"intervention_trigger_gen\": 1, \"recovery_gen\": 2, \"token_entropy_drift\": -5.74, \"ece_drift\": 55.78, \"perplexity_drift\": -22.76, \"distinct_1_drift\": -7.97, \"distinct_2_drift\": -5.22, \"distinct_3_drift\": -3.9, \"perm_granger_fwd\": \"6/8\", \"perm_granger_rev\": \"0/8\", \"threshold_onset_fwd\": \"0/8\", \"consensus_k4\": \"6/8\", \"mmct_wpair_fwd\": 0.75}, \"checkpoint_path\": \"westd-17855:/root/autodl-tmp/distrib_canary_collapse/results/intervention/interv_pred_fp32_v4_d080/\", \"log_path\": \"westd-17855:~/runs/distrib_canary_collapse/interv_pred_a075_s42_fp32_v4.log\", \"completed_at\": \"2026-05-19T05:18:54.772Z\"}, \"alpha_sweep_a060_s42_fp32_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T22:11:35.152Z\", \"updated_at\": \"2026-05-19T01:34:42.831Z\", \"hypothesis\": \"fp32 α=0.60 dose-response 主轴数据点: D079 要求 fp32 数据填补 dose-response map。与 alpha_sweep_a060_s42_bf16 完全相同配置，唯一区别 fp32 精度。bf16 的 stochastic rounding 系统性抑制 collapse 5-730x，fp32 数据是 Table 7 主轴必需。\", \"parent\": \"\", \"spec\": {\"command\": \"bash -c 'cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=2 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s42_fp32'\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"55503\", \"log_path\": \"~/runs/distrib_canary_collapse/a060_s42_fp32.log\", \"submitted_via\": \"manual_tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42}, \"conclusion\": \"killed\", \"notes\": \"D080: torch_dtype=None bug. Killed for code fix\", \"completed_at\": \"2026-05-19T01:34:42.831Z\"}, \"qwen35_08b_wiki_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 1, \"created_at\": \"2026-05-18T20:52:52.006Z\", \"updated_at\": \"2026-05-19T00:28:40.620Z\", \"hypothesis\": \"Qwen3.5-0.8B cross-architecture validation: 第5个独立架构族(Alibaba Qwen3.5, hybrid linear+full attention), WikiText-103 α=1.0 s42. 验证 canary lead-lag 是否跨架构泛化。\", \"server\": \"westd-17855\", \"gpu\": \"cuda:1\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-17855\", \"gpu\": \"cuda:1\", \"started_at\": \"2026-05-18T20:56:03.044Z\", \"command\": \"python -u iterative_train.py --model_name /root/autodl-tmp/models/Qwen3.5-0.8B-Base/ --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/qwen35_08b_wiki_a100_s42_fp32\", \"finished_at\": \"2026-05-19T00:27:32.988Z\", \"training_hours\": 3.52}, \"failure_reason\": \"EXIT_CODE=127 (command not found — check bash -c wrapping / env activate)\", \"completed_at\": \"2026-05-18T22:08:22.536Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T22:08:25.543963+00:00\"}, {\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T00:27:37.370959+00:00\"}], \"previous_failure\": {\"conclusion\": \"failed\"}}, \"spec\": {\"pid\": \"55423\", \"tmux_session\": \"qwen35_08b_fp32\", \"log_path\": \"~/runs/distrib_canary_collapse/qwen35_08b_fp32.log\", \"submitted_at\": \"2026-05-19T06:09:21Z\", \"submitted_via\": \"ssh_execute_manual\", \"backend\": \"tmux\", \"account\": \"root\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && CUDA_VISIBLE_DEVICES=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/Qwen3.5-0.8B-Base/ --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/qwen35_08b_wiki_a100_s42_fp32\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:1\"], \"model_name\": \"Qwen3.5-0.8B-Base\", \"seed\": 42, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000}, \"conclusion\": \"killed\", \"notes\": \"D080: torch_dtype/dtype param ignored by Qwen3.5 in transformers 5.8.1 — model loads as bfloat16 regardless. Killed and restarting with patched code (explicit .to(dtype=target_dtype) after from_pretrained).\"}, \"smollm3_3b_wiki_a100_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T21:54:58.834Z\", \"updated_at\": \"2026-05-19T00:24:45.562Z\", \"hypothesis\": \"SmolLM3-3B fp32 cross-architecture validation: 6th independent architecture family (HuggingFace SmolLM3, 3.08B params, 128K vocab). Tests if entropy-leads-diversity canary pattern transfers. D079 requires fp32 for Table 7 main axis comparability.\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name /root/autodl-tmp/models/SmolLM3-3B-Base/ --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --output_dir results/generalize/smollm3_3b_wiki_a100_s42_fp32\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"399348\", \"log_path\": \"~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s42_v2.log\", \"submitted_at\": \"2026-05-18T21:55:14.219Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"SmolLM3-3B-Base\", \"seed\": 42, \"wall_clock_seconds\": 8971.3, \"gpu_hours\": 2.49}, \"conclusion\": \"failed\", \"notes\": \"D080: torch_dtype=None → loaded as bfloat16 (native), not fp32 as D079 requires. Data invalid. Kill and restart with fixed code.\", \"reproduce\": {\"finished_at\": \"2026-05-19T00:24:43.576Z\"}, \"failure_reason\": \"EXIT_CODE=143 (SIGTERM — graceful kill)\", \"completed_at\": \"2026-05-19T00:24:45.562Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-19T00:24:48.395830+00:00\"}]}}, \"scale_14b_a050_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:34:35.480Z\", \"updated_at\": \"2026-05-19T00:21:09.604Z\", \"hypothesis\": \"Pythia-1.4B α=0.50 scale spot-check: Verifies whether canary lead-lag persists at 1.4B scale in the boundary regime (α=0.50). Tests if method sensitivity findings from 410M transfer to larger models.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-1.4b --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/scale_check/pythia14b_a050_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"369470\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_a050_s42.log\", \"submitted_at\": \"2026-05-18T16:34:46.977Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-1.4b\", \"seed\": 42, \"wall_clock_seconds\": 27982.6, \"gpu_hours\": 7.77}, \"reproduce\": {\"finished_at\": \"2026-05-18T23:52:03.891Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T23:52:07.044983+00:00\"}]}, \"checkpoint_path\": \"results/scale_check/pythia14b_a050_s42\", \"log_path\": \"~/runs/distrib_canary_collapse/scale_14b_a050_s42.log\", \"conclusion\": \"success\", \"metrics\": {\"token_entropy_g0\": 2.946, \"token_entropy_g10\": 2.227, \"token_entropy_drift_pct\": -24.4, \"distinct_1_g0\": 0.0993, \"distinct_1_g10\": 0.0636, \"distinct_1_drift_pct\": -36, \"distinct_2_g0\": 0.521, \"distinct_2_g10\": 0.262, \"distinct_2_drift_pct\": -49.7, \"distinct_3_g0\": 0.813, \"distinct_3_g10\": 0.408, \"distinct_3_drift_pct\": -49.8, \"perplexity_g0\": 19.68, \"perplexity_g10\": 35.14, \"perplexity_drift_pct\": 78.6, \"mauve_g0\": 0.033, \"mauve_g10\": 0.024, \"mauve_drift_pct\": -28.2, \"ece_g0\": 0.007, \"ece_g10\": 0.153, \"effective_rank_g0\": 50.76, \"effective_rank_g10\": 82.21, \"num_generations\": 11}, \"completed_at\": \"2026-05-19T00:21:09.604Z\"}, \"interv_pred_a075_s42_fp32_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T23:22:16.709Z\", \"updated_at\": \"2026-05-18T23:24:17.150Z\", \"hypothesis\": \"Predictive intervention (token_entropy threshold 0.15) at synthetic_ratio=0.75 will prevent collapse compared to no-intervention baseline. v2 resubmit with metrics.py LinAlgError fix.\", \"parent\": null, \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=4 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.75 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/predictive_te_a075_s42_fp32_v2\", \"server\": \"westd-17855\", \"pid\": 62752, \"tmux_session\": \"interv_pred_fp32_v3\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T23:24:17.150Z\"}, \"smollm3_3b_wiki_a100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T21:14:35.317Z\", \"updated_at\": \"2026-05-18T21:54:45.986Z\", \"hypothesis\": \"SmolLM3-3B cross-architecture validation: 6th independent architecture family (HuggingFace SmolLM3, 3.08B params, 128K vocab, 2025-07 release). Tests if entropy-leads-diversity canary pattern transfers to a recent 3B-scale model. Paired with Qwen3.5-0.8B to cover both 0.8B and 3B parameter scales for modern architectures.\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name /root/autodl-tmp/models/SmolLM3-3B-Base/ --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --bf16 --gen_batch_size 64 --output_dir results/generalize/smollm3_3b_wiki_a100_s42\", \"server\": \"westd-19828\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"SmolLM3-3B-Base\", \"seed\": 42, \"checkpoint_path\": \"results/generalize/smollm3_3b_wiki_a100_s42\", \"log_path\": \"~/runs/distrib_canary_collapse/smollm3_3b_wiki_a100_s42.log\", \"gpu\": \"cuda:1\", \"tmux_session\": \"smollm3_3b_wiki_a100_s42\", \"pid\": 395612, \"kill_reason\": \"bf16 precision confound — Director requires fp32 for all ≤3B models\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T21:54:45.986Z\"}, \"alpha_sweep_c4_a050_s42_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T17:26:50.191Z\", \"updated_at\": \"2026-05-18T20:54:50.198Z\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --bf16 --output_dir results/alpha_sweep_c4/a050_s42_bf16\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"18253\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_c4_a050_s42_bf16.log\", \"submitted_at\": \"2026-05-18T17:26:50.044Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"data_path\": \"data/c4_5k\", \"data_count\": 5000, \"wall_clock_seconds\": 10609.4, \"gpu_hours\": 2.95}, \"hypothesis\": \"C4 α=0.50 cross-domain with bf16: Pythia-410M C4 at synthetic_ratio=0.50. Validates whether canary ranking and regime boundary transfer from WikiText to C4 domain.\", \"reproduce\": {\"finished_at\": \"2026-05-18T20:23:37.841Z\"}, \"failure_reason\": \"FALSE ALARM: Experiment completed successfully (all 10 generations, EXIT_CODE sentinel=0). Shell-level EXIT_CODE=129 caused by SIGHUP after tmux session killed post-completion. All results in all_metrics.json are complete and usable. No rerun needed.\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-18T20:23:39.484Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-18T20:23:41.952322+00:00\"}]}, \"metrics\": {\"token_entropy_gen0\": 3.136, \"token_entropy_gen10\": 1.94, \"token_entropy_delta_pct\": -38.2, \"distinct_1_gen0\": 0.111, \"distinct_1_gen10\": 0.089, \"distinct_1_delta_pct\": -20.3, \"perplexity_gen0\": 24.4, \"perplexity_gen10\": 122.8, \"perplexity_delta_pct\": 402, \"mauve_gen0\": 0.691, \"mauve_gen10\": 0.078, \"ece_gen0\": 0.011, \"ece_gen10\": 0.259, \"diff_xcorr_te_d1_lag\": 1, \"diff_xcorr_te_d1_r\": 0.914, \"permg_fwd_fdr_sig\": \"0/8\", \"permg_rev_fdr_sig\": \"0/8\"}}, \"gen_opt13b_a100_s43_bf16\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T20:29:50.031Z\", \"updated_at\": \"2026-05-18T20:31:14.879Z\", \"hypothesis\": \"OPT-1.3B multi-seed s43 bf16: facebook/opt-1.3b × WikiText-103 × α=1.0 × seed=43. Validates cross-architecture canary lead-lag at 1.3B scale (Meta OPT family, 6th architecture).\", \"spec\": {\"command\": \"python -u iterative_train.py --model_name facebook/opt-1.3b --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --bf16 --output_dir results/generalize/opt13b_wiki_a100_s43_bf16\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"44884\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_opt13b_a100_s43_bf16.log\", \"submitted_at\": \"2026-05-18T20:29:53.751Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"model_name\": \"facebook/opt-1.3b\", \"seed\": 43, \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000, \"checkpoint_path\": \"N/A\", \"wall_clock_seconds\": 81.1, \"gpu_hours\": 0.02}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T20:31:14.879Z\"}, \"alpha_sweep_a010_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T14:55:45.450Z\", \"updated_at\": \"2026-05-18T19:55:24.464Z\", \"hypothesis\": \"α=0.10 regime map gap fill: Pythia-410M WikiText s42 at synthetic_ratio=0.10 (between 0.00 pure-real and 0.25). Tests whether the near-zero contamination regime shows detectable canary signal or behaves like null control, establishing the lower detection boundary for the dose-response curve.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.10 --output_dir results/alpha_sweep/a010_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"362511\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a010_s42_v2.log\", \"submitted_at\": \"2026-05-18T14:56:01.986Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"checkpoint_path\": \"results/alpha_sweep/a010_s42\", \"wall_clock_seconds\": 17962.5, \"gpu_hours\": 4.99}, \"reproduce\": {\"finished_at\": \"2026-05-18T19:34:38.526Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-18T19:34:41.259905+00:00\"}]}, \"conclusion\": \"negative\", \"completed_at\": \"2026-05-18T19:55:24.464Z\"}, \"interv_pred_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:33:43.711Z\", \"updated_at\": \"2026-05-18T18:43:15.800Z\", \"hypothesis\": \"Intervention predictive multi-seed s43: Pythia-410M WikiText α=1.0, token_entropy >15% drop trigger, switch to α=0.0. Validates s42 result (trigger Gen 1, recovery Gen 2) is reproducible across seeds.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 1.0 --intervention_mode predictive --intervention_metric token_entropy --intervention_threshold 0.15 --intervention_alpha 0.0 --output_dir results/intervention/predictive_te_s43\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:2\"], \"pid\": \"9977\", \"log_path\": \"~/runs/distrib_canary_collapse/interv_pred_s43.log\", \"submitted_at\": \"2026-05-18T16:36:24.687Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"kill_reason\": \"missing --bf16, crashed with ValueError: Attempting to unscale FP16 gradients on Blackwell GPU\", \"wall_clock_seconds\": 7611.1, \"gpu_hours\": 2.11}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T18:43:15.800Z\"}, \"alpha_sweep_c4_a050_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:33:48.244Z\", \"updated_at\": \"2026-05-18T18:43:14.860Z\", \"hypothesis\": \"C4 α=0.50 cross-domain: Pythia-410M C4 at synthetic_ratio=0.50. Validates whether canary ranking and regime boundary transfer from WikiText to C4 domain.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/c4_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.50 --output_dir results/alpha_sweep_c4/a050_s42\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:5\"], \"pid\": \"10198\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_c4_a050_s42.log\", \"submitted_at\": \"2026-05-18T16:36:29.922Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/c4_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"kill_reason\": \"missing --bf16, fp16 GradScaler incompatible with Blackwell GPU\", \"wall_clock_seconds\": 7604.9, \"gpu_hours\": 2.11}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T18:43:14.860Z\"}, \"alpha_sweep_a060_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-18T16:33:46.539Z\", \"updated_at\": \"2026-05-18T18:43:13.901Z\", \"hypothesis\": \"α=0.60 regime map: Pythia-410M WikiText s42 at synthetic_ratio=0.60. Fills gap between α=0.50 (boundary, high seed variance) and α=0.75 (3/8 FDR-sig). Pinpoints detectability threshold.\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name EleutherAI/pythia-410m --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.60 --output_dir results/alpha_sweep/a060_s42\\\"\", \"server\": \"westd-17855\", \"gpu\": [\"cuda:3\"], \"pid\": \"10057\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a060_s42_v2.log\", \"submitted_at\": \"2026-05-18T16:36:27.453Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"kill_reason\": \"missing --bf16, fp16 GradScaler incompatible with Blackwell GPU\", \"wall_clock_seconds\": 7606.4, \"gpu_hours\": 2.11}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-18T18:43:13.901Z\"}, \"mvp_v4_rep45\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T13:41:26.286Z\", \"updated_at\": \"2026-05-17T02:58:36.890Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 45 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/mvp/rep_45\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"31425\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_v4_rep45.log\", \"submitted_at\": \"2026-05-14T13:42:10.455Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 45, \"wall_clock_seconds\": 15350.2, \"gpu_hours\": 4.26}, \"reproduce\": {\"finished_at\": \"2026-05-14T17:55:42.230Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-14T17:55:42.934182+00:00\"}]}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_45/gen_10/checkpoint\", \"metrics_summary\": {\"gen0_ppl\": 26.9, \"gen10_ppl\": 1016.2, \"gen0_entropy\": 3.234, \"gen10_entropy\": 1.315, \"gen0_ece\": 0.011, \"gen10_ece\": 0.417}, \"wall_clock_seconds\": 15212, \"gpu_hours\": 4.23, \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098574, \"gen0_distinct_2\": 0.51463, \"gen0_distinct_3\": 0.808362, \"gen10_token_entropy\": 1.31536, \"gen10_ece\": 0.41654, \"gen10_perplexity\": 1016.22, \"gen10_distinct_1\": 0.069859, \"gen10_distinct_2\": 0.329549, \"gen10_distinct_3\": 0.543743, \"token_entropy_drift_pct\": -59.3296, \"ece_drift_pct\": 3755.0671, \"perplexity_drift_pct\": 3670.9063, \"distinct_1_drift_pct\": -29.1304, \"distinct_2_drift_pct\": -35.9639, \"distinct_3_drift_pct\": -32.7352}, \"completed_at\": \"2026-05-14T17:58:00.661Z\", \"hypothesis\": \"α=1.0 full replacement baseline: 完全合成污染下 canary→downstream 因果领先性在多 seeds 可复现，建立 confirmatory regime 证据基础\", \"parent\": \"mvp_v4_rep42\"}, \"mvp_v4_rep43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:48:50.161Z\", \"updated_at\": \"2026-05-17T02:58:36.247Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 43 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/mvp/rep_43\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"13758\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_v4_rep43.log\", \"submitted_at\": \"2026-05-14T07:51:36.759Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_43/gen_10/checkpoint\", \"metrics_summary\": {\"gen0_ppl\": 26.9, \"gen10_ppl\": 1014.7, \"gen0_entropy\": 3.234, \"gen10_entropy\": 1.26, \"gen0_ece\": 0.011, \"gen10_ece\": 0.42}, \"wall_clock_seconds\": 20897.7, \"gpu_hours\": 5.8}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T13:39:54.495Z\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098334, \"gen0_distinct_2\": 0.513178, \"gen0_distinct_3\": 0.805669, \"gen10_token_entropy\": 1.25961, \"gen10_ece\": 0.41951, \"gen10_perplexity\": 1014.66, \"gen10_distinct_1\": 0.070383, \"gen10_distinct_2\": 0.329651, \"gen10_distinct_3\": 0.539571, \"token_entropy_drift_pct\": -61.0534, \"ece_drift_pct\": 3782.5544, \"perplexity_drift_pct\": 3665.1176, \"distinct_1_drift_pct\": -28.4246, \"distinct_2_drift_pct\": -35.7628, \"distinct_3_drift_pct\": -33.0282}, \"hypothesis\": \"α=1.0 full replacement baseline: 完全合成污染下 canary→downstream 因果领先性在多 seeds 可复现，建立 confirmatory regime 证据基础\", \"parent\": \"mvp_v4_rep42\"}, \"mvp_v4_rep42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:29:48.857Z\", \"updated_at\": \"2026-05-17T02:58:25.998Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/mvp/rep_42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"13678\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_v4_rep42.log\", \"submitted_at\": \"2026-05-14T07:51:34.806Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_42/gen_10/checkpoint\", \"metrics_summary\": {\"gen0_ppl\": 26.9, \"gen10_ppl\": 1003.7, \"gen0_entropy\": 3.234, \"gen10_entropy\": 1.276, \"gen0_ece\": 0.011, \"gen10_ece\": 0.417}, \"wall_clock_seconds\": 20898.3, \"gpu_hours\": 5.81}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T13:39:53.073Z\", \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098216, \"gen0_distinct_2\": 0.517803, \"gen0_distinct_3\": 0.812728, \"gen10_token_entropy\": 1.27592, \"gen10_ece\": 0.41734, \"gen10_perplexity\": 1003.73, \"gen10_distinct_1\": 0.070383, \"gen10_distinct_2\": 0.335471, \"gen10_distinct_3\": 0.555579, \"token_entropy_drift_pct\": -60.5491, \"ece_drift_pct\": 3762.4711, \"perplexity_drift_pct\": 3624.5595, \"distinct_1_drift_pct\": -28.3386, \"distinct_2_drift_pct\": -35.2126, \"distinct_3_drift_pct\": -31.6402}, \"hypothesis\": \"α=1.0 full replacement baseline: 完全合成污染下 canary→downstream 因果领先性在多 seeds 可复现，建立 confirmatory regime 证据基础\"}, \"gen_wiki_gpt2m_a025_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T10:35:16.032Z\", \"updated_at\": \"2026-05-17T02:56:16.958Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a025_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 0.25 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a025_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"149202\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a025_s42.log\", \"submitted_at\": \"2026-05-15T22:22:52.615Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 36787.0, \"gpu_hours\": 10.22}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T22:22:51.021Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a025_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 0.25 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a025_s42\\\"\", \"finished_at\": \"2026-05-16T08:26:22.143Z\", \"training_hours\": 10.06}, \"pid\": \"149202\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a025_s42.log\", \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-16T08:26:23.559830+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"gen0\": {\"token_entropy\": 3.5714, \"ece\": 0.0112, \"perplexity\": 32.63, \"distinct_1\": 0.1044, \"distinct_2\": 0.5483, \"distinct_3\": 0.8441, \"effective_rank\": 2.3722, \"mauve\": 0.0315}, \"gen10\": {\"token_entropy\": 2.3999, \"ece\": 0.0583, \"perplexity\": 18.12, \"distinct_1\": 0.0799, \"distinct_2\": 0.375, \"distinct_3\": 0.5893, \"effective_rank\": 8.4833, \"mauve\": 0.0282}, \"drift_pct\": {\"token_entropy\": -32.81, \"ece\": 422, \"perplexity\": -44.47, \"distinct_1\": -23.47, \"distinct_2\": -31.6, \"distinct_3\": -30.19, \"effective_rank\": 257.6, \"mauve\": -10.48}, \"lead_lag_consensus\": {\"tier3_pairs\": 1, \"tier2_pairs\": 7, \"perm_granger_sig\": \"0/8\", \"ty_sig\": \"1/8\"}}, \"checkpoint_path\": \"results/gen_wiki_gpt2m_a025_s42/gen_10/checkpoint\", \"completed_at\": \"2026-05-16T08:35:59.634Z\", \"hypothesis\": \"跨架构验证: GPT-2-medium (355M) 在 α=0.25 下展示与 Pythia-410M 相同的 regime-dependent 模式（diversity collapse 显著但 causal signal sub-threshold），确认 detectability boundary 非模型特异性\", \"parent\": \"alpha_sweep_a025_s42_v3\"}, \"mvp_v2_rep44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:38:10.762Z\", \"updated_at\": \"2026-05-16T00:10:26.251Z\", \"spec\": {\"hypothesis\": \"至少一族canary指标在100% SC full replacement下对downstream指标有≥1 gen的时序领先性\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103\", \"data_count\": 5000, \"seed\": 44, \"server\": \"autodl-rtx6000\", \"gpu\": \"pending\", \"synthetic_ratio\": 1, \"num_generations\": 10, \"steps_per_gen\": 5000, \"n_prompts\": 5000, \"fix_note\": \"n_prompts 1000→5000, steps_per_gen 10000→5000, 避免过拟合\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T00:10:26.251Z\"}, \"mvp_rep44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:12:15.033Z\", \"updated_at\": \"2026-05-16T00:10:25.605Z\", \"spec\": {\"hypothesis\": \"至少一族canary指标在100% SC full replacement下对downstream指标有≥1 gen的时序领先性\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103\", \"seed\": 44, \"server\": \"autodl-rtx6000\", \"gpu\": \"pending\", \"synthetic_ratio\": 1, \"num_generations\": 10, \"steps_per_gen\": 10000}, \"metrics\": {\"gen10_token_entropy\": 1.2205, \"gen10_ece\": 0.4237, \"gen10_perplexity\": 1033.16, \"gen10_distinct_1\": 0.0731, \"gen10_distinct_2\": 0.3637, \"gen10_distinct_3\": 0.6075}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T00:10:25.605Z\"}, \"alpha_sweep_a025_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:01:39.527Z\", \"updated_at\": \"2026-05-16T00:10:24.973Z\", \"spec\": {\"hypothesis\": \"α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持，canary→perplexity lead 是否出现\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T00:10:24.973Z\"}, \"alpha_sweep_a025_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T19:25:52.094Z\", \"updated_at\": \"2026-05-16T00:10:24.568Z\", \"spec\": {\"hypothesis\": \"α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持，canary→perplexity lead 是否出现\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42 (killed, subsample bias fix)\"}, \"conclusion\": \"killed\", \"failure_reason\": \"data corruption: unkilled old process PID 46802 wrote concurrently with new PID 48454\", \"completed_at\": \"2026-05-16T00:10:24.568Z\"}, \"alpha_sweep_a060_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:52:22.516Z\", \"updated_at\": \"2026-05-16T00:04:01.429Z\", \"spec\": {\"hypothesis\": \"α=0.60 中高污染: phase boundary 精确化, 与 α=0.50/0.75 对比 lead time 变化\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.6, \"num_generations\": 10, \"steps_per_gen\": 5000}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T00:04:01.429Z\"}, \"plan_006_s43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:31:37.257Z\", \"updated_at\": \"2026-05-16T00:03:51.617Z\", \"spec\": {\"plan_id\": \"plan_006\", \"hypothesis\": \"Multi-seed replication of three-phase collapse dynamics: verify Phase 3 secondary decline (gen 13+) reproduces with seed=43, confirming it is not a single-seed artifact\", \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"data_path\": \"data/wikitext103_5k\", \"num_generations\": 18, \"synthetic_ratio\": 1, \"max_lag\": 10, \"data_count\": 5000, \"steps_per_gen\": 5000, \"parent\": \"plan_006_s42\", \"claim\": 1, \"priority\": \"P0\"}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-16T00:03:51.617Z\"}, \"gen_wiki_gpt2m_a100_s42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:07:20.050Z\", \"updated_at\": \"2026-05-15T22:30:21.573Z\", \"spec\": {\"hypothesis\": \"Method sensitivity patterns (Granger FDR collapse, cross-correlation dominance) generalize from GPT-2-small to GPT-2-medium, validating cross-architecture universality of methodological pitfalls\", \"seed\": 42, \"model_name\": \"gpt2-medium\", \"data_path\": \"data/wikitext103_5k\", \"data_count\": 5000}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T12:07:30.366Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"finished_at\": \"2026-05-15T22:14:43.852Z\", \"training_hours\": 10.12}, \"pid\": \"117632\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v3.log\", \"metrics\": {\"token_entropy_drift_pct\": -86.5, \"ece_drift_pct\": 4543, \"perplexity_drift_pct\": 44703, \"distinct_1_drift_pct\": -12.4, \"distinct_2_drift_pct\": -14.7, \"distinct_3_drift_pct\": -12.7, \"five_method_forward_consensus\": \"6/6 pairs at 4/5 methods (Tier 3)\", \"five_method_reverse_consensus\": \"0/6 pairs\", \"naive_xcorr_forward\": \"|r|>0.98, all sig\", \"diff_xcorr_forward\": \"all p_fdr<0.001\", \"diff_xcorr_reverse\": \"all p>0.18 (clean directional separation)\", \"threshold_onset_entropy\": \"gen 1 (earliest canary)\", \"threshold_onset_ece\": \"gen 1-2\", \"threshold_onset_diversity\": \"gen 3\", \"perm_granger_forward\": \"p_fdr=0.003, BH corrected\", \"entropy_leads_diversity_lag\": \"1-2 gen\", \"ece_leads_diversity_lag\": \"1 gen\", \"diversity_plateau_from\": \"gen5\", \"cross_arch_note\": \"Replicates Pythia entropy-leads-diversity pattern at Tier 3 consensus. TY underpowered as expected.\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T22:14:45.029003+00:00\"}]}, \"conclusion\": \"success\", \"checkpoint_path\": \"results/gen_wiki_gpt2m_a100_s42/\", \"completed_at\": \"2026-05-15T22:18:22.762Z\"}, \"mvp_v4_rep44\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T07:48:52.613Z\", \"updated_at\": \"2026-05-15T21:29:52.398Z\", \"spec\": {\"hypothesis\": \"至少一族canary指标在100% SC full replacement下对downstream指标有≥1 gen的时序领先性\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 44, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"synthetic_ratio\": 1, \"num_generations\": 10, \"steps_per_gen\": 5000, \"n_prompts\": 5000, \"command\": \"PYTHONUNBUFFERED=1 CUDA_VISIBLE_DEVICES=0 python -u iterative_train.py --seed 44 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --output_dir results/mvp/rep_44\", \"pid\": \"30672\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_v4_rep44.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-14T17:56:00.578Z\"}, \"failure_reason\": \"\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T17:56:00.717Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-14T17:56:03.546926+00:00\"}]}, \"metrics_summary\": {\"gen0_ppl\": 26.9, \"gen10_ppl\": 1033.16, \"gen0_entropy\": 3.234, \"gen10_entropy\": 1.2205, \"gen0_ece\": 0.011, \"gen10_ece\": 0.424}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/mvp/rep_44/gen_10/checkpoint\", \"wall_clock_seconds\": 15134, \"gpu_hours\": 4.2, \"metrics\": {\"gen0_token_entropy\": 3.234195, \"gen0_ece\": 0.010805, \"gen0_perplexity\": 26.948959, \"gen0_distinct_1\": 0.098088, \"gen0_distinct_2\": 0.513235, \"gen0_distinct_3\": 0.805767, \"gen10_token_entropy\": 1.22049, \"gen10_ece\": 0.42369, \"gen10_perplexity\": 1033.16, \"gen10_distinct_1\": 0.073102, \"gen10_distinct_2\": 0.363737, \"gen10_distinct_3\": 0.607502, \"token_entropy_drift_pct\": -62.2629, \"ece_drift_pct\": 3821.2402, \"perplexity_drift_pct\": 3733.7659, \"distinct_1_drift_pct\": -25.473, \"distinct_2_drift_pct\": -29.1286, \"distinct_3_drift_pct\": -24.6057}}, \"plan_006_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:31:35.454Z\", \"updated_at\": \"2026-05-15T12:17:14.093Z\", \"spec\": {\"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"submitted_at\": \"2026-05-14T23:41:30.666Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 43212.6, \"gpu_hours\": 12.0}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-14T23:41:29.125Z\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && PYTHONUNBUFFERED=1 python -u iterative_train.py --data_dir data/wikitext103 --output_dir results/extended_20gen/s42 --seed 42 --synthetic_ratio 1.0 --num_generations 20 --steps_per_gen 10000\\\"\", \"finished_at\": \"2026-05-15T11:41:42.336Z\", \"training_hours\": 12.0}, \"pid\": \"68368\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42.log\", \"metrics\": {\"progress\": \"18/20 gen (gen_0-17 complete, gen_18-20 timeout)\", \"gen0_token_entropy\": 3.2342, \"gen17_token_entropy\": 1.1819, \"gen0_ece\": 0.0108, \"gen17_ece\": 0.4454, \"gen0_perplexity\": 26.95, \"gen17_perplexity\": 3367.66, \"gen0_distinct_1\": 0.0982, \"gen17_distinct_1\": 0.0756, \"gen0_distinct_2\": 0.5178, \"gen17_distinct_2\": 0.3617, \"gen0_distinct_3\": 0.8127, \"gen17_distinct_3\": 0.5865, \"token_entropy_drift_pct_gen0_17\": -63.4, \"distinct_1_drift_pct_gen0_17\": -23, \"distinct_2_drift_pct_gen0_17\": -30.1, \"distinct_3_drift_pct_gen0_17\": -27.8, \"ece_drift_pct_gen0_17\": 4024, \"ppl_drift_pct_gen0_17\": 12395, \"phase1_rapid_collapse\": \"gen0-5\", \"phase2_apparent_plateau\": \"gen5-12\", \"phase3_secondary_decline\": \"gen13-17\", \"phase3_d2_decline_pct\": -5.8, \"phase3_d3_decline_pct\": -6.9, \"diversity_saturated_at_gen\": 5, \"diversity_secondary_decline_at_gen\": 13, \"perplexity_saturated\": false}, \"failure_reason\": \"EXIT_CODE=124 (timeout — exceeded timeout_hours)\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-15T11:41:43.235Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T11:41:44.300301+00:00\"}]}, \"notes\": \"gen_0-17 complete (T=18). 三相 collapse: Phase1 急速崩塌 gen0-5 (d1 -20.6%, entropy -63.8%), Phase2 表观稳态 gen5-12 (diversity <0.3% 变化, perplexity 仍+167%), Phase3 二次衰退 gen13-17 (d2 -5.8%, d3 -6.9%). Perplexity 未饱和 (26.95→3367.66, +12395%). T=18 vs T=10: 新增 diversity 二次衰退在 T=10 window 不可见. TY power 预估 ~0.28-0.41 (vs T=10 的 0.05-0.21).\"}, \"plan_006_s42_resume\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T11:55:26.236Z\", \"updated_at\": \"2026-05-15T12:10:54.859Z\", \"spec\": {\"command\": \"python -u resume_plan006_s42.py\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"114844\", \"log_path\": \"~/runs/distrib_canary_collapse/plan_006_s42_resume.log\", \"submitted_at\": \"2026-05-15T11:55:31.984Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"hypothesis\": \"恢复 plan_006_s42 从 gen_17，完成 gen_18-20 + all_metrics（α=1.0, 20gen, s42）\", \"seed\": 42, \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"data/wikitext103\", \"data_count\": 0, \"checkpoint_path\": \"N/A\", \"notes\": \"D034 决定不恢复，T=18 数据已足够（超出 T=15 目标）。plan_006_s42 gen_0-17 数据可用。\", \"wall_clock_seconds\": 921.5, \"gpu_hours\": 0.26}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:10:53.514Z\", \"notes\": \"D034 决定不恢复。T=18 数据已足够（超出 T=15 目标）。原 plan_006_s42 gen_0-17 数据可用于 power analysis + supplementary。\"}, \"gen_wiki_gpt2m_a100_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T12:02:06.478Z\", \"updated_at\": \"2026-05-15T12:04:50.741Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:0\"], \"pid\": \"116204\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\", \"submitted_at\": \"2026-05-15T12:02:14.440Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"wall_clock_seconds\": 18.0, \"gpu_hours\": 0.01}, \"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"account\": \"root\", \"reproduce\": {\"server\": \"westd-19828\", \"gpu\": \"cuda:0\", \"started_at\": \"2026-05-15T12:02:13.557Z\", \"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && mkdir -p results/gen_wiki_gpt2m_a100_s42 && HF_HOME=/root/autodl-tmp/.hf_cache TRANSFORMERS_OFFLINE=1 HF_HUB_DISABLE_XET=1 PYTHONUNBUFFERED=1 python -u iterative_train.py --model_name /root/autodl-tmp/models/gpt2-medium --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000 --batch_size 32 --seed 42 --output_dir results/gen_wiki_gpt2m_a100_s42\\\"\", \"finished_at\": \"2026-05-15T12:02:31.643Z\", \"training_hours\": 0.01}, \"pid\": \"116204\", \"log_path\": \"~/runs/distrib_canary_collapse/gen_wiki_gpt2m_a100_s42_v2.log\", \"failure_reason\": \"EXIT_CODE=1 (generic error — check log tail)\", \"conclusion\": \"killed\", \"completed_at\": \"2026-05-15T12:02:32.472Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-15T12:02:33.931882+00:00\"}]}}, \"method_ablation_phase2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-15T08:58:35.270Z\", \"updated_at\": \"2026-05-15T11:07:42.688Z\", \"spec\": {\"hypothesis\": \"Method sensitivity is compounded by regime dependence — method x alpha interaction is the headline Claim 3 evidence\", \"command\": \"python method_ablation_phase2.py\", \"server\": \"westd-19828\", \"data_path\": \"results/alpha_sweep + results/mvp\", \"data_count\": 56, \"model_name\": \"N/A (analysis)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/method_ablation_phase2_panel.json\"}, \"conclusion\": \"success\", \"metrics\": {\"n_panel_rows\": 56, \"n_alphas\": 4, \"alphas\": [0, 0.25, 0.5, 1], \"naive_sig_rate_overall\": 1, \"perm_granger_sig_rate_a000_raw\": 0, \"perm_granger_sig_rate_a000_fdr\": 0, \"perm_granger_sig_rate_a025_raw\": 0.25, \"perm_granger_sig_rate_a025_fdr\": 0, \"perm_granger_sig_rate_a050_raw\": 0.25, \"perm_granger_sig_rate_a050_fdr\": 0, \"perm_granger_sig_rate_a100_raw\": 0.75, \"perm_granger_sig_rate_a100_fdr\": 0.75, \"TY_sig_rate_a000_raw\": 0, \"TY_sig_rate_a000_fdr\": 0, \"TY_sig_rate_a025_raw\": 0.625, \"TY_sig_rate_a025_fdr\": 0.375, \"TY_sig_rate_a050_raw\": 0, \"TY_sig_rate_a050_fdr\": 0, \"TY_sig_rate_a100_raw\": 0.5938, \"TY_sig_rate_a100_fdr\": 0.5938, \"diff_sig_rate_a000_raw\": 0.5, \"diff_sig_rate_a000_fdr\": 0.375, \"mean_inter_method_kappa\": 0.185, \"naive_vs_perm_granger_flip_rate\": 0.5, \"naive_vs_TY_flip_rate\": 0.57, \"fdr_flips_perm_granger\": 4, \"pair_verdict_a100_perm_granger\": \"6/8\", \"pair_verdict_a100_TY\": \"6/8\", \"entropy_to_diversity_a100_all_5methods_sig\": true, \"fdr_correction\": \"BH q=0.05\"}, \"completed_at\": \"2026-05-15T08:58:54.741Z\"}, \"alpha_sweep_a025_s42_v3\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:04:05.726Z\", \"updated_at\": \"2026-05-15T05:13:22.207Z\", \"spec\": {\"hypothesis\": \"α=0.25 低污染: 测试 canary→diversity lead 在温和 collapse 下是否保持\", \"model_name\": \"EleutherAI/pythia-410m\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"seed\": 42, \"synthetic_ratio\": 0.25, \"num_generations\": 10, \"steps_per_gen\": 5000, \"parent\": \"alpha_sweep_a025_s42_v2 (failed, data corruption)\", \"command\": \"bash -c \\\"cd /root/autodl-tmp/distrib_canary_collapse && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_ENDPOINT=https://hf-mirror.com && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && PYTHONUNBUFFERED=1 python -u iterative_train.py --seed 42 --data_dir data/wikitext103_5k --steps_per_gen 5000 --num_generations 10 --synthetic_ratio 0.25 --output_dir results/alpha_sweep/a025_s42\\\"\", \"server\": \"westd-19828\", \"gpu\": [\"cuda:1\"], \"pid\": \"53069\", \"log_path\": \"~/runs/distrib_canary_collapse/alpha_sweep_a025_s42_v3.log\"}, \"reproduce\": {\"finished_at\": \"2026-05-15T01:18:42.377Z\"}, \"extra\": {\"hook_events\": [{\"event\": \"on_complete\", \"action\": \"agent\", \"ts\": \"2026-05-15T01:18:43.329069+00:00\"}]}, \"conclusion\": \"success\", \"metrics\": {\"gen0_token_entropy\": 3.2342, \"gen10_token_entropy\": 3.1017, \"gen0_ece\": 0.0108, \"gen10_ece\": 0.01942, \"gen0_perplexity\": 26.95, \"gen10_perplexity\": 22.32, \"gen0_distinct_1\": 0.0982, \"gen10_distinct_1\": 0.0586, \"gen0_distinct_2\": 0.5178, \"gen10_distinct_2\": 0.2219, \"gen0_distinct_3\": 0.8127, \"gen10_distinct_3\": 0.3263, \"token_entropy_drift_pct\": -4.1, \"ece_drift_pct\": 79.7, \"perplexity_drift_pct\": -17.2, \"distinct_1_drift_pct\": -40.3, \"distinct_2_drift_pct\": -57.1, \"distinct_3_drift_pct\": -59.9}, \"checkpoint_path\": \"/root/autodl-tmp/distrib_canary_collapse/results/alpha_sweep/a025_s42/gen_10/checkpoint\", \"completed_at\": \"2026-05-15T01:26:19.292Z\", \"notes\": \"实际磁盘路径为 results/alpha_sweep/a025_s42/（无 v3 后缀）。Registry ID 带 v3 是历史原因，数据已核实无误。\"}, \"method_ablation_phase1\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T23:49:16.519Z\", \"updated_at\": \"2026-05-14T23:49:40.162Z\", \"spec\": {\"plan_id\": \"plan_002\", \"hypothesis\": \"lead-lag 结论对分析方法高度敏感——naive Pearson 100% SIG vs TY 25% SIG，方法选择改变 75% 的结论\", \"command\": \"python method_ablation.py + python permutation_granger.py (差分版)\", \"server\": \"westd-19828\", \"data_path\": \"results/mvp/rep_{42,43,44,45}/all_metrics.json\", \"data_count\": 4, \"model_name\": \"N/A (analysis on MVP data)\", \"seed\": \"42,43,44,45\", \"checkpoint_path\": \"N/A\", \"log_path\": \"results/mvp/analysis/method_ablation.json\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T23:49:37.295Z\", \"metrics\": {\"spurious_rate_5method\": 0.75, \"spurious_rate_4method\": 0.625, \"naive_sig\": \"16/16\", \"differenced_sig\": \"14/16\", \"threshold_sig\": \"9/16\", \"permutation_granger_sig\": \"6/16\", \"ty_sig\": \"4/16\", \"ty_power_T10\": \"0.05-0.20\", \"bh_fdr_flips\": 0}}, \"plan_009_bootstrap_ty\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T21:33:04.665Z\", \"updated_at\": \"2026-05-14T21:33:27.106Z\", \"spec\": {\"hypothesis\": \"Monte Carlo 验证 TY Granger 在短时间序列 (T=10,15,20,30) 下的 Type I error 和 statistical power\", \"command\": \"python bootstrap_ty_validation.py (N_sim=1000)\", \"server\": \"westd-19828\", \"data_path\": \"synthetic DGP (AR(1) for H0, VAR(2) for H1)\", \"data_count\": 1000, \"model_name\": \"N/A (statistical simulation)\", \"seed\": \"multiple\", \"log_path\": \"results/bootstrap_ty_results.json\", \"checkpoint_path\": \"N/A\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-14T21:33:24.769Z\", \"metrics\": {\"T10_d0_type1\": 0.081, \"T10_d0_power\": 0.205, \"T10_d1_type1\": 0.047, \"T10_d1_power\": 0.09, \"T10_dadapt_type1\": 0.052, \"T10_dadapt_power\": 0.05, \"T20_d0_power\": 0.409, \"T20_d1_power\": 0.172, \"T30_d0_power\": 0.606, \"T30_d1_power\": 0.283}}, \"mvp_v3_rep43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:25:42.195Z\", \"updated_at\": \"2026-05-14T06:48:01.316Z\", \"spec\": {\"command\": \"python iterative_train.py --seed 43 --output_dir results/mvp/rep_43 --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000\", \"server\": \"autodl-rtx6000\", \"gpu\": \"cuda:1\", \"pid\": \"7987\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_v3_rep43.log\", \"submitted_at\": \"2026-05-14T06:26:18.477Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"gpu_model\": \"RTX PRO 6000 Blackwell 96GB\", \"tmux_session\": \"mvp_v3_rep43\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"MAUVE FAISS crash: max_samples=500 → p+q=1000 < 1950 required; 无 PYTHONUNBUFFERED 导致日志丢失\", \"wall_clock_seconds\": 1302.8, \"gpu_hours\": 0.36}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T06:48:01.316Z\"}, \"mvp_v3_rep42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T06:25:39.728Z\", \"updated_at\": \"2026-05-14T06:47:59.908Z\", \"spec\": {\"command\": \"python iterative_train.py --seed 42 --output_dir results/mvp/rep_42 --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000\", \"server\": \"autodl-rtx6000\", \"gpu\": \"cuda:0\", \"pid\": \"7909\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_v3_rep42.log\", \"submitted_at\": \"2026-05-14T06:26:16.939Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"gpu_model\": \"RTX PRO 6000 Blackwell 96GB\", \"tmux_session\": \"mvp_v3_rep42\", \"checkpoint_path\": \"N/A\", \"failure_reason\": \"MAUVE FAISS crash: max_samples=500 → p+q=1000 < 1950 required; 无 PYTHONUNBUFFERED 导致日志丢失\", \"wall_clock_seconds\": 1303.0, \"gpu_hours\": 0.36}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-14T06:47:59.908Z\"}, \"mvp_v2_rep43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:38:10.434Z\", \"updated_at\": \"2026-05-14T06:25:28.345Z\", \"spec\": {\"command\": \"python iterative_train.py --seed 43 --output_dir results/mvp/rep_43 --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000\", \"server\": \"autodl-rtx6000\", \"gpu\": \"cuda:1\", \"pid\": \"5364\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_v2_rep43.log\", \"submitted_at\": \"2026-05-14T05:42:39.039Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"gpu_model\": \"RTX PRO 6000 Blackwell 96GB\", \"tmux_session\": \"mvp_v2_rep43\", \"checkpoint_path\": \"N/A\", \"kill_reason\": \"v1旧进程未死导致输出目录冲突，v2死锁\", \"wall_clock_seconds\": 2569.3, \"gpu_hours\": 0.71}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T06:25:28.345Z\"}, \"mvp_v2_rep42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:38:05.054Z\", \"updated_at\": \"2026-05-14T06:25:27.286Z\", \"spec\": {\"command\": \"python iterative_train.py --seed 42 --output_dir results/mvp/rep_42 --data_dir data/wikitext103_5k --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 5000\", \"server\": \"autodl-rtx6000\", \"gpu\": \"cuda:0\", \"pid\": \"5286\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_v2_rep42.log\", \"submitted_at\": \"2026-05-14T05:42:37.404Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103_5k\", \"data_count\": 5000, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"gpu_model\": \"RTX PRO 6000 Blackwell 96GB\", \"tmux_session\": \"mvp_v2_rep42\", \"checkpoint_path\": \"N/A\", \"kill_reason\": \"v1旧进程未死导致输出目录冲突，v2死锁\", \"wall_clock_seconds\": 2569.9, \"gpu_hours\": 0.71}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T06:25:27.286Z\"}, \"mvp_rep43\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:12:14.237Z\", \"updated_at\": \"2026-05-14T05:37:18.575Z\", \"spec\": {\"command\": \"python iterative_train.py --seed 43 --output_dir results/mvp/rep_43 --data_dir data/wikitext103 --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 10000\", \"server\": \"autodl-rtx6000\", \"gpu\": \"cuda:1\", \"pid\": \"3956\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_rep43.log\", \"submitted_at\": \"2026-05-14T05:34:47.702Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103\", \"data_count\": 716506, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 43, \"gpu_model\": \"RTX PRO 6000 Blackwell 96GB\", \"tmux_session\": \"mvp_rep43\", \"checkpoint_path\": \"N/A\", \"kill_reason\": \"参数修复: n_prompts 1000→5000, steps_per_gen 10000→5000\", \"wall_clock_seconds\": 150.9, \"gpu_hours\": 0.04}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T05:37:18.575Z\"}, \"mvp_rep42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-14T05:12:13.930Z\", \"updated_at\": \"2026-05-14T05:37:17.438Z\", \"spec\": {\"command\": \"python iterative_train.py --seed 42 --output_dir results/mvp/rep_42 --data_dir data/wikitext103 --synthetic_ratio 1.0 --num_generations 10 --steps_per_gen 10000\", \"server\": \"autodl-rtx6000\", \"gpu\": \"cuda:0\", \"pid\": \"3878\", \"log_path\": \"~/runs/distrib_canary_collapse/mvp_rep42.log\", \"submitted_at\": \"2026-05-14T05:34:46.013Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"/root/autodl-tmp/distrib_canary_collapse/data/wikitext103\", \"data_count\": 716506, \"model_name\": \"EleutherAI/pythia-410m\", \"seed\": 42, \"gpu_model\": \"RTX PRO 6000 Blackwell 96GB\", \"tmux_session\": \"mvp_rep42\", \"checkpoint_path\": \"N/A\", \"kill_reason\": \"参数修复: n_prompts 1000→5000, steps_per_gen 10000→5000\", \"wall_clock_seconds\": 151.4, \"gpu_hours\": 0.04}, \"conclusion\": \"killed\", \"completed_at\": \"2026-05-14T05:37:17.438Z\"}}, \"count\": 218, \"total\": 218, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.8995}}"
+    }
+  },
+  "sourceToolAssistantUUID": "e184e638-3b2f-4c10-a987-83fa8e619653",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 439 · 2026-05-25T08:46:51.420Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E1zG3whvNHtRMCvRvArThH`</summary>
+
+```json
+{
+  "query": "Buffa Del Corro 2026 arXiv 2601.09001 entropy"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "02c9b9a8-0b5c-4158-a255-7b99afc21b96",
+  "isSidechain": false,
+  "requestId": "req_011CbNzhrXN4Sv8kCc49wHv6",
+  "type": "assistant",
+  "uuid": "1d76bfc2-863f-487b-b1c6-487ad15c7df0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BaYC2tSEyS1ek3vpN7bMZu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1588,
+      "cache_read_input_tokens": 78818,
+      "output_tokens": 363,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1588,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 363,
+          "cache_read_input_tokens": 78818,
+          "cache_creation_input_tokens": 1588,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1588
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 440 · 2026-05-25T08:46:53.376Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images · `toolu_01YPoFJ4PCh166LtSXJnjog9`</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.pdf",
+  "pages": "7,8,9",
+  "dpi": 150,
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1d76bfc2-863f-487b-b1c6-487ad15c7df0",
+  "isSidechain": false,
+  "requestId": "req_011CbNzhrXN4Sv8kCc49wHv6",
+  "type": "assistant",
+  "uuid": "aa27b6a8-321e-48b2-a7fc-db42263c8f86",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BaYC2tSEyS1ek3vpN7bMZu",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1588,
+      "cache_read_input_tokens": 78818,
+      "output_tokens": 363,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1588,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 363,
+          "cache_read_input_tokens": 78818,
+          "cache_creation_input_tokens": 1588,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1588
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 441_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[System 触发审查]: R16 审稿报告分析请求。请独立审视以下逐条方案的可行性、遗漏和技术细节。  ## R16 审稿报告摘要 Overall: 3.0 Findings。升 3.5 条件：(1) phase diagram ≥10 seeds + bootstrap CI (2) 非 Pythia intermediate-α 验证 (3) 第二 domain C4 核心复现 (4) f…",
+  "leafUuid": "aa27b6a8-321e-48b2-a7fc-db42263c8f86",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 442_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review loop 18 experiment status",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 443 · 2026-05-25T08:46:57.508Z_
+
+<details><summary>↩ Tool result · `toolu_01E1zG3whvNHtRMCvRvArThH`</summary>
+
+```text
+Web search results for query: "Buffa Del Corro 2026 arXiv 2601.09001 entropy"
+
+Links: [{"title":"[2601.09001] Entropy Sentinel: Continuous LLM Accuracy Monitoring from Decoding Entropy Traces in STEM","url":"https://arxiv.org/abs/2601.09001"},{"title":"Entropy Sentinel: Continuous LLM Accuracy Monitoring from Decoding Entropy Traces in STEM","url":"https://arxiv.org/html/2601.09001"},{"title":"Transcriptomic entropy reveals tissue-specific patterns in aging and predicts cancer progression","url":"https://www.biorxiv.org/content/10.1101/2025.06.29.662218.full.pdf"},{"title":"Formulation of Entropy through Work by Carnot Machine and Direct Derivation of Law of Entropy Non-Decrease from Kelvin-Planck Principle","url":"https://arxiv.org/pdf/2411.07438"},{"title":"On the Entropy and the Maximum Entropy Principle of Uncertain Variables","url":"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10453602/"},{"title":"Entropy predicts early MEG, EEG and fMRI responses to natural images","url":"https://www.biorxiv.org/content/10.1101/2023.06.21.545883.full.pdf"}]
+
+Based on the search results, I found the paper you were looking for:
+
+The paper "Entropy Sentinel: Continuous LLM Accuracy Monitoring from Decoding Entropy Traces in STEM" is authored by Pedro Memoli Buffa and Luciano Del Corro, submitted on January 13, 2026.
+
+The paper addresses two coupled challenges in deploying LLMs: (1) monitoring—estimating where a model underperforms as traffic and domains drift—and (2) improvement—prioritizing data acquisition to close the largest performance gaps. 
+
+The methodology involves computing an output-entropy profile from final-layer next-token probabilities and using a lightweight classifier to predict instance correctness, with averaging predicted probabilities yielding a domain-level accuracy estimate.
+
+You can access the paper directly on arXiv at https://arxiv.org/abs/2601.09001.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1d76bfc2-863f-487b-b1c6-487ad15c7df0",
+  "isSidechain": false,
+  "promptId": "a7485f9c-8f0c-413e-bd45-e6ffe397160f",
+  "type": "user",
+  "uuid": "f503036e-821e-47e2-90bf-f99e7eb93a98",
+  "toolUseResult": {
+    "query": "Buffa Del Corro 2026 arXiv 2601.09001 entropy",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01LJbNAqEexmTxaD4vAzxdxQ",
+        "content": [
+          {
+            "title": "[2601.09001] Entropy Sentinel: Continuous LLM Accuracy Monitoring from Decoding Entropy Traces in STEM",
+            "url": "https://arxiv.org/abs/2601.09001"
+          },
+          {
+            "title": "Entropy Sentinel: Continuous LLM Accuracy Monitoring from Decoding Entropy Traces in STEM",
+            "url": "https://arxiv.org/html/2601.09001"
+          },
+          {
+            "title": "Transcriptomic entropy reveals tissue-specific patterns in aging and predicts cancer progression",
+            "url": "https://www.biorxiv.org/content/10.1101/2025.06.29.662218.full.pdf"
+          },
+          {
+            "title": "Formulation of Entropy through Work by Carnot Machine and Direct Derivation of Law of Entropy Non-Decrease from Kelvin-Planck Principle",
+            "url": "https://arxiv.org/pdf/2411.07438"
+          },
+          {
+            "title": "On the Entropy and the Maximum Entropy Principle of Uncertain Variables",
+            "url": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10453602/"
+          },
+          {
+            "title": "Entropy predicts early MEG, EEG and fMRI responses to natural images",
+            "url": "https://www.biorxiv.org/content/10.1101/2023.06.21.545883.full.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you were looking for:\n\nThe paper \"Entropy Sentinel: Continuous LLM Accuracy Monitoring from Decoding Entropy Traces in STEM\" is authored by Pedro Memoli Buffa and Luciano Del Corro, submitted on January 13, 2026.\n\nThe paper addresses two coupled challenges in deploying LLMs: (1) monitoring—estimating where a model underperforms as traffic and domains drift—and (2) improvement—prioritizing data acquisition to close the largest performance gaps. \n\nThe methodology involves computing an output-entropy profile from final-layer next-token probabilities and using a lightweight classifier to predict instance correctness, with averaging predicted probabilities yielding a domain-level accuracy estimate.\n\nYou can access the paper directly on arXiv at https://arxiv.org/abs/2601.09001."
+    ],
+    "durationSeconds": 6.082731941
+  },
+  "sourceToolAssistantUUID": "1d76bfc2-863f-487b-b1c6-487ad15c7df0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 444 · 2026-05-25T08:46:57.573Z_
+
+<details><summary>↩ Tool result · `toolu_01GLxqe4YHe9pQXZDej8oiVH`</summary>
+
+```text
+Web search results for query: "Carvalhais 2025 arXiv 2504.03814 model collapse"
+
+Links: [{"title":"[2504.03814] Recursive Training Loops in LLMs: How training data properties modulate distribution shift in generated data?","url":"https://arxiv.org/abs/2504.03814"},{"title":"Model Collapse Demystified: The Case of Regression","url":"https://arxiv.org/pdf/2402.07712"},{"title":"A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective","url":"https://arxiv.org/pdf/2509.16499"},{"title":"Language Generation with Replay: A Learning-Theoretic View of Model Collapse","url":"https://arxiv.org/pdf/2603.11784"},{"title":"An Empirical Study and Theoretical Explanation on Task-Level Model-Merging Collapse","url":"https://arxiv.org/pdf/2603.09463"},{"title":"A Probabilistic Perspective on Model Collapse","url":"https://arxiv.org/pdf/2505.13947"}]
+
+Based on the search results, I found information about the paper you're looking for. However, I should note that the arXiv paper 2504.03814 is not authored by Carvalhais, but rather by Grgur Kovač, Jérémy Perez, Rémy Portelas, Peter Ford Dominey, and Pierre-Yves Oudeyer.
+
+The paper is titled "Recursive Training Loops in LLMs: How training data properties modulate distribution shift in generated data?" It examines how large language models used to create online content create feedback loops as subsequent generations of models will be trained on this synthetic data, which can lead to distribution shifts where models misrepresent the true underlying distributions of human data (also called model collapse). The paper provides the first empirical examination of the effect of such properties on the outcome of recursive training.
+
+If you were looking for a specific work by Carvalhais on model collapse, that particular paper may have different authors or a different arXiv identifier.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c36d6c3c-32b0-45f8-94fe-e8bc7f42bef8",
+  "isSidechain": false,
+  "promptId": "a7485f9c-8f0c-413e-bd45-e6ffe397160f",
+  "type": "user",
+  "uuid": "cd6d28a3-7df8-4ba6-82ce-3bfde3311dfb",
+  "toolUseResult": {
+    "query": "Carvalhais 2025 arXiv 2504.03814 model collapse",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GVmkBYLkSuY2qkBKXUxGux",
+        "content": [
+          {
+            "title": "[2504.03814] Recursive Training Loops in LLMs: How training data properties modulate distribution shift in generated data?",
+            "url": "https://arxiv.org/abs/2504.03814"
+          },
+          {
+            "title": "Model Collapse Demystified: The Case of Regression",
+            "url": "https://arxiv.org/pdf/2402.07712"
+          },
+          {
+            "title": "A Closer Look at Model Collapse: From a Generalization-to-Memorization Perspective",
+            "url": "https://arxiv.org/pdf/2509.16499"
+          },
+          {
+            "title": "Language Generation with Replay: A Learning-Theoretic View of Model Collapse",
+            "url": "https://arxiv.org/pdf/2603.11784"
+          },
+          {
+            "title": "An Empirical Study and Theoretical Explanation on Task-Level Model-Merging Collapse",
+            "url": "https://arxiv.org/pdf/2603.09463"
+          },
+          {
+            "title": "A Probabilistic Perspective on Model Collapse",
+            "url": "https://arxiv.org/pdf/2505.13947"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the paper you're looking for. However, I should note that the arXiv paper 2504.03814 is not authored by Carvalhais, but rather by Grgur Kovač, Jérémy Perez, Rémy Portelas, Peter Ford Dominey, and Pierre-Yves Oudeyer.\n\nThe paper is titled \"Recursive Training Loops in LLMs: How training data properties modulate distribution shift in generated data?\" It examines how large language models used to create online content create feedback loops as subsequent generations of models will be trained on this synthetic data, which can lead to distribution shifts where models misrepresent the true underlying distributions of human data (also called model collapse). The paper provides the first empirical examination of the effect of such properties on the outcome of recursive training.\n\nIf you were looking for a specific work by Carvalhais on model collapse, that particular paper may have different authors or a different arXiv identifier."
+    ],
+    "durationSeconds": 6.510282650999998
+  },
+  "sourceToolAssistantUUID": "c36d6c3c-32b0-45f8-94fe-e8bc7f42bef8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 445 · 2026-05-25T08:46:58.090Z_
+
+<details><summary>↩ Tool result · `toolu_01YPoFJ4PCh166LtSXJnjog9`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 442.6}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 483.2}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p9.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 558.5}], \"total_pages\": 36, \"rendered_pages\": 3, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa27b6a8-321e-48b2-a7fc-db42263c8f86",
+  "isSidechain": false,
+  "promptId": "a7485f9c-8f0c-413e-bd45-e6ffe397160f",
+  "type": "user",
+  "uuid": "8aacf673-e0b7-4209-9e2d-d6b55c6ae1f9",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 442.6}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 483.2}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 558.5}], \\\"total_pages\\\": 36, \\\"rendered_pages\\\": 3, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"images\": [{\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 442.6}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 483.2}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p9.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 558.5}], \"total_pages\": 36, \"rendered_pages\": 3, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "aa27b6a8-321e-48b2-a7fc-db42263c8f86",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 446 · 2026-05-25T08:47:10.602Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have several results. Let me process them:
+
+1. **REF2 Carvalhais 2025 arXiv:2504.03814**: The paper exists but the authors are Kovač, Perez, Portelas, Dominey, Oudeyer — NOT Carvalhais. This is a **fake/wrong citation**. The title is "Recursive Training Loops in LLMs" which is relevant to model collapse, but the author attribution is wrong.
+
+2. **REF3 Buffa & Del Corro 2026 arXiv:2601.09001**: This is REAL. 
+
+The authors are Pedro Memoli Buffa and Luciano Del Corro, and the paper is about continuous LLM accuracy monitoring using decoding entropy traces in STEM contexts. I notice there's a title mismatch between what I'm seeing and what's in the bibliography file, so I need to verify the exact title used there. Now I'm checking the PDF pages for any overflow issues, querying the registry for seed data, and reviewing the bibliography entries to confirm everything matches up.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8aacf673-e0b7-4209-9e2d-d6b55c6ae1f9",
+  "isSidechain": false,
+  "requestId": "req_011CbNziibeWuw7oZqzVEaDu",
+  "type": "assistant",
+  "uuid": "87998923-d1c2-4c65-aa79-9c7e23c2be79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015kCz79h2H517s8WYSbp6Dw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2474,
+      "cache_read_input_tokens": 80406,
+      "output_tokens": 1090,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2474,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1090,
+          "cache_read_input_tokens": 80406,
+          "cache_creation_input_tokens": 2474,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2474
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 447 · 2026-05-25T08:47:10.608Z_
+
+Let me check the PDF pages and extract seed data from the registry.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "87998923-d1c2-4c65-aa79-9c7e23c2be79",
+  "isSidechain": false,
+  "requestId": "req_011CbNziibeWuw7oZqzVEaDu",
+  "type": "assistant",
+  "uuid": "fcec0a6c-f2cc-4b09-a76e-54154ebc5703",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015kCz79h2H517s8WYSbp6Dw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2474,
+      "cache_read_input_tokens": 80406,
+      "output_tokens": 1090,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2474,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1090,
+          "cache_read_input_tokens": 80406,
+          "cache_creation_input_tokens": 2474,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2474
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 448 · 2026-05-25T08:47:10.758Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014KydEFDUPsNEPCtqaVurcJ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p8.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fcec0a6c-f2cc-4b09-a76e-54154ebc5703",
+  "isSidechain": false,
+  "requestId": "req_011CbNziibeWuw7oZqzVEaDu",
+  "type": "assistant",
+  "uuid": "ce441ced-1556-4bd1-9044-2c93db29bce1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015kCz79h2H517s8WYSbp6Dw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2474,
+      "cache_read_input_tokens": 80406,
+      "output_tokens": 1090,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2474,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1090,
+          "cache_read_input_tokens": 80406,
+          "cache_creation_input_tokens": 2474,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2474
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 449 · 2026-05-25T08:47:22.915Z_
+
+<details><summary>↩ Tool result · `toolu_01XMaCQgdnKmfzADKTp1yZBw`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4106253d-4d19-422d-9a84-ad97e54c71d9",
+  "isSidechain": false,
+  "promptId": "a7485f9c-8f0c-413e-bd45-e6ffe397160f",
+  "type": "user",
+  "uuid": "113abf8f-aa4b-4749-a336-28f634666328",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "4106253d-4d19-422d-9a84-ad97e54c71d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 450 · 2026-05-25T08:47:10.773Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01RKPGm5HkyXLKsSgjmE1SmX`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images/main_p9.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce441ced-1556-4bd1-9044-2c93db29bce1",
+  "isSidechain": false,
+  "requestId": "req_011CbNziibeWuw7oZqzVEaDu",
+  "type": "assistant",
+  "uuid": "d3a0cfa7-4034-4a6b-bca9-e8a90d9b0857",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015kCz79h2H517s8WYSbp6Dw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2474,
+      "cache_read_input_tokens": 80406,
+      "output_tokens": 1090,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2474,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1090,
+          "cache_read_input_tokens": 80406,
+          "cache_creation_input_tokens": 2474,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2474
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 451 · 2026-05-25T08:47:12.508Z_
+
+<details><summary>↩ Tool result · `toolu_014KydEFDUPsNEPCtqaVurcJ`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce441ced-1556-4bd1-9044-2c93db29bce1",
+  "isSidechain": false,
+  "promptId": "a7485f9c-8f0c-413e-bd45-e6ffe397160f",
+  "type": "user",
+  "uuid": "238438b4-38ad-4c4c-b621-b93c0e96ae5b",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 494830
+    }
+  },
+  "sourceToolAssistantUUID": "ce441ced-1556-4bd1-9044-2c93db29bce1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 452 · 2026-05-25T08:47:12.530Z_
+
+<details><summary>↩ Tool result · `toolu_01RKPGm5HkyXLKsSgjmE1SmX`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d3a0cfa7-4034-4a6b-bca9-e8a90d9b0857",
+  "isSidechain": false,
+  "promptId": "a7485f9c-8f0c-413e-bd45-e6ffe397160f",
+  "type": "user",
+  "uuid": "6d779b6d-0151-4a75-8888-ec308e7a5305",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 571916
+    }
+  },
+  "sourceToolAssistantUUID": "d3a0cfa7-4034-4a6b-bca9-e8a90d9b0857",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 453 · 2026-05-25T08:47:21.447Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_01TwTYkGdUCp3rKjztBZ8Zi1`</summary>
+
+```json
+{
+  "description": "Registry seed data extraction",
+  "prompt": "I need you to analyze the experiment registry at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-reviewer-32964115/e3145630-65ea-4199-9de5-d999f5e77caf/tool-results/mcp-agent-ml-research-read_registry-1779698811053.txt\n\nThis is a JSON file with schema: {result: string}. The result field contains the actual registry data.\n\nI need you to find ALL experiments that involve the Pythia-410M model (the primary model for phase diagram), and for each α (synthetic_ratio/contamination level) value, count how many independent seeds exist. Specifically:\n\n1. For each α value (especially α=0.40, 0.45, 0.50, 0.55, 0.60), list all experiments with their seeds and status (DONE/RUNNING/FAILED)\n2. Count the total seeds available at α=0.50 specifically — this is the critical transition region\n3. Also look for any experiments labeled as \"null control\" or \"FPR\" experiments and count seeds there\n4. Check if there are experiments at α=0.50 with seeds beyond s42 (e.g., s43, s44, s45, etc.)\n\nReport the findings in a compact table format. Focus on Pythia-410M experiments only (not cross-architecture like OPT, GPT-2, etc.).",
+  "subagent_type": "general-purpose"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d779b6d-0151-4a75-8888-ec308e7a5305",
+  "isSidechain": false,
+  "requestId": "req_011CbNziibeWuw7oZqzVEaDu",
+  "type": "assistant",
+  "uuid": "a14194db-c45b-4181-a8ba-fba47ae3c990",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015kCz79h2H517s8WYSbp6Dw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2474,
+      "cache_read_input_tokens": 80406,
+      "output_tokens": 1090,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2474,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1090,
+          "cache_read_input_tokens": 80406,
+          "cache_creation_input_tokens": 2474,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2474
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 454 · 2026-05-25T08:47:22.896Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01XMaCQgdnKmfzADKTp1yZBw`</summary>
+
+```json
+{
+  "pattern": "Carvalhais|carvalhais|buffa|Buffa",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib",
+  "output_mode": "content",
+  "-n": true,
+  "context": 5
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a14194db-c45b-4181-a8ba-fba47ae3c990",
+  "isSidechain": false,
+  "requestId": "req_011CbNziibeWuw7oZqzVEaDu",
+  "type": "assistant",
+  "uuid": "4106253d-4d19-422d-9a84-ad97e54c71d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015kCz79h2H517s8WYSbp6Dw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2474,
+      "cache_read_input_tokens": 80406,
+      "output_tokens": 1090,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2474,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1090,
+          "cache_read_input_tokens": 80406,
+          "cache_creation_input_tokens": 2474,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2474
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 455_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[System 触发审查]: R16 审稿报告分析请求。请独立审视以下逐条方案的可行性、遗漏和技术细节。  ## R16 审稿报告摘要 Overall: 3.0 Findings。升 3.5 条件：(1) phase diagram ≥10 seeds + bootstrap CI (2) 非 Pythia intermediate-α 验证 (3) 第二 domain C4 核心复现 (4) f…",
+  "leafUuid": "113abf8f-aa4b-4749-a336-28f634666328",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 456_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review loop 18 experiment status",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+### Tool result
+
+_source line 457 · 2026-05-25T08:49:27.328Z_
+
+<details><summary>↩ Tool result · `toolu_01TwTYkGdUCp3rKjztBZ8Zi1`</summary>
+
+```text
+Here are the findings:
+
+---
+
+## Pythia-410M Seed Coverage by α (alpha_sweep, main phase diagram)
+
+| α | DONE seeds | Count | Seeds |
+|---|------------|-------|-------|
+| 0.00 | 5 | 5 | 42, 45, 46, 47, 48 |
+| 0.05 | 1 | 1 | 42 |
+| 0.10 | 1 | 1 | 42 |
+| 0.25 | 3 | 3 | 42, 43, 44 |
+| 0.30 | 1 | 1 | 42 |
+| 0.35 | 1 | 1 | 42 |
+| **0.40** | **1** | **1** | **42** |
+| **0.45** | **2** | **2** | **42, 43** |
+| 0.46 | 2 | 2 | 42, 43 |
+| 0.48 | 1 | 1 | 43 |
+| **0.50** | **3** | **3** | **42, 43, 44** |
+| 0.52 | 2 | 2 | 42, 43 |
+| **0.55** | **1** | **1** | **42** |
+| **0.60** | **2** | **2** | **42, 43** |
+| 0.65 | 1 | 1 | 42 |
+| 0.70 | 1 | 1 | 42 |
+| 0.75 | 3 | 3 | 42, 43, 44 |
+
+## Key findings for α=0.50 (critical transition region)
+
+- **Alpha_sweep (T=10, wikitext)**: 3 unique DONE seeds (42, 43, 44). Multiple v2/postd093 reruns exist for s42, but all same seed.
+- **Phase diagram grid at α=0.50**: T=5 (s42), T=10 (s43, s44), T=15 (s42), T=25 (s42). Across all T values, only seeds 42-44 covered.
+- **No seeds beyond s44 at α=0.50** in any experiment type. No s45, s46, etc.
+- **data_strategy_ablation** also at α=0.50 with s42 and s43 (accumulate mode ablation, not standard phase diagram).
+- **C4 dataset variant** at α=0.50: s42 and s43.
+- **Total unique seeds across all α=0.50 experiment types: 3 (42, 43, 44)**
+
+## Null / FPR experiments (Pythia-410M, α=0.00)
+
+| Experiment | Seed | T | Status |
+|------------|------|---|--------|
+| alpha_sweep_a000_s42 | 42 | 10 | DONE |
+| alpha_sweep_a000_s45_fp32 | 45 | 10 | DONE |
+| alpha_sweep_a000_s46_fp32 | 46 | 10 | DONE |
+| alpha_sweep_a000_s47_fp32 | 47 | 10 | DONE |
+| alpha_sweep_a000_s48_fp32 | 48 | 10 | DONE |
+| null_fpr_s46_fp32 | 46 | 10 | DONE |
+| null_fpr_s48_fp32 | 48 | 10 | DONE |
+| null_fpr_s49_fp32 | 49 | 10 | DONE |
+| null_fpr_s50_fp32 | 50 | 10 | DONE |
+| null_fpr_s51_fp32 | 51 | 10 | DONE |
+| null_t15_s42_fp32 | 42 | 15 | DONE |
+| null_t15_s43_fp32 | 43 | 15 | DONE |
+
+**Total unique DONE seeds for null/FPR (all α=0.00 combined): 9 seeds** (42, 43, 45, 46, 47, 48, 49, 50, 51)
+
+## Summary observations
+
+1. **α=0.50 has exactly 3 seeds (42, 43, 44)** in the alpha_sweep category. No seeds 45+ exist anywhere at this alpha. This is the maximum seed coverage at the critical transition point.
+
+2. **Asymmetry in seed coverage**: The transition region (0.40-0.60) is sparsely seeded compared to the endpoints. α=0.40 and α=0.55 have only seed 42 (no replication at all).
+
+3. **Null/FPR has the richest coverage**: 9 unique seeds, which is good for false positive rate estimation (needed for the K>=3 threshold calibration).
+
+4. **Many v2/v3/v4 reruns** at α=0.60 s42 and α=0.50 s42 suggest earlier runs had issues (precision changes, bug fixes), but these are all same-seed reruns, not independent replications.
+
+agentId: a12c0b4dbbb20e724 (use SendMessage with to: 'a12c0b4dbbb20e724' to continue this agent)
+&lt;usage>total_tokens: 45144
+tool_uses: 7
+duration_ms: 125874&lt;/usage>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a14194db-c45b-4181-a8ba-fba47ae3c990",
+  "isSidechain": false,
+  "promptId": "a7485f9c-8f0c-413e-bd45-e6ffe397160f",
+  "type": "user",
+  "uuid": "aa0d5cde-f827-40ec-88cd-c936a335ee60",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need you to analyze the experiment registry at /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-reviewer-32964115/e3145630-65ea-4199-9de5-d999f5e77caf/tool-results/mcp-agent-ml-research-read_registry-1779698811053.txt\n\nThis is a JSON file with schema: {result: string}. The result field contains the actual registry data.\n\nI need you to find ALL experiments that involve the Pythia-410M model (the primary model for phase diagram), and for each α (synthetic_ratio/contamination level) value, count how many independent seeds exist. Specifically:\n\n1. For each α value (especially α=0.40, 0.45, 0.50, 0.55, 0.60), list all experiments with their seeds and status (DONE/RUNNING/FAILED)\n2. Count the total seeds available at α=0.50 specifically — this is the critical transition region\n3. Also look for any experiments labeled as \"null control\" or \"FPR\" experiments and count seeds there\n4. Check if there are experiments at α=0.50 with seeds beyond s42 (e.g., s43, s44, s45, etc.)\n\nReport the findings in a compact table format. Focus on Pythia-410M experiments only (not cross-architecture like OPT, GPT-2, etc.).",
+    "agentId": "a12c0b4dbbb20e724",
+    "agentType": "general-purpose",
+    "content": [
+      {
+        "type": "text",
+        "text": "Here are the findings:\n\n---\n\n## Pythia-410M Seed Coverage by α (alpha_sweep, main phase diagram)\n\n| α | DONE seeds | Count | Seeds |\n|---|------------|-------|-------|\n| 0.00 | 5 | 5 | 42, 45, 46, 47, 48 |\n| 0.05 | 1 | 1 | 42 |\n| 0.10 | 1 | 1 | 42 |\n| 0.25 | 3 | 3 | 42, 43, 44 |\n| 0.30 | 1 | 1 | 42 |\n| 0.35 | 1 | 1 | 42 |\n| **0.40** | **1** | **1** | **42** |\n| **0.45** | **2** | **2** | **42, 43** |\n| 0.46 | 2 | 2 | 42, 43 |\n| 0.48 | 1 | 1 | 43 |\n| **0.50** | **3** | **3** | **42, 43, 44** |\n| 0.52 | 2 | 2 | 42, 43 |\n| **0.55** | **1** | **1** | **42** |\n| **0.60** | **2** | **2** | **42, 43** |\n| 0.65 | 1 | 1 | 42 |\n| 0.70 | 1 | 1 | 42 |\n| 0.75 | 3 | 3 | 42, 43, 44 |\n\n## Key findings for α=0.50 (critical transition region)\n\n- **Alpha_sweep (T=10, wikitext)**: 3 unique DONE seeds (42, 43, 44). Multiple v2/postd093 reruns exist for s42, but all same seed.\n- **Phase diagram grid at α=0.50**: T=5 (s42), T=10 (s43, s44), T=15 (s42), T=25 (s42). Across all T values, only seeds 42-44 covered.\n- **No seeds beyond s44 at α=0.50** in any experiment type. No s45, s46, etc.\n- **data_strategy_ablation** also at α=0.50 with s42 and s43 (accumulate mode ablation, not standard phase diagram).\n- **C4 dataset variant** at α=0.50: s42 and s43.\n- **Total unique seeds across all α=0.50 experiment types: 3 (42, 43, 44)**\n\n## Null / FPR experiments (Pythia-410M, α=0.00)\n\n| Experiment | Seed | T | Status |\n|------------|------|---|--------|\n| alpha_sweep_a000_s42 | 42 | 10 | DONE |\n| alpha_sweep_a000_s45_fp32 | 45 | 10 | DONE |\n| alpha_sweep_a000_s46_fp32 | 46 | 10 | DONE |\n| alpha_sweep_a000_s47_fp32 | 47 | 10 | DONE |\n| alpha_sweep_a000_s48_fp32 | 48 | 10 | DONE |\n| null_fpr_s46_fp32 | 46 | 10 | DONE |\n| null_fpr_s48_fp32 | 48 | 10 | DONE |\n| null_fpr_s49_fp32 | 49 | 10 | DONE |\n| null_fpr_s50_fp32 | 50 | 10 | DONE |\n| null_fpr_s51_fp32 | 51 | 10 | DONE |\n| null_t15_s42_fp32 | 42 | 15 | DONE |\n| null_t15_s43_fp32 | 43 | 15 | DONE |\n\n**Total unique DONE seeds for null/FPR (all α=0.00 combined): 9 seeds** (42, 43, 45, 46, 47, 48, 49, 50, 51)\n\n## Summary observations\n\n1. **α=0.50 has exactly 3 seeds (42, 43, 44)** in the alpha_sweep category. No seeds 45+ exist anywhere at this alpha. This is the maximum seed coverage at the critical transition point.\n\n2. **Asymmetry in seed coverage**: The transition region (0.40-0.60) is sparsely seeded compared to the endpoints. α=0.40 and α=0.55 have only seed 42 (no replication at all).\n\n3. **Null/FPR has the richest coverage**: 9 unique seeds, which is good for false positive rate estimation (needed for the K>=3 threshold calibration).\n\n4. **Many v2/v3/v4 reruns** at α=0.60 s42 and α=0.50 s42 suggest earlier runs had issues (precision changes, bug fixes), but these are all same-seed reruns, not independent replications."
+      }
+    ],
+    "totalDurationMs": 125874,
+    "totalTokens": 45144,
+    "totalToolUseCount": 7,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2405,
+      "cache_read_input_tokens": 41419,
+      "output_tokens": 1319,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 2405
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 1319,
+          "cache_read_input_tokens": 41419,
+          "cache_creation_input_tokens": 2405,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 2405,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 2,
+      "searchCount": 1,
+      "bashCount": 4,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 0
+    }
+  },
+  "sourceToolAssistantUUID": "a14194db-c45b-4181-a8ba-fba47ae3c990",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 458 · 2026-05-25T08:49:27.336Z_
+
+```json
+{
+  "parentUuid": "aa0d5cde-f827-40ec-88cd-c936a335ee60",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d21f1bed-7aa9-4093-bed4-a8ad91e1ab43",
+  "timestamp": "2026-05-25T08:49:27.336Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 459 · 2026-05-25T08:50:10.070Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me process all the data I've gathered:
+
+1. **Page overflow (R16-W4)**: Looking at p8 image - page 8 contains Discussion section and Section 6 Conclusion. The Conclusion appears to end on page 8 with some space remaining. Page 9 starts with "Limitations" section followed by "References." So the main text (through Conclusion) fits on 8 pages, and Limitations + References start on page 9. Since EMNLP rules say Limitations don't count toward the 8-page limit, this seems compliant. Let me look more carefully...
+   
+   Actually, examining the layout more closely: the Discussion fills the left column of p8, then the right column shows Section 6 Conclusion taking up roughly half the space before whitespace appears. So the Conclusion does finish on p8, with page 9 beginning the Limitations section, which means the paper stays within the 8-page limit.
+
+Since EMNLP 2026 explicitly excludes Limitations from the page count, the main text through Section 6 fits cleanly within pages 1-8. This suggests R16-W4 might not be a valid concern in the current version—the reviewer was likely looking at an earlier draft.
+
+Now I'm checking the reference citations more carefully. There's a fake citation here: the paper attributed to Carvalhais et al. (2025) actually exists but was written by Kovač and colleagues—it's about recursive training loops in LLMs. The Buffa & Del Corro (2026) reference is legitimate, though I need to verify our bibliography entry matches the actual title about entropy monitoring. Interestingly, neither Carvalhais nor Buffa show up in the references list itself, which is a red flag.
+
+Looking at the seed data across different alpha values, I'm seeing a serious replication problem. At α=0.50 I only have 3 seeds, which falls well short of the 8-10 the reviewer requested. The other alpha values are even worse—α=0.40 has just one seed, α=0.45 has two, and α=0.55 and α=0.60 each have one or two. Only the null case with α=0.00 has adequate coverage with 9 seeds. For the bootstrap confidence interval approach, three seeds at α=0.50 simply isn't enough to generate meaningful intervals.
+
+方案A would require collecting 5-7 additional seeds at α=0.50 plus a few more across the other alpha values, which translates to roughly 19 GPU hours of additional computation. 方案B won't work with the current data—bootstrap estimates need at least 5-8 independent observations to be stable, and three seeds would produce unreliably high variance. That leaves 方案C, a more transparent disclosure of the limitations, as the practical path forward.
+
+For the MMCT κ analysis without NaiveXCor, I can work from what I already have. Since NaiveXCor's false positive rate exceeds 50%, removing it leaves me with four methods to evaluate: PermG, DiffXCorr, and VAR.
+
+The framing shift from "phase transition discovery" to "empirical characterization of detection limits" is a meaningful step down, but it's the honest one. The evidence I have—three seeds, short sequences, wide confidence intervals—doesn't support strong phase transition claims. Reframing it as empirical characterization is both more defensible and doesn't actually diminish the practical value for practitioners trying to understand where these methods work. It also eliminates the paper's most vulnerable attack surface.
+
+On the methodological novelty gap, I'm hitting a fundamental constraint: the methods themselves aren't novel—permutation testing, cross-correlation, VAR are all standard techniques. After multiple rounds of framing adjustments, I'm getting diminishing returns. The better move is to stop claiming methodological novelty altogether and position this as a systematic comparison study instead.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d21f1bed-7aa9-4093-bed4-a8ad91e1ab43",
+  "isSidechain": false,
+  "requestId": "req_011CbNzuigR5m5ZzWEPwFxBG",
+  "type": "assistant",
+  "uuid": "feefbd4e-345a-47cc-a9aa-74ff68adc4aa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FVkXPcfeTJ27Uui162k5rb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3413,
+      "cache_read_input_tokens": 82880,
+      "output_tokens": 1831,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3413,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1831,
+          "cache_read_input_tokens": 82880,
+          "cache_creation_input_tokens": 3413,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3413
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 460 · 2026-05-25T08:50:10.136Z_
+
+Good, now let me check the bib for the Hataya reference (R16-REF1) and verify a few more details.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "feefbd4e-345a-47cc-a9aa-74ff68adc4aa",
+  "isSidechain": false,
+  "requestId": "req_011CbNzuigR5m5ZzWEPwFxBG",
+  "type": "assistant",
+  "uuid": "9b6d7067-7546-4c41-9fe0-85ecd37ae83e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FVkXPcfeTJ27Uui162k5rb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3413,
+      "cache_read_input_tokens": 82880,
+      "output_tokens": 1831,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3413,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1831,
+          "cache_read_input_tokens": 82880,
+          "cache_creation_input_tokens": 3413,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3413
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 461 · 2026-05-25T08:50:11.282Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01LCTZNohFZ5rmkEZWpEv8wX`</summary>
+
+```json
+{
+  "pattern": "hataya|Hataya",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib",
+  "output_mode": "content",
+  "-n": true,
+  "context": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9b6d7067-7546-4c41-9fe0-85ecd37ae83e",
+  "isSidechain": false,
+  "requestId": "req_011CbNzuigR5m5ZzWEPwFxBG",
+  "type": "assistant",
+  "uuid": "d0354928-f2e3-42ea-b613-f1cea8fad32e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FVkXPcfeTJ27Uui162k5rb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3413,
+      "cache_read_input_tokens": 82880,
+      "output_tokens": 1831,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3413,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1831,
+          "cache_read_input_tokens": 82880,
+          "cache_creation_input_tokens": 3413,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3413
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 462 · 2026-05-25T08:50:13.848Z_
+
+<details><summary>↩ Tool result · `toolu_012CYp5d3rMfxhycf9amavAK`</summary>
+
+```text
+55	\begin{algorithmic}[1]
+56	\Require Time series pair $(X, Y)$; methods $\{m_1, \ldots, m_K\}$ ($K{=}5$); null-control data $\mathcal{N}$ (from $\alpha{=}0.0$); tolerance $\epsilon{=}0.01$
+57	\Ensure $p$-value, consensus level $\hat{K}$
+58	\For{each method $m_k$}
+59	    \State Compute empirical FPR: $\widehat{\mathrm{FPR}}_k \gets$ fraction of null-control pairs where $m_k$ rejects $H_0$
+60	    \State Compute weight: $w_k \gets 1 / \max(\widehat{\mathrm{FPR}}_k,\; \epsilon)$
+61	    \State Apply $m_k$ to $(X, Y)$: $d_k \gets \mathbf{1}[m_k \text{ rejects } H_0]$
+62	\EndFor
+63	\State Weighted consensus: $W(X {\to} Y) \gets \sum_{k} w_k \, d_k \;/\; \sum_{k} w_k$
+64	\State Build empirical null distribution of $W$ from all null-control pairs in $\mathcal{N}$
+65	\State Compute $p$-value from empirical null: $p \gets \Pr_{\mathcal{N}}(W \geq W_{\mathrm{obs}})$
+66	\State Consensus level: $\hat{K} \gets \sum_{k} d_k$
+67	\State \Return $p$, $\hat{K}$
+68	\end{algorithmic}
+69	\end{algorithm}
+70	
+71	The algorithm's FPR-inverse weighting assigns each method influence proportional to its null-control reliability: NaiveXCorr (FPR${=}94.4\%$) receives weight $w{=}1.06$, while PermG (FPR${=}6.7\%$) receives $w{=}14.9$---a $14{\times}$ differential that ensures the most reliable method dominates the consensus.
+72	Building the null distribution empirically from $\alpha{=}0.0$ data avoids parametric assumptions unreliable for short ($T{=}5$--$20$), non-stationary series.
+73	Pooled null-control FPR across ten seeds (60 pairs) confirms a wide methodological spread: PermG 6.7\% (95\% CI $[1.8\%, 16.2\%]$), DiffXCorr 14.8\%, Threshold 24.1\%, Toda--Yamamoto 33.3\%, NaiveXCorr 94.4\% (Appendix~\ref{app:fpr_independence}).
+74	PermG (4/60; 95\% CI $[1.8\%, 16.2\%]$) achieves the lowest FPR among all five methods, with 8/10 seeds yielding zero false positives; Shapley analysis confirms it provides the best FPR--FNR tradeoff among directional methods (Appendix~\ref{app:shapley}).
+75	To exploit complementary strengths, detection results additionally use equal-weight majority voting ($K{\geq}3$ of 5 methods) with forward-direction filtering; at this threshold, FPR is 10.0\% with 75\% TPR at $\alpha{=}1.0$ (Table~\ref{tab:mmct_k_operating}).
+76	
+77	\FloatBarrier
+78	
+79	\subsection{Detection Boundary}
+80	\label{sec:theory}
+81	
+82	The sharp onset described above suggests a detection boundary $\alpha_c(T)$ that decreases with longer observation.
+83	We parametrize this boundary as a power law:
+84	\begin{equation}
+85	\alpha_c(T) = A \cdot T^{-\gamma},
+86	\label{eq:alpha-c}
+87	\end{equation}
+88	motivated by an empirical sub-linear signal model $S(\alpha) = c \cdot \alpha^\beta$ ($\beta < 1$), under which the exponent satisfies $\gamma = 1/(2\beta)$:
+89	\begin{equation}
+90	\alpha_c(T) = A \cdot T^{-1/(2\beta)},
+91	\label{eq:alpha-c-theory}
+92	\end{equation}
+93	where $A = (z^* \sigma / c)^{1/\beta}$ and $z^* = \Phi^{-1}(\pi^*)$ (derivation in Appendix~\ref{app:alpha_c_proof}).
+94	This parametrization captures the observed pattern with three free parameters fitted to 3--4 data points; the resulting $\gamma$ confidence interval ($[0.64, 2.08]$) is wide enough to preclude distinguishing sub-linear from super-linear decay, but the qualitative conclusion---detection improves with longer observation---is robust regardless.
+95	
+96	\begin{figure}[t]
+97	\centering
+98	\includegraphics[width=\columnwidth]{figures/fig_detection_surface.pdf}
+99	\caption{Detection rate surface over $\alpha \times T$ (PermG forward, 3~seeds). Dashed curve: fitted boundary $\alpha_c(T)$. The blind zone ($\alpha \leq 0.45$) shrinks as $T$ increases.}
+100	\label{fig:detection_surface}
+101	\end{figure}
+102	
+103	Dense $\alpha$ sampling further reveals that a smooth sigmoid fits better than a step function ($\Delta\mathrm{AIC}{=}-110$), yet the fitted onset steepness ($k{=}15.7$) exceeds smooth-model predictions by $3$--$4{\times}$ (Appendix~\ref{app:power_sim}), suggesting the transition is sharper than standard power-analysis models would predict.
+104	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "37a67a5f-4d36-4bb9-bdfd-ed4fb6722cf4",
+  "isSidechain": false,
+  "promptId": "a7485f9c-8f0c-413e-bd45-e6ffe397160f",
+  "type": "user",
+  "uuid": "2cd7c4a6-8dd9-47b3-ac63-080aaeab31b1",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex",
+      "content": "\\begin{algorithmic}[1]\n\\Require Time series pair $(X, Y)$; methods $\\{m_1, \\ldots, m_K\\}$ ($K{=}5$); null-control data $\\mathcal{N}$ (from $\\alpha{=}0.0$); tolerance $\\epsilon{=}0.01$\n\\Ensure $p$-value, consensus level $\\hat{K}$\n\\For{each method $m_k$}\n    \\State Compute empirical FPR: $\\widehat{\\mathrm{FPR}}_k \\gets$ fraction of null-control pairs where $m_k$ rejects $H_0$\n    \\State Compute weight: $w_k \\gets 1 / \\max(\\widehat{\\mathrm{FPR}}_k,\\; \\epsilon)$\n    \\State Apply $m_k$ to $(X, Y)$: $d_k \\gets \\mathbf{1}[m_k \\text{ rejects } H_0]$\n\\EndFor\n\\State Weighted consensus: $W(X {\\to} Y) \\gets \\sum_{k} w_k \\, d_k \\;/\\; \\sum_{k} w_k$\n\\State Build empirical null distribution of $W$ from all null-control pairs in $\\mathcal{N}$\n\\State Compute $p$-value from empirical null: $p \\gets \\Pr_{\\mathcal{N}}(W \\geq W_{\\mathrm{obs}})$\n\\State Consensus level: $\\hat{K} \\gets \\sum_{k} d_k$\n\\State \\Return $p$, $\\hat{K}$\n\\end{algorithmic}\n\\end{algorithm}\n\nThe algorithm's FPR-inverse weighting assigns each method influence proportional to its null-control reliability: NaiveXCorr (FPR${=}94.4\\%$) receives weight $w{=}1.06$, while PermG (FPR${=}6.7\\%$) receives $w{=}14.9$---a $14{\\times}$ differential that ensures the most reliable method dominates the consensus.\nBuilding the null distribution empirically from $\\alpha{=}0.0$ data avoids parametric assumptions unreliable for short ($T{=}5$--$20$), non-stationary series.\nPooled null-control FPR across ten seeds (60 pairs) confirms a wide methodological spread: PermG 6.7\\% (95\\% CI $[1.8\\%, 16.2\\%]$), DiffXCorr 14.8\\%, Threshold 24.1\\%, Toda--Yamamoto 33.3\\%, NaiveXCorr 94.4\\% (Appendix~\\ref{app:fpr_independence}).\nPermG (4/60; 95\\% CI $[1.8\\%, 16.2\\%]$) achieves the lowest FPR among all five methods, with 8/10 seeds yielding zero false positives; Shapley analysis confirms it provides the best FPR--FNR tradeoff among directional methods (Appendix~\\ref{app:shapley}).\nTo exploit complementary strengths, detection results additionally use equal-weight majority voting ($K{\\geq}3$ of 5 methods) with forward-direction filtering; at this threshold, FPR is 10.0\\% with 75\\% TPR at $\\alpha{=}1.0$ (Table~\\ref{tab:mmct_k_operating}).\n\n\\FloatBarrier\n\n\\subsection{Detection Boundary}\n\\label{sec:theory}\n\nThe sharp onset described above suggests a detection boundary $\\alpha_c(T)$ that decreases with longer observation.\nWe parametrize this boundary as a power law:\n\\begin{equation}\n\\alpha_c(T) = A \\cdot T^{-\\gamma},\n\\label{eq:alpha-c}\n\\end{equation}\nmotivated by an empirical sub-linear signal model $S(\\alpha) = c \\cdot \\alpha^\\beta$ ($\\beta < 1$), under which the exponent satisfies $\\gamma = 1/(2\\beta)$:\n\\begin{equation}\n\\alpha_c(T) = A \\cdot T^{-1/(2\\beta)},\n\\label{eq:alpha-c-theory}\n\\end{equation}\nwhere $A = (z^* \\sigma / c)^{1/\\beta}$ and $z^* = \\Phi^{-1}(\\pi^*)$ (derivation in Appendix~\\ref{app:alpha_c_proof}).\nThis parametrization captures the observed pattern with three free parameters fitted to 3--4 data points; the resulting $\\gamma$ confidence interval ($[0.64, 2.08]$) is wide enough to preclude distinguishing sub-linear from super-linear decay, but the qualitative conclusion---detection improves with longer observation---is robust regardless.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_detection_surface.pdf}\n\\caption{Detection rate surface over $\\alpha \\times T$ (PermG forward, 3~seeds). Dashed curve: fitted boundary $\\alpha_c(T)$. The blind zone ($\\alpha \\leq 0.45$) shrinks as $T$ increases.}\n\\label{fig:detection_surface}\n\\end{figure}\n\nDense $\\alpha$ sampling further reveals that a smooth sigmoid fits better than a step function ($\\Delta\\mathrm{AIC}{=}-110$), yet the fitted onset steepness ($k{=}15.7$) exceeds smooth-model predictions by $3$--$4{\\times}$ (Appendix~\\ref{app:power_sim}), suggesting the transition is sharper than standard power-analysis models would predict.\n",
+      "numLines": 50,
+      "startLine": 55,
+      "totalLines": 104
+    }
+  },
+  "sourceToolAssistantUUID": "37a67a5f-4d36-4bb9-bdfd-ed4fb6722cf4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 463 · 2026-05-25T08:50:11.302Z_
+
+<details><summary>↩ Tool result · `toolu_01LCTZNohFZ5rmkEZWpEv8wX`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d0354928-f2e3-42ea-b613-f1cea8fad32e",
+  "isSidechain": false,
+  "promptId": "a7485f9c-8f0c-413e-bd45-e6ffe397160f",
+  "type": "user",
+  "uuid": "b9b22823-c607-4fef-910e-7e4795470a5e",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "d0354928-f2e3-42ea-b613-f1cea8fad32e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 464 · 2026-05-25T08:50:12.746Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_0187nb4zTG7qovLonLKnQ1ML`</summary>
+
+```json
+{
+  "pattern": "NaiveXCor|naivexcor|naive.*xcor",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "-i": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b9b22823-c607-4fef-910e-7e4795470a5e",
+  "isSidechain": false,
+  "requestId": "req_011CbNzuigR5m5ZzWEPwFxBG",
+  "type": "assistant",
+  "uuid": "c333cea7-45f8-4c55-bd1c-c60dcd9a764f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FVkXPcfeTJ27Uui162k5rb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3413,
+      "cache_read_input_tokens": 82880,
+      "output_tokens": 1831,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3413,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1831,
+          "cache_read_input_tokens": 82880,
+          "cache_creation_input_tokens": 3413,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3413
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 465 · 2026-05-25T08:50:12.774Z_
+
+<details><summary>↩ Tool result · `toolu_0187nb4zTG7qovLonLKnQ1ML`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (23.3KB). Full output saved to: /home/ubuntu/.claude-account-1/projects/-home-ubuntu--agent-ml-research-idea-gen-0514-4-projects-distrib-canary-collapse--claude-sessions-reviewer-32964115/e3145630-65ea-4199-9de5-d999f5e77caf/tool-results/toolu_0187nb4zTG7qovLonLKnQ1ML.txt
+
+Preview (first 2KB):
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex:59:Naive XCorr          & 75   & 12.5 & 37.5 & 87.5 & 0    & 75  \\
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:48:We evaluate five lead-lag detection methods---naive cross-correlation (NaiveXCorr), differenced cross-correlation (DiffXCorr), threshold onset, permutation Granger causality (PermG), and Toda--Yamamoto~\citep{toda1995statistical}---in a multi-method comparison framework~\citep{simonsohn2020specification}, calibrating each against null-control ($\alpha{=}0.0$) data.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:71:The algorithm's FPR-inverse weighting assigns each method influence proportional to its null-control reliability: NaiveXCorr (FPR${=}94.4\%$) receives weight $w{=}1.06$, while PermG (FPR${=}6.7\%$) receives $w{=}14.9$---a $14{\times}$ differential that ensures the most reliable method dominates the consensus.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:73:Pooled null-control FPR across ten seeds (60 pairs) confirms a wide methodological spread: PermG 6.7\% (95\% CI $[1.8\%, 16.2\%]$), DiffXCorr 14.8\%, Threshold 24.1\%, Toda--Yamamoto 33.3\%, NaiveXCorr 94.4\% (Appendix~\ref{app:fpr_independence}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:138:NaiveXCorr, DiffXCorr, ThresholdOnset, and PermG all maintain 6/6 validated pairs at every window length, confirming complete invariance to the observation start point.
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c333cea7-45f8-4c55-bd1c-c60dcd9a764f",
+  "isSidechain": false,
+  "promptId": "a7485f9c-8f0c-413e-bd45-e6ffe397160f",
+  "type": "user",
+  "uuid": "932c709f-2434-45bb-a116-fefffcdfe68f",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex:59:Naive XCorr          & 75   & 12.5 & 37.5 & 87.5 & 0    & 75  \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:48:We evaluate five lead-lag detection methods---naive cross-correlation (NaiveXCorr), differenced cross-correlation (DiffXCorr), threshold onset, permutation Granger causality (PermG), and Toda--Yamamoto~\\citep{toda1995statistical}---in a multi-method comparison framework~\\citep{simonsohn2020specification}, calibrating each against null-control ($\\alpha{=}0.0$) data.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:71:The algorithm's FPR-inverse weighting assigns each method influence proportional to its null-control reliability: NaiveXCorr (FPR${=}94.4\\%$) receives weight $w{=}1.06$, while PermG (FPR${=}6.7\\%$) receives $w{=}14.9$---a $14{\\times}$ differential that ensures the most reliable method dominates the consensus.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:73:Pooled null-control FPR across ten seeds (60 pairs) confirms a wide methodological spread: PermG 6.7\\% (95\\% CI $[1.8\\%, 16.2\\%]$), DiffXCorr 14.8\\%, Threshold 24.1\\%, Toda--Yamamoto 33.3\\%, NaiveXCorr 94.4\\% (Appendix~\\ref{app:fpr_independence}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:138:NaiveXCorr, DiffXCorr, ThresholdOnset, and PermG all maintain 6/6 validated pairs at every window length, confirming complete invariance to the observation start point.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:325:\\emph{Naive cross-correlation (NaiveXCorr)} computes Pearson $r$ between $X_{t}$ and $Y_{t+\\ell}$ at lag $\\ell \\in [-5, 5]$; significance at any lag below uncorrected $p{<}0.05$ counts as detection.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:369:PermG has the lowest FPR (6.7\\%) but misses the $\\alpha{=}0.60$ regime; DiffXCorr detects everywhere but cannot establish directionality; NaiveXCorr's 94.4\\% FPR makes it unsuitable as a standalone detector.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:375:Under this scheme, PermG's weight ($w{=}14.9$) dominates NaiveXCorr's ($w{=}1.06$) by $14{\\times}$: a detection requires PermG agreement unless ${\\geq}4$ other methods agree without it.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:381:At $K{=}5$ (unanimity), the expected detection rate is below 5\\% everywhere---only achievable when all five methods, including the 94\\%-FPR NaiveXCorr, agree.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:386:\\caption{MMCT operating characteristics as a function of consensus threshold $K$. Left axis: FPR (null-control false positives); right axis: FNR (missed detections at $\\alpha{\\geq}0.50$). $K{=}3$ balances FPR and sensitivity; $K{=}4$ reduces FPR further but increases FNR, particularly at boundary conditions. $K{=}2$ is dominated by high-FPR methods (NaiveXCorr, TY) and provides no useful filtering.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:557:\\caption{Per-method FDR significance (/8 pairs) across contamination levels (Pythia-410M, seed~42, WikiText, fp32). PermG and Diff.\\ XCorr use BH-corrected FDR ($q{=}0.05$); Naive XCorr, Threshold, and TY use uncorrected $p{<}0.05$ (no FDR field in pipeline). $\\alpha{=}1.0$ from Pythia-410M cross-architecture condition (same seed/domain/precision).}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:562:$\\alpha$ & Naive & Diff.\\ XCorr & Threshold & PermG & TY$^\\S$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:585:\\emph{NaiveXCorr} saturates at 7--8/8 at every $\\alpha$ including null, making it useless for regime discrimination---its FPR (94.4\\%) means it would declare detection in 19 out of 20 null-control runs.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:592:Cohen's $\\kappa$ between all method pairs ranges from $-0.04$ (NaiveXCorr vs.\\ Threshold, near-random disagreement) to $0.42$ (PermG vs.\\ DiffXCorr, moderate agreement above onset).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:599:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:802:\\caption{Shapley value decomposition by method. FPR contribution (positive = worse) and FNR contribution (negative = better) are shown for each of the five detection methods. DiffXCorr achieves the best combined Shapley ($-0.299$) but lacks directional separation; among directional methods, PermG ranks best ($-0.141$). NaiveXCorr contributes the most FPR ($+0.609$) due to its inability to distinguish signal from null drift.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:821:Naive XCorr          & $+0.609$ & $-0.419$ & $+0.190$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:850:NaiveXCorr & $+0.195$ & $+0.192$ & $+0.190$ & $+0.190$ \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:857:Under this scheme, NaiveXCorr (FPR${=}94.4\\%$) receives weight $w{=}1.06$, while PermG (FPR${=}6.7\\%$) receives $w{=}14.9$---a $14{\\times}$ differential.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:890:DiffXCorr shows the opposite pattern: its marginal contribution \\emph{decreases} from $-0.312$ (1-method coalition) to $-0.281$ (4-method coalition) as it becomes partially redundant with NaiveXCorr (both test correlation, differing only in preprocessing).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:904:\\caption{Per-seed FPR distribution across detection methods (Pythia-410M, $\\alpha{=}0.0$, 10~seeds). Each dot represents one seed's FPR; boxplots show inter-seed variability. PermG FPR concentrates near 0\\% (8/10 seeds yield 0 false positives) with two outlier seeds (s45, s50) driving the aggregate 6.7\\%. NaiveXCorr exhibits uniformly high FPR (${\\geq}83\\%$) across all seeds.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:929:Naive XCorr & uncorr. & 51/54 & 94.4 \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:944:\\caption{Bootstrap confidence intervals for FPR estimates (10{,}000 resamples, 10~seeds). PermG's 95\\% CI ($[1.8\\%, 16.2\\%]$) is the tightest among directional methods; the upper bound remains below Threshold's point estimate (27.8\\%). The bootstrap distribution for NaiveXCorr is sharply peaked near 90\\%, confirming that its high FPR is systematic rather than driven by individual seed outliers.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:951:\\caption{Per-seed FPR (8-pair basis, $\\alpha{=}0.0$, Pythia-410M, seeds 42--44). PermG achieves 0/8 on all three seeds; NaiveXCorr ${\\geq}7/8$ on all.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:956:Seed & PermG & DiffXCorr & Threshold & TY & NaiveXCorr \\\\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:988:$K{\\geq}3$ consensus FPR on the 6-pair basis is 6/36${=}$16.7\\%; of these 6 false positives, only 2 include PermG (both at s50)---the remaining 4 are driven by high-FPR methods (NaiveXCorr $+$ Threshold $+$ TY) reaching consensus without PermG participation.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1526:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1527:\\newlabel{fig:mmct_k_operating}{{12}{17}{MMCT operating characteristics as a function of consensus threshold $K$. Left axis: FPR (null-control false positives); right axis: FNR (missed detections at $\\alpha {\\geq }0.50$). $K{=}3$ balances FPR and sensitivity; $K{=}4$ reduces FPR further but increases FNR, particularly at boundary conditions. $K{=}2$ is dominated by high-FPR methods (NaiveXCorr, TY) and provides no useful filtering}{figure.caption.61}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1725:\\@writefile{lot}{\\contentsline {table}{\\numberline {12}{\\ignorespaces Per-method FDR significance (/8 pairs) across contamination levels (Pythia-410M, seed~42, WikiText, fp32). PermG and Diff.\\ XCorr use BH-corrected FDR ($q{=}0.05$); Naive XCorr, Threshold, and TY use uncorrected $p{<}0.05$ (no FDR field in pipeline). $\\alpha {=}1.0$ from Pythia-410M cross-architecture condition (same seed/domain/precision).}}{19}{table.caption.74}\\protected@file@percent }\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1726:\\newlabel{tab:dose_response_full}{{12}{19}{Per-method FDR significance (/8 pairs) across contamination levels (Pythia-410M, seed~42, WikiText, fp32). PermG and Diff.\\ XCorr use BH-corrected FDR ($q{=}0.05$); Naive XCorr, Threshold, and TY use uncorrected $p{<}0.05$ (no FDR field in pipeline). $\\alpha {=}1.0$ from Pythia-410M cross-architecture condition (same seed/domain/precision)}{table.caption.74}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1764:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1765:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:2040:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:2041:\\newlabel{fig:shapley_contribution}{{16}{23}{Shapley value decomposition by method. FPR contribution (positive = worse) and FNR contribution (negative = better) are shown for each of the five detection methods. DiffXCorr achieves the best combined Shapley ($-0.299$) but lacks directional separation; among directional methods, PermG ranks best ($-0.141$). NaiveXCorr contributes the most FPR ($+0.609$) due to its inability to distinguish signal from null drift}{figure.caption.98}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:2098:\\@writefile{lof}{\\contentsline {figure}{\\numberline {17}{\\ignorespaces Per-seed FPR distribution across detection methods (Pythia-410M, $\\alpha {=}0.0$, 10~seeds). Each dot represents one seed's FPR; boxplots show inter-seed variability. PermG FPR concentrates near 0\\% (8/10 seeds yield 0 false positives) with two outlier seeds (s45, s50) driving the aggregate 6.7\\%. NaiveXCorr exhibits uniformly high FPR (${\\geq }83\\%$) across all seeds.}}{24}{figure.caption.106}\\protected@file@percent }\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:2099:\\newlabel{fig:fpr_sensitivity}{{17}{24}{Per-seed FPR distribution across detection methods (Pythia-410M, $\\alpha {=}0.0$, 10~seeds). Each dot represents one seed's FPR; boxplots show inter-seed variability. PermG FPR concentrates near 0\\% (8/10 seeds yield 0 false positives) with two outlier seeds (s45, s50) driving the aggregate 6.7\\%. NaiveXCorr exhibits uniformly high FPR (${\\geq }83\\%$) across all seeds}{figure.caption.106}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:2131:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:2132:\\newlabel{fig:bootstrap_fpr}{{19}{25}{Bootstrap confidence intervals for FPR estimates (10{,}000 resamples, 10~seeds). PermG's 95\\% CI ($[1.8\\%, 16.2\\%]$) is the tightest among directional methods; the upper bound remains below Threshold's point estimate (27.8\\%). The bootstrap distribution for NaiveXCorr is sharply peaked near 90\\%, confirming that its high FPR is systematic rather than driven by individual seed outliers}{figure.caption.109}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:2133:\\@writefile{lot}{\\contentsline {table}{\\numberline {21}{\\ignorespaces Per-seed FPR (8-pair basis, $\\alpha {=}0.0$, Pythia-410M, seeds 42--44). PermG achieves 0/8 on all three seeds; NaiveXCorr ${\\geq }7/8$ on all.}}{25}{table.caption.110}\\protected@file@percent }\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:2134:\\newlabel{tab:per_seed_fpr_8pair}{{21}{25}{Per-seed FPR (8-pair basis, $\\alpha {=}0.0$, Pythia-410M, seeds 42--44). PermG achieves 0/8 on all three seeds; NaiveXCorr ${\\geq }7/8$ on all}{table.caption.110}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_per_method_phase_groups.py:3:Group 1: (a) Naive XCorr, (b) Diff. XCorr, (c) Threshold\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_per_method_phase_groups.py:34:    ('(a)', 'Naive XCorr', '#E66101', [8, 7, 8, 8, 8, 8, 8, 8, 8, 8, 7], False),\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_143053_6fcf28/planning.json:3:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_143053_6fcf28/planning.json:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_143053_6fcf28/iter_1/details.json:2:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_framework.py:88:    ('Naive XCorr', coral, 'FPR 92%', 0.02),\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_142038_363a32/planning.json:3:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_142038_363a32/planning.json:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/draw_fig_framework.py:131:    ('Naive XCorr',    'FPR = 92%', '#FDEAEA', '#E0A0A0', '#D55E00'),\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131343_fce368/planning.json:3:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131343_fce368/planning.json:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_composite_hero.py:256:methods_mc = ['Naive XCorr', 'Diff. XCorr', r'Thresh. ($3\\sigma$)',\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_composite_hero.py:259:    'Naive XCorr':            [75,   62.5, 62.5, 0,    0],\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_composite_hero.py:266:    'Naive XCorr': C_NAIVE,\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_per_method_phase_v2.py:34:    'Naive XCorr':     [8, 7, 8, 8, 8, 8, 8, 8, 8, 8, 7, 8],\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_per_method_phase_v2.py:42:    'Naive XCorr':   '#B2182B',\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_per_method_phase_v2.py:75:    label = '(a)' if method == 'Naive XCorr' else \\\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_fpr_sensitivity.py:33:methods = ['PermG', 'TY\\nGranger', 'Diff.\\nXCorr', 'Threshold\\nOnset', 'Naive\\nXCorr']\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_fpr_sensitivity.py:34:method_keys = ['PermG', 'TY', 'DiffXCorr', 'ThresholdOnset', 'NaiveXCorr']\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131024_0ed5d2/planning.json:3:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131024_0ed5d2/planning.json:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131024_0ed5d2/iter_1/details.json:2:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_142752_c1e2fb/planning.json:3:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_142752_c1e2fb/planning.json:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/paper_palette.py:7:NAIVEXCORR = '#CC5A5A'  # soft red (was #B2182B)\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/paper_palette.py:13:SECONDARY = NAIVEXCORR\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/paper_palette.py:23:    'Naive XCorr': NAIVEXCORR,\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/paper_palette.py:39:    0.75: NAIVEXCORR,\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/paper_palette.py:45:REACTIVE = NAIVEXCORR\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_spec_curve.py:82:    'NaiveXCorr_Fwd': 'NX↑', 'NaiveXCorr_Rev': 'NX↓',\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_spec_curve.py:95:    'NaiveXCorr': '#CC5A5A', 'DiffXCorr': '#E8A04C',\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_spec_curve.py:121:    Patch(facecolor='#CC5A5A', label='NaiveXCorr'),\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_detection_surface.py:19:from paper_palette import PERMG, NAIVEXCORR, DIFFXCORR, DARK_TEXT\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_detection_surface.py:109:        ha='center', va='center', color=NAIVEXCORR, alpha=0.8,\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_shapley_split.py:37:method_order = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_shapley_split.py:38:method_labels = ['Naive\\nXCorr', 'Diff.\\nXCorr', 'Threshold\\nOnset', 'Perm.\\nGranger', 'Toda-\\nYamamoto']\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_shapley_v3.py:4:directional methods; NaiveXCorr dominates FPR cost.\"\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_shapley_v3.py:38:method_order = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_shapley_v3.py:39:method_labels = ['Naive\\nXCorr', 'Diff.\\nXCorr', 'Threshold\\nOnset', 'Perm.\\nGranger', 'Toda-\\nYamamoto']\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_per_method_phase_split.py:33:    'naive_xcorr': {\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_per_method_phase_split.py:34:        'label': 'Naive XCorr',\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_cascade_onset.py:15:from paper_palette import (PERMG, LIGHT_BLUE, NAIVEXCORR, DIFFXCORR,\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_cascade_onset.py:49:metric_colors = [PERMG, LIGHT_BLUE, NAIVEXCORR, DIFFXCORR, THRESHOLD, GRAY, TODAYAM]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_shapley_contribution_v2.py:38:method_order = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_shapley_contribution_v2.py:39:method_labels = ['Naive\\nXCorr', 'Diff.\\nXCorr', 'Threshold\\nOnset', 'Perm.\\nGranger', 'Toda-\\nYamamoto']\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131641_6323eb/planning.json:3:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131641_6323eb/planning.json:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131641_6323eb/iter_1/details.json:2:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_method_comparison.py:36:methods = ['Naive XCorr', 'Diff. XCorr', r'Threshold ($3\\sigma$)',\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_method_comparison.py:40:    'Naive XCorr':            [75,   62.5, 62.5, 0,    0],\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_method_comparison.py:49:    'Naive XCorr':            '#CC5A5A',\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_142411_062efd/planning.json:3:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_142411_062efd/planning.json:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_shapley_contribution.py:39:methods_raw = ['naive_xcorr', 'diff_xcorr', 'threshold_onset', 'perm_granger', 'ty_granger']\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_shapley_contribution.py:40:labels = ['Naive\\nXCorr', 'Diff\\nXCorr', 'Thresh.\\nOnset', 'Perm\\nGranger', 'TY\\nGranger']\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_shapley_contribution.py:48:    'naive_xcorr':     '#D4694A',",
+    "numLines": 96
+  },
+  "sourceToolAssistantUUID": "c333cea7-45f8-4c55-bd1c-c60dcd9a764f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 466 · 2026-05-25T08:50:13.842Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012CYp5d3rMfxhycf9amavAK`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex",
+  "offset": 55,
+  "limit": 50
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "932c709f-2434-45bb-a116-fefffcdfe68f",
+  "isSidechain": false,
+  "requestId": "req_011CbNzuigR5m5ZzWEPwFxBG",
+  "type": "assistant",
+  "uuid": "37a67a5f-4d36-4bb9-bdfd-ed4fb6722cf4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FVkXPcfeTJ27Uui162k5rb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3413,
+      "cache_read_input_tokens": 82880,
+      "output_tokens": 1831,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3413,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 1831,
+          "cache_read_input_tokens": 82880,
+          "cache_creation_input_tokens": 3413,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3413
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 467_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[System 触发审查]: R16 审稿报告分析请求。请独立审视以下逐条方案的可行性、遗漏和技术细节。  ## R16 审稿报告摘要 Overall: 3.0 Findings。升 3.5 条件：(1) phase diagram ≥10 seeds + bootstrap CI (2) 非 Pythia intermediate-α 验证 (3) 第二 domain C4 核心复现 (4) f…",
+  "leafUuid": "2cd7c4a6-8dd9-47b3-ac63-080aaeab31b1",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 468_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review loop 18 experiment status",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 469 · 2026-05-25T08:50:48.514Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the data I need. Let me also check p7 to see the figure placement and overall page layout.
+
+Key findings:
+
+1. **R16-W4 (page overflow)**: Looking at p8 image - the Conclusion section ends on p8 with some whitespace remaining. P9 starts with "Limitations" and then "References." Since EMNLP 2026 says Limitations don't count toward the 8-page limit, the paper is **COMPLIANT**. The reviewer may have been looking at an older version.
+
+2. **R16-W1 (seeds)**:
+
+
+Looking at the seed distribution across different alpha values, most configurations have very few seeds available—only the null case with α=0.00 has a reasonable pool of 9 seeds. The α=0.50 case with just 3 seeds makes bootstrapping from existing work infeasible, and several other alpha values have only 1-2 seeds, which prevents proper replication.
+
+3. **R16-REF1 (Hataya)**: NOT in references.bib. Needs to be added if relevant.
+
+4. **R16-REF2 (Carvalhais 2025)**: Checking status... Looking at the FPR values across the five methods, NaiveXCorr is clearly the outlier at 94.4%, while the others range from 6.7% to 33.3%. Removing it would leave four methods with much better agreement, though I'd need the actual voting breakdown to recalculate the exact κ value—the current 0.185 was based on all five methods together.
+
+Since Table 2 already contains the individual method results, I can work from that existing data to assess agreement without NaiveXCorr and prepare my summary for the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2cd7c4a6-8dd9-47b3-ac63-080aaeab31b1",
+  "isSidechain": false,
+  "requestId": "req_011CbNzy9w34eLRuuH64t2Lm",
+  "type": "assistant",
+  "uuid": "35a96123-ea8c-4ed1-aad3-c1fa428992e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EgbbMy83peT8RLQZoZ44xM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4212,
+      "cache_read_input_tokens": 86293,
+      "output_tokens": 888,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4212,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 888,
+          "cache_read_input_tokens": 86293,
+          "cache_creation_input_tokens": 4212,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4212
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 470 · 2026-05-25T08:50:48.516Z_
+
+Now I have all the data. Let me also quickly clean up the PDF images and then compose my comprehensive assessment.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "35a96123-ea8c-4ed1-aad3-c1fa428992e2",
+  "isSidechain": false,
+  "requestId": "req_011CbNzy9w34eLRuuH64t2Lm",
+  "type": "assistant",
+  "uuid": "7db52cd2-3e79-404d-a6a4-1e29ca07bcd5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EgbbMy83peT8RLQZoZ44xM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4212,
+      "cache_read_input_tokens": 86293,
+      "output_tokens": 888,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4212,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 888,
+          "cache_read_input_tokens": 86293,
+          "cache_creation_input_tokens": 4212,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4212
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 471 · 2026-05-25T08:50:49.188Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0184fputtfmghPAdBsDERotm`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7db52cd2-3e79-404d-a6a4-1e29ca07bcd5",
+  "isSidechain": false,
+  "requestId": "req_011CbNzy9w34eLRuuH64t2Lm",
+  "type": "assistant",
+  "uuid": "b4df3d13-9aee-46a9-95bb-1b84e077db44",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EgbbMy83peT8RLQZoZ44xM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4212,
+      "cache_read_input_tokens": 86293,
+      "output_tokens": 888,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4212,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 888,
+          "cache_read_input_tokens": 86293,
+          "cache_creation_input_tokens": 4212,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4212
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 472 · 2026-05-25T08:50:49.196Z_
+
+<details><summary>↩ Tool result · `toolu_0184fputtfmghPAdBsDERotm`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__cleanup_pdf_images"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b4df3d13-9aee-46a9-95bb-1b84e077db44",
+  "isSidechain": false,
+  "promptId": "a7485f9c-8f0c-413e-bd45-e6ffe397160f",
+  "type": "user",
+  "uuid": "09e61cdf-0251-48e0-a40b-26397ba09203",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__cleanup_pdf_images"
+    ],
+    "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+    "total_deferred_tools": 35
+  },
+  "sourceToolAssistantUUID": "b4df3d13-9aee-46a9-95bb-1b84e077db44",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 473 · 2026-05-25T08:50:54.630Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__cleanup_pdf_images · `toolu_01TtPNvscaKvkkmipyukHwbS`</summary>
+
+```json
+{
+  "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09e61cdf-0251-48e0-a40b-26397ba09203",
+  "isSidechain": false,
+  "requestId": "req_011CbP11kyFHUPJsXwajWgjk",
+  "type": "assistant",
+  "uuid": "720a504f-486a-4463-acbd-f38fe7ad8e69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cp3cmNUwPFfaZFAN411yJ4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1067,
+      "cache_read_input_tokens": 90505,
+      "output_tokens": 103,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1067,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 103,
+          "cache_read_input_tokens": 90505,
+          "cache_creation_input_tokens": 1067,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1067
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 474 · 2026-05-25T08:50:54.648Z_
+
+<details><summary>↩ Tool result · `toolu_01TtPNvscaKvkkmipyukHwbS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"deleted\": 21, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "720a504f-486a-4463-acbd-f38fe7ad8e69",
+  "isSidechain": false,
+  "promptId": "a7485f9c-8f0c-413e-bd45-e6ffe397160f",
+  "type": "user",
+  "uuid": "b32dd1e0-58fd-42a1-b345-0a1b9bcfa686",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"deleted\\\": 21, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"deleted\": 21, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "720a504f-486a-4463-acbd-f38fe7ad8e69",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 475 · 2026-05-25T08:52:18.417Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director · `toolu_019JUkbpDykgGPZy4cKYRtzm`</summary>
+
+```json
+{
+  "text": "## R16 逐条独立审查报告\n\n---\n\n### 问题 1：R16-W1 方案B 可行性——现有 seed 数据\n\n**结论：方案B 不可行。**\n\nRegistry 实查结果（Pythia-410M phase diagram 区间）：\n\n| α | DONE seeds | 具体 seeds |\n|---|---|---|\n| 0.40 | 1 | 42 |\n| 0.45 | 2 | 42, 43 |\n| 0.50 | **3** | 42, 43, 44 |\n| 0.55 | 1 | 42 |\n| 0.60 | 2 | 42, 43 |\n\nα=0.50 仅 3 independent seeds——bootstrap CI 需要至少 5-8 个独立观测才能产出稳定估计。3 seeds 的 bootstrap 会产生极大方差，审稿人不会认可。\n\nNull/FPR (α=0.00) 有 9 seeds，数据充足——但这不是 reviewer 要的。\n\n**建议**：\n- 方案A（追加 seeds 至 8-10）是唯一能实质回应 reviewer 的路径。核心区域 α=0.40-0.60 需要至少追加 5 seeds per α level。\n- 方案C（更显著的 limitation 披露）是 fallback，但注意 **上轮已经用了方案C（加了 \"3-seed phase diagram limits variance estimation\" 到 limitations.tex:12），reviewer 不买账**。再用同一策略效果存疑。\n- 如果选方案A，可以只补 α=0.45, 0.50, 0.55 三个关键 α（transition region），每个 5 seeds → 15 experiments × ~45min ≈ 11 GPU-hours。比全 sweep 便宜。\n\n---\n\n### 问题 2：R16-W3 重新定位评估\n\n**结论：应该做，且不会过度削弱论文。**\n\n\"Phase transition discovery\" → \"empirical characterization of detection limits\" 是正确方向，理由：\n\n1. **Evidence 不支持 \"discovery\"**：α_c 的 γ CI [0.64, 2.08] 横跨 sub-linear 到 super-linear（method.tex:94），k=15.7 的不确定性~100%（appendix），3 seeds 无法排除 noise。审稿人的 \"power curve natural behavior\" 攻击有合理基础。\n2. **\"Empirical characterization\" 保留核心价值**：practitioners 想知道\"在什么 α 下检测开始有效\"——这个 practical value 不受 framing 改变影响。\n3. **降低攻击面 >> 维持 claim 强度**：4 轮审稿中 \"phase transition\" 被反复攻击（R10, R12, R15, R16），继续坚持只会持续失分。\n4. **与 D130 reframe 一致**：D130 已经把 C1 从 \"method sensitivity\" 改成 \"phase transition\"——现在进一步调整为 \"detection onset characterization\" 是自然演化，不是 retreat。\n\n**具体建议**：保留 \"steep onset\" / \"abrupt transition\" 的描述性语言（这是观测事实），但删除 \"phase transition\" 的物理术语暗示。method.tex:103 的 \"transition is sharper than standard power-analysis models\" 可以保留，因为它是 comparative empirical statement 而非 theoretical claim。\n\n---\n\n### 问题 3：R16-W4 超页实际情况\n\n**结论：当前版本未超页。PDF p8 包含完整 Conclusion，p9 以 Limitations 开头。**\n\n视觉审查 main.pdf（36 pages total）：\n- p8 右栏：Section 6 Conclusion 完整结束，底部有留白\n- p9 顶部：Limitations 开始，随后是 References\n\nEMNLP 2026 规则明确 \"Mandatory limitations...do not count towards this page limit\"。因此正文（§1-6）在 8 页内，**合规**。\n\nReviewer 可能基于上一版判断（上轮确实有超页问题），或者对 Limitations 是否计入有误解。**建议在 rebuttal 中明确指出 \"main text ends on page 8; Limitations section begins on page 9 per ARR formatting guidelines.\"**\n\n不过需注意：如果后续修改（加更多数据、扩展 cross-arch 结果）可能导致再次超页。建议预留 3-5 行 buffer。\n\n---\n\n### 问题 4：R16-W6 重复 framing 调整有效性\n\n**结论：framing 调整的边际收益已接近零。这是 evidence gap，不是 writing problem。**\n\n轨迹回顾：\n- R10: \"method contribution\" → R12: \"systematic comparison\" → R15: \"empirical study\" → R16: 仍被标 major\n\n三轮 framing 调整未能消除此 concern。原因是**五个方法（PermG、DiffXCorr、Threshold、Toda-Yamamoto、NaiveXCorr）全是现有统计方法的直接应用**，没有方法创新。审稿人看穿了这一点。\n\n**建议**：\n- C3 的 wording 从 \"enables these discoveries\" → \"supports reproducible analysis\" 可以做（成本低），但不要期望能翻转 reviewer 判断\n- 更有效的策略是**不再试图为 C3 辩护**，在 rebuttal 中承认 \"our contribution is empirical, not methodological\"，然后将注意力转向 C1（detection onset characterization）和 C4（intervention proof-of-concept）的价值\n- **Findings track 本身就接受 empirical studies**——不需要 method novelty 才能获得 3.5\n\n---\n\n### 问题 5：R16-REF2/REF3 真实性验证\n\n**REF2 — Carvalhais et al. (2025) arXiv:2504.03814：[severity: critical] 作者归属错误**\n\narXiv:2504.03814 确实存在，标题 \"Recursive Training Loops in LLMs: How training data properties modulate distribution shift in generated data?\"——但作者是 **Kovač, Perez, Portelas, Dominey, Oudeyer**，不是 Carvalhais。\n\n两种可能：(a) reviewer 记错了作者 (b) reviewer hallucinated 这个引用。无论哪种，**不能以 \"Carvalhais et al.\" 加入 bib**。如果论文内容相关，应以正确作者 \"Kovač et al. (2025)\" 引用。\n\n**REF3 — Buffa & Del Corro (2026) arXiv:2601.09001：真实**\n\n标题 \"Entropy Sentinel: Continuous LLM Accuracy Monitoring from Decoding Entropy Traces in STEM\"，作者 Pedro Memoli Buffa & Luciano Del Corro。论文关于用 output entropy 监控 LLM accuracy——与我们的 entropy-as-canary 有弱关联，可在 Related Work 引用。当前 bib 中未收录。\n\n**REF1 — Hataya et al. (2023)：当前 bib 中未找到。** 需确认之前是否已 resolved（summary 提到 \"R2-REF2 resolved\"），可能在上一版被删除或遗漏。\n\n---\n\n### 问题 6：R16-W9 排除 NaiveXCor 后的 κ 估计\n\n现有 5-method FPR：PermG 6.7%, DiffXCorr 14.8%, Threshold 24.1%, Toda-Yamamoto 33.3%, NaiveXCorr 94.4%。\n\n**定性估计**：κ=0.185（5 methods）极低，主要被 NaiveXCorr 拉低——它 94.4% 时间说 \"有信号\"，与其他方法系统性不一致。移除后 4 methods 的 agreement 应显著提升（估计 κ~0.3-0.5 范围）。\n\n**可从现有数据精确计算**：需要 per-pair voting matrix（每个 pair 每个 method 是否 reject）。这个数据在 D102 分析输出中应该有。建议 Worker 从现有 5-method 分析结果中提取 4-method（排除 NaiveXCorr）的 κ，以及 K≥2-of-4 和 K≥3-of-4 的 FPR/TPR。**无需新实验，纯数据分析，<1 hour。**\n\n---\n\n### 问题 7：总体判断——能否达到 3.5？\n\n**评估：纯写作修复 + c2_opt13b 不够。W1 (更多 seeds) 是 soft blocker。**\n\n分析：\n\n| 项 | 类型 | 修复能力 | 对 3.5 的贡献 |\n|---|---|---|---|\n| W2 措辞弱化 | writing | 高 | 移除攻击面 |\n| W3 framing 重定位 | framing | 高 | 关键——降低 overclaim 印象 |\n| W4 超页 | format | **已解决** | 无需额外动作 |\n| W5 cross-arch α=0.50 | evidence | 中（c2_opt13b 进行中）| 有帮助但仅 1 model |\n| W6 method novelty | evidence gap | 低（framing 饱和）| 承认 empirical 反而更好 |\n| W7 blind zone framing | writing | 高 | 容易修 |\n| W8 C4 domain | evidence | 中（已有数据）| 引用 appendix 即可 |\n| W9 MMCT 混淆 | writing+analysis | 高 | 可修 |\n| W10 Design Principle | writing | 高 | 改 Observation 即可 |\n| W1 更多 seeds | **evidence** | **需新实验** | **最关键** |\n\n**W1 是 hard blocker 还是 soft blocker？** 取决于 reviewer 的权重。如果审稿人认为 3 seeds 根本不可信，那么其他所有修复都不够。但如果通过 W3 重定位（从 \"discovery\" → \"characterization\"），对 seed 数的要求会降低——因为 \"characterize approximate location\" 对精度要求低于 \"prove phase transition exists\"。\n\n**我的判断**：\n1. **全写作修复（W2-W4, W6-W10）+ W3 framing 重定位 + c2_opt13b（W5）+ 4-method κ 分析（W9）→ 有机会 3.5，但有风险**\n2. **加上 W1 方案A（α=0.45/0.50/0.55 各 5 seeds，~11 GPU-hours）→ 3.5 概率显著提升**\n3. W1 方案C（再次加 limitation）几乎肯定不够——已失败一轮\n\n**建议优先级**：W3 framing 重定位 > W1 追加 seeds > W2 措辞 > W9 4-method 分析 > 其他写作修复",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b32dd1e0-58fd-42a1-b345-0a1b9bcfa686",
+  "isSidechain": false,
+  "requestId": "req_011CbP129xN5xz2sSi5oP3EK",
+  "type": "assistant",
+  "uuid": "63baceb7-e219-4c86-976a-c39a2468f752",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FhFdutJC9jC9Ntpe8BpmiM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 195,
+      "cache_read_input_tokens": 91572,
+      "output_tokens": 3278,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 195,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3278,
+          "cache_read_input_tokens": 91572,
+          "cache_creation_input_tokens": 195,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 195
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 476 · 2026-05-25T08:52:22.407Z_
+
+<details><summary>↩ Tool result · `toolu_019JUkbpDykgGPZy4cKYRtzm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63baceb7-e219-4c86-976a-c39a2468f752",
+  "isSidechain": false,
+  "promptId": "a7485f9c-8f0c-413e-bd45-e6ffe397160f",
+  "type": "user",
+  "uuid": "0a140cf2-5974-41e4-8c53-df86845aa349",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "63baceb7-e219-4c86-976a-c39a2468f752",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 477 · 2026-05-25T08:52:32.895Z_
+
+报告已发送。关键发现：
+- **W1 方案B 不可行**：α=0.50 仅 3 seeds，bootstrap CI 无意义
+- **W4 已解决**：当前 PDF 未超页，Conclusion 在 p8 内完成
+- **REF2 "Carvalhais" 是错误归属**：arXiv:2504.03814 实际作者是 Kovač et al.
+- **REF3 Buffa 真实**，可引用
+- **总体判断**：W3 framing 重定位是性价比最高的动作；W1 追加 seeds (~11 GPU-hours) 是达到 3.5 的关键变量
+
+继续监控 C2-s42 完成进度。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0a140cf2-5974-41e4-8c53-df86845aa349",
+  "isSidechain": false,
+  "requestId": "req_011CbP18dK53aLhqcKt1kCqn",
+  "type": "assistant",
+  "uuid": "44c0306f-6437-48cd-80ac-7b2b92036cc4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014P6y7ckYCQDzVcp1LXp4YX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3351,
+      "cache_read_input_tokens": 91767,
+      "output_tokens": 331,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3351,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 331,
+          "cache_read_input_tokens": 91767,
+          "cache_creation_input_tokens": 3351,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3351
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 478 · 2026-05-25T08:52:34.062Z_
+
+<details open><summary>🔧 Tool call — ScheduleWakeup · `toolu_01CEaRGKUbyghuwk8PtXTKGM`</summary>
+
+```json
+{
+  "delaySeconds": 270,
+  "reason": "Check C2-s42 gen_9 training progress (should be starting or in early steps by now)",
+  "prompt": "Continue from where you left off."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "44c0306f-6437-48cd-80ac-7b2b92036cc4",
+  "isSidechain": false,
+  "requestId": "req_011CbP18dK53aLhqcKt1kCqn",
+  "type": "assistant",
+  "uuid": "03ec0101-d9ef-4605-9588-48a83c3e2cc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014P6y7ckYCQDzVcp1LXp4YX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3351,
+      "cache_read_input_tokens": 91767,
+      "output_tokens": 331,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3351,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 331,
+          "cache_read_input_tokens": 91767,
+          "cache_creation_input_tokens": 3351,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3351
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 479 · 2026-05-25T08:52:34.068Z_
+
+<details><summary>↩ Tool result · `toolu_01CEaRGKUbyghuwk8PtXTKGM`</summary>
+
+```text
+Next wakeup scheduled for 08:57:00 (in 266s).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "03ec0101-d9ef-4605-9588-48a83c3e2cc7",
+  "isSidechain": false,
+  "promptId": "a7485f9c-8f0c-413e-bd45-e6ffe397160f",
+  "type": "user",
+  "uuid": "cfe95f0a-5acf-418f-a5a3-2c162c0d2798",
+  "toolUseResult": {
+    "scheduledFor": 1779699420000,
+    "clampedDelaySeconds": 270,
+    "wasClamped": false
+  },
+  "sourceToolAssistantUUID": "03ec0101-d9ef-4605-9588-48a83c3e2cc7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 480 · 2026-05-25T08:52:34.145Z_
+
+```json
+{
+  "parentUuid": "cfe95f0a-5acf-418f-a5a3-2c162c0d2798",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2f2b0549-8d59-4a1a-8c6a-0dead417b8f0",
+  "timestamp": "2026-05-25T08:52:34.145Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 481_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review loop 18 experiment status",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 482 · 2026-05-25T09:03:06.552Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-25T09:03:06.552Z",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "content": "[Paper Agent 触发审查]:\n## Round 16 Patch Review Request\n\n**Scope**: 8 项修复（P0 framing 重定位 + P1-P7 写作修复）。EMNLP 2026 目标。\n\n### Changes Summary\n\n**P0: Framing 重定位** (abstract, introduction, conclusion, method, discussion)\n- 全局 \"phase transition\" → \"detection onset\"（物理术语删除）\n- \"sharp\" → \"steep\"（措辞弱化）\n- method.tex:103 保留 \"sharper than\"（comparative empirical statement）\n\n**P1: CI 补全** (abstract, introduction, conclusion)\n- 6/8 检测率显式报告 95% CI [0.25, 0.92]\n- 在 abstract, introduction C1, conclusion 三处同步\n\n**P2: Blind zone framing 前移** (introduction)\n- Intro 第 2 段末尾新增：\"Detection is effective only above α_c ≈ 0.50; substantial quality degradation occurs undetected below this threshold, making the framework a confirmation tool for ongoing collapse rather than an early-warning system.\"\n\n**P3: Design Principle → Observation** (main.tex, method.tex, introduction.tex, experiments.tex, appendix.tex)\n- `\\newtheorem{designprinciple}` → `\\newtheorem{observation}`\n- 所有环境和引用同步更新（method 2处、experiments 1处、appendix 7处、introduction 1处）\n\n**P4: MMCT K≥3 vs weighted 区分** (method.tex §3.3)\n- 新增区分：Table 2 = equal-weight K≥3 majority voting; Algorithm 1 = FPR-inverse weighted scheme\n\n**P5: Intervention scope 标注** (abstract, introduction)\n- abstract: \"reduces peak perplexity by 64% (α=1.0)\"\n- introduction C4: \"reducing peak perplexity by 64% at α=1.0\"\n\n**P6: Granger precedence 定义** (method.tex §3.2)\n- 首次使用处新增定义：temporal predictive improvement vs mechanistic causal link\n\n**P7: 引用修复** (references.bib, related_work.tex)\n- Hataya et al. (2023) ICCV → §2.1 (dataset corruption empirical evidence)\n- Kovač et al. (2025) EMNLP → §2.1 (data property modulation of collapse)\n- Buffa & Del Corro (2026) arXiv → §2.2 (entropy monitoring, accuracy not collapse)\n- 3 引用全部 WebSearch 验证通过\n\n### Verification Results\n- Compilation: 37 pages, 0 errors, 0 critical warnings, PASS\n- Consistency: 0 critical in active files\n- References: 46/48 online verified; 0 missing_bib\n- Abstract: 161 words (≤200 limit)\n\n### Key Review Points\n1. \"Phase transition\" 已从主文自我描述中消除？仅保留引用他人工作和 appendix 假设 H1？\n2. \"steep detection onset\" 措辞是否适当描述 0/8→6/8 的跃变？\n3. Blind zone 前移到 Intro 后是否过早暴露 limitation？\n4. Observation vs Design Principle：编号引用是否全部同步？\n5. 6/8 CI [0.25, 0.92] 在 Abstract/Intro/Conclusion 三处一致？\n6. MMCT 两种 operating mode 区分是否清晰？\n7. 新增 3 引用的集成位置和描述是否准确？\n\n### Files Modified\nabstract.tex, introduction.tex, conclusion.tex, method.tex, experiments.tex, discussion.tex (检查无需改), related_work.tex, main.tex, appendix.tex, references.bib"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 483 · 2026-05-25T09:03:06.553Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-25T09:03:06.553Z",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+## Round 21
+
+## Round 21
+
+2 recorded events
+
+
+### User
+
+_source line 484 · 2026-05-25T09:03:06.539Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2f2b0549-8d59-4a1a-8c6a-0dead417b8f0",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "0712d610-d896-4c3f-9b7d-47c9675d34bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 485 · 2026-05-25T09:03:06.540Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0712d610-d896-4c3f-9b7d-47c9675d34bf",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "267da567-35f6-49c8-a3a7-21cb156a7ad1",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "id": "489123bd-7a31-4ee1-bd23-f4d39b6d6f05",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 22
+
+## Round 22
+
+61 recorded events
+
+
+### User
+
+_source line 486 · 2026-05-25T09:03:06.755Z_
+
+[Paper Agent 触发审查]:
+## Round 16 Patch Review Request
+
+**Scope**: 8 项修复（P0 framing 重定位 + P1-P7 写作修复）。EMNLP 2026 目标。
+
+### Changes Summary
+
+**P0: Framing 重定位** (abstract, introduction, conclusion, method, discussion)
+- 全局 "phase transition" → "detection onset"（物理术语删除）
+- "sharp" → "steep"（措辞弱化）
+- method.tex:103 保留 "sharper than"（comparative empirical statement）
+
+**P1: CI 补全** (abstract, introduction, conclusion)
+- 6/8 检测率显式报告 95% CI [0.25, 0.92]
+- 在 abstract, introduction C1, conclusion 三处同步
+
+**P2: Blind zone framing 前移** (introduction)
+- Intro 第 2 段末尾新增："Detection is effective only above α_c ≈ 0.50; substantial quality degradation occurs undetected below this threshold, making the framework a confirmation tool for ongoing collapse rather than an early-warning system."
+
+**P3: Design Principle → Observation** (main.tex, method.tex, introduction.tex, experiments.tex, appendix.tex)
+- `\newtheorem{designprinciple}` → `\newtheorem{observation}`
+- 所有环境和引用同步更新（method 2处、experiments 1处、appendix 7处、introduction 1处）
+
+**P4: MMCT K≥3 vs weighted 区分** (method.tex §3.3)
+- 新增区分：Table 2 = equal-weight K≥3 majority voting; Algorithm 1 = FPR-inverse weighted scheme
+
+**P5: Intervention scope 标注** (abstract, introduction)
+- abstract: "reduces peak perplexity by 64% (α=1.0)"
+- introduction C4: "reducing peak perplexity by 64% at α=1.0"
+
+**P6: Granger precedence 定义** (method.tex §3.2)
+- 首次使用处新增定义：temporal predictive improvement vs mechanistic causal link
+
+**P7: 引用修复** (references.bib, related_work.tex)
+- Hataya et al. (2023) ICCV → §2.1 (dataset corruption empirical evidence)
+- Kovač et al. (2025) EMNLP → §2.1 (data property modulation of collapse)
+- Buffa & Del Corro (2026) arXiv → §2.2 (entropy monitoring, accuracy not collapse)
+- 3 引用全部 WebSearch 验证通过
+
+### Verification Results
+- Compilation: 37 pages, 0 errors, 0 critical warnings, PASS
+- Consistency: 0 critical in active files
+- References: 46/48 online verified; 0 missing_bib
+- Abstract: 161 words (≤200 limit)
+
+### Key Review Points
+1. "Phase transition" 已从主文自我描述中消除？仅保留引用他人工作和 appendix 假设 H1？
+2. "steep detection onset" 措辞是否适当描述 0/8→6/8 的跃变？
+3. Blind zone 前移到 Intro 后是否过早暴露 limitation？
+4. Observation vs Design Principle：编号引用是否全部同步？
+5. 6/8 CI [0.25, 0.92] 在 Abstract/Intro/Conclusion 三处一致？
+6. MMCT 两种 operating mode 区分是否清晰？
+7. 新增 3 引用的集成位置和描述是否准确？
+
+### Files Modified
+abstract.tex, introduction.tex, conclusion.tex, method.tex, experiments.tex, discussion.tex (检查无需改), related_work.tex, main.tex, appendix.tex, references.bib
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "267da567-35f6-49c8-a3a7-21cb156a7ad1",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "cc00efc9-e08c-4adb-bca2-5823cd790aad",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 487 · 2026-05-25T09:03:11.305Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a Mode B adversarial review request. I need to carefully check each of the 8 patches against the actual paper files. Let me read the modified files systematically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cc00efc9-e08c-4adb-bca2-5823cd790aad",
+  "isSidechain": false,
+  "requestId": "req_011CbP1x8EgUKes6ujhqxRqC",
+  "type": "assistant",
+  "uuid": "d703e2e7-2883-4be3-96e6-7745ee8a2955",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XgzmZhm9wtKWsWm2o3sLX4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 84788,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 461,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 84788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 461,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 84788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 84788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 59282
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 488 · 2026-05-25T09:03:12.267Z_
+
+收到，开始 Mode B 对抗审查。先并行读取所有修改文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d703e2e7-2883-4be3-96e6-7745ee8a2955",
+  "isSidechain": false,
+  "requestId": "req_011CbP1x8EgUKes6ujhqxRqC",
+  "type": "assistant",
+  "uuid": "11989be6-1478-4c69-8771-2a06910ef2f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XgzmZhm9wtKWsWm2o3sLX4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 84788,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 461,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 84788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 461,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 84788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 84788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 59282
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 489 · 2026-05-25T09:03:14.147Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Tzx9gixbczPephb6vZukh2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "11989be6-1478-4c69-8771-2a06910ef2f0",
+  "isSidechain": false,
+  "requestId": "req_011CbP1x8EgUKes6ujhqxRqC",
+  "type": "assistant",
+  "uuid": "e0dc9505-404c-47ad-8f97-4ffebf52a0c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XgzmZhm9wtKWsWm2o3sLX4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 84788,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 461,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 84788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 461,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 84788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 84788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 59282
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 490 · 2026-05-25T09:03:16.055Z_
+
+<details><summary>↩ Tool result · `toolu_013uJPcLvJTjrMeFPbof4KCc`</summary>
+
+```text
+1	\FloatBarrier
+2	\section{Related Work}
+3	\label{sec:related_work}
+4	
+5	\subsection{Model Collapse: Theory and Empirical Evidence}
+6	\label{sec:rw_collapse}
+7	
+8	Iterative training collapse was formalized by \citet{shumailov2024curse} and \citet{alemohammad2024mad}; \citet{schaeffer2025position} systematize eight distinct notions of collapse---our operationalization aligns with their \emph{distributional shift} family (definitions~D4--D6).
+9	Theoretical analyses sharpen these results: \citet{dohmatob2024tale} recast collapse as changed scaling-law exponents, \citet{dohmatob2025strong} proved collapse at vanishingly small synthetic fractions, and \citet{truong2026phase} prove entropy collapse is a first-order transition, structurally ruling out critical-slowing-down early-warning signals~\citep{scheffer2009early,scheffer2012anticipating}.
+10	Empirically, \citet{hataya2023will} demonstrate that generated images degrade downstream classification on ImageNet-scale data, and \citet{kovac2025recursive} show that training data properties (lexical diversity, semantic diversity) modulate the magnitude of recursive collapse in LLMs.
+11	Critical mixture ratios separating qualitative outcomes have independent precedent: \citet{kazdan2025collapse} map collapse conditions, \citet{gu2024cmr} establish scaling laws for critical ratios, and \citet{gu2025datamixing} show data mixing induces phase transitions in knowledge acquisition.
+12	
+13	\subsection{Detection of Synthetic Data Contamination}
+14	\label{sec:rw_detection}
+15	
+16	Monitoring metrics proposed for collapse include expected calibration error (ECE)~\citep{du2025scales}, surplexity~\citep{gambetta2024surplexity}, and machine-generated text detection~\citep{drayson2025detection}; \citet{shi2025closer} independently validate entropy as a collapse diagnostic in diffusion models; \citet{buffa2026entropy} propose continuous entropy-based monitoring for LLM accuracy, though targeting task performance rather than distributional collapse.
+17	A complementary line of work pursues \emph{proactive} contamination prevention via watermarking~\citep{kirchenbauer2023watermark}; our distributional detection framework is \emph{reactive}---it identifies collapse from observed metric trajectories without requiring control over the generation process.
+18	\citet{boettiger2012limits} establish fundamental power limits for early-warning detection in short time series ($T{<}25$), directly relevant to iterative training where observation windows are typically $T{=}5$--$20$.
+19	However, these works evaluate single metrics in isolation without cross-validating against alternative statistical tests.
+20	We differ by applying five detection methods to identical data, mapping detectability across contamination regimes, and treating method sensitivity as a primary finding rather than a robustness check (detailed comparison: Appendix~\ref{app:method_comparison}).
+21	
+22	\subsection{Statistical Methods for Distribution Shift}
+23	\label{sec:rw_methods}
+24	
+25	For temporal precedence testing, Granger causality~\citep{granger1969investigating} is the standard framework, with neural extensions~\citep{tank2021neural,runge2019detecting}; however, non-stationary series inflate rejection rates~\citep{granger1974spurious}, and short series ($T{\leq}25$) preclude reliable nonlinear estimation~\citep{boettiger2012limits}.
+26	Granger precedence establishes temporal predictive improvement, not true causation: bivariate tests cannot exclude confounders~\citep{shojaie2022granger}.
+27	Our permutation-based approach circumvents the critical-slowing-down limitation by detecting temporal predictive improvement rather than variance or autocorrelation signatures.
+28	Specification-curve analysis~\citep{simonsohn2020specification} formalizes the sensitivity of conclusions to analytical choices; we adapt this framework to show that method choice alone shifts detection rates from 0\% to 94\%.
+29	The multiverse analysis perspective~\citep{steegen2016increasing,silberzahn2018many,coretta2023multidimensional,kapoor2024reforms} motivates our multi-method comparison: five methods on identical data produce conclusions ranging from universal significance to complete null, instantiating many-analysts divergence at the method level.
+30	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "04f0ec1b-ba8a-4a34-aabf-6bdea4a765a2",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "6e8dfc8d-8ff4-4c04-a6dc-9e1f6362ba68",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex",
+      "content": "\\FloatBarrier\n\\section{Related Work}\n\\label{sec:related_work}\n\n\\subsection{Model Collapse: Theory and Empirical Evidence}\n\\label{sec:rw_collapse}\n\nIterative training collapse was formalized by \\citet{shumailov2024curse} and \\citet{alemohammad2024mad}; \\citet{schaeffer2025position} systematize eight distinct notions of collapse---our operationalization aligns with their \\emph{distributional shift} family (definitions~D4--D6).\nTheoretical analyses sharpen these results: \\citet{dohmatob2024tale} recast collapse as changed scaling-law exponents, \\citet{dohmatob2025strong} proved collapse at vanishingly small synthetic fractions, and \\citet{truong2026phase} prove entropy collapse is a first-order transition, structurally ruling out critical-slowing-down early-warning signals~\\citep{scheffer2009early,scheffer2012anticipating}.\nEmpirically, \\citet{hataya2023will} demonstrate that generated images degrade downstream classification on ImageNet-scale data, and \\citet{kovac2025recursive} show that training data properties (lexical diversity, semantic diversity) modulate the magnitude of recursive collapse in LLMs.\nCritical mixture ratios separating qualitative outcomes have independent precedent: \\citet{kazdan2025collapse} map collapse conditions, \\citet{gu2024cmr} establish scaling laws for critical ratios, and \\citet{gu2025datamixing} show data mixing induces phase transitions in knowledge acquisition.\n\n\\subsection{Detection of Synthetic Data Contamination}\n\\label{sec:rw_detection}\n\nMonitoring metrics proposed for collapse include expected calibration error (ECE)~\\citep{du2025scales}, surplexity~\\citep{gambetta2024surplexity}, and machine-generated text detection~\\citep{drayson2025detection}; \\citet{shi2025closer} independently validate entropy as a collapse diagnostic in diffusion models; \\citet{buffa2026entropy} propose continuous entropy-based monitoring for LLM accuracy, though targeting task performance rather than distributional collapse.\nA complementary line of work pursues \\emph{proactive} contamination prevention via watermarking~\\citep{kirchenbauer2023watermark}; our distributional detection framework is \\emph{reactive}---it identifies collapse from observed metric trajectories without requiring control over the generation process.\n\\citet{boettiger2012limits} establish fundamental power limits for early-warning detection in short time series ($T{<}25$), directly relevant to iterative training where observation windows are typically $T{=}5$--$20$.\nHowever, these works evaluate single metrics in isolation without cross-validating against alternative statistical tests.\nWe differ by applying five detection methods to identical data, mapping detectability across contamination regimes, and treating method sensitivity as a primary finding rather than a robustness check (detailed comparison: Appendix~\\ref{app:method_comparison}).\n\n\\subsection{Statistical Methods for Distribution Shift}\n\\label{sec:rw_methods}\n\nFor temporal precedence testing, Granger causality~\\citep{granger1969investigating} is the standard framework, with neural extensions~\\citep{tank2021neural,runge2019detecting}; however, non-stationary series inflate rejection rates~\\citep{granger1974spurious}, and short series ($T{\\leq}25$) preclude reliable nonlinear estimation~\\citep{boettiger2012limits}.\nGranger precedence establishes temporal predictive improvement, not true causation: bivariate tests cannot exclude confounders~\\citep{shojaie2022granger}.\nOur permutation-based approach circumvents the critical-slowing-down limitation by detecting temporal predictive improvement rather than variance or autocorrelation signatures.\nSpecification-curve analysis~\\citep{simonsohn2020specification} formalizes the sensitivity of conclusions to analytical choices; we adapt this framework to show that method choice alone shifts detection rates from 0\\% to 94\\%.\nThe multiverse analysis perspective~\\citep{steegen2016increasing,silberzahn2018many,coretta2023multidimensional,kapoor2024reforms} motivates our multi-method comparison: five methods on identical data produce conclusions ranging from universal significance to complete null, instantiating many-analysts divergence at the method level.\n",
+      "numLines": 30,
+      "startLine": 1,
+      "totalLines": 30
+    }
+  },
+  "sourceToolAssistantUUID": "04f0ec1b-ba8a-4a34-aabf-6bdea4a765a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 491 · 2026-05-25T09:03:14.169Z_
+
+<details><summary>↩ Tool result · `toolu_01Tzx9gixbczPephb6vZukh2`</summary>
+
+```text
+1	\begin{abstract}
+2	When language models train iteratively on their own output, the resulting distributional collapse is difficult to detect: the time series are short, the signal grows sub-linearly with contamination, and---as we demonstrate---the choice of statistical method alone can shift conclusions from universal detection to complete null.
+3	We identify a steep detection onset in iterative model collapse: Granger-based testing finds zero significant canary$\to$downstream pairs through 45\% synthetic contamination, then jumps to reliable detection (6/8 pairs; 95\% CI $[0.25, 0.92]$) within a two-percentage-point interval at $\alpha_c \approx 0.50$, defining three confirmed regimes (blind, onset, detection).
+4	This transition emerges from a five-method comparison where null-control false-positive rates span 7\% to 94\%; permutation Granger causality, the lowest-FPR method (6.7\%, CI $[1.8\%, 16.2\%]$), serves as the primary detector.
+5	Cross-architecture evaluation at full synthetic replacement ($\alpha{=}1.0$) across five model families (345M--6.9B) supports forward detection in 11/15 conditions.
+6	Token entropy temporally precedes diversity collapse by at least one generation, enabling a proof-of-concept intervention that reduces peak perplexity by 64\% ($\alpha{=}1.0$).
+7	\end{abstract}
+8	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e0dc9505-404c-47ad-8f97-4ffebf52a0c1",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "85f20e51-6ac8-4ac9-9e29-67797d00963f",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/abstract.tex",
+      "content": "\\begin{abstract}\nWhen language models train iteratively on their own output, the resulting distributional collapse is difficult to detect: the time series are short, the signal grows sub-linearly with contamination, and---as we demonstrate---the choice of statistical method alone can shift conclusions from universal detection to complete null.\nWe identify a steep detection onset in iterative model collapse: Granger-based testing finds zero significant canary$\\to$downstream pairs through 45\\% synthetic contamination, then jumps to reliable detection (6/8 pairs; 95\\% CI $[0.25, 0.92]$) within a two-percentage-point interval at $\\alpha_c \\approx 0.50$, defining three confirmed regimes (blind, onset, detection).\nThis transition emerges from a five-method comparison where null-control false-positive rates span 7\\% to 94\\%; permutation Granger causality, the lowest-FPR method (6.7\\%, CI $[1.8\\%, 16.2\\%]$), serves as the primary detector.\nCross-architecture evaluation at full synthetic replacement ($\\alpha{=}1.0$) across five model families (345M--6.9B) supports forward detection in 11/15 conditions.\nToken entropy temporally precedes diversity collapse by at least one generation, enabling a proof-of-concept intervention that reduces peak perplexity by 64\\% ($\\alpha{=}1.0$).\n\\end{abstract}\n",
+      "numLines": 8,
+      "startLine": 1,
+      "totalLines": 8
+    }
+  },
+  "sourceToolAssistantUUID": "e0dc9505-404c-47ad-8f97-4ffebf52a0c1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 492 · 2026-05-25T09:03:14.621Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01HzoprRh5KmiE9BrexabTtt`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85f20e51-6ac8-4ac9-9e29-67797d00963f",
+  "isSidechain": false,
+  "requestId": "req_011CbP1x8EgUKes6ujhqxRqC",
+  "type": "assistant",
+  "uuid": "82672bc2-01cf-4dbf-8452-3f66253d6e66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XgzmZhm9wtKWsWm2o3sLX4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 84788,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 461,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 84788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 461,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 84788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 84788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 59282
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 493 · 2026-05-25T09:03:14.628Z_
+
+<details><summary>↩ Tool result · `toolu_01HzoprRh5KmiE9BrexabTtt`</summary>
+
+```text
+1	\section{Introduction}
+2	\label{sec:introduction}
+3	
+4	When language models train iteratively on their own output, the training distribution progressively loses its tail modes, a phenomenon termed model collapse~\citep{shumailov2024curse,alemohammad2024mad}.
+5	This process can be triggered by vanishingly small synthetic fractions~\citep{dohmatob2025strong}: lexical diversity narrows, calibration deteriorates, and each generation inherits the biases of its predecessors.
+6	As machine-generated text grows prevalent on the web, such feedback loops pose a growing risk to production pipelines, and by the time standard quality metrics register degradation, the distribution may have already shifted irreversibly.
+7	
+8	This threat motivates a fundamental question: \emph{can we reliably detect the onset of model collapse?}
+9	The answer is less clear than it might appear.
+10	Iterative training produces short, noisy time series (often fewer than 15 points) where detection power drops sharply~\citep{boettiger2012limits}, and model collapse is a first-order transition~\citep{truong2026phase}, structurally ruling out the critical-slowing-down early-warning signals that ecologists rely on~\citep{scheffer2009early} (\S\ref{sec:related_work}).
+11	More fundamentally, no prior work has systematically compared detection methods on this problem; as we show, the choice of statistical test alone can shift conclusions from universal detection to complete null on identical data.
+12	Detection is effective only above $\alpha_c \approx 0.50$; substantial quality degradation (e.g., ${\sim}40\%$ distinct-1 decline) occurs undetected below this threshold, making the framework a confirmation tool for ongoing collapse rather than an early-warning system.
+13	
+14	We systematically map this \emph{detectability landscape}---how detection outcomes vary across contamination levels ($\alpha$), observation windows ($T$), and statistical methods---on Pythia-410M~\citep{biderman2023pythia} across 13 contamination levels with multi-seed replication (Figure~\ref{fig:phase_diagram}).
+15	Our central finding is a steep detection onset: Permutation Granger causality (PermG) finds 0/8 significant canary$\to$downstream pairs through $\alpha{=}0.45$, then jumps to 6/8 (95\% CI $[0.25, 0.92]$) within a 2-percentage-point interval at $\alpha{=}0.50$ (Figure~\ref{fig:phase_diagram}), defining an empirical detection boundary $\alpha_c(T)$ (Eq.~\ref{eq:alpha-c}) that organizes three confirmed regimes (blind, onset, detection) plus one non-monotonic anomaly.
+16	This transition emerges from a five-method comparison that itself reveals dramatic method sensitivity: null-control FPR spans 6.7\% to 94.4\% ($\kappa{=}0.185$; Figure~\ref{fig:method_comparison}), demonstrating that single-method analyses cannot reliably distinguish real signals from artifacts.
+17	Cross-architecture evaluation at $\alpha{=}1.0$ across five families (345M--6.9B) supports forward detection in 11/15 conditions, with four non-confirming cases isolating distinct failure modes (\S\ref{sec:generalization}).
+18	Our canary claim is scoped to diversity metrics (distinct-$n$~\citep{li2016diversity}); Granger precedence establishes temporal predictive improvement, not causation (\S\ref{sec:method}).
+19	
+20	Our contributions are:\footnote{Code and data: \url{https://github.com/anonymous-nlp-2026-2/distrib_canary_collapse}}
+21	\begin{enumerate}
+22	    \item \textbf{We characterize a steep detection onset} (\S\ref{sec:regime}--\ref{sec:dose_response}).
+23	    Detection jumps from 0/8 to 6/8 significant pairs (95\% CI $[0.25, 0.92]$) within 2 percentage points of $\alpha_c \approx 0.50$, defining three confirmed regimes (blind, onset, detection) plus a non-monotonic anomaly at $\alpha \approx 0.60$.
+24	
+25	    \item \textbf{We map the detectability landscape} across contamination levels and observation windows (\S\ref{sec:t20}--\ref{sec:theory}).
+26	    The detection boundary shifts leftward with longer observation, organizing the signal$\times$resolution tradeoff that governs detection feasibility.
+27	
+28	    \item \textbf{A multi-method diagnostic toolkit supports reproducible analysis} (\S\ref{sec:mmct}).
+29	    Five methods yield null-control FPR from 6.7\% to 94.4\% ($\kappa{=}0.185$); systematic comparison identifies PermG (6.7\%, CI $[1.8\%, 16.2\%]$, 10~seeds) as the primary detector and exposes method sensitivity as a key obstacle.
+30	
+31	    \item \textbf{We validate practical applications}: a cascade ordering where entropy precedes diversity by ${\geq}1$ generation (Observations~\ref{thm:entropy_leads}--\ref{prop:div_lag}; 14/15 experiments) enables proof-of-concept predictive intervention reducing peak perplexity by 64\% at $\alpha{=}1.0$ (\S\ref{sec:cascade}, \S\ref{sec:intervention}).
+32	\end{enumerate}
+33	
+34	\begin{figure}[t]
+35	\centering
+36	\includegraphics[width=\columnwidth]{figures/fig_phase_diagram.pdf}
+37	\caption{Phase diagram (Pythia-410M, fp32, PermG). FDR-significant canary$\to$diversity pairs across $\alpha$ and $T$; dashed curve: fitted boundary (Eq.~\ref{eq:alpha-c}); $\diamond$: non-monotonic anomaly; $\star$: dissolution at $T{=}25$.}
+38	\label{fig:phase_diagram}
+39	\end{figure}
+40	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "82672bc2-01cf-4dbf-8452-3f66253d6e66",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "ced0581e-ec03-48d1-beba-8ce5e7d98930",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex",
+      "content": "\\section{Introduction}\n\\label{sec:introduction}\n\nWhen language models train iteratively on their own output, the training distribution progressively loses its tail modes, a phenomenon termed model collapse~\\citep{shumailov2024curse,alemohammad2024mad}.\nThis process can be triggered by vanishingly small synthetic fractions~\\citep{dohmatob2025strong}: lexical diversity narrows, calibration deteriorates, and each generation inherits the biases of its predecessors.\nAs machine-generated text grows prevalent on the web, such feedback loops pose a growing risk to production pipelines, and by the time standard quality metrics register degradation, the distribution may have already shifted irreversibly.\n\nThis threat motivates a fundamental question: \\emph{can we reliably detect the onset of model collapse?}\nThe answer is less clear than it might appear.\nIterative training produces short, noisy time series (often fewer than 15 points) where detection power drops sharply~\\citep{boettiger2012limits}, and model collapse is a first-order transition~\\citep{truong2026phase}, structurally ruling out the critical-slowing-down early-warning signals that ecologists rely on~\\citep{scheffer2009early} (\\S\\ref{sec:related_work}).\nMore fundamentally, no prior work has systematically compared detection methods on this problem; as we show, the choice of statistical test alone can shift conclusions from universal detection to complete null on identical data.\nDetection is effective only above $\\alpha_c \\approx 0.50$; substantial quality degradation (e.g., ${\\sim}40\\%$ distinct-1 decline) occurs undetected below this threshold, making the framework a confirmation tool for ongoing collapse rather than an early-warning system.\n\nWe systematically map this \\emph{detectability landscape}---how detection outcomes vary across contamination levels ($\\alpha$), observation windows ($T$), and statistical methods---on Pythia-410M~\\citep{biderman2023pythia} across 13 contamination levels with multi-seed replication (Figure~\\ref{fig:phase_diagram}).\nOur central finding is a steep detection onset: Permutation Granger causality (PermG) finds 0/8 significant canary$\\to$downstream pairs through $\\alpha{=}0.45$, then jumps to 6/8 (95\\% CI $[0.25, 0.92]$) within a 2-percentage-point interval at $\\alpha{=}0.50$ (Figure~\\ref{fig:phase_diagram}), defining an empirical detection boundary $\\alpha_c(T)$ (Eq.~\\ref{eq:alpha-c}) that organizes three confirmed regimes (blind, onset, detection) plus one non-monotonic anomaly.\nThis transition emerges from a five-method comparison that itself reveals dramatic method sensitivity: null-control FPR spans 6.7\\% to 94.4\\% ($\\kappa{=}0.185$; Figure~\\ref{fig:method_comparison}), demonstrating that single-method analyses cannot reliably distinguish real signals from artifacts.\nCross-architecture evaluation at $\\alpha{=}1.0$ across five families (345M--6.9B) supports forward detection in 11/15 conditions, with four non-confirming cases isolating distinct failure modes (\\S\\ref{sec:generalization}).\nOur canary claim is scoped to diversity metrics (distinct-$n$~\\citep{li2016diversity}); Granger precedence establishes temporal predictive improvement, not causation (\\S\\ref{sec:method}).\n\nOur contributions are:\\footnote{Code and data: \\url{https://github.com/anonymous-nlp-2026-2/distrib_canary_collapse}}\n\\begin{enumerate}\n    \\item \\textbf{We characterize a steep detection onset} (\\S\\ref{sec:regime}--\\ref{sec:dose_response}).\n    Detection jumps from 0/8 to 6/8 significant pairs (95\\% CI $[0.25, 0.92]$) within 2 percentage points of $\\alpha_c \\approx 0.50$, defining three confirmed regimes (blind, onset, detection) plus a non-monotonic anomaly at $\\alpha \\approx 0.60$.\n\n    \\item \\textbf{We map the detectability landscape} across contamination levels and observation windows (\\S\\ref{sec:t20}--\\ref{sec:theory}).\n    The detection boundary shifts leftward with longer observation, organizing the signal$\\times$resolution tradeoff that governs detection feasibility.\n\n    \\item \\textbf{A multi-method diagnostic toolkit supports reproducible analysis} (\\S\\ref{sec:mmct}).\n    Five methods yield null-control FPR from 6.7\\% to 94.4\\% ($\\kappa{=}0.185$); systematic comparison identifies PermG (6.7\\%, CI $[1.8\\%, 16.2\\%]$, 10~seeds) as the primary detector and exposes method sensitivity as a key obstacle.\n\n    \\item \\textbf{We validate practical applications}: a cascade ordering where entropy precedes diversity by ${\\geq}1$ generation (Observations~\\ref{thm:entropy_leads}--\\ref{prop:div_lag}; 14/15 experiments) enables proof-of-concept predictive intervention reducing peak perplexity by 64\\% at $\\alpha{=}1.0$ (\\S\\ref{sec:cascade}, \\S\\ref{sec:intervention}).\n\\end{enumerate}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_phase_diagram.pdf}\n\\caption{Phase diagram (Pythia-410M, fp32, PermG). FDR-significant canary$\\to$diversity pairs across $\\alpha$ and $T$; dashed curve: fitted boundary (Eq.~\\ref{eq:alpha-c}); $\\diamond$: non-monotonic anomaly; $\\star$: dissolution at $T{=}25$.}\n\\label{fig:phase_diagram}\n\\end{figure}\n",
+      "numLines": 40,
+      "startLine": 1,
+      "totalLines": 40
+    }
+  },
+  "sourceToolAssistantUUID": "82672bc2-01cf-4dbf-8452-3f66253d6e66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 494 · 2026-05-25T09:03:15.095Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01S76K92UGzNe7RL8bUGT5hg`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/conclusion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ced0581e-ec03-48d1-beba-8ce5e7d98930",
+  "isSidechain": false,
+  "requestId": "req_011CbP1x8EgUKes6ujhqxRqC",
+  "type": "assistant",
+  "uuid": "f9c2d4b8-dde6-4165-a092-8a43425d984c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XgzmZhm9wtKWsWm2o3sLX4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 84788,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 461,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 84788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 461,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 84788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 84788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 59282
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 495 · 2026-05-25T09:03:15.126Z_
+
+<details><summary>↩ Tool result · `toolu_01S76K92UGzNe7RL8bUGT5hg`</summary>
+
+```text
+1	\section{Conclusion}
+2	\label{sec:conclusion}
+3	
+4	Iterative training collapse exhibits a steep detection onset: PermG detection jumps from 0/8 to 6/8 significant pairs (95\% CI $[0.25, 0.92]$) within 2~percentage points of $\alpha_c \approx 0.50$, organizing three regimes (blind, onset, detection) that characterize when statistical monitoring can and cannot succeed.
+5	The detection boundary shifts leftward with longer observation ($\alpha_c(T) \propto T^{-\gamma}$), and systematic method comparison reveals that single-method analyses are unreliable: null-control FPR spans 6.7\% (PermG; 95\% CI $[1.8\%, 16.2\%]$, 10~seeds) to 94.4\%.
+6	Token entropy exhibits robust one-generation-ahead precedence over diversity collapse (24/24 forward, 0/24 reverse at $\alpha{=}1.0$; ${\geq}6/8$ in 11/15 cross-architecture conditions at $\alpha{=}1.0$).
+7	The blind zone below $\alpha_c$ constrains practical deployment to settings with sufficient contamination; evaluation at ${>}$7B parameters remains open.
+8	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9c2d4b8-dde6-4165-a092-8a43425d984c",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "238a2feb-df89-4a01-bb4f-e708f685fc1b",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/conclusion.tex",
+      "content": "\\section{Conclusion}\n\\label{sec:conclusion}\n\nIterative training collapse exhibits a steep detection onset: PermG detection jumps from 0/8 to 6/8 significant pairs (95\\% CI $[0.25, 0.92]$) within 2~percentage points of $\\alpha_c \\approx 0.50$, organizing three regimes (blind, onset, detection) that characterize when statistical monitoring can and cannot succeed.\nThe detection boundary shifts leftward with longer observation ($\\alpha_c(T) \\propto T^{-\\gamma}$), and systematic method comparison reveals that single-method analyses are unreliable: null-control FPR spans 6.7\\% (PermG; 95\\% CI $[1.8\\%, 16.2\\%]$, 10~seeds) to 94.4\\%.\nToken entropy exhibits robust one-generation-ahead precedence over diversity collapse (24/24 forward, 0/24 reverse at $\\alpha{=}1.0$; ${\\geq}6/8$ in 11/15 cross-architecture conditions at $\\alpha{=}1.0$).\nThe blind zone below $\\alpha_c$ constrains practical deployment to settings with sufficient contamination; evaluation at ${>}$7B parameters remains open.\n",
+      "numLines": 8,
+      "startLine": 1,
+      "totalLines": 8
+    }
+  },
+  "sourceToolAssistantUUID": "f9c2d4b8-dde6-4165-a092-8a43425d984c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 496 · 2026-05-25T09:03:15.567Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Jecb3YuwwCRfnSKSrnYd5f`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "238a2feb-df89-4a01-bb4f-e708f685fc1b",
+  "isSidechain": false,
+  "requestId": "req_011CbP1x8EgUKes6ujhqxRqC",
+  "type": "assistant",
+  "uuid": "e94968f5-364c-404f-99bc-b78b9bf90f03",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XgzmZhm9wtKWsWm2o3sLX4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 84788,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 461,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 84788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 461,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 84788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 84788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 59282
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 497 · 2026-05-25T09:03:15.574Z_
+
+<details><summary>↩ Tool result · `toolu_01Jecb3YuwwCRfnSKSrnYd5f`</summary>
+
+```text
+1	\FloatBarrier
+2	\section{Method}
+3	\label{sec:method}
+4	
+5	\subsection{Cascade Ordering}
+6	\label{sec:cascade}
+7	
+8	If distributional collapse follows a predictable ordering across metrics, the earliest-responding metric can serve as a canary signal.
+9	We formalize known metric properties---entropy as a continuous indicator of mode concentration, diversity as a threshold indicator of lexical coverage---under mode amplification~\citep{shumailov2024curse,dohmatob2024tale} (derivations in Appendix~\ref{app:cascade_theory}).
+10	
+11	\begin{observation}[Entropy responds before diversity]\label{thm:entropy_leads}
+12	Under mode amplification: \textup{(a)} entropy can decrease while the $\epsilon$-effective support $S_\epsilon(p) {=} |\{i: p_i > \epsilon\}|$ (hence distinct-$n$) is unchanged; \textup{(b)} if distinct-$n$ decreases, entropy has already decreased.
+13	\end{observation}
+14	
+15	Intuitively, entropy responds to any redistribution of probability mass (a continuous change), whereas diversity metrics like distinct-$n$ only change when tokens are pushed entirely below the generation threshold (a discrete event).
+16	This measurement asymmetry ensures entropy shifts before diversity under gradual mode amplification.
+17	The margin $\gamma = \min_{i: p_i > \epsilon}(p_i - \epsilon)$ quantifies how much shift diversity absorbs silently.
+18	
+19	\begin{observation}[Diversity lag $\geq 1$ generation]\label{prop:div_lag}
+20	If the per-generation perturbation satisfies $\alpha\|\mathcal{T}(p_t) - p_t\|_\infty < \gamma(p_t, \epsilon)$ through entropy onset $t_H$, then diversity onset $t_D \geq t_H + 1$.
+21	\end{observation}
+22	
+23	ECE co-moves with entropy at zero lag ($\Delta\mathrm{ECE} \approx \Delta C > 0$ whenever $\Delta\bar{H} < 0$; Appendix~\ref{app:cascade_theory}), yielding a three-stage cascade $\{H, \mathrm{ECE}\} \to \mathrm{Distinct}$-$n$.
+24	This ordering holds in 14/15 experiments at $\alpha \geq 0.30$, with entropy and ECE consistently reaching onset at generation~1 and distinct-$n$ following at generation~2 ($t_H{=}t_{\mathrm{ECE}}{=}1$, $t_D{=}2$; \S\ref{sec:regime}; Appendix~\ref{app:moment_cascade}).
+25	The one exception---SmolLM3-3B (3/8 at $\alpha{=}1.0$; Table~\ref{tab:generalization})---shows entropy decoupling from diversity, violating the monotonic-decline assumption that underlies both Observations.
+26	The cascade is also specific to diversity metrics: first-differencing eliminates canary$\to$perplexity associations entirely ($F{\approx}0$, $p{=}0.99$; \S\ref{sec:regime}), confirming that the temporal structure is channel-specific rather than global.
+27	
+28	\subsection{Design Considerations}
+29	\label{sec:pitfalls}
+30	
+31	We use \emph{Granger precedence}---temporal predictive improvement, where past values of $X$ improve prediction of $Y$ beyond $Y$'s own history---to assess whether canary metrics anticipate downstream degradation~\citep{granger1969investigating}.
+32	This is distinct from Granger causality, which additionally implies a mechanistic causal link that bivariate tests cannot establish~\citep{shojaie2022granger}.
+33	Even within this narrower scope, lead-lag analysis in iterative model collapse is fragile along three axes.
+34	\emph{Method sensitivity}: five detection methods applied to identical data yield forward significance rates spanning 0\% to 92\%, with $\kappa{=}0.185$ (Figure~\ref{fig:method_comparison}).
+35	\emph{Spurious regression}: first-differencing eliminates canary$\to$perplexity associations ($F{\approx}0$, $p{=}0.99$) while preserving canary$\to$diversity (24/24$\to$24/24)~\citep{granger1974spurious}.
+36	\emph{Regime dependence}: the same Granger test shifts from 0/8 to 6/8 significant pairs within a 2-percentage-point interval.
+37	
+38	\begin{figure}[t]
+39	\centering
+40	\includegraphics[width=\columnwidth]{figures/fig_method_comparison.pdf}
+41	\caption{Method sensitivity: five methods yield dramatically different FDR-significant rates on identical data. PermG achieves the lowest null-control FPR (6.7\%, pooled across 10~seeds) with 75\% detection at $\alpha{\geq}0.50$; dashed line: 5\% nominal.}
+42	\label{fig:method_comparison}
+43	\end{figure}
+44	
+45	\subsection{Method Sensitivity Analysis}
+46	\label{sec:mmct}
+47	
+48	These fragilities motivate a systematic comparison.
+49	We evaluate five lead-lag detection methods---naive cross-correlation (NaiveXCorr), differenced cross-correlation (DiffXCorr), threshold onset, permutation Granger causality (PermG), and Toda--Yamamoto~\citep{toda1995statistical}---in a multi-method comparison framework~\citep{simonsohn2020specification}, calibrating each against null-control ($\alpha{=}0.0$) data.
+50	Among these, PermG assesses whether past values of a canary metric improve prediction of a downstream metric beyond its own history~\citep{shojaie2022granger}, using 5{,}000 permutations~\citep{phipson2010permutation} on first-differenced series with Benjamini--Hochberg FDR correction ($q{=}0.05$) across 8 canary$\to$downstream pairs; the permutation null controls Type~I error by construction, and BH-FDR remains valid under positive regression dependence~\citep{benjamini2001control}.
+51	The full multi-method consensus test (MMCT) is given in Algorithm~\ref{alg:mmct}.
+52	
+53	\begin{algorithm}[t]
+54	\caption{Multi-Method Consensus Test (MMCT)}
+55	\label{alg:mmct}
+56	\begin{algorithmic}[1]
+57	\Require Time series pair $(X, Y)$; methods $\{m_1, \ldots, m_K\}$ ($K{=}5$); null-control data $\mathcal{N}$ (from $\alpha{=}0.0$); tolerance $\epsilon{=}0.01$
+58	\Ensure $p$-value, consensus level $\hat{K}$
+59	\For{each method $m_k$}
+60	    \State Compute empirical FPR: $\widehat{\mathrm{FPR}}_k \gets$ fraction of null-control pairs where $m_k$ rejects $H_0$
+61	    \State Compute weight: $w_k \gets 1 / \max(\widehat{\mathrm{FPR}}_k,\; \epsilon)$
+62	    \State Apply $m_k$ to $(X, Y)$: $d_k \gets \mathbf{1}[m_k \text{ rejects } H_0]$
+63	\EndFor
+64	\State Weighted consensus: $W(X {\to} Y) \gets \sum_{k} w_k \, d_k \;/\; \sum_{k} w_k$
+65	\State Build empirical null distribution of $W$ from all null-control pairs in $\mathcal{N}$
+66	\State Compute $p$-value from empirical null: $p \gets \Pr_{\mathcal{N}}(W \geq W_{\mathrm{obs}})$
+67	\State Consensus level: $\hat{K} \gets \sum_{k} d_k$
+68	\State \Return $p$, $\hat{K}$
+69	\end{algorithmic}
+70	\end{algorithm}
+71	
+72	The algorithm's FPR-inverse weighting assigns each method influence proportional to its null-control reliability: NaiveXCorr (FPR${=}94.4\%$) receives weight $w{=}1.06$, while PermG (FPR${=}6.7\%$) receives $w{=}14.9$---a $14{\times}$ differential that ensures the most reliable method dominates the consensus.
+73	Building the null distribution empirically from $\alpha{=}0.0$ data avoids parametric assumptions unreliable for short ($T{=}5$--$20$), non-stationary series.
+74	Pooled null-control FPR across ten seeds (60 pairs) confirms a wide methodological spread: PermG 6.7\% (95\% CI $[1.8\%, 16.2\%]$), DiffXCorr 14.8\%, Threshold 24.1\%, Toda--Yamamoto 33.3\%, NaiveXCorr 94.4\% (Appendix~\ref{app:fpr_independence}).
+75	PermG (4/60; 95\% CI $[1.8\%, 16.2\%]$) achieves the lowest FPR among all five methods, with 8/10 seeds yielding zero false positives; Shapley analysis confirms it provides the best FPR--FNR tradeoff among directional methods (Appendix~\ref{app:shapley}).
+76	Table~\ref{tab:mmct_k_operating} reports an alternative operating mode: equal-weight $K{\geq}3$ majority voting with forward-direction filtering, where FPR is 10.0\% with 75\% TPR at $\alpha{=}1.0$.
+77	The weighted scheme (Algorithm~\ref{alg:mmct}) further downweights unreliable methods via FPR-inverse weighting; majority voting treats all methods equally and is simpler to deploy.
+78	
+79	\FloatBarrier
+80	
+81	\subsection{Detection Boundary}
+82	\label{sec:theory}
+83	
+84	The steep onset described above suggests a detection boundary $\alpha_c(T)$ that decreases with longer observation.
+85	We parametrize this boundary as a power law:
+86	\begin{equation}
+87	\alpha_c(T) = A \cdot T^{-\gamma},
+88	\label{eq:alpha-c}
+89	\end{equation}
+90	motivated by an empirical sub-linear signal model $S(\alpha) = c \cdot \alpha^\beta$ ($\beta < 1$), under which the exponent satisfies $\gamma = 1/(2\beta)$:
+91	\begin{equation}
+92	\alpha_c(T) = A \cdot T^{-1/(2\beta)},
+93	\label{eq:alpha-c-theory}
+94	\end{equation}
+95	where $A = (z^* \sigma / c)^{1/\beta}$ and $z^* = \Phi^{-1}(\pi^*)$ (derivation in Appendix~\ref{app:alpha_c_proof}).
+96	This parametrization captures the observed pattern with three free parameters fitted to 3--4 data points; the resulting $\gamma$ confidence interval ($[0.64, 2.08]$) is wide enough to preclude distinguishing sub-linear from super-linear decay, but the qualitative conclusion---detection improves with longer observation---is robust regardless.
+97	
+98	\begin{figure}[t]
+99	\centering
+100	\includegraphics[width=\columnwidth]{figures/fig_detection_surface.pdf}
+101	\caption{Detection rate surface over $\alpha \times T$ (PermG forward, 3~seeds). Dashed curve: fitted boundary $\alpha_c(T)$. The blind zone ($\alpha \leq 0.45$) shrinks as $T$ increases.}
+102	\label{fig:detection_surface}
+103	\end{figure}
+104	
+105	Dense $\alpha$ sampling further reveals that a smooth sigmoid fits better than a step function ($\Delta\mathrm{AIC}{=}-110$), yet the fitted onset steepness ($k{=}15.7$) exceeds smooth-model predictions by $3$--$4{\times}$ (Appendix~\ref{app:power_sim}), suggesting the transition is sharper than standard power-analysis models would predict.
+106	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e94968f5-364c-404f-99bc-b78b9bf90f03",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "6319933b-ec19-4f31-a0cb-5c84dfc3b93b",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex",
+      "content": "\\FloatBarrier\n\\section{Method}\n\\label{sec:method}\n\n\\subsection{Cascade Ordering}\n\\label{sec:cascade}\n\nIf distributional collapse follows a predictable ordering across metrics, the earliest-responding metric can serve as a canary signal.\nWe formalize known metric properties---entropy as a continuous indicator of mode concentration, diversity as a threshold indicator of lexical coverage---under mode amplification~\\citep{shumailov2024curse,dohmatob2024tale} (derivations in Appendix~\\ref{app:cascade_theory}).\n\n\\begin{observation}[Entropy responds before diversity]\\label{thm:entropy_leads}\nUnder mode amplification: \\textup{(a)} entropy can decrease while the $\\epsilon$-effective support $S_\\epsilon(p) {=} |\\{i: p_i > \\epsilon\\}|$ (hence distinct-$n$) is unchanged; \\textup{(b)} if distinct-$n$ decreases, entropy has already decreased.\n\\end{observation}\n\nIntuitively, entropy responds to any redistribution of probability mass (a continuous change), whereas diversity metrics like distinct-$n$ only change when tokens are pushed entirely below the generation threshold (a discrete event).\nThis measurement asymmetry ensures entropy shifts before diversity under gradual mode amplification.\nThe margin $\\gamma = \\min_{i: p_i > \\epsilon}(p_i - \\epsilon)$ quantifies how much shift diversity absorbs silently.\n\n\\begin{observation}[Diversity lag $\\geq 1$ generation]\\label{prop:div_lag}\nIf the per-generation perturbation satisfies $\\alpha\\|\\mathcal{T}(p_t) - p_t\\|_\\infty < \\gamma(p_t, \\epsilon)$ through entropy onset $t_H$, then diversity onset $t_D \\geq t_H + 1$.\n\\end{observation}\n\nECE co-moves with entropy at zero lag ($\\Delta\\mathrm{ECE} \\approx \\Delta C > 0$ whenever $\\Delta\\bar{H} < 0$; Appendix~\\ref{app:cascade_theory}), yielding a three-stage cascade $\\{H, \\mathrm{ECE}\\} \\to \\mathrm{Distinct}$-$n$.\nThis ordering holds in 14/15 experiments at $\\alpha \\geq 0.30$, with entropy and ECE consistently reaching onset at generation~1 and distinct-$n$ following at generation~2 ($t_H{=}t_{\\mathrm{ECE}}{=}1$, $t_D{=}2$; \\S\\ref{sec:regime}; Appendix~\\ref{app:moment_cascade}).\nThe one exception---SmolLM3-3B (3/8 at $\\alpha{=}1.0$; Table~\\ref{tab:generalization})---shows entropy decoupling from diversity, violating the monotonic-decline assumption that underlies both Observations.\nThe cascade is also specific to diversity metrics: first-differencing eliminates canary$\\to$perplexity associations entirely ($F{\\approx}0$, $p{=}0.99$; \\S\\ref{sec:regime}), confirming that the temporal structure is channel-specific rather than global.\n\n\\subsection{Design Considerations}\n\\label{sec:pitfalls}\n\nWe use \\emph{Granger precedence}---temporal predictive improvement, where past values of $X$ improve prediction of $Y$ beyond $Y$'s own history---to assess whether canary metrics anticipate downstream degradation~\\citep{granger1969investigating}.\nThis is distinct from Granger causality, which additionally implies a mechanistic causal link that bivariate tests cannot establish~\\citep{shojaie2022granger}.\nEven within this narrower scope, lead-lag analysis in iterative model collapse is fragile along three axes.\n\\emph{Method sensitivity}: five detection methods applied to identical data yield forward significance rates spanning 0\\% to 92\\%, with $\\kappa{=}0.185$ (Figure~\\ref{fig:method_comparison}).\n\\emph{Spurious regression}: first-differencing eliminates canary$\\to$perplexity associations ($F{\\approx}0$, $p{=}0.99$) while preserving canary$\\to$diversity (24/24$\\to$24/24)~\\citep{granger1974spurious}.\n\\emph{Regime dependence}: the same Granger test shifts from 0/8 to 6/8 significant pairs within a 2-percentage-point interval.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_method_comparison.pdf}\n\\caption{Method sensitivity: five methods yield dramatically different FDR-significant rates on identical data. PermG achieves the lowest null-control FPR (6.7\\%, pooled across 10~seeds) with 75\\% detection at $\\alpha{\\geq}0.50$; dashed line: 5\\% nominal.}\n\\label{fig:method_comparison}\n\\end{figure}\n\n\\subsection{Method Sensitivity Analysis}\n\\label{sec:mmct}\n\nThese fragilities motivate a systematic comparison.\nWe evaluate five lead-lag detection methods---naive cross-correlation (NaiveXCorr), differenced cross-correlation (DiffXCorr), threshold onset, permutation Granger causality (PermG), and Toda--Yamamoto~\\citep{toda1995statistical}---in a multi-method comparison framework~\\citep{simonsohn2020specification}, calibrating each against null-control ($\\alpha{=}0.0$) data.\nAmong these, PermG assesses whether past values of a canary metric improve prediction of a downstream metric beyond its own history~\\citep{shojaie2022granger}, using 5{,}000 permutations~\\citep{phipson2010permutation} on first-differenced series with Benjamini--Hochberg FDR correction ($q{=}0.05$) across 8 canary$\\to$downstream pairs; the permutation null controls Type~I error by construction, and BH-FDR remains valid under positive regression dependence~\\citep{benjamini2001control}.\nThe full multi-method consensus test (MMCT) is given in Algorithm~\\ref{alg:mmct}.\n\n\\begin{algorithm}[t]\n\\caption{Multi-Method Consensus Test (MMCT)}\n\\label{alg:mmct}\n\\begin{algorithmic}[1]\n\\Require Time series pair $(X, Y)$; methods $\\{m_1, \\ldots, m_K\\}$ ($K{=}5$); null-control data $\\mathcal{N}$ (from $\\alpha{=}0.0$); tolerance $\\epsilon{=}0.01$\n\\Ensure $p$-value, consensus level $\\hat{K}$\n\\For{each method $m_k$}\n    \\State Compute empirical FPR: $\\widehat{\\mathrm{FPR}}_k \\gets$ fraction of null-control pairs where $m_k$ rejects $H_0$\n    \\State Compute weight: $w_k \\gets 1 / \\max(\\widehat{\\mathrm{FPR}}_k,\\; \\epsilon)$\n    \\State Apply $m_k$ to $(X, Y)$: $d_k \\gets \\mathbf{1}[m_k \\text{ rejects } H_0]$\n\\EndFor\n\\State Weighted consensus: $W(X {\\to} Y) \\gets \\sum_{k} w_k \\, d_k \\;/\\; \\sum_{k} w_k$\n\\State Build empirical null distribution of $W$ from all null-control pairs in $\\mathcal{N}$\n\\State Compute $p$-value from empirical null: $p \\gets \\Pr_{\\mathcal{N}}(W \\geq W_{\\mathrm{obs}})$\n\\State Consensus level: $\\hat{K} \\gets \\sum_{k} d_k$\n\\State \\Return $p$, $\\hat{K}$\n\\end{algorithmic}\n\\end{algorithm}\n\nThe algorithm's FPR-inverse weighting assigns each method influence proportional to its null-control reliability: NaiveXCorr (FPR${=}94.4\\%$) receives weight $w{=}1.06$, while PermG (FPR${=}6.7\\%$) receives $w{=}14.9$---a $14{\\times}$ differential that ensures the most reliable method dominates the consensus.\nBuilding the null distribution empirically from $\\alpha{=}0.0$ data avoids parametric assumptions unreliable for short ($T{=}5$--$20$), non-stationary series.\nPooled null-control FPR across ten seeds (60 pairs) confirms a wide methodological spread: PermG 6.7\\% (95\\% CI $[1.8\\%, 16.2\\%]$), DiffXCorr 14.8\\%, Threshold 24.1\\%, Toda--Yamamoto 33.3\\%, NaiveXCorr 94.4\\% (Appendix~\\ref{app:fpr_independence}).\nPermG (4/60; 95\\% CI $[1.8\\%, 16.2\\%]$) achieves the lowest FPR among all five methods, with 8/10 seeds yielding zero false positives; Shapley analysis confirms it provides the best FPR--FNR tradeoff among directional methods (Appendix~\\ref{app:shapley}).\nTable~\\ref{tab:mmct_k_operating} reports an alternative operating mode: equal-weight $K{\\geq}3$ majority voting with forward-direction filtering, where FPR is 10.0\\% with 75\\% TPR at $\\alpha{=}1.0$.\nThe weighted scheme (Algorithm~\\ref{alg:mmct}) further downweights unreliable methods via FPR-inverse weighting; majority voting treats all methods equally and is simpler to deploy.\n\n\\FloatBarrier\n\n\\subsection{Detection Boundary}\n\\label{sec:theory}\n\nThe steep onset described above suggests a detection boundary $\\alpha_c(T)$ that decreases with longer observation.\nWe parametrize this boundary as a power law:\n\\begin{equation}\n\\alpha_c(T) = A \\cdot T^{-\\gamma},\n\\label{eq:alpha-c}\n\\end{equation}\nmotivated by an empirical sub-linear signal model $S(\\alpha) = c \\cdot \\alpha^\\beta$ ($\\beta < 1$), under which the exponent satisfies $\\gamma = 1/(2\\beta)$:\n\\begin{equation}\n\\alpha_c(T) = A \\cdot T^{-1/(2\\beta)},\n\\label{eq:alpha-c-theory}\n\\end{equation}\nwhere $A = (z^* \\sigma / c)^{1/\\beta}$ and $z^* = \\Phi^{-1}(\\pi^*)$ (derivation in Appendix~\\ref{app:alpha_c_proof}).\nThis parametrization captures the observed pattern with three free parameters fitted to 3--4 data points; the resulting $\\gamma$ confidence interval ($[0.64, 2.08]$) is wide enough to preclude distinguishing sub-linear from super-linear decay, but the qualitative conclusion---detection improves with longer observation---is robust regardless.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_detection_surface.pdf}\n\\caption{Detection rate surface over $\\alpha \\times T$ (PermG forward, 3~seeds). Dashed curve: fitted boundary $\\alpha_c(T)$. The blind zone ($\\alpha \\leq 0.45$) shrinks as $T$ increases.}\n\\label{fig:detection_surface}\n\\end{figure}\n\nDense $\\alpha$ sampling further reveals that a smooth sigmoid fits better than a step function ($\\Delta\\mathrm{AIC}{=}-110$), yet the fitted onset steepness ($k{=}15.7$) exceeds smooth-model predictions by $3$--$4{\\times}$ (Appendix~\\ref{app:power_sim}), suggesting the transition is sharper than standard power-analysis models would predict.\n",
+      "numLines": 106,
+      "startLine": 1,
+      "totalLines": 106
+    }
+  },
+  "sourceToolAssistantUUID": "e94968f5-364c-404f-99bc-b78b9bf90f03",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 498 · 2026-05-25T09:03:16.050Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_013uJPcLvJTjrMeFPbof4KCc`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6319933b-ec19-4f31-a0cb-5c84dfc3b93b",
+  "isSidechain": false,
+  "requestId": "req_011CbP1x8EgUKes6ujhqxRqC",
+  "type": "assistant",
+  "uuid": "04f0ec1b-ba8a-4a34-aabf-6bdea4a765a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XgzmZhm9wtKWsWm2o3sLX4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 84788,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 461,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 84788,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 461,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 84788,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 84788
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 59282
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 499_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Paper Agent 触发审查]: ## Round 16 Patch Review Request  **Scope**: 8 项修复（P0 framing 重定位 + P1-P7 写作修复）。EMNLP 2026 目标。  ### Changes Summary  **P0: Framing 重定位** (abstract, introduction, conclusion, method…",
+  "leafUuid": "6e8dfc8d-8ff4-4c04-a6dc-9e1f6362ba68",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 500_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review loop 18 experiment status",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 501 · 2026-05-25T09:03:19.241Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, let me now read the remaining files: experiments.tex, discussion.tex, main.tex (for the theorem definition), and appendix.tex (for observation references).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6e8dfc8d-8ff4-4c04-a6dc-9e1f6362ba68",
+  "isSidechain": false,
+  "requestId": "req_011CbP1xpKCUV59c23Gwbk7F",
+  "type": "assistant",
+  "uuid": "debfda74-0616-4068-9639-47ca33c1934c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HVWu1p95UuuBfrnTyZPMp2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7208,
+      "cache_read_input_tokens": 96629,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7208,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 96629,
+          "cache_creation_input_tokens": 7208,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7208
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 502 · 2026-05-25T09:03:20.221Z_
+
+Now let me check the remaining files for consistency — main.tex theorem definition, experiments.tex observation references, discussion.tex, and appendix.tex.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "debfda74-0616-4068-9639-47ca33c1934c",
+  "isSidechain": false,
+  "requestId": "req_011CbP1xpKCUV59c23Gwbk7F",
+  "type": "assistant",
+  "uuid": "2d5af79b-9d4b-44d3-bc4e-cfaac4c0d3c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HVWu1p95UuuBfrnTyZPMp2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7208,
+      "cache_read_input_tokens": 96629,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7208,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 96629,
+          "cache_creation_input_tokens": 7208,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7208
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 503 · 2026-05-25T09:03:23.548Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_018RTrvot2ntG4nQeZM2aTB1`</summary>
+
+```json
+{
+  "pattern": "newtheorem.*observation|newtheorem.*designprinciple|newtheorem.*principle",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d5af79b-9d4b-44d3-bc4e-cfaac4c0d3c7",
+  "isSidechain": false,
+  "requestId": "req_011CbP1xpKCUV59c23Gwbk7F",
+  "type": "assistant",
+  "uuid": "aa590903-d7ec-4765-a0de-cde720a25be0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HVWu1p95UuuBfrnTyZPMp2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7208,
+      "cache_read_input_tokens": 96629,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7208,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 96629,
+          "cache_creation_input_tokens": 7208,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7208
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 504 · 2026-05-25T09:03:26.189Z_
+
+<details><summary>↩ Tool result · `toolu_01GdEJPEkAZJDPiMZfZnqdz2`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1495:\emph{H1 (step)}: $S(\alpha) = 0$ for $\alpha < \alpha_c$, $S(\alpha) = c$ for $\alpha \geq \alpha_c$, representing a genuine phase transition.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib:368:  title     = {Data Mixing Can Induce Phase Transitions in Knowledge Acquisition},
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib:427:  title     = {On the Phase Transition of Model Collapse in Iterative Training},
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex:11:Critical mixture ratios separating qualitative outcomes have independent precedent: \citet{kazdan2025collapse} map collapse conditions, \citet{gu2024cmr} establish scaling laws for critical ratios, and \citet{gu2025datamixing} show data mixing induces phase transitions in knowledge acquisition.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.bbl:126:  phase transitions in knowledge acquisition}.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.bbl:344:\newblock On the phase transition of model collapse in iterative training.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex:8:Sigmoid regression across the 13-point $\alpha$ grid quantifies this steep onset: $\alpha_c = 0.476$ at $T{=}10$, steepness $k \geq 200$, transition width $\Delta\alpha \approx 0.02$, $R^2 = 0.969$ (versus power-law $R^2 = 0.808$, $\Delta\mathrm{AIC} = 18.2$; Figure~\ref{fig:phase_transition}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131343_fce368/planning.json:3:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131343_fce368/planning.json:4:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131024_0ed5d2/planning.json:3:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "65e85c9d-253f-4b6b-8d1a-ac03834a626a",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "5a5cfc50-6f7a-4600-a502-fec7ff0e4e65",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1495:\\emph{H1 (step)}: $S(\\alpha) = 0$ for $\\alpha < \\alpha_c$, $S(\\alpha) = c$ for $\\alpha \\geq \\alpha_c$, representing a genuine phase transition.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib:368:  title     = {Data Mixing Can Induce Phase Transitions in Knowledge Acquisition},\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib:427:  title     = {On the Phase Transition of Model Collapse in Iterative Training},\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/related_work.tex:11:Critical mixture ratios separating qualitative outcomes have independent precedent: \\citet{kazdan2025collapse} map collapse conditions, \\citet{gu2024cmr} establish scaling laws for critical ratios, and \\citet{gu2025datamixing} show data mixing induces phase transitions in knowledge acquisition.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.bbl:126:  phase transitions in knowledge acquisition}.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.bbl:344:\\newblock On the phase transition of model collapse in iterative training.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex:8:Sigmoid regression across the 13-point $\\alpha$ grid quantifies this steep onset: $\\alpha_c = 0.476$ at $T{=}10$, steepness $k \\geq 200$, transition width $\\Delta\\alpha \\approx 0.02$, $R^2 = 0.969$ (versus power-law $R^2 = 0.808$, $\\Delta\\mathrm{AIC} = 18.2$; Figure~\\ref{fig:phase_transition}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131343_fce368/planning.json:3:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131343_fce368/planning.json:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131024_0ed5d2/planning.json:3:[Omitted long matching line]",
+    "numLines": 10
+  },
+  "sourceToolAssistantUUID": "65e85c9d-253f-4b6b-8d1a-ac03834a626a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 505 · 2026-05-25T09:03:23.592Z_
+
+<details><summary>↩ Tool result · `toolu_018RTrvot2ntG4nQeZM2aTB1`</summary>
+
+```text
+22:\newtheorem{observation}[theorem]{Observation}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa590903-d7ec-4765-a0de-cde720a25be0",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "d2560a02-233e-4343-963b-0c6f1eca80a7",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "22:\\newtheorem{observation}[theorem]{Observation}",
+    "numLines": 1
+  },
+  "sourceToolAssistantUUID": "aa590903-d7ec-4765-a0de-cde720a25be0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 506 · 2026-05-25T09:03:25.017Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01N6pzVQmjTqkaecB7Yai23U`</summary>
+
+```json
+{
+  "pattern": "Observation|Design.Principle|designprinciple|\\\\begin\\{observation\\}",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d2560a02-233e-4343-963b-0c6f1eca80a7",
+  "isSidechain": false,
+  "requestId": "req_011CbP1xpKCUV59c23Gwbk7F",
+  "type": "assistant",
+  "uuid": "612feece-8c9c-4a1c-ae44-f3f496e2940a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HVWu1p95UuuBfrnTyZPMp2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7208,
+      "cache_read_input_tokens": 96629,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7208,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 96629,
+          "cache_creation_input_tokens": 7208,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7208
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 507 · 2026-05-25T09:03:25.063Z_
+
+<details><summary>↩ Tool result · `toolu_01N6pzVQmjTqkaecB7Yai23U`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex:110:\emph{Entropy decoupling}: SmolLM3-3B reaches only 3/8, with ECE-only detection (entropy 0/4), violating the entropy-leads assumption of Observation~\ref{thm:entropy_leads}.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.tex:22:\newtheorem{observation}[theorem]{Observation}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.log:681:[][]\T1/ptm/b/n/10.95 (+20) Observation 2 \T1/ptm/m/n/10.95 (+20) (Di-ver-sity 
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:11:\begin{observation}[Entropy responds before diversity]\label{thm:entropy_leads}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:19:\begin{observation}[Diversity lag $\geq 1$ generation]\label{prop:div_lag}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:25:The one exception---SmolLM3-3B (3/8 at $\alpha{=}1.0$; Table~\ref{tab:generalization})---shows entropy decoupling from diversity, violating the monotonic-decline assumption that underlies both Observations.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/theory.tex:7:\begin{designprinciple}[Entropy responds before diversity]\label{thm:entropy_leads}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/theory.tex:9:\end{designprinciple}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/theory.tex:13:\begin{designprinciple}[Diversity lag $\geq 1$ generation]\label{prop:div_lag}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/theory.tex:15:\end{designprinciple}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1184:\@writefile{toc}{\contentsline {section}{\numberline {C}Observation Window Sensitivity}{13}{appendix.C}\protected@file@percent }
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1185:\newlabel{app:window_sensitivity}{{C}{13}{Observation Window Sensitivity}{appendix.C}{}}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1210:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1211:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:2573:\@writefile{toc}{\contentsline {paragraph}{Derivation of Observation~\ref {thm:entropy_leads}.}{31}{section*.139}\protected@file@percent }
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:2586:\@writefile{toc}{\contentsline {paragraph}{Derivation of Observation~\ref {prop:div_lag}.}{31}{section*.140}\protected@file@percent }
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:131:\section{Observation Window Sensitivity}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:157:\caption{Observation window sensitivity for Tier~3 consensus ($K{\geq}4/5$) at $\alpha{=}1.0$ (Pythia-410M, 4~seeds). Tier~3 pairs: number of canary$\to$downstream pairs (out of 8 validated) reaching $K{\geq}4/5$ method agreement. TY pairs: number of effect-size reference pairs (out of 6) reaching Toda--Yamamoto significance (moderate supplementary method; \S\ref{sec:method}). Consensus stabilizes at $T_{\min}{\geq}5$; TY stabilizes at $T_{\min}{\geq}6$.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1273:At relaxed thresholds (${\geq}15\%$), some conditions show simultaneous onset ($t_H = t_D$), because the larger threshold absorbs the diversity lag---consistent with the margin condition in Observation~\ref{prop:div_lag}.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1322:This section provides the full derivations for Observation~\ref{thm:entropy_leads} and Observation~\ref{prop:div_lag} from \S\ref{sec:cascade}, plus supporting results.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1357:\paragraph{Derivation of Observation~\ref{thm:entropy_leads}.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1366:\paragraph{Derivation of Observation~\ref{prop:div_lag}.}
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1379:$\bar{H}_t$ denotes mean conditional entropy $\mathbb{E}_{x \sim p_{\text{eval}}}[h(x)]$, which differs from the marginal entropy $H_t = -\sum_i p_t(i)\log p_t(i)$ used in Observation~\ref{thm:entropy_leads}; under mode amplification, both decrease monotonically, so the cascade ordering is consistent across both formulations.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1448:The one-generation lag is thus explained by the margin condition in Observation~\ref{prop:div_lag}: the margin $\gamma$ is consumed by the gen-0$\to$1 perturbation, and the gen-1$\to$2 perturbation pushes tokens below the generation threshold $\epsilon$.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1458:Observation~\ref{thm:entropy_leads} depends on the margin $\gamma(p, \epsilon)$, which in turn depends on the generation threshold $\epsilon \approx c/N$.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1701:This violates the cascade ordering assumption (Observation~\ref{thm:entropy_leads}): in 3/8 conditions, entropy does not monotonically decrease across generations, exhibiting a recovery pattern between gen-3 and gen-5 before resuming decline.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex:31:    \item \textbf{We validate practical applications}: a cascade ordering where entropy precedes diversity by ${\geq}1$ generation (Observations~\ref{thm:entropy_leads}--\ref{prop:div_lag}; 14/15 experiments) enables proof-of-concept predictive intervention reducing peak perplexity by 64\% at $\alpha{=}1.0$ (\S\ref{sec:cascade}, \S\ref{sec:intervention}).
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131343_fce368/planning.json:3:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131343_fce368/planning.json:4:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131024_0ed5d2/planning.json:3:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131024_0ed5d2/planning.json:4:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131024_0ed5d2/iter_1/details.json:2:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_detection_surface.py:119:ax.set_ylabel(r'Observation window $T$')
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_phase_diagram.py:115:ax.set_ylabel(r'Observation window $T$', labelpad=4)
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131641_6323eb/planning.json:3:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131641_6323eb/planning.json:4:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131641_6323eb/iter_1/details.json:2:[Omitted long matching line]
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "612feece-8c9c-4a1c-ae44-f3f496e2940a",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "15e34654-143f-42a9-b4b6-7341ded6dfed",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex:110:\\emph{Entropy decoupling}: SmolLM3-3B reaches only 3/8, with ECE-only detection (entropy 0/4), violating the entropy-leads assumption of Observation~\\ref{thm:entropy_leads}.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.tex:22:\\newtheorem{observation}[theorem]{Observation}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.log:681:[][]\\T1/ptm/b/n/10.95 (+20) Observation 2 \\T1/ptm/m/n/10.95 (+20) (Di-ver-sity \n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:11:\\begin{observation}[Entropy responds before diversity]\\label{thm:entropy_leads}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:19:\\begin{observation}[Diversity lag $\\geq 1$ generation]\\label{prop:div_lag}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method.tex:25:The one exception---SmolLM3-3B (3/8 at $\\alpha{=}1.0$; Table~\\ref{tab:generalization})---shows entropy decoupling from diversity, violating the monotonic-decline assumption that underlies both Observations.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/theory.tex:7:\\begin{designprinciple}[Entropy responds before diversity]\\label{thm:entropy_leads}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/theory.tex:9:\\end{designprinciple}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/theory.tex:13:\\begin{designprinciple}[Diversity lag $\\geq 1$ generation]\\label{prop:div_lag}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/theory.tex:15:\\end{designprinciple}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1184:\\@writefile{toc}{\\contentsline {section}{\\numberline {C}Observation Window Sensitivity}{13}{appendix.C}\\protected@file@percent }\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1185:\\newlabel{app:window_sensitivity}{{C}{13}{Observation Window Sensitivity}{appendix.C}{}}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1210:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:1211:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:2573:\\@writefile{toc}{\\contentsline {paragraph}{Derivation of Observation~\\ref {thm:entropy_leads}.}{31}{section*.139}\\protected@file@percent }\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.aux:2586:\\@writefile{toc}{\\contentsline {paragraph}{Derivation of Observation~\\ref {prop:div_lag}.}{31}{section*.140}\\protected@file@percent }\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:131:\\section{Observation Window Sensitivity}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:157:\\caption{Observation window sensitivity for Tier~3 consensus ($K{\\geq}4/5$) at $\\alpha{=}1.0$ (Pythia-410M, 4~seeds). Tier~3 pairs: number of canary$\\to$downstream pairs (out of 8 validated) reaching $K{\\geq}4/5$ method agreement. TY pairs: number of effect-size reference pairs (out of 6) reaching Toda--Yamamoto significance (moderate supplementary method; \\S\\ref{sec:method}). Consensus stabilizes at $T_{\\min}{\\geq}5$; TY stabilizes at $T_{\\min}{\\geq}6$.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1273:At relaxed thresholds (${\\geq}15\\%$), some conditions show simultaneous onset ($t_H = t_D$), because the larger threshold absorbs the diversity lag---consistent with the margin condition in Observation~\\ref{prop:div_lag}.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1322:This section provides the full derivations for Observation~\\ref{thm:entropy_leads} and Observation~\\ref{prop:div_lag} from \\S\\ref{sec:cascade}, plus supporting results.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1357:\\paragraph{Derivation of Observation~\\ref{thm:entropy_leads}.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1366:\\paragraph{Derivation of Observation~\\ref{prop:div_lag}.}\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1379:$\\bar{H}_t$ denotes mean conditional entropy $\\mathbb{E}_{x \\sim p_{\\text{eval}}}[h(x)]$, which differs from the marginal entropy $H_t = -\\sum_i p_t(i)\\log p_t(i)$ used in Observation~\\ref{thm:entropy_leads}; under mode amplification, both decrease monotonically, so the cascade ordering is consistent across both formulations.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1448:The one-generation lag is thus explained by the margin condition in Observation~\\ref{prop:div_lag}: the margin $\\gamma$ is consumed by the gen-0$\\to$1 perturbation, and the gen-1$\\to$2 perturbation pushes tokens below the generation threshold $\\epsilon$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1458:Observation~\\ref{thm:entropy_leads} depends on the margin $\\gamma(p, \\epsilon)$, which in turn depends on the generation threshold $\\epsilon \\approx c/N$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1701:This violates the cascade ordering assumption (Observation~\\ref{thm:entropy_leads}): in 3/8 conditions, entropy does not monotonically decrease across generations, exhibiting a recovery pattern between gen-3 and gen-5 before resuming decline.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/introduction.tex:31:    \\item \\textbf{We validate practical applications}: a cascade ordering where entropy precedes diversity by ${\\geq}1$ generation (Observations~\\ref{thm:entropy_leads}--\\ref{prop:div_lag}; 14/15 experiments) enables proof-of-concept predictive intervention reducing peak perplexity by 64\\% at $\\alpha{=}1.0$ (\\S\\ref{sec:cascade}, \\S\\ref{sec:intervention}).\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131343_fce368/planning.json:3:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131343_fce368/planning.json:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131024_0ed5d2/planning.json:3:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131024_0ed5d2/planning.json:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131024_0ed5d2/iter_1/details.json:2:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_detection_surface.py:119:ax.set_ylabel(r'Observation window $T$')\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/gen_fig_phase_diagram.py:115:ax.set_ylabel(r'Observation window $T$', labelpad=4)\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131641_6323eb/planning.json:3:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131641_6323eb/planning.json:4:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/figures/run_20260524_131641_6323eb/iter_1/details.json:2:[Omitted long matching line]",
+    "numLines": 37
+  },
+  "sourceToolAssistantUUID": "612feece-8c9c-4a1c-ae44-f3f496e2940a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 508 · 2026-05-25T09:03:26.162Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01GdEJPEkAZJDPiMZfZnqdz2`</summary>
+
+```json
+{
+  "pattern": "phase transition|Phase transition|phase.transition",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "-i": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15e34654-143f-42a9-b4b6-7341ded6dfed",
+  "isSidechain": false,
+  "requestId": "req_011CbP1xpKCUV59c23Gwbk7F",
+  "type": "assistant",
+  "uuid": "65e85c9d-253f-4b6b-8d1a-ac03834a626a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HVWu1p95UuuBfrnTyZPMp2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 7208,
+      "cache_read_input_tokens": 96629,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 7208,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 96629,
+          "cache_creation_input_tokens": 7208,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 7208
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 509 · 2026-05-25T09:03:26.259Z_
+
+```json
+{
+  "parentUuid": "5a5cfc50-6f7a-4600-a502-fec7ff0e4e65",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "681368fc-f267-4f39-8ca4-c1deff1db104",
+  "timestamp": "2026-05-25T09:03:26.259Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 510_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Paper Agent 触发审查]: ## Round 16 Patch Review Request  **Scope**: 8 项修复（P0 framing 重定位 + P1-P7 写作修复）。EMNLP 2026 目标。  ### Changes Summary  **P0: Framing 重定位** (abstract, introduction, conclusion, method…",
+  "leafUuid": "681368fc-f267-4f39-8ca4-c1deff1db104",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 511_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review loop 18 experiment status",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 512 · 2026-05-25T09:03:43.870Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze what I found:
+
+**P0: "Phase transition" removal**
+- Active .tex files that still contain "phase transition":
+  - `appendix.tex:1495` — H1 hypothesis description: "representing a genuine phase transition" — This is OK because it's describing a hypothesis being tested (appendix), not a self-description claim
+  - `related_work.tex:11` — "data mixing induces phase transitions in knowledge acquisition" — Citing others' work, OK
+  - `references.bib:368, 427` — Paper titles containing "phase transition" — OK, these are other papers
+  - `experiments_reframe.tex:8` — Contains "phase_transition" but this is an inactive file (it's _reframe suffix)
+
+The main text files (abstract, intro, method, conclusion, discussion) appear clean of "phase transition" self-description.
+
+**P3: Design Principle → Observation**
+- `main.tex:22` — Defining the observation theorem environment ✓
+- `method.tex:11, 19` — Using observation blocks ✓
+- `method.tex:25` — Referencing "both Observations" ✓
+- `introduction.tex:31` — Checking observation usage ✓
+- `experiments.tex:110` — Observation references ✓
+- `appendix.tex` — Multiple observation references ✓
+
+BUT: **theory.tex still has `\begin{designprinciple}` on lines 7, 9, 13, 15!** This file uses an undefined environment, which should cause compilation errors, yet the build passed with zero errors. This suggests theory.tex isn't included in the main compilation. I need to verify whether theory.tex is actually being compiled, and also note that the figure caption "Phase diagram" is standard terminology for the figure label, not a claim about phase transitions.
+
+Now I'm checking if theory.tex is included in the build and verifying the bibliography entries for hataya, kovac, and buffa.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "681368fc-f267-4f39-8ca4-c1deff1db104",
+  "isSidechain": false,
+  "requestId": "req_011CbP1yZQnFrijg58NHN5Sx",
+  "type": "assistant",
+  "uuid": "c6157263-57c1-4421-8e0f-5ac7d3765879",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9iJFBWTzuwFaukSpatoNc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4493,
+      "cache_read_input_tokens": 103837,
+      "output_tokens": 966,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4493,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 966,
+          "cache_read_input_tokens": 103837,
+          "cache_creation_input_tokens": 4493,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4493
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 513 · 2026-05-25T09:03:43.882Z_
+
+Let me check a few more things — theory.tex inclusion, references in bib, and the discussion.tex for any remaining issues.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c6157263-57c1-4421-8e0f-5ac7d3765879",
+  "isSidechain": false,
+  "requestId": "req_011CbP1yZQnFrijg58NHN5Sx",
+  "type": "assistant",
+  "uuid": "87a4d5df-24a4-4b09-9675-78630ecffc0d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9iJFBWTzuwFaukSpatoNc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4493,
+      "cache_read_input_tokens": 103837,
+      "output_tokens": 966,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4493,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 966,
+          "cache_read_input_tokens": 103837,
+          "cache_creation_input_tokens": 4493,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4493
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 514 · 2026-05-25T09:03:44.801Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_01RPPNMBsxbqLiL19KXzkBVp`</summary>
+
+```json
+{
+  "pattern": "input.*theory|include.*theory",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/main.tex",
+  "output_mode": "content",
+  "-n": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "87a4d5df-24a4-4b09-9675-78630ecffc0d",
+  "isSidechain": false,
+  "requestId": "req_011CbP1yZQnFrijg58NHN5Sx",
+  "type": "assistant",
+  "uuid": "26ed97cd-5fef-4d57-8633-40b6366f950a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9iJFBWTzuwFaukSpatoNc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4493,
+      "cache_read_input_tokens": 103837,
+      "output_tokens": 966,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4493,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 966,
+          "cache_read_input_tokens": 103837,
+          "cache_creation_input_tokens": 4493,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4493
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 515 · 2026-05-25T09:03:46.993Z_
+
+<details><summary>↩ Tool result · `toolu_01S15YeL73QLn1NFChNDEaUS`</summary>
+
+```text
+1	\section{Discussion}\label{sec:discussion}
+2	
+3	Our Granger-precedence claim is scoped to temporal predictive improvement~\citep{granger1969investigating,shojaie2022granger}: bivariate tests cannot exclude confounders, and the FPR CI ($[1.8\%, 16.2\%]$) means Type~I error may be non-negligible.
+4	Four of fifteen cross-architecture conditions do not confirm forward detection (\S\ref{sec:generalization}), each isolating a distinct PermG assumption violation---precision sensitivity (GPT-2 bf16), seed dependence (Pythia-1.4B), and entropy decoupling (SmolLM3-3B)---requiring architecture-specific null calibration before deployment (Appendix~\ref{app:extended_discussion}).
+5	More broadly, our observation sequences ($T{=}10$--$25$) are far shorter than econometric standards ($T{\geq}100$); permutation testing avoids asymptotic assumptions but cannot recover power lost to short samples~\citep{shojaie2022granger}.
+6	Bivariate tests are susceptible to omitted variable bias---first-differencing removes shared linear trends but nonlinear confounds remain possible---and PermG tests linear precedence only; transfer entropy (Appendix~\ref{app:transfer_entropy}) yields 0/192 significant pairs.
+7	Partial correlation provides supporting evidence: after controlling for generation number, contemporaneous associations weaken ($\bar{|r|}$: $0.590{\to}0.381$) while lagged correlations strengthen ($0.759{\to}0.841$), consistent with genuine temporal precedence rather than shared-trend artifacts (Appendix~\ref{app:partial_corr}).
+8	
+9	Despite these individual limitations, the five methods exhibit complementary strengths.
+10	Shapley value decomposition over all $2^5{=}32$ coalitions (Appendix~\ref{app:shapley}) shows DiffXCorr achieving the best combined Shapley contribution ($-0.299$) by detecting bidirectional coupling that directional methods miss, while PermG ranks best among directional methods ($-0.141$).
+11	This complementarity provides analytical value, though consensus voting does not uniformly outperform the best single method: $K{\geq}3$ FPR (10.0\%) exceeds standalone PermG (6.7\%), and practitioners deploying MMCT must calibrate $K$ on architecture-specific null-control data, as the single viable operating point ($K{=}3$) reflects the specific method set and FPR profile of our five-method ensemble.
+12	One remaining puzzle is the non-monotonic detection gap at $\alpha{=}0.60$ (\S\ref{sec:dose_response}): consistent across seeds (0/8 for both tested seeds; Appendix~\ref{app:alpha060}), it affects all directional methods while bidirectional DiffXCorr maintains detection, suggesting temporal lag compression defeats directional separation; recovery at $T{=}25$ (5/8) is consistent with $\sqrt{T}$ power scaling.
+13	
+14	A related concern is whether entropy's ``leading'' behavior partly reflects measurement-resolution asymmetry (entropy is continuous; distinct-$n$ is discrete) rather than genuine temporal precedence.
+15	Discretized entropy testing shows that Granger significance is fully recovered at ${\geq}15$~bins (7/7) but degrades under aggressive quantization (0/7 at 5~equal-frequency bins), consistent with measurement resolution contributing to but not solely explaining the temporal precedence signal (Appendix~\ref{app:discretized_entropy}).
+16	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8da274e2-067f-458e-96ab-f66e6a542592",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "ee0abe70-cda4-420d-8c23-49a1b039883d",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex",
+      "content": "\\section{Discussion}\\label{sec:discussion}\n\nOur Granger-precedence claim is scoped to temporal predictive improvement~\\citep{granger1969investigating,shojaie2022granger}: bivariate tests cannot exclude confounders, and the FPR CI ($[1.8\\%, 16.2\\%]$) means Type~I error may be non-negligible.\nFour of fifteen cross-architecture conditions do not confirm forward detection (\\S\\ref{sec:generalization}), each isolating a distinct PermG assumption violation---precision sensitivity (GPT-2 bf16), seed dependence (Pythia-1.4B), and entropy decoupling (SmolLM3-3B)---requiring architecture-specific null calibration before deployment (Appendix~\\ref{app:extended_discussion}).\nMore broadly, our observation sequences ($T{=}10$--$25$) are far shorter than econometric standards ($T{\\geq}100$); permutation testing avoids asymptotic assumptions but cannot recover power lost to short samples~\\citep{shojaie2022granger}.\nBivariate tests are susceptible to omitted variable bias---first-differencing removes shared linear trends but nonlinear confounds remain possible---and PermG tests linear precedence only; transfer entropy (Appendix~\\ref{app:transfer_entropy}) yields 0/192 significant pairs.\nPartial correlation provides supporting evidence: after controlling for generation number, contemporaneous associations weaken ($\\bar{|r|}$: $0.590{\\to}0.381$) while lagged correlations strengthen ($0.759{\\to}0.841$), consistent with genuine temporal precedence rather than shared-trend artifacts (Appendix~\\ref{app:partial_corr}).\n\nDespite these individual limitations, the five methods exhibit complementary strengths.\nShapley value decomposition over all $2^5{=}32$ coalitions (Appendix~\\ref{app:shapley}) shows DiffXCorr achieving the best combined Shapley contribution ($-0.299$) by detecting bidirectional coupling that directional methods miss, while PermG ranks best among directional methods ($-0.141$).\nThis complementarity provides analytical value, though consensus voting does not uniformly outperform the best single method: $K{\\geq}3$ FPR (10.0\\%) exceeds standalone PermG (6.7\\%), and practitioners deploying MMCT must calibrate $K$ on architecture-specific null-control data, as the single viable operating point ($K{=}3$) reflects the specific method set and FPR profile of our five-method ensemble.\nOne remaining puzzle is the non-monotonic detection gap at $\\alpha{=}0.60$ (\\S\\ref{sec:dose_response}): consistent across seeds (0/8 for both tested seeds; Appendix~\\ref{app:alpha060}), it affects all directional methods while bidirectional DiffXCorr maintains detection, suggesting temporal lag compression defeats directional separation; recovery at $T{=}25$ (5/8) is consistent with $\\sqrt{T}$ power scaling.\n\nA related concern is whether entropy's ``leading'' behavior partly reflects measurement-resolution asymmetry (entropy is continuous; distinct-$n$ is discrete) rather than genuine temporal precedence.\nDiscretized entropy testing shows that Granger significance is fully recovered at ${\\geq}15$~bins (7/7) but degrades under aggressive quantization (0/7 at 5~equal-frequency bins), consistent with measurement resolution contributing to but not solely explaining the temporal precedence signal (Appendix~\\ref{app:discretized_entropy}).\n",
+      "numLines": 16,
+      "startLine": 1,
+      "totalLines": 16
+    }
+  },
+  "sourceToolAssistantUUID": "8da274e2-067f-458e-96ab-f66e6a542592",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 516 · 2026-05-25T09:03:44.841Z_
+
+<details><summary>↩ Tool result · `toolu_01RPPNMBsxbqLiL19KXzkBVp`</summary>
+
+```text
+No matches found
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "26ed97cd-5fef-4d57-8633-40b6366f950a",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "78563278-572f-4b20-83e9-2174a146b190",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "",
+    "numLines": 0
+  },
+  "sourceToolAssistantUUID": "26ed97cd-5fef-4d57-8633-40b6366f950a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 517 · 2026-05-25T09:03:46.761Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_018R7ZFESkKJijPzVefCJQwX`</summary>
+
+```json
+{
+  "pattern": "hataya|kovac|buffa",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/references.bib",
+  "output_mode": "content",
+  "-n": true,
+  "context": 5,
+  "-i": true
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78563278-572f-4b20-83e9-2174a146b190",
+  "isSidechain": false,
+  "requestId": "req_011CbP1yZQnFrijg58NHN5Sx",
+  "type": "assistant",
+  "uuid": "299c05c2-b6e9-4a91-9990-a7a76f3f0f3b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9iJFBWTzuwFaukSpatoNc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4493,
+      "cache_read_input_tokens": 103837,
+      "output_tokens": 966,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4493,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 966,
+          "cache_read_input_tokens": 103837,
+          "cache_creation_input_tokens": 4493,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4493
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 518 · 2026-05-25T09:03:46.774Z_
+
+<details><summary>↩ Tool result · `toolu_018R7ZFESkKJijPzVefCJQwX`</summary>
+
+```text
+458-  year      = {2025},
+459-  note      = {Spotlight. arXiv:2509.16499},
+460-  url       = {https://arxiv.org/abs/2509.16499},
+461-}
+462-
+463:@inproceedings{hataya2023will,
+464-  title     = {Will Large-scale Generative Models Corrupt Future Datasets?},
+465:  author    = {Hataya, Ryuichiro and Bao, Han and Arai, Hiromi},
+466-  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},
+467-  pages     = {20555--20565},
+468-  year      = {2023},
+469-  url       = {https://arxiv.org/abs/2211.08095},
+470-}
+471-
+472:@inproceedings{kovac2025recursive,
+473-  title     = {Recursive Training Loops in {LLMs}: How Training Data Properties Modulate Distribution Shift in Generated Data?},
+474-  author    = {Kova{\v{c}}, Grgur and Perez, J{\'e}r{\'e}my and Portelas, R{\'e}my and Dominey, Peter Ford and Oudeyer, Pierre-Yves},
+475-  booktitle = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+476-  year      = {2025},
+477-  note      = {Oral. arXiv:2504.03814},
+478-  url       = {https://arxiv.org/abs/2504.03814},
+479-}
+480-
+481:@article{buffa2026entropy,
+482-  title     = {Entropy Sentinel: Continuous {LLM} Accuracy Monitoring from Decoding Entropy Traces in {STEM}},
+483:  author    = {Buffa, Pedro Memoli and Del Corro, Luciano},
+484-  journal   = {arXiv preprint arXiv:2601.09001},
+485-  year      = {2026},
+486-  url       = {https://arxiv.org/abs/2601.09001},
+487-}
+488-
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "299c05c2-b6e9-4a91-9990-a7a76f3f0f3b",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "5d2461b1-33b9-4bea-9ebe-51a222b46c12",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "458-  year      = {2025},\n459-  note      = {Spotlight. arXiv:2509.16499},\n460-  url       = {https://arxiv.org/abs/2509.16499},\n461-}\n462-\n463:@inproceedings{hataya2023will,\n464-  title     = {Will Large-scale Generative Models Corrupt Future Datasets?},\n465:  author    = {Hataya, Ryuichiro and Bao, Han and Arai, Hiromi},\n466-  booktitle = {Proceedings of the IEEE/CVF International Conference on Computer Vision (ICCV)},\n467-  pages     = {20555--20565},\n468-  year      = {2023},\n469-  url       = {https://arxiv.org/abs/2211.08095},\n470-}\n471-\n472:@inproceedings{kovac2025recursive,\n473-  title     = {Recursive Training Loops in {LLMs}: How Training Data Properties Modulate Distribution Shift in Generated Data?},\n474-  author    = {Kova{\\v{c}}, Grgur and Perez, J{\\'e}r{\\'e}my and Portelas, R{\\'e}my and Dominey, Peter Ford and Oudeyer, Pierre-Yves},\n475-  booktitle = {Proceedings of the Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n476-  year      = {2025},\n477-  note      = {Oral. arXiv:2504.03814},\n478-  url       = {https://arxiv.org/abs/2504.03814},\n479-}\n480-\n481:@article{buffa2026entropy,\n482-  title     = {Entropy Sentinel: Continuous {LLM} Accuracy Monitoring from Decoding Entropy Traces in {STEM}},\n483:  author    = {Buffa, Pedro Memoli and Del Corro, Luciano},\n484-  journal   = {arXiv preprint arXiv:2601.09001},\n485-  year      = {2026},\n486-  url       = {https://arxiv.org/abs/2601.09001},\n487-}\n488-",
+    "numLines": 31
+  },
+  "sourceToolAssistantUUID": "299c05c2-b6e9-4a91-9990-a7a76f3f0f3b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 519 · 2026-05-25T09:03:46.987Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01S15YeL73QLn1NFChNDEaUS`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5d2461b1-33b9-4bea-9ebe-51a222b46c12",
+  "isSidechain": false,
+  "requestId": "req_011CbP1yZQnFrijg58NHN5Sx",
+  "type": "assistant",
+  "uuid": "8da274e2-067f-458e-96ab-f66e6a542592",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01B9iJFBWTzuwFaukSpatoNc",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4493,
+      "cache_read_input_tokens": 103837,
+      "output_tokens": 966,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4493,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 966,
+          "cache_read_input_tokens": 103837,
+          "cache_creation_input_tokens": 4493,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4493
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 520 · 2026-05-25T09:04:59.416Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good findings. Let me compile my analysis:
+
+**P0: Framing 重定位**
+✅ "Phase transition" removed from all self-description in main text
+✅ Appendix H1 hypothesis retains it ("representing a genuine phase transition") — this is fine, it's describing a testable hypothesis
+✅ Related work citations retain "phase transitions" — correct, referring to others' work
+✅ theory.tex still has `\begin{designprinciple}` but is NOT included in compilation (no \input{theory} in main.tex)
+✅ Figure caption "Phase diagram" retained — standard terminology, not a claim
+
+
+⚠️ method.tex:105 still has language about "the transition is sharper than standard power-analysis models would predict" — this reads as comparative empirical observation, but combined with "sharper," it risks sounding like phase transition language. Borderline concern.
+✅ method.tex:84 changed to "The steep onset described above" — good shift away from "sharp"
+✅ Abstract, Intro, and Conclusion all use "steep detection onset" consistently
+
+Now I'm noticing something that needs checking — there's an inconsistency I should trace through the document.
+
+method.tex:105 keeps "sharper than" intentionally per the patch spec, but everywhere else the paper uses "steep." Since "sharper" is comparing to model predictions rather than describing the onset itself, this distinction is actually acceptable and doesn't create a real inconsistency.
+
+Moving to the confidence interval completions — I've verified that the CI values are properly filled in across the Abstract, Intro, and other key sections.
+
+Now checking the blind zone framing placement in the Intro. The explanation about detection effectiveness only above α_c ≈ 0.50 and the 40% decline undetected below that threshold is positioned well right after the research question, setting reader expectations before the contributions section.
+
+I'm noticing this same concept appears nearly verbatim in the limitations section, though the Intro version actually loses specificity by omitting the α=0.25 reference that would help readers understand exactly when that 40% decline occurs. The repetition isn't necessarily problematic since Intro frames it and Limitations elaborates, but a careful reviewer might flag the similar phrasing.
+
+Moving on to check the design principle observation setup in main.tex.
+
+22 — the theorem environment is properly defined, and I can see it's being used consistently across method.tex, intro, experiments, and appendix with proper references. Theory.tex still has the old designprinciple environment, but that file isn't compiled anyway so it's not an issue.
+
+Now looking at the MMCT distinction in method.tex around lines 76-77...
+
+the text clearly separates the weighted scheme as the primary algorithm with the K≥3 majority voting presented as an alternative operating mode. The weighted approach is introduced first and more prominently, while the table documents the simpler equal-weight variant. That ordering makes sense and the distinction is clear enough.
+
+Moving on to check the intervention scope annotations in the abstract...
+
+the 64% perplexity reduction is properly marked with the alpha parameter at both the abstract and introduction level, so that's explicit now. 
+
+For the Granger precedence definition, I've added a clear explanation at first use distinguishing it from Granger causality—temporal predictive improvement where past X values help predict Y beyond Y's own history, but without implying the mechanistic causal link that full Granger causality would require.
+
+Now checking the citation fixes...
+
+the three new references are all in place with correct authors and titles. Interestingly, the reviewer attributed that arXiv paper to Carvalhais, but the actual authors are Kovač et al., and the Paper Agent correctly pulled the real authorship. I'm verifying the Buffa citation is properly integrated in the related work section.
+
+Now checking the discussion section updates — the future tense language about entropy testing has been replaced with concrete results showing Granger significance recovery at 15+ bins but failure at 5 bins. The reference was also updated to point to the discretized entropy appendix. I'm reviewing whether there are remaining issues with this revision that I flagged earlier.
+
+Looking back at the specific numbers: the text claims "fully recovered at ≥15 bins (7/7)" but this conflates two different binning methods. The 7/7 result only applies to equal-frequency binning at 15 bins, while equal-width binning at 15 bins shows 6/7. The phrasing is misleading because it doesn't distinguish which method achieved the 7/7 result, making "fully recovered" inaccurate for the combined picture.
+
+I need to check if this wording issue in discussion.tex was already corrected, and also verify the figure captions and any remaining references in experiments.tex.
+
+Looking at the phase diagram caption — "phase diagram" is standard terminology for parameter space visualizations showing different regimes, so that's acceptable even without an explicit phase transition claim.
+
+Now let me compile the full list of issues I've identified. The main problem is discussion.tex line 15, which claims "fully recovered at ≥15 bins (7/7)" but that cherry-picks the equal_freq result; equal_width only achieves 6/7 at 15 bins, so it should say "6--7/7" or specify the binning method. There's also dead code in theory.tex using `\begin{designprinciple}` that should be cleaned up. The intro and limitations sections have some near-verbatim repetition about the tool being a confirmation rather than early-warning system, though that's minor. And I need to finish checking method.tex around line 105 for any other issues. "sharp" → "steep" replacement completeness.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ee0abe70-cda4-420d-8c23-49a1b039883d",
+  "isSidechain": false,
+  "requestId": "req_011CbP216Q8gJxrme2xtxaiM",
+  "type": "assistant",
+  "uuid": "0789b0da-f3c3-4fe1-8643-5a5118adf87a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KiFRxAbSEvbLVSvkz12fp9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2498,
+      "cache_read_input_tokens": 108330,
+      "output_tokens": 3134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3134,
+          "cache_read_input_tokens": 108330,
+          "cache_creation_input_tokens": 2498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 521 · 2026-05-25T09:04:59.460Z_
+
+Let me check one more thing — any remaining "sharp" in self-descriptive contexts.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0789b0da-f3c3-4fe1-8643-5a5118adf87a",
+  "isSidechain": false,
+  "requestId": "req_011CbP216Q8gJxrme2xtxaiM",
+  "type": "assistant",
+  "uuid": "669df30d-e7ad-44e1-887f-c65bf7245098",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KiFRxAbSEvbLVSvkz12fp9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2498,
+      "cache_read_input_tokens": 108330,
+      "output_tokens": 3134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3134,
+          "cache_read_input_tokens": 108330,
+          "cache_creation_input_tokens": 2498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 522 · 2026-05-25T09:05:02.340Z_
+
+<details open><summary>🔧 Tool call — Grep · `toolu_018hFv5FX4pSF8tvdsLjCJzg`</summary>
+
+```json
+{
+  "pattern": "\\bsharp\\b",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper",
+  "output_mode": "content",
+  "-n": true,
+  "glob": "*.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "669df30d-e7ad-44e1-887f-c65bf7245098",
+  "isSidechain": false,
+  "requestId": "req_011CbP216Q8gJxrme2xtxaiM",
+  "type": "assistant",
+  "uuid": "6338bff0-8612-4057-9770-7201eedb019b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KiFRxAbSEvbLVSvkz12fp9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2498,
+      "cache_read_input_tokens": 108330,
+      "output_tokens": 3134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3134,
+          "cache_read_input_tokens": 108330,
+          "cache_creation_input_tokens": 2498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 523 · 2026-05-25T09:05:03.158Z_
+
+<details><summary>↩ Tool result · `toolu_01NfQpwDqroqpCGLRuefdNkx`</summary>
+
+```text
+1	\section{Experiments}
+2	\label{sec:experiments}
+3	
+4	\subsection{Experimental Setup}
+5	\label{sec:setup}
+6	
+7	We study iterative training collapse using Pythia-410M~\citep{biderman2023pythia} as the primary architecture.
+8	Training data is drawn from WikiText-103~\citep{merity2017pointer} following the replace paradigm of~\citet{shumailov2024curse}: each generation fine-tunes on a mixture of $\alpha$ synthetic and $(1{-}\alpha)$ real data, generates 5{,}000 replacement samples, and fully replaces the synthetic pool (hyperparameters in Appendix~\ref{app:training_details}).
+9	We run $T{=}10$ generations across 13 contamination levels ($\alpha \in \{0.00, \ldots, 1.00\}$) with multi-seed replication, yielding ${\sim}1{,}500$ statistical tests after BH-FDR correction~\citep{benjamini1995controlling}.
+10	We track two \emph{canary metrics} (token entropy and ECE) and three \emph{downstream metrics}: distinct-1, distinct-2~\citep{li2016diversity}, and perplexity (distinct-3: Appendix~\ref{app:distinct3}).
+11	PermG uses 5{,}000 permutations on first-differenced series~\citep{shojaie2022granger} with maximum lag~5.
+12	
+13	
+14	\subsection{Sharp Detection Onset}
+15	\label{sec:regime}
+16	
+17	Diversity collapse occurs at every contamination level: distinct-1 declines by $14.1\%$ even at $\alpha{=}0.0$ (fine-tuning drift) and by $40.3{\pm}0.3\%$ at $\alpha{=}0.25$.
+18	Despite this ubiquitous degradation, Granger detectability is sharply regime-dependent.
+19	PermG finds 0/8 canary$\to$downstream pairs FDR-significant from $\alpha{=}0.00$ through $\alpha{=}0.45$, then jumps to 6/8 (Clopper--Pearson 95\% CI $[0.25, 0.92]$) at $\alpha{=}0.50$, uniformly across all 3~fp32 seeds.
+20	
+21	\begin{figure}[t]
+22	\centering
+23	\includegraphics[width=\columnwidth]{figures/metric_trajectory.pdf}
+24	\caption{Metric trajectories at $\alpha{=}1.0$ (Pythia-410M, 4~seeds). Token entropy drops at generation~1; distinct-1 declines from generations~2--3, with a consistent one-generation canary lead (shaded: inter-seed range).}
+25	\label{fig:metric_trajectory}
+26	\end{figure}
+27	
+28	This transition is striking because cumulative synthetic fraction barely changes across the boundary ($C{=}99.75\%$ at $\alpha{=}0.45$ vs.\ $99.90\%$ at $\alpha{=}0.50$), yet detection jumps from null to reliable.
+29	Sub-threshold $p$-values at $\alpha{=}0.45$ ($p_{\mathrm{fdr}} = 0.059$--$0.091$) confirm proximity to the boundary.
+30	Sigmoid regression yields $\alpha_c = 0.483 \pm 0.006$ ($R^2 = 0.969$; Figure~\ref{fig:dose_response}); cross-seed consistency (3/3 seeds: $0/8{\to}6/8$) and specification-invariance across 1{,}160 configurations (Appendix~\ref{app:spec_curve}) argue for a genuine transition (Fisher exact: $p = 3.45 \times 10^{-11}$).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0cc88d69-efa6-42b8-83be-b3fbc452cdc6",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "f09b2136-213c-4bf2-84c6-a4d03b8899ff",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex",
+      "content": "\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Experimental Setup}\n\\label{sec:setup}\n\nWe study iterative training collapse using Pythia-410M~\\citep{biderman2023pythia} as the primary architecture.\nTraining data is drawn from WikiText-103~\\citep{merity2017pointer} following the replace paradigm of~\\citet{shumailov2024curse}: each generation fine-tunes on a mixture of $\\alpha$ synthetic and $(1{-}\\alpha)$ real data, generates 5{,}000 replacement samples, and fully replaces the synthetic pool (hyperparameters in Appendix~\\ref{app:training_details}).\nWe run $T{=}10$ generations across 13 contamination levels ($\\alpha \\in \\{0.00, \\ldots, 1.00\\}$) with multi-seed replication, yielding ${\\sim}1{,}500$ statistical tests after BH-FDR correction~\\citep{benjamini1995controlling}.\nWe track two \\emph{canary metrics} (token entropy and ECE) and three \\emph{downstream metrics}: distinct-1, distinct-2~\\citep{li2016diversity}, and perplexity (distinct-3: Appendix~\\ref{app:distinct3}).\nPermG uses 5{,}000 permutations on first-differenced series~\\citep{shojaie2022granger} with maximum lag~5.\n\n\n\\subsection{Sharp Detection Onset}\n\\label{sec:regime}\n\nDiversity collapse occurs at every contamination level: distinct-1 declines by $14.1\\%$ even at $\\alpha{=}0.0$ (fine-tuning drift) and by $40.3{\\pm}0.3\\%$ at $\\alpha{=}0.25$.\nDespite this ubiquitous degradation, Granger detectability is sharply regime-dependent.\nPermG finds 0/8 canary$\\to$downstream pairs FDR-significant from $\\alpha{=}0.00$ through $\\alpha{=}0.45$, then jumps to 6/8 (Clopper--Pearson 95\\% CI $[0.25, 0.92]$) at $\\alpha{=}0.50$, uniformly across all 3~fp32 seeds.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/metric_trajectory.pdf}\n\\caption{Metric trajectories at $\\alpha{=}1.0$ (Pythia-410M, 4~seeds). Token entropy drops at generation~1; distinct-1 declines from generations~2--3, with a consistent one-generation canary lead (shaded: inter-seed range).}\n\\label{fig:metric_trajectory}\n\\end{figure}\n\nThis transition is striking because cumulative synthetic fraction barely changes across the boundary ($C{=}99.75\\%$ at $\\alpha{=}0.45$ vs.\\ $99.90\\%$ at $\\alpha{=}0.50$), yet detection jumps from null to reliable.\nSub-threshold $p$-values at $\\alpha{=}0.45$ ($p_{\\mathrm{fdr}} = 0.059$--$0.091$) confirm proximity to the boundary.\nSigmoid regression yields $\\alpha_c = 0.483 \\pm 0.006$ ($R^2 = 0.969$; Figure~\\ref{fig:dose_response}); cross-seed consistency (3/3 seeds: $0/8{\\to}6/8$) and specification-invariance across 1{,}160 configurations (Appendix~\\ref{app:spec_curve}) argue for a genuine transition (Fisher exact: $p = 3.45 \\times 10^{-11}$).",
+      "numLines": 30,
+      "startLine": 1,
+      "totalLines": 150
+    }
+  },
+  "sourceToolAssistantUUID": "0cc88d69-efa6-42b8-83be-b3fbc452cdc6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 524 · 2026-05-25T09:05:02.375Z_
+
+<details><summary>↩ Tool result · `toolu_018hFv5FX4pSF8tvdsLjCJzg`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion_reframe.tex:19:The 40-percentage-point gap between structural distortion (Layer~1) and causal evidence (Layer~3) constitutes the sharp detection onset.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method_reframe.tex:49:The sharp detection onset at $\alpha_c$ (at $T{=}10$) is consistent with a power threshold: when $S \cdot R \cdot \sqrt{T}$ first exceeds the detection floor, power undergoes a steep onset from near-zero to near-one.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:552:PermG exhibits a sharp 0$\to$6 jump at $\alpha{=}0.50$ with a return to 0 at $\alpha{=}0.55$--$0.60$ (non-monotonic dip), while other methods show diffuse profiles: naive cross-correlation saturates at 7--8/8 across all levels including the null, and Toda--Yamamoto fluctuates without a clear onset.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:581:PermG's dose-response profile most cleanly separates detection regimes: 0/8 at null, sharp 0$\to$6 onset at $\alpha{=}0.50$, non-monotonic dip at $\alpha{=}0.55$--$0.60$.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:599:[Omitted long matching line]
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1312:Signal degradation occurs only at extreme coarsening (${\leq}10$~bins), where equal-frequency binning is particularly destructive because entropy trajectories are right-skewed (sharp generation~0--2 drop followed by a plateau); equal-frequency bins compress the informative early decline into a single bin.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/intro_reframe.tex:21:We discover a \emph{sharp detection onset} in canary-based monitoring of iterative collapse.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex:10:A specification curve analysis spanning 1{,}160 analytical specifications confirms that the sharp detection onset is specification-invariant.
+/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex:72:We evaluate the sharp detection onset across 15 model-seed combinations spanning six families (Pythia, GPT-2, OPT, Qwen, SmolLM3, Padding-variant), scales from 345M to 6.9B parameters, and two training domains (WikiText-103, C4).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6338bff0-8612-4057-9770-7201eedb019b",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "82fc05f2-7211-4617-8f4f-5d6494d01cf6",
+  "toolUseResult": {
+    "mode": "content",
+    "numFiles": 0,
+    "filenames": [],
+    "content": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/discussion_reframe.tex:19:The 40-percentage-point gap between structural distortion (Layer~1) and causal evidence (Layer~3) constitutes the sharp detection onset.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/method_reframe.tex:49:The sharp detection onset at $\\alpha_c$ (at $T{=}10$) is consistent with a power threshold: when $S \\cdot R \\cdot \\sqrt{T}$ first exceeds the detection floor, power undergoes a steep onset from near-zero to near-one.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:552:PermG exhibits a sharp 0$\\to$6 jump at $\\alpha{=}0.50$ with a return to 0 at $\\alpha{=}0.55$--$0.60$ (non-monotonic dip), while other methods show diffuse profiles: naive cross-correlation saturates at 7--8/8 across all levels including the null, and Toda--Yamamoto fluctuates without a clear onset.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:581:PermG's dose-response profile most cleanly separates detection regimes: 0/8 at null, sharp 0$\\to$6 onset at $\\alpha{=}0.50$, non-monotonic dip at $\\alpha{=}0.55$--$0.60$.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:599:[Omitted long matching line]\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex:1312:Signal degradation occurs only at extreme coarsening (${\\leq}10$~bins), where equal-frequency binning is particularly destructive because entropy trajectories are right-skewed (sharp generation~0--2 drop followed by a plateau); equal-frequency bins compress the informative early decline into a single bin.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/intro_reframe.tex:21:We discover a \\emph{sharp detection onset} in canary-based monitoring of iterative collapse.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex:10:A specification curve analysis spanning 1{,}160 analytical specifications confirms that the sharp detection onset is specification-invariant.\n/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments_reframe.tex:72:We evaluate the sharp detection onset across 15 model-seed combinations spanning six families (Pythia, GPT-2, OPT, Qwen, SmolLM3, Padding-variant), scales from 345M to 6.9B parameters, and two training domains (WikiText-103, C4).",
+    "numLines": 9
+  },
+  "sourceToolAssistantUUID": "6338bff0-8612-4057-9770-7201eedb019b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 525 · 2026-05-25T09:05:03.146Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NfQpwDqroqpCGLRuefdNkx`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/experiments.tex",
+  "offset": 1,
+  "limit": 30
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "82fc05f2-7211-4617-8f4f-5d6494d01cf6",
+  "isSidechain": false,
+  "requestId": "req_011CbP216Q8gJxrme2xtxaiM",
+  "type": "assistant",
+  "uuid": "0cc88d69-efa6-42b8-83be-b3fbc452cdc6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KiFRxAbSEvbLVSvkz12fp9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2498,
+      "cache_read_input_tokens": 108330,
+      "output_tokens": 3134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3134,
+          "cache_read_input_tokens": 108330,
+          "cache_creation_input_tokens": 2498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 526_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Paper Agent 触发审查]: ## Round 16 Patch Review Request  **Scope**: 8 项修复（P0 framing 重定位 + P1-P7 写作修复）。EMNLP 2026 目标。  ### Changes Summary  **P0: Framing 重定位** (abstract, introduction, conclusion, method…",
+  "leafUuid": "f09b2136-213c-4bf2-84c6-a4d03b8899ff",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 527_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review loop 18 experiment status",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 528 · 2026-05-25T09:05:24.623Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Found several important issues:
+
+**"sharp" in active text files:**
+
+1. **experiments.tex:14** — Section title: "Sharp Detection Onset" — **NOT changed to "Steep"!** This is a section title that was supposed to be changed. The body text uses "steep" but the section header still says "Sharp."
+
+2. **experiments.tex:18** — "Granger detectability is sharply regime-dependent" — uses "sharply" as adverb. This is a different usage (describing regime-dependence, not the transition itself), but still uses "sharp" language.
+
+
+3. **appendix.tex:552** — "PermG exhibits a sharp 0→6 jump" — still uses "sharp" in the appendix.
+
+4. **appendix.tex:581** — "sharp 0→6 onset" — same issue here.
+
+5. **appendix.tex:1312** — "sharp generation 0--2 drop" — this one describes the entropy trajectory shape rather than the detection transition, so it's probably acceptable in context.
+
+6. **appendix.tex:599** — need to verify this one.
+
+7. **_reframe.tex files** — These look like old inactive files (discussion_reframe, method_reframe, intro_reframe), so they're likely not a priority.
+
+The main problems are the section title in experiments.tex:14 called "Sharp Detection Onset" — that's a high-visibility miss that directly contradicts the global replacement — and the appendix instances at 552 and 581, which create an inconsistency if "sharp" is removed from the main text but left in the appendix. The mention of "transition" rather than "phase transition" at experiments.tex:30 is fine since it doesn't carry the same physics implications. Now I'll put together the full review report.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f09b2136-213c-4bf2-84c6-a4d03b8899ff",
+  "isSidechain": false,
+  "requestId": "req_011CbP26i7rYazn33zHtXYuG",
+  "type": "assistant",
+  "uuid": "c00f5171-a97c-4e4b-ab64-ef71934da398",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TvrDyUT2bkWkv2uGxbV7WH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5044,
+      "cache_read_input_tokens": 110828,
+      "output_tokens": 742,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5044,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 742,
+          "cache_read_input_tokens": 110828,
+          "cache_creation_input_tokens": 5044,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5044
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 529 · 2026-05-25T09:05:24.625Z_
+
+Found a critical inconsistency. Let me check the experiments section title and appendix occurrences more closely.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c00f5171-a97c-4e4b-ab64-ef71934da398",
+  "isSidechain": false,
+  "requestId": "req_011CbP26i7rYazn33zHtXYuG",
+  "type": "assistant",
+  "uuid": "c1d1b212-7d80-441f-b6d2-6e9885957f6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TvrDyUT2bkWkv2uGxbV7WH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5044,
+      "cache_read_input_tokens": 110828,
+      "output_tokens": 742,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5044,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 742,
+          "cache_read_input_tokens": 110828,
+          "cache_creation_input_tokens": 5044,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5044
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 530 · 2026-05-25T09:05:25.937Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01BQ5pU4mdPRnm6K7J7NikbX`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex",
+  "offset": 545,
+  "limit": 45
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c1d1b212-7d80-441f-b6d2-6e9885957f6f",
+  "isSidechain": false,
+  "requestId": "req_011CbP26i7rYazn33zHtXYuG",
+  "type": "assistant",
+  "uuid": "1907aa15-4632-45fb-9a71-9e41c4fe63be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TvrDyUT2bkWkv2uGxbV7WH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5044,
+      "cache_read_input_tokens": 110828,
+      "output_tokens": 742,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5044,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 742,
+          "cache_read_input_tokens": 110828,
+          "cache_creation_input_tokens": 5044,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5044
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 531 · 2026-05-25T09:05:26.760Z_
+
+<details><summary>↩ Tool result · `toolu_012iKedZnrCiMVD75n1j1XoX`</summary>
+
+```text
+593	The low overall $\kappa{=}0.185$ across all five methods reflects the fundamental tension: permissive methods detect everywhere (including null), conservative methods detect rarely, and moderate methods disagree about boundary cases.
+594	This motivates the MMCT consensus approach (\S\ref{sec:mmct}), which aggregates information from all methods while weighting by empirical reliability.
+595	
+596	\begin{figure}[t]
+597	\centering
+598	\includegraphics[width=\columnwidth]{figures/fig_per_method_phase_top.pdf}
+599	\caption{Per-method FDR-significant pair counts (/8) across contamination levels (Pythia-410M, seed~42, $T{=}10$, fp32). PermG~(d) exhibits the cleanest regime separation---zero detections through $\alpha{=}0.45$, then a sharp 0$\to$6 jump at $\alpha{=}0.50$; NaiveXCorr~(a) saturates at 7--8/8 across all levels including null; DiffXCorr~(b) detects signal but cannot separate forward from reverse. The visual contrast across panels illustrates why method choice is itself a primary source of variability ($\kappa{=}0.185$).}
+600	\label{fig:per_method_phase}
+601	\end{figure}
+602	
+603	\begin{figure}[t]\ContinuedFloat
+604	\centering
+605	\includegraphics[width=\columnwidth]{figures/fig_per_method_phase_bottom.pdf}
+606	\caption[]{(\textit{continued})}
+607	\end{figure}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb789b2d-5422-4b53-97d0-97939c2a614e",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "3e0f28f5-b47d-4df7-a619-0172db7d2285",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex",
+      "content": "The low overall $\\kappa{=}0.185$ across all five methods reflects the fundamental tension: permissive methods detect everywhere (including null), conservative methods detect rarely, and moderate methods disagree about boundary cases.\nThis motivates the MMCT consensus approach (\\S\\ref{sec:mmct}), which aggregates information from all methods while weighting by empirical reliability.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_per_method_phase_top.pdf}\n\\caption{Per-method FDR-significant pair counts (/8) across contamination levels (Pythia-410M, seed~42, $T{=}10$, fp32). PermG~(d) exhibits the cleanest regime separation---zero detections through $\\alpha{=}0.45$, then a sharp 0$\\to$6 jump at $\\alpha{=}0.50$; NaiveXCorr~(a) saturates at 7--8/8 across all levels including null; DiffXCorr~(b) detects signal but cannot separate forward from reverse. The visual contrast across panels illustrates why method choice is itself a primary source of variability ($\\kappa{=}0.185$).}\n\\label{fig:per_method_phase}\n\\end{figure}\n\n\\begin{figure}[t]\\ContinuedFloat\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_per_method_phase_bottom.pdf}\n\\caption[]{(\\textit{continued})}\n\\end{figure}",
+      "numLines": 15,
+      "startLine": 593,
+      "totalLines": 1755
+    }
+  },
+  "sourceToolAssistantUUID": "cb789b2d-5422-4b53-97d0-97939c2a614e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 532 · 2026-05-25T09:05:25.942Z_
+
+<details><summary>↩ Tool result · `toolu_01BQ5pU4mdPRnm6K7J7NikbX`</summary>
+
+```text
+545	
+546	
+547	\FloatBarrier
+548	\section{Per-Method Dose-Response Profiles}
+549	\label{app:dose_response}
+550	
+551	Table~\ref{tab:dose_response_full} reports FDR significance counts (/8 validated pairs) for all five detection methods across 12 contamination levels (seed~42, Pythia-410M, WikiText, fp32).
+552	PermG exhibits a sharp 0$\to$6 jump at $\alpha{=}0.50$ with a return to 0 at $\alpha{=}0.55$--$0.60$ (non-monotonic dip), while other methods show diffuse profiles: naive cross-correlation saturates at 7--8/8 across all levels including the null, and Toda--Yamamoto fluctuates without a clear onset.
+553	
+554	\begin{table}[t]
+555	\centering
+556	\small
+557	\caption{Per-method FDR significance (/8 pairs) across contamination levels (Pythia-410M, seed~42, WikiText, fp32). PermG and Diff.\ XCorr use BH-corrected FDR ($q{=}0.05$); Naive XCorr, Threshold, and TY use uncorrected $p{<}0.05$ (no FDR field in pipeline). $\alpha{=}1.0$ from Pythia-410M cross-architecture condition (same seed/domain/precision).}
+558	\label{tab:dose_response_full}
+559	\resizebox{\columnwidth}{!}{%
+560	\begin{tabular}{lccccc}
+561	\toprule
+562	$\alpha$ & Naive & Diff.\ XCorr & Threshold & PermG & TY$^\S$ \\
+563	\midrule
+564	0.00 & 8 & 4 & 3 & \textbf{0} & 1 \\
+565	0.10 & 7 & 6 & 0 & \textbf{0} & 0 \\
+566	0.25 & 8 & 3 & 0 & \textbf{0} & 2 \\
+567	0.30 & 8 & 4 & 0 & \textbf{0} & 3 \\
+568	0.35 & 8 & 4 & 0 & \textbf{0} & 1 \\
+569	0.40 & 8 & 3 & 0 & \textbf{0} & 4 \\
+570	0.45 & 8 & 6 & 0 & \textbf{0} & 1 \\
+571	0.50 & 8 & 7 & 4 & \textbf{6} & 3 \\
+572	0.55 & 8 & 8 & 0 & \textbf{0} & 1 \\
+573	0.60 & 8 & 6 & 0 & \textbf{0} & 0 \\
+574	0.75 & 7 & 6 & 0 & \textbf{6} & 3 \\
+575	1.00 & 8 & 6 & 2 & \textbf{6} & 1 \\
+576	\bottomrule
+577	\multicolumn{6}{l}{\footnotesize $^\S$TY directional assignment under verification; column retained for completeness.} \\
+578	\end{tabular}}
+579	\end{table}
+580	
+581	PermG's dose-response profile most cleanly separates detection regimes: 0/8 at null, sharp 0$\to$6 onset at $\alpha{=}0.50$, non-monotonic dip at $\alpha{=}0.55$--$0.60$.
+582	Naive monitoring baselines (PPL-slope, variance-threshold) fire at $\alpha{=}0.0$ (FPR 67--100\%) because fine-tuning drift is indistinguishable from contamination without directional testing.
+583	
+584	\paragraph{Method-specific observations.}
+585	\emph{NaiveXCorr} saturates at 7--8/8 at every $\alpha$ including null, making it useless for regime discrimination---its FPR (94.4\%) means it would declare detection in 19 out of 20 null-control runs.
+586	\emph{DiffXCorr} shows the highest detection rate at $\alpha{\geq}0.50$ (6--8/8) but maintains 4/8 at null, yielding FPR${=}37.5\%$.
+587	Its bidirectional nature (significant in both forward and reverse) prevents causal attribution but confirms the presence of coupling.
+588	\emph{Threshold onset} is highly specific (3/8 at null) but insensitive (0/8 at $\alpha{=}0.10$--$0.45$ and $\alpha{=}0.55$--$0.75$), detecting only when the generation-1 entropy drop is unambiguously large.
+589	\emph{Toda--Yamamoto} fluctuates between 0/8 and 4/8 across all $\alpha$ levels with no clear dose-response structure, reflecting its poor finite-sample properties at $T{=}10$.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1907aa15-4632-45fb-9a71-9e41c4fe63be",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "bc4a59a4-b081-447e-b4b9-6b63c5dffa98",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex",
+      "content": "\n\n\\FloatBarrier\n\\section{Per-Method Dose-Response Profiles}\n\\label{app:dose_response}\n\nTable~\\ref{tab:dose_response_full} reports FDR significance counts (/8 validated pairs) for all five detection methods across 12 contamination levels (seed~42, Pythia-410M, WikiText, fp32).\nPermG exhibits a sharp 0$\\to$6 jump at $\\alpha{=}0.50$ with a return to 0 at $\\alpha{=}0.55$--$0.60$ (non-monotonic dip), while other methods show diffuse profiles: naive cross-correlation saturates at 7--8/8 across all levels including the null, and Toda--Yamamoto fluctuates without a clear onset.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\caption{Per-method FDR significance (/8 pairs) across contamination levels (Pythia-410M, seed~42, WikiText, fp32). PermG and Diff.\\ XCorr use BH-corrected FDR ($q{=}0.05$); Naive XCorr, Threshold, and TY use uncorrected $p{<}0.05$ (no FDR field in pipeline). $\\alpha{=}1.0$ from Pythia-410M cross-architecture condition (same seed/domain/precision).}\n\\label{tab:dose_response_full}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{lccccc}\n\\toprule\n$\\alpha$ & Naive & Diff.\\ XCorr & Threshold & PermG & TY$^\\S$ \\\\\n\\midrule\n0.00 & 8 & 4 & 3 & \\textbf{0} & 1 \\\\\n0.10 & 7 & 6 & 0 & \\textbf{0} & 0 \\\\\n0.25 & 8 & 3 & 0 & \\textbf{0} & 2 \\\\\n0.30 & 8 & 4 & 0 & \\textbf{0} & 3 \\\\\n0.35 & 8 & 4 & 0 & \\textbf{0} & 1 \\\\\n0.40 & 8 & 3 & 0 & \\textbf{0} & 4 \\\\\n0.45 & 8 & 6 & 0 & \\textbf{0} & 1 \\\\\n0.50 & 8 & 7 & 4 & \\textbf{6} & 3 \\\\\n0.55 & 8 & 8 & 0 & \\textbf{0} & 1 \\\\\n0.60 & 8 & 6 & 0 & \\textbf{0} & 0 \\\\\n0.75 & 7 & 6 & 0 & \\textbf{6} & 3 \\\\\n1.00 & 8 & 6 & 2 & \\textbf{6} & 1 \\\\\n\\bottomrule\n\\multicolumn{6}{l}{\\footnotesize $^\\S$TY directional assignment under verification; column retained for completeness.} \\\\\n\\end{tabular}}\n\\end{table}\n\nPermG's dose-response profile most cleanly separates detection regimes: 0/8 at null, sharp 0$\\to$6 onset at $\\alpha{=}0.50$, non-monotonic dip at $\\alpha{=}0.55$--$0.60$.\nNaive monitoring baselines (PPL-slope, variance-threshold) fire at $\\alpha{=}0.0$ (FPR 67--100\\%) because fine-tuning drift is indistinguishable from contamination without directional testing.\n\n\\paragraph{Method-specific observations.}\n\\emph{NaiveXCorr} saturates at 7--8/8 at every $\\alpha$ including null, making it useless for regime discrimination---its FPR (94.4\\%) means it would declare detection in 19 out of 20 null-control runs.\n\\emph{DiffXCorr} shows the highest detection rate at $\\alpha{\\geq}0.50$ (6--8/8) but maintains 4/8 at null, yielding FPR${=}37.5\\%$.\nIts bidirectional nature (significant in both forward and reverse) prevents causal attribution but confirms the presence of coupling.\n\\emph{Threshold onset} is highly specific (3/8 at null) but insensitive (0/8 at $\\alpha{=}0.10$--$0.45$ and $\\alpha{=}0.55$--$0.75$), detecting only when the generation-1 entropy drop is unambiguously large.\n\\emph{Toda--Yamamoto} fluctuates between 0/8 and 4/8 across all $\\alpha$ levels with no clear dose-response structure, reflecting its poor finite-sample properties at $T{=}10$.",
+      "numLines": 45,
+      "startLine": 545,
+      "totalLines": 1755
+    }
+  },
+  "sourceToolAssistantUUID": "1907aa15-4632-45fb-9a71-9e41c4fe63be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 533 · 2026-05-25T09:05:26.750Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012iKedZnrCiMVD75n1j1XoX`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/docs/paper/appendix.tex",
+  "offset": 593,
+  "limit": 15
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bc4a59a4-b081-447e-b4b9-6b63c5dffa98",
+  "isSidechain": false,
+  "requestId": "req_011CbP26i7rYazn33zHtXYuG",
+  "type": "assistant",
+  "uuid": "cb789b2d-5422-4b53-97d0-97939c2a614e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TvrDyUT2bkWkv2uGxbV7WH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5044,
+      "cache_read_input_tokens": 110828,
+      "output_tokens": 742,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5044,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 742,
+          "cache_read_input_tokens": 110828,
+          "cache_creation_input_tokens": 5044,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5044
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 534 · 2026-05-25T09:05:26.826Z_
+
+```json
+{
+  "parentUuid": "3e0f28f5-b47d-4df7-a619-0172db7d2285",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "38e47288-d14d-4182-90f7-dfdb6407f1dc",
+  "timestamp": "2026-05-25T09:05:26.826Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 535 · 2026-05-25T09:05:34.650Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me compile the review report:
+
+**Critical issues:**
+1. experiments.tex:14 — Section title "Sharp Detection Onset" not changed to "Steep"
+2. appendix.tex:552, 581, 599 — "sharp 0→6 jump/onset" retained in appendix
+
+**Warning issues:**
+1. discussion.tex:15 — "fully recovered at ≥15 bins (7/7)" — 15-bin equal_width is 6/7, not 7/7
+2. Intro:12 ↔ limitations.tex:7-8 near-verbatim repetition
+
+
+Now I'm writing out the complete review document.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38e47288-d14d-4182-90f7-dfdb6407f1dc",
+  "isSidechain": false,
+  "requestId": "req_011CbP28Svc9ce34kkheYh2n",
+  "type": "assistant",
+  "uuid": "71b1e57a-aba2-41bd-911f-98ef833d6c5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G3W3ctSodYNUnBzQhetoUG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2679,
+      "cache_read_input_tokens": 115872,
+      "output_tokens": 2128,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2679,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2128,
+          "cache_read_input_tokens": 115872,
+          "cache_creation_input_tokens": 2679,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2679
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 536 · 2026-05-25T09:05:35.331Z_
+
+Now I have everything needed. Let me send the comprehensive review.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "71b1e57a-aba2-41bd-911f-98ef833d6c5d",
+  "isSidechain": false,
+  "requestId": "req_011CbP28Svc9ce34kkheYh2n",
+  "type": "assistant",
+  "uuid": "ffc263ef-9e3e-47bd-a296-1ffa7d2b2952",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G3W3ctSodYNUnBzQhetoUG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2679,
+      "cache_read_input_tokens": 115872,
+      "output_tokens": 2128,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2679,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2128,
+          "cache_read_input_tokens": 115872,
+          "cache_creation_input_tokens": 2679,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2679
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 537 · 2026-05-25T09:06:26.428Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__reviewer_post_to_director · `toolu_014DkLiPEaH7brBQAnPoV2wK`</summary>
+
+```json
+{
+  "text": "[写作评审] R16 Patch Review — Round 16 P0-P7\n\n维度评分（1-4）：\n- Originality: 2 ← 方法无创新（已知），framing 重定位是正确应对\n- Clarity: 3 ← 大部分修改提升了清晰度，但有遗漏\n- Soundness: 3 ← CI 补全和 scope 标注显著改善了 claim-evidence 匹配\n- Significance: 2 ← 未改变（framing 改变不影响实际贡献）\n- Presentation: 3 ← 术语统一和引用修复有效，但 \"sharp\" 残留破坏一致性\n\nOverall（1-10）: 6\n\n---\n\n## 具体问题\n\n### [severity: critical] P0 不完整：\"sharp\" 在 experiments.tex 节标题残留\n\nexperiments.tex:14 节标题仍为 `\\subsection{Sharp Detection Onset}`，未改为 \"Steep\"。这是全文**最高可见度**的 \"sharp\" 使用位置——审稿人 ctrl+F \"sharp\" 第一个就会命中此节标题。与 abstract/intro/conclusion 全面使用 \"steep\" 直接矛盾。\n\n附带：experiments.tex:18 \"Granger detectability is **sharply** regime-dependent\" 也残留。\n\n**修改方向**：`\\subsection{Steep Detection Onset}`；将 \"sharply regime-dependent\" 改为 \"steeply regime-dependent\" 或 \"strongly regime-dependent\"。\n\n### [severity: warning] P0 不完整：appendix 中 \"sharp\" 残留 3 处\n\n- appendix.tex:552 \"PermG exhibits a **sharp** 0→6 jump\"\n- appendix.tex:581 \"**sharp** 0→6 onset\"\n- appendix.tex:599（figure caption）\"a **sharp** 0→6 jump\"\n\n虽然 appendix 审查强度低于主文，但如果审稿人以 \"inconsistent terminology\" 作为全局批评（R16 已有术语一致性 concern），appendix 残留会成为证据。建议统一改为 \"steep\" 或 \"abrupt\"。\n\n### [severity: warning] discussion.tex:15 数据精度问题（已报告，此处确认仍未修复）\n\n\"fully recovered at ≥15 bins (7/7)\" — 7/7 仅适用于 bins_15_equal_freq；bins_15_equal_width 是 6/7。使用单一最优结果代表整体有 cherry-picking 嫌疑。建议改为 \"largely recovered at ≥15 bins (6--7/7 depending on binning method)\"。\n\n### [severity: info] P2 与 limitations 措辞高度重复\n\nintro:12 新增：\"making the framework a confirmation tool for ongoing collapse rather than an early-warning system\"\nlimitations.tex:8 原有：\"The framework is therefore better characterized as a confirmation tool for ongoing collapse than an early-warning system\"\n\n近乎逐字重复。单独不是大问题，但审稿人看到 intro 已经 scope 了 \"confirmation tool\"，limitations 再重复一遍可能觉得填充。建议在 limitations 中换一种表述或压缩为对 intro 的回指。\n\n### [severity: info] P3 同步完整性\n\n主文和 appendix 的所有 Observation 引用已正确更新（验证了 method.tex:11/19/25, introduction.tex:31, experiments.tex:110, appendix.tex:1273/1322/1357/1366/1379/1448/1458/1701）。main.tex:22 的 `\\newtheorem{observation}` 定义正确。\n\n⚠️ theory.tex:7/13 仍使用 `\\begin{designprinciple}` 旧环境。此文件未被 `\\input` 编译，不影响 PDF，但作为死代码残留应标记清理。\n\n### [severity: info] P4 MMCT 区分\n\nmethod.tex:76-77 的区分清晰：Table 报告 equal-weight K≥3 majority voting，Algorithm 1 是 FPR-inverse weighted scheme。\"alternative operating mode\" 的措辞明确。通过。\n\n### [severity: info] P6 Granger 定义\n\nmethod.tex:31-32 首次使用处定义完整：\"temporal predictive improvement... distinct from Granger causality, which additionally implies a mechanistic causal link\"。related_work.tex:26 有二次强化。通过。\n\n### [severity: info] P7 引用验证\n\n三个引用全部独立验证通过：\n- hataya2023will：ICCV 2023，图像生成对下游分类的影响 ✓\n- kovac2025recursive：EMNLP 2025 Oral，作者 Kovač et al.（**NOT Carvalhais** — reviewer 记错了作者），正确使用真实作者 ✓\n- buffa2026entropy：arXiv 2026，Entropy Sentinel，作者 Buffa & Del Corro ✓\n- related_work.tex 集成位置和描述准确。buffa2026entropy 的 scope 限定 \"targeting task performance rather than distributional collapse\" 恰当。\n\n### [severity: info] P1/P5 一致性确认\n\nCI [0.25, 0.92] 在 abstract:3, intro:15, intro:23, conclusion:4 四处一致 ✓（三处 + intro C1 = 四处，比要求多一处）。\nIntervention α=1.0 scope 在 abstract:6, intro:31 两处标注 ✓。\n\n### [severity: info] \"Phase transition\" 消除确认\n\n主文（abstract/intro/method/experiments/discussion/conclusion/limitations）自我描述中无 \"phase transition\" 残留 ✓。保留的 \"phase transition\" 仅在：\n- related_work.tex:9/11 — 引用他人工作 ✓\n- appendix.tex:1495 — H1 假设描述 \"representing a genuine phase transition\" ✓（描述被检验的假设，非自我 claim）\n- Figure caption \"Phase diagram\" — 标准可视化术语 ✓\n\n---\n\n## 总结\n\n**通过条件**：修复 experiments.tex:14 节标题 \"Sharp→Steep\" + experiments.tex:18 \"sharply→strongly\"。这是唯一 critical。\n\nappendix \"sharp\" 残留和 discussion.tex:15 数据精度是 warning 级——建议修复但不阻塞。\n\n整体 patch 质量高：framing 重定位执行到位（除节标题遗漏），CI 补全一致，引用验证正确，Observation 同步完整。",
+  "project": "distrib_canary_collapse"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ffc263ef-9e3e-47bd-a296-1ffa7d2b2952",
+  "isSidechain": false,
+  "requestId": "req_011CbP28Svc9ce34kkheYh2n",
+  "type": "assistant",
+  "uuid": "f6cb7e94-90d4-4f98-960b-e682f39a6935",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01G3W3ctSodYNUnBzQhetoUG",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2679,
+      "cache_read_input_tokens": 115872,
+      "output_tokens": 2128,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2679,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2128,
+          "cache_read_input_tokens": 115872,
+          "cache_creation_input_tokens": 2679,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2679
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 538 · 2026-05-25T09:06:31.720Z_
+
+<details><summary>↩ Tool result · `toolu_014DkLiPEaH7brBQAnPoV2wK`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f6cb7e94-90d4-4f98-960b-e682f39a6935",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "3b8f5fcf-028d-4702-aca9-6957965a0b57",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"director_session\": \"feishu:group:oc_150c7ce908e05d7932315e0288cf5bfb:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "f6cb7e94-90d4-4f98-960b-e682f39a6935",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 539_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Paper Agent 触发审查]: ## Round 16 Patch Review Request  **Scope**: 8 项修复（P0 framing 重定位 + P1-P7 写作修复）。EMNLP 2026 目标。  ### Changes Summary  **P0: Framing 重定位** (abstract, introduction, conclusion, method…",
+  "leafUuid": "3b8f5fcf-028d-4702-aca9-6957965a0b57",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 540_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review loop 18 experiment status",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+### Assistant
+
+_source line 541 · 2026-05-25T09:06:38.688Z_
+
+R16 Patch 审查完成。核心发现：
+
+- **1 处 critical**：experiments.tex:14 节标题 "Sharp Detection Onset" 未改为 "Steep"——全文最高可见度的 "sharp" 残留
+- **2 处 warning**：appendix 3 处 "sharp" 残留 + discussion.tex:15 数据精度 (7/7 应为 6-7/7)
+- **P1-P7 整体质量良好**：CI 一致、引用正确（Kovač 而非 Carvalhais）、Observation 同步完整
+
+继续监控 C2-s42。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b8f5fcf-028d-4702-aca9-6957965a0b57",
+  "isSidechain": false,
+  "requestId": "req_011CbP2DESf6nE6HosmQUt22",
+  "type": "assistant",
+  "uuid": "29d66d5e-6d87-448a-a564-51044abefe5f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EvxSKjrg7GPKi9YMDSET2z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2201,
+      "cache_read_input_tokens": 118551,
+      "output_tokens": 294,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2201,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 294,
+          "cache_read_input_tokens": 118551,
+          "cache_creation_input_tokens": 2201,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2201
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 542 · 2026-05-25T09:06:39.674Z_
+
+<details open><summary>🔧 Tool call — ScheduleWakeup · `toolu_01J4jWw54nPazHQGJDJvy2Z8`</summary>
+
+```json
+{
+  "delaySeconds": 270,
+  "reason": "Check C2-s42 gen_9 progress — should be mid-training by now",
+  "prompt": "Continue from where you left off."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29d66d5e-6d87-448a-a564-51044abefe5f",
+  "isSidechain": false,
+  "requestId": "req_011CbP2DESf6nE6HosmQUt22",
+  "type": "assistant",
+  "uuid": "86d92b95-19d7-40b1-b4e2-7e6e946240f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EvxSKjrg7GPKi9YMDSET2z",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2201,
+      "cache_read_input_tokens": 118551,
+      "output_tokens": 294,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2201,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 294,
+          "cache_read_input_tokens": 118551,
+          "cache_creation_input_tokens": 2201,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2201
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 543 · 2026-05-25T09:06:39.685Z_
+
+<details><summary>↩ Tool result · `toolu_01J4jWw54nPazHQGJDJvy2Z8`</summary>
+
+```text
+Next wakeup scheduled for 09:11:00 (in 260s).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86d92b95-19d7-40b1-b4e2-7e6e946240f4",
+  "isSidechain": false,
+  "promptId": "7db61c80-8c01-4fa9-b42e-e293c4041443",
+  "type": "user",
+  "uuid": "e62177aa-d855-4b71-8289-83337cd1de39",
+  "toolUseResult": {
+    "scheduledFor": 1779700260000,
+    "clampedDelaySeconds": 270,
+    "wasClamped": false
+  },
+  "sourceToolAssistantUUID": "86d92b95-19d7-40b1-b4e2-7e6e946240f4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Runtime record
+
+_source line 544_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Research review loop 18 experiment status",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 545 · 2026-05-25T09:07:29.110Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-25T09:07:29.110Z",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "content": "[系统通知 — worker_done:worker_analysis_4method_kappa_20260525T085442]:\nWorker worker_analysis_4method_kappa_20260525T085442 已完成（status=done），请审查 Agent 的处理结果。"
+}
+```
+
+---
+
+
+### Runtime record
+
+_source line 546 · 2026-05-25T09:07:29.111Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-25T09:07:29.111Z",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf"
+}
+```
+
+---
+
+
+## Round 23
+
+## Round 23
+
+2 recorded events
+
+
+### User
+
+_source line 547 · 2026-05-25T09:07:29.101Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e62177aa-d855-4b71-8289-83337cd1de39",
+  "isSidechain": false,
+  "promptId": "e70a6d43-36fb-4fc9-9b5d-fccb91e17cfe",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "7153a864-7909-4636-a24a-a9f15f055746",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Assistant
+
+_source line 548 · 2026-05-25T09:07:29.101Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7153a864-7909-4636-a24a-a9f15f055746",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "8f80ad54-0c0d-4791-8326-cfbe6ec9ffc6",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "id": "bea300f1-143d-4c01-8bbd-ce144bab47d2",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+
+## Round 24
+
+## Round 24
+
+27 recorded events
+
+
+### User
+
+_source line 549 · 2026-05-25T09:07:29.232Z_
+
+[系统通知 — worker_done:worker_analysis_4method_kappa_20260525T085442]:
+Worker worker_analysis_4method_kappa_20260525T085442 已完成（status=done），请审查 Agent 的处理结果。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f80ad54-0c0d-4791-8326-cfbe6ec9ffc6",
+  "isSidechain": false,
+  "promptId": "e70a6d43-36fb-4fc9-9b5d-fccb91e17cfe",
+  "type": "user",
+  "uuid": "21f8b864-c816-4d30-8b57-6374b3478c1a",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 550 · 2026-05-25T09:07:36.374Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01NR65pu9uD75PuejpkXTB5k`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "cat /root/autodl-tmp/distrib_canary_collapse/results/4method_kappa_analysis.json"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "21f8b864-c816-4d30-8b57-6374b3478c1a",
+  "isSidechain": false,
+  "requestId": "req_011CbP2HUMS6MXwDdkH3984J",
+  "type": "assistant",
+  "uuid": "be970f02-87e5-4668-91c9-40b3af81c7f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P4R3WK8g58z7QgVpkpVfSo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 109323,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 109323,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 109323,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 109323
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 79018
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool call
+
+_source line 551 · 2026-05-25T09:07:37.353Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018iN8wW79g9TQRMM5vNXKGm`</summary>
+
+```json
+{
+  "server": "westd-19828",
+  "command": "tail -5 /root/runs/distrib_canary_collapse/c2_opt13b_a050_s42_fp32.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "be970f02-87e5-4668-91c9-40b3af81c7f2",
+  "isSidechain": false,
+  "requestId": "req_011CbP2HUMS6MXwDdkH3984J",
+  "type": "assistant",
+  "uuid": "0ee49415-d21f-4bc2-8e04-afb4f1d9cfdb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P4R3WK8g58z7QgVpkpVfSo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 109323,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 109323,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 109323,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 109323
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "system_changed",
+        "cache_missed_input_tokens": 79018
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+
+### Tool result
+
+_source line 552 · 2026-05-25T09:07:37.407Z_
+
+<details><summary>↩ Tool result · `toolu_01NR65pu9uD75PuejpkXTB5k`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/distrib_canary_collapse/results/4method_kappa_analysis.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.01}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "be970f02-87e5-4668-91c9-40b3af81c7f2",
+  "isSidechain": false,
+  "promptId": "e70a6d43-36fb-4fc9-9b5d-fccb91e17cfe",
+  "type": "user",
+  "uuid": "ccadc3eb-d7cf-443f-8268-8367b5b1d1b3",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/autodl-tmp/distrib_canary_collapse/results/4method_kappa_analysis.json: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.01}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/autodl-tmp/distrib_canary_collapse/results/4method_kappa_analysis.json: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.01}}"
+    }
+  },
+  "sourceToolAssistantUUID": "be970f02-87e5-4668-91c9-40b3af81c7f2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0514_4/projects/distrib_canary_collapse/.claude/sessions/reviewer_32964115",
+  "sessionId": "e3145630-65ea-4199-9de5-d999f5e77caf",
+  "version": "2.1.126",
+  "gitBranch": "master",
+  "slug": "purrfect-yawning-parnas"
+}
+```
+
+</details>
+
+---
