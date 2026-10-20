@@ -1,0 +1,9067 @@
+# Research conversation: [Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。 ## 论文信息 - **标题**: OntoCoDec: Type-Constrained 
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 179
+- **Recorded user turns:** 3
+- **Tool calls:** 47
+- **Original source:** `logs/chats/exported-trajectories/account-3/70f718cb-864e-4efb-8277-0f3c245777c0.jsonl`
+- **Structured JSON:** [`a315da6f620179ccd9fc.json`](../../sessions/a3/a315da6f620179ccd9fc.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-20T19:46:26.246Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T19:46:26.246Z",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "content": "[Round 1 审稿请求]:\n你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。\n\n## 论文信息\n- **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints\n- **论文路径**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex`\n- **PDF**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf`\n- **目标 venue**: EMNLP 2026 (ARR May 2026 cycle)\n- **截止日期**: 2026-05-25\n\n## Venue 格式要求（已从 CFP 实时确认）\n- 正文严格 **8 页**限制，参考文献不限页数\n- Limitations 和 Ethics 章节不计入页数（不含过多额外内容）\n- ACL 模板，`[review]` 选项\n- Double-blind 审稿\n- 必须有 Limitations section\n- ARR Responsible NLP Research Checklist 必须提交\n- Overall Assessment 评分标准：5=Consider for Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit\n\n## 你的审查侧重\n\n### 1. 新颖性评估\n- 相对于 XGrammar、Outlines、SynCode 等 grammar-constrained decoding 工作的增量贡献\n- 相对于 GoLLIE、KnowCoder、GUIDEX 等 schema-aware IE 工作的定位\n- 相对于 BoostCD、GCD、IterGen、EnriCo 等 constraint enforcement 工作的区分度\n- Decidability taxonomy（三级分类）的理论迁移价值\n- \"Enabling dependency\" 概念的原创性和实用价值\n\n### 2. 论文完整性\n- Abstract 是否准确反映论文实际贡献（是否有 overclaiming）\n- Introduction 的 claims 是否都有实验支持\n- Contribution 列表是否恰当（数量、粒度、claim 强度）\n- Limitations section 是否全面、诚实\n- Ethics statement 是否充分\n- 论文叙事的完整性（是否有逻辑缺口）\n\n### 3. 写作质量\n- 论文结构和叙事流畅度\n- 术语一致性（S1/S2 命名、\"compile\"/\"interpret\" 措辞分层）\n- 表格和图表的清晰度、可读性\n- 数学符号的规范性\n- 是否有 AI 生成痕迹（过度使用 hedge words、不自然的措辞）\n\n### 4. Related Work\n- 覆盖面是否充分（grammar-constrained decoding、schema-aware IE、constraint enforcement、constrained decoding degradation）\n- 是否有遗漏的重要工作\n- 与竞品的定位是否清晰和公正\n- 引用是否真实、完整（注意 unverified/hallucinated citations）\n\n请按以下格式输出审稿报告：\n1. Summary（2-3 句）\n2. Strengths（逐条，S1/S2/...）\n3. Weaknesses（逐条，W1/W2/...，标注严重度：[critical]/[major]/[minor]）\n4. Questions for Authors（Q1/Q2/...）\n5. Missing References\n6. Overall Assessment（评分 + 置信度 + 1-2 句总评）"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-20T19:46:26.250Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T19:46:26.250Z",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+## Round 1
+
+167 recorded events
+
+### User
+
+_source line 3 · 2026-05-20T19:46:26.280Z_
+
+[Round 1 审稿请求]:
+你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。
+
+## 论文信息
+- **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints
+- **论文路径**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex`
+- **PDF**: `/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf`
+- **目标 venue**: EMNLP 2026 (ARR May 2026 cycle)
+- **截止日期**: 2026-05-25
+
+## Venue 格式要求（已从 CFP 实时确认）
+- 正文严格 **8 页**限制，参考文献不限页数
+- Limitations 和 Ethics 章节不计入页数（不含过多额外内容）
+- ACL 模板，`[review]` 选项
+- Double-blind 审稿
+- 必须有 Limitations section
+- ARR Responsible NLP Research Checklist 必须提交
+- Overall Assessment 评分标准：5=Consider for Award, 4.5=Borderline Award, 4=Conference, 3.5=Borderline Conference, 3=Findings, 2.5=Borderline Findings, 2=Resubmit next cycle, 1.5=Resubmit after next cycle, 1=Do not resubmit
+
+## 你的审查侧重
+
+### 1. 新颖性评估
+- 相对于 XGrammar、Outlines、SynCode 等 grammar-constrained decoding 工作的增量贡献
+- 相对于 GoLLIE、KnowCoder、GUIDEX 等 schema-aware IE 工作的定位
+- 相对于 BoostCD、GCD、IterGen、EnriCo 等 constraint enforcement 工作的区分度
+- Decidability taxonomy（三级分类）的理论迁移价值
+- "Enabling dependency" 概念的原创性和实用价值
+
+### 2. 论文完整性
+- Abstract 是否准确反映论文实际贡献（是否有 overclaiming）
+- Introduction 的 claims 是否都有实验支持
+- Contribution 列表是否恰当（数量、粒度、claim 强度）
+- Limitations section 是否全面、诚实
+- Ethics statement 是否充分
+- 论文叙事的完整性（是否有逻辑缺口）
+
+### 3. 写作质量
+- 论文结构和叙事流畅度
+- 术语一致性（S1/S2 命名、"compile"/"interpret" 措辞分层）
+- 表格和图表的清晰度、可读性
+- 数学符号的规范性
+- 是否有 AI 生成痕迹（过度使用 hedge words、不自然的措辞）
+
+### 4. Related Work
+- 覆盖面是否充分（grammar-constrained decoding、schema-aware IE、constraint enforcement、constrained decoding degradation）
+- 是否有遗漏的重要工作
+- 与竞品的定位是否清晰和公正
+- 引用是否真实、完整（注意 unverified/hallucinated citations）
+
+请按以下格式输出审稿报告：
+1. Summary（2-3 句）
+2. Strengths（逐条，S1/S2/...）
+3. Weaknesses（逐条，W1/W2/...，标注严重度：[critical]/[major]/[minor]）
+4. Questions for Authors（Q1/Q2/...）
+5. Missing References
+6. Overall Assessment（评分 + 置信度 + 1-2 句总评）
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "66757eea-d6df-4d91-b59f-b97ac29cb5a8",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-20T19:46:26.280Z_
+
+```json
+{
+  "parentUuid": "66757eea-d6df-4d91-b59f-b97ac29cb5a8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__review_reviewer_post_to_director",
+      "mcp__agent-ml-research__verify_references"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__review_reviewer_post_to_director",
+      "mcp__agent-ml-research__verify_references"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "c3bc4c6d-8e88-4d6c-b5ba-f25d7ea1ba77",
+  "timestamp": "2026-05-20T19:46:26.280Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-20T19:46:26.280Z_
+
+```json
+{
+  "parentUuid": "c3bc4c6d-8e88-4d6c-b5ba-f25d7ea1ba77",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "aa9c84e6-c1f1-4e61-9bfe-bcab05e42245",
+  "timestamp": "2026-05-20T19:46:26.280Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-20T19:46:26.280Z_
+
+```json
+{
+  "parentUuid": "aa9c84e6-c1f1-4e61-9bfe-bcab05e42245",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "ca2fee6f-8d30-4298-9874-1a1e2ca09669",
+  "timestamp": "2026-05-20T19:46:26.280Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-20T19:46:32.199Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user wants me to perform a review of the paper "OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints" as Reviewer 2, focusing on novelty, paper completeness, writing quality, and related work.
+
+Let me start by:
+1. Loading the review-reviewer-session-start skill to initialize
+2. Reading the paper PDF using pdf_to_images
+3. Searching for EMNLP 2026 / ACL ARR reviewer guidelines
+
+Let me first read the paper via pdf_to_images and search for reviewer guidelines.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ca2fee6f-8d30-4298-9874-1a1e2ca09669",
+  "isSidechain": false,
+  "requestId": "req_011CbEPxszEe1VBRPxeA1dxC",
+  "type": "assistant",
+  "uuid": "63455634-28ed-4139-adbe-87daa51c4536",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YBjYBAEWS9UBqDD3kcERHh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15376,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15376,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 15376,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15376
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-20T19:46:33.194Z_
+
+开始审稿。先加载论文 PDF 并搜索 ACL ARR 官方审稿标准。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "63455634-28ed-4139-adbe-87daa51c4536",
+  "isSidechain": false,
+  "requestId": "req_011CbEPxszEe1VBRPxeA1dxC",
+  "type": "assistant",
+  "uuid": "1023837d-3860-4871-a373-661c2e3cfd7a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YBjYBAEWS9UBqDD3kcERHh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15376,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15376,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 15376,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15376
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-20T19:46:34.622Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Qr7WC3rzgPyUT5zSbPK31s`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director,mcp__agent-ml-research__verify_references",
+  "max_results": 3
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1023837d-3860-4871-a373-661c2e3cfd7a",
+  "isSidechain": false,
+  "requestId": "req_011CbEPxszEe1VBRPxeA1dxC",
+  "type": "assistant",
+  "uuid": "45a37b9e-0edc-4950-a651-d26193ed2d29",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YBjYBAEWS9UBqDD3kcERHh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15376,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15376,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 15376,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15376
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-20T19:46:34.834Z_
+
+<details><summary>↩ Tool result · `toolu_01D4fFCT52bX1gtXSP2DMSmb`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ed148ccf-4d81-4824-97ca-a4f47b304eae",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "2c711d97-8739-419a-854b-6e5487766661",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "ed148ccf-4d81-4824-97ca-a4f47b304eae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-20T19:46:34.631Z_
+
+<details><summary>↩ Tool result · `toolu_01Qr7WC3rzgPyUT5zSbPK31s`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__pdf_to_images"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__review_reviewer_post_to_director"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__verify_references"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "45a37b9e-0edc-4950-a651-d26193ed2d29",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "32f15491-f461-4423-a96a-b183378b7625",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__review_reviewer_post_to_director",
+      "mcp__agent-ml-research__verify_references"
+    ],
+    "query": "select:mcp__agent-ml-research__pdf_to_images,mcp__agent-ml-research__review_reviewer_post_to_director,mcp__agent-ml-research__verify_references",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "45a37b9e-0edc-4950-a651-d26193ed2d29",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-20T19:46:34.831Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01D4fFCT52bX1gtXSP2DMSmb`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "32f15491-f461-4423-a96a-b183378b7625",
+  "isSidechain": false,
+  "requestId": "req_011CbEPxszEe1VBRPxeA1dxC",
+  "type": "assistant",
+  "uuid": "ed148ccf-4d81-4824-97ca-a4f47b304eae",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YBjYBAEWS9UBqDD3kcERHh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15376,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15376,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 15376,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15376
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-20T19:46:39.790Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for ACL ARR reviewer guidelines and render the paper PDF pages.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c711d97-8739-419a-854b-6e5487766661",
+  "isSidechain": false,
+  "requestId": "req_011CbEPyWr2VgBvpLkaGxRBo",
+  "type": "assistant",
+  "uuid": "9eb0bcd8-0767-48a0-8442-1228e3e3a3d9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VL9RF5HVUjSAYA5ranoRq1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2514,
+      "cache_read_input_tokens": 27217,
+      "output_tokens": 247,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 247,
+          "cache_read_input_tokens": 27217,
+          "cache_creation_input_tokens": 2514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-20T19:46:40.282Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01B2fm5QLz3UcexuGrKgqfEX`</summary>
+
+```json
+{
+  "query": "ACL ARR 2026 reviewer guidelines review form criteria dimensions"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9eb0bcd8-0767-48a0-8442-1228e3e3a3d9",
+  "isSidechain": false,
+  "requestId": "req_011CbEPyWr2VgBvpLkaGxRBo",
+  "type": "assistant",
+  "uuid": "24a9839e-f1ab-409b-9519-1bca88f09fa5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VL9RF5HVUjSAYA5ranoRq1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2514,
+      "cache_read_input_tokens": 27217,
+      "output_tokens": 247,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 247,
+          "cache_read_input_tokens": 27217,
+          "cache_creation_input_tokens": 2514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-20T19:46:41.449Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images · `toolu_013UtWvyxD4bgjoDwunvVNLi`</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf",
+  "pages": "1-10",
+  "project": "schema_semantic_constrained_ie",
+  "dpi": 150
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "24a9839e-f1ab-409b-9519-1bca88f09fa5",
+  "isSidechain": false,
+  "requestId": "req_011CbEPyWr2VgBvpLkaGxRBo",
+  "type": "assistant",
+  "uuid": "2f7611f9-a669-4c2e-b4f8-f1dd1bdf460e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VL9RF5HVUjSAYA5ranoRq1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2514,
+      "cache_read_input_tokens": 27217,
+      "output_tokens": 247,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2514,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 247,
+          "cache_read_input_tokens": 27217,
+          "cache_creation_input_tokens": 2514,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2514
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-20T19:46:46.848Z_
+
+<details><summary>↩ Tool result · `toolu_01B2fm5QLz3UcexuGrKgqfEX`</summary>
+
+```text
+Web search results for query: "ACL ARR 2026 reviewer guidelines review form criteria dimensions"
+
+Links: [{"title":"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewerguidelines"},{"title":"aclrollingreview/cfp.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/cfp.md"},{"title":"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/incentives2026"},{"title":"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewform"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/acguidelines"},{"title":"aclrollingreview/reviewing.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/reviewing.md"},{"title":"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/authors"},{"title":"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewing"}]
+
+Based on the search results, I found information about the ACL ARR 2026 reviewer guidelines and review form criteria:
+
+## Review Form Criteria
+
+For Findings papers, the main criteria are soundness and reproducibility. Conference recommendations may also consider novelty, impact and other factors.
+
+## Review Score Dimensions
+
+The review form uses the following scoring scale:
+
+- 5 = Consider for Award: the paper could be considered for an outstanding paper award at an *ACL conference (up to top 2.5% papers)
+- 2 = Resubmit next cycle: the paper needs substantial revisions that can be completed by the next ARR cycle
+- 1.5 = Resubmit after next cycle: the paper needs substantial revisions that cannot be completed by the next ARR cycle
+- 1 = Do not resubmit: the paper has to be fully redone, or it is not relevant to the *ACL community (e.g. it is in no way related to computational processing of language)
+
+## Reviewer Guidelines
+
+The complete reviewer guidelines are available at the ACL Rolling Review website (aclrollingreview.org/reviewerguidelines), which covers the workflow, anonymity policies, confidentiality requirements, and professional standards for reviewers.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "24a9839e-f1ab-409b-9519-1bca88f09fa5",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "b845cdc2-26e9-47bb-a700-ae8a7d010f9b",
+  "toolUseResult": {
+    "query": "ACL ARR 2026 reviewer guidelines review form criteria dimensions",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NuBHZFs1Aihp7RhBskQHqD",
+        "content": [
+          {
+            "title": "ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewerguidelines"
+          },
+          {
+            "title": "aclrollingreview/cfp.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/cfp.md"
+          },
+          {
+            "title": "Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/incentives2026"
+          },
+          {
+            "title": "Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewform"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/acguidelines"
+          },
+          {
+            "title": "aclrollingreview/reviewing.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/reviewing.md"
+          },
+          {
+            "title": "Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/authors"
+          },
+          {
+            "title": "How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewing"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the ACL ARR 2026 reviewer guidelines and review form criteria:\n\n## Review Form Criteria\n\nFor Findings papers, the main criteria are soundness and reproducibility. Conference recommendations may also consider novelty, impact and other factors.\n\n## Review Score Dimensions\n\nThe review form uses the following scoring scale:\n\n- 5 = Consider for Award: the paper could be considered for an outstanding paper award at an *ACL conference (up to top 2.5% papers)\n- 2 = Resubmit next cycle: the paper needs substantial revisions that can be completed by the next ARR cycle\n- 1.5 = Resubmit after next cycle: the paper needs substantial revisions that cannot be completed by the next ARR cycle\n- 1 = Do not resubmit: the paper has to be fully redone, or it is not relevant to the *ACL community (e.g. it is in no way related to computational processing of language)\n\n## Reviewer Guidelines\n\nThe complete reviewer guidelines are available at the ACL Rolling Review website (aclrollingreview.org/reviewerguidelines), which covers the workflow, anonymity policies, confidentiality requirements, and professional standards for reviewers."
+    ],
+    "durationSeconds": 6.558405502999998
+  },
+  "sourceToolAssistantUUID": "24a9839e-f1ab-409b-9519-1bca88f09fa5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "b845cdc2-26e9-47bb-a700-ae8a7d010f9b",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-20T19:46:49.075Z_
+
+<details><summary>↩ Tool result · `toolu_013UtWvyxD4bgjoDwunvVNLi`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p1.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 463.5}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p2.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 521.9}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p3.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 505.2}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p4.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 491.6}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p5.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 537.9}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p6.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 515.6}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 486.9}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 531.1}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p9.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 536.1}, {\"page\": 10, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p10.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 428.9}], \"total_pages\": 32, \"rendered_pages\": 10, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2f7611f9-a669-4c2e-b4f8-f1dd1bdf460e",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "b8ff98de-7ff4-4401-8794-b0e97dc81507",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 1, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p1.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 463.5}, {\\\"page\\\": 2, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p2.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 521.9}, {\\\"page\\\": 3, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p3.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 505.2}, {\\\"page\\\": 4, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p4.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 491.6}, {\\\"page\\\": 5, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p5.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 537.9}, {\\\"page\\\": 6, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p6.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 515.6}, {\\\"page\\\": 7, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p7.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 486.9}, {\\\"page\\\": 8, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p8.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 531.1}, {\\\"page\\\": 9, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p9.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 536.1}, {\\\"page\\\": 10, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p10.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 428.9}], \\\"total_pages\\\": 32, \\\"rendered_pages\\\": 10, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"images\": [{\"page\": 1, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p1.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 463.5}, {\"page\": 2, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p2.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 521.9}, {\"page\": 3, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p3.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 505.2}, {\"page\": 4, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p4.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 491.6}, {\"page\": 5, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p5.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 537.9}, {\"page\": 6, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p6.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 515.6}, {\"page\": 7, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p7.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 486.9}, {\"page\": 8, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p8.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 531.1}, {\"page\": 9, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p9.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 536.1}, {\"page\": 10, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p10.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 428.9}], \"total_pages\": 32, \"rendered_pages\": 10, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2f7611f9-a669-4c2e-b4f8-f1dd1bdf460e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-20T19:46:54.514Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me fetch the ARR review form page to get the exact review dimensions, and also read the first 10 pages of the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8ff98de-7ff4-4401-8794-b0e97dc81507",
+  "isSidechain": false,
+  "requestId": "req_011CbEPzZYXX6Xa8LFPjSBQu",
+  "type": "assistant",
+  "uuid": "08e1da97-a785-4fcc-85a8-eacefdaebc1f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JeJbEcJPptVbDQJgvzyKkC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2099,
+      "cache_read_input_tokens": 29731,
+      "output_tokens": 424,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2099,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 424,
+          "cache_read_input_tokens": 29731,
+          "cache_creation_input_tokens": 2099,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2099
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-20T19:46:56.387Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PjQ9uAwkxwQaecGxUwtY21`</summary>
+
+```json
+{
+  "url": "https://aclrollingreview.org/reviewform",
+  "prompt": "Extract all review form dimensions/criteria with their scoring scales. I need the exact names of each dimension (e.g., Soundness, Excitement/Novelty, Clarity, etc.), their score ranges, and brief descriptions of what each score means."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "08e1da97-a785-4fcc-85a8-eacefdaebc1f",
+  "isSidechain": false,
+  "requestId": "req_011CbEPzZYXX6Xa8LFPjSBQu",
+  "type": "assistant",
+  "uuid": "677d5812-65ac-4817-8b66-ad40a2f01b54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JeJbEcJPptVbDQJgvzyKkC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2099,
+      "cache_read_input_tokens": 29731,
+      "output_tokens": 424,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2099,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 424,
+          "cache_read_input_tokens": 29731,
+          "cache_creation_input_tokens": 2099,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2099
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-20T19:46:56.932Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DLZfjp8ht2EoiHkiDnwHSu`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p1.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "677d5812-65ac-4817-8b66-ad40a2f01b54",
+  "isSidechain": false,
+  "requestId": "req_011CbEPzZYXX6Xa8LFPjSBQu",
+  "type": "assistant",
+  "uuid": "6c9f670f-11d9-441d-8f47-cec879d1885d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JeJbEcJPptVbDQJgvzyKkC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2099,
+      "cache_read_input_tokens": 29731,
+      "output_tokens": 424,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2099,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 424,
+          "cache_read_input_tokens": 29731,
+          "cache_creation_input_tokens": 2099,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2099
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-20T19:46:57.926Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Dw9PYJCVPHjDwZajR1iaeQ`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p2.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6c9f670f-11d9-441d-8f47-cec879d1885d",
+  "isSidechain": false,
+  "requestId": "req_011CbEPzZYXX6Xa8LFPjSBQu",
+  "type": "assistant",
+  "uuid": "6eda7eff-1c5e-4c9c-98bc-3c7202372aa7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JeJbEcJPptVbDQJgvzyKkC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2099,
+      "cache_read_input_tokens": 29731,
+      "output_tokens": 424,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2099,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 424,
+          "cache_read_input_tokens": 29731,
+          "cache_creation_input_tokens": 2099,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2099
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-20T19:46:57.961Z_
+
+<details><summary>↩ Tool result · `toolu_01DLZfjp8ht2EoiHkiDnwHSu`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6c9f670f-11d9-441d-8f47-cec879d1885d",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "fc691c89-664c-4230-b0e5-441443d8f0f0",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 474643
+    }
+  },
+  "sourceToolAssistantUUID": "6c9f670f-11d9-441d-8f47-cec879d1885d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-20T19:46:58.263Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017RUwLemBimG6URdAfzQH7m`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p3.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fc691c89-664c-4230-b0e5-441443d8f0f0",
+  "isSidechain": false,
+  "requestId": "req_011CbEPzZYXX6Xa8LFPjSBQu",
+  "type": "assistant",
+  "uuid": "d67c3d30-d7cd-438c-a29d-65a4e13232cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JeJbEcJPptVbDQJgvzyKkC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2099,
+      "cache_read_input_tokens": 29731,
+      "output_tokens": 424,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2099,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 424,
+          "cache_read_input_tokens": 29731,
+          "cache_creation_input_tokens": 2099,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2099
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "d67c3d30-d7cd-438c-a29d-65a4e13232cb",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-20T19:46:59.056Z_
+
+<details><summary>↩ Tool result · `toolu_01Dw9PYJCVPHjDwZajR1iaeQ`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6eda7eff-1c5e-4c9c-98bc-3c7202372aa7",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "23310a4e-7c84-4358-83a6-36841115438d",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 534449
+    }
+  },
+  "sourceToolAssistantUUID": "6eda7eff-1c5e-4c9c-98bc-3c7202372aa7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "23310a4e-7c84-4358-83a6-36841115438d",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 31_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-20T19:46:59.436Z_
+
+<details><summary>↩ Tool result · `toolu_017RUwLemBimG6URdAfzQH7m`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d67c3d30-d7cd-438c-a29d-65a4e13232cb",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "8a59424f-ced7-4a33-a6f5-71ce736b0928",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 517376
+    }
+  },
+  "sourceToolAssistantUUID": "d67c3d30-d7cd-438c-a29d-65a4e13232cb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "8a59424f-ced7-4a33-a6f5-71ce736b0928",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-20T19:47:02.829Z_
+
+<details><summary>↩ Tool result · `toolu_01PjQ9uAwkxwQaecGxUwtY21`</summary>
+
+```text
+# ACL Rolling Review Form Dimensions
+
+## 1. **Reviewer Confidence**
+**Scale:** 1-5
+- 5: "Positive that my evaluation is correct. I read the paper very carefully"
+- 4: Quite sure, unlikely to have missed important points
+- 3: Fairly confident, but may have missed details
+- 2: Willing to defend evaluation, but likely missed some aspects
+- 1: Outside expertise area or paper unclear
+
+## 2. **Soundness**
+**Scale:** 1-5 (with .5 increments)
+- 5: "Excellent: This study is one of the most thorough I have seen"
+- 4: Strong support for claims; extra experiments optional
+- 3: Acceptable; main claims supported with minor gaps
+- 2: Poor; main claims lack sufficient support
+- 1: "Major Issues: This study is not yet sufficiently thorough to warrant publication"
+
+## 3. **Excitement**
+**Scale:** 1-5 (with .5 increments)
+- 5: "Highly Exciting: I would recommend this paper to others"
+- 4: Exciting; would mention to colleagues
+- 3: Interesting; might attend presentation
+- 2: Potentially interesting but doesn't resonate personally
+- 1: "Not Exciting" and unlikely to interest ACL community
+
+## 4. **Overall Assessment**
+**Scale:** 1-5 (with .5 increments)
+- 5: "Consider for Award"
+- 4: Conference acceptance
+- 3: Findings track acceptance
+- 2: Resubmit next cycle
+- 1: "Do not resubmit"
+
+## 5. **Reproducibility**
+**Scale:** 1-5
+- 5: Results easily reproducible
+- 4: Mostly reproducible with minor variations
+- 3: Reproducible with difficulty; underspecified parameters
+- 2: Difficult; unavailable data or insufficient details
+- 1: Cannot reproduce
+
+## 6. **Datasets** (if applicable)
+**Scale:** 1-5
+- 5: Enabling new research directions
+- 4: Useful for ongoing work
+- 3: Potentially useful
+- 2: Documentary value only
+- 1: No datasets submitted
+
+## 7. **Software** (if applicable)
+**Scale:** 1-5
+- 5: Enabling new research directions
+- 4: Useful for ongoing work
+- 3: Potentially useful
+- 2: Documentary value only
+- 1: No software released
+
+## 8. **Author Identity Knowledge**
+**Scale:** 1-5 (transparency measure, not quality assessment)
+- 5-1: Ranges from confirmed identification to complete anonymity
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "677d5812-65ac-4817-8b66-ad40a2f01b54",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "5bdc2328-6894-4121-8b25-a883beedc8df",
+  "toolUseResult": {
+    "bytes": 25365,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ACL Rolling Review Form Dimensions\n\n## 1. **Reviewer Confidence**\n**Scale:** 1-5\n- 5: \"Positive that my evaluation is correct. I read the paper very carefully\"\n- 4: Quite sure, unlikely to have missed important points\n- 3: Fairly confident, but may have missed details\n- 2: Willing to defend evaluation, but likely missed some aspects\n- 1: Outside expertise area or paper unclear\n\n## 2. **Soundness**\n**Scale:** 1-5 (with .5 increments)\n- 5: \"Excellent: This study is one of the most thorough I have seen\"\n- 4: Strong support for claims; extra experiments optional\n- 3: Acceptable; main claims supported with minor gaps\n- 2: Poor; main claims lack sufficient support\n- 1: \"Major Issues: This study is not yet sufficiently thorough to warrant publication\"\n\n## 3. **Excitement**\n**Scale:** 1-5 (with .5 increments)\n- 5: \"Highly Exciting: I would recommend this paper to others\"\n- 4: Exciting; would mention to colleagues\n- 3: Interesting; might attend presentation\n- 2: Potentially interesting but doesn't resonate personally\n- 1: \"Not Exciting\" and unlikely to interest ACL community\n\n## 4. **Overall Assessment**\n**Scale:** 1-5 (with .5 increments)\n- 5: \"Consider for Award\"\n- 4: Conference acceptance\n- 3: Findings track acceptance\n- 2: Resubmit next cycle\n- 1: \"Do not resubmit\"\n\n## 5. **Reproducibility**\n**Scale:** 1-5\n- 5: Results easily reproducible\n- 4: Mostly reproducible with minor variations\n- 3: Reproducible with difficulty; underspecified parameters\n- 2: Difficult; unavailable data or insufficient details\n- 1: Cannot reproduce\n\n## 6. **Datasets** (if applicable)\n**Scale:** 1-5\n- 5: Enabling new research directions\n- 4: Useful for ongoing work\n- 3: Potentially useful\n- 2: Documentary value only\n- 1: No datasets submitted\n\n## 7. **Software** (if applicable)\n**Scale:** 1-5\n- 5: Enabling new research directions\n- 4: Useful for ongoing work\n- 3: Potentially useful\n- 2: Documentary value only\n- 1: No software released\n\n## 8. **Author Identity Knowledge**\n**Scale:** 1-5 (transparency measure, not quality assessment)\n- 5-1: Ranges from confirmed identification to complete anonymity",
+    "durationMs": 6437,
+    "url": "https://aclrollingreview.org/reviewform"
+  },
+  "sourceToolAssistantUUID": "677d5812-65ac-4817-8b66-ad40a2f01b54",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-20T19:47:06.375Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I have the ARR review form dimensions and first 3 pages of the paper. Let me continue reading the rest of the pages.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5bdc2328-6894-4121-8b25-a883beedc8df",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ1aNR4hU3WLchC62kM",
+  "type": "assistant",
+  "uuid": "2a302400-7007-4582-99ee-10df6525f07d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGV6fBsqjNLhdtWN96o33Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1150,
+      "cache_creation_input_tokens": 1092,
+      "cache_read_input_tokens": 31830,
+      "output_tokens": 636,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1092,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1150,
+          "output_tokens": 636,
+          "cache_read_input_tokens": 31830,
+          "cache_creation_input_tokens": 1092,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1092
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-20T19:47:06.855Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Nt7QBX1Sxqe3satLq2zWL1`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p4.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2a302400-7007-4582-99ee-10df6525f07d",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ1aNR4hU3WLchC62kM",
+  "type": "assistant",
+  "uuid": "a9022f6c-a9d6-4b2d-bd4f-437815100585",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGV6fBsqjNLhdtWN96o33Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1150,
+      "cache_creation_input_tokens": 1092,
+      "cache_read_input_tokens": 31830,
+      "output_tokens": 636,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1092,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1150,
+          "output_tokens": 636,
+          "cache_read_input_tokens": 31830,
+          "cache_creation_input_tokens": 1092,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1092
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-20T19:47:07.374Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012VXvVoDksGVijjwHLvnQjT`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p5.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9022f6c-a9d6-4b2d-bd4f-437815100585",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ1aNR4hU3WLchC62kM",
+  "type": "assistant",
+  "uuid": "4efef16b-afbb-4855-86bc-d92e0c5cdf82",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGV6fBsqjNLhdtWN96o33Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1150,
+      "cache_creation_input_tokens": 1092,
+      "cache_read_input_tokens": 31830,
+      "output_tokens": 636,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1092,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1150,
+          "output_tokens": 636,
+          "cache_read_input_tokens": 31830,
+          "cache_creation_input_tokens": 1092,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1092
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-20T19:47:07.960Z_
+
+<details><summary>↩ Tool result · `toolu_01Nt7QBX1Sxqe3satLq2zWL1`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a9022f6c-a9d6-4b2d-bd4f-437815100585",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "badb62ca-e701-45c7-8c36-7a015d28b466",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 503411
+    }
+  },
+  "sourceToolAssistantUUID": "a9022f6c-a9d6-4b2d-bd4f-437815100585",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-20T19:47:08.578Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FGgZzF9DJcHKtrumyUh4By`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p6.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "badb62ca-e701-45c7-8c36-7a015d28b466",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ1aNR4hU3WLchC62kM",
+  "type": "assistant",
+  "uuid": "d6d557ae-9c40-4365-8314-3c224bb39ecb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGV6fBsqjNLhdtWN96o33Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1150,
+      "cache_creation_input_tokens": 1092,
+      "cache_read_input_tokens": 31830,
+      "output_tokens": 636,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1092,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1150,
+          "output_tokens": 636,
+          "cache_read_input_tokens": 31830,
+          "cache_creation_input_tokens": 1092,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1092
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-20T19:47:08.797Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XfdzqocHjJMqNV6ofvRL4z`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p7.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d6d557ae-9c40-4365-8314-3c224bb39ecb",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ1aNR4hU3WLchC62kM",
+  "type": "assistant",
+  "uuid": "0b50499c-6b58-4ae9-b81b-15987573ac9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGV6fBsqjNLhdtWN96o33Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1150,
+      "cache_creation_input_tokens": 1092,
+      "cache_read_input_tokens": 31830,
+      "output_tokens": 636,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1092,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1150,
+          "output_tokens": 636,
+          "cache_read_input_tokens": 31830,
+          "cache_creation_input_tokens": 1092,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1092
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 42 · 2026-05-20T19:47:08.979Z_
+
+<details><summary>↩ Tool result · `toolu_012VXvVoDksGVijjwHLvnQjT`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4efef16b-afbb-4855-86bc-d92e0c5cdf82",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "00eead4b-f70c-4d3b-9fef-be7a28319e26",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 550860
+    }
+  },
+  "sourceToolAssistantUUID": "4efef16b-afbb-4855-86bc-d92e0c5cdf82",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-20T19:47:09.239Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01SBZABC1h3wVci4tvZ7c2PL`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p8.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "00eead4b-f70c-4d3b-9fef-be7a28319e26",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ1aNR4hU3WLchC62kM",
+  "type": "assistant",
+  "uuid": "20685378-0ba5-4c2d-9a9f-aaaffabd2400",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGV6fBsqjNLhdtWN96o33Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1150,
+      "cache_creation_input_tokens": 1092,
+      "cache_read_input_tokens": 31830,
+      "output_tokens": 636,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1092,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1150,
+          "output_tokens": 636,
+          "cache_read_input_tokens": 31830,
+          "cache_creation_input_tokens": 1092,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1092
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44 · 2026-05-20T19:47:09.885Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01AygmpH15LQZvNbXSndefNX`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p9.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "20685378-0ba5-4c2d-9a9f-aaaffabd2400",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ1aNR4hU3WLchC62kM",
+  "type": "assistant",
+  "uuid": "7f17f2d4-9a7c-40a3-b27d-efa294ff9d2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGV6fBsqjNLhdtWN96o33Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1150,
+      "cache_creation_input_tokens": 1092,
+      "cache_read_input_tokens": 31830,
+      "output_tokens": 636,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1092,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1150,
+          "output_tokens": 636,
+          "cache_read_input_tokens": 31830,
+          "cache_creation_input_tokens": 1092,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1092
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 45 · 2026-05-20T19:47:10.560Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_016EzXBcamivjW1J9wpawr6P`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p10.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7f17f2d4-9a7c-40a3-b27d-efa294ff9d2e",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ1aNR4hU3WLchC62kM",
+  "type": "assistant",
+  "uuid": "e59546af-ea95-45ed-9cec-568b18fe019b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BGV6fBsqjNLhdtWN96o33Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1150,
+      "cache_creation_input_tokens": 1092,
+      "cache_read_input_tokens": 31830,
+      "output_tokens": 636,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1092,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1150,
+          "output_tokens": 636,
+          "cache_read_input_tokens": 31830,
+          "cache_creation_input_tokens": 1092,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1092
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-20T19:47:11.044Z_
+
+<details><summary>↩ Tool result · `toolu_01FGgZzF9DJcHKtrumyUh4By`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d6d557ae-9c40-4365-8314-3c224bb39ecb",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "fcf0909e-b543-4c70-a3ff-052a6362fcf7",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 527968
+    }
+  },
+  "sourceToolAssistantUUID": "d6d557ae-9c40-4365-8314-3c224bb39ecb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "b41c1555-781a-43a4-b9ed-45db58ff4532",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-20T19:47:12.163Z_
+
+<details><summary>↩ Tool result · `toolu_01XfdzqocHjJMqNV6ofvRL4z`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0b50499c-6b58-4ae9-b81b-15987573ac9b",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "b41c1555-781a-43a4-b9ed-45db58ff4532",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 498547
+    }
+  },
+  "sourceToolAssistantUUID": "0b50499c-6b58-4ae9-b81b-15987573ac9b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 50_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "b41c1555-781a-43a4-b9ed-45db58ff4532",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-20T19:47:13.094Z_
+
+<details><summary>↩ Tool result · `toolu_01SBZABC1h3wVci4tvZ7c2PL`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "20685378-0ba5-4c2d-9a9f-aaaffabd2400",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "3ae13978-bd65-4ebf-abb2-ae7334ea527b",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 543842
+    }
+  },
+  "sourceToolAssistantUUID": "20685378-0ba5-4c2d-9a9f-aaaffabd2400",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "37902934-ebba-4387-b589-1731e80eaeb0",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 54_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-20T19:47:13.601Z_
+
+<details><summary>↩ Tool result · `toolu_01AygmpH15LQZvNbXSndefNX`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7f17f2d4-9a7c-40a3-b27d-efa294ff9d2e",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "37902934-ebba-4387-b589-1731e80eaeb0",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 549014
+    }
+  },
+  "sourceToolAssistantUUID": "7f17f2d4-9a7c-40a3-b27d-efa294ff9d2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "37902934-ebba-4387-b589-1731e80eaeb0",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-20T19:47:13.793Z_
+
+<details><summary>↩ Tool result · `toolu_016EzXBcamivjW1J9wpawr6P`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e59546af-ea95-45ed-9cec-568b18fe019b",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "34b480a6-09a7-49dd-9d11-15f28e51eb8a",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 439209
+    }
+  },
+  "sourceToolAssistantUUID": "e59546af-ea95-45ed-9cec-568b18fe019b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 59 · 2026-05-20T19:47:13.803Z_
+
+```json
+{
+  "parentUuid": "34b480a6-09a7-49dd-9d11-15f28e51eb8a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0ef180bf-eeec-46c6-b2cb-cae519067ad2",
+  "timestamp": "2026-05-20T19:47:13.803Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 60_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "0ef180bf-eeec-46c6-b2cb-cae519067ad2",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 61_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 62 · 2026-05-20T19:47:17.889Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me continue reading the remaining pages of the paper (pages 11-32 include appendices). Let me also get the reference verification going. But first, let me read the remaining pages to see the appendices and references.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ef180bf-eeec-46c6-b2cb-cae519067ad2",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ2PJgMZHS9sK35Ge1K",
+  "type": "assistant",
+  "uuid": "bdb18ed5-3c50-4f87-a844-a325f2788d0a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FKvqdvt5STUDgQfuxYRxay",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4571,
+      "cache_read_input_tokens": 32922,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4571,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 32922,
+          "cache_creation_input_tokens": 4571,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4571
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 63 · 2026-05-20T19:47:18.873Z_
+
+论文共32页，继续阅读剩余的附录和参考文献部分。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bdb18ed5-3c50-4f87-a844-a325f2788d0a",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ2PJgMZHS9sK35Ge1K",
+  "type": "assistant",
+  "uuid": "a1436434-598b-4dde-9baa-2604440ae042",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FKvqdvt5STUDgQfuxYRxay",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4571,
+      "cache_read_input_tokens": 32922,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4571,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 32922,
+          "cache_creation_input_tokens": 4571,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4571
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 64 · 2026-05-20T19:47:20.319Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images · `toolu_01AyBJTdrwndXYRRA1tcMUSm`</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf",
+  "pages": "11-20",
+  "project": "schema_semantic_constrained_ie",
+  "dpi": 150
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a1436434-598b-4dde-9baa-2604440ae042",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ2PJgMZHS9sK35Ge1K",
+  "type": "assistant",
+  "uuid": "c7638ac8-7b76-4ac1-8ff9-6c6c803e8926",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FKvqdvt5STUDgQfuxYRxay",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4571,
+      "cache_read_input_tokens": 32922,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4571,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 32922,
+          "cache_creation_input_tokens": 4571,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4571
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-20T19:47:21.111Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__verify_references · `toolu_01FvkajVCdW6wv9sCjL4rnV2`</summary>
+
+```json
+{
+  "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c7638ac8-7b76-4ac1-8ff9-6c6c803e8926",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ2PJgMZHS9sK35Ge1K",
+  "type": "assistant",
+  "uuid": "4fbdd071-57b7-4289-a2d5-3f478b807041",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FKvqdvt5STUDgQfuxYRxay",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4571,
+      "cache_read_input_tokens": 32922,
+      "output_tokens": 360,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4571,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 360,
+          "cache_read_input_tokens": 32922,
+          "cache_creation_input_tokens": 4571,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4571
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-20T19:47:22.032Z_
+
+<details><summary>↩ Tool result · `toolu_01AyBJTdrwndXYRRA1tcMUSm`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 11, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p11.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 560.2}, {\"page\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p12.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 613.8}, {\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p13.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 613.2}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p14.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 560.2}, {\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p15.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 375.1}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p16.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 555.4}, {\"page\": 17, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p17.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 546.9}, {\"page\": 18, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p18.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 541.3}, {\"page\": 19, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p19.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 563.2}, {\"page\": 20, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p20.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 502.9}], \"total_pages\": 32, \"rendered_pages\": 10, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c7638ac8-7b76-4ac1-8ff9-6c6c803e8926",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "73e3e730-fdce-42a0-9c14-a30e8ff8e800",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 11, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p11.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 560.2}, {\\\"page\\\": 12, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p12.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 613.8}, {\\\"page\\\": 13, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p13.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 613.2}, {\\\"page\\\": 14, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p14.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 560.2}, {\\\"page\\\": 15, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p15.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 375.1}, {\\\"page\\\": 16, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p16.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 555.4}, {\\\"page\\\": 17, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p17.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 546.9}, {\\\"page\\\": 18, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p18.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 541.3}, {\\\"page\\\": 19, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p19.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 563.2}, {\\\"page\\\": 20, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p20.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 502.9}], \\\"total_pages\\\": 32, \\\"rendered_pages\\\": 10, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"images\": [{\"page\": 11, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p11.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 560.2}, {\"page\": 12, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p12.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 613.8}, {\"page\": 13, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p13.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 613.2}, {\"page\": 14, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p14.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 560.2}, {\"page\": 15, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p15.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 375.1}, {\"page\": 16, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p16.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 555.4}, {\"page\": 17, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p17.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 546.9}, {\"page\": 18, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p18.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 541.3}, {\"page\": 19, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p19.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 563.2}, {\"page\": 20, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p20.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 502.9}], \"total_pages\": 32, \"rendered_pages\": 10, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c7638ac8-7b76-4ac1-8ff9-6c6c803e8926",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 67 · 2026-05-20T19:48:04.548Z_
+
+<details><summary>↩ Tool result · `toolu_01FvkajVCdW6wv9sCjL4rnV2`</summary>
+
+```text
+&lt;persisted-output>
+Output too large (50.2KB). Full output saved to: /home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie--claude-sessions-review-reviewer-2-cbe93d98/70f718cb-864e-4efb-8277-0f3c245777c0/tool-results/toolu_01FvkajVCdW6wv9sCjL4rnV2.txt
+
+Preview (first 2KB):
+{"result":"{\"success\": true, \"data\": {\"summary\": {\"total_bib_entries\": 59, \"total_citations\": 96, \"unique_cited_keys\": 57, \"orphan_bib\": 2, \"missing_bib\": 0, \"duplicate_keys\": 0, \"online_verified\": 47, \"online_not_found\": 2, \"online_mismatch\": 10}, \"cross_check\": {\"orphan_bib\": [\"chen2024agentre\", \"fan2024fsn\"], \"missing_bib\": [], \"orphan_count\": 2, \"missing_count\": 0}, \"bib_entries\": [{\"key\": \"synchromesh_iclr2022\", \"type\": \"inproceedings\", \"title\": \"Synchromesh: Reliable Code Generation from Pre-trained Language Models\", \"authors\": \"Poesia, Gabriel and Polozov, Oleksandr and Le, Vu and Tiwari, Ashish and Soares,...\", \"year\": \"2022\", \"venue\": \"International Conference on Learning Representations\"}, {\"key\": \"mgd_neurips2023\", \"type\": \"inproceedings\", \"title\": \"Monitor-Guided Decoding of Code LMs with Static Analysis of Repository Context\", \"authors\": \"Agrawal, Lakshya A. and Kanade, Aditya and Goyal, Navin and Lahiri, Shuvendu K. ...\", \"year\": \"2023\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"pldi2025_type_constrained_codegen\", \"type\": \"article\", \"title\": \"Type-Constrained Code Generation with Language Models\", \"authors\": \"M\\\\\\\"undler, Niels and He, Jingxuan and Wang, Hao and Sen, Koushik and Song, Dawn ...\", \"year\": \"2025\", \"venue\": \"Proceedings of the ACM on Programming Languages\"}, {\"key\": \"roth_yih_2004\", \"type\": \"inproceedings\", \"title\": \"A Linear Programming Formulation for Global Inference in Natural Language Tasks\", \"authors\": \"Roth, Dan and Yih, Wen-tau\", \"year\": \"2004\", \"venue\": \"Proceedings of the Eighth Conference on Computational Natural Language Learning ...\"}, {\"key\": \"adakgc_emnlp2023\", \"type\": \"inproceedings\", \"title\": \"Schema-adaptable Knowledge Graph Construction\", \"authors\": \"Ye, Hongbin and Gui, Honghao and Xu, Xin and Chen, Xi and Chen, Huajun and Zhang...\", \"y
+...
+&lt;/persisted-output>
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4fbdd071-57b7-4289-a2d5-3f478b807041",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "cea6acfc-7169-4cf7-b2db-7bab1b19e572",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"summary\\\": {\\\"total_bib_entries\\\": 59, \\\"total_citations\\\": 96, \\\"unique_cited_keys\\\": 57, \\\"orphan_bib\\\": 2, \\\"missing_bib\\\": 0, \\\"duplicate_keys\\\": 0, \\\"online_verified\\\": 47, \\\"online_not_found\\\": 2, \\\"online_mismatch\\\": 10}, \\\"cross_check\\\": {\\\"orphan_bib\\\": [\\\"chen2024agentre\\\", \\\"fan2024fsn\\\"], \\\"missing_bib\\\": [], \\\"orphan_count\\\": 2, \\\"missing_count\\\": 0}, \\\"bib_entries\\\": [{\\\"key\\\": \\\"synchromesh_iclr2022\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Synchromesh: Reliable Code Generation from Pre-trained Language Models\\\", \\\"authors\\\": \\\"Poesia, Gabriel and Polozov, Oleksandr and Le, Vu and Tiwari, Ashish and Soares,...\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"mgd_neurips2023\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Monitor-Guided Decoding of Code LMs with Static Analysis of Repository Context\\\", \\\"authors\\\": \\\"Agrawal, Lakshya A. and Kanade, Aditya and Goyal, Navin and Lahiri, Shuvendu K. ...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}, {\\\"key\\\": \\\"pldi2025_type_constrained_codegen\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Type-Constrained Code Generation with Language Models\\\", \\\"authors\\\": \\\"M\\\\\\\\\\\\\\\"undler, Niels and He, Jingxuan and Wang, Hao and Sen, Koushik and Song, Dawn ...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of the ACM on Programming Languages\\\"}, {\\\"key\\\": \\\"roth_yih_2004\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"A Linear Programming Formulation for Global Inference in Natural Language Tasks\\\", \\\"authors\\\": \\\"Roth, Dan and Yih, Wen-tau\\\", \\\"year\\\": \\\"2004\\\", \\\"venue\\\": \\\"Proceedings of the Eighth Conference on Computational Natural Language Learning ...\\\"}, {\\\"key\\\": \\\"adakgc_emnlp2023\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Schema-adaptable Knowledge Graph Construction\\\", \\\"authors\\\": \\\"Ye, Hongbin and Gui, Honghao and Xu, Xin and Chen, Xi and Chen, Huajun and Zhang...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: EMNLP 2023\\\"}, {\\\"key\\\": \\\"knowcoder_acl2024\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\\\", \\\"authors\\\": \\\"Li, Zixuan and Zeng, Yutao and Zuo, Yuxin and Ren, Weicheng and Liu, Wenxuan and...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 62nd Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"spires_2024\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Structured Prompt Interrogation and Recursive Extraction of Semantics (SPIRES): A Method for Populating Knowledge Bases ...\\\", \\\"authors\\\": \\\"Caufield, J. Harry and Hegde, Harshad and Emonet, Vincent and Harris, Nomi L. an...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Bioinformatics\\\"}, {\\\"key\\\": \\\"ontologx_2025\\\", \\\"type\\\": \\\"misc\\\", \\\"title\\\": \\\"OntoLogX: Ontology-Guided Knowledge Graph Extraction from Cybersecurity Logs with Large Language Models\\\", \\\"authors\\\": \\\"Cotti, Luca and Drago, Idilio and Rula, Anisa and Bianchini, Devis and Cerutti, ...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"ekaw2024_ontology_beam\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Ontology-Constrained Generation of Domain-Specific Clinical Summaries\\\", \\\"authors\\\": \\\"Mehenni, Gaya and Zouaq, Amal\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Knowledge Engineering and Knowledge Management (EKAW 2024)\\\"}, {\\\"key\\\": \\\"scholak2021picard\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models\\\", \\\"authors\\\": \\\"Scholak, Torsten and Schucher, Nathan and Bahdanau, Dzmitry\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"Proceedings of the 2021 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"olasunkanmi2025relate\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints\\\", \\\"authors\\\": \\\"Olasunkanmi, Olawumi and Satusky, Mathew and Yi, Hong and Bizon, Chris and Lee, ...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2509.19057\\\"}, {\\\"key\\\": \\\"zhou2026ontologytools\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Ontology-to-tools compilation for executable semantic constraint enforcement in LLM agents\\\", \\\"authors\\\": \\\"Zhou, Xiaochi and Bulter, Patrick and Yang, Changxuan and Rihm, Simon D. and Ang...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2602.03439\\\"}, {\\\"key\\\": \\\"eberts2020spert\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Span-based Joint Entity and Relation Extraction with Transformer Pre-training\\\", \\\"authors\\\": \\\"Eberts, Markus and Ulges, Adrian\\\", \\\"year\\\": \\\"2020\\\", \\\"venue\\\": \\\"Proceedings of the 24th European Conference on Artificial Intelligence (ECAI 202...\\\"}, {\\\"key\\\": \\\"yan2021pfn\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"A Partition Filter Network for Joint Entity and Relation Extraction\\\", \\\"authors\\\": \\\"Yan, Zhiheng and Zhang, Chong and Fu, Jinlan and Zhang, Qi and Wei, Zhongyu\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"Proceedings of the 2021 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"zhong2021frustratingly\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"A Frustratingly Easy Approach for Entity and Relation Extraction\\\", \\\"authors\\\": \\\"Zhong, Zexuan and Chen, Danqi\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"Proceedings of the 2021 Conference of the North American Chapter of the Associat...\\\"}, {\\\"key\\\": \\\"ye2022packed\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Packed Levitated Marker for Entity and Relation Extraction\\\", \\\"authors\\\": \\\"Ye, Deming and Lin, Yankai and Li, Peng and Sun, Maosong\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"Proceedings of the 60th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"zhou2026snowballing\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in LLM Reflection\\\", \\\"authors\\\": \\\"Zhou, Hongxu\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2604.06066\\\"}, {\\\"key\\\": \\\"dong2025xgrammar\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\\\", \\\"authors\\\": \\\"Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi a...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of Machine Learning and Systems (MLSys)\\\"}, {\\\"key\\\": \\\"willard2023outlines\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Efficient Guided Generation for Large Language Models\\\", \\\"authors\\\": \\\"Willard, Brandon T. and Louf, R\\\\\\\\'emi\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2307.09702\\\"}, {\\\"key\\\": \\\"beurer-kellner2023lmql\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Prompting Is Programming: A Query Language for Large Language Models\\\", \\\"authors\\\": \\\"Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Proceedings of the ACM SIGPLAN Conference on Programming Language Design and Imp...\\\"}, {\\\"key\\\": \\\"beurer-kellner2024domino\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\\\", \\\"authors\\\": \\\"Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 41st International Conference on Machine Learning (ICML)\\\"}, {\\\"key\\\": \\\"park2024grammar\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Grammar-Aligned Decoding\\\", \\\"authors\\\": \\\"Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadi...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems (NeurIPS)\\\"}, {\\\"key\\\": \\\"decao2021genre\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Autoregressive Entity Retrieval\\\", \\\"authors\\\": \\\"De Cao, Nicola and Izacard, Gautier and Riedel, Sebastian and Petroni, Fabio\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"International Conference on Learning Representations (ICLR)\\\"}, {\\\"key\\\": \\\"josifoski2022genie\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"GenIE: Generative Information Extraction\\\", \\\"authors\\\": \\\"Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and ...\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"Proceedings of the 2022 Conference of the North American Chapter of the Associat...\\\"}, {\\\"key\\\": \\\"geng2023gcd\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\\\", \\\"authors\\\": \\\"Geng, Saibo and Josifoski, Martin and Peyrard, Maxime and West, Robert\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Proceedings of the 2023 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"lu2021neurologic\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\\\", \\\"authors\\\": \\\"Lu, Ximing and West, Peter and Zellers, Rowan and Le Bras, Ronan and Bhagavatula...\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"Proceedings of the 2021 Conference of the North American Chapter of the Associat...\\\"}, {\\\"key\\\": \\\"lu2022uie\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Unified Structure Generation for Universal Information Extraction\\\", \\\"authors\\\": \\\"Lu, Yaojie and Liu, Qing and Dai, Dai and Xiao, Xinyan and Lin, Hongyu and Han, ...\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"Proceedings of the 60th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"sainz2024gollie\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling\\\", \\\"authors\\\": \\\"Sainz, Oscar and Garc\\\\\\\\'\\\\\\\\ia-Ferrero, Iker and Agerri, Rodrigo and Lopez de Lacall...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"The Twelfth International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"li2023codeie\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\\\", \\\"authors\\\": \\\"Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Hu...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Proceedings of the 61st Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"qi2024adelie\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"ADELIE: Aligning Large Language Models on Information Extraction\\\", \\\"authors\\\": \\\"Qi, Yunjia and Peng, Hao and Wang, Xiaozhi and Xu, Bin and Hou, Lei and Li, Juan...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 2024 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"zaratiana2024enrico\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\\\", \\\"authors\\\": \\\"Zaratiana, Urchade and Tomeh, Nadi and Dauxais, Yann and Holat, Pierre and Charn...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2404.12493\\\"}, {\\\"key\\\": \\\"khorshidi2025odke\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\\\", \\\"authors\\\": \\\"Khorshidi, Samira and Nikfarjam, Azadeh and Shankar, Suprita and Sang, Yisi and ...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2509.04696\\\"}, {\\\"key\\\": \\\"upadhyay2023openie\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Open Information Extraction with Entity Focused Constraints\\\", \\\"authors\\\": \\\"Upadhyay, Prajna and Balalau, Oana and Manolescu, Ioana\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: EACL 2023\\\"}, {\\\"key\\\": \\\"regino2025kgcurator\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Can LLMs be Knowledge Graph Curators for Validating Triple Insertions?\\\", \\\"authors\\\": \\\"Regino, Andr\\\\\\\\'e Gomes and dos Reis, Julio Cesar\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of the Workshop on Generative AI and Knowledge Graphs (GenAIK) at CO...\\\"}, {\\\"key\\\": \\\"tam2024letmespeak\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models\\\", \\\"authors\\\": \\\"Tam, Zhi Rui and Wu, Cheng-Kuang and Tsai, Yi-Lin and Lin, Chieh-Yen and Lee, Hu...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 2024 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"banerjee2025crane\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"CRANE: Reasoning with Constrained LLM Generation\\\", \\\"authors\\\": \\\"Banerjee, Debangshu and Suresh, Tarun and Ugare, Shubham and Misailovic, Sasa an...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of the 42nd International Conference on Machine Learning\\\"}, {\\\"key\\\": \\\"schall2025hiddencost\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\\\", \\\"authors\\\": \\\"Schall, Maximilian and de Melo, Gerard\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of the 15th International Conference on Recent Advances in Natural L...\\\"}, {\\\"key\\\": \\\"cabot2021rebel\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"REBEL: Relation Extraction By End-to-end Language Generation\\\", \\\"authors\\\": \\\"Huguet Cabot, Pere-Llu\\\\\\\\'\\\\\\\\is and Navigli, Roberto\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: EMNLP 2021\\\"}, {\\\"key\\\": \\\"ugare2024syncode\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"SynCode: LLM Generation with Grammar Augmentation\\\", \\\"authors\\\": \\\"Ugare, Shubham and Suresh, Tarun and Kang, Hangoo and Misailovic, Sasa and Singh...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 41st International Conference on Machine Learning (ICML)\\\"}, {\\\"key\\\": \\\"ugare2025itergen\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"IterGen: Iterative Semantic-aware Structured LLM Generation with Backtracking\\\", \\\"authors\\\": \\\"Ugare, Shubham and Suresh, Tarun and Banerjee, Debangshu and Misailovic, Sasa an...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"The Thirteenth International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"boostcd2025\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\\\", \\\"authors\\\": \\\"Sakota, Marija and Geng, Saibo and Josifoski, Martin and West, Robert\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of the 2025 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"luan2018scierc\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction\\\", \\\"authors\\\": \\\"Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh\\\", \\\"year\\\": \\\"2018\\\", \\\"venue\\\": \\\"Proceedings of the 2018 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"yao2019docred\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\\\", \\\"authors\\\": \\\"Yao, Yuan and Ye, Deming and Li, Peng and Han, Xu and Lin, Yankai and Liu, Zheng...\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Proceedings of the 57th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"wei2023zeroshot\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"ChatIE: Zero-Shot Information Extraction via Chatting with ChatGPT\\\", \\\"authors\\\": \\\"Wei, Xiang and Cui, Xingyu and Cheng, Ning and Wang, Xiaobin and Zhang, Xin and ...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2302.10205\\\"}, {\\\"key\\\": \\\"qwen2025qwen3\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Qwen3 Technical Report\\\", \\\"authors\\\": \\\"Qwen Team\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2505.09388\\\"}, {\\\"key\\\": \\\"zheng2024sglang\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"SGLang: Efficient Execution of Structured Language Model Programs\\\", \\\"authors\\\": \\\"Zheng, Lianmin and Yin, Liangsheng and Xie, Zhiqiang and Sun, Chuyue and Huang, ...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}, {\\\"key\\\": \\\"li2021document\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Document-Level Event Argument Extraction by Conditional Generation\\\", \\\"authors\\\": \\\"Li, Sha and Ji, Heng and Han, Jiawei\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"Proceedings of the 2021 Conference of the North American Chapter of the Associat...\\\"}, {\\\"key\\\": \\\"formattax2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"The Format Tax\\\", \\\"authors\\\": \\\"Ivan Yee Lee and Loris D'Antoni and Taylor Berg-Kirkpatrick\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2604.03616\\\"}, {\\\"key\\\": \\\"dccd2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Draft-Conditioned Constrained Decoding for Structured Generation in LLMs\\\", \\\"authors\\\": \\\"Avinash Reddy and Thayne T. Walker and James S. Ide and Amrit Singh Bedi\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2603.03305\\\"}, {\\\"key\\\": \\\"guidex2025\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\\\", \\\"authors\\\": \\\"Neil De La Fuente and Oscar Sainz and Iker Garc\\\\\\\\'\\\\\\\\ia-Ferrero and Eneko Agirre\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: ACL 2025\\\"}, {\\\"key\\\": \\\"jsonschemabench2025\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\\\", \\\"authors\\\": \\\"Saibo Geng and Hudson Cooper and Micha\\\\\\\\l Moskal and Samuel Jenkins and Julian Be...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2501.10868\\\"}, {\\\"key\\\": \\\"wang2023instructuie\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\\\", \\\"authors\\\": \\\"Wang, Xiao and Zhou, Weikang and Zu, Can and Xia, Han and Chen, Tianze and Zhang...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2304.08085\\\"}, {\\\"key\\\": \\\"wang2022deepstruct\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"DeepStruct: Pretraining of Language Models for Structure Prediction\\\", \\\"authors\\\": \\\"Wang, Chenguang and Liu, Xiao and Chen, Zui and Hong, Haoyun and Tang, Jie and S...\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: ACL 2022\\\"}, {\\\"key\\\": \\\"zhou2024universalner\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\\\", \\\"authors\\\": \\\"Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"The Twelfth International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"lou2023usm\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Universal Information Extraction as Unified Semantic Matching\\\", \\\"authors\\\": \\\"Lou, Jie and Lu, Yaojie and Dai, Dai and Jia, Wei and Lin, Hongyu and Han, Xianp...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Proceedings of the AAAI Conference on Artificial Intelligence\\\"}, {\\\"key\\\": \\\"wadhwa2023revisiting\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Revisiting Relation Extraction in the era of Large Language Models\\\", \\\"authors\\\": \\\"Wadhwa, Somin and Amir, Silvio and Wallace, Byron\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Proceedings of the 61st Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"chen2024agentre\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"AgentRE: An Agent-Based Framework for Navigating Complex Information Landscapes in Relation Extraction\\\", \\\"authors\\\": \\\"Chen, Yuchen and Shi, Guanzhi and Sun, Qingping\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 33rd ACM International Conference on Information and Knowledg...\\\"}, {\\\"key\\\": \\\"fan2024fsn\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"FSN: Joint Entity and Relation Extraction Based on Filter Separator Network\\\", \\\"authors\\\": \\\"Fan, Yongfei and Yan, Lianshan and Yu, Shaobin and Li, Yijia\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Entropy\\\"}, {\\\"key\\\": \\\"fei2022lasuie\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"LasUIE: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model\\\", \\\"authors\\\": \\\"Fei, Hao and Wu, Shengqiong and Li, Jingye and Li, Bobo and Li, Fei and Qin, Lib...\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}], \\\"tex_citations\\\": [{\\\"key\\\": \\\"li2023codeie\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"sainz2024gollie\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"wei2023zeroshot\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"luan2018scierc\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"yao2019docred\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"dong2025xgrammar\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"willard2023outlines\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"beurer-kellner2023lmql\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"sainz2024gollie\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 16, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"lu2022uie\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 16, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"dong2025xgrammar\\\", \\\"file\\\": \\\"section2_background.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"willard2023outlines\\\", \\\"file\\\": \\\"section2_background.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zheng2024sglang\\\", \\\"file\\\": \\\"section2_background.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"dong2025xgrammar\\\", \\\"file\\\": \\\"section3_method_draft.tex\\\", \\\"line\\\": 68, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"luan2018scierc\\\", \\\"file\\\": \\\"section3_violation_landscape.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"yao2019docred\\\", \\\"file\\\": \\\"section3_violation_landscape.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"qwen2025qwen3\\\", \\\"file\\\": \\\"section3_violation_landscape.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"geng2023gcd\\\", \\\"file\\\": \\\"section5_scierc_draft.tex\\\", \\\"line\\\": 64, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"geng2023gcd\\\", \\\"file\\\": \\\"section5_scierc_draft.tex\\\", \\\"line\\\": 85, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"li2021document\\\", \\\"file\\\": \\\"section5_wikievents_draft.tex\\\", \\\"line\\\": 10, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"li2021document\\\", \\\"file\\\": \\\"section5_wikievents_draft.tex\\\", \\\"line\\\": 47, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"li2021document\\\", \\\"file\\\": \\\"section5_wikievents_draft.tex\\\", \\\"line\\\": 65, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"dong2025xgrammar\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"willard2023outlines\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"ugare2024syncode\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"beurer-kellner2023lmql\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"park2024grammar\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"jsonschemabench2025\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"geng2023gcd\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"scholak2021picard\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"pldi2025_type_constrained_codegen\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"sainz2024gollie\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"knowcoder_acl2024\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"guidex2025\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"josifoski2022genie\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"cabot2021rebel\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"wang2023instructuie\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"fei2022lasuie\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"wang2022deepstruct\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"lu2022uie\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"lou2023usm\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"zhou2024universalner\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"wadhwa2023revisiting\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"roth_yih_2004\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"khorshidi2025odke\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"spires_2024\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"ontologx_2025\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"zaratiana2024enrico\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"ugare2025itergen\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"dccd2026\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"boostcd2025\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 16, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"geng2023gcd\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 16, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"banerjee2025crane\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"schall2025hiddencost\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"formattax2026\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"tam2024letmespeak\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"li2021document\\\", \\\"file\\\": \\\"checklist.tex\\\", \\\"line\\\": 27, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"dong2025xgrammar\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"willard2023outlines\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 10, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"beurer-kellner2023lmql\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"beurer-kellner2024domino\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 13, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"park2024grammar\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 13, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"scholak2021picard\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 23, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"synchromesh_iclr2022\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 26, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"mgd_neurips2023\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 27, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"pldi2025_type_constrained_codegen\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 28, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"roth_yih_2004\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 40, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"decao2021genre\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 41, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"josifoski2022genie\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 42, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"adakgc_emnlp2023\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 43, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"geng2023gcd\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 44, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"lu2021neurologic\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 45, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"lu2022uie\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 55, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"sainz2024gollie\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 56, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"knowcoder_acl2024\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 57, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"li2023codeie\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 58, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"qi2024adelie\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 59, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"eberts2020spert\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 60, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"yan2021pfn\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 60, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"zaratiana2024enrico\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 62, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"khorshidi2025odke\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 72, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"spires_2024\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 73, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"ontologx_2025\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 74, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"upadhyay2023openie\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 75, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"regino2025kgcurator\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 76, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"olasunkanmi2025relate\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 77, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"zhou2026ontologytools\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 80, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"ekaw2024_ontology_beam\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 82, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"tam2024letmespeak\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 92, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"banerjee2025crane\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 93, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"schall2025hiddencost\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 94, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"zhou2026snowballing\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 95, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"tam2024letmespeak\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 97, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"zhong2021frustratingly\\\", \\\"file\\\": \\\"appendix_discussion.tex\\\", \\\"line\\\": 125, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"ye2022packed\\\", \\\"file\\\": \\\"appendix_discussion.tex\\\", \\\"line\\\": 125, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"li2021document\\\", \\\"file\\\": \\\"appendix_discussion.tex\\\", \\\"line\\\": 409, \\\"command\\\": \\\"cite\\\"}], \\\"online_verification\\\": [{\\\"key\\\": \\\"synchromesh_iclr2022\\\", \\\"title\\\": \\\"Synchromesh: Reliable Code Generation from Pre-trained Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Synchromesh: Reliable code generation from pre-trained language models\\\", \\\"matched_year\\\": \\\"2022\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"mgd_neurips2023\\\", \\\"title\\\": \\\"Monitor-Guided Decoding of Code LMs with Static Analysis of Repository Context\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Monitor-Guided Decoding of Code LMs with Static Analysis of Repository Context\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"pldi2025_type_constrained_codegen\\\", \\\"title\\\": \\\"Type-Constrained Code Generation with Language Models\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Type-Constrained Code Generation with Language Models\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=m\\\\\\\\\\\\\\\"undler vs api=mündler\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"roth_yih_2004\\\", \\\"title\\\": \\\"A Linear Programming Formulation for Global Inference in Natural Language Tasks\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"A Linear Programming Formulation for Global Inference in Natural Language Tasks\\\", \\\"matched_year\\\": \\\"2004\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"adakgc_emnlp2023\\\", \\\"title\\\": \\\"Schema-adaptable Knowledge Graph Construction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Schema-adaptable Knowledge Graph Construction\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"knowcoder_acl2024\\\", \\\"title\\\": \\\"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"spires_2024\\\", \\\"title\\\": \\\"Structured Prompt Interrogation and Recursive Extraction of Semantics (SPIRES): A Method for Populating Knowledge Bases Using Zero-shot Learning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Structured Prompt Interrogation and Recursive Extraction of Semantics (SPIRES): a method for populating knowledge bases using zero-shot learning\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"ontologx_2025\\\", \\\"title\\\": \\\"OntoLogX: Ontology-Guided Knowledge Graph Extraction from Cybersecurity Logs with Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 0.99, \\\"matched_title\\\": \\\"OntoLogX: Ontology‐Guided Knowledge Graph Extraction From Cybersecurity Logs With Large Language Models\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"ekaw2024_ontology_beam\\\", \\\"title\\\": \\\"Ontology-Constrained Generation of Domain-Specific Clinical Summaries\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Ontology-Constrained Generation of Domain-Specific Clinical Summaries\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"scholak2021picard\\\", \\\"title\\\": \\\"PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"olasunkanmi2025relate\\\", \\\"title\\\": \\\"RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zhou2026ontologytools\\\", \\\"title\\\": \\\"Ontology-to-tools compilation for executable semantic constraint enforcement in LLM agents\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Ontology-to-tools compilation for executable semantic constraint enforcement in LLM agents\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"eberts2020spert\\\", \\\"title\\\": \\\"Span-based Joint Entity and Relation Extraction with Transformer Pre-training\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Span-Based Joint Entity and Relation Extraction with Transformer Pre-Training\\\", \\\"matched_year\\\": \\\"2020\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"yan2021pfn\\\", \\\"title\\\": \\\"A Partition Filter Network for Joint Entity and Relation Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"A Partition Filter Network for Joint Entity and Relation Extraction\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zhong2021frustratingly\\\", \\\"title\\\": \\\"A Frustratingly Easy Approach for Entity and Relation Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"A Frustratingly Easy Approach for Entity and Relation Extraction\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"ye2022packed\\\", \\\"title\\\": \\\"Packed Levitated Marker for Entity and Relation Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Packed Levitated Marker for Entity and Relation Extraction\\\", \\\"matched_year\\\": \\\"2022\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zhou2026snowballing\\\", \\\"title\\\": \\\"From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in LLM Reflection\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in LLM Reflection\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"dong2025xgrammar\\\", \\\"title\\\": \\\"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"willard2023outlines\\\", \\\"title\\\": \\\"Efficient Guided Generation for Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Efficient Guided Generation for Large Language Models\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"beurer-kellner2023lmql\\\", \\\"title\\\": \\\"Prompting Is Programming: A Query Language for Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Prompting Is Programming: A Query Language for Large Language Models\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"beurer-kellner2024domino\\\", \\\"title\\\": \\\"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"park2024grammar\\\", \\\"title\\\": \\\"Grammar-Aligned Decoding\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Grammar-Aligned Decoding\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=park vs api=berg-kirkpatrick\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"decao2021genre\\\", \\\"title\\\": \\\"Autoregressive Entity Retrieval\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Autoregressive Entity Retrieval\\\", \\\"matched_year\\\": \\\"2020\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=de cao vs api=cao\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"josifoski2022genie\\\", \\\"title\\\": \\\"GenIE: Generative Information Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"GenIE: Generative Information Extraction\\\", \\\"matched_year\\\": \\\"2022\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"geng2023gcd\\\", \\\"title\\\": \\\"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"lu2021neurologic\\\", \\\"title\\\": \\\"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"lu2022uie\\\", \\\"title\\\": \\\"Unified Structure Generation for Universal Information Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Unified Structure Generation for Universal Information Extraction\\\", \\\"matched_year\\\": \\\"2022\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"sainz2024gollie\\\", \\\"title\\\": \\\"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 0.94, \\\"matched_title\\\": \\\"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"li2023codeie\\\", \\\"title\\\": \\\"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"qi2024adelie\\\", \\\"title\\\": \\\"ADELIE: Aligning Large Language Models on Information Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ADELIE: Aligning Large Language Models on Information Extraction\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zaratiana2024enrico\\\", \\\"title\\\": \\\"EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"khorshidi2025odke\\\", \\\"title\\\": \\\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"upadhyay2023openie\\\", \\\"title\\\": \\\"Open Information Extraction with Entity Focused Constraints\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Open Information Extraction with Entity Focused Constraints\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"regino2025kgcurator\\\", \\\"title\\\": \\\"Can LLMs be Knowledge Graph Curators for Validating Triple Insertions?\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.478, \\\"matched_title\\\": \\\"Knowledge graph validation by integrating LLMs and human-in-the-loop\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.48 below threshold 0.82\\\"}, {\\\"key\\\": \\\"tam2024letmespeak\\\", \\\"title\\\": \\\"Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"banerjee2025crane\\\", \\\"title\\\": \\\"CRANE: Reasoning with Constrained LLM Generation\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"CRANE: Reasoning with constrained LLM generation\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"schall2025hiddencost\\\", \\\"title\\\": \\\"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"cabot2021rebel\\\", \\\"title\\\": \\\"REBEL: Relation Extraction By End-to-end Language Generation\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"REBEL: Relation Extraction By End-to-end Language generation\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=huguet cabot vs api=cabot\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"ugare2024syncode\\\", \\\"title\\\": \\\"SynCode: LLM Generation with Grammar Augmentation\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SynCode: LLM Generation with Grammar Augmentation\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"ugare2025itergen\\\", \\\"title\\\": \\\"IterGen: Iterative Semantic-aware Structured LLM Generation with Backtracking\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"IterGen: Iterative Semantic-aware Structured LLM Generation with Backtracking\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"boostcd2025\\\", \\\"title\\\": \\\"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=sakota vs api=šakota\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"luan2018scierc\\\", \\\"title\\\": \\\"Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction\\\", \\\"matched_year\\\": \\\"2018\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"yao2019docred\\\", \\\"title\\\": \\\"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"wei2023zeroshot\\\", \\\"title\\\": \\\"ChatIE: Zero-Shot Information Extraction via Chatting with ChatGPT\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ChatIE: Zero-Shot Information Extraction via Chatting with ChatGPT\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=wei vs api=xiang\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"qwen2025qwen3\\\", \\\"title\\\": \\\"Qwen3 Technical Report\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Qwen3 Technical Report\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=team vs api=yang\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zheng2024sglang\\\", \\\"title\\\": \\\"SGLang: Efficient Execution of Structured Language Model Programs\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SGLang: Efficient Execution of Structured Language Model Programs\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=zheng vs api=barrett\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"li2021document\\\", \\\"title\\\": \\\"Document-Level Event Argument Extraction by Conditional Generation\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Document-Level Event Argument Extraction by Conditional Generation\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"formattax2026\\\", \\\"title\\\": \\\"The Format Tax\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.261, \\\"matched_title\\\": \\\"R: A Language and Environment for Statistical Computing\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.26 below threshold 0.82\\\"}, {\\\"key\\\": \\\"dccd2026\\\", \\\"title\\\": \\\"Draft-Conditioned Constrained Decoding for Structured Generation in LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Draft-Conditioned Constrained Decoding for Structured Generation in LLMs\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"guidex2025\\\", \\\"title\\\": \\\"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"jsonschemabench2025\\\", \\\"title\\\": \\\"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"wang2023instructuie\\\", \\\"title\\\": \\\"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"wang2022deepstruct\\\", \\\"title\\\": \\\"DeepStruct: Pretraining of Language Models for Structure Prediction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"DeepStruct: Pretraining of Language Models for Structure Prediction\\\", \\\"matched_year\\\": \\\"2022\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zhou2024universalner\\\", \\\"title\\\": \\\"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"lou2023usm\\\", \\\"title\\\": \\\"Universal Information Extraction as Unified Semantic Matching\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Universal Information Extraction as Unified Semantic Matching\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"wadhwa2023revisiting\\\", \\\"title\\\": \\\"Revisiting Relation Extraction in the era of Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Revisiting Relation Extraction in the era of Large Language Models\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"chen2024agentre\\\", \\\"title\\\": \\\"AgentRE: An Agent-Based Framework for Navigating Complex Information Landscapes in Relation Extraction\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"AgentRE: An Agent-Based Framework for Navigating Complex Information Landscapes in Relation Extraction\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=chen vs api=shi\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"fan2024fsn\\\", \\\"title\\\": \\\"FSN: Joint Entity and Relation Extraction Based on Filter Separator Network\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"FSN: Joint Entity and Relation Extraction Based on Filter Separator Network\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=fan vs api=dai\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"fei2022lasuie\\\", \\\"title\\\": \\\"LasUIE: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"LasUIE: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"summary\": {\"total_bib_entries\": 59, \"total_citations\": 96, \"unique_cited_keys\": 57, \"orphan_bib\": 2, \"missing_bib\": 0, \"duplicate_keys\": 0, \"online_verified\": 47, \"online_not_found\": 2, \"online_mismatch\": 10}, \"cross_check\": {\"orphan_bib\": [\"chen2024agentre\", \"fan2024fsn\"], \"missing_bib\": [], \"orphan_count\": 2, \"missing_count\": 0}, \"bib_entries\": [{\"key\": \"synchromesh_iclr2022\", \"type\": \"inproceedings\", \"title\": \"Synchromesh: Reliable Code Generation from Pre-trained Language Models\", \"authors\": \"Poesia, Gabriel and Polozov, Oleksandr and Le, Vu and Tiwari, Ashish and Soares,...\", \"year\": \"2022\", \"venue\": \"International Conference on Learning Representations\"}, {\"key\": \"mgd_neurips2023\", \"type\": \"inproceedings\", \"title\": \"Monitor-Guided Decoding of Code LMs with Static Analysis of Repository Context\", \"authors\": \"Agrawal, Lakshya A. and Kanade, Aditya and Goyal, Navin and Lahiri, Shuvendu K. ...\", \"year\": \"2023\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"pldi2025_type_constrained_codegen\", \"type\": \"article\", \"title\": \"Type-Constrained Code Generation with Language Models\", \"authors\": \"M\\\\\\\"undler, Niels and He, Jingxuan and Wang, Hao and Sen, Koushik and Song, Dawn ...\", \"year\": \"2025\", \"venue\": \"Proceedings of the ACM on Programming Languages\"}, {\"key\": \"roth_yih_2004\", \"type\": \"inproceedings\", \"title\": \"A Linear Programming Formulation for Global Inference in Natural Language Tasks\", \"authors\": \"Roth, Dan and Yih, Wen-tau\", \"year\": \"2004\", \"venue\": \"Proceedings of the Eighth Conference on Computational Natural Language Learning ...\"}, {\"key\": \"adakgc_emnlp2023\", \"type\": \"inproceedings\", \"title\": \"Schema-adaptable Knowledge Graph Construction\", \"authors\": \"Ye, Hongbin and Gui, Honghao and Xu, Xin and Chen, Xi and Chen, Huajun and Zhang...\", \"year\": \"2023\", \"venue\": \"Findings of the Association for Computational Linguistics: EMNLP 2023\"}, {\"key\": \"knowcoder_acl2024\", \"type\": \"inproceedings\", \"title\": \"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\", \"authors\": \"Li, Zixuan and Zeng, Yutao and Zuo, Yuxin and Ren, Weicheng and Liu, Wenxuan and...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 62nd Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"spires_2024\", \"type\": \"article\", \"title\": \"Structured Prompt Interrogation and Recursive Extraction of Semantics (SPIRES): A Method for Populating Knowledge Bases ...\", \"authors\": \"Caufield, J. Harry and Hegde, Harshad and Emonet, Vincent and Harris, Nomi L. an...\", \"year\": \"2024\", \"venue\": \"Bioinformatics\"}, {\"key\": \"ontologx_2025\", \"type\": \"misc\", \"title\": \"OntoLogX: Ontology-Guided Knowledge Graph Extraction from Cybersecurity Logs with Large Language Models\", \"authors\": \"Cotti, Luca and Drago, Idilio and Rula, Anisa and Bianchini, Devis and Cerutti, ...\", \"year\": \"2025\", \"venue\": \"\"}, {\"key\": \"ekaw2024_ontology_beam\", \"type\": \"inproceedings\", \"title\": \"Ontology-Constrained Generation of Domain-Specific Clinical Summaries\", \"authors\": \"Mehenni, Gaya and Zouaq, Amal\", \"year\": \"2024\", \"venue\": \"Knowledge Engineering and Knowledge Management (EKAW 2024)\"}, {\"key\": \"scholak2021picard\", \"type\": \"inproceedings\", \"title\": \"PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models\", \"authors\": \"Scholak, Torsten and Schucher, Nathan and Bahdanau, Dzmitry\", \"year\": \"2021\", \"venue\": \"Proceedings of the 2021 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"olasunkanmi2025relate\", \"type\": \"article\", \"title\": \"RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints\", \"authors\": \"Olasunkanmi, Olawumi and Satusky, Mathew and Yi, Hong and Bizon, Chris and Lee, ...\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2509.19057\"}, {\"key\": \"zhou2026ontologytools\", \"type\": \"article\", \"title\": \"Ontology-to-tools compilation for executable semantic constraint enforcement in LLM agents\", \"authors\": \"Zhou, Xiaochi and Bulter, Patrick and Yang, Changxuan and Rihm, Simon D. and Ang...\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2602.03439\"}, {\"key\": \"eberts2020spert\", \"type\": \"inproceedings\", \"title\": \"Span-based Joint Entity and Relation Extraction with Transformer Pre-training\", \"authors\": \"Eberts, Markus and Ulges, Adrian\", \"year\": \"2020\", \"venue\": \"Proceedings of the 24th European Conference on Artificial Intelligence (ECAI 202...\"}, {\"key\": \"yan2021pfn\", \"type\": \"inproceedings\", \"title\": \"A Partition Filter Network for Joint Entity and Relation Extraction\", \"authors\": \"Yan, Zhiheng and Zhang, Chong and Fu, Jinlan and Zhang, Qi and Wei, Zhongyu\", \"year\": \"2021\", \"venue\": \"Proceedings of the 2021 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"zhong2021frustratingly\", \"type\": \"inproceedings\", \"title\": \"A Frustratingly Easy Approach for Entity and Relation Extraction\", \"authors\": \"Zhong, Zexuan and Chen, Danqi\", \"year\": \"2021\", \"venue\": \"Proceedings of the 2021 Conference of the North American Chapter of the Associat...\"}, {\"key\": \"ye2022packed\", \"type\": \"inproceedings\", \"title\": \"Packed Levitated Marker for Entity and Relation Extraction\", \"authors\": \"Ye, Deming and Lin, Yankai and Li, Peng and Sun, Maosong\", \"year\": \"2022\", \"venue\": \"Proceedings of the 60th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"zhou2026snowballing\", \"type\": \"article\", \"title\": \"From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in LLM Reflection\", \"authors\": \"Zhou, Hongxu\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2604.06066\"}, {\"key\": \"dong2025xgrammar\", \"type\": \"inproceedings\", \"title\": \"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\", \"authors\": \"Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi a...\", \"year\": \"2025\", \"venue\": \"Proceedings of Machine Learning and Systems (MLSys)\"}, {\"key\": \"willard2023outlines\", \"type\": \"article\", \"title\": \"Efficient Guided Generation for Large Language Models\", \"authors\": \"Willard, Brandon T. and Louf, R\\\\'emi\", \"year\": \"2023\", \"venue\": \"arXiv preprint arXiv:2307.09702\"}, {\"key\": \"beurer-kellner2023lmql\", \"type\": \"inproceedings\", \"title\": \"Prompting Is Programming: A Query Language for Large Language Models\", \"authors\": \"Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin\", \"year\": \"2023\", \"venue\": \"Proceedings of the ACM SIGPLAN Conference on Programming Language Design and Imp...\"}, {\"key\": \"beurer-kellner2024domino\", \"type\": \"inproceedings\", \"title\": \"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\", \"authors\": \"Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin\", \"year\": \"2024\", \"venue\": \"Proceedings of the 41st International Conference on Machine Learning (ICML)\"}, {\"key\": \"park2024grammar\", \"type\": \"inproceedings\", \"title\": \"Grammar-Aligned Decoding\", \"authors\": \"Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadi...\", \"year\": \"2024\", \"venue\": \"Advances in Neural Information Processing Systems (NeurIPS)\"}, {\"key\": \"decao2021genre\", \"type\": \"inproceedings\", \"title\": \"Autoregressive Entity Retrieval\", \"authors\": \"De Cao, Nicola and Izacard, Gautier and Riedel, Sebastian and Petroni, Fabio\", \"year\": \"2021\", \"venue\": \"International Conference on Learning Representations (ICLR)\"}, {\"key\": \"josifoski2022genie\", \"type\": \"inproceedings\", \"title\": \"GenIE: Generative Information Extraction\", \"authors\": \"Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and ...\", \"year\": \"2022\", \"venue\": \"Proceedings of the 2022 Conference of the North American Chapter of the Associat...\"}, {\"key\": \"geng2023gcd\", \"type\": \"inproceedings\", \"title\": \"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\", \"authors\": \"Geng, Saibo and Josifoski, Martin and Peyrard, Maxime and West, Robert\", \"year\": \"2023\", \"venue\": \"Proceedings of the 2023 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"lu2021neurologic\", \"type\": \"inproceedings\", \"title\": \"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\", \"authors\": \"Lu, Ximing and West, Peter and Zellers, Rowan and Le Bras, Ronan and Bhagavatula...\", \"year\": \"2021\", \"venue\": \"Proceedings of the 2021 Conference of the North American Chapter of the Associat...\"}, {\"key\": \"lu2022uie\", \"type\": \"inproceedings\", \"title\": \"Unified Structure Generation for Universal Information Extraction\", \"authors\": \"Lu, Yaojie and Liu, Qing and Dai, Dai and Xiao, Xinyan and Lin, Hongyu and Han, ...\", \"year\": \"2022\", \"venue\": \"Proceedings of the 60th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"sainz2024gollie\", \"type\": \"inproceedings\", \"title\": \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling\", \"authors\": \"Sainz, Oscar and Garc\\\\'\\\\ia-Ferrero, Iker and Agerri, Rodrigo and Lopez de Lacall...\", \"year\": \"2024\", \"venue\": \"The Twelfth International Conference on Learning Representations\"}, {\"key\": \"li2023codeie\", \"type\": \"inproceedings\", \"title\": \"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\", \"authors\": \"Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Hu...\", \"year\": \"2023\", \"venue\": \"Proceedings of the 61st Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"qi2024adelie\", \"type\": \"inproceedings\", \"title\": \"ADELIE: Aligning Large Language Models on Information Extraction\", \"authors\": \"Qi, Yunjia and Peng, Hao and Wang, Xiaozhi and Xu, Bin and Hou, Lei and Li, Juan...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 2024 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"zaratiana2024enrico\", \"type\": \"article\", \"title\": \"EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\", \"authors\": \"Zaratiana, Urchade and Tomeh, Nadi and Dauxais, Yann and Holat, Pierre and Charn...\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2404.12493\"}, {\"key\": \"khorshidi2025odke\", \"type\": \"article\", \"title\": \"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\", \"authors\": \"Khorshidi, Samira and Nikfarjam, Azadeh and Shankar, Suprita and Sang, Yisi and ...\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2509.04696\"}, {\"key\": \"upadhyay2023openie\", \"type\": \"inproceedings\", \"title\": \"Open Information Extraction with Entity Focused Constraints\", \"authors\": \"Upadhyay, Prajna and Balalau, Oana and Manolescu, Ioana\", \"year\": \"2023\", \"venue\": \"Findings of the Association for Computational Linguistics: EACL 2023\"}, {\"key\": \"regino2025kgcurator\", \"type\": \"inproceedings\", \"title\": \"Can LLMs be Knowledge Graph Curators for Validating Triple Insertions?\", \"authors\": \"Regino, Andr\\\\'e Gomes and dos Reis, Julio Cesar\", \"year\": \"2025\", \"venue\": \"Proceedings of the Workshop on Generative AI and Knowledge Graphs (GenAIK) at CO...\"}, {\"key\": \"tam2024letmespeak\", \"type\": \"inproceedings\", \"title\": \"Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models\", \"authors\": \"Tam, Zhi Rui and Wu, Cheng-Kuang and Tsai, Yi-Lin and Lin, Chieh-Yen and Lee, Hu...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 2024 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"banerjee2025crane\", \"type\": \"inproceedings\", \"title\": \"CRANE: Reasoning with Constrained LLM Generation\", \"authors\": \"Banerjee, Debangshu and Suresh, Tarun and Ugare, Shubham and Misailovic, Sasa an...\", \"year\": \"2025\", \"venue\": \"Proceedings of the 42nd International Conference on Machine Learning\"}, {\"key\": \"schall2025hiddencost\", \"type\": \"inproceedings\", \"title\": \"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\", \"authors\": \"Schall, Maximilian and de Melo, Gerard\", \"year\": \"2025\", \"venue\": \"Proceedings of the 15th International Conference on Recent Advances in Natural L...\"}, {\"key\": \"cabot2021rebel\", \"type\": \"inproceedings\", \"title\": \"REBEL: Relation Extraction By End-to-end Language Generation\", \"authors\": \"Huguet Cabot, Pere-Llu\\\\'\\\\is and Navigli, Roberto\", \"year\": \"2021\", \"venue\": \"Findings of the Association for Computational Linguistics: EMNLP 2021\"}, {\"key\": \"ugare2024syncode\", \"type\": \"inproceedings\", \"title\": \"SynCode: LLM Generation with Grammar Augmentation\", \"authors\": \"Ugare, Shubham and Suresh, Tarun and Kang, Hangoo and Misailovic, Sasa and Singh...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 41st International Conference on Machine Learning (ICML)\"}, {\"key\": \"ugare2025itergen\", \"type\": \"inproceedings\", \"title\": \"IterGen: Iterative Semantic-aware Structured LLM Generation with Backtracking\", \"authors\": \"Ugare, Shubham and Suresh, Tarun and Banerjee, Debangshu and Misailovic, Sasa an...\", \"year\": \"2025\", \"venue\": \"The Thirteenth International Conference on Learning Representations\"}, {\"key\": \"boostcd2025\", \"type\": \"inproceedings\", \"title\": \"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\", \"authors\": \"Sakota, Marija and Geng, Saibo and Josifoski, Martin and West, Robert\", \"year\": \"2025\", \"venue\": \"Proceedings of the 2025 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"luan2018scierc\", \"type\": \"inproceedings\", \"title\": \"Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction\", \"authors\": \"Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh\", \"year\": \"2018\", \"venue\": \"Proceedings of the 2018 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"yao2019docred\", \"type\": \"inproceedings\", \"title\": \"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\", \"authors\": \"Yao, Yuan and Ye, Deming and Li, Peng and Han, Xu and Lin, Yankai and Liu, Zheng...\", \"year\": \"2019\", \"venue\": \"Proceedings of the 57th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"wei2023zeroshot\", \"type\": \"article\", \"title\": \"ChatIE: Zero-Shot Information Extraction via Chatting with ChatGPT\", \"authors\": \"Wei, Xiang and Cui, Xingyu and Cheng, Ning and Wang, Xiaobin and Zhang, Xin and ...\", \"year\": \"2023\", \"venue\": \"arXiv preprint arXiv:2302.10205\"}, {\"key\": \"qwen2025qwen3\", \"type\": \"article\", \"title\": \"Qwen3 Technical Report\", \"authors\": \"Qwen Team\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2505.09388\"}, {\"key\": \"zheng2024sglang\", \"type\": \"inproceedings\", \"title\": \"SGLang: Efficient Execution of Structured Language Model Programs\", \"authors\": \"Zheng, Lianmin and Yin, Liangsheng and Xie, Zhiqiang and Sun, Chuyue and Huang, ...\", \"year\": \"2024\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"li2021document\", \"type\": \"inproceedings\", \"title\": \"Document-Level Event Argument Extraction by Conditional Generation\", \"authors\": \"Li, Sha and Ji, Heng and Han, Jiawei\", \"year\": \"2021\", \"venue\": \"Proceedings of the 2021 Conference of the North American Chapter of the Associat...\"}, {\"key\": \"formattax2026\", \"type\": \"article\", \"title\": \"The Format Tax\", \"authors\": \"Ivan Yee Lee and Loris D'Antoni and Taylor Berg-Kirkpatrick\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2604.03616\"}, {\"key\": \"dccd2026\", \"type\": \"article\", \"title\": \"Draft-Conditioned Constrained Decoding for Structured Generation in LLMs\", \"authors\": \"Avinash Reddy and Thayne T. Walker and James S. Ide and Amrit Singh Bedi\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2603.03305\"}, {\"key\": \"guidex2025\", \"type\": \"inproceedings\", \"title\": \"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\", \"authors\": \"Neil De La Fuente and Oscar Sainz and Iker Garc\\\\'\\\\ia-Ferrero and Eneko Agirre\", \"year\": \"2025\", \"venue\": \"Findings of the Association for Computational Linguistics: ACL 2025\"}, {\"key\": \"jsonschemabench2025\", \"type\": \"article\", \"title\": \"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\", \"authors\": \"Saibo Geng and Hudson Cooper and Micha\\\\l Moskal and Samuel Jenkins and Julian Be...\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2501.10868\"}, {\"key\": \"wang2023instructuie\", \"type\": \"article\", \"title\": \"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\", \"authors\": \"Wang, Xiao and Zhou, Weikang and Zu, Can and Xia, Han and Chen, Tianze and Zhang...\", \"year\": \"2023\", \"venue\": \"arXiv preprint arXiv:2304.08085\"}, {\"key\": \"wang2022deepstruct\", \"type\": \"inproceedings\", \"title\": \"DeepStruct: Pretraining of Language Models for Structure Prediction\", \"authors\": \"Wang, Chenguang and Liu, Xiao and Chen, Zui and Hong, Haoyun and Tang, Jie and S...\", \"year\": \"2022\", \"venue\": \"Findings of the Association for Computational Linguistics: ACL 2022\"}, {\"key\": \"zhou2024universalner\", \"type\": \"inproceedings\", \"title\": \"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\", \"authors\": \"Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung\", \"year\": \"2024\", \"venue\": \"The Twelfth International Conference on Learning Representations\"}, {\"key\": \"lou2023usm\", \"type\": \"inproceedings\", \"title\": \"Universal Information Extraction as Unified Semantic Matching\", \"authors\": \"Lou, Jie and Lu, Yaojie and Dai, Dai and Jia, Wei and Lin, Hongyu and Han, Xianp...\", \"year\": \"2023\", \"venue\": \"Proceedings of the AAAI Conference on Artificial Intelligence\"}, {\"key\": \"wadhwa2023revisiting\", \"type\": \"inproceedings\", \"title\": \"Revisiting Relation Extraction in the era of Large Language Models\", \"authors\": \"Wadhwa, Somin and Amir, Silvio and Wallace, Byron\", \"year\": \"2023\", \"venue\": \"Proceedings of the 61st Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"chen2024agentre\", \"type\": \"inproceedings\", \"title\": \"AgentRE: An Agent-Based Framework for Navigating Complex Information Landscapes in Relation Extraction\", \"authors\": \"Chen, Yuchen and Shi, Guanzhi and Sun, Qingping\", \"year\": \"2024\", \"venue\": \"Proceedings of the 33rd ACM International Conference on Information and Knowledg...\"}, {\"key\": \"fan2024fsn\", \"type\": \"article\", \"title\": \"FSN: Joint Entity and Relation Extraction Based on Filter Separator Network\", \"authors\": \"Fan, Yongfei and Yan, Lianshan and Yu, Shaobin and Li, Yijia\", \"year\": \"2024\", \"venue\": \"Entropy\"}, {\"key\": \"fei2022lasuie\", \"type\": \"inproceedings\", \"title\": \"LasUIE: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model\", \"authors\": \"Fei, Hao and Wu, Shengqiong and Li, Jingye and Li, Bobo and Li, Fei and Qin, Lib...\", \"year\": \"2022\", \"venue\": \"Advances in Neural Information Processing Systems\"}], \"tex_citations\": [{\"key\": \"li2023codeie\", \"file\": \"section1_introduction_draft.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"sainz2024gollie\", \"file\": \"section1_introduction_draft.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"wei2023zeroshot\", \"file\": \"section1_introduction_draft.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"luan2018scierc\", \"file\": \"section1_introduction_draft.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"yao2019docred\", \"file\": \"section1_introduction_draft.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"dong2025xgrammar\", \"file\": \"section1_introduction_draft.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"willard2023outlines\", \"file\": \"section1_introduction_draft.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"beurer-kellner2023lmql\", \"file\": \"section1_introduction_draft.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"sainz2024gollie\", \"file\": \"section1_introduction_draft.tex\", \"line\": 16, \"command\": \"cite\"}, {\"key\": \"lu2022uie\", \"file\": \"section1_introduction_draft.tex\", \"line\": 16, \"command\": \"cite\"}, {\"key\": \"dong2025xgrammar\", \"file\": \"section2_background.tex\", \"line\": 18, \"command\": \"citep\"}, {\"key\": \"willard2023outlines\", \"file\": \"section2_background.tex\", \"line\": 18, \"command\": \"citep\"}, {\"key\": \"zheng2024sglang\", \"file\": \"section2_background.tex\", \"line\": 18, \"command\": \"citep\"}, {\"key\": \"dong2025xgrammar\", \"file\": \"section3_method_draft.tex\", \"line\": 68, \"command\": \"cite\"}, {\"key\": \"luan2018scierc\", \"file\": \"section3_violation_landscape.tex\", \"line\": 12, \"command\": \"cite\"}, {\"key\": \"yao2019docred\", \"file\": \"section3_violation_landscape.tex\", \"line\": 12, \"command\": \"cite\"}, {\"key\": \"qwen2025qwen3\", \"file\": \"section3_violation_landscape.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"geng2023gcd\", \"file\": \"section5_scierc_draft.tex\", \"line\": 64, \"command\": \"cite\"}, {\"key\": \"geng2023gcd\", \"file\": \"section5_scierc_draft.tex\", \"line\": 85, \"command\": \"cite\"}, {\"key\": \"li2021document\", \"file\": \"section5_wikievents_draft.tex\", \"line\": 10, \"command\": \"cite\"}, {\"key\": \"li2021document\", \"file\": \"section5_wikievents_draft.tex\", \"line\": 47, \"command\": \"cite\"}, {\"key\": \"li2021document\", \"file\": \"section5_wikievents_draft.tex\", \"line\": 65, \"command\": \"cite\"}, {\"key\": \"dong2025xgrammar\", \"file\": \"section6_related_work.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"willard2023outlines\", \"file\": \"section6_related_work.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"ugare2024syncode\", \"file\": \"section6_related_work.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"beurer-kellner2023lmql\", \"file\": \"section6_related_work.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"park2024grammar\", \"file\": \"section6_related_work.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"jsonschemabench2025\", \"file\": \"section6_related_work.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"geng2023gcd\", \"file\": \"section6_related_work.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"scholak2021picard\", \"file\": \"section6_related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"pldi2025_type_constrained_codegen\", \"file\": \"section6_related_work.tex\", \"line\": 8, \"command\": \"citet\"}, {\"key\": \"sainz2024gollie\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"knowcoder_acl2024\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"guidex2025\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"josifoski2022genie\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"cabot2021rebel\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"wang2023instructuie\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"fei2022lasuie\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"wang2022deepstruct\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"lu2022uie\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"lou2023usm\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"zhou2024universalner\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"wadhwa2023revisiting\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"roth_yih_2004\", \"file\": \"section6_related_work.tex\", \"line\": 14, \"command\": \"citet\"}, {\"key\": \"khorshidi2025odke\", \"file\": \"section6_related_work.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"spires_2024\", \"file\": \"section6_related_work.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"ontologx_2025\", \"file\": \"section6_related_work.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"zaratiana2024enrico\", \"file\": \"section6_related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"ugare2025itergen\", \"file\": \"section6_related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"dccd2026\", \"file\": \"section6_related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"boostcd2025\", \"file\": \"section6_related_work.tex\", \"line\": 16, \"command\": \"cite\"}, {\"key\": \"geng2023gcd\", \"file\": \"section6_related_work.tex\", \"line\": 16, \"command\": \"cite\"}, {\"key\": \"banerjee2025crane\", \"file\": \"section6_related_work.tex\", \"line\": 18, \"command\": \"cite\"}, {\"key\": \"schall2025hiddencost\", \"file\": \"section6_related_work.tex\", \"line\": 18, \"command\": \"cite\"}, {\"key\": \"formattax2026\", \"file\": \"section6_related_work.tex\", \"line\": 18, \"command\": \"cite\"}, {\"key\": \"tam2024letmespeak\", \"file\": \"section6_related_work.tex\", \"line\": 18, \"command\": \"cite\"}, {\"key\": \"li2021document\", \"file\": \"checklist.tex\", \"line\": 27, \"command\": \"citet\"}, {\"key\": \"dong2025xgrammar\", \"file\": \"appendix_related_work.tex\", \"line\": 9, \"command\": \"cite\"}, {\"key\": \"willard2023outlines\", \"file\": \"appendix_related_work.tex\", \"line\": 10, \"command\": \"cite\"}, {\"key\": \"beurer-kellner2023lmql\", \"file\": \"appendix_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"beurer-kellner2024domino\", \"file\": \"appendix_related_work.tex\", \"line\": 13, \"command\": \"cite\"}, {\"key\": \"park2024grammar\", \"file\": \"appendix_related_work.tex\", \"line\": 13, \"command\": \"cite\"}, {\"key\": \"scholak2021picard\", \"file\": \"appendix_related_work.tex\", \"line\": 23, \"command\": \"cite\"}, {\"key\": \"synchromesh_iclr2022\", \"file\": \"appendix_related_work.tex\", \"line\": 26, \"command\": \"cite\"}, {\"key\": \"mgd_neurips2023\", \"file\": \"appendix_related_work.tex\", \"line\": 27, \"command\": \"cite\"}, {\"key\": \"pldi2025_type_constrained_codegen\", \"file\": \"appendix_related_work.tex\", \"line\": 28, \"command\": \"citet\"}, {\"key\": \"roth_yih_2004\", \"file\": \"appendix_related_work.tex\", \"line\": 40, \"command\": \"citet\"}, {\"key\": \"decao2021genre\", \"file\": \"appendix_related_work.tex\", \"line\": 41, \"command\": \"cite\"}, {\"key\": \"josifoski2022genie\", \"file\": \"appendix_related_work.tex\", \"line\": 42, \"command\": \"cite\"}, {\"key\": \"adakgc_emnlp2023\", \"file\": \"appendix_related_work.tex\", \"line\": 43, \"command\": \"cite\"}, {\"key\": \"geng2023gcd\", \"file\": \"appendix_related_work.tex\", \"line\": 44, \"command\": \"cite\"}, {\"key\": \"lu2021neurologic\", \"file\": \"appendix_related_work.tex\", \"line\": 45, \"command\": \"cite\"}, {\"key\": \"lu2022uie\", \"file\": \"appendix_related_work.tex\", \"line\": 55, \"command\": \"cite\"}, {\"key\": \"sainz2024gollie\", \"file\": \"appendix_related_work.tex\", \"line\": 56, \"command\": \"cite\"}, {\"key\": \"knowcoder_acl2024\", \"file\": \"appendix_related_work.tex\", \"line\": 57, \"command\": \"cite\"}, {\"key\": \"li2023codeie\", \"file\": \"appendix_related_work.tex\", \"line\": 58, \"command\": \"cite\"}, {\"key\": \"qi2024adelie\", \"file\": \"appendix_related_work.tex\", \"line\": 59, \"command\": \"cite\"}, {\"key\": \"eberts2020spert\", \"file\": \"appendix_related_work.tex\", \"line\": 60, \"command\": \"cite\"}, {\"key\": \"yan2021pfn\", \"file\": \"appendix_related_work.tex\", \"line\": 60, \"command\": \"cite\"}, {\"key\": \"zaratiana2024enrico\", \"file\": \"appendix_related_work.tex\", \"line\": 62, \"command\": \"cite\"}, {\"key\": \"khorshidi2025odke\", \"file\": \"appendix_related_work.tex\", \"line\": 72, \"command\": \"cite\"}, {\"key\": \"spires_2024\", \"file\": \"appendix_related_work.tex\", \"line\": 73, \"command\": \"cite\"}, {\"key\": \"ontologx_2025\", \"file\": \"appendix_related_work.tex\", \"line\": 74, \"command\": \"cite\"}, {\"key\": \"upadhyay2023openie\", \"file\": \"appendix_related_work.tex\", \"line\": 75, \"command\": \"citet\"}, {\"key\": \"regino2025kgcurator\", \"file\": \"appendix_related_work.tex\", \"line\": 76, \"command\": \"citet\"}, {\"key\": \"olasunkanmi2025relate\", \"file\": \"appendix_related_work.tex\", \"line\": 77, \"command\": \"cite\"}, {\"key\": \"zhou2026ontologytools\", \"file\": \"appendix_related_work.tex\", \"line\": 80, \"command\": \"citet\"}, {\"key\": \"ekaw2024_ontology_beam\", \"file\": \"appendix_related_work.tex\", \"line\": 82, \"command\": \"citet\"}, {\"key\": \"tam2024letmespeak\", \"file\": \"appendix_related_work.tex\", \"line\": 92, \"command\": \"citet\"}, {\"key\": \"banerjee2025crane\", \"file\": \"appendix_related_work.tex\", \"line\": 93, \"command\": \"cite\"}, {\"key\": \"schall2025hiddencost\", \"file\": \"appendix_related_work.tex\", \"line\": 94, \"command\": \"citet\"}, {\"key\": \"zhou2026snowballing\", \"file\": \"appendix_related_work.tex\", \"line\": 95, \"command\": \"citet\"}, {\"key\": \"tam2024letmespeak\", \"file\": \"appendix_related_work.tex\", \"line\": 97, \"command\": \"citet\"}, {\"key\": \"zhong2021frustratingly\", \"file\": \"appendix_discussion.tex\", \"line\": 125, \"command\": \"citep\"}, {\"key\": \"ye2022packed\", \"file\": \"appendix_discussion.tex\", \"line\": 125, \"command\": \"citep\"}, {\"key\": \"li2021document\", \"file\": \"appendix_discussion.tex\", \"line\": 409, \"command\": \"cite\"}], \"online_verification\": [{\"key\": \"synchromesh_iclr2022\", \"title\": \"Synchromesh: Reliable Code Generation from Pre-trained Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Synchromesh: Reliable code generation from pre-trained language models\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"mgd_neurips2023\", \"title\": \"Monitor-Guided Decoding of Code LMs with Static Analysis of Repository Context\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Monitor-Guided Decoding of Code LMs with Static Analysis of Repository Context\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"pldi2025_type_constrained_codegen\", \"title\": \"Type-Constrained Code Generation with Language Models\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Type-Constrained Code Generation with Language Models\", \"matched_year\": \"2025\", \"mismatch_fields\": [\"first_author: bib=m\\\\\\\"undler vs api=mündler\"], \"note\": \"\"}, {\"key\": \"roth_yih_2004\", \"title\": \"A Linear Programming Formulation for Global Inference in Natural Language Tasks\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A Linear Programming Formulation for Global Inference in Natural Language Tasks\", \"matched_year\": \"2004\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"adakgc_emnlp2023\", \"title\": \"Schema-adaptable Knowledge Graph Construction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Schema-adaptable Knowledge Graph Construction\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"knowcoder_acl2024\", \"title\": \"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"spires_2024\", \"title\": \"Structured Prompt Interrogation and Recursive Extraction of Semantics (SPIRES): A Method for Populating Knowledge Bases Using Zero-shot Learning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Structured Prompt Interrogation and Recursive Extraction of Semantics (SPIRES): a method for populating knowledge bases using zero-shot learning\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"ontologx_2025\", \"title\": \"OntoLogX: Ontology-Guided Knowledge Graph Extraction from Cybersecurity Logs with Large Language Models\", \"status\": \"verified\", \"confidence\": 0.99, \"matched_title\": \"OntoLogX: Ontology‐Guided Knowledge Graph Extraction From Cybersecurity Logs With Large Language Models\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"ekaw2024_ontology_beam\", \"title\": \"Ontology-Constrained Generation of Domain-Specific Clinical Summaries\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Ontology-Constrained Generation of Domain-Specific Clinical Summaries\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"scholak2021picard\", \"title\": \"PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"olasunkanmi2025relate\", \"title\": \"RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zhou2026ontologytools\", \"title\": \"Ontology-to-tools compilation for executable semantic constraint enforcement in LLM agents\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Ontology-to-tools compilation for executable semantic constraint enforcement in LLM agents\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"eberts2020spert\", \"title\": \"Span-based Joint Entity and Relation Extraction with Transformer Pre-training\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Span-Based Joint Entity and Relation Extraction with Transformer Pre-Training\", \"matched_year\": \"2020\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"yan2021pfn\", \"title\": \"A Partition Filter Network for Joint Entity and Relation Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A Partition Filter Network for Joint Entity and Relation Extraction\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zhong2021frustratingly\", \"title\": \"A Frustratingly Easy Approach for Entity and Relation Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A Frustratingly Easy Approach for Entity and Relation Extraction\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"ye2022packed\", \"title\": \"Packed Levitated Marker for Entity and Relation Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Packed Levitated Marker for Entity and Relation Extraction\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zhou2026snowballing\", \"title\": \"From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in LLM Reflection\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in LLM Reflection\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"dong2025xgrammar\", \"title\": \"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"willard2023outlines\", \"title\": \"Efficient Guided Generation for Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Efficient Guided Generation for Large Language Models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"beurer-kellner2023lmql\", \"title\": \"Prompting Is Programming: A Query Language for Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Prompting Is Programming: A Query Language for Large Language Models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"beurer-kellner2024domino\", \"title\": \"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"park2024grammar\", \"title\": \"Grammar-Aligned Decoding\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Grammar-Aligned Decoding\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=park vs api=berg-kirkpatrick\"], \"note\": \"\"}, {\"key\": \"decao2021genre\", \"title\": \"Autoregressive Entity Retrieval\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Autoregressive Entity Retrieval\", \"matched_year\": \"2020\", \"mismatch_fields\": [\"first_author: bib=de cao vs api=cao\"], \"note\": \"\"}, {\"key\": \"josifoski2022genie\", \"title\": \"GenIE: Generative Information Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"GenIE: Generative Information Extraction\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"geng2023gcd\", \"title\": \"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"lu2021neurologic\", \"title\": \"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"lu2022uie\", \"title\": \"Unified Structure Generation for Universal Information Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Unified Structure Generation for Universal Information Extraction\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"sainz2024gollie\", \"title\": \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling\", \"status\": \"verified\", \"confidence\": 0.94, \"matched_title\": \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"li2023codeie\", \"title\": \"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"qi2024adelie\", \"title\": \"ADELIE: Aligning Large Language Models on Information Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ADELIE: Aligning Large Language Models on Information Extraction\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zaratiana2024enrico\", \"title\": \"EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"khorshidi2025odke\", \"title\": \"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"upadhyay2023openie\", \"title\": \"Open Information Extraction with Entity Focused Constraints\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Open Information Extraction with Entity Focused Constraints\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"regino2025kgcurator\", \"title\": \"Can LLMs be Knowledge Graph Curators for Validating Triple Insertions?\", \"status\": \"not_found\", \"confidence\": 0.478, \"matched_title\": \"Knowledge graph validation by integrating LLMs and human-in-the-loop\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.48 below threshold 0.82\"}, {\"key\": \"tam2024letmespeak\", \"title\": \"Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"banerjee2025crane\", \"title\": \"CRANE: Reasoning with Constrained LLM Generation\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"CRANE: Reasoning with constrained LLM generation\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"schall2025hiddencost\", \"title\": \"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"cabot2021rebel\", \"title\": \"REBEL: Relation Extraction By End-to-end Language Generation\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"REBEL: Relation Extraction By End-to-end Language generation\", \"matched_year\": \"2021\", \"mismatch_fields\": [\"first_author: bib=huguet cabot vs api=cabot\"], \"note\": \"\"}, {\"key\": \"ugare2024syncode\", \"title\": \"SynCode: LLM Generation with Grammar Augmentation\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"SynCode: LLM Generation with Grammar Augmentation\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"ugare2025itergen\", \"title\": \"IterGen: Iterative Semantic-aware Structured LLM Generation with Backtracking\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"IterGen: Iterative Semantic-aware Structured LLM Generation with Backtracking\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"boostcd2025\", \"title\": \"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\", \"matched_year\": \"2025\", \"mismatch_fields\": [\"first_author: bib=sakota vs api=šakota\"], \"note\": \"\"}, {\"key\": \"luan2018scierc\", \"title\": \"Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction\", \"matched_year\": \"2018\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"yao2019docred\", \"title\": \"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wei2023zeroshot\", \"title\": \"ChatIE: Zero-Shot Information Extraction via Chatting with ChatGPT\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"ChatIE: Zero-Shot Information Extraction via Chatting with ChatGPT\", \"matched_year\": \"2023\", \"mismatch_fields\": [\"first_author: bib=wei vs api=xiang\"], \"note\": \"\"}, {\"key\": \"qwen2025qwen3\", \"title\": \"Qwen3 Technical Report\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Qwen3 Technical Report\", \"matched_year\": \"2025\", \"mismatch_fields\": [\"first_author: bib=team vs api=yang\"], \"note\": \"\"}, {\"key\": \"zheng2024sglang\", \"title\": \"SGLang: Efficient Execution of Structured Language Model Programs\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"SGLang: Efficient Execution of Structured Language Model Programs\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=zheng vs api=barrett\"], \"note\": \"\"}, {\"key\": \"li2021document\", \"title\": \"Document-Level Event Argument Extraction by Conditional Generation\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Document-Level Event Argument Extraction by Conditional Generation\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"formattax2026\", \"title\": \"The Format Tax\", \"status\": \"not_found\", \"confidence\": 0.261, \"matched_title\": \"R: A Language and Environment for Statistical Computing\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.26 below threshold 0.82\"}, {\"key\": \"dccd2026\", \"title\": \"Draft-Conditioned Constrained Decoding for Structured Generation in LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Draft-Conditioned Constrained Decoding for Structured Generation in LLMs\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"guidex2025\", \"title\": \"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"jsonschemabench2025\", \"title\": \"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wang2023instructuie\", \"title\": \"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wang2022deepstruct\", \"title\": \"DeepStruct: Pretraining of Language Models for Structure Prediction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"DeepStruct: Pretraining of Language Models for Structure Prediction\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zhou2024universalner\", \"title\": \"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"lou2023usm\", \"title\": \"Universal Information Extraction as Unified Semantic Matching\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Universal Information Extraction as Unified Semantic Matching\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wadhwa2023revisiting\", \"title\": \"Revisiting Relation Extraction in the era of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Revisiting Relation Extraction in the era of Large Language Models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"chen2024agentre\", \"title\": \"AgentRE: An Agent-Based Framework for Navigating Complex Information Landscapes in Relation Extraction\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"AgentRE: An Agent-Based Framework for Navigating Complex Information Landscapes in Relation Extraction\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=chen vs api=shi\"], \"note\": \"\"}, {\"key\": \"fan2024fsn\", \"title\": \"FSN: Joint Entity and Relation Extraction Based on Filter Separator Network\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"FSN: Joint Entity and Relation Extraction Based on Filter Separator Network\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=fan vs api=dai\"], \"note\": \"\"}, {\"key\": \"fei2022lasuie\", \"title\": \"LasUIE: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"LasUIE: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}]}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "4fbdd071-57b7-4289-a2d5-3f478b807041",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "cea6acfc-7169-4cf7-b2db-7bab1b19e572",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 69_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 70 · 2026-05-20T19:48:07.447Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me read the reference verification output and continue reading the remaining pages.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cea6acfc-7169-4cf7-b2db-7bab1b19e572",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ689ikaEavVNEzXhZf",
+  "type": "assistant",
+  "uuid": "9fd4240d-fe2d-4bab-b697-4ebf8e81eb4a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X1adRzkQvp7AKLLqt8rJ2y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2313,
+      "cache_read_input_tokens": 37493,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2313,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 37493,
+          "cache_creation_input_tokens": 2313,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2313
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-20T19:48:08.952Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01X1wVimfgMJBdRfx6wNEDxA`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie--claude-sessions-review-reviewer-2-cbe93d98/70f718cb-864e-4efb-8277-0f3c245777c0/tool-results/toolu_01FvkajVCdW6wv9sCjL4rnV2.txt",
+  "offset": 0,
+  "limit": 200
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9fd4240d-fe2d-4bab-b697-4ebf8e81eb4a",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ689ikaEavVNEzXhZf",
+  "type": "assistant",
+  "uuid": "a2ff56ec-75e6-422e-b679-aaa74d345b4e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X1adRzkQvp7AKLLqt8rJ2y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2313,
+      "cache_read_input_tokens": 37493,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2313,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 37493,
+          "cache_creation_input_tokens": 2313,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2313
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-20T19:48:09.233Z_
+
+<details><summary>↩ Tool result · `toolu_01X1wVimfgMJBdRfx6wNEDxA`</summary>
+
+```text
+0	{"result":"{\"success\": true, \"data\": {\"summary\": {\"total_bib_entries\": 59, \"total_citations\": 96, \"unique_cited_keys\": 57, \"orphan_bib\": 2, \"missing_bib\": 0, \"duplicate_keys\": 0, \"online_verified\": 47, \"online_not_found\": 2, \"online_mismatch\": 10}, \"cross_check\": {\"orphan_bib\": [\"chen2024agentre\", \"fan2024fsn\"], \"missing_bib\": [], \"orphan_count\": 2, \"missing_count\": 0}, \"bib_entries\": [{\"key\": \"synchromesh_iclr2022\", \"type\": \"inproceedings\", \"title\": \"Synchromesh: Reliable Code Generation from Pre-trained Language Models\", \"authors\": \"Poesia, Gabriel and Polozov, Oleksandr and Le, Vu and Tiwari, Ashish and Soares,...\", \"year\": \"2022\", \"venue\": \"International Conference on Learning Representations\"}, {\"key\": \"mgd_neurips2023\", \"type\": \"inproceedings\", \"title\": \"Monitor-Guided Decoding of Code LMs with Static Analysis of Repository Context\", \"authors\": \"Agrawal, Lakshya A. and Kanade, Aditya and Goyal, Navin and Lahiri, Shuvendu K. ...\", \"year\": \"2023\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"pldi2025_type_constrained_codegen\", \"type\": \"article\", \"title\": \"Type-Constrained Code Generation with Language Models\", \"authors\": \"M\\\\\\\"undler, Niels and He, Jingxuan and Wang, Hao and Sen, Koushik and Song, Dawn ...\", \"year\": \"2025\", \"venue\": \"Proceedings of the ACM on Programming Languages\"}, {\"key\": \"roth_yih_2004\", \"type\": \"inproceedings\", \"title\": \"A Linear Programming Formulation for Global Inference in Natural Language Tasks\", \"authors\": \"Roth, Dan and Yih, Wen-tau\", \"year\": \"2004\", \"venue\": \"Proceedings of the Eighth Conference on Computational Natural Language Learning ...\"}, {\"key\": \"adakgc_emnlp2023\", \"type\": \"inproceedings\", \"title\": \"Schema-adaptable Knowledge Graph Construction\", \"authors\": \"Ye, Hongbin and Gui, Honghao and Xu, Xin and Chen, Xi and Chen, Huajun and Zhang...\", \"year\": \"2023\", \"venue\": \"Findings of the Association for Computational Linguistics: EMNLP 2023\"}, {\"key\": \"knowcoder_acl2024\", \"type\": \"inproceedings\", \"title\": \"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\", \"authors\": \"Li, Zixuan and Zeng, Yutao and Zuo, Yuxin and Ren, Weicheng and Liu, Wenxuan and...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 62nd Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"spires_2024\", \"type\": \"article\", \"title\": \"Structured Prompt Interrogation and Recursive Extraction of Semantics (SPIRES): A Method for Populating Knowledge Bases ...\", \"authors\": \"Caufield, J. Harry and Hegde, Harshad and Emonet, Vincent and Harris, Nomi L. an...\", \"year\": \"2024\", \"venue\": \"Bioinformatics\"}, {\"key\": \"ontologx_2025\", \"type\": \"misc\", \"title\": \"OntoLogX: Ontology-Guided Knowledge Graph Extraction from Cybersecurity Logs with Large Language Models\", \"authors\": \"Cotti, Luca and Drago, Idilio and Rula, Anisa and Bianchini, Devis and Cerutti, ...\", \"year\": \"2025\", \"venue\": \"\"}, {\"key\": \"ekaw2024_ontology_beam\", \"type\": \"inproceedings\", \"title\": \"Ontology-Constrained Generation of Domain-Specific Clinical Summaries\", \"authors\": \"Mehenni, Gaya and Zouaq, Amal\", \"year\": \"2024\", \"venue\": \"Knowledge Engineering and Knowledge Management (EKAW 2024)\"}, {\"key\": \"scholak2021picard\", \"type\": \"inproceedings\", \"title\": \"PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models\", \"authors\": \"Scholak, Torsten and Schucher, Nathan and Bahdanau, Dzmitry\", \"year\": \"2021\", \"venue\": \"Proceedings of the 2021 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"olasunkanmi2025relate\", \"type\": \"article\", \"title\": \"RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints\", \"authors\": \"Olasunkanmi, Olawumi and Satusky, Mathew and Yi, Hong and Bizon, Chris and Lee, ...\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2509.19057\"}, {\"key\": \"zhou2026ontologytools\", \"type\": \"article\", \"title\": \"Ontology-to-tools compilation for executable semantic constraint enforcement in LLM agents\", \"authors\": \"Zhou, Xiaochi and Bulter, Patrick and Yang, Changxuan and Rihm, Simon D. and Ang...\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2602.03439\"}, {\"key\": \"eberts2020spert\", \"type\": \"inproceedings\", \"title\": \"Span-based Joint Entity and Relation Extraction with Transformer Pre-training\", \"authors\": \"Eberts, Markus and Ulges, Adrian\", \"year\": \"2020\", \"venue\": \"Proceedings of the 24th European Conference on Artificial Intelligence (ECAI 202...\"}, {\"key\": \"yan2021pfn\", \"type\": \"inproceedings\", \"title\": \"A Partition Filter Network for Joint Entity and Relation Extraction\", \"authors\": \"Yan, Zhiheng and Zhang, Chong and Fu, Jinlan and Zhang, Qi and Wei, Zhongyu\", \"year\": \"2021\", \"venue\": \"Proceedings of the 2021 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"zhong2021frustratingly\", \"type\": \"inproceedings\", \"title\": \"A Frustratingly Easy Approach for Entity and Relation Extraction\", \"authors\": \"Zhong, Zexuan and Chen, Danqi\", \"year\": \"2021\", \"venue\": \"Proceedings of the 2021 Conference of the North American Chapter of the Associat...\"}, {\"key\": \"ye2022packed\", \"type\": \"inproceedings\", \"title\": \"Packed Levitated Marker for Entity and Relation Extraction\", \"authors\": \"Ye, Deming and Lin, Yankai and Li, Peng and Sun, Maosong\", \"year\": \"2022\", \"venue\": \"Proceedings of the 60th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"zhou2026snowballing\", \"type\": \"article\", \"title\": \"From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in LLM Reflection\", \"authors\": \"Zhou, Hongxu\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2604.06066\"}, {\"key\": \"dong2025xgrammar\", \"type\": \"inproceedings\", \"title\": \"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\", \"authors\": \"Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi a...\", \"year\": \"2025\", \"venue\": \"Proceedings of Machine Learning and Systems (MLSys)\"}, {\"key\": \"willard2023outlines\", \"type\": \"article\", \"title\": \"Efficient Guided Generation for Large Language Models\", \"authors\": \"Willard, Brandon T. and Louf, R\\\\'emi\", \"year\": \"2023\", \"venue\": \"arXiv preprint arXiv:2307.09702\"}, {\"key\": \"beurer-kellner2023lmql\", \"type\": \"inproceedings\", \"title\": \"Prompting Is Programming: A Query Language for Large Language Models\", \"authors\": \"Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin\", \"year\": \"2023\", \"venue\": \"Proceedings of the ACM SIGPLAN Conference on Programming Language Design and Imp...\"}, {\"key\": \"beurer-kellner2024domino\", \"type\": \"inproceedings\", \"title\": \"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\", \"authors\": \"Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin\", \"year\": \"2024\", \"venue\": \"Proceedings of the 41st International Conference on Machine Learning (ICML)\"}, {\"key\": \"park2024grammar\", \"type\": \"inproceedings\", \"title\": \"Grammar-Aligned Decoding\", \"authors\": \"Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadi...\", \"year\": \"2024\", \"venue\": \"Advances in Neural Information Processing Systems (NeurIPS)\"}, {\"key\": \"decao2021genre\", \"type\": \"inproceedings\", \"title\": \"Autoregressive Entity Retrieval\", \"authors\": \"De Cao, Nicola and Izacard, Gautier and Riedel, Sebastian and Petroni, Fabio\", \"year\": \"2021\", \"venue\": \"International Conference on Learning Representations (ICLR)\"}, {\"key\": \"josifoski2022genie\", \"type\": \"inproceedings\", \"title\": \"GenIE: Generative Information Extraction\", \"authors\": \"Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and ...\", \"year\": \"2022\", \"venue\": \"Proceedings of the 2022 Conference of the North American Chapter of the Associat...\"}, {\"key\": \"geng2023gcd\", \"type\": \"inproceedings\", \"title\": \"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\", \"authors\": \"Geng, Saibo and Josifoski, Martin and Peyrard, Maxime and West, Robert\", \"year\": \"2023\", \"venue\": \"Proceedings of the 2023 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"lu2021neurologic\", \"type\": \"inproceedings\", \"title\": \"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\", \"authors\": \"Lu, Ximing and West, Peter and Zellers, Rowan and Le Bras, Ronan and Bhagavatula...\", \"year\": \"2021\", \"venue\": \"Proceedings of the 2021 Conference of the North American Chapter of the Associat...\"}, {\"key\": \"lu2022uie\", \"type\": \"inproceedings\", \"title\": \"Unified Structure Generation for Universal Information Extraction\", \"authors\": \"Lu, Yaojie and Liu, Qing and Dai, Dai and Xiao, Xinyan and Lin, Hongyu and Han, ...\", \"year\": \"2022\", \"venue\": \"Proceedings of the 60th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"sainz2024gollie\", \"type\": \"inproceedings\", \"title\": \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling\", \"authors\": \"Sainz, Oscar and Garc\\\\'\\\\ia-Ferrero, Iker and Agerri, Rodrigo and Lopez de Lacall...\", \"year\": \"2024\", \"venue\": \"The Twelfth International Conference on Learning Representations\"}, {\"key\": \"li2023codeie\", \"type\": \"inproceedings\", \"title\": \"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\", \"authors\": \"Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Hu...\", \"year\": \"2023\", \"venue\": \"Proceedings of the 61st Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"qi2024adelie\", \"type\": \"inproceedings\", \"title\": \"ADELIE: Aligning Large Language Models on Information Extraction\", \"authors\": \"Qi, Yunjia and Peng, Hao and Wang, Xiaozhi and Xu, Bin and Hou, Lei and Li, Juan...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 2024 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"zaratiana2024enrico\", \"type\": \"article\", \"title\": \"EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\", \"authors\": \"Zaratiana, Urchade and Tomeh, Nadi and Dauxais, Yann and Holat, Pierre and Charn...\", \"year\": \"2024\", \"venue\": \"arXiv preprint arXiv:2404.12493\"}, {\"key\": \"khorshidi2025odke\", \"type\": \"article\", \"title\": \"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\", \"authors\": \"Khorshidi, Samira and Nikfarjam, Azadeh and Shankar, Suprita and Sang, Yisi and ...\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2509.04696\"}, {\"key\": \"upadhyay2023openie\", \"type\": \"inproceedings\", \"title\": \"Open Information Extraction with Entity Focused Constraints\", \"authors\": \"Upadhyay, Prajna and Balalau, Oana and Manolescu, Ioana\", \"year\": \"2023\", \"venue\": \"Findings of the Association for Computational Linguistics: EACL 2023\"}, {\"key\": \"regino2025kgcurator\", \"type\": \"inproceedings\", \"title\": \"Can LLMs be Knowledge Graph Curators for Validating Triple Insertions?\", \"authors\": \"Regino, Andr\\\\'e Gomes and dos Reis, Julio Cesar\", \"year\": \"2025\", \"venue\": \"Proceedings of the Workshop on Generative AI and Knowledge Graphs (GenAIK) at CO...\"}, {\"key\": \"tam2024letmespeak\", \"type\": \"inproceedings\", \"title\": \"Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models\", \"authors\": \"Tam, Zhi Rui and Wu, Cheng-Kuang and Tsai, Yi-Lin and Lin, Chieh-Yen and Lee, Hu...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 2024 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"banerjee2025crane\", \"type\": \"inproceedings\", \"title\": \"CRANE: Reasoning with Constrained LLM Generation\", \"authors\": \"Banerjee, Debangshu and Suresh, Tarun and Ugare, Shubham and Misailovic, Sasa an...\", \"year\": \"2025\", \"venue\": \"Proceedings of the 42nd International Conference on Machine Learning\"}, {\"key\": \"schall2025hiddencost\", \"type\": \"inproceedings\", \"title\": \"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\", \"authors\": \"Schall, Maximilian and de Melo, Gerard\", \"year\": \"2025\", \"venue\": \"Proceedings of the 15th International Conference on Recent Advances in Natural L...\"}, {\"key\": \"cabot2021rebel\", \"type\": \"inproceedings\", \"title\": \"REBEL: Relation Extraction By End-to-end Language Generation\", \"authors\": \"Huguet Cabot, Pere-Llu\\\\'\\\\is and Navigli, Roberto\", \"year\": \"2021\", \"venue\": \"Findings of the Association for Computational Linguistics: EMNLP 2021\"}, {\"key\": \"ugare2024syncode\", \"type\": \"inproceedings\", \"title\": \"SynCode: LLM Generation with Grammar Augmentation\", \"authors\": \"Ugare, Shubham and Suresh, Tarun and Kang, Hangoo and Misailovic, Sasa and Singh...\", \"year\": \"2024\", \"venue\": \"Proceedings of the 41st International Conference on Machine Learning (ICML)\"}, {\"key\": \"ugare2025itergen\", \"type\": \"inproceedings\", \"title\": \"IterGen: Iterative Semantic-aware Structured LLM Generation with Backtracking\", \"authors\": \"Ugare, Shubham and Suresh, Tarun and Banerjee, Debangshu and Misailovic, Sasa an...\", \"year\": \"2025\", \"venue\": \"The Thirteenth International Conference on Learning Representations\"}, {\"key\": \"boostcd2025\", \"type\": \"inproceedings\", \"title\": \"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\", \"authors\": \"Sakota, Marija and Geng, Saibo and Josifoski, Martin and West, Robert\", \"year\": \"2025\", \"venue\": \"Proceedings of the 2025 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"luan2018scierc\", \"type\": \"inproceedings\", \"title\": \"Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction\", \"authors\": \"Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh\", \"year\": \"2018\", \"venue\": \"Proceedings of the 2018 Conference on Empirical Methods in Natural Language Proc...\"}, {\"key\": \"yao2019docred\", \"type\": \"inproceedings\", \"title\": \"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\", \"authors\": \"Yao, Yuan and Ye, Deming and Li, Peng and Han, Xu and Lin, Yankai and Liu, Zheng...\", \"year\": \"2019\", \"venue\": \"Proceedings of the 57th Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"wei2023zeroshot\", \"type\": \"article\", \"title\": \"ChatIE: Zero-Shot Information Extraction via Chatting with ChatGPT\", \"authors\": \"Wei, Xiang and Cui, Xingyu and Cheng, Ning and Wang, Xiaobin and Zhang, Xin and ...\", \"year\": \"2023\", \"venue\": \"arXiv preprint arXiv:2302.10205\"}, {\"key\": \"qwen2025qwen3\", \"type\": \"article\", \"title\": \"Qwen3 Technical Report\", \"authors\": \"Qwen Team\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2505.09388\"}, {\"key\": \"zheng2024sglang\", \"type\": \"inproceedings\", \"title\": \"SGLang: Efficient Execution of Structured Language Model Programs\", \"authors\": \"Zheng, Lianmin and Yin, Liangsheng and Xie, Zhiqiang and Sun, Chuyue and Huang, ...\", \"year\": \"2024\", \"venue\": \"Advances in Neural Information Processing Systems\"}, {\"key\": \"li2021document\", \"type\": \"inproceedings\", \"title\": \"Document-Level Event Argument Extraction by Conditional Generation\", \"authors\": \"Li, Sha and Ji, Heng and Han, Jiawei\", \"year\": \"2021\", \"venue\": \"Proceedings of the 2021 Conference of the North American Chapter of the Associat...\"}, {\"key\": \"formattax2026\", \"type\": \"article\", \"title\": \"The Format Tax\", \"authors\": \"Ivan Yee Lee and Loris D'Antoni and Taylor Berg-Kirkpatrick\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2604.03616\"}, {\"key\": \"dccd2026\", \"type\": \"article\", \"title\": \"Draft-Conditioned Constrained Decoding for Structured Generation in LLMs\", \"authors\": \"Avinash Reddy and Thayne T. Walker and James S. Ide and Amrit Singh Bedi\", \"year\": \"2026\", \"venue\": \"arXiv preprint arXiv:2603.03305\"}, {\"key\": \"guidex2025\", \"type\": \"inproceedings\", \"title\": \"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\", \"authors\": \"Neil De La Fuente and Oscar Sainz and Iker Garc\\\\'\\\\ia-Ferrero and Eneko Agirre\", \"year\": \"2025\", \"venue\": \"Findings of the Association for Computational Linguistics: ACL 2025\"}, {\"key\": \"jsonschemabench2025\", \"type\": \"article\", \"title\": \"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\", \"authors\": \"Saibo Geng and Hudson Cooper and Micha\\\\l Moskal and Samuel Jenkins and Julian Be...\", \"year\": \"2025\", \"venue\": \"arXiv preprint arXiv:2501.10868\"}, {\"key\": \"wang2023instructuie\", \"type\": \"article\", \"title\": \"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\", \"authors\": \"Wang, Xiao and Zhou, Weikang and Zu, Can and Xia, Han and Chen, Tianze and Zhang...\", \"year\": \"2023\", \"venue\": \"arXiv preprint arXiv:2304.08085\"}, {\"key\": \"wang2022deepstruct\", \"type\": \"inproceedings\", \"title\": \"DeepStruct: Pretraining of Language Models for Structure Prediction\", \"authors\": \"Wang, Chenguang and Liu, Xiao and Chen, Zui and Hong, Haoyun and Tang, Jie and S...\", \"year\": \"2022\", \"venue\": \"Findings of the Association for Computational Linguistics: ACL 2022\"}, {\"key\": \"zhou2024universalner\", \"type\": \"inproceedings\", \"title\": \"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\", \"authors\": \"Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung\", \"year\": \"2024\", \"venue\": \"The Twelfth International Conference on Learning Representations\"}, {\"key\": \"lou2023usm\", \"type\": \"inproceedings\", \"title\": \"Universal Information Extraction as Unified Semantic Matching\", \"authors\": \"Lou, Jie and Lu, Yaojie and Dai, Dai and Jia, Wei and Lin, Hongyu and Han, Xianp...\", \"year\": \"2023\", \"venue\": \"Proceedings of the AAAI Conference on Artificial Intelligence\"}, {\"key\": \"wadhwa2023revisiting\", \"type\": \"inproceedings\", \"title\": \"Revisiting Relation Extraction in the era of Large Language Models\", \"authors\": \"Wadhwa, Somin and Amir, Silvio and Wallace, Byron\", \"year\": \"2023\", \"venue\": \"Proceedings of the 61st Annual Meeting of the Association for Computational Ling...\"}, {\"key\": \"chen2024agentre\", \"type\": \"inproceedings\", \"title\": \"AgentRE: An Agent-Based Framework for Navigating Complex Information Landscapes in Relation Extraction\", \"authors\": \"Chen, Yuchen and Shi, Guanzhi and Sun, Qingping\", \"year\": \"2024\", \"venue\": \"Proceedings of the 33rd ACM International Conference on Information and Knowledg...\"}, {\"key\": \"fan2024fsn\", \"type\": \"article\", \"title\": \"FSN: Joint Entity and Relation Extraction Based on Filter Separator Network\", \"authors\": \"Fan, Yongfei and Yan, Lianshan and Yu, Shaobin and Li, Yijia\", \"year\": \"2024\", \"venue\": \"Entropy\"}, {\"key\": \"fei2022lasuie\", \"type\": \"inproceedings\", \"title\": \"LasUIE: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model\", \"authors\": \"Fei, Hao and Wu, Shengqiong and Li, Jingye and Li, Bobo and Li, Fei and Qin, Lib...\", \"year\": \"2022\", \"venue\": \"Advances in Neural Information Processing Systems\"}], \"tex_citations\": [{\"key\": \"li2023codeie\", \"file\": \"section1_introduction_draft.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"sainz2024gollie\", \"file\": \"section1_introduction_draft.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"wei2023zeroshot\", \"file\": \"section1_introduction_draft.tex\", \"line\": 6, \"command\": \"cite\"}, {\"key\": \"luan2018scierc\", \"file\": \"section1_introduction_draft.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"yao2019docred\", \"file\": \"section1_introduction_draft.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"dong2025xgrammar\", \"file\": \"section1_introduction_draft.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"willard2023outlines\", \"file\": \"section1_introduction_draft.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"beurer-kellner2023lmql\", \"file\": \"section1_introduction_draft.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"sainz2024gollie\", \"file\": \"section1_introduction_draft.tex\", \"line\": 16, \"command\": \"cite\"}, {\"key\": \"lu2022uie\", \"file\": \"section1_introduction_draft.tex\", \"line\": 16, \"command\": \"cite\"}, {\"key\": \"dong2025xgrammar\", \"file\": \"section2_background.tex\", \"line\": 18, \"command\": \"citep\"}, {\"key\": \"willard2023outlines\", \"file\": \"section2_background.tex\", \"line\": 18, \"command\": \"citep\"}, {\"key\": \"zheng2024sglang\", \"file\": \"section2_background.tex\", \"line\": 18, \"command\": \"citep\"}, {\"key\": \"dong2025xgrammar\", \"file\": \"section3_method_draft.tex\", \"line\": 68, \"command\": \"cite\"}, {\"key\": \"luan2018scierc\", \"file\": \"section3_violation_landscape.tex\", \"line\": 12, \"command\": \"cite\"}, {\"key\": \"yao2019docred\", \"file\": \"section3_violation_landscape.tex\", \"line\": 12, \"command\": \"cite\"}, {\"key\": \"qwen2025qwen3\", \"file\": \"section3_violation_landscape.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"geng2023gcd\", \"file\": \"section5_scierc_draft.tex\", \"line\": 64, \"command\": \"cite\"}, {\"key\": \"geng2023gcd\", \"file\": \"section5_scierc_draft.tex\", \"line\": 85, \"command\": \"cite\"}, {\"key\": \"li2021document\", \"file\": \"section5_wikievents_draft.tex\", \"line\": 10, \"command\": \"cite\"}, {\"key\": \"li2021document\", \"file\": \"section5_wikievents_draft.tex\", \"line\": 47, \"command\": \"cite\"}, {\"key\": \"li2021document\", \"file\": \"section5_wikievents_draft.tex\", \"line\": 65, \"command\": \"cite\"}, {\"key\": \"dong2025xgrammar\", \"file\": \"section6_related_work.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"willard2023outlines\", \"file\": \"section6_related_work.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"ugare2024syncode\", \"file\": \"section6_related_work.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"beurer-kellner2023lmql\", \"file\": \"section6_related_work.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"park2024grammar\", \"file\": \"section6_related_work.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"jsonschemabench2025\", \"file\": \"section6_related_work.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"geng2023gcd\", \"file\": \"section6_related_work.tex\", \"line\": 7, \"command\": \"cite\"}, {\"key\": \"scholak2021picard\", \"file\": \"section6_related_work.tex\", \"line\": 8, \"command\": \"cite\"}, {\"key\": \"pldi2025_type_constrained_codegen\", \"file\": \"section6_related_work.tex\", \"line\": 8, \"command\": \"citet\"}, {\"key\": \"sainz2024gollie\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"knowcoder_acl2024\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"guidex2025\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"josifoski2022genie\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"cabot2021rebel\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"wang2023instructuie\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"fei2022lasuie\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"wang2022deepstruct\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"lu2022uie\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"lou2023usm\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"zhou2024universalner\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"wadhwa2023revisiting\", \"file\": \"section6_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"roth_yih_2004\", \"file\": \"section6_related_work.tex\", \"line\": 14, \"command\": \"citet\"}, {\"key\": \"khorshidi2025odke\", \"file\": \"section6_related_work.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"spires_2024\", \"file\": \"section6_related_work.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"ontologx_2025\", \"file\": \"section6_related_work.tex\", \"line\": 14, \"command\": \"cite\"}, {\"key\": \"zaratiana2024enrico\", \"file\": \"section6_related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"ugare2025itergen\", \"file\": \"section6_related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"dccd2026\", \"file\": \"section6_related_work.tex\", \"line\": 15, \"command\": \"cite\"}, {\"key\": \"boostcd2025\", \"file\": \"section6_related_work.tex\", \"line\": 16, \"command\": \"cite\"}, {\"key\": \"geng2023gcd\", \"file\": \"section6_related_work.tex\", \"line\": 16, \"command\": \"cite\"}, {\"key\": \"banerjee2025crane\", \"file\": \"section6_related_work.tex\", \"line\": 18, \"command\": \"cite\"}, {\"key\": \"schall2025hiddencost\", \"file\": \"section6_related_work.tex\", \"line\": 18, \"command\": \"cite\"}, {\"key\": \"formattax2026\", \"file\": \"section6_related_work.tex\", \"line\": 18, \"command\": \"cite\"}, {\"key\": \"tam2024letmespeak\", \"file\": \"section6_related_work.tex\", \"line\": 18, \"command\": \"cite\"}, {\"key\": \"li2021document\", \"file\": \"checklist.tex\", \"line\": 27, \"command\": \"citet\"}, {\"key\": \"dong2025xgrammar\", \"file\": \"appendix_related_work.tex\", \"line\": 9, \"command\": \"cite\"}, {\"key\": \"willard2023outlines\", \"file\": \"appendix_related_work.tex\", \"line\": 10, \"command\": \"cite\"}, {\"key\": \"beurer-kellner2023lmql\", \"file\": \"appendix_related_work.tex\", \"line\": 11, \"command\": \"cite\"}, {\"key\": \"beurer-kellner2024domino\", \"file\": \"appendix_related_work.tex\", \"line\": 13, \"command\": \"cite\"}, {\"key\": \"park2024grammar\", \"file\": \"appendix_related_work.tex\", \"line\": 13, \"command\": \"cite\"}, {\"key\": \"scholak2021picard\", \"file\": \"appendix_related_work.tex\", \"line\": 23, \"command\": \"cite\"}, {\"key\": \"synchromesh_iclr2022\", \"file\": \"appendix_related_work.tex\", \"line\": 26, \"command\": \"cite\"}, {\"key\": \"mgd_neurips2023\", \"file\": \"appendix_related_work.tex\", \"line\": 27, \"command\": \"cite\"}, {\"key\": \"pldi2025_type_constrained_codegen\", \"file\": \"appendix_related_work.tex\", \"line\": 28, \"command\": \"citet\"}, {\"key\": \"roth_yih_2004\", \"file\": \"appendix_related_work.tex\", \"line\": 40, \"command\": \"citet\"}, {\"key\": \"decao2021genre\", \"file\": \"appendix_related_work.tex\", \"line\": 41, \"command\": \"cite\"}, {\"key\": \"josifoski2022genie\", \"file\": \"appendix_related_work.tex\", \"line\": 42, \"command\": \"cite\"}, {\"key\": \"adakgc_emnlp2023\", \"file\": \"appendix_related_work.tex\", \"line\": 43, \"command\": \"cite\"}, {\"key\": \"geng2023gcd\", \"file\": \"appendix_related_work.tex\", \"line\": 44, \"command\": \"cite\"}, {\"key\": \"lu2021neurologic\", \"file\": \"appendix_related_work.tex\", \"line\": 45, \"command\": \"cite\"}, {\"key\": \"lu2022uie\", \"file\": \"appendix_related_work.tex\", \"line\": 55, \"command\": \"cite\"}, {\"key\": \"sainz2024gollie\", \"file\": \"appendix_related_work.tex\", \"line\": 56, \"command\": \"cite\"}, {\"key\": \"knowcoder_acl2024\", \"file\": \"appendix_related_work.tex\", \"line\": 57, \"command\": \"cite\"}, {\"key\": \"li2023codeie\", \"file\": \"appendix_related_work.tex\", \"line\": 58, \"command\": \"cite\"}, {\"key\": \"qi2024adelie\", \"file\": \"appendix_related_work.tex\", \"line\": 59, \"command\": \"cite\"}, {\"key\": \"eberts2020spert\", \"file\": \"appendix_related_work.tex\", \"line\": 60, \"command\": \"cite\"}, {\"key\": \"yan2021pfn\", \"file\": \"appendix_related_work.tex\", \"line\": 60, \"command\": \"cite\"}, {\"key\": \"zaratiana2024enrico\", \"file\": \"appendix_related_work.tex\", \"line\": 62, \"command\": \"cite\"}, {\"key\": \"khorshidi2025odke\", \"file\": \"appendix_related_work.tex\", \"line\": 72, \"command\": \"cite\"}, {\"key\": \"spires_2024\", \"file\": \"appendix_related_work.tex\", \"line\": 73, \"command\": \"cite\"}, {\"key\": \"ontologx_2025\", \"file\": \"appendix_related_work.tex\", \"line\": 74, \"command\": \"cite\"}, {\"key\": \"upadhyay2023openie\", \"file\": \"appendix_related_work.tex\", \"line\": 75, \"command\": \"citet\"}, {\"key\": \"regino2025kgcurator\", \"file\": \"appendix_related_work.tex\", \"line\": 76, \"command\": \"citet\"}, {\"key\": \"olasunkanmi2025relate\", \"file\": \"appendix_related_work.tex\", \"line\": 77, \"command\": \"cite\"}, {\"key\": \"zhou2026ontologytools\", \"file\": \"appendix_related_work.tex\", \"line\": 80, \"command\": \"citet\"}, {\"key\": \"ekaw2024_ontology_beam\", \"file\": \"appendix_related_work.tex\", \"line\": 82, \"command\": \"citet\"}, {\"key\": \"tam2024letmespeak\", \"file\": \"appendix_related_work.tex\", \"line\": 92, \"command\": \"citet\"}, {\"key\": \"banerjee2025crane\", \"file\": \"appendix_related_work.tex\", \"line\": 93, \"command\": \"cite\"}, {\"key\": \"schall2025hiddencost\", \"file\": \"appendix_related_work.tex\", \"line\": 94, \"command\": \"citet\"}, {\"key\": \"zhou2026snowballing\", \"file\": \"appendix_related_work.tex\", \"line\": 95, \"command\": \"citet\"}, {\"key\": \"tam2024letmespeak\", \"file\": \"appendix_related_work.tex\", \"line\": 97, \"command\": \"citet\"}, {\"key\": \"zhong2021frustratingly\", \"file\": \"appendix_discussion.tex\", \"line\": 125, \"command\": \"citep\"}, {\"key\": \"ye2022packed\", \"file\": \"appendix_discussion.tex\", \"line\": 125, \"command\": \"citep\"}, {\"key\": \"li2021document\", \"file\": \"appendix_discussion.tex\", \"line\": 409, \"command\": \"cite\"}], \"online_verification\": [{\"key\": \"synchromesh_iclr2022\", \"title\": \"Synchromesh: Reliable Code Generation from Pre-trained Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Synchromesh: Reliable code generation from pre-trained language models\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"mgd_neurips2023\", \"title\": \"Monitor-Guided Decoding of Code LMs with Static Analysis of Repository Context\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Monitor-Guided Decoding of Code LMs with Static Analysis of Repository Context\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"pldi2025_type_constrained_codegen\", \"title\": \"Type-Constrained Code Generation with Language Models\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Type-Constrained Code Generation with Language Models\", \"matched_year\": \"2025\", \"mismatch_fields\": [\"first_author: bib=m\\\\\\\"undler vs api=mündler\"], \"note\": \"\"}, {\"key\": \"roth_yih_2004\", \"title\": \"A Linear Programming Formulation for Global Inference in Natural Language Tasks\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A Linear Programming Formulation for Global Inference in Natural Language Tasks\", \"matched_year\": \"2004\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"adakgc_emnlp2023\", \"title\": \"Schema-adaptable Knowledge Graph Construction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Schema-adaptable Knowledge Graph Construction\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"knowcoder_acl2024\", \"title\": \"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"spires_2024\", \"title\": \"Structured Prompt Interrogation and Recursive Extraction of Semantics (SPIRES): A Method for Populating Knowledge Bases Using Zero-shot Learning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Structured Prompt Interrogation and Recursive Extraction of Semantics (SPIRES): a method for populating knowledge bases using zero-shot learning\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"ontologx_2025\", \"title\": \"OntoLogX: Ontology-Guided Knowledge Graph Extraction from Cybersecurity Logs with Large Language Models\", \"status\": \"verified\", \"confidence\": 0.99, \"matched_title\": \"OntoLogX: Ontology‐Guided Knowledge Graph Extraction From Cybersecurity Logs With Large Language Models\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"ekaw2024_ontology_beam\", \"title\": \"Ontology-Constrained Generation of Domain-Specific Clinical Summaries\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Ontology-Constrained Generation of Domain-Specific Clinical Summaries\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"scholak2021picard\", \"title\": \"PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"olasunkanmi2025relate\", \"title\": \"RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zhou2026ontologytools\", \"title\": \"Ontology-to-tools compilation for executable semantic constraint enforcement in LLM agents\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Ontology-to-tools compilation for executable semantic constraint enforcement in LLM agents\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"eberts2020spert\", \"title\": \"Span-based Joint Entity and Relation Extraction with Transformer Pre-training\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Span-Based Joint Entity and Relation Extraction with Transformer Pre-Training\", \"matched_year\": \"2020\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"yan2021pfn\", \"title\": \"A Partition Filter Network for Joint Entity and Relation Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A Partition Filter Network for Joint Entity and Relation Extraction\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zhong2021frustratingly\", \"title\": \"A Frustratingly Easy Approach for Entity and Relation Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"A Frustratingly Easy Approach for Entity and Relation Extraction\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"ye2022packed\", \"title\": \"Packed Levitated Marker for Entity and Relation Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Packed Levitated Marker for Entity and Relation Extraction\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zhou2026snowballing\", \"title\": \"From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in LLM Reflection\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in LLM Reflection\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"dong2025xgrammar\", \"title\": \"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"willard2023outlines\", \"title\": \"Efficient Guided Generation for Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Efficient Guided Generation for Large Language Models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"beurer-kellner2023lmql\", \"title\": \"Prompting Is Programming: A Query Language for Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Prompting Is Programming: A Query Language for Large Language Models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"beurer-kellner2024domino\", \"title\": \"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"park2024grammar\", \"title\": \"Grammar-Aligned Decoding\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Grammar-Aligned Decoding\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=park vs api=berg-kirkpatrick\"], \"note\": \"\"}, {\"key\": \"decao2021genre\", \"title\": \"Autoregressive Entity Retrieval\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Autoregressive Entity Retrieval\", \"matched_year\": \"2020\", \"mismatch_fields\": [\"first_author: bib=de cao vs api=cao\"], \"note\": \"\"}, {\"key\": \"josifoski2022genie\", \"title\": \"GenIE: Generative Information Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"GenIE: Generative Information Extraction\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"geng2023gcd\", \"title\": \"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"lu2021neurologic\", \"title\": \"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"lu2022uie\", \"title\": \"Unified Structure Generation for Universal Information Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Unified Structure Generation for Universal Information Extraction\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"sainz2024gollie\", \"title\": \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling\", \"status\": \"verified\", \"confidence\": 0.94, \"matched_title\": \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"li2023codeie\", \"title\": \"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"qi2024adelie\", \"title\": \"ADELIE: Aligning Large Language Models on Information Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ADELIE: Aligning Large Language Models on Information Extraction\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zaratiana2024enrico\", \"title\": \"EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"khorshidi2025odke\", \"title\": \"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"upadhyay2023openie\", \"title\": \"Open Information Extraction with Entity Focused Constraints\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Open Information Extraction with Entity Focused Constraints\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"regino2025kgcurator\", \"title\": \"Can LLMs be Knowledge Graph Curators for Validating Triple Insertions?\", \"status\": \"not_found\", \"confidence\": 0.478, \"matched_title\": \"Knowledge graph validation by integrating LLMs and human-in-the-loop\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.48 below threshold 0.82\"}, {\"key\": \"tam2024letmespeak\", \"title\": \"Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"banerjee2025crane\", \"title\": \"CRANE: Reasoning with Constrained LLM Generation\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"CRANE: Reasoning with constrained LLM generation\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"schall2025hiddencost\", \"title\": \"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"cabot2021rebel\", \"title\": \"REBEL: Relation Extraction By End-to-end Language Generation\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"REBEL: Relation Extraction By End-to-end Language generation\", \"matched_year\": \"2021\", \"mismatch_fields\": [\"first_author: bib=huguet cabot vs api=cabot\"], \"note\": \"\"}, {\"key\": \"ugare2024syncode\", \"title\": \"SynCode: LLM Generation with Grammar Augmentation\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"SynCode: LLM Generation with Grammar Augmentation\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"ugare2025itergen\", \"title\": \"IterGen: Iterative Semantic-aware Structured LLM Generation with Backtracking\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"IterGen: Iterative Semantic-aware Structured LLM Generation with Backtracking\", \"matched_year\": \"2024\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"boostcd2025\", \"title\": \"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\", \"matched_year\": \"2025\", \"mismatch_fields\": [\"first_author: bib=sakota vs api=šakota\"], \"note\": \"\"}, {\"key\": \"luan2018scierc\", \"title\": \"Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction\", \"matched_year\": \"2018\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"yao2019docred\", \"title\": \"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\", \"matched_year\": \"2019\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wei2023zeroshot\", \"title\": \"ChatIE: Zero-Shot Information Extraction via Chatting with ChatGPT\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"ChatIE: Zero-Shot Information Extraction via Chatting with ChatGPT\", \"matched_year\": \"2023\", \"mismatch_fields\": [\"first_author: bib=wei vs api=xiang\"], \"note\": \"\"}, {\"key\": \"qwen2025qwen3\", \"title\": \"Qwen3 Technical Report\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"Qwen3 Technical Report\", \"matched_year\": \"2025\", \"mismatch_fields\": [\"first_author: bib=team vs api=yang\"], \"note\": \"\"}, {\"key\": \"zheng2024sglang\", \"title\": \"SGLang: Efficient Execution of Structured Language Model Programs\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"SGLang: Efficient Execution of Structured Language Model Programs\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=zheng vs api=barrett\"], \"note\": \"\"}, {\"key\": \"li2021document\", \"title\": \"Document-Level Event Argument Extraction by Conditional Generation\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Document-Level Event Argument Extraction by Conditional Generation\", \"matched_year\": \"2021\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"formattax2026\", \"title\": \"The Format Tax\", \"status\": \"not_found\", \"confidence\": 0.261, \"matched_title\": \"R: A Language and Environment for Statistical Computing\", \"matched_year\": \"\", \"mismatch_fields\": [], \"note\": \"best match similarity 0.26 below threshold 0.82\"}, {\"key\": \"dccd2026\", \"title\": \"Draft-Conditioned Constrained Decoding for Structured Generation in LLMs\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Draft-Conditioned Constrained Decoding for Structured Generation in LLMs\", \"matched_year\": \"2026\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"guidex2025\", \"title\": \"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"jsonschemabench2025\", \"title\": \"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\", \"matched_year\": \"2025\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wang2023instructuie\", \"title\": \"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wang2022deepstruct\", \"title\": \"DeepStruct: Pretraining of Language Models for Structure Prediction\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"DeepStruct: Pretraining of Language Models for Structure Prediction\", \"matched_year\": \"2022\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"zhou2024universalner\", \"title\": \"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"lou2023usm\", \"title\": \"Universal Information Extraction as Unified Semantic Matching\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Universal Information Extraction as Unified Semantic Matching\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"wadhwa2023revisiting\", \"title\": \"Revisiting Relation Extraction in the era of Large Language Models\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"Revisiting Relation Extraction in the era of Large Language Models\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}, {\"key\": \"chen2024agentre\", \"title\": \"AgentRE: An Agent-Based Framework for Navigating Complex Information Landscapes in Relation Extraction\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"AgentRE: An Agent-Based Framework for Navigating Complex Information Landscapes in Relation Extraction\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=chen vs api=shi\"], \"note\": \"\"}, {\"key\": \"fan2024fsn\", \"title\": \"FSN: Joint Entity and Relation Extraction Based on Filter Separator Network\", \"status\": \"mismatch\", \"confidence\": 1.0, \"matched_title\": \"FSN: Joint Entity and Relation Extraction Based on Filter Separator Network\", \"matched_year\": \"2024\", \"mismatch_fields\": [\"first_author: bib=fan vs api=dai\"], \"note\": \"\"}, {\"key\": \"fei2022lasuie\", \"title\": \"LasUIE: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model\", \"status\": \"verified\", \"confidence\": 1.0, \"matched_title\": \"LasUIE: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model\", \"matched_year\": \"2023\", \"mismatch_fields\": [], \"note\": \"\"}]}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a2ff56ec-75e6-422e-b679-aaa74d345b4e",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "c4dc4f73-c226-4775-9d2d-b29801bb5f9e",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-6-projects-schema-semantic-constrained-ie--claude-sessions-review-reviewer-2-cbe93d98/70f718cb-864e-4efb-8277-0f3c245777c0/tool-results/toolu_01FvkajVCdW6wv9sCjL4rnV2.txt",
+      "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"summary\\\": {\\\"total_bib_entries\\\": 59, \\\"total_citations\\\": 96, \\\"unique_cited_keys\\\": 57, \\\"orphan_bib\\\": 2, \\\"missing_bib\\\": 0, \\\"duplicate_keys\\\": 0, \\\"online_verified\\\": 47, \\\"online_not_found\\\": 2, \\\"online_mismatch\\\": 10}, \\\"cross_check\\\": {\\\"orphan_bib\\\": [\\\"chen2024agentre\\\", \\\"fan2024fsn\\\"], \\\"missing_bib\\\": [], \\\"orphan_count\\\": 2, \\\"missing_count\\\": 0}, \\\"bib_entries\\\": [{\\\"key\\\": \\\"synchromesh_iclr2022\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Synchromesh: Reliable Code Generation from Pre-trained Language Models\\\", \\\"authors\\\": \\\"Poesia, Gabriel and Polozov, Oleksandr and Le, Vu and Tiwari, Ashish and Soares,...\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"mgd_neurips2023\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Monitor-Guided Decoding of Code LMs with Static Analysis of Repository Context\\\", \\\"authors\\\": \\\"Agrawal, Lakshya A. and Kanade, Aditya and Goyal, Navin and Lahiri, Shuvendu K. ...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}, {\\\"key\\\": \\\"pldi2025_type_constrained_codegen\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Type-Constrained Code Generation with Language Models\\\", \\\"authors\\\": \\\"M\\\\\\\\\\\\\\\"undler, Niels and He, Jingxuan and Wang, Hao and Sen, Koushik and Song, Dawn ...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of the ACM on Programming Languages\\\"}, {\\\"key\\\": \\\"roth_yih_2004\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"A Linear Programming Formulation for Global Inference in Natural Language Tasks\\\", \\\"authors\\\": \\\"Roth, Dan and Yih, Wen-tau\\\", \\\"year\\\": \\\"2004\\\", \\\"venue\\\": \\\"Proceedings of the Eighth Conference on Computational Natural Language Learning ...\\\"}, {\\\"key\\\": \\\"adakgc_emnlp2023\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Schema-adaptable Knowledge Graph Construction\\\", \\\"authors\\\": \\\"Ye, Hongbin and Gui, Honghao and Xu, Xin and Chen, Xi and Chen, Huajun and Zhang...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: EMNLP 2023\\\"}, {\\\"key\\\": \\\"knowcoder_acl2024\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\\\", \\\"authors\\\": \\\"Li, Zixuan and Zeng, Yutao and Zuo, Yuxin and Ren, Weicheng and Liu, Wenxuan and...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 62nd Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"spires_2024\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Structured Prompt Interrogation and Recursive Extraction of Semantics (SPIRES): A Method for Populating Knowledge Bases ...\\\", \\\"authors\\\": \\\"Caufield, J. Harry and Hegde, Harshad and Emonet, Vincent and Harris, Nomi L. an...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Bioinformatics\\\"}, {\\\"key\\\": \\\"ontologx_2025\\\", \\\"type\\\": \\\"misc\\\", \\\"title\\\": \\\"OntoLogX: Ontology-Guided Knowledge Graph Extraction from Cybersecurity Logs with Large Language Models\\\", \\\"authors\\\": \\\"Cotti, Luca and Drago, Idilio and Rula, Anisa and Bianchini, Devis and Cerutti, ...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"\\\"}, {\\\"key\\\": \\\"ekaw2024_ontology_beam\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Ontology-Constrained Generation of Domain-Specific Clinical Summaries\\\", \\\"authors\\\": \\\"Mehenni, Gaya and Zouaq, Amal\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Knowledge Engineering and Knowledge Management (EKAW 2024)\\\"}, {\\\"key\\\": \\\"scholak2021picard\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models\\\", \\\"authors\\\": \\\"Scholak, Torsten and Schucher, Nathan and Bahdanau, Dzmitry\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"Proceedings of the 2021 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"olasunkanmi2025relate\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints\\\", \\\"authors\\\": \\\"Olasunkanmi, Olawumi and Satusky, Mathew and Yi, Hong and Bizon, Chris and Lee, ...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2509.19057\\\"}, {\\\"key\\\": \\\"zhou2026ontologytools\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Ontology-to-tools compilation for executable semantic constraint enforcement in LLM agents\\\", \\\"authors\\\": \\\"Zhou, Xiaochi and Bulter, Patrick and Yang, Changxuan and Rihm, Simon D. and Ang...\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2602.03439\\\"}, {\\\"key\\\": \\\"eberts2020spert\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Span-based Joint Entity and Relation Extraction with Transformer Pre-training\\\", \\\"authors\\\": \\\"Eberts, Markus and Ulges, Adrian\\\", \\\"year\\\": \\\"2020\\\", \\\"venue\\\": \\\"Proceedings of the 24th European Conference on Artificial Intelligence (ECAI 202...\\\"}, {\\\"key\\\": \\\"yan2021pfn\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"A Partition Filter Network for Joint Entity and Relation Extraction\\\", \\\"authors\\\": \\\"Yan, Zhiheng and Zhang, Chong and Fu, Jinlan and Zhang, Qi and Wei, Zhongyu\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"Proceedings of the 2021 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"zhong2021frustratingly\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"A Frustratingly Easy Approach for Entity and Relation Extraction\\\", \\\"authors\\\": \\\"Zhong, Zexuan and Chen, Danqi\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"Proceedings of the 2021 Conference of the North American Chapter of the Associat...\\\"}, {\\\"key\\\": \\\"ye2022packed\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Packed Levitated Marker for Entity and Relation Extraction\\\", \\\"authors\\\": \\\"Ye, Deming and Lin, Yankai and Li, Peng and Sun, Maosong\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"Proceedings of the 60th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"zhou2026snowballing\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in LLM Reflection\\\", \\\"authors\\\": \\\"Zhou, Hongxu\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2604.06066\\\"}, {\\\"key\\\": \\\"dong2025xgrammar\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\\\", \\\"authors\\\": \\\"Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi a...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of Machine Learning and Systems (MLSys)\\\"}, {\\\"key\\\": \\\"willard2023outlines\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Efficient Guided Generation for Large Language Models\\\", \\\"authors\\\": \\\"Willard, Brandon T. and Louf, R\\\\\\\\'emi\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2307.09702\\\"}, {\\\"key\\\": \\\"beurer-kellner2023lmql\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Prompting Is Programming: A Query Language for Large Language Models\\\", \\\"authors\\\": \\\"Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Proceedings of the ACM SIGPLAN Conference on Programming Language Design and Imp...\\\"}, {\\\"key\\\": \\\"beurer-kellner2024domino\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\\\", \\\"authors\\\": \\\"Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 41st International Conference on Machine Learning (ICML)\\\"}, {\\\"key\\\": \\\"park2024grammar\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Grammar-Aligned Decoding\\\", \\\"authors\\\": \\\"Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadi...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems (NeurIPS)\\\"}, {\\\"key\\\": \\\"decao2021genre\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Autoregressive Entity Retrieval\\\", \\\"authors\\\": \\\"De Cao, Nicola and Izacard, Gautier and Riedel, Sebastian and Petroni, Fabio\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"International Conference on Learning Representations (ICLR)\\\"}, {\\\"key\\\": \\\"josifoski2022genie\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"GenIE: Generative Information Extraction\\\", \\\"authors\\\": \\\"Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and ...\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"Proceedings of the 2022 Conference of the North American Chapter of the Associat...\\\"}, {\\\"key\\\": \\\"geng2023gcd\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\\\", \\\"authors\\\": \\\"Geng, Saibo and Josifoski, Martin and Peyrard, Maxime and West, Robert\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Proceedings of the 2023 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"lu2021neurologic\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\\\", \\\"authors\\\": \\\"Lu, Ximing and West, Peter and Zellers, Rowan and Le Bras, Ronan and Bhagavatula...\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"Proceedings of the 2021 Conference of the North American Chapter of the Associat...\\\"}, {\\\"key\\\": \\\"lu2022uie\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Unified Structure Generation for Universal Information Extraction\\\", \\\"authors\\\": \\\"Lu, Yaojie and Liu, Qing and Dai, Dai and Xiao, Xinyan and Lin, Hongyu and Han, ...\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"Proceedings of the 60th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"sainz2024gollie\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling\\\", \\\"authors\\\": \\\"Sainz, Oscar and Garc\\\\\\\\'\\\\\\\\ia-Ferrero, Iker and Agerri, Rodrigo and Lopez de Lacall...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"The Twelfth International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"li2023codeie\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\\\", \\\"authors\\\": \\\"Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Hu...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Proceedings of the 61st Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"qi2024adelie\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"ADELIE: Aligning Large Language Models on Information Extraction\\\", \\\"authors\\\": \\\"Qi, Yunjia and Peng, Hao and Wang, Xiaozhi and Xu, Bin and Hou, Lei and Li, Juan...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 2024 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"zaratiana2024enrico\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\\\", \\\"authors\\\": \\\"Zaratiana, Urchade and Tomeh, Nadi and Dauxais, Yann and Holat, Pierre and Charn...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2404.12493\\\"}, {\\\"key\\\": \\\"khorshidi2025odke\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\\\", \\\"authors\\\": \\\"Khorshidi, Samira and Nikfarjam, Azadeh and Shankar, Suprita and Sang, Yisi and ...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2509.04696\\\"}, {\\\"key\\\": \\\"upadhyay2023openie\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Open Information Extraction with Entity Focused Constraints\\\", \\\"authors\\\": \\\"Upadhyay, Prajna and Balalau, Oana and Manolescu, Ioana\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: EACL 2023\\\"}, {\\\"key\\\": \\\"regino2025kgcurator\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Can LLMs be Knowledge Graph Curators for Validating Triple Insertions?\\\", \\\"authors\\\": \\\"Regino, Andr\\\\\\\\'e Gomes and dos Reis, Julio Cesar\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of the Workshop on Generative AI and Knowledge Graphs (GenAIK) at CO...\\\"}, {\\\"key\\\": \\\"tam2024letmespeak\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models\\\", \\\"authors\\\": \\\"Tam, Zhi Rui and Wu, Cheng-Kuang and Tsai, Yi-Lin and Lin, Chieh-Yen and Lee, Hu...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 2024 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"banerjee2025crane\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"CRANE: Reasoning with Constrained LLM Generation\\\", \\\"authors\\\": \\\"Banerjee, Debangshu and Suresh, Tarun and Ugare, Shubham and Misailovic, Sasa an...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of the 42nd International Conference on Machine Learning\\\"}, {\\\"key\\\": \\\"schall2025hiddencost\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\\\", \\\"authors\\\": \\\"Schall, Maximilian and de Melo, Gerard\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of the 15th International Conference on Recent Advances in Natural L...\\\"}, {\\\"key\\\": \\\"cabot2021rebel\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"REBEL: Relation Extraction By End-to-end Language Generation\\\", \\\"authors\\\": \\\"Huguet Cabot, Pere-Llu\\\\\\\\'\\\\\\\\is and Navigli, Roberto\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: EMNLP 2021\\\"}, {\\\"key\\\": \\\"ugare2024syncode\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"SynCode: LLM Generation with Grammar Augmentation\\\", \\\"authors\\\": \\\"Ugare, Shubham and Suresh, Tarun and Kang, Hangoo and Misailovic, Sasa and Singh...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 41st International Conference on Machine Learning (ICML)\\\"}, {\\\"key\\\": \\\"ugare2025itergen\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"IterGen: Iterative Semantic-aware Structured LLM Generation with Backtracking\\\", \\\"authors\\\": \\\"Ugare, Shubham and Suresh, Tarun and Banerjee, Debangshu and Misailovic, Sasa an...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"The Thirteenth International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"boostcd2025\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\\\", \\\"authors\\\": \\\"Sakota, Marija and Geng, Saibo and Josifoski, Martin and West, Robert\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Proceedings of the 2025 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"luan2018scierc\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction\\\", \\\"authors\\\": \\\"Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh\\\", \\\"year\\\": \\\"2018\\\", \\\"venue\\\": \\\"Proceedings of the 2018 Conference on Empirical Methods in Natural Language Proc...\\\"}, {\\\"key\\\": \\\"yao2019docred\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\\\", \\\"authors\\\": \\\"Yao, Yuan and Ye, Deming and Li, Peng and Han, Xu and Lin, Yankai and Liu, Zheng...\\\", \\\"year\\\": \\\"2019\\\", \\\"venue\\\": \\\"Proceedings of the 57th Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"wei2023zeroshot\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"ChatIE: Zero-Shot Information Extraction via Chatting with ChatGPT\\\", \\\"authors\\\": \\\"Wei, Xiang and Cui, Xingyu and Cheng, Ning and Wang, Xiaobin and Zhang, Xin and ...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2302.10205\\\"}, {\\\"key\\\": \\\"qwen2025qwen3\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Qwen3 Technical Report\\\", \\\"authors\\\": \\\"Qwen Team\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2505.09388\\\"}, {\\\"key\\\": \\\"zheng2024sglang\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"SGLang: Efficient Execution of Structured Language Model Programs\\\", \\\"authors\\\": \\\"Zheng, Lianmin and Yin, Liangsheng and Xie, Zhiqiang and Sun, Chuyue and Huang, ...\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}, {\\\"key\\\": \\\"li2021document\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Document-Level Event Argument Extraction by Conditional Generation\\\", \\\"authors\\\": \\\"Li, Sha and Ji, Heng and Han, Jiawei\\\", \\\"year\\\": \\\"2021\\\", \\\"venue\\\": \\\"Proceedings of the 2021 Conference of the North American Chapter of the Associat...\\\"}, {\\\"key\\\": \\\"formattax2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"The Format Tax\\\", \\\"authors\\\": \\\"Ivan Yee Lee and Loris D'Antoni and Taylor Berg-Kirkpatrick\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2604.03616\\\"}, {\\\"key\\\": \\\"dccd2026\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"Draft-Conditioned Constrained Decoding for Structured Generation in LLMs\\\", \\\"authors\\\": \\\"Avinash Reddy and Thayne T. Walker and James S. Ide and Amrit Singh Bedi\\\", \\\"year\\\": \\\"2026\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2603.03305\\\"}, {\\\"key\\\": \\\"guidex2025\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\\\", \\\"authors\\\": \\\"Neil De La Fuente and Oscar Sainz and Iker Garc\\\\\\\\'\\\\\\\\ia-Ferrero and Eneko Agirre\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: ACL 2025\\\"}, {\\\"key\\\": \\\"jsonschemabench2025\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\\\", \\\"authors\\\": \\\"Saibo Geng and Hudson Cooper and Micha\\\\\\\\l Moskal and Samuel Jenkins and Julian Be...\\\", \\\"year\\\": \\\"2025\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2501.10868\\\"}, {\\\"key\\\": \\\"wang2023instructuie\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\\\", \\\"authors\\\": \\\"Wang, Xiao and Zhou, Weikang and Zu, Can and Xia, Han and Chen, Tianze and Zhang...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"arXiv preprint arXiv:2304.08085\\\"}, {\\\"key\\\": \\\"wang2022deepstruct\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"DeepStruct: Pretraining of Language Models for Structure Prediction\\\", \\\"authors\\\": \\\"Wang, Chenguang and Liu, Xiao and Chen, Zui and Hong, Haoyun and Tang, Jie and S...\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"Findings of the Association for Computational Linguistics: ACL 2022\\\"}, {\\\"key\\\": \\\"zhou2024universalner\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\\\", \\\"authors\\\": \\\"Zhou, Wenxuan and Zhang, Sheng and Gu, Yu and Chen, Muhao and Poon, Hoifung\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"The Twelfth International Conference on Learning Representations\\\"}, {\\\"key\\\": \\\"lou2023usm\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Universal Information Extraction as Unified Semantic Matching\\\", \\\"authors\\\": \\\"Lou, Jie and Lu, Yaojie and Dai, Dai and Jia, Wei and Lin, Hongyu and Han, Xianp...\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Proceedings of the AAAI Conference on Artificial Intelligence\\\"}, {\\\"key\\\": \\\"wadhwa2023revisiting\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"Revisiting Relation Extraction in the era of Large Language Models\\\", \\\"authors\\\": \\\"Wadhwa, Somin and Amir, Silvio and Wallace, Byron\\\", \\\"year\\\": \\\"2023\\\", \\\"venue\\\": \\\"Proceedings of the 61st Annual Meeting of the Association for Computational Ling...\\\"}, {\\\"key\\\": \\\"chen2024agentre\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"AgentRE: An Agent-Based Framework for Navigating Complex Information Landscapes in Relation Extraction\\\", \\\"authors\\\": \\\"Chen, Yuchen and Shi, Guanzhi and Sun, Qingping\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Proceedings of the 33rd ACM International Conference on Information and Knowledg...\\\"}, {\\\"key\\\": \\\"fan2024fsn\\\", \\\"type\\\": \\\"article\\\", \\\"title\\\": \\\"FSN: Joint Entity and Relation Extraction Based on Filter Separator Network\\\", \\\"authors\\\": \\\"Fan, Yongfei and Yan, Lianshan and Yu, Shaobin and Li, Yijia\\\", \\\"year\\\": \\\"2024\\\", \\\"venue\\\": \\\"Entropy\\\"}, {\\\"key\\\": \\\"fei2022lasuie\\\", \\\"type\\\": \\\"inproceedings\\\", \\\"title\\\": \\\"LasUIE: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model\\\", \\\"authors\\\": \\\"Fei, Hao and Wu, Shengqiong and Li, Jingye and Li, Bobo and Li, Fei and Qin, Lib...\\\", \\\"year\\\": \\\"2022\\\", \\\"venue\\\": \\\"Advances in Neural Information Processing Systems\\\"}], \\\"tex_citations\\\": [{\\\"key\\\": \\\"li2023codeie\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"sainz2024gollie\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"wei2023zeroshot\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 6, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"luan2018scierc\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"yao2019docred\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"dong2025xgrammar\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"willard2023outlines\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"beurer-kellner2023lmql\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"sainz2024gollie\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 16, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"lu2022uie\\\", \\\"file\\\": \\\"section1_introduction_draft.tex\\\", \\\"line\\\": 16, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"dong2025xgrammar\\\", \\\"file\\\": \\\"section2_background.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"willard2023outlines\\\", \\\"file\\\": \\\"section2_background.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"zheng2024sglang\\\", \\\"file\\\": \\\"section2_background.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"dong2025xgrammar\\\", \\\"file\\\": \\\"section3_method_draft.tex\\\", \\\"line\\\": 68, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"luan2018scierc\\\", \\\"file\\\": \\\"section3_violation_landscape.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"yao2019docred\\\", \\\"file\\\": \\\"section3_violation_landscape.tex\\\", \\\"line\\\": 12, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"qwen2025qwen3\\\", \\\"file\\\": \\\"section3_violation_landscape.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"geng2023gcd\\\", \\\"file\\\": \\\"section5_scierc_draft.tex\\\", \\\"line\\\": 64, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"geng2023gcd\\\", \\\"file\\\": \\\"section5_scierc_draft.tex\\\", \\\"line\\\": 85, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"li2021document\\\", \\\"file\\\": \\\"section5_wikievents_draft.tex\\\", \\\"line\\\": 10, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"li2021document\\\", \\\"file\\\": \\\"section5_wikievents_draft.tex\\\", \\\"line\\\": 47, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"li2021document\\\", \\\"file\\\": \\\"section5_wikievents_draft.tex\\\", \\\"line\\\": 65, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"dong2025xgrammar\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"willard2023outlines\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"ugare2024syncode\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"beurer-kellner2023lmql\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"park2024grammar\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"jsonschemabench2025\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"geng2023gcd\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 7, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"scholak2021picard\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"pldi2025_type_constrained_codegen\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 8, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"sainz2024gollie\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"knowcoder_acl2024\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"guidex2025\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"josifoski2022genie\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"cabot2021rebel\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"wang2023instructuie\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"fei2022lasuie\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"wang2022deepstruct\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"lu2022uie\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"lou2023usm\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"zhou2024universalner\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"wadhwa2023revisiting\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"roth_yih_2004\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"khorshidi2025odke\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"spires_2024\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"ontologx_2025\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 14, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"zaratiana2024enrico\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"ugare2025itergen\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"dccd2026\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 15, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"boostcd2025\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 16, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"geng2023gcd\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 16, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"banerjee2025crane\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"schall2025hiddencost\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"formattax2026\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"tam2024letmespeak\\\", \\\"file\\\": \\\"section6_related_work.tex\\\", \\\"line\\\": 18, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"li2021document\\\", \\\"file\\\": \\\"checklist.tex\\\", \\\"line\\\": 27, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"dong2025xgrammar\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 9, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"willard2023outlines\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 10, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"beurer-kellner2023lmql\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 11, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"beurer-kellner2024domino\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 13, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"park2024grammar\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 13, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"scholak2021picard\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 23, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"synchromesh_iclr2022\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 26, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"mgd_neurips2023\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 27, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"pldi2025_type_constrained_codegen\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 28, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"roth_yih_2004\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 40, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"decao2021genre\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 41, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"josifoski2022genie\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 42, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"adakgc_emnlp2023\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 43, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"geng2023gcd\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 44, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"lu2021neurologic\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 45, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"lu2022uie\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 55, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"sainz2024gollie\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 56, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"knowcoder_acl2024\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 57, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"li2023codeie\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 58, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"qi2024adelie\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 59, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"eberts2020spert\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 60, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"yan2021pfn\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 60, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"zaratiana2024enrico\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 62, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"khorshidi2025odke\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 72, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"spires_2024\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 73, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"ontologx_2025\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 74, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"upadhyay2023openie\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 75, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"regino2025kgcurator\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 76, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"olasunkanmi2025relate\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 77, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"zhou2026ontologytools\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 80, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"ekaw2024_ontology_beam\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 82, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"tam2024letmespeak\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 92, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"banerjee2025crane\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 93, \\\"command\\\": \\\"cite\\\"}, {\\\"key\\\": \\\"schall2025hiddencost\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 94, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"zhou2026snowballing\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 95, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"tam2024letmespeak\\\", \\\"file\\\": \\\"appendix_related_work.tex\\\", \\\"line\\\": 97, \\\"command\\\": \\\"citet\\\"}, {\\\"key\\\": \\\"zhong2021frustratingly\\\", \\\"file\\\": \\\"appendix_discussion.tex\\\", \\\"line\\\": 125, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"ye2022packed\\\", \\\"file\\\": \\\"appendix_discussion.tex\\\", \\\"line\\\": 125, \\\"command\\\": \\\"citep\\\"}, {\\\"key\\\": \\\"li2021document\\\", \\\"file\\\": \\\"appendix_discussion.tex\\\", \\\"line\\\": 409, \\\"command\\\": \\\"cite\\\"}], \\\"online_verification\\\": [{\\\"key\\\": \\\"synchromesh_iclr2022\\\", \\\"title\\\": \\\"Synchromesh: Reliable Code Generation from Pre-trained Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Synchromesh: Reliable code generation from pre-trained language models\\\", \\\"matched_year\\\": \\\"2022\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"mgd_neurips2023\\\", \\\"title\\\": \\\"Monitor-Guided Decoding of Code LMs with Static Analysis of Repository Context\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Monitor-Guided Decoding of Code LMs with Static Analysis of Repository Context\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"pldi2025_type_constrained_codegen\\\", \\\"title\\\": \\\"Type-Constrained Code Generation with Language Models\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Type-Constrained Code Generation with Language Models\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=m\\\\\\\\\\\\\\\"undler vs api=mündler\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"roth_yih_2004\\\", \\\"title\\\": \\\"A Linear Programming Formulation for Global Inference in Natural Language Tasks\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"A Linear Programming Formulation for Global Inference in Natural Language Tasks\\\", \\\"matched_year\\\": \\\"2004\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"adakgc_emnlp2023\\\", \\\"title\\\": \\\"Schema-adaptable Knowledge Graph Construction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Schema-adaptable Knowledge Graph Construction\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"knowcoder_acl2024\\\", \\\"title\\\": \\\"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"spires_2024\\\", \\\"title\\\": \\\"Structured Prompt Interrogation and Recursive Extraction of Semantics (SPIRES): A Method for Populating Knowledge Bases Using Zero-shot Learning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Structured Prompt Interrogation and Recursive Extraction of Semantics (SPIRES): a method for populating knowledge bases using zero-shot learning\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"ontologx_2025\\\", \\\"title\\\": \\\"OntoLogX: Ontology-Guided Knowledge Graph Extraction from Cybersecurity Logs with Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 0.99, \\\"matched_title\\\": \\\"OntoLogX: Ontology‐Guided Knowledge Graph Extraction From Cybersecurity Logs With Large Language Models\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"ekaw2024_ontology_beam\\\", \\\"title\\\": \\\"Ontology-Constrained Generation of Domain-Specific Clinical Summaries\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Ontology-Constrained Generation of Domain-Specific Clinical Summaries\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"scholak2021picard\\\", \\\"title\\\": \\\"PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"PICARD: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"olasunkanmi2025relate\\\", \\\"title\\\": \\\"RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zhou2026ontologytools\\\", \\\"title\\\": \\\"Ontology-to-tools compilation for executable semantic constraint enforcement in LLM agents\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Ontology-to-tools compilation for executable semantic constraint enforcement in LLM agents\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"eberts2020spert\\\", \\\"title\\\": \\\"Span-based Joint Entity and Relation Extraction with Transformer Pre-training\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Span-Based Joint Entity and Relation Extraction with Transformer Pre-Training\\\", \\\"matched_year\\\": \\\"2020\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"yan2021pfn\\\", \\\"title\\\": \\\"A Partition Filter Network for Joint Entity and Relation Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"A Partition Filter Network for Joint Entity and Relation Extraction\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zhong2021frustratingly\\\", \\\"title\\\": \\\"A Frustratingly Easy Approach for Entity and Relation Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"A Frustratingly Easy Approach for Entity and Relation Extraction\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"ye2022packed\\\", \\\"title\\\": \\\"Packed Levitated Marker for Entity and Relation Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Packed Levitated Marker for Entity and Relation Extraction\\\", \\\"matched_year\\\": \\\"2022\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zhou2026snowballing\\\", \\\"title\\\": \\\"From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in LLM Reflection\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in LLM Reflection\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"dong2025xgrammar\\\", \\\"title\\\": \\\"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"willard2023outlines\\\", \\\"title\\\": \\\"Efficient Guided Generation for Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Efficient Guided Generation for Large Language Models\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"beurer-kellner2023lmql\\\", \\\"title\\\": \\\"Prompting Is Programming: A Query Language for Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Prompting Is Programming: A Query Language for Large Language Models\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"beurer-kellner2024domino\\\", \\\"title\\\": \\\"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"park2024grammar\\\", \\\"title\\\": \\\"Grammar-Aligned Decoding\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Grammar-Aligned Decoding\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=park vs api=berg-kirkpatrick\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"decao2021genre\\\", \\\"title\\\": \\\"Autoregressive Entity Retrieval\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Autoregressive Entity Retrieval\\\", \\\"matched_year\\\": \\\"2020\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=de cao vs api=cao\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"josifoski2022genie\\\", \\\"title\\\": \\\"GenIE: Generative Information Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"GenIE: Generative Information Extraction\\\", \\\"matched_year\\\": \\\"2022\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"geng2023gcd\\\", \\\"title\\\": \\\"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"lu2021neurologic\\\", \\\"title\\\": \\\"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"NeuroLogic Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"lu2022uie\\\", \\\"title\\\": \\\"Unified Structure Generation for Universal Information Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Unified Structure Generation for Universal Information Extraction\\\", \\\"matched_year\\\": \\\"2022\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"sainz2024gollie\\\", \\\"title\\\": \\\"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 0.94, \\\"matched_title\\\": \\\"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"li2023codeie\\\", \\\"title\\\": \\\"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"CodeIE: Large Code Generation Models are Better Few-Shot Information Extractors\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"qi2024adelie\\\", \\\"title\\\": \\\"ADELIE: Aligning Large Language Models on Information Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ADELIE: Aligning Large Language Models on Information Extraction\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zaratiana2024enrico\\\", \\\"title\\\": \\\"EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"khorshidi2025odke\\\", \\\"title\\\": \\\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"upadhyay2023openie\\\", \\\"title\\\": \\\"Open Information Extraction with Entity Focused Constraints\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Open Information Extraction with Entity Focused Constraints\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"regino2025kgcurator\\\", \\\"title\\\": \\\"Can LLMs be Knowledge Graph Curators for Validating Triple Insertions?\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.478, \\\"matched_title\\\": \\\"Knowledge graph validation by integrating LLMs and human-in-the-loop\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.48 below threshold 0.82\\\"}, {\\\"key\\\": \\\"tam2024letmespeak\\\", \\\"title\\\": \\\"Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Let Me Speak Freely? A Study on the Impact of Format Restrictions on Performance of Large Language Models\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"banerjee2025crane\\\", \\\"title\\\": \\\"CRANE: Reasoning with Constrained LLM Generation\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"CRANE: Reasoning with constrained LLM generation\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"schall2025hiddencost\\\", \\\"title\\\": \\\"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"cabot2021rebel\\\", \\\"title\\\": \\\"REBEL: Relation Extraction By End-to-end Language Generation\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"REBEL: Relation Extraction By End-to-end Language generation\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=huguet cabot vs api=cabot\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"ugare2024syncode\\\", \\\"title\\\": \\\"SynCode: LLM Generation with Grammar Augmentation\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SynCode: LLM Generation with Grammar Augmentation\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"ugare2025itergen\\\", \\\"title\\\": \\\"IterGen: Iterative Semantic-aware Structured LLM Generation with Backtracking\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"IterGen: Iterative Semantic-aware Structured LLM Generation with Backtracking\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"boostcd2025\\\", \\\"title\\\": \\\"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=sakota vs api=šakota\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"luan2018scierc\\\", \\\"title\\\": \\\"Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction\\\", \\\"matched_year\\\": \\\"2018\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"yao2019docred\\\", \\\"title\\\": \\\"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"DocRED: A Large-Scale Document-Level Relation Extraction Dataset\\\", \\\"matched_year\\\": \\\"2019\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"wei2023zeroshot\\\", \\\"title\\\": \\\"ChatIE: Zero-Shot Information Extraction via Chatting with ChatGPT\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"ChatIE: Zero-Shot Information Extraction via Chatting with ChatGPT\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=wei vs api=xiang\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"qwen2025qwen3\\\", \\\"title\\\": \\\"Qwen3 Technical Report\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Qwen3 Technical Report\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=team vs api=yang\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zheng2024sglang\\\", \\\"title\\\": \\\"SGLang: Efficient Execution of Structured Language Model Programs\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"SGLang: Efficient Execution of Structured Language Model Programs\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=zheng vs api=barrett\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"li2021document\\\", \\\"title\\\": \\\"Document-Level Event Argument Extraction by Conditional Generation\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Document-Level Event Argument Extraction by Conditional Generation\\\", \\\"matched_year\\\": \\\"2021\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"formattax2026\\\", \\\"title\\\": \\\"The Format Tax\\\", \\\"status\\\": \\\"not_found\\\", \\\"confidence\\\": 0.261, \\\"matched_title\\\": \\\"R: A Language and Environment for Statistical Computing\\\", \\\"matched_year\\\": \\\"\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"best match similarity 0.26 below threshold 0.82\\\"}, {\\\"key\\\": \\\"dccd2026\\\", \\\"title\\\": \\\"Draft-Conditioned Constrained Decoding for Structured Generation in LLMs\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Draft-Conditioned Constrained Decoding for Structured Generation in LLMs\\\", \\\"matched_year\\\": \\\"2026\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"guidex2025\\\", \\\"title\\\": \\\"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"jsonschemabench2025\\\", \\\"title\\\": \\\"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"JSONSchemaBench: A Rigorous Benchmark of Structured Outputs for Language Models\\\", \\\"matched_year\\\": \\\"2025\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"wang2023instructuie\\\", \\\"title\\\": \\\"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"wang2022deepstruct\\\", \\\"title\\\": \\\"DeepStruct: Pretraining of Language Models for Structure Prediction\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"DeepStruct: Pretraining of Language Models for Structure Prediction\\\", \\\"matched_year\\\": \\\"2022\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"zhou2024universalner\\\", \\\"title\\\": \\\"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"UniversalNER: Targeted Distillation from Large Language Models for Open Named Entity Recognition\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"lou2023usm\\\", \\\"title\\\": \\\"Universal Information Extraction as Unified Semantic Matching\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Universal Information Extraction as Unified Semantic Matching\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"wadhwa2023revisiting\\\", \\\"title\\\": \\\"Revisiting Relation Extraction in the era of Large Language Models\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"Revisiting Relation Extraction in the era of Large Language Models\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"chen2024agentre\\\", \\\"title\\\": \\\"AgentRE: An Agent-Based Framework for Navigating Complex Information Landscapes in Relation Extraction\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"AgentRE: An Agent-Based Framework for Navigating Complex Information Landscapes in Relation Extraction\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=chen vs api=shi\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"fan2024fsn\\\", \\\"title\\\": \\\"FSN: Joint Entity and Relation Extraction Based on Filter Separator Network\\\", \\\"status\\\": \\\"mismatch\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"FSN: Joint Entity and Relation Extraction Based on Filter Separator Network\\\", \\\"matched_year\\\": \\\"2024\\\", \\\"mismatch_fields\\\": [\\\"first_author: bib=fan vs api=dai\\\"], \\\"note\\\": \\\"\\\"}, {\\\"key\\\": \\\"fei2022lasuie\\\", \\\"title\\\": \\\"LasUIE: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model\\\", \\\"status\\\": \\\"verified\\\", \\\"confidence\\\": 1.0, \\\"matched_title\\\": \\\"LasUIE: Unifying Information Extraction with Latent Adaptive Structure-aware Generative Language Model\\\", \\\"matched_year\\\": \\\"2023\\\", \\\"mismatch_fields\\\": [], \\\"note\\\": \\\"\\\"}]}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+      "numLines": 1,
+      "startLine": 0,
+      "totalLines": 1
+    }
+  },
+  "sourceToolAssistantUUID": "a2ff56ec-75e6-422e-b679-aaa74d345b4e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-20T19:48:09.842Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MneMu4vHJUV6RPidm9NyjU`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p11.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c4dc4f73-c226-4775-9d2d-b29801bb5f9e",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ689ikaEavVNEzXhZf",
+  "type": "assistant",
+  "uuid": "08c527e3-6f47-42e0-8b72-609b3d1dfacd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X1adRzkQvp7AKLLqt8rJ2y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2313,
+      "cache_read_input_tokens": 37493,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2313,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 37493,
+          "cache_creation_input_tokens": 2313,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2313
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-20T19:48:10.341Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01VKYoDPdPqwt46UMAofUouW`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p12.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "08c527e3-6f47-42e0-8b72-609b3d1dfacd",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ689ikaEavVNEzXhZf",
+  "type": "assistant",
+  "uuid": "741e6cb9-8c2a-44bf-9082-46c47ec1bf7a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X1adRzkQvp7AKLLqt8rJ2y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2313,
+      "cache_read_input_tokens": 37493,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2313,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 37493,
+          "cache_creation_input_tokens": 2313,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2313
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-20T19:48:10.450Z_
+
+<details><summary>↩ Tool result · `toolu_01MneMu4vHJUV6RPidm9NyjU`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "08c527e3-6f47-42e0-8b72-609b3d1dfacd",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "7c03471d-bdf5-4ffa-8feb-09b9ad5d1c23",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 573598
+    }
+  },
+  "sourceToolAssistantUUID": "08c527e3-6f47-42e0-8b72-609b3d1dfacd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-20T19:48:10.736Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NJU1R5kRSrnWkdm74rhNmC`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p13.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7c03471d-bdf5-4ffa-8feb-09b9ad5d1c23",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ689ikaEavVNEzXhZf",
+  "type": "assistant",
+  "uuid": "3c090d4f-7166-4493-aed8-69be6cd1d5f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X1adRzkQvp7AKLLqt8rJ2y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2313,
+      "cache_read_input_tokens": 37493,
+      "output_tokens": 475,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2313,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 475,
+          "cache_read_input_tokens": 37493,
+          "cache_creation_input_tokens": 2313,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2313
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "3c090d4f-7166-4493-aed8-69be6cd1d5f9",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-20T19:48:11.198Z_
+
+<details><summary>↩ Tool result · `toolu_01VKYoDPdPqwt46UMAofUouW`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "741e6cb9-8c2a-44bf-9082-46c47ec1bf7a",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "14ab2e11-8326-43c9-8e94-b4e496dccd77",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 628551
+    }
+  },
+  "sourceToolAssistantUUID": "741e6cb9-8c2a-44bf-9082-46c47ec1bf7a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "14ab2e11-8326-43c9-8e94-b4e496dccd77",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-20T19:48:11.567Z_
+
+<details><summary>↩ Tool result · `toolu_01NJU1R5kRSrnWkdm74rhNmC`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3c090d4f-7166-4493-aed8-69be6cd1d5f9",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "8865f5bd-6510-4135-afe8-b9507c38c4d5",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 627869
+    }
+  },
+  "sourceToolAssistantUUID": "3c090d4f-7166-4493-aed8-69be6cd1d5f9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "8865f5bd-6510-4135-afe8-b9507c38c4d5",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 85 · 2026-05-20T19:48:15.662Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I've read the reference list and the first 13 pages of the paper. Let me now read the remaining appendix pages (14-20) and also fetch the ARR reviewer guidelines page for the exact dimensions.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8865f5bd-6510-4135-afe8-b9507c38c4d5",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ6eCEq1pVFxab9M8qR",
+  "type": "assistant",
+  "uuid": "0fbd2a36-4e38-48b0-8389-f3f6919805d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6irruT6BrNUujv1PCRM2A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19636,
+      "cache_read_input_tokens": 39806,
+      "output_tokens": 653,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19636,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 653,
+          "cache_read_input_tokens": 39806,
+          "cache_creation_input_tokens": 19636,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19636
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-20T19:48:18.014Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_015Md5YsH8ww59kvSDLdzFzf`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p14.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0fbd2a36-4e38-48b0-8389-f3f6919805d1",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ6eCEq1pVFxab9M8qR",
+  "type": "assistant",
+  "uuid": "f15f5462-559c-4341-97a8-babd898d3745",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6irruT6BrNUujv1PCRM2A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19636,
+      "cache_read_input_tokens": 39806,
+      "output_tokens": 653,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19636,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 653,
+          "cache_read_input_tokens": 39806,
+          "cache_creation_input_tokens": 19636,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19636
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-20T19:48:18.506Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DyNyGC7c9M8jYtCdey7LHz`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p15.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f15f5462-559c-4341-97a8-babd898d3745",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ6eCEq1pVFxab9M8qR",
+  "type": "assistant",
+  "uuid": "811b0605-4790-4ce7-97fd-3268d79a80a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6irruT6BrNUujv1PCRM2A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19636,
+      "cache_read_input_tokens": 39806,
+      "output_tokens": 653,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19636,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 653,
+          "cache_read_input_tokens": 39806,
+          "cache_creation_input_tokens": 19636,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19636
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-20T19:48:18.624Z_
+
+<details><summary>↩ Tool result · `toolu_015Md5YsH8ww59kvSDLdzFzf`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f15f5462-559c-4341-97a8-babd898d3745",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "915759c7-08d0-41ee-9cc1-f65676ec15f4",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 573664
+    }
+  },
+  "sourceToolAssistantUUID": "f15f5462-559c-4341-97a8-babd898d3745",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-20T19:48:18.966Z_
+
+<details><summary>↩ Tool result · `toolu_01DyNyGC7c9M8jYtCdey7LHz`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/png"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "811b0605-4790-4ce7-97fd-3268d79a80a5",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "90757c61-8990-4910-9478-5cd011519d49",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/png",
+      "originalSize": 384094
+    }
+  },
+  "sourceToolAssistantUUID": "811b0605-4790-4ce7-97fd-3268d79a80a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 90 · 2026-05-20T19:48:19.468Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018BTnBVn1DzvbjtkyrZ5U8T`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p16.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90757c61-8990-4910-9478-5cd011519d49",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ6eCEq1pVFxab9M8qR",
+  "type": "assistant",
+  "uuid": "7844b2bc-edf9-4de0-b087-7bf8c56d11e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6irruT6BrNUujv1PCRM2A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19636,
+      "cache_read_input_tokens": 39806,
+      "output_tokens": 653,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19636,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 653,
+          "cache_read_input_tokens": 39806,
+          "cache_creation_input_tokens": 19636,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19636
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-20T19:48:19.965Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QgcJdNEevhWTKF5riafZbd`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p17.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7844b2bc-edf9-4de0-b087-7bf8c56d11e8",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ6eCEq1pVFxab9M8qR",
+  "type": "assistant",
+  "uuid": "a2478e60-1127-420a-b176-e8372f1d2b72",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6irruT6BrNUujv1PCRM2A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19636,
+      "cache_read_input_tokens": 39806,
+      "output_tokens": 653,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19636,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 653,
+          "cache_read_input_tokens": 39806,
+          "cache_creation_input_tokens": 19636,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19636
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-20T19:48:20.089Z_
+
+<details><summary>↩ Tool result · `toolu_018BTnBVn1DzvbjtkyrZ5U8T`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7844b2bc-edf9-4de0-b087-7bf8c56d11e8",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "b3f762d4-d0a3-49ed-8b1f-12a0d458ca00",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 568760
+    }
+  },
+  "sourceToolAssistantUUID": "7844b2bc-edf9-4de0-b087-7bf8c56d11e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-20T19:48:20.535Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01JuYB4nLu9rfbaCfXDTgbtH`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p18.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3f762d4-d0a3-49ed-8b1f-12a0d458ca00",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ6eCEq1pVFxab9M8qR",
+  "type": "assistant",
+  "uuid": "6a0311c3-d38b-4ee0-b500-0c2778113f3b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6irruT6BrNUujv1PCRM2A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19636,
+      "cache_read_input_tokens": 39806,
+      "output_tokens": 653,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19636,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 653,
+          "cache_read_input_tokens": 39806,
+          "cache_creation_input_tokens": 19636,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19636
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-20T19:48:20.647Z_
+
+<details><summary>↩ Tool result · `toolu_01QgcJdNEevhWTKF5riafZbd`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a2478e60-1127-420a-b176-e8372f1d2b72",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "30a40b77-1135-41d9-9c81-ba20bba5ccbe",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 560076
+    }
+  },
+  "sourceToolAssistantUUID": "a2478e60-1127-420a-b176-e8372f1d2b72",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-20T19:48:21.201Z_
+
+<details><summary>↩ Tool result · `toolu_01JuYB4nLu9rfbaCfXDTgbtH`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6a0311c3-d38b-4ee0-b500-0c2778113f3b",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "816c7c3e-8228-4561-98ea-1a6cb04b1582",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 554319
+    }
+  },
+  "sourceToolAssistantUUID": "6a0311c3-d38b-4ee0-b500-0c2778113f3b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 96 · 2026-05-20T19:48:21.325Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FUWoXLTKdw2gsSu1hf9GBu`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p19.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "816c7c3e-8228-4561-98ea-1a6cb04b1582",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ6eCEq1pVFxab9M8qR",
+  "type": "assistant",
+  "uuid": "2b3c3889-4eee-4b9c-9e4a-842524761027",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6irruT6BrNUujv1PCRM2A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19636,
+      "cache_read_input_tokens": 39806,
+      "output_tokens": 653,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19636,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 653,
+          "cache_read_input_tokens": 39806,
+          "cache_creation_input_tokens": 19636,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19636
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-20T19:48:21.630Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01MVdgkdig75zjnnGxvzgHje`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p20.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2b3c3889-4eee-4b9c-9e4a-842524761027",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ6eCEq1pVFxab9M8qR",
+  "type": "assistant",
+  "uuid": "a553c469-11ce-493e-9142-aa92b3af8e9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Q6irruT6BrNUujv1PCRM2A",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 19636,
+      "cache_read_input_tokens": 39806,
+      "output_tokens": 653,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 19636,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 653,
+          "cache_read_input_tokens": 39806,
+          "cache_creation_input_tokens": 19636,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 19636
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "a553c469-11ce-493e-9142-aa92b3af8e9c",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 99_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 100 · 2026-05-20T19:48:22.175Z_
+
+<details><summary>↩ Tool result · `toolu_01FUWoXLTKdw2gsSu1hf9GBu`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2b3c3889-4eee-4b9c-9e4a-842524761027",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "eda2acd6-1b8c-4860-901d-806148e2eaad",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 576685
+    }
+  },
+  "sourceToolAssistantUUID": "2b3c3889-4eee-4b9c-9e4a-842524761027",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 101_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "eda2acd6-1b8c-4860-901d-806148e2eaad",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 102_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 103 · 2026-05-20T19:48:22.442Z_
+
+<details><summary>↩ Tool result · `toolu_01MVdgkdig75zjnnGxvzgHje`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a553c469-11ce-493e-9142-aa92b3af8e9c",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "dd178f70-7a72-4fe3-a212-9c40732664b2",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 514922
+    }
+  },
+  "sourceToolAssistantUUID": "a553c469-11ce-493e-9142-aa92b3af8e9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 104 · 2026-05-20T19:48:22.446Z_
+
+```json
+{
+  "parentUuid": "dd178f70-7a72-4fe3-a212-9c40732664b2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f05a1c8a-9f7d-467a-b37b-230816f0722d",
+  "timestamp": "2026-05-20T19:48:22.446Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "f05a1c8a-9f7d-467a-b37b-230816f0722d",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 106_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 107 · 2026-05-20T19:48:26.868Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me continue reading the remaining pages of the paper (pages 21-32) to see the rest of the appendices.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f05a1c8a-9f7d-467a-b37b-230816f0722d",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ7SfUuhKJBehW1fMjL",
+  "type": "assistant",
+  "uuid": "174111ba-fadb-487b-bc7d-0b84a3ed5d20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Etv4UrusE91fGLTvSjW2Fi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3279,
+      "cache_read_input_tokens": 59442,
+      "output_tokens": 207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3279,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 207,
+          "cache_read_input_tokens": 59442,
+          "cache_creation_input_tokens": 3279,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3279
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108 · 2026-05-20T19:48:27.770Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__pdf_to_images · `toolu_01RCtRKm21XPpJsdBKbLKxqS`</summary>
+
+```json
+{
+  "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.pdf",
+  "pages": "21-32",
+  "project": "schema_semantic_constrained_ie",
+  "dpi": 150
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "174111ba-fadb-487b-bc7d-0b84a3ed5d20",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ7SfUuhKJBehW1fMjL",
+  "type": "assistant",
+  "uuid": "39145aae-a526-463c-ba17-6069f589d703",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Etv4UrusE91fGLTvSjW2Fi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 3279,
+      "cache_read_input_tokens": 59442,
+      "output_tokens": 207,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3279,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 207,
+          "cache_read_input_tokens": 59442,
+          "cache_creation_input_tokens": 3279,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3279
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-20T19:48:29.143Z_
+
+<details><summary>↩ Tool result · `toolu_01RCtRKm21XPpJsdBKbLKxqS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"images\": [{\"page\": 21, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p21.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 502.3}, {\"page\": 22, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p22.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 513.0}, {\"page\": 23, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p23.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 497.4}, {\"page\": 24, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p24.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 489.4}, {\"page\": 25, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p25.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 518.7}, {\"page\": 26, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p26.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 468.8}, {\"page\": 27, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p27.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 534.0}, {\"page\": 28, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p28.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 462.3}, {\"page\": 29, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p29.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 453.8}, {\"page\": 30, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p30.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 464.5}, {\"page\": 31, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p31.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 510.1}, {\"page\": 32, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p32.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 423.0}], \"total_pages\": 32, \"rendered_pages\": 12, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "39145aae-a526-463c-ba17-6069f589d703",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "8c69a541-b52c-431e-94c9-32503b00a732",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"images\\\": [{\\\"page\\\": 21, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p21.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 502.3}, {\\\"page\\\": 22, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p22.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 513.0}, {\\\"page\\\": 23, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p23.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 497.4}, {\\\"page\\\": 24, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p24.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 489.4}, {\\\"page\\\": 25, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p25.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 518.7}, {\\\"page\\\": 26, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p26.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 468.8}, {\\\"page\\\": 27, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p27.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 534.0}, {\\\"page\\\": 28, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p28.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 462.3}, {\\\"page\\\": 29, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p29.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 453.8}, {\\\"page\\\": 30, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p30.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 464.5}, {\\\"page\\\": 31, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p31.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 510.1}, {\\\"page\\\": 32, \\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p32.png\\\", \\\"width\\\": 1241, \\\"height\\\": 1754, \\\"size_kb\\\": 423.0}], \\\"total_pages\\\": 32, \\\"rendered_pages\\\": 12, \\\"dpi\\\": 150, \\\"output_dir\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"images\": [{\"page\": 21, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p21.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 502.3}, {\"page\": 22, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p22.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 513.0}, {\"page\": 23, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p23.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 497.4}, {\"page\": 24, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p24.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 489.4}, {\"page\": 25, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p25.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 518.7}, {\"page\": 26, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p26.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 468.8}, {\"page\": 27, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p27.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 534.0}, {\"page\": 28, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p28.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 462.3}, {\"page\": 29, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p29.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 453.8}, {\"page\": 30, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p30.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 464.5}, {\"page\": 31, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p31.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 510.1}, {\"page\": 32, \"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p32.png\", \"width\": 1241, \"height\": 1754, \"size_kb\": 423.0}], \"total_pages\": 32, \"rendered_pages\": 12, \"dpi\": 150, \"output_dir\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images\"}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "39145aae-a526-463c-ba17-6069f589d703",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 110 · 2026-05-20T19:48:32.344Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Tmf8MeRbzoxT55bdt17byT`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p21.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c69a541-b52c-431e-94c9-32503b00a732",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ7wJfPcfwHHuKcRpUo",
+  "type": "assistant",
+  "uuid": "49d34fac-c238-4d59-bf5d-3a5e35333d82",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oSrB9ByGWE2tJpGHBVD4F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1396,
+      "cache_read_input_tokens": 62721,
+      "output_tokens": 509,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1396,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 509,
+          "cache_read_input_tokens": 62721,
+          "cache_creation_input_tokens": 1396,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1396
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-20T19:48:32.821Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01D1LPbbFj3arJ6KHP1MKAgh`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p22.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "49d34fac-c238-4d59-bf5d-3a5e35333d82",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ7wJfPcfwHHuKcRpUo",
+  "type": "assistant",
+  "uuid": "407df2b8-d32f-4827-b5ff-19cefe507d24",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oSrB9ByGWE2tJpGHBVD4F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1396,
+      "cache_read_input_tokens": 62721,
+      "output_tokens": 509,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1396,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 509,
+          "cache_read_input_tokens": 62721,
+          "cache_creation_input_tokens": 1396,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1396
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-20T19:48:32.942Z_
+
+<details><summary>↩ Tool result · `toolu_01Tmf8MeRbzoxT55bdt17byT`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "49d34fac-c238-4d59-bf5d-3a5e35333d82",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "439b8a91-19fe-4455-8469-5dae53508df9",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 514353
+    }
+  },
+  "sourceToolAssistantUUID": "49d34fac-c238-4d59-bf5d-3a5e35333d82",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-20T19:48:33.473Z_
+
+<details><summary>↩ Tool result · `toolu_01D1LPbbFj3arJ6KHP1MKAgh`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "407df2b8-d32f-4827-b5ff-19cefe507d24",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "7609a864-78ce-411d-b148-a17d1f22210c",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 525330
+    }
+  },
+  "sourceToolAssistantUUID": "407df2b8-d32f-4827-b5ff-19cefe507d24",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 114 · 2026-05-20T19:48:33.740Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NMXuYYRfv1gznD7AgHvMGD`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p23.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7609a864-78ce-411d-b148-a17d1f22210c",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ7wJfPcfwHHuKcRpUo",
+  "type": "assistant",
+  "uuid": "b6241d2c-9a86-4f98-b727-a5a38606bab8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oSrB9ByGWE2tJpGHBVD4F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1396,
+      "cache_read_input_tokens": 62721,
+      "output_tokens": 509,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1396,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 509,
+          "cache_read_input_tokens": 62721,
+          "cache_creation_input_tokens": 1396,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1396
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-20T19:48:34.226Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QrqhxVxjsGPzHib4mWozna`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p24.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b6241d2c-9a86-4f98-b727-a5a38606bab8",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ7wJfPcfwHHuKcRpUo",
+  "type": "assistant",
+  "uuid": "9a409519-f9fc-4232-a7c0-1e6646c517e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oSrB9ByGWE2tJpGHBVD4F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1396,
+      "cache_read_input_tokens": 62721,
+      "output_tokens": 509,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1396,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 509,
+          "cache_read_input_tokens": 62721,
+          "cache_creation_input_tokens": 1396,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1396
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 116 · 2026-05-20T19:48:34.323Z_
+
+<details><summary>↩ Tool result · `toolu_01NMXuYYRfv1gznD7AgHvMGD`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b6241d2c-9a86-4f98-b727-a5a38606bab8",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "ef41fb44-4e7e-4a7a-9fa2-857a8b418d73",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 509364
+    }
+  },
+  "sourceToolAssistantUUID": "b6241d2c-9a86-4f98-b727-a5a38606bab8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 117 · 2026-05-20T19:48:34.777Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NiXB43KESbzFqaMZzPAwtv`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p25.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef41fb44-4e7e-4a7a-9fa2-857a8b418d73",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ7wJfPcfwHHuKcRpUo",
+  "type": "assistant",
+  "uuid": "f7874364-016b-4cff-a1b5-ec82150cd4e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oSrB9ByGWE2tJpGHBVD4F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1396,
+      "cache_read_input_tokens": 62721,
+      "output_tokens": 509,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1396,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 509,
+          "cache_read_input_tokens": 62721,
+          "cache_creation_input_tokens": 1396,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1396
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-20T19:48:34.897Z_
+
+<details><summary>↩ Tool result · `toolu_01QrqhxVxjsGPzHib4mWozna`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9a409519-f9fc-4232-a7c0-1e6646c517e2",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "92024929-0273-4067-bf34-5789df8f74bb",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 501154
+    }
+  },
+  "sourceToolAssistantUUID": "9a409519-f9fc-4232-a7c0-1e6646c517e2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 119 · 2026-05-20T19:48:35.247Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01489TaCPaYmYjqLQqRFdrL2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p26.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "92024929-0273-4067-bf34-5789df8f74bb",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ7wJfPcfwHHuKcRpUo",
+  "type": "assistant",
+  "uuid": "bd4a6314-6b04-4ecb-a32d-956bd5d26bca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013oSrB9ByGWE2tJpGHBVD4F",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1396,
+      "cache_read_input_tokens": 62721,
+      "output_tokens": 509,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1396,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 509,
+          "cache_read_input_tokens": 62721,
+          "cache_creation_input_tokens": 1396,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1396
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 120_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "bd4a6314-6b04-4ecb-a32d-956bd5d26bca",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 121_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 122 · 2026-05-20T19:48:35.701Z_
+
+<details><summary>↩ Tool result · `toolu_01NiXB43KESbzFqaMZzPAwtv`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f7874364-016b-4cff-a1b5-ec82150cd4e7",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "53d8331a-4ae3-4d3e-b317-363b115a91c7",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 531104
+    }
+  },
+  "sourceToolAssistantUUID": "f7874364-016b-4cff-a1b5-ec82150cd4e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 123_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "53d8331a-4ae3-4d3e-b317-363b115a91c7",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 124_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 125 · 2026-05-20T19:48:36.078Z_
+
+<details><summary>↩ Tool result · `toolu_01489TaCPaYmYjqLQqRFdrL2`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd4a6314-6b04-4ecb-a32d-956bd5d26bca",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "c3222cc7-c283-43ce-aa95-a951eb993518",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 480082
+    }
+  },
+  "sourceToolAssistantUUID": "bd4a6314-6b04-4ecb-a32d-956bd5d26bca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 126_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "c3222cc7-c283-43ce-aa95-a951eb993518",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 127_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 128 · 2026-05-20T19:48:39.539Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me continue reading the remaining pages.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3222cc7-c283-43ce-aa95-a951eb993518",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ8SzbegS2dB5vLiWeB",
+  "type": "assistant",
+  "uuid": "9e5c6481-56e0-4e5d-b3d8-470cdae3127b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Eji2L6CLvjEV1cTZTMVrv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2808,
+      "cache_read_input_tokens": 64117,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2808,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 64117,
+          "cache_creation_input_tokens": 2808,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2808
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-20T19:48:40.507Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01M2tY7MroRhSVo7LJEd7Kna`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p27.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9e5c6481-56e0-4e5d-b3d8-470cdae3127b",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ8SzbegS2dB5vLiWeB",
+  "type": "assistant",
+  "uuid": "ecce3e28-a466-41fa-936e-c6aa06c18580",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Eji2L6CLvjEV1cTZTMVrv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2808,
+      "cache_read_input_tokens": 64117,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2808,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 64117,
+          "cache_creation_input_tokens": 2808,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2808
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 130 · 2026-05-20T19:48:41.063Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_015aMA4FKQZe9n7hXsVjAmsx`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p28.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ecce3e28-a466-41fa-936e-c6aa06c18580",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ8SzbegS2dB5vLiWeB",
+  "type": "assistant",
+  "uuid": "dd0291ea-a5e8-4710-bcf3-d7019dd11983",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Eji2L6CLvjEV1cTZTMVrv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2808,
+      "cache_read_input_tokens": 64117,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2808,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 64117,
+          "cache_creation_input_tokens": 2808,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2808
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 131 · 2026-05-20T19:48:41.088Z_
+
+<details><summary>↩ Tool result · `toolu_01M2tY7MroRhSVo7LJEd7Kna`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ecce3e28-a466-41fa-936e-c6aa06c18580",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "8df74735-d479-49d6-ad54-f3386644608e",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 546859
+    }
+  },
+  "sourceToolAssistantUUID": "ecce3e28-a466-41fa-936e-c6aa06c18580",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 132 · 2026-05-20T19:48:41.543Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_014kVau6mqPyB9ZPmfTtyPDr`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p29.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8df74735-d479-49d6-ad54-f3386644608e",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ8SzbegS2dB5vLiWeB",
+  "type": "assistant",
+  "uuid": "c0617f10-71a9-4b5f-a5f0-80501d6b5398",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Eji2L6CLvjEV1cTZTMVrv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2808,
+      "cache_read_input_tokens": 64117,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2808,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 64117,
+          "cache_creation_input_tokens": 2808,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2808
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 133 · 2026-05-20T19:48:41.665Z_
+
+<details><summary>↩ Tool result · `toolu_015aMA4FKQZe9n7hXsVjAmsx`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dd0291ea-a5e8-4710-bcf3-d7019dd11983",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "ce3d09f9-46df-4461-9fd2-858001a800c5",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 473401
+    }
+  },
+  "sourceToolAssistantUUID": "dd0291ea-a5e8-4710-bcf3-d7019dd11983",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 134 · 2026-05-20T19:48:41.928Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01NSPWZBkdrupquNy5C3ifk8`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p30.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce3d09f9-46df-4461-9fd2-858001a800c5",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ8SzbegS2dB5vLiWeB",
+  "type": "assistant",
+  "uuid": "1f622e43-6067-45f0-9732-e811c02bacde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Eji2L6CLvjEV1cTZTMVrv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2808,
+      "cache_read_input_tokens": 64117,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2808,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 64117,
+          "cache_creation_input_tokens": 2808,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2808
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 135 · 2026-05-20T19:48:42.359Z_
+
+<details><summary>↩ Tool result · `toolu_014kVau6mqPyB9ZPmfTtyPDr`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c0617f10-71a9-4b5f-a5f0-80501d6b5398",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "b8c3e1ed-9f07-49c0-a0f0-20addc2af829",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 464695
+    }
+  },
+  "sourceToolAssistantUUID": "c0617f10-71a9-4b5f-a5f0-80501d6b5398",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 136 · 2026-05-20T19:48:42.736Z_
+
+<details><summary>↩ Tool result · `toolu_01NSPWZBkdrupquNy5C3ifk8`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f622e43-6067-45f0-9732-e811c02bacde",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "7454595c-3c64-4a2d-b90b-16b6cf9d4a9c",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 475630
+    }
+  },
+  "sourceToolAssistantUUID": "1f622e43-6067-45f0-9732-e811c02bacde",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 137 · 2026-05-20T19:48:42.875Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01DvHDSpmhNpLqj1z9hp3BLu`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p31.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7454595c-3c64-4a2d-b90b-16b6cf9d4a9c",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ8SzbegS2dB5vLiWeB",
+  "type": "assistant",
+  "uuid": "800075b9-e71c-43b8-b94e-041faab30f08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Eji2L6CLvjEV1cTZTMVrv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2808,
+      "cache_read_input_tokens": 64117,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2808,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 64117,
+          "cache_creation_input_tokens": 2808,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2808
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 138 · 2026-05-20T19:48:43.084Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_018eomM7ahqvrCMeeHsq1Nsf`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images/main_p32.png"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "800075b9-e71c-43b8-b94e-041faab30f08",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ8SzbegS2dB5vLiWeB",
+  "type": "assistant",
+  "uuid": "e720068e-0dbc-47fc-8e78-83de7a964f35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017Eji2L6CLvjEV1cTZTMVrv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2808,
+      "cache_read_input_tokens": 64117,
+      "output_tokens": 532,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2808,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 532,
+          "cache_read_input_tokens": 64117,
+          "cache_creation_input_tokens": 2808,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2808
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 139_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "e720068e-0dbc-47fc-8e78-83de7a964f35",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 140_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 141 · 2026-05-20T19:48:43.816Z_
+
+<details><summary>↩ Tool result · `toolu_01DvHDSpmhNpLqj1z9hp3BLu`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "800075b9-e71c-43b8-b94e-041faab30f08",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "f721640b-2077-43ac-9d71-6993f543d823",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 522341
+    }
+  },
+  "sourceToolAssistantUUID": "800075b9-e71c-43b8-b94e-041faab30f08",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 142_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "f721640b-2077-43ac-9d71-6993f543d823",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 143_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 144 · 2026-05-20T19:48:44.017Z_
+
+<details><summary>↩ Tool result · `toolu_018eomM7ahqvrCMeeHsq1Nsf`</summary>
+
+````text
+```json
+{
+  "type": "image",
+  "source": {
+    "type": "base64",
+    "data": "[ATTACHMENT_DATA_REDACTED]",
+    "media_type": "image/jpeg"
+  }
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e720068e-0dbc-47fc-8e78-83de7a964f35",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "b43205b5-633d-4e1c-9454-64f4c3729486",
+  "toolUseResult": {
+    "type": "image",
+    "file": {
+      "base64": "[ATTACHMENT_DATA_REDACTED]",
+      "type": "image/jpeg",
+      "originalSize": 433159
+    }
+  },
+  "sourceToolAssistantUUID": "e720068e-0dbc-47fc-8e78-83de7a964f35",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 145 · 2026-05-20T19:48:44.020Z_
+
+```json
+{
+  "parentUuid": "b43205b5-633d-4e1c-9454-64f4c3729486",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "f5a9788c-a299-47cd-bb43-3fdfe96a8b2a",
+  "timestamp": "2026-05-20T19:48:44.020Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 146_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "f5a9788c-a299-47cd-bb43-3fdfe96a8b2a",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 147_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 148 · 2026-05-20T19:50:08.501Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I've now read all 32 pages of the paper. Let me also search for some potentially missing related works to check coverage.
+
+Let me now compile my review. Let me organize my thoughts:
+
+## Paper Summary
+OntoCoDec is a framework that translates IE ontologies into composable token-level decoding constraints via a decidability-guided architecture. It has two layers:
+1. **Grammar layer** (context-free): compiles ontology constraints into context-free grammars guaranteeing JSON validity and vocabulary membership
+2. **Semantic layer** (prefix-decidable with state): interprets type constraints at runtime via dynamic logic masking over entity registry
+
+
+The paper introduces a decidability taxonomy classifying IE type constraints into three levels, where the first two are handled by the grammar and semantic layers respectively, while the third level addresses non-local cross-entity consistency through beam search and post-hoc resolution. A key insight is that neither layer alone suffices—the grammar layer can't enforce domain/range constraints, and the semantic layer achieves only 24% DR reduction without grammar-guaranteed vocabulary. The evaluation spans SciERC, DocRED, and WikiEvents datasets using Qwen3-8B, Llama-3.1-8B, and Mistral-7B models across two different configurations.
+
+The decidability taxonomy itself is a genuine theoretical contribution that formalizes what prior work handles implicitly, and the "enabling dependency" concept clearly shows how grammar and semantic layers are compositionally necessary rather than redundant. The two-layer architecture combining context-free grammar with a stateful semantic transducer is clean, and the formal proof that domain/range constraints for unbounded entity sets aren't context-free is novel. However, the grammar layer largely applies XGrammar to IE, which the paper acknowledges but needs careful scoping of novelty claims, and the semantic layer's entity registry with dynamic masking is relatively straightforward engineering—essentially a lookup table that restricts...
+
+Now I'm checking whether the paper's claims match the experimental results. The abstract claims near-elimination of decoding rate violations (down to 0.09% with LoRA on SciERC) and zero violations under favorable conditions with 1.54× latency overhead, both supported by the tables. The introduction cites violation rates of 15.4% on SciERC and 18.5% on DocRED, and the zero-shot evaluation covers 7-8 models as claimed.
+
+Looking at the contributions, the two-layer constrained decoding framework and comprehensive evaluation are solid, though the claim about automatic constraint compilation from any IE ontology is slightly overstated since it requires JSON Schema encoding. The limitations section addresses constraint scope, entity-level coverage, and scalability, and honestly notes that fine-tuning composability is preliminary for WikiEvents and only LoRA was tested. However, it glosses over computational costs at scale beyond the 1.54× latency figure and doesn't acknowledge that the approach is fundamentally JSON-specific—other output formats would require different grammar definitions.
+
+The paper is well-structured with a logical flow from problem to method to experiments, and the terminology like S1/S2 naming and the compile/interpret distinction stays consistent throughout. That said, the main text is quite dense at eight pages plus a massive 24-page appendix, and some of the notation around G(t), S(t), and V could be cleaner. The formal framework in Sections 2-3 is heavy, and domain/range terminology borrowed from ontology literature isn't always explained for readers unfamiliar with that background. The ethics statement is present but minimal.
+
+The writing reads authentically academic without obvious AI patterns, though phrases like "near-eliminates" and the novel term "enabling dependency" might raise some flags. The related work section is thorough, covering grammar-constrained decoding tools, schema-aware information extraction methods, and constraint enforcement approaches across a wide range of recent work.
+
+I'm noticing a few gaps worth considering—TANL's translation-based approach to IE, function calling methods for structured extraction, and some biomedical ontology work beyond what's cited. The bibliography looks mostly clean with 59 entries and 57 cited, though there are a couple of orphan references that aren't actually used in the paper.
+
+For the verification side, most of the unfound entries are edge cases—Format Tax is a very recent 2026 preprint that OpenAlex probably hasn't indexed yet, and the KGCurator paper is a workshop publication. The mismatches are just formatting quirks with author names and special characters, nothing substantive.
+
+The paper's positioning is solid—it clearly differentiates itself from XGrammar on the semantic side and from GoLLIE/KnowCoder on enforcement, with clean distinctions from IterGen and BoostCD. The GCD comparison is particularly well-articulated since that's the closest competitor.
+
+Now looking at the technical limitations: the evaluation is fairly narrow with just three standard datasets and no domain-specific ontologies tested despite claiming automatic compilation from any IE ontology. The model evaluation skews toward smaller 7B-8B models without exploring larger scales or commercial APIs. The "enabling dependency" claim could use more rigorous ablation testing to isolate the vocabulary constraint from the domain/range constraint. And the WikiEvents results feel underdeveloped given the tiny 20-document test set.
+
+The formal proof in the appendix is technically correct but relies on a straightforward pumping lemma argument without much depth. Weighing everything: the two-layer architecture is well-motivated and the experiments include proper ablations, but the limited dataset scope and small model focus hold it back—I'd rate soundness around 3.5/5. The decidability framework and enabling dependency concepts are interesting contributions, though they feel somewhat incremental rather than opening new research directions, so excitement lands around 3/5. Overall it's a solid, well-executed paper with real novelty, though it's more of a formalization of existing practices than a fundamental breakthrough.
+
+But stepping back, I should reconsider the critical weaknesses: the grammar layer is essentially XGrammar applied to IE schemas, the semantic layer is just a lookup table, and while the decidability taxonomy and two-layer composition are clean, they're relatively straightforward mechanisms. The evaluation is also quite narrow—just SciERC and DocRED for main experiments with WikiEvents as preliminary work, all in English on standard benchmarks. And the abstract's claim about "near-eliminating" dependency relations, while numerically supported, feels like aggressive framing. These issues together suggest this lands as a borderline conference paper around 3.5.
+
+Looking more closely at the specific claims, the abstract mentions "zero total violations on SciERC under favorable conditions" but that's only for one particular configuration with LoRA and beam search at size 1. There's also a notable gap in related work—the paper doesn't engage with TANL, which is a significant structured prediction approach using augmented natural language, and it misses potential comparisons with tool-use and function-calling methods that are becoming standard for structured extraction. The 1.54× latency overhead gets mentioned but deserves deeper analysis about when this cost is actually acceptable in deployment scenarios. Checking the page count, the main text runs through page 8, with limitations and ethics starting on page 9. Looking at the page layout more carefully, the main text spans exactly 8 pages through Section 7, with Limitations and the Ethics Statement starting on page 9, followed by the checklist, references, and appendices—this matches the EMNLP 2026 format requirements. Now I'm thinking through the review score: the decidability taxonomy and two-layer system are solid contributions, and the experiments are comprehensive for the chosen scope, but the novelty feels incremental since it builds on XGrammar with an added semantic layer, and the evaluation is limited to just a few small-scale datasets.
+
+The WikiEvents extension feels underdeveloped, and the practical gains are modest when fine-tuning alone already reduces violations substantially. Weighing the thorough formalization and ablations against the narrow evaluation and moderate novelty, I'm settling on a 3.5 (Borderline Conference) rather than a straight 3.0. Let me also check if there are any key references I should flag as potentially missing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f5a9788c-a299-47cd-bb43-3fdfe96a8b2a",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ93XjovrsipG4vQxWn",
+  "type": "assistant",
+  "uuid": "2358310a-a54d-4221-af5a-231cdcf97bff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzSXFXEfotuHjS8ZLbHXUJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2937,
+      "cache_read_input_tokens": 66925,
+      "output_tokens": 3262,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2937,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3262,
+          "cache_read_input_tokens": 66925,
+          "cache_creation_input_tokens": 2937,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2937
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 149 · 2026-05-20T19:50:08.508Z_
+
+全部 32 页已读完。现在搜索可能遗漏的重要相关工作。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2358310a-a54d-4221-af5a-231cdcf97bff",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ93XjovrsipG4vQxWn",
+  "type": "assistant",
+  "uuid": "1c044a10-1645-4778-87f5-bd318297e6f3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzSXFXEfotuHjS8ZLbHXUJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2937,
+      "cache_read_input_tokens": 66925,
+      "output_tokens": 3262,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2937,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3262,
+          "cache_read_input_tokens": 66925,
+          "cache_creation_input_tokens": 2937,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2937
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 150 · 2026-05-20T19:50:08.511Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CijhhRj3Eoz5xAvUeJPgqD`</summary>
+
+```json
+{
+  "query": "TANL structured prediction augmented natural language Paolini 2021 ACL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1c044a10-1645-4778-87f5-bd318297e6f3",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ93XjovrsipG4vQxWn",
+  "type": "assistant",
+  "uuid": "9979e88c-6067-4505-a85f-7ace7199e08e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzSXFXEfotuHjS8ZLbHXUJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2937,
+      "cache_read_input_tokens": 66925,
+      "output_tokens": 3262,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2937,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3262,
+          "cache_read_input_tokens": 66925,
+          "cache_creation_input_tokens": 2937,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2937
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 151 · 2026-05-20T19:50:08.924Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01W82QU9QcZEnbNfK9tgJ3KE`</summary>
+
+```json
+{
+  "query": "structured output LLM constrained generation information extraction 2025 2026 survey"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9979e88c-6067-4505-a85f-7ace7199e08e",
+  "isSidechain": false,
+  "requestId": "req_011CbEQ93XjovrsipG4vQxWn",
+  "type": "assistant",
+  "uuid": "26520a82-d4ce-40a2-a66f-a38a8ef693e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzSXFXEfotuHjS8ZLbHXUJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2937,
+      "cache_read_input_tokens": 66925,
+      "output_tokens": 3262,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2937,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3262,
+          "cache_read_input_tokens": 66925,
+          "cache_creation_input_tokens": 2937,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2937
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 152 · 2026-05-20T19:50:13.010Z_
+
+<details><summary>↩ Tool result · `toolu_01CijhhRj3Eoz5xAvUeJPgqD`</summary>
+
+```text
+Web search results for query: "TANL structured prediction augmented natural language Paolini 2021 ACL"
+
+Links: [{"title":"(PDF) Structured Prediction as Translation between Augmented Natural Languages","url":"https://www.researchgate.net/publication/348487215_Structured_Prediction_as_Translation_between_Augmented_Natural_Languages"},{"title":"[2101.05779] Structured Prediction as Translation between Augmented Natural Languages","url":"https://arxiv.org/abs/2101.05779"},{"title":"Structured Prediction as Translation between Augmented Natural Languages","url":"https://arxiv.org/pdf/2101.05779"},{"title":"[2101.05779v1] Structured Prediction as Translation between Augmented Natural Languages","url":"https://arxiv.org/abs/2101.05779v1"},{"title":"TANL: Structured prediction as translation between augmented natural languages - Amazon Science","url":"https://www.amazon.science/code-and-datasets/tanl-structured-prediction-as-translation-between-augmented-natural-languages"},{"title":"[PDF] Structured Prediction as Translation between Augmented Natural Languages | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Structured-Prediction-as-Translation-between-Paolini-Athiwaratkun/1cb3f6d545b68db3e7fc6055dcf44099c3ac4672"},{"title":"GitHub - amazon-science/tanl: Structured Prediction as Translation between Augmented Natural Languages · GitHub","url":"https://github.com/amazon-science/tanl"},{"title":"Structured prediction as translation between augmented natural languages - Amazon Science","url":"https://www.amazon.science/publications/structured-prediction-as-translation-between-augmented-natural-languages"},{"title":"DEEPSTRUCT: Pretraining of Language Models for Structure Prediction","url":"https://aclanthology.org/2022.findings-acl.67v2.pdf"},{"title":"Structured Prediction as Translation between Augmented Natural Languages | OpenReview","url":"https://openreview.net/forum?id=US-TP-xnXI"}]
+
+I found the paper you're searching for! Here's what I found:
+
+The TANL (Translation between Augmented Natural Languages) framework, authored by Giovanni Paolini and 8 other authors, addresses structured prediction language tasks including joint entity and relation extraction, nested named entity recognition, relation classification, semantic role labeling, event extraction, coreference resolution, and dialogue state tracking.
+
+Instead of using task-specific discriminative classifiers, TANL frames these problems as translation tasks between augmented natural languages, from which task-relevant information can be easily extracted.
+
+**Publication Note:** It's worth noting that while your query mentions ACL 2021, the paper was published at ICLR 2021, not ACL. The paper achieved new state-of-the-art results on joint entity and relation extraction, relation classification, and semantic role labeling across multiple datasets.
+
+The code and implementation are available on GitHub at the amazon-science/tanl repository, and the paper is accessible through arXiv (2101.05779).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9979e88c-6067-4505-a85f-7ace7199e08e",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "305ed1dc-aac7-440c-9b2c-f3a2ce3edc6b",
+  "toolUseResult": {
+    "query": "TANL structured prediction augmented natural language Paolini 2021 ACL",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017qCMVgR8VS8GTRpQKKVbd3",
+        "content": [
+          {
+            "title": "(PDF) Structured Prediction as Translation between Augmented Natural Languages",
+            "url": "https://www.researchgate.net/publication/348487215_Structured_Prediction_as_Translation_between_Augmented_Natural_Languages"
+          },
+          {
+            "title": "[2101.05779] Structured Prediction as Translation between Augmented Natural Languages",
+            "url": "https://arxiv.org/abs/2101.05779"
+          },
+          {
+            "title": "Structured Prediction as Translation between Augmented Natural Languages",
+            "url": "https://arxiv.org/pdf/2101.05779"
+          },
+          {
+            "title": "[2101.05779v1] Structured Prediction as Translation between Augmented Natural Languages",
+            "url": "https://arxiv.org/abs/2101.05779v1"
+          },
+          {
+            "title": "TANL: Structured prediction as translation between augmented natural languages - Amazon Science",
+            "url": "https://www.amazon.science/code-and-datasets/tanl-structured-prediction-as-translation-between-augmented-natural-languages"
+          },
+          {
+            "title": "[PDF] Structured Prediction as Translation between Augmented Natural Languages | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Structured-Prediction-as-Translation-between-Paolini-Athiwaratkun/1cb3f6d545b68db3e7fc6055dcf44099c3ac4672"
+          },
+          {
+            "title": "GitHub - amazon-science/tanl: Structured Prediction as Translation between Augmented Natural Languages · GitHub",
+            "url": "https://github.com/amazon-science/tanl"
+          },
+          {
+            "title": "Structured prediction as translation between augmented natural languages - Amazon Science",
+            "url": "https://www.amazon.science/publications/structured-prediction-as-translation-between-augmented-natural-languages"
+          },
+          {
+            "title": "DEEPSTRUCT: Pretraining of Language Models for Structure Prediction",
+            "url": "https://aclanthology.org/2022.findings-acl.67v2.pdf"
+          },
+          {
+            "title": "Structured Prediction as Translation between Augmented Natural Languages | OpenReview",
+            "url": "https://openreview.net/forum?id=US-TP-xnXI"
+          }
+        ]
+      },
+      "I found the paper you're searching for! Here's what I found:\n\nThe TANL (Translation between Augmented Natural Languages) framework, authored by Giovanni Paolini and 8 other authors, addresses structured prediction language tasks including joint entity and relation extraction, nested named entity recognition, relation classification, semantic role labeling, event extraction, coreference resolution, and dialogue state tracking.\n\nInstead of using task-specific discriminative classifiers, TANL frames these problems as translation tasks between augmented natural languages, from which task-relevant information can be easily extracted.\n\n**Publication Note:** It's worth noting that while your query mentions ACL 2021, the paper was published at ICLR 2021, not ACL. The paper achieved new state-of-the-art results on joint entity and relation extraction, relation classification, and semantic role labeling across multiple datasets.\n\nThe code and implementation are available on GitHub at the amazon-science/tanl repository, and the paper is accessible through arXiv (2101.05779)."
+    ],
+    "durationSeconds": 4.493905366999999
+  },
+  "sourceToolAssistantUUID": "9979e88c-6067-4505-a85f-7ace7199e08e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 153_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "305ed1dc-aac7-440c-9b2c-f3a2ce3edc6b",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 154_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 155 · 2026-05-20T19:50:17.458Z_
+
+<details><summary>↩ Tool result · `toolu_01W82QU9QcZEnbNfK9tgJ3KE`</summary>
+
+```text
+Web search results for query: "structured output LLM constrained generation information extraction 2025 2026 survey"
+
+Links: [{"title":"How Structured Outputs and Constrained Decoding Work | Let's Data Science","url":"https://letsdatascience.com/blog/structured-outputs-making-llms-return-reliable-json"},{"title":"SLOT: Structuring the Output of Large Language Models","url":"https://aclanthology.org/2025.emnlp-industry.32.pdf"},{"title":"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction","url":"https://arxiv.org/html/2510.08623v1"},{"title":"SLOT: Structuring the Output of Large Language Models","url":"https://arxiv.org/pdf/2505.04016"},{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-024-40555-y"},{"title":"A Simple but Effective Approach to Improve Structured Language Model   Output for Information Extraction","url":"https://arxiv.org/pdf/2402.13364"},{"title":"Draft-Conditioned Constrained Decoding for Structured Generation in LLMs","url":"https://arxiv.org/pdf/2603.03305"}]
+
+Based on the web search results, here's what I found regarding structured output, constrained generation, and information extraction for LLMs in 2025-2026:
+
+## Evolution of Structured Output Approaches
+
+The field has evolved through four phases: prompt engineering (2020-2023) with 5-20% failure rates, JSON mode (2023-2024) with guaranteed syntax but no schema enforcement, schema enforcement (2024-2025) with offerings from OpenAI (August 2024), Google Gemini (May 2024), and Anthropic (November 2025), and high-performance engines (2025-2026) like XGrammar and llguidance achieving near-zero overhead constrained decoding.
+
+## Performance and Technical Advances
+
+XGrammar is the default structured generation backend for vLLM, SGLang, and TensorRT-LLM as of March 2026, achieving under 40 microseconds per token with near-zero overhead in JSON generation. A September 2025 benchmark found XGrammar slightly outperformed llguidance in repeated-schema scenarios.
+
+## Structured Output Definition and Applications
+
+Structured output means model-generated content conforms to a predefined, machine-readable format rather than freeform natural language, enabling LLM-based applications to answer questions via function calling, extract structured data, and build multi-step agent workflows. JSON Schema is one of the most widely-used structure formats.
+
+## Information Extraction Approaches
+
+Large Language Models have transformed information extraction from discriminative to generative approaches that produce structured outputs directly from unstructured text. However, LLMs struggle with complex schemas, with GPT-4 showing an 11.97% invalid response rate for complex extraction tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "26520a82-d4ce-40a2-a66f-a38a8ef693e8",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "e08d63f2-7500-4fd2-8a7d-297ed47aa0e3",
+  "toolUseResult": {
+    "query": "structured output LLM constrained generation information extraction 2025 2026 survey",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019r4NA6ACt71GDtuepNgQwQ",
+        "content": [
+          {
+            "title": "How Structured Outputs and Constrained Decoding Work | Let's Data Science",
+            "url": "https://letsdatascience.com/blog/structured-outputs-making-llms-return-reliable-json"
+          },
+          {
+            "title": "SLOT: Structuring the Output of Large Language Models",
+            "url": "https://aclanthology.org/2025.emnlp-industry.32.pdf"
+          },
+          {
+            "title": "PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction",
+            "url": "https://arxiv.org/html/2510.08623v1"
+          },
+          {
+            "title": "SLOT: Structuring the Output of Large Language Models",
+            "url": "https://arxiv.org/pdf/2505.04016"
+          },
+          {
+            "title": "Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11704-024-40555-y"
+          },
+          {
+            "title": "A Simple but Effective Approach to Improve Structured Language Model   Output for Information Extraction",
+            "url": "https://arxiv.org/pdf/2402.13364"
+          },
+          {
+            "title": "Draft-Conditioned Constrained Decoding for Structured Generation in LLMs",
+            "url": "https://arxiv.org/pdf/2603.03305"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found regarding structured output, constrained generation, and information extraction for LLMs in 2025-2026:\n\n## Evolution of Structured Output Approaches\n\nThe field has evolved through four phases: prompt engineering (2020-2023) with 5-20% failure rates, JSON mode (2023-2024) with guaranteed syntax but no schema enforcement, schema enforcement (2024-2025) with offerings from OpenAI (August 2024), Google Gemini (May 2024), and Anthropic (November 2025), and high-performance engines (2025-2026) like XGrammar and llguidance achieving near-zero overhead constrained decoding.\n\n## Performance and Technical Advances\n\nXGrammar is the default structured generation backend for vLLM, SGLang, and TensorRT-LLM as of March 2026, achieving under 40 microseconds per token with near-zero overhead in JSON generation. A September 2025 benchmark found XGrammar slightly outperformed llguidance in repeated-schema scenarios.\n\n## Structured Output Definition and Applications\n\nStructured output means model-generated content conforms to a predefined, machine-readable format rather than freeform natural language, enabling LLM-based applications to answer questions via function calling, extract structured data, and build multi-step agent workflows. JSON Schema is one of the most widely-used structure formats.\n\n## Information Extraction Approaches\n\nLarge Language Models have transformed information extraction from discriminative to generative approaches that produce structured outputs directly from unstructured text. However, LLMs struggle with complex schemas, with GPT-4 showing an 11.97% invalid response rate for complex extraction tasks."
+    ],
+    "durationSeconds": 8.531018036999972
+  },
+  "sourceToolAssistantUUID": "26520a82-d4ce-40a2-a66f-a38a8ef693e8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 156 · 2026-05-20T19:51:24.747Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have enough information to write my complete review. Let me also check if there are any other important missing references I should note.
+
+Key things I want to mention:
+1. TANL (Paolini et al., 2021, ICLR) — a foundational generative IE work that frames structured prediction as translation. This is a notable omission from the related work section.
+2. SLOT (2025) — structuring LLM output, though this is more of an industry paper.
+
+Let me now compile my full review.
+
+**Reference verification summary:**
+
+
+I've checked the bibliography and found 59 entries with 57 cited in the paper. There are 2 orphan references that aren't used. I was able to verify 47 references online, though 2 couldn't be found — one is a workshop paper and the other is a very recent 2026 preprint. I noticed 10 minor mismatches, but they're all just LaTeX encoding issues with author names. No hallucinated citations detected.
+
+Now I'm starting to write the review, beginning with a summary of how OntoCoDec proposes a two-layer constrained decoding framework for information extraction that compiles IE ontologies into token-level constraints, with a grammar layer handling context-free constraints.
+
+The paper's core contribution is a two-layer approach: the grammar layer enforces JSON validity and vocabulary constraints through context-free grammars, while the semantic layer handles domain and range type constraints using a runtime entity registry with prefix-decidable state. The work introduces a formal taxonomy of IE type constraints and demonstrates the concept of "enabling dependency" between layers. Testing on SciERC, DocRED, and WikiEvents shows the framework nearly eliminates ontology violations with only moderate latency costs.
+
+The decidability taxonomy is well-motivated, cleanly classifying IE type constraints into three levels and providing formal justification for why the two-layer design is necessary. The ablation studies are comprehensive, examining layer contributions and other design choices to validate the approach.
+
+The "enabling dependency" concept is particularly insightful—the grammar layer alone only reduces defects by 24% without semantic enforcement, while the semantic layer cannot guarantee vocabulary compliance on its own. The system's engineering is clean, compiling directly from any IE ontology without constraint-specific training, and the tokenizer-agnostic masking with grammar-first fallback handles edge cases gracefully.
+
+Empirically, the results are strong: zero violations on SciERC with LoRA fine-tuning and a dramatic drop from 15.37% to 0.03% defect rate on DocRED, with good composability demonstrated across fine-tuning approaches.
+
+On the novelty side, though, the architecture is primarily a well-motivated combination of existing techniques. The grammar layer is directly XGrammar applied to IE JSON schemas, so the contribution is really in the application rather than the mechanism itself. The semantic layer is essentially a stateful lookup table for entity tracking.
+
+The decidability analysis is valuable for motivation, but the individual components—the registry-based type masking, the formal-language-theory framing—are fairly straightforward. The real contribution is in composing these pieces and formalizing the problem, which is solid but perhaps not as conceptually novel as the framing suggests.
+
+The evaluation is also quite narrow for the generality claims being made. Only three datasets are tested, with relatively small scale—SciERC has 551 documents and 7 entity types, DocRED has 998 documents and 96 relation types, and WikiEvents is even smaller at 246 documents with preliminary results on just 20 test documents. All are English benchmarks, and the claim about automatically compiling constraints from any IE ontology is only validated on these three cases, with no biomedical, industrial, or truly large-scale ontologies tested. The models evaluated are all in the 7B-8B parameter range too, with no testing on larger models or commercial APIs despite the generality claims.
+
+Most concerning is that the actual downstream impact on F1 performance remains unclear—on SciERC, the constraints produce minimal or marginal improvements, which raises questions about whether the added complexity delivers meaningful practical benefits. The Related Work section is too compressed—major threads like grammar-constrained decoding and schema-aware IE get only 1-2 sentences each, and TANL, a foundational precursor to the generative IE paradigm OntoCoDec builds on, isn't even cited. Moving the thorough extended discussion to the appendix weakens the main narrative. Additionally, the paper introduces dense formalism—G(t), S(t), constraint tightness κ, and a three-level decidability taxonomy—that could strain readability without clearer motivation upfront. but I should flag those for verification. Now I'm moving into the questions for the authors — the first asks for a more granular ablation that separates grammar-layer constraints from semantic-layer constraints to better isolate where the enabling dependency actually comes from. The second question probes scalability on much larger ontologies like Wikidata, since the current evaluation only goes up to 1,000 relations. The third question is starting to ask about latency scaling for the constrained decoding approach, which maxes out at 1.54× overhead in their experiments.
+
+The next part continues that latency question, asking specifically how the overhead scales with sequence length and schema complexity, and whether the bottleneck is in grammar compilation or semantic masking. Then there's a question about the WikiEvents results, where the grammar-only layer performs terribly with over 85% vocabulary violations and zero entity F1, suggesting that event extraction is fundamentally harder for grammar-constrained approaches. The fifth question digs into whether the constraint flow-to-domain-range trade-off they observe is a fundamental limitation of any two-layer system or just an artifact of their design. Finally, I'm noting a missing reference to TANL, a structured prediction paper from ICLR 2021.
+
+Now looking at the assessment section, the paper gets a 3.5 overall score—borderline for a top conference—with fairly high confidence. The reviewer acknowledges that OntoCoDec is well-engineered with solid ablations and a useful insight about the enabling dependency between layers, but the novelty feels moderate since the individual components are relatively straightforward and the main contribution is just combining them thoughtfully. The evaluation is thorough but narrow—only three English datasets and models up to 8B parameters.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e08d63f2-7500-4fd2-8a7d-297ed47aa0e3",
+  "isSidechain": false,
+  "requestId": "req_011CbEQFvTHqaHGqNCDKKPGX",
+  "type": "assistant",
+  "uuid": "6245e11a-d7fc-42e0-b5a2-966b09302b95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019prsAj4Via1Vo6b3rt8heH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4836,
+      "cache_read_input_tokens": 69862,
+      "output_tokens": 6549,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4836,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6549,
+          "cache_read_input_tokens": 69862,
+          "cache_creation_input_tokens": 4836,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4836
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 157 · 2026-05-20T19:51:25.693Z_
+
+全部 32 页论文和参考文献验证已完成。现在撰写完整审稿报告并提交给 Director。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6245e11a-d7fc-42e0-b5a2-966b09302b95",
+  "isSidechain": false,
+  "requestId": "req_011CbEQFvTHqaHGqNCDKKPGX",
+  "type": "assistant",
+  "uuid": "3ec7d6ca-f7f5-4dd9-8fa0-85ea211e0973",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019prsAj4Via1Vo6b3rt8heH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4836,
+      "cache_read_input_tokens": 69862,
+      "output_tokens": 6549,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4836,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6549,
+          "cache_read_input_tokens": 69862,
+          "cache_creation_input_tokens": 4836,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4836
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 158 · 2026-05-20T19:52:23.326Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director · `toolu_01X3BjGLPbiDdcmHC1ZURDzh`</summary>
+
+```json
+{
+  "text": "\n# Reviewer 2 审稿报告：OntoCoDec\n\n## 1. Summary\n\nOntoCoDec proposes a two-layer constrained decoding framework for information extraction that compiles IE ontologies into token-level constraints: a grammar layer (context-free, via XGrammar) for JSON validity and vocabulary membership, and a semantic layer (prefix-decidable with state) for domain/range type constraints via a runtime entity registry. The paper introduces a three-level decidability taxonomy of IE type constraints and the concept of \"enabling dependency\" between layers. Evaluation on SciERC (551 docs), DocRED (998 docs), and WikiEvents (246 docs) with 7-8B models shows near-elimination of ontology violations with 1.54× latency overhead.\n\n---\n\n## 2. Strengths\n\n**S1. 理论基础扎实：决策性分类体系 (decidability taxonomy) 提供了清晰的形式化框架。**\n三级分类（context-free / prefix-decidable with state / non-local）为理解不同约束执行机制的能力边界提供了干净的理论基础。Proposition 1（Appendix O）通过 pumping lemma 证明了具有无界实体集的 domain/range 约束不是 context-free 的，这一证明正确且直接支撑了两层设计的必要性。\n\n**S2. 消融实验极其充分。**\n论文提供了全面的消融：层级贡献分析（Table 1-3）、S1 vs S2 配置对比、与 fine-tuning 的组合性（Section 5.1）、跨数据集验证（Section 5.2, Table 3）、beam search 兼容性（Appendix F）、文档长度分析（Appendix H）、prompt 敏感性分析（Appendix I）、以及 4 个 case study（Appendix J）。32 页附录虽大，但提供了实质性的深度，而非凑篇幅。\n\n**S3. \"Enabling dependency\" 是一个有价值的概念贡献。**\nTable 1 和 Section 5.1 清楚地展示了：grammar layer 单独只能减少 24% DR（无语义约束时），而 semantic layer 单独无法保证词汇合规性。这种层间相互依赖关系并不显而易见，具有实际指导意义——它说明了为什么单纯堆叠 XGrammar 或单纯做 type checking 都不够。\n\n**S4. 工程设计干净、可复用。**\n系统从任意 IE 本体（JSON Schema 编码）自动编译约束，无需约束专属训练。tokenizer-agnostic masking（Section 3.3）和 grammar-first fallback（Section 4）是合理的设计选择。适用于任何提供 logit 访问的自回归 LM——这是一个合理的部署假设。\n\n**S5. violation 消除效果强。**\nSciERC + LoRA fine-tuning 下实现零违规；DocRED 上 DR 从 15.37% 降至 0.03%（Table 2）。与 fine-tuning 的组合性（Section 5.1）得到充分验证，表明约束执行和参数优化是互补的。\n\n---\n\n## 3. Weaknesses\n\n**W1 [major] 新颖性适中——架构本质上是已有技术的 well-motivated 组合。**\n- Grammar layer 明确是 XGrammar（Dong et al., 2025）应用于 IE JSON schema——Section 3.2 直接写 \"compiled into a pushdown automaton via XGrammar\"。贡献在于 *应用*，而非机制本身。\n- Semantic layer 是一个带状态的查找表（entity registry D: name→type），在 type-bearing positions 做 logit masking。decidability 分析解释了 *why* 需要它，但机制本身（维护 registry + 在特定位置限制类型）是直接的工程实现。\n- Decidability taxonomy 将已知的形式语言理论结果（CFG 不能执行跨字段依赖）重述于 IE 语境。Proposition 1 的 pumping lemma 证明正确但标准。\n- 主要新颖性在于 *组合* 和 *形式化*，而非单个组件。这是有效的贡献，但论文 framing（\"a framework that translates IE ontologies into composable token-level decoding constraints via a decidability-guided architecture\"）可能对概念新颖性有所高估。\n\n**W2 [major] 评估范围相对于泛化性声明偏窄。**\n- 仅 3 个数据集：SciERC（551 docs, 7 entity types）、DocRED（998 docs, 96 relation types）、WikiEvents（246 docs, 56 event types）。全部英语、常用 benchmark。\n- Abstract 和 Section 1 的 Contribution 3 声称 \"compiles constraints automatically from any IE ontology\"，但实际仅测试了 3 个本体。无生物医学、工业级或大规模本体评估。\n- WikiEvents 结果被论文自身描述为 \"preliminary\"（Section 5.4），仅 20 个文档的测试集。\n- 所有模型均为 7B-8B。无 ≥13B 模型或商业 API 评估。Limitations 中承认了这一点，但泛化性声明仍显不足。\n\n**W3 [major] 约束执行对下游任务性能（F1）的实际影响不够清晰。**\n- SciERC 上，约束引入后 F1 基本不变或轻微提升（Table 1: R-F1 44→46 with beam search），增益小且可能在置信区间内。\n- DocRED 上，LoRA + beam S1 的 R-F1 从 7.74 提升至 8.23（Table 3），但绝对 F1 仍然很低。\n- 论文以 DR reduction 为主要指标，但读者会追问：如果违规在本体层面无效但很少影响下游 precision/recall，这些工程开销是否值得？constraint tightness 分析（Section 4, Appendix N）部分回应了这一问题（展示了 tight constraints 与 high DR 的相关性），但未完全弥合 \"violation reduction → practical value\" 的论证缺口。\n\n**W4 [minor] Related Work（Section 6）压缩过度，关键定位论述被推至 Appendix B。**\n- 正文 Related Work 仅约 0.6 页。三个主要线索（grammar-constrained decoding, schema-aware IE, constraint enforcement + degradation）各仅 1-2 句话配 citation 列表，无法实现有意义的定位。\n- **TANL**（Paolini et al., 2021, ICLR 2021）——\"Structured Prediction as Translation between Augmented Natural Languages\"——未被引用。这是生成式结构化预测范式的基础性工作，直接催生了 OntoCoDec 所构建的 IE-as-generation 范式，属于值得注意的遗漏。\n- Appendix B（pages 14-18）的扩展 Related Work 覆盖面广且详细，但将关键定位论述放在附录中削弱了正文叙事。\n\n**W5 [minor] 部分术语和符号密度较高，可能影响可读性。**\n- 论文在 Section 2-4 中引入了大量形式化：G(t), S(t), V, D（entity registry）, M_final, 三级 decidability taxonomy, \"enabling dependency\", \"grammar-first fallback\", \"constraint tightness κ\"——密度较高。\n- Constraint tightness κ（Eq. 3）在 Section 4 引入并贯穿分析，但对非专家读者的直觉解释可以更清晰。\n- 整体写作质量良好，无明显 AI 生成痕迹，术语使用一致（S1/S2 命名、compile/interpret 层次分明），结构流畅。\n\n**W6 [minor] 两个孤立 bib 条目和轻微引用问题。**\n- `chen2024agentre` 和 `fan2024fsn` 在 bibliography 中但从未被引用。\n- `formattax2026`（\"The Format Tax\"）和 `regino2025kgcurator` 无法通过 OpenAlex 验证（前者可能太新，后者为 workshop paper）。这两篇并非幻觉引用——看起来是真实工作——但应确认。\n- 其余 10 条 \"mismatch\" 均为作者名 LaTeX 编码差异（如 šakota vs sakota），属于良性问题。\n\n---\n\n## 4. Questions for Authors\n\n**Q1.** Enabling dependency 通过 Table 1 的 layer-level 消融进行了展示，但能否提供更受控的消融？具体来说：(a) grammar layer 有词汇约束但 *无* domain/range 执行 vs. (b) semantic layer 有 domain/range 执行但 *无* grammar 保证的词汇合规性。这将超越 layer-level 消融，隔离每种约束类型的具体贡献。\n\n**Q2.** OntoCoDec 在具有显著更多 entity/relation types 的本体（如 Wikidata 的数千种类型）上表现如何？Appendix K（Table 29）展示了编译时间可达 1,000 relations，但大规模推理时的运行时开销未报告。\n\n**Q3.** 论文报告 full S1 constrained decoding 的 latency overhead 为 1.54×（Section 5, Appendix G）。这一开销如何随序列长度和 schema 复杂度缩放？开销是由 grammar compilation、semantic masking 还是两者共同主导？\n\n**Q4.** WikiEvents（Section 5.4）中，full S1 结果显示极端的词汇违规（EV+RoV >85%, Table 5），entity F1=0。这表明 grammar-only layer 对 event extraction 严重不足。能否讨论为什么 EE 对 grammar-constrained 方法特别具有挑战性，是否需要额外的架构组件？\n\n**Q5.** CF→DR trade-off（Section 5.1, Appendix C）显示消除 CF 会将违规重新路由至 DR。这是任何两层约束系统的固有限制，还是 OntoCoDec 设计的特定产物？\n\n---\n\n## 5. Missing References\n\n1. **TANL**（Paolini et al., 2021, ICLR）: \"Structured Prediction as Translation between Augmented Natural Languages\" ——生成式结构化预测的基础性工作，直接催生了 OntoCoDec 所依赖的 IE-as-generation 范式。\n2. 可考虑引用 **SLOT**（2025, EMNLP Industry）: \"Structuring the Output of Large Language Models\" ——与生产环境中的结构化输出执行相关。\n\n---\n\n## 6. Overall Assessment\n\n### 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| **Soundness** | 3.5/5 | 技术方法正确，两层架构由 decidability 分析良好支撑。消融充分。但评估仅覆盖 3 个英语数据集和 7-8B 模型，相对泛化性声明不足。Proposition 1 正确但标准。 |\n| **Excitement** | 3/5 | Decidability taxonomy 和 enabling dependency 是有价值的概念贡献，但架构本质是已有技术的组合（XGrammar + 查找表式 type masking）。不开辟根本性新方向，但提供了有用的形式化框架。 |\n| **Reproducibility** | 4/5 | 实验设置描述详细（Appendix G: 硬件、超参数、随机种子）；prompt templates 完整给出（Appendix A, Table 6）；数据集公开可用。代码未提供但方法描述足以复现。 |\n| **Overall Assessment** | **3.5 — Borderline Conference** | |\n| **Confidence** | 4/5 | 对 constrained decoding 和 IE 文献较熟悉，仔细阅读了全文含附录。 |\n\n### 一句话总评\n\nOntoCoDec 提供了一个工程质量高、理论动机清晰的约束解码框架，但新颖性适中（主要是已有技术的 principled composition），评估范围（3 个英语数据集、仅 7-8B 模型）相对其泛化性声明偏窄，且约束执行对下游 F1 的实际增益有限。是一篇扎实的 Findings 水平工作，若能拓展评估覆盖面或从理论框架中导出更意外的洞察，可冲击 Conference。\n",
+  "reviewer_id": "2",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3ec7d6ca-f7f5-4dd9-8fa0-85ea211e0973",
+  "isSidechain": false,
+  "requestId": "req_011CbEQFvTHqaHGqNCDKKPGX",
+  "type": "assistant",
+  "uuid": "5e174dde-f361-4fd4-933b-65898f231dbd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019prsAj4Via1Vo6b3rt8heH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4836,
+      "cache_read_input_tokens": 69862,
+      "output_tokens": 6549,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4836,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6549,
+          "cache_read_input_tokens": 69862,
+          "cache_creation_input_tokens": 4836,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4836
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 159_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 论文完整性 + 写作质量 + Related Work**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints - **论文路径**: `/home/ubunt…",
+  "leafUuid": "5e174dde-f361-4fd4-933b-65898f231dbd",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 160_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 161 · 2026-05-20T19:52:26.929Z_
+
+<details><summary>↩ Tool result · `toolu_01X3BjGLPbiDdcmHC1ZURDzh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5e174dde-f361-4fd4-933b-65898f231dbd",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "4d4013f4-7fea-47e7-95ec-d19b1cecd57e",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "5e174dde-f361-4fd4-933b-65898f231dbd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 162 · 2026-05-20T19:52:31.600Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The review has been posted to the Director. Let me also clean up the PDF images.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d4013f4-7fea-47e7-95ec-d19b1cecd57e",
+  "isSidechain": false,
+  "requestId": "req_011CbEQRTzbnGrUSG3JLsKtk",
+  "type": "assistant",
+  "uuid": "b9fa5031-8b80-47fc-aa5c-9a62caf5c85b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UXcAVNmvQAtjjLm3t3oD4e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6620,
+      "cache_read_input_tokens": 74698,
+      "output_tokens": 120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6620,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 120,
+          "cache_read_input_tokens": 74698,
+          "cache_creation_input_tokens": 6620,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6620
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 163 · 2026-05-20T19:52:31.918Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_0157LaY19U4jbzot22oJYAQK`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b9fa5031-8b80-47fc-aa5c-9a62caf5c85b",
+  "isSidechain": false,
+  "requestId": "req_011CbEQRTzbnGrUSG3JLsKtk",
+  "type": "assistant",
+  "uuid": "065ae12f-6fd6-4792-832a-92fc55e25fc6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UXcAVNmvQAtjjLm3t3oD4e",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6620,
+      "cache_read_input_tokens": 74698,
+      "output_tokens": 120,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6620,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 120,
+          "cache_read_input_tokens": 74698,
+          "cache_creation_input_tokens": 6620,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6620
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 164 · 2026-05-20T19:52:31.921Z_
+
+<details><summary>↩ Tool result · `toolu_0157LaY19U4jbzot22oJYAQK`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__cleanup_pdf_images"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "065ae12f-6fd6-4792-832a-92fc55e25fc6",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "6d12825c-272e-4b0f-ab5a-ef97f959720f",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__cleanup_pdf_images"
+    ],
+    "query": "select:mcp__agent-ml-research__cleanup_pdf_images",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "065ae12f-6fd6-4792-832a-92fc55e25fc6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 165 · 2026-05-20T19:52:36.317Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__cleanup_pdf_images · `toolu_01UmKah5ViVF8N2Ay5qyNh3c`</summary>
+
+```json
+{
+  "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/_pdf_images"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d12825c-272e-4b0f-ab5a-ef97f959720f",
+  "isSidechain": false,
+  "requestId": "req_011CbEQRqbcjjmwuqZcTeehB",
+  "type": "assistant",
+  "uuid": "26972bf8-0c09-489c-be71-0fd959c6534c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UsCFPZuRhSMw7uvWLaazmg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 300,
+      "cache_read_input_tokens": 81318,
+      "output_tokens": 106,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 300,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 106,
+          "cache_read_input_tokens": 81318,
+          "cache_creation_input_tokens": 300,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 300
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 166 · 2026-05-20T19:52:36.332Z_
+
+<details><summary>↩ Tool result · `toolu_01UmKah5ViVF8N2Ay5qyNh3c`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"message\": \"目录不存在，无需清理\", \"deleted\": 0}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "26972bf8-0c09-489c-be71-0fd959c6534c",
+  "isSidechain": false,
+  "promptId": "179b2eb1-7bc8-4f5e-98e4-0df0899f3030",
+  "type": "user",
+  "uuid": "8f795067-ae5c-4870-b97e-f1ff62d133db",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"message\": \"目录不存在，无需清理\", \"deleted\": 0}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "26972bf8-0c09-489c-be71-0fd959c6534c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 167_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 168 · 2026-05-20T19:54:52.101Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-20T19:54:52.101Z",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "content": "[Round 1 审稿请求]:\n以下是 Reviewer 1 的完整审稿意见，请逐条回应。对每条 Weakness 和 Question，使用 [AGREE] 表示同意并说明理由，或 [REBUT] 表示反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n# Reviewer 1 审稿报告：OntoCoDec\n\n**审查侧重**: 方法严谨性 + 实验设计与评估\n\n## 2. Strengths\n\n**S1. 理论基础扎实且有原创性。** Proposition 1 的 pumping lemma 证明（Appendix O, pp. 31-32）正确地建立了 domain/range type constraint 超出 context-free 语言能力的结论，为两层架构提供了形式化动机。三级 decidability taxonomy（context-free / prefix-decidable with state / non-local）是对 constrained decoding 领域的概念性贡献，清晰地界定了不同约束类别的计算复杂度。\n\n**S2. 消融设计严谨，enabling dependency 论证清晰。** SciERC 五路消融（Table 1）和 DocRED 四路消融（Table 2-3）有效证明了各层的独立贡献：grammar-only 仅减少 24% DR（Section 5.1），semantic layer 是消除 domain/range violations 的关键，fine-tuning 与约束可组合（DR ≤ 0.09% across all fine-tuned settings）。层间 enabling dependency 的论证是本文的一大亮点。\n\n**S3. 统计检验规范。** Bootstrap 10,000 paired significance tests（§5.1, §5.2）覆盖关键对比，p 值均有报告。fine-tuning composability 的显著性检验（p<0.001 for DR, p=0.06 for R-F1）展现了负责任的统计实践。\n\n**S4. 跨模型一致性好。** 3 models（Qwen3-8B, Llama-3.1-8B, Mistral-7B）× 2 datasets 的交叉验证（Tables 1-4）显示约束效果在不同 tokenizer 家族间一致，支持了 tokenizer-agnostic 的声称。\n\n**S5. 工程贡献实用。** 运行时开销低（S1: +13.1% SciERC, +2.43% DocRED），continuation masking 的 tokenizer-agnostic 设计（§4）和 grammar-first fallback（§4）都是实际可部署的设计选择。Appendix G 的完整复现细节值得肯定。\n\n**S6. 论文写作清晰，结构合理。** 正文 8 页内完成了理论动机→方法→实验→讨论的完整叙事，appendix 提供了充分的补充材料。Figure 1 的架构概览信息密度高。\n\n## 3. Weaknesses\n\n**W1 [critical] 缺少与最相关 constrained decoding baselines 的实验对比。**\n论文在 Related Work 中引用了 BoostCD、GCD、IterGen、SynCode 和 DOMINO，但实验中未与任何一个进行实验对比。特别是 BoostCD 是唯一一个明确将 constrained decoding 应用于 IE 的工作，完全没有实验对比是不可接受的。GCD 作为 grammar-constrained decoding for structured NLP 的直接前驱，也应纳入 baseline。\n\n**W2 [critical] Grammar-first fallback 频率过高（36.6%），削弱了 type constraint enforcement 的核心声称。**\n在 SciERC 上，grammar-first fallback 在 36.64% 的 type-bearing positions 触发（Table 7）。这意味着超过三分之一的关键位置上，semantic layer 的 type constraints 被完全放弃，仅保留 grammar layer 的结构约束。论文称 fallback 的 CF 消除\"只 re-routes violations to DR\"，但这实际上意味着系统在大量位置上退化为 grammar-only 模式。\n\n**W3 [major] WikiEvents 评估（20-doc test set）统计功效极低。**\n20 个文档不足以支撑对 56 event types 的约束效果评估——平均每个 event type 不到 0.4 个测试文档。\n\n**W4 [major] Proposition 1 证明中的 position-indexing 简化未被充分讨论。**\nProposition 1 的完整证明使用 position-based entity indexing，但 OntoCoDec 的实际 JSON 输出通过 name strings 引用实体。从简化版本到实际系统的 gap 需要更精确的处理。\n\n**W5 [major] Constraint tightness κ̄ 的 predictive value 基于仅 2 个数据点。**\nκ̄ 仅在 SciERC 和 DocRED 上计算。Appendix D 的 dual-factor analysis 报告 Spearman ρ = -0.77 with n=6，统计功效极低。\n\n**W6 [major] Beam search 评估不完整：DocRED 仅 50-doc 子集。**\nDocRED zero-shot beam search 仅在 50-doc 子集上评估，而非完整 998-doc dev set。\n\n**W7 [minor] 70B 评估过于 preliminary，贡献有限。**\n仅量化推理，未测试 70B+LoRA fine-tuning，INT4 量化可能影响 baseline 质量。\n\n**W8 [minor] Entity registry 的顺序依赖假设缺少量化验证。**\n论文未报告 S1 下实体-关系生成顺序违反的频率。\n\n## 4. Questions\n\nQ1. BoostCD 为何未作为 experimental baseline？\nQ2. Grammar-first fallback 在 DocRED 上的触发比例？fallback root causes 分布？\nQ3. 如果 output format 改为 canonical entity IDs，Proposition 1 是否仍然成立？\nQ4. 更 aggressive 的约束策略（backtrack/resample）能否同时降低 DR 和 CF？\nQ5. 能否量化 \"well-calibrated\" 的具体条件？\nQ6. WikiEvents 20-doc test set 上的 document-level variance？\n\n## 6. Overall Assessment\n- Soundness: 3.5/5\n- Excitement: 3.5/5\n- Reproducibility: 4/5\n- **Overall: 3.5 — Borderline Conference**\n- Confidence: 4/5"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 169 · 2026-05-20T19:54:52.101Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-20T19:54:52.101Z",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 170 · 2026-05-20T19:54:52.092Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8f795067-ae5c-4870-b97e-f1ff62d133db",
+  "isSidechain": false,
+  "promptId": "683938a5-4562-4431-8f46-cd2372ddac74",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "029de955-26be-4774-bf13-2a7cfa0fd85d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 171 · 2026-05-20T19:54:52.092Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "029de955-26be-4774-bf13-2a7cfa0fd85d",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "38e8b22f-1039-4119-b023-0582045bc967",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "df213ee1-de69-49d8-8968-8c3cfc1ebbff",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+8 recorded events
+
+### User
+
+_source line 172 · 2026-05-20T19:54:52.214Z_
+
+[Round 1 审稿请求]:
+以下是 Reviewer 1 的完整审稿意见，请逐条回应。对每条 Weakness 和 Question，使用 [AGREE] 表示同意并说明理由，或 [REBUT] 表示反驳并提供证据（cite 具体 Section/Table/Figure）。
+
+---
+
+# Reviewer 1 审稿报告：OntoCoDec
+
+**审查侧重**: 方法严谨性 + 实验设计与评估
+
+## 2. Strengths
+
+**S1. 理论基础扎实且有原创性。** Proposition 1 的 pumping lemma 证明（Appendix O, pp. 31-32）正确地建立了 domain/range type constraint 超出 context-free 语言能力的结论，为两层架构提供了形式化动机。三级 decidability taxonomy（context-free / prefix-decidable with state / non-local）是对 constrained decoding 领域的概念性贡献，清晰地界定了不同约束类别的计算复杂度。
+
+**S2. 消融设计严谨，enabling dependency 论证清晰。** SciERC 五路消融（Table 1）和 DocRED 四路消融（Table 2-3）有效证明了各层的独立贡献：grammar-only 仅减少 24% DR（Section 5.1），semantic layer 是消除 domain/range violations 的关键，fine-tuning 与约束可组合（DR ≤ 0.09% across all fine-tuned settings）。层间 enabling dependency 的论证是本文的一大亮点。
+
+**S3. 统计检验规范。** Bootstrap 10,000 paired significance tests（§5.1, §5.2）覆盖关键对比，p 值均有报告。fine-tuning composability 的显著性检验（p<0.001 for DR, p=0.06 for R-F1）展现了负责任的统计实践。
+
+**S4. 跨模型一致性好。** 3 models（Qwen3-8B, Llama-3.1-8B, Mistral-7B）× 2 datasets 的交叉验证（Tables 1-4）显示约束效果在不同 tokenizer 家族间一致，支持了 tokenizer-agnostic 的声称。
+
+**S5. 工程贡献实用。** 运行时开销低（S1: +13.1% SciERC, +2.43% DocRED），continuation masking 的 tokenizer-agnostic 设计（§4）和 grammar-first fallback（§4）都是实际可部署的设计选择。Appendix G 的完整复现细节值得肯定。
+
+**S6. 论文写作清晰，结构合理。** 正文 8 页内完成了理论动机→方法→实验→讨论的完整叙事，appendix 提供了充分的补充材料。Figure 1 的架构概览信息密度高。
+
+## 3. Weaknesses
+
+**W1 [critical] 缺少与最相关 constrained decoding baselines 的实验对比。**
+论文在 Related Work 中引用了 BoostCD、GCD、IterGen、SynCode 和 DOMINO，但实验中未与任何一个进行实验对比。特别是 BoostCD 是唯一一个明确将 constrained decoding 应用于 IE 的工作，完全没有实验对比是不可接受的。GCD 作为 grammar-constrained decoding for structured NLP 的直接前驱，也应纳入 baseline。
+
+**W2 [critical] Grammar-first fallback 频率过高（36.6%），削弱了 type constraint enforcement 的核心声称。**
+在 SciERC 上，grammar-first fallback 在 36.64% 的 type-bearing positions 触发（Table 7）。这意味着超过三分之一的关键位置上，semantic layer 的 type constraints 被完全放弃，仅保留 grammar layer 的结构约束。论文称 fallback 的 CF 消除"只 re-routes violations to DR"，但这实际上意味着系统在大量位置上退化为 grammar-only 模式。
+
+**W3 [major] WikiEvents 评估（20-doc test set）统计功效极低。**
+20 个文档不足以支撑对 56 event types 的约束效果评估——平均每个 event type 不到 0.4 个测试文档。
+
+**W4 [major] Proposition 1 证明中的 position-indexing 简化未被充分讨论。**
+Proposition 1 的完整证明使用 position-based entity indexing，但 OntoCoDec 的实际 JSON 输出通过 name strings 引用实体。从简化版本到实际系统的 gap 需要更精确的处理。
+
+**W5 [major] Constraint tightness κ̄ 的 predictive value 基于仅 2 个数据点。**
+κ̄ 仅在 SciERC 和 DocRED 上计算。Appendix D 的 dual-factor analysis 报告 Spearman ρ = -0.77 with n=6，统计功效极低。
+
+**W6 [major] Beam search 评估不完整：DocRED 仅 50-doc 子集。**
+DocRED zero-shot beam search 仅在 50-doc 子集上评估，而非完整 998-doc dev set。
+
+**W7 [minor] 70B 评估过于 preliminary，贡献有限。**
+仅量化推理，未测试 70B+LoRA fine-tuning，INT4 量化可能影响 baseline 质量。
+
+**W8 [minor] Entity registry 的顺序依赖假设缺少量化验证。**
+论文未报告 S1 下实体-关系生成顺序违反的频率。
+
+## 4. Questions
+
+Q1. BoostCD 为何未作为 experimental baseline？
+Q2. Grammar-first fallback 在 DocRED 上的触发比例？fallback root causes 分布？
+Q3. 如果 output format 改为 canonical entity IDs，Proposition 1 是否仍然成立？
+Q4. 更 aggressive 的约束策略（backtrack/resample）能否同时降低 DR 和 CF？
+Q5. 能否量化 "well-calibrated" 的具体条件？
+Q6. WikiEvents 20-doc test set 上的 document-level variance？
+
+## 6. Overall Assessment
+- Soundness: 3.5/5
+- Excitement: 3.5/5
+- Reproducibility: 4/5
+- **Overall: 3.5 — Borderline Conference**
+- Confidence: 4/5
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "38e8b22f-1039-4119-b023-0582045bc967",
+  "isSidechain": false,
+  "promptId": "683938a5-4562-4431-8f46-cd2372ddac74",
+  "type": "user",
+  "uuid": "5e0620f2-4a8f-4644-9104-ac9fef41ae8e",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 173 · 2026-05-20T19:55:48.735Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The Director is asking me (Reviewer 2) to respond to Reviewer 1's complete review, point by point. I need to go through each Weakness and Question from Reviewer 1 and provide [AGREE] or [REBUT] with evidence from the paper.
+
+Let me go through each item:
+
+**W1 [critical] 缺少与最相关 constrained decoding baselines 的实验对比。**
+R1 says no experimental comparison with BoostCD, GCD, IterGen, SynCode, DOMINO. Let me think about this. The paper positions itself against these works but doesn't include them as baselines. 
+
+BoostCD and GCD are the most directly comparable works for constrained decoding in IE, so this is a valid criticism. While OntoCoDec operates as a constraint enforcement mechanism rather than a standalone model, comparing against these baselines on the same tasks would definitely strengthen the paper. I'll AGREE with this — it's a legitimate critical weakness.
+
+**W2 [critical] Grammar-first fallback 频率过高（36.6%）**
+R1 points out that 36.64% of type-bearing positions trigger fallback on SciERC, which suggests the grammar constraints are too restrictive or the model struggles with the ontology. This is concerning because it means the constrained decoding is failing frequently and reverting to unconstrained generation.
+
+The paper acknowledges this happens when semantic and grammar masks conflict, and argues that maintaining structural validity is worth the trade-off. But if over a third of positions fall back, the semantic constraint enforcement is substantially weakened. The fallback is a design choice prioritizing structural validity over type correctness, but the frequency suggests the grammar layer's lack of entity type awareness creates significant conflicts. I need to examine what the paper actually reports about this trade-off more carefully. Section 5.1 and Table 1 show that even with this fallback rate, the system achieves DR ≤ 0.09% on fine-tuned settings. So the fallback doesn't necessarily mean the system fails — it means the system relies more on the model's learned behavior at those positions. The 36.6% fallback rate is for the zero-shot unconstrained baseline. With fine-tuning, the model learns to avoid conflicts.
+
+I'll partially agree — the high fallback rate is concerning, but I'd note that the paper does discuss this and the overall DR reduction is still substantial even with fallback. The concern is valid but I'd rate it as [major] rather than [critical].
+
+Actually wait, let me re-read. R1 says 36.64% from Table 7. Looking at my notes from page 19, Table 7 shows the CF fallback data. The paper acknowledges that CF fallback eliminates CF but re-routes violations to DR(+CF) by 3.99 pp, and the grammar-first fallback rate at type-bearing positions is significant.
+
+I think R1 has a legitimate concern here. The key question is whether the 36.6% fallback rate represents a fundamental limitation or something that can be addressed in practice. The paper suggests fine-tuning reduces this need because the model learns to generate type-consistent outputs, but for zero-shot settings the fallback rate is indeed very high. I'd partially agree — the fallback rate deserves more discussion, though the paper does show overall DR is still reduced significantly and fine-tuning mitigates both fallback frequency and residual violations.
+
+For W3 on WikiEvents evaluation, I already raised this concern in my own review, so I'll agree with R1.
+
+On W4 about the position-indexing simplification in Proposition 1: R1 notes that the proof uses position-based entity indexing while OntoCoDec's actual JSON output uses name strings. The proof on page 32 shows the language isn't context-free with position indexing, but the actual system checks whether a name string appears in a set of known entities of a given type. The core constraint remains the same though — the type of a referenced entity depends on information generated earlier in the sequence, so the non-context-free result should still hold.
+
+R1 makes a fair point that the bridge between the formal proof and the actual system could be more rigorous. The paper does address this in Appendix O's discussion of position indexing versus name referencing, arguing that name-based referencing doesn't weaken the conclusion because the name-to-type binding still creates cross-position dependencies. I'll partially agree — the paper touches on this, but the formalization could be tighter.
+
+For W5 on the predictive value of κ̄: R1 points out that this constraint tightness metric is computed on only two datasets, SciERC and DocRED.
+
+The dual-factor analysis in Appendix D has just six data points with a Spearman correlation of -0.77, which is statistically weak. However, the paper frames κ̄ more as an explanatory tool to understand observed differences between datasets rather than as a predictive model for new ones. I'll partially agree — the statistical power is indeed low, and presenting correlations with n=6 is questionable, but the metric's role is more descriptive than predictive.
+
+On W6 regarding beam search evaluation: Appendix F shows beam search was tested on only a 50-document subset of DocRED, which is a legitimate concern if beam search is being presented as a key finding.  The paper acknowledges this was due to computational constraints, but the limited evaluation scope deserves more prominent acknowledgment. I agree with this criticism.
+
+For W7 about the 70B evaluation, I didn't focus on this initially. The preliminary 70B results use INT4 quantization without fine-tuning testing, which is admittedly limited. However, since it's framed as preliminary evidence rather than a main contribution, I partially agree — it's constrained but appropriately positioned.
+
+On W8 regarding entity registry ordering: The system assumes entities are generated before relations, following standard IE output format. The paper doesn't quantify how sensitive the approach is to this ordering assumption.
+
+For the questions: Q1 about BoostCD as a baseline aligns with W1 — I agree it should be included. Q2 asks for DocRED-specific fallback rates and root cause distributions, which I don't recall seeing reported. Q3 raises an interesting theoretical point about whether Proposition 1 holds if entities are referenced by canonical IDs instead of name strings — the type constraint would shift to requiring the ID at position X to be of type T.
+
+If the valid IDs for each type form a fixed, finite set (as they would for a given schema), this could potentially be expressed as a regular language through finite union, meaning a context-free grammar might actually enforce it. This is a valid observation that suggests the non-context-free result depends on unbounded entity names. While this doesn't undermine the paper's practical contribution since real IE systems work with variable-length entity names, it does narrow the theoretical scope. I'd note this is a legitimate theoretical question, though I'd push back slightly — the actual system operates with open-vocabulary entity names, so Proposition 1's assumptions fit the real use case.
+
+Q4 asks whether more aggressive constraint strategies like backtracking or resampling could simultaneously reduce both decoding rate and constraint failures, which connects to IterGen—
+
+style backtracking. The paper's grammar-first fallback is conservative, and more aggressive approaches might lower both metrics but would incur higher latency costs. The paper doesn't examine this trade-off, which is a valuable suggestion.
+
+Q5 requests a formal definition of "well-calibrated" rather than the informal usage in the paper — a reasonable request. Q6 asks about document-level variance on the WikiEvents 20-document test set, which is valid given how small that evaluation set is.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5e0620f2-4a8f-4644-9104-ac9fef41ae8e",
+  "isSidechain": false,
+  "requestId": "req_011CbEQcBGq6mjSV5e7UWjZa",
+  "type": "assistant",
+  "uuid": "7b10f5f3-2b8c-4884-9943-a66f9e7d0054",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W8XNsvmSSc672frtvAh2Ro",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 71857,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 6904,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 71857,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 6904,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 71857,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 71857
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 45733
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 174 · 2026-05-20T19:56:53.919Z_
+
+逐条回应 Reviewer 1 的审稿意见。
+
+---
+
+## 交叉回应：Reviewer 2 → Reviewer 1
+
+### Weaknesses 回应
+
+**[AGREE] R1-W1: 缺少与 BoostCD/GCD 等 constrained decoding baselines 的实验对比。**
+同意这是本文最大的缺陷之一。BoostCD（Sakota et al., 2025）是唯一明确将 constrained decoding 应用于 IE 的同期工作，且在 SciERC 和 DocRED 上有公开结果——完全没有实验对比确实不可接受。GCD（Geng et al., 2023）作为 grammar-constrained decoding for structured NLP 的直接前驱，论文在 Section 5 的 SciERC 实验中实际上引用了 GCD 的数字作为参照（"exceeds the best LLM zero-shot result on SciERC (23.14; Chen et al. 2024) and approaches supervised performance (42.3; Fan et al. 2024)"），但这是 *间接引用*，不是在相同条件下的受控对比。论文应至少在 SciERC 上复现 BoostCD 和 GCD，使用相同的 base model（Qwen3-8B 或 Llama-3.1-8B），以展示 OntoCoDec 的约束执行在 violation reduction 和 F1 上的增量价值。
+
+**[AGREE with nuance] R1-W2: Grammar-first fallback 频率 36.6% 的问题。**
+同意这一比例值得关注，但严重度判断有所保留——我倾向 [major] 而非 [critical]。R1 的核心论点成立：Table 7 显示 SciERC 上 36.64% 的 type-bearing positions 触发 grammar-first fallback，意味着 semantic layer 在这些位置被绕过。然而需注意两个缓解因素：(1) 该比例是在 **zero-shot unconstrained** 设定下测量的（Table 7 标题 "Qwen3-8B, 551 documents"），fine-tuning 后模型学会生成 type-consistent outputs，fallback 触发率应显著下降（论文未直接报告 fine-tuned 下的 fallback 率，这本身是一个缺失）；(2) 即使有 36.6% 的 fallback，整体 DR 仍从 15.37% 降至约 1% 级别（zero-shot），fine-tuning 后进一步降至 ≤0.09%（Table 1-2）。不过 R1 指出的问题暴露了一个更深层的论证缺口：**论文声称 semantic layer 执行 type constraints，但在超过三分之一的关键位置上实际放弃了这一执行——论文应当在正文中更诚实地量化和讨论这一退化**，而非仅在 Appendix C 中隐晦提及。
+
+**[AGREE] R1-W3: WikiEvents 20-doc test set 统计功效极低。**
+完全同意。我在自己的审稿中也将此列为 W2 的一部分（评估范围偏窄）。56 event types / 20 documents 意味着大多数 event types 在测试集中仅有零星样本，无法支撑对单个 type 约束效果的可靠评估。论文自身也承认结果 "preliminary"（Section 5.4），但既然如此，将 WikiEvents 纳入 Section 5 正文的主要实验（而非 appendix 中的 pilot study）是过度宣称。
+
+**[REBUT] R1-W4: Proposition 1 中 position-indexing 简化的问题。**
+R1 指出证明使用 position-based entity indexing 而实际系统使用 name strings，认为这一 gap 需要更精确处理。但 Appendix O 的第 32 页底部 **"Position indexing vs. name referencing"** 段落已明确讨论了这一问题。论文论述：(a) name-based referencing 不削弱结论，因为 name→type binding 仍创建跨位置依赖——entity name 在生成时被绑定到特定 type，后续 relation 引用该 name 时需要验证 type 一致性，这与 position-based indexing 的本质相同；(b) position-based 形式化是一个 **简化而非弱化**——它消除了 name collision 等干扰因素，使 pumping lemma 论证更清晰。实际系统的 name-based referencing 约束严格性不弱于 position-based（因为每个 unique name 都必须映射到正确 type），因此 non-context-free 结论仍然成立。当然，R1 提出的 Q3（canonical entity IDs）是一个更尖锐的问题——如果实体集有限且预知，约束可能退化为 regular language，但这不是论文讨论的场景（论文明确假设 "unbounded entity sets"，见 Proposition 1 陈述）。
+
+**[AGREE] R1-W5: κ̄ 的统计功效问题。**
+同意。n=6 的 Spearman ρ = -0.77 没有足够的统计功效来支撑 predictive claim。不过我倾向于将 κ̄ 理解为一个 **描述性/解释性工具**（解释为什么 SciERC 和 DocRED 的 constraint enforcement 效果不同），而非一个 predictive model。即便如此，论文不应在 Appendix D 中呈现相关性统计数字——用 n=6 做推断统计是不严谨的。建议仅保留 κ̄ 作为定性分析工具。
+
+**[AGREE] R1-W6: DocRED beam search 仅 50-doc 子集。**
+同意。Beam search 是论文宣称的关键部署配置（Section 5: "LoRA + beam S1"），但 DocRED 上的 beam search 评估仅覆盖 50/998 文档（Appendix F），统计可信度不足。论文给出的理由是计算成本（"a 50-document subset (compute cost)"），这可以理解，但应在正文中明确标注此限制，而非让读者在 Appendix F 中才发现。
+
+**[AGREE] R1-W7: 70B 评估过于 preliminary。**
+同意，但认为此问题严重度确实仅为 [minor]。70B 评估（Appendix A/Section 5）使用 INT4 量化且仅做推理，未测试 fine-tuning。INT4 量化可能引入的 baseline 质量偏移使对比不公平。不过论文将此定位为 "preliminary" 额外证据而非核心贡献，framing 上尚可接受。
+
+**[AGREE] R1-W8: Entity registry 顺序依赖缺少量化验证。**
+同意。Section 3.3 描述了 semantic layer 假设实体在关系之前生成，但论文未量化 S1（single-pass decoding）下实体-关系生成顺序违反的频率。这对理解 semantic layer 的实际覆盖率很重要——如果模型偶尔先生成关系再生成实体，semantic layer 在那些位置上就无法提供 type checking。建议报告 S1 下 entity-before-relation ordering 的保持率。
+
+---
+
+### Questions 回应
+
+**Q1 (BoostCD baseline):** [AGREE] 见 W1 回应。
+
+**Q2 (DocRED fallback 比例):** 有效问题。论文仅在 Table 7 报告了 SciERC 的 fallback 数据。DocRED 有 96 种 relation types（远多于 SciERC 的 7 entity types + 6 relation types），fallback 行为可能显著不同。缺失此数据是一个明显的报告空白。
+
+**Q3 (Canonical entity IDs):** 这是一个尖锐的理论问题。如果实体集有限且使用 canonical IDs（如 Wikidata QIDs），每个 type 对应的合法 ID 集是有限的，type constraint 退化为有限字符串的 union——这是 regular language，CFG 自然可以表达。因此 Proposition 1 在固定实体集下确实不成立。但论文的假设是 "unbounded entity sets"（Proposition 1 明确条件："with unbounded entity sets"），这对于 open-domain IE（实体 mention 可以是任意 text span）是合理的。论文应更明确地讨论这一边界条件——Proposition 1 的适用范围比当前表述更窄。
+
+**Q4 (Backtrack/resample 策略):** 有价值的建议。当前 grammar-first fallback 是保守策略（优先结构完整性），IterGen 式 backtracking 或 BoostCD 式 boosting 可能在 DR-CF 两端都获得更好的 trade-off，但代价是更高的延迟。论文在 Section 7 提到 "forward-only autoregressive design" 是当前范围限制，但未讨论替代策略的 trade-off 空间。
+
+**Q5 ("Well-calibrated" 的量化条件):** 合理要求。论文多处使用 "well-calibrated" 但未给出形式定义。从上下文推断（Section 5.1, Appendix D），"well-calibrated" 大致意味着模型的 per-type 预测分布与训练数据的 type 频率分布对齐。但这应被显式定义并量化（例如用 calibration error 指标）。
+
+**Q6 (WikiEvents document-level variance):** [AGREE] 20-doc test set 下，document-level variance 对结果的影响可能极大。论文应报告 per-document 的 violation rate 和 F1 的标准差/IQR，以展示结果的稳定性。
+
+---
+
+### 总结性评价
+
+R1 的审稿质量很高，问题精准且有深度。我在 8 条 Weakness 中同意 7 条（W1-W3, W5-W8），仅对 W4（Proposition 1 的 position-indexing 简化）提出反驳——论文在 Appendix O 中已有讨论。对 W2，我同意问题存在但认为严重度更接近 [major] 而非 [critical]，因为 fallback 并未完全摧毁 violation reduction 效果。
+
+R1 给出的 Overall 3.5（Borderline Conference）与我的评分一致。两位 reviewer 的核心分歧很小——我们都认为这是一篇 technically sound、well-executed 但 novelty 适中、evaluation scope 偏窄的工作。我额外关注的写作质量和 Related Work 遗漏（TANL）与 R1 关注的方法/实验严谨性互补。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7b10f5f3-2b8c-4884-9943-a66f9e7d0054",
+  "isSidechain": false,
+  "requestId": "req_011CbEQcBGq6mjSV5e7UWjZa",
+  "type": "assistant",
+  "uuid": "5bad39eb-f204-4290-a57f-eefa084601c7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W8XNsvmSSc672frtvAh2Ro",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 71857,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 6904,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 71857,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 6904,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 71857,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 71857
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 45733
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 175 · 2026-05-20T19:57:13.314Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director · `toolu_01RHFspbMUyyoeU7tRyhzdmS`</summary>
+
+```json
+{
+  "text": "\n# Reviewer 2 交叉回应 Reviewer 1 审稿意见\n\n## 逐条回应\n\n### Weaknesses\n\n**[AGREE] R1-W1 (缺少 BoostCD/GCD baseline):** 完全同意这是最大缺陷之一。BoostCD 是唯一明确将 constrained decoding 应用于 IE 的同期工作，在 SciERC/DocRED 上有公开结果，完全没有实验对比不可接受。GCD 作为直接前驱也应纳入。论文在 Section 5 中仅做间接引用（引用其他工作的数字），而非受控对比。\n\n**[AGREE with nuance] R1-W2 (Fallback 36.6%):** 同意问题存在，但我判断 [major] 而非 [critical]。两个缓解因素：(1) 36.6% 是 zero-shot 下的数据，fine-tuning 后应降低（但论文未报告 fine-tuned fallback 率——这本身是缺失）；(2) 即使有此 fallback 率，整体 DR 仍显著下降（zero-shot ~1%, fine-tuned ≤0.09%）。但论文确实应在正文中更诚实地量化这一退化。\n\n**[AGREE] R1-W3 (WikiEvents 20-doc):** 完全同意。我在自己的审稿中也指出了这一点（我的 W2）。20 docs / 56 event types 无法支撑可靠评估。\n\n**[REBUT] R1-W4 (Proposition 1 position-indexing):** Appendix O 第 32 页底部 \"Position indexing vs. name referencing\" 段落已讨论了这一 gap。论文论述 name-based referencing 的约束严格性不弱于 position-based（name→type binding 同样创建跨位置依赖），position-based 是简化而非弱化。non-context-free 结论在 name-based 系统中仍然成立。但 R1 的 Q3（canonical IDs 下是否成立）是更尖锐的问题——有限实体集下约束退化为 regular language，Proposition 1 不成立。论文应更明确讨论这一边界。\n\n**[AGREE] R1-W5 (κ̄ 统计功效):** n=6 做 Spearman 相关不严谨。建议将 κ̄ 仅作为定性分析工具，移除 Appendix D 中的推断统计数字。\n\n**[AGREE] R1-W6 (DocRED beam search 50-doc):** 同意。Beam search 是宣称的关键配置，仅 50/998 docs 的覆盖不足。\n\n**[AGREE] R1-W7 (70B preliminary):** 同意但确实仅为 minor。定位为 preliminary evidence 尚可接受。\n\n**[AGREE] R1-W8 (顺序依赖量化):** 同意。应报告 S1 下 entity-before-relation ordering 的保持率。\n\n### Questions\n\n- Q1: 见 W1。AGREE。\n- Q2: 有效。DocRED 的 fallback 数据确实缺失。\n- Q3: 尖锐问题。有限实体集 + canonical IDs 下 Proposition 1 不成立。但论文假设 unbounded entity sets，对 open-domain IE 合理。应更明确讨论。\n- Q4: 有价值建议。IterGen 式 backtracking 可能改善 DR-CF trade-off 但增加延迟。\n- Q5: 合理。\"Well-calibrated\" 应被显式定义和量化。\n- Q6: 同意。应报告 per-document variance。\n\n## 总评\n\nR1 审稿质量很高。8 条 Weakness 中我同意 7 条，仅对 W4 反驳（论文已有讨论），对 W2 同意但降低严重度至 major。两位 reviewer 核心判断一致：technically sound、well-executed 但 novelty 适中、evaluation scope 偏窄。R1 的 3.5 (Borderline Conference) 与我评分相同。R1 侧重方法/实验严谨性，我侧重新颖性/写作/Related Work，两份意见互补。\n",
+  "reviewer_id": "2",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5bad39eb-f204-4290-a57f-eefa084601c7",
+  "isSidechain": false,
+  "requestId": "req_011CbEQcBGq6mjSV5e7UWjZa",
+  "type": "assistant",
+  "uuid": "221a9d86-cbe9-44a8-bb4a-41bd0d2b6688",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01W8XNsvmSSc672frtvAh2Ro",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 71857,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 6904,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 71857,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 6904,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 71857,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 71857
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": {
+      "cache_miss_reason": {
+        "type": "messages_changed",
+        "cache_missed_input_tokens": 45733
+      }
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 176_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 以下是 Reviewer 1 的完整审稿意见，请逐条回应。对每条 Weakness 和 Question，使用 [AGREE] 表示同意并说明理由，或 [REBUT] 表示反驳并提供证据（cite 具体 Section/Table/Figure）。  ---  # Reviewer 1 审稿报告：OntoCoDec  **审查侧重**: 方法严谨性 + 实验设计与评…",
+  "leafUuid": "221a9d86-cbe9-44a8-bb4a-41bd0d2b6688",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 177_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 178 · 2026-05-20T19:57:17.708Z_
+
+<details><summary>↩ Tool result · `toolu_01RHFspbMUyyoeU7tRyhzdmS`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "221a9d86-cbe9-44a8-bb4a-41bd0d2b6688",
+  "isSidechain": false,
+  "promptId": "683938a5-4562-4431-8f46-cd2372ddac74",
+  "type": "user",
+  "uuid": "dcb29251-bbee-43f1-9efe-737470360841",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "221a9d86-cbe9-44a8-bb4a-41bd0d2b6688",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 179 · 2026-05-20T19:57:17.715Z_
+
+```json
+{
+  "parentUuid": "dcb29251-bbee-43f1-9efe-737470360841",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "6f522461-a3ea-4158-81d7-b81572963fd0",
+  "timestamp": "2026-05-20T19:57:17.715Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "70f718cb-864e-4efb-8277-0f3c245777c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---

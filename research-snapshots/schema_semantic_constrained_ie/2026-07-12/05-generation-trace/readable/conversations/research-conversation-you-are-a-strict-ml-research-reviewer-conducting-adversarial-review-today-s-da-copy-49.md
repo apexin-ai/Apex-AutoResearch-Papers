@@ -1,0 +1,8645 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-11 (UTC).** Your job: indep
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 120
+- **Recorded user turns:** 1
+- **Tool calls:** 37
+- **Original source:** `logs/chats/exported-trajectories/account-2/2b4abd55-8180-4317-ab88-081557fb6840.jsonl`
+- **Structured JSON:** [`26ba1e95e99e9527cd63.json`](../../sessions/26/26ba1e95e99e9527cd63.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-11T23:16:00.316Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-11T23:16:00.316Z",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-11 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Information Extraction.\n\nDirection: Structured information extraction — named entity recognition, relation extraction, event extraction, document-level IE, end-to-end extraction pipelines. Both LLM-based and non-LLM approaches welcome. In-scope: schema-guided extraction, zero-shot/few-shot IE, cross-document extraction, multimodal IE (text + layout + images), temporal/causal relation extraction.\n\nContribution type: METHOD ONLY. New extraction architectures, training strategies, or inference algorithms. Not a new dataset or annotation guideline.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. IE work is typically lightweight — most experiments are fine-tuning or in-context learning.\n2. Time: ≤16 days. Use existing IE frameworks (GoLLIE, UniNER, USM) or build on open LLMs with structured output.\n3. Eval: ACE05, SciERC, TACRED/TACREV, DocRED, MAVEN, Few-NERD, WikiEvents, RAMS.\n\nLook for: schema-guided extraction that generalizes across domains, efficient document-level IE beyond sliding windows, extraction with faithful provenance/citation, structured extraction from semi-structured sources (tables, forms, code). Avoid: basic NER fine-tuning, prompt-only extraction without architectural insight.\n\nTag: direction=information_extraction, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 3/10)\n{\n  \"title\": \"ProvUIE: Evidence-Span Co-Prediction as Verifiable Reward for Universal Information Extraction\",\n  \"core_problem\": \"How can LLM-based UIE systems produce extractions that are verifiably grounded in source text, jointly outputting structured knowledge AND explicit evidence spans — going beyond prompt-level grounding constraints to make provenance a learnable, reward-verified training objective?\",\n  \"opportunity\": \"Recent RLVR-for-IE work has shown that GRPO can improve extraction quality (R2GRPO for SciIE, R1-RE for cross-domain RE, ReasoningNER for zero-shot NER, ProUIE for unified NER+RE+EE), and EvidenceRL demonstrated NLI-based grounding rewards for QA. However, a critical gap persists: (1) ProUIE enforces 'values must be exact substrings of the input' as a prompt instruction but never verifies grounding as a reward signal — its SFR rewards measure structural F1 only; (2) R2GRPO's relevancy reward checks reasoning-trace grounding for single-task RE but does not produce explicit evidence spans as structured output; (3) EvidenceRL uses NLI-based grounding as an internal GRPO reward for QA but does not output evidence spans and does not handle structured IE; (4) ReasoningNER and R1-RE apply GRPO to NER and RE respectively without any provenance mechanism. No existing system jointly trains evidence-span co-prediction as structured output with provenance fidelity as a decomposed verifiable reward across the full IE stack (NER+RE+EE).\",\n  \"landscape\": \"The RLVR-for-IE landscape has advanced rapidly: R1-RE (arXiv 2507.04642) pioneered RLVR for relation extraction using GRPO with format+metric rewards on Qwen2.5-7B, achieving ~70% OOD accuracy rivaling GPT-4o. R2GRPO (arXiv 2505.22068) introduced relevancy and rule-induced rewards for scientific IE, where the relevancy reward maps cited reasoning-trace content to gold evidence with a length penalty — but this checks reasoning grounding, not structured evidence output. ReasoningNER (arXiv 2511.11978) applied GRPO with F1+schema rewards to NER via a three-stage CoT pipeline, achieving 72.4 F1 zero-shot on CrossNER with Qwen3-8B. ProUIE (arXiv 2604.10633) proposed macro-to-micro progressive learning with stepwise fine-grained rewards (SFR) decomposed by entity/relation/argument structural units, enforcing substring grounding via prompt constraint ('values must be exact substrings of the input') — achieving 79.44 average F1. MR-UIE applies RL without provenance verification for UIE. In the grounding-as-reward space, EvidenceRL (arXiv 2603.19532) demonstrated GRPO with Focus-Then-Verify NLI-based sentence-level entailment checking for medical/legal QA, using PubMedBERT-MNLI and DeBERTa-v3-NLI — but grounding operates purely as an internal reward signal without explicit evidence span output. Faithful GRPO introduced constrained policy optimization for visual grounding. In evidence-annotated IE, DocRED (ACL 2019) provides supporting evidence sentence annotations for document-level relations, spawning an established line of evidence-guided RE (E2GRE, GEGA, CDER). AEVS (2025) demonstrated anchor-constrained provenance tracking for KG triplets. The fundamental limitation: current UIE systems either (a) use grounding as a prompt constraint without reward verification (ProUIE), (b) verify grounding in reasoning traces without structured evidence output (R2GRPO), or (c) apply NLI grounding rewards outside of structured IE (EvidenceRL). None jointly train evidence-span co-prediction as structured output with provenance fidelity as a verifiable reward dimension across the full IE stack.\",\n  \"approach\": \"We propose ProvUIE, which extends schema-as-code UIE (GoLLIE/KnowCoder paradigm) with mandatory evidence-span co-prediction: for every entity, relation, or event argument, the model must output the minimal source span(s) grounding the extraction as part of the structured output. For NER specifically, evidence is defined as the disambiguating context window — the minimal surrounding text that makes entity-type classification unambiguous (e.g., for 'Obama' typed as Person, the evidence span includes 'President ... spoke at' rather than the trivially circular mention itself). For RE and EE, evidence spans are the sentence(s) supporting the relation or event argument. Training uses a two-phase protocol on ACE05, SciERC, and DocRED: (1) SFT with LoRA on Qwen3-32B using automatically aligned provenance annotations — for DocRED, we directly leverage its gold supporting-evidence sentence annotations; for ACE05 and SciERC, we derive provenance via gold-label-to-source-span alignment using dependency-parse-guided minimal context extraction; (2) GRPO with a composite verifiable reward decomposed into three dimensions: (a) structural extraction F1 with stepwise granularity at entity/relation/argument levels (building on ProUIE's SFR methodology), (b) provenance fidelity — whether predicted evidence spans support the extraction, verified via character-overlap IoU AND frozen DeBERTa-v3-large NLI entailment scoring, with a length penalty to prevent degenerate full-sentence copying (addressing the reward hacking risk identified in auto-research settings), and (c) format compliance. This design differs from prior work in three specific ways: unlike ProUIE which relies on prompt-level substring instructions without reward verification, ProvUIE makes grounding a learnable reward signal verified via NLI entailment (going beyond surface substring matching to semantic verification); unlike R2GRPO which checks relevancy of reasoning traces for single-task RE, ProvUIE requires explicit evidence span output as structured data across the full UIE stack; unlike EvidenceRL which uses NLI grounding internally for QA rewards without evidence output, ProvUIE co-predicts evidence spans as first-class structured output alongside extractions. We use Qwen3-32B as the primary backbone with LoRA (rank 64) for parameter-efficient training, and Qwen3-8B as a development/ablation backbone for rapid iteration. We introduce provenance-aware attribution metrics: evidence span IoU, attribution precision (fraction of extractions with valid evidence), and attribution recall (fraction of gold evidence spans recovered).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~120-160 H100-hours (SFT w/ LoRA ~25-35h, GRPO ~60-80h, ablations on Qwen3-8B + eval ~35-45h)\",\n      \"gpu_utilization\": \"~20-25% effective utilization; GPUs idle during code development, debugging, result analysis\",\n      \"timeline\": \"3-4 months\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"$240-480 (at ~$2.00/hr H100 spot pricing, Q2 2026)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~150-190 H100-hours (more hyperparameter sweeps on provenance reward weight and NLI threshold)\",\n      \"gpu_utilization\": \"50-65% — agent queues experiments, pauses at approval gates for reward design decisions and provenance annotation quality checks\",\n      \"timeline\": \"5-7 weeks\",\n      \"team\": \"1 researcher, ~45min/day check-in for reward calibration and provenance annotation quality review\",\n      \"claude_api_cost\": \"$100-200 (~1000-2000 conversation turns at ~$0.10/turn)\",\n      \"estimated_gpu_cost\": \"$300-570 (at ~$2.00/hr H100 spot pricing)\",\n      \"risk_note\": \"Provenance reward calibration requires human judgment — automated gold-label-to-source alignment may introduce noisy supervision that compounds during GRPO; human must verify annotation pipeline quality before RL phase\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~170-200 H100-hours (sweeps over provenance reward weight, NLI threshold, evidence span window sizes; backbone ablation on Qwen3-8B; LoRA rank ablation)\",\n      \"gpu_utilization\": \"85-95% — agent runs 24/7 launching next experiment immediately after each completes\",\n      \"timeline\": \"10-16 days with 4 concurrent H100 GPUs\",\n      \"team\": \"0 (initial setup only: ~4 hours to configure codebase, datasets, and evaluation pipeline)\",\n      \"claude_api_cost\": \"$300-500 (~3000-5000 conversation turns for iterative experiment design, error recovery, ablation planning)\",\n      \"estimated_gpu_cost\": \"$340-600 (at ~$2.00/hr H100 spot pricing)\",\n      \"speed_bottleneck\": \"GPU count — need 4 concurrent H100s for the 10-16 day timeline; single-GPU extends to 5-7 weeks. Secondary: GRPO rollout generation throughput on 32B model with LoRA\",\n      \"risk_note\": \"Fully automated provenance reward engineering may converge on degenerate patterns (e.g., model copies entire input sentence as evidence to maximize overlap); mitigated by length-penalty term in provenance reward and periodic automated checks on evidence span length distribution\"\n    }\n  },\n  \"target_venues\": [\n    \"ARR June 2026 cycle → EMNLP 2026 commitment (submission ~June 25, 2026; commitment deadline: August 2, 2026)\",\n    \"AAAI 2027 (expected deadline ~late July 2026, based on AAAI-26 pattern)\",\n    \"ICLR 2027 (expected deadline ~September 2026, based on ICLR 2026 pattern)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"R2GRPO: Beyond Path Selection — Better LLMs for Scientific IE with MimicSFT and R²GRPO (arXiv 2505.22068, May 2025)\",\n    \"R1-RE: Cross-Domain Relation Extraction with RLVR (arXiv 2507.04642, July 2025)\",\n    \"EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models (arXiv 2603.19532, March 2026)\",\n    \"ReasoningNER: A Reasoning Paradigm for Named Entity Recognition (arXiv 2511.11978, Nov 2025)\",\n    \"ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based UIE (arXiv 2604.10633, April 2026)\",\n    \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction (ICLR 2024)\",\n    \"KnowCoder: Coding Structured Knowledge into LLMs for UIE (ACL 2024)\",\n    \"DocRED: A Large-Scale Document-Level Relation Extraction Dataset (ACL 2019)\",\n    \"AEVS: Grounded KG Extraction via LLMs with Anchor-Constrained Provenance Tracking (Computers 2026)\",\n    \"MR-UIE: Multi-Perspective Reasoning with RL for UIE (Vicinagearth 2025)\",\n    \"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction (EMNLP 2025)\",\n    \"Faithful GRPO: Improving Visual Spatial Reasoning via Constrained Policy Optimization (arXiv 2026)\",\n    \"LAQuer: Localized Attribution Queries in Content-grounded Generation (ACL 2025)\",\n    \"DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models (arXiv 2024)\",\n    \"FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding (arXiv 2026)\"\n  ],\n  \"description\": \"ProvUIE extends schema-as-code universal information extraction with mandatory evidence-span co-prediction and provenance fidelity as a verifiable GRPO reward. Unlike ProUIE (which enforces grounding via prompt-level substring instructions without reward verification), R2GRPO (which checks reasoning-trace relevancy for single-task RE only), and EvidenceRL (which applies NLI grounding rewards for QA without structured evidence output), ProvUIE makes three specific contributions: (1) evidence-span co-prediction as first-class structured output — every entity, relation, and event argument is paired with the minimal source span(s) grounding the extraction, with NER evidence defined as the disambiguating context window rather than the trivially circular mention span; (2) provenance fidelity as a decomposed verifiable reward in GRPO — combining character-overlap IoU, frozen DeBERTa-v3 NLI entailment scoring, and length penalty, alongside structural F1 rewards at entity/relation/argument granularity; (3) provenance-aware attribution metrics (evidence span IoU, attribution precision/recall) complementing standard F1. Training uses SFT with LoRA on Qwen3-32B followed by GRPO, evaluated on ACE05 (NER+RE+EE), SciERC (NER+RE), and DocRED (evidence-annotated document-level RE). DocRED's gold supporting-evidence annotations provide natural supervision for provenance training. Total compute budget: ≤200 H100-hours. Primary targets: AAAI 2027 and ICLR 2027.\",\n  \"project_name\": \"prov_grounded_uie\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"FACTUAL ERROR: Qwen3.5-32B does not exist. Qwen3.5 series has 27B (dense), 35B-A3B (MoE), and 122B-A10B. Must choose Qwen3-32B or Qwen3.5-27B.\", \"MISSING CONCURRENT WORK: R1-RE (arXiv 2507.04642) is the first RLVR framework for relation extraction with GRPO; R2GRPO (arXiv 2505.22068) applies GRPO with composite rewards (relevance + rule-induced) to scientific NER+RE on SciERC, directly competing with this proposal's approach.\", \"OVERSTATED GAP: The proposal claims ProUIE 'never verifies that extractions are grounded in specific source spans,' but ProUIE enforces 'Slot values must be exact substrings of the input' — a form of span grounding. The real gap is narrower: explicit evidence span output + provenance as reward signal.\", \"NER PROVENANCE CIRCULARITY: For NER, the entity mention IS its evidence span — co-predicting it is trivially circular. The proposal must acknowledge this and explain what non-trivial provenance means for NER (e.g., broader context window, disambiguation context).\", \"DOCRED EVIDENCE OVERLAP: DocRED already annotates supporting evidence sentences for each relation instance. The proposal should discuss how its approach differs from or builds upon this existing evidence annotation paradigm, and clarify what ProvUIE adds beyond existing evidence-guided document-level RE work.\", \"UNDERSPECIFIED PROVENANCE ANNOTATION: 'Provenance annotations derived automatically from gold-label-to-source-span alignment' lacks critical detail — how is evidence defined for relations (sentence-level? phrase-level?), how are multi-hop evidence chains handled in document-level RE, and what is the expected noise level of this automatic alignment?\", \"RESOURCE MISMATCH: The user constraint is ≤200 H100-hours, but the manual mode estimate is 200-250h A100 — while H100s are ~2-3x faster, the proposal should explicitly state H100-hour estimates. GRPO on a 27-32B model requires significant rollout generation compute that may be underestimated.\", \"16-DAY TIMELINE RISK: Implementing SFT + GRPO with three reward components (extraction F1 + provenance IoU/NLI + format) on a 27-32B model, plus automatic provenance annotation pipeline, DeBERTa NLI reward, evaluation across ACE05/SciERC/GENIA, ablations, AND paper writing in 16 days is very aggressive.\"]\nFeedback: The core idea of provenance-as-verifiable-reward for GRPO in UIE has genuine novelty potential, but needs significant revision to be competitive:\n\n1. **Fix backbone**: Use Qwen3.5-27B or Qwen3-32B. Update all resource estimates accordingly.\n\n2. **Engage with R1-RE and R2GRPO**: These are your closest competitors. R1-RE applies RLVR to RE (July 2025), R2GRPO applies GRPO+composite rewards to scientific NER+RE (May 2025). You MUST cite them and articulate how ProvUIE differs — the differentiator should be: (a) provenance fidelity as a novel reward dimension absent in both, (b) cross-task UIE coverage (NER+RE+EE) vs. their RE-only or scientific-IE-only scope.\n\n3. **Resolve NER provenance circularity**: For NER, redefine 'evidence span' as the disambiguating context window (e.g., the minimal surrounding context that makes entity type unambiguous), not the entity mention itself. This turns a trivial component into a meaningful one.\n\n4. **Acknowledge DocRED evidence annotations**: DocRED already provides supporting evidence sentences. Position ProvUIE as learning to predict evidence spans end-to-end via GRPO rewards, rather than relying on pre-annotated evidence — this is a genuine advantage if framed correctly.\n\n5. **Narrow scope for 16-day timeline**: Consider dropping GENIA and focusing on ACE05 (NER+RE+EE) + SciERC (NER+RE) + DocRED (document-level RE with evidence). This gives cleaner evaluation across IE tasks with existing evidence annotations for validation.\n\n6. **Specify provenance annotation pipeline**: Define exactly how evidence spans are identified for each task type (NER: surrounding context window, RE: minimal sentence(s) containing relation indicators, EE: trigger context + argument context). Give concrete examples.\n\n7. **Correct the ProUIE comparison**: Acknowledge ProUIE's substring constraint and position ProvUIE's contribution as: (a) explicit evidence span output as part of the extraction, (b) provenance fidelity as a learnable reward dimension, (c) attribution metrics (evidence IoU, precision/recall) — not just 'ProUIE has no grounding.'\n\n### Round 2 review\nVerdict: revise\nIssues: [\"UNFIXED FROM ROUND 1: Qwen3.5-32B does not exist. The Qwen3.5 family has 27B (dense), 35B-A3B (MoE), but no 32B. This was the #1 issue from round 1 and was not addressed.\", \"UNFIXED FROM ROUND 1: R1-RE (arXiv 2507.04642, July 2025) and R2GRPO (arXiv 2505.22068, May 2025) are still not cited despite being flagged as mandatory in round 1 feedback. R2GRPO is particularly threatening: its 'relevancy reward' checks if cited content appears in the original text — this IS a form of evidence grounding in IE, directly competing with ProvUIE's core claim.\", \"UNFIXED FROM ROUND 1: The ProUIE comparison still claims it 'never verifies that extractions are grounded in specific source spans,' but ProUIE's prompts explicitly enforce 'Slot values must be exact substrings of the input.' This misleading comparison was flagged in round 1.\", \"NEW COMPETITOR MISSED: EvidenceRL (arXiv 2603.19532, March 2026) uses GRPO with an NLI-based grounding reward ('Focus-Then-Verify decomposition' with sentence-level entailment checking) — the same core mechanism as ProvUIE's proposed DeBERTa NLI provenance reward. While EvidenceRL targets medical/legal QA rather than IE, it demonstrates the identical 'provenance as GRPO reward via NLI' idea, significantly reducing ProvUIE's novelty claim.\", \"NEW COMPETITOR MISSED: ReasoningNER (arXiv 2511.11978, Nov 2025) applies GRPO to NER with reward functions for entity prediction and schema compliance, achieving SOTA zero-shot NER (56.8 F1 across 20 benchmarks). Not cited.\", \"UNFIXED FROM ROUND 1: NER provenance circularity is not addressed. For NER, the entity mention IS the evidence span — co-predicting it is trivially circular. No explanation of what non-trivial provenance means for NER.\", \"UNFIXED FROM ROUND 1: DocRED evidence annotation paradigm not discussed. DocRED already provides supporting evidence sentences for each relation, and evidence-guided RE is an established line of work.\", \"NONE OF THE 8 ROUND 1 ISSUES WERE ADDRESSED: The proposal appears entirely unrevised. Resource mismatch (H100 vs A100), timeline risk, provenance annotation underspecification — all remain unchanged.\"]\nFeedback: **This is a critical warning: 0 of 8 round 1 issues were addressed. If round 3 does not show substantial revision, this will move toward a 'fail' verdict.**\n\nSpecific required revisions:\n\n1. **Fix backbone immediately**: Use Qwen3-32B or Qwen3.5-27B. This is a trivial fix that signals basic attention to review feedback.\n\n2. **Engage with the closest competitors — this is non-negotiable**:\n   - R2GRPO (arXiv 2505.22068): Its relevancy reward already checks evidence grounding in scientific IE. You MUST explain how ProvUIE's provenance reward differs from and improves upon R2GRPO's relevancy reward. Key differentiation: R2GRPO checks relevancy of reasoning traces, ProvUIE requires explicit evidence span output as structured output.\n   - R1-RE (arXiv 2507.04642): First RLVR for RE. Differentiate by UIE scope and provenance dimension.\n   - EvidenceRL (arXiv 2603.19532): Uses GRPO + NLI grounding reward — same mechanism. Differentiate by structured IE vs QA, and evidence span co-prediction vs answer grounding.\n   - ReasoningNER (arXiv 2511.11978): GRPO for NER. Acknowledge and differentiate.\n\n3. **Narrow the novelty claim honestly**: You are NOT the first to use GRPO for IE (R2GRPO, R1-RE), NOT the first to use NLI-based grounding as a GRPO reward (EvidenceRL), and NOT the first to enforce grounding constraints in GRPO (Faithful GRPO). Your genuine novelty is: (a) mandatory evidence span co-prediction as structured output for every extraction unit, (b) provenance fidelity as a dedicated, decomposed reward dimension across the full IE stack (NER+RE+EE), (c) provenance-aware attribution metrics. Frame the contribution around these specific differentiators.\n\n4. **Fix the ProUIE comparison**: Acknowledge ProUIE's substring constraint. Position ProvUIE as going beyond substring matching to: (a) explicit evidence span output, (b) provenance as a learnable reward rather than prompt instruction, (c) NLI-verified entailment rather than surface-level substring matching.\n\n5. **Resolve NER provenance circularity**: Define evidence for NER as the disambiguating context window (minimal surrounding context that makes entity type unambiguous), not the mention itself.\n\n6. **Scope for 16-day timeline**: Drop GENIA. Focus on ACE05 + SciERC + DocRED. Use Qwen3-32B with LoRA (not full fine-tuning) to reduce compute. Consider Qwen2.5-7B as a development/ablation backbone.\n\n7. **State H100-hour estimates explicitly**: User constraint is ≤200 H100-hours. Convert all estimates.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-11T23:16:00.321Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-11T23:16:00.321Z",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+## Round 1
+
+118 recorded events
+
+### User
+
+_source line 3 · 2026-05-11T23:16:00.362Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-11 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Information Extraction.
+
+Direction: Structured information extraction — named entity recognition, relation extraction, event extraction, document-level IE, end-to-end extraction pipelines. Both LLM-based and non-LLM approaches welcome. In-scope: schema-guided extraction, zero-shot/few-shot IE, cross-document extraction, multimodal IE (text + layout + images), temporal/causal relation extraction.
+
+Contribution type: METHOD ONLY. New extraction architectures, training strategies, or inference algorithms. Not a new dataset or annotation guideline.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. IE work is typically lightweight — most experiments are fine-tuning or in-context learning.
+2. Time: ≤16 days. Use existing IE frameworks (GoLLIE, UniNER, USM) or build on open LLMs with structured output.
+3. Eval: ACE05, SciERC, TACRED/TACREV, DocRED, MAVEN, Few-NERD, WikiEvents, RAMS.
+
+Look for: schema-guided extraction that generalizes across domains, efficient document-level IE beyond sliding windows, extraction with faithful provenance/citation, structured extraction from semi-structured sources (tables, forms, code). Avoid: basic NER fine-tuning, prompt-only extraction without architectural insight.
+
+Tag: direction=information_extraction, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-11?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 3/10)
+{
+  "title": "ProvUIE: Evidence-Span Co-Prediction as Verifiable Reward for Universal Information Extraction",
+  "core_problem": "How can LLM-based UIE systems produce extractions that are verifiably grounded in source text, jointly outputting structured knowledge AND explicit evidence spans — going beyond prompt-level grounding constraints to make provenance a learnable, reward-verified training objective?",
+  "opportunity": "Recent RLVR-for-IE work has shown that GRPO can improve extraction quality (R2GRPO for SciIE, R1-RE for cross-domain RE, ReasoningNER for zero-shot NER, ProUIE for unified NER+RE+EE), and EvidenceRL demonstrated NLI-based grounding rewards for QA. However, a critical gap persists: (1) ProUIE enforces 'values must be exact substrings of the input' as a prompt instruction but never verifies grounding as a reward signal — its SFR rewards measure structural F1 only; (2) R2GRPO's relevancy reward checks reasoning-trace grounding for single-task RE but does not produce explicit evidence spans as structured output; (3) EvidenceRL uses NLI-based grounding as an internal GRPO reward for QA but does not output evidence spans and does not handle structured IE; (4) ReasoningNER and R1-RE apply GRPO to NER and RE respectively without any provenance mechanism. No existing system jointly trains evidence-span co-prediction as structured output with provenance fidelity as a decomposed verifiable reward across the full IE stack (NER+RE+EE).",
+  "landscape": "The RLVR-for-IE landscape has advanced rapidly: R1-RE (arXiv 2507.04642) pioneered RLVR for relation extraction using GRPO with format+metric rewards on Qwen2.5-7B, achieving ~70% OOD accuracy rivaling GPT-4o. R2GRPO (arXiv 2505.22068) introduced relevancy and rule-induced rewards for scientific IE, where the relevancy reward maps cited reasoning-trace content to gold evidence with a length penalty — but this checks reasoning grounding, not structured evidence output. ReasoningNER (arXiv 2511.11978) applied GRPO with F1+schema rewards to NER via a three-stage CoT pipeline, achieving 72.4 F1 zero-shot on CrossNER with Qwen3-8B. ProUIE (arXiv 2604.10633) proposed macro-to-micro progressive learning with stepwise fine-grained rewards (SFR) decomposed by entity/relation/argument structural units, enforcing substring grounding via prompt constraint ('values must be exact substrings of the input') — achieving 79.44 average F1. MR-UIE applies RL without provenance verification for UIE. In the grounding-as-reward space, EvidenceRL (arXiv 2603.19532) demonstrated GRPO with Focus-Then-Verify NLI-based sentence-level entailment checking for medical/legal QA, using PubMedBERT-MNLI and DeBERTa-v3-NLI — but grounding operates purely as an internal reward signal without explicit evidence span output. Faithful GRPO introduced constrained policy optimization for visual grounding. In evidence-annotated IE, DocRED (ACL 2019) provides supporting evidence sentence annotations for document-level relations, spawning an established line of evidence-guided RE (E2GRE, GEGA, CDER). AEVS (2025) demonstrated anchor-constrained provenance tracking for KG triplets. The fundamental limitation: current UIE systems either (a) use grounding as a prompt constraint without reward verification (ProUIE), (b) verify grounding in reasoning traces without structured evidence output (R2GRPO), or (c) apply NLI grounding rewards outside of structured IE (EvidenceRL). None jointly train evidence-span co-prediction as structured output with provenance fidelity as a verifiable reward dimension across the full IE stack.",
+  "approach": "We propose ProvUIE, which extends schema-as-code UIE (GoLLIE/KnowCoder paradigm) with mandatory evidence-span co-prediction: for every entity, relation, or event argument, the model must output the minimal source span(s) grounding the extraction as part of the structured output. For NER specifically, evidence is defined as the disambiguating context window — the minimal surrounding text that makes entity-type classification unambiguous (e.g., for 'Obama' typed as Person, the evidence span includes 'President ... spoke at' rather than the trivially circular mention itself). For RE and EE, evidence spans are the sentence(s) supporting the relation or event argument. Training uses a two-phase protocol on ACE05, SciERC, and DocRED: (1) SFT with LoRA on Qwen3-32B using automatically aligned provenance annotations — for DocRED, we directly leverage its gold supporting-evidence sentence annotations; for ACE05 and SciERC, we derive provenance via gold-label-to-source-span alignment using dependency-parse-guided minimal context extraction; (2) GRPO with a composite verifiable reward decomposed into three dimensions: (a) structural extraction F1 with stepwise granularity at entity/relation/argument levels (building on ProUIE's SFR methodology), (b) provenance fidelity — whether predicted evidence spans support the extraction, verified via character-overlap IoU AND frozen DeBERTa-v3-large NLI entailment scoring, with a length penalty to prevent degenerate full-sentence copying (addressing the reward hacking risk identified in auto-research settings), and (c) format compliance. This design differs from prior work in three specific ways: unlike ProUIE which relies on prompt-level substring instructions without reward verification, ProvUIE makes grounding a learnable reward signal verified via NLI entailment (going beyond surface substring matching to semantic verification); unlike R2GRPO which checks relevancy of reasoning traces for single-task RE, ProvUIE requires explicit evidence span output as structured data across the full UIE stack; unlike EvidenceRL which uses NLI grounding internally for QA rewards without evidence output, ProvUIE co-predicts evidence spans as first-class structured output alongside extractions. We use Qwen3-32B as the primary backbone with LoRA (rank 64) for parameter-efficient training, and Qwen3-8B as a development/ablation backbone for rapid iteration. We introduce provenance-aware attribution metrics: evidence span IoU, attribution precision (fraction of extractions with valid evidence), and attribution recall (fraction of gold evidence spans recovered).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~120-160 H100-hours (SFT w/ LoRA ~25-35h, GRPO ~60-80h, ablations on Qwen3-8B + eval ~35-45h)",
+      "gpu_utilization": "~20-25% effective utilization; GPUs idle during code development, debugging, result analysis",
+      "timeline": "3-4 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$240-480 (at ~$2.00/hr H100 spot pricing, Q2 2026)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~150-190 H100-hours (more hyperparameter sweeps on provenance reward weight and NLI threshold)",
+      "gpu_utilization": "50-65% — agent queues experiments, pauses at approval gates for reward design decisions and provenance annotation quality checks",
+      "timeline": "5-7 weeks",
+      "team": "1 researcher, ~45min/day check-in for reward calibration and provenance annotation quality review",
+      "claude_api_cost": "$100-200 (~1000-2000 conversation turns at ~$0.10/turn)",
+      "estimated_gpu_cost": "$300-570 (at ~$2.00/hr H100 spot pricing)",
+      "risk_note": "Provenance reward calibration requires human judgment — automated gold-label-to-source alignment may introduce noisy supervision that compounds during GRPO; human must verify annotation pipeline quality before RL phase"
+    },
+    "auto_research": {
+      "gpu_hours": "~170-200 H100-hours (sweeps over provenance reward weight, NLI threshold, evidence span window sizes; backbone ablation on Qwen3-8B; LoRA rank ablation)",
+      "gpu_utilization": "85-95% — agent runs 24/7 launching next experiment immediately after each completes",
+      "timeline": "10-16 days with 4 concurrent H100 GPUs",
+      "team": "0 (initial setup only: ~4 hours to configure codebase, datasets, and evaluation pipeline)",
+      "claude_api_cost": "$300-500 (~3000-5000 conversation turns for iterative experiment design, error recovery, ablation planning)",
+      "estimated_gpu_cost": "$340-600 (at ~$2.00/hr H100 spot pricing)",
+      "speed_bottleneck": "GPU count — need 4 concurrent H100s for the 10-16 day timeline; single-GPU extends to 5-7 weeks. Secondary: GRPO rollout generation throughput on 32B model with LoRA",
+      "risk_note": "Fully automated provenance reward engineering may converge on degenerate patterns (e.g., model copies entire input sentence as evidence to maximize overlap); mitigated by length-penalty term in provenance reward and periodic automated checks on evidence span length distribution"
+    }
+  },
+  "target_venues": [
+    "ARR June 2026 cycle → EMNLP 2026 commitment (submission ~June 25, 2026; commitment deadline: August 2, 2026)",
+    "AAAI 2027 (expected deadline ~late July 2026, based on AAAI-26 pattern)",
+    "ICLR 2027 (expected deadline ~September 2026, based on ICLR 2026 pattern)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "R2GRPO: Beyond Path Selection — Better LLMs for Scientific IE with MimicSFT and R²GRPO (arXiv 2505.22068, May 2025)",
+    "R1-RE: Cross-Domain Relation Extraction with RLVR (arXiv 2507.04642, July 2025)",
+    "EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models (arXiv 2603.19532, March 2026)",
+    "ReasoningNER: A Reasoning Paradigm for Named Entity Recognition (arXiv 2511.11978, Nov 2025)",
+    "ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based UIE (arXiv 2604.10633, April 2026)",
+    "GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction (ICLR 2024)",
+    "KnowCoder: Coding Structured Knowledge into LLMs for UIE (ACL 2024)",
+    "DocRED: A Large-Scale Document-Level Relation Extraction Dataset (ACL 2019)",
+    "AEVS: Grounded KG Extraction via LLMs with Anchor-Constrained Provenance Tracking (Computers 2026)",
+    "MR-UIE: Multi-Perspective Reasoning with RL for UIE (Vicinagearth 2025)",
+    "PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction (EMNLP 2025)",
+    "Faithful GRPO: Improving Visual Spatial Reasoning via Constrained Policy Optimization (arXiv 2026)",
+    "LAQuer: Localized Attribution Queries in Content-grounded Generation (ACL 2025)",
+    "DeepSeekMath: Pushing the Limits of Mathematical Reasoning in Open Language Models (arXiv 2024)",
+    "FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding (arXiv 2026)"
+  ],
+  "description": "ProvUIE extends schema-as-code universal information extraction with mandatory evidence-span co-prediction and provenance fidelity as a verifiable GRPO reward. Unlike ProUIE (which enforces grounding via prompt-level substring instructions without reward verification), R2GRPO (which checks reasoning-trace relevancy for single-task RE only), and EvidenceRL (which applies NLI grounding rewards for QA without structured evidence output), ProvUIE makes three specific contributions: (1) evidence-span co-prediction as first-class structured output — every entity, relation, and event argument is paired with the minimal source span(s) grounding the extraction, with NER evidence defined as the disambiguating context window rather than the trivially circular mention span; (2) provenance fidelity as a decomposed verifiable reward in GRPO — combining character-overlap IoU, frozen DeBERTa-v3 NLI entailment scoring, and length penalty, alongside structural F1 rewards at entity/relation/argument granularity; (3) provenance-aware attribution metrics (evidence span IoU, attribution precision/recall) complementing standard F1. Training uses SFT with LoRA on Qwen3-32B followed by GRPO, evaluated on ACE05 (NER+RE+EE), SciERC (NER+RE), and DocRED (evidence-annotated document-level RE). DocRED's gold supporting-evidence annotations provide natural supervision for provenance training. Total compute budget: ≤200 H100-hours. Primary targets: AAAI 2027 and ICLR 2027.",
+  "project_name": "prov_grounded_uie",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["FACTUAL ERROR: Qwen3.5-32B does not exist. Qwen3.5 series has 27B (dense), 35B-A3B (MoE), and 122B-A10B. Must choose Qwen3-32B or Qwen3.5-27B.", "MISSING CONCURRENT WORK: R1-RE (arXiv 2507.04642) is the first RLVR framework for relation extraction with GRPO; R2GRPO (arXiv 2505.22068) applies GRPO with composite rewards (relevance + rule-induced) to scientific NER+RE on SciERC, directly competing with this proposal's approach.", "OVERSTATED GAP: The proposal claims ProUIE 'never verifies that extractions are grounded in specific source spans,' but ProUIE enforces 'Slot values must be exact substrings of the input' — a form of span grounding. The real gap is narrower: explicit evidence span output + provenance as reward signal.", "NER PROVENANCE CIRCULARITY: For NER, the entity mention IS its evidence span — co-predicting it is trivially circular. The proposal must acknowledge this and explain what non-trivial provenance means for NER (e.g., broader context window, disambiguation context).", "DOCRED EVIDENCE OVERLAP: DocRED already annotates supporting evidence sentences for each relation instance. The proposal should discuss how its approach differs from or builds upon this existing evidence annotation paradigm, and clarify what ProvUIE adds beyond existing evidence-guided document-level RE work.", "UNDERSPECIFIED PROVENANCE ANNOTATION: 'Provenance annotations derived automatically from gold-label-to-source-span alignment' lacks critical detail — how is evidence defined for relations (sentence-level? phrase-level?), how are multi-hop evidence chains handled in document-level RE, and what is the expected noise level of this automatic alignment?", "RESOURCE MISMATCH: The user constraint is ≤200 H100-hours, but the manual mode estimate is 200-250h A100 — while H100s are ~2-3x faster, the proposal should explicitly state H100-hour estimates. GRPO on a 27-32B model requires significant rollout generation compute that may be underestimated.", "16-DAY TIMELINE RISK: Implementing SFT + GRPO with three reward components (extraction F1 + provenance IoU/NLI + format) on a 27-32B model, plus automatic provenance annotation pipeline, DeBERTa NLI reward, evaluation across ACE05/SciERC/GENIA, ablations, AND paper writing in 16 days is very aggressive."]
+Feedback: The core idea of provenance-as-verifiable-reward for GRPO in UIE has genuine novelty potential, but needs significant revision to be competitive:
+
+1. **Fix backbone**: Use Qwen3.5-27B or Qwen3-32B. Update all resource estimates accordingly.
+
+2. **Engage with R1-RE and R2GRPO**: These are your closest competitors. R1-RE applies RLVR to RE (July 2025), R2GRPO applies GRPO+composite rewards to scientific NER+RE (May 2025). You MUST cite them and articulate how ProvUIE differs — the differentiator should be: (a) provenance fidelity as a novel reward dimension absent in both, (b) cross-task UIE coverage (NER+RE+EE) vs. their RE-only or scientific-IE-only scope.
+
+3. **Resolve NER provenance circularity**: For NER, redefine 'evidence span' as the disambiguating context window (e.g., the minimal surrounding context that makes entity type unambiguous), not the entity mention itself. This turns a trivial component into a meaningful one.
+
+4. **Acknowledge DocRED evidence annotations**: DocRED already provides supporting evidence sentences. Position ProvUIE as learning to predict evidence spans end-to-end via GRPO rewards, rather than relying on pre-annotated evidence — this is a genuine advantage if framed correctly.
+
+5. **Narrow scope for 16-day timeline**: Consider dropping GENIA and focusing on ACE05 (NER+RE+EE) + SciERC (NER+RE) + DocRED (document-level RE with evidence). This gives cleaner evaluation across IE tasks with existing evidence annotations for validation.
+
+6. **Specify provenance annotation pipeline**: Define exactly how evidence spans are identified for each task type (NER: surrounding context window, RE: minimal sentence(s) containing relation indicators, EE: trigger context + argument context). Give concrete examples.
+
+7. **Correct the ProUIE comparison**: Acknowledge ProUIE's substring constraint and position ProvUIE's contribution as: (a) explicit evidence span output as part of the extraction, (b) provenance fidelity as a learnable reward dimension, (c) attribution metrics (evidence IoU, precision/recall) — not just 'ProUIE has no grounding.'
+
+### Round 2 review
+Verdict: revise
+Issues: ["UNFIXED FROM ROUND 1: Qwen3.5-32B does not exist. The Qwen3.5 family has 27B (dense), 35B-A3B (MoE), but no 32B. This was the #1 issue from round 1 and was not addressed.", "UNFIXED FROM ROUND 1: R1-RE (arXiv 2507.04642, July 2025) and R2GRPO (arXiv 2505.22068, May 2025) are still not cited despite being flagged as mandatory in round 1 feedback. R2GRPO is particularly threatening: its 'relevancy reward' checks if cited content appears in the original text — this IS a form of evidence grounding in IE, directly competing with ProvUIE's core claim.", "UNFIXED FROM ROUND 1: The ProUIE comparison still claims it 'never verifies that extractions are grounded in specific source spans,' but ProUIE's prompts explicitly enforce 'Slot values must be exact substrings of the input.' This misleading comparison was flagged in round 1.", "NEW COMPETITOR MISSED: EvidenceRL (arXiv 2603.19532, March 2026) uses GRPO with an NLI-based grounding reward ('Focus-Then-Verify decomposition' with sentence-level entailment checking) — the same core mechanism as ProvUIE's proposed DeBERTa NLI provenance reward. While EvidenceRL targets medical/legal QA rather than IE, it demonstrates the identical 'provenance as GRPO reward via NLI' idea, significantly reducing ProvUIE's novelty claim.", "NEW COMPETITOR MISSED: ReasoningNER (arXiv 2511.11978, Nov 2025) applies GRPO to NER with reward functions for entity prediction and schema compliance, achieving SOTA zero-shot NER (56.8 F1 across 20 benchmarks). Not cited.", "UNFIXED FROM ROUND 1: NER provenance circularity is not addressed. For NER, the entity mention IS the evidence span — co-predicting it is trivially circular. No explanation of what non-trivial provenance means for NER.", "UNFIXED FROM ROUND 1: DocRED evidence annotation paradigm not discussed. DocRED already provides supporting evidence sentences for each relation, and evidence-guided RE is an established line of work.", "NONE OF THE 8 ROUND 1 ISSUES WERE ADDRESSED: The proposal appears entirely unrevised. Resource mismatch (H100 vs A100), timeline risk, provenance annotation underspecification — all remain unchanged."]
+Feedback: **This is a critical warning: 0 of 8 round 1 issues were addressed. If round 3 does not show substantial revision, this will move toward a 'fail' verdict.**
+
+Specific required revisions:
+
+1. **Fix backbone immediately**: Use Qwen3-32B or Qwen3.5-27B. This is a trivial fix that signals basic attention to review feedback.
+
+2. **Engage with the closest competitors — this is non-negotiable**:
+   - R2GRPO (arXiv 2505.22068): Its relevancy reward already checks evidence grounding in scientific IE. You MUST explain how ProvUIE's provenance reward differs from and improves upon R2GRPO's relevancy reward. Key differentiation: R2GRPO checks relevancy of reasoning traces, ProvUIE requires explicit evidence span output as structured output.
+   - R1-RE (arXiv 2507.04642): First RLVR for RE. Differentiate by UIE scope and provenance dimension.
+   - EvidenceRL (arXiv 2603.19532): Uses GRPO + NLI grounding reward — same mechanism. Differentiate by structured IE vs QA, and evidence span co-prediction vs answer grounding.
+   - ReasoningNER (arXiv 2511.11978): GRPO for NER. Acknowledge and differentiate.
+
+3. **Narrow the novelty claim honestly**: You are NOT the first to use GRPO for IE (R2GRPO, R1-RE), NOT the first to use NLI-based grounding as a GRPO reward (EvidenceRL), and NOT the first to enforce grounding constraints in GRPO (Faithful GRPO). Your genuine novelty is: (a) mandatory evidence span co-prediction as structured output for every extraction unit, (b) provenance fidelity as a dedicated, decomposed reward dimension across the full IE stack (NER+RE+EE), (c) provenance-aware attribution metrics. Frame the contribution around these specific differentiators.
+
+4. **Fix the ProUIE comparison**: Acknowledge ProUIE's substring constraint. Position ProvUIE as going beyond substring matching to: (a) explicit evidence span output, (b) provenance as a learnable reward rather than prompt instruction, (c) NLI-verified entailment rather than surface-level substring matching.
+
+5. **Resolve NER provenance circularity**: Define evidence for NER as the disambiguating context window (minimal surrounding context that makes entity type unambiguous), not the mention itself.
+
+6. **Scope for 16-day timeline**: Drop GENIA. Focus on ACE05 + SciERC + DocRED. Use Qwen3-32B with LoRA (not full fine-tuning) to reduce compute. Consider Qwen2.5-7B as a development/ablation backbone.
+
+7. **State H100-hour estimates explicitly**: User constraint is ≤200 H100-hours. Convert all estimates.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "424e0ac0-f328-45eb-98a4-c999dc1cfc39",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-11T23:16:00.359Z_
+
+```json
+{
+  "parentUuid": "424e0ac0-f328-45eb-98a4-c999dc1cfc39",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "3169f724-9616-4e46-b7c0-9b7d414820d8",
+  "timestamp": "2026-05-11T23:16:00.359Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-11T23:16:00.359Z_
+
+```json
+{
+  "parentUuid": "3169f724-9616-4e46-b7c0-9b7d414820d8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "claude",
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- claude: Catch-all for any task that doesn't fit a more specific agent. FleetView's default when no agent name is typed. (Tools: *)",
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "cf611af1-74d6-43fb-9fa7-fc5341225758",
+  "timestamp": "2026-05-11T23:16:00.359Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-11T23:16:00.359Z_
+
+```json
+{
+  "parentUuid": "cf611af1-74d6-43fb-9fa7-fc5341225758",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "f4b97de7-393d-43e2-a889-4ea34a671539",
+  "timestamp": "2026-05-11T23:16:00.359Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "f4b97de7-393d-43e2-a889-4ea34a671539",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "ProvUIE: Grounded information extraction with evidence-span GRPO",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-11T23:16:16.158Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea for Round 3. The previous two rounds identified 8 issues in Round 1 and noted that 0 were addressed in Round 2. Now I need to check if Round 3 has addressed these issues and independently verify the claims.
+
+Let me first check what has changed in the Round 3 submission compared to previous rounds, then do independent research.
+
+Key things to verify:
+1. Has Qwen3.5-32B been fixed? Looking at the proposal... it now says "Qwen3-32B" - YES, this appears fixed.
+2. Are R1-RE, R2GRPO, EvidenceRL, ReasoningNER now cited? Looking at key_references... YES, all four are now listed.
+
+
+3. The ProUIE comparison now acknowledges the substring constraint and provides proper differentiation, the NER provenance issue is resolved by defining evidence as the disambiguating context window, and DocRED evidence is now explicitly discussed using gold supporting-evidence annotations. Resource estimates are stated in H100-hours, and the timeline has shifted to prioritize ARR June 2026, providing additional preparation time. Checking through all eight original issues, they've all been systematically addressed in this revision.
+
+Now I need to independently verify the claims made in the paper—checking whether the cited papers actually exist and are accurately represented, searching for any competitors that might have been overlooked, and assessing whether the proposed approach is genuinely feasible.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f4b97de7-393d-43e2-a889-4ea34a671539",
+  "isSidechain": false,
+  "requestId": "req_011CawdfXp8b998hHD6vqd5e",
+  "type": "assistant",
+  "uuid": "03510ec2-bff2-4ac8-82ef-71f45290e39e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xw9rubd345QZtNCoT1KHca",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15481,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 628,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15481,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 628,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 15481,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15481
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-11T23:16:17.981Z_
+
+I'll conduct an independent review of this Round 3 submission, starting by checking whether the 8 previously flagged issues were addressed and then verifying claims via web search.
+
+First, let me note that the Round 3 proposal appears to have addressed several Round 1/2 issues: backbone is now Qwen3-32B (fixed), R1-RE/R2GRPO/EvidenceRL/ReasoningNER are now cited, NER provenance circularity is addressed, DocRED evidence is discussed. Let me independently verify the key claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "03510ec2-bff2-4ac8-82ef-71f45290e39e",
+  "isSidechain": false,
+  "requestId": "req_011CawdfXp8b998hHD6vqd5e",
+  "type": "assistant",
+  "uuid": "6d9b07c1-7b74-4bb1-9474-eca4bda2c367",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xw9rubd345QZtNCoT1KHca",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15481,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 628,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15481,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 628,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 15481,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15481
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-11T23:16:18.647Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01FUtfi2eLLpiS9hN6M6HDgW`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d9b07c1-7b74-4bb1-9474-eca4bda2c367",
+  "isSidechain": false,
+  "requestId": "req_011CawdfXp8b998hHD6vqd5e",
+  "type": "assistant",
+  "uuid": "6af0f072-3fa0-4cf6-908c-25968f70a785",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xw9rubd345QZtNCoT1KHca",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15481,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 628,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15481,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 628,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 15481,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15481
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-11T23:16:18.654Z_
+
+<details><summary>↩ Tool result · `toolu_01FUtfi2eLLpiS9hN6M6HDgW`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6af0f072-3fa0-4cf6-908c-25968f70a785",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "6a0b4b31-a602-469c-b1c3-b5b63119d9cb",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "6af0f072-3fa0-4cf6-908c-25968f70a785",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-11T23:16:23.790Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me start my independent verification. I'll search for the key papers and competitors in parallel.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a0b4b31-a602-469c-b1c3-b5b63119d9cb",
+  "isSidechain": false,
+  "requestId": "req_011Cawdgt6Yua9W8gUWvc75e",
+  "type": "assistant",
+  "uuid": "a9412905-7b8f-43c8-a817-99cba6bd105c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X6nYwYg3atdaAL4DZzdFyf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1648,
+      "cache_read_input_tokens": 26928,
+      "output_tokens": 137,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1648,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 137,
+          "cache_read_input_tokens": 26928,
+          "cache_creation_input_tokens": 1648,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1648
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-11T23:16:24.824Z_
+
+Let me begin independent verification of the key claims. I'll search for the cited papers, current SOTA, and potential missed competitors in parallel.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a9412905-7b8f-43c8-a817-99cba6bd105c",
+  "isSidechain": false,
+  "requestId": "req_011Cawdgt6Yua9W8gUWvc75e",
+  "type": "assistant",
+  "uuid": "4eb04a32-f0cb-4088-b44d-586889394ea7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X6nYwYg3atdaAL4DZzdFyf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1648,
+      "cache_read_input_tokens": 26928,
+      "output_tokens": 137,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1648,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 137,
+          "cache_read_input_tokens": 26928,
+          "cache_creation_input_tokens": 1648,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1648
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-11T23:16:25.876Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Rmwu8zB73qVxdQmbWCukj7`</summary>
+
+```json
+{
+  "query": "ProUIE progressive learning LLM universal information extraction GRPO 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4eb04a32-f0cb-4088-b44d-586889394ea7",
+  "isSidechain": false,
+  "requestId": "req_011Cawdgt6Yua9W8gUWvc75e",
+  "type": "assistant",
+  "uuid": "9cdf293c-9b68-4db8-8ba3-a837e29ced21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X6nYwYg3atdaAL4DZzdFyf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1648,
+      "cache_read_input_tokens": 26928,
+      "output_tokens": 137,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1648,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 137,
+          "cache_read_input_tokens": 26928,
+          "cache_creation_input_tokens": 1648,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1648
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-11T23:16:32.827Z_
+
+<details><summary>↩ Tool result · `toolu_01Rmwu8zB73qVxdQmbWCukj7`</summary>
+
+```text
+Web search results for query: "ProUIE progressive learning LLM universal information extraction GRPO 2026 arXiv"
+
+Links: [{"title":"ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction","url":"https://arxiv.org/html/2604.10633"},{"title":"[2604.10633] ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction","url":"https://arxiv.org/abs/2604.10633"},{"title":"From Data-Centric to Sample-Centric: Enhancing LLM Reasoning via Progressive Optimization","url":"https://arxiv.org/html/2507.06573v1"},{"title":"Machine Learning Jul 2025","url":"https://www.arxiv.org/list/cs.LG/2025-07?skip=1325&show=500"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/html/2312.17617v3"},{"title":"Published as a conference paper at ICLR 2026 PREDICTING LLM OUTPUT LENGTH VIA","url":"https://arxiv.org/pdf/2602.11812"},{"title":"LLM Research Papers: The 2025 List (July to December)","url":"https://magazine.sebastianraschka.com/p/llm-research-papers-2025-part2"},{"title":"Machine Learning Jun 2024","url":"https://web3.arxiv.org/list/cs.LG/2024-06?skip=1900&show=2000"},{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-024-40555-y"},{"title":"GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub","url":"https://github.com/quqxui/Awesome-LLM4IE-Papers"}]
+
+Based on the web search results, I found detailed information about ProUIE:
+
+## ProUIE Overview
+
+ProUIE is a macro-to-micro progressive learning framework for LLM-based universal information extraction that improves UIE without introducing external auxiliary information beyond the original training data.
+
+## Three-Stage Architecture
+
+ProUIE consists of three stages: (i) macro-level Complete Modeling (CM), which learns NER, RE, and EE along their intrinsic difficulty order on the full training data to build a unified extraction foundation, (ii) meso-level Streamlined Alignment (SA), which operates on sampled data with simplified target formats, streamlining and regularizing structured outputs to make them more concise and controllable, and (iii) micro-level Deep Exploration (DE), which applies GRPO with stepwise fine-grained rewards (SFR) over structural units to guide exploration and improve performance.
+
+## Reward Mechanism
+
+The framework designs SFR, a UIE-specific reward mechanism that provides stepwise fine-grained rewards over structural units, and integrates it with GRPO in the DE stage to guide exploration and further improve extraction quality.
+
+## Experimental Results
+
+Extensive experiments on 36 public datasets demonstrate that ProUIE consistently outperforms strong baselines, and further delivers clear gains in large-scale production-oriented information extraction.
+
+The research paper was published on arXiv (2604.10633) in April 2026 and represents an advancement in using large language models for universal information extraction tasks across named entity recognition (NER), relation extraction (RE), and event extraction (EE).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9cdf293c-9b68-4db8-8ba3-a837e29ced21",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "e5e31c42-489b-4b09-97c6-8f34d50894e4",
+  "toolUseResult": {
+    "query": "ProUIE progressive learning LLM universal information extraction GRPO 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Hi8HpKFwedmxVUTkwYnQ5h",
+        "content": [
+          {
+            "title": "ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction",
+            "url": "https://arxiv.org/html/2604.10633"
+          },
+          {
+            "title": "[2604.10633] ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction",
+            "url": "https://arxiv.org/abs/2604.10633"
+          },
+          {
+            "title": "From Data-Centric to Sample-Centric: Enhancing LLM Reasoning via Progressive Optimization",
+            "url": "https://arxiv.org/html/2507.06573v1"
+          },
+          {
+            "title": "Machine Learning Jul 2025",
+            "url": "https://www.arxiv.org/list/cs.LG/2025-07?skip=1325&show=500"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/html/2312.17617v3"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026 PREDICTING LLM OUTPUT LENGTH VIA",
+            "url": "https://arxiv.org/pdf/2602.11812"
+          },
+          {
+            "title": "LLM Research Papers: The 2025 List (July to December)",
+            "url": "https://magazine.sebastianraschka.com/p/llm-research-papers-2025-part2"
+          },
+          {
+            "title": "Machine Learning Jun 2024",
+            "url": "https://web3.arxiv.org/list/cs.LG/2024-06?skip=1900&show=2000"
+          },
+          {
+            "title": "Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11704-024-40555-y"
+          },
+          {
+            "title": "GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub",
+            "url": "https://github.com/quqxui/Awesome-LLM4IE-Papers"
+          }
+        ]
+      },
+      "Based on the web search results, I found detailed information about ProUIE:\n\n## ProUIE Overview\n\nProUIE is a macro-to-micro progressive learning framework for LLM-based universal information extraction that improves UIE without introducing external auxiliary information beyond the original training data.\n\n## Three-Stage Architecture\n\nProUIE consists of three stages: (i) macro-level Complete Modeling (CM), which learns NER, RE, and EE along their intrinsic difficulty order on the full training data to build a unified extraction foundation, (ii) meso-level Streamlined Alignment (SA), which operates on sampled data with simplified target formats, streamlining and regularizing structured outputs to make them more concise and controllable, and (iii) micro-level Deep Exploration (DE), which applies GRPO with stepwise fine-grained rewards (SFR) over structural units to guide exploration and improve performance.\n\n## Reward Mechanism\n\nThe framework designs SFR, a UIE-specific reward mechanism that provides stepwise fine-grained rewards over structural units, and integrates it with GRPO in the DE stage to guide exploration and further improve extraction quality.\n\n## Experimental Results\n\nExtensive experiments on 36 public datasets demonstrate that ProUIE consistently outperforms strong baselines, and further delivers clear gains in large-scale production-oriented information extraction.\n\nThe research paper was published on arXiv (2604.10633) in April 2026 and represents an advancement in using large language models for universal information extraction tasks across named entity recognition (NER), relation extraction (RE), and event extraction (EE)."
+    ],
+    "durationSeconds": 6.9466735199999965
+  },
+  "sourceToolAssistantUUID": "9cdf293c-9b68-4db8-8ba3-a837e29ced21",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-11T23:16:35.802Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PHmXQ4ewtiBro76zX4ZCJU`</summary>
+
+```json
+{
+  "query": "R2GRPO scientific information extraction GRPO relevancy reward arXiv 2505.22068"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e5e31c42-489b-4b09-97c6-8f34d50894e4",
+  "isSidechain": false,
+  "requestId": "req_011CawdhvVSyQWe5FWLyg8ke",
+  "type": "assistant",
+  "uuid": "2af98072-0282-49a9-a0ef-21cdbc841b9f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FNbjXu4bxrZp3ARp1gSvKM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1052,
+      "cache_read_input_tokens": 28576,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1052,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 28576,
+          "cache_creation_input_tokens": 1052,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1052
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-11T23:16:42.576Z_
+
+<details><summary>↩ Tool result · `toolu_01PHmXQ4ewtiBro76zX4ZCJU`</summary>
+
+```text
+Web search results for query: "R2GRPO scientific information extraction GRPO relevancy reward arXiv 2505.22068"
+
+Links: [{"title":"Beyond path selection: Better LLMs for Scientific Information Extraction with MimicSFT and Relevance and Rule-induced(R2)GRPO","url":"https://arxiv.org/html/2505.22068"},{"title":"[2505.22068] Beyond path selection: Better LLMs for Scientific Information Extraction with MimicSFT and Relevance and Rule-induced(R$^2$)GRPO","url":"https://arxiv.org/abs/2505.22068"},{"title":"DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning","url":"https://arxiv.org/html/2505.09655v4"},{"title":"Stable Reinforcement Learning for Efficient Reasoning","url":"https://arxiv.org/html/2505.18086v1"},{"title":"GRPO is Secretly a Process Reward Model","url":"https://arxiv.org/html/2509.21154v1"},{"title":"[2505.09655v2] DRA-GRPO: Exploring Diversity-Aware Reward Adjustment for R1-Zero-Like Training of Large Language Models","url":"https://arxiv.org/abs/2505.09655v2"},{"title":"[2505.18086] Stable Reinforcement Learning for Efficient Reasoning","url":"https://arxiv.org/abs/2505.18086"},{"title":"DRA-GRPO: Exploring Diversity-Aware Reward Adjustment for R1-Zero-Like Training of Large Language Models","url":"https://arxiv.org/html/2505.09655v1"},{"title":"Reinforcement Learning with Verifiable Rewards: GRPO’s Effective Loss, Dynamics, and Success Amplification","url":"https://arxiv.org/html/2503.06639v4"},{"title":"[2510.01982v1] $\\text{G}^2$RPO: Granular GRPO for Precise Reward in Flow Models","url":"https://arxiv.org/abs/2510.01982v1"}]
+
+Based on the search results, here's what I found about R2GRPO and the paper arXiv 2505.22068:
+
+## Overview
+
+The research studies Scientific Information Extraction (SciIE), where LLMs underperform compared to smaller BERT-based models, and notes that SciIE requires both reasoning and memorization.
+
+## R2GRPO Method
+
+R2GRPO is a two-phase training method that combines MimicSFT with a novel reward function incorporating relevance and rule-mining to jointly optimize knowledge grounding and reasoning paths. R2GRPO stands for Relevance and Rule-Induction Group Relative Policy Optimization.
+
+## Key Components
+
+The paper proposes two main techniques:
+
+1. **MimicSFT**: Uses structured reasoning templates without needing high-quality chain-of-thought data.
+
+2. **R2GRPO**: Features relevance and rule-induced rewards.
+
+## Results
+
+Experiments on scientific IE benchmarks show that both methods can improve the reasoning capacity. For reasoning, structure and relevance are more important than length for a constrained generation problem.
+
+The paper was published on arXiv on May 28, 2025, with the title "Beyond path selection: Better LLMs for Scientific Information Extraction with MimicSFT and Relevance and Rule-induced(R²)GRPO."
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2af98072-0282-49a9-a0ef-21cdbc841b9f",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "33e1f359-82be-4957-9168-60407b2ae019",
+  "toolUseResult": {
+    "query": "R2GRPO scientific information extraction GRPO relevancy reward arXiv 2505.22068",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01U7yEKzXcghxBeM2tA9bEhs",
+        "content": [
+          {
+            "title": "Beyond path selection: Better LLMs for Scientific Information Extraction with MimicSFT and Relevance and Rule-induced(R2)GRPO",
+            "url": "https://arxiv.org/html/2505.22068"
+          },
+          {
+            "title": "[2505.22068] Beyond path selection: Better LLMs for Scientific Information Extraction with MimicSFT and Relevance and Rule-induced(R$^2$)GRPO",
+            "url": "https://arxiv.org/abs/2505.22068"
+          },
+          {
+            "title": "DRA-GRPO: Your GRPO Needs to Know Diverse Reasoning Paths for Mathematical Reasoning",
+            "url": "https://arxiv.org/html/2505.09655v4"
+          },
+          {
+            "title": "Stable Reinforcement Learning for Efficient Reasoning",
+            "url": "https://arxiv.org/html/2505.18086v1"
+          },
+          {
+            "title": "GRPO is Secretly a Process Reward Model",
+            "url": "https://arxiv.org/html/2509.21154v1"
+          },
+          {
+            "title": "[2505.09655v2] DRA-GRPO: Exploring Diversity-Aware Reward Adjustment for R1-Zero-Like Training of Large Language Models",
+            "url": "https://arxiv.org/abs/2505.09655v2"
+          },
+          {
+            "title": "[2505.18086] Stable Reinforcement Learning for Efficient Reasoning",
+            "url": "https://arxiv.org/abs/2505.18086"
+          },
+          {
+            "title": "DRA-GRPO: Exploring Diversity-Aware Reward Adjustment for R1-Zero-Like Training of Large Language Models",
+            "url": "https://arxiv.org/html/2505.09655v1"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards: GRPO’s Effective Loss, Dynamics, and Success Amplification",
+            "url": "https://arxiv.org/html/2503.06639v4"
+          },
+          {
+            "title": "[2510.01982v1] $\\text{G}^2$RPO: Granular GRPO for Precise Reward in Flow Models",
+            "url": "https://arxiv.org/abs/2510.01982v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about R2GRPO and the paper arXiv 2505.22068:\n\n## Overview\n\nThe research studies Scientific Information Extraction (SciIE), where LLMs underperform compared to smaller BERT-based models, and notes that SciIE requires both reasoning and memorization.\n\n## R2GRPO Method\n\nR2GRPO is a two-phase training method that combines MimicSFT with a novel reward function incorporating relevance and rule-mining to jointly optimize knowledge grounding and reasoning paths. R2GRPO stands for Relevance and Rule-Induction Group Relative Policy Optimization.\n\n## Key Components\n\nThe paper proposes two main techniques:\n\n1. **MimicSFT**: Uses structured reasoning templates without needing high-quality chain-of-thought data.\n\n2. **R2GRPO**: Features relevance and rule-induced rewards.\n\n## Results\n\nExperiments on scientific IE benchmarks show that both methods can improve the reasoning capacity. For reasoning, structure and relevance are more important than length for a constrained generation problem.\n\nThe paper was published on arXiv on May 28, 2025, with the title \"Beyond path selection: Better LLMs for Scientific Information Extraction with MimicSFT and Relevance and Rule-induced(R²)GRPO.\""
+    ],
+    "durationSeconds": 6.769347802999997
+  },
+  "sourceToolAssistantUUID": "2af98072-0282-49a9-a0ef-21cdbc841b9f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19 · 2026-05-11T23:16:46.298Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GhoAgfivzFG1LZPJCNZMeG`</summary>
+
+```json
+{
+  "query": "EvidenceRL reinforcing evidence consistency GRPO NLI grounding reward arXiv 2603.19532"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "33e1f359-82be-4957-9168-60407b2ae019",
+  "isSidechain": false,
+  "requestId": "req_011Cawdie8y2mPVhQjYutuqc",
+  "type": "assistant",
+  "uuid": "38a22176-b8c2-49a0-9310-ae1bdc23f991",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019TagzfSXEtRmdaDxRubXSC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 953,
+      "cache_read_input_tokens": 29628,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 953,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 29628,
+          "cache_creation_input_tokens": 953,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 953
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-11T23:16:52.646Z_
+
+<details><summary>↩ Tool result · `toolu_01GhoAgfivzFG1LZPJCNZMeG`</summary>
+
+```text
+Web search results for query: "EvidenceRL reinforcing evidence consistency GRPO NLI grounding reward arXiv 2603.19532"
+
+Links: [{"title":"EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models","url":"https://arxiv.org/html/2603.19532"},{"title":"[2603.19532] EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models","url":"https://arxiv.org/abs/2603.19532"},{"title":"[2603.20162] Evaluating Evidence Grounding Under User Pressure in Instruction-Tuned Language Models","url":"https://arxiv.org/abs/2603.20162"},{"title":"[2603.01162] Demystifying Group Relative Policy Optimization: Its Policy Gradient is a U-Statistic","url":"https://arxiv.org/abs/2603.01162"},{"title":"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLVR"},{"title":"Stable Reinforcement Learning for Efficient Reasoning","url":"https://arxiv.org/html/2505.18086v1"},{"title":"PathGLS: Evaluating Pathology Vision-Language Models without Ground Truth through Multi-Dimensional Consistency","url":"https://arxiv.org/html/2603.16113"},{"title":"Daily Papers - Hugging Face","url":"https://huggingface.co/papers?q=Reinforcement+Learning+with+Verifiable+Rewards+(RLVR)"},{"title":"ICE: Intervention-Consistent Explanation Evaluation with Statistical Grounding for LLMs","url":"https://arxiv.org/html/2603.18579v1"},{"title":"[2603.13134] When Right Meets Wrong: Bilateral Context Conditioning with Reward-Confidence Correction for GRPO","url":"https://arxiv.org/abs/2603.13134"}]
+
+Based on the search results, here's what I found about the paper you requested:
+
+## EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models
+
+EvidenceRL is a reinforcement learning framework that enforces evidence grounding as a differentiable training objective using automated NLI and LLM-judge rewards, removing the dependency on human preference annotations.
+
+**Key Components:**
+
+- The Focus-Then-Verify reward architecture targets sentence-level entailment within focused context windows to resolve the signal dilution inherent in document-level scoring.
+
+- Training uses GRPO with rewards for correctness and applies GRPO training with the combined reward, jointly optimizing both grounding and correctness.
+
+**Results:**
+
+EvidenceRL improves accuracy and evidence grounding across model scales, reducing hallucinations and increasing evidence-supported predictions on high-stakes medical and legal domains.
+
+**Technical Details:**
+
+Grounding is computed via a Focus–Then–Verify procedure where focused (premise, hypothesis) pairs are constructed by combining an anchor context with individual evidence sections, and each pair is scored by a frozen NLI model.
+
+The paper is available on arXiv as [2603.19532](https://arxiv.org/abs/2603.19532) (posted March 20, 2026).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "38a22176-b8c2-49a0-9310-ae1bdc23f991",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "5905332f-9344-4f47-8264-47e462ff8a9a",
+  "toolUseResult": {
+    "query": "EvidenceRL reinforcing evidence consistency GRPO NLI grounding reward arXiv 2603.19532",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018HyGdfYNsgPfX48g75kyev",
+        "content": [
+          {
+            "title": "EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models",
+            "url": "https://arxiv.org/html/2603.19532"
+          },
+          {
+            "title": "[2603.19532] EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models",
+            "url": "https://arxiv.org/abs/2603.19532"
+          },
+          {
+            "title": "[2603.20162] Evaluating Evidence Grounding Under User Pressure in Instruction-Tuned Language Models",
+            "url": "https://arxiv.org/abs/2603.20162"
+          },
+          {
+            "title": "[2603.01162] Demystifying Group Relative Policy Optimization: Its Policy Gradient is a U-Statistic",
+            "url": "https://arxiv.org/abs/2603.01162"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-RLVR"
+          },
+          {
+            "title": "Stable Reinforcement Learning for Efficient Reasoning",
+            "url": "https://arxiv.org/html/2505.18086v1"
+          },
+          {
+            "title": "PathGLS: Evaluating Pathology Vision-Language Models without Ground Truth through Multi-Dimensional Consistency",
+            "url": "https://arxiv.org/html/2603.16113"
+          },
+          {
+            "title": "Daily Papers - Hugging Face",
+            "url": "https://huggingface.co/papers?q=Reinforcement+Learning+with+Verifiable+Rewards+(RLVR)"
+          },
+          {
+            "title": "ICE: Intervention-Consistent Explanation Evaluation with Statistical Grounding for LLMs",
+            "url": "https://arxiv.org/html/2603.18579v1"
+          },
+          {
+            "title": "[2603.13134] When Right Meets Wrong: Bilateral Context Conditioning with Reward-Confidence Correction for GRPO",
+            "url": "https://arxiv.org/abs/2603.13134"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the paper you requested:\n\n## EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models\n\nEvidenceRL is a reinforcement learning framework that enforces evidence grounding as a differentiable training objective using automated NLI and LLM-judge rewards, removing the dependency on human preference annotations.\n\n**Key Components:**\n\n- The Focus-Then-Verify reward architecture targets sentence-level entailment within focused context windows to resolve the signal dilution inherent in document-level scoring.\n\n- Training uses GRPO with rewards for correctness and applies GRPO training with the combined reward, jointly optimizing both grounding and correctness.\n\n**Results:**\n\nEvidenceRL improves accuracy and evidence grounding across model scales, reducing hallucinations and increasing evidence-supported predictions on high-stakes medical and legal domains.\n\n**Technical Details:**\n\nGrounding is computed via a Focus–Then–Verify procedure where focused (premise, hypothesis) pairs are constructed by combining an anchor context with individual evidence sections, and each pair is scored by a frozen NLI model.\n\nThe paper is available on arXiv as [2603.19532](https://arxiv.org/abs/2603.19532) (posted March 20, 2026)."
+    ],
+    "durationSeconds": 6.344677033
+  },
+  "sourceToolAssistantUUID": "38a22176-b8c2-49a0-9310-ae1bdc23f991",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "5905332f-9344-4f47-8264-47e462ff8a9a",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "ProvUIE: Grounded information extraction with evidence-span GRPO",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-11T23:16:55.652Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013ta5ftNtUxkSzqFWWeh5Dt`</summary>
+
+```json
+{
+  "query": "ReasoningNER reasoning paradigm named entity recognition GRPO arXiv 2511.11978"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5905332f-9344-4f47-8264-47e462ff8a9a",
+  "isSidechain": false,
+  "requestId": "req_011CawdjPB66Rmc6F4AsWArH",
+  "type": "assistant",
+  "uuid": "b3ea806c-21af-4b42-a856-54b165b11273",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018QZ3NWt9s7TQ1iwwwMCoMh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 902,
+      "cache_read_input_tokens": 30581,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 902,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 30581,
+          "cache_creation_input_tokens": 902,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 902
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-11T23:17:03.059Z_
+
+<details><summary>↩ Tool result · `toolu_013ta5ftNtUxkSzqFWWeh5Dt`</summary>
+
+```text
+Web search results for query: "ReasoningNER reasoning paradigm named entity recognition GRPO arXiv 2511.11978"
+
+Links: [{"title":"A Reasoning Paradigm for Named Entity Recognition","url":"https://arxiv.org/html/2511.11978v1"},{"title":"[2511.11978] A Reasoning Paradigm for Named Entity Recognition","url":"https://arxiv.org/abs/2511.11978"},{"title":"Paper page - A Reasoning Paradigm for Named Entity Recognition","url":"https://huggingface.co/papers/2511.11978"},{"title":"Rohan Paul on X: \"The paper builds a NER (Named Entity Recognition) system called ReasoningNER that makes the model write out its reasoning before giving entity labels. Shows careful reasoning training can matter more than sheer model size for NER. Older systems mostly memorize surface patterns https://t.co/ZRHNQo4CsF\" / X","url":"https://x.com/rohanpaul_ai/status/1991407160400773518"},{"title":"HuiHuang/NER-CoT · Datasets at Hugging Face","url":"https://huggingface.co/datasets/HuiHuang/NER-CoT"},{"title":"A Reasoning Paradigm for Named Entity Recognition | Request PDF","url":"https://www.researchgate.net/publication/397700556_A_Reasoning_Paradigm_for_Named_Entity_Recognition"},{"title":"Beyond Unimodal Shortcuts: MLLMs as Cross-Modal Reasoners for Grounded Named Entity Recognition","url":"https://arxiv.org/html/2602.04486v1"},{"title":"[2511.06886] Inclusion of Role into Named Entity Recognition and Ranking","url":"https://arxiv.org/abs/2511.06886"},{"title":"GitHub - yyDing1/GNER: [ACL 2024 Findings] Code implementation of Paper \"Rethinking Negative Instances for Generative Named Entity Recognition\" · GitHub","url":"https://github.com/yyDing1/GNER"},{"title":"Retrieval-Enhanced Named Entity Recognition","url":"https://arxiv.org/html/2410.13118v1"}]
+
+Based on the search results, here's what I found about the ReasoningNER reasoning paradigm:
+
+## Overview
+
+ReasoningNER is a reasoning paradigm for Named Entity Recognition (NER) composed of three stages: CoT Generation, CoT Tuning, and Reasoning Enhancement.
+
+## The Problem It Addresses
+
+Generative LLMs typically improve NER performance through instruction tuning and excel at generating entities by semantic pattern matching, but they lack an explicit, verifiable reasoning mechanism.
+
+## Three-Stage Approach
+
+1. **CoT Generation**: A NER-CoT dataset is constructed, which contains named entities annotated with step-by-step reasoning traces.
+
+2. **CoT Tuning**: The NER model is optimized with a CoT analysis, verbalizing how it identifies entities based on contextual clues before outputting the final answer.
+
+3. **Reasoning Enhancement**: A Group Relative Policy Optimization (GRPO) algorithm is employed to further refine the model's policy, with task-specific reward functions designed to score the final predicted entities against the ground truth and to verify that the model's output conforms to a predefined schema.
+
+## Performance Results
+
+In the zero-shot cross-domain setting, ReasoningNER achieves new state-of-the-art results, with ReasoningNER 8B attaining an average F1 score of 72.4 across all seven domains. ReasoningNER 8B surpasses the much larger DeepSeek-R1 32B by 8.4 F1 points, while the smaller 1.7B model substantially outperforms DeepSeek-R1 8B by 10.5 points.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b3ea806c-21af-4b42-a856-54b165b11273",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "2ac09b80-98d1-4fb6-bcea-cba4b6cb41c6",
+  "toolUseResult": {
+    "query": "ReasoningNER reasoning paradigm named entity recognition GRPO arXiv 2511.11978",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FxBkbk6SkWw1qnS5WdfvBt",
+        "content": [
+          {
+            "title": "A Reasoning Paradigm for Named Entity Recognition",
+            "url": "https://arxiv.org/html/2511.11978v1"
+          },
+          {
+            "title": "[2511.11978] A Reasoning Paradigm for Named Entity Recognition",
+            "url": "https://arxiv.org/abs/2511.11978"
+          },
+          {
+            "title": "Paper page - A Reasoning Paradigm for Named Entity Recognition",
+            "url": "https://huggingface.co/papers/2511.11978"
+          },
+          {
+            "title": "Rohan Paul on X: \"The paper builds a NER (Named Entity Recognition) system called ReasoningNER that makes the model write out its reasoning before giving entity labels. Shows careful reasoning training can matter more than sheer model size for NER. Older systems mostly memorize surface patterns https://t.co/ZRHNQo4CsF\" / X",
+            "url": "https://x.com/rohanpaul_ai/status/1991407160400773518"
+          },
+          {
+            "title": "HuiHuang/NER-CoT · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/HuiHuang/NER-CoT"
+          },
+          {
+            "title": "A Reasoning Paradigm for Named Entity Recognition | Request PDF",
+            "url": "https://www.researchgate.net/publication/397700556_A_Reasoning_Paradigm_for_Named_Entity_Recognition"
+          },
+          {
+            "title": "Beyond Unimodal Shortcuts: MLLMs as Cross-Modal Reasoners for Grounded Named Entity Recognition",
+            "url": "https://arxiv.org/html/2602.04486v1"
+          },
+          {
+            "title": "[2511.06886] Inclusion of Role into Named Entity Recognition and Ranking",
+            "url": "https://arxiv.org/abs/2511.06886"
+          },
+          {
+            "title": "GitHub - yyDing1/GNER: [ACL 2024 Findings] Code implementation of Paper \"Rethinking Negative Instances for Generative Named Entity Recognition\" · GitHub",
+            "url": "https://github.com/yyDing1/GNER"
+          },
+          {
+            "title": "Retrieval-Enhanced Named Entity Recognition",
+            "url": "https://arxiv.org/html/2410.13118v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about the ReasoningNER reasoning paradigm:\n\n## Overview\n\nReasoningNER is a reasoning paradigm for Named Entity Recognition (NER) composed of three stages: CoT Generation, CoT Tuning, and Reasoning Enhancement.\n\n## The Problem It Addresses\n\nGenerative LLMs typically improve NER performance through instruction tuning and excel at generating entities by semantic pattern matching, but they lack an explicit, verifiable reasoning mechanism.\n\n## Three-Stage Approach\n\n1. **CoT Generation**: A NER-CoT dataset is constructed, which contains named entities annotated with step-by-step reasoning traces.\n\n2. **CoT Tuning**: The NER model is optimized with a CoT analysis, verbalizing how it identifies entities based on contextual clues before outputting the final answer.\n\n3. **Reasoning Enhancement**: A Group Relative Policy Optimization (GRPO) algorithm is employed to further refine the model's policy, with task-specific reward functions designed to score the final predicted entities against the ground truth and to verify that the model's output conforms to a predefined schema.\n\n## Performance Results\n\nIn the zero-shot cross-domain setting, ReasoningNER achieves new state-of-the-art results, with ReasoningNER 8B attaining an average F1 score of 72.4 across all seven domains. ReasoningNER 8B surpasses the much larger DeepSeek-R1 32B by 8.4 F1 points, while the smaller 1.7B model substantially outperforms DeepSeek-R1 8B by 10.5 points."
+    ],
+    "durationSeconds": 7.402317096000006
+  },
+  "sourceToolAssistantUUID": "b3ea806c-21af-4b42-a856-54b165b11273",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25 · 2026-05-11T23:17:05.846Z_
+
+Good, all four key papers verified as real. Now let me search for additional competitors and verify SOTA claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ac09b80-98d1-4fb6-bcea-cba4b6cb41c6",
+  "isSidechain": false,
+  "requestId": "req_011Cawdk9iEhw11CYPj5GrRw",
+  "type": "assistant",
+  "uuid": "b5d78505-64c5-4686-9d76-39f7a027f233",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wu71TDPhfP4fzYZMNBuUBS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1032,
+      "cache_read_input_tokens": 31483,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1032,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 31483,
+          "cache_creation_input_tokens": 1032,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1032
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-11T23:17:06.755Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K94L2wMWmtQwmtBYjMZnmz`</summary>
+
+```json
+{
+  "query": "R1-RE cross-domain relation extraction RLVR arXiv 2507.04642"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5d78505-64c5-4686-9d76-39f7a027f233",
+  "isSidechain": false,
+  "requestId": "req_011Cawdk9iEhw11CYPj5GrRw",
+  "type": "assistant",
+  "uuid": "772c9577-6f2c-41a3-9fd0-194108e6790f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Wu71TDPhfP4fzYZMNBuUBS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1032,
+      "cache_read_input_tokens": 31483,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1032,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 31483,
+          "cache_creation_input_tokens": 1032,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1032
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-11T23:17:15.622Z_
+
+<details><summary>↩ Tool result · `toolu_01K94L2wMWmtQwmtBYjMZnmz`</summary>
+
+```text
+Web search results for query: "R1-RE cross-domain relation extraction RLVR arXiv 2507.04642"
+
+Links: [{"title":"[2507.04642] R1-RE: Cross-Domain Relation Extraction with RLVR","url":"https://arxiv.org/abs/2507.04642"},{"title":"R1-RE: Cross-Domain Relation Extraction with RLVR","url":"https://arxiv.org/html/2507.04642"},{"title":"R1-RE: Cross-Domain Relationship Extraction with RLVR","url":"https://arxiv.org/html/2507.04642v1"},{"title":"R1-RE: Cross-Domain Relation Extraction with RLVR Runpeng Dai1 Tong Zheng2","url":"https://arxiv.org/pdf/2507.04642"},{"title":"R1-RE: Cross-Domain Relationship Extraction with RLVR | Semantic Scholar","url":"https://www.semanticscholar.org/paper/R1-RE:-Cross-Domain-Relationship-Extraction-with-Dai-Zheng/ca336239e3b182b39001928628deb5b2e9c5eec9"},{"title":"[2210.09345] CrossRE: A Cross-Domain Dataset for Relation Extraction","url":"https://arxiv.org/abs/2210.09345"},{"title":"[1907.03230] Improving Cross-Domain Performance for Relation Extraction via Dependency Prediction and Information Flow Control","url":"https://arxiv.org/abs/1907.03230"},{"title":"Can One Domain Help Others? A Data-Centric Study on Multi-Domain Reasoning via Reinforcement Learning","url":"https://arxiv.org/html/2507.17512v1"},{"title":"[2212.02560] Cross-Domain Few-Shot Relation Extraction via Representation Learning and Domain Adaptation","url":"https://arxiv.org/abs/2212.02560"},{"title":"GitHub - Jiaaqiliu/Awesome-RL-Reasoning-LMs: A comprehensive collection of research papers on RL(especially various R1-related paper) techniques for enhancing reasoning capabilities in LLMs, VLMs, and MLLMs. · GitHub","url":"https://github.com/Jiaaqiliu/Awesome-RL-Reasoning-LMs"}]
+
+Based on the search results, I found detailed information about the paper you're looking for:
+
+## R1-RE: Cross-Domain Relation Extraction with RLVR
+
+R1-RE is the first reinforcement learning with verifiable reward (RLVR) framework for relation extraction (RE) tasks, reframing RE as a reasoning task guided by annotation guidelines.
+
+**Key Contributions:**
+
+The method elicits the reasoning abilities of small language models for annotation tasks, resulting in significantly improved out-of-domain (OOD) robustness. The R1-RE-7B model attains an average OOD accuracy of approximately 70%, on par with leading proprietary models such as GPT-4o.
+
+**Approach:**
+
+Traditional approaches typically frame RE as a supervised learning problem, directly mapping context to labels—an approach that often suffers from poor out-of-domain (OOD) generalization. The R1-RE framework addresses this limitation by adopting a different paradigm.
+
+**Evaluation:**
+
+The approach was evaluated on the public SemEval-2010 dataset and a private MDKG dataset. The work provides novel insights into the training dynamics and emergent reasoning behaviors of the RLVR paradigm for RE.
+
+The paper (arXiv:2507.04642) was submitted on July 7, 2025, with the latest revision on August 6, 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "772c9577-6f2c-41a3-9fd0-194108e6790f",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "3bd76358-ab01-4e1e-b185-628a39b36aee",
+  "toolUseResult": {
+    "query": "R1-RE cross-domain relation extraction RLVR arXiv 2507.04642",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0167cye8nD5GH8npBZ7PGuz8",
+        "content": [
+          {
+            "title": "[2507.04642] R1-RE: Cross-Domain Relation Extraction with RLVR",
+            "url": "https://arxiv.org/abs/2507.04642"
+          },
+          {
+            "title": "R1-RE: Cross-Domain Relation Extraction with RLVR",
+            "url": "https://arxiv.org/html/2507.04642"
+          },
+          {
+            "title": "R1-RE: Cross-Domain Relationship Extraction with RLVR",
+            "url": "https://arxiv.org/html/2507.04642v1"
+          },
+          {
+            "title": "R1-RE: Cross-Domain Relation Extraction with RLVR Runpeng Dai1 Tong Zheng2",
+            "url": "https://arxiv.org/pdf/2507.04642"
+          },
+          {
+            "title": "R1-RE: Cross-Domain Relationship Extraction with RLVR | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/R1-RE:-Cross-Domain-Relationship-Extraction-with-Dai-Zheng/ca336239e3b182b39001928628deb5b2e9c5eec9"
+          },
+          {
+            "title": "[2210.09345] CrossRE: A Cross-Domain Dataset for Relation Extraction",
+            "url": "https://arxiv.org/abs/2210.09345"
+          },
+          {
+            "title": "[1907.03230] Improving Cross-Domain Performance for Relation Extraction via Dependency Prediction and Information Flow Control",
+            "url": "https://arxiv.org/abs/1907.03230"
+          },
+          {
+            "title": "Can One Domain Help Others? A Data-Centric Study on Multi-Domain Reasoning via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2507.17512v1"
+          },
+          {
+            "title": "[2212.02560] Cross-Domain Few-Shot Relation Extraction via Representation Learning and Domain Adaptation",
+            "url": "https://arxiv.org/abs/2212.02560"
+          },
+          {
+            "title": "GitHub - Jiaaqiliu/Awesome-RL-Reasoning-LMs: A comprehensive collection of research papers on RL(especially various R1-related paper) techniques for enhancing reasoning capabilities in LLMs, VLMs, and MLLMs. · GitHub",
+            "url": "https://github.com/Jiaaqiliu/Awesome-RL-Reasoning-LMs"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about the paper you're looking for:\n\n## R1-RE: Cross-Domain Relation Extraction with RLVR\n\nR1-RE is the first reinforcement learning with verifiable reward (RLVR) framework for relation extraction (RE) tasks, reframing RE as a reasoning task guided by annotation guidelines.\n\n**Key Contributions:**\n\nThe method elicits the reasoning abilities of small language models for annotation tasks, resulting in significantly improved out-of-domain (OOD) robustness. The R1-RE-7B model attains an average OOD accuracy of approximately 70%, on par with leading proprietary models such as GPT-4o.\n\n**Approach:**\n\nTraditional approaches typically frame RE as a supervised learning problem, directly mapping context to labels—an approach that often suffers from poor out-of-domain (OOD) generalization. The R1-RE framework addresses this limitation by adopting a different paradigm.\n\n**Evaluation:**\n\nThe approach was evaluated on the public SemEval-2010 dataset and a private MDKG dataset. The work provides novel insights into the training dynamics and emergent reasoning behaviors of the RLVR paradigm for RE.\n\nThe paper (arXiv:2507.04642) was submitted on July 7, 2025, with the latest revision on August 6, 2025."
+    ],
+    "durationSeconds": 8.862142864999987
+  },
+  "sourceToolAssistantUUID": "772c9577-6f2c-41a3-9fd0-194108e6790f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-11T23:17:18.386Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01BncCjLe7dEmfh1CNU2CcaH`</summary>
+
+```json
+{
+  "query": "universal information extraction GRPO reinforcement learning 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3bd76358-ab01-4e1e-b185-628a39b36aee",
+  "isSidechain": false,
+  "requestId": "req_011Cawdm5Pp14guyqdo3gXUs",
+  "type": "assistant",
+  "uuid": "f5bfa44e-2122-45fb-b8a2-f951f10f2dff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01ExJmbg7onaXZa4QZTNYMjK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1028,
+      "cache_read_input_tokens": 32515,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1028,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 32515,
+          "cache_creation_input_tokens": 1028,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1028
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-11T23:17:24.661Z_
+
+<details><summary>↩ Tool result · `toolu_01BncCjLe7dEmfh1CNU2CcaH`</summary>
+
+```text
+Web search results for query: "universal information extraction GRPO reinforcement learning 2026 arXiv"
+
+Links: [{"title":"ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction","url":"https://arxiv.org/html/2604.10633"},{"title":"MORE-R1: Guiding LVLM for Multimodal Object-Entity Relation Extraction via Stepwise Reasoning with Reinforcement Learning","url":"https://arxiv.org/html/2603.09478"},{"title":"Extract-0: A Specialized Language Model for Document Information Extraction","url":"https://arxiv.org/html/2509.22906"},{"title":"Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor’s Internal States","url":"https://arxiv.org/html/2605.07579"},{"title":"[2509.09082] MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction","url":"https://arxiv.org/abs/2509.09082"},{"title":"Reinforcement Learning with Verifiable Rewards: GRPO’s Effective Loss, Dynamics, and Success Amplification","url":"https://arxiv.org/html/2503.06639v4"},{"title":"Enhancing Agentic RL with Progressive Reward Shaping and...","url":"https://arxiv.org/abs/2512.07478"},{"title":"[2505.07686] S-GRPO: Early Exit via Reinforcement Learning in Reasoning Models","url":"https://arxiv.org/abs/2505.07686"},{"title":"[2603.21872] Manifold-Aware Exploration for Reinforcement Learning in Video Generation","url":"https://arxiv.org/abs/2603.21872"},{"title":"S-GRPO: Early Exit via Reinforcement Learning in Reasoning Models","url":"https://arxiv.org/html/2505.07686v1"}]
+
+Based on the search results, I found several relevant papers on arXiv about universal information extraction with GRPO reinforcement learning:
+
+## Key Papers Found:
+
+### 1. **ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction**
+
+ProUIE proposes a macro-to-micro progressive learning framework with three stages: Complete Modeling (CM), Streamlined Alignment (SA), and Deep Exploration (DE), where the DE stage applies GRPO with stepwise fine-grained rewards (SFR) over structural units to guide exploration and improve performance. Experiments on 36 public datasets demonstrate that ProUIE consistently outperforms strong baselines.
+
+### 2. **MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction**
+
+This work integrates reinforcement learning (RL) with multi-perspective reasoning for information extraction tasks, transitioning LLMs from passive extractors to active reasoners. Experiments conducted on multiple IE benchmarks demonstrate that MR-UIE consistently elevates extraction accuracy across domains and surpasses state-of-the-art methods on several datasets.
+
+### 3. **Additional GRPO-Based Extraction Methods**
+
+Extract-0 used reinforcement learning through GRPO, enhancing performance with a semantic similarity-based reward function for document extraction.
+
+These papers represent recent research (from 2025-2026) on arXiv exploring how GRPO reinforcement learning can improve universal information extraction tasks across various domains.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f5bfa44e-2122-45fb-b8a2-f951f10f2dff",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "c9f25a5d-fb0e-4e18-8703-758e1129bbdc",
+  "toolUseResult": {
+    "query": "universal information extraction GRPO reinforcement learning 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01SroKtyXyrRpvqpyXM6CXuV",
+        "content": [
+          {
+            "title": "ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction",
+            "url": "https://arxiv.org/html/2604.10633"
+          },
+          {
+            "title": "MORE-R1: Guiding LVLM for Multimodal Object-Entity Relation Extraction via Stepwise Reasoning with Reinforcement Learning",
+            "url": "https://arxiv.org/html/2603.09478"
+          },
+          {
+            "title": "Extract-0: A Specialized Language Model for Document Information Extraction",
+            "url": "https://arxiv.org/html/2509.22906"
+          },
+          {
+            "title": "Your Language Model is Its Own Critic: Reinforcement Learning with Value Estimation from Actor’s Internal States",
+            "url": "https://arxiv.org/html/2605.07579"
+          },
+          {
+            "title": "[2509.09082] MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction",
+            "url": "https://arxiv.org/abs/2509.09082"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards: GRPO’s Effective Loss, Dynamics, and Success Amplification",
+            "url": "https://arxiv.org/html/2503.06639v4"
+          },
+          {
+            "title": "Enhancing Agentic RL with Progressive Reward Shaping and...",
+            "url": "https://arxiv.org/abs/2512.07478"
+          },
+          {
+            "title": "[2505.07686] S-GRPO: Early Exit via Reinforcement Learning in Reasoning Models",
+            "url": "https://arxiv.org/abs/2505.07686"
+          },
+          {
+            "title": "[2603.21872] Manifold-Aware Exploration for Reinforcement Learning in Video Generation",
+            "url": "https://arxiv.org/abs/2603.21872"
+          },
+          {
+            "title": "S-GRPO: Early Exit via Reinforcement Learning in Reasoning Models",
+            "url": "https://arxiv.org/html/2505.07686v1"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers on arXiv about universal information extraction with GRPO reinforcement learning:\n\n## Key Papers Found:\n\n### 1. **ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction**\n\nProUIE proposes a macro-to-micro progressive learning framework with three stages: Complete Modeling (CM), Streamlined Alignment (SA), and Deep Exploration (DE), where the DE stage applies GRPO with stepwise fine-grained rewards (SFR) over structural units to guide exploration and improve performance. Experiments on 36 public datasets demonstrate that ProUIE consistently outperforms strong baselines.\n\n### 2. **MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction**\n\nThis work integrates reinforcement learning (RL) with multi-perspective reasoning for information extraction tasks, transitioning LLMs from passive extractors to active reasoners. Experiments conducted on multiple IE benchmarks demonstrate that MR-UIE consistently elevates extraction accuracy across domains and surpasses state-of-the-art methods on several datasets.\n\n### 3. **Additional GRPO-Based Extraction Methods**\n\nExtract-0 used reinforcement learning through GRPO, enhancing performance with a semantic similarity-based reward function for document extraction.\n\nThese papers represent recent research (from 2025-2026) on arXiv exploring how GRPO reinforcement learning can improve universal information extraction tasks across various domains."
+    ],
+    "durationSeconds": 6.271291239999991
+  },
+  "sourceToolAssistantUUID": "f5bfa44e-2122-45fb-b8a2-f951f10f2dff",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-11T23:17:24.667Z_
+
+```json
+{
+  "parentUuid": "c9f25a5d-fb0e-4e18-8703-758e1129bbdc",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "6a58739f-4d52-47a2-9e82-f10a2391da8f",
+  "timestamp": "2026-05-11T23:17:24.667Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-11T23:17:26.979Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015qZqj3SSGqWum12PSp4LjZ`</summary>
+
+```json
+{
+  "query": "evidence-guided document-level relation extraction provenance DocRED 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a58739f-4d52-47a2-9e82-f10a2391da8f",
+  "isSidechain": false,
+  "requestId": "req_011Cawdmk4zjrrDYigFaLzn3",
+  "type": "assistant",
+  "uuid": "c3186d45-d495-4d5f-ba40-45a066e53edb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hxc1JM3odgi4EAb4ZAdCif",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1024,
+      "cache_read_input_tokens": 33543,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1024,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 33543,
+          "cache_creation_input_tokens": 1024,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1024
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-11T23:17:33.998Z_
+
+<details><summary>↩ Tool result · `toolu_015qZqj3SSGqWum12PSp4LjZ`</summary>
+
+```text
+Web search results for query: "evidence-guided document-level relation extraction provenance DocRED 2025 2026"
+
+Links: [{"title":"Entity and Evidence Guided Relation Extraction for DocRED | Request PDF","url":"https://www.researchgate.net/publication/343931511_Entity_and_Evidence_Guided_Relation_Extraction_for_DocRED"},{"title":"[2008.12283] Entity and Evidence Guided Relation Extraction for DocRED","url":"https://arxiv.org/abs/2008.12283"},{"title":"Dual reasoning enhanced document-level relation extraction | Neural Computing and Applications | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s00521-026-12099-8"},{"title":"[PDF] DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DocRED:-A-Large-Scale-Document-Level-Relation-Yao-Ye/2745fc72e1dd53d1c30f17cf05841b163c2f63c9"},{"title":"Evidence-aware Document-level Relation Extraction | Proceedings of the 31st ACM International Conference on Information & Knowledge Management","url":"https://dl.acm.org/doi/10.1145/3511808.3557313"},{"title":"[PDF] Entity and Evidence Guided Document-Level Relation Extraction | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Entity-and-Evidence-Guided-Document-Level-Relation-Huang-Qi/e4179bf0963012f9f13ce0ca61d3cdd12a87b336"},{"title":"Enhancing cross-evidence reasoning graph for document-level relation extraction - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11232587/"},{"title":"Document-level Relation Extraction via Separate Relation Representation and Logical Reasoning | ACM Transactions on Information Systems","url":"https://dl.acm.org/doi/10.1145/3597610"},{"title":"Entity and Evidence Guided Relation Extraction for DocRED | DeepAI","url":"https://deepai.org/publication/entity-and-evidence-guided-relation-extraction-for-docred"},{"title":"DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Request PDF","url":"https://www.researchgate.net/publication/335780641_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"}]
+
+Based on the search results, here's what I found related to evidence-guided document-level relation extraction with DocRED:
+
+## Key Research and Recent Developments
+
+Document-level relation extraction is a challenging task which requires reasoning over multiple sentences in order to predict relations in a document, and researchers have proposed joint training frameworks like E2GRE (Entity and Evidence Guided Relation Extraction) for this task.
+
+The approach introduces entity-guided sequences as inputs to pre-trained language models (e.g. BERT, RoBERTa), where these entity-guided sequences help the pre-trained language model to focus on areas of the document related to the entity. This approach guides the fine-tuning of the pre-trained language model by using its internal attention probabilities as additional features for evidence prediction.
+
+## Recent 2025 Work
+
+Recent research in 2025 includes GEGA: Graph convolutional networks and evidence retrieval guided attention for enhanced document-level relation extraction. Additionally, VaeDiff-DocRE presents an end-to-end data augmentation framework for document-level relation extraction.
+
+## DocRED Dataset
+
+DocRED is a large-scale document-level relation extraction dataset constructed from Wikipedia and Wikidata that requires reading multiple sentences in a document to extract entities and infer their relations by synthesizing all information of the document.
+
+The search results show that evidence-guided approaches continue to be an active area of research, with multiple recent 2025 publications focusing on incorporating evidence and attention mechanisms to improve document-level relation extraction performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c3186d45-d495-4d5f-ba40-45a066e53edb",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "0ca58b17-bb5d-4ad1-adad-325a70bb89ae",
+  "toolUseResult": {
+    "query": "evidence-guided document-level relation extraction provenance DocRED 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01D1mS3EZvky2doWNtF4ZbC8",
+        "content": [
+          {
+            "title": "Entity and Evidence Guided Relation Extraction for DocRED | Request PDF",
+            "url": "https://www.researchgate.net/publication/343931511_Entity_and_Evidence_Guided_Relation_Extraction_for_DocRED"
+          },
+          {
+            "title": "[2008.12283] Entity and Evidence Guided Relation Extraction for DocRED",
+            "url": "https://arxiv.org/abs/2008.12283"
+          },
+          {
+            "title": "Dual reasoning enhanced document-level relation extraction | Neural Computing and Applications | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s00521-026-12099-8"
+          },
+          {
+            "title": "[PDF] DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/DocRED:-A-Large-Scale-Document-Level-Relation-Yao-Ye/2745fc72e1dd53d1c30f17cf05841b163c2f63c9"
+          },
+          {
+            "title": "Evidence-aware Document-level Relation Extraction | Proceedings of the 31st ACM International Conference on Information & Knowledge Management",
+            "url": "https://dl.acm.org/doi/10.1145/3511808.3557313"
+          },
+          {
+            "title": "[PDF] Entity and Evidence Guided Document-Level Relation Extraction | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Entity-and-Evidence-Guided-Document-Level-Relation-Huang-Qi/e4179bf0963012f9f13ce0ca61d3cdd12a87b336"
+          },
+          {
+            "title": "Enhancing cross-evidence reasoning graph for document-level relation extraction - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11232587/"
+          },
+          {
+            "title": "Document-level Relation Extraction via Separate Relation Representation and Logical Reasoning | ACM Transactions on Information Systems",
+            "url": "https://dl.acm.org/doi/10.1145/3597610"
+          },
+          {
+            "title": "Entity and Evidence Guided Relation Extraction for DocRED | DeepAI",
+            "url": "https://deepai.org/publication/entity-and-evidence-guided-relation-extraction-for-docred"
+          },
+          {
+            "title": "DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Request PDF",
+            "url": "https://www.researchgate.net/publication/335780641_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found related to evidence-guided document-level relation extraction with DocRED:\n\n## Key Research and Recent Developments\n\nDocument-level relation extraction is a challenging task which requires reasoning over multiple sentences in order to predict relations in a document, and researchers have proposed joint training frameworks like E2GRE (Entity and Evidence Guided Relation Extraction) for this task.\n\nThe approach introduces entity-guided sequences as inputs to pre-trained language models (e.g. BERT, RoBERTa), where these entity-guided sequences help the pre-trained language model to focus on areas of the document related to the entity. This approach guides the fine-tuning of the pre-trained language model by using its internal attention probabilities as additional features for evidence prediction.\n\n## Recent 2025 Work\n\nRecent research in 2025 includes GEGA: Graph convolutional networks and evidence retrieval guided attention for enhanced document-level relation extraction. Additionally, VaeDiff-DocRE presents an end-to-end data augmentation framework for document-level relation extraction.\n\n## DocRED Dataset\n\nDocRED is a large-scale document-level relation extraction dataset constructed from Wikipedia and Wikidata that requires reading multiple sentences in a document to extract entities and infer their relations by synthesizing all information of the document.\n\nThe search results show that evidence-guided approaches continue to be an active area of research, with multiple recent 2025 publications focusing on incorporating evidence and attention mechanisms to improve document-level relation extraction performance."
+    ],
+    "durationSeconds": 7.011004268000004
+  },
+  "sourceToolAssistantUUID": "c3186d45-d495-4d5f-ba40-45a066e53edb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "0ca58b17-bb5d-4ad1-adad-325a70bb89ae",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "ProvUIE: Grounded information extraction with evidence-span GRPO",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-11T23:17:36.858Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YFX6XxJzHpsQR5Wcj8yEMY`</summary>
+
+```json
+{
+  "query": "provenance grounding information extraction LLM evidence span prediction 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ca58b17-bb5d-4ad1-adad-325a70bb89ae",
+  "isSidechain": false,
+  "requestId": "req_011CawdnS1phksX1apoPgVwL",
+  "type": "assistant",
+  "uuid": "bd5dba0f-7fcd-422a-af35-67bda1e4c179",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017wTZxbpDPopq73ynx18mZ3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1071,
+      "cache_read_input_tokens": 34567,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1071,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 34567,
+          "cache_creation_input_tokens": 1071,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1071
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-11T23:17:46.722Z_
+
+<details><summary>↩ Tool result · `toolu_01YFX6XxJzHpsQR5Wcj8yEMY`</summary>
+
+```text
+Web search results for query: "provenance grounding information extraction LLM evidence span prediction 2025 2026"
+
+Links: [{"title":"Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking","url":"https://www.mdpi.com/2073-431X/15/3/178"},{"title":"PaperTrail: A Claim-Evidence Interface for Grounding Provenance in LLM-based Scholarly Q&A","url":"https://arxiv.org/html/2602.21045"},{"title":"MasonNLP at MEDIQA-OE 2025: Assessing Large Language Models for Structured Medical Order Extraction","url":"https://arxiv.org/html/2510.10475"},{"title":"Using LLMs to infer provenance information | Proceedings of the ProvenanceWeek 2025","url":"https://dl.acm.org/doi/10.1145/3736229.3736261"},{"title":"LLM Benchmarks 2026 - Compare AI Benchmarks and Tests","url":"https://llm-stats.com/benchmarks"},{"title":"FACTS Grounding: A new benchmark for evaluating the factuality of large language models — Google DeepMind","url":"https://deepmind.google/blog/facts-grounding-a-new-benchmark-for-evaluating-the-factuality-of-large-language-models/"},{"title":"Groundedness in Retrieval-augmented Long-form Generation: An Empirical Study","url":"https://arxiv.org/html/2404.07060v1"},{"title":"LLM-driven Provenance Forensics for Threat Investigation and Detection","url":"https://arxiv.org/html/2508.21323v1"},{"title":"InteGround: On the Evaluation of Verification and Retrieval Planning in Integrative Grounding","url":"https://www.researchgate.net/publication/395725130_InteGround_On_the_Evaluation_of_Verification_and_Retrieval_Planning_in_Integrative_Grounding"},{"title":"FACTS Grounding Benchmark Overview","url":"https://www.emergentmind.com/topics/facts-grounding-benchmark"}]
+
+Based on the search results, I found several relevant papers and resources from 2025-2026 on provenance, grounding, information extraction, LLMs, and evidence span prediction:
+
+## Key Recent Work
+
+### 1. **Grounded Knowledge Graph Extraction with Provenance Tracking**
+A paper published in March 2026 presents the AEVS (Anchor-Extraction-Verification-Supplement) framework. The paper addresses how existing extraction methods produce triplets as standalone outputs without explicit connections to source positions, and this lack of provenance makes it fundamentally impossible to verify extraction faithfulness. AEVS operates in three stages: anchor discovery identifies entities and relation phrases with precise positions, grounded extraction generates triplets linked to discovered anchors, and restoration-based verification validates triplets through hierarchical matching.
+
+### 2. **Claim-Evidence Grounding for Scholarly QA**
+PaperTrail is a claim-evidence interface system for grounding provenance in LLM-based scholarly Q&A, addressing the need for reducing hallucinations in science tasks where models can fabricate supporting evidence.
+
+### 3. **Medical Order Extraction with Provenance Grounding**
+The MEDIQA-OE 2025 Shared Task focuses on identifying and structuring medical orders with provenance grounding, where systems must extract all relevant orders with accurate structure and provenance grounding. Research shows that even minimal in-context examples help models ground predictions more accurately in the required structured format.
+
+### 4. **Provenance Information Extraction from Scientific Papers**
+LLMs have demonstrated exceptional capability in information extraction, with research exploring the potential of LLMs to infer provenance records for scientific experiments from scientific papers.
+
+### 5. **FACTS Grounding Benchmark (2026)**
+The FACTS Grounding Benchmark rigorously evaluates LLMs' ability to generate long-form responses grounded in supplied context documents, utilizing diverse extended context inputs from domains like finance, legal, and medical. The benchmark enforces attribution at the sentence or span level, invoking consensus of multiple LLM judges for increased reliability.
+
+### 6. **Integrative Grounding (2025)**
+Recent work introduces "integrative grounding" -- the challenge of retrieving and verifying multiple inter-dependent pieces of evidence to support a hypothesis query.
+
+These resources represent the current state of research in provenance grounding and evidence span prediction for LLM-based information extraction systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd5dba0f-7fcd-422a-af35-67bda1e4c179",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "d849bd17-d655-41a5-9bb3-c8d9c4d57103",
+  "toolUseResult": {
+    "query": "provenance grounding information extraction LLM evidence span prediction 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KWpoPEYfgVyqWeqyyHha3s",
+        "content": [
+          {
+            "title": "Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking",
+            "url": "https://www.mdpi.com/2073-431X/15/3/178"
+          },
+          {
+            "title": "PaperTrail: A Claim-Evidence Interface for Grounding Provenance in LLM-based Scholarly Q&A",
+            "url": "https://arxiv.org/html/2602.21045"
+          },
+          {
+            "title": "MasonNLP at MEDIQA-OE 2025: Assessing Large Language Models for Structured Medical Order Extraction",
+            "url": "https://arxiv.org/html/2510.10475"
+          },
+          {
+            "title": "Using LLMs to infer provenance information | Proceedings of the ProvenanceWeek 2025",
+            "url": "https://dl.acm.org/doi/10.1145/3736229.3736261"
+          },
+          {
+            "title": "LLM Benchmarks 2026 - Compare AI Benchmarks and Tests",
+            "url": "https://llm-stats.com/benchmarks"
+          },
+          {
+            "title": "FACTS Grounding: A new benchmark for evaluating the factuality of large language models — Google DeepMind",
+            "url": "https://deepmind.google/blog/facts-grounding-a-new-benchmark-for-evaluating-the-factuality-of-large-language-models/"
+          },
+          {
+            "title": "Groundedness in Retrieval-augmented Long-form Generation: An Empirical Study",
+            "url": "https://arxiv.org/html/2404.07060v1"
+          },
+          {
+            "title": "LLM-driven Provenance Forensics for Threat Investigation and Detection",
+            "url": "https://arxiv.org/html/2508.21323v1"
+          },
+          {
+            "title": "InteGround: On the Evaluation of Verification and Retrieval Planning in Integrative Grounding",
+            "url": "https://www.researchgate.net/publication/395725130_InteGround_On_the_Evaluation_of_Verification_and_Retrieval_Planning_in_Integrative_Grounding"
+          },
+          {
+            "title": "FACTS Grounding Benchmark Overview",
+            "url": "https://www.emergentmind.com/topics/facts-grounding-benchmark"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers and resources from 2025-2026 on provenance, grounding, information extraction, LLMs, and evidence span prediction:\n\n## Key Recent Work\n\n### 1. **Grounded Knowledge Graph Extraction with Provenance Tracking**\nA paper published in March 2026 presents the AEVS (Anchor-Extraction-Verification-Supplement) framework. The paper addresses how existing extraction methods produce triplets as standalone outputs without explicit connections to source positions, and this lack of provenance makes it fundamentally impossible to verify extraction faithfulness. AEVS operates in three stages: anchor discovery identifies entities and relation phrases with precise positions, grounded extraction generates triplets linked to discovered anchors, and restoration-based verification validates triplets through hierarchical matching.\n\n### 2. **Claim-Evidence Grounding for Scholarly QA**\nPaperTrail is a claim-evidence interface system for grounding provenance in LLM-based scholarly Q&A, addressing the need for reducing hallucinations in science tasks where models can fabricate supporting evidence.\n\n### 3. **Medical Order Extraction with Provenance Grounding**\nThe MEDIQA-OE 2025 Shared Task focuses on identifying and structuring medical orders with provenance grounding, where systems must extract all relevant orders with accurate structure and provenance grounding. Research shows that even minimal in-context examples help models ground predictions more accurately in the required structured format.\n\n### 4. **Provenance Information Extraction from Scientific Papers**\nLLMs have demonstrated exceptional capability in information extraction, with research exploring the potential of LLMs to infer provenance records for scientific experiments from scientific papers.\n\n### 5. **FACTS Grounding Benchmark (2026)**\nThe FACTS Grounding Benchmark rigorously evaluates LLMs' ability to generate long-form responses grounded in supplied context documents, utilizing diverse extended context inputs from domains like finance, legal, and medical. The benchmark enforces attribution at the sentence or span level, invoking consensus of multiple LLM judges for increased reliability.\n\n### 6. **Integrative Grounding (2025)**\nRecent work introduces \"integrative grounding\" -- the challenge of retrieving and verifying multiple inter-dependent pieces of evidence to support a hypothesis query.\n\nThese resources represent the current state of research in provenance grounding and evidence span prediction for LLM-based information extraction systems."
+    ],
+    "durationSeconds": 9.85847479600001
+  },
+  "sourceToolAssistantUUID": "bd5dba0f-7fcd-422a-af35-67bda1e4c179",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-11T23:17:49.374Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017CBFoGR4JrziqNjjxoXJ3t`</summary>
+
+```json
+{
+  "query": "AEVS anchor-constrained provenance tracking knowledge graph extraction LLM 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d849bd17-d655-41a5-9bb3-c8d9c4d57103",
+  "isSidechain": false,
+  "requestId": "req_011CawdoNQKFoyKAE3SunXU8",
+  "type": "assistant",
+  "uuid": "42fab5bc-5895-4baf-a28f-f1f11ed44f77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HTdLjQAEVfXXXQXu83AmP5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1189,
+      "cache_read_input_tokens": 35638,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1189,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 35638,
+          "cache_creation_input_tokens": 1189,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1189
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-11T23:17:56.799Z_
+
+<details><summary>↩ Tool result · `toolu_017CBFoGR4JrziqNjjxoXJ3t`</summary>
+
+```text
+Web search results for query: "AEVS anchor-constrained provenance tracking knowledge graph extraction LLM 2026"
+
+Links: [{"title":"Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking","url":"https://www.mdpi.com/2073-431X/15/3/178"},{"title":"The construction and refined extraction techniques of knowledge graph based on large language models | Scientific Reports","url":"https://www.nature.com/articles/s41598-026-38066-w"},{"title":"Taxonomy-Driven Knowledge Graph Construction for ...","url":"https://aclanthology.org/2025.findings-acl.223.pdf"},{"title":"GitHub - zjukg/KG-LLM-Papers: [Paper List] Papers integrating knowledge graphs (KGs) and large language models (LLMs) · GitHub","url":"https://github.com/zjukg/KG-LLM-Papers"},{"title":"Distributed Speculative Decoding | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Distributed-Speculative-Decoding_fig1_393771644"},{"title":"Ultimate Guide - The Best Open Source LLMs For Knowledge Graph Construction In 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-LLM-for-Knowledge-Graph-Construction"},{"title":"From LLMs to Knowledge Graphs: Building Production-Ready Graph Systems in 2025 | by Claudiu Branzan | Medium","url":"https://medium.com/@claudiubranzan/from-llms-to-knowledge-graphs-building-production-ready-graph-systems-in-2025-2b4aff1ec99a"},{"title":"Knowledge Graph and LLM. Knowledge Meets Language | by Xin Cheng | Mar, 2026 | Medium","url":"https://billtcheng2013.medium.com/knowledge-graph-and-llm-19822c0c0477"},{"title":"Frontiers | Practices, opportunities and challenges in the fusion of knowledge graphs and large language models","url":"https://www.frontiersin.org/journals/computer-science/articles/10.3389/fcomp.2025.1590632/full"},{"title":"LLM-empowered knowledge graph construction: A survey","url":"https://arxiv.org/html/2510.20345v1"}]
+
+I found highly relevant information about AEVS. Here are the key results:
+
+## AEVS: Anchor-Constrained Provenance Tracking Framework
+
+AEVS (anchor-extraction-verification-supplement) is a novel framework that addresses the hallucination problem by ensuring complete traceability in LLM-based knowledge graph extraction.
+
+### How It Works
+
+AEVS operates in three stages: (1) anchor discovery identifies entities, relation phrases, and attribute values with precise positions, forming a constrained extraction vocabulary; (2) grounded extraction generates triplets linked to discovered anchors; and (3) restoration-based verification validates triplets through hierarchical matching, with a coverage-aware supplement ensuring comprehensive extraction.
+
+### The Core Problem It Solves
+
+The lack of provenance—the ability to trace each piece of extracted information back to its textual origin—makes it fundamentally impossible to verify extraction faithfulness. The key insight is both simple and powerful: if every element of a triplet can be traced back to a specific span in the source text, then hallucinations become detectible.
+
+### Performance and Results
+
+Experiments on WebNLG, REBEL, and Wiki-NRE demonstrate consistent improvements over both trained models and LLM-based baselines. Ablation studies confirm that anchor-based constraints are the primary mechanism for hallucination reduction. Hallucination rates range from 0.23–20.23% across model–dataset configurations with computational cost of 2.83–4.28 LLM calls per sample.
+
+The research was published in March 2026 in an MDPI journal on Computing and Information Science.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "42fab5bc-5895-4baf-a28f-f1f11ed44f77",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "1ca120e6-f3e1-4835-9415-cc601afcf810",
+  "toolUseResult": {
+    "query": "AEVS anchor-constrained provenance tracking knowledge graph extraction LLM 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011QcVk6LnSHWMbdifpSBXVk",
+        "content": [
+          {
+            "title": "Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking",
+            "url": "https://www.mdpi.com/2073-431X/15/3/178"
+          },
+          {
+            "title": "The construction and refined extraction techniques of knowledge graph based on large language models | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-026-38066-w"
+          },
+          {
+            "title": "Taxonomy-Driven Knowledge Graph Construction for ...",
+            "url": "https://aclanthology.org/2025.findings-acl.223.pdf"
+          },
+          {
+            "title": "GitHub - zjukg/KG-LLM-Papers: [Paper List] Papers integrating knowledge graphs (KGs) and large language models (LLMs) · GitHub",
+            "url": "https://github.com/zjukg/KG-LLM-Papers"
+          },
+          {
+            "title": "Distributed Speculative Decoding | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Distributed-Speculative-Decoding_fig1_393771644"
+          },
+          {
+            "title": "Ultimate Guide - The Best Open Source LLMs For Knowledge Graph Construction In 2026",
+            "url": "https://www.siliconflow.com/articles/en/best-open-source-LLM-for-Knowledge-Graph-Construction"
+          },
+          {
+            "title": "From LLMs to Knowledge Graphs: Building Production-Ready Graph Systems in 2025 | by Claudiu Branzan | Medium",
+            "url": "https://medium.com/@claudiubranzan/from-llms-to-knowledge-graphs-building-production-ready-graph-systems-in-2025-2b4aff1ec99a"
+          },
+          {
+            "title": "Knowledge Graph and LLM. Knowledge Meets Language | by Xin Cheng | Mar, 2026 | Medium",
+            "url": "https://billtcheng2013.medium.com/knowledge-graph-and-llm-19822c0c0477"
+          },
+          {
+            "title": "Frontiers | Practices, opportunities and challenges in the fusion of knowledge graphs and large language models",
+            "url": "https://www.frontiersin.org/journals/computer-science/articles/10.3389/fcomp.2025.1590632/full"
+          },
+          {
+            "title": "LLM-empowered knowledge graph construction: A survey",
+            "url": "https://arxiv.org/html/2510.20345v1"
+          }
+        ]
+      },
+      "I found highly relevant information about AEVS. Here are the key results:\n\n## AEVS: Anchor-Constrained Provenance Tracking Framework\n\nAEVS (anchor-extraction-verification-supplement) is a novel framework that addresses the hallucination problem by ensuring complete traceability in LLM-based knowledge graph extraction.\n\n### How It Works\n\nAEVS operates in three stages: (1) anchor discovery identifies entities, relation phrases, and attribute values with precise positions, forming a constrained extraction vocabulary; (2) grounded extraction generates triplets linked to discovered anchors; and (3) restoration-based verification validates triplets through hierarchical matching, with a coverage-aware supplement ensuring comprehensive extraction.\n\n### The Core Problem It Solves\n\nThe lack of provenance—the ability to trace each piece of extracted information back to its textual origin—makes it fundamentally impossible to verify extraction faithfulness. The key insight is both simple and powerful: if every element of a triplet can be traced back to a specific span in the source text, then hallucinations become detectible.\n\n### Performance and Results\n\nExperiments on WebNLG, REBEL, and Wiki-NRE demonstrate consistent improvements over both trained models and LLM-based baselines. Ablation studies confirm that anchor-based constraints are the primary mechanism for hallucination reduction. Hallucination rates range from 0.23–20.23% across model–dataset configurations with computational cost of 2.83–4.28 LLM calls per sample.\n\nThe research was published in March 2026 in an MDPI journal on Computing and Information Science."
+    ],
+    "durationSeconds": 7.421246960000004
+  },
+  "sourceToolAssistantUUID": "42fab5bc-5895-4baf-a28f-f1f11ed44f77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-11T23:17:59.923Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011tG3difw3SSF5BKRYWfBkv`</summary>
+
+```json
+{
+  "query": "Qwen3-32B model release specifications 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ca120e6-f3e1-4835-9415-cc601afcf810",
+  "isSidechain": false,
+  "requestId": "req_011Cawdp7SRqbatPqppg3eaw",
+  "type": "assistant",
+  "uuid": "81b648e0-3755-4d3f-93ed-68db3f1e2bd0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01XpssHxdR7CghU1inxN36hT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1049,
+      "cache_read_input_tokens": 36827,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1049,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 36827,
+          "cache_creation_input_tokens": 1049,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1049
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-11T23:18:06.583Z_
+
+<details><summary>↩ Tool result · `toolu_011tG3difw3SSF5BKRYWfBkv`</summary>
+
+```text
+Web search results for query: "Qwen3-32B model release specifications 2025 2026"
+
+Links: [{"title":"Qwen - Wikipedia","url":"https://en.wikipedia.org/wiki/Qwen"},{"title":"GitHub - QwenLM/Qwen3: Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud. · GitHub","url":"https://github.com/QwenLM/Qwen3"},{"title":"Qwen3-32B: Specifications and GPU VRAM Requirements","url":"https://apxml.com/models/qwen3-32b"},{"title":"Qwen/Qwen3-32B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-32B"},{"title":"Qwen: Qwen3 32B Review | Pricing, Benchmarks & Capabilities (2026) | Design for Online","url":"https://designforonline.com/ai-models/qwen-qwen3-32b/"},{"title":"What Is Qwen 3.5? Alibaba's Open-Weight Model That Runs on Your Phone | MindStudio","url":"https://www.mindstudio.ai/blog/what-is-qwen-3-5-alibaba-open-weight-model"},{"title":"GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub","url":"https://github.com/QwenLM/Qwen3.6"},{"title":"Qwen 3 32B by Alibaba on Vercel AI Gateway, Specs, Pricing & API","url":"https://vercel.com/ai-gateway/models/qwen-3-32b"},{"title":"Qwen/Qwen3-VL-32B-Instruct · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-VL-32B-Instruct"},{"title":"Qwen3 VL 32B Thinking Benchmarks, Pricing & Context Window","url":"https://llm-stats.com/models/qwen3-vl-32b-thinking"}]
+
+Based on the search results, here are the key specifications and release information for the Qwen3-32B model:
+
+## Release Information
+
+The Qwen3 model family was released on April 28, 2025, with all models licensed under the Apache 2.0 license.
+
+## Model Specifications
+
+The Qwen3-32B model is constructed on a 64-layer transformer architecture with 32.8 billion parameters, utilizing Grouped Query Attention (GQA) with 64 query heads and 8 key-value heads to achieve an optimal balance between inference speed and representational capacity.
+
+The Qwen3 dense models include sizes of 0.6B, 1.7B, 4B, 8B, 14B, and 32B.
+
+## Key Features
+
+The model features a hybrid reasoning mechanism that allows for seamless transition between a 'thinking mode', characterized by generative chain-of-thought processing for mathematical and logical tasks, and a 'non-thinking mode' optimized for high-throughput, responsive dialogue.
+
+The models were trained on 36 trillion tokens in 119 languages and dialects.
+
+Qwen3-32B is engineered for diverse operational environments, supporting over 100 languages and dialects.
+
+Qwen 3 32B is a dense 32-billion-parameter model from Alibaba with context of 131.1K tokens and hybrid thinking modes.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "81b648e0-3755-4d3f-93ed-68db3f1e2bd0",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "03396cd3-7a4b-475e-a117-8c0ec80cb3fe",
+  "toolUseResult": {
+    "query": "Qwen3-32B model release specifications 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UVHKuY76K9uyNML4pZs12s",
+        "content": [
+          {
+            "title": "Qwen - Wikipedia",
+            "url": "https://en.wikipedia.org/wiki/Qwen"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3: Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud. · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3"
+          },
+          {
+            "title": "Qwen3-32B: Specifications and GPU VRAM Requirements",
+            "url": "https://apxml.com/models/qwen3-32b"
+          },
+          {
+            "title": "Qwen/Qwen3-32B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-32B"
+          },
+          {
+            "title": "Qwen: Qwen3 32B Review | Pricing, Benchmarks & Capabilities (2026) | Design for Online",
+            "url": "https://designforonline.com/ai-models/qwen-qwen3-32b/"
+          },
+          {
+            "title": "What Is Qwen 3.5? Alibaba's Open-Weight Model That Runs on Your Phone | MindStudio",
+            "url": "https://www.mindstudio.ai/blog/what-is-qwen-3-5-alibaba-open-weight-model"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3.6"
+          },
+          {
+            "title": "Qwen 3 32B by Alibaba on Vercel AI Gateway, Specs, Pricing & API",
+            "url": "https://vercel.com/ai-gateway/models/qwen-3-32b"
+          },
+          {
+            "title": "Qwen/Qwen3-VL-32B-Instruct · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-VL-32B-Instruct"
+          },
+          {
+            "title": "Qwen3 VL 32B Thinking Benchmarks, Pricing & Context Window",
+            "url": "https://llm-stats.com/models/qwen3-vl-32b-thinking"
+          }
+        ]
+      },
+      "Based on the search results, here are the key specifications and release information for the Qwen3-32B model:\n\n## Release Information\n\nThe Qwen3 model family was released on April 28, 2025, with all models licensed under the Apache 2.0 license.\n\n## Model Specifications\n\nThe Qwen3-32B model is constructed on a 64-layer transformer architecture with 32.8 billion parameters, utilizing Grouped Query Attention (GQA) with 64 query heads and 8 key-value heads to achieve an optimal balance between inference speed and representational capacity.\n\nThe Qwen3 dense models include sizes of 0.6B, 1.7B, 4B, 8B, 14B, and 32B.\n\n## Key Features\n\nThe model features a hybrid reasoning mechanism that allows for seamless transition between a 'thinking mode', characterized by generative chain-of-thought processing for mathematical and logical tasks, and a 'non-thinking mode' optimized for high-throughput, responsive dialogue.\n\nThe models were trained on 36 trillion tokens in 119 languages and dialects.\n\nQwen3-32B is engineered for diverse operational environments, supporting over 100 languages and dialects.\n\nQwen 3 32B is a dense 32-billion-parameter model from Alibaba with context of 131.1K tokens and hybrid thinking modes."
+    ],
+    "durationSeconds": 6.6553080950000005
+  },
+  "sourceToolAssistantUUID": "81b648e0-3755-4d3f-93ed-68db3f1e2bd0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-11T23:18:09.354Z_
+
+Good, Qwen3-32B is confirmed to exist. Now let me search for more potential competitors and verify novelty claims.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "03396cd3-7a4b-475e-a117-8c0ec80cb3fe",
+  "isSidechain": false,
+  "requestId": "req_011CawdpqHMgRBr4Sqpeoejn",
+  "type": "assistant",
+  "uuid": "740d4ff4-44e9-47ba-9f0d-1f6c37376f19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TZvGRLb7tjKcrrrcrQFprE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 971,
+      "cache_read_input_tokens": 37876,
+      "output_tokens": 99,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 971,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 99,
+          "cache_read_input_tokens": 37876,
+          "cache_creation_input_tokens": 971,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 971
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-11T23:18:10.202Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Bjvh8dj3wELSbZYdAMCoFn`</summary>
+
+```json
+{
+  "query": "structured information extraction evidence attribution citation grounding RLVR reinforcement learning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "740d4ff4-44e9-47ba-9f0d-1f6c37376f19",
+  "isSidechain": false,
+  "requestId": "req_011CawdpqHMgRBr4Sqpeoejn",
+  "type": "assistant",
+  "uuid": "840859f6-dae7-42b3-878f-2c8bbd410d82",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TZvGRLb7tjKcrrrcrQFprE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 971,
+      "cache_read_input_tokens": 37876,
+      "output_tokens": 99,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 971,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 99,
+          "cache_read_input_tokens": 37876,
+          "cache_creation_input_tokens": 971,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 971
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-11T23:18:17.198Z_
+
+<details><summary>↩ Tool result · `toolu_01Bjvh8dj3wELSbZYdAMCoFn`</summary>
+
+```text
+Web search results for query: "structured information extraction evidence attribution citation grounding RLVR reinforcement learning 2026"
+
+Links: [{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2601.18533"},{"title":"Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards","url":"https://arxiv.org/html/2601.06021"},{"title":"Grounding by Trying: LLMs with Reinforcement Learning-Enhanced Retrieval | OpenReview","url":"https://openreview.net/forum?id=BPAZ6yW3K7"},{"title":"RLVR: Verifiable Rewards for Reliable Enterprise LLMs | Appen","url":"https://www.appen.com/blog/rlvr"},{"title":"EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models","url":"https://arxiv.org/html/2603.19532"},{"title":"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLVR"},{"title":"[2410.23214] Grounding by Trying: LLMs with Reinforcement Learning-Enhanced Retrieval","url":"https://arxiv.org/abs/2410.23214"},{"title":"Reinforced MLLM: A Survey on RL-Based Reasoning in ...","url":"https://arxiv.org/pdf/2504.21277"},{"title":"[2601.06021] Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards","url":"https://arxiv.org/abs/2601.06021"},{"title":"RLVR: Reinforcement Learning on Verifiable Rewards","url":"https://www.emergentmind.com/topics/reinforcement-learning-on-verifiable-rewards-rlvr"}]
+
+Based on the search results, here's what I found related to your query about structured information extraction, evidence attribution, citation grounding, and RLVR with reinforcement learning in 2026:
+
+## Key Findings
+
+### RLVR Extensions for Evidence-Grounded Generation
+
+RLVRR (reinforcement learning with verifiable reference-based rewards) extends RLVR to open-ended generation by extracting an ordered sequence of verifiable linguistic signals from high-quality references, transforming supervision into a reward chain.
+
+### Citation-Aware Rubric Rewards (CaRR)
+
+A particularly relevant approach is Citation-aware Rubric Rewards (CaRR), a fine-grained reward framework for deep search agents that takes into account reasoning comprehensiveness, factual grounding, and evidence connectivity. CaRR decomposes complex questions into verifiable single-hop rubrics and requires agents to satisfy these rubrics by explicitly identifying hidden entities, supporting them with correct citations, and constructing complete evidence chains that link to the predicted answer.
+
+### Evidence-Grounded RL Training
+
+EvidenceRL is a reinforcement learning framework that enforces evidence adherence during training, scoring candidate responses for grounding (entailment with retrieved evidence and context) and correctness (agreement with reference answers).
+
+### Structured Information Extraction with RLVR
+
+RLVR-aligned models generate schema-valid JSON, forms, and API payloads that integrate cleanly into automated pipelines with minimal manual correction for structured data extraction.
+
+These approaches represent recent developments in 2026 combining reinforcement learning with verifiable rewards and evidence-grounded generation for more reliable and attributable language model outputs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "840859f6-dae7-42b3-878f-2c8bbd410d82",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "e294b368-757b-4651-bb94-96d8bb32f209",
+  "toolUseResult": {
+    "query": "structured information extraction evidence attribution citation grounding RLVR reinforcement learning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EJ29jByU8ffdHAqoRR8F8j",
+        "content": [
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2601.18533"
+          },
+          {
+            "title": "Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards",
+            "url": "https://arxiv.org/html/2601.06021"
+          },
+          {
+            "title": "Grounding by Trying: LLMs with Reinforcement Learning-Enhanced Retrieval | OpenReview",
+            "url": "https://openreview.net/forum?id=BPAZ6yW3K7"
+          },
+          {
+            "title": "RLVR: Verifiable Rewards for Reliable Enterprise LLMs | Appen",
+            "url": "https://www.appen.com/blog/rlvr"
+          },
+          {
+            "title": "EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models",
+            "url": "https://arxiv.org/html/2603.19532"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-RLVR"
+          },
+          {
+            "title": "[2410.23214] Grounding by Trying: LLMs with Reinforcement Learning-Enhanced Retrieval",
+            "url": "https://arxiv.org/abs/2410.23214"
+          },
+          {
+            "title": "Reinforced MLLM: A Survey on RL-Based Reasoning in ...",
+            "url": "https://arxiv.org/pdf/2504.21277"
+          },
+          {
+            "title": "[2601.06021] Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards",
+            "url": "https://arxiv.org/abs/2601.06021"
+          },
+          {
+            "title": "RLVR: Reinforcement Learning on Verifiable Rewards",
+            "url": "https://www.emergentmind.com/topics/reinforcement-learning-on-verifiable-rewards-rlvr"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found related to your query about structured information extraction, evidence attribution, citation grounding, and RLVR with reinforcement learning in 2026:\n\n## Key Findings\n\n### RLVR Extensions for Evidence-Grounded Generation\n\nRLVRR (reinforcement learning with verifiable reference-based rewards) extends RLVR to open-ended generation by extracting an ordered sequence of verifiable linguistic signals from high-quality references, transforming supervision into a reward chain.\n\n### Citation-Aware Rubric Rewards (CaRR)\n\nA particularly relevant approach is Citation-aware Rubric Rewards (CaRR), a fine-grained reward framework for deep search agents that takes into account reasoning comprehensiveness, factual grounding, and evidence connectivity. CaRR decomposes complex questions into verifiable single-hop rubrics and requires agents to satisfy these rubrics by explicitly identifying hidden entities, supporting them with correct citations, and constructing complete evidence chains that link to the predicted answer.\n\n### Evidence-Grounded RL Training\n\nEvidenceRL is a reinforcement learning framework that enforces evidence adherence during training, scoring candidate responses for grounding (entailment with retrieved evidence and context) and correctness (agreement with reference answers).\n\n### Structured Information Extraction with RLVR\n\nRLVR-aligned models generate schema-valid JSON, forms, and API payloads that integrate cleanly into automated pipelines with minimal manual correction for structured data extraction.\n\nThese approaches represent recent developments in 2026 combining reinforcement learning with verifiable rewards and evidence-grounded generation for more reliable and attributable language model outputs."
+    ],
+    "durationSeconds": 6.9930408829999795
+  },
+  "sourceToolAssistantUUID": "840859f6-dae7-42b3-878f-2c8bbd410d82",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "e294b368-757b-4651-bb94-96d8bb32f209",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "ProvUIE: Grounded information extraction with evidence-span GRPO",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-11T23:18:23.705Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RrS64BQmhxgr5No7nZMqid`</summary>
+
+```json
+{
+  "query": "\"Faithful GRPO\" constrained policy optimization visual grounding arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e294b368-757b-4651-bb94-96d8bb32f209",
+  "isSidechain": false,
+  "requestId": "req_011CawdqcgrS9TMv2Bda4ro6",
+  "type": "assistant",
+  "uuid": "42bb43cb-0550-430b-973e-eceb0d2e2fc4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GEnLjcs4iAwCLYZaRCT2pN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1009,
+      "cache_read_input_tokens": 38847,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1009,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 38847,
+          "cache_creation_input_tokens": 1009,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1009
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-11T23:18:28.483Z_
+
+<details><summary>↩ Tool result · `toolu_01RrS64BQmhxgr5No7nZMqid`</summary>
+
+```text
+Web search results for query: ""Faithful GRPO" constrained policy optimization visual grounding arXiv 2026"
+
+Links: [{"title":"Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization","url":"https://arxiv.org/html/2604.08476"},{"title":"[2604.08476v1] Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization","url":"https://arxiv.org/abs/2604.08476v1"},{"title":"[2604.08476] Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization","url":"https://arxiv.org/abs/2604.08476"},{"title":"Paper page - Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization","url":"https://huggingface.co/papers/2604.08476"},{"title":"Start Small, Think Big: Curriculum-based Relative Policy Optimization for Visual Grounding","url":"https://arxiv.org/html/2511.13924"},{"title":"Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization | Request PDF","url":"https://www.researchgate.net/publication/403683029_Faithful_GRPO_Improving_Visual_Spatial_Reasoning_in_Multimodal_Language_Models_via_Constrained_Policy_Optimization"},{"title":"Constrained Group Relative Policy Optimization","url":"https://arxiv.org/pdf/2602.05863"},{"title":"Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization","url":"https://www.wispaper.ai/en/blog/faithful-grpo-improving-visual-spatial-reasoning-multimodal-language-models-constrained-policy-optimization-20260414/eng"},{"title":"Towards Faithful Reasoning in Remote Sensing: A Perceptually-Grounded GeoSpatial Chain-of-Thought for Vision-Language Models","url":"https://arxiv.org/html/2509.22221"},{"title":"Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization - Microsoft Research","url":"https://www.microsoft.com/en-us/research/publication/faithful-grpo-improving-visual-spatial-reasoning-in-multimodal-language-models-via-constrained-policy-optimization/"}]
+
+I found the paper you're looking for! Here's a summary of the search results:
+
+## Faithful GRPO: Improving Visual Spatial Reasoning via Constrained Policy Optimization
+
+Faithful GRPO (FGRPO) is a variant of GRPO that enforces consistency and grounding as constraints via Lagrangian dual ascent.
+
+### Problem Addressed
+
+The research observes that accuracy gains in multimodal reasoning models often come at the cost of reasoning quality, where generated Chain-of-Thought (CoT) traces are frequently inconsistent with the final answer and poorly grounded in the visual evidence, affecting contemporary models like ViGoRL-Spatial and TreeVGR.
+
+### Key Contributions
+
+The authors characterize CoT reasoning quality along two complementary axes: logical consistency (does the CoT entail the final answer?) and visual grounding (does each reasoning step accurately describe objects, attributes, and spatial relationships in the image?).
+
+FGRPO incorporates batch-level consistency and grounding constraints into the advantage computation within a group, adaptively adjusting the relative importance of constraints during optimization.
+
+### Results
+
+FGRPO substantially improves reasoning quality, reducing the inconsistency rate from 24.5% to 1.7% and improving visual grounding scores by +13%, while also improving final answer accuracy over simple GRPO.
+
+The paper is available on arXiv (2604.08476) and was published in April 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "42bb43cb-0550-430b-973e-eceb0d2e2fc4",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "5dcfca79-4376-49b3-b785-c1e3d4e2f0a5",
+  "toolUseResult": {
+    "query": "\"Faithful GRPO\" constrained policy optimization visual grounding arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CZHz3XFLbFaZgyBdzQeWXK",
+        "content": [
+          {
+            "title": "Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization",
+            "url": "https://arxiv.org/html/2604.08476"
+          },
+          {
+            "title": "[2604.08476v1] Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization",
+            "url": "https://arxiv.org/abs/2604.08476v1"
+          },
+          {
+            "title": "[2604.08476] Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization",
+            "url": "https://arxiv.org/abs/2604.08476"
+          },
+          {
+            "title": "Paper page - Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization",
+            "url": "https://huggingface.co/papers/2604.08476"
+          },
+          {
+            "title": "Start Small, Think Big: Curriculum-based Relative Policy Optimization for Visual Grounding",
+            "url": "https://arxiv.org/html/2511.13924"
+          },
+          {
+            "title": "Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization | Request PDF",
+            "url": "https://www.researchgate.net/publication/403683029_Faithful_GRPO_Improving_Visual_Spatial_Reasoning_in_Multimodal_Language_Models_via_Constrained_Policy_Optimization"
+          },
+          {
+            "title": "Constrained Group Relative Policy Optimization",
+            "url": "https://arxiv.org/pdf/2602.05863"
+          },
+          {
+            "title": "Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization",
+            "url": "https://www.wispaper.ai/en/blog/faithful-grpo-improving-visual-spatial-reasoning-multimodal-language-models-constrained-policy-optimization-20260414/eng"
+          },
+          {
+            "title": "Towards Faithful Reasoning in Remote Sensing: A Perceptually-Grounded GeoSpatial Chain-of-Thought for Vision-Language Models",
+            "url": "https://arxiv.org/html/2509.22221"
+          },
+          {
+            "title": "Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization - Microsoft Research",
+            "url": "https://www.microsoft.com/en-us/research/publication/faithful-grpo-improving-visual-spatial-reasoning-in-multimodal-language-models-via-constrained-policy-optimization/"
+          }
+        ]
+      },
+      "I found the paper you're looking for! Here's a summary of the search results:\n\n## Faithful GRPO: Improving Visual Spatial Reasoning via Constrained Policy Optimization\n\nFaithful GRPO (FGRPO) is a variant of GRPO that enforces consistency and grounding as constraints via Lagrangian dual ascent.\n\n### Problem Addressed\n\nThe research observes that accuracy gains in multimodal reasoning models often come at the cost of reasoning quality, where generated Chain-of-Thought (CoT) traces are frequently inconsistent with the final answer and poorly grounded in the visual evidence, affecting contemporary models like ViGoRL-Spatial and TreeVGR.\n\n### Key Contributions\n\nThe authors characterize CoT reasoning quality along two complementary axes: logical consistency (does the CoT entail the final answer?) and visual grounding (does each reasoning step accurately describe objects, attributes, and spatial relationships in the image?).\n\nFGRPO incorporates batch-level consistency and grounding constraints into the advantage computation within a group, adaptively adjusting the relative importance of constraints during optimization.\n\n### Results\n\nFGRPO substantially improves reasoning quality, reducing the inconsistency rate from 24.5% to 1.7% and improving visual grounding scores by +13%, while also improving final answer accuracy over simple GRPO.\n\nThe paper is available on arXiv (2604.08476) and was published in April 2026."
+    ],
+    "durationSeconds": 4.771496311999974
+  },
+  "sourceToolAssistantUUID": "42bb43cb-0550-430b-973e-eceb0d2e2fc4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-11T23:18:33.063Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MigApmZs4pDvpkZgB5DKfv`</summary>
+
+```json
+{
+  "query": "GoLLIE KnowCoder schema-guided information extraction zero-shot SOTA 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5dcfca79-4376-49b3-b785-c1e3d4e2f0a5",
+  "isSidechain": false,
+  "requestId": "req_011CawdrSwFQvPmj4EBDrbKT",
+  "type": "assistant",
+  "uuid": "24bb934e-5e14-4dcb-8ffa-f8db0360b738",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uvmnv34zMJmhVrFyAeA82m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1060,
+      "cache_read_input_tokens": 39856,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1060,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 39856,
+          "cache_creation_input_tokens": 1060,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1060
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-11T23:18:40.603Z_
+
+<details><summary>↩ Tool result · `toolu_01MigApmZs4pDvpkZgB5DKfv`</summary>
+
+```text
+Web search results for query: "GoLLIE KnowCoder schema-guided information extraction zero-shot SOTA 2024 2025"
+
+Links: [{"title":"[2310.03668] GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction","url":"https://arxiv.org/abs/2310.03668"},{"title":"GOLLIE : ANNOTATION GUIDELINES IMPROVE ZERO- ...","url":"https://proceedings.iclr.cc/paper_files/paper/2024/file/cda04d7ea67ea1376bf8c6962d8541e0-Paper-Conference.pdf"},{"title":"KnowCoder","url":"https://ict-goknow.github.io/knowcoder/"},{"title":"GoLLIE : Annotation Guidelines improve Zero-Shot Information-Extraction","url":"https://arxiv.org/html/2310.03668v5"},{"title":"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction | OpenReview","url":"https://openreview.net/forum?id=Y3wpuxd7u9"},{"title":"GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://arxiv.org/html/2506.00649"},{"title":"KnowCoder: Coding Structured Knowledge into LLMs for ...","url":"https://aclanthology.org/2024.acl-long.475.pdf"},{"title":"ICLR Poster GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction","url":"https://iclr.cc/virtual/2024/poster/18435"},{"title":"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction","url":"https://arxiv.org/html/2403.07969v2"},{"title":"GoLLIE | Guideline following Large Language Model for Information Extraction","url":"https://hitz-zentroa.github.io/GoLLIE/"}]
+
+Based on the web search results, here's what I found about GoLLIE, KnowCoder, and schema-guided information extraction:
+
+## GoLLIE (Guideline-following Large Language Model for IE)
+
+GoLLIE is a model able to improve zero-shot results on unseen IE tasks by virtue of being fine-tuned to comply with annotation guidelines. GoLLIE surpasses by a large margin the current zero-shot SoTA methods Instruct-UIE and Entailment based IE. GoLLIE is based on Code-Llama.
+
+## KnowCoder
+
+KnowCoder aims to develop a unified schema representation method that LLMs can easily understand and introduces a code-style schema representation method to uniformly transform different schemas into Python classes. To verify the generalization ability of KnowCoder, zero-shot experiments were conducted on 9 datasets across NER, RE, and ED tasks. KnowCoder constructs a code-style schema library covering over 30,000 types of knowledge.
+
+## Comparison and Recent Performance
+
+The most similar work to KnowCoder is GoLLIE, an SFT-based UIE method that gives out definitions of schemas as code comments, though KnowCoder designs a more comprehensive code-style schema representation method including taxonomies, constraints, and class methods.
+
+A recent 2025 study on GuideX showed that the approach outperforms GoLLIE by 6.2 F1 points and shows a 4.1-point improvement when compared to KnowCoder.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "24bb934e-5e14-4dcb-8ffa-f8db0360b738",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "0b3226cf-7b60-430e-8968-70d52b1baab6",
+  "toolUseResult": {
+    "query": "GoLLIE KnowCoder schema-guided information extraction zero-shot SOTA 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HuQJRgatQET1EUdVwTNXqe",
+        "content": [
+          {
+            "title": "[2310.03668] GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction",
+            "url": "https://arxiv.org/abs/2310.03668"
+          },
+          {
+            "title": "GOLLIE : ANNOTATION GUIDELINES IMPROVE ZERO- ...",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/cda04d7ea67ea1376bf8c6962d8541e0-Paper-Conference.pdf"
+          },
+          {
+            "title": "KnowCoder",
+            "url": "https://ict-goknow.github.io/knowcoder/"
+          },
+          {
+            "title": "GoLLIE : Annotation Guidelines improve Zero-Shot Information-Extraction",
+            "url": "https://arxiv.org/html/2310.03668v5"
+          },
+          {
+            "title": "GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction | OpenReview",
+            "url": "https://openreview.net/forum?id=Y3wpuxd7u9"
+          },
+          {
+            "title": "GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://arxiv.org/html/2506.00649"
+          },
+          {
+            "title": "KnowCoder: Coding Structured Knowledge into LLMs for ...",
+            "url": "https://aclanthology.org/2024.acl-long.475.pdf"
+          },
+          {
+            "title": "ICLR Poster GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction",
+            "url": "https://iclr.cc/virtual/2024/poster/18435"
+          },
+          {
+            "title": "KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction",
+            "url": "https://arxiv.org/html/2403.07969v2"
+          },
+          {
+            "title": "GoLLIE | Guideline following Large Language Model for Information Extraction",
+            "url": "https://hitz-zentroa.github.io/GoLLIE/"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found about GoLLIE, KnowCoder, and schema-guided information extraction:\n\n## GoLLIE (Guideline-following Large Language Model for IE)\n\nGoLLIE is a model able to improve zero-shot results on unseen IE tasks by virtue of being fine-tuned to comply with annotation guidelines. GoLLIE surpasses by a large margin the current zero-shot SoTA methods Instruct-UIE and Entailment based IE. GoLLIE is based on Code-Llama.\n\n## KnowCoder\n\nKnowCoder aims to develop a unified schema representation method that LLMs can easily understand and introduces a code-style schema representation method to uniformly transform different schemas into Python classes. To verify the generalization ability of KnowCoder, zero-shot experiments were conducted on 9 datasets across NER, RE, and ED tasks. KnowCoder constructs a code-style schema library covering over 30,000 types of knowledge.\n\n## Comparison and Recent Performance\n\nThe most similar work to KnowCoder is GoLLIE, an SFT-based UIE method that gives out definitions of schemas as code comments, though KnowCoder designs a more comprehensive code-style schema representation method including taxonomies, constraints, and class methods.\n\nA recent 2025 study on GuideX showed that the approach outperforms GoLLIE by 6.2 F1 points and shows a 4.1-point improvement when compared to KnowCoder."
+    ],
+    "durationSeconds": 7.53576116699999
+  },
+  "sourceToolAssistantUUID": "24bb934e-5e14-4dcb-8ffa-f8db0360b738",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-11T23:18:43.879Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011zxRo3K5YytoapzQcgdGsJ`</summary>
+
+```json
+{
+  "query": "ACE05 NER RE EE state of the art F1 2025 2026 information extraction benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0b3226cf-7b60-430e-8968-70d52b1baab6",
+  "isSidechain": false,
+  "requestId": "req_011CawdsLjiST16wzvotQvS4",
+  "type": "assistant",
+  "uuid": "5d01a74e-87a0-4b45-8cb3-6af5cb3f7036",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012GMWN32xh9LLGc3cKjMr5Y",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 958,
+      "cache_read_input_tokens": 40916,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 958,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 40916,
+          "cache_creation_input_tokens": 958,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 958
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-11T23:18:50.922Z_
+
+<details><summary>↩ Tool result · `toolu_011zxRo3K5YytoapzQcgdGsJ`</summary>
+
+```text
+Web search results for query: "ACE05 NER RE EE state of the art F1 2025 2026 information extraction benchmark"
+
+Links: [{"title":"[2109.06067] Packed Levitated Marker for Entity and Relation Extraction","url":"https://ar5iv.labs.arxiv.org/html/2109.06067"},{"title":"[2210.12720] Span-based joint entity and relation extraction augmented with sequence tagging mechanism","url":"https://ar5iv.labs.arxiv.org/html/2210.12720"},{"title":"Benchmarking LLM-based Information Extraction Tools for Medical Documents | medRxiv","url":"https://www.medrxiv.org/content/10.64898/2026.01.19.26344287v1.full"},{"title":"STAR: Boosting Low-Resource Information Extraction by Structure-to-Text Data","url":"https://arxiv.org/pdf/2305.15090"},{"title":"Trusted Knowledge Extraction for Operations and Maintenance Intelligence","url":"https://arxiv.org/html/2507.22935v3"},{"title":"Packed Levitated Marker for Entity and Relation Extraction","url":"https://openreview.net/pdf?id=0YD1VAUGZ-X"},{"title":"Information Extraction in Low-Resource Scenarios: Survey and Perspective","url":"https://arxiv.org/html/2202.08063v5"},{"title":"[2304.08085] InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction","url":"https://ar5iv.labs.arxiv.org/html/2304.08085"},{"title":"State of the art comparison on ACE 2004, ACE 2005 and GENIA corpora for... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/State-of-the-art-comparison-on-ACE-2004-ACE-2005-and-GENIA-corpora-for-nested-NER_tbl2_343297217"},{"title":"[PDF] The ACE 2005 ( ACE 05 ) Evaluation Plan Evaluation of the Detection and Recognition of ACE Entities , Values , Temporal Expressions , Relations , and Events 1 | Semantic Scholar","url":"https://www.semanticscholar.org/paper/The-ACE-2005-(-ACE-05-)-Evaluation-Plan-Evaluation-Ntroduction/3a9b136ca1ab91592df36f148ef16095f74d009e"}]
+
+Based on the search results, I found relevant information about state-of-the-art results on the ACE05 benchmark for Named Entity Recognition (NER), Relation Extraction (RE), and Event Extraction (EE):
+
+## State-of-the-Art Results on ACE05
+
+Recent models have advanced previous state-of-the-art RE models, gaining 4.1%-4.3% strict relation F1 improvement on ACE04 and ACE05.
+
+On ACE05, compared to strong baselines, improved models obtain +0.7%, +1.9%, and +1.1% F1 gains on NER, RE, and RE+, respectively.
+
+For NER specifically, state-of-the-art models on ACE2005 have achieved F1-scores of 89.04%.
+
+For Event Extraction (EE) on ACE05, training on generated data yields improvements in F1 scores, with methods showing at least 27.51 points higher F1 score for argument classification over inference-only LLM formulations.
+
+## Recent Benchmarking (2025-2026)
+
+The search results include more recent papers from 2025-2026, though they focus more broadly on information extraction benchmarking rather than providing specific new SOTA numbers for ACE05. Transformer-based LLMs have emerged as state-of-the-art technologies capable of understanding and extracting structured information from unstructured documents with high accuracy, which reflects the current trends in information extraction research.
+
+The specific state-of-the-art F1 scores for 2025-2026 on ACE05 NER, RE, and EE tasks are not explicitly detailed in these search results. For the most current benchmarking numbers, you may want to consult recent arXiv submissions or information extraction benchmark tracking resources.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5d01a74e-87a0-4b45-8cb3-6af5cb3f7036",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "729fcd24-8036-4ec6-a8b8-02321a44ff09",
+  "toolUseResult": {
+    "query": "ACE05 NER RE EE state of the art F1 2025 2026 information extraction benchmark",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FxkhZhG7wYkhT5UiXdQy2t",
+        "content": [
+          {
+            "title": "[2109.06067] Packed Levitated Marker for Entity and Relation Extraction",
+            "url": "https://ar5iv.labs.arxiv.org/html/2109.06067"
+          },
+          {
+            "title": "[2210.12720] Span-based joint entity and relation extraction augmented with sequence tagging mechanism",
+            "url": "https://ar5iv.labs.arxiv.org/html/2210.12720"
+          },
+          {
+            "title": "Benchmarking LLM-based Information Extraction Tools for Medical Documents | medRxiv",
+            "url": "https://www.medrxiv.org/content/10.64898/2026.01.19.26344287v1.full"
+          },
+          {
+            "title": "STAR: Boosting Low-Resource Information Extraction by Structure-to-Text Data",
+            "url": "https://arxiv.org/pdf/2305.15090"
+          },
+          {
+            "title": "Trusted Knowledge Extraction for Operations and Maintenance Intelligence",
+            "url": "https://arxiv.org/html/2507.22935v3"
+          },
+          {
+            "title": "Packed Levitated Marker for Entity and Relation Extraction",
+            "url": "https://openreview.net/pdf?id=0YD1VAUGZ-X"
+          },
+          {
+            "title": "Information Extraction in Low-Resource Scenarios: Survey and Perspective",
+            "url": "https://arxiv.org/html/2202.08063v5"
+          },
+          {
+            "title": "[2304.08085] InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction",
+            "url": "https://ar5iv.labs.arxiv.org/html/2304.08085"
+          },
+          {
+            "title": "State of the art comparison on ACE 2004, ACE 2005 and GENIA corpora for... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/State-of-the-art-comparison-on-ACE-2004-ACE-2005-and-GENIA-corpora-for-nested-NER_tbl2_343297217"
+          },
+          {
+            "title": "[PDF] The ACE 2005 ( ACE 05 ) Evaluation Plan Evaluation of the Detection and Recognition of ACE Entities , Values , Temporal Expressions , Relations , and Events 1 | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/The-ACE-2005-(-ACE-05-)-Evaluation-Plan-Evaluation-Ntroduction/3a9b136ca1ab91592df36f148ef16095f74d009e"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about state-of-the-art results on the ACE05 benchmark for Named Entity Recognition (NER), Relation Extraction (RE), and Event Extraction (EE):\n\n## State-of-the-Art Results on ACE05\n\nRecent models have advanced previous state-of-the-art RE models, gaining 4.1%-4.3% strict relation F1 improvement on ACE04 and ACE05.\n\nOn ACE05, compared to strong baselines, improved models obtain +0.7%, +1.9%, and +1.1% F1 gains on NER, RE, and RE+, respectively.\n\nFor NER specifically, state-of-the-art models on ACE2005 have achieved F1-scores of 89.04%.\n\nFor Event Extraction (EE) on ACE05, training on generated data yields improvements in F1 scores, with methods showing at least 27.51 points higher F1 score for argument classification over inference-only LLM formulations.\n\n## Recent Benchmarking (2025-2026)\n\nThe search results include more recent papers from 2025-2026, though they focus more broadly on information extraction benchmarking rather than providing specific new SOTA numbers for ACE05. Transformer-based LLMs have emerged as state-of-the-art technologies capable of understanding and extracting structured information from unstructured documents with high accuracy, which reflects the current trends in information extraction research.\n\nThe specific state-of-the-art F1 scores for 2025-2026 on ACE05 NER, RE, and EE tasks are not explicitly detailed in these search results. For the most current benchmarking numbers, you may want to consult recent arXiv submissions or information extraction benchmark tracking resources."
+    ],
+    "durationSeconds": 7.03961747300002
+  },
+  "sourceToolAssistantUUID": "5d01a74e-87a0-4b45-8cb3-6af5cb3f7036",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-11T23:18:54.832Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Qe2knkvUcyYZKoQLWgyeqD`</summary>
+
+```json
+{
+  "query": "site:paperswithcode.com ACE 2005 event extraction benchmark SOTA"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "729fcd24-8036-4ec6-a8b8-02321a44ff09",
+  "isSidechain": false,
+  "requestId": "req_011Cawdt6sobm8Y2SNKhSwZn",
+  "type": "assistant",
+  "uuid": "e744be80-a74b-44ca-b32a-b5adeb7cd314",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SeD4wfTRfvvUoxUjUxTZYx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1141,
+      "cache_read_input_tokens": 41874,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1141,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 41874,
+          "cache_creation_input_tokens": 1141,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1141
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-11T23:18:59.264Z_
+
+<details><summary>↩ Tool result · `toolu_01Qe2knkvUcyYZKoQLWgyeqD`</summary>
+
+```text
+Web search results for query: "site:paperswithcode.com ACE 2005 event extraction benchmark SOTA"
+
+Links: [{"title":"Papers with Code - ACE2005 Benchmark (Event Argument Extraction)","url":"https://paperswithcode.com/sota/event-argument-extraction-on-ace2005"},{"title":"Papers with Code - ACE2005 Benchmark (Event Extraction)","url":"https://paperswithcode.com/sota/event-extraction-on-ace2005"},{"title":"ACE 2005 Benchmark (Relation Extraction)","url":"https://paperswithcode.com/sota/relation-extraction-on-ace-2005"},{"title":"ACE 2005 Dataset","url":"https://paperswithcode.com/dataset/ace-2005"},{"title":"Papers with Code - Machine Learning Datasets","url":"https://paperswithcode.com/datasets?v=lst&o=newest&lang=mandarin-chinese&page=1"},{"title":"Papers with Code - A Frustratingly Easy Approach for Entity and Relation Extraction","url":"https://paperswithcode.com/paper/a-frustratingly-easy-approach-for-joint"},{"title":"ACE 2005 Benchmark (Named Entity Recognition (NER))","url":"https://paperswithcode.com/sota/named-entity-recognition-on-ace-2005"},{"title":"Papers with Code - ACE 2005-RE Benchmark (UIE)","url":"https://paperswithcode.com/sota/uie-on-ace-2005-re"},{"title":"Papers with Code - Event Extraction","url":"https://paperswithcode.com/task/event-extraction/codeless"},{"title":"Papers with Code - ACE 2004 Benchmark (Relation Extraction)","url":"https://paperswithcode.com/sota/relation-extraction-on-ace-2004"}]
+
+Based on the search results from Papers with Code, here are the state-of-the-art results for ACE 2005 event extraction benchmarks:
+
+1. **Event Extraction**: The current state-of-the-art on ACE2005 is DeepStruct multi-task, with a full comparison of 4 papers with code.
+
+2. **Event Argument Extraction**: The current state-of-the-art on ACE2005 is NLI+, with a full comparison of 2 papers with code.
+
+3. **UIE (Unified Information Extraction) on ACE 2005-RE**: The current state-of-the-art on ACE 2005-RE is KnowCoder-7b-IE.
+
+These results show the top-performing methods for different aspects of event extraction on the ACE 2005 benchmark as tracked by Papers with Code.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e744be80-a74b-44ca-b32a-b5adeb7cd314",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "ecf294bd-2d45-46f4-b46b-6b0362718b2b",
+  "toolUseResult": {
+    "query": "site:paperswithcode.com ACE 2005 event extraction benchmark SOTA",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QyHHcfDRVAMDU7tpNVLFfJ",
+        "content": [
+          {
+            "title": "Papers with Code - ACE2005 Benchmark (Event Argument Extraction)",
+            "url": "https://paperswithcode.com/sota/event-argument-extraction-on-ace2005"
+          },
+          {
+            "title": "Papers with Code - ACE2005 Benchmark (Event Extraction)",
+            "url": "https://paperswithcode.com/sota/event-extraction-on-ace2005"
+          },
+          {
+            "title": "ACE 2005 Benchmark (Relation Extraction)",
+            "url": "https://paperswithcode.com/sota/relation-extraction-on-ace-2005"
+          },
+          {
+            "title": "ACE 2005 Dataset",
+            "url": "https://paperswithcode.com/dataset/ace-2005"
+          },
+          {
+            "title": "Papers with Code - Machine Learning Datasets",
+            "url": "https://paperswithcode.com/datasets?v=lst&o=newest&lang=mandarin-chinese&page=1"
+          },
+          {
+            "title": "Papers with Code - A Frustratingly Easy Approach for Entity and Relation Extraction",
+            "url": "https://paperswithcode.com/paper/a-frustratingly-easy-approach-for-joint"
+          },
+          {
+            "title": "ACE 2005 Benchmark (Named Entity Recognition (NER))",
+            "url": "https://paperswithcode.com/sota/named-entity-recognition-on-ace-2005"
+          },
+          {
+            "title": "Papers with Code - ACE 2005-RE Benchmark (UIE)",
+            "url": "https://paperswithcode.com/sota/uie-on-ace-2005-re"
+          },
+          {
+            "title": "Papers with Code - Event Extraction",
+            "url": "https://paperswithcode.com/task/event-extraction/codeless"
+          },
+          {
+            "title": "Papers with Code - ACE 2004 Benchmark (Relation Extraction)",
+            "url": "https://paperswithcode.com/sota/relation-extraction-on-ace-2004"
+          }
+        ]
+      },
+      "Based on the search results from Papers with Code, here are the state-of-the-art results for ACE 2005 event extraction benchmarks:\n\n1. **Event Extraction**: The current state-of-the-art on ACE2005 is DeepStruct multi-task, with a full comparison of 4 papers with code.\n\n2. **Event Argument Extraction**: The current state-of-the-art on ACE2005 is NLI+, with a full comparison of 2 papers with code.\n\n3. **UIE (Unified Information Extraction) on ACE 2005-RE**: The current state-of-the-art on ACE 2005-RE is KnowCoder-7b-IE.\n\nThese results show the top-performing methods for different aspects of event extraction on the ACE 2005 benchmark as tracked by Papers with Code."
+    ],
+    "durationSeconds": 4.427766175000026
+  },
+  "sourceToolAssistantUUID": "e744be80-a74b-44ca-b32a-b5adeb7cd314",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54 · 2026-05-11T23:18:59.269Z_
+
+```json
+{
+  "parentUuid": "ecf294bd-2d45-46f4-b46b-6b0362718b2b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "a8adb265-f704-40d2-8236-7386b8e8cecb",
+  "timestamp": "2026-05-11T23:18:59.269Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 55_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "a8adb265-f704-40d2-8236-7386b8e8cecb",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 56_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "ProvUIE: Grounded information extraction with evidence-span GRPO",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Tool call
+
+_source line 57 · 2026-05-11T23:19:02.428Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01HjDGzfajwRsDdf8DM4S9Ab`</summary>
+
+```json
+{
+  "query": "ARR submission deadline June 2026 ACL rolling review EMNLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a8adb265-f704-40d2-8236-7386b8e8cecb",
+  "isSidechain": false,
+  "requestId": "req_011CawdtiYuUEG9emKNdzC93",
+  "type": "assistant",
+  "uuid": "0c0d30be-d7b3-4199-8af1-99d670fbb451",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7Vxz3MVi2TphurZZLTSis",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 866,
+      "cache_read_input_tokens": 43015,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 866,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 43015,
+          "cache_creation_input_tokens": 866,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 866
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-11T23:19:07.635Z_
+
+<details><summary>↩ Tool result · `toolu_01HjDGzfajwRsDdf8DM4S9Ab`</summary>
+
+```text
+Web search results for query: "ARR submission deadline June 2026 ACL rolling review EMNLP"
+
+Links: [{"title":"Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/dates"},{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"aclrollingreview/dates.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/dates.md"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"https://aclrollingreview.org/"},{"title":"ACLRollingReview (@ReviewAcl) / Posts / X","url":"https://x.com/ReviewAcl"},{"title":"ACL ARR | OpenReview","url":"https://openreview.net/group?id=aclweb.org%2FACL%2FARR"},{"title":"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/authors"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"}]
+
+Based on the search results, here's the key information about ARR submission deadlines in June 2026 for EMNLP:
+
+The final ARR submission date for EMNLP 2026 is May 25, 2026, with a commitment date of August 2, 2026. 
+
+Note that there is no June 2026 ARR submission deadline. The ACL Peer Review Committee recommended switching to 10-week review cycles, with the new schedule taking effect starting in May 2025. This means submissions for EMNLP 2026 needed to be submitted by May 25, 2026 to be reviewed and ready for commitment by the August 2, 2026 deadline.
+
+EMNLP 2026 uses ACL Rolling Review (ARR) as its reviewing system, with final decisions made by the conference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0c0d30be-d7b3-4199-8af1-99d670fbb451",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "265fd593-663a-44d3-8697-fec5f91bb6f4",
+  "toolUseResult": {
+    "query": "ARR submission deadline June 2026 ACL rolling review EMNLP",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01K9Cnh8oc49suEJVLtX9hqS",
+        "content": [
+          {
+            "title": "Dates and Venues – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "aclrollingreview/dates.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/dates.md"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "https://aclrollingreview.org/"
+          },
+          {
+            "title": "ACLRollingReview (@ReviewAcl) / Posts / X",
+            "url": "https://x.com/ReviewAcl"
+          },
+          {
+            "title": "ACL ARR | OpenReview",
+            "url": "https://openreview.net/group?id=aclweb.org%2FACL%2FARR"
+          },
+          {
+            "title": "Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/authors"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          }
+        ]
+      },
+      "Based on the search results, here's the key information about ARR submission deadlines in June 2026 for EMNLP:\n\nThe final ARR submission date for EMNLP 2026 is May 25, 2026, with a commitment date of August 2, 2026. \n\nNote that there is no June 2026 ARR submission deadline. The ACL Peer Review Committee recommended switching to 10-week review cycles, with the new schedule taking effect starting in May 2025. This means submissions for EMNLP 2026 needed to be submitted by May 25, 2026 to be reviewed and ready for commitment by the August 2, 2026 deadline.\n\nEMNLP 2026 uses ACL Rolling Review (ARR) as its reviewing system, with final decisions made by the conference."
+    ],
+    "durationSeconds": 5.202537263000005
+  },
+  "sourceToolAssistantUUID": "0c0d30be-d7b3-4199-8af1-99d670fbb451",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-11T23:19:25.402Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019s2Dn2Q2QJxuySAKtwNQhJ`</summary>
+
+```json
+{
+  "query": "GRPO LoRA Qwen 32B training compute cost H100 hours reinforcement learning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "265fd593-663a-44d3-8697-fec5f91bb6f4",
+  "isSidechain": false,
+  "requestId": "req_011CawduLJUXxRqFw5uWediq",
+  "type": "assistant",
+  "uuid": "25faf81b-9753-4d9b-9611-118e6048d82f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01X6WJnQf6MeFsUHUdfMiW9G",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 713,
+      "cache_read_input_tokens": 43881,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 713,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 43881,
+          "cache_creation_input_tokens": 713,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 713
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-11T23:19:32.631Z_
+
+<details><summary>↩ Tool result · `toolu_019s2Dn2Q2QJxuySAKtwNQhJ`</summary>
+
+```text
+Web search results for query: "GRPO LoRA Qwen 32B training compute cost H100 hours reinforcement learning"
+
+Links: [{"title":"QeRL: Training 32B Models on Single H100 vs Three GPUs, Beating LoRA in Accuracy","url":"https://neurohive.io/en/state-of-the-art/qerl-2/"},{"title":"The Engineering Handbook for GRPO + LoRA with Verl: Training Qwen2.5 on Multi-GPU","url":"https://huggingface.co/blog/Weyaxi/engineering-handbook-grpo-lora-with-verl"},{"title":"FP8 Reinforcement Learning | Unsloth Documentation","url":"https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide/fp8-reinforcement-learning"},{"title":"Qwen3 Best Practices — swift 3.7.3 documentation","url":"https://swift.readthedocs.io/en/v3.7/BestPractices/Qwen3-Best-Practice.html"},{"title":"QeRL: NVFP4-Quantized Reinforcement Learning (RL) Brings 32B LLM Training to a Single H100—While Improving Exploration - MarkTechPost","url":"https://www.marktechpost.com/2025/10/15/qerl-nvfp4-quantized-reinforcement-learning-rl-brings-32b-llm-training-to-a-single-h100-while-improving-exploration/"},{"title":"Quantization-Enhanced Reinforcement Learning | NVlabs/QeRL | DeepWiki","url":"https://deepwiki.com/NVlabs/QeRL/3.1-quantization-enhanced-reinforcement-learning"},{"title":"GitHub - Danau5tin/terminal-bench-rl: GRPO training code which scales to 32xH100s for long horizon terminal/coding tasks. Base agent is now the top Qwen3 agent on Stanford's TerminalBench leaderboard. · GitHub","url":"https://github.com/Danau5tin/terminal-bench-rl"},{"title":"RL(HF) algorithms with LoRA Support — verl documentation","url":"https://verl.readthedocs.io/en/latest/advance/ppo_lora.html"},{"title":"How can I fine-tune large language models on a budget using LoRA and QLoRA on cloud GPUs?","url":"https://www.runpod.io/articles/guides/how-to-fine-tune-large-language-models-on-a-budget"},{"title":"GRPO Fine-Tuning on GPU Cloud: Train Reasoning Models with Verifiable Rewards (2026 Guide) | Spheron Blog","url":"https://www.spheron.network/blog/grpo-fine-tuning-gpu-cloud/"}]
+
+Based on the search results, here's what I found regarding GRPO LoRA Qwen 32B training compute costs on H100 GPUs for reinforcement learning:
+
+## Key Findings:
+
+**Standard RL Training Costs:**
+Typical RL training for reasoning models takes 20-100 hours on 8× H100 GPUs, with QeRL reducing this to 60-80 hours, saving 1-2 days per experiment. With H100 cloud costs of $2-4 per GPU-hour, savings amount to approximately $1,000 per experiment or $10,000-$50,000 for a complete research project with multiple iterations.
+
+**Single GPU Training Breakthrough:**
+A 32B policy can be trained with GRPO on a single H100-80GB, enabled by the lower memory footprint of weight-only FP4. This represents a significant reduction from the 2-3 GPUs required by standard approaches to train a 32-billion parameter model with reinforcement learning.
+
+**Performance Metrics:**
+For a 7B model, the research team reports GSM8K = 90.8% and MATH500 = 77.4%, surpassing 16-bit LoRA and QLoRA under their setup and matching full-parameter fine-tuning.
+
+These findings are primarily from the QeRL (Quantization-enhanced Reinforcement Learning) framework, which uses NVFP4 quantization with LoRA to significantly reduce compute requirements while maintaining accuracy.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "25faf81b-9753-4d9b-9611-118e6048d82f",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "b893ed0c-1668-4a69-aba0-8ff73b906cad",
+  "toolUseResult": {
+    "query": "GRPO LoRA Qwen 32B training compute cost H100 hours reinforcement learning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012HqbtGA2sKchMtfw7SVfLK",
+        "content": [
+          {
+            "title": "QeRL: Training 32B Models on Single H100 vs Three GPUs, Beating LoRA in Accuracy",
+            "url": "https://neurohive.io/en/state-of-the-art/qerl-2/"
+          },
+          {
+            "title": "The Engineering Handbook for GRPO + LoRA with Verl: Training Qwen2.5 on Multi-GPU",
+            "url": "https://huggingface.co/blog/Weyaxi/engineering-handbook-grpo-lora-with-verl"
+          },
+          {
+            "title": "FP8 Reinforcement Learning | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide/fp8-reinforcement-learning"
+          },
+          {
+            "title": "Qwen3 Best Practices — swift 3.7.3 documentation",
+            "url": "https://swift.readthedocs.io/en/v3.7/BestPractices/Qwen3-Best-Practice.html"
+          },
+          {
+            "title": "QeRL: NVFP4-Quantized Reinforcement Learning (RL) Brings 32B LLM Training to a Single H100—While Improving Exploration - MarkTechPost",
+            "url": "https://www.marktechpost.com/2025/10/15/qerl-nvfp4-quantized-reinforcement-learning-rl-brings-32b-llm-training-to-a-single-h100-while-improving-exploration/"
+          },
+          {
+            "title": "Quantization-Enhanced Reinforcement Learning | NVlabs/QeRL | DeepWiki",
+            "url": "https://deepwiki.com/NVlabs/QeRL/3.1-quantization-enhanced-reinforcement-learning"
+          },
+          {
+            "title": "GitHub - Danau5tin/terminal-bench-rl: GRPO training code which scales to 32xH100s for long horizon terminal/coding tasks. Base agent is now the top Qwen3 agent on Stanford's TerminalBench leaderboard. · GitHub",
+            "url": "https://github.com/Danau5tin/terminal-bench-rl"
+          },
+          {
+            "title": "RL(HF) algorithms with LoRA Support — verl documentation",
+            "url": "https://verl.readthedocs.io/en/latest/advance/ppo_lora.html"
+          },
+          {
+            "title": "How can I fine-tune large language models on a budget using LoRA and QLoRA on cloud GPUs?",
+            "url": "https://www.runpod.io/articles/guides/how-to-fine-tune-large-language-models-on-a-budget"
+          },
+          {
+            "title": "GRPO Fine-Tuning on GPU Cloud: Train Reasoning Models with Verifiable Rewards (2026 Guide) | Spheron Blog",
+            "url": "https://www.spheron.network/blog/grpo-fine-tuning-gpu-cloud/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding GRPO LoRA Qwen 32B training compute costs on H100 GPUs for reinforcement learning:\n\n## Key Findings:\n\n**Standard RL Training Costs:**\nTypical RL training for reasoning models takes 20-100 hours on 8× H100 GPUs, with QeRL reducing this to 60-80 hours, saving 1-2 days per experiment. With H100 cloud costs of $2-4 per GPU-hour, savings amount to approximately $1,000 per experiment or $10,000-$50,000 for a complete research project with multiple iterations.\n\n**Single GPU Training Breakthrough:**\nA 32B policy can be trained with GRPO on a single H100-80GB, enabled by the lower memory footprint of weight-only FP4. This represents a significant reduction from the 2-3 GPUs required by standard approaches to train a 32-billion parameter model with reinforcement learning.\n\n**Performance Metrics:**\nFor a 7B model, the research team reports GSM8K = 90.8% and MATH500 = 77.4%, surpassing 16-bit LoRA and QLoRA under their setup and matching full-parameter fine-tuning.\n\nThese findings are primarily from the QeRL (Quantization-enhanced Reinforcement Learning) framework, which uses NVFP4 quantization with LoRA to significantly reduce compute requirements while maintaining accuracy."
+    ],
+    "durationSeconds": 7.223501893999987
+  },
+  "sourceToolAssistantUUID": "25faf81b-9753-4d9b-9611-118e6048d82f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-11T23:19:36.762Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01KPUYKY4AqSMfB9cdezKPt8`</summary>
+
+```json
+{
+  "query": "information extraction NLI entailment reward verification span evidence 2025 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b893ed0c-1668-4a69-aba0-8ff73b906cad",
+  "isSidechain": false,
+  "requestId": "req_011CawdwBCLgcCBhaah6NEhN",
+  "type": "assistant",
+  "uuid": "01679fb3-6de5-4743-b414-96f0c0dfbd97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Kvj4142chqFUsecPXghUFA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1159,
+      "cache_read_input_tokens": 44594,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1159,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 44594,
+          "cache_creation_input_tokens": 1159,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1159
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-11T23:19:45.427Z_
+
+<details><summary>↩ Tool result · `toolu_01KPUYKY4AqSMfB9cdezKPt8`</summary>
+
+```text
+Web search results for query: "information extraction NLI entailment reward verification span evidence 2025 2026 arXiv"
+
+Links: [{"title":"VERITAS-NLI: Validation and Extraction of Reliable Information Through Automated Scraping and Natural Language Inference","url":"https://arxiv.org/html/2410.09455v1"},{"title":"ContractNLI: Legal Document Inference","url":"https://www.emergentmind.com/topics/contractnli"},{"title":"Extractive Fact Decomposition for Interpretable Natural Language Inference in one Forward Pass","url":"https://arxiv.org/html/2509.18901"},{"title":"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub","url":"https://github.com/EdinburghNLP/awesome-hallucination-detection"},{"title":"Fact Extraction and VERification","url":"https://fever.ai/"},{"title":"Medical Argument Mining: Exploitation of Scarce Data Using NLI Systems","url":"https://arxiv.org/html/2506.12823v1"},{"title":"Natural Language Inference (NLI)","url":"https://www.emergentmind.com/topics/natural-language-inference-nli"},{"title":"MedRAGChecker: Claim-Level Verification for Biomedical ...","url":"https://arxiv.org/pdf/2601.06519"},{"title":"When Text Embedding Meets Large Language Model: A Comprehensive Survey","url":"https://arxiv.org/html/2412.09165v1"},{"title":"Improving Sentence Embeddings with an Automatically Generated NLI Dataset","url":"https://arxiv.org/html/2402.15132v1"}]
+
+Based on the web search results, here's what I found related to your query about information extraction, NLI, entailment, reward verification, span evidence in recent arXiv papers (2025-2026):
+
+## Key Recent Papers
+
+**Extractive Fact Decomposition for Interpretable NLI (2025)**
+
+A recent work proposes an extractive approach to fact decomposition, enabling a single encoder-based model to jointly learn both decomposition and inference. The research created a synthetic dataset spanning multiple NLI benchmarks, generated via LLMs, to facilitate training and evaluation. This work focuses on logical reasoning with span-level predictions for interpretable and robust NLI models.
+
+**ContractNLI with Span-Level Evidence Extraction (2025)**
+
+ContractNLI is a benchmark for legal natural language inference that evaluates entailment, contradiction, and evidence extraction in contract reviews. The dataset's architecture, especially the fixed set of hypotheses and span-level evidence, supports direct benchmarking and method comparison. The ContractNLI task is formulated as multi-label, document-level NLI where systems predict labels and highlight the supporting text spans as evidence.
+
+**Medical Argument Mining with NLI (2025)**
+
+Recent work leverages entailment probabilities from a fine-tuned NLI model to infer the underlying relations between argumentative entities.
+
+**Biomedical Verification with NLI (2025)**
+
+For claim verification, textual NLI checking and knowledge graph-based verification provide complementary signals—semantic entailment from retrieved context versus structured biomedical constraints—which are fused and distilled into a student verifier.
+
+These papers represent recent advances in applying NLI with span-level evidence extraction for verification and information extraction tasks on arXiv in 2025-2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "01679fb3-6de5-4743-b414-96f0c0dfbd97",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "d14f782d-9d00-41ac-a3db-54d670488535",
+  "toolUseResult": {
+    "query": "information extraction NLI entailment reward verification span evidence 2025 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FjV8FvQiH8txFRGFaH1G7B",
+        "content": [
+          {
+            "title": "VERITAS-NLI: Validation and Extraction of Reliable Information Through Automated Scraping and Natural Language Inference",
+            "url": "https://arxiv.org/html/2410.09455v1"
+          },
+          {
+            "title": "ContractNLI: Legal Document Inference",
+            "url": "https://www.emergentmind.com/topics/contractnli"
+          },
+          {
+            "title": "Extractive Fact Decomposition for Interpretable Natural Language Inference in one Forward Pass",
+            "url": "https://arxiv.org/html/2509.18901"
+          },
+          {
+            "title": "GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub",
+            "url": "https://github.com/EdinburghNLP/awesome-hallucination-detection"
+          },
+          {
+            "title": "Fact Extraction and VERification",
+            "url": "https://fever.ai/"
+          },
+          {
+            "title": "Medical Argument Mining: Exploitation of Scarce Data Using NLI Systems",
+            "url": "https://arxiv.org/html/2506.12823v1"
+          },
+          {
+            "title": "Natural Language Inference (NLI)",
+            "url": "https://www.emergentmind.com/topics/natural-language-inference-nli"
+          },
+          {
+            "title": "MedRAGChecker: Claim-Level Verification for Biomedical ...",
+            "url": "https://arxiv.org/pdf/2601.06519"
+          },
+          {
+            "title": "When Text Embedding Meets Large Language Model: A Comprehensive Survey",
+            "url": "https://arxiv.org/html/2412.09165v1"
+          },
+          {
+            "title": "Improving Sentence Embeddings with an Automatically Generated NLI Dataset",
+            "url": "https://arxiv.org/html/2402.15132v1"
+          }
+        ]
+      },
+      "Based on the web search results, here's what I found related to your query about information extraction, NLI, entailment, reward verification, span evidence in recent arXiv papers (2025-2026):\n\n## Key Recent Papers\n\n**Extractive Fact Decomposition for Interpretable NLI (2025)**\n\nA recent work proposes an extractive approach to fact decomposition, enabling a single encoder-based model to jointly learn both decomposition and inference. The research created a synthetic dataset spanning multiple NLI benchmarks, generated via LLMs, to facilitate training and evaluation. This work focuses on logical reasoning with span-level predictions for interpretable and robust NLI models.\n\n**ContractNLI with Span-Level Evidence Extraction (2025)**\n\nContractNLI is a benchmark for legal natural language inference that evaluates entailment, contradiction, and evidence extraction in contract reviews. The dataset's architecture, especially the fixed set of hypotheses and span-level evidence, supports direct benchmarking and method comparison. The ContractNLI task is formulated as multi-label, document-level NLI where systems predict labels and highlight the supporting text spans as evidence.\n\n**Medical Argument Mining with NLI (2025)**\n\nRecent work leverages entailment probabilities from a fine-tuned NLI model to infer the underlying relations between argumentative entities.\n\n**Biomedical Verification with NLI (2025)**\n\nFor claim verification, textual NLI checking and knowledge graph-based verification provide complementary signals—semantic entailment from retrieved context versus structured biomedical constraints—which are fused and distilled into a student verifier.\n\nThese papers represent recent advances in applying NLI with span-level evidence extraction for verification and information extraction tasks on arXiv in 2025-2026."
+    ],
+    "durationSeconds": 8.65959350300001
+  },
+  "sourceToolAssistantUUID": "01679fb3-6de5-4743-b414-96f0c0dfbd97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-11T23:19:47.959Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01R77AtNH5PWyRA86xFEtHyV`</summary>
+
+```json
+{
+  "query": "LAQuer localized attribution queries content-grounded generation ACL 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d14f782d-9d00-41ac-a3db-54d670488535",
+  "isSidechain": false,
+  "requestId": "req_011Cawdx7ugLyBD7bGwUjoEx",
+  "type": "assistant",
+  "uuid": "860c1b25-9f50-40f5-8b5d-13f841a548ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PSdrkii7KFqGPbxYfY6K6B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 945,
+      "cache_read_input_tokens": 45753,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 945,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 45753,
+          "cache_creation_input_tokens": 945,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 945
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-11T23:19:54.655Z_
+
+<details><summary>↩ Tool result · `toolu_01R77AtNH5PWyRA86xFEtHyV`</summary>
+
+```text
+Web search results for query: "LAQuer localized attribution queries content-grounded generation ACL 2025"
+
+Links: [{"title":"LAQuer: Localized Attribution Queries in Content-grounded Generation - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.746/"},{"title":"LAQuer: Localized Attribution Queries in Content-grounded ...","url":"https://aclanthology.org/2025.acl-long.746.pdf"},{"title":"[2506.01187] LAQuer: Localized Attribution Queries in Content-grounded Generation","url":"https://arxiv.org/abs/2506.01187"},{"title":"GitHub - eranhirs/LAQuer: Localized Attribution Queries in Content-grounded Generation · GitHub","url":"https://github.com/eranhirs/LAQuer"},{"title":"LAQuer: Localized Attribution Queries in Content-grounded Generation","url":"https://arxiv.org/html/2506.01187"},{"title":"Aviv Slobodkin - ACL Anthology","url":"https://aclanthology.org/people/aviv-slobodkin/"},{"title":"LAQuer: Localized Attribution Queries in Content-grounded ...","url":"https://arxiv.org/pdf/2506.01187"},{"title":"Eran Hirsch (ערן הירש)","url":"https://eranhirs.github.io/"},{"title":"OG-RAG: Ontology-grounded retrieval-augmented ...","url":"https://aclanthology.org/2025.emnlp-main.1674.pdf"},{"title":"Localized Attribution Queries in Content-grounded Generation","url":"https://www.semanticscholar.org/paper/LAQuer:-Localized-Attribution-Queries-in-Generation-Hirsch-Slobodkin/f7d17c222af2a396c0aec2676f75070022f6de24"}]
+
+Based on the search results, here's what I found about LAQuer:
+
+## LAQuer: Localized Attribution Queries in Content-grounded Generation
+
+LAQuer was presented at ACL 2025 by Eran Hirsch, Aviv Slobodkin, David Wan, Elias Stengel-Eskin, Mohit Bansal, and Ido Dagan in Vienna, Austria.
+
+### Overview
+
+Grounded text generation models often produce content that deviates from their source material. Existing attribution methods associate entire sentences with source documents, which can be overwhelming for users. LAQuer introduces a new task that localizes selected spans of generated output to their corresponding source spans, allowing fine-grained and user-directed attribution.
+
+### Key Approaches
+
+The research compares two approaches for the LAQuer task, including prompting large language models (LLMs) and leveraging LLM internal representations, and explores a modeling framework that extends existing attributed text generation methods to LAQuer. This framework is evaluated across two grounded text generation tasks: Multi-document Summarization (MDS) and Long-form Question Answering (LFQA).
+
+### Main Findings
+
+LAQuer methods significantly reduce the length of the attributed text. The contributions include: proposing the LAQuer task to enhance attribution usability, suggesting a modeling framework and benchmarking multiple baselines, and proposing a new evaluation setting to promote future research on localized attribution in content-grounded generation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "860c1b25-9f50-40f5-8b5d-13f841a548ac",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "8142c29d-b86b-4de3-ba24-c603079f7a36",
+  "toolUseResult": {
+    "query": "LAQuer localized attribution queries content-grounded generation ACL 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01D2X97o74n9UJdWjKBrA8t4",
+        "content": [
+          {
+            "title": "LAQuer: Localized Attribution Queries in Content-grounded Generation - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.746/"
+          },
+          {
+            "title": "LAQuer: Localized Attribution Queries in Content-grounded ...",
+            "url": "https://aclanthology.org/2025.acl-long.746.pdf"
+          },
+          {
+            "title": "[2506.01187] LAQuer: Localized Attribution Queries in Content-grounded Generation",
+            "url": "https://arxiv.org/abs/2506.01187"
+          },
+          {
+            "title": "GitHub - eranhirs/LAQuer: Localized Attribution Queries in Content-grounded Generation · GitHub",
+            "url": "https://github.com/eranhirs/LAQuer"
+          },
+          {
+            "title": "LAQuer: Localized Attribution Queries in Content-grounded Generation",
+            "url": "https://arxiv.org/html/2506.01187"
+          },
+          {
+            "title": "Aviv Slobodkin - ACL Anthology",
+            "url": "https://aclanthology.org/people/aviv-slobodkin/"
+          },
+          {
+            "title": "LAQuer: Localized Attribution Queries in Content-grounded ...",
+            "url": "https://arxiv.org/pdf/2506.01187"
+          },
+          {
+            "title": "Eran Hirsch (ערן הירש)",
+            "url": "https://eranhirs.github.io/"
+          },
+          {
+            "title": "OG-RAG: Ontology-grounded retrieval-augmented ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.1674.pdf"
+          },
+          {
+            "title": "Localized Attribution Queries in Content-grounded Generation",
+            "url": "https://www.semanticscholar.org/paper/LAQuer:-Localized-Attribution-Queries-in-Generation-Hirsch-Slobodkin/f7d17c222af2a396c0aec2676f75070022f6de24"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about LAQuer:\n\n## LAQuer: Localized Attribution Queries in Content-grounded Generation\n\nLAQuer was presented at ACL 2025 by Eran Hirsch, Aviv Slobodkin, David Wan, Elias Stengel-Eskin, Mohit Bansal, and Ido Dagan in Vienna, Austria.\n\n### Overview\n\nGrounded text generation models often produce content that deviates from their source material. Existing attribution methods associate entire sentences with source documents, which can be overwhelming for users. LAQuer introduces a new task that localizes selected spans of generated output to their corresponding source spans, allowing fine-grained and user-directed attribution.\n\n### Key Approaches\n\nThe research compares two approaches for the LAQuer task, including prompting large language models (LLMs) and leveraging LLM internal representations, and explores a modeling framework that extends existing attributed text generation methods to LAQuer. This framework is evaluated across two grounded text generation tasks: Multi-document Summarization (MDS) and Long-form Question Answering (LFQA).\n\n### Main Findings\n\nLAQuer methods significantly reduce the length of the attributed text. The contributions include: proposing the LAQuer task to enhance attribution usability, suggesting a modeling framework and benchmarking multiple baselines, and proposing a new evaluation setting to promote future research on localized attribution in content-grounded generation."
+    ],
+    "durationSeconds": 6.690849707999995
+  },
+  "sourceToolAssistantUUID": "860c1b25-9f50-40f5-8b5d-13f841a548ac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-11T23:19:58.190Z_
+
+Now let me look at the deeper detail on R2GRPO's relevancy reward (closest competitor) and EvidenceRL's NLI reward mechanism.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8142c29d-b86b-4de3-ba24-c603079f7a36",
+  "isSidechain": false,
+  "requestId": "req_011CawdxoKWkb8NQBA2XWQxo",
+  "type": "assistant",
+  "uuid": "1b4e6a7a-1f23-4d32-a5a9-5a973750c421",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KaEX6t3RhrsiZ5qqafPMsx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 909,
+      "cache_read_input_tokens": 46698,
+      "output_tokens": 180,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 909,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 180,
+          "cache_read_input_tokens": 46698,
+          "cache_creation_input_tokens": 909,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 909
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 66 · 2026-05-11T23:20:00.130Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_019ZNKwTSmj2KHvwEZkpF47V`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.22068",
+  "prompt": "Extract the specific details of R2GRPO's relevancy reward: How does it work? Does it produce evidence spans as output? What tasks does it cover (NER, RE, EE)? What model backbone does it use? What datasets does it evaluate on? What are the key results?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b4e6a7a-1f23-4d32-a5a9-5a973750c421",
+  "isSidechain": false,
+  "requestId": "req_011CawdxoKWkb8NQBA2XWQxo",
+  "type": "assistant",
+  "uuid": "c3a5c5fa-913e-4ead-946d-b2d8f1f7cc32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KaEX6t3RhrsiZ5qqafPMsx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 909,
+      "cache_read_input_tokens": 46698,
+      "output_tokens": 180,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 909,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 180,
+          "cache_read_input_tokens": 46698,
+          "cache_creation_input_tokens": 909,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 909
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "c3a5c5fa-913e-4ead-946d-b2d8f1f7cc32",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "ProvUIE: Grounded information extraction with evidence-span GRPO",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-11T23:20:04.175Z_
+
+<details><summary>↩ Tool result · `toolu_019ZNKwTSmj2KHvwEZkpF47V`</summary>
+
+```text
+Based on the provided arXiv page content, I cannot extract the specific technical details you're requesting about R²GRPO's relevancy reward mechanism.
+
+The abstract states the paper proposes "R²GRPO with relevance and rule-induced rewards" and mentions that "Experiments on scientific IE benchmarks show that both methods can improve the reasoning capacity," but it does not provide information about:
+
+- How the relevancy reward specifically functions
+- Whether it produces evidence spans
+- Which information extraction tasks it addresses (NER, RE, EE)
+- The model backbone architecture
+- The evaluation datasets
+- Detailed performance metrics
+
+To obtain these specifics, you would need to access the full paper via the PDF or HTML versions linked on this page. The abstract alone is insufficient to answer your detailed technical questions about the method's implementation and evaluation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c3a5c5fa-913e-4ead-946d-b2d8f1f7cc32",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "2956a869-58f7-4a69-976b-8504928edb87",
+  "toolUseResult": {
+    "bytes": 45523,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the provided arXiv page content, I cannot extract the specific technical details you're requesting about R²GRPO's relevancy reward mechanism.\n\nThe abstract states the paper proposes \"R²GRPO with relevance and rule-induced rewards\" and mentions that \"Experiments on scientific IE benchmarks show that both methods can improve the reasoning capacity,\" but it does not provide information about:\n\n- How the relevancy reward specifically functions\n- Whether it produces evidence spans\n- Which information extraction tasks it addresses (NER, RE, EE)\n- The model backbone architecture\n- The evaluation datasets\n- Detailed performance metrics\n\nTo obtain these specifics, you would need to access the full paper via the PDF or HTML versions linked on this page. The abstract alone is insufficient to answer your detailed technical questions about the method's implementation and evaluation.",
+    "durationMs": 4041,
+    "url": "https://arxiv.org/abs/2505.22068"
+  },
+  "sourceToolAssistantUUID": "c3a5c5fa-913e-4ead-946d-b2d8f1f7cc32",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-11T23:20:09.475Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01N1RtLcmpxoQJa2SvKrRWsg`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2505.22068",
+  "prompt": "Extract the following specific details about R2GRPO:\n1. How does the relevancy reward work exactly? Does it check evidence spans? What does it verify?\n2. Does the model output evidence spans as structured output?\n3. What tasks (NER, RE, EE) does it cover?\n4. What model backbone (size)?\n5. What datasets are used?\n6. Key F1 results on SciERC and other benchmarks?\n7. How is the relevancy reward different from a provenance/evidence grounding reward?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2956a869-58f7-4a69-976b-8504928edb87",
+  "isSidechain": false,
+  "requestId": "req_011CawdyW6why65mt5gfXiZh",
+  "type": "assistant",
+  "uuid": "c476962e-d746-475d-b3a3-782a15ede123",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01P6JNZTBQLGssKaVmZESUMf",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 370,
+      "cache_read_input_tokens": 47607,
+      "output_tokens": 203,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 370,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 203,
+          "cache_read_input_tokens": 47607,
+          "cache_creation_input_tokens": 370,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 370
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-11T23:20:17.326Z_
+
+<details><summary>↩ Tool result · `toolu_01N1RtLcmpxoQJa2SvKrRWsg`</summary>
+
+```text
+# R2GRPO Technical Details
+
+## 1. Relevancy Reward Mechanism
+The relevancy reward checks if cited evidence appears in the original text: `Rrelevancy(oi,x) = Map(ci, evidencegold) - λpenalty·(length(ci)/length(xsentence))²·𝕀(length(ci)>threshold)`. It verifies evidence mapping and penalizes excessively long reasoning blocks relative to the input.
+
+## 2. Evidence Span Output
+Yes, the model generates structured reasoning with explicit evidence citation. The system prompt requires: `"Cite the specific sentence part (e.g., phrase, verb, or structure) supporting the relation."` Models output reasoning in `&lt;think>` tags that must reference source material.
+
+## 3. Task Coverage
+The approach covers three IE subtasks: Named Entity Recognition (NER), Relation Extraction (RE), and End-to-End IE combining both.
+
+## 4. Model Backbone
+The base model is `Qwen2.5-7B-Instruct` (7 billion parameters), fine-tuned using LoRA with rank 16/alpha 32 for SFT and rank 64/alpha 128 for R2GRPO.
+
+## 5. Datasets
+Primary evaluation uses SciER (24k entities, 12k relations across 106 scientific papers) plus out-of-domain (OOD) test sets.
+
+## 6. Key Results
+On SciER: R2GRPO* achieves 84.36 F1 (NER), 66.81 F1 (Relation extraction). Best@5 reaches 88.90 and 74.38 respectively, surpassing supervised BERT-based baselines.
+
+## 7. Relevancy vs. Provenance Distinction
+Relevancy rewards verify evidence spans exist in source material with length penalties. This differs conceptually from pure provenance grounding by explicitly optimizing for concise, well-cited reasoning during RL training.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c476962e-d746-475d-b3a3-782a15ede123",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "36df0e0d-afa7-4c2c-ba5f-ae407917c3c8",
+  "toolUseResult": {
+    "bytes": 448964,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# R2GRPO Technical Details\n\n## 1. Relevancy Reward Mechanism\nThe relevancy reward checks if cited evidence appears in the original text: `Rrelevancy(oi,x) = Map(ci, evidencegold) - λpenalty·(length(ci)/length(xsentence))²·𝕀(length(ci)>threshold)`. It verifies evidence mapping and penalizes excessively long reasoning blocks relative to the input.\n\n## 2. Evidence Span Output\nYes, the model generates structured reasoning with explicit evidence citation. The system prompt requires: `\"Cite the specific sentence part (e.g., phrase, verb, or structure) supporting the relation.\"` Models output reasoning in `&lt;think>` tags that must reference source material.\n\n## 3. Task Coverage\nThe approach covers three IE subtasks: Named Entity Recognition (NER), Relation Extraction (RE), and End-to-End IE combining both.\n\n## 4. Model Backbone\nThe base model is `Qwen2.5-7B-Instruct` (7 billion parameters), fine-tuned using LoRA with rank 16/alpha 32 for SFT and rank 64/alpha 128 for R2GRPO.\n\n## 5. Datasets\nPrimary evaluation uses SciER (24k entities, 12k relations across 106 scientific papers) plus out-of-domain (OOD) test sets.\n\n## 6. Key Results\nOn SciER: R2GRPO* achieves 84.36 F1 (NER), 66.81 F1 (Relation extraction). Best@5 reaches 88.90 and 74.38 respectively, surpassing supervised BERT-based baselines.\n\n## 7. Relevancy vs. Provenance Distinction\nRelevancy rewards verify evidence spans exist in source material with length penalties. This differs conceptually from pure provenance grounding by explicitly optimizing for concise, well-cited reasoning during RL training.",
+    "durationMs": 7846,
+    "url": "https://arxiv.org/html/2505.22068"
+  },
+  "sourceToolAssistantUUID": "c476962e-d746-475d-b3a3-782a15ede123",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-11T23:20:24.543Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01GC6Y5k1m3kUk7YsrsVune3`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2603.19532",
+  "prompt": "Extract the following specific details about EvidenceRL:\n1. How does the NLI-based grounding reward work exactly? What NLI models are used?\n2. Does the model output evidence spans as structured output, or is grounding only an internal reward signal?\n3. What tasks does it apply to (QA, IE, etc.)?\n4. What model backbone?\n5. What datasets are used?\n6. Key results showing the improvement from grounding reward?\n7. Does it use GRPO specifically? What is the reward decomposition?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36df0e0d-afa7-4c2c-ba5f-ae407917c3c8",
+  "isSidechain": false,
+  "requestId": "req_011CawdzUJL1DSQmMXBHfj9F",
+  "type": "assistant",
+  "uuid": "afa0eca9-7bb6-4b1b-940b-f199edadab0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0113LGruoJZq17WVoRT7xm6s",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 677,
+      "cache_read_input_tokens": 47977,
+      "output_tokens": 205,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 677,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 205,
+          "cache_read_input_tokens": 47977,
+          "cache_creation_input_tokens": 677,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 677
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-11T23:20:34.512Z_
+
+<details><summary>↩ Tool result · `toolu_01GC6Y5k1m3kUk7YsrsVune3`</summary>
+
+```text
+# EvidenceRL: Key Technical Details
+
+**1. NLI-Based Grounding Reward**
+The system uses a "Focus-Then-Verify" architecture. Rather than evaluating entire documents, it constructs focused (premise, hypothesis) pairs by combining anchor context with individual evidence sections, then scores each pair using a frozen NLI cross-encoder. The grounding reward computes: "P(entail|p,r(y)) − P(contradict|p,r(y))" for each premise, aggregating via maximum magnitude score.
+
+For the medical domain, it employs "PubMedBERT-MNLI-MedNLI" (biomedical-tuned). For legal tasks, it uses "nli-deberta-v3-large" (general-purpose).
+
+**2. Grounding as Internal Signal**
+Grounding operates purely as a training reward signal; it does not produce explicit evidence spans in structured output. Models generate diagnostic reasoning, and the reward evaluates whether that reasoning is supported by provided evidence retrospectively.
+
+**3. Application Domains**
+Two high-stakes tasks: (a) cardiac diagnosis from clinical notes, (b) legal multiple-choice reasoning with statutory evidence. Both involve ranking/selecting answers supported by retrieved or provided documents.
+
+**4. Model Backbones**
+Evaluation spans multiple families: Llama (3B–70B), Gemma (4B–27B), and GPT-oss (20B–120B) variants, all instruction-tuned and adapted via LoRA.
+
+**5. Datasets**
+MIMIC-IV-Ext Cardiac (3,700 training, 1,000 test cases) with ICD-10 ground truth. BarExam MBE (954 training, 173 test cases) from the Multistate Bar Examination with gold legal passages.
+
+**6. Key Improvements**
+On medical diagnosis, F1@3 improved from 37.0 to 54.5 (Llama-3.2-3B); grounding increased from 47.6 to 78.2. Evidence-based predictions rose from 31.8% to 61.6%, while hallucinations dropped to 2.4%. In legal reasoning, faithfulness increased from 32.8% to 67.6%.
+
+**7. GRPO with Reward Decomposition**
+Yes, uses Group Relative Policy Optimization. The combined reward is: r(x,y) = wf·rf(y) + wc·rc(x,y) + wg·r̃g(x,y), where format reward is binary JSON validity, correctness uses embedding similarity (medical) or exact match (legal), and grounding uses the NLI signal described above. Weights set to (1, 1, 2) emphasizing evidence.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "afa0eca9-7bb6-4b1b-940b-f199edadab0f",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "a51438f8-97c8-4cee-b2f2-c8b85d95ae95",
+  "toolUseResult": {
+    "bytes": 407555,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# EvidenceRL: Key Technical Details\n\n**1. NLI-Based Grounding Reward**\nThe system uses a \"Focus-Then-Verify\" architecture. Rather than evaluating entire documents, it constructs focused (premise, hypothesis) pairs by combining anchor context with individual evidence sections, then scores each pair using a frozen NLI cross-encoder. The grounding reward computes: \"P(entail|p,r(y)) − P(contradict|p,r(y))\" for each premise, aggregating via maximum magnitude score.\n\nFor the medical domain, it employs \"PubMedBERT-MNLI-MedNLI\" (biomedical-tuned). For legal tasks, it uses \"nli-deberta-v3-large\" (general-purpose).\n\n**2. Grounding as Internal Signal**\nGrounding operates purely as a training reward signal; it does not produce explicit evidence spans in structured output. Models generate diagnostic reasoning, and the reward evaluates whether that reasoning is supported by provided evidence retrospectively.\n\n**3. Application Domains**\nTwo high-stakes tasks: (a) cardiac diagnosis from clinical notes, (b) legal multiple-choice reasoning with statutory evidence. Both involve ranking/selecting answers supported by retrieved or provided documents.\n\n**4. Model Backbones**\nEvaluation spans multiple families: Llama (3B–70B), Gemma (4B–27B), and GPT-oss (20B–120B) variants, all instruction-tuned and adapted via LoRA.\n\n**5. Datasets**\nMIMIC-IV-Ext Cardiac (3,700 training, 1,000 test cases) with ICD-10 ground truth. BarExam MBE (954 training, 173 test cases) from the Multistate Bar Examination with gold legal passages.\n\n**6. Key Improvements**\nOn medical diagnosis, F1@3 improved from 37.0 to 54.5 (Llama-3.2-3B); grounding increased from 47.6 to 78.2. Evidence-based predictions rose from 31.8% to 61.6%, while hallucinations dropped to 2.4%. In legal reasoning, faithfulness increased from 32.8% to 67.6%.\n\n**7. GRPO with Reward Decomposition**\nYes, uses Group Relative Policy Optimization. The combined reward is: r(x,y) = wf·rf(y) + wc·rc(x,y) + wg·r̃g(x,y), where format reward is binary JSON validity, correctness uses embedding similarity (medical) or exact match (legal), and grounding uses the NLI signal described above. Weights set to (1, 1, 2) emphasizing evidence.",
+    "durationMs": 9966,
+    "url": "https://arxiv.org/html/2603.19532"
+  },
+  "sourceToolAssistantUUID": "afa0eca9-7bb6-4b1b-940b-f199edadab0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-11T23:20:39.603Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01YW28CEBpVnVH1gmoV7n4s5`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.10633",
+  "prompt": "Extract these specific details about ProUIE:\n1. What exactly is the 'slot values must be exact substrings of the input' constraint? Is it enforced via prompt or via reward?\n2. How does the SFR (stepwise fine-grained reward) work? What does it verify?\n3. Does ProUIE produce evidence spans?\n4. What backbone model does it use?\n5. What datasets and how many? What are the key F1 results?\n6. What is the average F1 score across tasks?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a51438f8-97c8-4cee-b2f2-c8b85d95ae95",
+  "isSidechain": false,
+  "requestId": "req_011Cawe1jjYPY14r5zpJy7Fk",
+  "type": "assistant",
+  "uuid": "a1714503-3576-4f2d-a204-cc4ed81c095c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01N4d2qn7BeTocdmxvq9RSfS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 860,
+      "cache_read_input_tokens": 48654,
+      "output_tokens": 202,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 860,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 202,
+          "cache_read_input_tokens": 48654,
+          "cache_creation_input_tokens": 860,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 860
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-11T23:20:46.472Z_
+
+<details><summary>↩ Tool result · `toolu_01YW28CEBpVnVH1gmoV7n4s5`</summary>
+
+```text
+# ProUIE: Key Technical Details
+
+## 1. Substring Constraint Enforcement
+The "slot values must be exact substrings of the input" requirement is enforced **via prompt design**. The instruction templates specify: *"Slot values must be exact substrings of the input."* This is a constraint communicated to the model during training and inference rather than validated through rewards.
+
+## 2. Stepwise Fine-grained Reward (SFR) Mechanism
+SFR evaluates structural correctness by decomposing outputs into coarse and fine units. It verifies correctness hierarchically—for example, in NER it checks entity types (coarse) then type-entity pairs (fine). The formula combines coverage metrics with F1 scores: *"R=wc cov+wf(f1)γ−λ pen"* where penalties discourage over/under-generation across structural levels.
+
+## 3. Evidence Spans
+The paper does not explicitly indicate that ProUIE produces evidence spans or traces back to source text locations beyond the substring constraint itself.
+
+## 4. Backbone Model
+ProUIE uses *"Qwen3-4B"* as its backbone, making it notably smaller than most baselines compared (7B-34B parameters).
+
+## 5. Datasets and Key Results
+ProUIE evaluates on **36 public datasets** across three tasks. Notable F1 scores include:
+- **NER average**: 79.44 (outperforms UniversalNER 75.88)
+- **RE average**: 71.17 (outperforms InstructUIE 67.98)
+- **NYT RE**: 96.41
+
+## 6. Cross-Task Average
+The paper reports task-specific averages but does not provide an explicit unified F1 across all three tasks combined.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a1714503-3576-4f2d-a204-cc4ed81c095c",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "823706fa-9dda-4cc4-95a0-1853666c7ffd",
+  "toolUseResult": {
+    "bytes": 471581,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ProUIE: Key Technical Details\n\n## 1. Substring Constraint Enforcement\nThe \"slot values must be exact substrings of the input\" requirement is enforced **via prompt design**. The instruction templates specify: *\"Slot values must be exact substrings of the input.\"* This is a constraint communicated to the model during training and inference rather than validated through rewards.\n\n## 2. Stepwise Fine-grained Reward (SFR) Mechanism\nSFR evaluates structural correctness by decomposing outputs into coarse and fine units. It verifies correctness hierarchically—for example, in NER it checks entity types (coarse) then type-entity pairs (fine). The formula combines coverage metrics with F1 scores: *\"R=wc cov+wf(f1)γ−λ pen\"* where penalties discourage over/under-generation across structural levels.\n\n## 3. Evidence Spans\nThe paper does not explicitly indicate that ProUIE produces evidence spans or traces back to source text locations beyond the substring constraint itself.\n\n## 4. Backbone Model\nProUIE uses *\"Qwen3-4B\"* as its backbone, making it notably smaller than most baselines compared (7B-34B parameters).\n\n## 5. Datasets and Key Results\nProUIE evaluates on **36 public datasets** across three tasks. Notable F1 scores include:\n- **NER average**: 79.44 (outperforms UniversalNER 75.88)\n- **RE average**: 71.17 (outperforms InstructUIE 67.98)\n- **NYT RE**: 96.41\n\n## 6. Cross-Task Average\nThe paper reports task-specific averages but does not provide an explicit unified F1 across all three tasks combined.",
+    "durationMs": 6866,
+    "url": "https://arxiv.org/html/2604.10633"
+  },
+  "sourceToolAssistantUUID": "a1714503-3576-4f2d-a204-cc4ed81c095c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 76 · 2026-05-11T23:20:57.486Z_
+
+This is very helpful. Now let me search for the most critical remaining issues — potential missed competitors and the specific ARR deadline.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "823706fa-9dda-4cc4-95a0-1853666c7ffd",
+  "isSidechain": false,
+  "requestId": "req_011Cawe2cvYSBjuBcnmDKw1V",
+  "type": "assistant",
+  "uuid": "79dc2c73-a576-4895-a069-ea3f836e1cca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016x1NCC44cKVct1Wsq4ycTk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 624,
+      "cache_read_input_tokens": 49514,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 624,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 49514,
+          "cache_creation_input_tokens": 624,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 624
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 77 · 2026-05-11T23:20:57.719Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QpcoETKwtDugD1vt7mart6`</summary>
+
+```json
+{
+  "query": "ARR May 2026 submission deadline date EMNLP 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79dc2c73-a576-4895-a069-ea3f836e1cca",
+  "isSidechain": false,
+  "requestId": "req_011Cawe2cvYSBjuBcnmDKw1V",
+  "type": "assistant",
+  "uuid": "862c83c3-8880-4796-9fbb-6085b98a442f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_016x1NCC44cKVct1Wsq4ycTk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 624,
+      "cache_read_input_tokens": 49514,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 624,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 49514,
+          "cache_creation_input_tokens": 624,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 624
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 78 · 2026-05-11T23:21:01.275Z_
+
+<details><summary>↩ Tool result · `toolu_01QpcoETKwtDugD1vt7mart6`</summary>
+
+```text
+Web search results for query: "ARR May 2026 submission deadline date EMNLP 2026"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"Call for workshops: EMNLP & AACL","url":"https://groups.google.com/g/ml-news/c/W-fucfhVto4"}]
+
+Based on the search results, I found the information you're looking for:
+
+The ARR May 2026 submission deadline for EMNLP 2026 is May 25, 2026.
+
+Additional related deadline: After submission, all authors must complete the author registration form by May 27, 2026 EoD AoE (End of Day, Anywhere on Earth).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "862c83c3-8880-4796-9fbb-6085b98a442f",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "904fb138-ad74-4cca-82ff-e95c34260c6a",
+  "toolUseResult": {
+    "query": "ARR May 2026 submission deadline date EMNLP 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UxzwFM8dN6ePwnCumhmTb4",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "Call for workshops: EMNLP & AACL",
+            "url": "https://groups.google.com/g/ml-news/c/W-fucfhVto4"
+          }
+        ]
+      },
+      "Based on the search results, I found the information you're looking for:\n\nThe ARR May 2026 submission deadline for EMNLP 2026 is May 25, 2026.\n\nAdditional related deadline: After submission, all authors must complete the author registration form by May 27, 2026 EoD AoE (End of Day, Anywhere on Earth)."
+    ],
+    "durationSeconds": 3.552037465000001
+  },
+  "sourceToolAssistantUUID": "862c83c3-8880-4796-9fbb-6085b98a442f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 79 · 2026-05-11T23:21:01.278Z_
+
+```json
+{
+  "parentUuid": "904fb138-ad74-4cca-82ff-e95c34260c6a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "9352643c-747f-435a-9205-6d6ec95d7671",
+  "timestamp": "2026-05-11T23:21:01.278Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-11T23:21:05.050Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019akfpbYgCNEgdDjd1fN28h`</summary>
+
+```json
+{
+  "query": "MR-UIE multi-perspective reasoning reinforcement learning universal information extraction arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9352643c-747f-435a-9205-6d6ec95d7671",
+  "isSidechain": false,
+  "requestId": "req_011Cawe3ihbHqvZqAH1asPTi",
+  "type": "assistant",
+  "uuid": "bb795b73-fa75-4a99-bdd8-7307145f8f94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KTDMU3cpJhD7iJcBdPkhMX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 931,
+      "cache_read_input_tokens": 50138,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 931,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 50138,
+          "cache_creation_input_tokens": 931,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 931
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-11T23:21:13.037Z_
+
+<details><summary>↩ Tool result · `toolu_019akfpbYgCNEgdDjd1fN28h`</summary>
+
+```text
+Web search results for query: "MR-UIE multi-perspective reasoning reinforcement learning universal information extraction arXiv"
+
+Links: [{"title":"MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction","url":"https://arxiv.org/html/2509.09082v1"},{"title":"[2509.09082] MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction","url":"https://arxiv.org/abs/2509.09082"},{"title":"MR-UIE: multi-perspective reasoning with reinforcement learning for universal information extraction | Vicinagearth | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s44336-025-00019-8"},{"title":"MR-UIE: Multi-Perspective Reasoning with Reinforcement ...","url":"https://www.arxiv.org/pdf/2509.09082"},{"title":"MR-UIE: multi-perspective reasoning with reinforcement ...","url":"https://link.springer.com/content/pdf/10.1007/s44336-025-00019-8.pdf"},{"title":"[Literature Review] MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction","url":"https://www.themoonlight.io/en/review/mr-uie-multi-perspective-reasoning-with-reinforcement-learning-for-universal-information-extraction"},{"title":"Towards Robust Universal Information Extraction: Dataset, Evaluation, and Solution","url":"https://arxiv.org/html/2503.03201v1"},{"title":"[Literature Review] Towards Robust Universal Information Extraction: Benchmark, Evaluation, and Solution","url":"https://www.themoonlight.io/en/review/towards-robust-universal-information-extraction-benchmark-evaluation-and-solution"},{"title":"[2604.10633] ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction","url":"https://arxiv.org/abs/2604.10633"},{"title":"[2301.03282] Universal Information Extraction as Unified Semantic Matching","url":"https://ar5iv.labs.arxiv.org/html/2301.03282"}]
+
+Based on the search results, I found comprehensive information about the MR-UIE paper:
+
+## MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction
+
+MR-UIE proposes a multi-perspective reasoning for UIE model, which enables large language models to perform universal IE tasks with adaptive reasoning paths.
+
+### Key Problem and Motivation
+
+Large language models' performance in universal information extraction (UIE) remains insufficient, especially when tackling structured output scenarios that involve complex schema descriptions and require multi-step reasoning. To enhance the model's generalization ability, the authors propose integrating reinforcement learning (RL) with multi-perspective reasoning for information extraction (IE) tasks.
+
+### Core Approach
+
+The work transitions LLMs from passive extractors to active reasoners, enabling them to understand not only what to extract but also how to reason. The framework designs a multi-perspective reasoning path generation mechanism that captures diverse and complementary inference styles.
+
+### Key Components
+
+The framework proposes multi-perspective reasoning with: (a) Unified Schema Representation (hierarchical JSON with ci, ai, di) for universal Input-Output Constraints; (b) Multi-Perspective Generation (divergence: 3N strategies across "cognitive", "role", "heuristic dimensions" → convergence: paradigm-based selection → rejection sampling); (c) Adaptive Reasoning (SFT + RL alignment) with multi-grained rewards (Rresult, Rprocess) for optimal path selection.
+
+### Results
+
+Experiments conducted on multiple IE benchmarks demonstrate that MR-UIE consistently elevates extraction accuracy across domains and surpasses state-of-the-art methods on several datasets.
+
+The paper was published on arXiv in September 2025 (arXiv:2509.09082).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bb795b73-fa75-4a99-bdd8-7307145f8f94",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "3e182ce1-5e5c-4c31-85ab-35331dc78970",
+  "toolUseResult": {
+    "query": "MR-UIE multi-perspective reasoning reinforcement learning universal information extraction arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NaY7humvXC1AeQp5MSq1hr",
+        "content": [
+          {
+            "title": "MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction",
+            "url": "https://arxiv.org/html/2509.09082v1"
+          },
+          {
+            "title": "[2509.09082] MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction",
+            "url": "https://arxiv.org/abs/2509.09082"
+          },
+          {
+            "title": "MR-UIE: multi-perspective reasoning with reinforcement learning for universal information extraction | Vicinagearth | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s44336-025-00019-8"
+          },
+          {
+            "title": "MR-UIE: Multi-Perspective Reasoning with Reinforcement ...",
+            "url": "https://www.arxiv.org/pdf/2509.09082"
+          },
+          {
+            "title": "MR-UIE: multi-perspective reasoning with reinforcement ...",
+            "url": "https://link.springer.com/content/pdf/10.1007/s44336-025-00019-8.pdf"
+          },
+          {
+            "title": "[Literature Review] MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction",
+            "url": "https://www.themoonlight.io/en/review/mr-uie-multi-perspective-reasoning-with-reinforcement-learning-for-universal-information-extraction"
+          },
+          {
+            "title": "Towards Robust Universal Information Extraction: Dataset, Evaluation, and Solution",
+            "url": "https://arxiv.org/html/2503.03201v1"
+          },
+          {
+            "title": "[Literature Review] Towards Robust Universal Information Extraction: Benchmark, Evaluation, and Solution",
+            "url": "https://www.themoonlight.io/en/review/towards-robust-universal-information-extraction-benchmark-evaluation-and-solution"
+          },
+          {
+            "title": "[2604.10633] ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction",
+            "url": "https://arxiv.org/abs/2604.10633"
+          },
+          {
+            "title": "[2301.03282] Universal Information Extraction as Unified Semantic Matching",
+            "url": "https://ar5iv.labs.arxiv.org/html/2301.03282"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the MR-UIE paper:\n\n## MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction\n\nMR-UIE proposes a multi-perspective reasoning for UIE model, which enables large language models to perform universal IE tasks with adaptive reasoning paths.\n\n### Key Problem and Motivation\n\nLarge language models' performance in universal information extraction (UIE) remains insufficient, especially when tackling structured output scenarios that involve complex schema descriptions and require multi-step reasoning. To enhance the model's generalization ability, the authors propose integrating reinforcement learning (RL) with multi-perspective reasoning for information extraction (IE) tasks.\n\n### Core Approach\n\nThe work transitions LLMs from passive extractors to active reasoners, enabling them to understand not only what to extract but also how to reason. The framework designs a multi-perspective reasoning path generation mechanism that captures diverse and complementary inference styles.\n\n### Key Components\n\nThe framework proposes multi-perspective reasoning with: (a) Unified Schema Representation (hierarchical JSON with ci, ai, di) for universal Input-Output Constraints; (b) Multi-Perspective Generation (divergence: 3N strategies across \"cognitive\", \"role\", \"heuristic dimensions\" → convergence: paradigm-based selection → rejection sampling); (c) Adaptive Reasoning (SFT + RL alignment) with multi-grained rewards (Rresult, Rprocess) for optimal path selection.\n\n### Results\n\nExperiments conducted on multiple IE benchmarks demonstrate that MR-UIE consistently elevates extraction accuracy across domains and surpasses state-of-the-art methods on several datasets.\n\nThe paper was published on arXiv in September 2025 (arXiv:2509.09082)."
+    ],
+    "durationSeconds": 7.9833137569999675
+  },
+  "sourceToolAssistantUUID": "bb795b73-fa75-4a99-bdd8-7307145f8f94",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "3e182ce1-5e5c-4c31-85ab-35331dc78970",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 83_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "ProvUIE: Grounded information extraction with evidence-span GRPO",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Tool call
+
+_source line 84 · 2026-05-11T23:21:16.588Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01RUq6ToBneQAMUho5rEFtBZ`</summary>
+
+```json
+{
+  "query": "\"evidence span\" \"relation extraction\" \"event extraction\" co-prediction joint output 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e182ce1-5e5c-4c31-85ab-35331dc78970",
+  "isSidechain": false,
+  "requestId": "req_011Cawe4aVW2WWDY7Zr4prSQ",
+  "type": "assistant",
+  "uuid": "1dac0d93-ee26-4970-9d26-0660a8efa147",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RG391LaGbcMxiJm7Y4jJ9m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1047,
+      "cache_read_input_tokens": 51069,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1047,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 51069,
+          "cache_creation_input_tokens": 1047,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1047
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 85 · 2026-05-11T23:21:24.467Z_
+
+<details><summary>↩ Tool result · `toolu_01RUq6ToBneQAMUho5rEFtBZ`</summary>
+
+```text
+Web search results for query: ""evidence span" "relation extraction" "event extraction" co-prediction joint output 2025 2026"
+
+Links: [{"title":"GitHub - dwadden/dygiepp: Span-based system for named entity, relation, and event extraction.","url":"https://github.com/dwadden/dygiepp"},{"title":"[PDF] Entity, Relation, and Event Extraction with Contextualized Span Representations | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Entity,-Relation,-and-Event-Extraction-with-Span-Wadden-Wennberg/fac2368c2ec81ef82fd168d49a0def2f8d1ec7d8"},{"title":"Closed-Domain Event Extraction Literature Review January 2025 v1.0","url":"https://www.turing.ac.uk/sites/default/files/2025-07/arc_event_extraction_lit_review.pdf"},{"title":"Entity, Relation, and Event Extraction with Contextualized Span Representations | Request PDF","url":"https://www.researchgate.net/publication/336996545_Entity_Relation_and_Event_Extraction_with_Contextualized_Span_Representations"},{"title":"[1909.05360] Joint Event and Temporal Relation Extraction with Shared Representations and Structured Prediction","url":"https://ar5iv.labs.arxiv.org/html/1909.05360"},{"title":"Joint event extraction model based on dynamic attention matching and graph attention networks | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-91501-2"},{"title":"[1909.03546] Entity, Relation, and Event Extraction with Contextualized Span Representations","url":"https://arxiv.org/abs/1909.03546"},{"title":"Joint extraction model of entity relations based on decomposition strategy | Scientific Reports","url":"https://www.nature.com/articles/s41598-024-51559-w"},{"title":"Span-based Joint Entity and Relation Extraction with ...","url":"https://arxiv.org/pdf/1909.07755"},{"title":"Event Extraction in Large Language Model: A Holistic Survey of Method, Modality, and Future","url":"https://arxiv.org/html/2512.19537v1"}]
+
+Based on the web search results, I found several relevant papers and resources on evidence span, relation extraction, and event extraction with joint approaches and co-prediction. Here are the key findings:
+
+## Recent Research (2025-2026)
+
+A joint event extraction model leveraging dynamic attention matching and graph attention networks addresses the challenge of handling vague and unfamiliar event trigger words, identifying event nodes containing text event structure features and integrating event structure knowledge. This work was published in Scientific Reports in 2025.
+
+Large language models (LLMs) and multimodal LLMs are changing event extraction, with prompting and generation often producing structured outputs in zero shot or few shot settings. A comprehensive survey on event extraction in LLMs was recently published in December 2025.
+
+## Joint Extraction Approaches
+
+A unified, multi-task framework called DyGIE++ examines capabilities for named entity recognition, relation extraction, and event extraction by enumerating, refining, and scoring text spans designed to capture local (within-sentence) and global (cross-sentence) context.
+
+DEGREE is a joint approach capable of predicting event triggers and arguments simultaneously, and the authors adapted it to become a pipeline model and compared performance, finding that their joint approach does better in a low-resource setting with limited data.
+
+## Co-prediction and Joint Output
+
+Joint extraction of arguments using an encoder-decoder architecture generates role-specific 'span selectors' to identify the start and end positions of each argument, as implemented in the PAIE model.
+
+These recent developments emphasize the importance of joint prediction methods over sequential pipeline approaches, particularly for handling complex extraction tasks involving evidence spans, relations, and events.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1dac0d93-ee26-4970-9d26-0660a8efa147",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "393f4062-31fd-46b1-833b-af7af0582492",
+  "toolUseResult": {
+    "query": "\"evidence span\" \"relation extraction\" \"event extraction\" co-prediction joint output 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UzRoSK7mzPPPpXbcy45i9L",
+        "content": [
+          {
+            "title": "GitHub - dwadden/dygiepp: Span-based system for named entity, relation, and event extraction.",
+            "url": "https://github.com/dwadden/dygiepp"
+          },
+          {
+            "title": "[PDF] Entity, Relation, and Event Extraction with Contextualized Span Representations | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Entity,-Relation,-and-Event-Extraction-with-Span-Wadden-Wennberg/fac2368c2ec81ef82fd168d49a0def2f8d1ec7d8"
+          },
+          {
+            "title": "Closed-Domain Event Extraction Literature Review January 2025 v1.0",
+            "url": "https://www.turing.ac.uk/sites/default/files/2025-07/arc_event_extraction_lit_review.pdf"
+          },
+          {
+            "title": "Entity, Relation, and Event Extraction with Contextualized Span Representations | Request PDF",
+            "url": "https://www.researchgate.net/publication/336996545_Entity_Relation_and_Event_Extraction_with_Contextualized_Span_Representations"
+          },
+          {
+            "title": "[1909.05360] Joint Event and Temporal Relation Extraction with Shared Representations and Structured Prediction",
+            "url": "https://ar5iv.labs.arxiv.org/html/1909.05360"
+          },
+          {
+            "title": "Joint event extraction model based on dynamic attention matching and graph attention networks | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-91501-2"
+          },
+          {
+            "title": "[1909.03546] Entity, Relation, and Event Extraction with Contextualized Span Representations",
+            "url": "https://arxiv.org/abs/1909.03546"
+          },
+          {
+            "title": "Joint extraction model of entity relations based on decomposition strategy | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-024-51559-w"
+          },
+          {
+            "title": "Span-based Joint Entity and Relation Extraction with ...",
+            "url": "https://arxiv.org/pdf/1909.07755"
+          },
+          {
+            "title": "Event Extraction in Large Language Model: A Holistic Survey of Method, Modality, and Future",
+            "url": "https://arxiv.org/html/2512.19537v1"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers and resources on evidence span, relation extraction, and event extraction with joint approaches and co-prediction. Here are the key findings:\n\n## Recent Research (2025-2026)\n\nA joint event extraction model leveraging dynamic attention matching and graph attention networks addresses the challenge of handling vague and unfamiliar event trigger words, identifying event nodes containing text event structure features and integrating event structure knowledge. This work was published in Scientific Reports in 2025.\n\nLarge language models (LLMs) and multimodal LLMs are changing event extraction, with prompting and generation often producing structured outputs in zero shot or few shot settings. A comprehensive survey on event extraction in LLMs was recently published in December 2025.\n\n## Joint Extraction Approaches\n\nA unified, multi-task framework called DyGIE++ examines capabilities for named entity recognition, relation extraction, and event extraction by enumerating, refining, and scoring text spans designed to capture local (within-sentence) and global (cross-sentence) context.\n\nDEGREE is a joint approach capable of predicting event triggers and arguments simultaneously, and the authors adapted it to become a pipeline model and compared performance, finding that their joint approach does better in a low-resource setting with limited data.\n\n## Co-prediction and Joint Output\n\nJoint extraction of arguments using an encoder-decoder architecture generates role-specific 'span selectors' to identify the start and end positions of each argument, as implemented in the PAIE model.\n\nThese recent developments emphasize the importance of joint prediction methods over sequential pipeline approaches, particularly for handling complex extraction tasks involving evidence spans, relations, and events."
+    ],
+    "durationSeconds": 7.875294507000013
+  },
+  "sourceToolAssistantUUID": "1dac0d93-ee26-4970-9d26-0660a8efa147",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 86 · 2026-05-11T23:21:27.338Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01C2DSNcW4ZJYi7E2YQ8XjTZ`</summary>
+
+```json
+{
+  "query": "PARSE schema optimization entity extraction EMNLP 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "393f4062-31fd-46b1-833b-af7af0582492",
+  "isSidechain": false,
+  "requestId": "req_011Cawe5RN6tTGUVYNpACNki",
+  "type": "assistant",
+  "uuid": "3087b88c-1c11-421a-b7d3-0d89dc8b4847",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VkgtJMoGyPayyR2BnrdebA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1033,
+      "cache_read_input_tokens": 52116,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1033,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 52116,
+          "cache_creation_input_tokens": 1033,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1033
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 87 · 2026-05-11T23:21:34.774Z_
+
+<details><summary>↩ Tool result · `toolu_01C2DSNcW4ZJYi7E2YQ8XjTZ`</summary>
+
+```text
+Web search results for query: "PARSE schema optimization entity extraction EMNLP 2025"
+
+Links: [{"title":"[2510.08623] PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction","url":"https://arxiv.org/abs/2510.08623"},{"title":"PARSE: LLM driven schema optimization for reliable entity extraction - Amazon Science","url":"https://www.amazon.science/publications/parse-llm-driven-schema-optimization-for-reliable-entity-extraction"},{"title":"PARSE: LLM Driven Schema Optimization for Reliable ...","url":"https://aclanthology.org/2025.emnlp-industry.184.pdf"},{"title":"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction","url":"https://arxiv.org/html/2510.08623v1"},{"title":"EMNLP 2025 - Amazon Science","url":"https://www.amazon.science/conferences-and-events/emnlp-2025"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=13775&show=25"},{"title":"Machine Learning Oct 2025","url":"https://arxiv.org/list/cs.LG/2025-10?skip=3600&show=250"},{"title":"(PDF) PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction","url":"https://www.researchgate.net/publication/396458126_PARSE_LLM_Driven_Schema_Optimization_for_Reliable_Entity_Extraction"},{"title":"SLOT: Structuring the Output of Large Language Models","url":"https://aclanthology.org/2025.emnlp-industry.32.pdf"},{"title":"Accepted Industry Track Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/ind_papers/"}]
+
+Based on the search results, here's what I found about PARSE:
+
+PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction is a paper accepted at EMNLP 2025, which took place in Suzhou, China from November 4 - 9, 2025.
+
+PARSE is a novel system with two synergistic components: ARCHITECT, which autonomously optimizes JSON schemas for LLM consumption while maintaining backward compatibility through RELAY (an integrated code generation system), and SCOPE, which implements reflection-based extraction with combined static and LLM-based guardrails.
+
+The research addresses a key challenge: Recent approaches apply large language models directly to extraction tasks using existing JSON schemas, often with constraint decoding or reinforcement learning approaches to ensure syntactic validity, but treat JSON schemas as static contracts designed for human developers, leading to suboptimal extraction performance, frequent hallucinations, and unreliable agent behavior when schemas contain ambiguous or incomplete specifications.
+
+In terms of results, PARSE achieved up to 64.7% improvement in extraction accuracy on SWDE with combined framework improvements reaching 10% across models, while reducing extraction errors by 92% within the first retry and maintaining practical latency. The evaluation covered three datasets including Schema-Guided Dialogue (SGD), Structured Web Data Extraction (SWDE), and internal retail conversation data.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3087b88c-1c11-421a-b7d3-0d89dc8b4847",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "79358083-4300-471b-a932-7e307ce3a700",
+  "toolUseResult": {
+    "query": "PARSE schema optimization entity extraction EMNLP 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Mkv2VxM6gK8cbxRD6d8iQV",
+        "content": [
+          {
+            "title": "[2510.08623] PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction",
+            "url": "https://arxiv.org/abs/2510.08623"
+          },
+          {
+            "title": "PARSE: LLM driven schema optimization for reliable entity extraction - Amazon Science",
+            "url": "https://www.amazon.science/publications/parse-llm-driven-schema-optimization-for-reliable-entity-extraction"
+          },
+          {
+            "title": "PARSE: LLM Driven Schema Optimization for Reliable ...",
+            "url": "https://aclanthology.org/2025.emnlp-industry.184.pdf"
+          },
+          {
+            "title": "PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction",
+            "url": "https://arxiv.org/html/2510.08623v1"
+          },
+          {
+            "title": "EMNLP 2025 - Amazon Science",
+            "url": "https://www.amazon.science/conferences-and-events/emnlp-2025"
+          },
+          {
+            "title": "Computation and Language 2025",
+            "url": "https://arxiv.org/list/cs.CL/2025?skip=13775&show=25"
+          },
+          {
+            "title": "Machine Learning Oct 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-10?skip=3600&show=250"
+          },
+          {
+            "title": "(PDF) PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction",
+            "url": "https://www.researchgate.net/publication/396458126_PARSE_LLM_Driven_Schema_Optimization_for_Reliable_Entity_Extraction"
+          },
+          {
+            "title": "SLOT: Structuring the Output of Large Language Models",
+            "url": "https://aclanthology.org/2025.emnlp-industry.32.pdf"
+          },
+          {
+            "title": "Accepted Industry Track Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/ind_papers/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about PARSE:\n\nPARSE: LLM Driven Schema Optimization for Reliable Entity Extraction is a paper accepted at EMNLP 2025, which took place in Suzhou, China from November 4 - 9, 2025.\n\nPARSE is a novel system with two synergistic components: ARCHITECT, which autonomously optimizes JSON schemas for LLM consumption while maintaining backward compatibility through RELAY (an integrated code generation system), and SCOPE, which implements reflection-based extraction with combined static and LLM-based guardrails.\n\nThe research addresses a key challenge: Recent approaches apply large language models directly to extraction tasks using existing JSON schemas, often with constraint decoding or reinforcement learning approaches to ensure syntactic validity, but treat JSON schemas as static contracts designed for human developers, leading to suboptimal extraction performance, frequent hallucinations, and unreliable agent behavior when schemas contain ambiguous or incomplete specifications.\n\nIn terms of results, PARSE achieved up to 64.7% improvement in extraction accuracy on SWDE with combined framework improvements reaching 10% across models, while reducing extraction errors by 92% within the first retry and maintaining practical latency. The evaluation covered three datasets including Schema-Guided Dialogue (SGD), Structured Web Data Extraction (SWDE), and internal retail conversation data."
+    ],
+    "durationSeconds": 7.430800384000002
+  },
+  "sourceToolAssistantUUID": "3087b88c-1c11-421a-b7d3-0d89dc8b4847",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-11T23:21:38.597Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01ALDnnXXMrdEKfibc6JWMCe`</summary>
+
+```json
+{
+  "query": "FactNet billion-scale knowledge graph multilingual factual grounding arXiv 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79358083-4300-471b-a932-7e307ce3a700",
+  "isSidechain": false,
+  "requestId": "req_011Cawe6Ci8JQeyJsCfzRD3E",
+  "type": "assistant",
+  "uuid": "10305970-b71c-43fb-a6c0-535673a7d644",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GdQajxRvTt7CJsMUUVfa1S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 872,
+      "cache_read_input_tokens": 53149,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 872,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 53149,
+          "cache_creation_input_tokens": 872,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 872
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-11T23:21:45.568Z_
+
+<details><summary>↩ Tool result · `toolu_01ALDnnXXMrdEKfibc6JWMCe`</summary>
+
+```text
+Web search results for query: "FactNet billion-scale knowledge graph multilingual factual grounding arXiv 2026"
+
+Links: [{"title":"FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding","url":"https://arxiv.org/html/2602.03417"},{"title":"[2602.03417] FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding","url":"https://arxiv.org/abs/2602.03417"},{"title":"GitHub - yl-shen/factnet: FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding · GitHub","url":"https://github.com/yl-shen/factnet"},{"title":"(PDF) FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding","url":"https://www.researchgate.net/publication/400415601_FactNet_A_Billion-Scale_Knowledge_Graph_for_Multilingual_Factual_Grounding"},{"title":"FactNet: Multilingual Knowledge Graph & FNAR","url":"https://www.emergentmind.com/topics/factnet"},{"title":"FactNet-Bench: Multilingual KG & Fact Checking","url":"https://www.emergentmind.com/topics/factnet-bench"},{"title":"Preprint MULTIHAL: MULTILINGUAL DATASET FOR KNOWLEDGE-GRAPH","url":"https://arxiv.org/pdf/2505.14101"},{"title":"Improving Factuality in LLMs via Inference-Time Knowledge Graph Construction","url":"https://arxiv.org/html/2509.03540"},{"title":"GitHub - zjukg/KG-LLM-Papers: [Paper List] Papers integrating knowledge graphs (KGs) and large language models (LLMs) · GitHub","url":"https://github.com/zjukg/KG-LLM-Papers"},{"title":"Grounding Multilingual Multimodal LLMs With Cultural Knowledge","url":"https://arxiv.org/html/2508.07414"}]
+
+I found the paper! Here's what I found about FactNet:
+
+## Overview
+
+FactNet is a massive, open-source resource designed to unify 1.7 billion atomic assertions with 3.01 billion auditable evidence pointers derived exclusively from 316 Wikipedia editions. FactNet is the only resource combining billion-scale coverage and broad multilinguality with native, span-level evidence grounding.
+
+## Key Features
+
+While LLMs exhibit remarkable fluency, their utility is often compromised by factual hallucinations and a lack of traceable provenance. FactNet addresses this by employing a strictly deterministic construction pipeline, ensuring that every evidence unit is recoverable with byte-level precision.
+
+The graph couples Wikidata claims with native evidence (from Wikipedia) via three layers: FactStatement (atomic unit), FactSense (grounded span with byte-offsets), and FactSynset (cross-lingual normalization).
+
+## Quality and Evaluation
+
+Extensive auditing confirms a high grounding precision of 92.1%, even in long-tail languages.
+
+## Benchmark Suite
+
+FactNet-Bench is a comprehensive evaluation suite for Knowledge Graph Completion, Question Answering, and Fact Checking. The paper was published on arXiv on February 3, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "10305970-b71c-43fb-a6c0-535673a7d644",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "97bfae37-359d-4b32-b6dd-a2dc5b546f81",
+  "toolUseResult": {
+    "query": "FactNet billion-scale knowledge graph multilingual factual grounding arXiv 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018Qqy8uTMd327wRDi3P5NaT",
+        "content": [
+          {
+            "title": "FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding",
+            "url": "https://arxiv.org/html/2602.03417"
+          },
+          {
+            "title": "[2602.03417] FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding",
+            "url": "https://arxiv.org/abs/2602.03417"
+          },
+          {
+            "title": "GitHub - yl-shen/factnet: FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding · GitHub",
+            "url": "https://github.com/yl-shen/factnet"
+          },
+          {
+            "title": "(PDF) FactNet: A Billion-Scale Knowledge Graph for Multilingual Factual Grounding",
+            "url": "https://www.researchgate.net/publication/400415601_FactNet_A_Billion-Scale_Knowledge_Graph_for_Multilingual_Factual_Grounding"
+          },
+          {
+            "title": "FactNet: Multilingual Knowledge Graph & FNAR",
+            "url": "https://www.emergentmind.com/topics/factnet"
+          },
+          {
+            "title": "FactNet-Bench: Multilingual KG & Fact Checking",
+            "url": "https://www.emergentmind.com/topics/factnet-bench"
+          },
+          {
+            "title": "Preprint MULTIHAL: MULTILINGUAL DATASET FOR KNOWLEDGE-GRAPH",
+            "url": "https://arxiv.org/pdf/2505.14101"
+          },
+          {
+            "title": "Improving Factuality in LLMs via Inference-Time Knowledge Graph Construction",
+            "url": "https://arxiv.org/html/2509.03540"
+          },
+          {
+            "title": "GitHub - zjukg/KG-LLM-Papers: [Paper List] Papers integrating knowledge graphs (KGs) and large language models (LLMs) · GitHub",
+            "url": "https://github.com/zjukg/KG-LLM-Papers"
+          },
+          {
+            "title": "Grounding Multilingual Multimodal LLMs With Cultural Knowledge",
+            "url": "https://arxiv.org/html/2508.07414"
+          }
+        ]
+      },
+      "I found the paper! Here's what I found about FactNet:\n\n## Overview\n\nFactNet is a massive, open-source resource designed to unify 1.7 billion atomic assertions with 3.01 billion auditable evidence pointers derived exclusively from 316 Wikipedia editions. FactNet is the only resource combining billion-scale coverage and broad multilinguality with native, span-level evidence grounding.\n\n## Key Features\n\nWhile LLMs exhibit remarkable fluency, their utility is often compromised by factual hallucinations and a lack of traceable provenance. FactNet addresses this by employing a strictly deterministic construction pipeline, ensuring that every evidence unit is recoverable with byte-level precision.\n\nThe graph couples Wikidata claims with native evidence (from Wikipedia) via three layers: FactStatement (atomic unit), FactSense (grounded span with byte-offsets), and FactSynset (cross-lingual normalization).\n\n## Quality and Evaluation\n\nExtensive auditing confirms a high grounding precision of 92.1%, even in long-tail languages.\n\n## Benchmark Suite\n\nFactNet-Bench is a comprehensive evaluation suite for Knowledge Graph Completion, Question Answering, and Fact Checking. The paper was published on arXiv on February 3, 2026."
+    ],
+    "durationSeconds": 6.9673730099999815
+  },
+  "sourceToolAssistantUUID": "10305970-b71c-43fb-a6c0-535673a7d644",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 90 · 2026-05-11T23:21:49.088Z_
+
+Good, FactNet is verified as real. Now let me check for the most critical potential competitors - anyone doing evidence/provenance + GRPO + IE jointly that might have been missed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97bfae37-359d-4b32-b6dd-a2dc5b546f81",
+  "isSidechain": false,
+  "requestId": "req_011Cawe6yXu4GWGhpN1MbNyE",
+  "type": "assistant",
+  "uuid": "e9b350e6-b469-4d7a-9357-2155a0dc99b3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ros49JhYxJZ3LfuUtCaq1m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 54021,
+      "output_tokens": 115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 903,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 115,
+          "cache_read_input_tokens": 54021,
+          "cache_creation_input_tokens": 903,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 903
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 91 · 2026-05-11T23:21:49.833Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016R1JM9e88FxovsuEPvMS4y`</summary>
+
+```json
+{
+  "query": "verifiable reward information extraction grounding provenance GRPO 2026 arXiv NER relation event"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9b350e6-b469-4d7a-9357-2155a0dc99b3",
+  "isSidechain": false,
+  "requestId": "req_011Cawe6yXu4GWGhpN1MbNyE",
+  "type": "assistant",
+  "uuid": "38c50438-1624-44cb-bc38-032b29db08b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ros49JhYxJZ3LfuUtCaq1m",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 54021,
+      "output_tokens": 115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 903,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 115,
+          "cache_read_input_tokens": 54021,
+          "cache_creation_input_tokens": 903,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 903
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 92 · 2026-05-11T23:22:01.101Z_
+
+<details><summary>↩ Tool result · `toolu_016R1JM9e88FxovsuEPvMS4y`</summary>
+
+```text
+Web search results for query: "verifiable reward information extraction grounding provenance GRPO 2026 arXiv NER relation event"
+
+Links: [{"title":"Improving Vision-language Models with Perception-centric Process Reward Models","url":"https://arxiv.org/html/2604.24583"},{"title":"Reinforcement Learning with Verifiable Rewards: GRPO’s Effective Loss, Dynamics, and Success Amplification","url":"https://arxiv.org/html/2503.06639v4"},{"title":"Lessons from Training Grounded LLMs with Verifiable Rewards","url":"https://arxiv.org/html/2506.15522"},{"title":"Knowledge Graphs are Implicit Reward Models: Path-Derived Signals Enable Compositional Reasoning","url":"https://arxiv.org/html/2601.15160v1"},{"title":"From Verifiable Dot to Reward Chain: Harnessing Verifiable Reference-based Rewards for Reinforcement Learning of Open-ended Generation","url":"https://arxiv.org/html/2601.18533v1"},{"title":"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLVR"},{"title":"Event Extraction in Large Language Model: A Holistic Survey of Method, Modality, and Future","url":"https://arxiv.org/html/2512.19537v1"},{"title":"MIRL: Mutual Information-Guided Reinforcement Learning for Vision-Language Models","url":"https://arxiv.org/html/2605.01520"},{"title":"Execution-Grounded Credit Assignment for GRPO in Code GenerationAccepted to the ICLR 2026 Workshop on Scaling Post-Training for LLMs (SPOT).","url":"https://arxiv.org/html/2603.16158"},{"title":"Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization","url":"https://arxiv.org/html/2604.08476"}]
+
+Based on the web search results, I found several relevant papers on arXiv from 2026 related to verifiable rewards, GRPO, and information extraction with grounding. Here are the key findings:
+
+## Papers on Verifiable Rewards and GRPO
+
+Group Relative Policy Optimization (GRPO) was introduced in 2024 and used to train DeepSeek–R1 for promoting reasoning in LLMs under verifiable (binary) rewards.
+
+Researchers have used the GRPO method to train models using verifiable outcome-based rewards targeting answer correctness, citation sufficiency, and refusal quality, without requiring gold reasoning traces or expensive annotations.
+
+## Grounding and Information Extraction
+
+By comparing the reasoning and assertions of a model during post-training against relevant triples and the chain of axiomatic facts required to solve the problem, researchers can turn the match or mismatch into a high-quality reward signal, rewarding the model to the degree its response is supported by verifiable domain knowledge.
+
+A process reward model can enable token-level error grounding, which extracts image-related claims from the response and compares them one by one with the visual evidence in the image, ultimately returning claims that contain perceptual errors.
+
+## Event Extraction and NER
+
+For reliability, event schemas and slot constraints provide concrete interfaces for grounding and verification, narrowing the space of free-form generation and supplying anchors for checking and correction.
+
+Sequence labeling methods for event extraction use a labeling system similar to named entity recognition (NER) (such as BIO tags) and use CRF for label prediction.
+
+The search results show active recent research (2025-2026) on combining verifiable rewards with various information extraction tasks including NER, event extraction, and relation extraction through the GRPO framework.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "38c50438-1624-44cb-bc38-032b29db08b5",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "df5d01d7-1185-4c00-b76f-acb1ccd8d256",
+  "toolUseResult": {
+    "query": "verifiable reward information extraction grounding provenance GRPO 2026 arXiv NER relation event",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015VGWjGScc5WwqrMCoDsm8i",
+        "content": [
+          {
+            "title": "Improving Vision-language Models with Perception-centric Process Reward Models",
+            "url": "https://arxiv.org/html/2604.24583"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards: GRPO’s Effective Loss, Dynamics, and Success Amplification",
+            "url": "https://arxiv.org/html/2503.06639v4"
+          },
+          {
+            "title": "Lessons from Training Grounded LLMs with Verifiable Rewards",
+            "url": "https://arxiv.org/html/2506.15522"
+          },
+          {
+            "title": "Knowledge Graphs are Implicit Reward Models: Path-Derived Signals Enable Compositional Reasoning",
+            "url": "https://arxiv.org/html/2601.15160v1"
+          },
+          {
+            "title": "From Verifiable Dot to Reward Chain: Harnessing Verifiable Reference-based Rewards for Reinforcement Learning of Open-ended Generation",
+            "url": "https://arxiv.org/html/2601.18533v1"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-RLVR"
+          },
+          {
+            "title": "Event Extraction in Large Language Model: A Holistic Survey of Method, Modality, and Future",
+            "url": "https://arxiv.org/html/2512.19537v1"
+          },
+          {
+            "title": "MIRL: Mutual Information-Guided Reinforcement Learning for Vision-Language Models",
+            "url": "https://arxiv.org/html/2605.01520"
+          },
+          {
+            "title": "Execution-Grounded Credit Assignment for GRPO in Code GenerationAccepted to the ICLR 2026 Workshop on Scaling Post-Training for LLMs (SPOT).",
+            "url": "https://arxiv.org/html/2603.16158"
+          },
+          {
+            "title": "Faithful GRPO: Improving Visual Spatial Reasoning in Multimodal Language Models via Constrained Policy Optimization",
+            "url": "https://arxiv.org/html/2604.08476"
+          }
+        ]
+      },
+      "Based on the web search results, I found several relevant papers on arXiv from 2026 related to verifiable rewards, GRPO, and information extraction with grounding. Here are the key findings:\n\n## Papers on Verifiable Rewards and GRPO\n\nGroup Relative Policy Optimization (GRPO) was introduced in 2024 and used to train DeepSeek–R1 for promoting reasoning in LLMs under verifiable (binary) rewards.\n\nResearchers have used the GRPO method to train models using verifiable outcome-based rewards targeting answer correctness, citation sufficiency, and refusal quality, without requiring gold reasoning traces or expensive annotations.\n\n## Grounding and Information Extraction\n\nBy comparing the reasoning and assertions of a model during post-training against relevant triples and the chain of axiomatic facts required to solve the problem, researchers can turn the match or mismatch into a high-quality reward signal, rewarding the model to the degree its response is supported by verifiable domain knowledge.\n\nA process reward model can enable token-level error grounding, which extracts image-related claims from the response and compares them one by one with the visual evidence in the image, ultimately returning claims that contain perceptual errors.\n\n## Event Extraction and NER\n\nFor reliability, event schemas and slot constraints provide concrete interfaces for grounding and verification, narrowing the space of free-form generation and supplying anchors for checking and correction.\n\nSequence labeling methods for event extraction use a labeling system similar to named entity recognition (NER) (such as BIO tags) and use CRF for label prediction.\n\nThe search results show active recent research (2025-2026) on combining verifiable rewards with various information extraction tasks including NER, event extraction, and relation extraction through the GRPO framework."
+    ],
+    "durationSeconds": 11.260371525000025
+  },
+  "sourceToolAssistantUUID": "38c50438-1624-44cb-bc38-032b29db08b5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 93_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "df5d01d7-1185-4c00-b76f-acb1ccd8d256",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 94_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "ProvUIE: Grounded information extraction with evidence-span GRPO",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-11T23:22:04.604Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VSFC33i5tuLhiHRxwTSEP4`</summary>
+
+```json
+{
+  "query": "\"grounded LLMs\" \"verifiable rewards\" lessons training 2026 arXiv information extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df5d01d7-1185-4c00-b76f-acb1ccd8d256",
+  "isSidechain": false,
+  "requestId": "req_011Cawe87xgZw4c6QVUskKVn",
+  "type": "assistant",
+  "uuid": "b25f048e-00b1-4d61-8c52-d3bee74d6c66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KnVu55FfEDy9oUiuqD2xK7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1061,
+      "cache_read_input_tokens": 54924,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1061,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 54924,
+          "cache_creation_input_tokens": 1061,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1061
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-11T23:22:12.092Z_
+
+<details><summary>↩ Tool result · `toolu_01VSFC33i5tuLhiHRxwTSEP4`</summary>
+
+```text
+Web search results for query: ""grounded LLMs" "verifiable rewards" lessons training 2026 arXiv information extraction"
+
+Links: [{"title":"[2506.15522] Lessons from Training Grounded LLMs with Verifiable Rewards","url":"https://arxiv.org/abs/2506.15522"},{"title":"[2506.15522v1] Lessons from Training Grounded LLMs with Verifiable Rewards","url":"http://arxiv.org/abs/2506.15522v1"},{"title":"Lessons from Training Grounded LLMs with Verifiable Rewards","url":"https://arxiv.org/html/2506.15522"},{"title":"Lessons from Training Grounded LLMs with Verifiable Rewards - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025arXiv250615522S/abstract"},{"title":"GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub","url":"https://github.com/opendilab/awesome-RLVR"},{"title":"[2604.09855] Instructing LLMs to Negotiate using Reinforcement Learning with Verifiable Rewards","url":"https://arxiv.org/abs/2604.09855"},{"title":"Instructing LLMs to Negotiate using Reinforcement Learning with Verifiable Rewards","url":"https://arxiv.org/html/2604.09855"},{"title":"[PDF] Lessons from Training Grounded LLMs with Verifiable Rewards | Semantic Scholar","url":"https://www.semanticscholar.org/paper/Lessons-from-Training-Grounded-LLMs-with-Verifiable-Sim-Pala/6e5a822feead0cce3393356d2af14dee31a5877d"},{"title":"Grounded in Reality: Learning and Deploying Proactive LLM from Offline Logs","url":"https://arxiv.org/html/2510.25441"},{"title":"Teaching Models to Teach Themselves: Reasoning at the Edge of Learnability","url":"https://arxiv.org/pdf/2601.18778"}]
+
+I found the paper you were looking for! Here are the key findings from the search results:
+
+## "Lessons from Training Grounded LLMs with Verifiable Rewards"
+
+This work explores how reinforcement learning (RL) and internal reasoning can enhance grounding in LLMs, using the GRPO (Group Relative Policy Optimization) method to train models using verifiable outcome-based rewards.
+
+### Main Problem
+Generating grounded and trustworthy responses remains a key challenge for LLMs, as retrieval-augmented generation (RAG) with citation-based grounding often falls short—instruction-tuned models frequently fail to find explicitly stated answers, cite incorrectly, or refuse when evidence is available.
+
+### Key Approach
+The researchers use GRPO with verifiable outcome-based rewards targeting answer correctness, citation sufficiency, and refusal quality, without requiring gold reasoning traces or expensive annotations.
+
+### Results
+Through comprehensive experiments across ASQA, QAMPARI, ELI5, and ExpertQA, reasoning-augmented models significantly outperform instruction-only variants, especially in handling unanswerable queries and generating well-cited responses.
+
+### Key Insights
+A two-stage training setup—first optimizing answer and citation behavior, then refusal—further improves grounding by stabilizing the learning signal, and combining instruction tuning with GRPO enhances performance on long-form, generative QA tasks, highlighting the value of reasoning, stage-wise optimization, and outcome-driven RL.
+
+The paper was published on arXiv on June 18, 2025 (arXiv:2506.15522).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b25f048e-00b1-4d61-8c52-d3bee74d6c66",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "4768295c-3e43-447e-b8da-0664f5d9632e",
+  "toolUseResult": {
+    "query": "\"grounded LLMs\" \"verifiable rewards\" lessons training 2026 arXiv information extraction",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Rhmn2sEc79zKQQWWLV8qH6",
+        "content": [
+          {
+            "title": "[2506.15522] Lessons from Training Grounded LLMs with Verifiable Rewards",
+            "url": "https://arxiv.org/abs/2506.15522"
+          },
+          {
+            "title": "[2506.15522v1] Lessons from Training Grounded LLMs with Verifiable Rewards",
+            "url": "http://arxiv.org/abs/2506.15522v1"
+          },
+          {
+            "title": "Lessons from Training Grounded LLMs with Verifiable Rewards",
+            "url": "https://arxiv.org/html/2506.15522"
+          },
+          {
+            "title": "Lessons from Training Grounded LLMs with Verifiable Rewards - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025arXiv250615522S/abstract"
+          },
+          {
+            "title": "GitHub - opendilab/awesome-RLVR: A curated list of reinforcement learning with verifiable rewards (continually updated) · GitHub",
+            "url": "https://github.com/opendilab/awesome-RLVR"
+          },
+          {
+            "title": "[2604.09855] Instructing LLMs to Negotiate using Reinforcement Learning with Verifiable Rewards",
+            "url": "https://arxiv.org/abs/2604.09855"
+          },
+          {
+            "title": "Instructing LLMs to Negotiate using Reinforcement Learning with Verifiable Rewards",
+            "url": "https://arxiv.org/html/2604.09855"
+          },
+          {
+            "title": "[PDF] Lessons from Training Grounded LLMs with Verifiable Rewards | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/Lessons-from-Training-Grounded-LLMs-with-Verifiable-Sim-Pala/6e5a822feead0cce3393356d2af14dee31a5877d"
+          },
+          {
+            "title": "Grounded in Reality: Learning and Deploying Proactive LLM from Offline Logs",
+            "url": "https://arxiv.org/html/2510.25441"
+          },
+          {
+            "title": "Teaching Models to Teach Themselves: Reasoning at the Edge of Learnability",
+            "url": "https://arxiv.org/pdf/2601.18778"
+          }
+        ]
+      },
+      "I found the paper you were looking for! Here are the key findings from the search results:\n\n## \"Lessons from Training Grounded LLMs with Verifiable Rewards\"\n\nThis work explores how reinforcement learning (RL) and internal reasoning can enhance grounding in LLMs, using the GRPO (Group Relative Policy Optimization) method to train models using verifiable outcome-based rewards.\n\n### Main Problem\nGenerating grounded and trustworthy responses remains a key challenge for LLMs, as retrieval-augmented generation (RAG) with citation-based grounding often falls short—instruction-tuned models frequently fail to find explicitly stated answers, cite incorrectly, or refuse when evidence is available.\n\n### Key Approach\nThe researchers use GRPO with verifiable outcome-based rewards targeting answer correctness, citation sufficiency, and refusal quality, without requiring gold reasoning traces or expensive annotations.\n\n### Results\nThrough comprehensive experiments across ASQA, QAMPARI, ELI5, and ExpertQA, reasoning-augmented models significantly outperform instruction-only variants, especially in handling unanswerable queries and generating well-cited responses.\n\n### Key Insights\nA two-stage training setup—first optimizing answer and citation behavior, then refusal—further improves grounding by stabilizing the learning signal, and combining instruction tuning with GRPO enhances performance on long-form, generative QA tasks, highlighting the value of reasoning, stage-wise optimization, and outcome-driven RL.\n\nThe paper was published on arXiv on June 18, 2025 (arXiv:2506.15522)."
+    ],
+    "durationSeconds": 7.482476543999976
+  },
+  "sourceToolAssistantUUID": "b25f048e-00b1-4d61-8c52-d3bee74d6c66",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 97 · 2026-05-11T23:22:15.299Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NSquZD2Zzio9co2TvyMNHC`</summary>
+
+```json
+{
+  "query": "Extract-0 specialized language model document information extraction reinforcement learning GRPO"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4768295c-3e43-447e-b8da-0664f5d9632e",
+  "isSidechain": false,
+  "requestId": "req_011Cawe8vxAz9p4DjG6Kubhz",
+  "type": "assistant",
+  "uuid": "8a4127d2-0bd4-4bdd-933a-b512e00149fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CMjQV9g562XXP3uYtrrMg9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1008,
+      "cache_read_input_tokens": 55985,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1008,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 55985,
+          "cache_creation_input_tokens": 1008,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1008
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 98 · 2026-05-11T23:22:22.800Z_
+
+<details><summary>↩ Tool result · `toolu_01NSquZD2Zzio9co2TvyMNHC`</summary>
+
+```text
+Web search results for query: "Extract-0 specialized language model document information extraction reinforcement learning GRPO"
+
+Links: [{"title":"[2509.22906] Extract-0: A Specialized Language Model for Document Information Extraction","url":"https://arxiv.org/abs/2509.22906"},{"title":"GitHub - herniqeu/extract0: Extract-0: A Specialized Language Model for Document Information · GitHub","url":"https://github.com/herniqeu/extract0"},{"title":"EXTRACT-0: A SPECIALIZED LANGUAGE MODEL FOR DOCUMENT INFORMATION EXTRACTION","url":"https://arxiv.org/pdf/2509.22906"},{"title":"Paper page - Extract-0: A Specialized Language Model for Document Information Extraction","url":"https://huggingface.co/papers/2509.22906"},{"title":"HenriqueGodoy/extract-0 · Datasets at Hugging Face","url":"https://huggingface.co/datasets/HenriqueGodoy/extract-0"},{"title":"A Smaller Model Outperforms GPT-4.1 on Document Information Extraction for $196 | by AI Engineering | Oct, 2025 | Medium","url":"https://ai-engineering-trend.medium.com/a-smaller-model-outperforms-gpt-4-1-on-document-information-extraction-for-196-9e25b39d9538"},{"title":"A better way of extracting information with LLMs: GRPO Experiment","url":"https://infinitelambda.com/extract-info-llm-grpo/"},{"title":"Extract-0: A specialized language model for document information extraction | Hacker News","url":"https://news.ycombinator.com/item?id=45427634"},{"title":"MORE-R1: Guiding LVLM for Multimodal Object-Entity Relation Extraction via Stepwise Reasoning with Reinforcement Learning","url":"https://arxiv.org/html/2603.09478"},{"title":"Structured information extraction from scientific text with large language models | Nature Communications","url":"https://www.nature.com/articles/s41467-024-45563-x"}]
+
+Based on the search results, here's what I found about Extract-0:
+
+## Overview
+
+Extract-0 is a 7-billion parameter language model specifically optimized for document information extraction that achieves performance exceeding models with parameter counts several orders of magnitude larger.
+
+## Training Methodology
+
+Through a novel combination of synthetic data generation, supervised fine-tuning with Low-Rank Adaptation (LoRA), and reinforcement learning via Group Relative Policy Optimization (GRPO), Extract-0 achieves a mean reward of 0.573 on a benchmark of 1,000 diverse document extraction tasks, outperforming GPT-4.1 (0.457), o3 (0.464), and GPT-4.1-2025 (0.459).
+
+The training methodology employs a memory-preserving synthetic data generation pipeline that produces 280,128 training examples from diverse document sources, followed by parameter-efficient fine-tuning that modifies only 0.53% of model weights.
+
+## Reward Function
+
+The reinforcement learning phase introduces a novel semantic similarity-based reward function that handles the inherent ambiguity in information extraction tasks. The Group Relative Policy Optimization (GRPO) method uses semantic rewards and strict JSON format validation, which allows the model to accept expressions that are worded differently but convey the same meaning.
+
+## Performance and Efficiency
+
+The model's performance improvement of 25% over GPT-4.1 (0.573 vs 0.457 mean reward) with substantially fewer parameters suggests that targeted approaches may offer advantages in resource-constrained environments. The total training cost of $196 (using a single H100 GPU) demonstrates that specialized extraction models can be developed with modest computational budgets.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8a4127d2-0bd4-4bdd-933a-b512e00149fd",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "01fc68a8-f2c2-4e2d-9591-81b2c8f7d861",
+  "toolUseResult": {
+    "query": "Extract-0 specialized language model document information extraction reinforcement learning GRPO",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TmAgFZi1w4qDooHRNvCpiD",
+        "content": [
+          {
+            "title": "[2509.22906] Extract-0: A Specialized Language Model for Document Information Extraction",
+            "url": "https://arxiv.org/abs/2509.22906"
+          },
+          {
+            "title": "GitHub - herniqeu/extract0: Extract-0: A Specialized Language Model for Document Information · GitHub",
+            "url": "https://github.com/herniqeu/extract0"
+          },
+          {
+            "title": "EXTRACT-0: A SPECIALIZED LANGUAGE MODEL FOR DOCUMENT INFORMATION EXTRACTION",
+            "url": "https://arxiv.org/pdf/2509.22906"
+          },
+          {
+            "title": "Paper page - Extract-0: A Specialized Language Model for Document Information Extraction",
+            "url": "https://huggingface.co/papers/2509.22906"
+          },
+          {
+            "title": "HenriqueGodoy/extract-0 · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/HenriqueGodoy/extract-0"
+          },
+          {
+            "title": "A Smaller Model Outperforms GPT-4.1 on Document Information Extraction for $196 | by AI Engineering | Oct, 2025 | Medium",
+            "url": "https://ai-engineering-trend.medium.com/a-smaller-model-outperforms-gpt-4-1-on-document-information-extraction-for-196-9e25b39d9538"
+          },
+          {
+            "title": "A better way of extracting information with LLMs: GRPO Experiment",
+            "url": "https://infinitelambda.com/extract-info-llm-grpo/"
+          },
+          {
+            "title": "Extract-0: A specialized language model for document information extraction | Hacker News",
+            "url": "https://news.ycombinator.com/item?id=45427634"
+          },
+          {
+            "title": "MORE-R1: Guiding LVLM for Multimodal Object-Entity Relation Extraction via Stepwise Reasoning with Reinforcement Learning",
+            "url": "https://arxiv.org/html/2603.09478"
+          },
+          {
+            "title": "Structured information extraction from scientific text with large language models | Nature Communications",
+            "url": "https://www.nature.com/articles/s41467-024-45563-x"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Extract-0:\n\n## Overview\n\nExtract-0 is a 7-billion parameter language model specifically optimized for document information extraction that achieves performance exceeding models with parameter counts several orders of magnitude larger.\n\n## Training Methodology\n\nThrough a novel combination of synthetic data generation, supervised fine-tuning with Low-Rank Adaptation (LoRA), and reinforcement learning via Group Relative Policy Optimization (GRPO), Extract-0 achieves a mean reward of 0.573 on a benchmark of 1,000 diverse document extraction tasks, outperforming GPT-4.1 (0.457), o3 (0.464), and GPT-4.1-2025 (0.459).\n\nThe training methodology employs a memory-preserving synthetic data generation pipeline that produces 280,128 training examples from diverse document sources, followed by parameter-efficient fine-tuning that modifies only 0.53% of model weights.\n\n## Reward Function\n\nThe reinforcement learning phase introduces a novel semantic similarity-based reward function that handles the inherent ambiguity in information extraction tasks. The Group Relative Policy Optimization (GRPO) method uses semantic rewards and strict JSON format validation, which allows the model to accept expressions that are worded differently but convey the same meaning.\n\n## Performance and Efficiency\n\nThe model's performance improvement of 25% over GPT-4.1 (0.573 vs 0.457 mean reward) with substantially fewer parameters suggests that targeted approaches may offer advantages in resource-constrained environments. The total training cost of $196 (using a single H100 GPU) demonstrates that specialized extraction models can be developed with modest computational budgets."
+    ],
+    "durationSeconds": 7.497922177999979
+  },
+  "sourceToolAssistantUUID": "8a4127d2-0bd4-4bdd-933a-b512e00149fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 99 · 2026-05-11T23:22:30.710Z_
+
+This is a relevant competitor. Let me also check for any very recent work combining provenance/evidence with UIE.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "01fc68a8-f2c2-4e2d-9591-81b2c8f7d861",
+  "isSidechain": false,
+  "requestId": "req_011Cawe9imj1iVXb9FFsGu8g",
+  "type": "assistant",
+  "uuid": "e3fad9db-7b97-495d-a91e-7007b0bc3db1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FZBpMVn9QdFvnHaf6oGZbC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1002,
+      "cache_read_input_tokens": 56993,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1002,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 56993,
+          "cache_creation_input_tokens": 1002,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1002
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-11T23:22:30.974Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015Ew4D6kAcF6LU4P61uV2ak`</summary>
+
+```json
+{
+  "query": "GuideX guided synthetic data generation zero-shot information extraction 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3fad9db-7b97-495d-a91e-7007b0bc3db1",
+  "isSidechain": false,
+  "requestId": "req_011Cawe9imj1iVXb9FFsGu8g",
+  "type": "assistant",
+  "uuid": "afc31391-bb19-440f-b05c-aea204d26fb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FZBpMVn9QdFvnHaf6oGZbC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1002,
+      "cache_read_input_tokens": 56993,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1002,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 56993,
+          "cache_creation_input_tokens": 1002,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1002
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-11T23:22:38.754Z_
+
+<details><summary>↩ Tool result · `toolu_015Ew4D6kAcF6LU4P61uV2ak`</summary>
+
+```text
+Web search results for query: "GuideX guided synthetic data generation zero-shot information extraction 2025"
+
+Links: [{"title":"[2506.00649] GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://arxiv.org/abs/2506.00649"},{"title":"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction - ACL Anthology","url":"https://aclanthology.org/2025.findings-acl.1245/"},{"title":"GUIDEX – ACL Findings 2025","url":"https://neilus03.github.io/guidex.com/"},{"title":"GitHub - Neilus03/GUIDEX: GUIDEX official repo","url":"https://github.com/Neilus03/GUIDEX"},{"title":"GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://arxiv.org/html/2506.00649"},{"title":"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://openreview.net/pdf?id=OBJSRNVYS5"},{"title":"GUIDEX: Guided Synthetic Data Generation for Zero-Shot ...","url":"https://aclanthology.org/2025.findings-acl.1245.pdf"},{"title":"Universal Information Extraction as Unified Semantic Matching | Request PDF","url":"https://www.researchgate.net/publication/371922000_Universal_Information_Extraction_as_Unified_Semantic_Matching"},{"title":"GuideX: Guided Synthetic Data Generation for Zero-Shot ...","url":"https://www.ixa.eus/sites/default/files/dokumentuak/14245/2506.00649v1.pdf"},{"title":"A Survey of Generative Information Extraction","url":"https://aclanthology.org/2025.coling-main.324.pdf"}]
+
+## GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction
+
+I found comprehensive information about GuideX from your search query. Here's what the research shows:
+
+### Overview
+
+GuideX is a novel method that automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization.
+
+### Problem It Addresses
+
+Information Extraction (IE) systems are traditionally domain-specific, requiring costly adaptation that involves expert schema design, data annotation, and model training. While Large Language Models have shown promise in zero-shot IE, performance degrades significantly in unseen domains where label definitions differ.
+
+### Key Performance Results
+
+Fine-tuning Llama 3.1 with GuideX sets a new state-of-the-art across seven zero-shot Named Entity Recognition benchmarks. Models trained with GuideX gain up to 7 F1 points over previous methods without human-labeled data, and nearly 2 F1 points higher when combined with it.
+
+### Technical Approach
+
+A final prompt instantiates dataclasses with concrete, verbatim spans from the source text. Samples that fail to compile or violate type hints are discarded, eliminating spurious labels and mis-aligned spans. This filter keeps only schema-consistent, executable pairs and reduces noise before training.
+
+### Availability
+
+Code, models, and synthetic datasets are available at neilus03.github.io/guidex.com.
+
+GuideX was published in Findings of the Association for Computational Linguistics: ACL 2025, in Vienna, Austria.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "afc31391-bb19-440f-b05c-aea204d26fb7",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "04998833-ec66-4dba-9826-71b5fd116538",
+  "toolUseResult": {
+    "query": "GuideX guided synthetic data generation zero-shot information extraction 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01M4zCT5hyp49fbU6U1xjS9i",
+        "content": [
+          {
+            "title": "[2506.00649] GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://arxiv.org/abs/2506.00649"
+          },
+          {
+            "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-acl.1245/"
+          },
+          {
+            "title": "GUIDEX – ACL Findings 2025",
+            "url": "https://neilus03.github.io/guidex.com/"
+          },
+          {
+            "title": "GitHub - Neilus03/GUIDEX: GUIDEX official repo",
+            "url": "https://github.com/Neilus03/GUIDEX"
+          },
+          {
+            "title": "GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://arxiv.org/html/2506.00649"
+          },
+          {
+            "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://openreview.net/pdf?id=OBJSRNVYS5"
+          },
+          {
+            "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot ...",
+            "url": "https://aclanthology.org/2025.findings-acl.1245.pdf"
+          },
+          {
+            "title": "Universal Information Extraction as Unified Semantic Matching | Request PDF",
+            "url": "https://www.researchgate.net/publication/371922000_Universal_Information_Extraction_as_Unified_Semantic_Matching"
+          },
+          {
+            "title": "GuideX: Guided Synthetic Data Generation for Zero-Shot ...",
+            "url": "https://www.ixa.eus/sites/default/files/dokumentuak/14245/2506.00649v1.pdf"
+          },
+          {
+            "title": "A Survey of Generative Information Extraction",
+            "url": "https://aclanthology.org/2025.coling-main.324.pdf"
+          }
+        ]
+      },
+      "## GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\n\nI found comprehensive information about GuideX from your search query. Here's what the research shows:\n\n### Overview\n\nGuideX is a novel method that automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization.\n\n### Problem It Addresses\n\nInformation Extraction (IE) systems are traditionally domain-specific, requiring costly adaptation that involves expert schema design, data annotation, and model training. While Large Language Models have shown promise in zero-shot IE, performance degrades significantly in unseen domains where label definitions differ.\n\n### Key Performance Results\n\nFine-tuning Llama 3.1 with GuideX sets a new state-of-the-art across seven zero-shot Named Entity Recognition benchmarks. Models trained with GuideX gain up to 7 F1 points over previous methods without human-labeled data, and nearly 2 F1 points higher when combined with it.\n\n### Technical Approach\n\nA final prompt instantiates dataclasses with concrete, verbatim spans from the source text. Samples that fail to compile or violate type hints are discarded, eliminating spurious labels and mis-aligned spans. This filter keeps only schema-consistent, executable pairs and reduces noise before training.\n\n### Availability\n\nCode, models, and synthetic datasets are available at neilus03.github.io/guidex.com.\n\nGuideX was published in Findings of the Association for Computational Linguistics: ACL 2025, in Vienna, Austria."
+    ],
+    "durationSeconds": 7.7751287110000264
+  },
+  "sourceToolAssistantUUID": "afc31391-bb19-440f-b05c-aea204d26fb7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 102 · 2026-05-11T23:22:38.760Z_
+
+```json
+{
+  "parentUuid": "04998833-ec66-4dba-9826-71b5fd116538",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "0789b34a-74f0-4b8b-a8f9-08819a6a8a67",
+  "timestamp": "2026-05-11T23:22:38.760Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-11T23:22:42.951Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QMLbCnGmQkeW8HeWvG1S1W`</summary>
+
+```json
+{
+  "query": "CDER DocRED evidence-guided document relation extraction cross-document 2024 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0789b34a-74f0-4b8b-a8f9-08819a6a8a67",
+  "isSidechain": false,
+  "requestId": "req_011CaweAtxg5RnmQQX9wuecp",
+  "type": "assistant",
+  "uuid": "1dcaa98a-4fef-4975-a7b3-4404487a98da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RGuFGUHGRL85rcLc9XjFg9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1040,
+      "cache_read_input_tokens": 57995,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1040,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 57995,
+          "cache_creation_input_tokens": 1040,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1040
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 104 · 2026-05-11T23:22:49.563Z_
+
+<details><summary>↩ Tool result · `toolu_01QMLbCnGmQkeW8HeWvG1S1W`</summary>
+
+```text
+Web search results for query: "CDER DocRED evidence-guided document relation extraction cross-document 2024 2025"
+
+Links: [{"title":"CDER: Collaborative Evidence Retrieval for Document-level Relation Extraction","url":"https://arxiv.org/html/2504.06529"},{"title":"CDER: Collaborative Evidence Retrieval for Document-Level Relation Extraction | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-981-97-4982-9_3"},{"title":"Entity and Evidence Guided Relation Extraction for DocRED | Request PDF","url":"https://www.researchgate.net/publication/343931511_Entity_and_Evidence_Guided_Relation_Extraction_for_DocRED"},{"title":"GitHub - thunlp/DocRED: Dataset and codes for ACL 2019 DocRED: A Large-Scale Document-Level Relation Extraction Dataset. · GitHub","url":"https://github.com/thunlp/DocRED"},{"title":"[PDF] CDER: Collaborative Evidence Retrieval for Document-Level Relation Extraction | Semantic Scholar","url":"https://www.semanticscholar.org/paper/CDER:-Collaborative-Evidence-Retrieval-for-Relation-Tran-Li/07f36e6f29c07f0edce7465f4d005bd34ac659ce"},{"title":"(PDF) DocRED: A Large-Scale Document-Level Relation Extraction Dataset","url":"https://www.researchgate.net/publication/333815327_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"},{"title":"Enhancing cross-evidence reasoning graph for document-level relation extraction - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11232587/"},{"title":"[PDF] DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DocRED:-A-Large-Scale-Document-Level-Relation-Yao-Ye/2745fc72e1dd53d1c30f17cf05841b163c2f63c9"},{"title":"[2008.12283] Entity and Evidence Guided Relation Extraction for DocRED","url":"https://arxiv.org/abs/2008.12283"},{"title":"(PDF) CDER: Collaborative Evidence Retrieval for Document-level Relation Extraction","url":"https://www.researchgate.net/publication/390638674_CDER_Collaborative_Evidence_Retrieval_for_Document-level_Relation_Extraction"}]
+
+Based on the search results, here's what I found about CDER and DocRED evidence-guided document relation extraction:
+
+## CDER: Collaborative Evidence Retrieval for Document-level Relation Extraction
+
+CDER is a novel evidence retrieval framework that employs an attentional graph-based architecture to capture collaborative patterns and incorporates a dynamic sub-structure for additional robustness in evidence retrieval.
+
+### Key Problem Addressed
+
+Existing evidence retrieval systems often overlook the collaborative nature among semantically similar entity pairs in the same document, hindering the effectiveness of the evidence retrieval task. Entity pairs within the same document exhibit a collaborative tendency where evidence sentence sets overlap significantly for pairs sharing common entities and semantically correlated relations.
+
+### Technical Approach
+
+CDER transforms the document into a bipartite graph with entity pair and sentence nodes, partitioning it into three sub-graphs: (i) Entity Pair sub-graph models collaboration, (ii) Entity Pair-Sentence sub-graph captures semantic relationships, and (iii) Sentence sub-graph aids co-reference reasoning.
+
+The framework introduces Entity Pair-aware Graph Attention Networks (GATs) inspired by Graph Attention Networks, tailored to address noisy information.
+
+### Results
+
+Experiments on the DocRED dataset demonstrate the effectiveness of CDER framework, with the generated evidence sentences enhancing baseline DocRE systems. CDER was published in 2024.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1dcaa98a-4fef-4975-a7b3-4404487a98da",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "ef7e84f2-8e01-4999-8f92-39c14d7080e2",
+  "toolUseResult": {
+    "query": "CDER DocRED evidence-guided document relation extraction cross-document 2024 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01S1Y6Wg3WUUR58ZHs5SVHNp",
+        "content": [
+          {
+            "title": "CDER: Collaborative Evidence Retrieval for Document-level Relation Extraction",
+            "url": "https://arxiv.org/html/2504.06529"
+          },
+          {
+            "title": "CDER: Collaborative Evidence Retrieval for Document-Level Relation Extraction | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-981-97-4982-9_3"
+          },
+          {
+            "title": "Entity and Evidence Guided Relation Extraction for DocRED | Request PDF",
+            "url": "https://www.researchgate.net/publication/343931511_Entity_and_Evidence_Guided_Relation_Extraction_for_DocRED"
+          },
+          {
+            "title": "GitHub - thunlp/DocRED: Dataset and codes for ACL 2019 DocRED: A Large-Scale Document-Level Relation Extraction Dataset. · GitHub",
+            "url": "https://github.com/thunlp/DocRED"
+          },
+          {
+            "title": "[PDF] CDER: Collaborative Evidence Retrieval for Document-Level Relation Extraction | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/CDER:-Collaborative-Evidence-Retrieval-for-Relation-Tran-Li/07f36e6f29c07f0edce7465f4d005bd34ac659ce"
+          },
+          {
+            "title": "(PDF) DocRED: A Large-Scale Document-Level Relation Extraction Dataset",
+            "url": "https://www.researchgate.net/publication/333815327_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"
+          },
+          {
+            "title": "Enhancing cross-evidence reasoning graph for document-level relation extraction - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11232587/"
+          },
+          {
+            "title": "[PDF] DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/DocRED:-A-Large-Scale-Document-Level-Relation-Yao-Ye/2745fc72e1dd53d1c30f17cf05841b163c2f63c9"
+          },
+          {
+            "title": "[2008.12283] Entity and Evidence Guided Relation Extraction for DocRED",
+            "url": "https://arxiv.org/abs/2008.12283"
+          },
+          {
+            "title": "(PDF) CDER: Collaborative Evidence Retrieval for Document-level Relation Extraction",
+            "url": "https://www.researchgate.net/publication/390638674_CDER_Collaborative_Evidence_Retrieval_for_Document-level_Relation_Extraction"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about CDER and DocRED evidence-guided document relation extraction:\n\n## CDER: Collaborative Evidence Retrieval for Document-level Relation Extraction\n\nCDER is a novel evidence retrieval framework that employs an attentional graph-based architecture to capture collaborative patterns and incorporates a dynamic sub-structure for additional robustness in evidence retrieval.\n\n### Key Problem Addressed\n\nExisting evidence retrieval systems often overlook the collaborative nature among semantically similar entity pairs in the same document, hindering the effectiveness of the evidence retrieval task. Entity pairs within the same document exhibit a collaborative tendency where evidence sentence sets overlap significantly for pairs sharing common entities and semantically correlated relations.\n\n### Technical Approach\n\nCDER transforms the document into a bipartite graph with entity pair and sentence nodes, partitioning it into three sub-graphs: (i) Entity Pair sub-graph models collaboration, (ii) Entity Pair-Sentence sub-graph captures semantic relationships, and (iii) Sentence sub-graph aids co-reference reasoning.\n\nThe framework introduces Entity Pair-aware Graph Attention Networks (GATs) inspired by Graph Attention Networks, tailored to address noisy information.\n\n### Results\n\nExperiments on the DocRED dataset demonstrate the effectiveness of CDER framework, with the generated evidence sentences enhancing baseline DocRE systems. CDER was published in 2024."
+    ],
+    "durationSeconds": 6.607207921999972
+  },
+  "sourceToolAssistantUUID": "1dcaa98a-4fef-4975-a7b3-4404487a98da",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ef7e84f2-8e01-4999-8f92-39c14d7080e2",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 106_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "ProvUIE: Grounded information extraction with evidence-span GRPO",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Assistant
+
+_source line 107 · 2026-05-11T23:22:53.929Z_
+
+Now let me do one more critical check — looking for any very recent (2026) work that combines evidence/provenance co-prediction with GRPO for IE tasks specifically.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef7e84f2-8e01-4999-8f92-39c14d7080e2",
+  "isSidechain": false,
+  "requestId": "req_011CaweBhBHPmD6g1fbLYbe3",
+  "type": "assistant",
+  "uuid": "bee7118e-4ec5-404f-9b09-761435b15c70",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011F2T3YwtX8opmqRjKSnm8J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 59035,
+      "output_tokens": 106,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1075,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 106,
+          "cache_read_input_tokens": 59035,
+          "cache_creation_input_tokens": 1075,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1075
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 108 · 2026-05-11T23:22:54.556Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019oAHsdRsMYg87fRF3mx4Bm`</summary>
+
+```json
+{
+  "query": "evidence span co-prediction universal information extraction reinforcement learning GRPO 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bee7118e-4ec5-404f-9b09-761435b15c70",
+  "isSidechain": false,
+  "requestId": "req_011CaweBhBHPmD6g1fbLYbe3",
+  "type": "assistant",
+  "uuid": "4f553c97-8300-4c97-be99-27bf5d3b92b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011F2T3YwtX8opmqRjKSnm8J",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1075,
+      "cache_read_input_tokens": 59035,
+      "output_tokens": 106,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1075,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 106,
+          "cache_read_input_tokens": 59035,
+          "cache_creation_input_tokens": 1075,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1075
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 109 · 2026-05-11T23:23:04.109Z_
+
+<details><summary>↩ Tool result · `toolu_019oAHsdRsMYg87fRF3mx4Bm`</summary>
+
+```text
+Web search results for query: "evidence span co-prediction universal information extraction reinforcement learning GRPO 2026"
+
+Links: [{"title":"Explore Data Left Behind in Reinforcement Learning for Reasoning Language Models | OpenReview","url":"https://openreview.net/forum?id=BOsuSLbD8L"},{"title":"GitHub - AMAP-ML/Tree-GRPO: [ICLR 2026] Tree Search for LLM Agent Reinforcement Learning · GitHub","url":"https://github.com/AMAP-ML/Tree-GRPO"},{"title":"Post-Training in 2026: GRPO, DAPO, RLVR & Beyond","url":"https://llm-stats.com/blog/research/post-training-techniques-2026"},{"title":"Published as a conference paper at ICLR 2026","url":"https://openreview.net/pdf?id=qKXYEg00eH"},{"title":"Group Relative Policy Optimization (GRPO)","url":"https://cameronrwolfe.substack.com/p/grpo"},{"title":"ICLR 2026 Papers with Code & Data – Paper Digest","url":"https://www.paperdigest.org/2026/04/iclr-2026-papers-with-code-data/"},{"title":"GRPO-LEAD: A Difficulty-Aware Reinforcement Learning ...","url":"https://aclanthology.org/2025.emnlp-main.287.pdf"},{"title":"Accepted Findings Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/find_papers/"},{"title":"Recent reasoning research: GRPO tweaks, base model RL, and data curation","url":"https://www.interconnects.ai/p/papers-im-reading-base-model-rl-grpo"},{"title":"GRPO-LEAD: A Difficulty-Aware Reinforcement Learning Approach for Concise Mathematical Reasoning in Language Models","url":"https://arxiv.org/html/2504.09696v1"}]
+
+I found search results related to GRPO and reinforcement learning in 2026. However, the search didn't return results specifically about "evidence span co-prediction universal information extraction." Let me provide you with what was found:
+
+## Search Results Summary
+
+The search returned various papers and discussions about GRPO (Group Relative Policy Optimization) and reinforcement learning approaches in 2026:
+
+**Key Findings:**
+
+1. **GRPO in 2026 Research**: The Group Relative Policy Optimization (GRPO) family has demonstrated strong performance in training LLMs with RLVR (Reinforcement Learning with Verifiable Rewards).
+
+2. **Tree-GRPO**: Tree-GRPO adopts a tree-search rollout strategy in place of independent chain-based rollouts for LLM agent RL, carrying out rollout sampling over a semantically well-defined search tree.
+
+3. **DIVA-GRPO**: DIVA-GRPO is an adaptive method that dynamically adjusts problem difficulty and variant distribution while preserving semantic consistency, addressing issues with GRPO training stability.
+
+4. **GRPO-LEAD**: A difficulty-aware reinforcement learning approach that "assigns length-regularized positive rewards to correct answers and explicit penalties to incorrect ones, with a difficulty-based weight used for advantage reweighting".
+
+**Note**: The search results do not contain specific information about "evidence span co-prediction" or "universal information extraction" tasks using GRPO. If you're looking for papers on those specific topics, you may want to search with more specific terms or check arXiv directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4f553c97-8300-4c97-be99-27bf5d3b92b4",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "c5865bd1-53c6-438c-ab42-1d4a10bc5271",
+  "toolUseResult": {
+    "query": "evidence span co-prediction universal information extraction reinforcement learning GRPO 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MSA3AwJkKF5eagYdoaVWxa",
+        "content": [
+          {
+            "title": "Explore Data Left Behind in Reinforcement Learning for Reasoning Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=BOsuSLbD8L"
+          },
+          {
+            "title": "GitHub - AMAP-ML/Tree-GRPO: [ICLR 2026] Tree Search for LLM Agent Reinforcement Learning · GitHub",
+            "url": "https://github.com/AMAP-ML/Tree-GRPO"
+          },
+          {
+            "title": "Post-Training in 2026: GRPO, DAPO, RLVR & Beyond",
+            "url": "https://llm-stats.com/blog/research/post-training-techniques-2026"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://openreview.net/pdf?id=qKXYEg00eH"
+          },
+          {
+            "title": "Group Relative Policy Optimization (GRPO)",
+            "url": "https://cameronrwolfe.substack.com/p/grpo"
+          },
+          {
+            "title": "ICLR 2026 Papers with Code & Data – Paper Digest",
+            "url": "https://www.paperdigest.org/2026/04/iclr-2026-papers-with-code-data/"
+          },
+          {
+            "title": "GRPO-LEAD: A Difficulty-Aware Reinforcement Learning ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.287.pdf"
+          },
+          {
+            "title": "Accepted Findings Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/find_papers/"
+          },
+          {
+            "title": "Recent reasoning research: GRPO tweaks, base model RL, and data curation",
+            "url": "https://www.interconnects.ai/p/papers-im-reading-base-model-rl-grpo"
+          },
+          {
+            "title": "GRPO-LEAD: A Difficulty-Aware Reinforcement Learning Approach for Concise Mathematical Reasoning in Language Models",
+            "url": "https://arxiv.org/html/2504.09696v1"
+          }
+        ]
+      },
+      "I found search results related to GRPO and reinforcement learning in 2026. However, the search didn't return results specifically about \"evidence span co-prediction universal information extraction.\" Let me provide you with what was found:\n\n## Search Results Summary\n\nThe search returned various papers and discussions about GRPO (Group Relative Policy Optimization) and reinforcement learning approaches in 2026:\n\n**Key Findings:**\n\n1. **GRPO in 2026 Research**: The Group Relative Policy Optimization (GRPO) family has demonstrated strong performance in training LLMs with RLVR (Reinforcement Learning with Verifiable Rewards).\n\n2. **Tree-GRPO**: Tree-GRPO adopts a tree-search rollout strategy in place of independent chain-based rollouts for LLM agent RL, carrying out rollout sampling over a semantically well-defined search tree.\n\n3. **DIVA-GRPO**: DIVA-GRPO is an adaptive method that dynamically adjusts problem difficulty and variant distribution while preserving semantic consistency, addressing issues with GRPO training stability.\n\n4. **GRPO-LEAD**: A difficulty-aware reinforcement learning approach that \"assigns length-regularized positive rewards to correct answers and explicit penalties to incorrect ones, with a difficulty-based weight used for advantage reweighting\".\n\n**Note**: The search results do not contain specific information about \"evidence span co-prediction\" or \"universal information extraction\" tasks using GRPO. If you're looking for papers on those specific topics, you may want to search with more specific terms or check arXiv directly."
+    ],
+    "durationSeconds": 9.548004111999996
+  },
+  "sourceToolAssistantUUID": "4f553c97-8300-4c97-be99-27bf5d3b92b4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 110 · 2026-05-11T23:23:07.773Z_
+
+Good — no direct competitor found that does evidence-span co-prediction + GRPO for full UIE. Let me verify one more thing about the timeline and venue alignment.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c5865bd1-53c6-438c-ab42-1d4a10bc5271",
+  "isSidechain": false,
+  "requestId": "req_011CaweCmM5s6kcrX1aZ5ERn",
+  "type": "assistant",
+  "uuid": "7ba0861c-a775-4828-8f78-19777039bf4b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LmX99ULj4X38vsaGf3vqoj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1004,
+      "cache_read_input_tokens": 60110,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1004,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 60110,
+          "cache_creation_input_tokens": 1004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1004
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-11T23:23:10.160Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01PyZ46MXUU8CKjw3hPhNC4h`</summary>
+
+```json
+{
+  "url": "https://2026.emnlp.org/calls/main_conference_papers/",
+  "prompt": "Extract the key dates for EMNLP 2026: ARR submission deadline, commitment deadline, notification date, and conference dates. Also check which tracks/areas are listed, particularly Information Extraction."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ba0861c-a775-4828-8f78-19777039bf4b",
+  "isSidechain": false,
+  "requestId": "req_011CaweCmM5s6kcrX1aZ5ERn",
+  "type": "assistant",
+  "uuid": "f2a6a44b-2c4e-4814-9ae3-2a61703dc27f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LmX99ULj4X38vsaGf3vqoj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1004,
+      "cache_read_input_tokens": 60110,
+      "output_tokens": 167,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1004,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 167,
+          "cache_read_input_tokens": 60110,
+          "cache_creation_input_tokens": 1004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1004
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-11T23:23:14.121Z_
+
+<details><summary>↩ Tool result · `toolu_01PyZ46MXUU8CKjw3hPhNC4h`</summary>
+
+```text
+# EMNLP 2026 Key Information
+
+## Important Dates
+
+- **ARR Submission Deadline:** May 25, 2026
+- **Commitment Deadline:** August 2, 2026
+- **Acceptance Notification:** August 20, 2026
+- **Conference Dates:** October 24-29, 2026
+
+*Note: All deadlines are "11:59PM UTC-12:00 ('anywhere on Earth')"*
+
+## Submission Tracks
+
+The conference encompasses numerous research areas. Information Extraction is explicitly listed among the relevant topics for submissions.
+
+## Special Theme Track
+
+Beyond traditional areas, EMNLP 2026 features a special theme track titled "New Missions for NLP Research," addressing how the field should evolve given the prominence of large language models. This track welcomes papers that "articulate, test, and advance visions for NLP in this era" and considers papers examining evaluation methodologies, system-level research, scientific understanding of language, data challenges, and LLMs as research tools.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f2a6a44b-2c4e-4814-9ae3-2a61703dc27f",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "1350ae82-60a7-4321-933e-863654ad4772",
+  "toolUseResult": {
+    "bytes": 26681,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# EMNLP 2026 Key Information\n\n## Important Dates\n\n- **ARR Submission Deadline:** May 25, 2026\n- **Commitment Deadline:** August 2, 2026\n- **Acceptance Notification:** August 20, 2026\n- **Conference Dates:** October 24-29, 2026\n\n*Note: All deadlines are \"11:59PM UTC-12:00 ('anywhere on Earth')\"*\n\n## Submission Tracks\n\nThe conference encompasses numerous research areas. Information Extraction is explicitly listed among the relevant topics for submissions.\n\n## Special Theme Track\n\nBeyond traditional areas, EMNLP 2026 features a special theme track titled \"New Missions for NLP Research,\" addressing how the field should evolve given the prominence of large language models. This track welcomes papers that \"articulate, test, and advance visions for NLP in this era\" and considers papers examining evaluation methodologies, system-level research, scientific understanding of language, data challenges, and LLMs as research tools.",
+    "durationMs": 3957,
+    "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+  },
+  "sourceToolAssistantUUID": "f2a6a44b-2c4e-4814-9ae3-2a61703dc27f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-11T23:23:20.988Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MEbgf1SYi4crCqHF6XDP63`</summary>
+
+```json
+{
+  "query": "DeBERTa-v3-large NLI entailment model available huggingface 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1350ae82-60a7-4321-933e-863654ad4772",
+  "isSidechain": false,
+  "requestId": "req_011CaweDWBJM9DvtnZiajA94",
+  "type": "assistant",
+  "uuid": "00446c33-03cf-4915-8d6e-17c689a342b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CmwFE65Tojjvw4w4G1dA6w",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 411,
+      "cache_read_input_tokens": 61114,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 411,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 61114,
+          "cache_creation_input_tokens": 411,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 411
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-11T23:23:27.163Z_
+
+<details><summary>↩ Tool result · `toolu_01MEbgf1SYi4crCqHF6XDP63`</summary>
+
+```text
+Web search results for query: "DeBERTa-v3-large NLI entailment model available huggingface 2025"
+
+Links: [{"title":"potsawee/deberta-v3-large-mnli · Hugging Face","url":"https://huggingface.co/potsawee/deberta-v3-large-mnli"},{"title":"cross-encoder/nli-deberta-v3-large · Hugging Face","url":"https://huggingface.co/cross-encoder/nli-deberta-v3-large"},{"title":"khalidalt/DeBERTa-v3-large-mnli · Hugging Face","url":"https://huggingface.co/khalidalt/DeBERTa-v3-large-mnli"},{"title":"sileod/deberta-v3-large-tasksource-nli · Hugging Face","url":"https://huggingface.co/sileod/deberta-v3-large-tasksource-nli"},{"title":"cross-encoder/nli-deberta-v3-base · Hugging Face","url":"https://huggingface.co/cross-encoder/nli-deberta-v3-base"},{"title":"MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli · Hugging Face","url":"https://huggingface.co/MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli"},{"title":"MoritzLaurer/mDeBERTa-v3-base-mnli-xnli · Hugging Face","url":"https://huggingface.co/MoritzLaurer/mDeBERTa-v3-base-mnli-xnli"},{"title":"MoritzLaurer/deberta-v3-large-zeroshot-v1 · Hugging Face","url":"https://huggingface.co/MoritzLaurer/deberta-v3-large-zeroshot-v1"},{"title":"tasksource/deberta-base-long-nli · Hugging Face","url":"https://huggingface.co/tasksource/deberta-base-long-nli"},{"title":"cross-encoder/nli-deberta-v3-small · Hugging Face","url":"https://huggingface.co/cross-encoder/nli-deberta-v3-small"}]
+
+Based on the search results, I found several DeBERTa-v3-large NLI entailment models available on Hugging Face:
+
+## Available Models
+
+1. **cross-encoder/nli-deberta-v3-large - outputs three scores corresponding to the labels: contradiction, entailment, neutral**
+
+2. **khalidalt/DeBERTa-v3-large-mnli - uses DeBERTa-v3-large from Microsoft**, trained on the Multi-Genre Natural Language Inference (MultiNLI) dataset, which consists of 433k sentence pairs with textual entailment information
+
+3. **potsawee/deberta-v3-large-mnli - for Textual Entailment (aka NLI), predicting whether textA is supported by textB, with relationships that can be entail, neutral, or contradict**
+
+4. **MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli - fine-tuned on the MultiNLI, Fever-NLI, Adversarial-NLI (ANLI), LingNLI and WANLI datasets, comprising 885,242 NLI hypothesis-premise pairs**
+
+5. **sileod/deberta-v3-large-tasksource-nli - DeBERTa-v3-large fine-tuned with multi-task learning on 600 tasks of the tasksource collection**
+
+All of these models are currently available on the Hugging Face Hub and can be used for natural language inference tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "00446c33-03cf-4915-8d6e-17c689a342b6",
+  "isSidechain": false,
+  "promptId": "419772a8-79de-48fc-b3b2-d25d88afbe8b",
+  "type": "user",
+  "uuid": "01960b58-a473-4c10-a3d6-cc1b4325b6d2",
+  "toolUseResult": {
+    "query": "DeBERTa-v3-large NLI entailment model available huggingface 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DJwdDNdCdDtq1b42pSKE37",
+        "content": [
+          {
+            "title": "potsawee/deberta-v3-large-mnli · Hugging Face",
+            "url": "https://huggingface.co/potsawee/deberta-v3-large-mnli"
+          },
+          {
+            "title": "cross-encoder/nli-deberta-v3-large · Hugging Face",
+            "url": "https://huggingface.co/cross-encoder/nli-deberta-v3-large"
+          },
+          {
+            "title": "khalidalt/DeBERTa-v3-large-mnli · Hugging Face",
+            "url": "https://huggingface.co/khalidalt/DeBERTa-v3-large-mnli"
+          },
+          {
+            "title": "sileod/deberta-v3-large-tasksource-nli · Hugging Face",
+            "url": "https://huggingface.co/sileod/deberta-v3-large-tasksource-nli"
+          },
+          {
+            "title": "cross-encoder/nli-deberta-v3-base · Hugging Face",
+            "url": "https://huggingface.co/cross-encoder/nli-deberta-v3-base"
+          },
+          {
+            "title": "MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli · Hugging Face",
+            "url": "https://huggingface.co/MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli"
+          },
+          {
+            "title": "MoritzLaurer/mDeBERTa-v3-base-mnli-xnli · Hugging Face",
+            "url": "https://huggingface.co/MoritzLaurer/mDeBERTa-v3-base-mnli-xnli"
+          },
+          {
+            "title": "MoritzLaurer/deberta-v3-large-zeroshot-v1 · Hugging Face",
+            "url": "https://huggingface.co/MoritzLaurer/deberta-v3-large-zeroshot-v1"
+          },
+          {
+            "title": "tasksource/deberta-base-long-nli · Hugging Face",
+            "url": "https://huggingface.co/tasksource/deberta-base-long-nli"
+          },
+          {
+            "title": "cross-encoder/nli-deberta-v3-small · Hugging Face",
+            "url": "https://huggingface.co/cross-encoder/nli-deberta-v3-small"
+          }
+        ]
+      },
+      "Based on the search results, I found several DeBERTa-v3-large NLI entailment models available on Hugging Face:\n\n## Available Models\n\n1. **cross-encoder/nli-deberta-v3-large - outputs three scores corresponding to the labels: contradiction, entailment, neutral**\n\n2. **khalidalt/DeBERTa-v3-large-mnli - uses DeBERTa-v3-large from Microsoft**, trained on the Multi-Genre Natural Language Inference (MultiNLI) dataset, which consists of 433k sentence pairs with textual entailment information\n\n3. **potsawee/deberta-v3-large-mnli - for Textual Entailment (aka NLI), predicting whether textA is supported by textB, with relationships that can be entail, neutral, or contradict**\n\n4. **MoritzLaurer/DeBERTa-v3-large-mnli-fever-anli-ling-wanli - fine-tuned on the MultiNLI, Fever-NLI, Adversarial-NLI (ANLI), LingNLI and WANLI datasets, comprising 885,242 NLI hypothesis-premise pairs**\n\n5. **sileod/deberta-v3-large-tasksource-nli - DeBERTa-v3-large fine-tuned with multi-task learning on 600 tasks of the tasksource collection**\n\nAll of these models are currently available on the Hugging Face Hub and can be used for natural language inference tasks."
+    ],
+    "durationSeconds": 6.170791214000026
+  },
+  "sourceToolAssistantUUID": "00446c33-03cf-4915-8d6e-17c689a342b6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 115 · 2026-05-11T23:25:10.741Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have all the information I need to make my assessment. Let me carefully analyze the proposal against all criteria.
+
+## Assessment Summary
+
+### Round 1/2 Issues Resolution Check
+
+1. **Qwen3.5-32B → Qwen3-32B**: FIXED. The proposal now correctly uses Qwen3-32B, which is verified to exist (32B dense model in the Qwen3 family).
+
+2. **R1-RE and R2GRPO cited**: FIXED. Both are now in key_references AND discussed in the landscape section with specific differentiation.
+
+3. **ProUIE comparison corrected**: FIXED. 
+
+The proposal now properly distinguishes ProUIE's substring constraint from ProvUIE's approach—ProUIE enforces substring matching through prompt instructions without verifying grounding as a reward signal, while ProvUIE goes further by outputting explicit evidence and verifying it through reward signals.
+
+4. **NER provenance circularity addressed**: FIXED. Evidence for NER is now defined as the disambiguating context window—the minimal surrounding text that makes entity-type classification unambiguous, like including "President ... spoke at" for 'Obama' typed as Person rather than just the mention itself.
+
+5. **DocR**
+
+For DocRED, I'm leveraging the gold supporting-evidence sentence annotations directly, and the approach clearly builds on existing evidence-annotated IE work. The provenance annotation pipeline is now specified across three approaches: DocRED uses gold evidence, while ACE05 and SciERC use dependency-parse-guided minimal context extraction from gold-label-to-source-span alignment. All resource estimates are explicitly in H100-hours and stay within the ≤200 constraint. On timeline, I've dropped GENIA and shifted focus to ACE05, SciERC, and DocRED, targeting the ARR June 2026 cycle and EMNLP 2026 commitment, though this still needs alignment with the original requirement.
+
+I'm noticing a discrepancy in the ARR submission deadline — the user specified May 25, 2026, but the proposal currently lists June 25, 2026 for the ARR submission. Let me verify whether there's a June ARR cycle or if this should align with the May 25 deadline for EMNLP 2026. So a June ARR cycle would have reviews coming back too late for the August 2 EMNLP commitment deadline. The proposal incorrectly targets June 2026 when it should be May 2026 with the May 25 deadline — that's a clear factual error, though it's not a dealbreaker since there are other venue targets like AAAI 2027 and ICLR 2027.
+
+Now looking at the novelty claims, the first one is evidence-span co-prediction as a structured output approach.  While R2GRPO already does evidence citation in reasoning traces and AEVS handles provenance for knowledge graphs, jointly predicting evidence spans alongside NER, relation extraction, and event extraction outputs using RL-trained LLMs appears genuinely novel, though the conceptual distance from existing work is smaller than the proposal suggests. The second novelty involves using GRPO with NLI-based rewards for provenance fidelity.
+
+EvidenceRL applies this same mechanism to QA rather than IE and doesn't output evidence spans explicitly, whereas this approach combines NLI entailment rewards with structural F1 rewards across the full information extraction pipeline—a meaningful but incremental advance. Attribution metrics like evidence IoU and attribution precision/recall are new contributions, though minor ones. Overall, the synthesis of evidence-span co-prediction, provenance-aware GRPO rewards, and comprehensive IE coverage represents moderate novelty—the first to combine these elements together, but each piece draws from prior work.
+
+Actually, reconsidering the positioning more carefully: the work clearly differentiates itself by jointly training evidence-span co-prediction as structured output with provenance fidelity as a decomposed verifiable reward across the entire IE stack, which no existing system does. The gap is well-defined against ProUIE's prompt constraints, R2GRPO's reasoning traces, EvidenceRL's internal QA rewards, and ReasoningNER's lack of provenance. Whether this reaches a top venue ultimately hinges on the empirical results, but the contribution is genuine.
+
+On feasibility: Qwen3-32B with LoRA rank 64 is definitely doable, and the datasets are all confirmed available. The compute budget of 120-160 H100-hours is tight but realistic—QeRL demonstrated that a single H100 can handle GRPO on 32B models with FP4 quantization, so running 4 H100s in parallel gives us a 10-16 day window for the full auto-research pipeline. The main risk is building the custom dependency-parse-guided evidence alignment pipeline for ACE05 and SciERC, and the GRPO setup with three reward components is intricate though not unproven. The length penalty to discourage degenerate full-sentence outputs is a solid design decision.
+
+The timeline is aggressive but the proposal has narrowed scope to three datasets with a clear methodology. On clarity, the proposal is well-structured with a strong problem statement, thorough landscape review, and specific evaluation metrics, though the dependency-parse-guided minimal context extraction for NER evidence remains somewhat underspecified and could benefit from concrete examples. The impact is meaningful—making grounding a learnable reward rather than a prompt constraint is a good insight, and attribution metrics matter for trustworthy IE systems—but the scope is somewhat limited.
+
+However, there's a critical venue deadline mismatch: the proposal targets the June 2026 ARR cycle for EMNLP 2026, but EMNLP actually requires submissions by May 25 (the May ARR cycle), not June. Additionally, the automatic provenance annotation approach using dependency parsing is underspecified—there's no clear plan for handling noisy alignments or validating quality on ACE05 and SciERC.
+
+For NER specifically, while the disambiguating context window is clever, there's no established metric for evaluating whether the predicted context is correct. The NLI reward computation also raises concerns: running DeBERTa-v3-large on every evidence-span pair during GRPO rollouts could become a computational bottleneck across multiple rollouts and extractions. Finally, the proposal lacks concrete performance projections—given that ProUIE already achieves 79.44 average NER F1, it's unclear what improvement margin is realistic.
+
+Weighing these issues, they're real but not disqualifying. The venue deadline concern is offset by AAAI and ICLR 2027 targets, provenance noise has reasonable mitigations, the NER evaluation gap is addressable, and computational costs are manageable. The proposal has substantially evolved through multiple rounds and genuinely advances the field by combining evidence co-prediction with provenance rewards—all eight original issues have been resolved.
+
+Now I'm reconsidering the novelty score. The combination itself is non-trivial and clearly differentiated from existing work like ProUIE, R2GRPO, and EvidenceRL. For a top venue like EMNLP, I need to verify three things: the novelty is genuine, empirical results would be strong, and the work is well-scoped.
+
+Looking at the overall assessment, this feels like borderline top-venue material—a competent synthesis addressing a real gap, but not groundbreaking. I'm settling on a novelty score of 3, with feasibility at 3.5, clarity at 4, and impact at 3.5, averaging to 3.625. That's below the 4.0 threshold, so there's still work to do to strengthen the core contribution.
+
+But reconsidering more carefully: the combination of evidence co-prediction with provenance-based rewards is genuinely novel, even if the individual components exist. This would likely land in EMNLP Findings as a solid paper, though Main acceptance would require demonstrating substantial empirical improvements.
+
+Looking at my scores—novelty at 3, feasibility at 4, clarity at 4, impact at 3—I'm averaging around 3.5, which puts this in revise territory. However, the proposal has actually addressed all the major issues from the previous rounds, leaving only minor concerns like the venue deadline discrepancy, NER evidence evaluation gaps, and NLI computational costs. These are legitimate but relatively small compared to what's already been resolved, so I'm leaning toward either a minor revise or conditional pass depending on how I weigh the remaining gaps against the threshold. 3.5, I'll go with "revise" but with much more positive feedback than before.
+
+Wait, but I need to also consider that this is Round 3 of 10. If it keeps improving, it can eventually pass. But if the remaining issues are minor and addressable, maybe a conditional pass?
+
+No — the rubric says avg score >= 4.0 and no critical issues. My scores average to 3.5, which is below threshold. "Revise" is the right call, but with recognition of significant improvement.
+
+Let me finalize my scores:
+- Novelty: 3 — synthesis of existing components (GRPO for IE, NLI rewards, evidence spans); genuinely novel combination but each piece exists in prior work
+- Feasibility: 4 — Qwen3-32B exists, tools available, compute within budget, timeline tight but plausible
+- Clarity: 4 — well-structured, clear differentiation from competitors
+- Impact: 3 — useful for trustworthy IE but incremental; unclear if the provenance reward actually improves extraction quality
+
+The main gaps I'm seeing are the venue deadline mismatch, the NER evidence evaluation, computational costs of the NLI reward that weren't factored in, missing performance improvement estimates, and some underspecified details around provenance annotation noise in the datasets.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "01960b58-a473-4c10-a3d6-cc1b4325b6d2",
+  "isSidechain": false,
+  "requestId": "req_011CaweETxdTgg4x3WTdkvRz",
+  "type": "assistant",
+  "uuid": "67bb1334-2558-4b3e-9333-75c8aa796e90",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012My5DnuYNE8yzqidAVVyik",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1098,
+      "cache_read_input_tokens": 61525,
+      "output_tokens": 5953,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1098,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5953,
+          "cache_read_input_tokens": 61525,
+          "cache_creation_input_tokens": 1098,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1098
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 116 · 2026-05-11T23:25:53.489Z_
+
+Now I have enough data to make my assessment. Let me synthesize my findings.
+
+## Key Verification Results
+
+**Round 1/2 Issue Resolution**: All 8 issues from previous rounds have been substantially addressed:
+- Qwen3-32B exists (verified via HuggingFace)
+- R1-RE, R2GRPO, EvidenceRL, ReasoningNER all cited and differentiated
+- ProUIE comparison corrected (acknowledges substring constraint)
+- NER provenance circularity addressed (disambiguating context window)
+- DocRED evidence overlap acknowledged
+- Provenance annotation pipeline specified
+- H100-hour estimates provided
+- Scope narrowed to ACE05 + SciERC + DocRED
+
+**Reference verification**: All 15 key references confirmed as real papers with correct arXiv IDs.
+
+**Critical finding on R2GRPO**: Its relevancy reward already checks evidence grounding in reasoning traces. The differentiation (structured evidence output vs. reasoning-trace citation) is now clearly articulated.
+
+**Critical finding on EvidenceRL**: Uses identical NLI-based GRPO grounding mechanism but for QA, not IE. The differentiation (structured IE + evidence output vs. QA internal reward) is now articulated.
+
+**Venue deadline issue**: The proposal targets "ARR June 2026 cycle (submission ~June 25)" but EMNLP 2026 requires ARR submission by **May 25, 2026**, not June 25.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3, "rationale": "Each individual component exists in prior work — NLI-based GRPO reward (EvidenceRL), evidence grounding in IE reasoning (R2GRPO relevancy reward), GRPO for UIE (ProUIE/MR-UIE), evidence-annotated RE (DocRED+E2GRE/CDER). The synthesis across the full IE stack with evidence as structured output and provenance as a decomposed reward is genuinely new, but the distance from existing work is narrow."},
+    "feasibility": {"score": 4, "rationale": "Qwen3-32B exists and supports LoRA; DeBERTa-v3-large NLI models are available on HuggingFace; DocRED gold evidence annotations confirmed; QeRL demonstrates GRPO on 32B models with single H100; compute budget of ≤200 H100-hours is tight but achievable with LoRA+quantization. The dependency-parse-guided evidence alignment for ACE05/SciERC is custom but reasonable."},
+    "clarity": {"score": 4, "rationale": "The proposal is well-structured with clear competitor differentiation, specific technical approach, and honest positioning. The landscape section now correctly engages with R2GRPO, EvidenceRL, ReasoningNER, and ProUIE with precise distinctions."},
+    "impact": {"score": 3, "rationale": "Provenance-verified extraction is a real need for trustworthy IE, but the contribution is incremental — going from prompt-level grounding (ProUIE) to reward-verified grounding is a meaningful but modest step. Impact hinges on whether provenance reward actually improves extraction F1 alongside providing attributions, which is unverified."}
+  },
+  "issues": [
+    "VENUE DEADLINE MISMATCH: The proposal targets 'ARR June 2026 cycle (submission ~June 25, 2026)' but EMNLP 2026 requires ARR submission by May 25, 2026 — confirmed via the official EMNLP 2026 CFP. There is no June ARR cycle that would complete review in time for the August 2 commitment deadline. The user's requirement is ARR May 25 submission, giving 14 days from today.",
+    "NER EVIDENCE EVALUATION GAP: The disambiguating context window is a creative solution to NER provenance circularity, but there is no established gold standard for evaluating context window quality. For ACE05/SciERC NER, how will you generate gold evidence spans for the 'disambiguating context' definition? IoU against what reference? This needs either: (a) human annotation of a small dev set, (b) a heuristic-based gold derivation with clear quality metrics, or (c) restricting NER evidence evaluation to an intrinsic metric like evidence span length distribution analysis.",
+    "NLI REWARD COMPUTATIONAL COST UNACCOUNTED: Running frozen DeBERTa-v3-large NLI scoring on every (evidence_span, extraction) pair during GRPO rollouts is a significant overhead. With GRPO generating G=8-16 rollouts per input, each containing multiple extractions with evidence spans, the NLI forward passes could add 30-50% to GRPO compute. This should be explicitly accounted for in the resource estimate or mitigated (e.g., batched NLI scoring, caching, or sampling-based reward).",
+    "MISSING EXPECTED PERFORMANCE ESTIMATES: The proposal does not state expected improvement magnitudes. ProUIE achieves 79.44 NER F1 (on 4B model), R2GRPO achieves 84.36 NER F1 on SciERC (7B model). With Qwen3-32B + evidence reward, what improvement is expected on which metrics? Even rough estimates (e.g., '+1-3 F1 on extraction with new attribution metrics') would strengthen the pitch.",
+    "EXTRACT-0 NOT DISCUSSED: Extract-0 (arXiv 2509.22906) applies GRPO with semantic similarity rewards to document IE, achieving results exceeding GPT-4.1 with $196 training cost on a single H100. While it targets document extraction rather than NER/RE/EE, it demonstrates GRPO for IE with verifiable rewards and should be cited as related work."
+  ],
+  "feedback": "Significant improvement from Rounds 1/2 — all 8 prior issues were addressed, which is excellent. The idea is now well-positioned against competitors. The remaining issues are mostly minor and addressable:\n\n1. **Fix venue deadline**: The EMNLP 2026 ARR submission deadline is May 25, 2026 (confirmed via official CFP), not June 25. Update target venues to reflect this. If 14 days is too tight, shift primary target to AAAI 2027 (~late July deadline) while keeping EMNLP as a stretch goal.\n\n2. **Specify NER evidence gold standard**: For ACE05/SciERC NER evidence evaluation, propose a concrete approach: e.g., use dependency-parse-derived context windows as silver-standard evidence for automatic evaluation, supplemented by human evaluation on a 100-instance sample. Acknowledge the limitation that NER evidence evaluation is intrinsically harder than RE evidence (where DocRED provides gold).\n\n3. **Account for NLI reward overhead**: Add a note that NLI scoring during GRPO adds ~30-50% compute overhead; mitigated by batched inference on frozen DeBERTa-v3-large (fast, ~400M params) and potential sampling of evidence pairs when extraction count per input is high.\n\n4. **Add expected performance estimates**: State hypothesized improvements: e.g., 'We expect comparable or modestly improved extraction F1 (+1-2 points) with the primary contribution being new attribution metrics (evidence IoU, attribution precision/recall) that no existing system reports.'\n\n5. **Cite Extract-0**: Brief mention as related work using GRPO for document IE.\n\nThe core idea — provenance-as-verifiable-reward for GRPO across the full UIE stack — remains genuinely novel. The key risk is whether the provenance reward improves or trades off extraction quality. If you can show even modest extraction improvements alongside strong attribution metrics, this is EMNLP Findings quality. For Main conference, you'd need clearer empirical superiority over ProUIE/R2GRPO.",
+  "reason": "All Round 1/2 issues addressed; novelty is valid but incremental (synthesis of existing components); venue deadline factual error and several minor gaps remain below the 4.0 avg threshold."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "67bb1334-2558-4b3e-9333-75c8aa796e90",
+  "isSidechain": false,
+  "requestId": "req_011CaweETxdTgg4x3WTdkvRz",
+  "type": "assistant",
+  "uuid": "68eb8609-7127-4f20-9a2d-5e34030a2ef8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012My5DnuYNE8yzqidAVVyik",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1098,
+      "cache_read_input_tokens": 61525,
+      "output_tokens": 5953,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1098,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5953,
+          "cache_read_input_tokens": 61525,
+          "cache_creation_input_tokens": 1098,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1098
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 117_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "68eb8609-7127-4f20-9a2d-5e34030a2ef8",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 118_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "ProvUIE: Grounded information extraction with evidence-span GRPO",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 119_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-11 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "68eb8609-7127-4f20-9a2d-5e34030a2ef8",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 120_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "ProvUIE: Grounded information extraction with evidence-span GRPO",
+  "sessionId": "2b4abd55-8180-4317-ab88-081557fb6840"
+}
+```
+
+---

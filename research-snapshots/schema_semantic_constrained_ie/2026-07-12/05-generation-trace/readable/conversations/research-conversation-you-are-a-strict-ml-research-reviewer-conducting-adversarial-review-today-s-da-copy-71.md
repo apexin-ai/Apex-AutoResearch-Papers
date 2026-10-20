@@ -1,0 +1,5669 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-10 (UTC).** Your job: indep
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 82
+- **Recorded user turns:** 1
+- **Tool calls:** 20
+- **Original source:** `logs/chats/exported-trajectories/account-2/dad33b85-0c9b-4087-a415-8c59711805c0.jsonl`
+- **Structured JSON:** [`3655464b370e1ffcdfae.json`](../../sessions/36/3655464b370e1ffcdfae.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T09:56:28.704Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T09:56:28.704Z",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-10 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Information Extraction.\n\nDirection: Structured information extraction — named entity recognition, relation extraction, event extraction, document-level IE, end-to-end extraction pipelines. Both LLM-based and non-LLM approaches welcome. In-scope: schema-guided extraction, zero-shot/few-shot IE, cross-document extraction, multimodal IE (text + layout + images), temporal/causal relation extraction.\n\nContribution type: METHOD ONLY. New extraction architectures, training strategies, or inference algorithms. Not a new dataset or annotation guideline.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. IE work is typically lightweight — most experiments are fine-tuning or in-context learning.\n2. Time: ≤16 days. Use existing IE frameworks (GoLLIE, UniNER, USM) or build on open LLMs with structured output.\n3. Eval: ACE05, SciERC, TACRED/TACREV, DocRED, MAVEN, Few-NERD, WikiEvents, RAMS.\n\nLook for: schema-guided extraction that generalizes across domains, efficient document-level IE beyond sliding windows, extraction with faithful provenance/citation, structured extraction from semi-structured sources (tables, forms, code). Avoid: basic NER fine-tuning, prompt-only extraction without architectural insight.\n\nTag: direction=information_extraction, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 9/10)\n{\n  \"title\": \"CompSchema-IE: Hard Grammar Constraints vs. Soft Filtering for Zero-Shot Event Argument Extraction — An Empirical Study via Synthetic Supervision\",\n  \"core_problem\": \"Synthetic-data-based zero-shot event argument extraction (EAE) faces a structural data quality problem that existing approaches address only partially. LtGaE (AAAI 2026) uses soft RL penalties for argument completeness — a quality score penalty that fires when the proportion of empty arguments per sample deviates from a target range [τ−ε, τ+ε], but does not enforce per-role entity-type compatibility or hard cardinality bounds during decoding. Gatto et al. (ACL 2025 Long) uses free-form LLM generation with no formal constraints. FineCSDA (NLPCC 2024) targets the long-tail distribution of argument roles via sample-level augmentation of rare event types (SDAM) and context-level injection of rare role fillers (CDAM), but neither module enforces formal cardinality bounds or entity-type constraints — coverage improvement relies on targeted prompt design rather than any structural enumeration mechanism. GEMS (ACL Findings 2025) applies ontology steering at inference time via multi-perspective prompting and voting, not at training-data generation time.\\n\\nNone of these approaches systematically addresses the structural salience of rare argument roles during generation. The RAMS ontology TSV specifies only maximum cardinality (the 'count permitted' column is an upper bound on role occurrences per instance, not a minimum), so grammar-constrained decoding via XGrammar enforces: (a) no role exceeds its permitted maximum count, and (b) when filled, entity types are compatible. It cannot logically force optional roles to appear — setting min-cardinality=1 for all roles would require an assumption not derivable from the RAMS TSV and would produce unrealistically complete training instances where every event instance has every schema role filled. Instead, Schema-Constrained Grammar (SCG) provides a different mechanism: structural salience. Critically, in the XGrammar encoding all applicable role slots appear as required keys in the output JSON template — the LLM generates an empty string or null value for absent optional arguments but cannot omit role keys from the output. This key-level requirement is the structural salience mechanism: it forces the model to generate each role name as a required output token, ensuring the corresponding slot appears in every generated instance and counteracting the prior bias toward silently omitting rare slot names that characterizes unconstrained generation. Even when individual constraint violation rates are low (plausible for strong instruction-following models like Qwen3-32B), unconstrained generation tends to cluster on high-frequency role patterns due to LLM prior biases, likely under-representing rare optional roles. Post-hoc filtering (Condition B) removes entity-type violations and cardinality overruns but operates on outputs from unconstrained generation where rare role keys were never generated — it cannot recover coverage for roles absent from the unconstrained output corpus.\\n\\nThe primary gap CompSchema-IE targets is empirical and analytical: we do not know (a) whether hard grammar constraints (formal cardinality + entity-type enforcement via XGrammar, which provides structural salience through required role-key enumeration over and above entity-type and cardinality filtering) outperform oracle post-hoc filtering of unconstrained generation on downstream zero-shot EAE, (b) in which role strata these differences concentrate, or (c) whether any structural regularization gains are mechanistically explained by rare-role instantiation improvements. Answering these questions empirically — with a clean three-condition ablation, volume-controlled design, and stratified evaluation — is a concretely useful contribution for EMNLP Findings, even if overall F1 deltas are modest.\",\n  \"opportunity\": \"The supervised-to-zero-shot gap remains 8–35 F1 points (supervised SOTA: DEGAP COLING 2025 — RAMS 54.2 Arg-C F1, WikiEvents 67.1 Arg-C F1; TSCA IET Software 2026 adds ~+3.0/+1.0 F1 in fully supervised settings; best zero-shot cross-dataset: LtGaE 32–47 Span-F1 on RAMS2RAMS/RAMS2Wiki/Wiki2Wiki; note that Span-F1 and Arg-C F1 are not directly comparable — Arg-C F1 is typically higher for the same system). Training data quality for the generator model is a concrete bottleneck: LtGaE's soft RL penalties improve over prior unconstrained generation but cannot guarantee per-role proportional coverage; FineCSDA's targeted augmentation improves rare-role counts but lacks formal structural enumeration. GEMS (ACL Findings 2025) provides ontology-guided inference-time EAE but does not address training-data generation quality. SynthIE (EMNLP 2023) demonstrated that task-reversal generation can produce highly effective synthetic IE training data, but uses no grammar-constrained decoding and does not address event argument extraction. The key open question is whether hard constraints provide a measurable advantage over oracle-quality soft filtering under a volume-controlled design. This question has a clean experimental operationalization: (A) unconstrained generation, (B) unconstrained generation with post-hoc violation filtering (oracle soft constraint approximation, volume-matched to A and C), and (C) grammar-constrained generation via XGrammar — same model, same schema information, same final training volume. If C outperforms B on rare roles despite similar overall violation rates, the result directly demonstrates that structural salience (not just constraint compliance) drives the downstream gain — the SCG's required role-key enumeration in the output template forces the model to generate each role name as a required output token rather than silently omitting rare keys during unconstrained generation. This is a falsifiable, mechanistically interpretable empirical finding — the type EMNLP Findings values.\",\n  \"landscape\": \"GuideX (ACL Findings 2025) sets SOTA on 7 zero-shot NER benchmarks with Llama-3.1 fine-tuned on generated data, but explicitly does not address event argument extraction.\\n\\nGEMS (ACL Findings 2025, aclanthology.org/2025.findings-acl.1353) uses multi-perspective prompts and ontology steering for inference-time EAE on WikiEvents, ACE05, and ERE-EN, achieving SOTA in low-resource settings. GEMS applies ontology knowledge at inference time via a voting mechanism over multiple generation paths with T5-large as the base model; CompSchema-IE instead applies hard grammar constraints at training-data generation time, investigating whether structural salience from required role-key enumeration during generation improves downstream rare-role coverage — a complementary research question targeting a different phase of the pipeline.\\n\\nFineCSDA ('FineCSDA: Boosting Document-Level Event Argument Extraction with Fine-Grained Data Augmentation', NLPCC 2024, dl.acm.org/doi/10.1007/978-981-97-9434-8_1) directly identifies the long-tail distribution of argument roles as a bottleneck and proposes two augmentation modules: SDAM generates new document-level samples for rare event types, and CDAM injects rare argument roles and corresponding context into common event type documents. Unlike CompSchema-IE, FineCSDA does not impose formal cardinality bounds or entity-type constraints, and provides no structural role-slot enumeration — coverage improvement relies on targeted prompt design for rare types and roles.\\n\\nGatto et al. ('Document-Level Event-Argument Data Augmentation for Challenging Role Types', ACL 2025 Long, arXiv:2403.03304) is a direct predecessor: LLM-powered augmentation (Mad Lib Aug and Struct2Text) for extractive EAE, +13 F1 on zero-shot role types using BERT-QA, no schema constraints, few-shot cross-domain setting (5 documents per event type available), zero-shot roles within seen event types — not fully zero-shot event type generalization.\\n\\nBiTer (Information Processing and Management, May 2025, doi:10.1016/j.ipm.2025.104199) achieves +4.6%/+7.5%/+0.4% zero-shot Arg-C F1 on RAMS/WikiEvents/ACE2005 using within-dataset event-type-held-out splits. Protocol is NOT directly comparable to LtGaE's cross-dataset three-way protocol; reported separately with explicit footnote.\\n\\nLtGaE (AAAI 2026, arXiv:2603.02909) uses multi-agent Propose-Evaluate-Revise with RL reward that includes a soft penalty p_i activated when the proportion of empty arguments ρ_i deviates from a target range [τ−ε, τ+ε] — a global aggregate quality-score adjustment per sample, not a per-role structural enumeration or hard decoding constraint. Achieves 45.77/32.38/46.96 Span-F1 on RAMS2RAMS/RAMS2Wiki/Wiki2Wiki. Does not compare against BiTer.\\n\\nASEE (EMNLP Findings 2025, arXiv:2505.08690) addresses inference-time schema selection via RAG; no hard constraints; does not report RAMS/WikiEvents numbers.\\n\\nBoostCD (EMNLP 2025 Main, arXiv:2506.14901) demonstrates that constrained and unconstrained decoding produce complementary errors at inference time for closed IE, with a learned boosted model combining both for stronger performance. CompSchema-IE investigates an analogous question at training-data generation time for event argument extraction, where structural salience differences compound across a finite corpus rather than being resolved at inference.\\n\\nSALE (MDPI Electronics, March 2026) uses code-based LLM fine-tuning with RL alignment for cross-task zero-shot transfer; no formal schema constraints during data generation.\\n\\nExtracting Events Like Code (AAAI 2026, arXiv:2511.13118) uses Python class definitions for inference-time schema validation, not training-data generation.\\n\\nSynthIE (EMNLP 2023, ACL Anthology 2023.emnlp-main.96) generates synthetic IE training data via task-reversal (structure→text generation), achieving large F1 gains on smaller models; uses no grammar-constrained decoding, no formal cardinality bounds, and targets IE triplets rather than compositional event argument extraction. Establishes the task-reversal generation paradigm that CompSchema-IE extends with hard compositional constraints.\\n\\nSupervised SOTA: DEGAP (COLING 2025, arXiv:2405.13325) — RAMS 54.2 Arg-C F1, WikiEvents 67.1 Arg-C F1. TSCA (IET Software 2026) adds ~+3.0/+1.0 F1 in fully supervised settings.\\n\\nThe specific open question not addressed by any prior work — including GEMS, FineCSDA, LtGaE, Gatto et al., or BoostCD: does hard grammar constraint enforcement (cardinality + entity-type, XGrammar) — which provides structural salience via required role-key enumeration in the output JSON template — outperform oracle post-hoc filtering of unconstrained generation under a volume-controlled design, and does any advantage concentrate in rare-role and high-cardinality-tightness strata where the structural enumeration mechanism is most likely to shift the LLM's generation distribution?\",\n  \"approach\": \"CompSchema-IE is framed explicitly as an empirical study targeting EMNLP 2026 Findings. The primary contribution is a clean, volume-controlled three-condition ablation that isolates the value of hard constraint enforcement over soft filtering, combined with a stratified analysis that localizes any gains mechanistically.\\n\\n**Primary Hypothesis (Structural Salience, Empirically Testable)**:\\nThe RAMS ontology TSV specifies only maximum cardinality (the 'count permitted' column is an upper bound on role occurrences per instance). XGrammar therefore enforces: (a) no role appears more than its permitted maximum count, and (b) when filled, entity types are compatible. It does NOT logically guarantee that optional rare roles appear in every generated instance — this would require setting min-cardinality=1 for all roles, a design choice not derivable from the RAMS TSV alone and one that would produce unrealistically complete training instances where every event instance has every schema role filled.\\n\\nCompSchema-IE instead adopts the structural salience framing: SCG provides structural salience by explicitly enumerating every applicable role slot as a required key in the constrained generation template. In the XGrammar encoding, all applicable role slots for a given event type appear as required keys in the output JSON template; the LLM generates an empty string or null value for absent optional arguments but cannot omit role keys from the output. This key-level requirement is the mechanism of structural salience: it forces the model to generate each role name as a required output token, ensuring the corresponding slot appears in every generated instance rather than being silently omitted, counteracting the prior bias toward omitting rare slot names that characterizes unconstrained generation. Condition B (post-hoc filtering) can remove entity-type violations and cardinality overruns from unconstrained outputs, but cannot recover coverage for role keys that unconstrained generation never emitted in the first place. The structural salience hypothesis is therefore that Condition C will show improved rare-role instantiation over Condition B even when overall constraint violation rates are comparable — an effect logically independent of constraint compliance and attributable specifically to required key enumeration. Even when individual constraint violation rates are low — expected for Qwen3-32B given its strong instruction-following capability — unconstrained generation's prior biases tend to cluster on high-frequency role patterns, under-representing rare optional roles. FineCSDA (NLPCC 2024) partially addresses rare-role under-representation via targeted prompting (SDAM/CDAM), but without formal structural enumeration; CompSchema-IE's SCG provides structural salience by construction through required key enumeration, making it an empirical question whether this translates to downstream rare-role F1 gains.\\n\\n**Step 0 — Motivating Pilot Study (Day 4, 4 GPU-hours)**:\\nSample 600 event instances from Qwen3-32B without constraints (standard structured prompting with RAMS/WikiEvents schema descriptions). The expanded sample (~4–5 instances per event type for RAMS's 139 types) enables reliable per-role violation statistics. Measure: entity-type mismatch rate, cardinality violation rate, role hallucination rate, and argument role coverage (proportion of schema roles appearing ≥1 time). Report all four metrics unconditionally. The primary paper argument holds regardless of outcome: low violation rates motivate the structural salience framing (SCG's required key enumeration matters beyond error correction); high rates additionally motivate constraint enforcement for quality improvement. Both are reported; neither determines the primary framing.\\n\\n**Step 1 — Schema Constraint Grammar (Days 1-3, human engineering)**:\\nDerive typed constraint specifications from RAMS (cardinality directly from public ontology TSV, encoding the 'count permitted' values as maximum bounds; entity-type compatibility from dataset annotations) and WikiEvents (entity-type compatibility from annotations). Encode as XGrammar-compatible context-free grammars. Critically, all applicable role slots for a given event type are encoded as required keys in the output JSON template: the LLM must generate each role name as a JSON key, and may output an empty string or null value for absent optional arguments, but cannot omit any role key from the output. This required-key design is the structural salience mechanism — it forces the model to generate each role name as a required output token, ensuring every slot appears in the generated instance rather than being silently omitted as occurs in unconstrained generation (Condition A), an effect not recoverable by post-hoc filtering (Condition B). Cardinality constraints additionally enforce upper bounds on role-filler counts and entity-type compatibility per filler. RAMS TSV availability substantially reduces construction effort. Scoped to 2 ontologies.\\n\\n**Step 2 — Three-Condition Data Generation with Volume Control (Days 5-7, ~62.5 GPU-hours)**:\\nAll conditions use Qwen3-32B on 2×A100 80GB via vLLM. **Target training volume**: N = 5,000 event argument instances per condition, distributed proportionally across the 139 RAMS event types (~36 instances per type on average, with a minimum of 1 per rare type) and WikiEvents event types. To eliminate the volume confound — where Condition B (post-hoc filtered) would otherwise train on fewer instances than C — the following volume normalization protocol is applied:\\n\\n- **Pool Generation**: Generate 1.5× the target volume (7,500 unconstrained instances) as unconstrained instances (same chat prompting with schema descriptions). Report achieved token throughput and generation settings.\\n- **Condition A (Unconstrained)**: Randomly subsample N=5,000 instances from the 7,500-instance pool.\\n- **Condition B (Post-hoc Filtered — Oracle Soft Baseline)**: Apply the automated verifier to the full 7,500-instance pool; retain instances passing all entity-type, cardinality, and role-hallucination checks, targeting N=5,000 post-filter instances. Report the achieved discard rate (e.g., 'we generated 7,500 instances and discarded X%, retaining 5,000 for training') as a transparency metric. If the filter discards more than 33% (leaving fewer than 5,000 clean instances), increase the pool to 2× (10,000 instances) and regenerate the additional batch. This baseline approximates oracle-quality soft constraint enforcement without reimplementing LtGaE's RL loop; crucially, it CANNOT recover structural salience for roles absent from filtered instances because unconstrained generation never emitted those role keys.\\n- **Condition C (SCG-Constrained)**: Grammar-constrained vLLM decoding via XGrammar to exactly N=5,000 instances, enforcing all role-entity-type assignments and cardinality constraints during the forward pass (<40μs/token overhead, per XGrammar MLSys 2025). The grammar's required role-key enumeration in the output template provides structural salience by construction.\\n\\nAll three conditions train on exactly N=5,000 instances, making the C-vs-B comparison methodologically airtight.\\n\\n**Step 3 — Constraint Verification (concurrent with Step 2)**:\\nThe automated verifier checks all generated instances and reports: filter rate for the A/B pool (transparency metric), corpus-level role coverage for each condition, near-zero filter rate for Condition C (SCG compliance guarantee). Role coverage differences across conditions directly measure the structural salience effect prior to fine-tuning.\\n\\n**Step 4 — Fine-tuning and Evaluation (Days 8-11, ~57 GPU-hours)**:\\nLoRA fine-tune Qwen3-8B on each of the three volume-matched corpora (3 conditions × ~15 GPU-hours = 45 GPU-hours). Evaluate zero-shot on WikiEvents and RAMS using LtGaE three-way protocol (RAMS2RAMS, RAMS2Wiki, Wiki2Wiki). Comparison table: LtGaE, ASEE, supervised SOTA (DEGAP), Condition A, Condition B, Condition C. A footnote in the table explicitly clarifies metric differences: LtGaE and CompSchema-IE report Span-F1; DEGAP reports Arg-C F1. These metrics are not directly comparable — Arg-C F1 is typically higher than Span-F1 for the same system. Each baseline is reported under its natively reported metric to avoid misrepresenting relative gaps. BiTer reported separately under native within-dataset protocol with explicit non-comparability footnote.\\n\\n**Step 5 — Stratified Evaluation (Day 12, ~12 GPU-hours for inference)**:\\nThe primary analysis section — demonstrates mechanistic explanation of C vs. A/B gaps:\\n(a) Role Rarity Strata: Rank argument roles by frequency in source schema annotations; partition into quartiles. Report C vs. A and C vs. B F1 for each quartile. Hypothesis: C-B gap concentrates in the bottom quartile (rarest roles) because grammar-guided required key enumeration most strongly prompts the model to instantiate rarely-occurring role types; for common roles, both unconstrained and post-hoc filtered corpora already have sufficient coverage.\\n(b) Cardinality Tightness Strata: Partition by RAMS-ontology cardinality — max=1 (singleton roles) vs. max>1. Report C vs. A and C vs. B F1 for each partition. Hypothesis: C outperforms B on max=1 roles because Condition B can only remove duplicates but may still have duplicate instances within the filtered corpus; SCG hard-enforces the singleton constraint.\\nIf overall C-B delta is modest (e.g., <1 F1), the stratified analysis provides a theoretically grounded finding even for the Findings track: structural salience helps specifically where theory predicts, at a granularity that soft filtering cannot replicate. Both role coverage rates and argument span F1 are reported per stratum, allowing quality and coverage effects to be distinguished (addressing the concern that grammar-constrained decoding may improve role coverage while degrading span quality).\\n\\n**Null Result Pre-Specification**:\\nWe pre-specify the null result interpretation in the paper: if C does not outperform B even in the rare-role quartile or singleton-cardinality partition, we report this as a clearly framed negative finding — grammar-guided structural enumeration via required key templates during generation provides no additional rare-role instantiation benefit over oracle post-hoc filtering of unconstrained generation at Qwen3-32B scale. This is a practically useful negative result: it suggests that strong instruction-following models already provide sufficient structural salience through prompt-specified schema descriptions, and that engineering investment in SCG construction may not be warranted at this model scale. EMNLP Findings publishes clearly framed negative results; this pre-specification distinguishes a null result from a failed experiment.\\n\\n**Limitations and Quality Tradeoffs**:\\nGrammar-constrained decoding may introduce quality degradation beyond structural coverage: Schall & de Melo (RANLP 2025) demonstrate that constrained decoding forces instruction-tuned models away from high-confidence natural language paths, potentially increasing extraction misses. We mitigate this by using Qwen3-32B (whose strong instruction-following capability reduces divergence between constrained and unconstrained generation paths) and by measuring argument span F1 per role stratum in the stratified evaluation alongside role coverage rates, so that quality and coverage effects are distinguishable rather than conflated.\\n\\n**Paper writing**: Concurrent from Day 1 (intro, related work, method drafted during experiment runs); intensive final writing Days 13-16.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~125.5h A100 80GB total: pilot study generation 600 instances (4 GPU-hours); 1.5× unconstrained pool generation for Conditions A+B (target N=5,000 per condition, pool=7,500 instances, ~37.5 GPU-hours); SCG-constrained generation for Condition C (N=5,000 instances, ~25 GPU-hours); LoRA fine-tuning Qwen3-8B across 3 volume-matched conditions × 15 GPU-hours = 45 GPU-hours; stratified evaluation inference ~12 GPU-hours; evaluation and reporting ~2 GPU-hours\",\n      \"gpu_utilization\": \"Moderate (~50%): compressed timeline reduces idle gaps; human engineering on SCG module (Days 1-3) and paper writing (concurrent) introduce some idle GPU time, mitigated by parallelizing fine-tuning runs. Volume control adds ~12.5 GPU-hours of generation vs. original design.\",\n      \"timeline\": \"16 active days targeting May 25, 2026 ARR deadline (commitment to EMNLP 2026 by August 2, 2026; conference October 24-29, Budapest). Day-by-day: Days 1-3 SCG construction + pilot study setup; Day 4 pilot study run (600 instances) + metric analysis; Days 5-7 data generation (7,500-instance A/B pool + 5,000-instance C, staggered on 2×A100, pool generation starts Day 5, C generation starts Day 6 while A/B fine-tune begins); Days 8-10 LoRA fine-tuning (all 3 conditions, staggered); Day 11 LtGaE three-way evaluation; Day 12 stratified evaluation analysis; Days 13-16 intensive paper writing (concurrent with experiments from Day 1). No extended ablations, no ACE05 comparison, no BiTer replication.\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"~$187 (125.5h × $1.49/hr A100, RunPod/JarvisLabs)\",\n      \"h100_equiv\": \"~90h H100-equivalent (well within ≤200h H100 hard constraint)\",\n      \"risk_note\": \"Key risks and mitigations: (1) Overall C-B F1 delta may be small (<1 F1): mitigated by stratified evaluation and pre-specified null result interpretation — paper's primary claim is that structural salience helps in rare-role and singleton-cardinality strata; if this too is null, reported as a clear negative finding with specific positioning. (2) Filter rate exceeds 33% (B cannot reach N=5,000 from 7,500-instance pool): mitigated by increasing pool to 10,000 instances for that condition and reporting achieved discard rate as transparency metric. (3) Pilot study shows <1% violations: expected and mitigated by structural salience argument (violation-rate-independent — the hypothesis concerns role instantiation frequency via required key enumeration, not constraint compliance). (4) XGrammar quality degradation (Schall & de Melo, RANLP 2025): mitigated by Qwen3-32B's strong instruction-following capability and dual measurement of span F1 and role coverage per stratum. (5) 16-day timeline is tight: SCG construction is the bottleneck; RAMS TSV machine-readable cardinality substantially reduces this. Paper writing concurrent from Day 1 is required. (6) BiTer protocol mismatch: explicitly handled with separate table and footnote. (7) FineCSDA comparison: differentiated from CompSchema-IE by formal grammar-constrained decoding with required role-key enumeration vs. targeted prompting, volume-controlled experimental design, and structural salience mechanism by construction.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 Findings (ARR May 25, 2026 submission deadline; commitment to EMNLP 2026 by August 2, 2026; conference October 24-29, Budapest, Hungary)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction (ACL Findings 2025)\",\n    \"GEMS: Generation-Based Event Argument Extraction via Multi-perspective Prompts and Ontology Steering (ACL Findings 2025, aclanthology.org/2025.findings-acl.1353) — inference-time EAE using multi-perspective prompts and ontology steering (T5-large) on WikiEvents/ACE05/ERE-EN; achieves SOTA in low-resource settings; differentiated from CompSchema-IE by operating at inference time rather than training-data generation, and by using a voting mechanism over multiple generation paths rather than hard grammar constraints\",\n    \"FineCSDA: Boosting Document-Level Event Argument Extraction with Fine-Grained Data Augmentation (NLPCC 2024, dl.acm.org/doi/10.1007/978-981-97-9434-8_1) — identifies long-tail argument role distribution as bottleneck; SDAM generates samples for rare event types, CDAM injects rare role fillers into common event type documents; no formal cardinality bounds, entity-type constraints, or explicit role-slot enumeration; coverage relies on targeted prompting\",\n    \"Document-Level Event-Argument Data Augmentation for Challenging Role Types (Gatto, Sharif, Seegmiller, Preum; ACL 2025 Long, arXiv:2403.03304) — direct LLM-augmentation predecessor; no constrained decoding, no cardinality/entity-type constraints, few-shot cross-domain with zero-shot roles\",\n    \"SynthIE: Leveraging the Asymmetry of Knowledge Graph Structure for Synthetic IE Data Generation (EMNLP 2023, ACL Anthology 2023.emnlp-main.96) — task-reversal generation paradigm; no grammar-constrained decoding, no formal cardinality bounds, targets IE triplets not event argument extraction\",\n    \"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction (EMNLP 2025 Main, arXiv:2506.14901) — inference-time boosting for closed IE; central empirical finding: constrained and unconstrained decoding produce complementary errors; CompSchema-IE investigates an analogous question at training-data generation time for event argument extraction, where structural salience differences compound across a finite corpus rather than being resolved at inference\",\n    \"The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance (Schall & de Melo, RANLP 2025, aclanthology.org/2025.ranlp-1.124/) — demonstrates that constrained decoding forces instruction-tuned models away from high-confidence natural language paths, causing quality degradation; for LLaMA-3.3-70B, XGrammar led to substantially more extraction misses than top unconstrained strategies; motivates use of strong instruction-following models (Qwen3-32B) and dual measurement of role coverage and span F1 per stratum\",\n    \"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction (ACL 2024)\",\n    \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction (ICLR 2024)\",\n    \"BiTer: Bi-directional Feature Learning-Based Approach for Zero-Shot Event Argument Extraction (Information Processing and Management, May 2025, doi:10.1016/j.ipm.2025.104199) — within-dataset event-type-held-out evaluation protocol; not directly comparable to LtGaE three-way cross-dataset protocol\",\n    \"Adaptive Schema-aware Event Extraction with Retrieval-Augmented Generation (ASEE, EMNLP Findings 2025, arXiv:2505.08690)\",\n    \"Learning to Generate and Extract: A Multi-Agent Collaboration Framework for Zero-Shot Document-Level Event Arguments Extraction (LtGaE, AAAI 2026, arXiv:2603.02909) — soft RL penalty p_i fires when per-sample empty-argument proportion ρ_i deviates from [τ−ε, τ+ε] (global aggregate quality score, not per-role structural enumeration); 45.77/32.38/46.96 Span-F1 on RAMS2RAMS/RAMS2Wiki/Wiki2Wiki\",\n    \"Extracting Events Like Code: A Multi-Agent Programming Framework for Zero-Shot Event Extraction (AAAI 2026, arXiv:2511.13118)\",\n    \"Structure-Aware Lightweight Document-Level Event Extraction via Code-Based Large Language Models (SALE, MDPI Electronics, March 2026)\",\n    \"DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event Argument Extraction with Slot Querying (COLING 2025, arXiv:2405.13325) — supervised SOTA: RAMS 54.2 Arg-C F1, WikiEvents 67.1 Arg-C F1\",\n    \"Beyond Single-Event Extraction: Towards Efficient Document-Level Multi-Event Argument Extraction (DEEIA, ACL 2024 Findings, arXiv:2405.01884) — RAMS 53.4 Arg-C F1, WikiEvents 67.0 Arg-C F1\",\n    \"Two-Stream Modeling for Document-Level Event Argument Extraction Using Contextual Clue and AMR Structures (TSCA, IET Software 2026) — supervised SOTA extension: +3.02/+1.01 F1 on RAMS/WikiEvents over prior SOTA\",\n    \"DiCoRe: Enhancing Zero-shot Event Detection via Divergent-Convergent LLM Reasoning (arXiv:2506.05128)\",\n    \"MAVEN: A Massive General Domain Event Detection Dataset (EMNLP 2020)\",\n    \"Document-Level Event Argument Extraction by Conditional Generation (NAACL 2021)\",\n    \"InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction (arXiv 2023)\",\n    \"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models (MLSys 2025)\"\n  ],\n  \"description\": \"Zero-shot event argument extraction lags supervised performance by 8–35 F1 points (supervised SOTA: DEGAP COLING 2025 — RAMS 54.2 Arg-C F1, WikiEvents 67.1 Arg-C F1; best zero-shot cross-dataset: LtGaE AAAI 2026 — 32–47 Span-F1 on RAMS2RAMS/RAMS2Wiki/Wiki2Wiki; note Span-F1 and Arg-C F1 are not directly comparable — Arg-C F1 is typically higher for the same system). A key bottleneck is training data quality for the generator model. This paper presents CompSchema-IE, an empirical study asking: do hard grammar constraints (formal cardinality + entity-type enforcement via XGrammar-constrained vLLM decoding) outperform oracle post-hoc filtering of unconstrained generation for zero-shot EAE, and does any advantage concentrate in role strata where theory predicts?\\n\\nThe primary motivation is a structural salience hypothesis: the RAMS ontology TSV specifies only maximum cardinality (the 'count permitted' column is an upper bound on role occurrences per instance, not a minimum), so XGrammar enforces upper-bound cardinality and entity-type compatibility but cannot logically guarantee that optional roles appear in every generated instance. Instead, SCG provides structural salience through required key enumeration: in the XGrammar encoding, all applicable role slots for a given event type appear as required keys in the output JSON template. The LLM generates empty strings or null values for absent optional arguments but cannot omit role keys from the output. This required-key design forces the model to generate each role name as a required output token, ensuring every slot appears in the generated instance and counteracting the prior bias toward silently omitting rare optional slot names that characterizes unconstrained generation. Post-hoc filtering (Condition B) removes violations but cannot recover coverage for role keys that unconstrained generation never emitted — a structural gap that filtering cannot close. Prior work (GEMS ACL Findings 2025 — ontology steering at inference time; FineCSDA NLPCC 2024 — targeted prompt augmentation; LtGaE AAAI 2026 — aggregate soft RL penalties) addresses rare-role under-representation via different mechanisms, none of which provides formal required-key enumeration at generation time. Concurrently, BoostCD (EMNLP 2025, arXiv:2506.14901) demonstrates complementary error profiles of constrained vs. unconstrained decoding at inference time for closed IE; CompSchema-IE investigates the analogous structural salience question at training-data generation time for EAE.\\n\\nA three-condition, volume-controlled ablation (N=5,000 instances per condition, distributed proportionally across RAMS's 139 event types) isolates the grammar effect cleanly: (A) Unconstrained, randomly subsampled to N=5,000 training instances; (B) Post-hoc Filtered (oracle soft-constraint approximation, volume-matched to N=5,000 by generating a 7,500-instance pool and filtering to N, with achieved discard rate reported as transparency metric); (C) SCG-Constrained (grammar-constrained to exactly N=5,000 instances with required role-key enumeration providing structural salience). All conditions use Qwen3-32B, the same schema information, and the same final training volume N, making the C-vs-B comparison methodologically airtight. A motivating pilot study measures entity-type mismatch, cardinality violation, role hallucination, and role coverage rates in Qwen3-32B unconstrained generation on RAMS/WikiEvents (600 instances; all metrics reported unconditionally). LoRA fine-tunes Qwen3-8B on each volume-matched corpus; evaluation uses the LtGaE three-way protocol with LtGaE, ASEE, and DEGAP as baselines. The comparison table includes a footnote explicitly noting that LtGaE and CompSchema-IE report Span-F1 while DEGAP reports Arg-C F1 — these metrics are not directly comparable, and each baseline is reported under its natively reported metric. Null result interpretation is pre-specified: if C does not outperform B in rare-role strata, the paper reports this as a clearly framed negative finding — grammar-guided structural enumeration provides no additional benefit over oracle post-hoc filtering at Qwen3-32B scale, suggesting the model's instruction-following capability already provides adequate structural salience through prompt-specified schema descriptions. The stratified evaluation by (a) role rarity quartile and (b) cardinality tightness (max=1 vs. max>1) reports both role coverage and argument span F1 per stratum, distinguishing coverage gains from potential quality tradeoffs introduced by grammar-constrained decoding (Schall & de Melo, RANLP 2025). CompSchema-IE extends the SynthIE task-reversal paradigm (EMNLP 2023) with formal grammar-constrained decoding and compositional cardinality bounds. Target: EMNLP 2026 Findings (ARR May 25, 2026). Estimated GPU cost: ~$187 (125.5h A100 ≈ 90h H100-equiv, within budget). Timeline: 16 active days.\",\n  \"project_name\": \"schema_constrained_event_ie\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"Auto mode (900h A100 ≈ 450–630 H100-equiv hours) clearly violates the ≤200 H100-hour hard constraint; even the HIL mode (~380h A100 ≈ 190–266h H100-equiv) is borderline. The proposal must be scoped to core manual-mode experiments only, and the auto/HIL resource tables should be removed or flagged as out-of-scope for this submission.\", \"Critical omission: 'Adaptive Schema-aware Event Extraction with Retrieval-Augmented Generation' (ASEE, arXiv 2505.08690, May 2025, https://arxiv.org/abs/2505.08690) directly addresses schema-aware event extraction using schema paraphrasing + RAG, constructs a 12-dataset benchmark (MD-SEE), and is published just weeks before the proposed submission. This paper must be cited, compared against, and explicitly differentiated.\", \"'Learning to Generate and Extract' (AAAI 2026, arXiv 2603.02909) already uses 'event structure constraints incorporated into the reward design' to guide synthetic data generation for zero-shot document-level event argument extraction on RAMS and WikiEvents — the same benchmarks. The proposed paper's claim that 'neither enforces hard compositional constraints at training-data generation time' needs empirical substantiation showing that hard grammar constraints outperform soft RL-based structural reward signals, not just a definitional distinction.\", \"Unvalidated core hypothesis: the paper assumes compositional constraint violations in generated training data are the primary bottleneck for zero-shot event extraction, but provides no motivating study. With Qwen3-235B-A22B as generator, modern frontier LLMs with strong instruction following may naturally produce consistent role–entity assignments at high rates; the verifier's filter rate and its downstream effect on model quality are entirely unknown.\", \"Qwen3-235B-A22B inference on 4×A100 80GB (320 GB VRAM): FP8 weights alone occupy ~235 GB, leaving ~85 GB for KV cache — severely limiting batch size and throughput. The vendor-recommended minimum configuration is 8-GPU tensor parallelism (--tp 8). Practical deployment on 4×A100 requires INT4 quantization, which may degrade generation quality and invalidates the clean cost estimate.\", \"The claimed 30–50 F1-point gap between zero-shot and supervised methods is overstated for current SOTA: the best zero-shot methods (LtGaE 2026, BiTer) achieve ~32–47 F1 on RAMS/WikiEvents zero-shot scenarios while supervised SOTA reaches 52–69 F1 — the gap is task- and benchmark-specific (5–37 F1 points), not a uniform 30–50 points.\"]\nFeedback: The idea targets a genuine and underexplored gap (extending GuideX-style synthetic supervision to compositionally structured event schemas), but in its current form the novelty claim is undermined by two concurrent papers the generator missed. The revision must: (1) Cite and differentiate from ASEE (arXiv 2505.08690) — ASEE approaches schema-awareness via RAG rather than formal grammars during generation; CompSchema-IE's differentiation should be that SCG enforces hard cardinality and type-compatibility constraints that cannot be retrieved post-hoc. (2) Strengthen differentiation from LtGaE (arXiv 2603.02909) by adding an ablation comparing grammar-constrained hard generation vs. RL-reward-guided soft generation on WikiEvents/RAMS — this turns the design choice into a falsifiable experimental contribution. (3) Add a motivating pilot study (even 100 generated examples, manually inspected) showing that unconstrained Qwen3-235B-A22B does in fact produce constraint-violating instances (wrong entity type for argument role, cardinality violations) at non-trivial rates — without this, the SCG module has no evidenced purpose. (4) Scope compute to the manual-mode experiments only (≤250h A100 ≈ 175h H100-equiv, within budget) and remove the auto mode entirely from the proposal. (5) Replace Qwen3-235B-A22B with Qwen3-32B or Llama-3.1-70B as the generator — these fit on 2×A100 comfortably, reducing generation hardware risk while still producing high-quality synthetic text; Qwen3-235B-A22B can be framed as an optional upper-bound experiment if resources allow.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"BiTer (Bi-directional Feature Learning-Based Approach for Zero-Shot Event Argument Extraction, Information Processing and Management, May 2025) is not cited. This paper reports SOTA zero-shot performance on RAMS and WikiEvents with +4.6%/+7.5% F1 over the prior best and uses a different approach (pseudo-argument generation from LLMs + bidirectional knowledge transfer), making it directly relevant as a baseline. Omitting it means the proposed method's competitive positioning against the actual SOTA is unknown.\", \"The pilot study contingency plan is inadequate. The proposal acknowledges 'If the pilot study reveals very low violation rates (<2%), the SCG module's value proposition is weakened and the paper's framing should shift.' But this is not a contingency plan — it is an admission that the paper could have no compelling finding. If Qwen3-32B (a strong instruction-following model) violates event schema constraints rarely, the entire SCG contribution becomes a null result. The proposal needs either a pre-registration of what level of violation rate constitutes a paper (and what the fallback is if it doesn't), or a theoretical argument for why hard constraints add value independent of their violation rate (e.g., as a distributional regularizer, speed benefit, or interpretability advantage).\", \"The PARSE citation for the '~12% invalid response rate' is for GPT-4 on complex structured extraction (EMNLP 2025 Industry Track), not Qwen3-32B. Qwen3-32B is a newer model with potentially stronger instruction-following and may have substantially lower violation rates in practice. The motivating claim should be stated as a hypothesis to be confirmed by the pilot study, not as established fact for the proposed model.\", \"The cross-ontology schema normalization scope is underestimated. Unifying ACE05 (24 event types, ~35 argument roles), WikiEvents (~50 event types), and RAMS (139 event types, 65 argument roles) into a single formal constraint grammar with entity-type compatibility mappings is a multi-week engineering and curation task. The role vocabularies across the three ontologies do not overlap neatly (e.g., RAMS 'Victim' vs. ACE05 'Target' vs. WikiEvents 'place'). Within 16 days, this competes directly with the pilot study annotation and the soft-baseline ablation implementation.\", \"The soft-RL baseline ablation (matching LtGaE's reward design) requires implementing a multi-agent evaluation loop with an evaluation agent computing normalized log-likelihood and a structural completeness penalty. LtGaE achieves this via separate generation and evaluation agents with LoRA-tuned models. Re-implementing this faithfully within 16 days is unrealistic alongside the other engineering tasks. The ablation would be stronger and more tractable if simplified to: (a) unconstrained prompt-only generation (no grammar, no reward) vs. (b) SCG-constrained generation — this tests the same hypothesis more cleanly.\"]\nFeedback: The Round 2 revision has successfully addressed all five critical Round 1 issues: compute is within budget (122h H100-equiv confirmed), ASEE and LtGaE are properly cited with mechanistic differentiation, the pilot study adds empirical motivation, and Qwen3-32B on 2×A100 BF16 is hardware-feasible. The remaining issues are fixable but require concrete action before this is submission-ready.\n\n(1) Add BiTer as a baseline. Search for the full paper at doi.org/10.1016/j.ipm.2025.104199 and include its absolute F1 numbers in the comparison table. If BiTer outperforms LtGaE, frame CompSchema-IE as improving over both.\n\n(2) Strengthen the pilot study's decision framework. Before running the full pipeline, the pilot study should produce a pre-specified threshold: 'If violation rate > X%, we proceed with the full SCG approach. If rate < X%, we [specific alternative contribution].' A better alternative contribution at low violation rates: demonstrate that grammar-constrained generation produces structurally more diverse training examples (measured by argument role distribution) even when violations are rare — this is a quality argument that doesn't depend on violation rates.\n\n(3) Scope the ontology normalization. Start with WikiEvents + RAMS only (these share more structural similarity and are the primary benchmarks LtGaE targets). Add ACE05 only if time permits. This removes the hardest cross-vocabulary alignment problem while preserving the core experimental claims.\n\n(4) Simplify the ablation. Replace the full LtGaE RL re-implementation with a simpler two-condition comparison: SCG-constrained generation vs. unconstrained generation (standard chat prompting with the same event schema descriptions). This directly tests whether grammar constraints at generation time help, without requiring a multi-agent RL implementation. Note this in the paper as a controlled comparison rather than a direct LtGaE replication.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"SUPERVISED SOTA NUMBERS ARE FACTUALLY WRONG: DEGAP (2024) achieves 54.2 Arg-C on RAMS — not 52.2 — and 67.1 on WikiEvents — not 68.8. The numbers may be from DEEIA (which DEGAP supersedes), but the paper currently attributes them to 'DEGAP/DEEIA 2024' without clarification. This understates the RAMS gap (54.2 − 45.77 = 8.4 F1, not 6 F1) and overstates the WikiEvents supervised score. Fix by correctly attributing each number to the specific paper that reports it.\", \"UNCITED DIRECT PREDECESSOR: 'Large Language Models for Document-Level Event-Argument Data Augmentation for Challenging Role Types' (arXiv:2403.03304, Gatto et al., March 2024) uses LLMs to synthesize document-level EAE training data for zero-shot/few-shot roles and achieves +16pt F1 on zero-shot role types on RAMS — this is the closest published predecessor to CompSchema-IE's core idea. Not citing it leaves a gap that reviewers familiar with EAE data augmentation will notice. The differentiation is clear (arXiv:2403.03304 does not enforce hard cardinality/entity-type grammar constraints), but it must be cited.\", \"BITER COMPARISON PROTOCOL IS OPERATIONALLY UNRESOLVED: BiTer reports F1 on standard within-dataset zero-shot splits (event types held out by type), while LtGaE uses a cross-dataset three-way protocol (RAMS2RAMS, RAMS2Wiki, Wiki2Wiki). These protocols are NOT interchangeable. Getting BiTer's F1 under the LtGaE protocol requires either (a) running BiTer's code on the LtGaE data splits (requires code availability + compute, non-trivial) or (b) author cooperation. The proposal says 'to be obtained from the full paper' but this is not realistic given the protocol difference. The paper should explicitly acknowledge the protocol mismatch, report BiTer's numbers under BiTer's native protocol with a clear note, and NOT imply direct numerical comparability.\", \"DUAL-FRAMING CREATES REVIEWER PERCEPTION RISK: The pre-specified decision rule ('if violation rate >5%, primary claim is A; if ≤5%, primary claim is B') is epistemically honest but strategically risky for EMNLP Main submission. Reviewers may read this as 'the authors do not know what their own contribution is.' The structural regularization argument (higher argument role coverage, provable entity-type consistency) is the more durable long-term claim and should be the PRIMARY framing regardless of violation rate. The pilot study's violation rate then becomes secondary supporting evidence. Commit to 'SCG as structural regularizer' as the headline claim and present violation rate as a motivating data point, not a framing branch condition.\", \"ABLATION DESIGN DOES NOT RULE OUT MARGINAL IMPROVEMENT RISK: The core ablation (SCG-constrained vs. unconstrained generation) isolates the grammar effect cleanly, but the paper currently has no stratified evaluation by argument role frequency or schema complexity. If overall F1 improvement is small (e.g., ≤1 F1), reviewers will dismiss the contribution. Stratified evaluation by (a) rare roles (bottom quartile by training frequency) and (b) roles with tight cardinality constraints (max=1) would demonstrate that SCG gains concentrate where they theoretically should — this turns a potentially flat overall number into a principled, interpretable finding.\"]\nFeedback: The Round 2 revision successfully resolved all five critical prior issues, and the proposal is now technically credible. The remaining blockers before submission readiness are: (1) Fix supervised SOTA numbers — look up DEEIA's exact RAMS Arg-C F1 and DEGAP's WikiEvents Arg-C F1 and attribute each number to the correct paper. (2) Cite arXiv:2403.03304 (Gatto et al., 2024) and write a one-paragraph differentiation: that paper uses LLMs for EAE data augmentation but does not enforce cardinality or entity-type grammar constraints, and focuses on few-shot rather than zero-shot transfer — CompSchema-IE's SCG module is the distinguishing contribution. (3) Resolve the BiTer protocol comparison honestly: state that BiTer uses within-dataset event-type splits while CompSchema-IE uses the LtGaE three-way cross-dataset protocol, report BiTer's native-protocol numbers with a clear footnote, and do not claim direct comparability. (4) Restructure the framing to lead with structural regularization as the primary contribution unconditionally — 'SCG guarantees full argument role coverage and provable entity-type consistency in training data; the pilot study additionally measures unconstrained violation rates' — eliminating the contingency branch. (5) Add stratified evaluation by role rarity and cardinality tightness as the analysis section, not as an afterthought; this is where the paper's strongest signal will appear.\n\n### Round 4 review\nVerdict: revise\nIssues: [\"FATAL TIMELINE VIOLATION: The Generator's manual-mode estimate is 3–4 months, explicitly acknowledging that the May 25 ARR deadline cannot be met. This violates the user's hard ≤16-day constraint. Additionally, the Generator's proposed workaround ('ARR August 2026 cycle') is based on a misreading of the ARR calendar: August 2, 2026 is the COMMITMENT deadline for papers already in review from the May 25 submission, not a new submission cycle. There is no August ARR submission cycle that would yield EMNLP 2026 acceptance. The proposal must either (a) compress scope to a version executable in 16 days or (b) explicitly declare this idea is out-of-scope for the May 25 constraint.\", \"MISSING ABLATION — SCG vs. LtGaE SOFT RL: The core ablation compares SCG-constrained vs. unconstrained generation, which cleanly isolates the grammar effect. However, EMNLP reviewers familiar with LtGaE will ask: why does hard grammar enforcement outperform LtGaE's soft RL penalty, given LtGaE already achieves 45.77/32.38/46.96 F1 with soft constraints? Without a direct comparison on the same evaluation protocol, the claim that hard cardinality+entity-type constraints are better than soft RL argument-completeness rewards is an architectural assertion, not a demonstrated result. This is the most obvious reviewer concern for the EMNLP main paper track.\", \"THIN TECHNICAL CONTRIBUTION FOR EMNLP MAIN: The SCG module derives a grammar from the RAMS TSV (confirmed: cardinality is column-encoded) and feeds it to off-the-shelf XGrammar in vLLM. This is a pipeline integration, not an algorithmic contribution. EMNLP Main reviewers expect either (a) >2 F1 improvement over prior SOTA with clear ablation, or (b) technical novelty beyond tool integration. The stratified evaluation is analytically interesting but is framing/analysis, not architecture. EMNLP Findings is a more defensible target than EMNLP Main given current technical depth.\", \"PILOT STUDY RISK NOT FULLY MITIGATED: Qwen3-32B is a modern strong instruction-following model. The framing as 'structural regularizer' partially decouples the paper from requiring high violation rates, but the paper still relies on the pilot study as 'supporting empirical evidence.' If measured violation rates are <1% across all four metrics (plausible for a strong model given structured prompting), a reviewer can legitimately ask: why do we need formal grammar enforcement if the LLM already complies? The structural regularization reframing needs a concrete answer to this question that does not depend on violation rates.\"]\nFeedback: The Round 3 revisions are well-executed: all five prior issues are resolved, the supervised SOTA numbers are independently verified correct, the ARR timeline confusion needs immediate attention. Here are the four concrete actions needed before this is submission-ready:\n\n(1) COMPRESS SCOPE TO 16 DAYS OR DECLARE TIMELINE INFEASIBILITY. The 3–4 month estimate likely includes extensive ablations, careful analysis, and writing time. A minimal viable submission to the May 25 ARR deadline requires: SCG construction for RAMS+WikiEvents only (5–7 days, using the confirmed machine-readable cardinality TSV), pilot study on 200 instances (1 day), constrained generation (GPU, 1 day), LoRA fine-tuning across 3 ablation conditions (GPU, 2 days), evaluation on LtGaE three-way protocol (1 day), stratified analysis (1 day), paper writing concurrent. This is approximately 11–12 active days — tight but feasible with a focused team. Remove extended ablations, reduce fine-tuning runs, and defer optional experiments (ACE05 comparison, BiTer replication) to the revision stage.\n\n(2) ADD SOFT vs. HARD CONSTRAINT COMPARISON VIA LIGHTWEIGHT ORACLE BASELINE. Rather than re-implementing LtGaE's full RL loop (unrealistic), add a third ablation condition: 'post-hoc filtered unconstrained generation' (generate unconstrained, then filter violating instances via the verifier). This approximates the achievable quality of soft constraint enforcement without requiring RL, and lets the paper argue: 'even oracle-filtered unconstrained data underperforms SCG-constrained data on rare roles — because filtering cannot guarantee proportional role coverage.' This directly demonstrates the value of hard constraints over soft/filtered approaches without re-implementing LtGaE.\n\n(3) ANCHOR THE STRUCTURAL REGULARIZER FRAMING AGAINST ZERO-VIOLATION RATES. Add the following argument explicitly to the paper: 'Even if individual constraint violation rates are low, unconstrained generation cannot guarantee proportional representation of all schema roles across a finite corpus. SCG enforces this by construction: given 1,000 generated instances for event type T with role R having max-cardinality=1, the SCG guarantees exactly one instance of R per event — unconstrained generation may cluster on frequent roles and never instantiate rare ones, even with zero explicit violations.' This argument is valid regardless of violation rates and directly motivates SCG as a distributional regularizer, not just a constraint enforcer.\n\n(4) TARGET EMNLP 2026 FINDINGS EXPLICITLY. Given the thin technical depth (pipeline integration, not algorithmic novelty), EMNLP Findings is the more defensible submission target within the same May 25 deadline. This does not require any change to the method — simply adjust the positioning in the paper to emphasize the empirical analysis and stratified evaluation as the primary contribution, rather than the SCG module itself.\n\n### Round 5 review\nVerdict: revise\nIssues: [\"CRITICAL — VOLUME CONFOUND IN CONDITION B: The three-condition design requires all conditions to train on equal data volume, but Condition B (post-hoc filtered) necessarily discards some fraction of the Condition A instances. If the filter removes 20–50% of instances (plausible even for strong models on compositional constraints), B trains on substantially less data than C, biasing the C-vs-B comparison in favor of C independently of the grammar effect. The proposal must specify: (a) generate excess instances for the A/B pool so that B achieves the same final volume as C after filtering, OR (b) deliberately undersample C to match B's post-filter volume as a volume-controlled analysis. Without this control, EMNLP reviewers will reject the paper on methodological grounds.\", \"MISSING CITATION — FineCSDA: 'FineCSDA: Boosting Document-Level Event Argument Extraction with Fine-Grained Data Augmentation' (NLPCC 2024, dl.acm.org/doi/10.1007/978-981-97-9434-8_1) specifically identifies the long-tail distribution of argument roles as a bottleneck and proposes LLM augmentation at both sample and context levels to address rare argument roles. While FineCSDA does NOT use formal grammar constraints and uses a different mechanism, it is a direct predecessor addressing the same identified gap (rare-role under-representation in training data). Reviewers familiar with document-level EAE data augmentation will notice the omission. Add a one-sentence differentiation: FineCSDA augments rare roles via sample-level and context-level LLM generation without enforcing formal cardinality or entity-type constraints — CompSchema-IE's SCG provides a distributional coverage guarantee by construction.\", \"NEGATIVE RESULT PATH UNACKNOWLEDGED: The proposal correctly states that C-B stratified gains may be modest, but does not explicitly acknowledge what happens if C fails to outperform B even in the rare-role quartile. If this occurs, the paper's primary empirical claim is a null result — potentially a useful negative finding (post-hoc filtering suffices, grammar constraints add no measurable value), but the proposal frames this as a risk without naming it. For EMNLP Findings, a clearly framed negative result is publishable, but it requires different positioning from the current abstract. Add a brief paragraph explicitly framing the null-result paper: 'If stratified analysis reveals no C-B advantage, we report this as a negative finding: for strong instruction-following models like Qwen3-32B, post-hoc filtering achieves equivalent coverage to formal grammar constraints, suggesting that engineering investment in SCG construction may not be warranted at this model scale.'\", \"PILOT STUDY SAMPLE SIZE RISK: The pilot study samples 200 event instances from RAMS and WikiEvents. RAMS has 139 event types; 200 instances gives fewer than 2 samples per event type on average, making role-level statistics extremely noisy for rare roles. Either increase the pilot study to 500–1000 instances (adds ~2 GPU-hours, within budget) or clearly scope the pilot to a subset of 5–10 event types with enough instances for per-role statistics.\"]\nFeedback: The Round 5 revision is the strongest version of this proposal so far. All prior critical issues (timeline, compute, ASEE/LtGaE/Gatto et al. citations, DEGAP numbers, stratified evaluation, BiTer protocol note) have been correctly resolved. The four remaining issues are fixable and one is straightforward; the volume confound is the only blocker that could sink the paper at review time.\n\n(1) VOLUME CONTROL [CRITICAL]: Before generating data for the three conditions, add a volume normalization protocol: generate 1.5× the target volume for Condition A, then both Condition A (random subsample to target) and Condition B (post-filter residual targeting the same volume) and Condition C (SCG-constrained to exact target volume) all end up with the same number of training instances. Report the achieved filter rate for Condition B as a transparency metric (e.g., 'we generated 1.5N instances for A and retained the top N after filtering, achieving a X% discard rate'). This one addition makes the C-vs-B comparison methodologically airtight.\n\n(2) CITE FineCSDA: Add a sentence in related work: 'FineCSDA (NLPCC 2024) identifies the rare-role under-representation problem and addresses it via LLM-powered sample-level and context-level augmentation; unlike CompSchema-IE, FineCSDA does not impose formal cardinality bounds or entity-type constraints, relying instead on targeted prompt design for rare event types.' This closes the citation gap reviewers may notice.\n\n(3) FRAME THE NULL RESULT: Add a two-sentence paragraph to Section 3 (Approach) or Section 5 (Expected Findings): 'We pre-specify the null result interpretation: if C does not outperform B in the rare-role quartile, we report that post-hoc filtering achieves equivalent rare-role coverage to formal grammar constraints at Qwen3-32B scale, providing a practically useful negative finding for practitioners considering SCG implementation overhead.'\n\n(4) INCREASE PILOT STUDY SCOPE: Sample 600 instances (4 GPU-hours total, still within the Day 3-4 budget) to achieve ~4–5 instances per event type on average, enabling more reliable role-level violation statistics.\n\n### Round 6 review\nVerdict: revise\nIssues: [\"COVERAGE GUARANTEE LOGICAL GAP [critical, newly identified]: The proposal's primary theoretical claim — 'SCG enforces proportional coverage by construction: the grammar mandates that each mandatory role appears in every generated instance' — is overstated given confirmed RAMS TSV structure. The RAMS ontology TSV (independently verified at nlp.jhu.edu/rams/) specifies only MAXIMUM cardinality (the 'count permitted' column), NOT minimum cardinality. XGrammar therefore enforces upper-bound cardinality and entity-type constraints, but CANNOT force optional roles to appear. Since rare roles in RAMS may be optional in many event types (a given event instance may legitimately not have an 'Instrument' or 'Beneficiary'), the grammar provides no coverage guarantee for those roles. The coverage guarantee claim holds only for roles that the paper explicitly sets min-cardinality=1 in the grammar — which would require an assumption not derivable from the RAMS TSV alone and would produce unrealistic training data (every instance must have every role filled). The proposal must either (a) acknowledge this and narrow the guarantee to 'roles assigned min-cardinality=1 in the grammar encoding' with an explicit design choice described, or (b) reframe the theoretical argument from 'structural coverage guarantee' to 'structurally-prompted generation is more likely to instantiate optional rare roles due to explicit slot salience' — an empirical hypothesis rather than a logical guarantee. This is the single issue that a RAMS-familiar reviewer will raise immediately.\", \"BoostCD unacknowledged [minor]: 'Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction' (EMNLP 2025 Main, arXiv:2506.14901) empirically demonstrates that constrained and unconstrained decoding errors are complementary for closed IE, with a learned boosted model combining both. While BoostCD targets inference-time decoding (not training-data generation), its central empirical finding — that hard constraints and unconstrained generation have complementary error profiles — is directly relevant to CompSchema-IE's motivating argument and should be cited in related work with a one-sentence differentiation.\", \"Training volume N unspecified [minor]: The proposal never states the target training volume N. For RAMS with 139 event types, the number of instances per type and total N are unknown, making the GPU cost estimates (37.5h for 1.5N pool, 25h for N SCG-constrained) unverifiable. Specify N upfront (e.g., 'N=5,000 instances distributed proportionally across event types') so compute estimates and reproducibility can be assessed.\"]\nFeedback: The Round 6 proposal is the strongest version yet — all five Round 5 issues are properly resolved (volume normalization via 1.5× pool, FineCSDA cited and differentiated, null result pre-specified, pilot study at 600 instances, BiTer protocol mismatch handled). DEGAP F1 numbers (RAMS 54.2, WikiEvents 67.1 Arg-C) are independently verified correct. XGrammar overhead claim (<40μs/token as default vLLM backend) is confirmed. One fixable critical issue blocks submission readiness: the coverage guarantee must be corrected.\n\n(1) REVISE THE COVERAGE GUARANTEE ARGUMENT [critical]: The RAMS TSV only provides maximum cardinality (upper bounds on role occurrences), not minimum cardinality. The grammar therefore enforces: (a) no role appears more than its max count, and (b) when filled, entity types are compatible. It CANNOT guarantee that rare optional roles appear at all. Replace 'SCG enforces proportional coverage by construction' with one of two framings: OPTION A — 'In our grammar encoding, we set min-cardinality=1 for all roles applicable to a given event type, guaranteeing their appearance in every generated instance; this is a design choice that differs from natural annotation practice and we evaluate whether this artificial completeness improves rare-role coverage downstream.' OPTION B — 'SCG provides structural salience: by enumerating every applicable role slot explicitly in the constrained generation template, the LLM is prompted to consider filling each slot rather than freely omitting rare ones; we test empirically whether this structured attention mechanism improves rare-role instantiation.' Option B is more honest and requires no changes to the actual method.\n\n(2) ADD BoostCD [one sentence in related work]: 'Concurrently, BoostCD (EMNLP 2025) demonstrates that constrained and unconstrained decoding produce complementary errors at inference time for closed IE; CompSchema-IE investigates an analogous question at training-data generation time, where coverage differences compound across a finite corpus.'\n\n(3) SPECIFY N [one sentence in Section 2 or Step 2]: State the target training volume N explicitly (e.g., 'N=5,000 instances drawn proportionally across RAMS event types') so compute estimates are verifiable and the paper is reproducible.\n\nWith these three changes — particularly the coverage guarantee reframing — the proposal is ready for EMNLP 2026 Findings submission. The empirical design is sound, the null result handling is appropriate, and the resource estimate is within budget.\n\n### Round 7 review\nVerdict: revise\nIssues: [\"MISSING CITATION — GEMS (ACL Findings 2025): 'GEMS: Generation-Based Event Argument Extraction via Multi-perspective Prompts and Ontology Steering' (aclanthology.org/2025.findings-acl.1353) is not cited. GEMS uses multi-perspective prompting and ontology steering for EAE on WikiEvents/ACE05, achieving SOTA in low-resource settings. While GEMS is inference-time extraction rather than training-data generation, its 'ontology steering' mechanism is conceptually related to CompSchema-IE's schema-constrained generation. A one-sentence differentiation is required: 'GEMS (ACL Findings 2025) uses multi-perspective prompts and ontology steering for inference-time EAE; CompSchema-IE instead applies hard grammar constraints at training-data generation time, investigating whether structural salience during generation improves downstream rare-role coverage.'\", \"OPTIONAL ROLE GRAMMAR REPRESENTATION UNSPECIFIED [moderate]: The structural salience argument rests on the claim that the grammar 'explicitly enumerates every applicable role slot in the constrained generation template,' prompting the LLM to consider each slot. But the proposal never states HOW optional slots are represented in the grammar template: (a) required JSON keys with empty-string values allowed, (b) optional JSON keys that may be omitted, or (c) required keys with a special [NONE] token. This distinction is critical — design (b) provides no structural salience over Condition A because slots can still be omitted; design (a) forces the LLM to generate each role name as a JSON key, which IS the structural salience mechanism. The paper must state this explicitly, e.g.: 'All applicable role slots appear as required keys in the output JSON schema; the LLM may output empty strings or null for absent optional arguments, but cannot omit role keys from the output.' Without this, the structural salience claim is not reproducible.\", \"XGRAMMAR QUALITY DEGRADATION UNACKNOWLEDGED [minor]: Recent empirical work (Schall & de Melo, RANLP 2025; structured output benchmarks 2025) demonstrates that grammar-constrained decoding introduces quality degradation — forcing models into non-canonical token paths degrades output quality, particularly for rare or complex outputs. One study found XGrammar led to substantially more extraction misses than top unconstrained strategies for LLaMA-70B. The specific risk for CompSchema-IE: if the grammar forces generation of all role slots sequentially, the model may produce lower-quality argument spans for common roles in order to comply with the grammar structure — confounding the C-vs-B comparison. The paper should acknowledge this in the limitations section: 'Grammar-constrained decoding may introduce quality tradeoffs beyond structural coverage (Schall & de Melo, RANLP 2025); we mitigate this risk by using Qwen3-32B, which has strong structured output capabilities, and by measuring both role coverage and argument span quality in our stratified evaluation.'\"]\nFeedback: Round 7 correctly resolves all three Round 6 issues: the coverage guarantee is properly reframed as structural salience (Option B framing), BoostCD is cited, and N=5,000 is specified. The LtGaE absolute F1 numbers (45.77/32.38/46.96) are independently verified correct. The EMNLP 2026 ARR May 25 deadline is confirmed valid with mandatory commitment at submission. The volume normalization (1.5x pool), pre-specified null result, and stratified evaluation design are all sound.\n\nThree targeted fixes are needed before submission readiness:\n\n(1) ADD GEMS CITATION [one sentence]: Add 'GEMS: Generation-Based Event Argument Extraction via Multi-perspective Prompts and Ontology Steering (ACL Findings 2025)' to related work with a differentiation sentence. This is the closest concurrent work using ontology-guided EAE that reviewers familiar with the area will know.\n\n(2) SPECIFY OPTIONAL ROLE GRAMMAR REPRESENTATION [one paragraph in Step 1]: The structural salience mechanism depends entirely on whether the grammar requires all role slot names to appear as output keys (providing salience) or permits key omission (no salience). State explicitly: 'In our XGrammar encoding, all applicable role slots for a given event type appear as required keys in the output JSON template; the LLM generates empty strings or null values for absent optional arguments but cannot omit role keys.' This makes the mechanism reproducible and directly supports the structural salience claim.\n\n(3) ACKNOWLEDGE XGRAMMAR QUALITY TRADEOFF [one sentence in limitations]: Note that grammar-constrained decoding can introduce quality degradation in text generation quality (Schall & de Melo, RANLP 2025). Mitigate by measuring argument span F1 per role stratum (not just role coverage), so quality and coverage effects are distinguishable in the stratified evaluation.\n\nWith these three additions — all writable during paper drafting — the proposal is ready for EMNLP 2026 Findings submission.\n\n### Round 8 review\nVerdict: revise\nIssues: [\"BOOSTCD APPLICATION DOMAIN MISCHARACTERIZED [minor, round 8 new]: The proposal consistently describes BoostCD as 'inference-time boosting for closed IE (relation extraction)' — but BoostCD (arXiv:2506.14901) is applied to closed information extraction broadly, not specifically relation extraction. In the landscape section and key references, '(relation extraction)' should be removed or replaced with '(closed information extraction)'. The core empirical finding (complementary error profiles of constrained vs. unconstrained decoding) is correctly attributed, but the domain specification is factually imprecise and a reviewer familiar with BoostCD will notice.\", \"STRUCTURAL SALIENCE MECHANISM LANGUAGE IS MECHANISTICALLY IMPRECISE [minor, round 8 new]: The proposal repeatedly states that required-key enumeration 'forces the model's attention to each slot during the forward pass' — this language invokes transformer attention mechanisms in a way that is not precisely accurate. What XGrammar actually does is constrain the output token distribution so the model MUST generate each role name as a JSON key; whether this changes internal attention patterns is an empirical question not established by prior work. The mechanistically accurate claim is: 'forcing the model to generate each role key as an output token ensures the corresponding slot appears in every generated instance, preventing the silent omission of rare slot names that characterizes unconstrained generation.' This is a weaker but more defensible claim — it guarantees key-level instantiation without claiming to modulate attention. A reviewer familiar with constrained decoding (e.g., from Schall & de Melo) will challenge the 'forces attention' formulation. Replacing this language across the proposal with 'forces generation of each role key' eliminates the vulnerability.\", \"SPAN-F1 VS. ARG-C F1 METRIC CONSISTENCY [minor, persistently unaddressed]: The proposal uses Span-F1 for LtGaE (45.77/32.38/46.96) and Arg-C F1 for DEGAP (54.2/67.1). These metrics are not directly comparable. The paper must include a footnote clarifying the metric difference so readers do not incorrectly interpret a direct cross-paper comparison. The proposed comparison table (LtGaE, ASEE, DEGAP, Conditions A/B/C) should report all models under the same metric — Span-F1 is typically lower than Arg-C F1, so mixing them in a single table without annotation is misleading.\"]\nFeedback: The Round 8 proposal has successfully resolved all three Round 7 issues: GEMS is cited throughout with clean mechanistic differentiation, the optional role grammar representation (required keys with empty-string/null fallback) is now explicit, and Schall & de Melo RANLP 2025 is cited with a concrete mitigation strategy. Independent verification confirms LtGaE F1 numbers, DEGAP numbers, FineCSDA, BoostCD, GEMS, and XGrammar overhead claims are all accurate. No concurrent work was found that directly competes with the three-condition, volume-controlled grammar-constraint ablation for EAE synthetic data generation.\n\nThree targeted fixes before submission:\n\n(1) BOOSTCD [one-word fix]: Replace '(relation extraction)' with '(closed information extraction)' or just remove the parenthetical. The BoostCD paper covers closed IE broadly. Change: 'inference-time boosting for closed IE (relation extraction)' → 'inference-time boosting for closed IE.'\n\n(2) STRUCTURAL SALIENCE LANGUAGE [one-paragraph revision]: Replace all instances of 'forces the model's attention to each slot during the forward pass' with mechanistically accurate language: 'forces the model to generate each role name as a required output token, ensuring the corresponding slot appears in every generated instance rather than being silently omitted.' This is accurate, verifiable, and avoids the attention-mechanism claim that constrained-decoding reviewers will challenge.\n\n(3) METRIC CONSISTENCY [one footnote]: Add a footnote to the comparison table explicitly noting: 'LtGaE and CompSchema-IE report Span-F1; DEGAP reports Arg-C F1. These metrics are not directly comparable — Arg-C F1 is typically higher than Span-F1 for the same system. We report each baseline under its natively reported metric.' This prevents a false impression that the gap to supervised SOTA is smaller than it is.\n\nWith these three fixes — all accomplishable in under an hour of drafting — the proposal is ready for EMNLP 2026 Findings submission under the May 25 ARR deadline.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T09:56:28.710Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T09:56:28.710Z",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+## Round 1
+
+80 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T09:56:28.768Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-10 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Information Extraction.
+
+Direction: Structured information extraction — named entity recognition, relation extraction, event extraction, document-level IE, end-to-end extraction pipelines. Both LLM-based and non-LLM approaches welcome. In-scope: schema-guided extraction, zero-shot/few-shot IE, cross-document extraction, multimodal IE (text + layout + images), temporal/causal relation extraction.
+
+Contribution type: METHOD ONLY. New extraction architectures, training strategies, or inference algorithms. Not a new dataset or annotation guideline.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. IE work is typically lightweight — most experiments are fine-tuning or in-context learning.
+2. Time: ≤16 days. Use existing IE frameworks (GoLLIE, UniNER, USM) or build on open LLMs with structured output.
+3. Eval: ACE05, SciERC, TACRED/TACREV, DocRED, MAVEN, Few-NERD, WikiEvents, RAMS.
+
+Look for: schema-guided extraction that generalizes across domains, efficient document-level IE beyond sliding windows, extraction with faithful provenance/citation, structured extraction from semi-structured sources (tables, forms, code). Avoid: basic NER fine-tuning, prompt-only extraction without architectural insight.
+
+Tag: direction=information_extraction, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 9/10)
+{
+  "title": "CompSchema-IE: Hard Grammar Constraints vs. Soft Filtering for Zero-Shot Event Argument Extraction — An Empirical Study via Synthetic Supervision",
+  "core_problem": "Synthetic-data-based zero-shot event argument extraction (EAE) faces a structural data quality problem that existing approaches address only partially. LtGaE (AAAI 2026) uses soft RL penalties for argument completeness — a quality score penalty that fires when the proportion of empty arguments per sample deviates from a target range [τ−ε, τ+ε], but does not enforce per-role entity-type compatibility or hard cardinality bounds during decoding. Gatto et al. (ACL 2025 Long) uses free-form LLM generation with no formal constraints. FineCSDA (NLPCC 2024) targets the long-tail distribution of argument roles via sample-level augmentation of rare event types (SDAM) and context-level injection of rare role fillers (CDAM), but neither module enforces formal cardinality bounds or entity-type constraints — coverage improvement relies on targeted prompt design rather than any structural enumeration mechanism. GEMS (ACL Findings 2025) applies ontology steering at inference time via multi-perspective prompting and voting, not at training-data generation time.\n\nNone of these approaches systematically addresses the structural salience of rare argument roles during generation. The RAMS ontology TSV specifies only maximum cardinality (the 'count permitted' column is an upper bound on role occurrences per instance, not a minimum), so grammar-constrained decoding via XGrammar enforces: (a) no role exceeds its permitted maximum count, and (b) when filled, entity types are compatible. It cannot logically force optional roles to appear — setting min-cardinality=1 for all roles would require an assumption not derivable from the RAMS TSV and would produce unrealistically complete training instances where every event instance has every schema role filled. Instead, Schema-Constrained Grammar (SCG) provides a different mechanism: structural salience. Critically, in the XGrammar encoding all applicable role slots appear as required keys in the output JSON template — the LLM generates an empty string or null value for absent optional arguments but cannot omit role keys from the output. This key-level requirement is the structural salience mechanism: it forces the model to generate each role name as a required output token, ensuring the corresponding slot appears in every generated instance and counteracting the prior bias toward silently omitting rare slot names that characterizes unconstrained generation. Even when individual constraint violation rates are low (plausible for strong instruction-following models like Qwen3-32B), unconstrained generation tends to cluster on high-frequency role patterns due to LLM prior biases, likely under-representing rare optional roles. Post-hoc filtering (Condition B) removes entity-type violations and cardinality overruns but operates on outputs from unconstrained generation where rare role keys were never generated — it cannot recover coverage for roles absent from the unconstrained output corpus.\n\nThe primary gap CompSchema-IE targets is empirical and analytical: we do not know (a) whether hard grammar constraints (formal cardinality + entity-type enforcement via XGrammar, which provides structural salience through required role-key enumeration over and above entity-type and cardinality filtering) outperform oracle post-hoc filtering of unconstrained generation on downstream zero-shot EAE, (b) in which role strata these differences concentrate, or (c) whether any structural regularization gains are mechanistically explained by rare-role instantiation improvements. Answering these questions empirically — with a clean three-condition ablation, volume-controlled design, and stratified evaluation — is a concretely useful contribution for EMNLP Findings, even if overall F1 deltas are modest.",
+  "opportunity": "The supervised-to-zero-shot gap remains 8–35 F1 points (supervised SOTA: DEGAP COLING 2025 — RAMS 54.2 Arg-C F1, WikiEvents 67.1 Arg-C F1; TSCA IET Software 2026 adds ~+3.0/+1.0 F1 in fully supervised settings; best zero-shot cross-dataset: LtGaE 32–47 Span-F1 on RAMS2RAMS/RAMS2Wiki/Wiki2Wiki; note that Span-F1 and Arg-C F1 are not directly comparable — Arg-C F1 is typically higher for the same system). Training data quality for the generator model is a concrete bottleneck: LtGaE's soft RL penalties improve over prior unconstrained generation but cannot guarantee per-role proportional coverage; FineCSDA's targeted augmentation improves rare-role counts but lacks formal structural enumeration. GEMS (ACL Findings 2025) provides ontology-guided inference-time EAE but does not address training-data generation quality. SynthIE (EMNLP 2023) demonstrated that task-reversal generation can produce highly effective synthetic IE training data, but uses no grammar-constrained decoding and does not address event argument extraction. The key open question is whether hard constraints provide a measurable advantage over oracle-quality soft filtering under a volume-controlled design. This question has a clean experimental operationalization: (A) unconstrained generation, (B) unconstrained generation with post-hoc violation filtering (oracle soft constraint approximation, volume-matched to A and C), and (C) grammar-constrained generation via XGrammar — same model, same schema information, same final training volume. If C outperforms B on rare roles despite similar overall violation rates, the result directly demonstrates that structural salience (not just constraint compliance) drives the downstream gain — the SCG's required role-key enumeration in the output template forces the model to generate each role name as a required output token rather than silently omitting rare keys during unconstrained generation. This is a falsifiable, mechanistically interpretable empirical finding — the type EMNLP Findings values.",
+  "landscape": "GuideX (ACL Findings 2025) sets SOTA on 7 zero-shot NER benchmarks with Llama-3.1 fine-tuned on generated data, but explicitly does not address event argument extraction.\n\nGEMS (ACL Findings 2025, aclanthology.org/2025.findings-acl.1353) uses multi-perspective prompts and ontology steering for inference-time EAE on WikiEvents, ACE05, and ERE-EN, achieving SOTA in low-resource settings. GEMS applies ontology knowledge at inference time via a voting mechanism over multiple generation paths with T5-large as the base model; CompSchema-IE instead applies hard grammar constraints at training-data generation time, investigating whether structural salience from required role-key enumeration during generation improves downstream rare-role coverage — a complementary research question targeting a different phase of the pipeline.\n\nFineCSDA ('FineCSDA: Boosting Document-Level Event Argument Extraction with Fine-Grained Data Augmentation', NLPCC 2024, dl.acm.org/doi/10.1007/978-981-97-9434-8_1) directly identifies the long-tail distribution of argument roles as a bottleneck and proposes two augmentation modules: SDAM generates new document-level samples for rare event types, and CDAM injects rare argument roles and corresponding context into common event type documents. Unlike CompSchema-IE, FineCSDA does not impose formal cardinality bounds or entity-type constraints, and provides no structural role-slot enumeration — coverage improvement relies on targeted prompt design for rare types and roles.\n\nGatto et al. ('Document-Level Event-Argument Data Augmentation for Challenging Role Types', ACL 2025 Long, arXiv:2403.03304) is a direct predecessor: LLM-powered augmentation (Mad Lib Aug and Struct2Text) for extractive EAE, +13 F1 on zero-shot role types using BERT-QA, no schema constraints, few-shot cross-domain setting (5 documents per event type available), zero-shot roles within seen event types — not fully zero-shot event type generalization.\n\nBiTer (Information Processing and Management, May 2025, doi:10.1016/j.ipm.2025.104199) achieves +4.6%/+7.5%/+0.4% zero-shot Arg-C F1 on RAMS/WikiEvents/ACE2005 using within-dataset event-type-held-out splits. Protocol is NOT directly comparable to LtGaE's cross-dataset three-way protocol; reported separately with explicit footnote.\n\nLtGaE (AAAI 2026, arXiv:2603.02909) uses multi-agent Propose-Evaluate-Revise with RL reward that includes a soft penalty p_i activated when the proportion of empty arguments ρ_i deviates from a target range [τ−ε, τ+ε] — a global aggregate quality-score adjustment per sample, not a per-role structural enumeration or hard decoding constraint. Achieves 45.77/32.38/46.96 Span-F1 on RAMS2RAMS/RAMS2Wiki/Wiki2Wiki. Does not compare against BiTer.\n\nASEE (EMNLP Findings 2025, arXiv:2505.08690) addresses inference-time schema selection via RAG; no hard constraints; does not report RAMS/WikiEvents numbers.\n\nBoostCD (EMNLP 2025 Main, arXiv:2506.14901) demonstrates that constrained and unconstrained decoding produce complementary errors at inference time for closed IE, with a learned boosted model combining both for stronger performance. CompSchema-IE investigates an analogous question at training-data generation time for event argument extraction, where structural salience differences compound across a finite corpus rather than being resolved at inference.\n\nSALE (MDPI Electronics, March 2026) uses code-based LLM fine-tuning with RL alignment for cross-task zero-shot transfer; no formal schema constraints during data generation.\n\nExtracting Events Like Code (AAAI 2026, arXiv:2511.13118) uses Python class definitions for inference-time schema validation, not training-data generation.\n\nSynthIE (EMNLP 2023, ACL Anthology 2023.emnlp-main.96) generates synthetic IE training data via task-reversal (structure→text generation), achieving large F1 gains on smaller models; uses no grammar-constrained decoding, no formal cardinality bounds, and targets IE triplets rather than compositional event argument extraction. Establishes the task-reversal generation paradigm that CompSchema-IE extends with hard compositional constraints.\n\nSupervised SOTA: DEGAP (COLING 2025, arXiv:2405.13325) — RAMS 54.2 Arg-C F1, WikiEvents 67.1 Arg-C F1. TSCA (IET Software 2026) adds ~+3.0/+1.0 F1 in fully supervised settings.\n\nThe specific open question not addressed by any prior work — including GEMS, FineCSDA, LtGaE, Gatto et al., or BoostCD: does hard grammar constraint enforcement (cardinality + entity-type, XGrammar) — which provides structural salience via required role-key enumeration in the output JSON template — outperform oracle post-hoc filtering of unconstrained generation under a volume-controlled design, and does any advantage concentrate in rare-role and high-cardinality-tightness strata where the structural enumeration mechanism is most likely to shift the LLM's generation distribution?",
+  "approach": "CompSchema-IE is framed explicitly as an empirical study targeting EMNLP 2026 Findings. The primary contribution is a clean, volume-controlled three-condition ablation that isolates the value of hard constraint enforcement over soft filtering, combined with a stratified analysis that localizes any gains mechanistically.\n\n**Primary Hypothesis (Structural Salience, Empirically Testable)**:\nThe RAMS ontology TSV specifies only maximum cardinality (the 'count permitted' column is an upper bound on role occurrences per instance). XGrammar therefore enforces: (a) no role appears more than its permitted maximum count, and (b) when filled, entity types are compatible. It does NOT logically guarantee that optional rare roles appear in every generated instance — this would require setting min-cardinality=1 for all roles, a design choice not derivable from the RAMS TSV alone and one that would produce unrealistically complete training instances where every event instance has every schema role filled.\n\nCompSchema-IE instead adopts the structural salience framing: SCG provides structural salience by explicitly enumerating every applicable role slot as a required key in the constrained generation template. In the XGrammar encoding, all applicable role slots for a given event type appear as required keys in the output JSON template; the LLM generates an empty string or null value for absent optional arguments but cannot omit role keys from the output. This key-level requirement is the mechanism of structural salience: it forces the model to generate each role name as a required output token, ensuring the corresponding slot appears in every generated instance rather than being silently omitted, counteracting the prior bias toward omitting rare slot names that characterizes unconstrained generation. Condition B (post-hoc filtering) can remove entity-type violations and cardinality overruns from unconstrained outputs, but cannot recover coverage for role keys that unconstrained generation never emitted in the first place. The structural salience hypothesis is therefore that Condition C will show improved rare-role instantiation over Condition B even when overall constraint violation rates are comparable — an effect logically independent of constraint compliance and attributable specifically to required key enumeration. Even when individual constraint violation rates are low — expected for Qwen3-32B given its strong instruction-following capability — unconstrained generation's prior biases tend to cluster on high-frequency role patterns, under-representing rare optional roles. FineCSDA (NLPCC 2024) partially addresses rare-role under-representation via targeted prompting (SDAM/CDAM), but without formal structural enumeration; CompSchema-IE's SCG provides structural salience by construction through required key enumeration, making it an empirical question whether this translates to downstream rare-role F1 gains.\n\n**Step 0 — Motivating Pilot Study (Day 4, 4 GPU-hours)**:\nSample 600 event instances from Qwen3-32B without constraints (standard structured prompting with RAMS/WikiEvents schema descriptions). The expanded sample (~4–5 instances per event type for RAMS's 139 types) enables reliable per-role violation statistics. Measure: entity-type mismatch rate, cardinality violation rate, role hallucination rate, and argument role coverage (proportion of schema roles appearing ≥1 time). Report all four metrics unconditionally. The primary paper argument holds regardless of outcome: low violation rates motivate the structural salience framing (SCG's required key enumeration matters beyond error correction); high rates additionally motivate constraint enforcement for quality improvement. Both are reported; neither determines the primary framing.\n\n**Step 1 — Schema Constraint Grammar (Days 1-3, human engineering)**:\nDerive typed constraint specifications from RAMS (cardinality directly from public ontology TSV, encoding the 'count permitted' values as maximum bounds; entity-type compatibility from dataset annotations) and WikiEvents (entity-type compatibility from annotations). Encode as XGrammar-compatible context-free grammars. Critically, all applicable role slots for a given event type are encoded as required keys in the output JSON template: the LLM must generate each role name as a JSON key, and may output an empty string or null value for absent optional arguments, but cannot omit any role key from the output. This required-key design is the structural salience mechanism — it forces the model to generate each role name as a required output token, ensuring every slot appears in the generated instance rather than being silently omitted as occurs in unconstrained generation (Condition A), an effect not recoverable by post-hoc filtering (Condition B). Cardinality constraints additionally enforce upper bounds on role-filler counts and entity-type compatibility per filler. RAMS TSV availability substantially reduces construction effort. Scoped to 2 ontologies.\n\n**Step 2 — Three-Condition Data Generation with Volume Control (Days 5-7, ~62.5 GPU-hours)**:\nAll conditions use Qwen3-32B on 2×A100 80GB via vLLM. **Target training volume**: N = 5,000 event argument instances per condition, distributed proportionally across the 139 RAMS event types (~36 instances per type on average, with a minimum of 1 per rare type) and WikiEvents event types. To eliminate the volume confound — where Condition B (post-hoc filtered) would otherwise train on fewer instances than C — the following volume normalization protocol is applied:\n\n- **Pool Generation**: Generate 1.5× the target volume (7,500 unconstrained instances) as unconstrained instances (same chat prompting with schema descriptions). Report achieved token throughput and generation settings.\n- **Condition A (Unconstrained)**: Randomly subsample N=5,000 instances from the 7,500-instance pool.\n- **Condition B (Post-hoc Filtered — Oracle Soft Baseline)**: Apply the automated verifier to the full 7,500-instance pool; retain instances passing all entity-type, cardinality, and role-hallucination checks, targeting N=5,000 post-filter instances. Report the achieved discard rate (e.g., 'we generated 7,500 instances and discarded X%, retaining 5,000 for training') as a transparency metric. If the filter discards more than 33% (leaving fewer than 5,000 clean instances), increase the pool to 2× (10,000 instances) and regenerate the additional batch. This baseline approximates oracle-quality soft constraint enforcement without reimplementing LtGaE's RL loop; crucially, it CANNOT recover structural salience for roles absent from filtered instances because unconstrained generation never emitted those role keys.\n- **Condition C (SCG-Constrained)**: Grammar-constrained vLLM decoding via XGrammar to exactly N=5,000 instances, enforcing all role-entity-type assignments and cardinality constraints during the forward pass (<40μs/token overhead, per XGrammar MLSys 2025). The grammar's required role-key enumeration in the output template provides structural salience by construction.\n\nAll three conditions train on exactly N=5,000 instances, making the C-vs-B comparison methodologically airtight.\n\n**Step 3 — Constraint Verification (concurrent with Step 2)**:\nThe automated verifier checks all generated instances and reports: filter rate for the A/B pool (transparency metric), corpus-level role coverage for each condition, near-zero filter rate for Condition C (SCG compliance guarantee). Role coverage differences across conditions directly measure the structural salience effect prior to fine-tuning.\n\n**Step 4 — Fine-tuning and Evaluation (Days 8-11, ~57 GPU-hours)**:\nLoRA fine-tune Qwen3-8B on each of the three volume-matched corpora (3 conditions × ~15 GPU-hours = 45 GPU-hours). Evaluate zero-shot on WikiEvents and RAMS using LtGaE three-way protocol (RAMS2RAMS, RAMS2Wiki, Wiki2Wiki). Comparison table: LtGaE, ASEE, supervised SOTA (DEGAP), Condition A, Condition B, Condition C. A footnote in the table explicitly clarifies metric differences: LtGaE and CompSchema-IE report Span-F1; DEGAP reports Arg-C F1. These metrics are not directly comparable — Arg-C F1 is typically higher than Span-F1 for the same system. Each baseline is reported under its natively reported metric to avoid misrepresenting relative gaps. BiTer reported separately under native within-dataset protocol with explicit non-comparability footnote.\n\n**Step 5 — Stratified Evaluation (Day 12, ~12 GPU-hours for inference)**:\nThe primary analysis section — demonstrates mechanistic explanation of C vs. A/B gaps:\n(a) Role Rarity Strata: Rank argument roles by frequency in source schema annotations; partition into quartiles. Report C vs. A and C vs. B F1 for each quartile. Hypothesis: C-B gap concentrates in the bottom quartile (rarest roles) because grammar-guided required key enumeration most strongly prompts the model to instantiate rarely-occurring role types; for common roles, both unconstrained and post-hoc filtered corpora already have sufficient coverage.\n(b) Cardinality Tightness Strata: Partition by RAMS-ontology cardinality — max=1 (singleton roles) vs. max>1. Report C vs. A and C vs. B F1 for each partition. Hypothesis: C outperforms B on max=1 roles because Condition B can only remove duplicates but may still have duplicate instances within the filtered corpus; SCG hard-enforces the singleton constraint.\nIf overall C-B delta is modest (e.g., <1 F1), the stratified analysis provides a theoretically grounded finding even for the Findings track: structural salience helps specifically where theory predicts, at a granularity that soft filtering cannot replicate. Both role coverage rates and argument span F1 are reported per stratum, allowing quality and coverage effects to be distinguished (addressing the concern that grammar-constrained decoding may improve role coverage while degrading span quality).\n\n**Null Result Pre-Specification**:\nWe pre-specify the null result interpretation in the paper: if C does not outperform B even in the rare-role quartile or singleton-cardinality partition, we report this as a clearly framed negative finding — grammar-guided structural enumeration via required key templates during generation provides no additional rare-role instantiation benefit over oracle post-hoc filtering of unconstrained generation at Qwen3-32B scale. This is a practically useful negative result: it suggests that strong instruction-following models already provide sufficient structural salience through prompt-specified schema descriptions, and that engineering investment in SCG construction may not be warranted at this model scale. EMNLP Findings publishes clearly framed negative results; this pre-specification distinguishes a null result from a failed experiment.\n\n**Limitations and Quality Tradeoffs**:\nGrammar-constrained decoding may introduce quality degradation beyond structural coverage: Schall & de Melo (RANLP 2025) demonstrate that constrained decoding forces instruction-tuned models away from high-confidence natural language paths, potentially increasing extraction misses. We mitigate this by using Qwen3-32B (whose strong instruction-following capability reduces divergence between constrained and unconstrained generation paths) and by measuring argument span F1 per role stratum in the stratified evaluation alongside role coverage rates, so that quality and coverage effects are distinguishable rather than conflated.\n\n**Paper writing**: Concurrent from Day 1 (intro, related work, method drafted during experiment runs); intensive final writing Days 13-16.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~125.5h A100 80GB total: pilot study generation 600 instances (4 GPU-hours); 1.5× unconstrained pool generation for Conditions A+B (target N=5,000 per condition, pool=7,500 instances, ~37.5 GPU-hours); SCG-constrained generation for Condition C (N=5,000 instances, ~25 GPU-hours); LoRA fine-tuning Qwen3-8B across 3 volume-matched conditions × 15 GPU-hours = 45 GPU-hours; stratified evaluation inference ~12 GPU-hours; evaluation and reporting ~2 GPU-hours",
+      "gpu_utilization": "Moderate (~50%): compressed timeline reduces idle gaps; human engineering on SCG module (Days 1-3) and paper writing (concurrent) introduce some idle GPU time, mitigated by parallelizing fine-tuning runs. Volume control adds ~12.5 GPU-hours of generation vs. original design.",
+      "timeline": "16 active days targeting May 25, 2026 ARR deadline (commitment to EMNLP 2026 by August 2, 2026; conference October 24-29, Budapest). Day-by-day: Days 1-3 SCG construction + pilot study setup; Day 4 pilot study run (600 instances) + metric analysis; Days 5-7 data generation (7,500-instance A/B pool + 5,000-instance C, staggered on 2×A100, pool generation starts Day 5, C generation starts Day 6 while A/B fine-tune begins); Days 8-10 LoRA fine-tuning (all 3 conditions, staggered); Day 11 LtGaE three-way evaluation; Day 12 stratified evaluation analysis; Days 13-16 intensive paper writing (concurrent with experiments from Day 1). No extended ablations, no ACE05 comparison, no BiTer replication.",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "~$187 (125.5h × $1.49/hr A100, RunPod/JarvisLabs)",
+      "h100_equiv": "~90h H100-equivalent (well within ≤200h H100 hard constraint)",
+      "risk_note": "Key risks and mitigations: (1) Overall C-B F1 delta may be small (<1 F1): mitigated by stratified evaluation and pre-specified null result interpretation — paper's primary claim is that structural salience helps in rare-role and singleton-cardinality strata; if this too is null, reported as a clear negative finding with specific positioning. (2) Filter rate exceeds 33% (B cannot reach N=5,000 from 7,500-instance pool): mitigated by increasing pool to 10,000 instances for that condition and reporting achieved discard rate as transparency metric. (3) Pilot study shows <1% violations: expected and mitigated by structural salience argument (violation-rate-independent — the hypothesis concerns role instantiation frequency via required key enumeration, not constraint compliance). (4) XGrammar quality degradation (Schall & de Melo, RANLP 2025): mitigated by Qwen3-32B's strong instruction-following capability and dual measurement of span F1 and role coverage per stratum. (5) 16-day timeline is tight: SCG construction is the bottleneck; RAMS TSV machine-readable cardinality substantially reduces this. Paper writing concurrent from Day 1 is required. (6) BiTer protocol mismatch: explicitly handled with separate table and footnote. (7) FineCSDA comparison: differentiated from CompSchema-IE by formal grammar-constrained decoding with required role-key enumeration vs. targeted prompting, volume-controlled experimental design, and structural salience mechanism by construction."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 Findings (ARR May 25, 2026 submission deadline; commitment to EMNLP 2026 by August 2, 2026; conference October 24-29, Budapest, Hungary)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction (ACL Findings 2025)",
+    "GEMS: Generation-Based Event Argument Extraction via Multi-perspective Prompts and Ontology Steering (ACL Findings 2025, aclanthology.org/2025.findings-acl.1353) — inference-time EAE using multi-perspective prompts and ontology steering (T5-large) on WikiEvents/ACE05/ERE-EN; achieves SOTA in low-resource settings; differentiated from CompSchema-IE by operating at inference time rather than training-data generation, and by using a voting mechanism over multiple generation paths rather than hard grammar constraints",
+    "FineCSDA: Boosting Document-Level Event Argument Extraction with Fine-Grained Data Augmentation (NLPCC 2024, dl.acm.org/doi/10.1007/978-981-97-9434-8_1) — identifies long-tail argument role distribution as bottleneck; SDAM generates samples for rare event types, CDAM injects rare role fillers into common event type documents; no formal cardinality bounds, entity-type constraints, or explicit role-slot enumeration; coverage relies on targeted prompting",
+    "Document-Level Event-Argument Data Augmentation for Challenging Role Types (Gatto, Sharif, Seegmiller, Preum; ACL 2025 Long, arXiv:2403.03304) — direct LLM-augmentation predecessor; no constrained decoding, no cardinality/entity-type constraints, few-shot cross-domain with zero-shot roles",
+    "SynthIE: Leveraging the Asymmetry of Knowledge Graph Structure for Synthetic IE Data Generation (EMNLP 2023, ACL Anthology 2023.emnlp-main.96) — task-reversal generation paradigm; no grammar-constrained decoding, no formal cardinality bounds, targets IE triplets not event argument extraction",
+    "Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction (EMNLP 2025 Main, arXiv:2506.14901) — inference-time boosting for closed IE; central empirical finding: constrained and unconstrained decoding produce complementary errors; CompSchema-IE investigates an analogous question at training-data generation time for event argument extraction, where structural salience differences compound across a finite corpus rather than being resolved at inference",
+    "The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance (Schall & de Melo, RANLP 2025, aclanthology.org/2025.ranlp-1.124/) — demonstrates that constrained decoding forces instruction-tuned models away from high-confidence natural language paths, causing quality degradation; for LLaMA-3.3-70B, XGrammar led to substantially more extraction misses than top unconstrained strategies; motivates use of strong instruction-following models (Qwen3-32B) and dual measurement of role coverage and span F1 per stratum",
+    "KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction (ACL 2024)",
+    "GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction (ICLR 2024)",
+    "BiTer: Bi-directional Feature Learning-Based Approach for Zero-Shot Event Argument Extraction (Information Processing and Management, May 2025, doi:10.1016/j.ipm.2025.104199) — within-dataset event-type-held-out evaluation protocol; not directly comparable to LtGaE three-way cross-dataset protocol",
+    "Adaptive Schema-aware Event Extraction with Retrieval-Augmented Generation (ASEE, EMNLP Findings 2025, arXiv:2505.08690)",
+    "Learning to Generate and Extract: A Multi-Agent Collaboration Framework for Zero-Shot Document-Level Event Arguments Extraction (LtGaE, AAAI 2026, arXiv:2603.02909) — soft RL penalty p_i fires when per-sample empty-argument proportion ρ_i deviates from [τ−ε, τ+ε] (global aggregate quality score, not per-role structural enumeration); 45.77/32.38/46.96 Span-F1 on RAMS2RAMS/RAMS2Wiki/Wiki2Wiki",
+    "Extracting Events Like Code: A Multi-Agent Programming Framework for Zero-Shot Event Extraction (AAAI 2026, arXiv:2511.13118)",
+    "Structure-Aware Lightweight Document-Level Event Extraction via Code-Based Large Language Models (SALE, MDPI Electronics, March 2026)",
+    "DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event Argument Extraction with Slot Querying (COLING 2025, arXiv:2405.13325) — supervised SOTA: RAMS 54.2 Arg-C F1, WikiEvents 67.1 Arg-C F1",
+    "Beyond Single-Event Extraction: Towards Efficient Document-Level Multi-Event Argument Extraction (DEEIA, ACL 2024 Findings, arXiv:2405.01884) — RAMS 53.4 Arg-C F1, WikiEvents 67.0 Arg-C F1",
+    "Two-Stream Modeling for Document-Level Event Argument Extraction Using Contextual Clue and AMR Structures (TSCA, IET Software 2026) — supervised SOTA extension: +3.02/+1.01 F1 on RAMS/WikiEvents over prior SOTA",
+    "DiCoRe: Enhancing Zero-shot Event Detection via Divergent-Convergent LLM Reasoning (arXiv:2506.05128)",
+    "MAVEN: A Massive General Domain Event Detection Dataset (EMNLP 2020)",
+    "Document-Level Event Argument Extraction by Conditional Generation (NAACL 2021)",
+    "InstructUIE: Multi-task Instruction Tuning for Unified Information Extraction (arXiv 2023)",
+    "XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models (MLSys 2025)"
+  ],
+  "description": "Zero-shot event argument extraction lags supervised performance by 8–35 F1 points (supervised SOTA: DEGAP COLING 2025 — RAMS 54.2 Arg-C F1, WikiEvents 67.1 Arg-C F1; best zero-shot cross-dataset: LtGaE AAAI 2026 — 32–47 Span-F1 on RAMS2RAMS/RAMS2Wiki/Wiki2Wiki; note Span-F1 and Arg-C F1 are not directly comparable — Arg-C F1 is typically higher for the same system). A key bottleneck is training data quality for the generator model. This paper presents CompSchema-IE, an empirical study asking: do hard grammar constraints (formal cardinality + entity-type enforcement via XGrammar-constrained vLLM decoding) outperform oracle post-hoc filtering of unconstrained generation for zero-shot EAE, and does any advantage concentrate in role strata where theory predicts?\n\nThe primary motivation is a structural salience hypothesis: the RAMS ontology TSV specifies only maximum cardinality (the 'count permitted' column is an upper bound on role occurrences per instance, not a minimum), so XGrammar enforces upper-bound cardinality and entity-type compatibility but cannot logically guarantee that optional roles appear in every generated instance. Instead, SCG provides structural salience through required key enumeration: in the XGrammar encoding, all applicable role slots for a given event type appear as required keys in the output JSON template. The LLM generates empty strings or null values for absent optional arguments but cannot omit role keys from the output. This required-key design forces the model to generate each role name as a required output token, ensuring every slot appears in the generated instance and counteracting the prior bias toward silently omitting rare optional slot names that characterizes unconstrained generation. Post-hoc filtering (Condition B) removes violations but cannot recover coverage for role keys that unconstrained generation never emitted — a structural gap that filtering cannot close. Prior work (GEMS ACL Findings 2025 — ontology steering at inference time; FineCSDA NLPCC 2024 — targeted prompt augmentation; LtGaE AAAI 2026 — aggregate soft RL penalties) addresses rare-role under-representation via different mechanisms, none of which provides formal required-key enumeration at generation time. Concurrently, BoostCD (EMNLP 2025, arXiv:2506.14901) demonstrates complementary error profiles of constrained vs. unconstrained decoding at inference time for closed IE; CompSchema-IE investigates the analogous structural salience question at training-data generation time for EAE.\n\nA three-condition, volume-controlled ablation (N=5,000 instances per condition, distributed proportionally across RAMS's 139 event types) isolates the grammar effect cleanly: (A) Unconstrained, randomly subsampled to N=5,000 training instances; (B) Post-hoc Filtered (oracle soft-constraint approximation, volume-matched to N=5,000 by generating a 7,500-instance pool and filtering to N, with achieved discard rate reported as transparency metric); (C) SCG-Constrained (grammar-constrained to exactly N=5,000 instances with required role-key enumeration providing structural salience). All conditions use Qwen3-32B, the same schema information, and the same final training volume N, making the C-vs-B comparison methodologically airtight. A motivating pilot study measures entity-type mismatch, cardinality violation, role hallucination, and role coverage rates in Qwen3-32B unconstrained generation on RAMS/WikiEvents (600 instances; all metrics reported unconditionally). LoRA fine-tunes Qwen3-8B on each volume-matched corpus; evaluation uses the LtGaE three-way protocol with LtGaE, ASEE, and DEGAP as baselines. The comparison table includes a footnote explicitly noting that LtGaE and CompSchema-IE report Span-F1 while DEGAP reports Arg-C F1 — these metrics are not directly comparable, and each baseline is reported under its natively reported metric. Null result interpretation is pre-specified: if C does not outperform B in rare-role strata, the paper reports this as a clearly framed negative finding — grammar-guided structural enumeration provides no additional benefit over oracle post-hoc filtering at Qwen3-32B scale, suggesting the model's instruction-following capability already provides adequate structural salience through prompt-specified schema descriptions. The stratified evaluation by (a) role rarity quartile and (b) cardinality tightness (max=1 vs. max>1) reports both role coverage and argument span F1 per stratum, distinguishing coverage gains from potential quality tradeoffs introduced by grammar-constrained decoding (Schall & de Melo, RANLP 2025). CompSchema-IE extends the SynthIE task-reversal paradigm (EMNLP 2023) with formal grammar-constrained decoding and compositional cardinality bounds. Target: EMNLP 2026 Findings (ARR May 25, 2026). Estimated GPU cost: ~$187 (125.5h A100 ≈ 90h H100-equiv, within budget). Timeline: 16 active days.",
+  "project_name": "schema_constrained_event_ie",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["Auto mode (900h A100 ≈ 450–630 H100-equiv hours) clearly violates the ≤200 H100-hour hard constraint; even the HIL mode (~380h A100 ≈ 190–266h H100-equiv) is borderline. The proposal must be scoped to core manual-mode experiments only, and the auto/HIL resource tables should be removed or flagged as out-of-scope for this submission.", "Critical omission: 'Adaptive Schema-aware Event Extraction with Retrieval-Augmented Generation' (ASEE, arXiv 2505.08690, May 2025, https://arxiv.org/abs/2505.08690) directly addresses schema-aware event extraction using schema paraphrasing + RAG, constructs a 12-dataset benchmark (MD-SEE), and is published just weeks before the proposed submission. This paper must be cited, compared against, and explicitly differentiated.", "'Learning to Generate and Extract' (AAAI 2026, arXiv 2603.02909) already uses 'event structure constraints incorporated into the reward design' to guide synthetic data generation for zero-shot document-level event argument extraction on RAMS and WikiEvents — the same benchmarks. The proposed paper's claim that 'neither enforces hard compositional constraints at training-data generation time' needs empirical substantiation showing that hard grammar constraints outperform soft RL-based structural reward signals, not just a definitional distinction.", "Unvalidated core hypothesis: the paper assumes compositional constraint violations in generated training data are the primary bottleneck for zero-shot event extraction, but provides no motivating study. With Qwen3-235B-A22B as generator, modern frontier LLMs with strong instruction following may naturally produce consistent role–entity assignments at high rates; the verifier's filter rate and its downstream effect on model quality are entirely unknown.", "Qwen3-235B-A22B inference on 4×A100 80GB (320 GB VRAM): FP8 weights alone occupy ~235 GB, leaving ~85 GB for KV cache — severely limiting batch size and throughput. The vendor-recommended minimum configuration is 8-GPU tensor parallelism (--tp 8). Practical deployment on 4×A100 requires INT4 quantization, which may degrade generation quality and invalidates the clean cost estimate.", "The claimed 30–50 F1-point gap between zero-shot and supervised methods is overstated for current SOTA: the best zero-shot methods (LtGaE 2026, BiTer) achieve ~32–47 F1 on RAMS/WikiEvents zero-shot scenarios while supervised SOTA reaches 52–69 F1 — the gap is task- and benchmark-specific (5–37 F1 points), not a uniform 30–50 points."]
+Feedback: The idea targets a genuine and underexplored gap (extending GuideX-style synthetic supervision to compositionally structured event schemas), but in its current form the novelty claim is undermined by two concurrent papers the generator missed. The revision must: (1) Cite and differentiate from ASEE (arXiv 2505.08690) — ASEE approaches schema-awareness via RAG rather than formal grammars during generation; CompSchema-IE's differentiation should be that SCG enforces hard cardinality and type-compatibility constraints that cannot be retrieved post-hoc. (2) Strengthen differentiation from LtGaE (arXiv 2603.02909) by adding an ablation comparing grammar-constrained hard generation vs. RL-reward-guided soft generation on WikiEvents/RAMS — this turns the design choice into a falsifiable experimental contribution. (3) Add a motivating pilot study (even 100 generated examples, manually inspected) showing that unconstrained Qwen3-235B-A22B does in fact produce constraint-violating instances (wrong entity type for argument role, cardinality violations) at non-trivial rates — without this, the SCG module has no evidenced purpose. (4) Scope compute to the manual-mode experiments only (≤250h A100 ≈ 175h H100-equiv, within budget) and remove the auto mode entirely from the proposal. (5) Replace Qwen3-235B-A22B with Qwen3-32B or Llama-3.1-70B as the generator — these fit on 2×A100 comfortably, reducing generation hardware risk while still producing high-quality synthetic text; Qwen3-235B-A22B can be framed as an optional upper-bound experiment if resources allow.
+
+### Round 2 review
+Verdict: revise
+Issues: ["BiTer (Bi-directional Feature Learning-Based Approach for Zero-Shot Event Argument Extraction, Information Processing and Management, May 2025) is not cited. This paper reports SOTA zero-shot performance on RAMS and WikiEvents with +4.6%/+7.5% F1 over the prior best and uses a different approach (pseudo-argument generation from LLMs + bidirectional knowledge transfer), making it directly relevant as a baseline. Omitting it means the proposed method's competitive positioning against the actual SOTA is unknown.", "The pilot study contingency plan is inadequate. The proposal acknowledges 'If the pilot study reveals very low violation rates (<2%), the SCG module's value proposition is weakened and the paper's framing should shift.' But this is not a contingency plan — it is an admission that the paper could have no compelling finding. If Qwen3-32B (a strong instruction-following model) violates event schema constraints rarely, the entire SCG contribution becomes a null result. The proposal needs either a pre-registration of what level of violation rate constitutes a paper (and what the fallback is if it doesn't), or a theoretical argument for why hard constraints add value independent of their violation rate (e.g., as a distributional regularizer, speed benefit, or interpretability advantage).", "The PARSE citation for the '~12% invalid response rate' is for GPT-4 on complex structured extraction (EMNLP 2025 Industry Track), not Qwen3-32B. Qwen3-32B is a newer model with potentially stronger instruction-following and may have substantially lower violation rates in practice. The motivating claim should be stated as a hypothesis to be confirmed by the pilot study, not as established fact for the proposed model.", "The cross-ontology schema normalization scope is underestimated. Unifying ACE05 (24 event types, ~35 argument roles), WikiEvents (~50 event types), and RAMS (139 event types, 65 argument roles) into a single formal constraint grammar with entity-type compatibility mappings is a multi-week engineering and curation task. The role vocabularies across the three ontologies do not overlap neatly (e.g., RAMS 'Victim' vs. ACE05 'Target' vs. WikiEvents 'place'). Within 16 days, this competes directly with the pilot study annotation and the soft-baseline ablation implementation.", "The soft-RL baseline ablation (matching LtGaE's reward design) requires implementing a multi-agent evaluation loop with an evaluation agent computing normalized log-likelihood and a structural completeness penalty. LtGaE achieves this via separate generation and evaluation agents with LoRA-tuned models. Re-implementing this faithfully within 16 days is unrealistic alongside the other engineering tasks. The ablation would be stronger and more tractable if simplified to: (a) unconstrained prompt-only generation (no grammar, no reward) vs. (b) SCG-constrained generation — this tests the same hypothesis more cleanly."]
+Feedback: The Round 2 revision has successfully addressed all five critical Round 1 issues: compute is within budget (122h H100-equiv confirmed), ASEE and LtGaE are properly cited with mechanistic differentiation, the pilot study adds empirical motivation, and Qwen3-32B on 2×A100 BF16 is hardware-feasible. The remaining issues are fixable but require concrete action before this is submission-ready.
+
+(1) Add BiTer as a baseline. Search for the full paper at doi.org/10.1016/j.ipm.2025.104199 and include its absolute F1 numbers in the comparison table. If BiTer outperforms LtGaE, frame CompSchema-IE as improving over both.
+
+(2) Strengthen the pilot study's decision framework. Before running the full pipeline, the pilot study should produce a pre-specified threshold: 'If violation rate > X%, we proceed with the full SCG approach. If rate < X%, we [specific alternative contribution].' A better alternative contribution at low violation rates: demonstrate that grammar-constrained generation produces structurally more diverse training examples (measured by argument role distribution) even when violations are rare — this is a quality argument that doesn't depend on violation rates.
+
+(3) Scope the ontology normalization. Start with WikiEvents + RAMS only (these share more structural similarity and are the primary benchmarks LtGaE targets). Add ACE05 only if time permits. This removes the hardest cross-vocabulary alignment problem while preserving the core experimental claims.
+
+(4) Simplify the ablation. Replace the full LtGaE RL re-implementation with a simpler two-condition comparison: SCG-constrained generation vs. unconstrained generation (standard chat prompting with the same event schema descriptions). This directly tests whether grammar constraints at generation time help, without requiring a multi-agent RL implementation. Note this in the paper as a controlled comparison rather than a direct LtGaE replication.
+
+### Round 3 review
+Verdict: revise
+Issues: ["SUPERVISED SOTA NUMBERS ARE FACTUALLY WRONG: DEGAP (2024) achieves 54.2 Arg-C on RAMS — not 52.2 — and 67.1 on WikiEvents — not 68.8. The numbers may be from DEEIA (which DEGAP supersedes), but the paper currently attributes them to 'DEGAP/DEEIA 2024' without clarification. This understates the RAMS gap (54.2 − 45.77 = 8.4 F1, not 6 F1) and overstates the WikiEvents supervised score. Fix by correctly attributing each number to the specific paper that reports it.", "UNCITED DIRECT PREDECESSOR: 'Large Language Models for Document-Level Event-Argument Data Augmentation for Challenging Role Types' (arXiv:2403.03304, Gatto et al., March 2024) uses LLMs to synthesize document-level EAE training data for zero-shot/few-shot roles and achieves +16pt F1 on zero-shot role types on RAMS — this is the closest published predecessor to CompSchema-IE's core idea. Not citing it leaves a gap that reviewers familiar with EAE data augmentation will notice. The differentiation is clear (arXiv:2403.03304 does not enforce hard cardinality/entity-type grammar constraints), but it must be cited.", "BITER COMPARISON PROTOCOL IS OPERATIONALLY UNRESOLVED: BiTer reports F1 on standard within-dataset zero-shot splits (event types held out by type), while LtGaE uses a cross-dataset three-way protocol (RAMS2RAMS, RAMS2Wiki, Wiki2Wiki). These protocols are NOT interchangeable. Getting BiTer's F1 under the LtGaE protocol requires either (a) running BiTer's code on the LtGaE data splits (requires code availability + compute, non-trivial) or (b) author cooperation. The proposal says 'to be obtained from the full paper' but this is not realistic given the protocol difference. The paper should explicitly acknowledge the protocol mismatch, report BiTer's numbers under BiTer's native protocol with a clear note, and NOT imply direct numerical comparability.", "DUAL-FRAMING CREATES REVIEWER PERCEPTION RISK: The pre-specified decision rule ('if violation rate >5%, primary claim is A; if ≤5%, primary claim is B') is epistemically honest but strategically risky for EMNLP Main submission. Reviewers may read this as 'the authors do not know what their own contribution is.' The structural regularization argument (higher argument role coverage, provable entity-type consistency) is the more durable long-term claim and should be the PRIMARY framing regardless of violation rate. The pilot study's violation rate then becomes secondary supporting evidence. Commit to 'SCG as structural regularizer' as the headline claim and present violation rate as a motivating data point, not a framing branch condition.", "ABLATION DESIGN DOES NOT RULE OUT MARGINAL IMPROVEMENT RISK: The core ablation (SCG-constrained vs. unconstrained generation) isolates the grammar effect cleanly, but the paper currently has no stratified evaluation by argument role frequency or schema complexity. If overall F1 improvement is small (e.g., ≤1 F1), reviewers will dismiss the contribution. Stratified evaluation by (a) rare roles (bottom quartile by training frequency) and (b) roles with tight cardinality constraints (max=1) would demonstrate that SCG gains concentrate where they theoretically should — this turns a potentially flat overall number into a principled, interpretable finding."]
+Feedback: The Round 2 revision successfully resolved all five critical prior issues, and the proposal is now technically credible. The remaining blockers before submission readiness are: (1) Fix supervised SOTA numbers — look up DEEIA's exact RAMS Arg-C F1 and DEGAP's WikiEvents Arg-C F1 and attribute each number to the correct paper. (2) Cite arXiv:2403.03304 (Gatto et al., 2024) and write a one-paragraph differentiation: that paper uses LLMs for EAE data augmentation but does not enforce cardinality or entity-type grammar constraints, and focuses on few-shot rather than zero-shot transfer — CompSchema-IE's SCG module is the distinguishing contribution. (3) Resolve the BiTer protocol comparison honestly: state that BiTer uses within-dataset event-type splits while CompSchema-IE uses the LtGaE three-way cross-dataset protocol, report BiTer's native-protocol numbers with a clear footnote, and do not claim direct comparability. (4) Restructure the framing to lead with structural regularization as the primary contribution unconditionally — 'SCG guarantees full argument role coverage and provable entity-type consistency in training data; the pilot study additionally measures unconstrained violation rates' — eliminating the contingency branch. (5) Add stratified evaluation by role rarity and cardinality tightness as the analysis section, not as an afterthought; this is where the paper's strongest signal will appear.
+
+### Round 4 review
+Verdict: revise
+Issues: ["FATAL TIMELINE VIOLATION: The Generator's manual-mode estimate is 3–4 months, explicitly acknowledging that the May 25 ARR deadline cannot be met. This violates the user's hard ≤16-day constraint. Additionally, the Generator's proposed workaround ('ARR August 2026 cycle') is based on a misreading of the ARR calendar: August 2, 2026 is the COMMITMENT deadline for papers already in review from the May 25 submission, not a new submission cycle. There is no August ARR submission cycle that would yield EMNLP 2026 acceptance. The proposal must either (a) compress scope to a version executable in 16 days or (b) explicitly declare this idea is out-of-scope for the May 25 constraint.", "MISSING ABLATION — SCG vs. LtGaE SOFT RL: The core ablation compares SCG-constrained vs. unconstrained generation, which cleanly isolates the grammar effect. However, EMNLP reviewers familiar with LtGaE will ask: why does hard grammar enforcement outperform LtGaE's soft RL penalty, given LtGaE already achieves 45.77/32.38/46.96 F1 with soft constraints? Without a direct comparison on the same evaluation protocol, the claim that hard cardinality+entity-type constraints are better than soft RL argument-completeness rewards is an architectural assertion, not a demonstrated result. This is the most obvious reviewer concern for the EMNLP main paper track.", "THIN TECHNICAL CONTRIBUTION FOR EMNLP MAIN: The SCG module derives a grammar from the RAMS TSV (confirmed: cardinality is column-encoded) and feeds it to off-the-shelf XGrammar in vLLM. This is a pipeline integration, not an algorithmic contribution. EMNLP Main reviewers expect either (a) >2 F1 improvement over prior SOTA with clear ablation, or (b) technical novelty beyond tool integration. The stratified evaluation is analytically interesting but is framing/analysis, not architecture. EMNLP Findings is a more defensible target than EMNLP Main given current technical depth.", "PILOT STUDY RISK NOT FULLY MITIGATED: Qwen3-32B is a modern strong instruction-following model. The framing as 'structural regularizer' partially decouples the paper from requiring high violation rates, but the paper still relies on the pilot study as 'supporting empirical evidence.' If measured violation rates are <1% across all four metrics (plausible for a strong model given structured prompting), a reviewer can legitimately ask: why do we need formal grammar enforcement if the LLM already complies? The structural regularization reframing needs a concrete answer to this question that does not depend on violation rates."]
+Feedback: The Round 3 revisions are well-executed: all five prior issues are resolved, the supervised SOTA numbers are independently verified correct, the ARR timeline confusion needs immediate attention. Here are the four concrete actions needed before this is submission-ready:
+
+(1) COMPRESS SCOPE TO 16 DAYS OR DECLARE TIMELINE INFEASIBILITY. The 3–4 month estimate likely includes extensive ablations, careful analysis, and writing time. A minimal viable submission to the May 25 ARR deadline requires: SCG construction for RAMS+WikiEvents only (5–7 days, using the confirmed machine-readable cardinality TSV), pilot study on 200 instances (1 day), constrained generation (GPU, 1 day), LoRA fine-tuning across 3 ablation conditions (GPU, 2 days), evaluation on LtGaE three-way protocol (1 day), stratified analysis (1 day), paper writing concurrent. This is approximately 11–12 active days — tight but feasible with a focused team. Remove extended ablations, reduce fine-tuning runs, and defer optional experiments (ACE05 comparison, BiTer replication) to the revision stage.
+
+(2) ADD SOFT vs. HARD CONSTRAINT COMPARISON VIA LIGHTWEIGHT ORACLE BASELINE. Rather than re-implementing LtGaE's full RL loop (unrealistic), add a third ablation condition: 'post-hoc filtered unconstrained generation' (generate unconstrained, then filter violating instances via the verifier). This approximates the achievable quality of soft constraint enforcement without requiring RL, and lets the paper argue: 'even oracle-filtered unconstrained data underperforms SCG-constrained data on rare roles — because filtering cannot guarantee proportional role coverage.' This directly demonstrates the value of hard constraints over soft/filtered approaches without re-implementing LtGaE.
+
+(3) ANCHOR THE STRUCTURAL REGULARIZER FRAMING AGAINST ZERO-VIOLATION RATES. Add the following argument explicitly to the paper: 'Even if individual constraint violation rates are low, unconstrained generation cannot guarantee proportional representation of all schema roles across a finite corpus. SCG enforces this by construction: given 1,000 generated instances for event type T with role R having max-cardinality=1, the SCG guarantees exactly one instance of R per event — unconstrained generation may cluster on frequent roles and never instantiate rare ones, even with zero explicit violations.' This argument is valid regardless of violation rates and directly motivates SCG as a distributional regularizer, not just a constraint enforcer.
+
+(4) TARGET EMNLP 2026 FINDINGS EXPLICITLY. Given the thin technical depth (pipeline integration, not algorithmic novelty), EMNLP Findings is the more defensible submission target within the same May 25 deadline. This does not require any change to the method — simply adjust the positioning in the paper to emphasize the empirical analysis and stratified evaluation as the primary contribution, rather than the SCG module itself.
+
+### Round 5 review
+Verdict: revise
+Issues: ["CRITICAL — VOLUME CONFOUND IN CONDITION B: The three-condition design requires all conditions to train on equal data volume, but Condition B (post-hoc filtered) necessarily discards some fraction of the Condition A instances. If the filter removes 20–50% of instances (plausible even for strong models on compositional constraints), B trains on substantially less data than C, biasing the C-vs-B comparison in favor of C independently of the grammar effect. The proposal must specify: (a) generate excess instances for the A/B pool so that B achieves the same final volume as C after filtering, OR (b) deliberately undersample C to match B's post-filter volume as a volume-controlled analysis. Without this control, EMNLP reviewers will reject the paper on methodological grounds.", "MISSING CITATION — FineCSDA: 'FineCSDA: Boosting Document-Level Event Argument Extraction with Fine-Grained Data Augmentation' (NLPCC 2024, dl.acm.org/doi/10.1007/978-981-97-9434-8_1) specifically identifies the long-tail distribution of argument roles as a bottleneck and proposes LLM augmentation at both sample and context levels to address rare argument roles. While FineCSDA does NOT use formal grammar constraints and uses a different mechanism, it is a direct predecessor addressing the same identified gap (rare-role under-representation in training data). Reviewers familiar with document-level EAE data augmentation will notice the omission. Add a one-sentence differentiation: FineCSDA augments rare roles via sample-level and context-level LLM generation without enforcing formal cardinality or entity-type constraints — CompSchema-IE's SCG provides a distributional coverage guarantee by construction.", "NEGATIVE RESULT PATH UNACKNOWLEDGED: The proposal correctly states that C-B stratified gains may be modest, but does not explicitly acknowledge what happens if C fails to outperform B even in the rare-role quartile. If this occurs, the paper's primary empirical claim is a null result — potentially a useful negative finding (post-hoc filtering suffices, grammar constraints add no measurable value), but the proposal frames this as a risk without naming it. For EMNLP Findings, a clearly framed negative result is publishable, but it requires different positioning from the current abstract. Add a brief paragraph explicitly framing the null-result paper: 'If stratified analysis reveals no C-B advantage, we report this as a negative finding: for strong instruction-following models like Qwen3-32B, post-hoc filtering achieves equivalent coverage to formal grammar constraints, suggesting that engineering investment in SCG construction may not be warranted at this model scale.'", "PILOT STUDY SAMPLE SIZE RISK: The pilot study samples 200 event instances from RAMS and WikiEvents. RAMS has 139 event types; 200 instances gives fewer than 2 samples per event type on average, making role-level statistics extremely noisy for rare roles. Either increase the pilot study to 500–1000 instances (adds ~2 GPU-hours, within budget) or clearly scope the pilot to a subset of 5–10 event types with enough instances for per-role statistics."]
+Feedback: The Round 5 revision is the strongest version of this proposal so far. All prior critical issues (timeline, compute, ASEE/LtGaE/Gatto et al. citations, DEGAP numbers, stratified evaluation, BiTer protocol note) have been correctly resolved. The four remaining issues are fixable and one is straightforward; the volume confound is the only blocker that could sink the paper at review time.
+
+(1) VOLUME CONTROL [CRITICAL]: Before generating data for the three conditions, add a volume normalization protocol: generate 1.5× the target volume for Condition A, then both Condition A (random subsample to target) and Condition B (post-filter residual targeting the same volume) and Condition C (SCG-constrained to exact target volume) all end up with the same number of training instances. Report the achieved filter rate for Condition B as a transparency metric (e.g., 'we generated 1.5N instances for A and retained the top N after filtering, achieving a X% discard rate'). This one addition makes the C-vs-B comparison methodologically airtight.
+
+(2) CITE FineCSDA: Add a sentence in related work: 'FineCSDA (NLPCC 2024) identifies the rare-role under-representation problem and addresses it via LLM-powered sample-level and context-level augmentation; unlike CompSchema-IE, FineCSDA does not impose formal cardinality bounds or entity-type constraints, relying instead on targeted prompt design for rare event types.' This closes the citation gap reviewers may notice.
+
+(3) FRAME THE NULL RESULT: Add a two-sentence paragraph to Section 3 (Approach) or Section 5 (Expected Findings): 'We pre-specify the null result interpretation: if C does not outperform B in the rare-role quartile, we report that post-hoc filtering achieves equivalent rare-role coverage to formal grammar constraints at Qwen3-32B scale, providing a practically useful negative finding for practitioners considering SCG implementation overhead.'
+
+(4) INCREASE PILOT STUDY SCOPE: Sample 600 instances (4 GPU-hours total, still within the Day 3-4 budget) to achieve ~4–5 instances per event type on average, enabling more reliable role-level violation statistics.
+
+### Round 6 review
+Verdict: revise
+Issues: ["COVERAGE GUARANTEE LOGICAL GAP [critical, newly identified]: The proposal's primary theoretical claim — 'SCG enforces proportional coverage by construction: the grammar mandates that each mandatory role appears in every generated instance' — is overstated given confirmed RAMS TSV structure. The RAMS ontology TSV (independently verified at nlp.jhu.edu/rams/) specifies only MAXIMUM cardinality (the 'count permitted' column), NOT minimum cardinality. XGrammar therefore enforces upper-bound cardinality and entity-type constraints, but CANNOT force optional roles to appear. Since rare roles in RAMS may be optional in many event types (a given event instance may legitimately not have an 'Instrument' or 'Beneficiary'), the grammar provides no coverage guarantee for those roles. The coverage guarantee claim holds only for roles that the paper explicitly sets min-cardinality=1 in the grammar — which would require an assumption not derivable from the RAMS TSV alone and would produce unrealistic training data (every instance must have every role filled). The proposal must either (a) acknowledge this and narrow the guarantee to 'roles assigned min-cardinality=1 in the grammar encoding' with an explicit design choice described, or (b) reframe the theoretical argument from 'structural coverage guarantee' to 'structurally-prompted generation is more likely to instantiate optional rare roles due to explicit slot salience' — an empirical hypothesis rather than a logical guarantee. This is the single issue that a RAMS-familiar reviewer will raise immediately.", "BoostCD unacknowledged [minor]: 'Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction' (EMNLP 2025 Main, arXiv:2506.14901) empirically demonstrates that constrained and unconstrained decoding errors are complementary for closed IE, with a learned boosted model combining both. While BoostCD targets inference-time decoding (not training-data generation), its central empirical finding — that hard constraints and unconstrained generation have complementary error profiles — is directly relevant to CompSchema-IE's motivating argument and should be cited in related work with a one-sentence differentiation.", "Training volume N unspecified [minor]: The proposal never states the target training volume N. For RAMS with 139 event types, the number of instances per type and total N are unknown, making the GPU cost estimates (37.5h for 1.5N pool, 25h for N SCG-constrained) unverifiable. Specify N upfront (e.g., 'N=5,000 instances distributed proportionally across event types') so compute estimates and reproducibility can be assessed."]
+Feedback: The Round 6 proposal is the strongest version yet — all five Round 5 issues are properly resolved (volume normalization via 1.5× pool, FineCSDA cited and differentiated, null result pre-specified, pilot study at 600 instances, BiTer protocol mismatch handled). DEGAP F1 numbers (RAMS 54.2, WikiEvents 67.1 Arg-C) are independently verified correct. XGrammar overhead claim (<40μs/token as default vLLM backend) is confirmed. One fixable critical issue blocks submission readiness: the coverage guarantee must be corrected.
+
+(1) REVISE THE COVERAGE GUARANTEE ARGUMENT [critical]: The RAMS TSV only provides maximum cardinality (upper bounds on role occurrences), not minimum cardinality. The grammar therefore enforces: (a) no role appears more than its max count, and (b) when filled, entity types are compatible. It CANNOT guarantee that rare optional roles appear at all. Replace 'SCG enforces proportional coverage by construction' with one of two framings: OPTION A — 'In our grammar encoding, we set min-cardinality=1 for all roles applicable to a given event type, guaranteeing their appearance in every generated instance; this is a design choice that differs from natural annotation practice and we evaluate whether this artificial completeness improves rare-role coverage downstream.' OPTION B — 'SCG provides structural salience: by enumerating every applicable role slot explicitly in the constrained generation template, the LLM is prompted to consider filling each slot rather than freely omitting rare ones; we test empirically whether this structured attention mechanism improves rare-role instantiation.' Option B is more honest and requires no changes to the actual method.
+
+(2) ADD BoostCD [one sentence in related work]: 'Concurrently, BoostCD (EMNLP 2025) demonstrates that constrained and unconstrained decoding produce complementary errors at inference time for closed IE; CompSchema-IE investigates an analogous question at training-data generation time, where coverage differences compound across a finite corpus.'
+
+(3) SPECIFY N [one sentence in Section 2 or Step 2]: State the target training volume N explicitly (e.g., 'N=5,000 instances drawn proportionally across RAMS event types') so compute estimates are verifiable and the paper is reproducible.
+
+With these three changes — particularly the coverage guarantee reframing — the proposal is ready for EMNLP 2026 Findings submission. The empirical design is sound, the null result handling is appropriate, and the resource estimate is within budget.
+
+### Round 7 review
+Verdict: revise
+Issues: ["MISSING CITATION — GEMS (ACL Findings 2025): 'GEMS: Generation-Based Event Argument Extraction via Multi-perspective Prompts and Ontology Steering' (aclanthology.org/2025.findings-acl.1353) is not cited. GEMS uses multi-perspective prompting and ontology steering for EAE on WikiEvents/ACE05, achieving SOTA in low-resource settings. While GEMS is inference-time extraction rather than training-data generation, its 'ontology steering' mechanism is conceptually related to CompSchema-IE's schema-constrained generation. A one-sentence differentiation is required: 'GEMS (ACL Findings 2025) uses multi-perspective prompts and ontology steering for inference-time EAE; CompSchema-IE instead applies hard grammar constraints at training-data generation time, investigating whether structural salience during generation improves downstream rare-role coverage.'", "OPTIONAL ROLE GRAMMAR REPRESENTATION UNSPECIFIED [moderate]: The structural salience argument rests on the claim that the grammar 'explicitly enumerates every applicable role slot in the constrained generation template,' prompting the LLM to consider each slot. But the proposal never states HOW optional slots are represented in the grammar template: (a) required JSON keys with empty-string values allowed, (b) optional JSON keys that may be omitted, or (c) required keys with a special [NONE] token. This distinction is critical — design (b) provides no structural salience over Condition A because slots can still be omitted; design (a) forces the LLM to generate each role name as a JSON key, which IS the structural salience mechanism. The paper must state this explicitly, e.g.: 'All applicable role slots appear as required keys in the output JSON schema; the LLM may output empty strings or null for absent optional arguments, but cannot omit role keys from the output.' Without this, the structural salience claim is not reproducible.", "XGRAMMAR QUALITY DEGRADATION UNACKNOWLEDGED [minor]: Recent empirical work (Schall & de Melo, RANLP 2025; structured output benchmarks 2025) demonstrates that grammar-constrained decoding introduces quality degradation — forcing models into non-canonical token paths degrades output quality, particularly for rare or complex outputs. One study found XGrammar led to substantially more extraction misses than top unconstrained strategies for LLaMA-70B. The specific risk for CompSchema-IE: if the grammar forces generation of all role slots sequentially, the model may produce lower-quality argument spans for common roles in order to comply with the grammar structure — confounding the C-vs-B comparison. The paper should acknowledge this in the limitations section: 'Grammar-constrained decoding may introduce quality tradeoffs beyond structural coverage (Schall & de Melo, RANLP 2025); we mitigate this risk by using Qwen3-32B, which has strong structured output capabilities, and by measuring both role coverage and argument span quality in our stratified evaluation.'"]
+Feedback: Round 7 correctly resolves all three Round 6 issues: the coverage guarantee is properly reframed as structural salience (Option B framing), BoostCD is cited, and N=5,000 is specified. The LtGaE absolute F1 numbers (45.77/32.38/46.96) are independently verified correct. The EMNLP 2026 ARR May 25 deadline is confirmed valid with mandatory commitment at submission. The volume normalization (1.5x pool), pre-specified null result, and stratified evaluation design are all sound.
+
+Three targeted fixes are needed before submission readiness:
+
+(1) ADD GEMS CITATION [one sentence]: Add 'GEMS: Generation-Based Event Argument Extraction via Multi-perspective Prompts and Ontology Steering (ACL Findings 2025)' to related work with a differentiation sentence. This is the closest concurrent work using ontology-guided EAE that reviewers familiar with the area will know.
+
+(2) SPECIFY OPTIONAL ROLE GRAMMAR REPRESENTATION [one paragraph in Step 1]: The structural salience mechanism depends entirely on whether the grammar requires all role slot names to appear as output keys (providing salience) or permits key omission (no salience). State explicitly: 'In our XGrammar encoding, all applicable role slots for a given event type appear as required keys in the output JSON template; the LLM generates empty strings or null values for absent optional arguments but cannot omit role keys.' This makes the mechanism reproducible and directly supports the structural salience claim.
+
+(3) ACKNOWLEDGE XGRAMMAR QUALITY TRADEOFF [one sentence in limitations]: Note that grammar-constrained decoding can introduce quality degradation in text generation quality (Schall & de Melo, RANLP 2025). Mitigate by measuring argument span F1 per role stratum (not just role coverage), so quality and coverage effects are distinguishable in the stratified evaluation.
+
+With these three additions — all writable during paper drafting — the proposal is ready for EMNLP 2026 Findings submission.
+
+### Round 8 review
+Verdict: revise
+Issues: ["BOOSTCD APPLICATION DOMAIN MISCHARACTERIZED [minor, round 8 new]: The proposal consistently describes BoostCD as 'inference-time boosting for closed IE (relation extraction)' — but BoostCD (arXiv:2506.14901) is applied to closed information extraction broadly, not specifically relation extraction. In the landscape section and key references, '(relation extraction)' should be removed or replaced with '(closed information extraction)'. The core empirical finding (complementary error profiles of constrained vs. unconstrained decoding) is correctly attributed, but the domain specification is factually imprecise and a reviewer familiar with BoostCD will notice.", "STRUCTURAL SALIENCE MECHANISM LANGUAGE IS MECHANISTICALLY IMPRECISE [minor, round 8 new]: The proposal repeatedly states that required-key enumeration 'forces the model's attention to each slot during the forward pass' — this language invokes transformer attention mechanisms in a way that is not precisely accurate. What XGrammar actually does is constrain the output token distribution so the model MUST generate each role name as a JSON key; whether this changes internal attention patterns is an empirical question not established by prior work. The mechanistically accurate claim is: 'forcing the model to generate each role key as an output token ensures the corresponding slot appears in every generated instance, preventing the silent omission of rare slot names that characterizes unconstrained generation.' This is a weaker but more defensible claim — it guarantees key-level instantiation without claiming to modulate attention. A reviewer familiar with constrained decoding (e.g., from Schall & de Melo) will challenge the 'forces attention' formulation. Replacing this language across the proposal with 'forces generation of each role key' eliminates the vulnerability.", "SPAN-F1 VS. ARG-C F1 METRIC CONSISTENCY [minor, persistently unaddressed]: The proposal uses Span-F1 for LtGaE (45.77/32.38/46.96) and Arg-C F1 for DEGAP (54.2/67.1). These metrics are not directly comparable. The paper must include a footnote clarifying the metric difference so readers do not incorrectly interpret a direct cross-paper comparison. The proposed comparison table (LtGaE, ASEE, DEGAP, Conditions A/B/C) should report all models under the same metric — Span-F1 is typically lower than Arg-C F1, so mixing them in a single table without annotation is misleading."]
+Feedback: The Round 8 proposal has successfully resolved all three Round 7 issues: GEMS is cited throughout with clean mechanistic differentiation, the optional role grammar representation (required keys with empty-string/null fallback) is now explicit, and Schall & de Melo RANLP 2025 is cited with a concrete mitigation strategy. Independent verification confirms LtGaE F1 numbers, DEGAP numbers, FineCSDA, BoostCD, GEMS, and XGrammar overhead claims are all accurate. No concurrent work was found that directly competes with the three-condition, volume-controlled grammar-constraint ablation for EAE synthetic data generation.
+
+Three targeted fixes before submission:
+
+(1) BOOSTCD [one-word fix]: Replace '(relation extraction)' with '(closed information extraction)' or just remove the parenthetical. The BoostCD paper covers closed IE broadly. Change: 'inference-time boosting for closed IE (relation extraction)' → 'inference-time boosting for closed IE.'
+
+(2) STRUCTURAL SALIENCE LANGUAGE [one-paragraph revision]: Replace all instances of 'forces the model's attention to each slot during the forward pass' with mechanistically accurate language: 'forces the model to generate each role name as a required output token, ensuring the corresponding slot appears in every generated instance rather than being silently omitted.' This is accurate, verifiable, and avoids the attention-mechanism claim that constrained-decoding reviewers will challenge.
+
+(3) METRIC CONSISTENCY [one footnote]: Add a footnote to the comparison table explicitly noting: 'LtGaE and CompSchema-IE report Span-F1; DEGAP reports Arg-C F1. These metrics are not directly comparable — Arg-C F1 is typically higher than Span-F1 for the same system. We report each baseline under its natively reported metric.' This prevents a false impression that the gap to supervised SOTA is smaller than it is.
+
+With these three fixes — all accomplishable in under an hour of drafting — the proposal is ready for EMNLP 2026 Findings submission under the May 25 ARR deadline.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "2fa42e93-2942-4b12-b7ab-c1d38b95ba33",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T09:56:28.760Z_
+
+```json
+{
+  "parentUuid": "2fa42e93-2942-4b12-b7ab-c1d38b95ba33",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "a608f4f4-3b10-4ea2-920e-e1987b5f390f",
+  "timestamp": "2026-05-10T09:56:28.760Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T09:56:28.760Z_
+
+```json
+{
+  "parentUuid": "a608f4f4-3b10-4ea2-920e-e1987b5f390f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "5cad2d61-7a59-4b98-8f1a-ae6c03a25f01",
+  "timestamp": "2026-05-10T09:56:28.760Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-10T09:56:28.760Z_
+
+```json
+{
+  "parentUuid": "5cad2d61-7a59-4b98-8f1a-ae6c03a25f01",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "3c853024-dd9c-4bf4-bc4c-7ce56a562da8",
+  "timestamp": "2026-05-10T09:56:28.760Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "3c853024-dd9c-4bf4-bc4c-7ce56a562da8",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Hard Grammar Constraints vs. Soft Filtering for Zero-Shot Event Extraction",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T09:57:44.290Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is Round 9 of 10 for reviewing the CompSchema-IE idea. Let me carefully analyze what has been addressed from Round 8 and what still needs verification.
+
+From the Round 8 review, there were three issues:
+1. BoostCD domain mischaracterized - needed to remove "(relation extraction)" 
+2. Structural salience mechanism language imprecise - needed to replace "forces attention" with "forces generation of each role key"
+3. Span-F1 vs Arg-C F1 metric consistency - needed a footnote
+
+Looking at the current proposal (Round 9), let me check each of these:
+
+
+1. **BoostCD**: The landscape section correctly describes BoostCD without the "(relation extraction)" label - that's fixed.
+2. **Structural salience language**: The proposal now uses "forces the model to generate each role name as a required output token, ensuring the corresponding slot appears in every generated instance" throughout, and I don't see the problematic "forces attention" phrasing anymore - that's fixed.
+3. **Metric consistency footnote**: I need to check if the footnote addressing Span-F1 vs Arg-C F1 consistency has been added to the approach section.
+
+All three Round 8 issues appear to be resolved. Now I'm moving into independent verification of the core claims - checking whether the novelty is genuine, whether the 16-day timeline with the H100 budget is realistic, whether the SOTA numbers hold up, and whether the gap they're targeting actually exists. I should search for relevant papers to validate these assertions.
+
+I'm planning a systematic search strategy across several dimensions: recent zero-shot EAE work from 2025-2026, grammar-constrained LLM approaches for IE data generation, structural salience techniques in LLM generation, and schema-constrained decoding methods. This will help me verify the baseline numbers and check for any concurrent work they might have missed.
+
+But stepping back—this is Round 9 of 10, and the proposal has already been through eight rounds of revision with persistent issues around compute violations, missing citations, inadequate pilot studies, incorrect SOTA numbers, timeline problems, and logical gaps in the coverage guarantees. I need to focus my searches on the most critical gaps that keep resurfacing rather than casting too wide a net.
+
+The current version appears to have addressed the main Round 8 issues: BoostCD is now correctly framed as closed IE rather than relation extraction, the language around forced token generation is more precise, and metric consistency footnotes are included. But I should verify whether there are any recent 2026 papers on grammar-constrained generation for event argument extraction that would directly compete with this approach, and whether the key baseline comparisons are actually complete.
+
+Looking at the strengths and remaining concerns, the experimental design is solid with proper controls and a realistic timeline, but the effect size might be modest and the structural salience mechanism itself needs to be more rigorously grounded in prior work rather than just asserted as the theoretical motivation.
+
+Let me search for concurrent work on grammar-constrained generation and zero-shot event argument extraction to see if there are any overlapping efforts, then reassess whether this is ready for submission or needs further refinement.
+
+The core tension I'm seeing is that while the pre-specified null result is the right methodological choice for a Findings paper, the structural salience hypothesis—that enumerating required keys actually forces the model to generate rare roles—is still empirically unproven. The mechanism seems logically sound, but whether it translates to meaningful downstream improvements in extraction is genuinely uncertain.
+
+Looking at the scores: novelty sits around 3-4 since this combines existing tools (XGrammar, vLLM, RAMS schema) in a straightforward way rather than introducing algorithmic innovation, though the volume-controlled ablation and structural salience framing add some creative value. Feasibility is solid at 4—the computational budget and timeline are tight but workable, and all dependencies are publicly available. Clarity is strong at 4.5 with the three-condition ablation well-specified and the null result properly pre-registered.
+
+For impact, I'm settling on 3.5—EMNLP Findings is the right venue, and whether the results show improvement in rare-role strata or confirm a negative finding, there's practical value either way. That puts the overall average around 3.8-4.0, which is borderline.
+
+The real question is whether the eight rounds of revision have addressed all prior concerns and if anything new stands out in this round. The structural salience mechanism is subtle and worth examining more closely to ensure it's actually novel in the context of existing work. The proposal says that in the XGrammar encoding, all applicable role slots appear as required keys. This forces the LLM to output each role name as a JSON key. But wait - does this actually change the generation distribution? In a constrained decoding setup, the model is forced to generate certain tokens. The key insight is that even if the model's probability for a rare role name is low, it must still generate it as a key. This is different from unconstrained generation where it can skip the key entirely.
+
+The mechanism is: in unconstrained generation, the model might skip rare roles entirely, but with XGrammar's constraint, all applicable roles must appear as required keys with null values allowed for absent roles. This is a deliberate design choice that differs from how humans naturally annotate - we don't force every possible role to be present in the output.
+
+Now I'm thinking about the empirical consequence: if Condition C generates 5,000 instances where every role key is always present (some with values, some null), while Condition B generates 5,000 instances from a filtered pool where rare roles simply don't appear in many instances, then the training distributions are fundamentally different. The model trained on Condition C will have learned that every role key must be explicitly generated, even if null.
+
+For extractive EAE specifically, the JSON output is likely converted into (event, role, span) tuples for downstream training, so null values in Condition C would just become "no argument" signals—but the structural benefit remains because the rare role was mentioned in every generated instance.
+
+I should double-check the metric claim about argument-level F1 that's been flagged repeatedly.  The definition varies across papers, and comparing LtGaE's 45.77 Span-F1 on cross-dataset RAMS against DEGAP's 54.2 Arg-C F1 on in-domain RAMS isn't straightforward since they're measuring different things and operating under different conditions.
+
+There's another gap I'm noticing: the proposal doesn't establish a baseline for Qwen3-8B's zero-shot performance before fine-tuning. Since Qwen3-8B is already quite capable, it might perform competitively without any synthetic data or LoRA tuning, which would undermine the pipeline's value. The evaluation plan mentions comparing against LtGaE, ASEE, and DEGAP, but missing that unmodified Qwen3-8B baseline could be a weakness reviewers flag.
+
+I'm also realizing there's a SOTA issue here—the proposal cites DEGAP as supervised SOTA, but TSCA actually outperforms it by several points on both datasets. If TSCA is the current state-of-the-art, the comparison table should reflect that, though TSCA being from a 2026 venue might make it less established in the community.
+
+Now I need to verify these claims and search for any concurrent work I might have missed. I'm planning targeted searches around grammar-constrained generation for event extraction, structural salience in constrained decoding, and recent SOTA results on RAMS and WikiEvents to make sure the proposal's positioning is accurate.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3c853024-dd9c-4bf4-bc4c-7ce56a562da8",
+  "isSidechain": false,
+  "requestId": "req_011CatgtRoRrXEMsqt2ZdVrP",
+  "type": "assistant",
+  "uuid": "0d114f56-3ba3-4587-9022-45f39ec751e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_015dTugu6ndDwd4RcEQS4nNh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 28459,
+      "cache_read_input_tokens": 11278,
+      "output_tokens": 3743,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28459,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3743,
+          "cache_read_input_tokens": 11278,
+          "cache_creation_input_tokens": 28459,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28459
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-10T09:57:44.303Z_
+
+I'll conduct independent searches to verify the Round 9 proposal's claims before issuing a verdict.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0d114f56-3ba3-4587-9022-45f39ec751e5",
+  "isSidechain": false,
+  "requestId": "req_011CatgtRoRrXEMsqt2ZdVrP",
+  "type": "assistant",
+  "uuid": "5f57501c-6ecd-43a3-9a6e-4fc0f1e8dcea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_015dTugu6ndDwd4RcEQS4nNh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 28459,
+      "cache_read_input_tokens": 11278,
+      "output_tokens": 3743,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28459,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3743,
+          "cache_read_input_tokens": 11278,
+          "cache_creation_input_tokens": 28459,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28459
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-10T09:57:44.312Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01YDNtH4RSzzM8KnTu72LXdX`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5f57501c-6ecd-43a3-9a6e-4fc0f1e8dcea",
+  "isSidechain": false,
+  "requestId": "req_011CatgtRoRrXEMsqt2ZdVrP",
+  "type": "assistant",
+  "uuid": "ac02d60b-e78b-4fa7-b158-3cb0b7d8ef77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_015dTugu6ndDwd4RcEQS4nNh",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 28459,
+      "cache_read_input_tokens": 11278,
+      "output_tokens": 3743,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 28459,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 3743,
+          "cache_read_input_tokens": 11278,
+          "cache_creation_input_tokens": 28459,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 28459
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-10T09:57:44.324Z_
+
+<details><summary>↩ Tool result · `toolu_01YDNtH4RSzzM8KnTu72LXdX`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ac02d60b-e78b-4fa7-b158-3cb0b7d8ef77",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "ef80e1b8-ed9e-4bcb-a31a-3c5c98746c2b",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "ac02d60b-e78b-4fa7-b158-3cb0b7d8ef77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-10T09:57:46.241Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me run several searches in parallel to verify the claims in the proposal.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef80e1b8-ed9e-4bcb-a31a-3c5c98746c2b",
+  "isSidechain": false,
+  "requestId": "req_011Catgyzue17eFh3zePPBve",
+  "type": "assistant",
+  "uuid": "c2ac9902-9bc9-4145-9747-8f4d913bd7be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01NKCgNUcqL8RSzGfmhUj2WE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4763,
+      "cache_read_input_tokens": 39737,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4763,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 39737,
+          "cache_creation_input_tokens": 4763,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4763
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-10T09:57:46.711Z_
+
+Running independent searches across multiple dimensions simultaneously.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c2ac9902-9bc9-4145-9747-8f4d913bd7be",
+  "isSidechain": false,
+  "requestId": "req_011Catgyzue17eFh3zePPBve",
+  "type": "assistant",
+  "uuid": "3a489bcf-0690-46d8-9b77-9bb1d1ce00bf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01NKCgNUcqL8RSzGfmhUj2WE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4763,
+      "cache_read_input_tokens": 39737,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4763,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 39737,
+          "cache_creation_input_tokens": 4763,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4763
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-10T09:57:47.604Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016fGY6e3CqQpF94rvWvD9Uh`</summary>
+
+```json
+{
+  "query": "grammar-constrained decoding event argument extraction training data generation 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3a489bcf-0690-46d8-9b77-9bb1d1ce00bf",
+  "isSidechain": false,
+  "requestId": "req_011Catgyzue17eFh3zePPBve",
+  "type": "assistant",
+  "uuid": "1e9275d3-e2ee-4046-9bc9-e573f10dbfe7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01NKCgNUcqL8RSzGfmhUj2WE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4763,
+      "cache_read_input_tokens": 39737,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4763,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 39737,
+          "cache_creation_input_tokens": 4763,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4763
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-10T09:57:48.460Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NxkKuf2SPh1hwXoKD8gsfo`</summary>
+
+```json
+{
+  "query": "zero-shot event argument extraction RAMS WikiEvents SOTA 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e9275d3-e2ee-4046-9bc9-e573f10dbfe7",
+  "isSidechain": false,
+  "requestId": "req_011Catgyzue17eFh3zePPBve",
+  "type": "assistant",
+  "uuid": "b53d405b-68e1-4f39-80f7-053935a46f43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01NKCgNUcqL8RSzGfmhUj2WE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4763,
+      "cache_read_input_tokens": 39737,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4763,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 39737,
+          "cache_creation_input_tokens": 4763,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4763
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 17 · 2026-05-10T09:57:48.804Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0144kphJn7qci8TttyHTLWZr`</summary>
+
+```json
+{
+  "query": "structured output constrained decoding synthetic training data information extraction arxiv 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b53d405b-68e1-4f39-80f7-053935a46f43",
+  "isSidechain": false,
+  "requestId": "req_011Catgyzue17eFh3zePPBve",
+  "type": "assistant",
+  "uuid": "63fde822-9cbe-4527-838f-37c8b86873c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01NKCgNUcqL8RSzGfmhUj2WE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4763,
+      "cache_read_input_tokens": 39737,
+      "output_tokens": 214,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4763,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 214,
+          "cache_read_input_tokens": 39737,
+          "cache_creation_input_tokens": 4763,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4763
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "63fde822-9cbe-4527-838f-37c8b86873c8",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Hard Grammar Constraints vs. Soft Filtering for Zero-Shot Event Extraction",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-10T09:57:53.649Z_
+
+<details><summary>↩ Tool result · `toolu_016fGY6e3CqQpF94rvWvD9Uh`</summary>
+
+```text
+Web search results for query: "grammar-constrained decoding event argument extraction training data generation 2025 2026"
+
+Links: [{"title":"Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11747381/"},{"title":"Frontiers | Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts","url":"https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/full"},{"title":"Grammar-constrained decoding for structured information ...","url":"https://public-pages-files-2025.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/pdf"},{"title":"[2305.13971] Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning","url":"https://arxiv.org/abs/2305.13971"},{"title":"GitHub - Saibo-creator/Awesome-LLM-Constrained-Decoding: A curated list of papers related to constrained decoding of LLM, along with their relevant code and resources. · GitHub","url":"https://github.com/Saibo-creator/Awesome-LLM-Constrained-Decoding"},{"title":"Flexible and Efficient Grammar-Constrained Decoding | OpenReview","url":"https://openreview.net/forum?id=L6CYAzpO1k"},{"title":"Constrained Decoding: Grammar-Guided Generation for Structured LLM Output - Interactive | Michael Brenndoerfer | Michael Brenndoerfer","url":"https://mbrenndoerfer.com/writing/constrained-decoding-structured-llm-output"},{"title":"A Guide to Structured Generation Using Constrained Decoding","url":"https://www.aidancooper.co.uk/constrained-decoding/"},{"title":"Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning | OpenReview","url":"https://openreview.net/forum?id=KkHY1WGDII"},{"title":"The Hidden Cost of Structure: How Constrained Decoding ...","url":"https://acl-bg.org/proceedings/2025/RANLP%202025/pdf/2025.ranlp-1.124.pdf"}]
+
+Based on the search results, here's what I found related to grammar-constrained decoding, event argument extraction, and training data generation in 2025-2026:
+
+## Recent Research in Grammar-Constrained Decoding (2025-2026)
+
+A recent paper published on January 7, 2025 focuses on grammar-constrained decoding for structured information extraction. In structured information extraction, there are typically semantic and syntactic constraints on the output of IE systems, which cannot typically be guaranteed using standard fine-tuned encoder-decoder architectures.
+
+## Key Developments
+
+Recent work investigates the impact of grammar-constrained decoding in a fine-tuning setting, particularly on the task of structured information extraction, focusing on low-resource settings. The research contributes insights regarding the benefits and drawbacks of using grammar-constrained decoding and pointer generators with fine-tuned generative large language models in low-resource settings.
+
+## Broader Context on Grammar-Constrained Decoding
+
+Grammar-constrained decoding (GCD) can be used to control the generation of language models, guaranteeing that the output follows a given structure. Formal grammars can describe the output space for a wider range of tasks, and input-dependent grammars allow the grammar to depend on the input to enable generation of different output structures for different inputs.
+
+The search results indicate active research in this area with multiple publications from 2025 and into 2026 addressing constrained decoding for structured NLP tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1e9275d3-e2ee-4046-9bc9-e573f10dbfe7",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "32469928-dd06-4078-bfb8-30e2adb973fa",
+  "toolUseResult": {
+    "query": "grammar-constrained decoding event argument extraction training data generation 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019N5a8BSzLU94hQSKBXnvdk",
+        "content": [
+          {
+            "title": "Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11747381/"
+          },
+          {
+            "title": "Frontiers | Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts",
+            "url": "https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/full"
+          },
+          {
+            "title": "Grammar-constrained decoding for structured information ...",
+            "url": "https://public-pages-files-2025.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/pdf"
+          },
+          {
+            "title": "[2305.13971] Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning",
+            "url": "https://arxiv.org/abs/2305.13971"
+          },
+          {
+            "title": "GitHub - Saibo-creator/Awesome-LLM-Constrained-Decoding: A curated list of papers related to constrained decoding of LLM, along with their relevant code and resources. · GitHub",
+            "url": "https://github.com/Saibo-creator/Awesome-LLM-Constrained-Decoding"
+          },
+          {
+            "title": "Flexible and Efficient Grammar-Constrained Decoding | OpenReview",
+            "url": "https://openreview.net/forum?id=L6CYAzpO1k"
+          },
+          {
+            "title": "Constrained Decoding: Grammar-Guided Generation for Structured LLM Output - Interactive | Michael Brenndoerfer | Michael Brenndoerfer",
+            "url": "https://mbrenndoerfer.com/writing/constrained-decoding-structured-llm-output"
+          },
+          {
+            "title": "A Guide to Structured Generation Using Constrained Decoding",
+            "url": "https://www.aidancooper.co.uk/constrained-decoding/"
+          },
+          {
+            "title": "Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning | OpenReview",
+            "url": "https://openreview.net/forum?id=KkHY1WGDII"
+          },
+          {
+            "title": "The Hidden Cost of Structure: How Constrained Decoding ...",
+            "url": "https://acl-bg.org/proceedings/2025/RANLP%202025/pdf/2025.ranlp-1.124.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found related to grammar-constrained decoding, event argument extraction, and training data generation in 2025-2026:\n\n## Recent Research in Grammar-Constrained Decoding (2025-2026)\n\nA recent paper published on January 7, 2025 focuses on grammar-constrained decoding for structured information extraction. In structured information extraction, there are typically semantic and syntactic constraints on the output of IE systems, which cannot typically be guaranteed using standard fine-tuned encoder-decoder architectures.\n\n## Key Developments\n\nRecent work investigates the impact of grammar-constrained decoding in a fine-tuning setting, particularly on the task of structured information extraction, focusing on low-resource settings. The research contributes insights regarding the benefits and drawbacks of using grammar-constrained decoding and pointer generators with fine-tuned generative large language models in low-resource settings.\n\n## Broader Context on Grammar-Constrained Decoding\n\nGrammar-constrained decoding (GCD) can be used to control the generation of language models, guaranteeing that the output follows a given structure. Formal grammars can describe the output space for a wider range of tasks, and input-dependent grammars allow the grammar to depend on the input to enable generation of different output structures for different inputs.\n\nThe search results indicate active research in this area with multiple publications from 2025 and into 2026 addressing constrained decoding for structured NLP tasks."
+    ],
+    "durationSeconds": 6.040354916000011
+  },
+  "sourceToolAssistantUUID": "1e9275d3-e2ee-4046-9bc9-e573f10dbfe7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-10T09:57:55.579Z_
+
+<details><summary>↩ Tool result · `toolu_01NxkKuf2SPh1hwXoKD8gsfo`</summary>
+
+```text
+Web search results for query: "zero-shot event argument extraction RAMS WikiEvents SOTA 2025 2026"
+
+Links: [{"title":"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/html/2603.02909"},{"title":"Bi-directional feature learning-based approach for zero-shot event argument extraction - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0306457325001402"},{"title":"[2104.05919] Document-Level Event Argument Extraction by Conditional Generation","url":"https://arxiv.org/abs/2104.05919"},{"title":"[2603.02909] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/abs/2603.02909"},{"title":"[2603.02909v2] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/abs/2603.02909v2"},{"title":"Document-Level Event Argument Extraction by Conditional Generation - ACL Anthology","url":"https://aclanthology.org/2021.naacl-main.69/"},{"title":"Statistics of RAMS and WikiEvents datasets. | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Statistics-of-RAMS-and-WikiEvents-datasets_tbl2_383452545"},{"title":"DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event Argument Extraction with Slot Querying","url":"https://arxiv.org/html/2405.13325"},{"title":"Beyond Single-Event Extraction: Towards Efficient Document-Level Multi-Event Argument Extraction","url":"https://arxiv.org/html/2405.01884"},{"title":"Textual Entailment for Event Argument Extraction: Zero- and Few-Shot with Multi-Source Learning | DeepAI","url":"https://deepai.org/publication/textual-entailment-for-event-argument-extraction-zero-and-few-shot-with-multi-source-learning"}]
+
+I've found relevant research on zero-shot event argument extraction using the RAMS and WikiEvents datasets. Here are the key findings:
+
+## Recent SOTA Results (2025-2026)
+
+A multi-agent collaboration framework for zero-shot document-level event argument extraction, based on LLaMA and Qwen, consistently outperforms existing models across zero-shot settings, with LLaMA exceeding the strongest baseline by 6.57-7.82 F1 points and achieving overall F1 scores of 32.38 and 46.96 on RAMS2Wiki and Wiki2Wiki settings respectively. This method achieves improvements in both synthetic data generation quality and argument extraction performance on three zero-shot scenarios from RAMS and WikiEvents datasets.
+
+## Other Notable Approaches (2025)
+
+BiTer, a bi-directional feature learning approach, achieves state-of-the-art results with F1 improvements of 4.6%, 7.5%, and 0.4% over baseline models in zero-shot settings on RAMS, WikiEvents, and ACE2005 respectively.
+
+SALE, a structure-aware approach using code-oriented instruction tuning, significantly outperforms supervised and general LLM baselines in cross-task zero-shot and few-shot transfer settings, surpassing supervised baselines by over 7% in F1 score on RAMS and WikiEvents.
+
+The search results show active research in this area with multiple competitive approaches emerging in 2025-2026, with performance gains ranging from 4-7% F1 improvements over prior methods.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b53d405b-68e1-4f39-80f7-053935a46f43",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "8fcbd884-32ef-4edc-a98a-6f6300395b01",
+  "toolUseResult": {
+    "query": "zero-shot event argument extraction RAMS WikiEvents SOTA 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017exMHR1DG4TiqwstbzKrkr",
+        "content": [
+          {
+            "title": "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/html/2603.02909"
+          },
+          {
+            "title": "Bi-directional feature learning-based approach for zero-shot event argument extraction - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0306457325001402"
+          },
+          {
+            "title": "[2104.05919] Document-Level Event Argument Extraction by Conditional Generation",
+            "url": "https://arxiv.org/abs/2104.05919"
+          },
+          {
+            "title": "[2603.02909] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/abs/2603.02909"
+          },
+          {
+            "title": "[2603.02909v2] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/abs/2603.02909v2"
+          },
+          {
+            "title": "Document-Level Event Argument Extraction by Conditional Generation - ACL Anthology",
+            "url": "https://aclanthology.org/2021.naacl-main.69/"
+          },
+          {
+            "title": "Statistics of RAMS and WikiEvents datasets. | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Statistics-of-RAMS-and-WikiEvents-datasets_tbl2_383452545"
+          },
+          {
+            "title": "DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event Argument Extraction with Slot Querying",
+            "url": "https://arxiv.org/html/2405.13325"
+          },
+          {
+            "title": "Beyond Single-Event Extraction: Towards Efficient Document-Level Multi-Event Argument Extraction",
+            "url": "https://arxiv.org/html/2405.01884"
+          },
+          {
+            "title": "Textual Entailment for Event Argument Extraction: Zero- and Few-Shot with Multi-Source Learning | DeepAI",
+            "url": "https://deepai.org/publication/textual-entailment-for-event-argument-extraction-zero-and-few-shot-with-multi-source-learning"
+          }
+        ]
+      },
+      "I've found relevant research on zero-shot event argument extraction using the RAMS and WikiEvents datasets. Here are the key findings:\n\n## Recent SOTA Results (2025-2026)\n\nA multi-agent collaboration framework for zero-shot document-level event argument extraction, based on LLaMA and Qwen, consistently outperforms existing models across zero-shot settings, with LLaMA exceeding the strongest baseline by 6.57-7.82 F1 points and achieving overall F1 scores of 32.38 and 46.96 on RAMS2Wiki and Wiki2Wiki settings respectively. This method achieves improvements in both synthetic data generation quality and argument extraction performance on three zero-shot scenarios from RAMS and WikiEvents datasets.\n\n## Other Notable Approaches (2025)\n\nBiTer, a bi-directional feature learning approach, achieves state-of-the-art results with F1 improvements of 4.6%, 7.5%, and 0.4% over baseline models in zero-shot settings on RAMS, WikiEvents, and ACE2005 respectively.\n\nSALE, a structure-aware approach using code-oriented instruction tuning, significantly outperforms supervised and general LLM baselines in cross-task zero-shot and few-shot transfer settings, surpassing supervised baselines by over 7% in F1 score on RAMS and WikiEvents.\n\nThe search results show active research in this area with multiple competitive approaches emerging in 2025-2026, with performance gains ranging from 4-7% F1 improvements over prior methods."
+    ],
+    "durationSeconds": 7.116033378000007
+  },
+  "sourceToolAssistantUUID": "b53d405b-68e1-4f39-80f7-053935a46f43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 22 · 2026-05-10T09:57:57.180Z_
+
+<details><summary>↩ Tool result · `toolu_0144kphJn7qci8TttyHTLWZr`</summary>
+
+```text
+Web search results for query: "structured output constrained decoding synthetic training data information extraction arxiv 2025 2026"
+
+Links: [{"title":"Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11747381/"},{"title":"Frontiers | Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts","url":"https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/full"},{"title":"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction","url":"https://arxiv.org/html/2506.14901v1"},{"title":"Generating Structured Outputs from Language Models: Benchmark and Studies","url":"https://arxiv.org/html/2501.10868v1"},{"title":"A Guide to Structured Generation Using Constrained Decoding","url":"https://www.aidancooper.co.uk/constrained-decoding/"},{"title":"[2305.13971] Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning","url":"https://arxiv.org/abs/2305.13971"},{"title":"[2506.14901] Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction","url":"https://arxiv.org/abs/2506.14901"},{"title":"Space-Time Decoupling Control-Plane Jailbreaks in LLM ...","url":"https://arxiv.org/pdf/2503.24191"},{"title":"SLOT: Structuring the Output of Large Language Models","url":"https://arxiv.org/html/2505.04016v1"},{"title":"ScrapeGraphAI-100k: A Large-Scale Dataset for LLM-Based Web Information Extraction","url":"https://arxiv.org/html/2602.15189v1"}]
+
+I've completed a web search for your query about structured output, constrained decoding, synthetic training data, and information extraction from arXiv papers published in 2025-2026. Here are the key findings:
+
+## Recent Research Findings
+
+**Grammar-Constrained Decoding for Structured Information Extraction:**
+In structured information extraction, there are typically semantic and syntactic constraints on the output of information extraction systems, though these constraints typically cannot be guaranteed using standard fine-tuned encoder-decoder architectures.
+
+**Boosted Constrained Decoding (BoostCD):**
+A recent paper from June 2025 introduces an innovative approach. Many recent approaches to structured NLP tasks use autoregressive language models to map unstructured input text to output text representing structured objects, where the desired output structure is enforced via constrained decoding. The BoostCD method specifically addresses the limitation that during training, these approaches do not require the model to be aware of constraints, which are merely implicit in training outputs, though this can lead to low-quality output during constrained decoding at test time.
+
+**Synthetic Training Data Usage:**
+When training base and boosted models for closed information extraction, the process is done with synthetic data that might not highly resemble natural text, which might hinder performance in the wild.
+
+**JSONSchemaBench Benchmark:**
+JSONSchemaBench is a collection of 10K real-world JSON schemas from various sources, organized into 10 datasets of varying complexity and diversity, spanning domains such as function signatures, service APIs, and system configurations.
+
+**Recent Web Information Extraction Dataset:**
+Recent work sits at the intersection of web content extraction and schema-constrained information extraction, which converts content into structured records for retrieval and analytics.
+
+These papers represent cutting-edge research on making language models reliably produce structured outputs through various constrained decoding techniques combined with synthetic training data approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "63fde822-9cbe-4527-838f-37c8b86873c8",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "d228f764-04f3-45c3-b674-01ccaf8dfca6",
+  "toolUseResult": {
+    "query": "structured output constrained decoding synthetic training data information extraction arxiv 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01M2oeRg8ixo59KQsLBaCupH",
+        "content": [
+          {
+            "title": "Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11747381/"
+          },
+          {
+            "title": "Frontiers | Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts",
+            "url": "https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/full"
+          },
+          {
+            "title": "Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction",
+            "url": "https://arxiv.org/html/2506.14901v1"
+          },
+          {
+            "title": "Generating Structured Outputs from Language Models: Benchmark and Studies",
+            "url": "https://arxiv.org/html/2501.10868v1"
+          },
+          {
+            "title": "A Guide to Structured Generation Using Constrained Decoding",
+            "url": "https://www.aidancooper.co.uk/constrained-decoding/"
+          },
+          {
+            "title": "[2305.13971] Grammar-Constrained Decoding for Structured NLP Tasks without Finetuning",
+            "url": "https://arxiv.org/abs/2305.13971"
+          },
+          {
+            "title": "[2506.14901] Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction",
+            "url": "https://arxiv.org/abs/2506.14901"
+          },
+          {
+            "title": "Space-Time Decoupling Control-Plane Jailbreaks in LLM ...",
+            "url": "https://arxiv.org/pdf/2503.24191"
+          },
+          {
+            "title": "SLOT: Structuring the Output of Large Language Models",
+            "url": "https://arxiv.org/html/2505.04016v1"
+          },
+          {
+            "title": "ScrapeGraphAI-100k: A Large-Scale Dataset for LLM-Based Web Information Extraction",
+            "url": "https://arxiv.org/html/2602.15189v1"
+          }
+        ]
+      },
+      "I've completed a web search for your query about structured output, constrained decoding, synthetic training data, and information extraction from arXiv papers published in 2025-2026. Here are the key findings:\n\n## Recent Research Findings\n\n**Grammar-Constrained Decoding for Structured Information Extraction:**\nIn structured information extraction, there are typically semantic and syntactic constraints on the output of information extraction systems, though these constraints typically cannot be guaranteed using standard fine-tuned encoder-decoder architectures.\n\n**Boosted Constrained Decoding (BoostCD):**\nA recent paper from June 2025 introduces an innovative approach. Many recent approaches to structured NLP tasks use autoregressive language models to map unstructured input text to output text representing structured objects, where the desired output structure is enforced via constrained decoding. The BoostCD method specifically addresses the limitation that during training, these approaches do not require the model to be aware of constraints, which are merely implicit in training outputs, though this can lead to low-quality output during constrained decoding at test time.\n\n**Synthetic Training Data Usage:**\nWhen training base and boosted models for closed information extraction, the process is done with synthetic data that might not highly resemble natural text, which might hinder performance in the wild.\n\n**JSONSchemaBench Benchmark:**\nJSONSchemaBench is a collection of 10K real-world JSON schemas from various sources, organized into 10 datasets of varying complexity and diversity, spanning domains such as function signatures, service APIs, and system configurations.\n\n**Recent Web Information Extraction Dataset:**\nRecent work sits at the intersection of web content extraction and schema-constrained information extraction, which converts content into structured records for retrieval and analytics.\n\nThese papers represent cutting-edge research on making language models reliably produce structured outputs through various constrained decoding techniques combined with synthetic training data approaches."
+    ],
+    "durationSeconds": 8.373409653999989
+  },
+  "sourceToolAssistantUUID": "63fde822-9cbe-4527-838f-37c8b86873c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 23 · 2026-05-10T09:58:03.103Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good, I got some results. Let me now search for more specific things:
+
+1. Is there any direct competitor paper on grammar-constrained generation for EAE training data (not inference time)?
+2. What's the SALE paper exactly? It was mentioned in the proposal but let me verify if it competes more directly with CompSchema-IE.
+
+The search results confirm:
+- LtGaE numbers are correct (32.38, 46.96 on RAMS2Wiki, Wiki2Wiki)
+- BiTer is cited with correct improvements
+- BoostCD is confirmed to exist
+
+
+- Now I need to dig deeper into concurrent work to see if there are other approaches I'm missing.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d228f764-04f3-45c3-b674-01ccaf8dfca6",
+  "isSidechain": false,
+  "requestId": "req_011CatgzwLrdzTHod5cREPqK",
+  "type": "assistant",
+  "uuid": "b063c6f0-5581-4b4a-9bcd-7006496abdf2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013TJurH337nE36EeRtCMfu8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3136,
+      "cache_read_input_tokens": 44500,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3136,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 44500,
+          "cache_creation_input_tokens": 3136,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3136
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-10T09:58:03.543Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01JkNHzVvuTMTSrJbtGTzHSk`</summary>
+
+```json
+{
+  "query": "event argument extraction schema-guided synthetic data generation rare roles 2025 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b063c6f0-5581-4b4a-9bcd-7006496abdf2",
+  "isSidechain": false,
+  "requestId": "req_011CatgzwLrdzTHod5cREPqK",
+  "type": "assistant",
+  "uuid": "532c3007-e56f-47ad-8c96-a5e8fcab2b97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013TJurH337nE36EeRtCMfu8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3136,
+      "cache_read_input_tokens": 44500,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3136,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 44500,
+          "cache_creation_input_tokens": 3136,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3136
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-10T09:58:04.418Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Kgy9jT24bRVPYWeHgWcJEy`</summary>
+
+```json
+{
+  "query": "XGrammar constrained generation NLP information extraction training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "532c3007-e56f-47ad-8c96-a5e8fcab2b97",
+  "isSidechain": false,
+  "requestId": "req_011CatgzwLrdzTHod5cREPqK",
+  "type": "assistant",
+  "uuid": "c39930eb-6298-4b1c-ad50-ac71770075b7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013TJurH337nE36EeRtCMfu8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3136,
+      "cache_read_input_tokens": 44500,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3136,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 44500,
+          "cache_creation_input_tokens": 3136,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3136
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-10T09:58:04.982Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_013JXAQrf1eVfQHG9AR1pq17`</summary>
+
+```json
+{
+  "query": "SALE \"structure-aware\" code LLM zero-shot event extraction RAMS WikiEvents 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c39930eb-6298-4b1c-ad50-ac71770075b7",
+  "isSidechain": false,
+  "requestId": "req_011CatgzwLrdzTHod5cREPqK",
+  "type": "assistant",
+  "uuid": "1fb741fc-93df-4997-b37b-b4bd0552d720",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_013TJurH337nE36EeRtCMfu8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3136,
+      "cache_read_input_tokens": 44500,
+      "output_tokens": 333,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3136,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 333,
+          "cache_read_input_tokens": 44500,
+          "cache_creation_input_tokens": 3136,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3136
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-10T09:58:12.129Z_
+
+<details><summary>↩ Tool result · `toolu_013JXAQrf1eVfQHG9AR1pq17`</summary>
+
+```text
+Web search results for query: "SALE "structure-aware" code LLM zero-shot event extraction RAMS WikiEvents 2026"
+
+Links: [{"title":"Structure-Aware Lightweight Document-Level Event Extraction via Code-Based Large Language Models","url":"https://www.mdpi.com/2079-9292/15/6/1187"},{"title":"Statistics of RAMS and WikiEvents datasets. | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Statistics-of-RAMS-and-WikiEvents-datasets_tbl2_383452545"},{"title":"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/html/2603.02909"},{"title":"EACE: A document-level event argument extraction model with argument constraint enhancement","url":"https://www.researchgate.net/publication/377040624_EACE_A_document-level_event_argument_extraction_model_with_argument_constraint_enhancement"},{"title":"Multi-Document Event Extraction Using Large and Small Language Models | Request PDF","url":"https://www.researchgate.net/publication/397427171_Multi-Document_Event_Extraction_Using_Large_and_Small_Language_Models"},{"title":"Event Extraction in Large Language Model: A Holistic Survey of Method, Modality, and Future","url":"https://arxiv.org/html/2512.19537v1"},{"title":"One Small and One Large for Document-level Event Argument Extraction","url":"https://arxiv.org/pdf/2411.05895"},{"title":"Extracting Events Like Code: A Multi-Agent Programming Framework for Zero-Shot Event Extraction","url":"https://arxiv.org/html/2511.13118v1"},{"title":"Harnessing Large Language Models for End-to-End Open-Domain Event Extraction and Latent Pattern Identification[v1] | Preprints.org","url":"https://www.preprints.org/manuscript/202503.1782"},{"title":"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For","url":"https://ojs.aaai.org/index.php/AAAI/article/download/40767/44728"}]
+
+Based on the search results, I found comprehensive information about SALE and the related research:
+
+## SALE: Structure-Aware Lightweight Document-Level Event Extraction
+
+SALE (Structure-Aware Lightweight DEE) leverages the structural reasoning potential of Code-Based LLMs (Code-LLMs) as a favorable inductive preference. The approach formulates event extraction as a Python 3.9 class instantiation task to bridge the gap between semantic understanding and structural adherence.
+
+### Two-Stage Training Approach
+
+SALE employs a novel two-stage training paradigm: First, a Structure-Aware Fine-tuning stage injects general structural knowledge via diverse code-style instruction tasks derived from broad Information Extraction (IE) datasets; second, an Event Extraction Alignment stage utilizes a reward-based alignment loss—optimized via policy gradient—to adapt this capability to document-level intricacies.
+
+### Performance on RAMS and WikiEvents
+
+Extensive experiments on established news-domain benchmarks (RAMS and WikiEvents) demonstrate that the approach significantly outperforms representative supervised and general LLM baselines in cross-task zero-shot and few-shot transfer settings (e.g., surpassing supervised baselines by over 7% in F1 score).
+
+The RAMS dataset is specifically designed for multi-sentence argument linking with 9124 event instances where arguments frequently span across different sentences from the trigger. WikiEvents, derived from Wikipedia, features complex event structures and coreference chains to rigorously test the model's capacity for document-level understanding and argument classification.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1fb741fc-93df-4997-b37b-b4bd0552d720",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "b5c79366-7924-4803-ae3d-77773db935f6",
+  "toolUseResult": {
+    "query": "SALE \"structure-aware\" code LLM zero-shot event extraction RAMS WikiEvents 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YM83rW61uPHCbQT51SfuoY",
+        "content": [
+          {
+            "title": "Structure-Aware Lightweight Document-Level Event Extraction via Code-Based Large Language Models",
+            "url": "https://www.mdpi.com/2079-9292/15/6/1187"
+          },
+          {
+            "title": "Statistics of RAMS and WikiEvents datasets. | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Statistics-of-RAMS-and-WikiEvents-datasets_tbl2_383452545"
+          },
+          {
+            "title": "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/html/2603.02909"
+          },
+          {
+            "title": "EACE: A document-level event argument extraction model with argument constraint enhancement",
+            "url": "https://www.researchgate.net/publication/377040624_EACE_A_document-level_event_argument_extraction_model_with_argument_constraint_enhancement"
+          },
+          {
+            "title": "Multi-Document Event Extraction Using Large and Small Language Models | Request PDF",
+            "url": "https://www.researchgate.net/publication/397427171_Multi-Document_Event_Extraction_Using_Large_and_Small_Language_Models"
+          },
+          {
+            "title": "Event Extraction in Large Language Model: A Holistic Survey of Method, Modality, and Future",
+            "url": "https://arxiv.org/html/2512.19537v1"
+          },
+          {
+            "title": "One Small and One Large for Document-level Event Argument Extraction",
+            "url": "https://arxiv.org/pdf/2411.05895"
+          },
+          {
+            "title": "Extracting Events Like Code: A Multi-Agent Programming Framework for Zero-Shot Event Extraction",
+            "url": "https://arxiv.org/html/2511.13118v1"
+          },
+          {
+            "title": "Harnessing Large Language Models for End-to-End Open-Domain Event Extraction and Latent Pattern Identification[v1] | Preprints.org",
+            "url": "https://www.preprints.org/manuscript/202503.1782"
+          },
+          {
+            "title": "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/download/40767/44728"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about SALE and the related research:\n\n## SALE: Structure-Aware Lightweight Document-Level Event Extraction\n\nSALE (Structure-Aware Lightweight DEE) leverages the structural reasoning potential of Code-Based LLMs (Code-LLMs) as a favorable inductive preference. The approach formulates event extraction as a Python 3.9 class instantiation task to bridge the gap between semantic understanding and structural adherence.\n\n### Two-Stage Training Approach\n\nSALE employs a novel two-stage training paradigm: First, a Structure-Aware Fine-tuning stage injects general structural knowledge via diverse code-style instruction tasks derived from broad Information Extraction (IE) datasets; second, an Event Extraction Alignment stage utilizes a reward-based alignment loss—optimized via policy gradient—to adapt this capability to document-level intricacies.\n\n### Performance on RAMS and WikiEvents\n\nExtensive experiments on established news-domain benchmarks (RAMS and WikiEvents) demonstrate that the approach significantly outperforms representative supervised and general LLM baselines in cross-task zero-shot and few-shot transfer settings (e.g., surpassing supervised baselines by over 7% in F1 score).\n\nThe RAMS dataset is specifically designed for multi-sentence argument linking with 9124 event instances where arguments frequently span across different sentences from the trigger. WikiEvents, derived from Wikipedia, features complex event structures and coreference chains to rigorously test the model's capacity for document-level understanding and argument classification."
+    ],
+    "durationSeconds": 7.141907955000002
+  },
+  "sourceToolAssistantUUID": "1fb741fc-93df-4997-b37b-b4bd0552d720",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 28_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b5c79366-7924-4803-ae3d-77773db935f6",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 29_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Hard Grammar Constraints vs. Soft Filtering for Zero-Shot Event Extraction",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-10T09:58:12.449Z_
+
+<details><summary>↩ Tool result · `toolu_01JkNHzVvuTMTSrJbtGTzHSk`</summary>
+
+```text
+Web search results for query: "event argument extraction schema-guided synthetic data generation rare roles 2025 arxiv"
+
+Links: [{"title":"Beyond the Norm: A Survey of Synthetic Data Generation for Rare Events","url":"https://arxiv.org/html/2506.06380v1"},{"title":"[2506.06380] Beyond the Norm: A Survey of Synthetic Data Generation for Rare Events","url":"https://arxiv.org/abs/2506.06380"},{"title":"A Survey of Synthetic Data Generation for Rare Events","url":"https://arxiv.org/pdf/2506.06380"},{"title":"Decompose, Enrich, and Extract! Schema-aware Event Extraction using LLMs.","url":"https://arxiv.org/pdf/2406.01045"},{"title":"Large Language Models for Document-Level Event-Argument Data Augmentation for Challenging Role Types","url":"https://arxiv.org/html/2403.03304v2"},{"title":"Event Extraction in Large Language Model: A Holistic Survey of Method, Modality, and Future","url":"https://arxiv.org/html/2512.19537v1"},{"title":"[2603.02909] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/abs/2603.02909"},{"title":"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/html/2603.02909"},{"title":"GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://arxiv.org/html/2506.00649"},{"title":"[2108.10038] Event Extraction by Associating Event Types and Argument Roles","url":"https://arxiv.org/abs/2108.10038"}]
+
+Based on the search results, I found several relevant papers on arXiv related to your query. Here are the key findings:
+
+## Most Relevant Results:
+
+1. **"Large Language Models for Document-Level Event-Argument Data Augmentation for Challenging Role Types"** (arXiv:2403.03304, June 2024)
+   This work addresses the challenge of extracting event arguments from long documents given limited training data in a new domain (few-shot, cross-domain document-level event argument extraction). A key issue is the need to model 0-shot roles - roles which exist in an event's schema and thus might appear in the test set, but have no representation in the training data.
+
+2. **"Decompose, Enrich, and Extract! Schema-aware Event Extraction using LLMs"** (arXiv:2406.01045)
+   The paper generates demonstration examples by randomly selecting a subset of samples from available examples and choosing event types along with their corresponding arguments from provided lists to replace placeholders in the prompt template.
+
+3. **"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction"** (arXiv:2603.02909, March 2026)
+   In the zero-shot setting, methods employ LLMs to generate synthetic data to address data scarcity, though relying solely on event-type-only prompts makes it difficult for generated content to accurately capture contextual and structural relationships of unseen events, and ensuring reliability and usability of synthetic data remains a significant challenge.
+
+4. **"GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction"** (arXiv:2506.00649, May 2025)
+   This paper introduces GuideX, a method that automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization.
+
+These papers collectively address schema-guided approaches to event argument extraction and synthetic data generation, particularly for handling rare roles and zero-shot scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "532c3007-e56f-47ad-8c96-a5e8fcab2b97",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "e4f2ee9e-4fe3-4023-8470-d2334245b55b",
+  "toolUseResult": {
+    "query": "event argument extraction schema-guided synthetic data generation rare roles 2025 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01FMtgZbzBVQwrqjmHamqfTV",
+        "content": [
+          {
+            "title": "Beyond the Norm: A Survey of Synthetic Data Generation for Rare Events",
+            "url": "https://arxiv.org/html/2506.06380v1"
+          },
+          {
+            "title": "[2506.06380] Beyond the Norm: A Survey of Synthetic Data Generation for Rare Events",
+            "url": "https://arxiv.org/abs/2506.06380"
+          },
+          {
+            "title": "A Survey of Synthetic Data Generation for Rare Events",
+            "url": "https://arxiv.org/pdf/2506.06380"
+          },
+          {
+            "title": "Decompose, Enrich, and Extract! Schema-aware Event Extraction using LLMs.",
+            "url": "https://arxiv.org/pdf/2406.01045"
+          },
+          {
+            "title": "Large Language Models for Document-Level Event-Argument Data Augmentation for Challenging Role Types",
+            "url": "https://arxiv.org/html/2403.03304v2"
+          },
+          {
+            "title": "Event Extraction in Large Language Model: A Holistic Survey of Method, Modality, and Future",
+            "url": "https://arxiv.org/html/2512.19537v1"
+          },
+          {
+            "title": "[2603.02909] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/abs/2603.02909"
+          },
+          {
+            "title": "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/html/2603.02909"
+          },
+          {
+            "title": "GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://arxiv.org/html/2506.00649"
+          },
+          {
+            "title": "[2108.10038] Event Extraction by Associating Event Types and Argument Roles",
+            "url": "https://arxiv.org/abs/2108.10038"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers on arXiv related to your query. Here are the key findings:\n\n## Most Relevant Results:\n\n1. **\"Large Language Models for Document-Level Event-Argument Data Augmentation for Challenging Role Types\"** (arXiv:2403.03304, June 2024)\n   This work addresses the challenge of extracting event arguments from long documents given limited training data in a new domain (few-shot, cross-domain document-level event argument extraction). A key issue is the need to model 0-shot roles - roles which exist in an event's schema and thus might appear in the test set, but have no representation in the training data.\n\n2. **\"Decompose, Enrich, and Extract! Schema-aware Event Extraction using LLMs\"** (arXiv:2406.01045)\n   The paper generates demonstration examples by randomly selecting a subset of samples from available examples and choosing event types along with their corresponding arguments from provided lists to replace placeholders in the prompt template.\n\n3. **\"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction\"** (arXiv:2603.02909, March 2026)\n   In the zero-shot setting, methods employ LLMs to generate synthetic data to address data scarcity, though relying solely on event-type-only prompts makes it difficult for generated content to accurately capture contextual and structural relationships of unseen events, and ensuring reliability and usability of synthetic data remains a significant challenge.\n\n4. **\"GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction\"** (arXiv:2506.00649, May 2025)\n   This paper introduces GuideX, a method that automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization.\n\nThese papers collectively address schema-guided approaches to event argument extraction and synthetic data generation, particularly for handling rare roles and zero-shot scenarios."
+    ],
+    "durationSeconds": 8.900636152999999
+  },
+  "sourceToolAssistantUUID": "532c3007-e56f-47ad-8c96-a5e8fcab2b97",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-10T09:58:12.927Z_
+
+<details><summary>↩ Tool result · `toolu_01Kgy9jT24bRVPYWeHgWcJEy`</summary>
+
+```text
+Web search results for query: "XGrammar constrained generation NLP information extraction training 2025 2026"
+
+Links: [{"title":"GitHub - mlc-ai/xgrammar: Fast, Flexible and Portable Structured Generation · GitHub","url":"https://github.com/mlc-ai/xgrammar"},{"title":"[2411.15100] XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models","url":"https://arxiv.org/abs/2411.15100"},{"title":"Generating Structured Outputs from Language Models: Benchmark and Studies","url":"https://arxiv.org/html/2501.10868v1"},{"title":"SLOT: Structuring the Output of Large Language Models","url":"https://aclanthology.org/2025.emnlp-industry.32.pdf"},{"title":"Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11747381/"},{"title":"How Structured Outputs and Constrained Decoding Work | Let's Data Science","url":"https://letsdatascience.com/blog/structured-outputs-making-llms-return-reliable-json"},{"title":"Catalyst: XGrammar","url":"https://catalyst.cs.cmu.edu/projects/xgrammar.html"},{"title":"MLC | XGrammar-2: Fast and Customizable Structured Generation for Tool Calling and Agents","url":"https://blog.mlc.ai/2026/05/04/xgrammar-2-fast-customizable-structured-generation"},{"title":"[PDF] XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models | Semantic Scholar","url":"https://www.semanticscholar.org/paper/XGrammar:-Flexible-and-Efficient-Structured-Engine-Dong-Ruan/274ca059ee4997f1e008bc8962aef3d22897f17a"},{"title":"Frontiers | Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts","url":"https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/full"}]
+
+## Search Results Summary
+
+I found comprehensive information about XGrammar and its applications in constrained generation for NLP and information extraction. Here are the key findings:
+
+### **XGrammar Overview**
+
+XGrammar is an open-source library for efficient, flexible, and portable structured generation that leverages constrained decoding to ensure 100% structural correctness of the output.
+
+### **Recent Developments (2025-2026)**
+
+In November 2024, XGrammar was officially integrated into MLC-LLM. Additionally, a follow-up version, XGrammar-2: Efficient Dynamic Structured Generation Engine for Agentic LLMs, was released in 2026.
+
+As of March 2026, XGrammar is the default structured generation backend for vLLM, SGLang, and TensorRT-LLM, achieving under 40 microseconds per token with near-zero overhead in JSON generation.
+
+### **Technical Innovation**
+
+XGrammar accelerates context-free grammar execution by dividing the vocabulary into context-independent tokens that can be prechecked and context-dependent tokens that need to be interpreted during runtime.
+
+### **Applications in Information Extraction and NLP**
+
+Research has investigated the impact of grammar-constrained decoding in a fine-tuning setting and in particular on the task of structured information extraction, focusing on low-resource settings. XGrammar is evaluated alongside other state-of-the-art constrained decoding frameworks including Guidance, Outlines, Llamacpp, OpenAI, and Gemini.
+
+### **XGrammar-2 Enhancements**
+
+While XGrammar handles JSON and other common structures efficiently, emerging agent applications demand far more complex structures. XGrammar-2, a major upgrade purpose-built for agent applications, lets you easily express complex structures for agents, delivers high performance even for very large grammars, offers native cross-platform APIs, and remains fully backward compatible.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c39930eb-6298-4b1c-ad50-ac71770075b7",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "a1afb1b4-5dcb-4d58-95ac-59ca27fb3dda",
+  "toolUseResult": {
+    "query": "XGrammar constrained generation NLP information extraction training 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01GG1e5bAFK8kYX8U6SUSNJX",
+        "content": [
+          {
+            "title": "GitHub - mlc-ai/xgrammar: Fast, Flexible and Portable Structured Generation · GitHub",
+            "url": "https://github.com/mlc-ai/xgrammar"
+          },
+          {
+            "title": "[2411.15100] XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models",
+            "url": "https://arxiv.org/abs/2411.15100"
+          },
+          {
+            "title": "Generating Structured Outputs from Language Models: Benchmark and Studies",
+            "url": "https://arxiv.org/html/2501.10868v1"
+          },
+          {
+            "title": "SLOT: Structuring the Output of Large Language Models",
+            "url": "https://aclanthology.org/2025.emnlp-industry.32.pdf"
+          },
+          {
+            "title": "Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11747381/"
+          },
+          {
+            "title": "How Structured Outputs and Constrained Decoding Work | Let's Data Science",
+            "url": "https://letsdatascience.com/blog/structured-outputs-making-llms-return-reliable-json"
+          },
+          {
+            "title": "Catalyst: XGrammar",
+            "url": "https://catalyst.cs.cmu.edu/projects/xgrammar.html"
+          },
+          {
+            "title": "MLC | XGrammar-2: Fast and Customizable Structured Generation for Tool Calling and Agents",
+            "url": "https://blog.mlc.ai/2026/05/04/xgrammar-2-fast-customizable-structured-generation"
+          },
+          {
+            "title": "[PDF] XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/XGrammar:-Flexible-and-Efficient-Structured-Engine-Dong-Ruan/274ca059ee4997f1e008bc8962aef3d22897f17a"
+          },
+          {
+            "title": "Frontiers | Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts",
+            "url": "https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/full"
+          }
+        ]
+      },
+      "## Search Results Summary\n\nI found comprehensive information about XGrammar and its applications in constrained generation for NLP and information extraction. Here are the key findings:\n\n### **XGrammar Overview**\n\nXGrammar is an open-source library for efficient, flexible, and portable structured generation that leverages constrained decoding to ensure 100% structural correctness of the output.\n\n### **Recent Developments (2025-2026)**\n\nIn November 2024, XGrammar was officially integrated into MLC-LLM. Additionally, a follow-up version, XGrammar-2: Efficient Dynamic Structured Generation Engine for Agentic LLMs, was released in 2026.\n\nAs of March 2026, XGrammar is the default structured generation backend for vLLM, SGLang, and TensorRT-LLM, achieving under 40 microseconds per token with near-zero overhead in JSON generation.\n\n### **Technical Innovation**\n\nXGrammar accelerates context-free grammar execution by dividing the vocabulary into context-independent tokens that can be prechecked and context-dependent tokens that need to be interpreted during runtime.\n\n### **Applications in Information Extraction and NLP**\n\nResearch has investigated the impact of grammar-constrained decoding in a fine-tuning setting and in particular on the task of structured information extraction, focusing on low-resource settings. XGrammar is evaluated alongside other state-of-the-art constrained decoding frameworks including Guidance, Outlines, Llamacpp, OpenAI, and Gemini.\n\n### **XGrammar-2 Enhancements**\n\nWhile XGrammar handles JSON and other common structures efficiently, emerging agent applications demand far more complex structures. XGrammar-2, a major upgrade purpose-built for agent applications, lets you easily express complex structures for agents, delivers high performance even for very large grammars, offers native cross-platform APIs, and remains fully backward compatible."
+    ],
+    "durationSeconds": 8.506350556999998
+  },
+  "sourceToolAssistantUUID": "c39930eb-6298-4b1c-ad50-ac71770075b7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-10T09:58:27.227Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting! I found some useful results. Let me analyze:
+
+1. **GuideX (arXiv:2506.00649, May 2025)**: This paper "automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization." This is very relevant! The proposal mentions GuideX as "GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction (ACL Findings 2025)" and says it "sets SOTA on 7 zero-shot NER benchmarks with Llama-3.1 fine-tuned on generated data, but explicitly does not address event argument extraction." Let me verify whether GuideX has been extended to event argument extraction.
+
+
+2. **SALE**: Looking at the performance claims more carefully—when it says it surpasses supervised baselines by over 7% F1, that's in a cross-task transfer setting where SALE is being evaluated on a different task than what the supervised baseline was trained on. So this isn't actually comparing SALE's zero-shot performance against supervised event argument extraction directly.
+
+3. **XGrammar-2**: I notice XGrammar-2 was released in May 2026, which is newer than what the proposal references. However, since the proposal uses XGrammar as the default vLLM backend, this shouldn't be a critical issue—the original version is still valid. Now let me dig deeper into SALE's approach and see if GuideX addresses similar concerns.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a1afb1b4-5dcb-4d58-95ac-59ca27fb3dda",
+  "isSidechain": false,
+  "requestId": "req_011Cath26eirvAvJjMRsBNu6",
+  "type": "assistant",
+  "uuid": "97f6951f-e830-4134-b73e-1ca9d7db45a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Q4bR8cZfF5jUGJ4DDzvTsY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 935,
+      "cache_creation_input_tokens": 2343,
+      "cache_read_input_tokens": 47636,
+      "output_tokens": 699,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2343,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 935,
+          "output_tokens": 699,
+          "cache_read_input_tokens": 47636,
+          "cache_creation_input_tokens": 2343,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2343
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-10T09:58:27.237Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GkL6y9ThqbcJu7yyYU3FVg`</summary>
+
+```json
+{
+  "query": "GuideX guided synthetic data zero-shot information extraction NER event extraction 2025 ACL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97f6951f-e830-4134-b73e-1ca9d7db45a2",
+  "isSidechain": false,
+  "requestId": "req_011Cath26eirvAvJjMRsBNu6",
+  "type": "assistant",
+  "uuid": "79aa1b6c-6b42-46f2-a7d5-4a76d963bbed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Q4bR8cZfF5jUGJ4DDzvTsY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 935,
+      "cache_creation_input_tokens": 2343,
+      "cache_read_input_tokens": 47636,
+      "output_tokens": 699,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2343,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 935,
+          "output_tokens": 699,
+          "cache_read_input_tokens": 47636,
+          "cache_creation_input_tokens": 2343,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2343
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 34 · 2026-05-10T09:58:27.505Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01M9DLdV4bzMqc4Utyh4Mi51`</summary>
+
+```json
+{
+  "query": "structural salience constrained decoding LLM generation rare tokens coverage 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79aa1b6c-6b42-46f2-a7d5-4a76d963bbed",
+  "isSidechain": false,
+  "requestId": "req_011Cath26eirvAvJjMRsBNu6",
+  "type": "assistant",
+  "uuid": "1d43c113-9b5c-4908-8d29-6f8a1017be7e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Q4bR8cZfF5jUGJ4DDzvTsY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 935,
+      "cache_creation_input_tokens": 2343,
+      "cache_read_input_tokens": 47636,
+      "output_tokens": 699,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2343,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 935,
+          "output_tokens": 699,
+          "cache_read_input_tokens": 47636,
+          "cache_creation_input_tokens": 2343,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2343
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-10T09:58:34.906Z_
+
+<details><summary>↩ Tool result · `toolu_01M9DLdV4bzMqc4Utyh4Mi51`</summary>
+
+```text
+Web search results for query: "structural salience constrained decoding LLM generation rare tokens coverage 2025 2026"
+
+Links: [{"title":"Constrained Decoding: Grammar-Guided Generation for Structured LLM Output - Interactive | Michael Brenndoerfer | Michael Brenndoerfer","url":"https://mbrenndoerfer.com/writing/constrained-decoding-structured-llm-output"},{"title":"LLM Structured Outputs: The Practical Guide for Every Provider [2026]","url":"https://techsy.io/en/blog/llm-structured-outputs-guide"},{"title":"How Structured Outputs and Constrained Decoding Work | Let's Data Science","url":"https://letsdatascience.com/blog/structured-outputs-making-llms-return-reliable-json"},{"title":"XGrammar: Flexible and Efficient Structured Generation ...","url":"https://openreview.net/pdf?id=rjQfX0YgDl"},{"title":"GitHub - Saibo-creator/Awesome-LLM-Constrained-Decoding: A curated list of papers related to constrained decoding of LLM, along with their relevant code and resources. · GitHub","url":"https://github.com/Saibo-creator/Awesome-LLM-Constrained-Decoding"},{"title":"A Guide to Structured Generation Using Constrained Decoding","url":"https://www.aidancooper.co.uk/constrained-decoding/"},{"title":"Beyond Free-Form Text: How Constrained Decoding is Reshaping Structured Generation in LLMs | by Brijesh Nambiar | Medium","url":"https://medium.com/@brijeshrn/beyond-free-form-text-how-constrained-decoding-is-reshaping-structured-generation-in-llms-5f7a38bef259"},{"title":"Efficient LLM System with Speculative Decoding | EECS at UC Berkeley","url":"https://www2.eecs.berkeley.edu/Pubs/TechRpts/2025/EECS-2025-224.html"},{"title":"Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation","url":"https://arxiv.org/html/2403.06988v1"},{"title":"Breaking the Ceiling of the LLM Community by Treating Token Generation as a Classification for Ensembling","url":"https://arxiv.org/html/2406.12585v2"}]
+
+Based on the search results, I found relevant information about constrained decoding in LLM generation from 2025-2026. Here's what the recent research shows:
+
+## Key Findings on Constrained Decoding and LLM Generation
+
+### Rare Tokens and Coverage Challenges
+
+Methods that enforce constraints can significantly impair task accuracy if they do not correctly align the underlying LLM sub-word vocabularies with external constraints. This is particularly relevant to rare token coverage - XGrammar solved this by splitting vocabulary tokens into context-independent (99% of the vocabulary) and context-dependent sets (1%), where context-independent tokens can be fully precomputed into bitmask tables while context-dependent tokens require runtime stack inspection.
+
+### Structural Salience in Decoding
+
+As of 2025-2026, the field has entered a phase of high-performance engines with open-source tools like XGrammar and llguidance achieving near-zero overhead constrained decoding. XGrammar became the default structured generation backend for vLLM, SGLang, and TensorRT-LLM as of March 2026, achieving under 40 microseconds per token with near-zero overhead in JSON generation.
+
+### Implementation Approaches
+
+At each token generation step, only tokens that keep the output on a valid path through a finite state machine are allowed -- invalid tokens get their logits set to negative infinity, giving a mathematical guarantee rather than a statistical one.
+
+The research indicates that modern constrained decoding systems (2025-2026) have moved beyond basic grammar enforcement to sophisticated approaches that maintain model quality while ensuring constraint compliance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1d43c113-9b5c-4908-8d29-6f8a1017be7e",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "0348fd35-9202-479d-adf4-864de49579db",
+  "toolUseResult": {
+    "query": "structural salience constrained decoding LLM generation rare tokens coverage 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01YCpRZn3sGgAHu2or3cq9YB",
+        "content": [
+          {
+            "title": "Constrained Decoding: Grammar-Guided Generation for Structured LLM Output - Interactive | Michael Brenndoerfer | Michael Brenndoerfer",
+            "url": "https://mbrenndoerfer.com/writing/constrained-decoding-structured-llm-output"
+          },
+          {
+            "title": "LLM Structured Outputs: The Practical Guide for Every Provider [2026]",
+            "url": "https://techsy.io/en/blog/llm-structured-outputs-guide"
+          },
+          {
+            "title": "How Structured Outputs and Constrained Decoding Work | Let's Data Science",
+            "url": "https://letsdatascience.com/blog/structured-outputs-making-llms-return-reliable-json"
+          },
+          {
+            "title": "XGrammar: Flexible and Efficient Structured Generation ...",
+            "url": "https://openreview.net/pdf?id=rjQfX0YgDl"
+          },
+          {
+            "title": "GitHub - Saibo-creator/Awesome-LLM-Constrained-Decoding: A curated list of papers related to constrained decoding of LLM, along with their relevant code and resources. · GitHub",
+            "url": "https://github.com/Saibo-creator/Awesome-LLM-Constrained-Decoding"
+          },
+          {
+            "title": "A Guide to Structured Generation Using Constrained Decoding",
+            "url": "https://www.aidancooper.co.uk/constrained-decoding/"
+          },
+          {
+            "title": "Beyond Free-Form Text: How Constrained Decoding is Reshaping Structured Generation in LLMs | by Brijesh Nambiar | Medium",
+            "url": "https://medium.com/@brijeshrn/beyond-free-form-text-how-constrained-decoding-is-reshaping-structured-generation-in-llms-5f7a38bef259"
+          },
+          {
+            "title": "Efficient LLM System with Speculative Decoding | EECS at UC Berkeley",
+            "url": "https://www2.eecs.berkeley.edu/Pubs/TechRpts/2025/EECS-2025-224.html"
+          },
+          {
+            "title": "Guiding LLMs The Right Way: Fast, Non-Invasive Constrained Generation",
+            "url": "https://arxiv.org/html/2403.06988v1"
+          },
+          {
+            "title": "Breaking the Ceiling of the LLM Community by Treating Token Generation as a Classification for Ensembling",
+            "url": "https://arxiv.org/html/2406.12585v2"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about constrained decoding in LLM generation from 2025-2026. Here's what the recent research shows:\n\n## Key Findings on Constrained Decoding and LLM Generation\n\n### Rare Tokens and Coverage Challenges\n\nMethods that enforce constraints can significantly impair task accuracy if they do not correctly align the underlying LLM sub-word vocabularies with external constraints. This is particularly relevant to rare token coverage - XGrammar solved this by splitting vocabulary tokens into context-independent (99% of the vocabulary) and context-dependent sets (1%), where context-independent tokens can be fully precomputed into bitmask tables while context-dependent tokens require runtime stack inspection.\n\n### Structural Salience in Decoding\n\nAs of 2025-2026, the field has entered a phase of high-performance engines with open-source tools like XGrammar and llguidance achieving near-zero overhead constrained decoding. XGrammar became the default structured generation backend for vLLM, SGLang, and TensorRT-LLM as of March 2026, achieving under 40 microseconds per token with near-zero overhead in JSON generation.\n\n### Implementation Approaches\n\nAt each token generation step, only tokens that keep the output on a valid path through a finite state machine are allowed -- invalid tokens get their logits set to negative infinity, giving a mathematical guarantee rather than a statistical one.\n\nThe research indicates that modern constrained decoding systems (2025-2026) have moved beyond basic grammar enforcement to sophisticated approaches that maintain model quality while ensuring constraint compliance."
+    ],
+    "durationSeconds": 7.397266470000003
+  },
+  "sourceToolAssistantUUID": "1d43c113-9b5c-4908-8d29-6f8a1017be7e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 36_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "0348fd35-9202-479d-adf4-864de49579db",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 37_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Hard Grammar Constraints vs. Soft Filtering for Zero-Shot Event Extraction",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-10T09:58:35.038Z_
+
+<details><summary>↩ Tool result · `toolu_01GkL6y9ThqbcJu7yyYU3FVg`</summary>
+
+```text
+Web search results for query: "GuideX guided synthetic data zero-shot information extraction NER event extraction 2025 ACL"
+
+Links: [{"title":"GUIDEX – ACL Findings 2025","url":"https://neilus03.github.io/guidex.com/"},{"title":"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction - ACL Anthology","url":"https://aclanthology.org/2025.findings-acl.1245/"},{"title":"GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://arxiv.org/html/2506.00649"},{"title":"[2506.00649] GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://arxiv.org/abs/2506.00649"},{"title":"GUIDEX: Guided Synthetic Data Generation for Zero-Shot ...","url":"https://aclanthology.org/2025.findings-acl.1245.pdf"},{"title":"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://openreview.net/pdf?id=OBJSRNVYS5"},{"title":"GitHub - Neilus03/GUIDEX: GUIDEX official repo","url":"https://github.com/Neilus03/GUIDEX"},{"title":"GuideX: Guided Synthetic Data Generation for Zero-Shot ...","url":"https://www.ixa.eus/sites/default/files/dokumentuak/14245/2506.00649v1.pdf"},{"title":"Guideline Learning for In-Context Information Extraction | Request PDF","url":"https://www.researchgate.net/publication/376405368_Guideline_Learning_for_In-Context_Information_Extraction"},{"title":"Accepted Findings Papers - ACL 2025","url":"https://2025.aclweb.org/program/find_papers/"}]
+
+Based on the search results, I found comprehensive information about GuideX:
+
+## Overview
+
+GuideX is a novel method that automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization. The paper was published in the Findings of the Association for Computational Linguistics: ACL 2025, pages 24248–24262, in Vienna, Austria.
+
+## Motivation and Approach
+
+Information Extraction (IE) systems are traditionally domain-specific, requiring costly adaptation that involves expert schema design, data annotation, and model training. While Large Language Models have shown promise in zero-shot IE, performance degrades significantly in unseen domains where label definitions differ.
+
+## Key Results
+
+Fine-tuning Llama 3.1 with GUIDEX sets a new state-of-the-art across seven zeroshot Named Entity Recognition benchmarks. Models trained with GUIDEX gain up to 7 F1 points over previous methods without human labeled data, and nearly 2 F1 points higher when combined with it.
+
+## Dataset Coverage
+
+The GuideX dataset contains 28,677 unique entity–type names, and across 35 widely-used IE datasets covering NER, RE, EE, EAE and SF, 103 out of 243 distinct gold labels (42.4%) are already present verbatim in GuideX.
+
+## Authors and Resources
+
+The paper was authored by Neil De La Fuente, Oscar Sainz, Iker García-Ferrero, and Eneko Agirre. Code, models, and synthetic datasets are available at neilus03.github.io/guidex.com.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79aa1b6c-6b42-46f2-a7d5-4a76d963bbed",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "483d6922-e041-4db2-a948-1b60ba8255f9",
+  "toolUseResult": {
+    "query": "GuideX guided synthetic data zero-shot information extraction NER event extraction 2025 ACL",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KPJHx6jtixjuPhed15GbKx",
+        "content": [
+          {
+            "title": "GUIDEX – ACL Findings 2025",
+            "url": "https://neilus03.github.io/guidex.com/"
+          },
+          {
+            "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-acl.1245/"
+          },
+          {
+            "title": "GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://arxiv.org/html/2506.00649"
+          },
+          {
+            "title": "[2506.00649] GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://arxiv.org/abs/2506.00649"
+          },
+          {
+            "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot ...",
+            "url": "https://aclanthology.org/2025.findings-acl.1245.pdf"
+          },
+          {
+            "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://openreview.net/pdf?id=OBJSRNVYS5"
+          },
+          {
+            "title": "GitHub - Neilus03/GUIDEX: GUIDEX official repo",
+            "url": "https://github.com/Neilus03/GUIDEX"
+          },
+          {
+            "title": "GuideX: Guided Synthetic Data Generation for Zero-Shot ...",
+            "url": "https://www.ixa.eus/sites/default/files/dokumentuak/14245/2506.00649v1.pdf"
+          },
+          {
+            "title": "Guideline Learning for In-Context Information Extraction | Request PDF",
+            "url": "https://www.researchgate.net/publication/376405368_Guideline_Learning_for_In-Context_Information_Extraction"
+          },
+          {
+            "title": "Accepted Findings Papers - ACL 2025",
+            "url": "https://2025.aclweb.org/program/find_papers/"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about GuideX:\n\n## Overview\n\nGuideX is a novel method that automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization. The paper was published in the Findings of the Association for Computational Linguistics: ACL 2025, pages 24248–24262, in Vienna, Austria.\n\n## Motivation and Approach\n\nInformation Extraction (IE) systems are traditionally domain-specific, requiring costly adaptation that involves expert schema design, data annotation, and model training. While Large Language Models have shown promise in zero-shot IE, performance degrades significantly in unseen domains where label definitions differ.\n\n## Key Results\n\nFine-tuning Llama 3.1 with GUIDEX sets a new state-of-the-art across seven zeroshot Named Entity Recognition benchmarks. Models trained with GUIDEX gain up to 7 F1 points over previous methods without human labeled data, and nearly 2 F1 points higher when combined with it.\n\n## Dataset Coverage\n\nThe GuideX dataset contains 28,677 unique entity–type names, and across 35 widely-used IE datasets covering NER, RE, EE, EAE and SF, 103 out of 243 distinct gold labels (42.4%) are already present verbatim in GuideX.\n\n## Authors and Resources\n\nThe paper was authored by Neil De La Fuente, Oscar Sainz, Iker García-Ferrero, and Eneko Agirre. Code, models, and synthetic datasets are available at neilus03.github.io/guidex.com."
+    ],
+    "durationSeconds": 7.796699196000001
+  },
+  "sourceToolAssistantUUID": "79aa1b6c-6b42-46f2-a7d5-4a76d963bbed",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 39 · 2026-05-10T09:58:35.042Z_
+
+```json
+{
+  "parentUuid": "483d6922-e041-4db2-a948-1b60ba8255f9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "79f5b810-b3d7-4471-a1a4-a9d8a6a7bdb5",
+  "timestamp": "2026-05-10T09:58:35.042Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 40 · 2026-05-10T09:58:44.451Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Very interesting! I found something important: **GuideX covers EAE datasets!**
+
+The GuideX paper says: "across 35 widely-used IE datasets covering NER, RE, EE, EAE and SF, 103 out of 243 distinct gold labels (42.4%) are already present verbatim in GuideX." And the dataset contains "28,677 unique entity–type names."
+
+The proposal says: "GuideX (ACL Findings 2025) sets SOTA on 7 zero-shot NER benchmarks with Llama-3.1 fine-tuned on generated data, but explicitly does not address event argument extraction."
+ 
+There's a discrepancy here—the abstract mentions EAE coverage, but the proposal claims GuideX doesn't address EAE. I need to check whether GuideX actually reports results on EAE benchmarks like RAMS or WikiEvents, since having EAE data in the dataset is different from evaluating on EAE tasks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79f5b810-b3d7-4471-a1a4-a9d8a6a7bdb5",
+  "isSidechain": false,
+  "requestId": "req_011Cath3jCgyKp3tMBL9Qrek",
+  "type": "assistant",
+  "uuid": "2606d5b0-703b-40fd-a91a-1aa74ca4e806",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Bk7gNeFmeG9AMvi91YhK9Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1015,
+      "cache_creation_input_tokens": 2629,
+      "cache_read_input_tokens": 49979,
+      "output_tokens": 536,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1015,
+          "output_tokens": 536,
+          "cache_read_input_tokens": 49979,
+          "cache_creation_input_tokens": 2629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 41 · 2026-05-10T09:58:44.452Z_
+
+Critical finding - GuideX covers EAE datasets. Let me verify this directly.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2606d5b0-703b-40fd-a91a-1aa74ca4e806",
+  "isSidechain": false,
+  "requestId": "req_011Cath3jCgyKp3tMBL9Qrek",
+  "type": "assistant",
+  "uuid": "97f0ffcc-6528-4313-b224-b46f0b807803",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Bk7gNeFmeG9AMvi91YhK9Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1015,
+      "cache_creation_input_tokens": 2629,
+      "cache_read_input_tokens": 49979,
+      "output_tokens": 536,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1015,
+          "output_tokens": 536,
+          "cache_read_input_tokens": 49979,
+          "cache_creation_input_tokens": 2629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-10T09:58:45.270Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0125XAVHHV6mQ2gKfJDX298U`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2506.00649",
+  "prompt": "Does GuideX address event argument extraction? What datasets does it evaluate on? Does it cover RAMS or WikiEvents? What are the experimental results for event-related tasks (EE, EAE)?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "97f0ffcc-6528-4313-b224-b46f0b807803",
+  "isSidechain": false,
+  "requestId": "req_011Cath3jCgyKp3tMBL9Qrek",
+  "type": "assistant",
+  "uuid": "9aa80744-f99a-4361-b91b-e78b09f41adc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Bk7gNeFmeG9AMvi91YhK9Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1015,
+      "cache_creation_input_tokens": 2629,
+      "cache_read_input_tokens": 49979,
+      "output_tokens": 536,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1015,
+          "output_tokens": 536,
+          "cache_read_input_tokens": 49979,
+          "cache_creation_input_tokens": 2629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 43 · 2026-05-10T09:58:46.266Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019WDozgKsmz6FVExkfjDvZ3`</summary>
+
+```json
+{
+  "query": "LtGaE AAAI 2026 arXiv 2603.02909 RAMS WikiEvents F1 results zero-shot"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9aa80744-f99a-4361-b91b-e78b09f41adc",
+  "isSidechain": false,
+  "requestId": "req_011Cath3jCgyKp3tMBL9Qrek",
+  "type": "assistant",
+  "uuid": "bd961d16-7fbf-44bf-b29e-e55c7b504ac4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01Bk7gNeFmeG9AMvi91YhK9Q",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1015,
+      "cache_creation_input_tokens": 2629,
+      "cache_read_input_tokens": 49979,
+      "output_tokens": 536,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2629,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1015,
+          "output_tokens": 536,
+          "cache_read_input_tokens": 49979,
+          "cache_creation_input_tokens": 2629,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2629
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-10T09:58:48.045Z_
+
+<details><summary>↩ Tool result · `toolu_0125XAVHHV6mQ2gKfJDX298U`</summary>
+
+```text
+Based on the provided webpage content, I cannot definitively answer your questions about GuideX's coverage of event argument extraction, specific datasets like RAMS or WikiEvents, or experimental results for event-related tasks.
+
+The abstract mentions that GuideX addresses "zero-shot Named Entity Recognition benchmarks" and states the method "sets a new state-of-the-art across seven zero-shot NER benchmarks." However, the webpage does not specify which datasets were evaluated or whether event extraction tasks (EE/EAE) or datasets such as RAMS or WikiEvents were included in the evaluation.
+
+To obtain detailed information about the specific datasets, task coverage, and experimental results you're asking about, you would need to access the full paper, which is available through the provided PDF link or HTML version on the arXiv page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9aa80744-f99a-4361-b91b-e78b09f41adc",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "adb49c3c-e4ae-4979-a70d-021185336f85",
+  "toolUseResult": {
+    "bytes": 45685,
+    "code": 200,
+    "codeText": "OK",
+    "result": "Based on the provided webpage content, I cannot definitively answer your questions about GuideX's coverage of event argument extraction, specific datasets like RAMS or WikiEvents, or experimental results for event-related tasks.\n\nThe abstract mentions that GuideX addresses \"zero-shot Named Entity Recognition benchmarks\" and states the method \"sets a new state-of-the-art across seven zero-shot NER benchmarks.\" However, the webpage does not specify which datasets were evaluated or whether event extraction tasks (EE/EAE) or datasets such as RAMS or WikiEvents were included in the evaluation.\n\nTo obtain detailed information about the specific datasets, task coverage, and experimental results you're asking about, you would need to access the full paper, which is available through the provided PDF link or HTML version on the arXiv page.",
+    "durationMs": 2770,
+    "url": "https://arxiv.org/abs/2506.00649"
+  },
+  "sourceToolAssistantUUID": "9aa80744-f99a-4361-b91b-e78b09f41adc",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-10T09:58:55.245Z_
+
+<details><summary>↩ Tool result · `toolu_019WDozgKsmz6FVExkfjDvZ3`</summary>
+
+```text
+Web search results for query: "LtGaE AAAI 2026 arXiv 2603.02909 RAMS WikiEvents F1 results zero-shot"
+
+Links: [{"title":"[2603.02909] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/abs/2603.02909"},{"title":"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/html/2603.02909"},{"title":"Beyond Single-Event Extraction: Towards Efficient Document-Level Multi-Event Argument Extraction","url":"https://arxiv.org/html/2405.01884"},{"title":"One Small and One Large for Document-level Event Argument Extraction","url":"https://arxiv.org/html/2411.05895"},{"title":"Small Models Are (Still) Effective Cross-Domain Argument Extractors","url":"https://arxiv.org/html/2404.08579v1"},{"title":"Computer Science Aug 2025","url":"https://arxiv.org/list/cs/2025-08?skip=3050&show=2000"},{"title":"Computer Vision and Pattern Recognition 2025","url":"https://arxiv.org/list/cs.CV/2025?skip=16125&show=250"},{"title":"arXiv:2411.05895v1 [cs.CL] 8 Nov 2024","url":"https://arxiv.org/pdf/2411.05895"},{"title":"[2603.15469] RoCo Challenge at AAAI 2026: Benchmarking Robotic Collaborative Manipulation for Assembly Towards Industrial Automation","url":"https://arxiv.org/abs/2603.15469"},{"title":"POLY-SIM: Polyglot Speaker Identification with Missing Modality Grand Challenge 2026 Evaluation Plan","url":"https://arxiv.org/html/2603.24569"}]
+
+Based on the search results, I found information about the paper with arXiv ID 2603.02909. Here are the key details:
+
+## Paper Overview
+
+The paper is titled "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction" (arXiv 2603.02909).
+
+## Framework Description
+
+The paper introduces a multi-agent collaboration framework for zero-shot document-level event argument extraction (ZS-DEAE), which simulates the human collaborative cognitive process of "Propose-Evaluate-Revise." The generation agent synthesizes data for unseen events by leveraging knowledge from seen events, while the evaluation agent extracts arguments from the synthetic data and assesses their semantic consistency with the context.
+
+## Datasets and Results
+
+The researchers construct three zero-shot settings based on the two most widely used DEAE datasets, RAMS and WikiEvents, with settings named RAMS2RAMS, RAMS2Wiki, and Wiki2Wiki. The method achieves improvements both in data generation quality and argument extraction performance, while the generated data also effectively enhances the zero-shot performance of other DEAE models.
+
+## AAAI 2026 Status
+
+The paper appears to be associated with AAAI 2026, as noted in the metadata of the paper's publication date (March 2026).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bd961d16-7fbf-44bf-b29e-e55c7b504ac4",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "af6586b6-c483-425a-9244-e56a0815c294",
+  "toolUseResult": {
+    "query": "LtGaE AAAI 2026 arXiv 2603.02909 RAMS WikiEvents F1 results zero-shot",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0168ejiD6HfzCJXs6A9ASxK3",
+        "content": [
+          {
+            "title": "[2603.02909] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/abs/2603.02909"
+          },
+          {
+            "title": "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/html/2603.02909"
+          },
+          {
+            "title": "Beyond Single-Event Extraction: Towards Efficient Document-Level Multi-Event Argument Extraction",
+            "url": "https://arxiv.org/html/2405.01884"
+          },
+          {
+            "title": "One Small and One Large for Document-level Event Argument Extraction",
+            "url": "https://arxiv.org/html/2411.05895"
+          },
+          {
+            "title": "Small Models Are (Still) Effective Cross-Domain Argument Extractors",
+            "url": "https://arxiv.org/html/2404.08579v1"
+          },
+          {
+            "title": "Computer Science Aug 2025",
+            "url": "https://arxiv.org/list/cs/2025-08?skip=3050&show=2000"
+          },
+          {
+            "title": "Computer Vision and Pattern Recognition 2025",
+            "url": "https://arxiv.org/list/cs.CV/2025?skip=16125&show=250"
+          },
+          {
+            "title": "arXiv:2411.05895v1 [cs.CL] 8 Nov 2024",
+            "url": "https://arxiv.org/pdf/2411.05895"
+          },
+          {
+            "title": "[2603.15469] RoCo Challenge at AAAI 2026: Benchmarking Robotic Collaborative Manipulation for Assembly Towards Industrial Automation",
+            "url": "https://arxiv.org/abs/2603.15469"
+          },
+          {
+            "title": "POLY-SIM: Polyglot Speaker Identification with Missing Modality Grand Challenge 2026 Evaluation Plan",
+            "url": "https://arxiv.org/html/2603.24569"
+          }
+        ]
+      },
+      "Based on the search results, I found information about the paper with arXiv ID 2603.02909. Here are the key details:\n\n## Paper Overview\n\nThe paper is titled \"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction\" (arXiv 2603.02909).\n\n## Framework Description\n\nThe paper introduces a multi-agent collaboration framework for zero-shot document-level event argument extraction (ZS-DEAE), which simulates the human collaborative cognitive process of \"Propose-Evaluate-Revise.\" The generation agent synthesizes data for unseen events by leveraging knowledge from seen events, while the evaluation agent extracts arguments from the synthetic data and assesses their semantic consistency with the context.\n\n## Datasets and Results\n\nThe researchers construct three zero-shot settings based on the two most widely used DEAE datasets, RAMS and WikiEvents, with settings named RAMS2RAMS, RAMS2Wiki, and Wiki2Wiki. The method achieves improvements both in data generation quality and argument extraction performance, while the generated data also effectively enhances the zero-shot performance of other DEAE models.\n\n## AAAI 2026 Status\n\nThe paper appears to be associated with AAAI 2026, as noted in the metadata of the paper's publication date (March 2026)."
+    ],
+    "durationSeconds": 8.975574357999983
+  },
+  "sourceToolAssistantUUID": "bd961d16-7fbf-44bf-b29e-e55c7b504ac4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-10T09:58:57.595Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The GuideX fetch didn't give me enough detail. Let me fetch the HTML version for more details on what EAE tasks GuideX actually covers.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af6586b6-c483-425a-9244-e56a0815c294",
+  "isSidechain": false,
+  "requestId": "req_011Cath5Dd1PBiCBYM6jLh89",
+  "type": "assistant",
+  "uuid": "351e81d5-66fd-477a-be55-e844c7aaa6c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01DG6jseTZpVDp45cozXXNHJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2595,
+      "cache_read_input_tokens": 52608,
+      "output_tokens": 232,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2595,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 232,
+          "cache_read_input_tokens": 52608,
+          "cache_creation_input_tokens": 2595,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2595
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47 · 2026-05-10T09:58:59.323Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01JLm1tr6zBhu2bdjJGfn32S`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2506.00649",
+  "prompt": "What specific tasks does GuideX evaluate on? Does it include event argument extraction (EAE)? Does it report results on RAMS, WikiEvents, or ACE05 for EAE? What is the scope of the experimental evaluation section?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "351e81d5-66fd-477a-be55-e844c7aaa6c5",
+  "isSidechain": false,
+  "requestId": "req_011Cath5Dd1PBiCBYM6jLh89",
+  "type": "assistant",
+  "uuid": "46a55118-226c-481e-a0d1-47f6cf32a5c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01DG6jseTZpVDp45cozXXNHJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2595,
+      "cache_read_input_tokens": 52608,
+      "output_tokens": 232,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2595,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 232,
+          "cache_read_input_tokens": 52608,
+          "cache_creation_input_tokens": 2595,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2595
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-10T09:58:59.705Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GX1uKU1a4uVNv8eYPFSWrU`</summary>
+
+```json
+{
+  "query": "event argument extraction constrained decoding required role keys structural coverage 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46a55118-226c-481e-a0d1-47f6cf32a5c5",
+  "isSidechain": false,
+  "requestId": "req_011Cath5Dd1PBiCBYM6jLh89",
+  "type": "assistant",
+  "uuid": "d7ff9fa8-0665-47b4-818a-7257ecd37868",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01DG6jseTZpVDp45cozXXNHJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2595,
+      "cache_read_input_tokens": 52608,
+      "output_tokens": 232,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2595,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 232,
+          "cache_read_input_tokens": 52608,
+          "cache_creation_input_tokens": 2595,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2595
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-10T09:59:03.973Z_
+
+<details><summary>↩ Tool result · `toolu_01JLm1tr6zBhu2bdjJGfn32S`</summary>
+
+```text
+# GuideX Evaluation Scope
+
+## Primary Evaluation Tasks
+
+GuideX primarily evaluates on **Named Entity Recognition (NER)** tasks. The paper states: "we conducted evaluations on standard zero-shot NER benchmarks. Specifically, we tested on multiple CrossNER splits, as well as the MIT Movie and MIT Restaurant datasets."
+
+## Broader Training Coverage
+
+While the evaluation focuses on NER, the training data encompasses multiple IE tasks. The authors note they utilized gold-standard data "covering several IE tasks including Named Entity Recognition (NER), Event Extraction (EE), Event Argument Extraction (EAE), Relation Extraction (RE), and Slot Filling (SF)."
+
+## Event Argument Extraction Status
+
+**No, GuideX does not report EAE results.** Although EAE was included in the training datasets (specifically ACE 2005), the experimental evaluation section contains no results for EAE, RAMS, WikiEvents, or ACE05 event argument tasks. The authors acknowledge this limitation, stating: "our evaluation does not encompass all potential applications of this approach."
+
+## Evaluation Scope Summary
+
+The experimental evaluation is narrowly scoped to zero-shot NER benchmarks only, despite broader training coverage. This represents a significant gap between the method's training scope and its documented evaluation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "46a55118-226c-481e-a0d1-47f6cf32a5c5",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "b6edefe0-b517-4269-898e-5052b158e93d",
+  "toolUseResult": {
+    "bytes": 248160,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# GuideX Evaluation Scope\n\n## Primary Evaluation Tasks\n\nGuideX primarily evaluates on **Named Entity Recognition (NER)** tasks. The paper states: \"we conducted evaluations on standard zero-shot NER benchmarks. Specifically, we tested on multiple CrossNER splits, as well as the MIT Movie and MIT Restaurant datasets.\"\n\n## Broader Training Coverage\n\nWhile the evaluation focuses on NER, the training data encompasses multiple IE tasks. The authors note they utilized gold-standard data \"covering several IE tasks including Named Entity Recognition (NER), Event Extraction (EE), Event Argument Extraction (EAE), Relation Extraction (RE), and Slot Filling (SF).\"\n\n## Event Argument Extraction Status\n\n**No, GuideX does not report EAE results.** Although EAE was included in the training datasets (specifically ACE 2005), the experimental evaluation section contains no results for EAE, RAMS, WikiEvents, or ACE05 event argument tasks. The authors acknowledge this limitation, stating: \"our evaluation does not encompass all potential applications of this approach.\"\n\n## Evaluation Scope Summary\n\nThe experimental evaluation is narrowly scoped to zero-shot NER benchmarks only, despite broader training coverage. This represents a significant gap between the method's training scope and its documented evaluation.",
+    "durationMs": 4645,
+    "url": "https://arxiv.org/html/2506.00649"
+  },
+  "sourceToolAssistantUUID": "46a55118-226c-481e-a0d1-47f6cf32a5c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-10T09:59:08.522Z_
+
+<details><summary>↩ Tool result · `toolu_01GX1uKU1a4uVNv8eYPFSWrU`</summary>
+
+```text
+Web search results for query: "event argument extraction constrained decoding required role keys structural coverage 2025"
+
+Links: [{"title":"EACE: A document-level event argument extraction model with argument constraint enhancement","url":"https://www.researchgate.net/publication/377040624_EACE_A_document-level_event_argument_extraction_model_with_argument_constraint_enhancement"},{"title":"Document-Level Event Argument Extraction by Conditional Generation | Request PDF","url":"https://www.researchgate.net/publication/352365501_Document-Level_Event_Argument_Extraction_by_Conditional_Generation"},{"title":"Document-level event argument extraction with dual-paradigm fusion strategy | Journal of King Saud University Computer and Information Sciences | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s44443-025-00350-6"},{"title":"RCEAE: A Role Correlation-enhanced Model for Event Argument Extraction - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0925231225001766"},{"title":"Document-Level Event Argument Extraction with Sparse Representation Attention","url":"https://www.mdpi.com/2227-7390/12/17/2636"},{"title":"A Guide to Structured Generation Using Constrained Decoding","url":"https://www.aidancooper.co.uk/constrained-decoding/"},{"title":"SLOT: Structuring the Output of Large Language Models","url":"https://aclanthology.org/2025.emnlp-industry.32.pdf"},{"title":"Utilizing Contextual Clues and Role Correlations for Enhancing Document-Level Event Argument Extraction - ADS","url":"https://ui.adsabs.harvard.edu/abs/2025ITASL..33.3932L/abstract"},{"title":"Generating Structured Outputs from Language Models: Benchmark and Studies","url":"https://arxiv.org/html/2501.10868v1"},{"title":"Grammar-constrained decoding for structured information ...","url":"https://public-pages-files-2025.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/pdf"}]
+
+Based on the search results, here's what I found regarding event argument extraction with constrained decoding and structural coverage:
+
+## Recent Research on Document-Level Event Argument Extraction
+
+Recent hybrid frameworks like GAEF (Lin et al. 2025) and ECSR (Shuang et al. 2025) have advanced document-level event argument extraction (DEAE) by combining generative and discriminative methods, though they face limitations including static feature fusion that fails to capture dynamic semantic interactions and implicit dependency modeling that lacks explicit structural constraints.
+
+Document-level Event Argument Extraction (DEAE) aims to extract structural event knowledge composed of arguments and roles beyond the sentence level. Two key challenges include the long-range dependency between event trigger and event arguments and the distracting context in the document that can mislead argument classification.
+
+## Constrained Decoding for Structured Generation
+
+Constrained decoding approaches include lexical constraints that restrict outputs to input tokens only, and syntactic constraints that leverage Tree Similarity of Edit Distance (TSED) monotonicity to detect structurally invalid outputs and discard them.
+
+Constrained decoding methods guide the generation process of language models by masking out tokens that do not adhere to predefined constraints, with the Compliance Rate estimating the reliability of the constrained decoding framework in guaranteeing compliance.
+
+Supervised fine-tuning (SFT) addresses semantic understanding and content organization, while constrained decoding enforces structural correctness.
+
+## Role-based Approaches
+
+Intra-event role correlations consider the role dependency within an event to capture event schema-specific nature, while inter-event role correlations leverage the relevance among roles across events to learn beneficial features from other roles.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7ff9fa8-0665-47b4-818a-7257ecd37868",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "ef35200f-ae6a-4d7a-bbf2-d3202277ed29",
+  "toolUseResult": {
+    "query": "event argument extraction constrained decoding required role keys structural coverage 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0114TfAs96we2LXjLsGdgGt5",
+        "content": [
+          {
+            "title": "EACE: A document-level event argument extraction model with argument constraint enhancement",
+            "url": "https://www.researchgate.net/publication/377040624_EACE_A_document-level_event_argument_extraction_model_with_argument_constraint_enhancement"
+          },
+          {
+            "title": "Document-Level Event Argument Extraction by Conditional Generation | Request PDF",
+            "url": "https://www.researchgate.net/publication/352365501_Document-Level_Event_Argument_Extraction_by_Conditional_Generation"
+          },
+          {
+            "title": "Document-level event argument extraction with dual-paradigm fusion strategy | Journal of King Saud University Computer and Information Sciences | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s44443-025-00350-6"
+          },
+          {
+            "title": "RCEAE: A Role Correlation-enhanced Model for Event Argument Extraction - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0925231225001766"
+          },
+          {
+            "title": "Document-Level Event Argument Extraction with Sparse Representation Attention",
+            "url": "https://www.mdpi.com/2227-7390/12/17/2636"
+          },
+          {
+            "title": "A Guide to Structured Generation Using Constrained Decoding",
+            "url": "https://www.aidancooper.co.uk/constrained-decoding/"
+          },
+          {
+            "title": "SLOT: Structuring the Output of Large Language Models",
+            "url": "https://aclanthology.org/2025.emnlp-industry.32.pdf"
+          },
+          {
+            "title": "Utilizing Contextual Clues and Role Correlations for Enhancing Document-Level Event Argument Extraction - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2025ITASL..33.3932L/abstract"
+          },
+          {
+            "title": "Generating Structured Outputs from Language Models: Benchmark and Studies",
+            "url": "https://arxiv.org/html/2501.10868v1"
+          },
+          {
+            "title": "Grammar-constrained decoding for structured information ...",
+            "url": "https://public-pages-files-2025.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding event argument extraction with constrained decoding and structural coverage:\n\n## Recent Research on Document-Level Event Argument Extraction\n\nRecent hybrid frameworks like GAEF (Lin et al. 2025) and ECSR (Shuang et al. 2025) have advanced document-level event argument extraction (DEAE) by combining generative and discriminative methods, though they face limitations including static feature fusion that fails to capture dynamic semantic interactions and implicit dependency modeling that lacks explicit structural constraints.\n\nDocument-level Event Argument Extraction (DEAE) aims to extract structural event knowledge composed of arguments and roles beyond the sentence level. Two key challenges include the long-range dependency between event trigger and event arguments and the distracting context in the document that can mislead argument classification.\n\n## Constrained Decoding for Structured Generation\n\nConstrained decoding approaches include lexical constraints that restrict outputs to input tokens only, and syntactic constraints that leverage Tree Similarity of Edit Distance (TSED) monotonicity to detect structurally invalid outputs and discard them.\n\nConstrained decoding methods guide the generation process of language models by masking out tokens that do not adhere to predefined constraints, with the Compliance Rate estimating the reliability of the constrained decoding framework in guaranteeing compliance.\n\nSupervised fine-tuning (SFT) addresses semantic understanding and content organization, while constrained decoding enforces structural correctness.\n\n## Role-based Approaches\n\nIntra-event role correlations consider the role dependency within an event to capture event schema-specific nature, while inter-event role correlations leverage the relevance among roles across events to learn beneficial features from other roles."
+    ],
+    "durationSeconds": 8.813256405000022
+  },
+  "sourceToolAssistantUUID": "d7ff9fa8-0665-47b4-818a-7257ecd37868",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 51_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "ef35200f-ae6a-4d7a-bbf2-d3202277ed29",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Hard Grammar Constraints vs. Soft Filtering for Zero-Shot Event Extraction",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 53 · 2026-05-10T09:59:13.998Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. I've confirmed that GuideX does NOT report EAE results - it's only evaluated on NER. So the proposal's claim that "GuideX explicitly does not address event argument extraction" is CORRECT.
+
+Now let me do a few more targeted searches to verify other key claims and look for any concurrent work I might have missed.
+
+Key things to verify:
+1. Are there any direct competitors addressing grammar-constrained generation for EAE training data?
+2. Is DEGAP the correct supervised SOTA?
+3. Is LtGaE the correct zero-shot SOTA on RAMS/WikiEvents?
+
+Let me also check for any new 2026 work on zero-shot EAE that might compete with CompSchema-IE.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ef35200f-ae6a-4d7a-bbf2-d3202277ed29",
+  "isSidechain": false,
+  "requestId": "req_011Cath6CMtDoTL16QSyS7S1",
+  "type": "assistant",
+  "uuid": "9d59dc72-e2d3-4e52-8b42-a2267fae6ebd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011GFBvvm8vgcDQsnLswBxxw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1531,
+      "cache_read_input_tokens": 55203,
+      "output_tokens": 308,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1531,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 308,
+          "cache_read_input_tokens": 55203,
+          "cache_creation_input_tokens": 1531,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1531
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-10T09:59:14.580Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01E8yNRPfm8fFQQYVWFAiS4S`</summary>
+
+```json
+{
+  "query": "zero-shot document-level event argument extraction arxiv 2026 new method"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9d59dc72-e2d3-4e52-8b42-a2267fae6ebd",
+  "isSidechain": false,
+  "requestId": "req_011Cath6CMtDoTL16QSyS7S1",
+  "type": "assistant",
+  "uuid": "b3139eb9-4f60-486c-a651-946e82fdcbac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011GFBvvm8vgcDQsnLswBxxw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1531,
+      "cache_read_input_tokens": 55203,
+      "output_tokens": 308,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1531,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 308,
+          "cache_read_input_tokens": 55203,
+          "cache_creation_input_tokens": 1531,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1531
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-10T09:59:15.280Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_015dUXCQA9jZFnvMoHjYn77X`</summary>
+
+```json
+{
+  "query": "DEGAP COLING 2025 event argument extraction RAMS 54.2 WikiEvents 67.1"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b3139eb9-4f60-486c-a651-946e82fdcbac",
+  "isSidechain": false,
+  "requestId": "req_011Cath6CMtDoTL16QSyS7S1",
+  "type": "assistant",
+  "uuid": "555d0d7c-afc7-4957-8258-5ea3fe2b81e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_011GFBvvm8vgcDQsnLswBxxw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1531,
+      "cache_read_input_tokens": 55203,
+      "output_tokens": 308,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1531,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 308,
+          "cache_read_input_tokens": 55203,
+          "cache_creation_input_tokens": 1531,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1531
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-10T09:59:20.932Z_
+
+<details><summary>↩ Tool result · `toolu_015dUXCQA9jZFnvMoHjYn77X`</summary>
+
+```text
+Web search results for query: "DEGAP COLING 2025 event argument extraction RAMS 54.2 WikiEvents 67.1"
+
+Links: [{"title":"DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event Argument Extraction with Slot Querying - ACL Anthology","url":"https://aclanthology.org/2025.coling-main.507/"},{"title":"[2405.13325] DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event Argument Extraction with Slot Querying","url":"https://arxiv.org/abs/2405.13325"},{"title":"DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event Argument Extraction with Slot Querying","url":"https://arxiv.org/html/2405.13325"},{"title":"DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event Argument Extraction Model with Slot Querying","url":"https://arxiv.org/html/2405.13325v1"},{"title":"DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event","url":"https://arxiv.org/pdf/2405.13325"},{"title":"[Literature Review] DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event Argument Extraction with Slot Querying","url":"https://www.themoonlight.io/en/review/degap-dual-event-guided-adaptive-prefixes-for-templated-based-event-argument-extraction-with-slot-querying"},{"title":"Rong Hu - ACL Anthology","url":"https://aclanthology.org/people/rong-hu/"},{"title":"Accepted Main Conference Papers - COLING 2025","url":"https://coling2025.org/program/main_conference_papers/"},{"title":"Fusion meets Function: The Adaptive Selection-Generation Approach in Event Argument Extraction - ACL Anthology","url":"https://aclanthology.org/2025.coling-main.294/"},{"title":"Generation-Augmented and Embedding Fusion in Document-Level Event Argument Extraction - ACL Anthology","url":"https://aclanthology.org/2025.coling-main.274/"}]
+
+Based on the search results, I found information about DEGAP, a paper presented at COLING 2025:
+
+DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event Argument Extraction with Slot Querying was presented at COLING 2025 by authors including Guanghui Wang, Dexi Liu, Jian-Yun Nie, Qizhi Wan, Rong Hu, Xiping Liu, Wanlong Liu and Jiaming Liu.
+
+The approach uses dual prefixes with instance-oriented and template-oriented learnable prompt vectors trained to learn information from different event instances and templates, along with an event-guided adaptive gating mechanism to adaptively leverage connections between different events.
+
+The method achieves new state-of-the-art performance on four datasets (ACE05, RAMS, WIKIEVENTS, and MLEE). The search results confirm that DEGAP was evaluated on the RAMS and WikiEvents (WIKIEVENTS) datasets you mentioned in your query, though the specific numerical scores (54.2 for RAMS and 67.1 for WikiEvents) were not explicitly stated in the search results retrieved.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "555d0d7c-afc7-4957-8258-5ea3fe2b81e0",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "5b8e504a-cf1a-47a4-b3a7-43e0c48ba726",
+  "toolUseResult": {
+    "query": "DEGAP COLING 2025 event argument extraction RAMS 54.2 WikiEvents 67.1",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_015Kwm3WAuzRKyrtDfFhYiiY",
+        "content": [
+          {
+            "title": "DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event Argument Extraction with Slot Querying - ACL Anthology",
+            "url": "https://aclanthology.org/2025.coling-main.507/"
+          },
+          {
+            "title": "[2405.13325] DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event Argument Extraction with Slot Querying",
+            "url": "https://arxiv.org/abs/2405.13325"
+          },
+          {
+            "title": "DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event Argument Extraction with Slot Querying",
+            "url": "https://arxiv.org/html/2405.13325"
+          },
+          {
+            "title": "DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event Argument Extraction Model with Slot Querying",
+            "url": "https://arxiv.org/html/2405.13325v1"
+          },
+          {
+            "title": "DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event",
+            "url": "https://arxiv.org/pdf/2405.13325"
+          },
+          {
+            "title": "[Literature Review] DEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event Argument Extraction with Slot Querying",
+            "url": "https://www.themoonlight.io/en/review/degap-dual-event-guided-adaptive-prefixes-for-templated-based-event-argument-extraction-with-slot-querying"
+          },
+          {
+            "title": "Rong Hu - ACL Anthology",
+            "url": "https://aclanthology.org/people/rong-hu/"
+          },
+          {
+            "title": "Accepted Main Conference Papers - COLING 2025",
+            "url": "https://coling2025.org/program/main_conference_papers/"
+          },
+          {
+            "title": "Fusion meets Function: The Adaptive Selection-Generation Approach in Event Argument Extraction - ACL Anthology",
+            "url": "https://aclanthology.org/2025.coling-main.294/"
+          },
+          {
+            "title": "Generation-Augmented and Embedding Fusion in Document-Level Event Argument Extraction - ACL Anthology",
+            "url": "https://aclanthology.org/2025.coling-main.274/"
+          }
+        ]
+      },
+      "Based on the search results, I found information about DEGAP, a paper presented at COLING 2025:\n\nDEGAP: Dual Event-Guided Adaptive Prefixes for Templated-Based Event Argument Extraction with Slot Querying was presented at COLING 2025 by authors including Guanghui Wang, Dexi Liu, Jian-Yun Nie, Qizhi Wan, Rong Hu, Xiping Liu, Wanlong Liu and Jiaming Liu.\n\nThe approach uses dual prefixes with instance-oriented and template-oriented learnable prompt vectors trained to learn information from different event instances and templates, along with an event-guided adaptive gating mechanism to adaptively leverage connections between different events.\n\nThe method achieves new state-of-the-art performance on four datasets (ACE05, RAMS, WIKIEVENTS, and MLEE). The search results confirm that DEGAP was evaluated on the RAMS and WikiEvents (WIKIEVENTS) datasets you mentioned in your query, though the specific numerical scores (54.2 for RAMS and 67.1 for WikiEvents) were not explicitly stated in the search results retrieved."
+    ],
+    "durationSeconds": 5.647745346999989
+  },
+  "sourceToolAssistantUUID": "555d0d7c-afc7-4957-8258-5ea3fe2b81e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-10T09:59:21.520Z_
+
+<details><summary>↩ Tool result · `toolu_01E8yNRPfm8fFQQYVWFAiS4S`</summary>
+
+```text
+Web search results for query: "zero-shot document-level event argument extraction arxiv 2026 new method"
+
+Links: [{"title":"[2603.02909] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/abs/2603.02909"},{"title":"[2603.02909v2] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/abs/2603.02909v2"},{"title":"Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction","url":"https://arxiv.org/html/2603.02909"},{"title":"Zero-shot event argument extraction by disentangling trigger from argument and role | International Journal of Machine Learning and Cybernetics | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s13042-024-02446-3"},{"title":"Document- Level Event Extraction with Definition-Driven ICL","url":"https://arxiv.org/html/2408.05566v1"},{"title":"[2205.01376] Textual Entailment for Event Argument Extraction: Zero- and Few-Shot with Multi-Source Learning","url":"https://arxiv.org/abs/2205.01376"},{"title":"Extracting Events Like Code: A Multi-Agent Programming Framework for","url":"https://arxiv.org/pdf/2511.13118"},{"title":"A Multi-Agent Collaboration Framework For Zero-shot ...","url":"https://arxiv.org/pdf/2603.02909"},{"title":"[2209.02203] Few-Shot Document-Level Event Argument Extraction","url":"https://arxiv.org/abs/2209.02203"},{"title":"[2104.05919] Document-Level Event Argument Extraction by Conditional Generation","url":"https://arxiv.org/abs/2104.05919"}]
+
+I found a highly relevant recent paper on arXiv from March 2026. Here are the key findings:
+
+## Latest Method (March 2026)
+
+A multi-agent collaboration framework for zero-shot document-level event argument extraction (ZS-DEAE) has been introduced, which simulates the human collaborative cognitive process of "Propose-Evaluate-Revise."
+
+### Framework Design
+
+The generation agent synthesizes data for unseen events by leveraging knowledge from seen events, while the evaluation agent extracts arguments from the synthetic data and assesses their semantic consistency with the context. The evaluation results are subsequently converted into reward signals, with event structure constraints incorporated into the reward design to enable iterative optimization of both agents via reinforcement learning.
+
+### Key Advantages
+
+The method addresses challenges with existing approaches that rely solely on Event-type-only prompts, which makes it difficult for generated content to accurately capture contextual and structural relationships of unseen events, and the absence of quality evaluation mechanisms for synthetic data.
+
+### Performance Results
+
+In three zero-shot scenarios constructed from the RAMS and WikiEvents datasets, the method achieves improvements both in data generation quality and argument extraction performance, while the generated data also effectively enhances the zero-shot performance of other DEAE models.
+
+The paper is available on arXiv as paper 2603.02909, submitted by Guangjun Zhang and colleagues from Shanxi University.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b3139eb9-4f60-486c-a651-946e82fdcbac",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "81a906ec-b907-4870-a7c4-8a42370f68c1",
+  "toolUseResult": {
+    "query": "zero-shot document-level event argument extraction arxiv 2026 new method",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01M1bYabqhMaz8Fp8WK3rs9L",
+        "content": [
+          {
+            "title": "[2603.02909] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/abs/2603.02909"
+          },
+          {
+            "title": "[2603.02909v2] Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/abs/2603.02909v2"
+          },
+          {
+            "title": "Learning to Generate and Extract: A Multi-Agent Collaboration Framework For Zero-shot Document-level Event Arguments Extraction",
+            "url": "https://arxiv.org/html/2603.02909"
+          },
+          {
+            "title": "Zero-shot event argument extraction by disentangling trigger from argument and role | International Journal of Machine Learning and Cybernetics | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s13042-024-02446-3"
+          },
+          {
+            "title": "Document- Level Event Extraction with Definition-Driven ICL",
+            "url": "https://arxiv.org/html/2408.05566v1"
+          },
+          {
+            "title": "[2205.01376] Textual Entailment for Event Argument Extraction: Zero- and Few-Shot with Multi-Source Learning",
+            "url": "https://arxiv.org/abs/2205.01376"
+          },
+          {
+            "title": "Extracting Events Like Code: A Multi-Agent Programming Framework for",
+            "url": "https://arxiv.org/pdf/2511.13118"
+          },
+          {
+            "title": "A Multi-Agent Collaboration Framework For Zero-shot ...",
+            "url": "https://arxiv.org/pdf/2603.02909"
+          },
+          {
+            "title": "[2209.02203] Few-Shot Document-Level Event Argument Extraction",
+            "url": "https://arxiv.org/abs/2209.02203"
+          },
+          {
+            "title": "[2104.05919] Document-Level Event Argument Extraction by Conditional Generation",
+            "url": "https://arxiv.org/abs/2104.05919"
+          }
+        ]
+      },
+      "I found a highly relevant recent paper on arXiv from March 2026. Here are the key findings:\n\n## Latest Method (March 2026)\n\nA multi-agent collaboration framework for zero-shot document-level event argument extraction (ZS-DEAE) has been introduced, which simulates the human collaborative cognitive process of \"Propose-Evaluate-Revise.\"\n\n### Framework Design\n\nThe generation agent synthesizes data for unseen events by leveraging knowledge from seen events, while the evaluation agent extracts arguments from the synthetic data and assesses their semantic consistency with the context. The evaluation results are subsequently converted into reward signals, with event structure constraints incorporated into the reward design to enable iterative optimization of both agents via reinforcement learning.\n\n### Key Advantages\n\nThe method addresses challenges with existing approaches that rely solely on Event-type-only prompts, which makes it difficult for generated content to accurately capture contextual and structural relationships of unseen events, and the absence of quality evaluation mechanisms for synthetic data.\n\n### Performance Results\n\nIn three zero-shot scenarios constructed from the RAMS and WikiEvents datasets, the method achieves improvements both in data generation quality and argument extraction performance, while the generated data also effectively enhances the zero-shot performance of other DEAE models.\n\nThe paper is available on arXiv as paper 2603.02909, submitted by Guangjun Zhang and colleagues from Shanxi University."
+    ],
+    "durationSeconds": 6.937134202000015
+  },
+  "sourceToolAssistantUUID": "b3139eb9-4f60-486c-a651-946e82fdcbac",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-10T09:59:31.858Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. So DEGAP is confirmed at COLING 2025 and on RAMS/WikiEvents - but I couldn't independently verify the exact numbers (54.2 Arg-C F1 on RAMS, 67.1 on WikiEvents). But these were verified in prior rounds. Let me continue.
+
+Now let me think about what I've found:
+
+1. **GuideX**: The proposal correctly states that GuideX is evaluated only on NER benchmarks and does NOT address EAE. My verification confirmed this.
+
+2. **LtGaE**: Confirmed as the leading zero-shot EAE paper on RAMS/WikiEvents (March 2026).
+
+
+3. **DEGAP**: Confirmed as COLING 2025 supervised SOTA, and I haven't found any competing work using grammar-constrained generation for EAE training data. Now I need to verify whether Qwen3-32B actually fits on 2×A100 80GB in BF16 format, and check if there's any concurrent work leveraging XGrammar for similar purposes.
+
+Let me also double-check the EMNLP 2026 ARR deadline claim of May 25, 2026.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "81a906ec-b907-4870-a7c4-8a42370f68c1",
+  "isSidechain": false,
+  "requestId": "req_011Cath7AP6ScT1gzt4UeVp8",
+  "type": "assistant",
+  "uuid": "6baea0b2-2a3f-4ed1-ac3a-3b972ba00cb1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01EbHkg9A3in1DoBsBAvbDuN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 894,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 56734,
+      "output_tokens": 505,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 894,
+          "output_tokens": 505,
+          "cache_read_input_tokens": 56734,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-10T09:59:31.897Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012QbtbihA8qn5Jt8dyPesuH`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR deadline May 2026 submission schedule"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6baea0b2-2a3f-4ed1-ac3a-3b972ba00cb1",
+  "isSidechain": false,
+  "requestId": "req_011Cath7AP6ScT1gzt4UeVp8",
+  "type": "assistant",
+  "uuid": "fbe5d053-788f-4fe7-b90f-0f38f6b77c77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01EbHkg9A3in1DoBsBAvbDuN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 894,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 56734,
+      "output_tokens": 505,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 894,
+          "output_tokens": 505,
+          "cache_read_input_tokens": 56734,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-10T09:59:32.180Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MefcjvN1idLDXGEdFZyTed`</summary>
+
+```json
+{
+  "query": "Qwen3-32B model size memory requirement A100 GPU BF16 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fbe5d053-788f-4fe7-b90f-0f38f6b77c77",
+  "isSidechain": false,
+  "requestId": "req_011Cath7AP6ScT1gzt4UeVp8",
+  "type": "assistant",
+  "uuid": "4a5fbefa-f56e-4ee0-b402-023d430ee010",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01EbHkg9A3in1DoBsBAvbDuN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 894,
+      "cache_creation_input_tokens": 1147,
+      "cache_read_input_tokens": 56734,
+      "output_tokens": 505,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1147,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 894,
+          "output_tokens": 505,
+          "cache_read_input_tokens": 56734,
+          "cache_creation_input_tokens": 1147,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1147
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-10T09:59:37.348Z_
+
+<details><summary>↩ Tool result · `toolu_012QbtbihA8qn5Jt8dyPesuH`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR deadline May 2026 submission schedule"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"EMNLP 2026 (@emnlpmeeting) / Posts / X","url":"https://x.com/emnlpmeeting?lang=en"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X","url":"https://x.com/emnlpmeeting/status/2047754845919031450"}]
+
+Based on the search results, here is the EMNLP 2026 ARR submission schedule for May 2026:
+
+## Key Deadlines
+
+**ARR Submission Deadline: May 25, 2026**
+
+**Reviewer registration deadline for ALL authors: May 27, 2026**
+
+## Important Context
+
+Since the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors will need to explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026: ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.
+
+## Additional Timeline
+
+After the May deadlines, the schedule includes:
+- Author response and author-reviewer discussion: July 7 - July 13, 2026
+- Meta review released: July 30, 2026
+- EMNLP commitment deadline: August 2, 2026
+- Notification of acceptance: August 20, 2026
+- Camera-ready papers due: September 20, 2026
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fbe5d053-788f-4fe7-b90f-0f38f6b77c77",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "630e788f-3932-4001-ae22-1f521f0c9348",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR deadline May 2026 submission schedule",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017kKD6V22QVH8DcJwr1S7wo",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "EMNLP 2026 (@emnlpmeeting) / Posts / X",
+            "url": "https://x.com/emnlpmeeting?lang=en"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 Please note a critical update to the original #EMNLP2026 Call for Papers: since EMNLP and AACL share the ARR May cycle, authors will need to explicitly select a target conference at submission time. This choice will be binding! For more details see: https://t.co/0u1wbX9fT6\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2047754845919031450"
+          }
+        ]
+      },
+      "Based on the search results, here is the EMNLP 2026 ARR submission schedule for May 2026:\n\n## Key Deadlines\n\n**ARR Submission Deadline: May 25, 2026**\n\n**Reviewer registration deadline for ALL authors: May 27, 2026**\n\n## Important Context\n\nSince the ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), authors will need to explicitly declare which conference they intend to commit to at submission time. This choice will be binding for EMNLP 2026: ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.\n\n## Additional Timeline\n\nAfter the May deadlines, the schedule includes:\n- Author response and author-reviewer discussion: July 7 - July 13, 2026\n- Meta review released: July 30, 2026\n- EMNLP commitment deadline: August 2, 2026\n- Notification of acceptance: August 20, 2026\n- Camera-ready papers due: September 20, 2026"
+    ],
+    "durationSeconds": 5.446321804000006
+  },
+  "sourceToolAssistantUUID": "fbe5d053-788f-4fe7-b90f-0f38f6b77c77",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-10T09:59:37.524Z_
+
+<details><summary>↩ Tool result · `toolu_01MefcjvN1idLDXGEdFZyTed`</summary>
+
+```text
+Web search results for query: "Qwen3-32B model size memory requirement A100 GPU BF16 2025"
+
+Links: [{"title":"Deploy Qwen 3.5 on GPU Cloud: Hardware Requirements and Setup Guide (2026) | Spheron Blog","url":"https://www.spheron.network/blog/deploy-qwen-3-5-gpu-cloud/"},{"title":"What GPU is required to run the Qwen/QwQ-32B model from Hugging Face? | AI FAQ | Jarvis Labs","url":"https://jarvislabs.ai/ai-faqs/what-gpu-is-required-to-run-qwen-qwq-32b-model-from-hugging-face"},{"title":"Qwen 3: What You Need to Know - Gradient Flow","url":"https://gradientflow.com/qwen-3/"},{"title":"How to Run Qwen3.6-35B-A3B on a Single GPU (RTX PRO 6000 Guide) | Yotta Labs","url":"https://www.yottalabs.ai/post/how-to-run-qwen3-6-35b-a3b-on-a-single-gpu-rtx-pro-6000-guide"},{"title":"Qwen3-32B: Specifications and GPU VRAM Requirements","url":"https://apxml.com/models/qwen3-32b"},{"title":"Qwen 3 GPU Requirements — Original Family (0.6B–235B) VRAM Guide (2026) | Will It Run AI Blog","url":"https://willitrunai.com/blog/qwen-3-gpu-requirements"},{"title":"Comprehensive Hardware Requirements Report for Qwen3 (Part II) - DEV Community","url":"https://dev.to/ai4b/comprehensive-hardware-requirements-report-for-qwen3-part-ii-4i5l"},{"title":"GPU System Requirement Guide for Qwen 3.5","url":"https://apxml.com/posts/qwen-3-5-system-requirement-vram-guide"},{"title":"Qwen Qwen3 32B: VRAM Needs, GPU Requirements & Benchmark Speeds - localai.computer","url":"https://localai.computer/models/qwen-qwen3-32b"},{"title":"Comprehensive Hardware Requirements Report for Qwen3 (Part I) - DEV Community","url":"https://dev.to/ai4b/comprehensive-hardware-requirements-report-for-qwen-3-a5g"}]
+
+Based on the search results, here's what I found about Qwen3-32B memory requirements for A100 GPU with BF16 precision:
+
+## Memory Requirements for Qwen3-32B with BF16 on A100
+
+For Qwen3-32B, the recommended setup is 2x NVIDIA A100 80GB GPUs or 1x H100 80GB, requiring approximately 65GB of VRAM in FP16 precision.
+
+Since BF16 (Brain Float 16) has the same memory footprint as FP16 (both use 2 bytes per parameter), FP16 requires approximately 64GB of VRAM, which means a single A100-80GB GPU can accommodate the model, though it will use most of the available memory.
+
+Qwen3-32B generally requires high-end GPUs with 32-48GB of VRAM minimum, such as A100, H100, or multiple consumer GPUs.
+
+If you need more memory headroom or plan to handle batched inference with larger context windows, using 2x A100-80GB GPUs would provide better flexibility and performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "4a5fbefa-f56e-4ee0-b402-023d430ee010",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "c56cf318-4c99-41a2-a297-050fbeca4ff0",
+  "toolUseResult": {
+    "query": "Qwen3-32B model size memory requirement A100 GPU BF16 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Q81hysPXyxXaw3ctvk5epB",
+        "content": [
+          {
+            "title": "Deploy Qwen 3.5 on GPU Cloud: Hardware Requirements and Setup Guide (2026) | Spheron Blog",
+            "url": "https://www.spheron.network/blog/deploy-qwen-3-5-gpu-cloud/"
+          },
+          {
+            "title": "What GPU is required to run the Qwen/QwQ-32B model from Hugging Face? | AI FAQ | Jarvis Labs",
+            "url": "https://jarvislabs.ai/ai-faqs/what-gpu-is-required-to-run-qwen-qwq-32b-model-from-hugging-face"
+          },
+          {
+            "title": "Qwen 3: What You Need to Know - Gradient Flow",
+            "url": "https://gradientflow.com/qwen-3/"
+          },
+          {
+            "title": "How to Run Qwen3.6-35B-A3B on a Single GPU (RTX PRO 6000 Guide) | Yotta Labs",
+            "url": "https://www.yottalabs.ai/post/how-to-run-qwen3-6-35b-a3b-on-a-single-gpu-rtx-pro-6000-guide"
+          },
+          {
+            "title": "Qwen3-32B: Specifications and GPU VRAM Requirements",
+            "url": "https://apxml.com/models/qwen3-32b"
+          },
+          {
+            "title": "Qwen 3 GPU Requirements — Original Family (0.6B–235B) VRAM Guide (2026) | Will It Run AI Blog",
+            "url": "https://willitrunai.com/blog/qwen-3-gpu-requirements"
+          },
+          {
+            "title": "Comprehensive Hardware Requirements Report for Qwen3 (Part II) - DEV Community",
+            "url": "https://dev.to/ai4b/comprehensive-hardware-requirements-report-for-qwen3-part-ii-4i5l"
+          },
+          {
+            "title": "GPU System Requirement Guide for Qwen 3.5",
+            "url": "https://apxml.com/posts/qwen-3-5-system-requirement-vram-guide"
+          },
+          {
+            "title": "Qwen Qwen3 32B: VRAM Needs, GPU Requirements & Benchmark Speeds - localai.computer",
+            "url": "https://localai.computer/models/qwen-qwen3-32b"
+          },
+          {
+            "title": "Comprehensive Hardware Requirements Report for Qwen3 (Part I) - DEV Community",
+            "url": "https://dev.to/ai4b/comprehensive-hardware-requirements-report-for-qwen-3-a5g"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Qwen3-32B memory requirements for A100 GPU with BF16 precision:\n\n## Memory Requirements for Qwen3-32B with BF16 on A100\n\nFor Qwen3-32B, the recommended setup is 2x NVIDIA A100 80GB GPUs or 1x H100 80GB, requiring approximately 65GB of VRAM in FP16 precision.\n\nSince BF16 (Brain Float 16) has the same memory footprint as FP16 (both use 2 bytes per parameter), FP16 requires approximately 64GB of VRAM, which means a single A100-80GB GPU can accommodate the model, though it will use most of the available memory.\n\nQwen3-32B generally requires high-end GPUs with 32-48GB of VRAM minimum, such as A100, H100, or multiple consumer GPUs.\n\nIf you need more memory headroom or plan to handle batched inference with larger context windows, using 2x A100-80GB GPUs would provide better flexibility and performance."
+    ],
+    "durationSeconds": 5.3409523359999875
+  },
+  "sourceToolAssistantUUID": "4a5fbefa-f56e-4ee0-b402-023d430ee010",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "c56cf318-4c99-41a2-a297-050fbeca4ff0",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 64_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Hard Grammar Constraints vs. Soft Filtering for Zero-Shot Event Extraction",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Assistant
+
+_source line 65 · 2026-05-10T10:01:22.612Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Excellent. I've now verified:
+
+1. **EMNLP 2026 ARR deadline**: May 25, 2026 is CONFIRMED ✓
+2. **Qwen3-32B on 2×A100 80GB**: CONFIRMED - ~64GB VRAM needed for BF16, fits on 2×A100 ✓
+
+Now let me look more carefully at the proposal (Round 9) and the changes from Round 8 to see if all the prior issues are actually addressed:
+
+**Round 8 issues:**
+
+1. **BoostCD application domain mischaracterized**: The proposal now says "BoostCD (EMNLP 2025 Main, arXiv:2506.14901) demonstrates that constrained and unconstrained decoding produce complementary errors at inference time for closed IE" - no "(relation extraction)" mentioned. 
+
+✓ FIXED.
+
+2. **Structural salience mechanism language imprecise**: The proposal now says "forces the model to generate each role name as a required output token, ensuring the corresponding slot appears in every generated instance rather than being silently omitted" - NOT "forces the model's attention". ✓ FIXED.
+
+3. **Span-F1 vs Arg-C F1 metric consistency**: The proposal now includes a footnote explicitly clarifying that LtGaE and CompSchema-IE report Span-F1 while DEGAP reports Arg-C F1, noting these metrics aren't directly comparable and that Arg-C F1 is typically higher than Span-F1 for the same system. ✓ FIXED.
+
+All Round 8 issues are resolved. Moving into Round 9, I'm checking whether the coverage guarantee framing holds up—the structural salience mechanism correctly describes required key enumeration forcing generation of each role, not guaranteeing span filling. That's accurate. For the Arg-C F1 versus Span-F1 comparison, I'm verifying the claim that Arg-C F1 is typically higher since it only requires head word or entity identification while Span-F1 demands exact boundary matching.
+
+I'm also noting the TSCA claim about +3.0/+1.0 F1 improvements over DEGAP, which I haven't independently verified but seems less critical. On GuideX, the proposal correctly states it doesn't address event argument extraction, though I should clarify that GuideX does train on EAE data despite not reporting EAE results—the distinction between training data inclusion and evaluation absence is worth being precise about.
+
+A more pressing concern is that the proposal never establishes what Qwen3-8B achieves in zero-shot EAE performance, which matters because if the baseline is already competitive, the synthetic data gains might be quite modest—something EMNLP reviewers will likely flag. The GuideX publication details check out as ACL Findings 2025. I'm also seeing that EMNLP 2026 and AACL share...
+
+Actually, let me finish that thought: they share the ARR May cycle, and authors have to explicitly choose between them at submission time, though that's more of a procedural note than a substantive issue. Looking at the broader landscape, I'm not finding any existing work that specifically tackles grammar-constrained decoding for EAE training data generation—the closest papers address related problems like NER-focused guidance or inference-time constraints, but nothing directly overlaps with this approach. Overall, the proposal has matured well through the rounds, all the previous concerns have been resolved, and there don't appear to be any critical new gaps.
+
+The experimental setup is solid with proper controls and stratification, the compute budget is reasonable, and the timeline works. The main lingering questions are whether a zero-shot Qwen3-8B baseline might perform surprisingly well, whether the contribution feels substantial enough for EMNLP Main (though Findings is the right target), and whether the pre-specified null result signals genuine uncertainty about the effect size.
+
+Weighing everything—all major concerns addressed, sound methodology, appropriate venue, feasible execution, and genuine novelty in studying grammar constraints versus post-hoc filtering for EAE training data—I'm leaning toward a pass, though the modest technical depth and potential for null results warrant noting. Looking at the scoring: novelty sits around 3.5 since the core idea is original but represents pipeline integration rather than a fundamental algorithmic advance. The impact score of 3 brings the overall average to 3.75, which falls short of the 4.0 threshold, though at Round 9 with all prior feedback addressed, the proposal is essentially ready for submission to EMNLP Findings. The main remaining gaps are a missing Qwen3-8B zero-shot baseline that reviewers will likely expect, and some ambiguity about whether this is truly a method contribution or primarily an empirical finding.
+
+Since there are no blocking issues—no logical errors, methodological flaws, or missing citations—and the only concern is a standard ablation that could be added, I'm weighing whether to pass now or request one final revision given we're at Round 9 of 10.
+
+My average score of 3.75 falls below the 4.0 threshold for passing, and the verdict rules suggest "revise" for fixable issues below threshold. But I should reconsider my scoring more carefully: the novelty here is genuinely solid for EMNLP Findings—no prior work has combined volume-controlled generation comparisons with stratified evaluation by role rarity and cardinality tightness, or framed this through structural salience with required key enumeration. While the mechanism itself is straightforward, the empirical contribution is substantial and well-executed.
+
+Looking at my individual scores: novelty is 3.5 (appropriate for the empirical focus), feasibility is 4.0 (well-specified with manageable risks), clarity is 4.5 (detailed and organized), and impact is 3.0 (modest but meaningful for IE practitioners). This gives me 3.75 overall, which technically triggers a revise verdict. Since this is round 9 of 10, I need to identify the one concrete fixable issue: the comparison table lacks a Qwen3-8B zero-shot baseline without fine-tuning, which would be essential context if Qwen3-8B is already competitive on RAMS.
+
+Actually, I'm second-guessing whether this is truly critical. The paper's core contribution is comparing three data generation strategies, not proving that synthetic supervision helps in general. Since I'm already using LtGaE and DEGAP as comparison points, and prior work has established that simple prompting underperforms fine-tuned approaches on structured EAE, the zero-shot baseline might not be as essential as I initially thought.
+
+Looking back through the proposal, I don't see any actual blockers. The title clearly frames this as an empirical study appropriate for Findings, the three-condition design is sound and volume-controlled, the null result is pre-specified, citations are complete, metric differences are acknowledged, and the timeline and budget check out.
+
+The stratified evaluation is really the core contribution here. Let me verify one technical detail though—whether XGrammar can actually enforce the required key enumeration as described. I'm checking if defining all applicable role slots as required fields in a JSON schema, where they can be null values, is actually implementable. This is a standard JSON schema pattern, so the proposal's description of this mechanism is accurate.
+
+There's a potential token efficiency concern I'm noticing: if XGrammar forces all role keys to be present in the output, even when many are null, that adds token overhead and slows generation. The proposal's compute estimates seem to account for this implicitly, but it's not explicitly discussed. That said, this is a minor issue that doesn't undermine the paper's viability.
+
+Looking at my overall assessment now, the proposal is essentially ready for EMNLP 2026 Findings. All the major issues from the previous rounds have been resolved. The only remaining gaps are minor—like the missing Qwen3-8B zero-shot baseline, which would strengthen the work but isn't critical.
+
+The core question for Round 10 is whether this passes or fails, and I'm leaning toward **pass**. The work targets the right venue, has solid experimental design, realistic resource estimates, and has systematically addressed every prior concern. The novelty score of 3.5 is the weakest component, but for a Findings paper, that's acceptable given the other strengths—sound methodology, comprehensive citations, clear theoretical grounding in structural salience, and pre-specified null results.
+
+The average score of 3.75 technically falls short of the 4.0 threshold, and there's one fixable gap (missing the zero-shot Qwen3-8B baseline), which would normally warrant revision. But given this is Round 9 with only a binary pass/fail decision ahead, and the remaining issue is genuinely minor and doesn't undermine the core contribution, I think the proposal is ready to move forward.
+
+Actually, let me reconsider whether that missing baseline is truly necessary. The paper's main argument isn't about whether fine-tuning helps in general—it's specifically comparing three data generation strategies and whether hard constraints outperform soft filtering. The zero-shot baseline would be a nice addition, but it's not essential to the paper's central claims. I should look more carefully at what's actually being compared in the results to see if there are any other blocking issues I'm missing.
+
+Wait, I'm noticing something odd in the comparison table. ASEE is listed alongside the other baselines, but the landscape section explicitly states it doesn't report RAMS/WikiEvents numbers. If that's the case, how can it appear in the same comparison table? That seems like a direct contradiction I need to resolve. I'm noticing a clear inconsistency: the landscape section explicitly states ASEE doesn't report RAMS/WikiEvents numbers, yet it's listed in the comparison table for those exact benchmarks. Either the proposal plans to run ASEE on these benchmarks themselves, or ASEE was mistakenly included in the table. Let me verify what benchmarks ASEE actually evaluates on to resolve this contradiction. I see the ablation study design now—three conditions with identical training volume (N=5,000) across RAMS's 139 event types, where the key difference is how grammar constraints are applied: unconstrained random sampling, post-hoc filtering with an oracle approximation, and strict grammar-constrained generation with role enumeration. The evaluation will use the three-way cross-domain protocol on WikiEvents and RAMS, comparing LtGaE against ASEE, supervised baselines like DEGAP, and all three ablation conditions in a single comparison table.
+
+But I'm noticing a potential issue—if ASEE doesn't report results on RAMS or WikiEvents, including it in the comparison table doesn't make sense. Let me check the ASEE paper to see what benchmarks they actually evaluated on.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c56cf318-4c99-41a2-a297-050fbeca4ff0",
+  "isSidechain": false,
+  "requestId": "req_011Cath8LMQAFSdrdx2Zfzik",
+  "type": "assistant",
+  "uuid": "d02beec5-da54-42d2-a272-26061828950b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01RfAwM2pJg8wF8GxfURUtQ7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3250,
+      "cache_read_input_tokens": 57881,
+      "output_tokens": 5506,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3250,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5506,
+          "cache_read_input_tokens": 57881,
+          "cache_creation_input_tokens": 3250,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3250
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-10T10:01:22.614Z_
+
+Let me verify the ASEE comparison table inconsistency I've noticed.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d02beec5-da54-42d2-a272-26061828950b",
+  "isSidechain": false,
+  "requestId": "req_011Cath8LMQAFSdrdx2Zfzik",
+  "type": "assistant",
+  "uuid": "89366170-747a-4b1d-9913-872151fcddce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01RfAwM2pJg8wF8GxfURUtQ7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3250,
+      "cache_read_input_tokens": 57881,
+      "output_tokens": 5506,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3250,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5506,
+          "cache_read_input_tokens": 57881,
+          "cache_creation_input_tokens": 3250,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3250
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 67 · 2026-05-10T10:01:22.621Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01NoUssPjZaJmcyoctYqU4fB`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2505.08690",
+  "prompt": "What datasets and benchmarks does ASEE (Adaptive Schema-aware Event Extraction) evaluate on? Does it report results on RAMS or WikiEvents? What are the F1 numbers?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "89366170-747a-4b1d-9913-872151fcddce",
+  "isSidechain": false,
+  "requestId": "req_011Cath8LMQAFSdrdx2Zfzik",
+  "type": "assistant",
+  "uuid": "933eafe0-6f27-480f-a89b-19e807e8c54b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01RfAwM2pJg8wF8GxfURUtQ7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3250,
+      "cache_read_input_tokens": 57881,
+      "output_tokens": 5506,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3250,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5506,
+          "cache_read_input_tokens": 57881,
+          "cache_creation_input_tokens": 3250,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3250
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-10T10:01:22.629Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012GLyuiyAo6K5WkBE5qqrUw`</summary>
+
+```json
+{
+  "query": "ASEE \"adaptive schema-aware event extraction\" retrieval augmented generation benchmarks RAMS WikiEvents 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "933eafe0-6f27-480f-a89b-19e807e8c54b",
+  "isSidechain": false,
+  "requestId": "req_011Cath8LMQAFSdrdx2Zfzik",
+  "type": "assistant",
+  "uuid": "018abdb3-8363-4e6d-b4fc-f8e28f21246f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01RfAwM2pJg8wF8GxfURUtQ7",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3250,
+      "cache_read_input_tokens": 57881,
+      "output_tokens": 5506,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3250,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 5506,
+          "cache_read_input_tokens": 57881,
+          "cache_creation_input_tokens": 3250,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3250
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 69_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "018abdb3-8363-4e6d-b4fc-f8e28f21246f",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 70_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Hard Grammar Constraints vs. Soft Filtering for Zero-Shot Event Extraction",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-10T10:01:25.704Z_
+
+<details><summary>↩ Tool result · `toolu_01NoUssPjZaJmcyoctYqU4fB`</summary>
+
+```text
+# ASEE Evaluation Details
+
+Based on the provided content, I can only confirm that ASEE evaluates on a newly constructed benchmark called the **Multi-Dimensional Schema-aware Event Extraction (MD-SEE) benchmark**.
+
+The abstract states: "we construct the Multi-Dimensional Schema-aware Event Extraction (MD-SEE) benchmark, which systematically consolidates 12 datasets across diverse domains, complexity levels, and language settings."
+
+However, the webpage content does not specify which individual datasets comprise MD-SEE, nor does it mention RAMS or WikiEvents by name. Critically, **no F1 scores or specific numerical results are reported** in this abstract or bibliographic page.
+
+To find the detailed evaluation metrics and F1 numbers you're asking about, you would need to access the full paper PDF or HTML version linked on this arXiv page.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "933eafe0-6f27-480f-a89b-19e807e8c54b",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "0658a6e3-e283-47f1-a509-96adbb3e5607",
+  "toolUseResult": {
+    "bytes": 47049,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ASEE Evaluation Details\n\nBased on the provided content, I can only confirm that ASEE evaluates on a newly constructed benchmark called the **Multi-Dimensional Schema-aware Event Extraction (MD-SEE) benchmark**.\n\nThe abstract states: \"we construct the Multi-Dimensional Schema-aware Event Extraction (MD-SEE) benchmark, which systematically consolidates 12 datasets across diverse domains, complexity levels, and language settings.\"\n\nHowever, the webpage content does not specify which individual datasets comprise MD-SEE, nor does it mention RAMS or WikiEvents by name. Critically, **no F1 scores or specific numerical results are reported** in this abstract or bibliographic page.\n\nTo find the detailed evaluation metrics and F1 numbers you're asking about, you would need to access the full paper PDF or HTML version linked on this arXiv page.",
+    "durationMs": 3078,
+    "url": "https://arxiv.org/abs/2505.08690"
+  },
+  "sourceToolAssistantUUID": "933eafe0-6f27-480f-a89b-19e807e8c54b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-10T10:01:28.667Z_
+
+<details><summary>↩ Tool result · `toolu_012GLyuiyAo6K5WkBE5qqrUw`</summary>
+
+```text
+Web search results for query: "ASEE "adaptive schema-aware event extraction" retrieval augmented generation benchmarks RAMS WikiEvents 2025"
+
+Links: [{"title":"[2505.08690] Adaptive Schema-aware Event Extraction with Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2505.08690"},{"title":"Adaptive Schema-aware Event Extraction with Retrieval-Augmented Generation","url":"https://arxiv.org/html/2505.08690v1"},{"title":"[2505.08690v1] Adaptive Schema-aware Event Extraction with Retrieval-Augmented Generation","url":"https://arxiv.org/abs/2505.08690v1"},{"title":"[Literature Review] Adaptive Schema-aware Event Extraction with Retrieval-Augmented Generation","url":"https://www.themoonlight.io/en/review/adaptive-schema-aware-event-extraction-with-retrieval-augmented-generation"},{"title":"Adaptive Schema-aware Event Extraction with Retrieval- ...","url":"https://aclanthology.org/2025.findings-emnlp.419.pdf"},{"title":"Decompose, Enrich, and Extract! Schema-aware Event Extraction using LLMs.","url":"https://arxiv.org/html/2406.01045v1"},{"title":"Yaxiong Wu","url":"https://www.catalyzex.com/author/Yaxiong%20Wu"},{"title":"EACE: A document-level event argument extraction model with argument constraint enhancement","url":"https://www.researchgate.net/publication/377040624_EACE_A_document-level_event_argument_extraction_model_with_argument_constraint_enhancement"},{"title":"Event Extraction in Large Language Model: A Holistic Survey of Method, Modality, and Future","url":"https://arxiv.org/html/2512.19537"},{"title":"Structure-Aware Lightweight Document-Level Event Extraction via Code-Based Large Language Models","url":"https://www.mdpi.com/2079-9292/15/6/1187"}]
+
+Based on the search results, I found information about your query:
+
+ASEE (Adaptive Schema-aware Event Extraction) is a novel paradigm integrating schema paraphrasing with schema retrieval-augmented generation, decomposing the event extraction task into schema retrieval and schema-aware extraction.
+
+The researchers constructed the Multi-Dimensional Schema-aware Event Extraction (MD-SEE) benchmark, which systematically consolidates 12 datasets across diverse domains, complexity levels, and language settings. Extensive evaluations on MD-SEE show that ASEE demonstrates strong adaptability across various scenarios, significantly improving the accuracy of event extraction.
+
+The paper addresses important challenges: Existing research exhibits two critical gaps: the rigid schema fixation in existing pipeline systems, and the absence of benchmarks for evaluating joint schema matching and extraction. Although large language models (LLMs) offer potential solutions, their schema hallucination tendencies and context window limitations pose challenges for practical deployment.
+
+The search results also reference RAMS and WikiEvents as established benchmarks in the field. RAMS and WikiEvents are benchmarks where recent work demonstrates significant improvements, particularly in low-resource settings.
+
+The ASEE paper was published recently on arXiv in May 2025 and appears to have been accepted to the EMNLP 2025 conference.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "018abdb3-8363-4e6d-b4fc-f8e28f21246f",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "09363def-0bf4-47f8-8059-937e1ba12f97",
+  "toolUseResult": {
+    "query": "ASEE \"adaptive schema-aware event extraction\" retrieval augmented generation benchmarks RAMS WikiEvents 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01X2Y9Y59gMJgBsGiqb5Rvvc",
+        "content": [
+          {
+            "title": "[2505.08690] Adaptive Schema-aware Event Extraction with Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2505.08690"
+          },
+          {
+            "title": "Adaptive Schema-aware Event Extraction with Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2505.08690v1"
+          },
+          {
+            "title": "[2505.08690v1] Adaptive Schema-aware Event Extraction with Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/abs/2505.08690v1"
+          },
+          {
+            "title": "[Literature Review] Adaptive Schema-aware Event Extraction with Retrieval-Augmented Generation",
+            "url": "https://www.themoonlight.io/en/review/adaptive-schema-aware-event-extraction-with-retrieval-augmented-generation"
+          },
+          {
+            "title": "Adaptive Schema-aware Event Extraction with Retrieval- ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.419.pdf"
+          },
+          {
+            "title": "Decompose, Enrich, and Extract! Schema-aware Event Extraction using LLMs.",
+            "url": "https://arxiv.org/html/2406.01045v1"
+          },
+          {
+            "title": "Yaxiong Wu",
+            "url": "https://www.catalyzex.com/author/Yaxiong%20Wu"
+          },
+          {
+            "title": "EACE: A document-level event argument extraction model with argument constraint enhancement",
+            "url": "https://www.researchgate.net/publication/377040624_EACE_A_document-level_event_argument_extraction_model_with_argument_constraint_enhancement"
+          },
+          {
+            "title": "Event Extraction in Large Language Model: A Holistic Survey of Method, Modality, and Future",
+            "url": "https://arxiv.org/html/2512.19537"
+          },
+          {
+            "title": "Structure-Aware Lightweight Document-Level Event Extraction via Code-Based Large Language Models",
+            "url": "https://www.mdpi.com/2079-9292/15/6/1187"
+          }
+        ]
+      },
+      "Based on the search results, I found information about your query:\n\nASEE (Adaptive Schema-aware Event Extraction) is a novel paradigm integrating schema paraphrasing with schema retrieval-augmented generation, decomposing the event extraction task into schema retrieval and schema-aware extraction.\n\nThe researchers constructed the Multi-Dimensional Schema-aware Event Extraction (MD-SEE) benchmark, which systematically consolidates 12 datasets across diverse domains, complexity levels, and language settings. Extensive evaluations on MD-SEE show that ASEE demonstrates strong adaptability across various scenarios, significantly improving the accuracy of event extraction.\n\nThe paper addresses important challenges: Existing research exhibits two critical gaps: the rigid schema fixation in existing pipeline systems, and the absence of benchmarks for evaluating joint schema matching and extraction. Although large language models (LLMs) offer potential solutions, their schema hallucination tendencies and context window limitations pose challenges for practical deployment.\n\nThe search results also reference RAMS and WikiEvents as established benchmarks in the field. RAMS and WikiEvents are benchmarks where recent work demonstrates significant improvements, particularly in low-resource settings.\n\nThe ASEE paper was published recently on arXiv in May 2025 and appears to have been accepted to the EMNLP 2025 conference."
+    ],
+    "durationSeconds": 6.034996951000008
+  },
+  "sourceToolAssistantUUID": "018abdb3-8363-4e6d-b4fc-f8e28f21246f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 73 · 2026-05-10T10:01:28.671Z_
+
+```json
+{
+  "parentUuid": "09363def-0bf4-47f8-8059-937e1ba12f97",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "770cb206-b0c4-42c8-8fc5-ae1d562237af",
+  "timestamp": "2026-05-10T10:01:28.671Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 74 · 2026-05-10T10:01:40.902Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Interesting! ASEE uses the MD-SEE benchmark (12 datasets), not RAMS/WikiEvents directly. The proposal correctly says "does not report RAMS/WikiEvents numbers." But then the comparison table includes ASEE? This IS a contradiction in the proposal.
+
+Wait, let me re-read the exact proposal text again for Step 4:
+
+"Comparison table: LtGaE, ASEE, supervised SOTA (DEGAP), Condition A, Condition B, Condition C."
+
+If ASEE doesn't report RAMS/WikiEvents numbers, then ASEE can't appear in the same row as the other methods in a comparison table that uses RAMS/WikiEvents as evaluation benchmarks. 
+
+Unless the proposal intends to run ASEE as an inference system on RAMS/WikiEvents. Looking at the ASEE paper more carefully, it was published at EMNLP 2025 Findings and evaluates on MD-SEE, a custom benchmark of 12 datasets that might include ACE05, WikiEvents, or other standard benchmarks. But the abstract doesn't explicitly mention RAMS or WikiEvents, so if they don't report those numbers, including ASEE in the comparison table would be misleading. This is a genuine inconsistency in the proposal.
+
+The landscape section says ASEE doesn't report RAMS/WikiEvents numbers, yet it appears in the comparison table. Maybe the plan is to run ASEE inference on the LtGaE evaluation sets and report its performance, though the proposal doesn't explicitly state this. Or perhaps ASEE does include RAMS or WikiEvents within MD-SEE without calling it out in the abstract. I need to check the actual ASEE paper to clarify.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "770cb206-b0c4-42c8-8fc5-ae1d562237af",
+  "isSidechain": false,
+  "requestId": "req_011CathGXb3nNo5afHsoL7NY",
+  "type": "assistant",
+  "uuid": "b5659c62-4d0f-4a09-a746-228e6bb2bee5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_016Xhba7Gd5cXzkZBEzDhBff",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6666,
+      "cache_read_input_tokens": 61131,
+      "output_tokens": 597,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6666,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 597,
+          "cache_read_input_tokens": 61131,
+          "cache_creation_input_tokens": 6666,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6666
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 75 · 2026-05-10T10:01:40.913Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01XnPytQbMm9y2EHF6HnYBda`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2505.08690v1",
+  "prompt": "Does ASEE evaluate on RAMS or WikiEvents specifically? What are the 12 datasets in the MD-SEE benchmark? Does the paper report F1 on RAMS or WikiEvents?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b5659c62-4d0f-4a09-a746-228e6bb2bee5",
+  "isSidechain": false,
+  "requestId": "req_011CathGXb3nNo5afHsoL7NY",
+  "type": "assistant",
+  "uuid": "adf5ef3b-8bd0-484b-bed0-d6355c78cdf9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_016Xhba7Gd5cXzkZBEzDhBff",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 6666,
+      "cache_read_input_tokens": 61131,
+      "output_tokens": 597,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 6666,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 597,
+          "cache_read_input_tokens": 61131,
+          "cache_creation_input_tokens": 6666,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 6666
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 76 · 2026-05-10T10:01:45.113Z_
+
+<details><summary>↩ Tool result · `toolu_01XnPytQbMm9y2EHF6HnYBda`</summary>
+
+```text
+# ASEE Evaluation on RAMS and WikiEvents
+
+Based on the paper content provided:
+
+**RAMS and WikiEvents in MD-SEE:**
+Both datasets are included in the MD-SEE benchmark. According to Table 5 in the appendix, RAMS contains 106 schemas from news domain and WikiEvents contains 31 schemas from Wikipedia domain.
+
+**The 12 datasets in MD-SEE are:**
+1. CrudeOilNews
+2. GENEVA
+3. MAVEN-Arg
+4. DocEE (English & Chinese versions)
+5. IEPILE subsets: CASIE, PHEE, RAMS, WikiEvents, DuEE-fin, DuEE1.0, FewFC, ccf_law
+
+**F1 Scores on RAMS and WikiEvents:**
+The paper does not report separate F1 scores specifically for RAMS or WikiEvents. The main experimental results tables (Tables 7-13) show end-to-end evaluation results on individual collected datasets, but RAMS and WikiEvents are not broken out separately in these performance reports. They appear to be consolidated into the broader MD-SEE dataset evaluation.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "adf5ef3b-8bd0-484b-bed0-d6355c78cdf9",
+  "isSidechain": false,
+  "promptId": "80abcbdd-44d7-449d-852b-e8ca264f54a7",
+  "type": "user",
+  "uuid": "fd881d8a-25d0-4696-8a9c-564cc21f0bf6",
+  "toolUseResult": {
+    "bytes": 504841,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ASEE Evaluation on RAMS and WikiEvents\n\nBased on the paper content provided:\n\n**RAMS and WikiEvents in MD-SEE:**\nBoth datasets are included in the MD-SEE benchmark. According to Table 5 in the appendix, RAMS contains 106 schemas from news domain and WikiEvents contains 31 schemas from Wikipedia domain.\n\n**The 12 datasets in MD-SEE are:**\n1. CrudeOilNews\n2. GENEVA\n3. MAVEN-Arg\n4. DocEE (English & Chinese versions)\n5. IEPILE subsets: CASIE, PHEE, RAMS, WikiEvents, DuEE-fin, DuEE1.0, FewFC, ccf_law\n\n**F1 Scores on RAMS and WikiEvents:**\nThe paper does not report separate F1 scores specifically for RAMS or WikiEvents. The main experimental results tables (Tables 7-13) show end-to-end evaluation results on individual collected datasets, but RAMS and WikiEvents are not broken out separately in these performance reports. They appear to be consolidated into the broader MD-SEE dataset evaluation.",
+    "durationMs": 4197,
+    "url": "https://arxiv.org/html/2505.08690v1"
+  },
+  "sourceToolAssistantUUID": "adf5ef3b-8bd0-484b-bed0-d6355c78cdf9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 77 · 2026-05-10T10:02:27.928Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+This is a very important finding! ASEE's MD-SEE benchmark DOES include RAMS and WikiEvents, but the paper doesn't report separate F1 scores for these datasets. The results are consolidated into a broader MD-SEE evaluation.
+
+This means:
+1. The proposal's statement that ASEE "does not report RAMS/WikiEvents numbers" is correct in the sense that separate RAMS/WikiEvents F1 scores aren't available.
+2. But ASEE does include RAMS and WikiEvents as part of its evaluation.
+3. The proposal can't include ASEE in its comparison table using the LtGaE three-way protocol (RAMS2RAMS, RAMS2Wiki, Wiki2Wiki) because ASEE doesn't report numbers under that protocol.
+
+
+4. There's a genuine inconsistency here: the proposal lists ASEE in the comparison table but never clarifies how ASEE's results will be obtained when it uses a different evaluation protocol (MD-SEE) rather than the LtGaE three-way protocol that the table requires.
+
+The landscape section acknowledges ASEE doesn't report RAMS/WikiEvents numbers, yet Step 4 includes it in the comparison table alongside LtGaE and other baselines. This needs resolution—either ASEE stays in related work only, or the proposal commits to running ASEE on the LtGaE splits, which would require implementing its RAG pipeline.
+
+Checking the review history, the Round 1 reviewer flagged the need to differentiate ASEE's RAG-based approach from the grammar-based approach here, and subsequent rounds confirm ASEE is cited. But none of them caught this specific inconsistency about the comparison table inclusion versus the evaluation protocol mismatch. This is a real issue worth flagging before submission. The comparison table needs to either drop ASEE entirely and keep it in related work, or explicitly commit to evaluating ASEE using the LtGaE protocol with their public code. This is a minor but noticeable inconsistency that would catch a reviewer's eye.
+
+Looking at the overall picture, the proposal has successfully addressed all prior feedback across eight rounds, with just this one new minor issue surfacing. My assessment puts novelty at 3.5 for its empirical and integration contributions, feasibility at 4.0 given the realistic scope, clarity at 4.0 despite the ASEE inconsistency, and impact at 3.0 for the expected modest effect size, averaging to 3.625. The work is essentially submission-ready.
+
+But I'm reconsidering the novelty score for a Findings-level venue. The empirical design here is genuinely novel—it's the first to directly compare hard constraints versus post-hoc filtering with volume control, stratify results by role rarity and cardinality tightness, and pre-specify null result interpretation. That's a solid contribution for Findings, not just a Main conference paper.
+
+Revising my novelty score to 3.5 feels right—it's novel for the specific empirical question, though limited since it's more of a pipeline integration than an architectural innovation. With the average sitting at 3.625, still below 4.0, and one fixable issue in the ASEE comparison table, the verdict remains **revise**. The feedback should be surgical: remove ASEE from the main comparison table since it doesn't report on the LtGaE protocol, and mention it only in related work.
+
+I should also consider adding a Qwen3-8B zero-shot baseline to show the concrete gains from synthetic supervision over the foundation model alone—that's just 1-2 GPU hours of work. Both fixes are straightforward and the paper will be ready after these adjustments.
+
+Actually, thinking about it more, the ASEE inconsistency is pretty minor. Most papers handle this by noting "--" or "not reported" in the table when baselines don't evaluate on the same benchmarks. The real question is whether the proposal text already specifies what should go in that comparison table, and if so, whether I need to flag a mismatch between what was planned and what's actually there.
+
+Let me finalize my assessment: the paper needs these two targeted revisions to be submission-ready, and I'm settling on a score of 3.75 overall, which still falls short of the 4.0 threshold.
+
+Now I'm doing a final sanity check on potential reviewer objections—most of them are already addressed by my design choices like null result pre-specification and volume controls, but there's one genuine issue I need to flag: the ASEE table inconsistency where I'm citing numbers that ASEE doesn't actually report. That's the kind of thing that would derail a review, so it has to be fixed before submission.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd881d8a-25d0-4696-8a9c-564cc21f0bf6",
+  "isSidechain": false,
+  "requestId": "req_011CathHjqXWRPCT5WX8FFfe",
+  "type": "assistant",
+  "uuid": "79ea8a97-908c-49bd-97e0-e1b557629c0f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0123owfSiUXsifArmy6TwD6C",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 869,
+      "cache_read_input_tokens": 67797,
+      "output_tokens": 3655,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 869,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3655,
+          "cache_read_input_tokens": 67797,
+          "cache_creation_input_tokens": 869,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 869
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 78 · 2026-05-10T10:02:55.106Z_
+
+I've now confirmed a genuine inconsistency in Round 9: the landscape section states ASEE "does not report RAMS/WikiEvents numbers" while Step 4 lists ASEE in the comparison table. My fetch of the ASEE paper confirms it uses the MD-SEE benchmark (which includes RAMS and WikiEvents internally but doesn't report separate F1 scores for them under the LtGaE three-way protocol).
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {
+      "score": 3.5,
+      "rationale": "First volume-controlled comparison of hard grammar constraints vs. post-hoc filtering for EAE training data generation is genuinely novel, with no competing paper doing the same. However, the mechanism is a pipeline integration (XGrammar + required JSON keys + RAMS TSV), not an algorithmic contribution, limiting novelty to the empirical question and stratified analysis design."
+    },
+    "feasibility": {
+      "score": 4,
+      "rationale": "Independently verified: EMNLP 2026 ARR May 25 deadline confirmed, Qwen3-32B on 2×A100 80GB is hardware-feasible (~64GB BF16 VRAM), XGrammar confirmed as vLLM default backend (<40µs/token), ~90H H100-equiv within the 200H hard constraint, volume normalization protocol eliminates the volume confound. 16-day timeline is tight but feasible."
+    },
+    "clarity": {
+      "score": 4,
+      "rationale": "The three-condition design, null-result pre-specification, metric footnote, and structural salience mechanism are all clearly specified. One new inconsistency found: the landscape says ASEE 'does not report RAMS/WikiEvents numbers' while Step 4 lists ASEE in the comparison table—ASEE evaluates on MD-SEE (12 datasets including RAMS/WikiEvents consolidated, but no separate F1 under the LtGaE three-way protocol)."
+    },
+    "impact": {
+      "score": 3.5,
+      "rationale": "A confirmed positive finding would give practitioners concrete guidance on when SCG investment is warranted for EAE synthetic data generation; a confirmed null would save engineering effort. Appropriate for EMNLP Findings but modest in scope—the zero-shot EAE community would benefit directly, but no broader IE claims are made."
+    }
+  },
+  "issues": [
+    "ASEE COMPARISON TABLE INCONSISTENCY [new, minor]: The landscape section states ASEE (EMNLP Findings 2025, arXiv:2505.08690) 'does not report RAMS/WikiEvents numbers,' yet Step 4 includes ASEE in the comparison table alongside LtGaE, DEGAP, and Conditions A/B/C. Independent verification confirms ASEE uses the MD-SEE benchmark (consolidating 12 datasets including RAMS and WikiEvents, but without separate F1 scores under the LtGaE three-way cross-dataset protocol). Including ASEE in the comparison table without either (a) running ASEE inference on the LtGaE splits or (b) clarifying it appears with '--' under RAMS2RAMS/RAMS2Wiki/Wiki2Wiki will confuse reviewers. Fix: remove ASEE from the main comparison table and retain it only in related work with the existing one-sentence differentiation; alternatively, state explicitly that ASEE will be evaluated under the LtGaE protocol using its public code (adds ~2 GPU-hours, within budget).",
+    "MISSING QWEN3-8B ZERO-SHOT BASELINE [new, minor]: The comparison table (Conditions A/B/C vs. LtGaE, DEGAP) does not include a Qwen3-8B zero-shot baseline (no fine-tuning, prompt-based EAE). Reviewers will ask why synthetic supervision is necessary at all if Qwen3-8B already performs competitively zero-shot. Adding this costs ~1-2 GPU-hours of inference and is within the existing budget and Day 12 schedule. Without it, the paper cannot distinguish between 'synthetic data helps' and 'which generation strategy is best,' conflating the two questions."
+  ],
+  "feedback": "The Round 9 proposal has successfully resolved all three Round 8 issues: BoostCD is now correctly described as 'closed IE' (not 'relation extraction'), structural salience language is mechanistically accurate ('forces the model to generate each role name as a required output token'), and the metric footnote is present. Independent search found no concurrent paper on grammar-constrained generation for EAE training data. DEGAP COLING 2025 confirmed at ACL Anthology. LtGaE F1 numbers confirmed. EMNLP 2026 ARR May 25 deadline confirmed. GuideX confirmed as NER-only evaluation (EAE not reported). Two minor fixes needed for Round 10 submission-readiness:\n\n(1) FIX ASEE TABLE [one sentence change]: Remove ASEE from the Step 4 comparison table. Add a parenthetical: 'ASEE (EMNLP Findings 2025) is excluded from the comparison table as it evaluates on the MD-SEE benchmark under a different protocol; see Section 2 for qualitative differentiation.' This is accurate—ASEE does include RAMS and WikiEvents in MD-SEE but does not report separate F1 scores under the LtGaE three-way cross-dataset evaluation protocol.\n\n(2) ADD QWEN3-8B ZERO-SHOT BASELINE [one table row, ~1-2 GPU-hours inference]: Add 'Qwen3-8B (zero-shot, no fine-tuning)' as a baseline row in the comparison table. This distinguishes the 'does synthetic supervision help?' question from the 'which generation strategy is best?' question. The inference cost is trivial (~1-2 GPU-hours on Day 11 alongside the LtGaE evaluation) and strengthens the paper's empirical completeness. If Conditions A/B/C all outperform this baseline, the paper demonstrates synthetic supervision is necessary AND that the generation strategy matters.",
+  "reason": "All Round 8 issues resolved; two new minor inconsistencies found (ASEE comparison table contradicts landscape claim; missing Qwen3-8B zero-shot baseline), both fixable in under 3 GPU-hours and one hour of drafting."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "79ea8a97-908c-49bd-97e0-e1b557629c0f",
+  "isSidechain": false,
+  "requestId": "req_011CathHjqXWRPCT5WX8FFfe",
+  "type": "assistant",
+  "uuid": "5c5121e7-9e69-43db-9cea-6a9b881e6c76",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_0123owfSiUXsifArmy6TwD6C",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 869,
+      "cache_read_input_tokens": 67797,
+      "output_tokens": 3655,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 869,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3655,
+          "cache_read_input_tokens": 67797,
+          "cache_creation_input_tokens": 869,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 869
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "5c5121e7-9e69-43db-9cea-6a9b881e6c76",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Hard Grammar Constraints vs. Soft Filtering for Zero-Shot Event Extraction",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 81_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "5c5121e7-9e69-43db-9cea-6a9b881e6c76",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 82_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Hard Grammar Constraints vs. Soft Filtering for Zero-Shot Event Extraction",
+  "sessionId": "dad33b85-0c9b-4087-a415-8c59711805c0"
+}
+```
+
+---

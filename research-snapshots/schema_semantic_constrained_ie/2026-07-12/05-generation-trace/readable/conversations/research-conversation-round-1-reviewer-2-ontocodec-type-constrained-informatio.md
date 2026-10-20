@@ -1,0 +1,9332 @@
+# Research conversation: [Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 完整性 + 相关工作 + 写作质量**。 ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Informatio
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 129
+- **Recorded user turns:** 3
+- **Tool calls:** 38
+- **Original source:** `logs/chats/exported-trajectories/account-3/58dfc1c4-cd84-428a-9932-45e8da604e5a.jsonl`
+- **Structured JSON:** [`ea621f50c2de02dedc29.json`](../../sessions/ea/ea621f50c2de02dedc29.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-16T17:34:45.165Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T17:34:45.165Z",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "content": "[Round 1 审稿请求]:\n你是 Reviewer 2，负责审查 **新颖性 + 完整性 + 相关工作 + 写作质量**。\n\n## 论文信息\n- **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Ontology Constraints\n- **论文路径**: `projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex`\n- **目标 venue**: EMNLP 2026（ARR May 2026 cycle）\n- **截止日期**: 2026-05-25\n- **格式**: ACL template, double-blind, 长文 ≤8 页正文 + 无限参考文献\n- **匿名规则**: double-blind（不得包含作者身份信息）\n- **Limitations section**: ARR 要求独立 section，不计入页数\n\n## 你的审查侧重\n\n### 1. 新颖性评估\n- \"first to automatically compile IE ontology domain/range constraints into token-level semantic masks\" 这一 claim 是否成立？是否有被遗漏的先驱工作？\n- 与 code generation 领域的 type-constrained decoding（Synchromesh, PICARD, MGD, PLDI 2025）的技术差异是否被清晰阐述？\n- 与 EnriCo (ASP constraints)、GenIE (state-based constraints)、AdaKGC (trie-based) 的区分是否充分？\n- 两层架构的核心 novelty 在哪里——是 grammar+semantic composition？还是 entity registry + dynamic masking？还是 compilation pipeline？\n\n### 2. Related Work 覆盖度\n- §6 + Appendix A 的 related work 是否覆盖了所有重要的相关工作？\n- 是否有 2025-2026 年的最新重要工作被遗漏？\n- 各 paradigm 的分类是否合理、论述是否公平？\n- 是否存在 strawman 比较（unfairly weakening baselines）？\n\n### 3. 写作质量与结构\n- 论文整体叙事是否连贯？§1-§7 的逻辑链是否流畅？\n- 术语使用是否一致（DR/RV/ET/CF 在全文中是否统一定义和使用）\n- 图表是否清晰、信息密度是否合理\n- Abstract 的 claim 是否与 §5 实验结果一致\n- Contribution 列表是否准确反映了论文的实际贡献\n\n### 4. 完整性检查\n- 是否有重要的实验或分析缺失？\n- Limitations section 是否覆盖了所有主要局限？\n- 是否需要更多 baseline 或 dataset？\n- 代码/数据可复现性声明是否充分？\n- Ethics statement 是否充分？\n\n### 5. 格式合规\n- 页数是否在 8 页以内（不含参考文献和 Limitations）？\n- 是否符合 ACL template 格式？\n- 匿名性是否完整（无作者信息泄露）？\n- 参考文献格式是否正确（natbib）？\n- 是否有未定义的符号或悬挂引用？\n\n请输出完整审稿报告，包含 Summary、Strengths、Weaknesses（逐条编号 W1-Wn，标注 severity: critical/warning/info）、Questions（逐条编号 Q1-Qn）、Missing References、Overall Assessment。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-16T17:34:45.170Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T17:34:45.170Z",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+## Round 1
+
+119 recorded events
+
+### User
+
+_source line 3 · 2026-05-16T17:34:45.227Z_
+
+[Round 1 审稿请求]:
+你是 Reviewer 2，负责审查 **新颖性 + 完整性 + 相关工作 + 写作质量**。
+
+## 论文信息
+- **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Ontology Constraints
+- **论文路径**: `projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex`
+- **目标 venue**: EMNLP 2026（ARR May 2026 cycle）
+- **截止日期**: 2026-05-25
+- **格式**: ACL template, double-blind, 长文 ≤8 页正文 + 无限参考文献
+- **匿名规则**: double-blind（不得包含作者身份信息）
+- **Limitations section**: ARR 要求独立 section，不计入页数
+
+## 你的审查侧重
+
+### 1. 新颖性评估
+- "first to automatically compile IE ontology domain/range constraints into token-level semantic masks" 这一 claim 是否成立？是否有被遗漏的先驱工作？
+- 与 code generation 领域的 type-constrained decoding（Synchromesh, PICARD, MGD, PLDI 2025）的技术差异是否被清晰阐述？
+- 与 EnriCo (ASP constraints)、GenIE (state-based constraints)、AdaKGC (trie-based) 的区分是否充分？
+- 两层架构的核心 novelty 在哪里——是 grammar+semantic composition？还是 entity registry + dynamic masking？还是 compilation pipeline？
+
+### 2. Related Work 覆盖度
+- §6 + Appendix A 的 related work 是否覆盖了所有重要的相关工作？
+- 是否有 2025-2026 年的最新重要工作被遗漏？
+- 各 paradigm 的分类是否合理、论述是否公平？
+- 是否存在 strawman 比较（unfairly weakening baselines）？
+
+### 3. 写作质量与结构
+- 论文整体叙事是否连贯？§1-§7 的逻辑链是否流畅？
+- 术语使用是否一致（DR/RV/ET/CF 在全文中是否统一定义和使用）
+- 图表是否清晰、信息密度是否合理
+- Abstract 的 claim 是否与 §5 实验结果一致
+- Contribution 列表是否准确反映了论文的实际贡献
+
+### 4. 完整性检查
+- 是否有重要的实验或分析缺失？
+- Limitations section 是否覆盖了所有主要局限？
+- 是否需要更多 baseline 或 dataset？
+- 代码/数据可复现性声明是否充分？
+- Ethics statement 是否充分？
+
+### 5. 格式合规
+- 页数是否在 8 页以内（不含参考文献和 Limitations）？
+- 是否符合 ACL template 格式？
+- 匿名性是否完整（无作者信息泄露）？
+- 参考文献格式是否正确（natbib）？
+- 是否有未定义的符号或悬挂引用？
+
+请输出完整审稿报告，包含 Summary、Strengths、Weaknesses（逐条编号 W1-Wn，标注 severity: critical/warning/info）、Questions（逐条编号 Q1-Qn）、Missing References、Overall Assessment。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "6a046e64-0259-4abd-87f8-27bffcc986f9",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-16T17:34:45.226Z_
+
+```json
+{
+  "parentUuid": "6a046e64-0259-4abd-87f8-27bffcc986f9",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__review_reviewer_post_to_director",
+      "mcp__agent-ml-research__verify_references"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__cleanup_pdf_images",
+      "mcp__agent-ml-research__pdf_to_images",
+      "mcp__agent-ml-research__review_reviewer_post_to_director",
+      "mcp__agent-ml-research__verify_references"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "9135c59d-316e-4ec0-ba19-c2a8e515f02c",
+  "timestamp": "2026-05-16T17:34:45.226Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-16T17:34:45.226Z_
+
+```json
+{
+  "parentUuid": "9135c59d-316e-4ec0-ba19-c2a8e515f02c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "52548d15-99ce-49f2-a439-cfa5f35b8d1c",
+  "timestamp": "2026-05-16T17:34:45.226Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-16T17:34:45.226Z_
+
+```json
+{
+  "parentUuid": "52548d15-99ce-49f2-a439-cfa5f35b8d1c",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "8fb85369-bcac-4567-9d6c-4855b3acd341",
+  "timestamp": "2026-05-16T17:34:45.226Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-16T17:34:50.385Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The user (Review Director) is asking me to perform a Round 1 review of the paper "OntoCoDec: Type-Constrained Information Extraction via Compiled Ontology Constraints" as Reviewer 2. My focus areas are: novelty, completeness, related work, writing quality, and format compliance.
+
+Let me start by:
+1. Reading the paper (main.tex)
+2. Searching for EMNLP 2026 / ACL ARR reviewer guidelines
+3. Then conducting my review
+
+First, let me load the paper and search for reviewer guidelines.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8fb85369-bcac-4567-9d6c-4855b3acd341",
+  "isSidechain": false,
+  "requestId": "req_011Cb6egoFze7FJmCvHpCuDf",
+  "type": "assistant",
+  "uuid": "90511fb4-9c15-4882-a73b-81918656d07c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xjc8PHXkkCAK7tszcZHRcd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14011,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 334,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 334,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-16T17:34:51.321Z_
+
+我开始审查这篇论文。先读取论文内容并搜索 ACL ARR 官方审稿标准。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90511fb4-9c15-4882-a73b-81918656d07c",
+  "isSidechain": false,
+  "requestId": "req_011Cb6egoFze7FJmCvHpCuDf",
+  "type": "assistant",
+  "uuid": "076fb9fd-d22e-4c5b-80ac-d096fbc5c564",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xjc8PHXkkCAK7tszcZHRcd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14011,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 334,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 334,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-16T17:34:52.361Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017kQ9bdUeR6wQ5ozyVcgN73`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "076fb9fd-d22e-4c5b-80ac-d096fbc5c564",
+  "isSidechain": false,
+  "requestId": "req_011Cb6egoFze7FJmCvHpCuDf",
+  "type": "assistant",
+  "uuid": "54545495-eebd-4371-b144-f7d972bda5a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xjc8PHXkkCAK7tszcZHRcd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14011,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 334,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 334,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-16T17:34:52.789Z_
+
+<details><summary>↩ Tool result · `toolu_01VixidKwBYjSdoYtwpYMkaV`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "107ea5f1-cd5b-48d4-9cd7-01e05a39ae64",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "1346c911-f637-4d13-93b8-6a9c383d9089",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch"
+    ],
+    "query": "select:WebSearch",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "107ea5f1-cd5b-48d4-9cd7-01e05a39ae64",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-16T17:34:52.382Z_
+
+<details><summary>↩ Tool result · `toolu_017kQ9bdUeR6wQ5ozyVcgN73`</summary>
+
+```text
+1	\documentclass[11pt]{article}
+2	
+3	\usepackage[review]{acl}
+4	
+5	\usepackage{times}
+6	\usepackage{latexsym}
+7	\usepackage[T1]{fontenc}
+8	\usepackage[utf8]{inputenc}
+9	\usepackage{microtype}
+10	\usepackage{graphicx}
+11	\usepackage{booktabs}
+12	\usepackage{multirow}
+13	\usepackage{amsmath}
+14	\usepackage{amssymb}
+15	\usepackage{enumitem}
+16	\usepackage{xcolor}
+17	
+18	\title{OntoCoDec: Type-Constrained Information Extraction\\via Compiled Ontology Constraints}
+19	
+20	\author{Anonymous ACL submission}
+21	
+22	\begin{document}
+23	\maketitle
+24	
+25	% === Abstract ===
+26	\input{abstract}
+27	
+28	% === §1 Introduction ===
+29	\input{section1_introduction_draft}
+30	
+31	% === §2 Background ===
+32	\input{section2_background}
+33	
+34	% === §3 Method ===
+35	\input{section3_method_draft}
+36	
+37	% === §4 Constraint Composition ===
+38	\section{Constraint Composition}
+39	\label{sec:composition}
+40	\input{section4_composition_draft}
+41	
+42	% === §5 Experiments ===
+43	\section{Experiments}
+44	\label{sec:experiments}
+45	
+46	\subsection{Violation Landscape}
+47	\input{section3_violation_landscape}
+48	
+49	\input{section5_scierc_draft}
+50	\input{section5_docred_draft}
+51	\input{section5_crossmodel_draft}
+52	\input{section5_runtime}
+53	
+54	% === §6 Related Work ===
+55	\input{section6_related_work}
+56	
+57	% === §7 Discussion and Conclusion ===
+58	\section{Discussion and Conclusion}
+59	\label{sec:discussion}
+60	\input{section7_conclusion_compressed}
+61	
+62	% === Limitations (ARR requirement: standalone section, does not count toward page limit) ===
+63	\clearpage
+64	\section*{Limitations}
+65	
+66	CF impact is model-dependent: for well-calibrated models (Qwen, Llama), S1 introduces CF violations (up to 12.02\%) as a consequence of per-relation independent enforcement; for poorly-calibrated models (Mistral), S1 substantially reduces CF (56.87\%\,$\to$\,1.27\%) by constraining type assignments to schema-valid values.
+67	CF fallback ablation shows that eliminating CF re-routes violations to DR ($+$13.85\,pp), confirming that CF$\leftrightarrow$DR represents a fundamental trade-off in composable constraint systems rather than an independently resolvable limitation (Appendix~\ref{app:cf-dr-tradeoff}).
+68	Entity F1 impact is model-dependent ($+$1.22\,pp for Qwen vs.\ $-$0.64\,pp for Llama on DocRED), partially confounded by increased parse failures under constraints (Llama: 9.1\% vs.\ 6.8\%).
+69	Zero-shot results cover three 7--8B-class models, where relation F1 remains around 4--8\% compared to $\sim$45\% for fine-tuned systems.
+70	Composability with fine-tuned models is validated on both SciERC and DocRED with Qwen3-8B and Llama-3.1-8B (DR\,$\leq$\,0.20\%, R-F1 change within $\pm$0.6\,pp), but evaluation is limited to one fine-tuning method (LoRA); residual CF (Qwen 1.18\%, Llama 0.46\% on SciERC) traces to schema-level type ambiguity (\textsc{Generic}$\leftrightarrow$X) rather than enforcement failure.
+71	The semantic layer's dynamic masking assumes each entity type maps to a unique first subword token---verified for both tokenizers on our two ontologies (6 entity types each), but ontologies with many types or multi-token type names would require prefix-tree masking, which we have not implemented.
+72	Global entity-level type consensus during decoding offers the most direct path to resolving CF violations.
+73	All models tested are 7--8B-parameter class; scaling behavior to larger (70B+) or smaller models has not been verified, and the dual-factor pattern's predictive scope may differ at other scales.
+74	CF type inconsistencies may propagate to downstream tasks that consume extracted triples (e.g., knowledge graph construction, question answering); the impact of such propagation has not been evaluated.
+75	Residual DR under fine-tuning (36 violations across all fine-tuned settings, both models and both datasets) decomposes into entity type errors (39\%), schema coverage gaps (33\%), and model generation errors correctly caught by constraints (28\%); Llama DocRED alone accounts for 33 of 36 residual violations (92\%), reflecting weaker entity typing.
+76	Schema coverage gaps (one-third of residual violations) are irreducible by decoding-time constraints alone (training-set frequency coverage), motivating complementary approaches such as global type consensus or post-hoc correction.
+77	Validation with fine-tuned models, larger scales, and non-English ontologies remains to be explored.
+78	
+79	% === Ethics Statement ===
+80	\section*{Ethics Statement}
+81	
+82	This work uses publicly available benchmark datasets (SciERC and DocRED) with no personally identifiable information.
+83	No human subjects were involved in the experiments.
+84	The constrained decoding method operates on model outputs and does not introduce new privacy or safety risks beyond those inherent in the base language models.
+85	
+86	% === Bibliography ===
+87	\bibliography{relwork_new_entries}
+88	
+89	% === Appendix ===
+90	\appendix
+91	
+92	\input{appendix_prompts}
+93	\input{appendix_related_work}
+94	\input{appendix_discussion}
+95	\input{appendix_llama_per_relation}
+96	
+97	\end{document}
+98	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "54545495-eebd-4371-b144-f7d972bda5a5",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "d1e6fa92-4452-4a73-95fa-afb1ef8a9d18",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/main.tex",
+      "content": "\\documentclass[11pt]{article}\n\n\\usepackage[review]{acl}\n\n\\usepackage{times}\n\\usepackage{latexsym}\n\\usepackage[T1]{fontenc}\n\\usepackage[utf8]{inputenc}\n\\usepackage{microtype}\n\\usepackage{graphicx}\n\\usepackage{booktabs}\n\\usepackage{multirow}\n\\usepackage{amsmath}\n\\usepackage{amssymb}\n\\usepackage{enumitem}\n\\usepackage{xcolor}\n\n\\title{OntoCoDec: Type-Constrained Information Extraction\\\\via Compiled Ontology Constraints}\n\n\\author{Anonymous ACL submission}\n\n\\begin{document}\n\\maketitle\n\n% === Abstract ===\n\\input{abstract}\n\n% === §1 Introduction ===\n\\input{section1_introduction_draft}\n\n% === §2 Background ===\n\\input{section2_background}\n\n% === §3 Method ===\n\\input{section3_method_draft}\n\n% === §4 Constraint Composition ===\n\\section{Constraint Composition}\n\\label{sec:composition}\n\\input{section4_composition_draft}\n\n% === §5 Experiments ===\n\\section{Experiments}\n\\label{sec:experiments}\n\n\\subsection{Violation Landscape}\n\\input{section3_violation_landscape}\n\n\\input{section5_scierc_draft}\n\\input{section5_docred_draft}\n\\input{section5_crossmodel_draft}\n\\input{section5_runtime}\n\n% === §6 Related Work ===\n\\input{section6_related_work}\n\n% === §7 Discussion and Conclusion ===\n\\section{Discussion and Conclusion}\n\\label{sec:discussion}\n\\input{section7_conclusion_compressed}\n\n% === Limitations (ARR requirement: standalone section, does not count toward page limit) ===\n\\clearpage\n\\section*{Limitations}\n\nCF impact is model-dependent: for well-calibrated models (Qwen, Llama), S1 introduces CF violations (up to 12.02\\%) as a consequence of per-relation independent enforcement; for poorly-calibrated models (Mistral), S1 substantially reduces CF (56.87\\%\\,$\\to$\\,1.27\\%) by constraining type assignments to schema-valid values.\nCF fallback ablation shows that eliminating CF re-routes violations to DR ($+$13.85\\,pp), confirming that CF$\\leftrightarrow$DR represents a fundamental trade-off in composable constraint systems rather than an independently resolvable limitation (Appendix~\\ref{app:cf-dr-tradeoff}).\nEntity F1 impact is model-dependent ($+$1.22\\,pp for Qwen vs.\\ $-$0.64\\,pp for Llama on DocRED), partially confounded by increased parse failures under constraints (Llama: 9.1\\% vs.\\ 6.8\\%).\nZero-shot results cover three 7--8B-class models, where relation F1 remains around 4--8\\% compared to $\\sim$45\\% for fine-tuned systems.\nComposability with fine-tuned models is validated on both SciERC and DocRED with Qwen3-8B and Llama-3.1-8B (DR\\,$\\leq$\\,0.20\\%, R-F1 change within $\\pm$0.6\\,pp), but evaluation is limited to one fine-tuning method (LoRA); residual CF (Qwen 1.18\\%, Llama 0.46\\% on SciERC) traces to schema-level type ambiguity (\\textsc{Generic}$\\leftrightarrow$X) rather than enforcement failure.\nThe semantic layer's dynamic masking assumes each entity type maps to a unique first subword token---verified for both tokenizers on our two ontologies (6 entity types each), but ontologies with many types or multi-token type names would require prefix-tree masking, which we have not implemented.\nGlobal entity-level type consensus during decoding offers the most direct path to resolving CF violations.\nAll models tested are 7--8B-parameter class; scaling behavior to larger (70B+) or smaller models has not been verified, and the dual-factor pattern's predictive scope may differ at other scales.\nCF type inconsistencies may propagate to downstream tasks that consume extracted triples (e.g., knowledge graph construction, question answering); the impact of such propagation has not been evaluated.\nResidual DR under fine-tuning (36 violations across all fine-tuned settings, both models and both datasets) decomposes into entity type errors (39\\%), schema coverage gaps (33\\%), and model generation errors correctly caught by constraints (28\\%); Llama DocRED alone accounts for 33 of 36 residual violations (92\\%), reflecting weaker entity typing.\nSchema coverage gaps (one-third of residual violations) are irreducible by decoding-time constraints alone (training-set frequency coverage), motivating complementary approaches such as global type consensus or post-hoc correction.\nValidation with fine-tuned models, larger scales, and non-English ontologies remains to be explored.\n\n% === Ethics Statement ===\n\\section*{Ethics Statement}\n\nThis work uses publicly available benchmark datasets (SciERC and DocRED) with no personally identifiable information.\nNo human subjects were involved in the experiments.\nThe constrained decoding method operates on model outputs and does not introduce new privacy or safety risks beyond those inherent in the base language models.\n\n% === Bibliography ===\n\\bibliography{relwork_new_entries}\n\n% === Appendix ===\n\\appendix\n\n\\input{appendix_prompts}\n\\input{appendix_related_work}\n\\input{appendix_discussion}\n\\input{appendix_llama_per_relation}\n\n\\end{document}\n",
+      "numLines": 98,
+      "startLine": 1,
+      "totalLines": 98
+    }
+  },
+  "sourceToolAssistantUUID": "54545495-eebd-4371-b144-f7d972bda5a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-16T17:34:52.784Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VixidKwBYjSdoYtwpYMkaV`</summary>
+
+```json
+{
+  "query": "select:WebSearch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1e6fa92-4452-4a73-95fa-afb1ef8a9d18",
+  "isSidechain": false,
+  "requestId": "req_011Cb6egoFze7FJmCvHpCuDf",
+  "type": "assistant",
+  "uuid": "107ea5f1-cd5b-48d4-9cd7-01e05a39ae64",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xjc8PHXkkCAK7tszcZHRcd",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 14011,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 334,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 334,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-16T17:34:55.976Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now read the individual sections of the paper and search for ACL ARR reviewer guidelines.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1346c911-f637-4d13-93b8-6a9c383d9089",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ehMpKqEMFuNHofvqNF",
+  "type": "assistant",
+  "uuid": "d4c0efd6-5006-404a-b731-5c5e894c0e2b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0193pEXHe52eTU3QrUhtAoN8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2538,
+      "cache_read_input_tokens": 25852,
+      "output_tokens": 303,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2538,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 303,
+          "cache_read_input_tokens": 25852,
+          "cache_creation_input_tokens": 2538,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2538
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 15 · 2026-05-16T17:34:56.462Z_
+
+Let me read the paper sections and search for the ACL ARR review form.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4c0efd6-5006-404a-b731-5c5e894c0e2b",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ehMpKqEMFuNHofvqNF",
+  "type": "assistant",
+  "uuid": "2f84dc13-d4f5-4a7e-846e-7aa8b1ab62fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0193pEXHe52eTU3QrUhtAoN8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2538,
+      "cache_read_input_tokens": 25852,
+      "output_tokens": 303,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2538,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 303,
+          "cache_read_input_tokens": 25852,
+          "cache_creation_input_tokens": 2538,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2538
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-16T17:34:57.425Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DXbocyuZJSET3JGWZXwyN9`</summary>
+
+```json
+{
+  "query": "ACL ARR 2026 reviewer guidelines review form criteria"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2f84dc13-d4f5-4a7e-846e-7aa8b1ab62fd",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ehMpKqEMFuNHofvqNF",
+  "type": "assistant",
+  "uuid": "b680ce1b-bc09-45fa-8411-ea9114aa092d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0193pEXHe52eTU3QrUhtAoN8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2538,
+      "cache_read_input_tokens": 25852,
+      "output_tokens": 303,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2538,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 303,
+          "cache_read_input_tokens": 25852,
+          "cache_creation_input_tokens": 2538,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2538
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-16T17:34:59.125Z_
+
+<details><summary>↩ Tool result · `toolu_01BzGi66u8GQvoyqCepJMQPH`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft_4796e8.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_550cbf.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft_9b84f1.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_relwork_additions.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_relwork_outline.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section2_background.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1b847f43-9957-4346-b6e8-74503f3f3538",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "58e29fd3-5078-4883-a51e-0f7b3586329a",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft_4796e8.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_550cbf.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft_9b84f1.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_relwork_additions.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_relwork_outline.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section2_background.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex",
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex"
+    ],
+    "durationMs": 40,
+    "numFiles": 17,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "1b847f43-9957-4346-b6e8-74503f3f3538",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-16T17:34:58.273Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01B4y91b5Tas6VHtg9N6tMxh`</summary>
+
+```json
+{
+  "pattern": "**/paper/abstract.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b680ce1b-bc09-45fa-8411-ea9114aa092d",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ehMpKqEMFuNHofvqNF",
+  "type": "assistant",
+  "uuid": "d9cb892c-27d6-4ecb-a3a9-2a39427cb8d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0193pEXHe52eTU3QrUhtAoN8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2538,
+      "cache_read_input_tokens": 25852,
+      "output_tokens": 303,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2538,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 303,
+          "cache_read_input_tokens": 25852,
+          "cache_creation_input_tokens": 2538,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2538
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-16T17:34:58.284Z_
+
+<details><summary>↩ Tool result · `toolu_01B4y91b5Tas6VHtg9N6tMxh`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d9cb892c-27d6-4ecb-a3a9-2a39427cb8d3",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "46db5a3e-e3a0-46e4-b43e-2796c90d74aa",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex"
+    ],
+    "durationMs": 7,
+    "numFiles": 1,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "d9cb892c-27d6-4ecb-a3a9-2a39427cb8d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-16T17:34:59.076Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01BzGi66u8GQvoyqCepJMQPH`</summary>
+
+```json
+{
+  "pattern": "**/paper/section*.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46db5a3e-e3a0-46e4-b43e-2796c90d74aa",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ehMpKqEMFuNHofvqNF",
+  "type": "assistant",
+  "uuid": "1b847f43-9957-4346-b6e8-74503f3f3538",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0193pEXHe52eTU3QrUhtAoN8",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2538,
+      "cache_read_input_tokens": 25852,
+      "output_tokens": 303,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2538,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 303,
+          "cache_read_input_tokens": 25852,
+          "cache_creation_input_tokens": 2538,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2538
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 完整性 + 相关工作 + 写作质量**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Ontology Constraints - **论文路径**: `projects/schema_sem…",
+  "leafUuid": "58e29fd3-5078-4883-a51e-0f7b3586329a",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-16T17:35:11.590Z_
+
+<details><summary>↩ Tool result · `toolu_01DXbocyuZJSET3JGWZXwyN9`</summary>
+
+```text
+Web search results for query: "ACL ARR 2026 reviewer guidelines review form criteria"
+
+Links: [{"title":"ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewerguidelines"},{"title":"ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/"},{"title":"ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/acguidelines"},{"title":"CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/cfp"},{"title":"Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/incentives2026"},{"title":"Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewform"},{"title":"How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/reviewing"},{"title":"Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics","url":"http://aclrollingreview.org/authors"},{"title":"aclrollingreview/cfp.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/cfp.md"},{"title":"aclrollingreview/reviewing.md at main · acl-org/aclrollingreview","url":"https://github.com/acl-org/aclrollingreview/blob/main/reviewing.md"}]
+
+I found comprehensive information about ACL ARR 2026 reviewer guidelines and the review form. Here's what I found:
+
+## Reviewer Guidelines
+
+Reviewers are asked to follow a workflow: (1) read the paper and get the first impression, (2) search for related work, not deliberately trying to find that particular submission.
+
+If you become aware or can guess the authors' identity, you should disclose that in the ARR review form, which contains questions about the reviewers' knowledge of author identity.
+
+The program chairs and ARR EiCs will consider egregious cases reported by chairs, including cases of extremely terse reviews, unprofessional tone, and LLM-generated reviews.
+
+## Review Form Criteria
+
+The review form includes several key assessment dimensions:
+
+**Overall Recommendation:** 5 = Consider for Award: I think this paper could be considered for an outstanding paper award at an *ACL conference (up to top 2.5% papers). 2 = Resubmit next cycle: substantial revisions that can be completed by the next ARR cycle; 1.5 = Resubmit after next cycle: substantial revisions that cannot be completed by the next ARR cycle.
+
+**Key Assessment Areas:**
+
+- Major reasons to publish include novel and useful methodology, insightful empirical results or theoretical analysis, clear organization of related literature.
+
+- Is there enough information in this paper for a reader to reproduce the main results, use results presented in this paper in future work, or build upon this work?
+
+- Excitement assessment: how exciting is this paper for you? Excitement is subjective. 5 = Highly Exciting: I would recommend this paper to others and/or attend its presentation in a conference.
+
+- For Findings papers, the main criteria are soundness and reproducibility.
+
+You can access the full review form and guidelines at http://aclrollingreview.org/reviewform and http://aclrollingreview.org/reviewerguidelines.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b680ce1b-bc09-45fa-8411-ea9114aa092d",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "e9fbd033-746f-4c77-a65a-6239eeffa7d4",
+  "toolUseResult": {
+    "query": "ACL ARR 2026 reviewer guidelines review form criteria",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Vu1C3izFp9K727YxPDKoqc",
+        "content": [
+          {
+            "title": "ARR Reviewer Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewerguidelines"
+          },
+          {
+            "title": "ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/"
+          },
+          {
+            "title": "ARR Area Chair Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/acguidelines"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Incentives 2026 – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/incentives2026"
+          },
+          {
+            "title": "Review Form – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewform"
+          },
+          {
+            "title": "How ARR works – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/reviewing"
+          },
+          {
+            "title": "Authors Guidelines – ACL Rolling Review – A peer review platform for the Association for Computational Linguistics",
+            "url": "http://aclrollingreview.org/authors"
+          },
+          {
+            "title": "aclrollingreview/cfp.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/cfp.md"
+          },
+          {
+            "title": "aclrollingreview/reviewing.md at main · acl-org/aclrollingreview",
+            "url": "https://github.com/acl-org/aclrollingreview/blob/main/reviewing.md"
+          }
+        ]
+      },
+      "I found comprehensive information about ACL ARR 2026 reviewer guidelines and the review form. Here's what I found:\n\n## Reviewer Guidelines\n\nReviewers are asked to follow a workflow: (1) read the paper and get the first impression, (2) search for related work, not deliberately trying to find that particular submission.\n\nIf you become aware or can guess the authors' identity, you should disclose that in the ARR review form, which contains questions about the reviewers' knowledge of author identity.\n\nThe program chairs and ARR EiCs will consider egregious cases reported by chairs, including cases of extremely terse reviews, unprofessional tone, and LLM-generated reviews.\n\n## Review Form Criteria\n\nThe review form includes several key assessment dimensions:\n\n**Overall Recommendation:** 5 = Consider for Award: I think this paper could be considered for an outstanding paper award at an *ACL conference (up to top 2.5% papers). 2 = Resubmit next cycle: substantial revisions that can be completed by the next ARR cycle; 1.5 = Resubmit after next cycle: substantial revisions that cannot be completed by the next ARR cycle.\n\n**Key Assessment Areas:**\n\n- Major reasons to publish include novel and useful methodology, insightful empirical results or theoretical analysis, clear organization of related literature.\n\n- Is there enough information in this paper for a reader to reproduce the main results, use results presented in this paper in future work, or build upon this work?\n\n- Excitement assessment: how exciting is this paper for you? Excitement is subjective. 5 = Highly Exciting: I would recommend this paper to others and/or attend its presentation in a conference.\n\n- For Findings papers, the main criteria are soundness and reproducibility.\n\nYou can access the full review form and guidelines at http://aclrollingreview.org/reviewform and http://aclrollingreview.org/reviewerguidelines."
+    ],
+    "durationSeconds": 14.158938942
+  },
+  "sourceToolAssistantUUID": "b680ce1b-bc09-45fa-8411-ea9114aa092d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24 · 2026-05-16T17:35:15.797Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me now fetch the ARR review form details and read the paper sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9fbd033-746f-4c77-a65a-6239eeffa7d4",
+  "isSidechain": false,
+  "requestId": "req_011Cb6eijxcSituFaQq3AzGz",
+  "type": "assistant",
+  "uuid": "eafb6b7d-a3ee-4011-8292-35948bba4d3c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXBBJcL29uTNGmuUWFGk5n",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 890,
+      "cache_creation_input_tokens": 1270,
+      "cache_read_input_tokens": 28390,
+      "output_tokens": 340,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1270,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 890,
+          "output_tokens": 340,
+          "cache_read_input_tokens": 28390,
+          "cache_creation_input_tokens": 1270,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1270
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-16T17:35:16.760Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01VKAgC2L5FyA2SwCS8Fm8Uw`</summary>
+
+```json
+{
+  "query": "select:WebFetch",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "eafb6b7d-a3ee-4011-8292-35948bba4d3c",
+  "isSidechain": false,
+  "requestId": "req_011Cb6eijxcSituFaQq3AzGz",
+  "type": "assistant",
+  "uuid": "59a3bfc1-b299-49f3-92fb-367db79038d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXBBJcL29uTNGmuUWFGk5n",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 890,
+      "cache_creation_input_tokens": 1270,
+      "cache_read_input_tokens": 28390,
+      "output_tokens": 340,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1270,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 890,
+          "output_tokens": 340,
+          "cache_read_input_tokens": 28390,
+          "cache_creation_input_tokens": 1270,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1270
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-16T17:35:16.769Z_
+
+<details><summary>↩ Tool result · `toolu_01VKAgC2L5FyA2SwCS8Fm8Uw`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "59a3bfc1-b299-49f3-92fb-367db79038d3",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "da32900b-0d80-4734-842f-b7fc5059e09a",
+  "toolUseResult": {
+    "matches": [
+      "WebFetch"
+    ],
+    "query": "select:WebFetch",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "59a3bfc1-b299-49f3-92fb-367db79038d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-16T17:35:18.276Z_
+
+<details><summary>↩ Tool result · `toolu_017271j2VmUFU51xFSG8m2ee`</summary>
+
+```text
+1	% Section 2: Background (compressed)
+2	
+3	\section{Background}
+4	\label{sec:background}
+5	
+6	\paragraph{IE Ontology Structure.}
+7	\label{sec:bg:ontology}
+8	An IE ontology $\mathcal{O} = (\mathcal{E}, \mathcal{R}, \sigma)$ defines entity types $\mathcal{E}$, relation types $\mathcal{R}$, and a mapping $\sigma: \mathcal{R} \to \mathcal{P}(\mathcal{E} \times \mathcal{E})$ specifying valid (head type, tail type) pairs per relation.
+9	A triple $(h, r, t)$ is \emph{type-valid} if $(\mathrm{type}(h), \mathrm{type}(t)) \in \sigma(r)$.
+10	We define the \emph{constraint tightness} of $r$ as $1 - |\sigma(r)| / |\mathcal{T}|^2$ where $\mathcal{T} = \mathcal{E}$ is the entity type vocabulary: tighter constraints leave fewer valid options, increasing violation likelihood.
+11	
+12	\paragraph{Grammar-Constrained Decoding.}
+13	\label{sec:bg:gcd}
+14	Grammar-constrained decoding restricts each token $y_t$ to a mask $M_g \in \{0, 1\}^{|V|}$ derived from a target grammar.
+15	XGrammar~\citep{dong2025xgrammar} compiles JSON Schemas into pushdown automata for efficient enforcement of structural constraints; Outlines~\citep{willard2023outlines} and SGLang~\citep{zheng2024sglang} offer similar capabilities.
+16	However, these methods are limited to context-free constraints and cannot enforce cross-field semantic rules---e.g., ``if $r$ = \textsc{Feature-of}, then $\mathrm{type}(h) \in \{\textsc{Method}, \textsc{OtherScientificTerm}\}$''---which depend on previously generated field values.
+17	
+18	\paragraph{Problem Statement.}
+19	\label{sec:bg:problem}
+20	Given $\mathcal{O}$ and an autoregressive LM $\mathcal{M}$, we seek constraints $\mathcal{C}$ ensuring: (a)~\textbf{structural validity}---well-formed JSON with $\mathcal{E}$/$\mathcal{R}$ membership; and (b)~\textbf{type validity}---$(\mathrm{type}(h), \mathrm{type}(t)) \in \sigma(r)$ for every triple.
+21	Condition (a) is context-free; (b) is context-sensitive but \emph{prefix-decidable}---at the point where a type token is generated, all information needed (relation type, entity registry) is available in the decoded prefix.
+22	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e9c837b5-fe7d-4cc4-8a1a-ac8cdf8b786b",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "f38b6f19-28dd-4f2c-93ef-380bd565932f",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section2_background.tex",
+      "content": "% Section 2: Background (compressed)\n\n\\section{Background}\n\\label{sec:background}\n\n\\paragraph{IE Ontology Structure.}\n\\label{sec:bg:ontology}\nAn IE ontology $\\mathcal{O} = (\\mathcal{E}, \\mathcal{R}, \\sigma)$ defines entity types $\\mathcal{E}$, relation types $\\mathcal{R}$, and a mapping $\\sigma: \\mathcal{R} \\to \\mathcal{P}(\\mathcal{E} \\times \\mathcal{E})$ specifying valid (head type, tail type) pairs per relation.\nA triple $(h, r, t)$ is \\emph{type-valid} if $(\\mathrm{type}(h), \\mathrm{type}(t)) \\in \\sigma(r)$.\nWe define the \\emph{constraint tightness} of $r$ as $1 - |\\sigma(r)| / |\\mathcal{T}|^2$ where $\\mathcal{T} = \\mathcal{E}$ is the entity type vocabulary: tighter constraints leave fewer valid options, increasing violation likelihood.\n\n\\paragraph{Grammar-Constrained Decoding.}\n\\label{sec:bg:gcd}\nGrammar-constrained decoding restricts each token $y_t$ to a mask $M_g \\in \\{0, 1\\}^{|V|}$ derived from a target grammar.\nXGrammar~\\citep{dong2025xgrammar} compiles JSON Schemas into pushdown automata for efficient enforcement of structural constraints; Outlines~\\citep{willard2023outlines} and SGLang~\\citep{zheng2024sglang} offer similar capabilities.\nHowever, these methods are limited to context-free constraints and cannot enforce cross-field semantic rules---e.g., ``if $r$ = \\textsc{Feature-of}, then $\\mathrm{type}(h) \\in \\{\\textsc{Method}, \\textsc{OtherScientificTerm}\\}$''---which depend on previously generated field values.\n\n\\paragraph{Problem Statement.}\n\\label{sec:bg:problem}\nGiven $\\mathcal{O}$ and an autoregressive LM $\\mathcal{M}$, we seek constraints $\\mathcal{C}$ ensuring: (a)~\\textbf{structural validity}---well-formed JSON with $\\mathcal{E}$/$\\mathcal{R}$ membership; and (b)~\\textbf{type validity}---$(\\mathrm{type}(h), \\mathrm{type}(t)) \\in \\sigma(r)$ for every triple.\nCondition (a) is context-free; (b) is context-sensitive but \\emph{prefix-decidable}---at the point where a type token is generated, all information needed (relation type, entity registry) is available in the decoded prefix.\n",
+      "numLines": 22,
+      "startLine": 1,
+      "totalLines": 22
+    }
+  },
+  "sourceToolAssistantUUID": "e9c837b5-fe7d-4cc4-8a1a-ac8cdf8b786b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-16T17:35:17.295Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012J4YVEQE2y58AazubXJ1bn`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "da32900b-0d80-4734-842f-b7fc5059e09a",
+  "isSidechain": false,
+  "requestId": "req_011Cb6eijxcSituFaQq3AzGz",
+  "type": "assistant",
+  "uuid": "446964c1-17f9-4acc-9dcd-a958b46404a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXBBJcL29uTNGmuUWFGk5n",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 890,
+      "cache_creation_input_tokens": 1270,
+      "cache_read_input_tokens": 28390,
+      "output_tokens": 340,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1270,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 890,
+          "output_tokens": 340,
+          "cache_read_input_tokens": 28390,
+          "cache_creation_input_tokens": 1270,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1270
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-16T17:35:17.304Z_
+
+<details><summary>↩ Tool result · `toolu_012J4YVEQE2y58AazubXJ1bn`</summary>
+
+```text
+1	\begin{abstract}
+2	LLM-based information extraction systems can produce systematic ontology constraint violations during autoregressive generation.
+3	On SciERC (7 relation types), 15.37\% of extracted triples violate domain/range type constraints; on DocRED (96 relation types), 18.46\%---comparable rates governed by \emph{constraint tightness} rather than ontology scale.
+4	%
+5	We present \textsc{OntoCoDec}, which compiles IE ontology schemas into two composable decoding constraint layers:
+6	(1)~a \emph{grammar layer} (XGrammar CFG) enforcing JSON structural validity and restricting entity/relation vocabularies to schema-defined values (ET, RV\,$\to$\,0\%); and
+7	(2)~a \emph{semantic layer} enforcing domain/range constraints via a stateful entity registry and dynamic logit masking.
+8	The grammar layer is an enabling prerequisite; the two compose via bitwise AND on token-level masks.
+9	%
+10	On SciERC, \textsc{OntoCoDec} reduces domain/range violations by 94\% (15.37\%\,$\to$\,0.93\%) while maintaining extraction F1 ({+}0.13pp, $p{=}0.58$).
+11	Results generalize across three model families (Qwen3-8B, Llama-3.1-8B, Mistral-7B): DocRED DR decreases by 42--90\%, with significant R-F1 gains for Qwen ({+}0.50pp, $p{<}0.001$) and Llama ({+}0.29pp, $p{=}0.013$).
+12	% exp_ids: phase2_scierc_full_s1, phase2_docred_full_s1, llama_docred_full_s1, mistral_docred
+13	Quantitative analysis reveals that residual DR varies predictably with ontology tightness $\times$ baseline violation rate ($R^2{=}0.886$, $n{=}4$; Appendix~\ref{app:dual-factor}).
+14	Composed with LoRA fine-tuning on two datasets, \textsc{OntoCoDec} achieves DR\,$\leq$\,0.09\% (SciERC) and 0.20\% (DocRED) with R-F1 change within $\pm$0.6\,pp, confirming that fine-tuning and constrained decoding are complementary.
+15	\end{abstract}
+16	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "446964c1-17f9-4acc-9dcd-a958b46404a2",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "8c6b12d2-53e0-454b-ba1c-a0bd6b27738c",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/abstract.tex",
+      "content": "\\begin{abstract}\nLLM-based information extraction systems can produce systematic ontology constraint violations during autoregressive generation.\nOn SciERC (7 relation types), 15.37\\% of extracted triples violate domain/range type constraints; on DocRED (96 relation types), 18.46\\%---comparable rates governed by \\emph{constraint tightness} rather than ontology scale.\n%\nWe present \\textsc{OntoCoDec}, which compiles IE ontology schemas into two composable decoding constraint layers:\n(1)~a \\emph{grammar layer} (XGrammar CFG) enforcing JSON structural validity and restricting entity/relation vocabularies to schema-defined values (ET, RV\\,$\\to$\\,0\\%); and\n(2)~a \\emph{semantic layer} enforcing domain/range constraints via a stateful entity registry and dynamic logit masking.\nThe grammar layer is an enabling prerequisite; the two compose via bitwise AND on token-level masks.\n%\nOn SciERC, \\textsc{OntoCoDec} reduces domain/range violations by 94\\% (15.37\\%\\,$\\to$\\,0.93\\%) while maintaining extraction F1 ({+}0.13pp, $p{=}0.58$).\nResults generalize across three model families (Qwen3-8B, Llama-3.1-8B, Mistral-7B): DocRED DR decreases by 42--90\\%, with significant R-F1 gains for Qwen ({+}0.50pp, $p{<}0.001$) and Llama ({+}0.29pp, $p{=}0.013$).\n% exp_ids: phase2_scierc_full_s1, phase2_docred_full_s1, llama_docred_full_s1, mistral_docred\nQuantitative analysis reveals that residual DR varies predictably with ontology tightness $\\times$ baseline violation rate ($R^2{=}0.886$, $n{=}4$; Appendix~\\ref{app:dual-factor}).\nComposed with LoRA fine-tuning on two datasets, \\textsc{OntoCoDec} achieves DR\\,$\\leq$\\,0.09\\% (SciERC) and 0.20\\% (DocRED) with R-F1 change within $\\pm$0.6\\,pp, confirming that fine-tuning and constrained decoding are complementary.\n\\end{abstract}\n",
+      "numLines": 16,
+      "startLine": 1,
+      "totalLines": 16
+    }
+  },
+  "sourceToolAssistantUUID": "446964c1-17f9-4acc-9dcd-a958b46404a2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-16T17:35:17.798Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01HAKUjQHMB2cDFRMKRUdhSc`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8c6b12d2-53e0-454b-ba1c-a0bd6b27738c",
+  "isSidechain": false,
+  "requestId": "req_011Cb6eijxcSituFaQq3AzGz",
+  "type": "assistant",
+  "uuid": "e5387984-96a5-4f35-926d-b16aa592d2dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXBBJcL29uTNGmuUWFGk5n",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 890,
+      "cache_creation_input_tokens": 1270,
+      "cache_read_input_tokens": 28390,
+      "output_tokens": 340,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1270,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 890,
+          "output_tokens": 340,
+          "cache_read_input_tokens": 28390,
+          "cache_creation_input_tokens": 1270,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1270
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 31 · 2026-05-16T17:35:17.804Z_
+
+<details><summary>↩ Tool result · `toolu_01HAKUjQHMB2cDFRMKRUdhSc`</summary>
+
+```text
+1	% Section 1: Introduction (compressed, 669→~550 words)
+2	
+3	\section{Introduction}
+4	\label{sec:introduction}
+5	
+6	Large language models are increasingly deployed for zero-shot information extraction~\cite{li2023codeie,sainz2024gollie,wei2023zeroshot}, but when generating relation triples $(h, r, t)$, neither entity is guaranteed to carry a type consistent with the ontology's domain/range constraints for $r$.
+7	We call such outputs \emph{domain/range violations}---structurally valid triples that are ontologically invalid.
+8	In a systematic study, we find violations are pervasive: 15.4\% of triples on SciERC~\cite{luan2018scierc} and 18.5\% on DocRED~\cite{yao2019docred}, driven by \emph{constraint tightness} (few valid type pairs per relation) rather than ontology scale.
+9	Relations with tight constraints exhibit far higher rates (\textsc{Compare}: 42.4\%) than loosely constrained ones (\textsc{Used-for}: 0.8\%).
+10	
+11	Existing approaches leave a fundamental gap.
+12	Schema-informed prompting reduces violations by 62\% on average but is per-relation unreliable---violations for \textsc{Evaluate-for} actually \emph{increase} by 5.8\,pp.
+13	Grammar-constrained decoding~\cite{dong2025xgrammar,willard2023outlines,beurer-kellner2023lmql} guarantees syntactic well-formedness but cannot encode cross-field semantic constraints.
+14	Post-hoc validation wastes compute on discarded outputs and cannot redirect probability mass during decoding.
+15	Training-based approaches~\cite{sainz2024gollie,lu2022uie} provide only soft guidance that cannot eliminate violations.
+16	
+17	We propose \textbf{OntoCoDec} (\textbf{Onto}logy-\textbf{Co}mpiled \textbf{Dec}oding), a framework that compiles an IE ontology into two composable layers of decoding-time constraints.
+18	The \emph{grammar layer} enforces JSON well-formedness and vocabulary validity via XGrammar.
+19	The \emph{semantic layer} maintains a stateful entity registry during generation: as entities are decoded, the registry records type assignments; when relation arguments are generated, dynamic logit masking restricts output to types compatible with the relation's domain/range specification.
+20	The layers compose via bitwise AND with an \emph{enabling dependency}: the grammar layer guarantees vocabulary membership, enabling the semantic layer to look up domain/range rules.
+21	On SciERC, OntoCoDec reduces DR violations from 15.37\% to 0.93\% ($\downarrow$94\%) while remaining F1-neutral ($+$0.13\,pp).
+22	
+23	Our contributions:
+24	\begin{enumerate}
+25	    \item The first systematic study of ontological constraint violations in LLM-based IE (spanning per-relation tightness analysis, dual-factor characterization, and post-hoc baseline comparison), showing that violation rates are driven by constraint tightness rather than ontology size, and that prompt-level intervention is per-relation unreliable.
+26	    \item OntoCoDec, a two-layer compiled constraint framework that enforces cross-field type validity during autoregressive IE---the first to automatically compile IE ontology domain/range constraints into token-level semantic masks.
+27	    \item Empirical validation on 3 models $\times$ 2 datasets: DR $\downarrow$76--99\% on SciERC and $\downarrow$42--90\% on DocRED, with significant R-F1 gains on DocRED ($p \leq 0.013$), model-agnostic structural guarantees, and composability with fine-tuning (DR\,$\leq$\,0.20\% at $<$0.6\,pp F1 cost on both datasets).
+28	\end{enumerate}
+29	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e5387984-96a5-4f35-926d-b16aa592d2dd",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "aa321561-7c68-4f2e-b0cc-abd4825d6477",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section1_introduction_draft.tex",
+      "content": "% Section 1: Introduction (compressed, 669→~550 words)\n\n\\section{Introduction}\n\\label{sec:introduction}\n\nLarge language models are increasingly deployed for zero-shot information extraction~\\cite{li2023codeie,sainz2024gollie,wei2023zeroshot}, but when generating relation triples $(h, r, t)$, neither entity is guaranteed to carry a type consistent with the ontology's domain/range constraints for $r$.\nWe call such outputs \\emph{domain/range violations}---structurally valid triples that are ontologically invalid.\nIn a systematic study, we find violations are pervasive: 15.4\\% of triples on SciERC~\\cite{luan2018scierc} and 18.5\\% on DocRED~\\cite{yao2019docred}, driven by \\emph{constraint tightness} (few valid type pairs per relation) rather than ontology scale.\nRelations with tight constraints exhibit far higher rates (\\textsc{Compare}: 42.4\\%) than loosely constrained ones (\\textsc{Used-for}: 0.8\\%).\n\nExisting approaches leave a fundamental gap.\nSchema-informed prompting reduces violations by 62\\% on average but is per-relation unreliable---violations for \\textsc{Evaluate-for} actually \\emph{increase} by 5.8\\,pp.\nGrammar-constrained decoding~\\cite{dong2025xgrammar,willard2023outlines,beurer-kellner2023lmql} guarantees syntactic well-formedness but cannot encode cross-field semantic constraints.\nPost-hoc validation wastes compute on discarded outputs and cannot redirect probability mass during decoding.\nTraining-based approaches~\\cite{sainz2024gollie,lu2022uie} provide only soft guidance that cannot eliminate violations.\n\nWe propose \\textbf{OntoCoDec} (\\textbf{Onto}logy-\\textbf{Co}mpiled \\textbf{Dec}oding), a framework that compiles an IE ontology into two composable layers of decoding-time constraints.\nThe \\emph{grammar layer} enforces JSON well-formedness and vocabulary validity via XGrammar.\nThe \\emph{semantic layer} maintains a stateful entity registry during generation: as entities are decoded, the registry records type assignments; when relation arguments are generated, dynamic logit masking restricts output to types compatible with the relation's domain/range specification.\nThe layers compose via bitwise AND with an \\emph{enabling dependency}: the grammar layer guarantees vocabulary membership, enabling the semantic layer to look up domain/range rules.\nOn SciERC, OntoCoDec reduces DR violations from 15.37\\% to 0.93\\% ($\\downarrow$94\\%) while remaining F1-neutral ($+$0.13\\,pp).\n\nOur contributions:\n\\begin{enumerate}\n    \\item The first systematic study of ontological constraint violations in LLM-based IE (spanning per-relation tightness analysis, dual-factor characterization, and post-hoc baseline comparison), showing that violation rates are driven by constraint tightness rather than ontology size, and that prompt-level intervention is per-relation unreliable.\n    \\item OntoCoDec, a two-layer compiled constraint framework that enforces cross-field type validity during autoregressive IE---the first to automatically compile IE ontology domain/range constraints into token-level semantic masks.\n    \\item Empirical validation on 3 models $\\times$ 2 datasets: DR $\\downarrow$76--99\\% on SciERC and $\\downarrow$42--90\\% on DocRED, with significant R-F1 gains on DocRED ($p \\leq 0.013$), model-agnostic structural guarantees, and composability with fine-tuning (DR\\,$\\leq$\\,0.20\\% at $<$0.6\\,pp F1 cost on both datasets).\n\\end{enumerate}\n",
+      "numLines": 29,
+      "startLine": 1,
+      "totalLines": 29
+    }
+  },
+  "sourceToolAssistantUUID": "e5387984-96a5-4f35-926d-b16aa592d2dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-16T17:35:18.272Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_017271j2VmUFU51xFSG8m2ee`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section2_background.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aa321561-7c68-4f2e-b0cc-abd4825d6477",
+  "isSidechain": false,
+  "requestId": "req_011Cb6eijxcSituFaQq3AzGz",
+  "type": "assistant",
+  "uuid": "e9c837b5-fe7d-4cc4-8a1a-ac8cdf8b786b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01SXBBJcL29uTNGmuUWFGk5n",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 890,
+      "cache_creation_input_tokens": 1270,
+      "cache_read_input_tokens": 28390,
+      "output_tokens": 340,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1270,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 890,
+          "output_tokens": 340,
+          "cache_read_input_tokens": 28390,
+          "cache_creation_input_tokens": 1270,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1270
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33 · 2026-05-16T17:35:18.371Z_
+
+```json
+{
+  "parentUuid": "f38b6f19-28dd-4f2c-93ef-380bd565932f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b06a8d54-7742-4cc2-a24d-b09862666149",
+  "timestamp": "2026-05-16T17:35:18.371Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 完整性 + 相关工作 + 写作质量**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Ontology Constraints - **论文路径**: `projects/schema_sem…",
+  "leafUuid": "b06a8d54-7742-4cc2-a24d-b09862666149",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 35_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 36 · 2026-05-16T17:35:21.530Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me continue reading the remaining sections of the paper and fetch the ARR review form.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b06a8d54-7742-4cc2-a24d-b09862666149",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ejEsuqF55hHpCD5U5z",
+  "type": "assistant",
+  "uuid": "c0592413-b3fc-44b5-b2be-c6551797eaa4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5DHiD2jZ5Yw8vGtVdCacv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4340,
+      "cache_read_input_tokens": 29660,
+      "output_tokens": 314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4340,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 314,
+          "cache_read_input_tokens": 29660,
+          "cache_creation_input_tokens": 4340,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4340
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37 · 2026-05-16T17:35:23.947Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_016CXum5qqS2pwwsAWzWHSpy`</summary>
+
+```json
+{
+  "url": "https://aclrollingreview.org/reviewform",
+  "prompt": "Extract the complete review form criteria, scoring scales, and all assessment dimensions. I need the exact scoring options for each dimension (overall assessment, soundness, excitement, etc.) and what each score means."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c0592413-b3fc-44b5-b2be-c6551797eaa4",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ejEsuqF55hHpCD5U5z",
+  "type": "assistant",
+  "uuid": "0ec0f97b-b87b-4610-8382-91ffd64f70e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5DHiD2jZ5Yw8vGtVdCacv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4340,
+      "cache_read_input_tokens": 29660,
+      "output_tokens": 314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4340,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 314,
+          "cache_read_input_tokens": 29660,
+          "cache_creation_input_tokens": 4340,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4340
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-16T17:35:24.480Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01XRo1wHTjn1FMAtbGYSrGuf`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0ec0f97b-b87b-4610-8382-91ffd64f70e5",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ejEsuqF55hHpCD5U5z",
+  "type": "assistant",
+  "uuid": "9f25dab1-09e5-4485-83fd-f80508e699f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5DHiD2jZ5Yw8vGtVdCacv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4340,
+      "cache_read_input_tokens": 29660,
+      "output_tokens": 314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4340,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 314,
+          "cache_read_input_tokens": 29660,
+          "cache_creation_input_tokens": 4340,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4340
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-16T17:35:24.756Z_
+
+<details><summary>↩ Tool result · `toolu_01TvU6HhVU9m6KsDqNKvwinr`</summary>
+
+```text
+1	% Section: Constraint Composition (compressed, 787→~500 words)
+2	
+3	At each decoding step $t$, let $G(t) \subseteq V$ and $S(t) \subseteq V$ denote the tokens permitted by the grammar and semantic layers, respectively.
+4	The final mask is their conjunction:
+5	%
+6	\begin{equation}\label{eq:composition}
+7	  M_{\text{final}}(t) = M_{\text{grammar}}(t) \;\wedge\; M_{\text{semantic}}(t),
+8	\end{equation}
+9	%
+10	so a token is allowed only if it satisfies \emph{both} structural and type-level constraints.
+11	The conjunction is asymmetric: $S(t)$ is defined only over $G(t)$, reflecting the enabling dependency (\S\ref{sec:method})---the semantic layer requires the relation type to belong to $\mathcal{R}$, a property guaranteed only by the grammar layer.
+12	
+13	\paragraph{Grammar-First Fallback.}
+14	When $S(t) \cap G(t) = \emptyset$---tight constraints leave no token that is both grammar-valid and semantically valid---na\"{\i}ve masking would force selection of a grammar-invalid token, breaking JSON structure.
+15	We enforce a \emph{grammar-first fallback}: if no semantically valid token survives grammar filtering, semantic masking is skipped and the grammar layer alone controls selection.
+16	Structural integrity is a hard constraint; a type violation is a soft error detectable by downstream validation.
+17	
+18	\paragraph{Constraint Tightness.}
+19	We define the tightness of relation $r$ as:
+20	%
+21	\begin{equation}\label{eq:tightness}
+22	  \tau(r) = 1 - \frac{|\mathcal{V}(r)|}{|\mathcal{T}|^2},
+23	\end{equation}
+24	%
+25	where $\mathcal{V}(r)$ is the set of valid type pairs and $\mathcal{T}$ the entity type vocabulary.
+26	The mean tightness $\bar{\tau} = \frac{1}{|\mathcal{R}|}\sum_{r} \tau(r)$ characterizes ontology restrictiveness.
+27	Tighter constraints eliminate more grammar-valid tokens at type-bearing positions, increasing fallback frequency and residual DR.
+28	This dual-factor pattern---tightness $\times$ baseline model violation rate---is consistent with the cross-dataset results: SciERC ($\bar{\tau}{=}0.333$, 24 valid pairs/relation) achieves 94--99\% DR reduction, while DocRED ($\bar{\tau}{=}0.842$, 5.68 pairs) achieves 45--90\%, with the residual modulated by model-specific baselines (\S\ref{sec:cross-model}; quantitative analysis in Appendix~\ref{app:dual-factor}).
+29	
+30	\paragraph{Non-Rectangularity and Sequential Masking.}
+31	\label{sec:rectangularity}
+32	% Data source: artifacts/rebuttal/w2_rectangularity_report.md
+33	The sequential masking strategy---$\tau^h \in \operatorname{dom}(r)$, then $\tau^t \in \operatorname{range}(r, \tau^h)$---is necessary because real ontology type signatures are overwhelmingly non-rectangular: 0/7 SciERC and only 23/96 DocRED relations satisfy $\sigma(r) = \operatorname{dom}(r) \times \operatorname{range}(r)$.
+34	Independent enforcement ($\tau^h \in \operatorname{dom}(r) \wedge \tau^t \in \operatorname{range}(r)$) would admit 33.3\% (SciERC) and 36.8\% (DocRED) spurious type pairs---on SciERC, 100\% of residual DR violations under full S1 are pairs that pass independent checks but violate $\sigma(r)$.
+35	OntoCoDec's sequential approach achieves exact pair-based enforcement without explicit enumeration of $\sigma(r)$ at each step, exploiting the autoregressive left-to-right generation order.
+36	
+37	\paragraph{Decidability Taxonomy.}
+38	We classify ontology constraints by when sufficient information becomes available:
+39	%
+40	\begin{enumerate}[leftmargin=*,nosep]
+41	  \item \textbf{Local}: require only the current token (entity/relation vocabulary membership). Handled by the grammar layer.
+42	  \item \textbf{Prefix-decidable}: require the decoded prefix (domain/range constraints). Handled by the semantic layer via the entity registry.
+43	  \item \textbf{Non-local}: require information not yet generated (forward coreference). Outside the scope of single-pass decoding; partially addressed by the two-pass strategy (S2, \S\ref{sec:s2}).
+44	\end{enumerate}
+45	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "96ba1b91-8377-4b3c-83d6-9e458f836c01",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "1a36a861-2df2-4763-8b75-34859140e8b5",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex",
+      "content": "% Section: Constraint Composition (compressed, 787→~500 words)\n\nAt each decoding step $t$, let $G(t) \\subseteq V$ and $S(t) \\subseteq V$ denote the tokens permitted by the grammar and semantic layers, respectively.\nThe final mask is their conjunction:\n%\n\\begin{equation}\\label{eq:composition}\n  M_{\\text{final}}(t) = M_{\\text{grammar}}(t) \\;\\wedge\\; M_{\\text{semantic}}(t),\n\\end{equation}\n%\nso a token is allowed only if it satisfies \\emph{both} structural and type-level constraints.\nThe conjunction is asymmetric: $S(t)$ is defined only over $G(t)$, reflecting the enabling dependency (\\S\\ref{sec:method})---the semantic layer requires the relation type to belong to $\\mathcal{R}$, a property guaranteed only by the grammar layer.\n\n\\paragraph{Grammar-First Fallback.}\nWhen $S(t) \\cap G(t) = \\emptyset$---tight constraints leave no token that is both grammar-valid and semantically valid---na\\\"{\\i}ve masking would force selection of a grammar-invalid token, breaking JSON structure.\nWe enforce a \\emph{grammar-first fallback}: if no semantically valid token survives grammar filtering, semantic masking is skipped and the grammar layer alone controls selection.\nStructural integrity is a hard constraint; a type violation is a soft error detectable by downstream validation.\n\n\\paragraph{Constraint Tightness.}\nWe define the tightness of relation $r$ as:\n%\n\\begin{equation}\\label{eq:tightness}\n  \\tau(r) = 1 - \\frac{|\\mathcal{V}(r)|}{|\\mathcal{T}|^2},\n\\end{equation}\n%\nwhere $\\mathcal{V}(r)$ is the set of valid type pairs and $\\mathcal{T}$ the entity type vocabulary.\nThe mean tightness $\\bar{\\tau} = \\frac{1}{|\\mathcal{R}|}\\sum_{r} \\tau(r)$ characterizes ontology restrictiveness.\nTighter constraints eliminate more grammar-valid tokens at type-bearing positions, increasing fallback frequency and residual DR.\nThis dual-factor pattern---tightness $\\times$ baseline model violation rate---is consistent with the cross-dataset results: SciERC ($\\bar{\\tau}{=}0.333$, 24 valid pairs/relation) achieves 94--99\\% DR reduction, while DocRED ($\\bar{\\tau}{=}0.842$, 5.68 pairs) achieves 45--90\\%, with the residual modulated by model-specific baselines (\\S\\ref{sec:cross-model}; quantitative analysis in Appendix~\\ref{app:dual-factor}).\n\n\\paragraph{Non-Rectangularity and Sequential Masking.}\n\\label{sec:rectangularity}\n% Data source: artifacts/rebuttal/w2_rectangularity_report.md\nThe sequential masking strategy---$\\tau^h \\in \\operatorname{dom}(r)$, then $\\tau^t \\in \\operatorname{range}(r, \\tau^h)$---is necessary because real ontology type signatures are overwhelmingly non-rectangular: 0/7 SciERC and only 23/96 DocRED relations satisfy $\\sigma(r) = \\operatorname{dom}(r) \\times \\operatorname{range}(r)$.\nIndependent enforcement ($\\tau^h \\in \\operatorname{dom}(r) \\wedge \\tau^t \\in \\operatorname{range}(r)$) would admit 33.3\\% (SciERC) and 36.8\\% (DocRED) spurious type pairs---on SciERC, 100\\% of residual DR violations under full S1 are pairs that pass independent checks but violate $\\sigma(r)$.\nOntoCoDec's sequential approach achieves exact pair-based enforcement without explicit enumeration of $\\sigma(r)$ at each step, exploiting the autoregressive left-to-right generation order.\n\n\\paragraph{Decidability Taxonomy.}\nWe classify ontology constraints by when sufficient information becomes available:\n%\n\\begin{enumerate}[leftmargin=*,nosep]\n  \\item \\textbf{Local}: require only the current token (entity/relation vocabulary membership). Handled by the grammar layer.\n  \\item \\textbf{Prefix-decidable}: require the decoded prefix (domain/range constraints). Handled by the semantic layer via the entity registry.\n  \\item \\textbf{Non-local}: require information not yet generated (forward coreference). Outside the scope of single-pass decoding; partially addressed by the two-pass strategy (S2, \\S\\ref{sec:s2}).\n\\end{enumerate}\n",
+      "numLines": 45,
+      "startLine": 1,
+      "totalLines": 45
+    }
+  },
+  "sourceToolAssistantUUID": "96ba1b91-8377-4b3c-83d6-9e458f836c01",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-16T17:35:24.485Z_
+
+<details><summary>↩ Tool result · `toolu_01XRo1wHTjn1FMAtbGYSrGuf`</summary>
+
+```text
+1	% Section 3 — Method (Draft)
+2	% OntoCoDec: Type-Valid Information Extraction
+3	% via Compiled Ontology Constraints
+4	
+5	\section{Method}
+6	\label{sec:method}
+7	
+8	We present OntoCoDec, a two-layer constrained decoding framework that compiles ontology schemas into token-level masks enforced during autoregressive generation.
+9	The grammar layer (\S\ref{sec:grammar}) guarantees structural validity—well-formed JSON with ontology-vocabulary membership—while the semantic layer (\S\ref{sec:semantic}) enforces domain/range type constraints via a stateful entity registry.
+10	We describe the problem formulation (\S\ref{sec:formulation}), each layer, and two decoding strategies (\S\ref{sec:strategies}).
+11	Formal analysis of constraint composition is deferred to Section~\ref{sec:composition}.
+12	
+13	
+14	\subsection{Problem Formulation}
+15	\label{sec:formulation}
+16	
+17	\paragraph{IE as structured generation.}
+18	Given an input text $x$, a language model generates a structured JSON output $y$:
+19	%
+20	\begin{equation}\label{eq:output-schema}
+21	\resizebox{.88\columnwidth}{!}{$\displaystyle
+22	  y = \bigl\{\texttt{entities}: [\{n_i, \tau_i\}],\; \texttt{relations}: [\{h_j, t_j, r_j, \tau^h_j, \tau^t_j\}]\bigr\}
+23	$}
+24	\end{equation}
+25	%
+26	where each entity has a name $n_i$ and type $\tau_i \in \mathcal{E}$, and each relation specifies head $h_j$, tail $t_j$, relation type $r_j \in \mathcal{R}$, and head/tail entity types $\tau^h_j, \tau^t_j$.
+27	
+28	\paragraph{Ontology compliance.}
+29	Using the ontology $\mathcal{O} = (\mathcal{E}, \mathcal{R}, \sigma)$ defined in \S\ref{sec:background}, we write $\operatorname{dom}(r) = \{\tau^h : \exists \tau^t,\, (\tau^h, \tau^t) \in \sigma(r)\}$ for domain-valid head types and $\operatorname{range}(r, \tau^h) = \{\tau^t : (\tau^h, \tau^t) \in \sigma(r)\}$ for the conditional range given head type $\tau^h$.
+30	Our enforcement target is \emph{pair-based} type validity: $(\tau^h, \tau^t) \in \sigma(r)$ for every triple.
+31	The decoder enforces this sequentially---$\tau^h \in \operatorname{dom}(r)$ at head position, then $\tau^t \in \operatorname{range}(r, \tau^h)$ at tail position---which is equivalent to the full pair check and strictly stronger than independent domain/range enforcement, because most relations have non-rectangular type signatures ($\sigma(r) \subsetneq \operatorname{dom}(r) \times \operatorname{range}(r)$ for all 7 SciERC and 73/96 DocRED relations; see \S\ref{sec:rectangularity}).\footnote{An independent check ($\tau^h \in \operatorname{dom}(r) \wedge \tau^t \in \operatorname{range}(r)$) would over-permit type pairs by $1.50\times$ on SciERC and $1.58\times$ on DocRED, corresponding to 33.3\% and 36.8\% spurious type pairs.}
+32	Our goal is maximizing $P(y \mid x)$ subject to all triples being type-valid and $y$ being well-formed JSON conforming to Eq.~\eqref{eq:output-schema}.
+33	
+34	
+35	\subsection{Grammar Layer}
+36	\label{sec:grammar}
+37	
+38	The grammar layer compiles $\mathcal{O}$ into a context-free grammar (CFG) enforced at every decoding step via logit masking.
+39	This compilation proceeds in two stages.
+40	
+41	\paragraph{Schema-to-grammar compilation.}
+42	We generate a JSON Schema encoding the structure in Eq.~\eqref{eq:output-schema} with \texttt{enum} constraints restricting entity types to $\mathcal{E}$ and relation types to $\mathcal{R}$.
+43	This schema is compiled into an EBNF grammar via XGrammar~\cite{dong2025xgrammar}, producing a pushdown automaton tracking JSON structure and enum membership.
+44	
+45	\paragraph{Logit masking.}
+46	At step $t$, the automaton computes grammar-valid tokens $G(t) \subseteq V$; all others receive logits $-\infty$.
+47	This simultaneously enforces: (i)~structural validity (well-formed JSON), (ii)~relation vocabulary membership ($r_j \in \mathcal{R}$), and (iii)~entity type membership ($\tau_i \in \mathcal{E}$).
+48	Domain/range constraints are \emph{not} enforced, as they depend on entity types within each triple—the gap filled by the semantic layer.
+49	
+50	\paragraph{Empirical profile.}
+51	On SciERC, grammar constraints eliminate relation vocabulary violations entirely (1.39\%\,$\to$\,0\%) and entity type violations entirely (0.40\%\,$\to$\,0\%), with no measurable F1 impact.
+52	Domain/range violations remain effectively unchanged (15.37\%\,$\to$\,14.84\%), confirming that grammar constraints enforce structural but not semantic validity.
+53	
+54	
+55	\subsection{Semantic Layer}
+56	\label{sec:semantic}
+57	
+58	The semantic layer enforces domain/range constraints through a stateful logits processor maintaining an entity registry during generation.
+59	
+60	\subsubsection{Entity Registry}
+61	\label{sec:entity-registry}
+62	
+63	As the model generates the entity list, the semantic layer builds a registry $\mathcal{D}: \text{name} \to \text{type}$ mapping each entity to its declared type.
+64	This registry is populated incrementally: when the model completes an entry $\{n_i, \tau_i\}$, the pair $(n_i, \tau_i)$ is added to $\mathcal{D}$.
+65	The registry is then consulted during relation generation to look up the declared types of head and tail entities.
+66	
+67	\subsubsection{Position Detection}
+68	\label{sec:position-detection}
+69	
+70	At each step $t$, the processor determines which field is currently being generated by pattern-matching on the decoded prefix.
+71	We define five field positions---\textsc{EntityType}, \textsc{RelationType}, \textsc{HeadType}, \textsc{TailType}, and \textsc{FreeText}---identified via JSON key patterns (e.g., tokens following \texttt{"head\_type":} indicate \textsc{HeadType}).
+72	Semantic masks activate only at type-bearing positions (\textsc{HeadType}, \textsc{TailType}).
+73	
+74	\subsubsection{Dynamic Masking}
+75	\label{sec:dynamic-masking}
+76	
+77	At type-bearing positions, the processor computes a semantic mask $S(t) \subseteq V$ restricting generation to type-valid tokens.
+78	
+79	\paragraph{Head type masking.}
+80	At a \textsc{HeadType} position, the processor considers the entity registry $\mathcal{D}$ and the current relation type $r_j$ (if already generated).
+81	If $h_j \in \mathcal{D}$ and $\mathcal{D}[h_j] \in \operatorname{dom}(r_j)$, the mask allows only that registered type: $S(t) = \{\operatorname{tok}(\mathcal{D}[h_j])\}$, ensuring consistency with both the entity list and domain constraints.
+82	Otherwise, if $r_j$ is known, the mask falls back to all domain-valid types: $S(t) = \{\operatorname{tok}(\tau) : \tau \in \operatorname{dom}(r_j)\}$.
+83	If $r_j$ is unavailable, no semantic mask is applied.
+84	
+85	\paragraph{Tail type masking.}
+86	At a \textsc{TailType} position, the head type $\tau^h_j$ is already determined from the decoded prefix.
+87	The processor computes $\operatorname{range}(r_j, \tau^h_j)$---the valid tail types conditioned on the generated head type (\S\ref{sec:formulation}).
+88	If $t_j \in \mathcal{D}$, the mask further restricts to the registered type when it belongs to this set.
+89	This sequential check ($\tau^h \in \operatorname{dom}(r)$, then $\tau^t \in \operatorname{range}(r, \tau^h)$) achieves exact pair-based enforcement, strictly tighter than an independent range check $\tau^t \in \operatorname{range}(r)$.
+90	
+91	\paragraph{Implementation.}
+92	Each $\tau \in \mathcal{E}$ is mapped to the token ID of its first subword token; we pre-verify uniqueness across all entity types, which holds for both SciERC (6 entity types) and DocRED (6 entity types, disjoint from SciERC's) with both the Qwen3-8B and Llama-3.1-8B tokenizers.
+93	The semantic mask is applied by setting logits of disallowed first-token IDs to $-\infty$.
+94	
+95	\subsubsection{Grammar-Semantic Interaction}
+96	\label{sec:interaction}
+97	
+98	The final mask is the conjunction of $G(t)$ and $S(t)$, permitting only tokens satisfying both layers (formalized in \S\ref{sec:composition}).
+99	This embodies an \emph{enabling dependency}: semantic lookup requires relation types to be valid members of $\mathcal{R}$, guaranteed only by the grammar layer.
+100	Without grammar enforcement, the model may generate out-of-vocabulary relation types for which no $\sigma(r)$ rules exist.
+101	Empirically, semantic-only constraints reduce DR by only 24\% (15.37\%\,$\to$\,11.65\%) while failing to eliminate vocabulary violations; the full combination achieves 94\% DR reduction.
+102	When $S(t) \cap G(t) = \emptyset$---the semantic layer would mask out all grammar-valid tokens---the system falls back to grammar-only control, preserving structural validity at the cost of a potential type violation.
+103	This \emph{grammar-first invariant} reflects a deliberate priority ordering: structural integrity is a hard constraint, while type violations are soft errors detectable by downstream validation.
+104	
+105	
+106	\subsection{Decoding Strategies}
+107	\label{sec:strategies}
+108	
+109	\paragraph{S1: Single-pass decoding.}
+110	Both constraint layers are active throughout a single generation pass.
+111	The entity registry is populated as entities are generated and immediately available for relation-level type checking.
+112	This is the simpler and recommended strategy, achieving strong constraint enforcement with higher relation F1 than the two-pass alternative.
+113	
+114	\paragraph{S2: Two-pass decoding.}\label{sec:s2}
+115	The first pass generates only entities under grammar constraints; the extracted entities compile an input-dependent grammar that additionally constrains head and tail names to match declared entities.
+116	The second pass generates relations under this tighter grammar plus semantic constraints.
+117	Detailed comparison is provided in the appendix.
+118	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9f25dab1-09e5-4485-83fd-f80508e699f0",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "e0a26020-4e0e-4411-b021-e4622c0a0aa0",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_method_draft.tex",
+      "content": "% Section 3 — Method (Draft)\n% OntoCoDec: Type-Valid Information Extraction\n% via Compiled Ontology Constraints\n\n\\section{Method}\n\\label{sec:method}\n\nWe present OntoCoDec, a two-layer constrained decoding framework that compiles ontology schemas into token-level masks enforced during autoregressive generation.\nThe grammar layer (\\S\\ref{sec:grammar}) guarantees structural validity—well-formed JSON with ontology-vocabulary membership—while the semantic layer (\\S\\ref{sec:semantic}) enforces domain/range type constraints via a stateful entity registry.\nWe describe the problem formulation (\\S\\ref{sec:formulation}), each layer, and two decoding strategies (\\S\\ref{sec:strategies}).\nFormal analysis of constraint composition is deferred to Section~\\ref{sec:composition}.\n\n\n\\subsection{Problem Formulation}\n\\label{sec:formulation}\n\n\\paragraph{IE as structured generation.}\nGiven an input text $x$, a language model generates a structured JSON output $y$:\n%\n\\begin{equation}\\label{eq:output-schema}\n\\resizebox{.88\\columnwidth}{!}{$\\displaystyle\n  y = \\bigl\\{\\texttt{entities}: [\\{n_i, \\tau_i\\}],\\; \\texttt{relations}: [\\{h_j, t_j, r_j, \\tau^h_j, \\tau^t_j\\}]\\bigr\\}\n$}\n\\end{equation}\n%\nwhere each entity has a name $n_i$ and type $\\tau_i \\in \\mathcal{E}$, and each relation specifies head $h_j$, tail $t_j$, relation type $r_j \\in \\mathcal{R}$, and head/tail entity types $\\tau^h_j, \\tau^t_j$.\n\n\\paragraph{Ontology compliance.}\nUsing the ontology $\\mathcal{O} = (\\mathcal{E}, \\mathcal{R}, \\sigma)$ defined in \\S\\ref{sec:background}, we write $\\operatorname{dom}(r) = \\{\\tau^h : \\exists \\tau^t,\\, (\\tau^h, \\tau^t) \\in \\sigma(r)\\}$ for domain-valid head types and $\\operatorname{range}(r, \\tau^h) = \\{\\tau^t : (\\tau^h, \\tau^t) \\in \\sigma(r)\\}$ for the conditional range given head type $\\tau^h$.\nOur enforcement target is \\emph{pair-based} type validity: $(\\tau^h, \\tau^t) \\in \\sigma(r)$ for every triple.\nThe decoder enforces this sequentially---$\\tau^h \\in \\operatorname{dom}(r)$ at head position, then $\\tau^t \\in \\operatorname{range}(r, \\tau^h)$ at tail position---which is equivalent to the full pair check and strictly stronger than independent domain/range enforcement, because most relations have non-rectangular type signatures ($\\sigma(r) \\subsetneq \\operatorname{dom}(r) \\times \\operatorname{range}(r)$ for all 7 SciERC and 73/96 DocRED relations; see \\S\\ref{sec:rectangularity}).\\footnote{An independent check ($\\tau^h \\in \\operatorname{dom}(r) \\wedge \\tau^t \\in \\operatorname{range}(r)$) would over-permit type pairs by $1.50\\times$ on SciERC and $1.58\\times$ on DocRED, corresponding to 33.3\\% and 36.8\\% spurious type pairs.}\nOur goal is maximizing $P(y \\mid x)$ subject to all triples being type-valid and $y$ being well-formed JSON conforming to Eq.~\\eqref{eq:output-schema}.\n\n\n\\subsection{Grammar Layer}\n\\label{sec:grammar}\n\nThe grammar layer compiles $\\mathcal{O}$ into a context-free grammar (CFG) enforced at every decoding step via logit masking.\nThis compilation proceeds in two stages.\n\n\\paragraph{Schema-to-grammar compilation.}\nWe generate a JSON Schema encoding the structure in Eq.~\\eqref{eq:output-schema} with \\texttt{enum} constraints restricting entity types to $\\mathcal{E}$ and relation types to $\\mathcal{R}$.\nThis schema is compiled into an EBNF grammar via XGrammar~\\cite{dong2025xgrammar}, producing a pushdown automaton tracking JSON structure and enum membership.\n\n\\paragraph{Logit masking.}\nAt step $t$, the automaton computes grammar-valid tokens $G(t) \\subseteq V$; all others receive logits $-\\infty$.\nThis simultaneously enforces: (i)~structural validity (well-formed JSON), (ii)~relation vocabulary membership ($r_j \\in \\mathcal{R}$), and (iii)~entity type membership ($\\tau_i \\in \\mathcal{E}$).\nDomain/range constraints are \\emph{not} enforced, as they depend on entity types within each triple—the gap filled by the semantic layer.\n\n\\paragraph{Empirical profile.}\nOn SciERC, grammar constraints eliminate relation vocabulary violations entirely (1.39\\%\\,$\\to$\\,0\\%) and entity type violations entirely (0.40\\%\\,$\\to$\\,0\\%), with no measurable F1 impact.\nDomain/range violations remain effectively unchanged (15.37\\%\\,$\\to$\\,14.84\\%), confirming that grammar constraints enforce structural but not semantic validity.\n\n\n\\subsection{Semantic Layer}\n\\label{sec:semantic}\n\nThe semantic layer enforces domain/range constraints through a stateful logits processor maintaining an entity registry during generation.\n\n\\subsubsection{Entity Registry}\n\\label{sec:entity-registry}\n\nAs the model generates the entity list, the semantic layer builds a registry $\\mathcal{D}: \\text{name} \\to \\text{type}$ mapping each entity to its declared type.\nThis registry is populated incrementally: when the model completes an entry $\\{n_i, \\tau_i\\}$, the pair $(n_i, \\tau_i)$ is added to $\\mathcal{D}$.\nThe registry is then consulted during relation generation to look up the declared types of head and tail entities.\n\n\\subsubsection{Position Detection}\n\\label{sec:position-detection}\n\nAt each step $t$, the processor determines which field is currently being generated by pattern-matching on the decoded prefix.\nWe define five field positions---\\textsc{EntityType}, \\textsc{RelationType}, \\textsc{HeadType}, \\textsc{TailType}, and \\textsc{FreeText}---identified via JSON key patterns (e.g., tokens following \\texttt{\"head\\_type\":} indicate \\textsc{HeadType}).\nSemantic masks activate only at type-bearing positions (\\textsc{HeadType}, \\textsc{TailType}).\n\n\\subsubsection{Dynamic Masking}\n\\label{sec:dynamic-masking}\n\nAt type-bearing positions, the processor computes a semantic mask $S(t) \\subseteq V$ restricting generation to type-valid tokens.\n\n\\paragraph{Head type masking.}\nAt a \\textsc{HeadType} position, the processor considers the entity registry $\\mathcal{D}$ and the current relation type $r_j$ (if already generated).\nIf $h_j \\in \\mathcal{D}$ and $\\mathcal{D}[h_j] \\in \\operatorname{dom}(r_j)$, the mask allows only that registered type: $S(t) = \\{\\operatorname{tok}(\\mathcal{D}[h_j])\\}$, ensuring consistency with both the entity list and domain constraints.\nOtherwise, if $r_j$ is known, the mask falls back to all domain-valid types: $S(t) = \\{\\operatorname{tok}(\\tau) : \\tau \\in \\operatorname{dom}(r_j)\\}$.\nIf $r_j$ is unavailable, no semantic mask is applied.\n\n\\paragraph{Tail type masking.}\nAt a \\textsc{TailType} position, the head type $\\tau^h_j$ is already determined from the decoded prefix.\nThe processor computes $\\operatorname{range}(r_j, \\tau^h_j)$---the valid tail types conditioned on the generated head type (\\S\\ref{sec:formulation}).\nIf $t_j \\in \\mathcal{D}$, the mask further restricts to the registered type when it belongs to this set.\nThis sequential check ($\\tau^h \\in \\operatorname{dom}(r)$, then $\\tau^t \\in \\operatorname{range}(r, \\tau^h)$) achieves exact pair-based enforcement, strictly tighter than an independent range check $\\tau^t \\in \\operatorname{range}(r)$.\n\n\\paragraph{Implementation.}\nEach $\\tau \\in \\mathcal{E}$ is mapped to the token ID of its first subword token; we pre-verify uniqueness across all entity types, which holds for both SciERC (6 entity types) and DocRED (6 entity types, disjoint from SciERC's) with both the Qwen3-8B and Llama-3.1-8B tokenizers.\nThe semantic mask is applied by setting logits of disallowed first-token IDs to $-\\infty$.\n\n\\subsubsection{Grammar-Semantic Interaction}\n\\label{sec:interaction}\n\nThe final mask is the conjunction of $G(t)$ and $S(t)$, permitting only tokens satisfying both layers (formalized in \\S\\ref{sec:composition}).\nThis embodies an \\emph{enabling dependency}: semantic lookup requires relation types to be valid members of $\\mathcal{R}$, guaranteed only by the grammar layer.\nWithout grammar enforcement, the model may generate out-of-vocabulary relation types for which no $\\sigma(r)$ rules exist.\nEmpirically, semantic-only constraints reduce DR by only 24\\% (15.37\\%\\,$\\to$\\,11.65\\%) while failing to eliminate vocabulary violations; the full combination achieves 94\\% DR reduction.\nWhen $S(t) \\cap G(t) = \\emptyset$---the semantic layer would mask out all grammar-valid tokens---the system falls back to grammar-only control, preserving structural validity at the cost of a potential type violation.\nThis \\emph{grammar-first invariant} reflects a deliberate priority ordering: structural integrity is a hard constraint, while type violations are soft errors detectable by downstream validation.\n\n\n\\subsection{Decoding Strategies}\n\\label{sec:strategies}\n\n\\paragraph{S1: Single-pass decoding.}\nBoth constraint layers are active throughout a single generation pass.\nThe entity registry is populated as entities are generated and immediately available for relation-level type checking.\nThis is the simpler and recommended strategy, achieving strong constraint enforcement with higher relation F1 than the two-pass alternative.\n\n\\paragraph{S2: Two-pass decoding.}\\label{sec:s2}\nThe first pass generates only entities under grammar constraints; the extracted entities compile an input-dependent grammar that additionally constrains head and tail names to match declared entities.\nThe second pass generates relations under this tighter grammar plus semantic constraints.\nDetailed comparison is provided in the appendix.\n",
+      "numLines": 118,
+      "startLine": 1,
+      "totalLines": 118
+    }
+  },
+  "sourceToolAssistantUUID": "9f25dab1-09e5-4485-83fd-f80508e699f0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-16T17:35:24.751Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TvU6HhVU9m6KsDqNKvwinr`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section4_composition_draft.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e0a26020-4e0e-4411-b021-e4622c0a0aa0",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ejEsuqF55hHpCD5U5z",
+  "type": "assistant",
+  "uuid": "96ba1b91-8377-4b3c-83d6-9e458f836c01",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5DHiD2jZ5Yw8vGtVdCacv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 4340,
+      "cache_read_input_tokens": 29660,
+      "output_tokens": 314,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4340,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 314,
+          "cache_read_input_tokens": 29660,
+          "cache_creation_input_tokens": 4340,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4340
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 完整性 + 相关工作 + 写作质量**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Ontology Constraints - **论文路径**: `projects/schema_sem…",
+  "leafUuid": "1a36a861-2df2-4763-8b75-34859140e8b5",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-16T17:35:30.753Z_
+
+<details><summary>↩ Tool result · `toolu_016CXum5qqS2pwwsAWzWHSpy`</summary>
+
+```text
+# ACL Rolling Review Form: Complete Assessment Criteria
+
+## Primary Scoring Dimensions
+
+### Overall Assessment (1-5 scale)
+- **5**: "Consider for Award: I think this paper could be considered for an outstanding paper award"
+- **4**: Conference acceptance recommended
+- **3**: "Findings: I think this paper could be accepted to the Findings of the ACL"
+- **2**: Needs substantial revisions for next cycle
+- **1**: Do not resubmit or not relevant to NLP
+
+### Soundness (1-5 scale, half-point increments)
+- **5**: "Excellent: This study is one of the most thorough I have seen"
+- **4**: "Strong: This study provides sufficient support for all of its claims"
+- **3**: "Acceptable: This study provides sufficient support for its main claims"
+- **2**: "Poor: Some of the main claims are not sufficiently supported"
+- **1**: "Major Issues: This study is not yet sufficiently thorough to warrant publication"
+
+### Excitement (1-5 scale, half-point increments)
+- **5**: "Highly Exciting: I would recommend this paper to others"
+- **4**: "Exciting: I would mention this paper to others"
+- **3**: "Interesting: I might mention some points of this paper to others"
+- **2**: "Potentially Interesting: does not resonate with me, but it might with others"
+- **1**: "Not Exciting: does not resonate with me, and I don't think it would with others"
+
+### Reviewer Confidence (1-5 scale)
+- **5**: Positive evaluation; very careful reading
+- **4**: Quite sure; unlikely to have missed important points
+- **3**: Pretty sure; good general knowledge but not exhaustive checking
+- **2**: Can defend evaluation but likely missed some details
+- **1**: "Not my area, or paper is very hard to understand"
+
+## Secondary Assessment Dimensions
+
+**Reproducibility** (1-5): Ranges from easily reproducible to impossible to reproduce
+
+**Datasets** (1-5): Ranges from enabling research direction to no datasets submitted
+
+**Software** (1-5): Ranges from affecting research choices to no software released
+
+**Author Identity Knowledge** (1-5): Ranges from knowing author identity to complete anonymity
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0ec0f97b-b87b-4610-8382-91ffd64f70e5",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "8d236619-972b-44e8-9c4d-b03c93c244e1",
+  "toolUseResult": {
+    "bytes": 25365,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ACL Rolling Review Form: Complete Assessment Criteria\n\n## Primary Scoring Dimensions\n\n### Overall Assessment (1-5 scale)\n- **5**: \"Consider for Award: I think this paper could be considered for an outstanding paper award\"\n- **4**: Conference acceptance recommended\n- **3**: \"Findings: I think this paper could be accepted to the Findings of the ACL\"\n- **2**: Needs substantial revisions for next cycle\n- **1**: Do not resubmit or not relevant to NLP\n\n### Soundness (1-5 scale, half-point increments)\n- **5**: \"Excellent: This study is one of the most thorough I have seen\"\n- **4**: \"Strong: This study provides sufficient support for all of its claims\"\n- **3**: \"Acceptable: This study provides sufficient support for its main claims\"\n- **2**: \"Poor: Some of the main claims are not sufficiently supported\"\n- **1**: \"Major Issues: This study is not yet sufficiently thorough to warrant publication\"\n\n### Excitement (1-5 scale, half-point increments)\n- **5**: \"Highly Exciting: I would recommend this paper to others\"\n- **4**: \"Exciting: I would mention this paper to others\"\n- **3**: \"Interesting: I might mention some points of this paper to others\"\n- **2**: \"Potentially Interesting: does not resonate with me, but it might with others\"\n- **1**: \"Not Exciting: does not resonate with me, and I don't think it would with others\"\n\n### Reviewer Confidence (1-5 scale)\n- **5**: Positive evaluation; very careful reading\n- **4**: Quite sure; unlikely to have missed important points\n- **3**: Pretty sure; good general knowledge but not exhaustive checking\n- **2**: Can defend evaluation but likely missed some details\n- **1**: \"Not my area, or paper is very hard to understand\"\n\n## Secondary Assessment Dimensions\n\n**Reproducibility** (1-5): Ranges from easily reproducible to impossible to reproduce\n\n**Datasets** (1-5): Ranges from enabling research direction to no datasets submitted\n\n**Software** (1-5): Ranges from affecting research choices to no software released\n\n**Author Identity Knowledge** (1-5): Ranges from knowing author identity to complete anonymity",
+    "durationMs": 6800,
+    "url": "https://aclrollingreview.org/reviewform"
+  },
+  "sourceToolAssistantUUID": "0ec0f97b-b87b-4610-8382-91ffd64f70e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-16T17:35:33.707Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me continue reading the remaining sections.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8d236619-972b-44e8-9c4d-b03c93c244e1",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ekA7CmmR9azT48TiPt",
+  "type": "assistant",
+  "uuid": "3e1a01b9-fe59-4326-9a78-fd48b5d599c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UPHWcQdNnUZZfu9fL2Hpcb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4390,
+      "cache_creation_input_tokens": 879,
+      "cache_read_input_tokens": 34000,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 879,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 4390,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 34000,
+          "cache_creation_input_tokens": 879,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 879
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-16T17:35:36.092Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01WhCBSLLuBTyExJWEdv6D69`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3e1a01b9-fe59-4326-9a78-fd48b5d599c2",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ekA7CmmR9azT48TiPt",
+  "type": "assistant",
+  "uuid": "d7f8148b-4233-4f6d-9527-376c50afd237",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UPHWcQdNnUZZfu9fL2Hpcb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4390,
+      "cache_creation_input_tokens": 879,
+      "cache_read_input_tokens": 34000,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 879,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 4390,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 34000,
+          "cache_creation_input_tokens": 879,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 879
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-16T17:35:36.100Z_
+
+<details><summary>↩ Tool result · `toolu_01WhCBSLLuBTyExJWEdv6D69`</summary>
+
+```text
+1	% §5.1 Experimental Setup and Violation Landscape
+2	% Compressed from standalone section. main.tex provides \subsection header.
+3	% exp_ids: mvp_phase0_violation_rate, mvp_phase0_scierc_schema,
+4	%          mvp_phase0_violation_rate_docred, mvp_phase0_docred_schema
+5	
+6	\label{sec:violation_landscape}
+7	
+8	\paragraph{Setup.}
+9	We evaluate Qwen3-8B~\cite{qwen2025qwen3} under zero-shot greedy decoding on two IE benchmarks:
+10	\textbf{SciERC}~\cite{luan2018scierc} (551 test sentences, 7 relations, avg.\ 26.1 valid type pairs per relation) and \textbf{DocRED}~\cite{yao2019docred} (998 dev documents,\footnote{DocRED test set annotations are not publicly available; following prior work, we evaluate on the development set (998 documents).} 96 relations, avg.\ 5.68 valid pairs).
+11	We measure four violation categories: \textbf{Domain/Range (DR)} violations where $(\mathrm{type}(h), \mathrm{type}(t)) \notin \sigma(r)$; \textbf{Relation Vocabulary (RV)} where $r \notin \mathcal{R}$; \textbf{Entity Type (ET)} where $e \notin \mathcal{E}$; and \textbf{Cross-Field Consistency (CF)} where the same entity receives different types across triples.
+12	Cross-model validation with Llama-3.1-8B-Instruct is reported in \S\ref{sec:cross-model}.
+13	
+14	\paragraph{Violation distribution.}
+15	Table~\ref{tab:prompt_comparison} reports violation rates.
+16	DR violations affect 15.37\% of triples on SciERC and 18.46\% on DocRED---comparable rates despite a 14$\times$ difference in ontology size---indicating that violation severity is driven by \emph{constraint tightness} rather than ontology scale.
+17	RV violations on DocRED are dramatically higher (29.66\% vs.\ 1.39\%), indicating that 96 relation types exceed the model's capacity to reproduce a target vocabulary from a single prompt.
+18	Per-relation rates (Figure~\ref{fig:per_relation_dr}) vary by over 40 percentage points: \textsc{Compare} at 42.4\% vs.\ \textsc{Used-for} at 0.76\%, correlating with tightness---tight constraints (few valid type pairs) produce systematic failures.
+19	
+20	\begin{table}[t]
+21	\centering
+22	\caption{Violation rates (\%) under unconstrained and schema-informed prompting (Qwen3-8B, zero-shot).}
+23	\label{tab:prompt_comparison}
+24	\resizebox{\columnwidth}{!}{%
+25	\begin{tabular}{ll cccc}
+26	\toprule
+27	Dataset & Prompt & DR$\downarrow$ & RV$\downarrow$ & ET$\downarrow$ & CF$\downarrow$ \\
+28	\midrule
+29	\multirow{2}{*}{SciERC} & Unconstrained & 15.4 & 1.4 & 0.4 & 0.1 \\
+30	 & Schema-informed & 5.8 & 0.3 & \textbf{0.0} & --- \\
+31	\midrule
+32	\multirow{2}{*}{DocRED} & Unconstrained & 18.5 & 29.7 & 2.5 & 0.1 \\
+33	 & Schema-informed & 12.8 & 18.4 & 0.2 & 0.2 \\
+34	\bottomrule
+35	\end{tabular}%
+36	}
+37	\end{table}
+38	
+39	\begin{figure}[t]
+40	\centering
+41	\includegraphics[width=\columnwidth]{figures/fig2_per_relation_dr.pdf}
+42	\caption{Per-relation DR violation rates on SciERC. Rates correlate with constraint tightness.}
+43	\label{fig:per_relation_dr}
+44	\end{figure}
+45	
+46	\paragraph{Prompt insufficiency.}
+47	Schema-informed prompting---augmenting the prompt with valid type pairs---reduces DR by 62.4\% on SciERC but only 30.4\% on DocRED (Table~\ref{tab:prompt_comparison}), and is unreliable per-relation: DR for \textsc{Evaluate-for} \emph{increases} by 5.8\,pp.
+48	These limitations motivate decoding-time enforcement (\S\ref{sec:method}).
+49	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d7f8148b-4233-4f6d-9527-376c50afd237",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "8b39c004-ea83-45b1-9c1c-08608ba51297",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section3_violation_landscape.tex",
+      "content": "% §5.1 Experimental Setup and Violation Landscape\n% Compressed from standalone section. main.tex provides \\subsection header.\n% exp_ids: mvp_phase0_violation_rate, mvp_phase0_scierc_schema,\n%          mvp_phase0_violation_rate_docred, mvp_phase0_docred_schema\n\n\\label{sec:violation_landscape}\n\n\\paragraph{Setup.}\nWe evaluate Qwen3-8B~\\cite{qwen2025qwen3} under zero-shot greedy decoding on two IE benchmarks:\n\\textbf{SciERC}~\\cite{luan2018scierc} (551 test sentences, 7 relations, avg.\\ 26.1 valid type pairs per relation) and \\textbf{DocRED}~\\cite{yao2019docred} (998 dev documents,\\footnote{DocRED test set annotations are not publicly available; following prior work, we evaluate on the development set (998 documents).} 96 relations, avg.\\ 5.68 valid pairs).\nWe measure four violation categories: \\textbf{Domain/Range (DR)} violations where $(\\mathrm{type}(h), \\mathrm{type}(t)) \\notin \\sigma(r)$; \\textbf{Relation Vocabulary (RV)} where $r \\notin \\mathcal{R}$; \\textbf{Entity Type (ET)} where $e \\notin \\mathcal{E}$; and \\textbf{Cross-Field Consistency (CF)} where the same entity receives different types across triples.\nCross-model validation with Llama-3.1-8B-Instruct is reported in \\S\\ref{sec:cross-model}.\n\n\\paragraph{Violation distribution.}\nTable~\\ref{tab:prompt_comparison} reports violation rates.\nDR violations affect 15.37\\% of triples on SciERC and 18.46\\% on DocRED---comparable rates despite a 14$\\times$ difference in ontology size---indicating that violation severity is driven by \\emph{constraint tightness} rather than ontology scale.\nRV violations on DocRED are dramatically higher (29.66\\% vs.\\ 1.39\\%), indicating that 96 relation types exceed the model's capacity to reproduce a target vocabulary from a single prompt.\nPer-relation rates (Figure~\\ref{fig:per_relation_dr}) vary by over 40 percentage points: \\textsc{Compare} at 42.4\\% vs.\\ \\textsc{Used-for} at 0.76\\%, correlating with tightness---tight constraints (few valid type pairs) produce systematic failures.\n\n\\begin{table}[t]\n\\centering\n\\caption{Violation rates (\\%) under unconstrained and schema-informed prompting (Qwen3-8B, zero-shot).}\n\\label{tab:prompt_comparison}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{ll cccc}\n\\toprule\nDataset & Prompt & DR$\\downarrow$ & RV$\\downarrow$ & ET$\\downarrow$ & CF$\\downarrow$ \\\\\n\\midrule\n\\multirow{2}{*}{SciERC} & Unconstrained & 15.4 & 1.4 & 0.4 & 0.1 \\\\\n & Schema-informed & 5.8 & 0.3 & \\textbf{0.0} & --- \\\\\n\\midrule\n\\multirow{2}{*}{DocRED} & Unconstrained & 18.5 & 29.7 & 2.5 & 0.1 \\\\\n & Schema-informed & 12.8 & 18.4 & 0.2 & 0.2 \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig2_per_relation_dr.pdf}\n\\caption{Per-relation DR violation rates on SciERC. Rates correlate with constraint tightness.}\n\\label{fig:per_relation_dr}\n\\end{figure}\n\n\\paragraph{Prompt insufficiency.}\nSchema-informed prompting---augmenting the prompt with valid type pairs---reduces DR by 62.4\\% on SciERC but only 30.4\\% on DocRED (Table~\\ref{tab:prompt_comparison}), and is unreliable per-relation: DR for \\textsc{Evaluate-for} \\emph{increases} by 5.8\\,pp.\nThese limitations motivate decoding-time enforcement (\\S\\ref{sec:method}).\n",
+      "numLines": 49,
+      "startLine": 1,
+      "totalLines": 49
+    }
+  },
+  "sourceToolAssistantUUID": "d7f8148b-4233-4f6d-9527-376c50afd237",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-16T17:35:37.197Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01Wmq9tHeafRj9cPDEbLM3gB`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8b39c004-ea83-45b1-9c1c-08608ba51297",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ekA7CmmR9azT48TiPt",
+  "type": "assistant",
+  "uuid": "66866321-f9fc-4b59-9b47-dee52b955494",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UPHWcQdNnUZZfu9fL2Hpcb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4390,
+      "cache_creation_input_tokens": 879,
+      "cache_read_input_tokens": 34000,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 879,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 4390,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 34000,
+          "cache_creation_input_tokens": 879,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 879
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-16T17:35:37.205Z_
+
+<details><summary>↩ Tool result · `toolu_01Wmq9tHeafRj9cPDEbLM3gB`</summary>
+
+```text
+1	% Section 5 — SciERC Results (Draft)
+2	% Data source: Phase 2 SciERC registry experiments
+3	% exp_ids: phase2_scierc_unconstrained, phase2_scierc_grammar_only,
+4	%          phase2_scierc_semantic_only, phase2_scierc_full_s1, phase2_scierc_full_s2
+5	% All numbers verified against registry 2026-05-14.
+6	
+7	\subsection{Results on SciERC}
+8	\label{sec:scierc-results}
+9	
+10	Table~\ref{tab:scierc-ablation} presents the five-way ablation on SciERC,
+11	evaluating each constraint layer independently and in combination.
+12	All experiments use Qwen3-8B in a zero-shot setting on 551 test documents
+13	with identical prompts and decoding parameters;
+14	only the active constraint layers differ.
+15	
+16	% ──────────────────────────────────────────
+17	%  Table: SciERC five-way ablation
+18	% ──────────────────────────────────────────
+19	\begin{table}[t]
+20	\centering
+21	\small
+22	\setlength{\tabcolsep}{3.6pt}
+23	\resizebox{\columnwidth}{!}{%
+24	\begin{tabular}{@{}l rrrrr rr@{}}
+25	\toprule
+26	& \multicolumn{5}{c}{\textbf{Violation Rates (\%)}}
+27	& \multicolumn{2}{c}{\textbf{F1}} \\
+28	\cmidrule(lr){2-6} \cmidrule(l){7-8}
+29	\textbf{Mode}
+30	  & DR\,$\downarrow$ & $\Delta$DR
+31	  & RV\,$\downarrow$ & ET\,$\downarrow$ & CF
+32	  & Rel.\,$\uparrow$ & Ent.\,$\uparrow$ \\
+33	\midrule
+34	Unconstrained
+35	  & 15.37 & ---
+36	  & 1.39  & 0.40
+37	  & 0.08
+38	  & 8.23  & 31.01 \\
+39	Grammar
+40	  & 14.84 & $\downarrow$3\%
+41	  & \textbf{0} & \textbf{0}
+42	  & 0.08
+43	  & 8.23  & 30.98 \\
+44	Semantic
+45	  & 11.65 & $\downarrow$24\%
+46	  & 1.51  & 0.40
+47	  & 2.71
+48	  & 8.15  & 31.01 \\
+49	Full (S1)
+50	  & \textbf{0.93} & $\downarrow$\textbf{94\%}
+51	  & \textbf{0} & \textbf{0}
+52	  & 9.90
+53	  & \textbf{8.36} & 30.98 \\
+54	Full (S2)
+55	  & 0.97  & $\downarrow$94\%
+56	  & \textbf{0} & \textbf{0}
+57	  & 8.03
+58	  & 8.03  & \textbf{31.90} \\
+59	\bottomrule
+60	\end{tabular}}%
+61	\caption{Five-way ablation on SciERC (551 documents, Qwen3-8B, zero-shot).
+62	DR: domain/range violation rate;
+63	RV: relation vocabulary violation rate;
+64	ET: entity type violation rate;
+65	CF: cross-field consistency violation rate.
+66	$\Delta$DR: relative DR reduction vs.\ the unconstrained baseline.
+67	$\downarrow$\,/\,$\uparrow$: lower\,/\,higher is better.
+68	Best per column in \textbf{bold} (CF excluded---see text).
+69	F1 scores are multiplied by 100.
+70	Statistical significance assessed via bootstrap resampling (10{,}000 iterations).}
+71	\label{tab:scierc-ablation}
+72	\end{table}
+73	
+74	% ──────────────────────────────────────────
+75	%  (a) Core result
+76	% ──────────────────────────────────────────
+77	\paragraph{Core result: DR elimination at zero F1 cost.}
+78	The full two-layer constraint configuration (S1) reduces domain/range
+79	violations from 15.37\% to 0.93\%, a 94\% relative reduction,
+80	% phase2_scierc_unconstrained: DR=0.1537; phase2_scierc_full_s1: DR=0.0093
+81	while relation F1 moves from 8.23 to 8.36 ($+$0.13\,pp; bootstrap 95\% CI [$-$0.24, $+$0.58]\,pp, $p = 0.58$, 10{,}000 iterations).
+82	% phase2_scierc_unconstrained: R-F1=0.0823; phase2_scierc_full_s1: R-F1=0.0836
+83	% bootstrap: delta=+0.13pp, CI=[-0.24,+0.58], p=0.5824
+84	The difference is not statistically significant ($p = 0.58$), confirming
+85	that constraint enforcement is F1-neutral on this dataset.
+86	At the per-relation level, violations drop from 42.42\% to 2.82\% on
+87	\textsc{Compare}, from 33.54\% to 1.21\% on \textsc{Feature-of}, and
+88	reach 0\% on four of seven relation types
+89	(\textsc{Conjunction}, \textsc{Hyponym-of}, \textsc{Part-of},
+90	\textsc{Used-for}).
+91	% phase2_scierc_full_s1 per_relation_dr: Compare=0.0282,
+92	%   Feature-of=0.0121, Hyponym-of=0, Part-of=0, Used-for=0, Conjunction=0
+93	However, full constraint enforcement elevates cross-field consistency
+94	violations from 0.08\% to 9.90\%;
+95	% phase2_scierc_unconstrained: CF=0.0008; phase2_scierc_full_s1: CF=0.099
+96	we analyze this trade-off in Section~\ref{sec:discussion}.
+97	
+98	% ──────────────────────────────────────────
+99	%  (b) Grammar layer
+100	% ──────────────────────────────────────────
+101	\paragraph{Grammar layer: cost-free structural guarantees.}
+102	Grammar-only constraints eliminate RV (1.39\%\,$\to$\,0\%) and ET (0.40\%\,$\to$\,0\%) with no F1 impact, while DR remains unchanged (15.37\%\,$\to$\,14.84\%), confirming that grammar constraints enforce structural validity but not semantic constraints.
+103	% phase2_scierc_grammar_only: RV=0, ET=0, DR=0.1484, R-F1=0.0823
+104	
+105	% ──────────────────────────────────────────
+106	%  (c) Enabling dependency
+107	% ──────────────────────────────────────────
+108	\paragraph{Enabling dependency.}
+109	Semantic-only constraints reduce DR by only 24\% (15.37\%\,$\to$\,11.65\%) and cannot eliminate RV (1.51\%) or ET (0.40\%).
+110	% phase2_scierc_semantic_only: DR=0.1165, RV=0.0151, ET=0.004
+111	Adding the grammar layer yields a further 92\% relative reduction (11.65\%\,$\to$\,0.93\%), demonstrating an \emph{enabling dependency}: without grammar-enforced vocabulary, the semantic layer encounters OOV relation types with no domain/range rules.
+112	% phase2_scierc_full_s1: DR=0.0093
+113	
+114	% ──────────────────────────────────────────
+115	%  (d) S1 vs S2
+116	% ──────────────────────────────────────────
+117	\paragraph{S1 vs.\ S2.}
+118	S2 achieves comparable DR (0.97\%) but lower R-F1 (8.03 vs.\ 8.36) with fewer triples (1{,}644 vs.\ 1{,}729) and does not resolve the CF trade-off (8.03\% vs.\ 9.90\%); we adopt S1 as the primary configuration.
+119	% phase2_scierc_full_s2: DR=0.0097, R-F1=0.0803, CF=0.0803, triples=1644
+120	
+121	% ──────────────────────────────────────────
+122	%  (e) Composability with Fine-Tuning
+123	%  exp_ids: lora_scierc_unconstrained, lora_scierc_full_s1
+124	% ──────────────────────────────────────────
+125	\paragraph{Composability with fine-tuning.}
+126	\label{sec:composability}
+127	Table~\ref{tab:composability} presents the composability matrix on SciERC for both Qwen3-8B and Llama-3.1-8B (zero-shot vs.\ LoRA fine-tuned $\times$ unconstrained vs.\ full S1), testing whether OntoCoDec composes with task-specific fine-tuning across model families.
+128	% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,
+129	%          w5_lora_scierc_unconstrained_eval, w5_lora_scierc_constrained_eval,
+130	%          llama_scierc_unconstrained, llama_scierc_full_s1,
+131	%          w5_llama_lora_scierc_unconstrained_eval, w5_llama_lora_scierc_constrained_eval
+132	
+133	For Qwen3-8B, fine-tuning alone raises R-F1 from 8.23 to 43.86 ($+$35.63\,pp) and E-F1 from 31.01 to 67.05 ($+$36.04\,pp), while reducing DR from 15.37\% to 1.95\% (87\% relative reduction).
+134	% w5_lora_scierc_unconstrained_eval: DR=0.0195, R-F1=0.4386, E-F1=0.6705
+135	The residual 1.95\% DR concentrates on tight-constraint relations: \textsc{Evaluate-for} (13.13\%), \textsc{Part-of} (5.77\%), and \textsc{Compare} (5.00\%) (per-relation breakdown in Appendix~\ref{app:lora-per-relation}).
+136	Adding OntoCoDec eliminates the remaining DR entirely (1.95\%\,$\to$\,0\%) with R-F1 cost of $-$0.09\,pp (43.86\,$\to$\,43.77) and unchanged E-F1 (67.05).
+137	% w5_lora_scierc_constrained_eval: DR=0, R-F1=0.4377, E-F1=0.6705, CF=0.0118
+138	
+139	Llama-3.1-8B exhibits the same pattern.
+140	Fine-tuning raises R-F1 from 2.68 to 45.45 ($+$42.77\,pp) and E-F1 from 23.56 to 67.76 ($+$44.20\,pp), while reducing DR from 13.34\% to 1.11\%.
+141	% w5_llama_lora_scierc_unconstrained_eval: DR=0.0111, R-F1=0.4545, E-F1=0.6776
+142	Adding OntoCoDec reduces DR by 92\% (1.11\%\,$\to$\,0.09\%) with R-F1 change of $+$0.02\,pp (45.45\,$\to$\,45.47) and unchanged E-F1 (67.76).
+143	% w5_llama_lora_scierc_constrained_eval: DR=0.0009, R-F1=0.4547, E-F1=0.6776, CF=0.0046
+144	
+145	On DocRED, the same pattern holds: adding S1 to fine-tuned Qwen yields DR 0.76\%\,$\to$\,0.01\% ($-$98.7\%, R-F1 $-$0.30\,pp)\footnote{Qwen DocRED all-set R-F1 change is $-$0.30\,pp (40.86\,$\to$\,40.56); excluding parse-failure documents ($+$1.4\,pp increase, 7.1\%\,$\to$\,8.5\%) yields $+$0.03\,pp. We report all-set as primary.} and to Llama DR 0.49\%\,$\to$\,0.20\% ($-$59.2\%, R-F1 $+$0.51\,pp).
+146	% w5_qwen_docred_lora_constrained_eval: DR=0.01%, R-F1=40.56; w5_llama_docred_lora_constrained_eval: DR=0.20%, R-F1=44.23
+147	
+148	Across both models and both datasets, fine-tuned + S1 yields DR\,$\leq$\,0.20\% with R-F1 change within $\pm$0.6\,pp, validating Claim~3: fine-tuning and OntoCoDec compose along orthogonal axes.
+149	Four-way ablation (Appendix~\ref{app:ft-ablation}) confirms: grammar is a no-op post-fine-tuning (DR change $<$0.2\,pp, 4/4 settings); the semantic layer alone reduces DR by 39--72\%, making it the sole effective constraint defense in fine-tuned regimes.
+150	
+151	Two secondary observations support this interpretation.
+152	First, CF interference drops substantially under fine-tuning for both models: Qwen from $+$9.82\,pp to $+$1.18\,pp, Llama from $+$6.32\,pp to $+$0.46\,pp,
+153	% Qwen: ZS CF delta = 9.90-0.08 = 9.82pp, FT CF delta = 1.18-0 = 1.18pp
+154	% Llama: ZS CF delta = 6.56-0.24 = 6.32pp, FT CF delta = 0.46-0 = 0.46pp
+155	because fine-tuned per-slot type predictions are more consistent with the entity registry;
+156	for Qwen, the residual 1.18\% traces to \textsc{Generic}$\leftrightarrow$X schema-level ambiguity (Appendix~\ref{app:cf-distribution}) rather than enforcement failure.
+157	Second, in the zero-shot setting, S1 R-F1 impact is negligible for both models (Qwen $+$0.13\,pp, Llama $-$0.14\,pp),
+158	% phase2_scierc_unconstrained: R-F1=0.0823; phase2_scierc_full_s1: R-F1=0.0836
+159	% llama_scierc_unconstrained: R-F1=0.0268; llama_scierc_full_s1: R-F1=0.0254
+160	confirming that constraint enforcement is F1-neutral regardless of base model quality.
+161	
+162	\begin{table}[t]
+163	\centering
+164	\small
+165	\setlength{\tabcolsep}{3pt}
+166	\resizebox{\columnwidth}{!}{%
+167	\begin{tabular}{@{}lll rrrr r@{}}
+168	\toprule
+169	\textbf{Model} & \textbf{Setting} & \textbf{Mode}
+170	  & \textbf{DR\,$\downarrow$} & \textbf{CF}
+171	  & \textbf{R-F1\,$\uparrow$} & \textbf{E-F1\,$\uparrow$}
+172	  & \textbf{$\Delta$DR} \\
+173	\midrule
+174	\multirow{4}{*}{Qwen3-8B}
+175	  & \multirow{2}{*}{Zero-shot}
+176	    & Unconstr.\ & 15.37 & 0.08 & 8.23  & 31.01 & --- \\
+177	  & & Full S1    &  0.93 & 9.90 & 8.36  & 30.98 & $\downarrow$94\% \\
+178	\cmidrule(l){2-8}
+179	  & \multirow{2}{*}{LoRA}
+180	    & Unconstr.\ &  1.95 & 0    & 43.86 & 67.05 & --- \\
+181	  & & Full S1    & \textbf{0} & 1.18 & 43.77 & 67.05 & $\downarrow$100\% \\
+182	\midrule
+183	\multirow{4}{*}{Llama-3.1-8B}
+184	  & \multirow{2}{*}{Zero-shot}
+185	    & Unconstr.\ & 13.34 & 0.24 & 2.68  & 23.56 & --- \\
+186	  & & Full S1    &  0.08 & 6.56 & 2.54  & 23.49 & $\downarrow$99\% \\
+187	\cmidrule(l){2-8}
+188	  & \multirow{2}{*}{LoRA}
+189	    & Unconstr.\ &  1.11 & 0    & 45.45 & 67.76 & --- \\
+190	  & & Full S1    &  0.09 & 0.46 & 45.47 & 67.76 & $\downarrow$92\% \\
+191	\bottomrule
+192	\end{tabular}}%
+193	\caption{Composability matrix on SciERC (551 documents):
+194	zero-shot vs.\ LoRA fine-tuned $\times$ unconstrained vs.\ full S1
+195	for Qwen3-8B and Llama-3.1-8B.
+196	$\Delta$DR: relative DR reduction vs.\ the same-row unconstrained baseline.
+197	Fine-tuning alone leaves residual DR (1--2\%);
+198	adding S1 reduces it to $\leq$\,0.09\% with R-F1 change within $\pm$0.1\,pp.
+199	DocRED replication: Qwen DR $-$98.7\% ($-$0.30\,pp), Llama DR $-$59.2\% ($+$0.51\,pp).
+200	F1\,$\times$100.}
+201	\label{tab:composability}
+202	\end{table}
+203	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "66866321-f9fc-4b59-9b47-dee52b955494",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "15dc8fde-de54-4b66-bc54-57ba88cf71d6",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_scierc_draft.tex",
+      "content": "% Section 5 — SciERC Results (Draft)\n% Data source: Phase 2 SciERC registry experiments\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_grammar_only,\n%          phase2_scierc_semantic_only, phase2_scierc_full_s1, phase2_scierc_full_s2\n% All numbers verified against registry 2026-05-14.\n\n\\subsection{Results on SciERC}\n\\label{sec:scierc-results}\n\nTable~\\ref{tab:scierc-ablation} presents the five-way ablation on SciERC,\nevaluating each constraint layer independently and in combination.\nAll experiments use Qwen3-8B in a zero-shot setting on 551 test documents\nwith identical prompts and decoding parameters;\nonly the active constraint layers differ.\n\n% ──────────────────────────────────────────\n%  Table: SciERC five-way ablation\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.6pt}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}l rrrrr rr@{}}\n\\toprule\n& \\multicolumn{5}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){2-6} \\cmidrule(l){7-8}\n\\textbf{Mode}\n  & DR\\,$\\downarrow$ & $\\Delta$DR\n  & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel.\\,$\\uparrow$ & Ent.\\,$\\uparrow$ \\\\\n\\midrule\nUnconstrained\n  & 15.37 & ---\n  & 1.39  & 0.40\n  & 0.08\n  & 8.23  & 31.01 \\\\\nGrammar\n  & 14.84 & $\\downarrow$3\\%\n  & \\textbf{0} & \\textbf{0}\n  & 0.08\n  & 8.23  & 30.98 \\\\\nSemantic\n  & 11.65 & $\\downarrow$24\\%\n  & 1.51  & 0.40\n  & 2.71\n  & 8.15  & 31.01 \\\\\nFull (S1)\n  & \\textbf{0.93} & $\\downarrow$\\textbf{94\\%}\n  & \\textbf{0} & \\textbf{0}\n  & 9.90\n  & \\textbf{8.36} & 30.98 \\\\\nFull (S2)\n  & 0.97  & $\\downarrow$94\\%\n  & \\textbf{0} & \\textbf{0}\n  & 8.03\n  & 8.03  & \\textbf{31.90} \\\\\n\\bottomrule\n\\end{tabular}}%\n\\caption{Five-way ablation on SciERC (551 documents, Qwen3-8B, zero-shot).\nDR: domain/range violation rate;\nRV: relation vocabulary violation rate;\nET: entity type violation rate;\nCF: cross-field consistency violation rate.\n$\\Delta$DR: relative DR reduction vs.\\ the unconstrained baseline.\n$\\downarrow$\\,/\\,$\\uparrow$: lower\\,/\\,higher is better.\nBest per column in \\textbf{bold} (CF excluded---see text).\nF1 scores are multiplied by 100.\nStatistical significance assessed via bootstrap resampling (10{,}000 iterations).}\n\\label{tab:scierc-ablation}\n\\end{table}\n\n% ──────────────────────────────────────────\n%  (a) Core result\n% ──────────────────────────────────────────\n\\paragraph{Core result: DR elimination at zero F1 cost.}\nThe full two-layer constraint configuration (S1) reduces domain/range\nviolations from 15.37\\% to 0.93\\%, a 94\\% relative reduction,\n% phase2_scierc_unconstrained: DR=0.1537; phase2_scierc_full_s1: DR=0.0093\nwhile relation F1 moves from 8.23 to 8.36 ($+$0.13\\,pp; bootstrap 95\\% CI [$-$0.24, $+$0.58]\\,pp, $p = 0.58$, 10{,}000 iterations).\n% phase2_scierc_unconstrained: R-F1=0.0823; phase2_scierc_full_s1: R-F1=0.0836\n% bootstrap: delta=+0.13pp, CI=[-0.24,+0.58], p=0.5824\nThe difference is not statistically significant ($p = 0.58$), confirming\nthat constraint enforcement is F1-neutral on this dataset.\nAt the per-relation level, violations drop from 42.42\\% to 2.82\\% on\n\\textsc{Compare}, from 33.54\\% to 1.21\\% on \\textsc{Feature-of}, and\nreach 0\\% on four of seven relation types\n(\\textsc{Conjunction}, \\textsc{Hyponym-of}, \\textsc{Part-of},\n\\textsc{Used-for}).\n% phase2_scierc_full_s1 per_relation_dr: Compare=0.0282,\n%   Feature-of=0.0121, Hyponym-of=0, Part-of=0, Used-for=0, Conjunction=0\nHowever, full constraint enforcement elevates cross-field consistency\nviolations from 0.08\\% to 9.90\\%;\n% phase2_scierc_unconstrained: CF=0.0008; phase2_scierc_full_s1: CF=0.099\nwe analyze this trade-off in Section~\\ref{sec:discussion}.\n\n% ──────────────────────────────────────────\n%  (b) Grammar layer\n% ──────────────────────────────────────────\n\\paragraph{Grammar layer: cost-free structural guarantees.}\nGrammar-only constraints eliminate RV (1.39\\%\\,$\\to$\\,0\\%) and ET (0.40\\%\\,$\\to$\\,0\\%) with no F1 impact, while DR remains unchanged (15.37\\%\\,$\\to$\\,14.84\\%), confirming that grammar constraints enforce structural validity but not semantic constraints.\n% phase2_scierc_grammar_only: RV=0, ET=0, DR=0.1484, R-F1=0.0823\n\n% ──────────────────────────────────────────\n%  (c) Enabling dependency\n% ──────────────────────────────────────────\n\\paragraph{Enabling dependency.}\nSemantic-only constraints reduce DR by only 24\\% (15.37\\%\\,$\\to$\\,11.65\\%) and cannot eliminate RV (1.51\\%) or ET (0.40\\%).\n% phase2_scierc_semantic_only: DR=0.1165, RV=0.0151, ET=0.004\nAdding the grammar layer yields a further 92\\% relative reduction (11.65\\%\\,$\\to$\\,0.93\\%), demonstrating an \\emph{enabling dependency}: without grammar-enforced vocabulary, the semantic layer encounters OOV relation types with no domain/range rules.\n% phase2_scierc_full_s1: DR=0.0093\n\n% ──────────────────────────────────────────\n%  (d) S1 vs S2\n% ──────────────────────────────────────────\n\\paragraph{S1 vs.\\ S2.}\nS2 achieves comparable DR (0.97\\%) but lower R-F1 (8.03 vs.\\ 8.36) with fewer triples (1{,}644 vs.\\ 1{,}729) and does not resolve the CF trade-off (8.03\\% vs.\\ 9.90\\%); we adopt S1 as the primary configuration.\n% phase2_scierc_full_s2: DR=0.0097, R-F1=0.0803, CF=0.0803, triples=1644\n\n% ──────────────────────────────────────────\n%  (e) Composability with Fine-Tuning\n%  exp_ids: lora_scierc_unconstrained, lora_scierc_full_s1\n% ──────────────────────────────────────────\n\\paragraph{Composability with fine-tuning.}\n\\label{sec:composability}\nTable~\\ref{tab:composability} presents the composability matrix on SciERC for both Qwen3-8B and Llama-3.1-8B (zero-shot vs.\\ LoRA fine-tuned $\\times$ unconstrained vs.\\ full S1), testing whether OntoCoDec composes with task-specific fine-tuning across model families.\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          w5_lora_scierc_unconstrained_eval, w5_lora_scierc_constrained_eval,\n%          llama_scierc_unconstrained, llama_scierc_full_s1,\n%          w5_llama_lora_scierc_unconstrained_eval, w5_llama_lora_scierc_constrained_eval\n\nFor Qwen3-8B, fine-tuning alone raises R-F1 from 8.23 to 43.86 ($+$35.63\\,pp) and E-F1 from 31.01 to 67.05 ($+$36.04\\,pp), while reducing DR from 15.37\\% to 1.95\\% (87\\% relative reduction).\n% w5_lora_scierc_unconstrained_eval: DR=0.0195, R-F1=0.4386, E-F1=0.6705\nThe residual 1.95\\% DR concentrates on tight-constraint relations: \\textsc{Evaluate-for} (13.13\\%), \\textsc{Part-of} (5.77\\%), and \\textsc{Compare} (5.00\\%) (per-relation breakdown in Appendix~\\ref{app:lora-per-relation}).\nAdding OntoCoDec eliminates the remaining DR entirely (1.95\\%\\,$\\to$\\,0\\%) with R-F1 cost of $-$0.09\\,pp (43.86\\,$\\to$\\,43.77) and unchanged E-F1 (67.05).\n% w5_lora_scierc_constrained_eval: DR=0, R-F1=0.4377, E-F1=0.6705, CF=0.0118\n\nLlama-3.1-8B exhibits the same pattern.\nFine-tuning raises R-F1 from 2.68 to 45.45 ($+$42.77\\,pp) and E-F1 from 23.56 to 67.76 ($+$44.20\\,pp), while reducing DR from 13.34\\% to 1.11\\%.\n% w5_llama_lora_scierc_unconstrained_eval: DR=0.0111, R-F1=0.4545, E-F1=0.6776\nAdding OntoCoDec reduces DR by 92\\% (1.11\\%\\,$\\to$\\,0.09\\%) with R-F1 change of $+$0.02\\,pp (45.45\\,$\\to$\\,45.47) and unchanged E-F1 (67.76).\n% w5_llama_lora_scierc_constrained_eval: DR=0.0009, R-F1=0.4547, E-F1=0.6776, CF=0.0046\n\nOn DocRED, the same pattern holds: adding S1 to fine-tuned Qwen yields DR 0.76\\%\\,$\\to$\\,0.01\\% ($-$98.7\\%, R-F1 $-$0.30\\,pp)\\footnote{Qwen DocRED all-set R-F1 change is $-$0.30\\,pp (40.86\\,$\\to$\\,40.56); excluding parse-failure documents ($+$1.4\\,pp increase, 7.1\\%\\,$\\to$\\,8.5\\%) yields $+$0.03\\,pp. We report all-set as primary.} and to Llama DR 0.49\\%\\,$\\to$\\,0.20\\% ($-$59.2\\%, R-F1 $+$0.51\\,pp).\n% w5_qwen_docred_lora_constrained_eval: DR=0.01%, R-F1=40.56; w5_llama_docred_lora_constrained_eval: DR=0.20%, R-F1=44.23\n\nAcross both models and both datasets, fine-tuned + S1 yields DR\\,$\\leq$\\,0.20\\% with R-F1 change within $\\pm$0.6\\,pp, validating Claim~3: fine-tuning and OntoCoDec compose along orthogonal axes.\nFour-way ablation (Appendix~\\ref{app:ft-ablation}) confirms: grammar is a no-op post-fine-tuning (DR change $<$0.2\\,pp, 4/4 settings); the semantic layer alone reduces DR by 39--72\\%, making it the sole effective constraint defense in fine-tuned regimes.\n\nTwo secondary observations support this interpretation.\nFirst, CF interference drops substantially under fine-tuning for both models: Qwen from $+$9.82\\,pp to $+$1.18\\,pp, Llama from $+$6.32\\,pp to $+$0.46\\,pp,\n% Qwen: ZS CF delta = 9.90-0.08 = 9.82pp, FT CF delta = 1.18-0 = 1.18pp\n% Llama: ZS CF delta = 6.56-0.24 = 6.32pp, FT CF delta = 0.46-0 = 0.46pp\nbecause fine-tuned per-slot type predictions are more consistent with the entity registry;\nfor Qwen, the residual 1.18\\% traces to \\textsc{Generic}$\\leftrightarrow$X schema-level ambiguity (Appendix~\\ref{app:cf-distribution}) rather than enforcement failure.\nSecond, in the zero-shot setting, S1 R-F1 impact is negligible for both models (Qwen $+$0.13\\,pp, Llama $-$0.14\\,pp),\n% phase2_scierc_unconstrained: R-F1=0.0823; phase2_scierc_full_s1: R-F1=0.0836\n% llama_scierc_unconstrained: R-F1=0.0268; llama_scierc_full_s1: R-F1=0.0254\nconfirming that constraint enforcement is F1-neutral regardless of base model quality.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3pt}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lll rrrr r@{}}\n\\toprule\n\\textbf{Model} & \\textbf{Setting} & \\textbf{Mode}\n  & \\textbf{DR\\,$\\downarrow$} & \\textbf{CF}\n  & \\textbf{R-F1\\,$\\uparrow$} & \\textbf{E-F1\\,$\\uparrow$}\n  & \\textbf{$\\Delta$DR} \\\\\n\\midrule\n\\multirow{4}{*}{Qwen3-8B}\n  & \\multirow{2}{*}{Zero-shot}\n    & Unconstr.\\ & 15.37 & 0.08 & 8.23  & 31.01 & --- \\\\\n  & & Full S1    &  0.93 & 9.90 & 8.36  & 30.98 & $\\downarrow$94\\% \\\\\n\\cmidrule(l){2-8}\n  & \\multirow{2}{*}{LoRA}\n    & Unconstr.\\ &  1.95 & 0    & 43.86 & 67.05 & --- \\\\\n  & & Full S1    & \\textbf{0} & 1.18 & 43.77 & 67.05 & $\\downarrow$100\\% \\\\\n\\midrule\n\\multirow{4}{*}{Llama-3.1-8B}\n  & \\multirow{2}{*}{Zero-shot}\n    & Unconstr.\\ & 13.34 & 0.24 & 2.68  & 23.56 & --- \\\\\n  & & Full S1    &  0.08 & 6.56 & 2.54  & 23.49 & $\\downarrow$99\\% \\\\\n\\cmidrule(l){2-8}\n  & \\multirow{2}{*}{LoRA}\n    & Unconstr.\\ &  1.11 & 0    & 45.45 & 67.76 & --- \\\\\n  & & Full S1    &  0.09 & 0.46 & 45.47 & 67.76 & $\\downarrow$92\\% \\\\\n\\bottomrule\n\\end{tabular}}%\n\\caption{Composability matrix on SciERC (551 documents):\nzero-shot vs.\\ LoRA fine-tuned $\\times$ unconstrained vs.\\ full S1\nfor Qwen3-8B and Llama-3.1-8B.\n$\\Delta$DR: relative DR reduction vs.\\ the same-row unconstrained baseline.\nFine-tuning alone leaves residual DR (1--2\\%);\nadding S1 reduces it to $\\leq$\\,0.09\\% with R-F1 change within $\\pm$0.1\\,pp.\nDocRED replication: Qwen DR $-$98.7\\% ($-$0.30\\,pp), Llama DR $-$59.2\\% ($+$0.51\\,pp).\nF1\\,$\\times$100.}\n\\label{tab:composability}\n\\end{table}\n",
+      "numLines": 203,
+      "startLine": 1,
+      "totalLines": 203
+    }
+  },
+  "sourceToolAssistantUUID": "66866321-f9fc-4b59-9b47-dee52b955494",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-16T17:35:37.825Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01P2W69FpY3LoZfSoaCFYAsr`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15dc8fde-de54-4b66-bc54-57ba88cf71d6",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ekA7CmmR9azT48TiPt",
+  "type": "assistant",
+  "uuid": "47976efa-0f54-4936-a188-bf7b55e6ea47",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UPHWcQdNnUZZfu9fL2Hpcb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 4390,
+      "cache_creation_input_tokens": 879,
+      "cache_read_input_tokens": 34000,
+      "output_tokens": 283,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 879,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 4390,
+          "output_tokens": 283,
+          "cache_read_input_tokens": 34000,
+          "cache_creation_input_tokens": 879,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 879
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-16T17:35:37.832Z_
+
+<details><summary>↩ Tool result · `toolu_01P2W69FpY3LoZfSoaCFYAsr`</summary>
+
+```text
+1	% Section 5 — DocRED Results (compressed, 1450→~600 words)
+2	% exp_ids: phase2_docred_unconstrained, phase2_docred_grammar_only,
+3	%          phase2_docred_semantic_only, phase2_docred_full_s1
+4	% All numbers verified against registry 2026-05-14.
+5	
+6	\subsection{Cross-Dataset Validation on DocRED}
+7	\label{sec:docred-results}
+8	
+9	Table~\ref{tab:docred-ablation} presents the four-way ablation on DocRED, a document-level RE benchmark with 96 Wikidata relation types---14$\times$ the ontology size of SciERC.
+10	All experiments use Qwen3-8B zero-shot on 998 documents.
+11	
+12	% ──────────────────────────────────────────
+13	%  Table: DocRED four-way ablation
+14	% ──────────────────────────────────────────
+15	\begin{table}[t]
+16	\centering
+17	\small
+18	\setlength{\tabcolsep}{3.6pt}
+19	\resizebox{\columnwidth}{!}{%
+20	\begin{tabular}{@{}l rrrrr rr@{}}
+21	\toprule
+22	& \multicolumn{5}{c}{\textbf{Violation Rates (\%)}}
+23	& \multicolumn{2}{c}{\textbf{F1}} \\
+24	\cmidrule(lr){2-6} \cmidrule(l){7-8}
+25	\textbf{Mode}
+26	  & DR\,$\downarrow$ & $\Delta$DR
+27	  & RV\,$\downarrow$ & ET\,$\downarrow$ & CF
+28	  & Rel.\,$\uparrow$ & Ent.\,$\uparrow$ \\
+29	\midrule
+30	Unconstrained
+31	  & 18.46 & ---
+32	  & 29.66 & 2.48
+33	  & 0.10
+34	  & 7.74  & 58.15 \\
+35	Grammar
+36	  & 26.17 & $\uparrow$42\%
+37	  & \textbf{0.03} & \textbf{0}
+38	  & 0.07
+39	  & \textbf{8.31}  & \textbf{59.38} \\
+40	Semantic
+41	  & 13.84 & $\downarrow$25\%
+42	  & 29.87 & 4.22
+43	  & 1.05
+44	  & 7.70  & 57.81 \\
+45	Full (S1)
+46	  & \textbf{10.21} & $\downarrow$\textbf{45\%}
+47	  & \textbf{0.03} & \textbf{0}
+48	  & 2.57
+49	  & 8.23  & 59.37 \\
+50	\bottomrule
+51	\end{tabular}}%
+52	\caption{Four-way ablation on DocRED (998 documents, Qwen3-8B, zero-shot).
+53	$\Delta$DR: relative change vs.\ unconstrained.
+54	Best per column in \textbf{bold} (CF excluded).
+55	F1 $\times$100. Bootstrap significance: R-F1 $+$0.50\,pp ($p < 0.001$).}
+56	\label{tab:docred-ablation}
+57	\end{table}
+58	
+59	% exp_ids: phase2_docred_unconstrained, phase2_docred_full_s1
+60	\paragraph{Core result.}
+61	Full S1 reduces DR from 18.46\% to 10.21\% ($\downarrow$45\%), eliminates ET (2.48\%\,$\to$\,0\%), and near-eliminates RV (29.66\%\,$\to$\,0.03\%).
+62	Relation F1 improves from 7.74 to 8.23 ($+$0.50\,pp; bootstrap 95\% CI [$+$0.23, $+$0.81], $p < 0.001$), attributable to grammar-layer elimination of 5{,}189 OOV relation predictions counted as false positives.
+63	CF increases modestly (0.10\%\,$\to$\,2.57\%), lower than SciERC's 9.90\%.
+64	
+65	% exp_ids: phase2_docred_grammar_only
+66	\paragraph{Grammar layer surfaces latent violations.}
+67	Grammar-only constraints eliminate RV and ET but \emph{increase} DR from 18.46\% to 26.17\% ($+$42\%).
+68	This counter-intuitive result has a structural explanation: the unconstrained baseline's 29.66\% OOV relation triples cannot be evaluated for DR (no schema entry exists); grammar enforcement assigns these triples valid relation names whose domain/range rules the associated entity types frequently violate.
+69	The grammar layer thus \emph{reveals} latent type incompatibilities, directly motivating the semantic layer.
+70	
+71	% exp_ids: phase2_docred_semantic_only, phase2_docred_full_s1
+72	\paragraph{Enabling dependency.}
+73	Semantic-only constraints reduce DR by only 25\% (18.46\%\,$\to$\,13.84\%) while failing to eliminate RV (29.87\%) or ET (4.22\%).
+74	Full S1 achieves a further 26\% relative reduction over semantic-only (13.84\%\,$\to$\,10.21\%), replicating the enabling dependency from SciERC: without grammar-enforced vocabulary, the semantic layer encounters OOV relation types for which no domain/range rules exist.
+75	
+76	% exp_ids: phase2_docred_full_s1, llama_docred_full_s1
+77	\paragraph{Constraint tightness governs enforcement ceiling.}
+78	The residual DR on DocRED (10.21\%) exceeds SciERC (0.93\%) due to per-relation \emph{constraint tightness}: DocRED relations average 5.68 valid type pairs ($\bar{\tau}{=}0.842$) vs.\ 24 on SciERC ($\bar{\tau}{=}0.333$).
+79	Tighter constraints produce narrower grammar$\cap$semantic mask intersections, increasing fallback frequency---the aggregate fallback rate (10.2\%; 1{,}770/17{,}341 triples) closely tracks residual DR (10.21\%), confirming a near-bijection between fallback events and residual violations.
+80	Crucially, tightness interacts with the model's baseline violation profile: Qwen's high RV (29.66\%) causes grammar enforcement to surface many latent DR violations, yielding 10.21\% residual DR; Llama's lower RV (16.03\%) limits this surfacing, achieving 2.55\% residual ($\downarrow$90.2\%) on the same ontology (\S\ref{sec:cross-model}).
+81	This dual-factor pattern---tightness $\times$ baseline RV---is consistent with cross-dataset and cross-model DR reduction differences.
+82	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "47976efa-0f54-4936-a188-bf7b55e6ea47",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "a8ef6733-6fdd-4efd-8a71-437e4a9bef79",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_docred_draft.tex",
+      "content": "% Section 5 — DocRED Results (compressed, 1450→~600 words)\n% exp_ids: phase2_docred_unconstrained, phase2_docred_grammar_only,\n%          phase2_docred_semantic_only, phase2_docred_full_s1\n% All numbers verified against registry 2026-05-14.\n\n\\subsection{Cross-Dataset Validation on DocRED}\n\\label{sec:docred-results}\n\nTable~\\ref{tab:docred-ablation} presents the four-way ablation on DocRED, a document-level RE benchmark with 96 Wikidata relation types---14$\\times$ the ontology size of SciERC.\nAll experiments use Qwen3-8B zero-shot on 998 documents.\n\n% ──────────────────────────────────────────\n%  Table: DocRED four-way ablation\n% ──────────────────────────────────────────\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.6pt}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}l rrrrr rr@{}}\n\\toprule\n& \\multicolumn{5}{c}{\\textbf{Violation Rates (\\%)}}\n& \\multicolumn{2}{c}{\\textbf{F1}} \\\\\n\\cmidrule(lr){2-6} \\cmidrule(l){7-8}\n\\textbf{Mode}\n  & DR\\,$\\downarrow$ & $\\Delta$DR\n  & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & Rel.\\,$\\uparrow$ & Ent.\\,$\\uparrow$ \\\\\n\\midrule\nUnconstrained\n  & 18.46 & ---\n  & 29.66 & 2.48\n  & 0.10\n  & 7.74  & 58.15 \\\\\nGrammar\n  & 26.17 & $\\uparrow$42\\%\n  & \\textbf{0.03} & \\textbf{0}\n  & 0.07\n  & \\textbf{8.31}  & \\textbf{59.38} \\\\\nSemantic\n  & 13.84 & $\\downarrow$25\\%\n  & 29.87 & 4.22\n  & 1.05\n  & 7.70  & 57.81 \\\\\nFull (S1)\n  & \\textbf{10.21} & $\\downarrow$\\textbf{45\\%}\n  & \\textbf{0.03} & \\textbf{0}\n  & 2.57\n  & 8.23  & 59.37 \\\\\n\\bottomrule\n\\end{tabular}}%\n\\caption{Four-way ablation on DocRED (998 documents, Qwen3-8B, zero-shot).\n$\\Delta$DR: relative change vs.\\ unconstrained.\nBest per column in \\textbf{bold} (CF excluded).\nF1 $\\times$100. Bootstrap significance: R-F1 $+$0.50\\,pp ($p < 0.001$).}\n\\label{tab:docred-ablation}\n\\end{table}\n\n% exp_ids: phase2_docred_unconstrained, phase2_docred_full_s1\n\\paragraph{Core result.}\nFull S1 reduces DR from 18.46\\% to 10.21\\% ($\\downarrow$45\\%), eliminates ET (2.48\\%\\,$\\to$\\,0\\%), and near-eliminates RV (29.66\\%\\,$\\to$\\,0.03\\%).\nRelation F1 improves from 7.74 to 8.23 ($+$0.50\\,pp; bootstrap 95\\% CI [$+$0.23, $+$0.81], $p < 0.001$), attributable to grammar-layer elimination of 5{,}189 OOV relation predictions counted as false positives.\nCF increases modestly (0.10\\%\\,$\\to$\\,2.57\\%), lower than SciERC's 9.90\\%.\n\n% exp_ids: phase2_docred_grammar_only\n\\paragraph{Grammar layer surfaces latent violations.}\nGrammar-only constraints eliminate RV and ET but \\emph{increase} DR from 18.46\\% to 26.17\\% ($+$42\\%).\nThis counter-intuitive result has a structural explanation: the unconstrained baseline's 29.66\\% OOV relation triples cannot be evaluated for DR (no schema entry exists); grammar enforcement assigns these triples valid relation names whose domain/range rules the associated entity types frequently violate.\nThe grammar layer thus \\emph{reveals} latent type incompatibilities, directly motivating the semantic layer.\n\n% exp_ids: phase2_docred_semantic_only, phase2_docred_full_s1\n\\paragraph{Enabling dependency.}\nSemantic-only constraints reduce DR by only 25\\% (18.46\\%\\,$\\to$\\,13.84\\%) while failing to eliminate RV (29.87\\%) or ET (4.22\\%).\nFull S1 achieves a further 26\\% relative reduction over semantic-only (13.84\\%\\,$\\to$\\,10.21\\%), replicating the enabling dependency from SciERC: without grammar-enforced vocabulary, the semantic layer encounters OOV relation types for which no domain/range rules exist.\n\n% exp_ids: phase2_docred_full_s1, llama_docred_full_s1\n\\paragraph{Constraint tightness governs enforcement ceiling.}\nThe residual DR on DocRED (10.21\\%) exceeds SciERC (0.93\\%) due to per-relation \\emph{constraint tightness}: DocRED relations average 5.68 valid type pairs ($\\bar{\\tau}{=}0.842$) vs.\\ 24 on SciERC ($\\bar{\\tau}{=}0.333$).\nTighter constraints produce narrower grammar$\\cap$semantic mask intersections, increasing fallback frequency---the aggregate fallback rate (10.2\\%; 1{,}770/17{,}341 triples) closely tracks residual DR (10.21\\%), confirming a near-bijection between fallback events and residual violations.\nCrucially, tightness interacts with the model's baseline violation profile: Qwen's high RV (29.66\\%) causes grammar enforcement to surface many latent DR violations, yielding 10.21\\% residual DR; Llama's lower RV (16.03\\%) limits this surfacing, achieving 2.55\\% residual ($\\downarrow$90.2\\%) on the same ontology (\\S\\ref{sec:cross-model}).\nThis dual-factor pattern---tightness $\\times$ baseline RV---is consistent with cross-dataset and cross-model DR reduction differences.\n",
+      "numLines": 82,
+      "startLine": 1,
+      "totalLines": 82
+    }
+  },
+  "sourceToolAssistantUUID": "47976efa-0f54-4936-a188-bf7b55e6ea47",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 52_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 完整性 + 相关工作 + 写作质量**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Ontology Constraints - **论文路径**: `projects/schema_sem…",
+  "leafUuid": "a8ef6733-6fdd-4efd-8a71-437e4a9bef79",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 53_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 54 · 2026-05-16T17:35:44.659Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01QxHT7csfoumbySQYFUDQQb`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a8ef6733-6fdd-4efd-8a71-437e4a9bef79",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ekgCCnfWDu5d29rpR1",
+  "type": "assistant",
+  "uuid": "f02c982d-1fc8-4504-8aa2-e9a2d079f4a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7ZGr2P5T6eUC8XSyMFYX3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13058,
+      "cache_read_input_tokens": 34879,
+      "output_tokens": 256,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13058,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 256,
+          "cache_read_input_tokens": 34879,
+          "cache_creation_input_tokens": 13058,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13058
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-16T17:35:44.666Z_
+
+<details><summary>↩ Tool result · `toolu_01QxHT7csfoumbySQYFUDQQb`</summary>
+
+```text
+1	% Section 5 — Cross-Model Validation (compressed, 830→~400 words)
+2	% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,
+3	%          phase2_docred_unconstrained, phase2_docred_full_s1,
+4	%          llama_scierc_unconstrained, llama_scierc_full_s1,
+5	%          llama_docred_unconstrained, llama_docred_full_s1
+6	
+7	\subsection{Cross-Model Validation}
+8	\label{sec:cross-model}
+9	
+10	We replicate the full S1 configuration with Llama-3.1-8B-Instruct and Mistral-7B-Instruct-v0.3 under identical prompts, decoding parameters, and evaluation.
+11	Table~\ref{tab:cross-model} summarizes results across all three models.
+12	Mistral serves as a third zero-shot verification point confirming model-agnosticism; composability evaluation (\S\ref{sec:composability}) uses LoRA fine-tuning which requires domain-specific training data available only for Qwen and Llama.
+13	
+14	\begin{table}[t]
+15	\centering
+16	\small
+17	\setlength{\tabcolsep}{3.4pt}
+18	\resizebox{\columnwidth}{!}{%
+19	\begin{tabular}{@{}ll rrrr r@{}}
+20	\toprule
+21	& & \multicolumn{4}{c}{\textbf{Violation Rates (\%)}}
+22	& \textbf{R-F1} \\
+23	\cmidrule(lr){3-6} \cmidrule(l){7-7}
+24	\textbf{Dataset} & \textbf{Model}
+25	  & DR\,$\downarrow$ & RV\,$\downarrow$ & ET\,$\downarrow$ & CF
+26	  & $\uparrow$ \\
+27	\midrule
+28	\multirow{6}{*}{SciERC}
+29	  & Qwen (U)    & 15.37 & 1.39  & 0.40 & 0.08 & 8.23 \\
+30	  & Qwen (S1)   &  0.93 & 0     & 0    & 9.90 & 8.36 \\
+31	  \cmidrule(l){2-7}
+32	  & Llama (U)   & 13.34 & 0.55  & 0    & 0.24 & 2.68 \\
+33	  & Llama (S1)  &  0.08 & 0     & 0    & 6.56 & 2.54 \\
+34	  \cmidrule(l){2-7}
+35	  & Mistral (U) & 56.94 & 0     & 1.50 & 56.87$^\dagger$ & 3.66 \\
+36	  & Mistral (S1)& 13.40 & 0     & 0    & 1.27  & 3.67 \\
+37	\midrule
+38	\multirow{6}{*}{DocRED}
+39	  & Qwen (U)    & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 \\
+40	  & Qwen (S1)   & 10.21 &  0.03 & 0    & 2.57 & 8.23 \\
+41	  \cmidrule(l){2-7}
+42	  & Llama (U)   & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 \\
+43	  & Llama (S1)  &  2.55 &  0    & 0    & 12.02& 6.27 \\
+44	  \cmidrule(l){2-7}
+45	  & Mistral (U) & 57.42 & 42.35 & 7.58 & 24.78 & 4.34 \\
+46	  & Mistral (S1)& 33.20 &  0    & 0    & 0.19  & 5.52 \\
+47	\bottomrule
+48	\end{tabular}}%
+49	\caption{Three-model zero-shot validation. U: unconstrained; S1: full two-layer.
+50	Parse failures: Qwen DocRED 12$\to$11 (S1 1.10\%), Llama DocRED 68$\to$91; others $\leq$1.
+51	$^\dagger$Mistral's poor zero-shot type calibration leads to pervasive entity type assignment inconsistencies across triples.
+52	F1 $\times$100.}
+53	\label{tab:cross-model}
+54	\end{table}
+55	
+56	\paragraph{Model-agnostic structural guarantees.}
+57	RV and ET violations are eliminated ($\leq$0.03\%) for all three models on both datasets, confirming that grammar-layer enforcement depends on the decoding mechanism, not model-specific generation patterns.
+58	
+59	% exp_ids: phase2_scierc_full_s1, llama_scierc_full_s1, phase2_docred_full_s1, llama_docred_full_s1, mistral_scierc, mistral_docred
+60	\paragraph{DR reduction generalizes across models.}
+61	SciERC DR drops 94\% (Qwen), 99\% (Llama), 76\% (Mistral); DocRED DR drops 45\% (Qwen), 90\% (Llama), 42\% (Mistral).
+62	Mistral exhibits the highest baseline DR (56--57\%) due to poor zero-shot type calibration, yet still benefits substantially.
+63	R-F1 is preserved or improves in five of six settings; on DocRED, gains are significant for Qwen ($+$0.50\,pp, $p{<}0.001$) and Llama ($+$0.29\,pp, $p{=}0.013$).
+64	
+65	\paragraph{Cross-model DR asymmetry.}
+66	Llama's higher DR reduction reflects lower baseline RV (16.03\% vs.\ 29.66\% on DocRED): with fewer OOV relations to surface, grammar enforcement exposes fewer latent type incompatibilities, yielding residual DR of 2.55\% vs.\ Qwen's 10.21\%.
+67	Llama's per-relation DR shows no correlation with tightness ($\rho{=}0.069$, $p{=}0.52$; Appendix~\ref{app:llama-per-relation}), confirming uniform enforcement once baseline RV is low.
+68	CF direction depends on baseline calibration: S1 introduces CF for well-calibrated Qwen and Llama (up to 12.02\%; \S\ref{sec:discussion}), while reducing CF for poorly-calibrated Mistral (56.87\%\,$\to$\,1.27\%) by constraining type assignments to schema-valid values.
+69	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f02c982d-1fc8-4504-8aa2-e9a2d079f4a5",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "b8eac64f-7a3a-46f0-bc92-99c00b687fd3",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_crossmodel_draft.tex",
+      "content": "% Section 5 — Cross-Model Validation (compressed, 830→~400 words)\n% exp_ids: phase2_scierc_unconstrained, phase2_scierc_full_s1,\n%          phase2_docred_unconstrained, phase2_docred_full_s1,\n%          llama_scierc_unconstrained, llama_scierc_full_s1,\n%          llama_docred_unconstrained, llama_docred_full_s1\n\n\\subsection{Cross-Model Validation}\n\\label{sec:cross-model}\n\nWe replicate the full S1 configuration with Llama-3.1-8B-Instruct and Mistral-7B-Instruct-v0.3 under identical prompts, decoding parameters, and evaluation.\nTable~\\ref{tab:cross-model} summarizes results across all three models.\nMistral serves as a third zero-shot verification point confirming model-agnosticism; composability evaluation (\\S\\ref{sec:composability}) uses LoRA fine-tuning which requires domain-specific training data available only for Qwen and Llama.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.4pt}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}ll rrrr r@{}}\n\\toprule\n& & \\multicolumn{4}{c}{\\textbf{Violation Rates (\\%)}}\n& \\textbf{R-F1} \\\\\n\\cmidrule(lr){3-6} \\cmidrule(l){7-7}\n\\textbf{Dataset} & \\textbf{Model}\n  & DR\\,$\\downarrow$ & RV\\,$\\downarrow$ & ET\\,$\\downarrow$ & CF\n  & $\\uparrow$ \\\\\n\\midrule\n\\multirow{6}{*}{SciERC}\n  & Qwen (U)    & 15.37 & 1.39  & 0.40 & 0.08 & 8.23 \\\\\n  & Qwen (S1)   &  0.93 & 0     & 0    & 9.90 & 8.36 \\\\\n  \\cmidrule(l){2-7}\n  & Llama (U)   & 13.34 & 0.55  & 0    & 0.24 & 2.68 \\\\\n  & Llama (S1)  &  0.08 & 0     & 0    & 6.56 & 2.54 \\\\\n  \\cmidrule(l){2-7}\n  & Mistral (U) & 56.94 & 0     & 1.50 & 56.87$^\\dagger$ & 3.66 \\\\\n  & Mistral (S1)& 13.40 & 0     & 0    & 1.27  & 3.67 \\\\\n\\midrule\n\\multirow{6}{*}{DocRED}\n  & Qwen (U)    & 18.46 & 29.66 & 2.48 & 0.10 & 7.74 \\\\\n  & Qwen (S1)   & 10.21 &  0.03 & 0    & 2.57 & 8.23 \\\\\n  \\cmidrule(l){2-7}\n  & Llama (U)   & 26.07 & 16.03 & 0.13 & 0.17 & 5.98 \\\\\n  & Llama (S1)  &  2.55 &  0    & 0    & 12.02& 6.27 \\\\\n  \\cmidrule(l){2-7}\n  & Mistral (U) & 57.42 & 42.35 & 7.58 & 24.78 & 4.34 \\\\\n  & Mistral (S1)& 33.20 &  0    & 0    & 0.19  & 5.52 \\\\\n\\bottomrule\n\\end{tabular}}%\n\\caption{Three-model zero-shot validation. U: unconstrained; S1: full two-layer.\nParse failures: Qwen DocRED 12$\\to$11 (S1 1.10\\%), Llama DocRED 68$\\to$91; others $\\leq$1.\n$^\\dagger$Mistral's poor zero-shot type calibration leads to pervasive entity type assignment inconsistencies across triples.\nF1 $\\times$100.}\n\\label{tab:cross-model}\n\\end{table}\n\n\\paragraph{Model-agnostic structural guarantees.}\nRV and ET violations are eliminated ($\\leq$0.03\\%) for all three models on both datasets, confirming that grammar-layer enforcement depends on the decoding mechanism, not model-specific generation patterns.\n\n% exp_ids: phase2_scierc_full_s1, llama_scierc_full_s1, phase2_docred_full_s1, llama_docred_full_s1, mistral_scierc, mistral_docred\n\\paragraph{DR reduction generalizes across models.}\nSciERC DR drops 94\\% (Qwen), 99\\% (Llama), 76\\% (Mistral); DocRED DR drops 45\\% (Qwen), 90\\% (Llama), 42\\% (Mistral).\nMistral exhibits the highest baseline DR (56--57\\%) due to poor zero-shot type calibration, yet still benefits substantially.\nR-F1 is preserved or improves in five of six settings; on DocRED, gains are significant for Qwen ($+$0.50\\,pp, $p{<}0.001$) and Llama ($+$0.29\\,pp, $p{=}0.013$).\n\n\\paragraph{Cross-model DR asymmetry.}\nLlama's higher DR reduction reflects lower baseline RV (16.03\\% vs.\\ 29.66\\% on DocRED): with fewer OOV relations to surface, grammar enforcement exposes fewer latent type incompatibilities, yielding residual DR of 2.55\\% vs.\\ Qwen's 10.21\\%.\nLlama's per-relation DR shows no correlation with tightness ($\\rho{=}0.069$, $p{=}0.52$; Appendix~\\ref{app:llama-per-relation}), confirming uniform enforcement once baseline RV is low.\nCF direction depends on baseline calibration: S1 introduces CF for well-calibrated Qwen and Llama (up to 12.02\\%; \\S\\ref{sec:discussion}), while reducing CF for poorly-calibrated Mistral (56.87\\%\\,$\\to$\\,1.27\\%) by constraining type assignments to schema-valid values.\n",
+      "numLines": 69,
+      "startLine": 1,
+      "totalLines": 69
+    }
+  },
+  "sourceToolAssistantUUID": "f02c982d-1fc8-4504-8aa2-e9a2d079f4a5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 56 · 2026-05-16T17:35:45.352Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_019rq86RnC4AFKQr2za9NAu3`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8eac64f-7a3a-46f0-bc92-99c00b687fd3",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ekgCCnfWDu5d29rpR1",
+  "type": "assistant",
+  "uuid": "55225c72-2d9d-4970-8547-d988c71124be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7ZGr2P5T6eUC8XSyMFYX3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13058,
+      "cache_read_input_tokens": 34879,
+      "output_tokens": 256,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13058,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 256,
+          "cache_read_input_tokens": 34879,
+          "cache_creation_input_tokens": 13058,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13058
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 57 · 2026-05-16T17:35:45.823Z_
+
+<details><summary>↩ Tool result · `toolu_012QCRbx6CHdqdhyudQmmtDB`</summary>
+
+```text
+1	\section{Related Work}
+2	\label{sec:related_work}
+3	
+4	\paragraph{Grammar-Constrained Decoding.}
+5	XGrammar~\cite{dong2025xgrammar}, Outlines~\cite{willard2023outlines}, LMQL~\cite{beurer-kellner2023lmql}, DOMINO~\cite{beurer-kellner2024domino}, SynCode~\cite{ugare2024syncode}, and ASAp~\cite{park2024grammar} ensure every token belongs to a grammar-valid continuation; IterGen~\cite{ugare2025itergen} adds backtracking.
+6	These guarantee format validity but cannot enforce cross-field semantic constraints such as ontology domain/range rules.
+7	
+8	\paragraph{Semantic Constrained Decoding for Code.}
+9	Synchromesh~\cite{synchromesh_iclr2022}, PICARD~\cite{scholak2021picard}, MGD~\cite{mgd_neurips2023}, and \citet{pldi2025_type_constrained_codegen} enforce type and scope constraints in code generation; OntoCoDec migrates this paradigm to IE.
+10	
+11	\paragraph{Vocabulary and Type-Constrained Generation.}
+12	\citet{roth_yih_2004} establish relational type compatibility as a hard constraint via ILP, though applied post-hoc.
+13	GENRE~\cite{decao2021genre}, AdaKGC~\cite{adakgc_emnlp2023}, GCD~\cite{geng2023gcd}, and GoLLIE~\cite{sainz2024gollie} constrain \emph{which tokens} can appear but not \emph{which type combinations} are valid per relation.
+14	Training-based methods~\cite{paolini2021tanl,cabot2021rebel,lu2022uie,knowcoder_acl2024,li2023codeie} encode IE structure via training or prompting but provide only \emph{soft} guidance.
+15	Post-hoc approaches~\cite{khorshidi2025odke,spires_2024,ontologx_2025} validate outputs against ontologies after generation; OntoCoDec \emph{prevents} violations during decoding.
+16	
+17	\paragraph{Quality Impact of Constrained Decoding.}
+18	CRANE~\cite{banerjee2025crane} and \citet{schall2025hiddencost} show grammar restrictions can degrade reasoning, but \citet{tam2024letmespeak} find extraction-style tasks are robust to---or benefit from---constraints.
+19	BoostCD~\cite{sakota2025boostcd} combines constrained and unconstrained outputs via boosting for IE, complementing our decoding-time approach with a training-time strategy.
+20	OntoCoDec confirms extraction robustness: violations decrease by 76--99\% with zero F1 degradation across three model families (extended survey in Appendix~\ref{app:related_work}).
+21	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fea4d93b-0b7a-4cff-a627-90c2ec874ca8",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "b76a8476-48fa-4fe3-9e00-9b274a1bb9f1",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex",
+      "content": "\\section{Related Work}\n\\label{sec:related_work}\n\n\\paragraph{Grammar-Constrained Decoding.}\nXGrammar~\\cite{dong2025xgrammar}, Outlines~\\cite{willard2023outlines}, LMQL~\\cite{beurer-kellner2023lmql}, DOMINO~\\cite{beurer-kellner2024domino}, SynCode~\\cite{ugare2024syncode}, and ASAp~\\cite{park2024grammar} ensure every token belongs to a grammar-valid continuation; IterGen~\\cite{ugare2025itergen} adds backtracking.\nThese guarantee format validity but cannot enforce cross-field semantic constraints such as ontology domain/range rules.\n\n\\paragraph{Semantic Constrained Decoding for Code.}\nSynchromesh~\\cite{synchromesh_iclr2022}, PICARD~\\cite{scholak2021picard}, MGD~\\cite{mgd_neurips2023}, and \\citet{pldi2025_type_constrained_codegen} enforce type and scope constraints in code generation; OntoCoDec migrates this paradigm to IE.\n\n\\paragraph{Vocabulary and Type-Constrained Generation.}\n\\citet{roth_yih_2004} establish relational type compatibility as a hard constraint via ILP, though applied post-hoc.\nGENRE~\\cite{decao2021genre}, AdaKGC~\\cite{adakgc_emnlp2023}, GCD~\\cite{geng2023gcd}, and GoLLIE~\\cite{sainz2024gollie} constrain \\emph{which tokens} can appear but not \\emph{which type combinations} are valid per relation.\nTraining-based methods~\\cite{paolini2021tanl,cabot2021rebel,lu2022uie,knowcoder_acl2024,li2023codeie} encode IE structure via training or prompting but provide only \\emph{soft} guidance.\nPost-hoc approaches~\\cite{khorshidi2025odke,spires_2024,ontologx_2025} validate outputs against ontologies after generation; OntoCoDec \\emph{prevents} violations during decoding.\n\n\\paragraph{Quality Impact of Constrained Decoding.}\nCRANE~\\cite{banerjee2025crane} and \\citet{schall2025hiddencost} show grammar restrictions can degrade reasoning, but \\citet{tam2024letmespeak} find extraction-style tasks are robust to---or benefit from---constraints.\nBoostCD~\\cite{sakota2025boostcd} combines constrained and unconstrained outputs via boosting for IE, complementing our decoding-time approach with a training-time strategy.\nOntoCoDec confirms extraction robustness: violations decrease by 76--99\\% with zero F1 degradation across three model families (extended survey in Appendix~\\ref{app:related_work}).\n",
+      "numLines": 21,
+      "startLine": 1,
+      "totalLines": 21
+    }
+  },
+  "sourceToolAssistantUUID": "fea4d93b-0b7a-4cff-a627-90c2ec874ca8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 58 · 2026-05-16T17:35:45.382Z_
+
+<details><summary>↩ Tool result · `toolu_019rq86RnC4AFKQr2za9NAu3`</summary>
+
+```text
+1	% Section 5 — Runtime Analysis
+2	% Data source: DocRED latency profiling (exp_id: docred_latency_profiling)
+3	% Qwen3-8B, same single-GPU server, controlled 4-way ablation.
+4	
+5	\subsection{Runtime Overhead}
+6	\label{sec:runtime}
+7	
+8	Table~\ref{tab:runtime} reports per-document inference time for each constraint layer combination on both datasets (Qwen3-8B, same GPU).
+9	
+10	\begin{table}[t]
+11	\centering
+12	\small
+13	\setlength{\tabcolsep}{4pt}
+14	\begin{tabular}{@{}l rr rr@{}}
+15	\toprule
+16	& \multicolumn{2}{c}{\textbf{SciERC (7 rels)}}
+17	& \multicolumn{2}{c}{\textbf{DocRED (96 rels)}} \\
+18	\cmidrule(lr){2-3} \cmidrule(l){4-5}
+19	\textbf{Mode} & Avg (s) & Overhead & Avg (s) & Overhead \\
+20	\midrule
+21	Unconstrained & 2.587 & --- & 21.023 & --- \\
+22	Grammar       & 2.631 & $+$1.7\% & 21.366 & $+$1.6\% \\
+23	Semantic      & 2.618 & $+$1.2\% & 21.912 & $+$4.2\% \\
+24	Full (S1)     & 2.647 & $+$2.3\% & 22.147 & $+$5.4\% \\
+25	\bottomrule
+26	\end{tabular}
+27	\caption{Per-document inference time by constraint layer (Qwen3-8B, same GPU).
+28	Grammar compile time: 0.044\,s (one-time, amortized to zero).
+29	Full-mode overhead is sub-additive (DocRED: 1.6\%$+$4.2\%$=$5.8\% expected vs.\ 5.4\% observed).}
+30	\label{tab:runtime}
+31	\end{table}
+32	
+33	Grammar-layer overhead is consistent across datasets ($+$1.6--1.7\%), independent of schema complexity.
+34	Semantic-layer overhead scales with the number of relation types (SciERC 7 types: $+$1.2\%; DocRED 96 types: $+$4.2\%), reflecting increased domain-range lookup frequency.
+35	Full-mode overhead is sub-additive on both datasets because the two layers share token-set computation.
+36	Even in the most complex setting (DocRED, 96 relations), total overhead is $+$5.4\%---practically negligible.
+37	Under fine-tuning, S1 overhead drops further to $+$2.3\% (61\,ms/doc; Appendix~\ref{app:ft-latency}).
+38	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "55225c72-2d9d-4970-8547-d988c71124be",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "010778e2-4bce-4886-8fd0-4bf1eefb315b",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section5_runtime.tex",
+      "content": "% Section 5 — Runtime Analysis\n% Data source: DocRED latency profiling (exp_id: docred_latency_profiling)\n% Qwen3-8B, same single-GPU server, controlled 4-way ablation.\n\n\\subsection{Runtime Overhead}\n\\label{sec:runtime}\n\nTable~\\ref{tab:runtime} reports per-document inference time for each constraint layer combination on both datasets (Qwen3-8B, same GPU).\n\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{4pt}\n\\begin{tabular}{@{}l rr rr@{}}\n\\toprule\n& \\multicolumn{2}{c}{\\textbf{SciERC (7 rels)}}\n& \\multicolumn{2}{c}{\\textbf{DocRED (96 rels)}} \\\\\n\\cmidrule(lr){2-3} \\cmidrule(l){4-5}\n\\textbf{Mode} & Avg (s) & Overhead & Avg (s) & Overhead \\\\\n\\midrule\nUnconstrained & 2.587 & --- & 21.023 & --- \\\\\nGrammar       & 2.631 & $+$1.7\\% & 21.366 & $+$1.6\\% \\\\\nSemantic      & 2.618 & $+$1.2\\% & 21.912 & $+$4.2\\% \\\\\nFull (S1)     & 2.647 & $+$2.3\\% & 22.147 & $+$5.4\\% \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-document inference time by constraint layer (Qwen3-8B, same GPU).\nGrammar compile time: 0.044\\,s (one-time, amortized to zero).\nFull-mode overhead is sub-additive (DocRED: 1.6\\%$+$4.2\\%$=$5.8\\% expected vs.\\ 5.4\\% observed).}\n\\label{tab:runtime}\n\\end{table}\n\nGrammar-layer overhead is consistent across datasets ($+$1.6--1.7\\%), independent of schema complexity.\nSemantic-layer overhead scales with the number of relation types (SciERC 7 types: $+$1.2\\%; DocRED 96 types: $+$4.2\\%), reflecting increased domain-range lookup frequency.\nFull-mode overhead is sub-additive on both datasets because the two layers share token-set computation.\nEven in the most complex setting (DocRED, 96 relations), total overhead is $+$5.4\\%---practically negligible.\nUnder fine-tuning, S1 overhead drops further to $+$2.3\\% (61\\,ms/doc; Appendix~\\ref{app:ft-latency}).\n",
+      "numLines": 38,
+      "startLine": 1,
+      "totalLines": 38
+    }
+  },
+  "sourceToolAssistantUUID": "55225c72-2d9d-4970-8547-d988c71124be",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-16T17:35:45.816Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_012QCRbx6CHdqdhyudQmmtDB`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section6_related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "010778e2-4bce-4886-8fd0-4bf1eefb315b",
+  "isSidechain": false,
+  "requestId": "req_011Cb6ekgCCnfWDu5d29rpR1",
+  "type": "assistant",
+  "uuid": "fea4d93b-0b7a-4cff-a627-90c2ec874ca8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7ZGr2P5T6eUC8XSyMFYX3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 13058,
+      "cache_read_input_tokens": 34879,
+      "output_tokens": 256,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13058,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 256,
+          "cache_read_input_tokens": 34879,
+          "cache_creation_input_tokens": 13058,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13058
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-16T17:35:55.938Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FHpKqeioyt9vacZG1PLEy1`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b76a8476-48fa-4fe3-9e00-9b274a1bb9f1",
+  "isSidechain": false,
+  "requestId": "req_011Cb6emGTUCExrkvJ7RHUUz",
+  "type": "assistant",
+  "uuid": "b3932ff0-e048-46ee-8b81-f7380c991cc3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017bnp2vrKC81MNUSYY9eKQe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3777,
+      "cache_read_input_tokens": 47937,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3777,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 47937,
+          "cache_creation_input_tokens": 3777,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3777
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 61 · 2026-05-16T17:35:55.949Z_
+
+<details><summary>↩ Tool result · `toolu_01FHpKqeioyt9vacZG1PLEy1`</summary>
+
+```text
+1	% Section 7 — Discussion and Conclusion (compressed)
+2	% Full discussion paragraphs moved to Appendix C.
+3	
+4	OntoCoDec compiles IE ontology schemas into composable token-level decoding constraints, achieving 42--99\% DR reduction across three models and two datasets with no significant F1 cost.
+5	Composed with LoRA fine-tuning, it reaches DR\,$\leq$\,0.20\% at $<$0.6\,pp F1 cost, confirming orthogonal error targeting; the dual-factor pattern ($R^2{=}0.886$) provides a predictive framework for residual violations.
+6	
+7	CF impact is model-dependent: S1 introduces CF for well-calibrated models (up to 12.02\%) but reduces it for poorly-calibrated ones (Mistral: 56.87\%\,$\to$\,1.27\%).
+8	Ablation confirms CF$\leftrightarrow$DR tension ($+$13.85\,pp; Appendix~\ref{app:cf-dr-tradeoff}); fine-tuning reduces CF by 88\% (\S\ref{sec:composability}); global entity-level type consensus offers the most direct path forward.
+9	
+10	% Limitations and Future Work moved to \section*{Limitations} in main.tex (ARR requirement)
+11	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b3932ff0-e048-46ee-8b81-f7380c991cc3",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "671d79e7-25a6-4f63-a5c9-bdc5a9e66d20",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/section7_conclusion_compressed.tex",
+      "content": "% Section 7 — Discussion and Conclusion (compressed)\n% Full discussion paragraphs moved to Appendix C.\n\nOntoCoDec compiles IE ontology schemas into composable token-level decoding constraints, achieving 42--99\\% DR reduction across three models and two datasets with no significant F1 cost.\nComposed with LoRA fine-tuning, it reaches DR\\,$\\leq$\\,0.20\\% at $<$0.6\\,pp F1 cost, confirming orthogonal error targeting; the dual-factor pattern ($R^2{=}0.886$) provides a predictive framework for residual violations.\n\nCF impact is model-dependent: S1 introduces CF for well-calibrated models (up to 12.02\\%) but reduces it for poorly-calibrated ones (Mistral: 56.87\\%\\,$\\to$\\,1.27\\%).\nAblation confirms CF$\\leftrightarrow$DR tension ($+$13.85\\,pp; Appendix~\\ref{app:cf-dr-tradeoff}); fine-tuning reduces CF by 88\\% (\\S\\ref{sec:composability}); global entity-level type consensus offers the most direct path forward.\n\n% Limitations and Future Work moved to \\section*{Limitations} in main.tex (ARR requirement)\n",
+      "numLines": 11,
+      "startLine": 1,
+      "totalLines": 11
+    }
+  },
+  "sourceToolAssistantUUID": "b3932ff0-e048-46ee-8b81-f7380c991cc3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 62 · 2026-05-16T17:35:56.330Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01F9hr2zb9JScP41E425UCJK`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_related_work.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "671d79e7-25a6-4f63-a5c9-bdc5a9e66d20",
+  "isSidechain": false,
+  "requestId": "req_011Cb6emGTUCExrkvJ7RHUUz",
+  "type": "assistant",
+  "uuid": "7af62746-be55-480b-bf11-f647ca37956a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017bnp2vrKC81MNUSYY9eKQe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3777,
+      "cache_read_input_tokens": 47937,
+      "output_tokens": 177,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3777,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 177,
+          "cache_read_input_tokens": 47937,
+          "cache_creation_input_tokens": 3777,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3777
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 63 · 2026-05-16T17:35:56.336Z_
+
+<details><summary>↩ Tool result · `toolu_01F9hr2zb9JScP41E425UCJK`</summary>
+
+```text
+1	\section{Extended Related Work}
+2	\label{app:related_work}
+3	
+4	% ===========================================================================
+5	% Paradigm 1: Grammar-Constrained Decoding
+6	% ===========================================================================
+7	\paragraph{Grammar-Constrained Decoding.}
+8	Recent work has established efficient algorithms for restricting LLM outputs to conform to context-free grammars, making grammar-constrained decoding the de facto standard for obtaining structured output from language models.
+9	XGrammar~\cite{dong2025xgrammar} partitions the vocabulary into context-independent and context-dependent tokens and maintains persistent pushdown automata across decoding steps, achieving up to 100$\times$ speedup over prior CFG-constrained decoding methods.
+10	Outlines~\cite{willard2023outlines} reformulates constrained generation as finite-state machine transitions with offline vocabulary indexing, enabling efficient enforcement of regular-expression and JSON-schema constraints without runtime overhead per token.
+11	LMQL~\cite{beurer-kellner2023lmql} introduces a declarative query language that compiles type, length, and regex constraints into token-level masks, providing a programmable interface for specifying multi-variable output structures.
+12	These systems ensure that every generated token belongs to a grammar-valid continuation, but they do not address the \emph{distribution distortion} introduced by naive token masking.
+13	A parallel line of work tackles this problem directly: DOMINO~\cite{beurer-kellner2024domino} minimizes distributional divergence during CFG enforcement by formulating mask selection as an optimization problem, and ASAp~\cite{park2024grammar} provides a provably unbiased sampling algorithm that preserves the original LM distribution under grammar constraints.
+14	Together, these advances have made grammar-constrained decoding both fast and statistically principled, establishing a robust foundation for structured generation.
+15	However, all of these methods operate exclusively at the syntactic level---they ensure format validity (e.g., well-formed JSON, valid enum values) but cannot enforce cross-field semantic constraints such as ontology domain/range rules that depend on previously generated content.
+16	This syntactic-only limitation motivates OntoCoDec's semantic extension: our grammar layer builds on XGrammar for structural (JSON schema and enum) constraints, while a second semantic layer enforces relational type constraints that are inherently beyond the expressive power of context-free grammars.
+17	
+18	% ===========================================================================
+19	% Paradigm 1.5: Semantic Constrained Decoding for Code
+20	% ===========================================================================
+21	\paragraph{Semantic Constrained Decoding for Code.}
+22	In programming-language generation, constrained decoding has been extended beyond syntax to enforce semantic properties such as type correctness, demonstrating that richer-than-CFG constraints can be compiled into token-level filtering.
+23	In the text-to-SQL domain, PICARD~\cite{scholak2021picard} maintains an incremental SQL parsing state that rejects tokens violating syntax or referencing non-existent database columns at each decoding step, achieving state-of-the-art results on Spider and CoSQL without modifying model weights.
+24	While mechanistically similar to OntoCoDec's token-level filtering, PICARD operates over a \emph{fixed, fully enumerated} schema---database table and column names known before decoding begins.
+25	In contrast, OntoCoDec's entity registry is populated \emph{during} generation as entity spans are extracted from free text, requiring constraint sets that evolve with the decoding prefix---a fundamental distinction between querying a known schema and extracting from unstructured text.
+26	Synchromesh~\cite{synchromesh_iclr2022} pioneers Constrained Semantic Decoding (CSD), which enforces syntax, type, and scope constraints simultaneously during code generation from pre-trained LMs without fine-tuning, establishing that semantic constraints can be expressed as dynamic token masks conditioned on the generation prefix.
+27	MGD~\cite{mgd_neurips2023} uses static-analysis monitors to perform incremental type checking at decode time, enabling SantaCoder-1.1B to outperform text-davinci-003 on repository-level code completion by ensuring that every generated identifier is type-correct with respect to the surrounding code context.
+28	Most recently, \citet{pldi2025_type_constrained_codegen} compile full type systems---including generic types and subtyping---into prefix automata for token-level logits masking, reducing compilation errors by over 50\%.
+29	This last system is the closest mechanistic analog to OntoCoDec, applying the same ``type system $\to$ automaton $\to$ logits mask'' pipeline, though in a fundamentally different domain.
+30	The key technical difference lies in the constraint structure: programming-language type systems feature deep subtyping hierarchies and parametric polymorphism, whereas IE ontology axioms specify flat domain/range sets---a relation $R$ accepts head entities from set $\mathcal{D}(R)$ and tail entities from set $\mathcal{R}(R)$, with no subtype chains.
+31	Conversely, IE introduces a challenge absent in code generation: the constraint target (entity type) must be inferred from free-text spans rather than read from declared type annotations, requiring a stateful entity registry that tracks extracted types during autoregressive generation.
+32	These methods collectively demonstrate that semantic (type) constraints at decode time are both feasible and highly effective, but exclusively in the code domain where type systems are formally specified.
+33	OntoCoDec is the first to \emph{automatically compile} IE ontology axioms---including domain/range constraints---into token-level decoding masks for information extraction, migrating the type-constrained decoding paradigm from code generation to IE.
+34	
+35	% ===========================================================================
+36	% Paradigm 2: Vocabulary/Type-Constrained Generation
+37	% ===========================================================================
+38	\paragraph{Vocabulary and Type-Constrained Generation.}
+39	The idea of enforcing entity-type compatibility constraints for information extraction dates back to pre-neural methods.
+40	\citet{roth_yih_2004} formulate joint entity and relation identification as an integer linear program (ILP) that enforces type constraints---e.g., \textsc{Emp-Org} only between \textsc{Per} and \textsc{Org} entities---establishing the foundational principle that relational type compatibility should be a hard constraint, not a soft preference learned from data.
+41	In the autoregressive era, GENRE~\cite{decao2021genre} pioneers trie-based constrained beam search for autoregressive entity retrieval, restricting each decoding step to tokens consistent with valid entity names from a predefined catalog.
+42	GenIE~\cite{josifoski2022genie} extends this approach to end-to-end information extraction with state-based constraints that enforce valid triple structures, achieving strong performance on closed-world knowledge base population, though it requires task-specific fine-tuning on the target schema.
+43	AdaKGC~\cite{adakgc_emnlp2023} introduces schema-constrained dynamic decoding with trie-based prefix trees that adapt to the target schema, enforcing that generated entity and relation names belong to a predefined inventory---a vocabulary-level constraint that ensures name validity but does not verify type compatibility between a relation and its arguments.
+44	GCD~\cite{geng2023gcd} provides a unified grammar-constrained decoding framework for structured NLP tasks including IE, introducing input-dependent grammars that adapt constraints based on the source text---the closest precursor to OntoCoDec in applying logits masking to IE, though limited to syntactic constraints.
+45	NeuroLogic Decoding~\cite{lu2021neurologic} expresses lexical inclusion and exclusion constraints as predicate logic formulas enforced during beam search, offering a general mechanism for token-level control that can encode vocabulary membership but not relational type rules.
+46	These approaches constrain \emph{which tokens} can appear (vocabulary membership) but not \emph{which type combinations} are valid for a given relation.
+47	OntoCoDec's semantic layer enforces relational constraints---e.g., that the head entity of relation $R$ must belong to type set $\mathcal{D}(R)$---which cannot be expressed as static vocabulary restrictions because the valid set depends on the relation type generated earlier in the same sequence.
+48	While Roth \& Yih's ILP formulation shares the same type-compatibility motivation, it operates as a post-hoc reranker over discrete candidates; OntoCoDec integrates enforcement directly into autoregressive decoding, preventing violations rather than filtering them.
+49	
+50	% ===========================================================================
+51	% Paradigm 3: Structural Constraints for IE
+52	% ===========================================================================
+53	\paragraph{Structural Constraints via Training and Prompting.}
+54	An orthogonal approach encodes IE output structure through model training or prompt design rather than decoding-time enforcement, relying on learned representations to produce schema-compliant outputs.
+55	UIE~\cite{lu2022uie} defines a Structured Extraction Language and trains a unified text-to-structure model across 13 IE datasets, relying on large-scale pre-training to internalize output format constraints.
+56	GoLLIE~\cite{sainz2024gollie} expresses annotation guidelines as Python dataclass definitions and fine-tunes Code-LLaMA to generate typed code, achieving strong zero-shot transfer to unseen IE schemas by leveraging the implicit type structure of programming languages.
+57	KnowCoder~\cite{knowcoder_acl2024} takes this further by encoding 29K entity types from Wikidata as a Python class hierarchy, training a Code-LLM to generate structured extraction code that implicitly respects type inheritance---the most comprehensive schema-as-code approach to date.
+58	CodeIE~\cite{li2023codeie} similarly reformulates IE as code generation, leveraging the structural regularity of programming languages to reduce output format errors.
+59	ADELIE~\cite{qi2024adelie} uses SFT and DPO to align LLMs on IE tasks, achieving state-of-the-art results among open-source models while preserving general capabilities, though compliance with ontological constraints remains a learned soft preference rather than a guarantee.
+60	In the supervised setting, joint entity-relation architectures such as SpERT~\cite{eberts2020spert} and PFN~\cite{yan2021pfn} enforce type consistency implicitly through shared representations: SpERT classifies entity spans and relation pairs in a single BERT pass with span-level negative sampling, while PFN decomposes feature encoding into entity-specific, relation-specific, and shared partitions via gating mechanisms.
+61	These models achieve strong performance but are limited to fixed, predefined schemas and cannot generalize to unseen ontologies without retraining---precisely the zero-shot, ontology-portable scenario that OntoCoDec targets.
+62	EnriCo~\cite{zaratiana2024enrico} applies Answer Set Programming (ASP) constraints during decoding of joint entity-relation extraction models, enforcing structural type compatibility at generation time---a decoding-time approach, though with model-specific, manually authored constraints rather than ontology-driven compilation.
+63	Training-based methods provide \emph{soft} structural guidance---the model learns to prefer valid outputs but cannot guarantee compliance at inference time, as demonstrated by non-trivial violation rates even in fine-tuned systems.
+64	Importantly, training-based and decoding-time approaches are complementary rather than competing: a system like GoLLIE could be combined with OntoCoDec's constraint layers, using fine-tuning to maximize the probability of valid outputs while decoding-time enforcement eliminates residual violations.
+65	OntoCoDec provides \emph{hard} decoding-time enforcement that is training-free, automatically compiled from ontology schemas, and composable with any of these training-based approaches.
+66	
+67	% ===========================================================================
+68	% Paradigm 4: Type-Checking / Ontology Validation
+69	% ===========================================================================
+70	\paragraph{Post-hoc Ontology Validation.}
+71	Rather than constraining generation, several methods validate LLM outputs against ontological rules after generation, applying a detect-then-fix paradigm.
+72	ODKE+~\cite{khorshidi2025odke} dynamically generates ontology snippets containing domain/range constraints as prompt context, achieving 98.8\% precision across 195 predicates at web scale---but constraint adherence relies on prompt-level guidance, not enforcement, leaving residual violations unaddressed.
+73	SPIRES/OntoGPT~\cite{spires_2024} provides an ontology-based extraction framework that grounds LLM outputs against OBO ontologies post-generation, validating extracted entities and relations through ontology lookup and correcting mismatches in a second pass---representing the prompt-then-validate paradigm in the biomedical domain.
+74	OntoLogX~\cite{ontologx_2025} applies SHACL validation to LLM-generated knowledge graphs, iteratively re-prompting the LLM to correct constraint violations and reducing them by approximately 10$\times$ across multiple correction rounds---demonstrating the detect-then-fix paradigm's effectiveness but also its inherent multi-pass cost.
+75	\citet{upadhyay2023openie} inject entity-type knowledge as constraints into Open IE via both constrained inference and constraint-aware training, improving F1 by 29\% on CaRB, though their constrained inference operates over a discrete candidate set rather than during autoregressive generation.
+76	\citet{regino2025kgcurator} propose a multi-stage LLM pipeline for validating RDF triple insertions against RDFS domain/range constraints, where each validation step requires a separate LLM call---effective but computationally expensive at scale.
+77	RELATE~\cite{olasunkanmi2025relate} addresses the alignment gap between LLM-extracted biomedical relations and standardized ontology predicates through a three-stage pipeline: ontology preprocessing with predicate embeddings, similarity-based retrieval via SapBERT, and LLM-based reranking with negation handling, achieving 94\% accuracy@10 on ChemProt.
+78	While RELATE demonstrates effective ontology grounding for relation extraction, its constraints are applied \emph{post-extraction} through retrieval and reranking rather than during generation, and it requires domain-specific embedding models trained on biomedical corpora.
+79	OntoCoDec enforces ontology constraints \emph{during} autoregressive decoding and requires no additional trained components beyond the base LLM.
+80	Concurrently, \citet{zhou2026ontologytools} compile OWL ontologies into executable tool interfaces within The World Avatar framework, requiring LLM agents to invoke ontology-aware tools that enforce semantic constraints during knowledge graph construction from scientific text.
+81	This ``ontology-to-tools'' approach shares OntoCoDec's philosophy of compiling formal ontological knowledge into runtime enforcement mechanisms, but operates at the tool-call level (constraining which API functions the agent invokes) rather than at the token level (constraining which tokens the decoder produces), and requires an agentic multi-step workflow rather than single-pass autoregressive generation.
+82	\citet{ekaw2024_ontology_beam} introduce ontology-constrained beam scoring for clinical summarization, applying soft biases (not hard masks) during beam search to steer outputs toward ontology-compliant terms---a middle ground between unconstrained generation and hard enforcement that reduces but cannot eliminate violations.
+83	Post-hoc validation detects violations after generation, requiring rejection or correction cycles that waste compute---in our setting, 15.37\% of generated triples contain domain/range violations under unconstrained decoding, representing substantial wasted generation effort.
+84	OntoCoDec \emph{prevents} violations during decoding, redirecting probability mass to valid alternatives rather than discarding invalid outputs, with only marginal overhead from logits masking compared to the cost of regenerating or correcting violated triples.
+85	Soft-constraint approaches such as ontology-weighted beam scoring reduce violation frequency but cannot eliminate it, whereas OntoCoDec substantially reduces violations (DR$\downarrow$94\% on SciERC, $\downarrow$45--90\% on DocRED depending on model).
+86	
+87	% ===========================================================================
+88	% Paradigm 5: Constrained Decoding Quality Concerns
+89	% ===========================================================================
+90	\paragraph{Quality Impact of Constrained Decoding.}
+91	A growing body of work raises concerns that constrained decoding degrades LLM generation quality, particularly for reasoning-intensive tasks where format enforcement interferes with chain-of-thought processes.
+92	\citet{tam2024letmespeak} conduct a comprehensive evaluation showing that rigid format constraints (JSON, XML) harm performance on math and multi-hop QA benchmarks but \emph{benefit} classification-style tasks such as slot filling---a distinction directly relevant to IE, which is fundamentally an extraction (classification-like) task rather than a reasoning task.
+93	CRANE~\cite{banerjee2025crane} provides theoretical analysis of why restricting outputs to narrow grammars suppresses chain-of-thought reasoning by eliminating intermediate reasoning tokens, and proposes an alternating strategy between unconstrained reasoning phases and constrained output phases to mitigate this effect.
+94	\citet{schall2025hiddencost} conduct a systematic study across 11 models and multiple benchmarks, finding 10--30\% semantic correctness degradation on reasoning tasks under structural constraints, with larger models showing greater absolute degradation.
+95	\citet{zhou2026snowballing} identify ``structure snowballing''---a failure mode where format compliance cognitive load traps models in repetitive structural patterns rather than improving reasoning during self-correction iterations.
+96	These findings establish a legitimate concern for constrained decoding in reasoning-heavy applications.
+97	However, information extraction occupies a fundamentally different regime: the model extracts entities and relations from input text rather than generating novel reasoning chains, and \citet{tam2024letmespeak}'s own results show that extraction-style tasks are robust to---or even benefit from---format constraints.
+98	OntoCoDec addresses this concern empirically: domain/range violations decrease by 94\% on SciERC (15.37\%$\to$0.93\%) and 45--90\% on DocRED across two models, with F1-neutral impact on SciERC ($+$0.13pp, $p{=}0.58$) and significant R-F1 gains on DocRED ($p \leq 0.013$).
+99	Critically, OntoCoDec's constraints target only type tokens (entity types, relation labels), leaving free-text spans---entity surface forms and their boundaries---entirely unconstrained, which minimizes the distribution distortion that causes quality degradation in reasoning tasks.
+100	A two-pass variant (S2), explored in ablation (Section~5), separates extraction and constraint enforcement into distinct passes, analogous to CRANE's alternating strategy; however, our primary single-pass approach already avoids reasoning interference by constraining only type tokens while leaving free-text spans unconstrained.
+101	
+102	% ===========================================================================
+103	% Our Approach
+104	% ===========================================================================
+105	\paragraph{Our Approach.}
+106	OntoCoDec occupies a unique position in this landscape: it is the first system to \emph{automatically compile} IE ontology schemas---including domain/range axioms---into token-level semantic masks, extending grammar-constrained decoding from syntactic to semantic enforcement without manually authored rules.
+107	Unlike vocabulary-constrained methods that restrict individual tokens to a fixed set, OntoCoDec enforces \emph{cross-field relational constraints} through a stateful entity registry that tracks extracted types during autoregressive generation, enabling dynamic constraint evaluation that depends on previously decoded content.
+108	This approach is orthogonal to supervised IE methods and applicable to any autoregressive LM without model modification or additional training.
+109	Unlike training-based IE systems, OntoCoDec is training-free and substantially reduces type violations at inference time (DR$\downarrow$94\% on SciERC, $\downarrow$45--90\% on DocRED); unlike post-hoc validation, it prevents violations rather than detecting them, redirecting probability mass to valid alternatives with significant R-F1 gains on DocRED ($p \leq 0.013$) and F1-neutral impact on SciERC.
+110	The two constraint layers---grammar (structural) and semantic (relational)---compose via bitwise AND with an enabling dependency: the grammar layer ensures every generated type token belongs to the valid vocabulary, which enables the semantic layer to look up and enforce domain/range rules for that type.
+111	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7af62746-be55-480b-bf11-f647ca37956a",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "c694112c-1c1c-42e5-9e20-a7e7036167fa",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_related_work.tex",
+      "content": "\\section{Extended Related Work}\n\\label{app:related_work}\n\n% ===========================================================================\n% Paradigm 1: Grammar-Constrained Decoding\n% ===========================================================================\n\\paragraph{Grammar-Constrained Decoding.}\nRecent work has established efficient algorithms for restricting LLM outputs to conform to context-free grammars, making grammar-constrained decoding the de facto standard for obtaining structured output from language models.\nXGrammar~\\cite{dong2025xgrammar} partitions the vocabulary into context-independent and context-dependent tokens and maintains persistent pushdown automata across decoding steps, achieving up to 100$\\times$ speedup over prior CFG-constrained decoding methods.\nOutlines~\\cite{willard2023outlines} reformulates constrained generation as finite-state machine transitions with offline vocabulary indexing, enabling efficient enforcement of regular-expression and JSON-schema constraints without runtime overhead per token.\nLMQL~\\cite{beurer-kellner2023lmql} introduces a declarative query language that compiles type, length, and regex constraints into token-level masks, providing a programmable interface for specifying multi-variable output structures.\nThese systems ensure that every generated token belongs to a grammar-valid continuation, but they do not address the \\emph{distribution distortion} introduced by naive token masking.\nA parallel line of work tackles this problem directly: DOMINO~\\cite{beurer-kellner2024domino} minimizes distributional divergence during CFG enforcement by formulating mask selection as an optimization problem, and ASAp~\\cite{park2024grammar} provides a provably unbiased sampling algorithm that preserves the original LM distribution under grammar constraints.\nTogether, these advances have made grammar-constrained decoding both fast and statistically principled, establishing a robust foundation for structured generation.\nHowever, all of these methods operate exclusively at the syntactic level---they ensure format validity (e.g., well-formed JSON, valid enum values) but cannot enforce cross-field semantic constraints such as ontology domain/range rules that depend on previously generated content.\nThis syntactic-only limitation motivates OntoCoDec's semantic extension: our grammar layer builds on XGrammar for structural (JSON schema and enum) constraints, while a second semantic layer enforces relational type constraints that are inherently beyond the expressive power of context-free grammars.\n\n% ===========================================================================\n% Paradigm 1.5: Semantic Constrained Decoding for Code\n% ===========================================================================\n\\paragraph{Semantic Constrained Decoding for Code.}\nIn programming-language generation, constrained decoding has been extended beyond syntax to enforce semantic properties such as type correctness, demonstrating that richer-than-CFG constraints can be compiled into token-level filtering.\nIn the text-to-SQL domain, PICARD~\\cite{scholak2021picard} maintains an incremental SQL parsing state that rejects tokens violating syntax or referencing non-existent database columns at each decoding step, achieving state-of-the-art results on Spider and CoSQL without modifying model weights.\nWhile mechanistically similar to OntoCoDec's token-level filtering, PICARD operates over a \\emph{fixed, fully enumerated} schema---database table and column names known before decoding begins.\nIn contrast, OntoCoDec's entity registry is populated \\emph{during} generation as entity spans are extracted from free text, requiring constraint sets that evolve with the decoding prefix---a fundamental distinction between querying a known schema and extracting from unstructured text.\nSynchromesh~\\cite{synchromesh_iclr2022} pioneers Constrained Semantic Decoding (CSD), which enforces syntax, type, and scope constraints simultaneously during code generation from pre-trained LMs without fine-tuning, establishing that semantic constraints can be expressed as dynamic token masks conditioned on the generation prefix.\nMGD~\\cite{mgd_neurips2023} uses static-analysis monitors to perform incremental type checking at decode time, enabling SantaCoder-1.1B to outperform text-davinci-003 on repository-level code completion by ensuring that every generated identifier is type-correct with respect to the surrounding code context.\nMost recently, \\citet{pldi2025_type_constrained_codegen} compile full type systems---including generic types and subtyping---into prefix automata for token-level logits masking, reducing compilation errors by over 50\\%.\nThis last system is the closest mechanistic analog to OntoCoDec, applying the same ``type system $\\to$ automaton $\\to$ logits mask'' pipeline, though in a fundamentally different domain.\nThe key technical difference lies in the constraint structure: programming-language type systems feature deep subtyping hierarchies and parametric polymorphism, whereas IE ontology axioms specify flat domain/range sets---a relation $R$ accepts head entities from set $\\mathcal{D}(R)$ and tail entities from set $\\mathcal{R}(R)$, with no subtype chains.\nConversely, IE introduces a challenge absent in code generation: the constraint target (entity type) must be inferred from free-text spans rather than read from declared type annotations, requiring a stateful entity registry that tracks extracted types during autoregressive generation.\nThese methods collectively demonstrate that semantic (type) constraints at decode time are both feasible and highly effective, but exclusively in the code domain where type systems are formally specified.\nOntoCoDec is the first to \\emph{automatically compile} IE ontology axioms---including domain/range constraints---into token-level decoding masks for information extraction, migrating the type-constrained decoding paradigm from code generation to IE.\n\n% ===========================================================================\n% Paradigm 2: Vocabulary/Type-Constrained Generation\n% ===========================================================================\n\\paragraph{Vocabulary and Type-Constrained Generation.}\nThe idea of enforcing entity-type compatibility constraints for information extraction dates back to pre-neural methods.\n\\citet{roth_yih_2004} formulate joint entity and relation identification as an integer linear program (ILP) that enforces type constraints---e.g., \\textsc{Emp-Org} only between \\textsc{Per} and \\textsc{Org} entities---establishing the foundational principle that relational type compatibility should be a hard constraint, not a soft preference learned from data.\nIn the autoregressive era, GENRE~\\cite{decao2021genre} pioneers trie-based constrained beam search for autoregressive entity retrieval, restricting each decoding step to tokens consistent with valid entity names from a predefined catalog.\nGenIE~\\cite{josifoski2022genie} extends this approach to end-to-end information extraction with state-based constraints that enforce valid triple structures, achieving strong performance on closed-world knowledge base population, though it requires task-specific fine-tuning on the target schema.\nAdaKGC~\\cite{adakgc_emnlp2023} introduces schema-constrained dynamic decoding with trie-based prefix trees that adapt to the target schema, enforcing that generated entity and relation names belong to a predefined inventory---a vocabulary-level constraint that ensures name validity but does not verify type compatibility between a relation and its arguments.\nGCD~\\cite{geng2023gcd} provides a unified grammar-constrained decoding framework for structured NLP tasks including IE, introducing input-dependent grammars that adapt constraints based on the source text---the closest precursor to OntoCoDec in applying logits masking to IE, though limited to syntactic constraints.\nNeuroLogic Decoding~\\cite{lu2021neurologic} expresses lexical inclusion and exclusion constraints as predicate logic formulas enforced during beam search, offering a general mechanism for token-level control that can encode vocabulary membership but not relational type rules.\nThese approaches constrain \\emph{which tokens} can appear (vocabulary membership) but not \\emph{which type combinations} are valid for a given relation.\nOntoCoDec's semantic layer enforces relational constraints---e.g., that the head entity of relation $R$ must belong to type set $\\mathcal{D}(R)$---which cannot be expressed as static vocabulary restrictions because the valid set depends on the relation type generated earlier in the same sequence.\nWhile Roth \\& Yih's ILP formulation shares the same type-compatibility motivation, it operates as a post-hoc reranker over discrete candidates; OntoCoDec integrates enforcement directly into autoregressive decoding, preventing violations rather than filtering them.\n\n% ===========================================================================\n% Paradigm 3: Structural Constraints for IE\n% ===========================================================================\n\\paragraph{Structural Constraints via Training and Prompting.}\nAn orthogonal approach encodes IE output structure through model training or prompt design rather than decoding-time enforcement, relying on learned representations to produce schema-compliant outputs.\nUIE~\\cite{lu2022uie} defines a Structured Extraction Language and trains a unified text-to-structure model across 13 IE datasets, relying on large-scale pre-training to internalize output format constraints.\nGoLLIE~\\cite{sainz2024gollie} expresses annotation guidelines as Python dataclass definitions and fine-tunes Code-LLaMA to generate typed code, achieving strong zero-shot transfer to unseen IE schemas by leveraging the implicit type structure of programming languages.\nKnowCoder~\\cite{knowcoder_acl2024} takes this further by encoding 29K entity types from Wikidata as a Python class hierarchy, training a Code-LLM to generate structured extraction code that implicitly respects type inheritance---the most comprehensive schema-as-code approach to date.\nCodeIE~\\cite{li2023codeie} similarly reformulates IE as code generation, leveraging the structural regularity of programming languages to reduce output format errors.\nADELIE~\\cite{qi2024adelie} uses SFT and DPO to align LLMs on IE tasks, achieving state-of-the-art results among open-source models while preserving general capabilities, though compliance with ontological constraints remains a learned soft preference rather than a guarantee.\nIn the supervised setting, joint entity-relation architectures such as SpERT~\\cite{eberts2020spert} and PFN~\\cite{yan2021pfn} enforce type consistency implicitly through shared representations: SpERT classifies entity spans and relation pairs in a single BERT pass with span-level negative sampling, while PFN decomposes feature encoding into entity-specific, relation-specific, and shared partitions via gating mechanisms.\nThese models achieve strong performance but are limited to fixed, predefined schemas and cannot generalize to unseen ontologies without retraining---precisely the zero-shot, ontology-portable scenario that OntoCoDec targets.\nEnriCo~\\cite{zaratiana2024enrico} applies Answer Set Programming (ASP) constraints during decoding of joint entity-relation extraction models, enforcing structural type compatibility at generation time---a decoding-time approach, though with model-specific, manually authored constraints rather than ontology-driven compilation.\nTraining-based methods provide \\emph{soft} structural guidance---the model learns to prefer valid outputs but cannot guarantee compliance at inference time, as demonstrated by non-trivial violation rates even in fine-tuned systems.\nImportantly, training-based and decoding-time approaches are complementary rather than competing: a system like GoLLIE could be combined with OntoCoDec's constraint layers, using fine-tuning to maximize the probability of valid outputs while decoding-time enforcement eliminates residual violations.\nOntoCoDec provides \\emph{hard} decoding-time enforcement that is training-free, automatically compiled from ontology schemas, and composable with any of these training-based approaches.\n\n% ===========================================================================\n% Paradigm 4: Type-Checking / Ontology Validation\n% ===========================================================================\n\\paragraph{Post-hoc Ontology Validation.}\nRather than constraining generation, several methods validate LLM outputs against ontological rules after generation, applying a detect-then-fix paradigm.\nODKE+~\\cite{khorshidi2025odke} dynamically generates ontology snippets containing domain/range constraints as prompt context, achieving 98.8\\% precision across 195 predicates at web scale---but constraint adherence relies on prompt-level guidance, not enforcement, leaving residual violations unaddressed.\nSPIRES/OntoGPT~\\cite{spires_2024} provides an ontology-based extraction framework that grounds LLM outputs against OBO ontologies post-generation, validating extracted entities and relations through ontology lookup and correcting mismatches in a second pass---representing the prompt-then-validate paradigm in the biomedical domain.\nOntoLogX~\\cite{ontologx_2025} applies SHACL validation to LLM-generated knowledge graphs, iteratively re-prompting the LLM to correct constraint violations and reducing them by approximately 10$\\times$ across multiple correction rounds---demonstrating the detect-then-fix paradigm's effectiveness but also its inherent multi-pass cost.\n\\citet{upadhyay2023openie} inject entity-type knowledge as constraints into Open IE via both constrained inference and constraint-aware training, improving F1 by 29\\% on CaRB, though their constrained inference operates over a discrete candidate set rather than during autoregressive generation.\n\\citet{regino2025kgcurator} propose a multi-stage LLM pipeline for validating RDF triple insertions against RDFS domain/range constraints, where each validation step requires a separate LLM call---effective but computationally expensive at scale.\nRELATE~\\cite{olasunkanmi2025relate} addresses the alignment gap between LLM-extracted biomedical relations and standardized ontology predicates through a three-stage pipeline: ontology preprocessing with predicate embeddings, similarity-based retrieval via SapBERT, and LLM-based reranking with negation handling, achieving 94\\% accuracy@10 on ChemProt.\nWhile RELATE demonstrates effective ontology grounding for relation extraction, its constraints are applied \\emph{post-extraction} through retrieval and reranking rather than during generation, and it requires domain-specific embedding models trained on biomedical corpora.\nOntoCoDec enforces ontology constraints \\emph{during} autoregressive decoding and requires no additional trained components beyond the base LLM.\nConcurrently, \\citet{zhou2026ontologytools} compile OWL ontologies into executable tool interfaces within The World Avatar framework, requiring LLM agents to invoke ontology-aware tools that enforce semantic constraints during knowledge graph construction from scientific text.\nThis ``ontology-to-tools'' approach shares OntoCoDec's philosophy of compiling formal ontological knowledge into runtime enforcement mechanisms, but operates at the tool-call level (constraining which API functions the agent invokes) rather than at the token level (constraining which tokens the decoder produces), and requires an agentic multi-step workflow rather than single-pass autoregressive generation.\n\\citet{ekaw2024_ontology_beam} introduce ontology-constrained beam scoring for clinical summarization, applying soft biases (not hard masks) during beam search to steer outputs toward ontology-compliant terms---a middle ground between unconstrained generation and hard enforcement that reduces but cannot eliminate violations.\nPost-hoc validation detects violations after generation, requiring rejection or correction cycles that waste compute---in our setting, 15.37\\% of generated triples contain domain/range violations under unconstrained decoding, representing substantial wasted generation effort.\nOntoCoDec \\emph{prevents} violations during decoding, redirecting probability mass to valid alternatives rather than discarding invalid outputs, with only marginal overhead from logits masking compared to the cost of regenerating or correcting violated triples.\nSoft-constraint approaches such as ontology-weighted beam scoring reduce violation frequency but cannot eliminate it, whereas OntoCoDec substantially reduces violations (DR$\\downarrow$94\\% on SciERC, $\\downarrow$45--90\\% on DocRED depending on model).\n\n% ===========================================================================\n% Paradigm 5: Constrained Decoding Quality Concerns\n% ===========================================================================\n\\paragraph{Quality Impact of Constrained Decoding.}\nA growing body of work raises concerns that constrained decoding degrades LLM generation quality, particularly for reasoning-intensive tasks where format enforcement interferes with chain-of-thought processes.\n\\citet{tam2024letmespeak} conduct a comprehensive evaluation showing that rigid format constraints (JSON, XML) harm performance on math and multi-hop QA benchmarks but \\emph{benefit} classification-style tasks such as slot filling---a distinction directly relevant to IE, which is fundamentally an extraction (classification-like) task rather than a reasoning task.\nCRANE~\\cite{banerjee2025crane} provides theoretical analysis of why restricting outputs to narrow grammars suppresses chain-of-thought reasoning by eliminating intermediate reasoning tokens, and proposes an alternating strategy between unconstrained reasoning phases and constrained output phases to mitigate this effect.\n\\citet{schall2025hiddencost} conduct a systematic study across 11 models and multiple benchmarks, finding 10--30\\% semantic correctness degradation on reasoning tasks under structural constraints, with larger models showing greater absolute degradation.\n\\citet{zhou2026snowballing} identify ``structure snowballing''---a failure mode where format compliance cognitive load traps models in repetitive structural patterns rather than improving reasoning during self-correction iterations.\nThese findings establish a legitimate concern for constrained decoding in reasoning-heavy applications.\nHowever, information extraction occupies a fundamentally different regime: the model extracts entities and relations from input text rather than generating novel reasoning chains, and \\citet{tam2024letmespeak}'s own results show that extraction-style tasks are robust to---or even benefit from---format constraints.\nOntoCoDec addresses this concern empirically: domain/range violations decrease by 94\\% on SciERC (15.37\\%$\\to$0.93\\%) and 45--90\\% on DocRED across two models, with F1-neutral impact on SciERC ($+$0.13pp, $p{=}0.58$) and significant R-F1 gains on DocRED ($p \\leq 0.013$).\nCritically, OntoCoDec's constraints target only type tokens (entity types, relation labels), leaving free-text spans---entity surface forms and their boundaries---entirely unconstrained, which minimizes the distribution distortion that causes quality degradation in reasoning tasks.\nA two-pass variant (S2), explored in ablation (Section~5), separates extraction and constraint enforcement into distinct passes, analogous to CRANE's alternating strategy; however, our primary single-pass approach already avoids reasoning interference by constraining only type tokens while leaving free-text spans unconstrained.\n\n% ===========================================================================\n% Our Approach\n% ===========================================================================\n\\paragraph{Our Approach.}\nOntoCoDec occupies a unique position in this landscape: it is the first system to \\emph{automatically compile} IE ontology schemas---including domain/range axioms---into token-level semantic masks, extending grammar-constrained decoding from syntactic to semantic enforcement without manually authored rules.\nUnlike vocabulary-constrained methods that restrict individual tokens to a fixed set, OntoCoDec enforces \\emph{cross-field relational constraints} through a stateful entity registry that tracks extracted types during autoregressive generation, enabling dynamic constraint evaluation that depends on previously decoded content.\nThis approach is orthogonal to supervised IE methods and applicable to any autoregressive LM without model modification or additional training.\nUnlike training-based IE systems, OntoCoDec is training-free and substantially reduces type violations at inference time (DR$\\downarrow$94\\% on SciERC, $\\downarrow$45--90\\% on DocRED); unlike post-hoc validation, it prevents violations rather than detecting them, redirecting probability mass to valid alternatives with significant R-F1 gains on DocRED ($p \\leq 0.013$) and F1-neutral impact on SciERC.\nThe two constraint layers---grammar (structural) and semantic (relational)---compose via bitwise AND with an enabling dependency: the grammar layer ensures every generated type token belongs to the valid vocabulary, which enables the semantic layer to look up and enforce domain/range rules for that type.\n",
+      "numLines": 111,
+      "startLine": 1,
+      "totalLines": 111
+    }
+  },
+  "sourceToolAssistantUUID": "7af62746-be55-480b-bf11-f647ca37956a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 64 · 2026-05-16T17:35:56.382Z_
+
+```json
+{
+  "parentUuid": "c694112c-1c1c-42e5-9e20-a7e7036167fa",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "2977189f-ac25-4343-9962-9a91bb117f63",
+  "timestamp": "2026-05-16T17:35:56.382Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 65_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 完整性 + 相关工作 + 写作质量**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Ontology Constraints - **论文路径**: `projects/schema_sem…",
+  "leafUuid": "2977189f-ac25-4343-9962-9a91bb117f63",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 66_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-16T17:36:01.350Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me also read the appendix_discussion.tex and appendix_prompts.tex files to get a complete picture.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2977189f-ac25-4343-9962-9a91bb117f63",
+  "isSidechain": false,
+  "requestId": "req_011Cb6en3Ph6PpGYnw7Z7U67",
+  "type": "assistant",
+  "uuid": "27ba4139-c0f2-46ad-9146-08110b81c7c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017hS4fyXokgKp1mnyaoCkPZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5624,
+      "cache_read_input_tokens": 51714,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5624,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 51714,
+          "cache_creation_input_tokens": 5624,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5624
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-16T17:36:03.357Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01PtNzwtkpK4iPSWxSB7gzF2`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "27ba4139-c0f2-46ad-9146-08110b81c7c5",
+  "isSidechain": false,
+  "requestId": "req_011Cb6en3Ph6PpGYnw7Z7U67",
+  "type": "assistant",
+  "uuid": "64e40f6a-c8e6-4c3d-8e46-d9349de92df1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017hS4fyXokgKp1mnyaoCkPZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5624,
+      "cache_read_input_tokens": 51714,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5624,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 51714,
+          "cache_creation_input_tokens": 5624,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5624
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-16T17:36:03.362Z_
+
+<details><summary>↩ Tool result · `toolu_01PtNzwtkpK4iPSWxSB7gzF2`</summary>
+
+```text
+1	% Appendix B — Extended Discussion
+2	% Contains discussion paragraphs moved from the main text during compression.
+3	
+4	\section{Extended Discussion}\label{app:discussion}
+5	
+6	%%% CF Dual Mechanism %%%
+7	% exp_ids: phase2_scierc_full_s1, llama_scierc_full_s1, llama_docred_full_s1
+8	
+9	\paragraph{CF Dual Mechanism.}
+10	CF violations arise from two distinct mechanisms:
+11	(1)~\emph{Registry override}: the semantic constraint forces a domain-compatible type that conflicts with the entity's previously registered type.
+12	The entity appears in multiple relations with different type requirements, and the per-relation mask selects the locally valid type without consulting prior assignments.
+13	(2)~\emph{Grammar-first fallback} (\S\ref{sec:interaction}): when the semantic mask conflicts with all grammar-valid tokens, the semantic layer is dropped entirely, allowing the grammar layer to generate any structurally valid type---which may differ from the entity's registered type.
+14	
+15	These mechanisms have sharply different model profiles.
+16	Qwen3-8B triggers zero grammar-first fallbacks across all experiments, attributing 100\% of its CF violations to registry override.
+17	Llama-3.1-8B, by contrast, triggers 5{,}882 fallbacks on SciERC (10.7 per document) and 57{,}825 on DocRED (63.8 per document), making grammar-first fallback the dominant CF source.
+18	This asymmetry is consistent with the cross-model CF gap: Qwen achieves CF\,=\,2.57\% on DocRED vs.\ Llama's 12.02\%, despite both using identical constraint configurations.
+19	The difference traces to Llama's less calibrated type predictions, which more frequently conflict with the semantic mask's valid set, triggering fallback.
+20	
+21	%%% Fallback Behavior and Effective Coverage %%%
+22	% exp_ids: cf_fallback_ablation_scierc (final data)
+23	
+24	\paragraph{Fallback Behavior and Effective Coverage.}
+25	\label{app:fallback-coverage}
+26	The two-layer architecture produces two distinct fallback mechanisms with different semantic consequences.
+27	\emph{Grammar-first fallback} (36.6\% of type-bearing positions on SciERC) occurs when $S(t) \cap G(t) = \emptyset$: the semantic layer deactivates as a safety valve, preserving structural validity at the cost of potential type violations---these events account for the residual DR that persists after constraint enforcement.
+28	\emph{Registry-consistent fallback} (4.5\%) occurs when the entity's registered type conflicts with domain/range constraints; the system defaults to the registered type for cross-triple consistency.
+29	Together, these mechanisms produce the characteristic profile of composable constraint systems: residual DR traces to grammar-first fallback events, while CF violations arise from registry override events where per-relation enforcement assigns conflicting types.
+30	
+31	We define \emph{effective semantic constraint coverage} as $1 - f_{\text{gf}}$, where $f_{\text{gf}}$ is the grammar-first fallback rate.
+32	On SciERC, this yields 63.4\% coverage---at 63.4\% of type-bearing positions, the semantic layer actively constrains generation.
+33	This metric directly quantifies the enabling dependency (\S\ref{sec:interaction}): it measures the fraction of decoding steps where both constraint layers are jointly active, providing a fine-grained view beyond aggregate violation rates.
+34	Qwen3-8B, with zero grammar-first fallbacks, achieves 100\% effective coverage on SciERC, consistent with its lower residual DR (0.93\% vs.\ Llama's 0.08\%).
+35	
+36	%%% CF-DR Trade-off Analysis %%%
+37	% exp_ids: cf_fallback_ablation_scierc (CF fallback vs full_s1 baseline)
+38	
+39	\paragraph{CF-DR Trade-off Analysis.}
+40	\label{app:cf-dr-tradeoff}
+41	
+42	CF violations are the most prominent residual limitation of OntoCoDec under zero-shot decoding (9.90\% on SciERC, up to 12.02\% on Llama DocRED).
+43	We treat this honestly: per-relation independent enforcement cannot eliminate CF without trading it against DR.
+44	Table~\ref{tab:cf-dr-tradeoff} reports a pilot ablation in which we replace the grammar-first fallback with a CF-priority fallback that forces the entity's registered type when it conflicts with $\sigma(r)$.
+45	
+46	\begin{table}[t]
+47	\centering
+48	\small
+49	\begin{tabular}{@{}l rrrr@{}}
+50	\toprule
+51	\textbf{Configuration} & \textbf{DR\,(\%)} & \textbf{CF\,(\%)} & \textbf{DR+CF} & \textbf{$f_{\text{gf}}$\,(\%)} \\
+52	\midrule
+53	Full S1 (baseline) & 0.93 & 9.90 & 10.83 & --- \\
+54	CF fallback        & 14.78 & 0.04 & 14.82 & 36.64 \\
+55	\midrule
+56	$\Delta$ & $+$13.85 & $-$9.86 & $+$3.99 & --- \\
+57	\bottomrule
+58	\end{tabular}
+59	\caption{CF-DR trade-off pilot on SciERC (Qwen3-8B, 551 documents; \texttt{w1\_cf\_fallback\_scierc\_pilot}). CF fallback eliminates CF but re-routes violations to DR, increasing total violations (DR+CF) by 3.99\,pp. $f_{\text{gf}}$: grammar-first fallback rate at type-bearing positions.}
+60	\label{tab:cf-dr-tradeoff}
+61	\end{table}
+62	
+63	The CF fallback variant nearly eliminates CF (9.90\%\,$\to$\,0.04\%, $-$9.86\,pp) but at the cost of a 15.9$\times$ increase in DR (0.93\%\,$\to$\,14.78\%, $+$13.85\,pp).
+64	% exp_id: w1_cf_fallback_scierc_pilot: DR=0.1478, CF=0.0004, f_gf=0.3664
+65	This is not a net improvement: total violations (DR+CF) rise from 10.83\% to 14.82\% ($+$3.99\,pp), so the change \emph{re-routes} violations rather than reducing them.
+66	The mechanism is mechanical: each token position with conflicting masks must commit to one violation type; when the CF fallback forces the system to emit the entity's registered type even though it lies outside $\sigma(r)$, the resulting triple satisfies cross-entity consistency but violates domain/range.
+67	The grammar-first fallback is triggered at 36.64\% of type-bearing positions, indicating that this conflict is structural, not a tunable hyperparameter.
+68	
+69	We interpret this as a fundamental tension in composable constraint systems with \emph{per-relation independent} enforcement: enforcement priority can be allocated between DR and CF but cannot independently minimize both.
+70	Within this design, the current full S1 configuration sits near the Pareto frontier of the trade-off, achieving 0.93\% DR at the cost of 9.90\% CF.
+71	The CF residual is concentrated in schema ambiguity rather than enforcement failure: 63.3\% of CF violations on SciERC involve the catch-all \textsc{Generic} type (Table~\ref{tab:cf-distribution}), which competes with every content type depending on anaphoric vs.\ referential use---a distinction the per-slot decoder cannot resolve without document-level coreference.
+72	
+73	Two complementary paths can lower CF without re-routing it to DR.
+74	(i)~\emph{Reduce the baseline conflict rate.} Composing OntoCoDec with LoRA fine-tuning on SciERC reduces CF by 88\% relative to the zero-shot setting (9.90\%\,$\to$\,1.18\%; Table~\ref{tab:composability}), because the fine-tuned model's per-slot type predictions agree more often with the entity registry, so the per-relation mask and the registry intersect more frequently.
+75	% exp_id: w5_lora_scierc_constrained_eval: CF=0.0118
+76	The remaining 1.18\% still traces to \textsc{Generic}$\leftrightarrow$X schema ambiguity, so this path is empirically validated on one dataset and one fine-tuning method but does not generalize without further evidence.
+77	(ii)~\emph{Replace per-relation enforcement with global entity-level type consensus during decoding.} This is outside the scope of OntoCoDec's forward-only autoregressive design and is left to future work.
+78	
+79	%%% Dual-Factor Quantitative Analysis %%%
+80	% exp_ids: phase2_scierc_full_s1, phase2_docred_full_s1,
+81	%          llama_scierc_full_s1, llama_docred_full_s1
+82	
+83	\paragraph{Dual-Factor Quantitative Analysis.}
+84	\label{app:dual-factor}
+85	
+86	Figure~\ref{fig:dual-factor-scatter} plots residual DR against the product $\bar{\tau} \times \text{RV}_{\text{baseline}}$ for all four model$\times$dataset configurations.
+87	A linear fit yields $y = 0.366x - 0.138$ with $R^2 = 0.886$ ($n{=}4$; we do not report a $p$-value given the small sample size).
+88	The strong fit is consistent with the dual-factor pattern described in \S\ref{sec:composition}: configurations with higher tightness and higher baseline violation rate exhibit proportionally higher residual DR after constraint enforcement.
+89	The two DocRED points (high $\bar{\tau}{=}0.842$) separate cleanly from the two SciERC points (low $\bar{\tau}{=}0.333$), and within each dataset the model with higher baseline RV shows higher residual DR.
+90	
+91	\begin{figure}[t]
+92	\centering
+93	\includegraphics[width=0.75\columnwidth]{figures/dual_factor_scatter.pdf}
+94	\caption{Residual DR vs.\ $\bar{\tau} \times \text{RV}_{\text{baseline}}$ across four model$\times$dataset configurations.
+95	Linear fit: $y = 0.366x - 0.138$, $R^2 = 0.886$.}
+96	\label{fig:dual-factor-scatter}
+97	\end{figure}
+98	
+99	%%% Dataset-Dependent F1 Impact (moved from §7) %%%
+100	% exp_ids: d012_bootstrap_ci (DocRED +0.50pp p<0.001, SciERC +0.13pp p=0.58),
+101	%          phase0_docred_unconstrained (RV=29.66%), phase0_scierc_unconstrained (RV=1.39%)
+102	
+103	\paragraph{Dataset-Dependent F1 Impact.}
+104	The divergence in F1 significance between DocRED ($+$0.50\,pp, $p < 0.001$) and SciERC ($+$0.13\,pp, $p = 0.58$) traces to a single mechanism: grammar-layer elimination of out-of-vocabulary relation names.
+105	DocRED's baseline RV of 29.66\% produces 5{,}189 OOV predictions counted as false positives; eliminating them yields a significant precision gain.
+106	SciERC's baseline RV is only 1.39\% (24 OOV predictions), too few to produce a detectable F1 effect.
+107	Llama-3.1-8B's lower baseline RV (16.03\%) yields a smaller but directionally consistent improvement ($+$0.29\,pp vs.\ $+$0.50\,pp), confirming that F1 gain magnitude is proportional to baseline OOV rate.
+108	% exp_ids: phase0_docred_unconstrained, phase0_scierc_unconstrained
+109	% exp_ids: llama_docred_unconstrained (RV=16.03%), llama_docred_full_s1 (R-F1 delta=+0.29pp)
+110	
+111	%%% Paragraph 1: Low F1 Practical Significance %%%
+112	% exp_ids: phase2_scierc_full_s1 (R-F1=8.36%), phase2_docred_full_s1 (R-F1=8.23%),
+113	%          phase0_scierc_unconstrained (DR=15.37%), phase2_docred_unconstrained (DR=18.46%)
+114	
+115	\paragraph{Practical Significance of Zero-Shot F1.}
+116	Our reported relation F1 of approximately 8\% on both SciERC and DocRED reflects the inherent difficulty of zero-shot closed IE, where the model receives no task-specific training examples.
+117	For reference, supervised state-of-the-art systems on SciERC achieve approximately 49--53\% relation F1 with full training data~\citep{zhong2021frustratingly,ye2022packed}.
+118	Constraint enforcement operates largely independently of the extraction model's intrinsic capability: it restricts the output space to ontologically valid triples regardless of the underlying model's accuracy.
+119	When applied to fine-tuned models that reach competitive F1 levels, the same constraints remain necessary---Phase~0 analysis confirms that even well-prompted models exhibit non-trivial violation rates (15.37\% DR on SciERC, 18.46\% on DocRED).
+120	% exp_ids: phase0_scierc_unconstrained, phase2_docred_unconstrained
+121	In our evaluation, F1 serves as a \emph{control variable} verifying that constraint enforcement does not degrade extraction quality, not as an optimization target.
+122	The contribution of this work is the constraint enforcement method itself; the zero-shot setting isolates its effect from confounds introduced by task-specific fine-tuning.
+123	
+124	%%% Paragraph 4: Decoding-Time vs. Post-Hoc Enforcement %%%
+125	% exp_ids: posthoc_filtering_baseline, phase2_scierc_full_s1 (R-F1=8.36%),
+126	%          phase2_docred_full_s1 (R-F1=8.23%, ET=0%)
+127	
+128	\paragraph{Decoding-Time vs.\ Post-Hoc Enforcement.}
+129	Post-hoc filtering---generating triples without constraints, then removing schema-violating predictions---yields higher precision and consequently higher F1 than OntoCoDec on both datasets (SciERC 8.63 vs.\ 8.36; DocRED 9.61 vs.\ 8.23).
+130	% posthoc: SciERC F1=8.63, DocRED F1=9.61; OntoCoDec: SciERC R-F1=8.36, DocRED R-F1=8.23
+131	However, this precision gain comes at substantial cost.
+132	On DocRED, post-hoc filtering discards 48.1\% of all predicted triples, including 127 true positives (11.2\% of correct predictions), reducing recall from 9.46\% to 8.40\%.
+133	% posthoc_docred: rejection=48.1%, tp_lost=127/1137, R: 9.46→8.40
+134	Entity type violations remain unresolved (ET\,=\,2.47\% vs.\ OntoCoDec's 0\%), as filtering targets only domain/range and vocabulary violations.
+135	% posthoc_docred: ET_residual=2.47%; phase2_docred_full_s1: ET=0%
+136	OntoCoDec's decoding-time approach avoids this information loss by guiding generation toward compliant outputs rather than discarding non-compliant ones, preserving both recall and entity type validity.
+137	The two strategies are complementary: post-hoc filtering can serve as an additional safety net for residual violations that decoding-time enforcement does not fully resolve.
+138	
+139	%%% CF Violation Distribution %%%
+140	% exp_ids: phase2_scierc_full_s1 (CF=245), llama_scierc_full_s1 (CF=162),
+141	%          phase2_docred_full_s1 (CF=2670), llama_docred_full_s1 (CF=3824)
+142	
+143	\paragraph{Cross-Field Violation Distribution.}
+144	\label{app:cf-distribution}
+145	
+146	Table~\ref{tab:cf-distribution} reports the complete distribution of conflicting-type pairs for SciERC full S1 (245 CF violations, all pairwise---no mention triggered $\geq$3 types).
+147	Conflicts involving the \textsc{Generic} type account for 63.3\% (155/245) of all violations.
+148	\textsc{Generic} is SciERC's anaphoric/placeholder label (``this approach'', ``the method''), which competes with every content type depending on whether the mention is used anaphorically or referentially---a distinction the per-slot constrained decoder cannot resolve without document-level coreference.
+149	
+150	The pattern generalizes across models and datasets: on Llama-3.1-8B SciERC, \textsc{Generic}$\leftrightarrow$\textsc{OtherScientificTerm} remains the top pair (53/162, 32.7\%); on DocRED, the analogous catch-all type \textsc{MISC} drives 76.6\% of Qwen's CF violations.
+151	Under unconstrained decoding, CF rates collapse to $\leq$1\% on both datasets, confirming that CF violations are a side-effect of per-slot type commitment rather than a model deficiency.
+152	
+153	\begin{table}[t]
+154	\centering
+155	\small
+156	\begin{tabular}{@{}lr r@{}}
+157	\toprule
+158	\textbf{Conflicting Type Pair} & \textbf{Count} & \textbf{\%} \\
+159	\midrule
+160	Generic $\leftrightarrow$ OtherScientificTerm & 85 & 34.7 \\
+161	Generic $\leftrightarrow$ Material & 35 & 14.3 \\
+162	Generic $\leftrightarrow$ Metric & 30 & 12.2 \\
+163	Method $\leftrightarrow$ Task & 20 & 8.2 \\
+164	Material $\leftrightarrow$ Method & 17 & 6.9 \\
+165	OtherScientificTerm $\leftrightarrow$ Task & 12 & 4.9 \\
+166	\midrule
+167	10 further pairs (each $\leq$3.3\%) & 46 & 18.8 \\
+168	\midrule
+169	\textbf{Total} & \textbf{245} & 100.0 \\
+170	\bottomrule
+171	\end{tabular}
+172	\caption{CF violation distribution on SciERC full S1 (Qwen3-8B, 551 documents).
+173	All 245 violations are pairwise conflicts.
+174	Conflicts involving \textsc{Generic} account for 63.3\%.}
+175	\label{tab:cf-distribution}
+176	\end{table}
+177	
+178	%%% Per-Relation DR Elimination under Fine-Tuning %%%
+179	% exp_ids: lora_scierc_unconstrained, lora_scierc_full_s1
+180	
+181	\paragraph{Per-Relation DR Elimination under Fine-Tuning.}
+182	\label{app:lora-per-relation}
+183	
+184	Table~\ref{tab:lora-per-relation} presents the per-relation breakdown of DR elimination when OntoCoDec is composed with LoRA fine-tuning on SciERC.
+185	Fine-tuning alone eliminates DR on four of seven relations but leaves non-zero violations on the three tightest-constraint relations: \textsc{Evaluate-for} ($\tau{=}0.361$, 13.13\%), \textsc{Part-of} ($\tau{=}0.417$, 5.77\%), and \textsc{Compare} ($\tau{=}0.528$, 5.00\%).
+186	Adding OntoCoDec constraints eliminates all remaining violations across all relations.
+187	One \textsc{Evaluate-for} triple (99\,$\to$\,98) is redirected to \textsc{Used-for} (634\,$\to$\,635) by token-level masking: the head entity's registered type falls outside \textsc{Evaluate-for}'s domain, and the semantic mask steers generation to the nearest valid relation.
+188	
+189	\begin{table}[t]
+190	\centering
+191	\small
+192	\begin{tabular}{@{}l r rr rr@{}}
+193	\toprule
+194	& & \multicolumn{2}{c}{\textbf{LoRA Unconstr.}} & \multicolumn{2}{c}{\textbf{LoRA + S1}} \\
+195	\cmidrule(lr){3-4} \cmidrule(l){5-6}
+196	\textbf{Relation} & $\tau$ & DR\,(\%) & $n$ & DR\,(\%) & $n$ \\
+197	\midrule
+198	Evaluate-for & 0.361 & 13.13 & 99 & \textbf{0} & 98 \\
+199	Part-of      & 0.417 & 5.77  & 52 & \textbf{0} & 52 \\
+200	Compare      & 0.528 & 5.00  & 40 & \textbf{0} & 40 \\
+201	Conjunction  & 0.306 & 1.31  & 153 & \textbf{0} & 153 \\
+202	Feature-of   & 0.278 & 1.35  & 74 & \textbf{0} & 74 \\
+203	Used-for     & 0.028 & 0.16  & 634 & \textbf{0} & 635 \\
+204	Hyponym-of   & 0.417 & 0     & --- & \textbf{0} & --- \\
+205	\bottomrule
+206	\end{tabular}
+207	\caption{Per-relation DR elimination on SciERC with LoRA fine-tuning (Qwen3-8B).
+208	$\tau$: constraint tightness; $n$: predicted triple count.
+209	Used-for gains one triple from Evaluate-for redirection.}
+210	\label{tab:lora-per-relation}
+211	\end{table}
+212	
+213	%%% Fine-Tuned Four-Way Ablation %%%
+214	% exp_ids: w5_lora_scierc_*, w5_llama_lora_scierc_*, w5_qwen_docred_*, w5_llama_docred_*, w8_*
+215	
+216	\paragraph{Fine-Tuned Four-Way Ablation.}
+217	\label{app:ft-ablation}
+218	
+219	Table~\ref{tab:ft-ablation} presents the four-way constraint ablation on fine-tuned models across both datasets, isolating each layer's contribution when the base model has already internalized schema knowledge.
+220	
+221	\begin{table}[t]
+222	\centering
+223	\small
+224	\setlength{\tabcolsep}{3.5pt}
+225	\resizebox{\columnwidth}{!}{%
+226	\begin{tabular}{@{}lll rr@{}}
+227	\toprule
+228	\textbf{Dataset} & \textbf{Model} & \textbf{Mode} & \textbf{DR\,(\%)\,$\downarrow$} & \textbf{R-F1\,$\uparrow$} \\
+229	\midrule
+230	\multirow{8}{*}{SciERC}
+231	  & \multirow{4}{*}{Qwen3-8B}
+232	    & Unconstrained & 1.95 & 43.86 \\
+233	  & & Grammar       & 1.90 & 43.86 \\
+234	  & & Semantic      & 0.60 & 43.69 \\
+235	  & & Full S1       & \textbf{0}    & 43.77 \\
+236	  \cmidrule(l){2-5}
+237	  & \multirow{4}{*}{Llama-3.1-8B}
+238	    & Unconstrained & 1.11 & 45.45 \\
+239	  & & Grammar       & 1.11 & 45.45 \\
+240	  & & Semantic      & 0.65 & 45.47 \\
+241	  & & Full S1       & \textbf{0.09} & 45.47 \\
+242	\midrule
+243	\multirow{8}{*}{DocRED}
+244	  & \multirow{4}{*}{Qwen3-8B}
+245	    & Unconstrained & 0.76 & 40.86 \\
+246	  & & Grammar       & 0.61 & 40.85 \\
+247	  & & Semantic      & 0.21 & 40.89 \\
+248	  & & Full S1       & \textbf{0.01} & 40.56 \\
+249	  \cmidrule(l){2-5}
+250	  & \multirow{4}{*}{Llama-3.1-8B}
+251	    & Unconstrained & 0.49 & 43.72 \\
+252	  & & Grammar       & 0.51 & 43.77 \\
+253	  & & Semantic      & 0.30 & 43.90 \\
+254	  & & Full S1       & \textbf{0.20} & 44.23 \\
+255	\bottomrule
+256	\end{tabular}}%
+257	\caption{Four-way constraint ablation on fine-tuned models (LoRA, 2 models $\times$ 2 datasets).
+258	Grammar layer is a no-op post-fine-tuning (DR change $<$0.2\,pp in all 4 settings).
+259	Semantic layer is the sole effective DR defense under fine-tuning, providing 39--72\% reduction.
+260	F1 $\times$100.}
+261	\label{tab:ft-ablation}
+262	\end{table}
+263	
+264	The grammar layer is effectively a no-op for fine-tuned models across all four settings: RV and ET are already 0\% without constraints, and grammar-only DR change is $<$0.2\,pp (4/4 settings).
+265	The semantic layer is the sole effective DR defense under fine-tuning, independently reducing DR by 39--72\% across all settings (SciERC: Qwen $-$69\%, Llama $-$41\%; DocRED: Qwen $-$72\%, Llama $-$39\%).
+266	Adding both layers achieves near-complete elimination (DR\,$\leq$\,0.20\% in all 4 settings), confirming that even after fine-tuning, the semantic layer's pair-based enforcement captures violations that training alone cannot eliminate---specifically on tight-constraint relations where the valid type-pair space is small.
+267	
+268	%%% Post-Hoc Filtering Comparison (Extended) %%%
+269	% exp_ids: posthoc_*_zs, posthoc_*_ft
+270	
+271	\paragraph{Post-Hoc Filtering: Extended Comparison.}
+272	\label{app:posthoc-extended}
+273	
+274	Table~\ref{tab:posthoc-extended} presents the full comparison across all six zero-shot and four fine-tuned configurations.
+275	
+276	\begin{table}[t]
+277	\centering
+278	\small
+279	\setlength{\tabcolsep}{3pt}
+280	\resizebox{\columnwidth}{!}{%
+281	\begin{tabular}{@{}lll rrr l@{}}
+282	\toprule
+283	\textbf{Setting} & \textbf{Model} & \textbf{Dataset} & \textbf{Reject\%} & \textbf{R-F1$_{\text{ph}}$} & \textbf{R-F1$_{\text{cd}}$} & \textbf{Winner} \\
+284	\midrule
+285	\multirow{6}{*}{ZS}
+286	  & Qwen    & SciERC & 16.8 & 8.63  & 8.36  & ph \\
+287	  & Llama   & SciERC & 13.9 & 2.71  & 2.54  & ph \\
+288	  & Mistral & SciERC & 20.3 & 3.94  & 3.67  & ph \\
+289	  & Qwen    & DocRED & 48.1 & 9.61  & 8.23  & ph \\
+290	  & Llama   & DocRED & 42.2 & 7.44  & 6.27  & ph \\
+291	  & Mistral & DocRED & \textbf{73.7} & 3.85  & \textbf{5.52} & cd \\
+292	\midrule
+293	\multirow{4}{*}{FT}
+294	  & Qwen    & SciERC & 1.95 & 43.94 & 43.77 & ph \\
+295	  & Llama   & SciERC & 1.11 & 45.23 & 45.47 & cd \\
+296	  & Qwen    & DocRED & 1.03 & 41.11 & 40.56 & ph \\
+297	  & Llama   & DocRED & 0.64 & 43.92 & 44.23 & cd \\
+298	\bottomrule
+299	\end{tabular}}%
+300	\caption{Post-hoc filtering (ph) vs.\ constrained decoding (cd).
+301	In zero-shot settings, post-hoc F1 is higher in 5/6 groups (precision-dominated), but constrained decoding preserves higher recall in all 6/6 groups.
+302	At reject rate $>$70\% (Mistral DocRED), post-hoc F1 collapses below constrained.
+303	Under fine-tuning, rejection rates drop to 0.6--2.0\% and the two strategies are equivalent ($\Delta \leq 0.55$\,pp; each wins two groups).
+304	F1 $\times$100.}
+305	\label{tab:posthoc-extended}
+306	\end{table}
+307	
+308	The crossover point occurs when post-hoc rejection exceeds $\sim$70\%: Mistral DocRED rejects 73.7\% of predicted triples, discarding enough true positives that constrained decoding's recall advantage dominates ($+$1.67\,pp).
+309	OntoCoDec's advantage thus scales with violation severity---precisely when constraints are most needed, post-hoc filtering is most destructive.
+310	Under fine-tuning, both strategies converge because few violations remain to filter or constrain ($\Delta \leq 0.55$\,pp across all four FT groups, with each strategy winning two).
+311	
+312	%%% FT Latency %%%
+313	
+314	\paragraph{Fine-Tuned Latency Profiling.}
+315	\label{app:ft-latency}
+316	Under LoRA fine-tuning (Qwen3-8B, SciERC, 100 documents, RTX PRO 6000), per-document inference times are: unconstrained 2.594\,s, grammar-only 2.637\,s ($+$1.7\%), semantic-only 2.625\,s ($+$1.2\%), full S1 2.655\,s ($+$2.3\%, $p{<}0.0001$ paired $t$-test).
+317	The combined overhead is sub-additive (2.3\% $<$ 1.7\%$+$1.2\%) because fine-tuned models produce fewer grammar-first fallback events (the semantic mask conflicts with grammar-valid tokens less often when per-slot predictions are better calibrated), reducing the number of active masking calls per document.
+318	Compared to the zero-shot regime (Table~\ref{tab:runtime}), absolute overhead decreases from seconds-scale to milliseconds-scale: the fine-tuned model generates shorter, more structured outputs, compressing total generation time from 8.69\,s to 2.594\,s per document.
+319	
+320	%%% Fuzzy Relation Matching %%%
+321	
+322	\paragraph{Relation Matching Protocol.}
+323	\label{app:fuzzy-matching}
+324	Relation F1 evaluation uses fuzzy normalization to handle model-specific formatting variants (e.g., underscores vs.\ spaces, abbreviations).
+325	A predicted relation $r_p$ matches gold relation $r_g$ if: (1)~exact string match after case-insensitive normalization, or (2)~token overlap $>$80\% \emph{and} edit distance $\leq 2$.
+326	This protocol affects primarily Mistral, which produces underscore-separated variants (e.g., ``head\_of\_government'' for ``head of government'').
+327	On Mistral DocRED, fuzzy matching contributes 98 additional TPs ($+$0.84\,pp R-F1; strict R-F1\,=\,3.50\% vs.\ fuzzy 4.34\%).
+328	For Qwen and Llama under grammar constraints, the grammar layer enforces exact relation names, making fuzzy matching irrelevant (0 additional matches).
+329	All F1 figures in the main text use fuzzy normalization consistently across all models and conditions.
+330	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "64e40f6a-c8e6-4c3d-8e46-d9349de92df1",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "7ae8635f-3e8d-476c-864c-1419df7b0f8e",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_discussion.tex",
+      "content": "% Appendix B — Extended Discussion\n% Contains discussion paragraphs moved from the main text during compression.\n\n\\section{Extended Discussion}\\label{app:discussion}\n\n%%% CF Dual Mechanism %%%\n% exp_ids: phase2_scierc_full_s1, llama_scierc_full_s1, llama_docred_full_s1\n\n\\paragraph{CF Dual Mechanism.}\nCF violations arise from two distinct mechanisms:\n(1)~\\emph{Registry override}: the semantic constraint forces a domain-compatible type that conflicts with the entity's previously registered type.\nThe entity appears in multiple relations with different type requirements, and the per-relation mask selects the locally valid type without consulting prior assignments.\n(2)~\\emph{Grammar-first fallback} (\\S\\ref{sec:interaction}): when the semantic mask conflicts with all grammar-valid tokens, the semantic layer is dropped entirely, allowing the grammar layer to generate any structurally valid type---which may differ from the entity's registered type.\n\nThese mechanisms have sharply different model profiles.\nQwen3-8B triggers zero grammar-first fallbacks across all experiments, attributing 100\\% of its CF violations to registry override.\nLlama-3.1-8B, by contrast, triggers 5{,}882 fallbacks on SciERC (10.7 per document) and 57{,}825 on DocRED (63.8 per document), making grammar-first fallback the dominant CF source.\nThis asymmetry is consistent with the cross-model CF gap: Qwen achieves CF\\,=\\,2.57\\% on DocRED vs.\\ Llama's 12.02\\%, despite both using identical constraint configurations.\nThe difference traces to Llama's less calibrated type predictions, which more frequently conflict with the semantic mask's valid set, triggering fallback.\n\n%%% Fallback Behavior and Effective Coverage %%%\n% exp_ids: cf_fallback_ablation_scierc (final data)\n\n\\paragraph{Fallback Behavior and Effective Coverage.}\n\\label{app:fallback-coverage}\nThe two-layer architecture produces two distinct fallback mechanisms with different semantic consequences.\n\\emph{Grammar-first fallback} (36.6\\% of type-bearing positions on SciERC) occurs when $S(t) \\cap G(t) = \\emptyset$: the semantic layer deactivates as a safety valve, preserving structural validity at the cost of potential type violations---these events account for the residual DR that persists after constraint enforcement.\n\\emph{Registry-consistent fallback} (4.5\\%) occurs when the entity's registered type conflicts with domain/range constraints; the system defaults to the registered type for cross-triple consistency.\nTogether, these mechanisms produce the characteristic profile of composable constraint systems: residual DR traces to grammar-first fallback events, while CF violations arise from registry override events where per-relation enforcement assigns conflicting types.\n\nWe define \\emph{effective semantic constraint coverage} as $1 - f_{\\text{gf}}$, where $f_{\\text{gf}}$ is the grammar-first fallback rate.\nOn SciERC, this yields 63.4\\% coverage---at 63.4\\% of type-bearing positions, the semantic layer actively constrains generation.\nThis metric directly quantifies the enabling dependency (\\S\\ref{sec:interaction}): it measures the fraction of decoding steps where both constraint layers are jointly active, providing a fine-grained view beyond aggregate violation rates.\nQwen3-8B, with zero grammar-first fallbacks, achieves 100\\% effective coverage on SciERC, consistent with its lower residual DR (0.93\\% vs.\\ Llama's 0.08\\%).\n\n%%% CF-DR Trade-off Analysis %%%\n% exp_ids: cf_fallback_ablation_scierc (CF fallback vs full_s1 baseline)\n\n\\paragraph{CF-DR Trade-off Analysis.}\n\\label{app:cf-dr-tradeoff}\n\nCF violations are the most prominent residual limitation of OntoCoDec under zero-shot decoding (9.90\\% on SciERC, up to 12.02\\% on Llama DocRED).\nWe treat this honestly: per-relation independent enforcement cannot eliminate CF without trading it against DR.\nTable~\\ref{tab:cf-dr-tradeoff} reports a pilot ablation in which we replace the grammar-first fallback with a CF-priority fallback that forces the entity's registered type when it conflicts with $\\sigma(r)$.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}l rrrr@{}}\n\\toprule\n\\textbf{Configuration} & \\textbf{DR\\,(\\%)} & \\textbf{CF\\,(\\%)} & \\textbf{DR+CF} & \\textbf{$f_{\\text{gf}}$\\,(\\%)} \\\\\n\\midrule\nFull S1 (baseline) & 0.93 & 9.90 & 10.83 & --- \\\\\nCF fallback        & 14.78 & 0.04 & 14.82 & 36.64 \\\\\n\\midrule\n$\\Delta$ & $+$13.85 & $-$9.86 & $+$3.99 & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{CF-DR trade-off pilot on SciERC (Qwen3-8B, 551 documents; \\texttt{w1\\_cf\\_fallback\\_scierc\\_pilot}). CF fallback eliminates CF but re-routes violations to DR, increasing total violations (DR+CF) by 3.99\\,pp. $f_{\\text{gf}}$: grammar-first fallback rate at type-bearing positions.}\n\\label{tab:cf-dr-tradeoff}\n\\end{table}\n\nThe CF fallback variant nearly eliminates CF (9.90\\%\\,$\\to$\\,0.04\\%, $-$9.86\\,pp) but at the cost of a 15.9$\\times$ increase in DR (0.93\\%\\,$\\to$\\,14.78\\%, $+$13.85\\,pp).\n% exp_id: w1_cf_fallback_scierc_pilot: DR=0.1478, CF=0.0004, f_gf=0.3664\nThis is not a net improvement: total violations (DR+CF) rise from 10.83\\% to 14.82\\% ($+$3.99\\,pp), so the change \\emph{re-routes} violations rather than reducing them.\nThe mechanism is mechanical: each token position with conflicting masks must commit to one violation type; when the CF fallback forces the system to emit the entity's registered type even though it lies outside $\\sigma(r)$, the resulting triple satisfies cross-entity consistency but violates domain/range.\nThe grammar-first fallback is triggered at 36.64\\% of type-bearing positions, indicating that this conflict is structural, not a tunable hyperparameter.\n\nWe interpret this as a fundamental tension in composable constraint systems with \\emph{per-relation independent} enforcement: enforcement priority can be allocated between DR and CF but cannot independently minimize both.\nWithin this design, the current full S1 configuration sits near the Pareto frontier of the trade-off, achieving 0.93\\% DR at the cost of 9.90\\% CF.\nThe CF residual is concentrated in schema ambiguity rather than enforcement failure: 63.3\\% of CF violations on SciERC involve the catch-all \\textsc{Generic} type (Table~\\ref{tab:cf-distribution}), which competes with every content type depending on anaphoric vs.\\ referential use---a distinction the per-slot decoder cannot resolve without document-level coreference.\n\nTwo complementary paths can lower CF without re-routing it to DR.\n(i)~\\emph{Reduce the baseline conflict rate.} Composing OntoCoDec with LoRA fine-tuning on SciERC reduces CF by 88\\% relative to the zero-shot setting (9.90\\%\\,$\\to$\\,1.18\\%; Table~\\ref{tab:composability}), because the fine-tuned model's per-slot type predictions agree more often with the entity registry, so the per-relation mask and the registry intersect more frequently.\n% exp_id: w5_lora_scierc_constrained_eval: CF=0.0118\nThe remaining 1.18\\% still traces to \\textsc{Generic}$\\leftrightarrow$X schema ambiguity, so this path is empirically validated on one dataset and one fine-tuning method but does not generalize without further evidence.\n(ii)~\\emph{Replace per-relation enforcement with global entity-level type consensus during decoding.} This is outside the scope of OntoCoDec's forward-only autoregressive design and is left to future work.\n\n%%% Dual-Factor Quantitative Analysis %%%\n% exp_ids: phase2_scierc_full_s1, phase2_docred_full_s1,\n%          llama_scierc_full_s1, llama_docred_full_s1\n\n\\paragraph{Dual-Factor Quantitative Analysis.}\n\\label{app:dual-factor}\n\nFigure~\\ref{fig:dual-factor-scatter} plots residual DR against the product $\\bar{\\tau} \\times \\text{RV}_{\\text{baseline}}$ for all four model$\\times$dataset configurations.\nA linear fit yields $y = 0.366x - 0.138$ with $R^2 = 0.886$ ($n{=}4$; we do not report a $p$-value given the small sample size).\nThe strong fit is consistent with the dual-factor pattern described in \\S\\ref{sec:composition}: configurations with higher tightness and higher baseline violation rate exhibit proportionally higher residual DR after constraint enforcement.\nThe two DocRED points (high $\\bar{\\tau}{=}0.842$) separate cleanly from the two SciERC points (low $\\bar{\\tau}{=}0.333$), and within each dataset the model with higher baseline RV shows higher residual DR.\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{figures/dual_factor_scatter.pdf}\n\\caption{Residual DR vs.\\ $\\bar{\\tau} \\times \\text{RV}_{\\text{baseline}}$ across four model$\\times$dataset configurations.\nLinear fit: $y = 0.366x - 0.138$, $R^2 = 0.886$.}\n\\label{fig:dual-factor-scatter}\n\\end{figure}\n\n%%% Dataset-Dependent F1 Impact (moved from §7) %%%\n% exp_ids: d012_bootstrap_ci (DocRED +0.50pp p<0.001, SciERC +0.13pp p=0.58),\n%          phase0_docred_unconstrained (RV=29.66%), phase0_scierc_unconstrained (RV=1.39%)\n\n\\paragraph{Dataset-Dependent F1 Impact.}\nThe divergence in F1 significance between DocRED ($+$0.50\\,pp, $p < 0.001$) and SciERC ($+$0.13\\,pp, $p = 0.58$) traces to a single mechanism: grammar-layer elimination of out-of-vocabulary relation names.\nDocRED's baseline RV of 29.66\\% produces 5{,}189 OOV predictions counted as false positives; eliminating them yields a significant precision gain.\nSciERC's baseline RV is only 1.39\\% (24 OOV predictions), too few to produce a detectable F1 effect.\nLlama-3.1-8B's lower baseline RV (16.03\\%) yields a smaller but directionally consistent improvement ($+$0.29\\,pp vs.\\ $+$0.50\\,pp), confirming that F1 gain magnitude is proportional to baseline OOV rate.\n% exp_ids: phase0_docred_unconstrained, phase0_scierc_unconstrained\n% exp_ids: llama_docred_unconstrained (RV=16.03%), llama_docred_full_s1 (R-F1 delta=+0.29pp)\n\n%%% Paragraph 1: Low F1 Practical Significance %%%\n% exp_ids: phase2_scierc_full_s1 (R-F1=8.36%), phase2_docred_full_s1 (R-F1=8.23%),\n%          phase0_scierc_unconstrained (DR=15.37%), phase2_docred_unconstrained (DR=18.46%)\n\n\\paragraph{Practical Significance of Zero-Shot F1.}\nOur reported relation F1 of approximately 8\\% on both SciERC and DocRED reflects the inherent difficulty of zero-shot closed IE, where the model receives no task-specific training examples.\nFor reference, supervised state-of-the-art systems on SciERC achieve approximately 49--53\\% relation F1 with full training data~\\citep{zhong2021frustratingly,ye2022packed}.\nConstraint enforcement operates largely independently of the extraction model's intrinsic capability: it restricts the output space to ontologically valid triples regardless of the underlying model's accuracy.\nWhen applied to fine-tuned models that reach competitive F1 levels, the same constraints remain necessary---Phase~0 analysis confirms that even well-prompted models exhibit non-trivial violation rates (15.37\\% DR on SciERC, 18.46\\% on DocRED).\n% exp_ids: phase0_scierc_unconstrained, phase2_docred_unconstrained\nIn our evaluation, F1 serves as a \\emph{control variable} verifying that constraint enforcement does not degrade extraction quality, not as an optimization target.\nThe contribution of this work is the constraint enforcement method itself; the zero-shot setting isolates its effect from confounds introduced by task-specific fine-tuning.\n\n%%% Paragraph 4: Decoding-Time vs. Post-Hoc Enforcement %%%\n% exp_ids: posthoc_filtering_baseline, phase2_scierc_full_s1 (R-F1=8.36%),\n%          phase2_docred_full_s1 (R-F1=8.23%, ET=0%)\n\n\\paragraph{Decoding-Time vs.\\ Post-Hoc Enforcement.}\nPost-hoc filtering---generating triples without constraints, then removing schema-violating predictions---yields higher precision and consequently higher F1 than OntoCoDec on both datasets (SciERC 8.63 vs.\\ 8.36; DocRED 9.61 vs.\\ 8.23).\n% posthoc: SciERC F1=8.63, DocRED F1=9.61; OntoCoDec: SciERC R-F1=8.36, DocRED R-F1=8.23\nHowever, this precision gain comes at substantial cost.\nOn DocRED, post-hoc filtering discards 48.1\\% of all predicted triples, including 127 true positives (11.2\\% of correct predictions), reducing recall from 9.46\\% to 8.40\\%.\n% posthoc_docred: rejection=48.1%, tp_lost=127/1137, R: 9.46→8.40\nEntity type violations remain unresolved (ET\\,=\\,2.47\\% vs.\\ OntoCoDec's 0\\%), as filtering targets only domain/range and vocabulary violations.\n% posthoc_docred: ET_residual=2.47%; phase2_docred_full_s1: ET=0%\nOntoCoDec's decoding-time approach avoids this information loss by guiding generation toward compliant outputs rather than discarding non-compliant ones, preserving both recall and entity type validity.\nThe two strategies are complementary: post-hoc filtering can serve as an additional safety net for residual violations that decoding-time enforcement does not fully resolve.\n\n%%% CF Violation Distribution %%%\n% exp_ids: phase2_scierc_full_s1 (CF=245), llama_scierc_full_s1 (CF=162),\n%          phase2_docred_full_s1 (CF=2670), llama_docred_full_s1 (CF=3824)\n\n\\paragraph{Cross-Field Violation Distribution.}\n\\label{app:cf-distribution}\n\nTable~\\ref{tab:cf-distribution} reports the complete distribution of conflicting-type pairs for SciERC full S1 (245 CF violations, all pairwise---no mention triggered $\\geq$3 types).\nConflicts involving the \\textsc{Generic} type account for 63.3\\% (155/245) of all violations.\n\\textsc{Generic} is SciERC's anaphoric/placeholder label (``this approach'', ``the method''), which competes with every content type depending on whether the mention is used anaphorically or referentially---a distinction the per-slot constrained decoder cannot resolve without document-level coreference.\n\nThe pattern generalizes across models and datasets: on Llama-3.1-8B SciERC, \\textsc{Generic}$\\leftrightarrow$\\textsc{OtherScientificTerm} remains the top pair (53/162, 32.7\\%); on DocRED, the analogous catch-all type \\textsc{MISC} drives 76.6\\% of Qwen's CF violations.\nUnder unconstrained decoding, CF rates collapse to $\\leq$1\\% on both datasets, confirming that CF violations are a side-effect of per-slot type commitment rather than a model deficiency.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}lr r@{}}\n\\toprule\n\\textbf{Conflicting Type Pair} & \\textbf{Count} & \\textbf{\\%} \\\\\n\\midrule\nGeneric $\\leftrightarrow$ OtherScientificTerm & 85 & 34.7 \\\\\nGeneric $\\leftrightarrow$ Material & 35 & 14.3 \\\\\nGeneric $\\leftrightarrow$ Metric & 30 & 12.2 \\\\\nMethod $\\leftrightarrow$ Task & 20 & 8.2 \\\\\nMaterial $\\leftrightarrow$ Method & 17 & 6.9 \\\\\nOtherScientificTerm $\\leftrightarrow$ Task & 12 & 4.9 \\\\\n\\midrule\n10 further pairs (each $\\leq$3.3\\%) & 46 & 18.8 \\\\\n\\midrule\n\\textbf{Total} & \\textbf{245} & 100.0 \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{CF violation distribution on SciERC full S1 (Qwen3-8B, 551 documents).\nAll 245 violations are pairwise conflicts.\nConflicts involving \\textsc{Generic} account for 63.3\\%.}\n\\label{tab:cf-distribution}\n\\end{table}\n\n%%% Per-Relation DR Elimination under Fine-Tuning %%%\n% exp_ids: lora_scierc_unconstrained, lora_scierc_full_s1\n\n\\paragraph{Per-Relation DR Elimination under Fine-Tuning.}\n\\label{app:lora-per-relation}\n\nTable~\\ref{tab:lora-per-relation} presents the per-relation breakdown of DR elimination when OntoCoDec is composed with LoRA fine-tuning on SciERC.\nFine-tuning alone eliminates DR on four of seven relations but leaves non-zero violations on the three tightest-constraint relations: \\textsc{Evaluate-for} ($\\tau{=}0.361$, 13.13\\%), \\textsc{Part-of} ($\\tau{=}0.417$, 5.77\\%), and \\textsc{Compare} ($\\tau{=}0.528$, 5.00\\%).\nAdding OntoCoDec constraints eliminates all remaining violations across all relations.\nOne \\textsc{Evaluate-for} triple (99\\,$\\to$\\,98) is redirected to \\textsc{Used-for} (634\\,$\\to$\\,635) by token-level masking: the head entity's registered type falls outside \\textsc{Evaluate-for}'s domain, and the semantic mask steers generation to the nearest valid relation.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}l r rr rr@{}}\n\\toprule\n& & \\multicolumn{2}{c}{\\textbf{LoRA Unconstr.}} & \\multicolumn{2}{c}{\\textbf{LoRA + S1}} \\\\\n\\cmidrule(lr){3-4} \\cmidrule(l){5-6}\n\\textbf{Relation} & $\\tau$ & DR\\,(\\%) & $n$ & DR\\,(\\%) & $n$ \\\\\n\\midrule\nEvaluate-for & 0.361 & 13.13 & 99 & \\textbf{0} & 98 \\\\\nPart-of      & 0.417 & 5.77  & 52 & \\textbf{0} & 52 \\\\\nCompare      & 0.528 & 5.00  & 40 & \\textbf{0} & 40 \\\\\nConjunction  & 0.306 & 1.31  & 153 & \\textbf{0} & 153 \\\\\nFeature-of   & 0.278 & 1.35  & 74 & \\textbf{0} & 74 \\\\\nUsed-for     & 0.028 & 0.16  & 634 & \\textbf{0} & 635 \\\\\nHyponym-of   & 0.417 & 0     & --- & \\textbf{0} & --- \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Per-relation DR elimination on SciERC with LoRA fine-tuning (Qwen3-8B).\n$\\tau$: constraint tightness; $n$: predicted triple count.\nUsed-for gains one triple from Evaluate-for redirection.}\n\\label{tab:lora-per-relation}\n\\end{table}\n\n%%% Fine-Tuned Four-Way Ablation %%%\n% exp_ids: w5_lora_scierc_*, w5_llama_lora_scierc_*, w5_qwen_docred_*, w5_llama_docred_*, w8_*\n\n\\paragraph{Fine-Tuned Four-Way Ablation.}\n\\label{app:ft-ablation}\n\nTable~\\ref{tab:ft-ablation} presents the four-way constraint ablation on fine-tuned models across both datasets, isolating each layer's contribution when the base model has already internalized schema knowledge.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3.5pt}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lll rr@{}}\n\\toprule\n\\textbf{Dataset} & \\textbf{Model} & \\textbf{Mode} & \\textbf{DR\\,(\\%)\\,$\\downarrow$} & \\textbf{R-F1\\,$\\uparrow$} \\\\\n\\midrule\n\\multirow{8}{*}{SciERC}\n  & \\multirow{4}{*}{Qwen3-8B}\n    & Unconstrained & 1.95 & 43.86 \\\\\n  & & Grammar       & 1.90 & 43.86 \\\\\n  & & Semantic      & 0.60 & 43.69 \\\\\n  & & Full S1       & \\textbf{0}    & 43.77 \\\\\n  \\cmidrule(l){2-5}\n  & \\multirow{4}{*}{Llama-3.1-8B}\n    & Unconstrained & 1.11 & 45.45 \\\\\n  & & Grammar       & 1.11 & 45.45 \\\\\n  & & Semantic      & 0.65 & 45.47 \\\\\n  & & Full S1       & \\textbf{0.09} & 45.47 \\\\\n\\midrule\n\\multirow{8}{*}{DocRED}\n  & \\multirow{4}{*}{Qwen3-8B}\n    & Unconstrained & 0.76 & 40.86 \\\\\n  & & Grammar       & 0.61 & 40.85 \\\\\n  & & Semantic      & 0.21 & 40.89 \\\\\n  & & Full S1       & \\textbf{0.01} & 40.56 \\\\\n  \\cmidrule(l){2-5}\n  & \\multirow{4}{*}{Llama-3.1-8B}\n    & Unconstrained & 0.49 & 43.72 \\\\\n  & & Grammar       & 0.51 & 43.77 \\\\\n  & & Semantic      & 0.30 & 43.90 \\\\\n  & & Full S1       & \\textbf{0.20} & 44.23 \\\\\n\\bottomrule\n\\end{tabular}}%\n\\caption{Four-way constraint ablation on fine-tuned models (LoRA, 2 models $\\times$ 2 datasets).\nGrammar layer is a no-op post-fine-tuning (DR change $<$0.2\\,pp in all 4 settings).\nSemantic layer is the sole effective DR defense under fine-tuning, providing 39--72\\% reduction.\nF1 $\\times$100.}\n\\label{tab:ft-ablation}\n\\end{table}\n\nThe grammar layer is effectively a no-op for fine-tuned models across all four settings: RV and ET are already 0\\% without constraints, and grammar-only DR change is $<$0.2\\,pp (4/4 settings).\nThe semantic layer is the sole effective DR defense under fine-tuning, independently reducing DR by 39--72\\% across all settings (SciERC: Qwen $-$69\\%, Llama $-$41\\%; DocRED: Qwen $-$72\\%, Llama $-$39\\%).\nAdding both layers achieves near-complete elimination (DR\\,$\\leq$\\,0.20\\% in all 4 settings), confirming that even after fine-tuning, the semantic layer's pair-based enforcement captures violations that training alone cannot eliminate---specifically on tight-constraint relations where the valid type-pair space is small.\n\n%%% Post-Hoc Filtering Comparison (Extended) %%%\n% exp_ids: posthoc_*_zs, posthoc_*_ft\n\n\\paragraph{Post-Hoc Filtering: Extended Comparison.}\n\\label{app:posthoc-extended}\n\nTable~\\ref{tab:posthoc-extended} presents the full comparison across all six zero-shot and four fine-tuned configurations.\n\n\\begin{table}[t]\n\\centering\n\\small\n\\setlength{\\tabcolsep}{3pt}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}lll rrr l@{}}\n\\toprule\n\\textbf{Setting} & \\textbf{Model} & \\textbf{Dataset} & \\textbf{Reject\\%} & \\textbf{R-F1$_{\\text{ph}}$} & \\textbf{R-F1$_{\\text{cd}}$} & \\textbf{Winner} \\\\\n\\midrule\n\\multirow{6}{*}{ZS}\n  & Qwen    & SciERC & 16.8 & 8.63  & 8.36  & ph \\\\\n  & Llama   & SciERC & 13.9 & 2.71  & 2.54  & ph \\\\\n  & Mistral & SciERC & 20.3 & 3.94  & 3.67  & ph \\\\\n  & Qwen    & DocRED & 48.1 & 9.61  & 8.23  & ph \\\\\n  & Llama   & DocRED & 42.2 & 7.44  & 6.27  & ph \\\\\n  & Mistral & DocRED & \\textbf{73.7} & 3.85  & \\textbf{5.52} & cd \\\\\n\\midrule\n\\multirow{4}{*}{FT}\n  & Qwen    & SciERC & 1.95 & 43.94 & 43.77 & ph \\\\\n  & Llama   & SciERC & 1.11 & 45.23 & 45.47 & cd \\\\\n  & Qwen    & DocRED & 1.03 & 41.11 & 40.56 & ph \\\\\n  & Llama   & DocRED & 0.64 & 43.92 & 44.23 & cd \\\\\n\\bottomrule\n\\end{tabular}}%\n\\caption{Post-hoc filtering (ph) vs.\\ constrained decoding (cd).\nIn zero-shot settings, post-hoc F1 is higher in 5/6 groups (precision-dominated), but constrained decoding preserves higher recall in all 6/6 groups.\nAt reject rate $>$70\\% (Mistral DocRED), post-hoc F1 collapses below constrained.\nUnder fine-tuning, rejection rates drop to 0.6--2.0\\% and the two strategies are equivalent ($\\Delta \\leq 0.55$\\,pp; each wins two groups).\nF1 $\\times$100.}\n\\label{tab:posthoc-extended}\n\\end{table}\n\nThe crossover point occurs when post-hoc rejection exceeds $\\sim$70\\%: Mistral DocRED rejects 73.7\\% of predicted triples, discarding enough true positives that constrained decoding's recall advantage dominates ($+$1.67\\,pp).\nOntoCoDec's advantage thus scales with violation severity---precisely when constraints are most needed, post-hoc filtering is most destructive.\nUnder fine-tuning, both strategies converge because few violations remain to filter or constrain ($\\Delta \\leq 0.55$\\,pp across all four FT groups, with each strategy winning two).\n\n%%% FT Latency %%%\n\n\\paragraph{Fine-Tuned Latency Profiling.}\n\\label{app:ft-latency}\nUnder LoRA fine-tuning (Qwen3-8B, SciERC, 100 documents, RTX PRO 6000), per-document inference times are: unconstrained 2.594\\,s, grammar-only 2.637\\,s ($+$1.7\\%), semantic-only 2.625\\,s ($+$1.2\\%), full S1 2.655\\,s ($+$2.3\\%, $p{<}0.0001$ paired $t$-test).\nThe combined overhead is sub-additive (2.3\\% $<$ 1.7\\%$+$1.2\\%) because fine-tuned models produce fewer grammar-first fallback events (the semantic mask conflicts with grammar-valid tokens less often when per-slot predictions are better calibrated), reducing the number of active masking calls per document.\nCompared to the zero-shot regime (Table~\\ref{tab:runtime}), absolute overhead decreases from seconds-scale to milliseconds-scale: the fine-tuned model generates shorter, more structured outputs, compressing total generation time from 8.69\\,s to 2.594\\,s per document.\n\n%%% Fuzzy Relation Matching %%%\n\n\\paragraph{Relation Matching Protocol.}\n\\label{app:fuzzy-matching}\nRelation F1 evaluation uses fuzzy normalization to handle model-specific formatting variants (e.g., underscores vs.\\ spaces, abbreviations).\nA predicted relation $r_p$ matches gold relation $r_g$ if: (1)~exact string match after case-insensitive normalization, or (2)~token overlap $>$80\\% \\emph{and} edit distance $\\leq 2$.\nThis protocol affects primarily Mistral, which produces underscore-separated variants (e.g., ``head\\_of\\_government'' for ``head of government'').\nOn Mistral DocRED, fuzzy matching contributes 98 additional TPs ($+$0.84\\,pp R-F1; strict R-F1\\,=\\,3.50\\% vs.\\ fuzzy 4.34\\%).\nFor Qwen and Llama under grammar constraints, the grammar layer enforces exact relation names, making fuzzy matching irrelevant (0 additional matches).\nAll F1 figures in the main text use fuzzy normalization consistently across all models and conditions.\n",
+      "numLines": 330,
+      "startLine": 1,
+      "totalLines": 330
+    }
+  },
+  "sourceToolAssistantUUID": "64e40f6a-c8e6-4c3d-8e46-d9349de92df1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-16T17:36:04.782Z_
+
+<details><summary>↩ Tool result · `toolu_012FuhvTd7LZgvqx5465iuLY`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_llama_per_relation.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "399f2846-3d26-4f24-a24e-39f6075af197",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "6a990fe6-2c13-4c91-b51f-993735c58528",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_llama_per_relation.tex"
+    ],
+    "durationMs": 14,
+    "numFiles": 1,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "399f2846-3d26-4f24-a24e-39f6075af197",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 71 · 2026-05-16T17:36:03.726Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_0168DjfomV1caA2hnWJLECTE`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_prompts.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ae8635f-3e8d-476c-864c-1419df7b0f8e",
+  "isSidechain": false,
+  "requestId": "req_011Cb6en3Ph6PpGYnw7Z7U67",
+  "type": "assistant",
+  "uuid": "a08e0809-fbe7-4348-9df7-255b5024170c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017hS4fyXokgKp1mnyaoCkPZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5624,
+      "cache_read_input_tokens": 51714,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5624,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 51714,
+          "cache_creation_input_tokens": 5624,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5624
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 72 · 2026-05-16T17:36:03.730Z_
+
+<details><summary>↩ Tool result · `toolu_0168DjfomV1caA2hnWJLECTE`</summary>
+
+```text
+1	% Appendix — Prompt Templates
+2	% W10: Extraction prompts used in all experiments.
+3	
+4	\section{Prompt Templates}
+5	\label{app:prompts}
+6	
+7	All experiments use the same prompts across constrained and unconstrained decoding---constraints are applied at the logit level, not through prompt modification.
+8	Table~\ref{tab:prompts} shows the system and user prompts for each dataset.
+9	
+10	\begin{table*}[t]
+11	\centering
+12	\small
+13	\begin{tabular}{@{}p{0.95\textwidth}@{}}
+14	\toprule
+15	\textbf{SciERC --- System Prompt (Unconstrained \& Constrained)} \\
+16	\midrule
+17	\texttt{You are an expert information extraction system for scientific texts. Extract entities and relations from the given text.} \\[4pt]
+18	\texttt{Entity types: Task, Method, Material, Metric, OtherScientificTerm, Generic} \\
+19	\texttt{Relation types: Used-for, Feature-of, Hyponym-of, Part-of, Compare, Conjunction, Evaluate-for} \\[4pt]
+20	\texttt{Output a JSON object with:} \\
+21	\texttt{- "entities": list of \{"text": "...", "type": "..."\}} \\
+22	\texttt{- "relations": list of \{"head": "...", "tail": "...", "type": "...", "head\_type": "...", "tail\_type": "..."\}} \\[4pt]
+23	\texttt{Output ONLY valid JSON, no explanation.} \\
+24	\midrule
+25	\textbf{SciERC --- User Prompt} \\
+26	\midrule
+27	\texttt{Extract all entities and relations from this scientific text:} \\
+28	\texttt{"\{text\}"} \\
+29	\texttt{Output JSON:} \\
+30	\midrule
+31	\midrule
+32	\textbf{DocRED --- System Prompt (Unconstrained \& Constrained)} \\
+33	\midrule
+34	\texttt{You are an information extraction system. Extract all entities and relations from the following document.} \\[4pt]
+35	\texttt{Entity types: PER, ORG, LOC, TIME, NUM, MISC} \\[4pt]
+36	\texttt{Relation types: country, instance of, performer, ...\ (96 Wikidata relation types; full list omitted for space)} \\[4pt]
+37	\texttt{Output a JSON object with exactly this structure:} \\
+38	\texttt{\{"entities": [\{"text": "entity name", "type": "ENTITY\_TYPE"\}],} \\
+39	\texttt{\ "relations": [\{"head": "head entity", "tail": "tail entity", "type": "relation name",} \\
+40	\texttt{\ \ "head\_type": "ENTITY\_TYPE", "tail\_type": "ENTITY\_TYPE"\}]\}} \\[4pt]
+41	\texttt{Output ONLY the JSON, no other text.} \\
+42	\midrule
+43	\textbf{DocRED --- User Prompt} \\
+44	\midrule
+45	\texttt{(Document text provided inline in the user message.)} \\
+46	\bottomrule
+47	\end{tabular}
+48	\caption{Extraction prompts used in all experiments.
+49	The same prompts are used for both unconstrained and constrained decoding; OntoCoDec's constraints operate at the logit level during generation.
+50	Schema-informed prompts (\S\ref{sec:violation_landscape}) additionally include valid (head type, tail type) pairs per relation.}
+51	\label{tab:prompts}
+52	\end{table*}
+53	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a08e0809-fbe7-4348-9df7-255b5024170c",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "53b0dab3-672f-4392-85da-8b179fa34024",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_prompts.tex",
+      "content": "% Appendix — Prompt Templates\n% W10: Extraction prompts used in all experiments.\n\n\\section{Prompt Templates}\n\\label{app:prompts}\n\nAll experiments use the same prompts across constrained and unconstrained decoding---constraints are applied at the logit level, not through prompt modification.\nTable~\\ref{tab:prompts} shows the system and user prompts for each dataset.\n\n\\begin{table*}[t]\n\\centering\n\\small\n\\begin{tabular}{@{}p{0.95\\textwidth}@{}}\n\\toprule\n\\textbf{SciERC --- System Prompt (Unconstrained \\& Constrained)} \\\\\n\\midrule\n\\texttt{You are an expert information extraction system for scientific texts. Extract entities and relations from the given text.} \\\\[4pt]\n\\texttt{Entity types: Task, Method, Material, Metric, OtherScientificTerm, Generic} \\\\\n\\texttt{Relation types: Used-for, Feature-of, Hyponym-of, Part-of, Compare, Conjunction, Evaluate-for} \\\\[4pt]\n\\texttt{Output a JSON object with:} \\\\\n\\texttt{- \"entities\": list of \\{\"text\": \"...\", \"type\": \"...\"\\}} \\\\\n\\texttt{- \"relations\": list of \\{\"head\": \"...\", \"tail\": \"...\", \"type\": \"...\", \"head\\_type\": \"...\", \"tail\\_type\": \"...\"\\}} \\\\[4pt]\n\\texttt{Output ONLY valid JSON, no explanation.} \\\\\n\\midrule\n\\textbf{SciERC --- User Prompt} \\\\\n\\midrule\n\\texttt{Extract all entities and relations from this scientific text:} \\\\\n\\texttt{\"\\{text\\}\"} \\\\\n\\texttt{Output JSON:} \\\\\n\\midrule\n\\midrule\n\\textbf{DocRED --- System Prompt (Unconstrained \\& Constrained)} \\\\\n\\midrule\n\\texttt{You are an information extraction system. Extract all entities and relations from the following document.} \\\\[4pt]\n\\texttt{Entity types: PER, ORG, LOC, TIME, NUM, MISC} \\\\[4pt]\n\\texttt{Relation types: country, instance of, performer, ...\\ (96 Wikidata relation types; full list omitted for space)} \\\\[4pt]\n\\texttt{Output a JSON object with exactly this structure:} \\\\\n\\texttt{\\{\"entities\": [\\{\"text\": \"entity name\", \"type\": \"ENTITY\\_TYPE\"\\}],} \\\\\n\\texttt{\\ \"relations\": [\\{\"head\": \"head entity\", \"tail\": \"tail entity\", \"type\": \"relation name\",} \\\\\n\\texttt{\\ \\ \"head\\_type\": \"ENTITY\\_TYPE\", \"tail\\_type\": \"ENTITY\\_TYPE\"\\}]\\}} \\\\[4pt]\n\\texttt{Output ONLY the JSON, no other text.} \\\\\n\\midrule\n\\textbf{DocRED --- User Prompt} \\\\\n\\midrule\n\\texttt{(Document text provided inline in the user message.)} \\\\\n\\bottomrule\n\\end{tabular}\n\\caption{Extraction prompts used in all experiments.\nThe same prompts are used for both unconstrained and constrained decoding; OntoCoDec's constraints operate at the logit level during generation.\nSchema-informed prompts (\\S\\ref{sec:violation_landscape}) additionally include valid (head type, tail type) pairs per relation.}\n\\label{tab:prompts}\n\\end{table*}\n",
+      "numLines": 53,
+      "startLine": 1,
+      "totalLines": 53
+    }
+  },
+  "sourceToolAssistantUUID": "a08e0809-fbe7-4348-9df7-255b5024170c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-16T17:36:04.765Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_012FuhvTd7LZgvqx5465iuLY`</summary>
+
+```json
+{
+  "pattern": "**/paper/appendix_llama_per_relation.tex",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "53b0dab3-672f-4392-85da-8b179fa34024",
+  "isSidechain": false,
+  "requestId": "req_011Cb6en3Ph6PpGYnw7Z7U67",
+  "type": "assistant",
+  "uuid": "399f2846-3d26-4f24-a24e-39f6075af197",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017hS4fyXokgKp1mnyaoCkPZ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5624,
+      "cache_read_input_tokens": 51714,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5624,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 51714,
+          "cache_creation_input_tokens": 5624,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5624
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 74_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 完整性 + 相关工作 + 写作质量**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Ontology Constraints - **论文路径**: `projects/schema_sem…",
+  "leafUuid": "6a990fe6-2c13-4c91-b51f-993735c58528",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 75_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-16T17:36:08.456Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01FwwePszq2t7JQ4dAnq6R8u`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_llama_per_relation.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6a990fe6-2c13-4c91-b51f-993735c58528",
+  "isSidechain": false,
+  "requestId": "req_011Cb6enfTrRrQZwuELNH6AZ",
+  "type": "assistant",
+  "uuid": "e6f87814-a327-43f3-80fc-8ce0d9cddb12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DTPMaYZ2VHn6oz3wdD6gRv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10331,
+      "cache_read_input_tokens": 57338,
+      "output_tokens": 148,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10331,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 148,
+          "cache_read_input_tokens": 57338,
+          "cache_creation_input_tokens": 10331,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10331
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-16T17:36:08.479Z_
+
+<details><summary>↩ Tool result · `toolu_01FwwePszq2t7JQ4dAnq6R8u`</summary>
+
+```text
+1	% Appendix C — Per-Relation Violation Analysis (Llama-3.1-8B)
+2	% exp_ids: llama_docred_unconstrained, llama_docred_full_s1
+3	
+4	\section{Per-Relation Violation Analysis (Llama-3.1-8B)}\label{app:llama-per-relation}
+5	
+6	Table~\ref{tab:llama-per-relation-dr} presents the per-relation domain--range violation breakdown for Llama-3.1-8B on DocRED under full S1 constraints.
+7	The Llama baseline exhibits an RV rate of 16.03\%, substantially lower than Qwen's 29.66\%, indicating stronger baseline vocabulary compliance.
+8	% exp_ids: llama_docred_unconstrained (RV=16.03%), qwen_docred_unconstrained (RV=29.66%)
+9	Full S1 completely eliminates RV violations and reduces the residual DR rate to 2.55\% (418/16{,}368 triples), with only three relations exceeding 10\%.
+10	% exp_ids: llama_docred_full_s1 (DR=2.6%, 418/16368)
+11	
+12	\begin{table}[h]
+13	\centering
+14	\caption{Top 10 per-relation DR violation rates for Llama-3.1-8B on DocRED under full S1 constraints. Relations with $>$20 triples and 0\% DR (e.g., P131, P206, P361, P170, P86) are omitted.}
+15	\label{tab:llama-per-relation-dr}
+16	\resizebox{\columnwidth}{!}{%
+17	\begin{tabular}{@{}llrrr@{}}
+18	\toprule
+19	Relation & PID & Triples & DR Violations & DR Rate (\%) \\
+20	\midrule
+21	dissolved/demolished & P576 & 73 & 24 & 32.9 \\
+22	followed by          & P156 & 117 & 24 & 20.5 \\
+23	unemployment rate    & P1198 & 15 & 3 & 20.0 \\
+24	end time             & P582 & 130 & 21 & 16.2 \\
+25	instance of          & P31  & 290 & 37 & 12.8 \\
+26	product/material produced & P1056 & 98 & 11 & 11.2 \\
+27	location of formation & P740 & 81 & 8 & 9.9 \\
+28	head of state        & P35  & 41  & 3  & 7.3 \\
+29	applies to jurisdiction & P1001 & 637 & 45 & 7.1 \\
+30	conflict             & P607 & 453 & 30 & 6.6 \\
+31	\bottomrule
+32	\end{tabular}}
+33	\end{table}
+34	% exp_ids: llama_docred_full_s1
+35	
+36	Compared with Qwen, which retains a 10.21\% residual DR under full S1 concentrated in P1198 (83\% fallback) and P171 (78\% fallback), Llama's residual DR on the same relations is markedly lower---P1198 reaches only 20.0\% and no relation-level fallback concentration comparable to Qwen is observed.
+37	% exp_ids: llama_docred_full_s1, qwen_docred_full_s1
+38	The substantially lower residual DR for Llama (2.55\% vs.\ Qwen's 10.21\%) on the same ontology confirms that constraint tightness alone does not determine enforcement effectiveness: the model's baseline vocabulary compliance (RV) modulates the fraction of triples eligible for semantic-layer enforcement.
+39	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e6f87814-a327-43f3-80fc-8ce0d9cddb12",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "d64c333d-a3f1-4483-9bc9-7c89649ceebf",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/appendix_llama_per_relation.tex",
+      "content": "% Appendix C — Per-Relation Violation Analysis (Llama-3.1-8B)\n% exp_ids: llama_docred_unconstrained, llama_docred_full_s1\n\n\\section{Per-Relation Violation Analysis (Llama-3.1-8B)}\\label{app:llama-per-relation}\n\nTable~\\ref{tab:llama-per-relation-dr} presents the per-relation domain--range violation breakdown for Llama-3.1-8B on DocRED under full S1 constraints.\nThe Llama baseline exhibits an RV rate of 16.03\\%, substantially lower than Qwen's 29.66\\%, indicating stronger baseline vocabulary compliance.\n% exp_ids: llama_docred_unconstrained (RV=16.03%), qwen_docred_unconstrained (RV=29.66%)\nFull S1 completely eliminates RV violations and reduces the residual DR rate to 2.55\\% (418/16{,}368 triples), with only three relations exceeding 10\\%.\n% exp_ids: llama_docred_full_s1 (DR=2.6%, 418/16368)\n\n\\begin{table}[h]\n\\centering\n\\caption{Top 10 per-relation DR violation rates for Llama-3.1-8B on DocRED under full S1 constraints. Relations with $>$20 triples and 0\\% DR (e.g., P131, P206, P361, P170, P86) are omitted.}\n\\label{tab:llama-per-relation-dr}\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{@{}llrrr@{}}\n\\toprule\nRelation & PID & Triples & DR Violations & DR Rate (\\%) \\\\\n\\midrule\ndissolved/demolished & P576 & 73 & 24 & 32.9 \\\\\nfollowed by          & P156 & 117 & 24 & 20.5 \\\\\nunemployment rate    & P1198 & 15 & 3 & 20.0 \\\\\nend time             & P582 & 130 & 21 & 16.2 \\\\\ninstance of          & P31  & 290 & 37 & 12.8 \\\\\nproduct/material produced & P1056 & 98 & 11 & 11.2 \\\\\nlocation of formation & P740 & 81 & 8 & 9.9 \\\\\nhead of state        & P35  & 41  & 3  & 7.3 \\\\\napplies to jurisdiction & P1001 & 637 & 45 & 7.1 \\\\\nconflict             & P607 & 453 & 30 & 6.6 \\\\\n\\bottomrule\n\\end{tabular}}\n\\end{table}\n% exp_ids: llama_docred_full_s1\n\nCompared with Qwen, which retains a 10.21\\% residual DR under full S1 concentrated in P1198 (83\\% fallback) and P171 (78\\% fallback), Llama's residual DR on the same relations is markedly lower---P1198 reaches only 20.0\\% and no relation-level fallback concentration comparable to Qwen is observed.\n% exp_ids: llama_docred_full_s1, qwen_docred_full_s1\nThe substantially lower residual DR for Llama (2.55\\% vs.\\ Qwen's 10.21\\%) on the same ontology confirms that constraint tightness alone does not determine enforcement effectiveness: the model's baseline vocabulary compliance (RV) modulates the fraction of triples eligible for semantic-layer enforcement.\n",
+      "numLines": 39,
+      "startLine": 1,
+      "totalLines": 39
+    }
+  },
+  "sourceToolAssistantUUID": "e6f87814-a327-43f3-80fc-8ce0d9cddb12",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 78 · 2026-05-16T17:36:09.140Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01LcFxP489i4SiTbg5u1dPY5`</summary>
+
+```json
+{
+  "query": "EnriCo ASP constraints information extraction decoding 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d64c333d-a3f1-4483-9bc9-7c89649ceebf",
+  "isSidechain": false,
+  "requestId": "req_011Cb6enfTrRrQZwuELNH6AZ",
+  "type": "assistant",
+  "uuid": "b27c3c88-23bb-4c58-aa91-b3d648cefa52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DTPMaYZ2VHn6oz3wdD6gRv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10331,
+      "cache_read_input_tokens": 57338,
+      "output_tokens": 148,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10331,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 148,
+          "cache_read_input_tokens": 57338,
+          "cache_creation_input_tokens": 10331,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10331
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-16T17:36:18.151Z_
+
+<details><summary>↩ Tool result · `toolu_01LcFxP489i4SiTbg5u1dPY5`</summary>
+
+```text
+Web search results for query: "EnriCo ASP constraints information extraction decoding 2024"
+
+Links: [{"title":"EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction","url":"https://arxiv.org/html/2404.12493v1"},{"title":"[Literature Review] EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction","url":"https://www.themoonlight.io/en/review/enrico-enriched-representation-and-globally-constrained-inference-for-entity-and-relation-extraction"},{"title":"Paper page - EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction","url":"https://huggingface.co/papers/2404.12493"},{"title":"Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11747381/"},{"title":"SLOT: Structuring the Output of Large Language Models","url":"https://aclanthology.org/2025.emnlp-industry.32.pdf"},{"title":"Frontiers | Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts","url":"https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/full"},{"title":"GitHub - Saibo-creator/Awesome-LLM-Constrained-Decoding: A curated list of papers related to constrained decoding of LLM, along with their relevant code and resources. · GitHub","url":"https://github.com/Saibo-creator/Awesome-LLM-Constrained-Decoding"},{"title":"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction","url":"https://arxiv.org/html/2510.08623v1"},{"title":"A Guide to Structured Outputs Using Constrained Decoding","url":"https://www.aidancooper.co.uk/constrained-decoding/"},{"title":"The Hidden Cost of Structure: How Constrained Decoding ...","url":"https://acl-bg.org/proceedings/2025/RANLP%202025/pdf/2025.ranlp-1.124.pdf"}]
+
+Based on the search results, here's information about EnriCo and its use of ASP constraints for information extraction:
+
+## EnriCo: Overview
+
+EnriCo is a model for joint entity and relation extraction that comprises three main components: (1) Word Representation, (2) Entity Classification, and (3) Relation Classification modules.
+
+## ASP Constraints for Decoding
+
+The decoding problem is formulated using ASP (Answer Set Programming), a form of declarative programming oriented towards combinatorial search problems. This framework is particularly suitable for the task, as it allows for the integration of various constraints in a straightforward manner.
+
+## Key Features
+
+To foster rich and expressive representation, the model leverages attention mechanisms that allow both entities and relations to dynamically determine the pertinent information required for accurate extraction. A series of decoding algorithms are designed to infer the highest scoring solutions while adhering to task and dataset-specific constraints, thus promoting structured and coherent outputs.
+
+## Decoding Variants
+
+Three decoding variants are implemented: Joint, which jointly optimizes the global score for entities and relations; Entity First, which first finds the optimal solution for entities and then for relations conditioned by predicted entities; and Relation First, which initially finds the optimal solution for relations and then for entities given the relations.
+
+## Performance Impact
+
+Unconstrained decoding performance on entity recognition can be very poor, especially for ACE 05 and CoNLL 04, where it falls behind the constrained method by almost 30 points in terms of F1, mainly due to span boundary and span overlap errors. Entity First is the most beneficial decoding method as it can be implemented efficiently without the need for using an ASP solver, making it up to 3x to 4x faster than other alternatives.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b27c3c88-23bb-4c58-aa91-b3d648cefa52",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "b332ef09-3a33-4093-875b-0f90933f07a6",
+  "toolUseResult": {
+    "query": "EnriCo ASP constraints information extraction decoding 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AQTeMdwEzCLc8yFaEozmHG",
+        "content": [
+          {
+            "title": "EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction",
+            "url": "https://arxiv.org/html/2404.12493v1"
+          },
+          {
+            "title": "[Literature Review] EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction",
+            "url": "https://www.themoonlight.io/en/review/enrico-enriched-representation-and-globally-constrained-inference-for-entity-and-relation-extraction"
+          },
+          {
+            "title": "Paper page - EnriCo: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction",
+            "url": "https://huggingface.co/papers/2404.12493"
+          },
+          {
+            "title": "Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11747381/"
+          },
+          {
+            "title": "SLOT: Structuring the Output of Large Language Models",
+            "url": "https://aclanthology.org/2025.emnlp-industry.32.pdf"
+          },
+          {
+            "title": "Frontiers | Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts",
+            "url": "https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/full"
+          },
+          {
+            "title": "GitHub - Saibo-creator/Awesome-LLM-Constrained-Decoding: A curated list of papers related to constrained decoding of LLM, along with their relevant code and resources. · GitHub",
+            "url": "https://github.com/Saibo-creator/Awesome-LLM-Constrained-Decoding"
+          },
+          {
+            "title": "PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction",
+            "url": "https://arxiv.org/html/2510.08623v1"
+          },
+          {
+            "title": "A Guide to Structured Outputs Using Constrained Decoding",
+            "url": "https://www.aidancooper.co.uk/constrained-decoding/"
+          },
+          {
+            "title": "The Hidden Cost of Structure: How Constrained Decoding ...",
+            "url": "https://acl-bg.org/proceedings/2025/RANLP%202025/pdf/2025.ranlp-1.124.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's information about EnriCo and its use of ASP constraints for information extraction:\n\n## EnriCo: Overview\n\nEnriCo is a model for joint entity and relation extraction that comprises three main components: (1) Word Representation, (2) Entity Classification, and (3) Relation Classification modules.\n\n## ASP Constraints for Decoding\n\nThe decoding problem is formulated using ASP (Answer Set Programming), a form of declarative programming oriented towards combinatorial search problems. This framework is particularly suitable for the task, as it allows for the integration of various constraints in a straightforward manner.\n\n## Key Features\n\nTo foster rich and expressive representation, the model leverages attention mechanisms that allow both entities and relations to dynamically determine the pertinent information required for accurate extraction. A series of decoding algorithms are designed to infer the highest scoring solutions while adhering to task and dataset-specific constraints, thus promoting structured and coherent outputs.\n\n## Decoding Variants\n\nThree decoding variants are implemented: Joint, which jointly optimizes the global score for entities and relations; Entity First, which first finds the optimal solution for entities and then for relations conditioned by predicted entities; and Relation First, which initially finds the optimal solution for relations and then for entities given the relations.\n\n## Performance Impact\n\nUnconstrained decoding performance on entity recognition can be very poor, especially for ACE 05 and CoNLL 04, where it falls behind the constrained method by almost 30 points in terms of F1, mainly due to span boundary and span overlap errors. Entity First is the most beneficial decoding method as it can be implemented efficiently without the need for using an ASP solver, making it up to 3x to 4x faster than other alternatives."
+    ],
+    "durationSeconds": 8.986322006000002
+  },
+  "sourceToolAssistantUUID": "b27c3c88-23bb-4c58-aa91-b3d648cefa52",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 80 · 2026-05-16T17:36:22.619Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me search for some potentially missing references to verify the novelty claim. Let me search for recent work in 2025-2026 on constrained decoding for IE, and also look for the specific works mentioned.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b332ef09-3a33-4093-875b-0f90933f07a6",
+  "isSidechain": false,
+  "requestId": "req_011Cb6eoeaoTktpfprszzQEy",
+  "type": "assistant",
+  "uuid": "9752ef08-a9bc-426e-8d98-8774c4da772b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F3ocvjfdYeQP1jaTHHPb7f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2213,
+      "cache_read_input_tokens": 67669,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2213,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 67669,
+          "cache_creation_input_tokens": 2213,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2213
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-16T17:36:23.228Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01G2rPwJQZLZz8ZvsmpyZy3u`</summary>
+
+```json
+{
+  "query": "constrained decoding information extraction ontology type constraints 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9752ef08-a9bc-426e-8d98-8774c4da772b",
+  "isSidechain": false,
+  "requestId": "req_011Cb6eoeaoTktpfprszzQEy",
+  "type": "assistant",
+  "uuid": "1e72dd47-61fe-4739-ae0f-cb1f7efe70bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F3ocvjfdYeQP1jaTHHPb7f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2213,
+      "cache_read_input_tokens": 67669,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2213,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 67669,
+          "cache_creation_input_tokens": 2213,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2213
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 82 · 2026-05-16T17:36:23.859Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XBXAErg5bzAgWiFzTkfLEW`</summary>
+
+```json
+{
+  "query": "GenIE state-based constraints information extraction Josifoski 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e72dd47-61fe-4739-ae0f-cb1f7efe70bb",
+  "isSidechain": false,
+  "requestId": "req_011Cb6eoeaoTktpfprszzQEy",
+  "type": "assistant",
+  "uuid": "aae18f14-d226-465c-a1c7-8de94c88e4a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01F3ocvjfdYeQP1jaTHHPb7f",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2213,
+      "cache_read_input_tokens": 67669,
+      "output_tokens": 179,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2213,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 179,
+          "cache_read_input_tokens": 67669,
+          "cache_creation_input_tokens": 2213,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2213
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 83 · 2026-05-16T17:36:30.660Z_
+
+<details><summary>↩ Tool result · `toolu_01XBXAErg5bzAgWiFzTkfLEW`</summary>
+
+```text
+Web search results for query: "GenIE state-based constraints information extraction Josifoski 2022"
+
+Links: [{"title":"GenIE: Generative Information Extraction - ACL Anthology","url":"https://aclanthology.org/2022.naacl-main.342/"},{"title":"[2112.08340] GenIE: Generative Information Extraction","url":"https://arxiv.org/abs/2112.08340"},{"title":"Google Scholar","url":"https://scholar.google.com/scholar_lookup?title=GenIE:+Generative+information+extraction&amp=&author=Martin+Josifoski&amp=&author=Nicola+De+Cao&amp=&author=Maxime+Peyrard&amp=&author=Fabio+Petroni&amp=&author=Robert+West&amp=&publication_year=2022&amp=&pages=4626-4643&amp=&doi=10.18653/v1/2022.naacl-main.342"},{"title":"GenIE: Generative Information Extraction","url":"https://dlab.epfl.ch/people/west/pub/Josifoski-DeCao-Peyrard-Petroni-West_NAACL-22.pdf"},{"title":"GitHub - epfl-dlab/GenIE: The autoregressive information extraction system GenIE (Generative Information Extraction) implemented in PyTorch. · GitHub","url":"https://github.com/epfl-dlab/GenIE"},{"title":"GenIE: Generative Information Extraction","url":"https://infoscience.epfl.ch/entities/publication/ac96118e-64f4-4d05-8461-aa27321afaeb"},{"title":"(PDF) GenIE: Generative Information Extraction","url":"https://www.researchgate.net/publication/362262820_GenIE_Generative_Information_Extraction"},{"title":"Grammar-Constrained Decoding for Structured NLP Tasks ...","url":"https://dlab.epfl.ch/people/west/pub/Geng-Josifoski-Peyrard-West_EMNLP-23.pdf"},{"title":"GenIE: Generative Information Extraction - ADS","url":"https://ui.adsabs.harvard.edu/abs/arXiv:2112.08340"},{"title":"GenIE: Generative Information Extraction | OpenReview","url":"https://openreview.net/forum?id=HxxjO7zS-c"}]
+
+Based on the search results, I found comprehensive information about the GenIE paper by Josifoski et al. (2022):
+
+## GenIE: Generative Information Extraction (Josifoski et al., 2022)
+
+GenIE (generative information extraction) is the first end-to-end autoregressive formulation of closed information extraction.
+
+**Key Features:**
+
+GenIE naturally exploits the language knowledge from the pre-trained transformer by autoregressively generating relations and entities in textual form. The system uses a transformer encoder-decoder model that takes unstructured text as input and autoregressively generates a structured semantic representation of the information expressed in it, in the form of (subject, relation, object) triplets.
+
+**State-Based Constraints:**
+
+Regarding the state-based constraints you asked about, Josifoski et al. (2022) addressed closed information extraction by combining trie-based lexical constraints with state-based constraints to force the output to be valid triplet sequences. More specifically, GenIE employs constrained beam search with: (i) a high-level constraint which asserts that the output corresponds to a set of triplets; (ii) lower-level constraints which use prefix tries to force the model to only generate valid entity or relation identifiers (from a predefined schema).
+
+**Results:**
+
+GenIE is state-of-the-art on closed information extraction, generalizes from fewer training data points than baselines, and scales to a previously unmanageable number of entities and relations.
+
+The paper was published at NAACL 2022 and is available on the ACL Anthology and arXiv.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aae18f14-d226-465c-a1c7-8de94c88e4a4",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "6ffd76f6-830b-4dd9-9edc-ae9e36612118",
+  "toolUseResult": {
+    "query": "GenIE state-based constraints information extraction Josifoski 2022",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01HP8Cu8HJkc3ZXNpQUjs62i",
+        "content": [
+          {
+            "title": "GenIE: Generative Information Extraction - ACL Anthology",
+            "url": "https://aclanthology.org/2022.naacl-main.342/"
+          },
+          {
+            "title": "[2112.08340] GenIE: Generative Information Extraction",
+            "url": "https://arxiv.org/abs/2112.08340"
+          },
+          {
+            "title": "Google Scholar",
+            "url": "https://scholar.google.com/scholar_lookup?title=GenIE:+Generative+information+extraction&amp=&author=Martin+Josifoski&amp=&author=Nicola+De+Cao&amp=&author=Maxime+Peyrard&amp=&author=Fabio+Petroni&amp=&author=Robert+West&amp=&publication_year=2022&amp=&pages=4626-4643&amp=&doi=10.18653/v1/2022.naacl-main.342"
+          },
+          {
+            "title": "GenIE: Generative Information Extraction",
+            "url": "https://dlab.epfl.ch/people/west/pub/Josifoski-DeCao-Peyrard-Petroni-West_NAACL-22.pdf"
+          },
+          {
+            "title": "GitHub - epfl-dlab/GenIE: The autoregressive information extraction system GenIE (Generative Information Extraction) implemented in PyTorch. · GitHub",
+            "url": "https://github.com/epfl-dlab/GenIE"
+          },
+          {
+            "title": "GenIE: Generative Information Extraction",
+            "url": "https://infoscience.epfl.ch/entities/publication/ac96118e-64f4-4d05-8461-aa27321afaeb"
+          },
+          {
+            "title": "(PDF) GenIE: Generative Information Extraction",
+            "url": "https://www.researchgate.net/publication/362262820_GenIE_Generative_Information_Extraction"
+          },
+          {
+            "title": "Grammar-Constrained Decoding for Structured NLP Tasks ...",
+            "url": "https://dlab.epfl.ch/people/west/pub/Geng-Josifoski-Peyrard-West_EMNLP-23.pdf"
+          },
+          {
+            "title": "GenIE: Generative Information Extraction - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/arXiv:2112.08340"
+          },
+          {
+            "title": "GenIE: Generative Information Extraction | OpenReview",
+            "url": "https://openreview.net/forum?id=HxxjO7zS-c"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the GenIE paper by Josifoski et al. (2022):\n\n## GenIE: Generative Information Extraction (Josifoski et al., 2022)\n\nGenIE (generative information extraction) is the first end-to-end autoregressive formulation of closed information extraction.\n\n**Key Features:**\n\nGenIE naturally exploits the language knowledge from the pre-trained transformer by autoregressively generating relations and entities in textual form. The system uses a transformer encoder-decoder model that takes unstructured text as input and autoregressively generates a structured semantic representation of the information expressed in it, in the form of (subject, relation, object) triplets.\n\n**State-Based Constraints:**\n\nRegarding the state-based constraints you asked about, Josifoski et al. (2022) addressed closed information extraction by combining trie-based lexical constraints with state-based constraints to force the output to be valid triplet sequences. More specifically, GenIE employs constrained beam search with: (i) a high-level constraint which asserts that the output corresponds to a set of triplets; (ii) lower-level constraints which use prefix tries to force the model to only generate valid entity or relation identifiers (from a predefined schema).\n\n**Results:**\n\nGenIE is state-of-the-art on closed information extraction, generalizes from fewer training data points than baselines, and scales to a previously unmanageable number of entities and relations.\n\nThe paper was published at NAACL 2022 and is available on the ACL Anthology and arXiv."
+    ],
+    "durationSeconds": 6.797352314999997
+  },
+  "sourceToolAssistantUUID": "aae18f14-d226-465c-a1c7-8de94c88e4a4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-16T17:36:34.333Z_
+
+<details><summary>↩ Tool result · `toolu_01G2rPwJQZLZz8ZvsmpyZy3u`</summary>
+
+```text
+Web search results for query: "constrained decoding information extraction ontology type constraints 2025 2026"
+
+Links: [{"title":"Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11747381/"},{"title":"Frontiers | Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts","url":"https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/full"},{"title":"[2408.02361] Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding","url":"https://arxiv.org/abs/2408.02361"},{"title":"Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding","url":"https://arxiv.org/pdf/2408.02361"},{"title":"Grammar-constrained decoding for structured information ...","url":"https://public-pages-files-2025.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/pdf"},{"title":"Constrained Decoding for Information Extraction","url":"https://hal.science/hal-04678395v1/document"},{"title":"GitHub - Saibo-creator/Awesome-LLM-Constrained-Decoding: A curated list of papers related to constrained decoding of LLM, along with their relevant code and resources. · GitHub","url":"https://github.com/Saibo-creator/Awesome-LLM-Constrained-Decoding"},{"title":"How Structured Outputs and Constrained Decoding Work | Let's Data Science","url":"https://letsdatascience.com/blog/structured-outputs-making-llms-return-reliable-json"},{"title":"A Guide to Structured Outputs Using Constrained Decoding","url":"https://www.aidancooper.co.uk/constrained-decoding/"},{"title":"Published as a conference paper at ICAIS 2025","url":"https://arxiv.org/pdf/2510.20345"}]
+
+I found several relevant research papers and resources on constrained decoding for information extraction with ontology type constraints. Here's a summary of the key findings:
+
+## Recent Work (2025-2026)
+
+A January 2025 publication on grammar-constrained decoding addresses the challenge that "in the field of structured information extraction, there are typically semantic and syntactic constraints on the output of information extraction (IE) systems" and that "constrained decoding approaches allow, e.g., to specify constraints in form of context-free grammars."
+
+Dialogue ontology relation extraction research shows that "by constraining the decoding to ontology terms and relations, we aim to decrease the risk of hallucination," with "improvements in performance on target ontology for source fine-tuned and one-shot prompted large language models."
+
+## Technical Implementation Details
+
+Recent advances like XGrammar (Dong et al., MLSys 2025) have solved efficiency challenges and "is the default structured generation backend for vLLM, SGLang, and TensorRT-LLM as of March 2026, achieving under 40 microseconds per token with near-zero overhead in JSON generation."
+
+## Ontology-Based Constraints
+
+Early work in ontology-driven consistency "relied on explicit ontologies as global constraints," such as approaches that "enforced alignment between extracted triples and predefined ontological definitions, achieving high semantic consistency but limited flexibility across domains."
+
+The search results reveal an active research area with recent progress in making constrained decoding more efficient while maintaining semantic and syntactic correctness through ontology-based type constraints.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1e72dd47-61fe-4739-ae0f-cb1f7efe70bb",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "f7ed0940-3fe2-4ac9-8fa1-a96750292b8a",
+  "toolUseResult": {
+    "query": "constrained decoding information extraction ontology type constraints 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Bqh66FofUJCLpSnb3UHZK1",
+        "content": [
+          {
+            "title": "Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11747381/"
+          },
+          {
+            "title": "Frontiers | Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts",
+            "url": "https://www.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/full"
+          },
+          {
+            "title": "[2408.02361] Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding",
+            "url": "https://arxiv.org/abs/2408.02361"
+          },
+          {
+            "title": "Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding",
+            "url": "https://arxiv.org/pdf/2408.02361"
+          },
+          {
+            "title": "Grammar-constrained decoding for structured information ...",
+            "url": "https://public-pages-files-2025.frontiersin.org/journals/artificial-intelligence/articles/10.3389/frai.2024.1406857/pdf"
+          },
+          {
+            "title": "Constrained Decoding for Information Extraction",
+            "url": "https://hal.science/hal-04678395v1/document"
+          },
+          {
+            "title": "GitHub - Saibo-creator/Awesome-LLM-Constrained-Decoding: A curated list of papers related to constrained decoding of LLM, along with their relevant code and resources. · GitHub",
+            "url": "https://github.com/Saibo-creator/Awesome-LLM-Constrained-Decoding"
+          },
+          {
+            "title": "How Structured Outputs and Constrained Decoding Work | Let's Data Science",
+            "url": "https://letsdatascience.com/blog/structured-outputs-making-llms-return-reliable-json"
+          },
+          {
+            "title": "A Guide to Structured Outputs Using Constrained Decoding",
+            "url": "https://www.aidancooper.co.uk/constrained-decoding/"
+          },
+          {
+            "title": "Published as a conference paper at ICAIS 2025",
+            "url": "https://arxiv.org/pdf/2510.20345"
+          }
+        ]
+      },
+      "I found several relevant research papers and resources on constrained decoding for information extraction with ontology type constraints. Here's a summary of the key findings:\n\n## Recent Work (2025-2026)\n\nA January 2025 publication on grammar-constrained decoding addresses the challenge that \"in the field of structured information extraction, there are typically semantic and syntactic constraints on the output of information extraction (IE) systems\" and that \"constrained decoding approaches allow, e.g., to specify constraints in form of context-free grammars.\"\n\nDialogue ontology relation extraction research shows that \"by constraining the decoding to ontology terms and relations, we aim to decrease the risk of hallucination,\" with \"improvements in performance on target ontology for source fine-tuned and one-shot prompted large language models.\"\n\n## Technical Implementation Details\n\nRecent advances like XGrammar (Dong et al., MLSys 2025) have solved efficiency challenges and \"is the default structured generation backend for vLLM, SGLang, and TensorRT-LLM as of March 2026, achieving under 40 microseconds per token with near-zero overhead in JSON generation.\"\n\n## Ontology-Based Constraints\n\nEarly work in ontology-driven consistency \"relied on explicit ontologies as global constraints,\" such as approaches that \"enforced alignment between extracted triples and predefined ontological definitions, achieving high semantic consistency but limited flexibility across domains.\"\n\nThe search results reveal an active research area with recent progress in making constrained decoding more efficient while maintaining semantic and syntactic correctness through ontology-based type constraints."
+    ],
+    "durationSeconds": 11.100699852000005
+  },
+  "sourceToolAssistantUUID": "1e72dd47-61fe-4739-ae0f-cb1f7efe70bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 完整性 + 相关工作 + 写作质量**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Ontology Constraints - **论文路径**: `projects/schema_sem…",
+  "leafUuid": "f7ed0940-3fe2-4ac9-8fa1-a96750292b8a",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 86_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-16T17:36:38.472Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EeSYUxCDEVgddh3D8RoR7c`</summary>
+
+```json
+{
+  "query": "\"dialogue ontology relation extraction\" \"constrained chain-of-thought decoding\" 2024 DORE"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f7ed0940-3fe2-4ac9-8fa1-a96750292b8a",
+  "isSidechain": false,
+  "requestId": "req_011Cb6epqgpZbSbeP2vwLt6N",
+  "type": "assistant",
+  "uuid": "93a2d390-f1aa-43fe-b76c-9943423c6348",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PNk9f7mhRqs4eCGxjGZwT3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1040,
+      "cache_creation_input_tokens": 1128,
+      "cache_read_input_tokens": 69882,
+      "output_tokens": 125,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1128,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1040,
+          "output_tokens": 125,
+          "cache_read_input_tokens": 69882,
+          "cache_creation_input_tokens": 1128,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1128
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 88 · 2026-05-16T17:36:39.146Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_011yHD7ADHdK1PuxQcm6S42t`</summary>
+
+```json
+{
+  "query": "BoostCD constrained decoding information extraction boosting 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "93a2d390-f1aa-43fe-b76c-9943423c6348",
+  "isSidechain": false,
+  "requestId": "req_011Cb6epqgpZbSbeP2vwLt6N",
+  "type": "assistant",
+  "uuid": "cb723c68-b4cd-4aaa-bbb1-de5436399af7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PNk9f7mhRqs4eCGxjGZwT3",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1040,
+      "cache_creation_input_tokens": 1128,
+      "cache_read_input_tokens": 69882,
+      "output_tokens": 125,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1128,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1040,
+          "output_tokens": 125,
+          "cache_read_input_tokens": 69882,
+          "cache_creation_input_tokens": 1128,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1128
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 89 · 2026-05-16T17:36:44.317Z_
+
+<details><summary>↩ Tool result · `toolu_01EeSYUxCDEVgddh3D8RoR7c`</summary>
+
+```text
+Web search results for query: ""dialogue ontology relation extraction" "constrained chain-of-thought decoding" 2024 DORE"
+
+Links: [{"title":"Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding","url":"https://arxiv.org/html/2408.02361v1"},{"title":"[2408.02361] Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding","url":"https://arxiv.org/abs/2408.02361"},{"title":"Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding - ACL Anthology","url":"https://aclanthology.org/2024.sigdial-1.33/"},{"title":"Dialogue Ontology Relation Extraction via Constrained ...","url":"https://aclanthology.org/2024.sigdial-1.33.pdf"},{"title":"Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding","url":"https://www.paperreading.club/page?id=244596"},{"title":"Computation and Language Aug 2024","url":"https://arxiv.org/list/cs.CL/2024-08?skip=95&show=2000"},{"title":"Text-to-SQL Task-oriented Dialogue Ontology Construction","url":"https://arxiv.org/html/2507.23358v2"},{"title":"Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding","url":"https://powerdrill.ai/discover/discover-Dialogue-Ontology-Relation-clziwmugm413g0161hk6eelui"},{"title":"Container Registry · general / dsml / Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding - Public · GitLab","url":"https://gitlab.cs.hhu.de/general/dsml/dialogue-ontology-relation-extraction-via-constrained-chain-of-thought-decoding/container_registry"},{"title":"dblp: David Arps","url":"https://dblp.org/pid/219/5595.html"}]
+
+Based on the search results, I found comprehensive information about the paper you're looking for:
+
+## Paper Overview
+
+The paper "Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding" by Vukovic et al. was published at SIGDIAL 2024 in Kyoto, Japan.
+
+## Problem & Motivation
+
+State-of-the-art task-oriented dialogue systems typically rely on task-specific ontologies, but the majority of task-oriented dialogue data comes without ontology and annotation, and such ontologies are normally built manually, limiting the application of specialized systems.
+
+## Methodology
+
+Dialogue ontology construction typically consists of two steps: term extraction and relation extraction. The work focuses on relation extraction in a transfer learning set-up.
+
+The authors adapt Chain-of-Thought (CoT) decoding to generative relation extraction by generating multiple branches in the decoding space and selecting relations based on a confidence threshold. By constraining the decoding to ontology terms and relations, they aim to decrease the risk of hallucination.
+
+## Results
+
+The extensive experimentation on two widely used datasets found improvements in performance on target ontology for source fine-tuned and one-shot prompted large language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "93a2d390-f1aa-43fe-b76c-9943423c6348",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "5247f5ee-fd32-4cf7-b4d7-c208da827903",
+  "toolUseResult": {
+    "query": "\"dialogue ontology relation extraction\" \"constrained chain-of-thought decoding\" 2024 DORE",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AMR1auBirH92GR2LLmzmTN",
+        "content": [
+          {
+            "title": "Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding",
+            "url": "https://arxiv.org/html/2408.02361v1"
+          },
+          {
+            "title": "[2408.02361] Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding",
+            "url": "https://arxiv.org/abs/2408.02361"
+          },
+          {
+            "title": "Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding - ACL Anthology",
+            "url": "https://aclanthology.org/2024.sigdial-1.33/"
+          },
+          {
+            "title": "Dialogue Ontology Relation Extraction via Constrained ...",
+            "url": "https://aclanthology.org/2024.sigdial-1.33.pdf"
+          },
+          {
+            "title": "Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding",
+            "url": "https://www.paperreading.club/page?id=244596"
+          },
+          {
+            "title": "Computation and Language Aug 2024",
+            "url": "https://arxiv.org/list/cs.CL/2024-08?skip=95&show=2000"
+          },
+          {
+            "title": "Text-to-SQL Task-oriented Dialogue Ontology Construction",
+            "url": "https://arxiv.org/html/2507.23358v2"
+          },
+          {
+            "title": "Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding",
+            "url": "https://powerdrill.ai/discover/discover-Dialogue-Ontology-Relation-clziwmugm413g0161hk6eelui"
+          },
+          {
+            "title": "Container Registry · general / dsml / Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding - Public · GitLab",
+            "url": "https://gitlab.cs.hhu.de/general/dsml/dialogue-ontology-relation-extraction-via-constrained-chain-of-thought-decoding/container_registry"
+          },
+          {
+            "title": "dblp: David Arps",
+            "url": "https://dblp.org/pid/219/5595.html"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the paper you're looking for:\n\n## Paper Overview\n\nThe paper \"Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding\" by Vukovic et al. was published at SIGDIAL 2024 in Kyoto, Japan.\n\n## Problem & Motivation\n\nState-of-the-art task-oriented dialogue systems typically rely on task-specific ontologies, but the majority of task-oriented dialogue data comes without ontology and annotation, and such ontologies are normally built manually, limiting the application of specialized systems.\n\n## Methodology\n\nDialogue ontology construction typically consists of two steps: term extraction and relation extraction. The work focuses on relation extraction in a transfer learning set-up.\n\nThe authors adapt Chain-of-Thought (CoT) decoding to generative relation extraction by generating multiple branches in the decoding space and selecting relations based on a confidence threshold. By constraining the decoding to ontology terms and relations, they aim to decrease the risk of hallucination.\n\n## Results\n\nThe extensive experimentation on two widely used datasets found improvements in performance on target ontology for source fine-tuned and one-shot prompted large language models."
+    ],
+    "durationSeconds": 5.839919843999989
+  },
+  "sourceToolAssistantUUID": "93a2d390-f1aa-43fe-b76c-9943423c6348",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-16T17:36:46.541Z_
+
+<details><summary>↩ Tool result · `toolu_011yHD7ADHdK1PuxQcm6S42t`</summary>
+
+```text
+Web search results for query: "BoostCD constrained decoding information extraction boosting 2025"
+
+Links: [{"title":"Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction","url":"https://arxiv.org/html/2506.14901v1"},{"title":"[2506.14901] Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction","url":"https://arxiv.org/abs/2506.14901"},{"title":"Combining Constrained and Unconstrained Decoding via ...","url":"https://aclanthology.org/2025.emnlp-main.926.pdf"},{"title":"Combining Constrained and Unconstrained Decoding via Boosting:","url":"https://openreview.net/pdf?id=3Qbw5Ja6Sc"},{"title":"Constrained Decoding Mechanism","url":"https://www.emergentmind.com/topics/constrained-decoding-mechanism"},{"title":"Marija Sakota's research works | Swiss Federal Institute of Technology in Lausanne and other places","url":"https://www.researchgate.net/scientific-contributions/Marija-Sakota-2168060164"},{"title":"Constrained Decoding in Sequence Generation","url":"https://www.emergentmind.com/topics/constrained-decoding"},{"title":"Sketch-Guided Constrained Decoding for Boosting Blackbox Large Language Models without Logit Access","url":"https://arxiv.org/html/2401.09967v4"},{"title":"EPFL Data Science & AI Lab (dlab) · GitHub","url":"https://github.com/epfl-dlab"},{"title":"Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11747381/"}]
+
+Based on the search results, here's what I found about BoostCD:
+
+## Overview
+
+Boosted Constrained Decoding (BoostCD) is a method with the ability to correct systematic errors that an autoregressive model trained for a structured NLP task might make during constrained as well as unconstrained generation.
+
+## How It Works
+
+BoostCD combines constrained and unconstrained decoding in two phases: Phase 1 decodes from the base model in constrained and unconstrained mode, obtaining two weak predictions. In phase 2, a learned autoregressive boosted model combines the two weak predictions into one final prediction.
+
+The mistakes made by the base model with vs. without constraints tend to be complementary, which the boosted model learns to exploit for improved performance.
+
+## Application to Information Extraction
+
+BoostCD is demonstrated through its application to closed information extraction, with the model BoostIE outperforming prior approaches both in and out of distribution, addressing several common errors identified in those approaches.
+
+## Inspiration from Boosting
+
+The method draws inspiration from boosting, a classic ensemble learning technique that aims to improve performance by iteratively combining weaker models into a single stronger one. The idea is to train models sequentially, where each new model focuses on the mistakes made by the previous ones.
+
+The research was published in 2025, appearing in venues including EMNLP 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cb723c68-b4cd-4aaa-bbb1-de5436399af7",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "bb012117-1205-40fb-888f-2592193df3f9",
+  "toolUseResult": {
+    "query": "BoostCD constrained decoding information extraction boosting 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CjDsdKkvc7znMxD3YWfvrk",
+        "content": [
+          {
+            "title": "Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction",
+            "url": "https://arxiv.org/html/2506.14901v1"
+          },
+          {
+            "title": "[2506.14901] Combining Constrained and Unconstrained Decoding via Boosting: BoostCD and Its Application to Information Extraction",
+            "url": "https://arxiv.org/abs/2506.14901"
+          },
+          {
+            "title": "Combining Constrained and Unconstrained Decoding via ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.926.pdf"
+          },
+          {
+            "title": "Combining Constrained and Unconstrained Decoding via Boosting:",
+            "url": "https://openreview.net/pdf?id=3Qbw5Ja6Sc"
+          },
+          {
+            "title": "Constrained Decoding Mechanism",
+            "url": "https://www.emergentmind.com/topics/constrained-decoding-mechanism"
+          },
+          {
+            "title": "Marija Sakota's research works | Swiss Federal Institute of Technology in Lausanne and other places",
+            "url": "https://www.researchgate.net/scientific-contributions/Marija-Sakota-2168060164"
+          },
+          {
+            "title": "Constrained Decoding in Sequence Generation",
+            "url": "https://www.emergentmind.com/topics/constrained-decoding"
+          },
+          {
+            "title": "Sketch-Guided Constrained Decoding for Boosting Blackbox Large Language Models without Logit Access",
+            "url": "https://arxiv.org/html/2401.09967v4"
+          },
+          {
+            "title": "EPFL Data Science & AI Lab (dlab) · GitHub",
+            "url": "https://github.com/epfl-dlab"
+          },
+          {
+            "title": "Grammar-constrained decoding for structured information extraction with fine-tuned generative models applied to clinical trial abstracts - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11747381/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about BoostCD:\n\n## Overview\n\nBoosted Constrained Decoding (BoostCD) is a method with the ability to correct systematic errors that an autoregressive model trained for a structured NLP task might make during constrained as well as unconstrained generation.\n\n## How It Works\n\nBoostCD combines constrained and unconstrained decoding in two phases: Phase 1 decodes from the base model in constrained and unconstrained mode, obtaining two weak predictions. In phase 2, a learned autoregressive boosted model combines the two weak predictions into one final prediction.\n\nThe mistakes made by the base model with vs. without constraints tend to be complementary, which the boosted model learns to exploit for improved performance.\n\n## Application to Information Extraction\n\nBoostCD is demonstrated through its application to closed information extraction, with the model BoostIE outperforming prior approaches both in and out of distribution, addressing several common errors identified in those approaches.\n\n## Inspiration from Boosting\n\nThe method draws inspiration from boosting, a classic ensemble learning technique that aims to improve performance by iteratively combining weaker models into a single stronger one. The idea is to train models sequentially, where each new model focuses on the mistakes made by the previous ones.\n\nThe research was published in 2025, appearing in venues including EMNLP 2025."
+    ],
+    "durationSeconds": 7.392239333000005
+  },
+  "sourceToolAssistantUUID": "cb723c68-b4cd-4aaa-bbb1-de5436399af7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 91 · 2026-05-16T17:36:50.088Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me also check for some potentially missed recent papers, particularly around type-constrained IE and structured output generation for IE in 2025-2026.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bb012117-1205-40fb-888f-2592193df3f9",
+  "isSidechain": false,
+  "requestId": "req_011Cb6eqjtLr8DSC6itnDNip",
+  "type": "assistant",
+  "uuid": "36d84763-d152-443d-9eb4-6e2f74838b17",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NhLtqHB5uwyiWzfYsoagzL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2878,
+      "cache_read_input_tokens": 71010,
+      "output_tokens": 175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2878,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 175,
+          "cache_read_input_tokens": 71010,
+          "cache_creation_input_tokens": 2878,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2878
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 92 · 2026-05-16T17:36:51.341Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0141eS7kvJFwZGBjeRNf6KPp`</summary>
+
+```json
+{
+  "query": "SLOT structuring output LLM type constraints knowledge graph 2025 EMNLP"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "36d84763-d152-443d-9eb4-6e2f74838b17",
+  "isSidechain": false,
+  "requestId": "req_011Cb6eqjtLr8DSC6itnDNip",
+  "type": "assistant",
+  "uuid": "fe0f4df9-beee-4310-ba56-de8445d34e2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NhLtqHB5uwyiWzfYsoagzL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2878,
+      "cache_read_input_tokens": 71010,
+      "output_tokens": 175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2878,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 175,
+          "cache_read_input_tokens": 71010,
+          "cache_creation_input_tokens": 2878,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2878
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-16T17:36:51.670Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0153qRL88J8PhdcFXcRU3An7`</summary>
+
+```json
+{
+  "query": "structured IE generation schema constraint domain range 2025 ACL EMNLP NAACL"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fe0f4df9-beee-4310-ba56-de8445d34e2d",
+  "isSidechain": false,
+  "requestId": "req_011Cb6eqjtLr8DSC6itnDNip",
+  "type": "assistant",
+  "uuid": "aa0987f8-5f1a-419a-ae35-80d638c7df87",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01NhLtqHB5uwyiWzfYsoagzL",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2878,
+      "cache_read_input_tokens": 71010,
+      "output_tokens": 175,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2878,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 175,
+          "cache_read_input_tokens": 71010,
+          "cache_creation_input_tokens": 2878,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2878
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-16T17:36:58.199Z_
+
+<details><summary>↩ Tool result · `toolu_0153qRL88J8PhdcFXcRU3An7`</summary>
+
+```text
+Web search results for query: "structured IE generation schema constraint domain range 2025 ACL EMNLP NAACL"
+
+Links: [{"title":"Schema Generation for Large Knowledge Graphs Using ...","url":"https://aclanthology.org/2025.findings-emnlp.671.pdf"},{"title":"A Survey of Generative Information Extraction","url":"https://aclanthology.org/2025.coling-main.324.pdf"},{"title":"Realistic Training Data Generation and Rule Enhanced ...","url":"https://aclanthology.org/2025.emnlp-main.357.pdf"},{"title":"SLOT: Structuring the Output of Large Language Models","url":"https://aclanthology.org/2025.emnlp-industry.32.pdf"},{"title":"The 2025 Conference on Empirical Methods in Natural Language Processing - ACL Anthology","url":"https://aclanthology.org/events/emnlp-2025/"},{"title":"Accepted Main Conference Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/main_papers/"},{"title":"A Survey on LLMs for Story Generation","url":"https://aclanthology.org/2025.findings-emnlp.750.pdf"},{"title":"A Category-Theoretic Approach to Neural-Symbolic Task ...","url":"https://aclanthology.org/2025.findings-emnlp.1157.pdf"},{"title":"SciProdLLM 2025 The First Workshop on Human–LLM Collaboration for","url":"https://aclanthology.org/2025.sciprodllm-1.pdf"},{"title":"Learning to Generate Structured Output with Schema Reinforcement Learning - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.243/"}]
+
+I found several relevant papers on structured information extraction generation with schema constraints. Here are the key results:
+
+## Main Results
+
+1. **Schema Generation for Large Knowledge Graphs (EMNLP 2025)**
+   A paper published in the Findings of EMNLP 2025 addresses schema generation using LLMs, with experimental setups where LLMs generate schema scripts end-to-end or first generate constraints in JSON format using structured generation abilities.
+
+2. **Learning to Generate Structured Output with Schema Reinforcement Learning (ACL 2025)**
+   This ACL 2025 paper investigates structured generation capabilities of LLMs, focusing on producing valid JSON outputs against a given schema. The work addresses the gap in analysis and benchmarking of JSON integration with language models.
+
+3. **SLOT: Structuring the Output of Large Language Models (EMNLP 2025 Industry Track)**
+   This paper presents SLOT, published in the EMNLP 2025 Industry Track, which addresses structuring LLM outputs. The approach decouples output formatting from the natural language task, offering a model-agnostic solution that maintains task performance while ensuring structural validity.
+
+4. **A Survey of Generative Information Extraction (COLING 2025)**
+   A survey on generative information extraction was published in January 2025, covering IE task formulation and generative frameworks.
+
+These papers from major NLP conferences (ACL, EMNLP, COLING) in 2025 address various aspects of schema constraints, domain/range specifications, and structured IE generation.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aa0987f8-5f1a-419a-ae35-80d638c7df87",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "369b37a1-640a-457f-8651-a879408c8b89",
+  "toolUseResult": {
+    "query": "structured IE generation schema constraint domain range 2025 ACL EMNLP NAACL",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01ADEESLz4qUNQjfgKm2YfFf",
+        "content": [
+          {
+            "title": "Schema Generation for Large Knowledge Graphs Using ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.671.pdf"
+          },
+          {
+            "title": "A Survey of Generative Information Extraction",
+            "url": "https://aclanthology.org/2025.coling-main.324.pdf"
+          },
+          {
+            "title": "Realistic Training Data Generation and Rule Enhanced ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.357.pdf"
+          },
+          {
+            "title": "SLOT: Structuring the Output of Large Language Models",
+            "url": "https://aclanthology.org/2025.emnlp-industry.32.pdf"
+          },
+          {
+            "title": "The 2025 Conference on Empirical Methods in Natural Language Processing - ACL Anthology",
+            "url": "https://aclanthology.org/events/emnlp-2025/"
+          },
+          {
+            "title": "Accepted Main Conference Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/main_papers/"
+          },
+          {
+            "title": "A Survey on LLMs for Story Generation",
+            "url": "https://aclanthology.org/2025.findings-emnlp.750.pdf"
+          },
+          {
+            "title": "A Category-Theoretic Approach to Neural-Symbolic Task ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.1157.pdf"
+          },
+          {
+            "title": "SciProdLLM 2025 The First Workshop on Human–LLM Collaboration for",
+            "url": "https://aclanthology.org/2025.sciprodllm-1.pdf"
+          },
+          {
+            "title": "Learning to Generate Structured Output with Schema Reinforcement Learning - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.243/"
+          }
+        ]
+      },
+      "I found several relevant papers on structured information extraction generation with schema constraints. Here are the key results:\n\n## Main Results\n\n1. **Schema Generation for Large Knowledge Graphs (EMNLP 2025)**\n   A paper published in the Findings of EMNLP 2025 addresses schema generation using LLMs, with experimental setups where LLMs generate schema scripts end-to-end or first generate constraints in JSON format using structured generation abilities.\n\n2. **Learning to Generate Structured Output with Schema Reinforcement Learning (ACL 2025)**\n   This ACL 2025 paper investigates structured generation capabilities of LLMs, focusing on producing valid JSON outputs against a given schema. The work addresses the gap in analysis and benchmarking of JSON integration with language models.\n\n3. **SLOT: Structuring the Output of Large Language Models (EMNLP 2025 Industry Track)**\n   This paper presents SLOT, published in the EMNLP 2025 Industry Track, which addresses structuring LLM outputs. The approach decouples output formatting from the natural language task, offering a model-agnostic solution that maintains task performance while ensuring structural validity.\n\n4. **A Survey of Generative Information Extraction (COLING 2025)**\n   A survey on generative information extraction was published in January 2025, covering IE task formulation and generative frameworks.\n\nThese papers from major NLP conferences (ACL, EMNLP, COLING) in 2025 address various aspects of schema constraints, domain/range specifications, and structured IE generation."
+    ],
+    "durationSeconds": 6.5255480719999905
+  },
+  "sourceToolAssistantUUID": "aa0987f8-5f1a-419a-ae35-80d638c7df87",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 95 · 2026-05-16T17:36:59.764Z_
+
+<details><summary>↩ Tool result · `toolu_0141eS7kvJFwZGBjeRNf6KPp`</summary>
+
+```text
+Web search results for query: "SLOT structuring output LLM type constraints knowledge graph 2025 EMNLP"
+
+Links: [{"title":"SLOT: Structuring the Output of Large Language Models","url":"https://aclanthology.org/2025.emnlp-industry.32.pdf"},{"title":"[2505.04016] SLOT: Structuring the Output of Large Language Models","url":"https://arxiv.org/abs/2505.04016"},{"title":"SLOT: Structuring the Output of Large Language Models - ACL Anthology","url":"https://aclanthology.org/2025.emnlp-industry.32/"},{"title":"Accepted Industry Track Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/ind_papers/"},{"title":"SLOT: Structuring the Output of Large Language Models","url":"https://arxiv.org/html/2505.04016v1"},{"title":"SLOT: Structuring the Output of Large Language Models | Request PDF","url":"https://www.researchgate.net/publication/397423713_SLOT_Structuring_the_Output_of_Large_Language_Models"},{"title":"EMNLP 2025 The 2025 Conference on Empirical Methods in Natural","url":"https://aclanthology.org/2025.emnlp-industry.0.pdf"},{"title":"[2505.04016v1] SLOT: Structuring the Output of Large Language Models","url":"https://arxiv.org/abs/2505.04016v1"},{"title":"ConstraintLLM: A Neuro-Symbolic Framework for Industrial ...","url":"https://aclanthology.org/2025.emnlp-main.809.pdf"},{"title":"Statistical Network Analysis for LLMs via Knowledge Graphs","url":"https://www.techrxiv.org/users/972913/articles/1347041/master/file/data/KG__Paper%20(4)/KG__Paper%20(4).pdf?inline=true"}]
+
+I found relevant results about SLOT and EMNLP 2025. Here's what the search revealed:
+
+## SLOT: Structuring the Output of Large Language Models (EMNLP 2025)
+
+SLOT employs a fine-tuned lightweight language model as a post-processing layer, achieving flexibility across various LLMs and schema specifications. The paper was presented at the 2025 Conference on Empirical Methods in Natural Language Processing: Industry Track.
+
+### Key Approach
+
+Unlike prior works, SLOT's approach is task-agnostic – SLOT decouples formatting from task-specific generation, which ensures compatibility with any LLM output for any task without modification, while avoiding generation quality degradation from constrained decoding. This positions SLOT as a universal adapter between general-purpose LLMs and structured data applications.
+
+### Methodology and Results
+
+SLOTBench is curated by a data synthesis pipeline alongside a formal evaluation methodology that quantifies both schema accuracy and content fidelity. Fine-tuned Mistral-7B model with constrained decoding achieves near-perfect schema accuracy (99.5%) and content similarity (94.0%), outperforming Claude-3.5-Sonnet by substantial margins (+25 and +20 percentage points, respectively).
+
+### Practical Benefits
+
+Even compact models like Llama-3.2-1B can match or exceed the structured output capabilities of much larger proprietary models when equipped with SLOT, enabling reliable structured generation in resource-constrained environments.
+
+The authors are Zhengyuan Shen, Darren Yow-Bang Wang, Soumya Smruti Mishra, Zhichao Xu, Yifei Teng, and Haibo Ding.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fe0f4df9-beee-4310-ba56-de8445d34e2d",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "a90343e1-fd6c-45d8-860b-9ffdb709a4a5",
+  "toolUseResult": {
+    "query": "SLOT structuring output LLM type constraints knowledge graph 2025 EMNLP",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MULWxkpq9ddhyhHpUqWV2c",
+        "content": [
+          {
+            "title": "SLOT: Structuring the Output of Large Language Models",
+            "url": "https://aclanthology.org/2025.emnlp-industry.32.pdf"
+          },
+          {
+            "title": "[2505.04016] SLOT: Structuring the Output of Large Language Models",
+            "url": "https://arxiv.org/abs/2505.04016"
+          },
+          {
+            "title": "SLOT: Structuring the Output of Large Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2025.emnlp-industry.32/"
+          },
+          {
+            "title": "Accepted Industry Track Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/ind_papers/"
+          },
+          {
+            "title": "SLOT: Structuring the Output of Large Language Models",
+            "url": "https://arxiv.org/html/2505.04016v1"
+          },
+          {
+            "title": "SLOT: Structuring the Output of Large Language Models | Request PDF",
+            "url": "https://www.researchgate.net/publication/397423713_SLOT_Structuring_the_Output_of_Large_Language_Models"
+          },
+          {
+            "title": "EMNLP 2025 The 2025 Conference on Empirical Methods in Natural",
+            "url": "https://aclanthology.org/2025.emnlp-industry.0.pdf"
+          },
+          {
+            "title": "[2505.04016v1] SLOT: Structuring the Output of Large Language Models",
+            "url": "https://arxiv.org/abs/2505.04016v1"
+          },
+          {
+            "title": "ConstraintLLM: A Neuro-Symbolic Framework for Industrial ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.809.pdf"
+          },
+          {
+            "title": "Statistical Network Analysis for LLMs via Knowledge Graphs",
+            "url": "https://www.techrxiv.org/users/972913/articles/1347041/master/file/data/KG__Paper%20(4)/KG__Paper%20(4).pdf?inline=true"
+          }
+        ]
+      },
+      "I found relevant results about SLOT and EMNLP 2025. Here's what the search revealed:\n\n## SLOT: Structuring the Output of Large Language Models (EMNLP 2025)\n\nSLOT employs a fine-tuned lightweight language model as a post-processing layer, achieving flexibility across various LLMs and schema specifications. The paper was presented at the 2025 Conference on Empirical Methods in Natural Language Processing: Industry Track.\n\n### Key Approach\n\nUnlike prior works, SLOT's approach is task-agnostic – SLOT decouples formatting from task-specific generation, which ensures compatibility with any LLM output for any task without modification, while avoiding generation quality degradation from constrained decoding. This positions SLOT as a universal adapter between general-purpose LLMs and structured data applications.\n\n### Methodology and Results\n\nSLOTBench is curated by a data synthesis pipeline alongside a formal evaluation methodology that quantifies both schema accuracy and content fidelity. Fine-tuned Mistral-7B model with constrained decoding achieves near-perfect schema accuracy (99.5%) and content similarity (94.0%), outperforming Claude-3.5-Sonnet by substantial margins (+25 and +20 percentage points, respectively).\n\n### Practical Benefits\n\nEven compact models like Llama-3.2-1B can match or exceed the structured output capabilities of much larger proprietary models when equipped with SLOT, enabling reliable structured generation in resource-constrained environments.\n\nThe authors are Zhengyuan Shen, Darren Yow-Bang Wang, Soumya Smruti Mishra, Zhichao Xu, Yifei Teng, and Haibo Ding."
+    ],
+    "durationSeconds": 8.419700581000011
+  },
+  "sourceToolAssistantUUID": "fe0f4df9-beee-4310-ba56-de8445d34e2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 96 · 2026-05-16T17:36:59.768Z_
+
+```json
+{
+  "parentUuid": "a90343e1-fd6c-45d8-860b-9ffdb709a4a5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d1bce726-b9cd-456a-be52-bc77e8a349c0",
+  "timestamp": "2026-05-16T17:36:59.768Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 97_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 完整性 + 相关工作 + 写作质量**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Ontology Constraints - **论文路径**: `projects/schema_sem…",
+  "leafUuid": "d1bce726-b9cd-456a-be52-bc77e8a349c0",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 98_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 99 · 2026-05-16T17:37:03.580Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01QuQ54jHYAHFocXVfyopJYN`</summary>
+
+```json
+{
+  "query": "\"schema reinforcement learning\" structured output ACL 2025 JSON constraints"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1bce726-b9cd-456a-be52-bc77e8a349c0",
+  "isSidechain": false,
+  "requestId": "req_011Cb6eriQpZyRYDPcEqXUHK",
+  "type": "assistant",
+  "uuid": "9622f41f-15c6-4eac-9cb0-9bcd660a3f5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HhYX6PFubFa7V6uckotcnX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 857,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 73888,
+      "output_tokens": 115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1227,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 857,
+          "output_tokens": 115,
+          "cache_read_input_tokens": 73888,
+          "cache_creation_input_tokens": 1227,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1227
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-16T17:37:04.152Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018UnASwQhhVeFaG77GunVsS`</summary>
+
+```json
+{
+  "query": "PARSE LLM schema optimization entity extraction ontology 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9622f41f-15c6-4eac-9cb0-9bcd660a3f5d",
+  "isSidechain": false,
+  "requestId": "req_011Cb6eriQpZyRYDPcEqXUHK",
+  "type": "assistant",
+  "uuid": "6f3f239d-eeb5-4e81-bceb-7beee5aeb5cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HhYX6PFubFa7V6uckotcnX",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 857,
+      "cache_creation_input_tokens": 1227,
+      "cache_read_input_tokens": 73888,
+      "output_tokens": 115,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1227,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 857,
+          "output_tokens": 115,
+          "cache_read_input_tokens": 73888,
+          "cache_creation_input_tokens": 1227,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1227
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-16T17:37:11.775Z_
+
+<details><summary>↩ Tool result · `toolu_01QuQ54jHYAHFocXVfyopJYN`</summary>
+
+```text
+Web search results for query: ""schema reinforcement learning" structured output ACL 2025 JSON constraints"
+
+Links: [{"title":"Learning to Generate Structured Output with Schema Reinforcement Learning - ACL Anthology","url":"https://aclanthology.org/2025.acl-long.243/"},{"title":"Learning to Generate Structured Output with Schema Reinforcement Learning","url":"https://arxiv.org/html/2502.18878v1"},{"title":"[2502.18878] Learning to Generate Structured Output with Schema Reinforcement Learning","url":"https://arxiv.org/abs/2502.18878"},{"title":"Learning to Generate Structured Output with Schema ...","url":"https://aclanthology.org/2025.acl-long.243.pdf"},{"title":"[Quick Review] Learning to Generate Structured Output with Schema Reinforcement Learning","url":"https://liner.com/review/learning-to-generate-structured-output-with-schema-reinforcement-learning"},{"title":"Article Not peer-reviewed version Think Inside the JSON: Reinforcement","url":"https://www.preprints.org/manuscript/202502.1390/v1/download"},{"title":"SLOT: Structuring the Output of Large Language Models","url":"https://aclanthology.org/2025.emnlp-industry.32.pdf"},{"title":"Learning to Generate Structured Output with Schema Reinforcement Learning | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/venue/2025.acl-long.243@ACL"},{"title":"Proceedings of Recent Advances in Natural Language Processing,pages 1074–1084","url":"https://acl-bg.org/proceedings/2025/RANLP%202025/pdf/2025.ranlp-1.124.pdf"},{"title":"GitHub - thunlp/SchemaReinforcementLearning: Learning to Generate STRUCTURED Output with Schema Reinforcement Learning","url":"https://github.com/thunlp/SchemaReinforcementLearning"}]
+
+Based on the search results, I found comprehensive information about the ACL 2025 paper on Schema Reinforcement Learning. Here's what I found:
+
+## Overview
+
+The paper "Learning to Generate Structured Output with Schema Reinforcement Learning" was accepted at ACL 2025 and investigates the structured generation capabilities of large language models (LLMs), focusing on producing valid JSON outputs against a given schema.
+
+## Key Problem
+
+Despite the widespread use of JSON in integrating language models with programs, there is a lack of comprehensive analysis and benchmarking of these capabilities. The latest LLMs are still struggling to generate a valid JSON string.
+
+## SchemaBench Dataset
+
+The paper proposes SchemaBench which features around 40K different JSON schemas to obtain and assess models' abilities in generating valid JSON. During validation, the jsonschema library is used to verify if the generated JSON string strictly adheres to the provided schema constraints.
+
+## Proposed Approach
+
+The paper demonstrates that incorporating reinforcement learning with a Fine-grained Schema Validator can further enhance models' understanding of JSON schema, leading to improved performance. The method introduces Thought of Structure (ToS) to encourage deeper reasoning before JSON string generation, and a fine-grained schema validator is employed to provide a detailed reward signal by calculating the correctness ratio of tokens.
+
+## Results
+
+The training framework with online schema reinforcement learning achieves up to 16% improvement in valid complex JSON generation rates compared to supervised baselines.
+
+The paper and code are available on the ACL Anthology and GitHub respectively.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9622f41f-15c6-4eac-9cb0-9bcd660a3f5d",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "a6eff97d-7ee7-4fab-b594-b84fa71db687",
+  "toolUseResult": {
+    "query": "\"schema reinforcement learning\" structured output ACL 2025 JSON constraints",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017DdtLUnEYwiDdpZsosL8Gm",
+        "content": [
+          {
+            "title": "Learning to Generate Structured Output with Schema Reinforcement Learning - ACL Anthology",
+            "url": "https://aclanthology.org/2025.acl-long.243/"
+          },
+          {
+            "title": "Learning to Generate Structured Output with Schema Reinforcement Learning",
+            "url": "https://arxiv.org/html/2502.18878v1"
+          },
+          {
+            "title": "[2502.18878] Learning to Generate Structured Output with Schema Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2502.18878"
+          },
+          {
+            "title": "Learning to Generate Structured Output with Schema ...",
+            "url": "https://aclanthology.org/2025.acl-long.243.pdf"
+          },
+          {
+            "title": "[Quick Review] Learning to Generate Structured Output with Schema Reinforcement Learning",
+            "url": "https://liner.com/review/learning-to-generate-structured-output-with-schema-reinforcement-learning"
+          },
+          {
+            "title": "Article Not peer-reviewed version Think Inside the JSON: Reinforcement",
+            "url": "https://www.preprints.org/manuscript/202502.1390/v1/download"
+          },
+          {
+            "title": "SLOT: Structuring the Output of Large Language Models",
+            "url": "https://aclanthology.org/2025.emnlp-industry.32.pdf"
+          },
+          {
+            "title": "Learning to Generate Structured Output with Schema Reinforcement Learning | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/venue/2025.acl-long.243@ACL"
+          },
+          {
+            "title": "Proceedings of Recent Advances in Natural Language Processing,pages 1074–1084",
+            "url": "https://acl-bg.org/proceedings/2025/RANLP%202025/pdf/2025.ranlp-1.124.pdf"
+          },
+          {
+            "title": "GitHub - thunlp/SchemaReinforcementLearning: Learning to Generate STRUCTURED Output with Schema Reinforcement Learning",
+            "url": "https://github.com/thunlp/SchemaReinforcementLearning"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the ACL 2025 paper on Schema Reinforcement Learning. Here's what I found:\n\n## Overview\n\nThe paper \"Learning to Generate Structured Output with Schema Reinforcement Learning\" was accepted at ACL 2025 and investigates the structured generation capabilities of large language models (LLMs), focusing on producing valid JSON outputs against a given schema.\n\n## Key Problem\n\nDespite the widespread use of JSON in integrating language models with programs, there is a lack of comprehensive analysis and benchmarking of these capabilities. The latest LLMs are still struggling to generate a valid JSON string.\n\n## SchemaBench Dataset\n\nThe paper proposes SchemaBench which features around 40K different JSON schemas to obtain and assess models' abilities in generating valid JSON. During validation, the jsonschema library is used to verify if the generated JSON string strictly adheres to the provided schema constraints.\n\n## Proposed Approach\n\nThe paper demonstrates that incorporating reinforcement learning with a Fine-grained Schema Validator can further enhance models' understanding of JSON schema, leading to improved performance. The method introduces Thought of Structure (ToS) to encourage deeper reasoning before JSON string generation, and a fine-grained schema validator is employed to provide a detailed reward signal by calculating the correctness ratio of tokens.\n\n## Results\n\nThe training framework with online schema reinforcement learning achieves up to 16% improvement in valid complex JSON generation rates compared to supervised baselines.\n\nThe paper and code are available on the ACL Anthology and GitHub respectively."
+    ],
+    "durationSeconds": 8.189854326
+  },
+  "sourceToolAssistantUUID": "9622f41f-15c6-4eac-9cb0-9bcd660a3f5d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 102 · 2026-05-16T17:37:12.134Z_
+
+<details><summary>↩ Tool result · `toolu_018UnASwQhhVeFaG77GunVsS`</summary>
+
+```text
+Web search results for query: "PARSE LLM schema optimization entity extraction ontology 2025"
+
+Links: [{"title":"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction","url":"https://arxiv.org/html/2510.08623v1"},{"title":"[2510.08623] PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction","url":"https://arxiv.org/abs/2510.08623"},{"title":"PARSE: LLM driven schema optimization for reliable entity extraction - Amazon Science","url":"https://www.amazon.science/publications/parse-llm-driven-schema-optimization-for-reliable-entity-extraction"},{"title":"(PDF) PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction","url":"https://www.researchgate.net/publication/396458126_PARSE_LLM_Driven_Schema_Optimization_for_Reliable_Entity_Extraction"},{"title":"PARSE: LLM Driven Schema Optimization for Reliable ...","url":"https://aclanthology.org/2025.emnlp-industry.184.pdf"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=13775&show=25"},{"title":"Ontology-Grounded LLM Construction","url":"https://www.emergentmind.com/topics/ontology-grounded-llm-construction"},{"title":"Parse: LLM Driven Schema Optimization for Reliable Entity Extraction | Hacker News","url":"https://news.ycombinator.com/item?id=45683970"},{"title":"Machine Learning Oct 2025","url":"https://arxiv.org/list/cs.LG/2025-10?skip=3600&show=250"},{"title":"ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs","url":"https://arxiv.org/html/2509.04696v1"}]
+
+Based on the search results, here's what I found about PARSE and related 2025 research on LLM schema optimization for entity extraction:
+
+## PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction
+
+PARSE addresses structured information extraction from unstructured text, where recent approaches apply large language models directly to extraction tasks using existing JSON schemas, but treat JSON schemas as static contracts designed for human developers, leading to suboptimal extraction performance, frequent hallucinations, and unreliable agent behavior when schemas contain ambiguous or incomplete specifications.
+
+### Key Components
+
+PARSE consists of two synergistic components: ARCHITECT, which autonomously optimizes JSON schemas for LLM consumption while maintaining backward compatibility through RELAY (an integrated code generation system), and SCOPE, which implements reflection-based extraction with combined static and LLM-based guardrails.
+
+### Performance Results
+
+The system achieves up to 64.7% improvement in extraction accuracy on SWDE with combined framework improvements reaching 10% across models, while reducing extraction errors by 92% within the first retry and maintaining practical latency.
+
+### Related Research Context
+
+The search also revealed broader 2025 research on ontology-grounded LLM construction and entity extraction. Extraction prompts can specify the connection map (allowed entity, predicate, entity patterns), required fields, cardinalities, and ID conventions, with few-shot examples and natural language class definitions embedded directly in the prompt, ensuring schema compliance at output time.
+
+PARSE was presented at the EMNLP 2025 Industry Track.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "6f3f239d-eeb5-4e81-bceb-7beee5aeb5cf",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "10d95ca6-a184-45f5-83ca-58ef825dae08",
+  "toolUseResult": {
+    "query": "PARSE LLM schema optimization entity extraction ontology 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EhTPbARV3N9jZ5uNzqsz5d",
+        "content": [
+          {
+            "title": "PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction",
+            "url": "https://arxiv.org/html/2510.08623v1"
+          },
+          {
+            "title": "[2510.08623] PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction",
+            "url": "https://arxiv.org/abs/2510.08623"
+          },
+          {
+            "title": "PARSE: LLM driven schema optimization for reliable entity extraction - Amazon Science",
+            "url": "https://www.amazon.science/publications/parse-llm-driven-schema-optimization-for-reliable-entity-extraction"
+          },
+          {
+            "title": "(PDF) PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction",
+            "url": "https://www.researchgate.net/publication/396458126_PARSE_LLM_Driven_Schema_Optimization_for_Reliable_Entity_Extraction"
+          },
+          {
+            "title": "PARSE: LLM Driven Schema Optimization for Reliable ...",
+            "url": "https://aclanthology.org/2025.emnlp-industry.184.pdf"
+          },
+          {
+            "title": "Computation and Language 2025",
+            "url": "https://arxiv.org/list/cs.CL/2025?skip=13775&show=25"
+          },
+          {
+            "title": "Ontology-Grounded LLM Construction",
+            "url": "https://www.emergentmind.com/topics/ontology-grounded-llm-construction"
+          },
+          {
+            "title": "Parse: LLM Driven Schema Optimization for Reliable Entity Extraction | Hacker News",
+            "url": "https://news.ycombinator.com/item?id=45683970"
+          },
+          {
+            "title": "Machine Learning Oct 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-10?skip=3600&show=250"
+          },
+          {
+            "title": "ODKE+: Ontology-Guided Open-Domain Knowledge Extraction with LLMs",
+            "url": "https://arxiv.org/html/2509.04696v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about PARSE and related 2025 research on LLM schema optimization for entity extraction:\n\n## PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction\n\nPARSE addresses structured information extraction from unstructured text, where recent approaches apply large language models directly to extraction tasks using existing JSON schemas, but treat JSON schemas as static contracts designed for human developers, leading to suboptimal extraction performance, frequent hallucinations, and unreliable agent behavior when schemas contain ambiguous or incomplete specifications.\n\n### Key Components\n\nPARSE consists of two synergistic components: ARCHITECT, which autonomously optimizes JSON schemas for LLM consumption while maintaining backward compatibility through RELAY (an integrated code generation system), and SCOPE, which implements reflection-based extraction with combined static and LLM-based guardrails.\n\n### Performance Results\n\nThe system achieves up to 64.7% improvement in extraction accuracy on SWDE with combined framework improvements reaching 10% across models, while reducing extraction errors by 92% within the first retry and maintaining practical latency.\n\n### Related Research Context\n\nThe search also revealed broader 2025 research on ontology-grounded LLM construction and entity extraction. Extraction prompts can specify the connection map (allowed entity, predicate, entity patterns), required fields, cardinalities, and ID conventions, with few-shot examples and natural language class definitions embedded directly in the prompt, ensuring schema compliance at output time.\n\nPARSE was presented at the EMNLP 2025 Industry Track."
+    ],
+    "durationSeconds": 7.979389412000018
+  },
+  "sourceToolAssistantUUID": "6f3f239d-eeb5-4e81-bceb-7beee5aeb5cf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 103 · 2026-05-16T17:37:16.448Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have a comprehensive understanding of the paper and the related work landscape. Let me also check for the bibliography file to see what references are cited.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "10d95ca6-a184-45f5-83ca-58ef825dae08",
+  "isSidechain": false,
+  "requestId": "req_011Cb6esdJWmd9NJM2e9rUmr",
+  "type": "assistant",
+  "uuid": "73100fe7-7107-4b14-8e59-58f24894c182",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0157N85JG85wY4kFYVxLuuYU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2716,
+      "cache_read_input_tokens": 75115,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2716,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 75115,
+          "cache_creation_input_tokens": 2716,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2716
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 104 · 2026-05-16T17:37:18.653Z_
+
+<details open><summary>🔧 Tool call — Glob · `toolu_01EjUnKb7GPLNFsRuC19TMcn`</summary>
+
+```json
+{
+  "pattern": "**/paper/relwork_new_entries.bib",
+  "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73100fe7-7107-4b14-8e59-58f24894c182",
+  "isSidechain": false,
+  "requestId": "req_011Cb6esdJWmd9NJM2e9rUmr",
+  "type": "assistant",
+  "uuid": "f00c90fd-cca4-4834-a1d3-2dfe610df6e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0157N85JG85wY4kFYVxLuuYU",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2716,
+      "cache_read_input_tokens": 75115,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2716,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 75115,
+          "cache_creation_input_tokens": 2716,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2716
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 105 · 2026-05-16T17:37:18.668Z_
+
+<details><summary>↩ Tool result · `toolu_01EjUnKb7GPLNFsRuC19TMcn`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f00c90fd-cca4-4834-a1d3-2dfe610df6e0",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "39007203-79c7-444a-8d66-b0c036c183ff",
+  "toolUseResult": {
+    "filenames": [
+      "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib"
+    ],
+    "durationMs": 6,
+    "numFiles": 1,
+    "truncated": false
+  },
+  "sourceToolAssistantUUID": "f00c90fd-cca4-4834-a1d3-2dfe610df6e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 106 · 2026-05-16T17:37:23.501Z_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01TNcq2vPyS8FrLfAA6SSyLR`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "39007203-79c7-444a-8d66-b0c036c183ff",
+  "isSidechain": false,
+  "requestId": "req_011Cb6et7DnmKhmiEVgZ9SPD",
+  "type": "assistant",
+  "uuid": "e73d6ec3-e69d-4fc2-b800-b8afe038f032",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EJ9LFfJxa1pUDRe6poxCZj",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 218,
+      "cache_read_input_tokens": 77831,
+      "output_tokens": 98,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 218,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 98,
+          "cache_read_input_tokens": 77831,
+          "cache_creation_input_tokens": 218,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 218
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 107 · 2026-05-16T17:37:23.798Z_
+
+<details><summary>↩ Tool result · `toolu_01TNcq2vPyS8FrLfAA6SSyLR`</summary>
+
+```text
+1	% ============================================================
+2	% Merged authoritative BibTeX references (9 entries)
+3	% Merged 2026-05-14 from relwork_new_entries.bib + new_references.bib
+4	% ============================================================
+5	
+6	% Confirmed via: Semantic Scholar, arXiv:2201.11227, OpenReview
+7	% Venue: ICLR 2022 (cite key corrected from synchromesh_neurips2022)
+8	@inproceedings{synchromesh_iclr2022,
+9	  title     = {Synchromesh: Reliable Code Generation from Pre-trained Language Models},
+10	  author    = {Poesia, Gabriel and Polozov, Oleksandr and Le, Vu and Tiwari, Ashish and Soares, Gustavo and Meek, Christopher and Gulwani, Sumit},
+11	  booktitle = {International Conference on Learning Representations},
+12	  year      = {2022},
+13	  url       = {https://openreview.net/forum?id=KmtVD97J43e}
+14	}
+15	
+16	% Confirmed via: NeurIPS 2023 proceedings, microsoft/monitors4codegen GitHub
+17	@inproceedings{mgd_neurips2023,
+18	  title     = {Monitor-Guided Decoding of Code {LMs} with Static Analysis of Repository Context},
+19	  author    = {Agrawal, Lakshya A. and Kanade, Aditya and Goyal, Navin and Lahiri, Shuvendu K. and Rajamani, Sriram K.},
+20	  booktitle = {Advances in Neural Information Processing Systems},
+21	  volume    = {36},
+22	  year      = {2023},
+23	  url       = {https://proceedings.neurips.cc/paper_files/paper/2023/hash/662b1774ba8845fc1fa3d1fc0177ceeb-Abstract-Conference.html}
+24	}
+25	
+26	% Confirmed via: ACM DL doi:10.1145/3729274, arXiv:2504.09246, SRI Lab ETH
+27	@article{pldi2025_type_constrained_codegen,
+28	  title     = {Type-Constrained Code Generation with Language Models},
+29	  author    = {M\"{u}ndler, Niels and He, Jingxuan and Wang, Hao and Sen, Koushik and Song, Dawn and Vechev, Martin},
+30	  journal   = {Proceedings of the ACM on Programming Languages},
+31	  volume    = {9},
+32	  number    = {PLDI},
+33	  year      = {2025},
+34	  doi       = {10.1145/3729274},
+35	  url       = {https://dl.acm.org/doi/10.1145/3729274}
+36	}
+37	
+38	% Confirmed via: ACL Anthology W04-2401, scottyih.org
+39	% WARNING: cite key suggests AAAI 2004, but actual venue is CoNLL 2004 at HLT-NAACL
+40	@inproceedings{roth_yih_2004,
+41	  title     = {A Linear Programming Formulation for Global Inference in Natural Language Tasks},
+42	  author    = {Roth, Dan and Yih, Wen-tau},
+43	  booktitle = {Proceedings of the Eighth Conference on Computational Natural Language Learning ({CoNLL}-2004) at {HLT}-{NAACL} 2004},
+44	  pages     = {1--8},
+45	  year      = {2004},
+46	  address   = {Boston, Massachusetts, USA},
+47	  url       = {https://aclanthology.org/W04-2401/}
+48	}
+49	
+50	% Confirmed via: ACL Anthology 2023.findings-emnlp.425, zjunlp/AdaKGC GitHub
+51	@inproceedings{adakgc_emnlp2023,
+52	  title     = {Schema-adaptable Knowledge Graph Construction},
+53	  author    = {Ye, Hongbin and Gui, Honghao and Xu, Xin and Chen, Xi and Chen, Huajun and Zhang, Ningyu},
+54	  booktitle = {Findings of the Association for Computational Linguistics: {EMNLP} 2023},
+55	  pages     = {6408--6431},
+56	  year      = {2023},
+57	  url       = {https://aclanthology.org/2023.findings-emnlp.425/}
+58	}
+59	
+60	% Confirmed via: ACL Anthology 2024.acl-long.475, arXiv:2403.07969
+61	@inproceedings{knowcoder_acl2024,
+62	  title     = {{KnowCoder}: Coding Structured Knowledge into {LLMs} for Universal Information Extraction},
+63	  author    = {Li, Zixuan and Zeng, Yutao and Zuo, Yuxin and Ren, Weicheng and Liu, Wenxuan and Su, Miao and Guo, Yucan and Liu, Yantao and Li, Xiang and Hu, Zhilei and Bai, Long and Li, Wei and Liu, Yidan and Yang, Pan and Jin, Xiaolong and Guo, Jiafeng and Cheng, Xueqi},
+64	  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+65	  pages     = {8758--8779},
+66	  year      = {2024},
+67	  address   = {Bangkok, Thailand},
+68	  url       = {https://aclanthology.org/2024.acl-long.475/}
+69	}
+70	
+71	% Confirmed via: Oxford Academic Bioinformatics btae104, PubMed 38383067
+72	@article{spires_2024,
+73	  title     = {Structured Prompt Interrogation and Recursive Extraction of Semantics ({SPIRES}): A Method for Populating Knowledge Bases Using Zero-shot Learning},
+74	  author    = {Caufield, J. Harry and Hegde, Harshad and Emonet, Vincent and Harris, Nomi L. and Joachimiak, Marcin P. and Matentzoglu, Nicolas and Kim, HyeongSik and Moxon, Sierra and Reese, Justin T. and Haendel, Melissa A. and Robinson, Peter N. and Mungall, Christopher J.},
+75	  journal   = {Bioinformatics},
+76	  volume    = {40},
+77	  number    = {3},
+78	  pages     = {btae104},
+79	  year      = {2024},
+80	  doi       = {10.1093/bioinformatics/btae104},
+81	  url       = {https://academic.oup.com/bioinformatics/article/40/3/btae104/7612230}
+82	}
+83	
+84	% Confirmed via: arXiv:2510.01409, Wiley Advanced Intelligent Systems doi:10.1002/aisy.202501381
+85	@misc{ontologx_2025,
+86	  title         = {{OntoLogX}: Ontology-Guided Knowledge Graph Extraction from Cybersecurity Logs with Large Language Models},
+87	  author        = {Cotti, Luca and Drago, Idilio and Rula, Anisa and Bianchini, Devis and Cerutti, Federico},
+88	  year          = {2025},
+89	  eprint        = {2510.01409},
+90	  archiveprefix = {arXiv},
+91	  primaryclass  = {cs.AI},
+92	  url           = {https://arxiv.org/abs/2510.01409}
+93	}
+94	
+95	% Confirmed via: Springer LNCS 15370, arXiv:2411.15666, Lama-West GitHub
+96	@inproceedings{ekaw2024_ontology_beam,
+97	  title     = {Ontology-Constrained Generation of Domain-Specific Clinical Summaries},
+98	  author    = {Mehenni, Gaya and Zouaq, Amal},
+99	  booktitle = {Knowledge Engineering and Knowledge Management ({EKAW} 2024)},
+100	  series    = {Lecture Notes in Computer Science},
+101	  volume    = {15370},
+102	  pages     = {382--398},
+103	  year      = {2024},
+104	  publisher = {Springer},
+105	  doi       = {10.1007/978-3-031-77792-9_23}
+106	}
+107	
+108	% ============================================================
+109	% New entries added 2026-05-14 for §6 related work expansion
+110	% ============================================================
+111	
+112	% Confirmed via: ACL Anthology 2021.emnlp-main.779, arXiv:2109.05093, GitHub ServiceNow/picard
+113	@inproceedings{scholak2021picard,
+114	  title     = {{PICARD}: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models},
+115	  author    = {Scholak, Torsten and Schucher, Nathan and Bahdanau, Dzmitry},
+116	  booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},
+117	  year      = {2021},
+118	  url       = {https://aclanthology.org/2021.emnlp-main.779/}
+119	}
+120	
+121	% Confirmed via: arXiv:2509.19057, ResearchGate, OpenReview gcG8dmAUNh
+122	@article{olasunkanmi2025relate,
+123	  title   = {{RELATE}: Relation Extraction in Biomedical Abstracts with {LLMs} and Ontology Constraints},
+124	  author  = {Olasunkanmi, Olawumi and Satusky, Mathew and Yi, Hong and Bizon, Chris and Lee, Harlin and Ahalt, Stanley},
+125	  journal = {arXiv preprint arXiv:2509.19057},
+126	  year    = {2025},
+127	  url     = {https://arxiv.org/abs/2509.19057}
+128	}
+129	
+130	% Confirmed via: arXiv:2602.03439, University of Cambridge / The World Avatar project
+131	@article{zhou2026ontologytools,
+132	  title   = {Ontology-to-tools compilation for executable semantic constraint enforcement in {LLM} agents},
+133	  author  = {Zhou, Xiaochi and Bulter, Patrick and Yang, Changxuan and Rihm, Simon D. and Angkanaporn, Thitikarn and Akroyd, Jethro and Mosbach, Sebastian and Kraft, Markus},
+134	  journal = {arXiv preprint arXiv:2602.03439},
+135	  year    = {2026},
+136	  url     = {https://arxiv.org/abs/2602.03439}
+137	}
+138	
+139	% Confirmed via: IOS Press ECAI 2020 FAIA vol.325, arXiv:1909.07755, GitHub lavis-nlp/spert
+140	@inproceedings{eberts2020spert,
+141	  title     = {Span-based Joint Entity and Relation Extraction with Transformer Pre-training},
+142	  author    = {Eberts, Markus and Ulges, Adrian},
+143	  booktitle = {Proceedings of the 24th European Conference on Artificial Intelligence ({ECAI} 2020)},
+144	  series    = {Frontiers in Artificial Intelligence and Applications},
+145	  volume    = {325},
+146	  pages     = {2006--2013},
+147	  year      = {2020},
+148	  doi       = {10.3233/FAIA200321}
+149	}
+150	
+151	% Confirmed via: ACL Anthology 2021.emnlp-main.17, arXiv:2108.12202
+152	% NOTE: venue is EMNLP 2021 (NOT AAAI 2021)
+153	@inproceedings{yan2021pfn,
+154	  title     = {A Partition Filter Network for Joint Entity and Relation Extraction},
+155	  author    = {Yan, Zhiheng and Zhang, Chong and Fu, Jinlan and Zhang, Qi and Wei, Zhongyu},
+156	  booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},
+157	  pages     = {185--197},
+158	  year      = {2021},
+159	  url       = {https://aclanthology.org/2021.emnlp-main.17/}
+160	}
+161	
+162	% Confirmed via: ACL Anthology 2021.naacl-main.5, GitHub princeton-nlp/PURE
+163	@inproceedings{zhong2021frustratingly,
+164	  title     = {A Frustratingly Easy Approach for Entity and Relation Extraction},
+165	  author    = {Zhong, Zexuan and Chen, Danqi},
+166	  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies},
+167	  pages     = {50--61},
+168	  year      = {2021},
+169	  address   = {Online},
+170	  publisher = {Association for Computational Linguistics},
+171	  url       = {https://aclanthology.org/2021.naacl-main.5}
+172	}
+173	
+174	% Confirmed via: ACL Anthology 2022.acl-long.337, GitHub thunlp/PL-Marker
+175	@inproceedings{ye2022packed,
+176	  title     = {Packed Levitated Marker for Entity and Relation Extraction},
+177	  author    = {Ye, Deming and Lin, Yankai and Li, Peng and Sun, Maosong},
+178	  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+179	  pages     = {4904--4917},
+180	  year      = {2022},
+181	  address   = {Dublin, Ireland},
+182	  publisher = {Association for Computational Linguistics},
+183	  url       = {https://aclanthology.org/2022.acl-long.337}
+184	}
+185	
+186	% Confirmed via: arXiv:2604.06066 (previously PENDING AUDIT — now verified)
+187	@article{zhou2026snowballing,
+188	  title   = {From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in {LLM} Reflection},
+189	  author  = {Zhou, Hongxu},
+190	  journal = {arXiv preprint arXiv:2604.06066},
+191	  year    = {2026},
+192	  url     = {https://arxiv.org/abs/2604.06066}
+193	}
+194	
+195	% ============================================================
+196	% Batch 1: Constrained decoding + IE foundations (10 entries)
+197	% ============================================================
+198	
+199	% Confirmed via: arXiv 2411.15100, MLSys 2025 proceedings
+200	@inproceedings{dong2025xgrammar,
+201	  title     = {{XGrammar}: Flexible and Efficient Structured Generation Engine for Large Language Models},
+202	  author    = {Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi and Zhao, Yilong and Chen, Tianqi},
+203	  booktitle = {Proceedings of Machine Learning and Systems (MLSys)},
+204	  year      = {2025},
+205	  url       = {https://arxiv.org/abs/2411.15100}
+206	}
+207	
+208	% Confirmed via: arXiv 2307.09702
+209	@article{willard2023outlines,
+210	  title   = {Efficient Guided Generation for Large Language Models},
+211	  author  = {Willard, Brandon T. and Louf, R{\'e}mi},
+212	  journal = {arXiv preprint arXiv:2307.09702},
+213	  year    = {2023},
+214	  url     = {https://arxiv.org/abs/2307.09702}
+215	}
+216	
+217	% Confirmed via: ACM DL 10.1145/3591300, PLDI 2023
+218	@inproceedings{beurer-kellner2023lmql,
+219	  title     = {Prompting Is Programming: A Query Language for Large Language Models},
+220	  author    = {Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin},
+221	  booktitle = {Proceedings of the ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI)},
+222	  year      = {2023},
+223	  url       = {https://doi.org/10.1145/3591300}
+224	}
+225	
+226	% Confirmed via: PMLR v235, ICML 2024
+227	@inproceedings{beurer-kellner2024domino,
+228	  title     = {Guiding {LLMs} The Right Way: Fast, Non-Invasive Constrained Generation},
+229	  author    = {Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin},
+230	  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},
+231	  pages     = {3658--3673},
+232	  year      = {2024},
+233	  series    = {PMLR},
+234	  volume    = {235},
+235	  url       = {https://proceedings.mlr.press/v235/beurer-kellner24a.html}
+236	}
+237	
+238	% Confirmed via: NeurIPS 2024 proceedings, OpenReview
+239	@inproceedings{park2024grammar,
+240	  title     = {Grammar-Aligned Decoding},
+241	  author    = {Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadia and D'Antoni, Loris},
+242	  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},
+243	  year      = {2024},
+244	  url       = {https://arxiv.org/abs/2405.21047}
+245	}
+246	
+247	% Confirmed via: OpenReview, ICLR 2021
+248	@inproceedings{decao2021genre,
+249	  title     = {Autoregressive Entity Retrieval},
+250	  author    = {De Cao, Nicola and Izacard, Gautier and Riedel, Sebastian and Petroni, Fabio},
+251	  booktitle = {International Conference on Learning Representations (ICLR)},
+252	  year      = {2021},
+253	  url       = {https://openreview.net/forum?id=5k8F6UU39V}
+254	}
+255	
+256	% Confirmed via: ACL Anthology 2022.naacl-main.342
+257	@inproceedings{josifoski2022genie,
+258	  title     = {{GenIE}: Generative Information Extraction},
+259	  author    = {Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and West, Robert},
+260	  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},
+261	  pages     = {4626--4643},
+262	  year      = {2022},
+263	  url       = {https://aclanthology.org/2022.naacl-main.342/}
+264	}
+265	
+266	% Confirmed via: ACL Anthology 2023.emnlp-main.674
+267	@inproceedings{geng2023gcd,
+268	  title     = {Grammar-Constrained Decoding for Structured {NLP} Tasks without Finetuning},
+269	  author    = {Geng, Saibo and Josifoski, Martin and Peyrard, Maxime and West, Robert},
+270	  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},
+271	  year      = {2023},
+272	  url       = {https://aclanthology.org/2023.emnlp-main.674/}
+273	}
+274	
+275	% Confirmed via: ACL Anthology 2021.naacl-main.339
+276	@inproceedings{lu2021neurologic,
+277	  title     = {{NeuroLogic} Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints},
+278	  author    = {Lu, Ximing and West, Peter and Zellers, Rowan and Le Bras, Ronan and Bhagavatula, Chandra and Choi, Yejin},
+279	  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},
+280	  pages     = {4288--4299},
+281	  year      = {2021},
+282	  url       = {https://aclanthology.org/2021.naacl-main.339/}
+283	}
+284	
+285	% Confirmed via: ACL Anthology 2022.acl-long.395
+286	@inproceedings{lu2022uie,
+287	  title     = {Unified Structure Generation for Universal Information Extraction},
+288	  author    = {Lu, Yaojie and Liu, Qing and Dai, Dai and Xiao, Xinyan and Lin, Hongyu and Han, Xianpei and Sun, Le and Wu, Hua},
+289	  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)},
+290	  pages     = {5755--5772},
+291	  year      = {2022},
+292	  url       = {https://aclanthology.org/2022.acl-long.395/}
+293	}
+294	
+295	% ============================================================
+296	% Batch 2: 10 entries added 2026-05-14
+297	% ============================================================
+298	
+299	% Confirmed via: ICLR 2024 proceedings, OpenReview Y3wpuxd7u9, arXiv:2310.03668
+300	@inproceedings{sainz2024gollie,
+301	  title     = {{GoLLIE}: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling},
+302	  author    = {Sainz, Oscar and Garc{\'\i}a-Ferrero, Iker and Agerri, Rodrigo and Lopez de Lacalle, Oier and Rigau, German and Agirre, Eneko},
+303	  booktitle = {The Twelfth International Conference on Learning Representations},
+304	  year      = {2024},
+305	  url       = {https://openreview.net/forum?id=Y3wpuxd7u9}
+306	}
+307	
+308	% Confirmed via: ACL Anthology 2023.acl-long.855, arXiv:2305.05711
+309	@inproceedings{li2023codeie,
+310	  title     = {{CodeIE}: Large Code Generation Models are Better Few-Shot Information Extractors},
+311	  author    = {Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Huang, Xuanjing and Qiu, Xipeng},
+312	  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},
+313	  pages     = {15339--15353},
+314	  year      = {2023},
+315	  address   = {Toronto, Canada},
+316	  url       = {https://aclanthology.org/2023.acl-long.855/}
+317	}
+318	
+319	% Confirmed via: ACL Anthology 2024.emnlp-main.419, arXiv:2405.05008, GitHub THU-KEG/ADELIE
+320	@inproceedings{qi2024adelie,
+321	  title     = {{ADELIE}: Aligning Large Language Models on Information Extraction},
+322	  author    = {Qi, Yunjia and Peng, Hao and Wang, Xiaozhi and Xu, Bin and Hou, Lei and Li, Juanzi},
+323	  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},
+324	  year      = {2024},
+325	  address   = {Miami, Florida, USA},
+326	  url       = {https://aclanthology.org/2024.emnlp-main.419/}
+327	}
+328	
+329	% Confirmed via: arXiv:2404.12493, GitHub urchade/EnriCo
+330	% NOTE: arXiv preprint; no conference publication found
+331	@article{zaratiana2024enrico,
+332	  title   = {{EnriCo}: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction},
+333	  author  = {Zaratiana, Urchade and Tomeh, Nadi and Dauxais, Yann and Holat, Pierre and Charnois, Thierry},
+334	  journal = {arXiv preprint arXiv:2404.12493},
+335	  year    = {2024},
+336	  url     = {https://arxiv.org/abs/2404.12493}
+337	}
+338	
+339	% Confirmed via: arXiv:2509.04696, Apple ML Research machinelearning.apple.com/research/odke
+340	% NOTE: cite key uses "odke"; actual paper title is "ODKE+"
+341	@article{khorshidi2025odke,
+342	  title   = {{ODKE+}: Ontology-Guided Open-Domain Knowledge Extraction with {LLMs}},
+343	  author  = {Khorshidi, Samira and Nikfarjam, Azadeh and Shankar, Suprita and Sang, Yisi and Govind, Yash and Jang, Hyun and Kasgari, Ali and McClimans, Alexis and Soliman, Mohamed and Konda, Vishnu and Fakhry, Ahmed and Qi, Xiaoguang},
+344	  journal = {arXiv preprint arXiv:2509.04696},
+345	  year    = {2025},
+346	  url     = {https://arxiv.org/abs/2509.04696}
+347	}
+348	
+349	% Confirmed via: ACL Anthology 2023.findings-eacl.95
+350	@inproceedings{upadhyay2023openie,
+351	  title     = {Open Information Extraction with Entity Focused Constraints},
+352	  author    = {Upadhyay, Prajna and Balalau, Oana and Manolescu, Ioana},
+353	  booktitle = {Findings of the Association for Computational Linguistics: {EACL} 2023},
+354	  year      = {2023},
+355	  url       = {https://aclanthology.org/2023.findings-eacl.95/}
+356	}
+357	
+358	% Confirmed via: ACL Anthology 2025.genaik-1.10, GenAIK Workshop at COLING 2025
+359	@inproceedings{regino2025kgcurator,
+360	  title     = {Can {LLMs} be Knowledge Graph Curators for Validating Triple Insertions?},
+361	  author    = {Regino, Andr{\'e} Gomes and dos Reis, Julio Cesar},
+362	  booktitle = {Proceedings of the Workshop on Generative {AI} and Knowledge Graphs ({GenAIK})},
+363	  pages     = {87--99},
+364	  year      = {2025},
+365	  address   = {Abu Dhabi, UAE},
+366	  url       = {https://aclanthology.org/2025.genaik-1.10/}
+367	}
+368	
+369	% Confirmed via: ACL Anthology 2024.emnlp-industry.91, arXiv:2408.02442
+370	@inproceedings{tam2024letmespeak,
+371	  title     = {Let Me Speak Freely? {A} Study on the Impact of Format Restrictions on Performance of Large Language Models},
+372	  author    = {Tam, Zhi Rui and Wu, Cheng-Kuang and Tsai, Yi-Lin and Lin, Chieh-Yen and Lee, Hung-yi and Chen, Yun-Nung},
+373	  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: Industry Track},
+374	  pages     = {1218--1236},
+375	  year      = {2024},
+376	  address   = {Miami, Florida, US},
+377	  url       = {https://aclanthology.org/2024.emnlp-industry.91/}
+378	}
+379	
+380	% Confirmed via: PMLR v267/banerjee25a, ICML 2025, arXiv:2502.09061
+381	@inproceedings{banerjee2025crane,
+382	  title     = {{CRANE}: Reasoning with Constrained {LLM} Generation},
+383	  author    = {Banerjee, Debangshu and Suresh, Tarun and Ugare, Shubham and Misailovic, Sasa and Singh, Gagandeep},
+384	  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},
+385	  pages     = {2836--2857},
+386	  year      = {2025},
+387	  url       = {https://proceedings.mlr.press/v267/banerjee25a.html}
+388	}
+389	
+390	% Confirmed via: ACL Anthology 2025.ranlp-1.124
+391	@inproceedings{schall2025hiddencost,
+392	  title     = {The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance},
+393	  author    = {Schall, Maximilian and de Melo, Gerard},
+394	  booktitle = {Proceedings of the 15th International Conference on Recent Advances in Natural Language Processing ({RANLP} 2025)},
+395	  year      = {2025},
+396	  address   = {Varna, Bulgaria},
+397	  url       = {https://aclanthology.org/2025.ranlp-1.124/}
+398	}
+399	
+400	% ============================================================
+401	% D015 reviewer-requested references (5 entries)
+402	% ============================================================
+403	
+404	% Confirmed via: GitHub guidance-ai/guidance, Microsoft Research project page
+405	@misc{guidance2023,
+406	  title        = {Guidance: A Guidance Language for Controlling Large Language Models},
+407	  author       = {Lundberg, Scott and Ribeiro, Marco Tulio},
+408	  year         = {2023},
+409	  url          = {https://github.com/guidance-ai/guidance},
+410	  note         = {Microsoft Research}
+411	}
+412	
+413	% Confirmed via: OpenReview US-TP-xnXI, arXiv:2101.05779, Amazon Science
+414	@inproceedings{paolini2021tanl,
+415	  title     = {Structured Prediction as Translation between Augmented Natural Languages},
+416	  author    = {Paolini, Giovanni and Athiwaratkun, Ben and Krone, Jason and Ma, Jie and Achille, Alessandro and Anubhai, Rishita and dos Santos, Cicero Nogueira and Xiang, Bing and Soatto, Stefano},
+417	  booktitle = {International Conference on Learning Representations},
+418	  year      = {2021},
+419	  url       = {https://openreview.net/forum?id=US-TP-xnXI}
+420	}
+421	
+422	% Confirmed via: ACL Anthology 2021.findings-emnlp.204, GitHub Babelscape/rebel
+423	@inproceedings{cabot2021rebel,
+424	  title     = {{REBEL}: Relation Extraction By End-to-end Language Generation},
+425	  author    = {Huguet Cabot, Pere-Llu{\'\i}s and Navigli, Roberto},
+426	  booktitle = {Findings of the Association for Computational Linguistics: {EMNLP} 2021},
+427	  pages     = {2370--2381},
+428	  year      = {2021},
+429	  url       = {https://aclanthology.org/2021.findings-emnlp.204/}
+430	}
+431	
+432	% Confirmed via: IJCAI 2016 Proceedings/16/Papers/421, GitHub thunlp/TKRL
+433	@inproceedings{xie2016tkrl,
+434	  title     = {Representation Learning of Knowledge Graphs with Hierarchical Types},
+435	  author    = {Xie, Ruobing and Liu, Zhiyuan and Sun, Maosong},
+436	  booktitle = {Proceedings of the 25th International Joint Conference on Artificial Intelligence ({IJCAI})},
+437	  pages     = {2965--2971},
+438	  year      = {2016},
+439	  url       = {https://www.ijcai.org/Proceedings/16/Papers/421.pdf}
+440	}
+441	
+442	% ============================================================
+443	% Batch 3: New entries added 2026-05-16 (3 entries, Director-requested)
+444	% ============================================================
+445	
+446	% Confirmed via: arXiv:2403.01632, OpenReview HiUZtgAPoH, Illinois Experts page
+447	% NOTE: Director specified ICML 2024 — verify volume/pages
+448	@inproceedings{ugare2024syncode,
+449	  title     = {{SynCode}: {LLM} Generation with Grammar Augmentation},
+450	  author    = {Ugare, Shubham and Suresh, Tarun and Kang, Hangoo and Misailovic, Sasa and Singh, Gagandeep},
+451	  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},
+452	  year      = {2024},
+453	  series    = {PMLR},
+454	  volume    = {235},
+455	  url       = {https://arxiv.org/abs/2403.01632}
+456	}
+457	
+458	% Confirmed via: OpenReview ac93gRzxxV, ICLR 2025 poster page, arXiv:2410.07295
+459	@inproceedings{ugare2025itergen,
+460	  title     = {{IterGen}: Iterative Semantic-aware Structured {LLM} Generation with Backtracking},
+461	  author    = {Ugare, Shubham and Suresh, Tarun and Banerjee, Debangshu and Misailovic, Sasa and Singh, Gagandeep},
+462	  booktitle = {The Thirteenth International Conference on Learning Representations},
+463	  year      = {2025},
+464	  url       = {https://openreview.net/forum?id=ac93gRzxxV}
+465	}
+466	
+467	% Confirmed via: ACL Anthology 2025.emnlp-main.926, arXiv:2506.14901, EPFL dlab
+468	@inproceedings{sakota2025boostcd,
+469	  title     = {Combining Constrained and Unconstrained Decoding via Boosting: {BoostCD} and Its Application to Information Extraction},
+470	  author    = {Sakota, Marija and Geng, Saibo and Josifoski, Martin and West, Robert},
+471	  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},
+472	  year      = {2025},
+473	  url       = {https://aclanthology.org/2025.emnlp-main.926/}
+474	}
+475	
+476	% ============================================================
+477	% Dataset & model references (5 entries)
+478	% ============================================================
+479	
+480	% Confirmed via: ACL Anthology D18-1360, arXiv:1808.09602
+481	@inproceedings{luan2018scierc,
+482	  title     = {Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction},
+483	  author    = {Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh},
+484	  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing},
+485	  pages     = {3219--3232},
+486	  year      = {2018},
+487	  address   = {Brussels, Belgium},
+488	  url       = {https://aclanthology.org/D18-1360/}
+489	}
+490	
+491	% Confirmed via: ACL Anthology P19-1074, arXiv:1906.06127
+492	@inproceedings{yao2019docred,
+493	  title     = {{DocRED}: A Large-Scale Document-Level Relation Extraction Dataset},
+494	  author    = {Yao, Yuan and Ye, Deming and Li, Peng and Han, Xu and Lin, Yankai and Liu, Zhenghao and Liu, Zhiyuan and Huang, Lixin and Zhou, Jie and Sun, Maosong},
+495	  booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics},
+496	  pages     = {764--777},
+497	  year      = {2019},
+498	  address   = {Florence, Italy},
+499	  url       = {https://aclanthology.org/P19-1074/}
+500	}
+501	
+502	% Confirmed via: arXiv:2302.10205, Semantic Scholar
+503	@article{wei2023zeroshot,
+504	  title   = {{ChatIE}: Zero-Shot Information Extraction via Chatting with {ChatGPT}},
+505	  author  = {Wei, Xiang and Cui, Xingyu and Cheng, Ning and Wang, Xiaobin and Zhang, Xin and Huang, Shen and Xie, Pengjun and Xu, Jinan and Chen, Yufeng and Zhang, Meishan and Jiang, Yong and Han, Wenjuan},
+506	  journal = {arXiv preprint arXiv:2302.10205},
+507	  year    = {2023},
+508	  url     = {https://arxiv.org/abs/2302.10205}
+509	}
+510	
+511	% Confirmed via: arXiv:2505.09388, Hugging Face model cards
+512	@article{qwen2025qwen3,
+513	  title   = {Qwen3 Technical Report},
+514	  author  = {{Qwen Team}},
+515	  journal = {arXiv preprint arXiv:2505.09388},
+516	  year    = {2025},
+517	  url     = {https://arxiv.org/abs/2505.09388}
+518	}
+519	
+520	% Confirmed via: NeurIPS 2024 proceedings, arXiv:2312.07104
+521	@inproceedings{zheng2024sglang,
+522	  title     = {{SGLang}: Efficient Execution of Structured Language Model Programs},
+523	  author    = {Zheng, Lianmin and Yin, Liangsheng and Xie, Zhiqiang and Sun, Chuyue and Huang, Jeff and Yu, Cody Hao and Cao, Shiyi and Kozyrakis, Christos and Stoica, Ion and Gonzalez, Joseph E. and Barrett, Clark and Sheng, Ying},
+524	  booktitle = {Advances in Neural Information Processing Systems},
+525	  volume    = {37},
+526	  year      = {2024},
+527	  url       = {https://arxiv.org/abs/2312.07104}
+528	}
+529	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e73d6ec3-e69d-4fc2-b800-b8afe038f032",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "a7ccda9c-8bd4-4ab5-a00e-d901a7eb60dc",
+  "toolUseResult": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/artifacts/_project/paper/relwork_new_entries.bib",
+      "content": "% ============================================================\n% Merged authoritative BibTeX references (9 entries)\n% Merged 2026-05-14 from relwork_new_entries.bib + new_references.bib\n% ============================================================\n\n% Confirmed via: Semantic Scholar, arXiv:2201.11227, OpenReview\n% Venue: ICLR 2022 (cite key corrected from synchromesh_neurips2022)\n@inproceedings{synchromesh_iclr2022,\n  title     = {Synchromesh: Reliable Code Generation from Pre-trained Language Models},\n  author    = {Poesia, Gabriel and Polozov, Oleksandr and Le, Vu and Tiwari, Ashish and Soares, Gustavo and Meek, Christopher and Gulwani, Sumit},\n  booktitle = {International Conference on Learning Representations},\n  year      = {2022},\n  url       = {https://openreview.net/forum?id=KmtVD97J43e}\n}\n\n% Confirmed via: NeurIPS 2023 proceedings, microsoft/monitors4codegen GitHub\n@inproceedings{mgd_neurips2023,\n  title     = {Monitor-Guided Decoding of Code {LMs} with Static Analysis of Repository Context},\n  author    = {Agrawal, Lakshya A. and Kanade, Aditya and Goyal, Navin and Lahiri, Shuvendu K. and Rajamani, Sriram K.},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume    = {36},\n  year      = {2023},\n  url       = {https://proceedings.neurips.cc/paper_files/paper/2023/hash/662b1774ba8845fc1fa3d1fc0177ceeb-Abstract-Conference.html}\n}\n\n% Confirmed via: ACM DL doi:10.1145/3729274, arXiv:2504.09246, SRI Lab ETH\n@article{pldi2025_type_constrained_codegen,\n  title     = {Type-Constrained Code Generation with Language Models},\n  author    = {M\\\"{u}ndler, Niels and He, Jingxuan and Wang, Hao and Sen, Koushik and Song, Dawn and Vechev, Martin},\n  journal   = {Proceedings of the ACM on Programming Languages},\n  volume    = {9},\n  number    = {PLDI},\n  year      = {2025},\n  doi       = {10.1145/3729274},\n  url       = {https://dl.acm.org/doi/10.1145/3729274}\n}\n\n% Confirmed via: ACL Anthology W04-2401, scottyih.org\n% WARNING: cite key suggests AAAI 2004, but actual venue is CoNLL 2004 at HLT-NAACL\n@inproceedings{roth_yih_2004,\n  title     = {A Linear Programming Formulation for Global Inference in Natural Language Tasks},\n  author    = {Roth, Dan and Yih, Wen-tau},\n  booktitle = {Proceedings of the Eighth Conference on Computational Natural Language Learning ({CoNLL}-2004) at {HLT}-{NAACL} 2004},\n  pages     = {1--8},\n  year      = {2004},\n  address   = {Boston, Massachusetts, USA},\n  url       = {https://aclanthology.org/W04-2401/}\n}\n\n% Confirmed via: ACL Anthology 2023.findings-emnlp.425, zjunlp/AdaKGC GitHub\n@inproceedings{adakgc_emnlp2023,\n  title     = {Schema-adaptable Knowledge Graph Construction},\n  author    = {Ye, Hongbin and Gui, Honghao and Xu, Xin and Chen, Xi and Chen, Huajun and Zhang, Ningyu},\n  booktitle = {Findings of the Association for Computational Linguistics: {EMNLP} 2023},\n  pages     = {6408--6431},\n  year      = {2023},\n  url       = {https://aclanthology.org/2023.findings-emnlp.425/}\n}\n\n% Confirmed via: ACL Anthology 2024.acl-long.475, arXiv:2403.07969\n@inproceedings{knowcoder_acl2024,\n  title     = {{KnowCoder}: Coding Structured Knowledge into {LLMs} for Universal Information Extraction},\n  author    = {Li, Zixuan and Zeng, Yutao and Zuo, Yuxin and Ren, Weicheng and Liu, Wenxuan and Su, Miao and Guo, Yucan and Liu, Yantao and Li, Xiang and Hu, Zhilei and Bai, Long and Li, Wei and Liu, Yidan and Yang, Pan and Jin, Xiaolong and Guo, Jiafeng and Cheng, Xueqi},\n  booktitle = {Proceedings of the 62nd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n  pages     = {8758--8779},\n  year      = {2024},\n  address   = {Bangkok, Thailand},\n  url       = {https://aclanthology.org/2024.acl-long.475/}\n}\n\n% Confirmed via: Oxford Academic Bioinformatics btae104, PubMed 38383067\n@article{spires_2024,\n  title     = {Structured Prompt Interrogation and Recursive Extraction of Semantics ({SPIRES}): A Method for Populating Knowledge Bases Using Zero-shot Learning},\n  author    = {Caufield, J. Harry and Hegde, Harshad and Emonet, Vincent and Harris, Nomi L. and Joachimiak, Marcin P. and Matentzoglu, Nicolas and Kim, HyeongSik and Moxon, Sierra and Reese, Justin T. and Haendel, Melissa A. and Robinson, Peter N. and Mungall, Christopher J.},\n  journal   = {Bioinformatics},\n  volume    = {40},\n  number    = {3},\n  pages     = {btae104},\n  year      = {2024},\n  doi       = {10.1093/bioinformatics/btae104},\n  url       = {https://academic.oup.com/bioinformatics/article/40/3/btae104/7612230}\n}\n\n% Confirmed via: arXiv:2510.01409, Wiley Advanced Intelligent Systems doi:10.1002/aisy.202501381\n@misc{ontologx_2025,\n  title         = {{OntoLogX}: Ontology-Guided Knowledge Graph Extraction from Cybersecurity Logs with Large Language Models},\n  author        = {Cotti, Luca and Drago, Idilio and Rula, Anisa and Bianchini, Devis and Cerutti, Federico},\n  year          = {2025},\n  eprint        = {2510.01409},\n  archiveprefix = {arXiv},\n  primaryclass  = {cs.AI},\n  url           = {https://arxiv.org/abs/2510.01409}\n}\n\n% Confirmed via: Springer LNCS 15370, arXiv:2411.15666, Lama-West GitHub\n@inproceedings{ekaw2024_ontology_beam,\n  title     = {Ontology-Constrained Generation of Domain-Specific Clinical Summaries},\n  author    = {Mehenni, Gaya and Zouaq, Amal},\n  booktitle = {Knowledge Engineering and Knowledge Management ({EKAW} 2024)},\n  series    = {Lecture Notes in Computer Science},\n  volume    = {15370},\n  pages     = {382--398},\n  year      = {2024},\n  publisher = {Springer},\n  doi       = {10.1007/978-3-031-77792-9_23}\n}\n\n% ============================================================\n% New entries added 2026-05-14 for §6 related work expansion\n% ============================================================\n\n% Confirmed via: ACL Anthology 2021.emnlp-main.779, arXiv:2109.05093, GitHub ServiceNow/picard\n@inproceedings{scholak2021picard,\n  title     = {{PICARD}: Parsing Incrementally for Constrained Auto-Regressive Decoding from Language Models},\n  author    = {Scholak, Torsten and Schucher, Nathan and Bahdanau, Dzmitry},\n  booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},\n  year      = {2021},\n  url       = {https://aclanthology.org/2021.emnlp-main.779/}\n}\n\n% Confirmed via: arXiv:2509.19057, ResearchGate, OpenReview gcG8dmAUNh\n@article{olasunkanmi2025relate,\n  title   = {{RELATE}: Relation Extraction in Biomedical Abstracts with {LLMs} and Ontology Constraints},\n  author  = {Olasunkanmi, Olawumi and Satusky, Mathew and Yi, Hong and Bizon, Chris and Lee, Harlin and Ahalt, Stanley},\n  journal = {arXiv preprint arXiv:2509.19057},\n  year    = {2025},\n  url     = {https://arxiv.org/abs/2509.19057}\n}\n\n% Confirmed via: arXiv:2602.03439, University of Cambridge / The World Avatar project\n@article{zhou2026ontologytools,\n  title   = {Ontology-to-tools compilation for executable semantic constraint enforcement in {LLM} agents},\n  author  = {Zhou, Xiaochi and Bulter, Patrick and Yang, Changxuan and Rihm, Simon D. and Angkanaporn, Thitikarn and Akroyd, Jethro and Mosbach, Sebastian and Kraft, Markus},\n  journal = {arXiv preprint arXiv:2602.03439},\n  year    = {2026},\n  url     = {https://arxiv.org/abs/2602.03439}\n}\n\n% Confirmed via: IOS Press ECAI 2020 FAIA vol.325, arXiv:1909.07755, GitHub lavis-nlp/spert\n@inproceedings{eberts2020spert,\n  title     = {Span-based Joint Entity and Relation Extraction with Transformer Pre-training},\n  author    = {Eberts, Markus and Ulges, Adrian},\n  booktitle = {Proceedings of the 24th European Conference on Artificial Intelligence ({ECAI} 2020)},\n  series    = {Frontiers in Artificial Intelligence and Applications},\n  volume    = {325},\n  pages     = {2006--2013},\n  year      = {2020},\n  doi       = {10.3233/FAIA200321}\n}\n\n% Confirmed via: ACL Anthology 2021.emnlp-main.17, arXiv:2108.12202\n% NOTE: venue is EMNLP 2021 (NOT AAAI 2021)\n@inproceedings{yan2021pfn,\n  title     = {A Partition Filter Network for Joint Entity and Relation Extraction},\n  author    = {Yan, Zhiheng and Zhang, Chong and Fu, Jinlan and Zhang, Qi and Wei, Zhongyu},\n  booktitle = {Proceedings of the 2021 Conference on Empirical Methods in Natural Language Processing},\n  pages     = {185--197},\n  year      = {2021},\n  url       = {https://aclanthology.org/2021.emnlp-main.17/}\n}\n\n% Confirmed via: ACL Anthology 2021.naacl-main.5, GitHub princeton-nlp/PURE\n@inproceedings{zhong2021frustratingly,\n  title     = {A Frustratingly Easy Approach for Entity and Relation Extraction},\n  author    = {Zhong, Zexuan and Chen, Danqi},\n  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies},\n  pages     = {50--61},\n  year      = {2021},\n  address   = {Online},\n  publisher = {Association for Computational Linguistics},\n  url       = {https://aclanthology.org/2021.naacl-main.5}\n}\n\n% Confirmed via: ACL Anthology 2022.acl-long.337, GitHub thunlp/PL-Marker\n@inproceedings{ye2022packed,\n  title     = {Packed Levitated Marker for Entity and Relation Extraction},\n  author    = {Ye, Deming and Lin, Yankai and Li, Peng and Sun, Maosong},\n  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n  pages     = {4904--4917},\n  year      = {2022},\n  address   = {Dublin, Ireland},\n  publisher = {Association for Computational Linguistics},\n  url       = {https://aclanthology.org/2022.acl-long.337}\n}\n\n% Confirmed via: arXiv:2604.06066 (previously PENDING AUDIT — now verified)\n@article{zhou2026snowballing,\n  title   = {From Hallucination to Structure Snowballing: The Alignment Tax of Constrained Decoding in {LLM} Reflection},\n  author  = {Zhou, Hongxu},\n  journal = {arXiv preprint arXiv:2604.06066},\n  year    = {2026},\n  url     = {https://arxiv.org/abs/2604.06066}\n}\n\n% ============================================================\n% Batch 1: Constrained decoding + IE foundations (10 entries)\n% ============================================================\n\n% Confirmed via: arXiv 2411.15100, MLSys 2025 proceedings\n@inproceedings{dong2025xgrammar,\n  title     = {{XGrammar}: Flexible and Efficient Structured Generation Engine for Large Language Models},\n  author    = {Dong, Yixin and Ruan, Charlie F. and Cai, Yaxing and Lai, Ruihang and Xu, Ziyi and Zhao, Yilong and Chen, Tianqi},\n  booktitle = {Proceedings of Machine Learning and Systems (MLSys)},\n  year      = {2025},\n  url       = {https://arxiv.org/abs/2411.15100}\n}\n\n% Confirmed via: arXiv 2307.09702\n@article{willard2023outlines,\n  title   = {Efficient Guided Generation for Large Language Models},\n  author  = {Willard, Brandon T. and Louf, R{\\'e}mi},\n  journal = {arXiv preprint arXiv:2307.09702},\n  year    = {2023},\n  url     = {https://arxiv.org/abs/2307.09702}\n}\n\n% Confirmed via: ACM DL 10.1145/3591300, PLDI 2023\n@inproceedings{beurer-kellner2023lmql,\n  title     = {Prompting Is Programming: A Query Language for Large Language Models},\n  author    = {Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin},\n  booktitle = {Proceedings of the ACM SIGPLAN Conference on Programming Language Design and Implementation (PLDI)},\n  year      = {2023},\n  url       = {https://doi.org/10.1145/3591300}\n}\n\n% Confirmed via: PMLR v235, ICML 2024\n@inproceedings{beurer-kellner2024domino,\n  title     = {Guiding {LLMs} The Right Way: Fast, Non-Invasive Constrained Generation},\n  author    = {Beurer-Kellner, Luca and Fischer, Marc and Vechev, Martin},\n  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},\n  pages     = {3658--3673},\n  year      = {2024},\n  series    = {PMLR},\n  volume    = {235},\n  url       = {https://proceedings.mlr.press/v235/beurer-kellner24a.html}\n}\n\n% Confirmed via: NeurIPS 2024 proceedings, OpenReview\n@inproceedings{park2024grammar,\n  title     = {Grammar-Aligned Decoding},\n  author    = {Park, Kanghee and Wang, Jiayu and Berg-Kirkpatrick, Taylor and Polikarpova, Nadia and D'Antoni, Loris},\n  booktitle = {Advances in Neural Information Processing Systems (NeurIPS)},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2405.21047}\n}\n\n% Confirmed via: OpenReview, ICLR 2021\n@inproceedings{decao2021genre,\n  title     = {Autoregressive Entity Retrieval},\n  author    = {De Cao, Nicola and Izacard, Gautier and Riedel, Sebastian and Petroni, Fabio},\n  booktitle = {International Conference on Learning Representations (ICLR)},\n  year      = {2021},\n  url       = {https://openreview.net/forum?id=5k8F6UU39V}\n}\n\n% Confirmed via: ACL Anthology 2022.naacl-main.342\n@inproceedings{josifoski2022genie,\n  title     = {{GenIE}: Generative Information Extraction},\n  author    = {Josifoski, Martin and De Cao, Nicola and Peyrard, Maxime and Petroni, Fabio and West, Robert},\n  booktitle = {Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n  pages     = {4626--4643},\n  year      = {2022},\n  url       = {https://aclanthology.org/2022.naacl-main.342/}\n}\n\n% Confirmed via: ACL Anthology 2023.emnlp-main.674\n@inproceedings{geng2023gcd,\n  title     = {Grammar-Constrained Decoding for Structured {NLP} Tasks without Finetuning},\n  author    = {Geng, Saibo and Josifoski, Martin and Peyrard, Maxime and West, Robert},\n  booktitle = {Proceedings of the 2023 Conference on Empirical Methods in Natural Language Processing (EMNLP)},\n  year      = {2023},\n  url       = {https://aclanthology.org/2023.emnlp-main.674/}\n}\n\n% Confirmed via: ACL Anthology 2021.naacl-main.339\n@inproceedings{lu2021neurologic,\n  title     = {{NeuroLogic} Decoding: (Un)supervised Neural Text Generation with Predicate Logic Constraints},\n  author    = {Lu, Ximing and West, Peter and Zellers, Rowan and Le Bras, Ronan and Bhagavatula, Chandra and Choi, Yejin},\n  booktitle = {Proceedings of the 2021 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (NAACL)},\n  pages     = {4288--4299},\n  year      = {2021},\n  url       = {https://aclanthology.org/2021.naacl-main.339/}\n}\n\n% Confirmed via: ACL Anthology 2022.acl-long.395\n@inproceedings{lu2022uie,\n  title     = {Unified Structure Generation for Universal Information Extraction},\n  author    = {Lu, Yaojie and Liu, Qing and Dai, Dai and Xiao, Xinyan and Lin, Hongyu and Han, Xianpei and Sun, Le and Wu, Hua},\n  booktitle = {Proceedings of the 60th Annual Meeting of the Association for Computational Linguistics (ACL)},\n  pages     = {5755--5772},\n  year      = {2022},\n  url       = {https://aclanthology.org/2022.acl-long.395/}\n}\n\n% ============================================================\n% Batch 2: 10 entries added 2026-05-14\n% ============================================================\n\n% Confirmed via: ICLR 2024 proceedings, OpenReview Y3wpuxd7u9, arXiv:2310.03668\n@inproceedings{sainz2024gollie,\n  title     = {{GoLLIE}: Annotation Guidelines improve Zero-Shot Information-Extraction Modeling},\n  author    = {Sainz, Oscar and Garc{\\'\\i}a-Ferrero, Iker and Agerri, Rodrigo and Lopez de Lacalle, Oier and Rigau, German and Agirre, Eneko},\n  booktitle = {The Twelfth International Conference on Learning Representations},\n  year      = {2024},\n  url       = {https://openreview.net/forum?id=Y3wpuxd7u9}\n}\n\n% Confirmed via: ACL Anthology 2023.acl-long.855, arXiv:2305.05711\n@inproceedings{li2023codeie,\n  title     = {{CodeIE}: Large Code Generation Models are Better Few-Shot Information Extractors},\n  author    = {Li, Peng and Sun, Tianxiang and Tang, Qiong and Yan, Hang and Wu, Yuanbin and Huang, Xuanjing and Qiu, Xipeng},\n  booktitle = {Proceedings of the 61st Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)},\n  pages     = {15339--15353},\n  year      = {2023},\n  address   = {Toronto, Canada},\n  url       = {https://aclanthology.org/2023.acl-long.855/}\n}\n\n% Confirmed via: ACL Anthology 2024.emnlp-main.419, arXiv:2405.05008, GitHub THU-KEG/ADELIE\n@inproceedings{qi2024adelie,\n  title     = {{ADELIE}: Aligning Large Language Models on Information Extraction},\n  author    = {Qi, Yunjia and Peng, Hao and Wang, Xiaozhi and Xu, Bin and Hou, Lei and Li, Juanzi},\n  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing},\n  year      = {2024},\n  address   = {Miami, Florida, USA},\n  url       = {https://aclanthology.org/2024.emnlp-main.419/}\n}\n\n% Confirmed via: arXiv:2404.12493, GitHub urchade/EnriCo\n% NOTE: arXiv preprint; no conference publication found\n@article{zaratiana2024enrico,\n  title   = {{EnriCo}: Enriched Representation and Globally Constrained Inference for Entity and Relation Extraction},\n  author  = {Zaratiana, Urchade and Tomeh, Nadi and Dauxais, Yann and Holat, Pierre and Charnois, Thierry},\n  journal = {arXiv preprint arXiv:2404.12493},\n  year    = {2024},\n  url     = {https://arxiv.org/abs/2404.12493}\n}\n\n% Confirmed via: arXiv:2509.04696, Apple ML Research machinelearning.apple.com/research/odke\n% NOTE: cite key uses \"odke\"; actual paper title is \"ODKE+\"\n@article{khorshidi2025odke,\n  title   = {{ODKE+}: Ontology-Guided Open-Domain Knowledge Extraction with {LLMs}},\n  author  = {Khorshidi, Samira and Nikfarjam, Azadeh and Shankar, Suprita and Sang, Yisi and Govind, Yash and Jang, Hyun and Kasgari, Ali and McClimans, Alexis and Soliman, Mohamed and Konda, Vishnu and Fakhry, Ahmed and Qi, Xiaoguang},\n  journal = {arXiv preprint arXiv:2509.04696},\n  year    = {2025},\n  url     = {https://arxiv.org/abs/2509.04696}\n}\n\n% Confirmed via: ACL Anthology 2023.findings-eacl.95\n@inproceedings{upadhyay2023openie,\n  title     = {Open Information Extraction with Entity Focused Constraints},\n  author    = {Upadhyay, Prajna and Balalau, Oana and Manolescu, Ioana},\n  booktitle = {Findings of the Association for Computational Linguistics: {EACL} 2023},\n  year      = {2023},\n  url       = {https://aclanthology.org/2023.findings-eacl.95/}\n}\n\n% Confirmed via: ACL Anthology 2025.genaik-1.10, GenAIK Workshop at COLING 2025\n@inproceedings{regino2025kgcurator,\n  title     = {Can {LLMs} be Knowledge Graph Curators for Validating Triple Insertions?},\n  author    = {Regino, Andr{\\'e} Gomes and dos Reis, Julio Cesar},\n  booktitle = {Proceedings of the Workshop on Generative {AI} and Knowledge Graphs ({GenAIK})},\n  pages     = {87--99},\n  year      = {2025},\n  address   = {Abu Dhabi, UAE},\n  url       = {https://aclanthology.org/2025.genaik-1.10/}\n}\n\n% Confirmed via: ACL Anthology 2024.emnlp-industry.91, arXiv:2408.02442\n@inproceedings{tam2024letmespeak,\n  title     = {Let Me Speak Freely? {A} Study on the Impact of Format Restrictions on Performance of Large Language Models},\n  author    = {Tam, Zhi Rui and Wu, Cheng-Kuang and Tsai, Yi-Lin and Lin, Chieh-Yen and Lee, Hung-yi and Chen, Yun-Nung},\n  booktitle = {Proceedings of the 2024 Conference on Empirical Methods in Natural Language Processing: Industry Track},\n  pages     = {1218--1236},\n  year      = {2024},\n  address   = {Miami, Florida, US},\n  url       = {https://aclanthology.org/2024.emnlp-industry.91/}\n}\n\n% Confirmed via: PMLR v267/banerjee25a, ICML 2025, arXiv:2502.09061\n@inproceedings{banerjee2025crane,\n  title     = {{CRANE}: Reasoning with Constrained {LLM} Generation},\n  author    = {Banerjee, Debangshu and Suresh, Tarun and Ugare, Shubham and Misailovic, Sasa and Singh, Gagandeep},\n  booktitle = {Proceedings of the 42nd International Conference on Machine Learning},\n  pages     = {2836--2857},\n  year      = {2025},\n  url       = {https://proceedings.mlr.press/v267/banerjee25a.html}\n}\n\n% Confirmed via: ACL Anthology 2025.ranlp-1.124\n@inproceedings{schall2025hiddencost,\n  title     = {The Hidden Cost of Structure: How Constrained Decoding Affects Language Model Performance},\n  author    = {Schall, Maximilian and de Melo, Gerard},\n  booktitle = {Proceedings of the 15th International Conference on Recent Advances in Natural Language Processing ({RANLP} 2025)},\n  year      = {2025},\n  address   = {Varna, Bulgaria},\n  url       = {https://aclanthology.org/2025.ranlp-1.124/}\n}\n\n% ============================================================\n% D015 reviewer-requested references (5 entries)\n% ============================================================\n\n% Confirmed via: GitHub guidance-ai/guidance, Microsoft Research project page\n@misc{guidance2023,\n  title        = {Guidance: A Guidance Language for Controlling Large Language Models},\n  author       = {Lundberg, Scott and Ribeiro, Marco Tulio},\n  year         = {2023},\n  url          = {https://github.com/guidance-ai/guidance},\n  note         = {Microsoft Research}\n}\n\n% Confirmed via: OpenReview US-TP-xnXI, arXiv:2101.05779, Amazon Science\n@inproceedings{paolini2021tanl,\n  title     = {Structured Prediction as Translation between Augmented Natural Languages},\n  author    = {Paolini, Giovanni and Athiwaratkun, Ben and Krone, Jason and Ma, Jie and Achille, Alessandro and Anubhai, Rishita and dos Santos, Cicero Nogueira and Xiang, Bing and Soatto, Stefano},\n  booktitle = {International Conference on Learning Representations},\n  year      = {2021},\n  url       = {https://openreview.net/forum?id=US-TP-xnXI}\n}\n\n% Confirmed via: ACL Anthology 2021.findings-emnlp.204, GitHub Babelscape/rebel\n@inproceedings{cabot2021rebel,\n  title     = {{REBEL}: Relation Extraction By End-to-end Language Generation},\n  author    = {Huguet Cabot, Pere-Llu{\\'\\i}s and Navigli, Roberto},\n  booktitle = {Findings of the Association for Computational Linguistics: {EMNLP} 2021},\n  pages     = {2370--2381},\n  year      = {2021},\n  url       = {https://aclanthology.org/2021.findings-emnlp.204/}\n}\n\n% Confirmed via: IJCAI 2016 Proceedings/16/Papers/421, GitHub thunlp/TKRL\n@inproceedings{xie2016tkrl,\n  title     = {Representation Learning of Knowledge Graphs with Hierarchical Types},\n  author    = {Xie, Ruobing and Liu, Zhiyuan and Sun, Maosong},\n  booktitle = {Proceedings of the 25th International Joint Conference on Artificial Intelligence ({IJCAI})},\n  pages     = {2965--2971},\n  year      = {2016},\n  url       = {https://www.ijcai.org/Proceedings/16/Papers/421.pdf}\n}\n\n% ============================================================\n% Batch 3: New entries added 2026-05-16 (3 entries, Director-requested)\n% ============================================================\n\n% Confirmed via: arXiv:2403.01632, OpenReview HiUZtgAPoH, Illinois Experts page\n% NOTE: Director specified ICML 2024 — verify volume/pages\n@inproceedings{ugare2024syncode,\n  title     = {{SynCode}: {LLM} Generation with Grammar Augmentation},\n  author    = {Ugare, Shubham and Suresh, Tarun and Kang, Hangoo and Misailovic, Sasa and Singh, Gagandeep},\n  booktitle = {Proceedings of the 41st International Conference on Machine Learning (ICML)},\n  year      = {2024},\n  series    = {PMLR},\n  volume    = {235},\n  url       = {https://arxiv.org/abs/2403.01632}\n}\n\n% Confirmed via: OpenReview ac93gRzxxV, ICLR 2025 poster page, arXiv:2410.07295\n@inproceedings{ugare2025itergen,\n  title     = {{IterGen}: Iterative Semantic-aware Structured {LLM} Generation with Backtracking},\n  author    = {Ugare, Shubham and Suresh, Tarun and Banerjee, Debangshu and Misailovic, Sasa and Singh, Gagandeep},\n  booktitle = {The Thirteenth International Conference on Learning Representations},\n  year      = {2025},\n  url       = {https://openreview.net/forum?id=ac93gRzxxV}\n}\n\n% Confirmed via: ACL Anthology 2025.emnlp-main.926, arXiv:2506.14901, EPFL dlab\n@inproceedings{sakota2025boostcd,\n  title     = {Combining Constrained and Unconstrained Decoding via Boosting: {BoostCD} and Its Application to Information Extraction},\n  author    = {Sakota, Marija and Geng, Saibo and Josifoski, Martin and West, Robert},\n  booktitle = {Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing},\n  year      = {2025},\n  url       = {https://aclanthology.org/2025.emnlp-main.926/}\n}\n\n% ============================================================\n% Dataset & model references (5 entries)\n% ============================================================\n\n% Confirmed via: ACL Anthology D18-1360, arXiv:1808.09602\n@inproceedings{luan2018scierc,\n  title     = {Multi-Task Identification of Entities, Relations, and Coreference for Scientific Knowledge Graph Construction},\n  author    = {Luan, Yi and He, Luheng and Ostendorf, Mari and Hajishirzi, Hannaneh},\n  booktitle = {Proceedings of the 2018 Conference on Empirical Methods in Natural Language Processing},\n  pages     = {3219--3232},\n  year      = {2018},\n  address   = {Brussels, Belgium},\n  url       = {https://aclanthology.org/D18-1360/}\n}\n\n% Confirmed via: ACL Anthology P19-1074, arXiv:1906.06127\n@inproceedings{yao2019docred,\n  title     = {{DocRED}: A Large-Scale Document-Level Relation Extraction Dataset},\n  author    = {Yao, Yuan and Ye, Deming and Li, Peng and Han, Xu and Lin, Yankai and Liu, Zhenghao and Liu, Zhiyuan and Huang, Lixin and Zhou, Jie and Sun, Maosong},\n  booktitle = {Proceedings of the 57th Annual Meeting of the Association for Computational Linguistics},\n  pages     = {764--777},\n  year      = {2019},\n  address   = {Florence, Italy},\n  url       = {https://aclanthology.org/P19-1074/}\n}\n\n% Confirmed via: arXiv:2302.10205, Semantic Scholar\n@article{wei2023zeroshot,\n  title   = {{ChatIE}: Zero-Shot Information Extraction via Chatting with {ChatGPT}},\n  author  = {Wei, Xiang and Cui, Xingyu and Cheng, Ning and Wang, Xiaobin and Zhang, Xin and Huang, Shen and Xie, Pengjun and Xu, Jinan and Chen, Yufeng and Zhang, Meishan and Jiang, Yong and Han, Wenjuan},\n  journal = {arXiv preprint arXiv:2302.10205},\n  year    = {2023},\n  url     = {https://arxiv.org/abs/2302.10205}\n}\n\n% Confirmed via: arXiv:2505.09388, Hugging Face model cards\n@article{qwen2025qwen3,\n  title   = {Qwen3 Technical Report},\n  author  = {{Qwen Team}},\n  journal = {arXiv preprint arXiv:2505.09388},\n  year    = {2025},\n  url     = {https://arxiv.org/abs/2505.09388}\n}\n\n% Confirmed via: NeurIPS 2024 proceedings, arXiv:2312.07104\n@inproceedings{zheng2024sglang,\n  title     = {{SGLang}: Efficient Execution of Structured Language Model Programs},\n  author    = {Zheng, Lianmin and Yin, Liangsheng and Xie, Zhiqiang and Sun, Chuyue and Huang, Jeff and Yu, Cody Hao and Cao, Shiyi and Kozyrakis, Christos and Stoica, Ion and Gonzalez, Joseph E. and Barrett, Clark and Sheng, Ying},\n  booktitle = {Advances in Neural Information Processing Systems},\n  volume    = {37},\n  year      = {2024},\n  url       = {https://arxiv.org/abs/2312.07104}\n}\n",
+      "numLines": 529,
+      "startLine": 1,
+      "totalLines": 529
+    }
+  },
+  "sourceToolAssistantUUID": "e73d6ec3-e69d-4fc2-b800-b8afe038f032",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 108_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 完整性 + 相关工作 + 写作质量**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Ontology Constraints - **论文路径**: `projects/schema_sem…",
+  "leafUuid": "a7ccda9c-8bd4-4ab5-a00e-d901a7eb60dc",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 109_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 110 · 2026-05-16T17:38:25.434Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I now have a comprehensive understanding of the paper. Let me compose my review. Let me also check for any potential missing references I should flag, such as:
+
+1. DORE (Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding) - SIGDIAL 2024 - this is a work that uses constrained decoding for ontology-based relation extraction, and it's NOT cited in the paper.
+
+2. SLOT (Structuring the Output of LLMs) - EMNLP 2025 Industry - a post-processing approach, different enough to not be critical.
+
+
+3. Schema Reinforcement Learning (ACL 2025) - a training-time approach to structured generation that could be mentioned.
+
+4. PARSE (EMNLP 2025 Industry) - schema optimization for entity extraction with guardrails.
+
+5. The "Survey of Generative Information Extraction" (COLING 2025) - could be a useful reference.
+
+I should also look more closely at IterGen's backtracking mechanism since it's already cited and particularly relevant given how it extends grammar constrained decoding with semantic awareness. Now let me start drafting the review.
+
+For the novelty assessment, the authors' core claim is that they're the first to automatically compile domain and range constraints from ontologies into token-level semantic masks during decoding. This is more specific than just doing constrained decoding for IE—GenIE uses trie-based vocabulary constraints but doesn't enforce type compatibility per relation, GCD handles grammar constraints without semantic ones, and EnriCo requires manually authored ASP rules rather than automatic compilation. The distinction seems solid.
+
+The real novelty lies in adapting type-constrained decoding from code generation to IE, where entity types must be inferred from text and tracked dynamically rather than coming from declared annotations. That said, the underlying mechanism—logit masking based on prior generations—isn't new (PICARD does this for SQL), and the two-layer architecture with off-the-shelf grammar constraints is fairly straightforward. The ontology-to-constraints compilation is also relatively direct, just mapping relation signatures to allowed token sets.
+
+IterGen shows similar semantic awareness applied to grammar-constrained decoding through backtracking, suggesting this general direction is already recognized in the field. Looking at the related work, the paper covers grammar-constrained decoding comprehensively and does well on code-domain semantic constraints and vocabulary-constrained IE approaches.
+
+There are a few gaps worth noting: DORE from SIGDIAL 2024 directly addresses ontology-constrained decoding for relation extraction but isn't cited, and there's a recent COLING 2025 survey on generative IE that could provide useful context. Microsoft's Guidance framework also seems potentially relevant but appears to be cut off in the notes. The terminology (DR, RV, ET, CF) is clearly defined and used consistently, and the overall logical flow from problem through background, method, composition theory, experiments, related work, and conclusion is sound. However, I'm noticing some structural issues: the "Violation Landscape" section appears as §5.1 but reads more like motivation or analysis that might fit better earlier in the paper, and there's a concerning focus on violation rates rather than downstream task performance—the main extraction F1 is only ~8% in zero-shot, which is quite low. I'm also spotting some redundancy between §4 and the experiments section.
+
+Looking at the experimental coverage, the paper does well with two datasets, three models, a five-way ablation, composability testing with LoRA, runtime analysis, post-hoc filtering comparisons, bootstrap significance testing, and per-relation breakdowns. But there's a notable gap: no direct comparison with other constrained decoding baselines like GenIE, GCD, or BoostCD, which would strengthen the evaluation.
+
+The fine-tuning experiments only explore LoRA, not full fine-tuning, and while entity F1 impact gets mentioned in limitations, it deserves more thorough analysis in the main results. There's also no human evaluation or qualitative analysis of actual constraint violations, which would help validate the approach's practical effectiveness. The dual-factor model showing R² = 0.886 is interesting but relies on just four data points, which is acknowledged but still feels underpowered.
+
+The limitations section is honest and comprehensive, covering the constraint-fidelity tradeoff, entity F1 concerns, model size constraints, and tokenizer assumptions. The ethics statement is minimal but appropriate for this work. Format-wise, everything checks out with the anonymous ACL template, proper bibliography setup, and a dedicated limitations section.
+
+Looking at the overall assessment, the work has real strengths: the problem is well-motivated with clear evidence of constraint violations in practice, the two-layer architecture is clean with formal composition analysis, and the empirical evaluation is thorough across multiple models and datasets with solid ablations. The approach is also practical—low overhead, composable with fine-tuning, and requires no additional training.
+
+The main weaknesses are that logit masking conditioned on prefixes isn't particularly novel in code generation contexts, the claim about being first to compile IE ontology constraints might not hold up without more complete citations, the n=4 regression lacks statistical power, and there's no direct comparison with other constraint-handling methods.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a7ccda9c-8bd4-4ab5-a00e-d901a7eb60dc",
+  "isSidechain": false,
+  "requestId": "req_011Cb6etVAtx4RvGymXnJsG8",
+  "type": "assistant",
+  "uuid": "bf0e245f-37b9-4475-9046-9ba3d0de74c5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015PiQLsnrXbcurx7vsC5yfJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10742,
+      "cache_read_input_tokens": 78049,
+      "output_tokens": 2398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10742,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2398,
+          "cache_read_input_tokens": 78049,
+          "cache_creation_input_tokens": 10742,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10742
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 111 · 2026-05-16T17:38:26.351Z_
+
+I've now read the complete paper. Let me compose my full review report and post it to the Director.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bf0e245f-37b9-4475-9046-9ba3d0de74c5",
+  "isSidechain": false,
+  "requestId": "req_011Cb6etVAtx4RvGymXnJsG8",
+  "type": "assistant",
+  "uuid": "f45f30a1-c1ac-4b26-aa16-dcd84217e5d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015PiQLsnrXbcurx7vsC5yfJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10742,
+      "cache_read_input_tokens": 78049,
+      "output_tokens": 2398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10742,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2398,
+          "cache_read_input_tokens": 78049,
+          "cache_creation_input_tokens": 10742,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10742
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 112 · 2026-05-16T17:38:27.277Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01T56KNp5NJR5WLs53enGayy`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__review_reviewer_post_to_director",
+  "max_results": 1
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f45f30a1-c1ac-4b26-aa16-dcd84217e5d2",
+  "isSidechain": false,
+  "requestId": "req_011Cb6etVAtx4RvGymXnJsG8",
+  "type": "assistant",
+  "uuid": "a0aaa191-ac8c-4103-bea7-2109a974641c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015PiQLsnrXbcurx7vsC5yfJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10742,
+      "cache_read_input_tokens": 78049,
+      "output_tokens": 2398,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 10742,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2398,
+          "cache_read_input_tokens": 78049,
+          "cache_creation_input_tokens": 10742,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 10742
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 113 · 2026-05-16T17:38:27.284Z_
+
+<details><summary>↩ Tool result · `toolu_01T56KNp5NJR5WLs53enGayy`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__review_reviewer_post_to_director"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a0aaa191-ac8c-4103-bea7-2109a974641c",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "94d7f005-074b-4200-90a1-909887d26679",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__review_reviewer_post_to_director"
+    ],
+    "query": "select:mcp__agent-ml-research__review_reviewer_post_to_director",
+    "total_deferred_tools": 23
+  },
+  "sourceToolAssistantUUID": "a0aaa191-ac8c-4103-bea7-2109a974641c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 114 · 2026-05-16T17:38:31.223Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me compose my full review and post it to the Director.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "94d7f005-074b-4200-90a1-909887d26679",
+  "isSidechain": false,
+  "requestId": "req_011Cb6eyB6bW6pdGhghfJz1g",
+  "type": "assistant",
+  "uuid": "b43fb08a-98ca-41a7-991b-9343e451f011",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2DS9ZpyF5mHrEgnpYvgng",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2710,
+      "cache_read_input_tokens": 88791,
+      "output_tokens": 4720,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2710,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4720,
+          "cache_read_input_tokens": 88791,
+          "cache_creation_input_tokens": 2710,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2710
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 115 · 2026-05-16T17:40:16.455Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director · `toolu_017iTRua3wiWop53w7WRRn8L`</summary>
+
+```json
+{
+  "text": "\n# Reviewer 2 审稿报告：OntoCoDec\n\n## 总体评分\n**Overall**: 3.5（介于 Findings 和 Conference 之间）\n**一句话总结**: 工程上完整、实验充分的约束解码框架，但核心机制新颖性有限（prefix-conditioned logit masking 在代码生成中已成熟），且 CF 副作用（最高 12%）部分消解了\"constraint enforcement\"的叙事。\n\n---\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | 实验设计严谨（bootstrap, 多模型多数据集），但 dual-factor regression n=4 不具统计意义；CF 增加最高 12% 削弱了核心 claim |\n| Excitement | 3/5 | 问题重要且实用，但技术贡献更接近\"迁移已有范式到新领域\"而非新范式 |\n| Reproducibility | 4/5 | 提供 prompt 模板、详细超参、多轮消融；缺代码/数据承诺 |\n| Confidence | 4/5 | 熟悉 constrained decoding 和 IE 领域 |\n\n---\n\n## Must-Fix 问题（影响接收决定）\n\n**N1** [critical] Novelty claim 过度——缺少与 DORE (SIGDIAL 2024) 的对比和区分\n\n- 具体位置：§1 Contribution 2, §6 \"Our Approach\" paragraph, Appendix A final paragraph\n- 问题：论文声称 \"the first to automatically compile IE ontology domain/range constraints into token-level semantic masks\"。但 Vukovic et al. (SIGDIAL 2024) \"Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding\" 已将 ontology terms 和 relations 作为 constrained decoding 的约束目标用于关系抽取，且通过 constraining decoding to ontology terms 来减少幻觉。虽然 DORE 的技术路径不同（CoT decoding + confidence threshold vs. logit masking），但 \"first\" claim 需要更精确地限定技术边界（e.g., \"first to enforce domain/range *pair-based* constraints via stateful token masking\"），并明确区分与 DORE 的差异。\n- 为什么影响接收：Novelty claim 是论文的核心卖点；reviewer/AC 会重点审查 \"first\" 声明的准确性。\n- 建议修改方向：(1) 引用 DORE 并在 §6 中区分（DORE 约束的是 vocabulary 级别，不是 domain/range pair validity）；(2) 将 \"first\" claim 缩窄为 \"first to enforce pair-based domain/range type constraints via compiled stateful logit masks during autoregressive IE\"。\n\n**N2** [critical] 核心新颖性与代码生成领域先驱工作的技术差异阐述不足\n\n- 具体位置：§6 \"Semantic Constrained Decoding for Code\" paragraph（主文仅 2 行），Appendix A 扩展段落\n- 问题：论文正确识别了 PLDI 2025 (Mündler et al.) 为 \"closest mechanistic analog\"，但主文 §6 仅用两句话打发（\"Synchromesh, PICARD, MGD, and PLDI2025 enforce type and scope constraints in code generation; OntoCoDec migrates this paradigm to IE\"）。真正的 novelty 需要更清晰地回答：migrating 这个 paradigm 的技术困难在哪里？如果答案是 \"entity registry populated during generation\"（即 constraint target 需要从 free text 推断而非从 declared type annotation 读取），这个贡献在主文中几乎看不到突出表述，只在 Appendix A 有详细讨论。\n- 为什么影响接收：如果核心区分点只出现在 Appendix 而非 §1/§3/§6 主文，reviewer 容易判断为 \"incremental migration\"。\n- 建议修改方向：在 §1 或 §3 开头明确一段话阐述：代码生成的 type system → automaton → mask pipeline 为何不能直接用于 IE（entity types 非 declared 而是 extracted、需要 stateful registry、ontology 是 flat 而非 hierarchical），以及 OntoCoDec 的具体技术解决方案。\n\n**N3** [critical] 缺少与同领域 constrained decoding IE 系统的直接实验对比\n\n- 具体位置：§5 全部实验\n- 问题：论文对比的 baseline 是 unconstrained decoding 和 post-hoc filtering。但同领域已有 constrained decoding IE 系统：GCD (Geng et al., EMNLP 2023) 来自同一实验室（EPFL dlab），直接在 IE 任务上做 grammar-constrained decoding；BoostCD (Sakota et al., EMNLP 2025) 同样针对 closed IE 用 constrained decoding + boosting。论文引用了这两篇但未做实验对比。特别是 GCD 使用 input-dependent grammars 做 IE，是 OntoCoDec grammar layer 的直接先驱，不对比就无法证明 semantic layer 的增量价值超过 GCD 已有能力。\n- 为什么影响接收：ACL ARR reviewer 会质疑为什么不与最接近的同类方法对比。\n- 建议修改方向：至少与 GCD 做定量对比（GCD 公开代码，同一数据集）；如果 GCD 不支持 domain/range 约束（很可能不支持），这本身就是一个有力的区分证据，但需要实验展示而非仅凭论述。\n\n---\n\n## Should-Fix 问题（影响评分但不一票否决）\n\n**W1** [warning] Dual-factor regression ($R^2=0.886$, $n=4$) 不具统计意义\n\n- 具体位置：Abstract line 13, §4 Constraint Tightness paragraph, Appendix B \"Dual-Factor Quantitative Analysis\"\n- 问题：用 4 个数据点拟合线性模型并报告 $R^2=0.886$ 作为 \"predictive framework\"，这在统计上是不严谨的。4 个点的线性拟合几乎必然得到高 $R^2$（2 自由度，2 参数）。论文自身承认 \"we do not report a p-value given the small sample size\"，但仍在 Abstract 和 §7 中使用这个数字作为 contribution claim 的一部分。\n- 建议：(1) 从 Abstract 中移除 $R^2$ 数字；(2) 将其降级为 \"preliminary observation consistent with...\"；(3) 如果加入 Mistral 的 4 个数据点（6 model×dataset 配置可用），至少提供 6 点拟合。\n\n**W2** [warning] CF 增加（最高 12.02%）与 \"constraint enforcement\" 的核心叙事存在张力\n\n- 具体位置：Table 3 (cross-model), §7 Discussion, Limitations\n- 问题：OntoCoDec 在减少 DR 的同时引入 CF（SciERC: 0.08%→9.90%; DocRED Llama: 0.17%→12.02%）。论文诚实讨论了这个 trade-off，但叙事上仍以 \"constraint enforcement\" 定位。一个 \"enforcement\" 系统引入了新的约束违反类型，需要更直接地在 §1/Abstract 层面承认。Abstract 目前完全不提 CF 增加。\n- 建议：在 Abstract 最后加一句 CF caveat（e.g., \"with a model-dependent cross-field consistency trade-off mitigated by fine-tuning\"），或将标题/定位从 \"enforcement\" 调整为 \"reduction\"。\n\n**W3** [warning] 主评价指标是 violation rate reduction 而非下游任务质量——存在循环论证风险\n\n- 具体位置：§5 全部\n- 问题：论文的核心实验设计是：约束违反率下降 = 成功。这是 tautological 的——施加约束当然会减少约束违反。真正需要证明的是：减少违反是否带来下游价值？论文用 F1 作为 \"control variable\" 证明无害，但 F1-neutral 不等于有用。Appendix B 的 post-hoc filtering 对比显示 post-hoc 在大多数情况下 F1 还更高（5/6 zero-shot 设置）。\n- 建议：(1) 增加一个下游任务评估（e.g., 用抽取的 triples 做 QA 或 knowledge graph completion，比较有/无 type violation 的影响）；(2) 或者更直接地承认当前贡献是\"保证性质\"而非\"性能提升\"，并在 §1 中重新定位。\n\n**W4** [warning] 写作结构问题：§5.1 \"Violation Landscape\" 混合了 motivation 和 experimental setup\n\n- 具体位置：§5.1 (section3_violation_landscape.tex)\n- 问题：这一节同时承担三个角色：(1) 实验设置描述、(2) 基线违反率分析（这是 motivation）、(3) schema-informed prompting 对比（这是 baseline experiment）。逻辑上，violation landscape 分析应放在 §2 Background 或 §3 Method 的 motivation 部分，实验设置应独立为一个清晰的 subsection。当前安排使读者在 §5 开头看到 motivation 内容感到困惑。\n- 建议：将 violation landscape 的 motivation 分析（Table 1, Figure 1）提前到 §2.5 或作为独立的 §3.0 \"Motivation: Violation Prevalence\"。\n\n**W5** [warning] 缺少代码/数据可复现性声明\n\n- 具体位置：全文\n- 问题：论文未包含任何关于代码/数据释放的声明。ACL ARR 的 reproducibility 评分维度明确要求作者说明是否会释放代码。Prompt 模板已提供（Appendix），但核心的 semantic layer logits processor 实现、ontology compilation pipeline、entity registry 逻辑均未承诺开源。\n- 建议：添加 \"Code and data will be released upon acceptance\" 或类似声明。\n\n---\n\n## 小问题（不影响接收）\n\n- §3.5 \"Decoding Strategies\" 中 S2 的描述过于简略（\"Detailed comparison is provided in the appendix\"），但 S2 在 Table 2 中有数据，建议补充 1-2 句 S2 的实际结果总结。\n- §4 equation (2) 定义 tightness 时用 $\\tau(r)$ 与 entity type 集合 $\\mathcal{T}$ 的符号冲突——$\\tau$ 既用于 entity type ($\\tau_i$) 又用于 tightness 函数。\n- Table 3 footnote \"Parse failures: Qwen DocRED 12→11 (S1 1.10%)\" 意义不清——12→11 是什么？documents 数？需要更明确的解释。\n- Appendix B \"Relation Matching Protocol\" 使用 fuzzy matching（token overlap >80% + edit distance ≤2）。这个协议对 Mistral 的 F1 贡献 +0.84pp，应在主文 §5.3 简要提及以确保评价一致性透明。\n- `\\bibliography{relwork_new_entries}` 使用单一 bib 文件命名为 \"relwork_new_entries\" 不太规范，建议改为 \"references.bib\" 或 \"main.bib\"。\n\n---\n\n## Missing References\n\n1. **Vukovic et al. (SIGDIAL 2024)** — \"Dialogue Ontology Relation Extraction via Constrained Chain-of-Thought Decoding\"。直接使用 constrained decoding 进行 ontology-based relation extraction，与 OntoCoDec 的问题设定高度相关。**必须引用并区分。**\n\n2. **\"A Survey of Generative Information Extraction\" (COLING 2025)** — 综述性文献，有助于定位本工作在 generative IE 领域的位置。建议引用。\n\n3. **PARSE (Shen et al., EMNLP 2025 Industry)** — \"LLM Driven Schema Optimization for Reliable Entity Extraction\"，使用 schema guardrails 减少 extraction errors 92%。不同路径但相关。可选引用。\n\n4. **Schema Reinforcement Learning (ACL 2025)** — \"Learning to Generate Structured Output with Schema Reinforcement Learning\"。Training-time schema compliance 方法，与 OntoCoDec 的 inference-time 方法互补。可选引用。\n\n---\n\n## 主要优势\n\n1. **问题定义清晰且有数据支撑**：violation landscape 分析（Table 1, Figure 1）令人信服地证明了问题的普遍性和严重性，per-relation tightness 分析提供了有解释力的框架。\n\n2. **实验设计全面且诚实**：3 模型 × 2 数据集 × 多消融 × composability with fine-tuning × runtime profiling × post-hoc comparison。CF trade-off 的坦诚讨论（包括 CF-DR trade-off ablation, Table 5）体现了学术诚信。\n\n3. **实用性强**：runtime overhead 仅 2-5%，training-free，与 fine-tuning 正交组合后 DR≤0.20%——这是一个可以直接部署的系统。\n\n4. **形式化分析有价值**：§4 的 decidability taxonomy（local / prefix-decidable / non-local）和 non-rectangularity 分析为 constrained decoding 在 IE 中的应用提供了理论框架。\n\n5. **相关工作覆盖度高**：§6 + Appendix A 覆盖了 5 个 paradigm，引用了 2024-2026 的最新工作（IterGen ICLR 2025, CRANE ICML 2025, BoostCD EMNLP 2025, Zhou 2026 等），分类合理。\n\n---\n\n## Questions for Authors\n\n**Q1**: 为什么不与 GCD (Geng et al., EMNLP 2023) 做直接实验对比？GCD 是你们同一实验室的前作，使用 input-dependent grammars 做 IE，且开源。OntoCoDec 的 grammar layer 与 GCD 的关系是什么——是改进、扩展还是不同的技术路线？\n\n**Q2**: CF 增加是否会传播到下游任务？例如，如果将抽取的 triples 用于 knowledge graph construction，一个实体有两个冲突类型对下游的影响是什么？是否有初步评估？\n\n**Q3**: Abstract 中的 $R^2=0.886$ (n=4) 是否可以扩展到包含 Mistral 的 6 个数据点？如果加入 Mistral (56.94% DR SciERC, 57.42% DR DocRED)，拟合是否依然成立？\n\n**Q4**: 在 fine-tuned 设置下（Table 7），grammar layer 是 no-op。这是否意味着 OntoCoDec 对 fine-tuned 系统的实际价值仅来自 semantic layer？如果是，\"two-layer compiled constraint framework\" 的 framing 是否过度强调了 grammar layer 的贡献？\n\n**Q5**: 论文的 tokenizer 假设（\"each entity type maps to a unique first subword token\"）限制了方法的泛化性。对于有 50+ entity types 的大型本体（如 Wikidata 的完整 entity type hierarchy），prefix-tree masking 的工程复杂度和 runtime 开销预期如何？\n",
+  "reviewer_id": "2",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b43fb08a-98ca-41a7-991b-9343e451f011",
+  "isSidechain": false,
+  "requestId": "req_011Cb6eyB6bW6pdGhghfJz1g",
+  "type": "assistant",
+  "uuid": "0e5df990-3541-4ddc-9909-d783e466079b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01V2DS9ZpyF5mHrEgnpYvgng",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 2710,
+      "cache_read_input_tokens": 88791,
+      "output_tokens": 4720,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2710,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4720,
+          "cache_read_input_tokens": 88791,
+          "cache_creation_input_tokens": 2710,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2710
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 116_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 你是 Reviewer 2，负责审查 **新颖性 + 完整性 + 相关工作 + 写作质量**。  ## 论文信息 - **标题**: OntoCoDec: Type-Constrained Information Extraction via Compiled Ontology Constraints - **论文路径**: `projects/schema_sem…",
+  "leafUuid": "0e5df990-3541-4ddc-9909-d783e466079b",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 117_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 118 · 2026-05-16T17:40:20.464Z_
+
+<details><summary>↩ Tool result · `toolu_017iTRua3wiWop53w7WRRn8L`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0e5df990-3541-4ddc-9909-d783e466079b",
+  "isSidechain": false,
+  "promptId": "ac27870a-11f3-4754-a8af-af35fd44cca9",
+  "type": "user",
+  "uuid": "59e5132c-41e9-41ed-abed-b93165b36798",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "0e5df990-3541-4ddc-9909-d783e466079b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 119_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 120 · 2026-05-16T17:42:52.547Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-16T17:42:52.547Z",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "content": "[Round 1 审稿请求]:\n以下是 Reviewer 1 的完整审稿意见。请逐条回应每个 Must-Fix (N1-N2) 和 Should-Fix (W1-W6) 问题：\n- 如果同意，标注 [AGREE] 并简要说明理由\n- 如果不同意，标注 [REBUT] 并提供证据（cite 具体 Section/Table/Figure）\n\n特别关注与你的审查存在重叠或分歧的地方。\n\n---\n\n# Reviewer 1 完整审稿报告\n\n## 总体评分\n**Overall**: 3/5 — Findings track acceptance\n\n## Must-Fix 问题\n\n**N1** [critical] Abstract 和 Introduction 系统性省略 CF 副作用，构成选择性报告\n- Abstract 声称 \"reduces domain/range violations by 94% while maintaining extraction F1\"，Introduction 三条贡献均只提 DR 下降。但 CF 从 0.08% 飙升至 9.90%（SciERC, 124× 增幅），Llama DocRED 从 0.17% 升至 12.02%（71× 增幅）。\n- 正文 §5 和 Appendix B 对 CF 有诚实讨论，但 abstract/intro 的沉默构成 framing bias。\n- 建议：Abstract 中加入 CF trade-off 摘要，Introduction Contribution 3 也应提及。\n\n**N2** [critical] R²=0.886 基于 n=4 数据点被过度解读为\"预测框架\"\n- 线性回归有 2 个自由参数，n=4 仅留 2 个自由度。两个 dataset 的 tightness 差异巨大，tightness 单一变量可能就足以解释大部分方差。\n- Abstract 和 conclusion 仍将此描述为 \"predictive framework\"。\n- 建议：改为 \"consistent with a dual-factor pattern\"，降级为 \"descriptive pattern\"，增加 Mistral 数据点。\n\n## Should-Fix 问题\n\n**W1** [warning] Parse failure 在约束下增加，构成潜在混淆变量\n- Llama DocRED parse failure 从 68/998 (6.8%) 增至 91/998 (9.1%)，增幅 34%。这些文档被排除在评估之外，可能存在样本选择偏差。\n- 建议：补充 Llama DocRED zero-shot 的 parse-failure-excluded 分析。\n\n**W2** [warning] 与 Post-hoc filtering 对比不充分支持核心叙事\n- Post-hoc filtering 在 6 个 zero-shot 配置中 5 个获得更高 R-F1。Introduction 的 framing 带有否定语气（\"wastes compute\"），与实验数据不完全一致。\n- 建议：正文中加入 post-hoc 对比摘要，诚实说明 post-hoc 在多数 zero-shot 场景 F1 更高。\n\n**W3** [warning] Zero-shot R-F1 ~8% 的实际意义讨论不足\n- 论文将 F1 定位为\"控制变量\"（仅在 Appendix B），但正文高亮 DocRED +0.50pp p<0.001 作为积极结果，存在逻辑不一致。\n- 建议：在 §5 加入 1-2 句正文讨论 zero-shot F1 水平的含义。\n\n**W4** [warning] SciERC 5-way vs DocRED 4-way 消融不对称性未解释\n- SciERC 包含 S2，DocRED 不包含，未说明原因。\n\n**W5** [warning] Semantic-only 模式在 DocRED 上反直觉地增加 ET 违规\n- ET 从 2.48% 几乎翻倍至 4.22%，但 semantic layer 声称仅在 HeadType/TailType 位置激活。\n\n**W6** [warning] First-subword-token 唯一性假设限制泛化性\n- §3 将此作为 implementation detail，但实际上是方法适用范围的根本性限制。\n\n## 小问题\n- 符号冲突：τ 同时用于 tightness 和 entity type\n- Table 2 S2 行 CF=8.03%, R-F1=8.03 数值巧合\n- DocRED Grammar/Full S1 RV=0.03%（非 0%），来源未解释\n- Greedy decoding 限制\n- \"Global entity-level type consensus\" 缺少可行性分析\n\n## Questions\nQ1: CF-DR trade-off 中 DR 和 CF 应否有不同权重？\nQ2: Grammar layer 在 DocRED 上强制替换的关系名称语义质量如何？\nQ3: Fine-tuned 下 grammar layer 是 no-op，\"两层组合\" 架构叙事是否被削弱？\nQ4: Fuzzy Matching 阈值如何选择？是否调优过？\nQ5: Global consensus 在 autoregressive 解码中的可行性？\n\n## 数值一致性核查\n逐一核查 Table 1-9 与正文的一致性：所有主要数值声明通过验证。\n⚠ Introduction 中 \"DR ↓42--90% on DocRED\" 的 42% 来自 Mistral，不是 Qwen，范围跨三个模型但未明确说明。\n\n## Missing References\n- GenIE (Josifoski et al., 2022) — 正文 §6 未引用\n- EnriCo (Zaratiana et al., 2024) — 正文 §6 未引用\n- Zhou et al. (2026) \"structure snowballing\" — 正文 §6 未提及\n\n---\n\n请逐条回应以上所有 Must-Fix 和 Should-Fix 问题。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 121 · 2026-05-16T17:42:52.547Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-16T17:42:52.547Z",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+## Round 2
+
+2 recorded events
+
+### User
+
+_source line 122 · 2026-05-16T17:42:52.536Z_
+
+Continue from where you left off.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "59e5132c-41e9-41ed-abed-b93165b36798",
+  "isSidechain": false,
+  "promptId": "995e2524-dad5-4171-8e71-fb02c75bdafb",
+  "type": "user",
+  "isMeta": true,
+  "uuid": "d5ab8b14-11d3-4141-a2f9-efb58ddc5644",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 123 · 2026-05-16T17:42:52.536Z_
+
+No response requested.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d5ab8b14-11d3-4141-a2f9-efb58ddc5644",
+  "isSidechain": false,
+  "type": "assistant",
+  "uuid": "a801167f-2b6e-44d2-b772-2edf125a4845",
+  "isApiErrorMessage": false,
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "id": "7f181bed-bf81-42ef-b62e-4f6ca7b3a3af",
+    "container": null,
+    "model": "&lt;synthetic>",
+    "stop_reason": "stop_sequence",
+    "stop_sequence": "",
+    "type": "message",
+    "usage": {
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "cache_read_input_tokens": 0,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": null,
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": null,
+      "iterations": null,
+      "speed": null
+    },
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+## Round 3
+
+6 recorded events
+
+### User
+
+_source line 124 · 2026-05-16T17:42:52.608Z_
+
+[Round 1 审稿请求]:
+以下是 Reviewer 1 的完整审稿意见。请逐条回应每个 Must-Fix (N1-N2) 和 Should-Fix (W1-W6) 问题：
+- 如果同意，标注 [AGREE] 并简要说明理由
+- 如果不同意，标注 [REBUT] 并提供证据（cite 具体 Section/Table/Figure）
+
+特别关注与你的审查存在重叠或分歧的地方。
+
+---
+
+# Reviewer 1 完整审稿报告
+
+## 总体评分
+**Overall**: 3/5 — Findings track acceptance
+
+## Must-Fix 问题
+
+**N1** [critical] Abstract 和 Introduction 系统性省略 CF 副作用，构成选择性报告
+- Abstract 声称 "reduces domain/range violations by 94% while maintaining extraction F1"，Introduction 三条贡献均只提 DR 下降。但 CF 从 0.08% 飙升至 9.90%（SciERC, 124× 增幅），Llama DocRED 从 0.17% 升至 12.02%（71× 增幅）。
+- 正文 §5 和 Appendix B 对 CF 有诚实讨论，但 abstract/intro 的沉默构成 framing bias。
+- 建议：Abstract 中加入 CF trade-off 摘要，Introduction Contribution 3 也应提及。
+
+**N2** [critical] R²=0.886 基于 n=4 数据点被过度解读为"预测框架"
+- 线性回归有 2 个自由参数，n=4 仅留 2 个自由度。两个 dataset 的 tightness 差异巨大，tightness 单一变量可能就足以解释大部分方差。
+- Abstract 和 conclusion 仍将此描述为 "predictive framework"。
+- 建议：改为 "consistent with a dual-factor pattern"，降级为 "descriptive pattern"，增加 Mistral 数据点。
+
+## Should-Fix 问题
+
+**W1** [warning] Parse failure 在约束下增加，构成潜在混淆变量
+- Llama DocRED parse failure 从 68/998 (6.8%) 增至 91/998 (9.1%)，增幅 34%。这些文档被排除在评估之外，可能存在样本选择偏差。
+- 建议：补充 Llama DocRED zero-shot 的 parse-failure-excluded 分析。
+
+**W2** [warning] 与 Post-hoc filtering 对比不充分支持核心叙事
+- Post-hoc filtering 在 6 个 zero-shot 配置中 5 个获得更高 R-F1。Introduction 的 framing 带有否定语气（"wastes compute"），与实验数据不完全一致。
+- 建议：正文中加入 post-hoc 对比摘要，诚实说明 post-hoc 在多数 zero-shot 场景 F1 更高。
+
+**W3** [warning] Zero-shot R-F1 ~8% 的实际意义讨论不足
+- 论文将 F1 定位为"控制变量"（仅在 Appendix B），但正文高亮 DocRED +0.50pp p<0.001 作为积极结果，存在逻辑不一致。
+- 建议：在 §5 加入 1-2 句正文讨论 zero-shot F1 水平的含义。
+
+**W4** [warning] SciERC 5-way vs DocRED 4-way 消融不对称性未解释
+- SciERC 包含 S2，DocRED 不包含，未说明原因。
+
+**W5** [warning] Semantic-only 模式在 DocRED 上反直觉地增加 ET 违规
+- ET 从 2.48% 几乎翻倍至 4.22%，但 semantic layer 声称仅在 HeadType/TailType 位置激活。
+
+**W6** [warning] First-subword-token 唯一性假设限制泛化性
+- §3 将此作为 implementation detail，但实际上是方法适用范围的根本性限制。
+
+## 小问题
+- 符号冲突：τ 同时用于 tightness 和 entity type
+- Table 2 S2 行 CF=8.03%, R-F1=8.03 数值巧合
+- DocRED Grammar/Full S1 RV=0.03%（非 0%），来源未解释
+- Greedy decoding 限制
+- "Global entity-level type consensus" 缺少可行性分析
+
+## Questions
+Q1: CF-DR trade-off 中 DR 和 CF 应否有不同权重？
+Q2: Grammar layer 在 DocRED 上强制替换的关系名称语义质量如何？
+Q3: Fine-tuned 下 grammar layer 是 no-op，"两层组合" 架构叙事是否被削弱？
+Q4: Fuzzy Matching 阈值如何选择？是否调优过？
+Q5: Global consensus 在 autoregressive 解码中的可行性？
+
+## 数值一致性核查
+逐一核查 Table 1-9 与正文的一致性：所有主要数值声明通过验证。
+⚠ Introduction 中 "DR ↓42--90% on DocRED" 的 42% 来自 Mistral，不是 Qwen，范围跨三个模型但未明确说明。
+
+## Missing References
+- GenIE (Josifoski et al., 2022) — 正文 §6 未引用
+- EnriCo (Zaratiana et al., 2024) — 正文 §6 未引用
+- Zhou et al. (2026) "structure snowballing" — 正文 §6 未提及
+
+---
+
+请逐条回应以上所有 Must-Fix 和 Should-Fix 问题。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a801167f-2b6e-44d2-b772-2edf125a4845",
+  "isSidechain": false,
+  "promptId": "995e2524-dad5-4171-8e71-fb02c75bdafb",
+  "type": "user",
+  "uuid": "300c0f85-fdea-472a-bdab-bbcc56458c26",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 125 · 2026-05-16T17:43:28.571Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The Director is asking me to respond to Reviewer 1's review, point by point, indicating whether I agree or disagree with each issue. Let me go through each one carefully, comparing with my own findings.
+
+Let me re-read the paper sections I've already reviewed to verify claims.
+
+**N1**: CF omission from Abstract/Introduction
+- I raised this as W2 in my own review (Should-Fix level). Reviewer 1 raises it as Must-Fix (critical).
+- The facts are correct: CF goes from 0.08%→9.90% on SciERC, 0.17%→12.02% on Llama DocRED.
+
+
+- The Abstract indeed doesn't mention this improvement, which is a valid point, though I think the severity level is debatable.
+
+**N2**: R²=0.886 n=4 overinterpretation
+- I raised this as W1 in my own review (Should-Fix level). Reviewer 1 also raises it as Must-Fix.
+- n=4 with 2 parameters is indeed statistically vacuous.
+- Abstract uses it as a contribution claim.
+
+**W1**: Parse failure increase as confound
+- Llama DocRED shows parse failures rising from 68→91 (6.8%→9.1%).
+- This is mentioned in Table 3 footnote, and it's a valid concern I didn't specifically flag—excluding failed-parse documents could bias the results.
+
+**W2**: Post-hoc filtering comparison
+- I noted this in my W3, where post-hoc wins 5/6 zero-shot settings on F1, yet the paper frames it as inferior and wasteful of compute, which contradicts the data.
+
+**W3**: Zero-shot F1 ~8% practical significance
+- The paper relegates this discussion to Appendix B while the main text highlights +0.50pp p<0.001 without proper context, which is a valid concern.
+
+**W4**: SciERC 5-way vs DocRED 4-way asymmetry
+- SciERC includes an S2 row while DocRED doesn't, which I can confirm from the paper.
+
+**W5**: Semantic-only ET increase on DocRED
+- The semantic-only error type increases to 4.22% versus 2.48% unconstrained, which is counter-intuitive given that the semantic layer should only activate at type-bearing positions, and I didn't flag this specifically.
+
+**W6**: First-subword-token uniqueness
+- This was mentioned in the Limitations section but I didn't isolate it as a separate issue, though Reviewer 1 argues it's a fundamental limitation rather than just an implementation detail.
+
+Now I'm ready to formulate my responses, starting with N1 where I'll agree but argue this should be a Should-Fix rather than Must-Fix issue since the paper does discuss it in sections 5 and 7, though the Abstract and Introduction omit it, which is more of a framing problem.
+
+For the remaining issues, I'm going through each one: N2 I completely agree with since I raised the same concern, W1 is valid about the parse failure confound, W2 I partially agree with but the paper's recall preservation argument has some merit, W3 and W4 I agree with though W4 is minor, and W5 and W6 are both good catches that align with concerns I flagged elsewhere.
+
+Now I need to verify whether GenIE and EnriCo are actually cited in the main related work section or only in the appendix.
+
+Looking back at what I read earlier, both GenIE and EnriCo only appear in Appendix A, not in the main §6 text. The main section discusses GENRE, AdaKGC, GCD, and GoLLIE for vocabulary and type-constrained generation, but those other two papers aren't there. in the main text §6. This is a format issue because many reviewers may not read the full appendix. I should address this in my response to Reviewer 1.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "300c0f85-fdea-472a-bdab-bbcc56458c26",
+  "isSidechain": false,
+  "requestId": "req_011Cb6fJj4EsqHogR78yYQVp",
+  "type": "assistant",
+  "uuid": "af213e33-d5be-4665-8317-88c3ecbc14fa",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RYp67RAQnHkPkjc7u1qCsW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1692,
+      "cache_read_input_tokens": 96294,
+      "output_tokens": 4777,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1692,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4777,
+          "cache_read_input_tokens": 96294,
+          "cache_creation_input_tokens": 1692,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1692
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 126 · 2026-05-16T17:44:39.441Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__review_reviewer_post_to_director · `toolu_017jghxwZnYJoHzoYDGDaWAF`</summary>
+
+```json
+{
+  "text": "\n# Reviewer 2 对 Reviewer 1 审稿意见的逐条回应\n\n---\n\n## Must-Fix 问题\n\n### R1-N1: Abstract/Introduction 省略 CF 副作用\n\n**[AGREE]** — 但对 severity 有不同判断。\n\n我在自己的审稿中将此列为 W2 (Should-Fix)。Reviewer 1 将其列为 Must-Fix。\n\n事实层面完全同意：CF 从 0.08%→9.90%（SciERC, 124×）和 0.17%→12.02%（Llama DocRED, 71×）是重大副作用，Abstract 完全未提及确实构成 framing bias。\n\n但我倾向于 Should-Fix 而非 Must-Fix，理由：\n1. §5.2 paragraph 1 最后一句明确报告了 CF 增加（\"full constraint enforcement elevates cross-field consistency violations from 0.08% to 9.90%\"）\n2. §7 Discussion 第二段专门讨论 CF dual mechanism\n3. Limitations section 开头就提 CF\n4. Appendix B 有完整的 CF-DR trade-off ablation (Table 5)\n\n论文并非隐藏问题，而是在 Abstract/Intro 的 framing 上有偏。这是 \"presentation issue\" 而非 \"integrity issue\"。但我同意必须修复——在 Abstract 末尾加一句 CF caveat 即可。\n\n**修改建议一致**：同意 Reviewer 1 的建议，Abstract 加 CF trade-off 摘要。\n\n---\n\n### R1-N2: $R^2=0.886$ (n=4) 过度解读\n\n**[AGREE]** — 完全同意，与我的 W1 重合。\n\n4 个数据点、2 个参数、2 个自由度——$R^2$ 在这种情况下几乎无信息量。即使随机 4 点也经常获得 $R^2>0.8$。\n\n我还注意到一个 Reviewer 1 未提的补充论点：两个 SciERC 点的 tightness ($\\bar{\\tau}=0.333$) 和两个 DocRED 点的 tightness ($\\bar{\\tau}=0.842$) 差异巨大，本质上这是一个 \"两组各两点\" 的比较，tightness 单一变量就能解释大部分方差。$R^2$ 的高值可能仅反映了两个 dataset 的系统性差异，而非 dual-factor 的 predictive power。\n\n建议一致：从 Abstract 移除 $R^2$ 数字，降级为 \"descriptive pattern\"。增加 Mistral 的 4 个数据点（SciERC + DocRED, unconstrained + S1）可以提供 6-8 点拟合。\n\n---\n\n## Should-Fix 问题\n\n### R1-W1: Parse failure 增加构成混淆变量\n\n**[AGREE]** — 有效问题，我未独立发现。\n\nTable 3 footnote 确认 Llama DocRED parse failure 从 68 增至 91 (6.8%→9.1%)。被排除的文档可能系统性偏向某些关系类型（如长文档或多关系文档），导致 violation rate 和 F1 的计算在非随机子集上进行。\n\n进一步证据：§5.2 composability 部分的脚注提到 \"excluding parse-failure documents (+1.4pp increase, 7.1%→8.5%) yields +0.03pp\"——这表明 parse failure 确实影响 R-F1 的解读（all-set 报告 -0.30pp，但排除 parse failure 后变为 +0.03pp）。这个信息仅在脚注中，说明作者意识到问题但未充分讨论。\n\n建议：在正文中增加一个 parse failure sensitivity analysis 段落。\n\n---\n\n### R1-W2: Post-hoc filtering 对比不充分支持核心叙事\n\n**[AGREE]** — 与我的 W3 高度重合。\n\n数据事实：Appendix B Table 8 显示 post-hoc filtering 在 5/6 zero-shot 设置上 F1 更高。Introduction 中 \"Post-hoc validation wastes compute on discarded outputs and cannot redirect probability mass during decoding\" 的表述暗示 post-hoc 是劣势方法，但实验数据不支持这一判断（至少在 F1 指标上）。\n\n但我要补充一点 Reviewer 1 未提到的平衡观点：\n- OntoCoDec 在 6/6 zero-shot 设置中 recall 更高（Table 8 隐含）\n- 当 rejection rate > 70% (Mistral DocRED) 时 post-hoc 崩溃，OntoCoDec 胜出\n- Fine-tuning 下两者收敛\n\n所以 Introduction 的 framing 不完全错误，但需要 nuance。建议将 \"wastes compute\" 改为条件性表述（e.g., \"becomes increasingly destructive as violation rates rise\"），并在 §5 加入 post-hoc 对比的正文摘要。\n\n---\n\n### R1-W3: Zero-shot R-F1 ~8% 实际意义讨论不足\n\n**[AGREE]** — 有效但可争辩。\n\n论文在 Appendix B \"Practical Significance of Zero-Shot F1\" 段落中有详细讨论，包括与 supervised SOTA (49-53%) 的对比，以及 \"F1 serves as a control variable\" 的定位。问题是这段关键论述只在 Appendix 中。\n\n但我对 Reviewer 1 的批评 \"正文高亮 DocRED +0.50pp p<0.001 作为积极结果\" 有更强的共鸣——如果 F1 只是控制变量，为什么要用 p-value 强调它？这确实存在逻辑不一致。要么 F1 重要（那就讨论 8% 的含义），要么 F1 只是控制（那就不要用统计显著性来高亮它）。\n\n建议：在 §5.2 core result 后加 1-2 句承认 zero-shot F1 的绝对水平较低，引用 Appendix B 的完整讨论。\n\n---\n\n### R1-W4: SciERC 5-way vs DocRED 4-way 消融不对称\n\n**[AGREE]** — 但为 minor issue。\n\n推测原因：DocRED 的 S2 需要两次全文档推理（每文档 ~21s），998 文档的计算成本约 12 GPU-hours，可能是纯工程/资源限制。但论文应说明。一句话足够（e.g., \"S2 is omitted on DocRED due to computational cost of two-pass document-level decoding\"）。\n\n---\n\n### R1-W5: Semantic-only 模式在 DocRED 上 ET 增加 (2.48%→4.22%)\n\n**[AGREE]** — 好发现，我未独立注意到。\n\n这确实反直觉：semantic layer 声称仅在 HeadType/TailType 位置激活（§3.4.2），不应影响 entity type generation。\n\n推测解释：semantic-only 模式下，没有 grammar layer 保证 entity type token 属于 $\\mathcal{E}$。Semantic layer 的 logit masking 可能在某些 prefix 状态下产生 unintended 交互——例如 position detection 误判某个 free-text 位置为 type position，导致 mask 干扰 entity type generation。Table 3 显示 semantic-only 也增加了 RV (29.66%→29.87%)，进一步暗示 semantic layer 在无 grammar 保护下有 side effects。\n\n作者应解释此现象的机制。这也进一步支持了 \"enabling dependency\" 的论点——semantic layer 不应单独使用。\n\n---\n\n### R1-W6: First-subword-token 唯一性限制泛化性\n\n**[AGREE]** — 与我的 Q5 重合。\n\n§3.4.3 \"Implementation\" 段将此描述为已验证的 property（\"verified for both tokenizers on our two ontologies, 6 entity types each\"），但 Limitations 承认 \"ontologies with many types or multi-token type names would require prefix-tree masking, which we have not implemented\"。\n\n6 个 entity types 的唯一性验证几乎是 trivial 的。真实世界 IE 本体如 Wikidata (7000+ entity types)、UMLS (100+ semantic types)、ACE 2005 (18 entity types) 都远超此规模。这个限制确实是方法论层面的，不仅是工程细节。\n\n建议一致：在 §3.4.3 中将此从 implementation detail 提升为 explicit limitation，说明何时需要 prefix-tree 扩展，并在 Limitations section 中讨论 scalability。\n\n---\n\n## Missing References 评论\n\n**GenIE 和 EnriCo 在正文 §6 中未引用**：[AGREE]。我验证了 section6_related_work.tex——两者仅出现在 appendix_related_work.tex 中。作为与 OntoCoDec 最直接相关的 constrained decoding IE 系统（GenIE: trie-based state constraints; EnriCo: ASP-based type constraints），它们必须出现在主文 §6 而非仅在 Appendix A。\n\n**Zhou et al. (2026) \"structure snowballing\"**：已在 Appendix A \"Quality Impact\" 段引用 (`\\cite{zhou2026snowballing}`)，但未出现在主文 §6。鉴于 §6 的 \"Quality Impact\" 段落长度有限，可以接受仅在 Appendix 讨论。INFO 级别，非必须。\n\n---\n\n## 数值一致性核查补充\n\n同意 Reviewer 1 的 ⚠ 标注：\"DR ↓42--90% on DocRED\" 的 42% 来自 Mistral，90% 来自 Llama。Introduction Contribution 3 写 \"DR↓42--90% on DocRED\" 而 Abstract 也使用此范围。建议在 Introduction 中明确 \"(across three model families)\"，目前已有但容易被忽略。\n\n---\n\n## 与我自己审稿的重叠/分歧总结\n\n| 问题 | R1 severity | R2 severity | 判断 |\n|------|-------------|-------------|------|\n| CF 省略 | N1 (critical) | W2 (warning) | 偏向 Should-Fix，但同意必须修复 |\n| R² n=4 | N2 (critical) | W1 (warning) | 同意 critical（因为出现在 Abstract） |\n| Post-hoc 叙事 | W2 | W3 | 一致 |\n| GCD/GenIE 缺实验对比 | 未提 | N3 (critical) | R1 未提此问题，但我认为是 critical |\n| DORE 未引用 | 未提 | N1 (critical) | R1 未提此问题 |\n| Code-gen novelty 阐述不足 | 未提 | N2 (critical) | R1 未提此问题 |\n\n关键分歧：Reviewer 1 更关注 reporting integrity (CF省略, R²)，我更关注 novelty substantiation (与 code-gen 的区分, 与同类方法的实验对比)。两者互补，建议 Director 综合考虑。\n",
+  "reviewer_id": "2",
+  "project": "schema_semantic_constrained_ie"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "af213e33-d5be-4665-8317-88c3ecbc14fa",
+  "isSidechain": false,
+  "requestId": "req_011Cb6fJj4EsqHogR78yYQVp",
+  "type": "assistant",
+  "uuid": "5bd0a934-63d9-425f-a4b3-a54a6f0c9d76",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RYp67RAQnHkPkjc7u1qCsW",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1692,
+      "cache_read_input_tokens": 96294,
+      "output_tokens": 4777,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1692,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 4777,
+          "cache_read_input_tokens": 96294,
+          "cache_creation_input_tokens": 1692,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1692
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 127 · 2026-05-16T17:44:43.275Z_
+
+<details><summary>↩ Tool result · `toolu_017jghxwZnYJoHzoYDGDaWAF`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\"}, \"error\": \"\"}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5bd0a934-63d9-425f-a4b3-a54a6f0c9d76",
+  "isSidechain": false,
+  "promptId": "995e2524-dad5-4171-8e71-fb02c75bdafb",
+  "type": "user",
+  "uuid": "e1b16e62-1ef5-4526-a075-9a1277707017",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"review_director_key\": \"feishu:group:oc_01fc90ae186a4ed432770f7601995139:director\"}, \"error\": \"\"}"
+    }
+  },
+  "sourceToolAssistantUUID": "5bd0a934-63d9-425f-a4b3-a54a6f0c9d76",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_6/projects/schema_semantic_constrained_ie/.claude/sessions/review_reviewer_2_cbe93d98",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 128_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "[Round 1 审稿请求]: 以下是 Reviewer 1 的完整审稿意见。请逐条回应每个 Must-Fix (N1-N2) 和 Should-Fix (W1-W6) 问题： - 如果同意，标注 [AGREE] 并简要说明理由 - 如果不同意，标注 [REBUT] 并提供证据（cite 具体 Section/Table/Figure）  特别关注与你的审查存在重叠或分歧的地方。  ---  #…",
+  "leafUuid": "e1b16e62-1ef5-4526-a075-9a1277707017",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 129_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review OntoCoDec paper for EMNLP 2026",
+  "sessionId": "58dfc1c4-cd84-428a-9932-45e8da604e5a"
+}
+```
+
+---

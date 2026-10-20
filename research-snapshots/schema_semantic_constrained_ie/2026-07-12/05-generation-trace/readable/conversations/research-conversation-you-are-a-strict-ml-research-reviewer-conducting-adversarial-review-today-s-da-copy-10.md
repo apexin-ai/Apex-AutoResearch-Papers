@@ -1,0 +1,3438 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-10 (UTC).** Your job: indep
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 48
+- **Recorded user turns:** 1
+- **Tool calls:** 12
+- **Original source:** `logs/chats/exported-trajectories/account-1/3dbb4dd6-70d2-467f-ad4a-0eaae513daab.jsonl`
+- **Structured JSON:** [`416ed3ef0bf543c926c6.json`](../../sessions/41/416ed3ef0bf543c926c6.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T07:58:50.502Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T07:58:50.502Z",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-10 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Information Extraction.\n\nDirection: Structured information extraction — named entity recognition, relation extraction, event extraction, document-level IE, end-to-end extraction pipelines. Both LLM-based and non-LLM approaches welcome. In-scope: schema-guided extraction, zero-shot/few-shot IE, cross-document extraction, multimodal IE (text + layout + images), temporal/causal relation extraction.\n\nContribution type: METHOD ONLY. New extraction architectures, training strategies, or inference algorithms. Not a new dataset or annotation guideline.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. IE work is typically lightweight — most experiments are fine-tuning or in-context learning.\n2. Time: ≤16 days. Use existing IE frameworks (GoLLIE, UniNER, USM) or build on open LLMs with structured output.\n3. Eval: ACE05, SciERC, TACRED/TACREV, DocRED, MAVEN, Few-NERD, WikiEvents, RAMS.\n\nLook for: schema-guided extraction that generalizes across domains, efficient document-level IE beyond sliding windows, extraction with faithful provenance/citation, structured extraction from semi-structured sources (tables, forms, code). Avoid: basic NER fine-tuning, prompt-only extraction without architectural insight.\n\nTag: direction=information_extraction, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 3/10)\n{\n  \"title\": \"Online Schema Adaptation via Extraction-Error Feedback Loops\",\n  \"core_problem\": \"Schema-guided IE models (GoLLIE, KnowCoder, GuideX) fix the extraction schema at training or deployment time. When a new domain has a schema that partially conflicts with training-time guidelines — e.g., a medical ontology where 'Treatment' subsumes what the model learned as 'Drug' and 'Procedure', or a legal corpus where 'Organization' granularity differs from the training ontology — models fail silently with no mechanism to refine their operational schema. This is a *schema-ontology mismatch* problem: the set of types and their definitional boundaries in the target domain do not correspond to the types the model was trained to extract. It is distinct from the annotation instruction clarity problem, which concerns surface wording of fixed type definitions. How can IE models detect and recover from schema-ontology mismatches at test time without gold labels, multiple annotator models, or domain-specific synthetic data?\",\n  \"opportunity\": \"PARSE (EMNLP 2025 Industry Track, ACL Anthology 2025.emnlp-industry.184) demonstrates that automatic schema optimization improves extraction accuracy by 64.7% on SWDE — but requires offline synthetic data generation per domain. GuideX (ACL Findings 2025) shows that auto-generated guidelines improve zero-shot NER by 7 F1 points — but schemas are frozen at fine-tuning time. DiZiNER (arXiv:2604.15866, April 2026) achieves zero-shot SOTA on 14/18 NER benchmarks by having multiple heterogeneous LLMs annotate shared texts and using inter-model disagreement to refine annotation instructions — but (a) uses 8 simultaneous annotator LLMs (high inference cost), (b) explicitly keeps 'the NER schema fixed across iterations,' refining only surface-level instruction wording rather than type definitions, (c) requires 25-document batches sampled from training data, ruling out the truly zero-seed setting, and (d) is NER-only. The gap is *online, single-extractor, schema-ontology* adaptation: using one model's own extraction inconsistencies — context-conditioned type contradictions, systematic pairwise type confusion patterns, and structurally invalid extractions — as signals to iteratively revise schema type definitions (splits, merges, boundary clarifications) during test-time deployment on streaming documents, with no gold labels, no training data access, and no multi-model ensemble.\",\n  \"landscape\": \"GoLLIE (ICLR 2024) shows annotation guidelines improve zero-shot IE but requires manually written guidelines. GuideX (ACL Findings 2025) automates guideline generation and achieves SOTA across 7 zero-shot NER benchmarks but cannot adapt post-deployment — schema is frozen at fine-tuning time. PARSE (EMNLP 2025 Industry Track, ACL Anthology 2025.emnlp-industry.184) optimizes JSON schemas via iterative refinement on synthetic data — 64.7% improvement on SWDE — but is fundamentally offline, requiring seed data per domain. SCIR (AAAI 2026) introduces a self-correcting iterative refinement framework with dual-path feedback (redundancy detection + missing entity detection) for IE across NER, RE, and event extraction; however, it refines extraction predictions given a fixed schema rather than revising schema type definitions in response to concept-level mismatches. DiZiNER (arXiv:2604.15866, April 2026), the most directly concurrent work, achieves zero-shot SOTA on 14/18 NER benchmarks using inter-model disagreement among 8 heterogeneous LLMs to refine task instructions — but explicitly keeps 'the NER schema fixed across iterations to maintain task consistency,' modifies surface-level instruction wording rather than the type ontology, requires 25-document batches from training data, runs at 8× the inference cost of a single-extractor system, and is NER-only. The open problem is the *zero-seed, single-extractor, online, schema-ontology* setting across NER, event extraction, and relation extraction: a model deployed on a new domain should detect its own concept-level schema mismatches from extraction pattern violations and propose targeted type-definition revisions — without gold labels, training data access, or multi-model ensembles.\",\n  \"approach\": \"We propose OSAFE (Online Schema Adaptation via Feedback Errors), a three-stage, zero-seed, single-extractor, test-time framework. In Stage 1, an error-detection layer monitors rolling extraction outputs for schema-domain mismatch signals over a sliding document buffer: (a) context-conditioned entity-type contradictions — the same surface form assigned conflicting types across documents whose surrounding sentence embeddings have cosine similarity above a threshold τ_sim, explicitly filtering out legitimate polysemy arising from different discourse contexts (e.g., 'Washington' as GPE in a political context vs. PERSON in a biographical context are not flagged because their sentence embeddings differ); (b) systematic type confusion patterns — persistent pairwise type swaps accumulating above a statistical confidence threshold, indicating structural boundary misalignment; (c) structurally invalid extractions — missing mandatory arguments in event or relation schemas, argument type constraint violations. In Stage 2, when a type's alignment score drops below an adaptive threshold, a frozen Qwen3-72B (or DeepSeek-R1) schema optimizer receives the current type description, concrete mismatch examples, and neighboring type definitions as read-only context, then generates a targeted schema revision — type split, merge, or boundary clarification — without accessing any gold labels. Revisions are type-local by construction: neighboring type descriptions are immutable inputs, preventing cascade instability where revising type A creates new violations for type B. A cooldown mechanism locks a revised type from further revision for L documents, preventing oscillation. In Stage 3, the revised schema description is hot-swapped into the extraction prompt and validated on the same rolling buffer using three fully unsupervised proxy metrics: (1) violation-rate delta (VRD) — change in the fraction of buffer extractions flagging schema violations before vs. after revision; (2) cross-document consistency delta (CDCD) — reduction in context-conditioned entity-type contradictions for the revised type within the buffer; (3) argument completeness proxy (ACP) — for event and relation extraction tasks, change in fraction of instances with all mandatory arguments populated. The revision is committed only if ≥2/3 proxy metrics show improvement; otherwise the original schema description is restored. No gold labels are required or used at any stage. We conduct two analytical experiments grounding the design: (i) a signal reliability study measuring, across all datasets, the fraction of detected context-conditioned contradictions that are true schema mismatches vs. legitimate polysemy at varying τ_sim values, plotting precision-recall of the error-detection layer and selecting τ_sim at the F1-maximizing point of that curve; (ii) a convergence analysis tracking rounds-to-convergence and oscillation frequency across datasets and schema sizes, verifying that type-local revision plus cooldown achieves stable termination in practice. We evaluate under deliberate schema contamination at five severity levels (type merge, type split, label scramble, argument-type swap, boundary blur) on the full required benchmark set: ACE05 (NER + event), FewNERD (NER), SciERC (NER + RE), MAVEN (event detection), WikiEvents and RAMS (event argument extraction), TACRED/TACREV (RE), and DocRED (document-level RE). Baselines include PARSE, SCIR, GuideX, and DiZiNER adapted to a single-extractor setting for fair comparison.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~250h A100 80GB (baseline runs + ablations across 8 datasets × 5 schema contamination severity levels × 3 task types + schema optimizer LLM inference calls + signal reliability and convergence analysis experiments)\",\n      \"gpu_utilization\": \"~30-40% — high idle rate while researcher implements error-detection layer, calibrates τ_sim and cooldown L, manually inspects schema revision quality, and writes paper\",\n      \"timeline\": \"4-6 months\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"~$340 (250h × $1.35/hr on Lambda Labs)\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~350h A100 80GB (agent explores more schema optimizer prompt variants, τ_sim calibration grid, cooldown L values, and cross-dataset schema transfer combinations than manual mode)\",\n      \"gpu_utilization\": \"~60-70% — agent runs experiments continuously between human approval gates; human reviews signal reliability results, schema revision quality, and unsupervised proxy calibration decisions\",\n      \"timeline\": \"5-7 weeks\",\n      \"team\": \"1 researcher, ~30min/day check-in\",\n      \"claude_api_cost\": \"$200-350 (Opus 4.7 for schema optimizer calls + agent orchestration; ~2000-3500 turns)\",\n      \"estimated_gpu_cost\": \"~$475 (350h × $1.35/hr on Lambda Labs)\",\n      \"risk_note\": \"Two critical human gates: (1) signal reliability study must be reviewed before τ_sim is locked — if polysemy fraction exceeds 50% at default settings, the filtering strategy must be redesigned; (2) schema optimizer may produce plausible-sounding but semantically vacuous revisions (trivial merges that improve VRD while degrading test F1) — human review of a random sample of committed revisions is essential before paper submission.\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~900h A100 80GB (full sweep over τ_sim thresholds, rolling window sizes, cooldown periods L, optimizer model choices, and all cross-domain schema contamination permutations across 8 datasets × 5 severity levels × 3 task types)\",\n      \"gpu_utilization\": \"Near-zero idle — agent orchestrates experiment queue 24/7 with parallel GPU jobs; no human bottleneck between successive runs\",\n      \"timeline\": \"1-2 weeks with 4-8 A100s running in parallel\",\n      \"team\": \"0 (only initial setup of experiment harness and API keys)\",\n      \"claude_api_cost\": \"$500-900 (Opus 4.7; ~5000-9000 turns for schema optimizer calls + agent orchestration + automated result analysis across all datasets and task types)\",\n      \"estimated_gpu_cost\": \"~$1215 (900h × $1.35/hr on Lambda Labs)\",\n      \"speed_bottleneck\": \"Number of A100 GPUs available for parallel experiment runs; Anthropic API rate limits on Opus 4.7 schema optimizer calls across 8 datasets\",\n      \"risk_note\": \"Without human oversight, auto mode risks over-tuning τ_sim to specific dataset polysemy rates that do not generalize. Convergence analysis must be explicitly monitored — auto mode should flag any dataset where oscillation exceeds 3 revision cycles per type before proceeding. Final evaluation must use a fully sequestered test split never touched during the adaptation phase.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline May 25, 2026; conference Oct 24-29, 2026, Budapest, Hungary)\"\n  ],\n  \"level\": \"solid\",\n  \"key_references\": [\n    \"GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction (ICLR 2024)\",\n    \"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction (EMNLP 2025 Industry Track, ACL Anthology 2025.emnlp-industry.184)\",\n    \"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction (ACL Findings 2025)\",\n    \"KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction (ACL 2024)\",\n    \"SCIR: A Self-Correcting Iterative Refinement Framework for Enhanced Information Extraction Based on Schema (AAAI 2026)\",\n    \"DiZiNER: Disagreement-guided Instruction Refinement via Pilot Annotation Simulation for Zero-shot Named Entity Recognition (arXiv:2604.15866, April 2026)\"\n  ],\n  \"description\": \"Schema-guided IE models fail silently when deployed on domains whose entity type ontologies partially conflict with training-time schemas — for example, when a medical ontology's 'Treatment' subsumes what the model learned as 'Drug' and 'Procedure'. This is a schema-ontology mismatch problem, distinct from the annotation instruction clarity problem addressed by DiZiNER. OSAFE (Online Schema Adaptation via Feedback Errors) addresses schema-ontology mismatch with a three-stage, zero-seed, single-extractor, test-time framework: (1) an error-detection layer accumulates mismatch signals over a rolling document buffer — context-conditioned entity-type contradictions filtered by sentence-embedding cosine similarity (threshold τ_sim) to exclude legitimate polysemy, persistent pairwise type confusion patterns, and structurally invalid extractions; (2) when a type's alignment score drops below an adaptive threshold, a frozen Qwen3-72B schema optimizer proposes targeted type-definition revisions (splits, merges, boundary clarifications) using only mismatch examples and read-only neighboring type definitions, with type-local revision constraints and a per-type cooldown preventing cascade instability and oscillation; (3) the revised schema is hot-swapped into the extraction prompt and validated using three fully unsupervised proxy metrics — violation-rate delta (VRD), cross-document consistency delta (CDCD), and argument completeness proxy (ACP) — committing only if ≥2/3 metrics improve. Unlike PARSE (offline synthetic data required), SCIR (refines predictions not schema definitions), and DiZiNER (multi-LLM ensemble, schema type definitions fixed, NER-only, requires training data batches), OSAFE operates online, single-extractor, and zero-seed across NER, event extraction, and relation extraction. Two analytical experiments ground the design: a signal reliability study calibrating τ_sim via the precision-recall curve of the error-detection layer across polysemy vs. true-mismatch cases, and a convergence analysis verifying stable termination under type-local revision plus cooldown. Evaluated under deliberate schema contamination at five severity levels on all eight required benchmarks — ACE05, FewNERD, SciERC, MAVEN, WikiEvents, RAMS, TACRED/TACREV, and DocRED — targeting 10-15% F1 recovery over non-adaptive baselines across NER, event, and relation extraction.\",\n  \"project_name\": \"schema_adapt_feedback\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"UNCITED CONCURRENT WORK: DiZiNER (arXiv:2604.15866, Apr 2026) achieves zero-shot SOTA on 14/18 NER benchmarks using multi-LLM disagreement analysis to iteratively refine NER instructions — no parameter updates, no gold labels. This is structurally parallel to OSAFE's error-driven schema revision. The generator must cite, compare against, and differentiate from DiZiNER, or its novelty claim is significantly weakened.\", \"VALIDATION PARADOX (Stage 3): The description states the revised schema is 'validated on a held-out document buffer to confirm F1 improvement' before being committed. F1 requires gold labels. This directly contradicts the zero-seed claim. The paper must either (a) replace F1 with a fully unsupervised proxy signal (violation-rate change, cross-document consistency delta), or (b) acknowledge a small labeled validation split, which must be subtracted from the adaptation budget.\", \"EVALUATION MISMATCH WITH HARD CONSTRAINTS: The user's stated hard-constraint benchmark list is ACE05, SciERC, TACRED/TACREV, DocRED, MAVEN, Few-NERD, WikiEvents, RAMS. The proposal evaluates only on FewNERD, CrossNERD, and MultiNERD — the latter two are NOT in the required list. Event extraction (MAVEN, WikiEvents, RAMS) and relation extraction (TACRED, DocRED) are entirely absent, yet EMNLP IE reviewers will expect coverage beyond NER.\", \"SIGNAL RELIABILITY: Cross-sentence entity-type contradictions are noisy signals. The same surface form is legitimately typed differently across documents (e.g., 'Washington' as GPE vs. PERSON). The paper offers no analysis of how many contradictions are true schema mismatches vs. legitimate polysemy, and provides no threshold-calibration strategy beyond 'adaptive threshold' — this needs empirical grounding.\", \"SCHEMA EVOLUTION STABILITY: Iterative schema revisions on a multi-type schema may cause cascading instability — changing the boundary of type A to absorb part of type B will create new apparent violations for type B, potentially triggering further revisions. The paper has no analysis of convergence or oscillation risk in the schema revision loop.\", \"PARSE VENUE MISLABEL: The generator describes PARSE as 'arXiv 2510.08623, 2025' in the opportunity section but correctly identifies it as EMNLP 2025 Industry Track elsewhere. The citation should consistently list its actual publication venue (EMNLP 2025 Industry Track, ACL Anthology 2025.emnlp-industry.184) rather than as a preprint.\"]\nFeedback: The core idea — using the extractor's own type-consistency violations as a signal to drive online schema revision — is conceptually clean and fills a real gap. The three-stage decomposition is well-motivated. To reach acceptance quality, the generator must address four structural issues: (1) **DiZiNER differentiator**: Read arXiv:2604.15866 and add a paragraph explicitly separating OSAFE from DiZiNER. The sharpest differentiator is that DiZiNER requires multiple LLMs annotating the same texts (multi-annotator simulation) whereas OSAFE runs with a single extractor and accumulates cross-document inconsistency signals — frame this as the operational advantage. (2) **Repair the validation paradox**: Replace 'F1 improvement on held-out buffer' with an unsupervised proxy — e.g., *violation-rate delta* (fraction of rolling buffer extractions flagging schema violations before vs. after revision), possibly combined with extraction coverage (recall-proxy via argument completeness). If a small labeled validation split must be used, say so and budget it explicitly. (3) **Expand evaluation to required benchmarks**: Add ACE05 (NER+RE), MAVEN (event extraction), and TACRED (RE) experiments. For event extraction, the schema contamination can be applied to argument-type definitions (e.g., scrambling AGENT vs. PATIENT). This addresses both the hard-constraint mismatch and the concern that NER-only evaluation limits generalization claims. (4) **Add signal-noise analysis**: Include a small analytical experiment quantifying what fraction of detected 'type contradictions' are true schema-domain mismatches vs. legitimate polysemy, and justify the confidence threshold by showing precision-recall trade-off of the error-detection layer.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"DUAL CONSTRAINT INFEASIBILITY: No proposed mode satisfies ≤200 H100-hours AND ≤16 days simultaneously. Manual (250h A100 ≈ 125h H100) meets compute but takes 4–6 months. HIL (350h A100 ≈ 175h H100) meets compute but takes 5–7 weeks. Auto Research (900h A100 ≈ 450h H100) meets the timeline but exceeds the compute budget by ~2.25×. The generator must redesign the experimental plan: the schema optimizer (Qwen3-72B) can run via API with zero GPU cost; the base extractor (GoLLIE-7B) inference across all 8 datasets × 5 severity levels should require only ~20–50h A100 with vLLM batching, well within budget. The 250h A100 manual estimate appears to conflate fine-tuning cost with inference-only evaluation. A corrected compute breakdown — splitting extractor inference (GPU) from schema optimizer (API) — is needed to show the 16-day plan is feasible.\", \"PROXY METRIC CIRCULAR REASONING: VRD (violation-rate delta) and CDCD (cross-document consistency delta) are computed on the same rolling document buffer that generated the mismatch signals that triggered revision. Any schema revision that addresses even a subset of buffer-specific violations will mechanically improve these metrics — including harmful revisions such as merging all confused types into one super-type. The paper must include an empirical validation experiment demonstrating that proxy metric improvements on the buffer predict F1 improvement on a sequestered held-out test split (using gold labels post-hoc only, not for revision decisions). Without this, the unsupervised validation mechanism has no demonstrated reliability.\", \"SYNTHETIC-ONLY EVALUATION: All 8 required benchmark evaluations use deliberately introduced schema contamination (type merge, split, label scramble, argument-type swap, boundary blur). This validates recovery from constructed mismatches but does not establish that the error-detection layer — especially context-conditioned contradiction detection — fires reliably on naturally occurring schema-ontology divergences. At minimum one real-world cross-domain transfer scenario should be added (e.g., ACE05-trained extractor deployed on GENIA biomedical NER, or ACE event types applied to WikiEvents argument definitions), comparing OSAFE against a non-adaptive baseline without synthetic contamination.\", \"SCHEMA OPTIMIZER MODEL SIZE ABLATION MISSING: Qwen3-72B is used as the schema optimizer. A reviewer will immediately ask: does the improvement come from the error-detection algorithm (OSAFE's core contribution) or simply from Qwen3-72B's ability to improve any type definition given examples? An ablation substituting Qwen3-7B, Llama-3-8B-Instruct, or a smaller model as the optimizer is needed to decouple the error-signal quality from raw LLM capability. Without this, the paper risks being read as 'give a very large LLM some confusion examples and ask it to rewrite the schema.'\", \"SAM-NER CONCURRENT WORK UNCITED: SAM-NER (arXiv:2605.03706, May 5, 2026) addresses zero-shot NER under schema shifts via semantic archetype mediation — projecting entities through domain-invariant archetypes before mapping to target types. It is not a direct competitor (uses frozen inference, no online revision, no type-definition modification), but it should be cited as concurrent work. Note: appeared 5 days before the review date; generator cannot be faulted, but the paper should acknowledge it before submission.\"]\nFeedback: The Round 2 revision comprehensively addressed all six Round 1 issues. The positioning against DiZiNER, PARSE, SCIR, and GuideX is now precise and defensible. Five focused issues remain. The most critical are (1) and (2). (1) Fix the resource estimate by explicitly separating extractor inference (GPU, very cheap for GoLLIE-7B inference across 8 datasets — likely 20-50h A100 total) from schema optimizer (Qwen3-72B via API, zero GPU cost). Show that the 16-day plan is feasible using ~50h A100 equivalent, well within 200 H100-hours. The current estimates conflate inference-only evaluation with fine-tuning workloads and will fail a reviewer sanity check. (2) Add an explicit proxy-metric reliability experiment: after running OSAFE on each dataset, plot proxy metric improvement (VRD, CDCD, ACP) against actual F1 improvement on the test split. This correlation analysis — even in one section of the experiments — validates the unsupervised validation gate and preempts the strongest methodological objection. (3) Add one natural domain transfer experiment (no synthetic contamination): pick any cross-domain NER or event pair (e.g., ACE05→biomedical, TACRED→SciERC cross-domain RE) and show OSAFE improves over a frozen schema baseline. This grounds practical value beyond constructed mismatches. (4) Add schema optimizer ablation (Qwen3-72B vs. Qwen3-7B) to isolate the error-signal contribution. (5) Mention SAM-NER (arXiv:2605.03706) as concurrent work in a footnote. Issues (3)-(5) are relatively quick to address. Issues (1)-(2) are the gate to a pass verdict.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T07:58:50.508Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T07:58:50.508Z",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab"
+}
+```
+
+---
+
+## Round 1
+
+46 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T07:58:50.547Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-10 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Information Extraction.
+
+Direction: Structured information extraction — named entity recognition, relation extraction, event extraction, document-level IE, end-to-end extraction pipelines. Both LLM-based and non-LLM approaches welcome. In-scope: schema-guided extraction, zero-shot/few-shot IE, cross-document extraction, multimodal IE (text + layout + images), temporal/causal relation extraction.
+
+Contribution type: METHOD ONLY. New extraction architectures, training strategies, or inference algorithms. Not a new dataset or annotation guideline.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. IE work is typically lightweight — most experiments are fine-tuning or in-context learning.
+2. Time: ≤16 days. Use existing IE frameworks (GoLLIE, UniNER, USM) or build on open LLMs with structured output.
+3. Eval: ACE05, SciERC, TACRED/TACREV, DocRED, MAVEN, Few-NERD, WikiEvents, RAMS.
+
+Look for: schema-guided extraction that generalizes across domains, efficient document-level IE beyond sliding windows, extraction with faithful provenance/citation, structured extraction from semi-structured sources (tables, forms, code). Avoid: basic NER fine-tuning, prompt-only extraction without architectural insight.
+
+Tag: direction=information_extraction, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 3/10)
+{
+  "title": "Online Schema Adaptation via Extraction-Error Feedback Loops",
+  "core_problem": "Schema-guided IE models (GoLLIE, KnowCoder, GuideX) fix the extraction schema at training or deployment time. When a new domain has a schema that partially conflicts with training-time guidelines — e.g., a medical ontology where 'Treatment' subsumes what the model learned as 'Drug' and 'Procedure', or a legal corpus where 'Organization' granularity differs from the training ontology — models fail silently with no mechanism to refine their operational schema. This is a *schema-ontology mismatch* problem: the set of types and their definitional boundaries in the target domain do not correspond to the types the model was trained to extract. It is distinct from the annotation instruction clarity problem, which concerns surface wording of fixed type definitions. How can IE models detect and recover from schema-ontology mismatches at test time without gold labels, multiple annotator models, or domain-specific synthetic data?",
+  "opportunity": "PARSE (EMNLP 2025 Industry Track, ACL Anthology 2025.emnlp-industry.184) demonstrates that automatic schema optimization improves extraction accuracy by 64.7% on SWDE — but requires offline synthetic data generation per domain. GuideX (ACL Findings 2025) shows that auto-generated guidelines improve zero-shot NER by 7 F1 points — but schemas are frozen at fine-tuning time. DiZiNER (arXiv:2604.15866, April 2026) achieves zero-shot SOTA on 14/18 NER benchmarks by having multiple heterogeneous LLMs annotate shared texts and using inter-model disagreement to refine annotation instructions — but (a) uses 8 simultaneous annotator LLMs (high inference cost), (b) explicitly keeps 'the NER schema fixed across iterations,' refining only surface-level instruction wording rather than type definitions, (c) requires 25-document batches sampled from training data, ruling out the truly zero-seed setting, and (d) is NER-only. The gap is *online, single-extractor, schema-ontology* adaptation: using one model's own extraction inconsistencies — context-conditioned type contradictions, systematic pairwise type confusion patterns, and structurally invalid extractions — as signals to iteratively revise schema type definitions (splits, merges, boundary clarifications) during test-time deployment on streaming documents, with no gold labels, no training data access, and no multi-model ensemble.",
+  "landscape": "GoLLIE (ICLR 2024) shows annotation guidelines improve zero-shot IE but requires manually written guidelines. GuideX (ACL Findings 2025) automates guideline generation and achieves SOTA across 7 zero-shot NER benchmarks but cannot adapt post-deployment — schema is frozen at fine-tuning time. PARSE (EMNLP 2025 Industry Track, ACL Anthology 2025.emnlp-industry.184) optimizes JSON schemas via iterative refinement on synthetic data — 64.7% improvement on SWDE — but is fundamentally offline, requiring seed data per domain. SCIR (AAAI 2026) introduces a self-correcting iterative refinement framework with dual-path feedback (redundancy detection + missing entity detection) for IE across NER, RE, and event extraction; however, it refines extraction predictions given a fixed schema rather than revising schema type definitions in response to concept-level mismatches. DiZiNER (arXiv:2604.15866, April 2026), the most directly concurrent work, achieves zero-shot SOTA on 14/18 NER benchmarks using inter-model disagreement among 8 heterogeneous LLMs to refine task instructions — but explicitly keeps 'the NER schema fixed across iterations to maintain task consistency,' modifies surface-level instruction wording rather than the type ontology, requires 25-document batches from training data, runs at 8× the inference cost of a single-extractor system, and is NER-only. The open problem is the *zero-seed, single-extractor, online, schema-ontology* setting across NER, event extraction, and relation extraction: a model deployed on a new domain should detect its own concept-level schema mismatches from extraction pattern violations and propose targeted type-definition revisions — without gold labels, training data access, or multi-model ensembles.",
+  "approach": "We propose OSAFE (Online Schema Adaptation via Feedback Errors), a three-stage, zero-seed, single-extractor, test-time framework. In Stage 1, an error-detection layer monitors rolling extraction outputs for schema-domain mismatch signals over a sliding document buffer: (a) context-conditioned entity-type contradictions — the same surface form assigned conflicting types across documents whose surrounding sentence embeddings have cosine similarity above a threshold τ_sim, explicitly filtering out legitimate polysemy arising from different discourse contexts (e.g., 'Washington' as GPE in a political context vs. PERSON in a biographical context are not flagged because their sentence embeddings differ); (b) systematic type confusion patterns — persistent pairwise type swaps accumulating above a statistical confidence threshold, indicating structural boundary misalignment; (c) structurally invalid extractions — missing mandatory arguments in event or relation schemas, argument type constraint violations. In Stage 2, when a type's alignment score drops below an adaptive threshold, a frozen Qwen3-72B (or DeepSeek-R1) schema optimizer receives the current type description, concrete mismatch examples, and neighboring type definitions as read-only context, then generates a targeted schema revision — type split, merge, or boundary clarification — without accessing any gold labels. Revisions are type-local by construction: neighboring type descriptions are immutable inputs, preventing cascade instability where revising type A creates new violations for type B. A cooldown mechanism locks a revised type from further revision for L documents, preventing oscillation. In Stage 3, the revised schema description is hot-swapped into the extraction prompt and validated on the same rolling buffer using three fully unsupervised proxy metrics: (1) violation-rate delta (VRD) — change in the fraction of buffer extractions flagging schema violations before vs. after revision; (2) cross-document consistency delta (CDCD) — reduction in context-conditioned entity-type contradictions for the revised type within the buffer; (3) argument completeness proxy (ACP) — for event and relation extraction tasks, change in fraction of instances with all mandatory arguments populated. The revision is committed only if ≥2/3 proxy metrics show improvement; otherwise the original schema description is restored. No gold labels are required or used at any stage. We conduct two analytical experiments grounding the design: (i) a signal reliability study measuring, across all datasets, the fraction of detected context-conditioned contradictions that are true schema mismatches vs. legitimate polysemy at varying τ_sim values, plotting precision-recall of the error-detection layer and selecting τ_sim at the F1-maximizing point of that curve; (ii) a convergence analysis tracking rounds-to-convergence and oscillation frequency across datasets and schema sizes, verifying that type-local revision plus cooldown achieves stable termination in practice. We evaluate under deliberate schema contamination at five severity levels (type merge, type split, label scramble, argument-type swap, boundary blur) on the full required benchmark set: ACE05 (NER + event), FewNERD (NER), SciERC (NER + RE), MAVEN (event detection), WikiEvents and RAMS (event argument extraction), TACRED/TACREV (RE), and DocRED (document-level RE). Baselines include PARSE, SCIR, GuideX, and DiZiNER adapted to a single-extractor setting for fair comparison.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~250h A100 80GB (baseline runs + ablations across 8 datasets × 5 schema contamination severity levels × 3 task types + schema optimizer LLM inference calls + signal reliability and convergence analysis experiments)",
+      "gpu_utilization": "~30-40% — high idle rate while researcher implements error-detection layer, calibrates τ_sim and cooldown L, manually inspects schema revision quality, and writes paper",
+      "timeline": "4-6 months",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "~$340 (250h × $1.35/hr on Lambda Labs)"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~350h A100 80GB (agent explores more schema optimizer prompt variants, τ_sim calibration grid, cooldown L values, and cross-dataset schema transfer combinations than manual mode)",
+      "gpu_utilization": "~60-70% — agent runs experiments continuously between human approval gates; human reviews signal reliability results, schema revision quality, and unsupervised proxy calibration decisions",
+      "timeline": "5-7 weeks",
+      "team": "1 researcher, ~30min/day check-in",
+      "claude_api_cost": "$200-350 (Opus 4.7 for schema optimizer calls + agent orchestration; ~2000-3500 turns)",
+      "estimated_gpu_cost": "~$475 (350h × $1.35/hr on Lambda Labs)",
+      "risk_note": "Two critical human gates: (1) signal reliability study must be reviewed before τ_sim is locked — if polysemy fraction exceeds 50% at default settings, the filtering strategy must be redesigned; (2) schema optimizer may produce plausible-sounding but semantically vacuous revisions (trivial merges that improve VRD while degrading test F1) — human review of a random sample of committed revisions is essential before paper submission."
+    },
+    "auto_research": {
+      "gpu_hours": "~900h A100 80GB (full sweep over τ_sim thresholds, rolling window sizes, cooldown periods L, optimizer model choices, and all cross-domain schema contamination permutations across 8 datasets × 5 severity levels × 3 task types)",
+      "gpu_utilization": "Near-zero idle — agent orchestrates experiment queue 24/7 with parallel GPU jobs; no human bottleneck between successive runs",
+      "timeline": "1-2 weeks with 4-8 A100s running in parallel",
+      "team": "0 (only initial setup of experiment harness and API keys)",
+      "claude_api_cost": "$500-900 (Opus 4.7; ~5000-9000 turns for schema optimizer calls + agent orchestration + automated result analysis across all datasets and task types)",
+      "estimated_gpu_cost": "~$1215 (900h × $1.35/hr on Lambda Labs)",
+      "speed_bottleneck": "Number of A100 GPUs available for parallel experiment runs; Anthropic API rate limits on Opus 4.7 schema optimizer calls across 8 datasets",
+      "risk_note": "Without human oversight, auto mode risks over-tuning τ_sim to specific dataset polysemy rates that do not generalize. Convergence analysis must be explicitly monitored — auto mode should flag any dataset where oscillation exceeds 3 revision cycles per type before proceeding. Final evaluation must use a fully sequestered test split never touched during the adaptation phase."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline May 25, 2026; conference Oct 24-29, 2026, Budapest, Hungary)"
+  ],
+  "level": "solid",
+  "key_references": [
+    "GoLLIE: Annotation Guidelines improve Zero-Shot Information-Extraction (ICLR 2024)",
+    "PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction (EMNLP 2025 Industry Track, ACL Anthology 2025.emnlp-industry.184)",
+    "GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction (ACL Findings 2025)",
+    "KnowCoder: Coding Structured Knowledge into LLMs for Universal Information Extraction (ACL 2024)",
+    "SCIR: A Self-Correcting Iterative Refinement Framework for Enhanced Information Extraction Based on Schema (AAAI 2026)",
+    "DiZiNER: Disagreement-guided Instruction Refinement via Pilot Annotation Simulation for Zero-shot Named Entity Recognition (arXiv:2604.15866, April 2026)"
+  ],
+  "description": "Schema-guided IE models fail silently when deployed on domains whose entity type ontologies partially conflict with training-time schemas — for example, when a medical ontology's 'Treatment' subsumes what the model learned as 'Drug' and 'Procedure'. This is a schema-ontology mismatch problem, distinct from the annotation instruction clarity problem addressed by DiZiNER. OSAFE (Online Schema Adaptation via Feedback Errors) addresses schema-ontology mismatch with a three-stage, zero-seed, single-extractor, test-time framework: (1) an error-detection layer accumulates mismatch signals over a rolling document buffer — context-conditioned entity-type contradictions filtered by sentence-embedding cosine similarity (threshold τ_sim) to exclude legitimate polysemy, persistent pairwise type confusion patterns, and structurally invalid extractions; (2) when a type's alignment score drops below an adaptive threshold, a frozen Qwen3-72B schema optimizer proposes targeted type-definition revisions (splits, merges, boundary clarifications) using only mismatch examples and read-only neighboring type definitions, with type-local revision constraints and a per-type cooldown preventing cascade instability and oscillation; (3) the revised schema is hot-swapped into the extraction prompt and validated using three fully unsupervised proxy metrics — violation-rate delta (VRD), cross-document consistency delta (CDCD), and argument completeness proxy (ACP) — committing only if ≥2/3 metrics improve. Unlike PARSE (offline synthetic data required), SCIR (refines predictions not schema definitions), and DiZiNER (multi-LLM ensemble, schema type definitions fixed, NER-only, requires training data batches), OSAFE operates online, single-extractor, and zero-seed across NER, event extraction, and relation extraction. Two analytical experiments ground the design: a signal reliability study calibrating τ_sim via the precision-recall curve of the error-detection layer across polysemy vs. true-mismatch cases, and a convergence analysis verifying stable termination under type-local revision plus cooldown. Evaluated under deliberate schema contamination at five severity levels on all eight required benchmarks — ACE05, FewNERD, SciERC, MAVEN, WikiEvents, RAMS, TACRED/TACREV, and DocRED — targeting 10-15% F1 recovery over non-adaptive baselines across NER, event, and relation extraction.",
+  "project_name": "schema_adapt_feedback",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["UNCITED CONCURRENT WORK: DiZiNER (arXiv:2604.15866, Apr 2026) achieves zero-shot SOTA on 14/18 NER benchmarks using multi-LLM disagreement analysis to iteratively refine NER instructions — no parameter updates, no gold labels. This is structurally parallel to OSAFE's error-driven schema revision. The generator must cite, compare against, and differentiate from DiZiNER, or its novelty claim is significantly weakened.", "VALIDATION PARADOX (Stage 3): The description states the revised schema is 'validated on a held-out document buffer to confirm F1 improvement' before being committed. F1 requires gold labels. This directly contradicts the zero-seed claim. The paper must either (a) replace F1 with a fully unsupervised proxy signal (violation-rate change, cross-document consistency delta), or (b) acknowledge a small labeled validation split, which must be subtracted from the adaptation budget.", "EVALUATION MISMATCH WITH HARD CONSTRAINTS: The user's stated hard-constraint benchmark list is ACE05, SciERC, TACRED/TACREV, DocRED, MAVEN, Few-NERD, WikiEvents, RAMS. The proposal evaluates only on FewNERD, CrossNERD, and MultiNERD — the latter two are NOT in the required list. Event extraction (MAVEN, WikiEvents, RAMS) and relation extraction (TACRED, DocRED) are entirely absent, yet EMNLP IE reviewers will expect coverage beyond NER.", "SIGNAL RELIABILITY: Cross-sentence entity-type contradictions are noisy signals. The same surface form is legitimately typed differently across documents (e.g., 'Washington' as GPE vs. PERSON). The paper offers no analysis of how many contradictions are true schema mismatches vs. legitimate polysemy, and provides no threshold-calibration strategy beyond 'adaptive threshold' — this needs empirical grounding.", "SCHEMA EVOLUTION STABILITY: Iterative schema revisions on a multi-type schema may cause cascading instability — changing the boundary of type A to absorb part of type B will create new apparent violations for type B, potentially triggering further revisions. The paper has no analysis of convergence or oscillation risk in the schema revision loop.", "PARSE VENUE MISLABEL: The generator describes PARSE as 'arXiv 2510.08623, 2025' in the opportunity section but correctly identifies it as EMNLP 2025 Industry Track elsewhere. The citation should consistently list its actual publication venue (EMNLP 2025 Industry Track, ACL Anthology 2025.emnlp-industry.184) rather than as a preprint."]
+Feedback: The core idea — using the extractor's own type-consistency violations as a signal to drive online schema revision — is conceptually clean and fills a real gap. The three-stage decomposition is well-motivated. To reach acceptance quality, the generator must address four structural issues: (1) **DiZiNER differentiator**: Read arXiv:2604.15866 and add a paragraph explicitly separating OSAFE from DiZiNER. The sharpest differentiator is that DiZiNER requires multiple LLMs annotating the same texts (multi-annotator simulation) whereas OSAFE runs with a single extractor and accumulates cross-document inconsistency signals — frame this as the operational advantage. (2) **Repair the validation paradox**: Replace 'F1 improvement on held-out buffer' with an unsupervised proxy — e.g., *violation-rate delta* (fraction of rolling buffer extractions flagging schema violations before vs. after revision), possibly combined with extraction coverage (recall-proxy via argument completeness). If a small labeled validation split must be used, say so and budget it explicitly. (3) **Expand evaluation to required benchmarks**: Add ACE05 (NER+RE), MAVEN (event extraction), and TACRED (RE) experiments. For event extraction, the schema contamination can be applied to argument-type definitions (e.g., scrambling AGENT vs. PATIENT). This addresses both the hard-constraint mismatch and the concern that NER-only evaluation limits generalization claims. (4) **Add signal-noise analysis**: Include a small analytical experiment quantifying what fraction of detected 'type contradictions' are true schema-domain mismatches vs. legitimate polysemy, and justify the confidence threshold by showing precision-recall trade-off of the error-detection layer.
+
+### Round 2 review
+Verdict: revise
+Issues: ["DUAL CONSTRAINT INFEASIBILITY: No proposed mode satisfies ≤200 H100-hours AND ≤16 days simultaneously. Manual (250h A100 ≈ 125h H100) meets compute but takes 4–6 months. HIL (350h A100 ≈ 175h H100) meets compute but takes 5–7 weeks. Auto Research (900h A100 ≈ 450h H100) meets the timeline but exceeds the compute budget by ~2.25×. The generator must redesign the experimental plan: the schema optimizer (Qwen3-72B) can run via API with zero GPU cost; the base extractor (GoLLIE-7B) inference across all 8 datasets × 5 severity levels should require only ~20–50h A100 with vLLM batching, well within budget. The 250h A100 manual estimate appears to conflate fine-tuning cost with inference-only evaluation. A corrected compute breakdown — splitting extractor inference (GPU) from schema optimizer (API) — is needed to show the 16-day plan is feasible.", "PROXY METRIC CIRCULAR REASONING: VRD (violation-rate delta) and CDCD (cross-document consistency delta) are computed on the same rolling document buffer that generated the mismatch signals that triggered revision. Any schema revision that addresses even a subset of buffer-specific violations will mechanically improve these metrics — including harmful revisions such as merging all confused types into one super-type. The paper must include an empirical validation experiment demonstrating that proxy metric improvements on the buffer predict F1 improvement on a sequestered held-out test split (using gold labels post-hoc only, not for revision decisions). Without this, the unsupervised validation mechanism has no demonstrated reliability.", "SYNTHETIC-ONLY EVALUATION: All 8 required benchmark evaluations use deliberately introduced schema contamination (type merge, split, label scramble, argument-type swap, boundary blur). This validates recovery from constructed mismatches but does not establish that the error-detection layer — especially context-conditioned contradiction detection — fires reliably on naturally occurring schema-ontology divergences. At minimum one real-world cross-domain transfer scenario should be added (e.g., ACE05-trained extractor deployed on GENIA biomedical NER, or ACE event types applied to WikiEvents argument definitions), comparing OSAFE against a non-adaptive baseline without synthetic contamination.", "SCHEMA OPTIMIZER MODEL SIZE ABLATION MISSING: Qwen3-72B is used as the schema optimizer. A reviewer will immediately ask: does the improvement come from the error-detection algorithm (OSAFE's core contribution) or simply from Qwen3-72B's ability to improve any type definition given examples? An ablation substituting Qwen3-7B, Llama-3-8B-Instruct, or a smaller model as the optimizer is needed to decouple the error-signal quality from raw LLM capability. Without this, the paper risks being read as 'give a very large LLM some confusion examples and ask it to rewrite the schema.'", "SAM-NER CONCURRENT WORK UNCITED: SAM-NER (arXiv:2605.03706, May 5, 2026) addresses zero-shot NER under schema shifts via semantic archetype mediation — projecting entities through domain-invariant archetypes before mapping to target types. It is not a direct competitor (uses frozen inference, no online revision, no type-definition modification), but it should be cited as concurrent work. Note: appeared 5 days before the review date; generator cannot be faulted, but the paper should acknowledge it before submission."]
+Feedback: The Round 2 revision comprehensively addressed all six Round 1 issues. The positioning against DiZiNER, PARSE, SCIR, and GuideX is now precise and defensible. Five focused issues remain. The most critical are (1) and (2). (1) Fix the resource estimate by explicitly separating extractor inference (GPU, very cheap for GoLLIE-7B inference across 8 datasets — likely 20-50h A100 total) from schema optimizer (Qwen3-72B via API, zero GPU cost). Show that the 16-day plan is feasible using ~50h A100 equivalent, well within 200 H100-hours. The current estimates conflate inference-only evaluation with fine-tuning workloads and will fail a reviewer sanity check. (2) Add an explicit proxy-metric reliability experiment: after running OSAFE on each dataset, plot proxy metric improvement (VRD, CDCD, ACP) against actual F1 improvement on the test split. This correlation analysis — even in one section of the experiments — validates the unsupervised validation gate and preempts the strongest methodological objection. (3) Add one natural domain transfer experiment (no synthetic contamination): pick any cross-domain NER or event pair (e.g., ACE05→biomedical, TACRED→SciERC cross-domain RE) and show OSAFE improves over a frozen schema baseline. This grounds practical value beyond constructed mismatches. (4) Add schema optimizer ablation (Qwen3-72B vs. Qwen3-7B) to isolate the error-signal contribution. (5) Mention SAM-NER (arXiv:2605.03706) as concurrent work in a footnote. Issues (3)-(5) are relatively quick to address. Issues (1)-(2) are the gate to a pass verdict.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "40cc8325-b976-4b15-ae6a-84556edbec49",
+  "type": "user",
+  "uuid": "fab4ba15-8ea4-4b32-8d78-43bf4844d9d0",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T07:58:50.544Z_
+
+```json
+{
+  "parentUuid": "fab4ba15-8ea4-4b32-8d78-43bf4844d9d0",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "6fce7352-c005-41af-bee8-ce6d6b8e6efe",
+  "timestamp": "2026-05-10T07:58:50.544Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T07:58:50.544Z_
+
+```json
+{
+  "parentUuid": "6fce7352-c005-41af-bee8-ce6d6b8e6efe",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "cfbbac2f-d8ab-4556-9410-cd20a5ddc103",
+  "timestamp": "2026-05-10T07:58:50.544Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "cfbbac2f-d8ab-4556-9410-cd20a5ddc103",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Online schema adaptation via extraction-error feedback",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-10T07:59:15.285Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze this carefully. This is a Round 3 review of the OSAFE paper idea. Let me first understand what was fixed from Round 2 and what remains to be addressed.
+
+**Round 2 Issues that were supposedly addressed in the Round 3 submission:**
+
+Looking at the Round 3 idea description, I need to check:
+
+1. **DUAL CONSTRAINT INFEASIBILITY** - Round 2 flagged that no mode satisfies ≤200 H100-hours AND ≤16 days simultaneously. 
+   - Manual: ~250h A100 80GB ≈ 125h H100. 
+
+Now I'm checking the three approaches against the constraints. Manual mode needs about 125 H100-hours but takes 4-6 months, so it fails the timeline. HIL requires 175 H100-hours over 5-7 weeks, still exceeding both limits. Auto Research is the worst offender—450 H100-hours over just 1-2 weeks. The Round 2 feedback suggested separating extractor inference from schema optimization to address this, but the Round 3 submission hasn't actually implemented that fix—these are the exact same numbers as before.
+
+Beyond the compute issue, I'm noticing several other gaps. The proxy metrics (VRD, CDCD, ACP) are mentioned but there's no correlation analysis showing whether improvements in these metrics actually translate to F1 gains on held-out test data. The evaluation also appears to be entirely synthetic with schema contamination at different severity levels, but I don't see evidence of a natural domain transfer experiment. And the schema optimizer description mentions a frozen Qwen3-72B or DeepSeek model, but there's no ablation study on model size to justify that choice.
+
+Looking at what's actually been addressed from the previous round, it seems like most of the critical issues remain unresolved—the compute timeline is unchanged, the proxy metric validation is incomplete, the evaluation is still synthetic-only, and the model ablation is missing. I should search for more information to understand what's actually been done here.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "cfbbac2f-d8ab-4556-9410-cd20a5ddc103",
+  "isSidechain": false,
+  "requestId": "req_011CatXv919HatmL3Gyg5tDE",
+  "type": "assistant",
+  "uuid": "0e133578-ed21-4998-81e1-07ad43c816f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_012XS8gPETHRQks9w2HEzi1S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15068,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 949,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15068,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 949,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 15068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15068
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T07:59:15.544Z_
+
+I'll conduct independent searches to verify the claims in this Round 3 submission, focusing on what was supposedly fixed from Round 2 and whether new concurrent work has appeared.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0e133578-ed21-4998-81e1-07ad43c816f1",
+  "isSidechain": false,
+  "requestId": "req_011CatXv919HatmL3Gyg5tDE",
+  "type": "assistant",
+  "uuid": "6d6e25b2-6322-414c-8ac4-f5624ea3e67c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_012XS8gPETHRQks9w2HEzi1S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15068,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 949,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15068,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 949,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 15068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15068
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-10T07:59:15.934Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UojpyQ9pKG7Ko6P7zQ1due`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d6e25b2-6322-414c-8ac4-f5624ea3e67c",
+  "isSidechain": false,
+  "requestId": "req_011CatXv919HatmL3Gyg5tDE",
+  "type": "assistant",
+  "uuid": "171f1dd3-1804-4365-b3d8-9648d9990f20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_012XS8gPETHRQks9w2HEzi1S",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15068,
+      "cache_read_input_tokens": 11631,
+      "output_tokens": 949,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15068,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 949,
+          "cache_read_input_tokens": 11631,
+          "cache_creation_input_tokens": 15068,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15068
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-10T07:59:15.940Z_
+
+<details><summary>↩ Tool result · `toolu_01UojpyQ9pKG7Ko6P7zQ1due`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "171f1dd3-1804-4365-b3d8-9648d9990f20",
+  "isSidechain": false,
+  "promptId": "40cc8325-b976-4b15-ae6a-84556edbec49",
+  "type": "user",
+  "uuid": "29d980bf-ce79-4d9d-9707-f9e3a4c2c78d",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "171f1dd3-1804-4365-b3d8-9648d9990f20",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 12 · 2026-05-10T07:59:18.349Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me conduct my searches. I'll start with several parallel searches to verify the key claims.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "29d980bf-ce79-4d9d-9707-f9e3a4c2c78d",
+  "isSidechain": false,
+  "requestId": "req_011CatXx1Fcow2wbBYo1QzK1",
+  "type": "assistant",
+  "uuid": "53449c5d-af15-4e2f-8bd3-94c341f121d1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01X7LwWWG9vbkyifX3pJELMN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1967,
+      "cache_read_input_tokens": 26699,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1967,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 26699,
+          "cache_creation_input_tokens": 1967,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1967
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 13 · 2026-05-10T07:59:19.621Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018CAtJPRHAadJVYiEo2jEoL`</summary>
+
+```json
+{
+  "query": "SAM-NER arXiv 2605.03706 semantic archetype zero-shot NER schema shift 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "53449c5d-af15-4e2f-8bd3-94c341f121d1",
+  "isSidechain": false,
+  "requestId": "req_011CatXx1Fcow2wbBYo1QzK1",
+  "type": "assistant",
+  "uuid": "0dcc1148-63c1-45a7-846d-497b8ff03a6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01X7LwWWG9vbkyifX3pJELMN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1967,
+      "cache_read_input_tokens": 26699,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1967,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 26699,
+          "cache_creation_input_tokens": 1967,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1967
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T07:59:20.405Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DbH7Se8jr7noPnsx2NBK4u`</summary>
+
+```json
+{
+  "query": "DiZiNER arXiv 2604.15866 zero-shot NER disagreement instruction refinement 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0dcc1148-63c1-45a7-846d-497b8ff03a6a",
+  "isSidechain": false,
+  "requestId": "req_011CatXx1Fcow2wbBYo1QzK1",
+  "type": "assistant",
+  "uuid": "2ee63521-d61b-4a82-ac1c-b9a114ebe99e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01X7LwWWG9vbkyifX3pJELMN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1967,
+      "cache_read_input_tokens": 26699,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1967,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 26699,
+          "cache_creation_input_tokens": 1967,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1967
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-10T07:59:20.930Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01MPZQ4sF3T2jqRbFSd6jFJL`</summary>
+
+```json
+{
+  "query": "test-time schema adaptation information extraction online 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2ee63521-d61b-4a82-ac1c-b9a114ebe99e",
+  "isSidechain": false,
+  "requestId": "req_011CatXx1Fcow2wbBYo1QzK1",
+  "type": "assistant",
+  "uuid": "075765c2-f9f6-4d11-acc9-8143a99c4d16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01X7LwWWG9vbkyifX3pJELMN",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1967,
+      "cache_read_input_tokens": 26699,
+      "output_tokens": 224,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1967,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 224,
+          "cache_read_input_tokens": 26699,
+          "cache_creation_input_tokens": 1967,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1967
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-10T07:59:26.995Z_
+
+<details><summary>↩ Tool result · `toolu_018CAtJPRHAadJVYiEo2jEoL`</summary>
+
+```text
+Web search results for query: "SAM-NER arXiv 2605.03706 semantic archetype zero-shot NER schema shift 2026"
+
+Links: [{"title":"SAM-NER: Semantic Archetype Mediation for Zero-Shot Named Entity Recognition","url":"https://arxiv.org/html/2605.03706"},{"title":"[2605.03706] SAM-NER: Semantic Archetype Mediation for Zero-Shot Named Entity Recognition","url":"https://arxiv.org/abs/2605.03706"},{"title":"[2509.04011] NER Retriever: Zero-Shot Named Entity Retrieval with Type-Aware Embeddings","url":"https://arxiv.org/abs/2509.04011"},{"title":"NER Retriever: Zero-Shot Named Entity Retrieval with Type-Aware Embeddings","url":"https://arxiv.org/html/2509.04011v1"},{"title":"SAM-I-Am: Semantic Boosting for Zero-shot Atomic-Scale Electron Micrograph Segmentation","url":"https://arxiv.org/html/2404.06638v1"},{"title":"Familiarity: Better Evaluation of Zero-Shot Named Entity Recognition by Quantifying Label Shifts in Synthetic Training Data","url":"https://arxiv.org/html/2412.10121v1"},{"title":"[2509.04011v1] NER Retriever: Zero-Shot Named Entity Retrieval with Type-Aware Embeddings","url":"https://arxiv.org/abs/2509.04011v1"},{"title":"[2109.05357] Learning from Language Description: Low-shot Named Entity Recognition via Decomposed Framework","url":"https://arxiv.org/abs/2109.05357"},{"title":"[2106.07056] Schema-Guided Paradigm for Zero-Shot Dialog","url":"https://arxiv.org/abs/2106.07056"},{"title":"A Multi-Task Semantic Decomposition Framework with Task-specific Pre-training for Few-Shot NER | Proceedings of the 32nd ACM International Conference on Information and Knowledge Management","url":"https://dl.acm.org/doi/10.1145/3583780.3614766"}]
+
+Based on the search results, here's information about the SAM-NER paper (arXiv 2605.03706):
+
+## Overview
+
+SAM-NER addresses the brittleness of zero-shot Named Entity Recognition (ZS-NER) under domain and schema shifts, where unseen label definitions often misalign with a large language model's (LLM's) intrinsic semantic organization.
+
+## The Problem
+
+Directly mapping entity mentions to fine-grained target labels can induce systematic semantic drift, especially when target schemas are novel or semantically overlapping.
+
+## Proposed Solution
+
+SAM-NER is a three-stage framework based on Semantic Archetype Mediation that stabilizes cross-domain transfer through an intermediate, domain-invariant archetype space.
+
+The framework operates in three stages:
+
+SAM-NER performs Entity Discovery via cooperative extraction and consensus-based denoising to obtain high-coverage, high-fidelity entity spans; conducts Abstract Mediation by projecting entities into a compact set of universal semantic archetypes distilled from high-level ontological abstractions; and applies Semantic Calibration to resolve archetype-level predictions into target-domain types through constrained, definition-aligned inference with a frozen LLM.
+
+## Results
+
+Experiments on the CrossNER benchmark show that SAM-NER consistently outperforms strong prior ZS-NER baselines in cross-domain settings.
+
+The paper was submitted on May 5, 2026, and the authors indicate that implementation will be open-sourced.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0dcc1148-63c1-45a7-846d-497b8ff03a6a",
+  "isSidechain": false,
+  "promptId": "40cc8325-b976-4b15-ae6a-84556edbec49",
+  "type": "user",
+  "uuid": "cc96c500-cb52-415e-a0c5-222e7913503d",
+  "toolUseResult": {
+    "query": "SAM-NER arXiv 2605.03706 semantic archetype zero-shot NER schema shift 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JK5tVNsKHUAUAZ6ULNrPYT",
+        "content": [
+          {
+            "title": "SAM-NER: Semantic Archetype Mediation for Zero-Shot Named Entity Recognition",
+            "url": "https://arxiv.org/html/2605.03706"
+          },
+          {
+            "title": "[2605.03706] SAM-NER: Semantic Archetype Mediation for Zero-Shot Named Entity Recognition",
+            "url": "https://arxiv.org/abs/2605.03706"
+          },
+          {
+            "title": "[2509.04011] NER Retriever: Zero-Shot Named Entity Retrieval with Type-Aware Embeddings",
+            "url": "https://arxiv.org/abs/2509.04011"
+          },
+          {
+            "title": "NER Retriever: Zero-Shot Named Entity Retrieval with Type-Aware Embeddings",
+            "url": "https://arxiv.org/html/2509.04011v1"
+          },
+          {
+            "title": "SAM-I-Am: Semantic Boosting for Zero-shot Atomic-Scale Electron Micrograph Segmentation",
+            "url": "https://arxiv.org/html/2404.06638v1"
+          },
+          {
+            "title": "Familiarity: Better Evaluation of Zero-Shot Named Entity Recognition by Quantifying Label Shifts in Synthetic Training Data",
+            "url": "https://arxiv.org/html/2412.10121v1"
+          },
+          {
+            "title": "[2509.04011v1] NER Retriever: Zero-Shot Named Entity Retrieval with Type-Aware Embeddings",
+            "url": "https://arxiv.org/abs/2509.04011v1"
+          },
+          {
+            "title": "[2109.05357] Learning from Language Description: Low-shot Named Entity Recognition via Decomposed Framework",
+            "url": "https://arxiv.org/abs/2109.05357"
+          },
+          {
+            "title": "[2106.07056] Schema-Guided Paradigm for Zero-Shot Dialog",
+            "url": "https://arxiv.org/abs/2106.07056"
+          },
+          {
+            "title": "A Multi-Task Semantic Decomposition Framework with Task-specific Pre-training for Few-Shot NER | Proceedings of the 32nd ACM International Conference on Information and Knowledge Management",
+            "url": "https://dl.acm.org/doi/10.1145/3583780.3614766"
+          }
+        ]
+      },
+      "Based on the search results, here's information about the SAM-NER paper (arXiv 2605.03706):\n\n## Overview\n\nSAM-NER addresses the brittleness of zero-shot Named Entity Recognition (ZS-NER) under domain and schema shifts, where unseen label definitions often misalign with a large language model's (LLM's) intrinsic semantic organization.\n\n## The Problem\n\nDirectly mapping entity mentions to fine-grained target labels can induce systematic semantic drift, especially when target schemas are novel or semantically overlapping.\n\n## Proposed Solution\n\nSAM-NER is a three-stage framework based on Semantic Archetype Mediation that stabilizes cross-domain transfer through an intermediate, domain-invariant archetype space.\n\nThe framework operates in three stages:\n\nSAM-NER performs Entity Discovery via cooperative extraction and consensus-based denoising to obtain high-coverage, high-fidelity entity spans; conducts Abstract Mediation by projecting entities into a compact set of universal semantic archetypes distilled from high-level ontological abstractions; and applies Semantic Calibration to resolve archetype-level predictions into target-domain types through constrained, definition-aligned inference with a frozen LLM.\n\n## Results\n\nExperiments on the CrossNER benchmark show that SAM-NER consistently outperforms strong prior ZS-NER baselines in cross-domain settings.\n\nThe paper was submitted on May 5, 2026, and the authors indicate that implementation will be open-sourced."
+    ],
+    "durationSeconds": 7.369210018999999
+  },
+  "sourceToolAssistantUUID": "0dcc1148-63c1-45a7-846d-497b8ff03a6a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T07:59:27.183Z_
+
+<details><summary>↩ Tool result · `toolu_01DbH7Se8jr7noPnsx2NBK4u`</summary>
+
+```text
+Web search results for query: "DiZiNER arXiv 2604.15866 zero-shot NER disagreement instruction refinement 2026"
+
+Links: [{"title":"[2604.15866] DiZiNER: Disagreement-guided Instruction Refinement via Pilot Annotation Simulation for Zero-shot Named Entity Recognition","url":"https://arxiv.org/abs/2604.15866"},{"title":"DiZiNER: Disagreement-guided Instruction Refinement via Pilot Annotation Simulation for Zero-shot Named Entity Recognition","url":"https://arxiv.org/html/2604.15866"},{"title":"[2212.10496] Precise Zero-Shot Dense Retrieval without Relevance Labels","url":"https://arxiv.org/abs/2212.10496"},{"title":"llmNER: (Zero|Few)-Shot Named Entity Recognition, Exploiting the Power of Large Language Models","url":"https://arxiv.org/html/2406.04528v1"},{"title":"Precise Zero-Shot Dense Retrieval without Relevance Labels Luyu Gao∗†","url":"https://arxiv.org/pdf/2212.10496"},{"title":"Precise Zero-Shot Dense Retrieval without Relevance Labels","url":"https://aclanthology.org/2023.acl-long.99.pdf"},{"title":"Precise Zero-Shot Dense Retrieval without Relevance Labels - ACL Anthology","url":"https://aclanthology.org/2023.acl-long.99/"},{"title":"GitHub - dongguanting/MSDP-Fewshot-NER: The code of CIKM 2023 (Oral Presentation) : A Multi-Task Semantic Decomposition Framework with Task-specific Pre-training for Few-Shot NER · GitHub","url":"https://github.com/dongguanting/msdp-fewshot-ner"},{"title":"Precise Zero-Shot Dense Retrieval Without Relevance ...","url":"https://www.scribd.com/document/991454285/2212-10496v1"},{"title":"[2404.04125] No \"Zero-Shot\" Without Exponential Data: Pretraining Concept Frequency Determines Multimodal Model Performance","url":"https://arxiv.org/abs/2404.04125"}]
+
+I found the paper! Here's what I discovered about DiZiNER:
+
+DiZiNER (Disagreement-guided Instruction Refinement via Pilot Annotation Simulation for Zero-shot Named Entity Recognition) is a framework that simulates the pilot annotation process, employing LLMs to act as both annotators and supervisors.
+
+Multiple heterogeneous LLMs annotate shared texts, and a supervisor model analyzes inter-model disagreements to refine task instructions.
+
+**Key Results:**
+Across 18 benchmarks, DiZiNER achieves zero-shot SOTA results on 14 datasets, improving prior bests by +8.0 F1 and reducing the zero-shot to supervised gap by over +11 points. It also consistently outperforms its supervisor, GPT-5 mini, indicating that improvements stem from disagreement-guided instruction refinement rather than model capacity.
+
+**Authors and Details:**
+The paper was authored by Siun Kim and Hyung-Jin Yoon, with the work primarily conducted at the Biomedical Research Institute, Seoul National University Hospital. The paper was posted to arXiv on April 17, 2026 (arXiv:2604.15866).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2ee63521-d61b-4a82-ac1c-b9a114ebe99e",
+  "isSidechain": false,
+  "promptId": "40cc8325-b976-4b15-ae6a-84556edbec49",
+  "type": "user",
+  "uuid": "34aafabb-8a2f-4299-aca5-e0d74394be4d",
+  "toolUseResult": {
+    "query": "DiZiNER arXiv 2604.15866 zero-shot NER disagreement instruction refinement 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BoKA8geZ8fXKTcJSNG3icJ",
+        "content": [
+          {
+            "title": "[2604.15866] DiZiNER: Disagreement-guided Instruction Refinement via Pilot Annotation Simulation for Zero-shot Named Entity Recognition",
+            "url": "https://arxiv.org/abs/2604.15866"
+          },
+          {
+            "title": "DiZiNER: Disagreement-guided Instruction Refinement via Pilot Annotation Simulation for Zero-shot Named Entity Recognition",
+            "url": "https://arxiv.org/html/2604.15866"
+          },
+          {
+            "title": "[2212.10496] Precise Zero-Shot Dense Retrieval without Relevance Labels",
+            "url": "https://arxiv.org/abs/2212.10496"
+          },
+          {
+            "title": "llmNER: (Zero|Few)-Shot Named Entity Recognition, Exploiting the Power of Large Language Models",
+            "url": "https://arxiv.org/html/2406.04528v1"
+          },
+          {
+            "title": "Precise Zero-Shot Dense Retrieval without Relevance Labels Luyu Gao∗†",
+            "url": "https://arxiv.org/pdf/2212.10496"
+          },
+          {
+            "title": "Precise Zero-Shot Dense Retrieval without Relevance Labels",
+            "url": "https://aclanthology.org/2023.acl-long.99.pdf"
+          },
+          {
+            "title": "Precise Zero-Shot Dense Retrieval without Relevance Labels - ACL Anthology",
+            "url": "https://aclanthology.org/2023.acl-long.99/"
+          },
+          {
+            "title": "GitHub - dongguanting/MSDP-Fewshot-NER: The code of CIKM 2023 (Oral Presentation) : A Multi-Task Semantic Decomposition Framework with Task-specific Pre-training for Few-Shot NER · GitHub",
+            "url": "https://github.com/dongguanting/msdp-fewshot-ner"
+          },
+          {
+            "title": "Precise Zero-Shot Dense Retrieval Without Relevance ...",
+            "url": "https://www.scribd.com/document/991454285/2212-10496v1"
+          },
+          {
+            "title": "[2404.04125] No \"Zero-Shot\" Without Exponential Data: Pretraining Concept Frequency Determines Multimodal Model Performance",
+            "url": "https://arxiv.org/abs/2404.04125"
+          }
+        ]
+      },
+      "I found the paper! Here's what I discovered about DiZiNER:\n\nDiZiNER (Disagreement-guided Instruction Refinement via Pilot Annotation Simulation for Zero-shot Named Entity Recognition) is a framework that simulates the pilot annotation process, employing LLMs to act as both annotators and supervisors.\n\nMultiple heterogeneous LLMs annotate shared texts, and a supervisor model analyzes inter-model disagreements to refine task instructions.\n\n**Key Results:**\nAcross 18 benchmarks, DiZiNER achieves zero-shot SOTA results on 14 datasets, improving prior bests by +8.0 F1 and reducing the zero-shot to supervised gap by over +11 points. It also consistently outperforms its supervisor, GPT-5 mini, indicating that improvements stem from disagreement-guided instruction refinement rather than model capacity.\n\n**Authors and Details:**\nThe paper was authored by Siun Kim and Hyung-Jin Yoon, with the work primarily conducted at the Biomedical Research Institute, Seoul National University Hospital. The paper was posted to arXiv on April 17, 2026 (arXiv:2604.15866)."
+    ],
+    "durationSeconds": 6.775353454999997
+  },
+  "sourceToolAssistantUUID": "2ee63521-d61b-4a82-ac1c-b9a114ebe99e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 18 · 2026-05-10T07:59:28.166Z_
+
+<details><summary>↩ Tool result · `toolu_01MPZQ4sF3T2jqRbFSd6jFJL`</summary>
+
+```text
+Web search results for query: "test-time schema adaptation information extraction online 2025 2026"
+
+Links: [{"title":"[2511.04847] Test-Time Adaptation for LLM Agents via Environment Interaction","url":"https://arxiv.org/abs/2511.04847"},{"title":"In Search of Lost Online Test-Time Adaptation: A Survey | International Journal of Computer Vision | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11263-024-02213-5"},{"title":"Schema as Parameterized Tools for Universal Information ...","url":"https://arxiv.org/pdf/2506.01276"},{"title":"Structured Outputs: Reliable Schema-Validated Data Extraction from Language Models - Interactive | Michael Brenndoerfer | Michael Brenndoerfer","url":"https://mbrenndoerfer.com/writing/structured-outputs-schema-validated-data-extraction-language-models"},{"title":"awesome-test-time-adaptation/TTA-OTTA.md at main · tim-learn/awesome-test-time-adaptation","url":"https://github.com/tim-learn/awesome-test-time-adaptation/blob/main/TTA-OTTA.md"},{"title":"Beyond Model Adaptation at Test Time: A Survey","url":"https://arxiv.org/html/2411.03687v1"},{"title":"Accepted Findings Papers - EMNLP 2025","url":"https://2025.emnlp.org/program/find_papers/"},{"title":"Test-Time Policy Adaptation for Enhanced Multi-Turn ...","url":"https://www.arxiv.org/pdf/2509.23166"},{"title":"2nd Workshop on Test-Time Adaptation: Putting Updates to the Test (PUT)","url":"https://icml.cc/virtual/2025/workshop/39974"},{"title":"It’s High Time : A Survey of Temporal Information Retrieval and Question Answering","url":"https://arxiv.org/html/2505.20243v2"}]
+
+I've found several relevant results on test-time schema adaptation and information extraction. Here are the key findings:
+
+## Test-Time Adaptation for Information Extraction
+
+LLM-based agents struggle to generalize to novel and complex environments due to mismatches between their pre-training and test-time conditions, including syntactic misunderstanding of environment-specific components like observation formats, and semantic misunderstanding of state-transition dynamics.
+
+To address these issues, researchers propose strategies for adapting LLM agents by leveraging environment-specific information from interaction available during deployment, including an online syntactic alignment method that learns a lightweight adaptation vector to bias the model's output distribution for rapid alignment with an environment response format.
+
+## Schema-Adaptive Information Extraction
+
+Recent frameworks for information extraction integrate key components including schema retrieval, generation, and infilling, enabling adaptive and universal IE capabilities.
+
+## Online Test-Time Adaptation (OTTA)
+
+Online test-time adaptation focuses on effectively adapting machine learning models to distributionally different target data upon batch arrival.
+
+## Recent Research Activity
+
+Recent conferences and workshops are actively exploring these topics. Test-time updates are seen as complementary approaches that can help both foundation model servers and edge devices, with research examining train-time vs. test-time updates across scales through test-time adaptation, continual learning, in-context learning, and post-training model editing.
+
+The search results show active ongoing research in 2025-2026 on adapting models at test time, with specific applications to information extraction tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "075765c2-f9f6-4d11-acc9-8143a99c4d16",
+  "isSidechain": false,
+  "promptId": "40cc8325-b976-4b15-ae6a-84556edbec49",
+  "type": "user",
+  "uuid": "22f9780a-0ef3-4ad6-9dc6-be9b14027217",
+  "toolUseResult": {
+    "query": "test-time schema adaptation information extraction online 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01RgTXHzJX63ARo5TzFN3KdT",
+        "content": [
+          {
+            "title": "[2511.04847] Test-Time Adaptation for LLM Agents via Environment Interaction",
+            "url": "https://arxiv.org/abs/2511.04847"
+          },
+          {
+            "title": "In Search of Lost Online Test-Time Adaptation: A Survey | International Journal of Computer Vision | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11263-024-02213-5"
+          },
+          {
+            "title": "Schema as Parameterized Tools for Universal Information ...",
+            "url": "https://arxiv.org/pdf/2506.01276"
+          },
+          {
+            "title": "Structured Outputs: Reliable Schema-Validated Data Extraction from Language Models - Interactive | Michael Brenndoerfer | Michael Brenndoerfer",
+            "url": "https://mbrenndoerfer.com/writing/structured-outputs-schema-validated-data-extraction-language-models"
+          },
+          {
+            "title": "awesome-test-time-adaptation/TTA-OTTA.md at main · tim-learn/awesome-test-time-adaptation",
+            "url": "https://github.com/tim-learn/awesome-test-time-adaptation/blob/main/TTA-OTTA.md"
+          },
+          {
+            "title": "Beyond Model Adaptation at Test Time: A Survey",
+            "url": "https://arxiv.org/html/2411.03687v1"
+          },
+          {
+            "title": "Accepted Findings Papers - EMNLP 2025",
+            "url": "https://2025.emnlp.org/program/find_papers/"
+          },
+          {
+            "title": "Test-Time Policy Adaptation for Enhanced Multi-Turn ...",
+            "url": "https://www.arxiv.org/pdf/2509.23166"
+          },
+          {
+            "title": "2nd Workshop on Test-Time Adaptation: Putting Updates to the Test (PUT)",
+            "url": "https://icml.cc/virtual/2025/workshop/39974"
+          },
+          {
+            "title": "It’s High Time : A Survey of Temporal Information Retrieval and Question Answering",
+            "url": "https://arxiv.org/html/2505.20243v2"
+          }
+        ]
+      },
+      "I've found several relevant results on test-time schema adaptation and information extraction. Here are the key findings:\n\n## Test-Time Adaptation for Information Extraction\n\nLLM-based agents struggle to generalize to novel and complex environments due to mismatches between their pre-training and test-time conditions, including syntactic misunderstanding of environment-specific components like observation formats, and semantic misunderstanding of state-transition dynamics.\n\nTo address these issues, researchers propose strategies for adapting LLM agents by leveraging environment-specific information from interaction available during deployment, including an online syntactic alignment method that learns a lightweight adaptation vector to bias the model's output distribution for rapid alignment with an environment response format.\n\n## Schema-Adaptive Information Extraction\n\nRecent frameworks for information extraction integrate key components including schema retrieval, generation, and infilling, enabling adaptive and universal IE capabilities.\n\n## Online Test-Time Adaptation (OTTA)\n\nOnline test-time adaptation focuses on effectively adapting machine learning models to distributionally different target data upon batch arrival.\n\n## Recent Research Activity\n\nRecent conferences and workshops are actively exploring these topics. Test-time updates are seen as complementary approaches that can help both foundation model servers and edge devices, with research examining train-time vs. test-time updates across scales through test-time adaptation, continual learning, in-context learning, and post-training model editing.\n\nThe search results show active ongoing research in 2025-2026 on adapting models at test time, with specific applications to information extraction tasks."
+    ],
+    "durationSeconds": 7.232920213000002
+  },
+  "sourceToolAssistantUUID": "075765c2-f9f6-4d11-acc9-8143a99c4d16",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 19_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "22f9780a-0ef3-4ad6-9dc6-be9b14027217",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 20_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Online schema adaptation via extraction-error feedback",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab"
+}
+```
+
+---
+
+### Assistant
+
+_source line 21 · 2026-05-10T07:59:31.279Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found some interesting results. Let me look more carefully at the "Schema as Parameterized Tools for Universal Information Extraction" paper at arxiv.org/pdf/2506.01276 - that's a potentially concurrent paper from May 2026! Let me fetch it. Also, let me search more specifically for recent concurrent works on schema adaptation and IE.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "22f9780a-0ef3-4ad6-9dc6-be9b14027217",
+  "isSidechain": false,
+  "requestId": "req_011CatXxuFFKARDBRnfGyPHB",
+  "type": "assistant",
+  "uuid": "8cb3485a-7f0d-4651-a058-cab84fc4bd79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01HVG9brD1tjQ8wrUxh9tDqi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2899,
+      "cache_read_input_tokens": 28666,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2899,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 28666,
+          "cache_creation_input_tokens": 2899,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2899
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-10T07:59:32.495Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_017u7fJy4JojPnBYucWCt1DR`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2506.01276",
+  "prompt": "What is the main contribution of this paper? Does it address schema adaptation or online schema modification for information extraction? What are the key methods and results?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8cb3485a-7f0d-4651-a058-cab84fc4bd79",
+  "isSidechain": false,
+  "requestId": "req_011CatXxuFFKARDBRnfGyPHB",
+  "type": "assistant",
+  "uuid": "1ea50141-fac9-4e4c-9219-4d3ecc22260d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01HVG9brD1tjQ8wrUxh9tDqi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2899,
+      "cache_read_input_tokens": 28666,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2899,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 28666,
+          "cache_creation_input_tokens": 2899,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2899
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-10T07:59:33.795Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TA9AADgKLaHqv1yLrbqjny`</summary>
+
+```json
+{
+  "query": "SCIR self-correcting iterative refinement information extraction AAAI 2026 schema fixed prediction refinement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1ea50141-fac9-4e4c-9219-4d3ecc22260d",
+  "isSidechain": false,
+  "requestId": "req_011CatXxuFFKARDBRnfGyPHB",
+  "type": "assistant",
+  "uuid": "e972346b-71b2-4f40-9b16-dee8bcd44461",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01HVG9brD1tjQ8wrUxh9tDqi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2899,
+      "cache_read_input_tokens": 28666,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2899,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 28666,
+          "cache_creation_input_tokens": 2899,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2899
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-10T07:59:34.253Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01H95ntZT37HTsB7W7aBS3ks`</summary>
+
+```json
+{
+  "query": "GoLLIE inference cost GPU hours A100 NER event extraction evaluation benchmark"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e972346b-71b2-4f40-9b16-dee8bcd44461",
+  "isSidechain": false,
+  "requestId": "req_011CatXxuFFKARDBRnfGyPHB",
+  "type": "assistant",
+  "uuid": "2778af55-cb0e-4683-b426-c32959a86954",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01HVG9brD1tjQ8wrUxh9tDqi",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2899,
+      "cache_read_input_tokens": 28666,
+      "output_tokens": 316,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2899,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 316,
+          "cache_read_input_tokens": 28666,
+          "cache_creation_input_tokens": 2899,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2899
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-10T07:59:38.343Z_
+
+<details><summary>↩ Tool result · `toolu_017u7fJy4JojPnBYucWCt1DR`</summary>
+
+```text
+# Summary of "Schema as Parameterized Tools for Universal Information Extraction"
+
+## Main Contribution
+
+The paper introduces **Schema as Parameterized Tools (SPT)**, a unified framework that reconceptualizes how large language models handle information extraction. Rather than struggling to choose between fixed schemas or generate new ones, the method treats schemas as callable tools with parameters to fill.
+
+## Key Innovation
+
+The SPT framework addresses a critical gap in universal information extraction (UIE). As noted in the abstract, the approach tackles "a lack of adaptability when selecting between predefined schemas and on-the-fly schema generation" by enabling three distinct operational modes:
+
+- **Schema Retrieval**: Fetching relevant schemas from a predefined collection
+- **Schema Filling**: Extracting information and populating tool parameters
+- **Schema Generation**: Creating entirely new schemas for uncovered scenarios
+
+## Results
+
+The research demonstrates that SPT successfully unifies four distinct information extraction tasks adaptively. The framework achieves "comparable extraction performance to LoRA baselines and current leading UIE systems with significantly fewer trainable parameters," making it computationally efficient while maintaining effectiveness.
+
+The work represents a pragmatic approach to the schema adaptation problem through tool-calling paradigms, enabling flexible handling of diverse extraction scenarios with reduced model parameter requirements.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1ea50141-fac9-4e4c-9219-4d3ecc22260d",
+  "isSidechain": false,
+  "promptId": "40cc8325-b976-4b15-ae6a-84556edbec49",
+  "type": "user",
+  "uuid": "f3ba8d49-afea-4f71-b6f8-72dbde866a45",
+  "toolUseResult": {
+    "bytes": 46639,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Summary of \"Schema as Parameterized Tools for Universal Information Extraction\"\n\n## Main Contribution\n\nThe paper introduces **Schema as Parameterized Tools (SPT)**, a unified framework that reconceptualizes how large language models handle information extraction. Rather than struggling to choose between fixed schemas or generate new ones, the method treats schemas as callable tools with parameters to fill.\n\n## Key Innovation\n\nThe SPT framework addresses a critical gap in universal information extraction (UIE). As noted in the abstract, the approach tackles \"a lack of adaptability when selecting between predefined schemas and on-the-fly schema generation\" by enabling three distinct operational modes:\n\n- **Schema Retrieval**: Fetching relevant schemas from a predefined collection\n- **Schema Filling**: Extracting information and populating tool parameters\n- **Schema Generation**: Creating entirely new schemas for uncovered scenarios\n\n## Results\n\nThe research demonstrates that SPT successfully unifies four distinct information extraction tasks adaptively. The framework achieves \"comparable extraction performance to LoRA baselines and current leading UIE systems with significantly fewer trainable parameters,\" making it computationally efficient while maintaining effectiveness.\n\nThe work represents a pragmatic approach to the schema adaptation problem through tool-calling paradigms, enabling flexible handling of diverse extraction scenarios with reduced model parameter requirements.",
+    "durationMs": 5843,
+    "url": "https://arxiv.org/abs/2506.01276"
+  },
+  "sourceToolAssistantUUID": "1ea50141-fac9-4e4c-9219-4d3ecc22260d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 26 · 2026-05-10T07:59:40.480Z_
+
+<details><summary>↩ Tool result · `toolu_01H95ntZT37HTsB7W7aBS3ks`</summary>
+
+```text
+Web search results for query: "GoLLIE inference cost GPU hours A100 NER event extraction evaluation benchmark"
+
+Links: [{"title":"HiTZ/GoLLIE-13B · Hugging Face","url":"https://huggingface.co/HiTZ/GoLLIE-13B"},{"title":"GoLLIE | Guideline following Large Language Model for Information Extraction","url":"https://hitz-zentroa.github.io/GoLLIE/"},{"title":"GoLLIE : Annotation Guidelines improve Zero-Shot Information-Extraction","url":"https://arxiv.org/html/2310.03668v3"},{"title":"GoLLIE 34B · Models · Dataloop","url":"https://dataloop.ai/library/model/hitz_gollie-34b/"},{"title":"GitHub - hitz-zentroa/GoLLIE: Guideline following Large Language Model for Information Extraction · GitHub","url":"https://github.com/hitz-zentroa/GoLLIE"},{"title":"Cost Per Token Analysis: Optimizing GPU Infrastructure ... - Introl","url":"https://introl.com/blog/cost-per-token-llm-inference-optimization"},{"title":"AI Inference Cost Economics in 2026: GPU FinOps Playbook | Spheron Blog","url":"https://www.spheron.network/blog/ai-inference-cost-economics-2026/"},{"title":"LLM Inference Benchmarking: How Much Does Your LLM Inference Cost? | NVIDIA Technical Blog","url":"https://developer.nvidia.com/blog/llm-inference-benchmarking-how-much-does-your-llm-inference-cost/"},{"title":"HiTZ/GoLLIE-34B · Hugging Face","url":"https://huggingface.co/HiTZ/GoLLIE-34B"},{"title":"HiTZ/GoLLIE-7B · Hugging Face","url":"https://huggingface.co/HiTZ/GoLLIE-7B"}]
+
+Based on the search results, here's what I found about GoLLIE inference costs and GPU hours:
+
+## Inference Performance and Cost
+
+With a single A100 GPU, GoLLIE can process large datasets in a matter of hours, with the 7B version capable of processing 11.9e18 FLOPs in just 44.5 hours.
+
+## Training Infrastructure
+
+For training, the training infrastructure used was 2 NVIDIA's A100 with 80GB each, and the models were trained for 3 epochs with an effective batch-size of 32 and a learning-rate of 3e-4 with cosine scheduler.
+
+## Evaluation Benchmarks
+
+GoLLIE was compared with GPT-3.5 and Instruct-UIE on MIT Movie, MIT Restaurant and CrossNER Named Entity Recognition (NER) datasets, with the model outperforming previous approaches on almost all the datasets. Additionally, the model was also evaluated on Event Extraction (EE) and Event Argument Extraction (EAE) datasets.
+
+## GPU Requirements
+
+Flash attention requires an available CUDA GPU, and running GoLLIE pre-trained models on a CPU is not supported.
+
+The search results don't contain detailed information about specific inference costs in terms of GPU hours per evaluation benchmark, but they confirm that GoLLIE is designed for efficient inference with A100 GPUs and has been evaluated on NER, event extraction, and event argument extraction tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2778af55-cb0e-4683-b426-c32959a86954",
+  "isSidechain": false,
+  "promptId": "40cc8325-b976-4b15-ae6a-84556edbec49",
+  "type": "user",
+  "uuid": "498aced7-3d9d-4cbb-8872-4aa110be7abe",
+  "toolUseResult": {
+    "query": "GoLLIE inference cost GPU hours A100 NER event extraction evaluation benchmark",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UqGZsry6ns1bJvpyr26AFj",
+        "content": [
+          {
+            "title": "HiTZ/GoLLIE-13B · Hugging Face",
+            "url": "https://huggingface.co/HiTZ/GoLLIE-13B"
+          },
+          {
+            "title": "GoLLIE | Guideline following Large Language Model for Information Extraction",
+            "url": "https://hitz-zentroa.github.io/GoLLIE/"
+          },
+          {
+            "title": "GoLLIE : Annotation Guidelines improve Zero-Shot Information-Extraction",
+            "url": "https://arxiv.org/html/2310.03668v3"
+          },
+          {
+            "title": "GoLLIE 34B · Models · Dataloop",
+            "url": "https://dataloop.ai/library/model/hitz_gollie-34b/"
+          },
+          {
+            "title": "GitHub - hitz-zentroa/GoLLIE: Guideline following Large Language Model for Information Extraction · GitHub",
+            "url": "https://github.com/hitz-zentroa/GoLLIE"
+          },
+          {
+            "title": "Cost Per Token Analysis: Optimizing GPU Infrastructure ... - Introl",
+            "url": "https://introl.com/blog/cost-per-token-llm-inference-optimization"
+          },
+          {
+            "title": "AI Inference Cost Economics in 2026: GPU FinOps Playbook | Spheron Blog",
+            "url": "https://www.spheron.network/blog/ai-inference-cost-economics-2026/"
+          },
+          {
+            "title": "LLM Inference Benchmarking: How Much Does Your LLM Inference Cost? | NVIDIA Technical Blog",
+            "url": "https://developer.nvidia.com/blog/llm-inference-benchmarking-how-much-does-your-llm-inference-cost/"
+          },
+          {
+            "title": "HiTZ/GoLLIE-34B · Hugging Face",
+            "url": "https://huggingface.co/HiTZ/GoLLIE-34B"
+          },
+          {
+            "title": "HiTZ/GoLLIE-7B · Hugging Face",
+            "url": "https://huggingface.co/HiTZ/GoLLIE-7B"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about GoLLIE inference costs and GPU hours:\n\n## Inference Performance and Cost\n\nWith a single A100 GPU, GoLLIE can process large datasets in a matter of hours, with the 7B version capable of processing 11.9e18 FLOPs in just 44.5 hours.\n\n## Training Infrastructure\n\nFor training, the training infrastructure used was 2 NVIDIA's A100 with 80GB each, and the models were trained for 3 epochs with an effective batch-size of 32 and a learning-rate of 3e-4 with cosine scheduler.\n\n## Evaluation Benchmarks\n\nGoLLIE was compared with GPT-3.5 and Instruct-UIE on MIT Movie, MIT Restaurant and CrossNER Named Entity Recognition (NER) datasets, with the model outperforming previous approaches on almost all the datasets. Additionally, the model was also evaluated on Event Extraction (EE) and Event Argument Extraction (EAE) datasets.\n\n## GPU Requirements\n\nFlash attention requires an available CUDA GPU, and running GoLLIE pre-trained models on a CPU is not supported.\n\nThe search results don't contain detailed information about specific inference costs in terms of GPU hours per evaluation benchmark, but they confirm that GoLLIE is designed for efficient inference with A100 GPUs and has been evaluated on NER, event extraction, and event argument extraction tasks."
+    ],
+    "durationSeconds": 6.223860321
+  },
+  "sourceToolAssistantUUID": "2778af55-cb0e-4683-b426-c32959a86954",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-10T07:59:41.237Z_
+
+<details><summary>↩ Tool result · `toolu_01TA9AADgKLaHqv1yLrbqjny`</summary>
+
+```text
+Web search results for query: "SCIR self-correcting iterative refinement information extraction AAAI 2026 schema fixed prediction refinement"
+
+Links: [{"title":"SCIR: A Self-Correcting Iterative Refinement Framework for Enhanced Information Extraction Based on Schema | Proceedings of the AAAI Conference on Artificial Intelligence","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40326"},{"title":"SCIR: A Self-Correcting Iterative Refinement Framework for Enhanced","url":"https://www.arxiv.org/pdf/2512.12337"},{"title":"(PDF) SCIR: A Self-Correcting Iterative Refinement Framework for Enhanced Information Extraction Based on Schema","url":"https://www.researchgate.net/publication/398720721_SCIR_A_Self-Correcting_Iterative_Refinement_Framework_for_Enhanced_Information_Extraction_Based_on_Schema"},{"title":"SCIR: A Self-Correcting Iterative Refinement Framework for Enhanced Information Extraction Based on Schema","url":"https://arxiv.org/html/2512.12337v1"},{"title":"SCIR: A Self-Correcting Iterative Refinement Framework for Enhanced","url":"https://ojs.aaai.org/index.php/AAAI/article/view/40326/44287"},{"title":"[2512.12337] SCIR: A Self-Correcting Iterative Refinement Framework for Enhanced Information Extraction Based on Schema","url":"https://arxiv.org/abs/2512.12337"},{"title":"SELF-REFINE: Iterative Refinement with Self-Feedback","url":"https://openreview.net/pdf?id=S37hOerQLB"},{"title":"Small Language Model Can Self-Correct","url":"https://ojs.aaai.org/index.php/AAAI/article/view/29774/31334"},{"title":"Exploring LLMs for Scientific Information Extraction using the SciEx Framework","url":"https://arxiv.org/pdf/2512.10004"},{"title":"Notebook for the CheckThat! Lab at CLEF 2025","url":"https://ceur-ws.org/Vol-4038/paper_92.pdf"}]
+
+Based on the search results, I found comprehensive information about SCIR:
+
+## SCIR: Self-Correcting Iterative Refinement Framework
+
+SCIR is a Self-Correcting Iterative Refinement Framework for Enhanced Information Extraction Based on Schema, presented at AAAI 2026.
+
+### Core Problem and Solution
+
+Although LLM-powered information extraction (IE) systems have shown impressive capabilities, current fine-tuning paradigms face two major limitations: high training costs and difficulties in aligning with LLM preferences. To address these issues, the framework proposes a novel universal IE paradigm—SCIR—along with a Multi-task Bilingual (Chinese-English) Self-Correcting (MBSC) dataset containing over 100,000 entries.
+
+### Key Technical Components
+
+The framework leverages a Dual-Path Self-Correcting mechanism and a Feedback-Driven Optimization mechanism to enhance the flexibility of IE systems. More specifically, the Dual-Path Self-Correcting mechanism verifies the completeness of extraction results through two pathways: redundancy detection and missing detection. The Feedback-Driven Optimization mechanism generates iterative prompts based on verification results to drive a context-learning-based iterative generation process.
+
+### Performance and Benefits
+
+SCIR outperforms state-of-the-art IE methods across three key tasks—named entity recognition, relation extraction, and event extraction—achieving a 5.27 percent average improvement in span-based Micro-F1 while reducing training costs by 87 percent compared to baseline approaches.
+
+The SCIR framework achieves plug-and-play compatibility with existing LLMs and IE systems through its Dual-Path Self-Correcting module and feedback-driven optimization, thereby significantly reducing training costs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e972346b-71b2-4f40-9b16-dee8bcd44461",
+  "isSidechain": false,
+  "promptId": "40cc8325-b976-4b15-ae6a-84556edbec49",
+  "type": "user",
+  "uuid": "adb70e4d-e330-468c-8190-f90a217e6ca8",
+  "toolUseResult": {
+    "query": "SCIR self-correcting iterative refinement information extraction AAAI 2026 schema fixed prediction refinement",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01EDLSzw1y3sAWdhjLHZzKtc",
+        "content": [
+          {
+            "title": "SCIR: A Self-Correcting Iterative Refinement Framework for Enhanced Information Extraction Based on Schema | Proceedings of the AAAI Conference on Artificial Intelligence",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/40326"
+          },
+          {
+            "title": "SCIR: A Self-Correcting Iterative Refinement Framework for Enhanced",
+            "url": "https://www.arxiv.org/pdf/2512.12337"
+          },
+          {
+            "title": "(PDF) SCIR: A Self-Correcting Iterative Refinement Framework for Enhanced Information Extraction Based on Schema",
+            "url": "https://www.researchgate.net/publication/398720721_SCIR_A_Self-Correcting_Iterative_Refinement_Framework_for_Enhanced_Information_Extraction_Based_on_Schema"
+          },
+          {
+            "title": "SCIR: A Self-Correcting Iterative Refinement Framework for Enhanced Information Extraction Based on Schema",
+            "url": "https://arxiv.org/html/2512.12337v1"
+          },
+          {
+            "title": "SCIR: A Self-Correcting Iterative Refinement Framework for Enhanced",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/40326/44287"
+          },
+          {
+            "title": "[2512.12337] SCIR: A Self-Correcting Iterative Refinement Framework for Enhanced Information Extraction Based on Schema",
+            "url": "https://arxiv.org/abs/2512.12337"
+          },
+          {
+            "title": "SELF-REFINE: Iterative Refinement with Self-Feedback",
+            "url": "https://openreview.net/pdf?id=S37hOerQLB"
+          },
+          {
+            "title": "Small Language Model Can Self-Correct",
+            "url": "https://ojs.aaai.org/index.php/AAAI/article/view/29774/31334"
+          },
+          {
+            "title": "Exploring LLMs for Scientific Information Extraction using the SciEx Framework",
+            "url": "https://arxiv.org/pdf/2512.10004"
+          },
+          {
+            "title": "Notebook for the CheckThat! Lab at CLEF 2025",
+            "url": "https://ceur-ws.org/Vol-4038/paper_92.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about SCIR:\n\n## SCIR: Self-Correcting Iterative Refinement Framework\n\nSCIR is a Self-Correcting Iterative Refinement Framework for Enhanced Information Extraction Based on Schema, presented at AAAI 2026.\n\n### Core Problem and Solution\n\nAlthough LLM-powered information extraction (IE) systems have shown impressive capabilities, current fine-tuning paradigms face two major limitations: high training costs and difficulties in aligning with LLM preferences. To address these issues, the framework proposes a novel universal IE paradigm—SCIR—along with a Multi-task Bilingual (Chinese-English) Self-Correcting (MBSC) dataset containing over 100,000 entries.\n\n### Key Technical Components\n\nThe framework leverages a Dual-Path Self-Correcting mechanism and a Feedback-Driven Optimization mechanism to enhance the flexibility of IE systems. More specifically, the Dual-Path Self-Correcting mechanism verifies the completeness of extraction results through two pathways: redundancy detection and missing detection. The Feedback-Driven Optimization mechanism generates iterative prompts based on verification results to drive a context-learning-based iterative generation process.\n\n### Performance and Benefits\n\nSCIR outperforms state-of-the-art IE methods across three key tasks—named entity recognition, relation extraction, and event extraction—achieving a 5.27 percent average improvement in span-based Micro-F1 while reducing training costs by 87 percent compared to baseline approaches.\n\nThe SCIR framework achieves plug-and-play compatibility with existing LLMs and IE systems through its Dual-Path Self-Correcting module and feedback-driven optimization, thereby significantly reducing training costs."
+    ],
+    "durationSeconds": 7.437820191999999
+  },
+  "sourceToolAssistantUUID": "e972346b-71b2-4f40-9b16-dee8bcd44461",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28 · 2026-05-10T08:00:16.626Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+I found an important concurrent paper: "Schema as Parameterized Tools for Universal Information Extraction" (arXiv:2506.01276). This is from May/June 2026, so it's very recent and possibly concurrent. Let me also fetch its abstract to understand it better.
+
+Now let me check more details on the resource estimate issue - the critical unresolved issue from Round 2. Let me also search for schema contamination evaluation methods in IE and online adaptation for NER.
+
+Key observations so far:
+1. SAM-NER (arXiv:2605.03706) exists as expected - confirmed concurrent work that the generator still doesn't cite.
+
+
+2. SCIR refines predictions rather than schema definitions, and it's confirmed as AAAI 2026. The Schema as Parameterized Tools paper from June 2026 is another concurrent work the generator hasn't addressed yet.
+3. Looking at GoLLIE-7B's computational requirements, a single A100 can handle the inference workload, which means running across 8 datasets with 5 severity levels should be feasible in roughly 20-50 hours as the feedback indicated.
+
+Now I need to revisit the resource estimates more carefully since Round 2 feedback highlighted this as a critical gap.
+
+The reviewer was explicit: GoLLIE-7B inference across all datasets fits within 20-50h on A100, and the schema optimizer via API costs nothing. But looking at Round 3's estimates, the numbers haven't budged at all—still showing 250h for manual, 350h for HIL, and 900h for auto. This is a major problem because the generator never actually separated the GPU-intensive extractor inference from the schema optimization work, which was the whole point of the feedback. The 4-6 month timeline for manual also completely violates the 16-day constraint that was flagged.
+
+Now I'm checking what else got missed. The proxy metric circular reasoning issue is still there—the description mentions using three unsupervised metrics with a 2/3 voting threshold, but there's no actual correlation analysis showing whether these proxy metrics reliably predict real F1 improvements on the test set. The Round 2 reviewer specifically asked for an experiment plotting proxy metric gains against actual F1 gains, and that's completely absent from Round 3.
+
+Beyond that, there are several other unaddressed points: the evaluation is still synthetic-only with no natural domain transfer experiment, the schema optimizer ablation still only mentions the frozen large model without testing smaller variants, SAM-NER isn't cited anywhere, and the dual constraint infeasibility numbers haven't changed at all. There's also a new concurrent paper on schema as parameterized tools from June 2026 that should be referenced.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "adb70e4d-e330-468c-8190-f90a217e6ca8",
+  "isSidechain": false,
+  "requestId": "req_011CatXys9WjyzuCwkEyHdea",
+  "type": "assistant",
+  "uuid": "62825db4-849f-4a67-a734-63939ae30523",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_014SzDJpofbBNBSFbSmFwxvJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 895,
+      "cache_creation_input_tokens": 1627,
+      "cache_read_input_tokens": 31565,
+      "output_tokens": 1344,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1627,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 895,
+          "output_tokens": 1344,
+          "cache_read_input_tokens": 31565,
+          "cache_creation_input_tokens": 1627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1627
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29 · 2026-05-10T08:00:17.324Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01W8YFCpTBJ7DCHaxie3mY8b`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/abs/2506.01276",
+  "prompt": "What is the title, main method, and key results of this paper? Does it do schema adaptation, online adaptation, or test-time schema revision? What tasks (NER, RE, event extraction) does it cover?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62825db4-849f-4a67-a734-63939ae30523",
+  "isSidechain": false,
+  "requestId": "req_011CatXys9WjyzuCwkEyHdea",
+  "type": "assistant",
+  "uuid": "005cf181-7ff6-4367-96c3-a6e52f14437f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_014SzDJpofbBNBSFbSmFwxvJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 895,
+      "cache_creation_input_tokens": 1627,
+      "cache_read_input_tokens": 31565,
+      "output_tokens": 1344,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1627,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 895,
+          "output_tokens": 1344,
+          "cache_read_input_tokens": 31565,
+          "cache_creation_input_tokens": 1627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1627
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 30 · 2026-05-10T08:00:18.135Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Epy1Xd9VUF43yHQQLD6v4k`</summary>
+
+```json
+{
+  "query": "online schema adaptation NER relation extraction test-time ontology mismatch 2026 arXiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "005cf181-7ff6-4367-96c3-a6e52f14437f",
+  "isSidechain": false,
+  "requestId": "req_011CatXys9WjyzuCwkEyHdea",
+  "type": "assistant",
+  "uuid": "ce62afd7-f552-4c6e-9ca3-416e4b5af1e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_014SzDJpofbBNBSFbSmFwxvJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 895,
+      "cache_creation_input_tokens": 1627,
+      "cache_read_input_tokens": 31565,
+      "output_tokens": 1344,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1627,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 895,
+          "output_tokens": 1344,
+          "cache_read_input_tokens": 31565,
+          "cache_creation_input_tokens": 1627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1627
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31 · 2026-05-10T08:00:18.247Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GtZnM2pu1TbCT9FNVktTFE`</summary>
+
+```json
+{
+  "query": "schema revision type definition LLM information extraction zero-shot 2025 2026 ontology"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ce62afd7-f552-4c6e-9ca3-416e4b5af1e0",
+  "isSidechain": false,
+  "requestId": "req_011CatXys9WjyzuCwkEyHdea",
+  "type": "assistant",
+  "uuid": "a196a29e-a173-4895-af3e-21e09ef51c55",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_014SzDJpofbBNBSFbSmFwxvJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 895,
+      "cache_creation_input_tokens": 1627,
+      "cache_read_input_tokens": 31565,
+      "output_tokens": 1344,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1627,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 895,
+          "output_tokens": 1344,
+          "cache_read_input_tokens": 31565,
+          "cache_creation_input_tokens": 1627,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1627
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 32_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "a196a29e-a173-4895-af3e-21e09ef51c55",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Online schema adaptation via extraction-error feedback",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab"
+}
+```
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-10T08:00:21.722Z_
+
+<details><summary>↩ Tool result · `toolu_01W8YFCpTBJ7DCHaxie3mY8b`</summary>
+
+```text
+# Paper Summary: Schema as Parameterized Tools for Universal Information Extraction
+
+**Title:** "Schema as Parameterized Tools for Universal Information Extraction"
+
+**Main Method:** The authors propose SPT, which reimagines LLM tool-calling by treating schemas as parameterized tools. The framework operates through three mechanisms: Schema Retrieval (selecting from predefined schemas), Schema Filling (extracting information into tool parameters), and Schema Generation (creating new schemas for uncovered cases).
+
+**Key Results:** SPT demonstrates "comparable extraction performance to LoRA baselines and current leading UIE systems with significantly fewer trainable parameters." The method handles four distinct IE tasks adaptively with robust schema retrieval performance.
+
+**Schema Adaptation:** Yes—the framework addresses the "lack of adaptability when selecting between predefined schemas and on-the-fly schema generation," enabling both closed-form and dynamic schema approaches.
+
+**Online/Test-Time Revision:** The paper emphasizes in-context learning capabilities and on-demand schema generation, suggesting test-time schema adaptation.
+
+**Task Coverage:** While the abstract doesn't specify individual task types, it references "four distinct IE tasks" within a "universal information extraction" framework. The paper likely covers standard IE tasks (NER, RE, event extraction) but specific task breakdowns aren't detailed in the provided content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "005cf181-7ff6-4367-96c3-a6e52f14437f",
+  "isSidechain": false,
+  "promptId": "40cc8325-b976-4b15-ae6a-84556edbec49",
+  "type": "user",
+  "uuid": "d6e620e8-6916-4d37-b201-dbe83dcf7b46",
+  "toolUseResult": {
+    "bytes": 46639,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Paper Summary: Schema as Parameterized Tools for Universal Information Extraction\n\n**Title:** \"Schema as Parameterized Tools for Universal Information Extraction\"\n\n**Main Method:** The authors propose SPT, which reimagines LLM tool-calling by treating schemas as parameterized tools. The framework operates through three mechanisms: Schema Retrieval (selecting from predefined schemas), Schema Filling (extracting information into tool parameters), and Schema Generation (creating new schemas for uncovered cases).\n\n**Key Results:** SPT demonstrates \"comparable extraction performance to LoRA baselines and current leading UIE systems with significantly fewer trainable parameters.\" The method handles four distinct IE tasks adaptively with robust schema retrieval performance.\n\n**Schema Adaptation:** Yes—the framework addresses the \"lack of adaptability when selecting between predefined schemas and on-the-fly schema generation,\" enabling both closed-form and dynamic schema approaches.\n\n**Online/Test-Time Revision:** The paper emphasizes in-context learning capabilities and on-demand schema generation, suggesting test-time schema adaptation.\n\n**Task Coverage:** While the abstract doesn't specify individual task types, it references \"four distinct IE tasks\" within a \"universal information extraction\" framework. The paper likely covers standard IE tasks (NER, RE, event extraction) but specific task breakdowns aren't detailed in the provided content.",
+    "durationMs": 4393,
+    "url": "https://arxiv.org/abs/2506.01276"
+  },
+  "sourceToolAssistantUUID": "005cf181-7ff6-4367-96c3-a6e52f14437f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-10T08:00:26.103Z_
+
+<details><summary>↩ Tool result · `toolu_01Epy1Xd9VUF43yHQQLD6v4k`</summary>
+
+```text
+Web search results for query: "online schema adaptation NER relation extraction test-time ontology mismatch 2026 arXiv"
+
+Links: [{"title":"RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints","url":"https://arxiv.org/html/2509.19057v1"},{"title":"A Few-Shot Approach for Relation Extraction Domain Adaptation using Large Language Models","url":"https://arxiv.org/html/2408.02377"},{"title":"OEMA: Ontology-Enhanced Multi-Agent Collaboration Framework for Zero-Shot Clinical Named Entity Recognition","url":"https://arxiv.org/html/2511.15211v1"},{"title":"Axiom Generation for Automated Ontology Construction from Texts Through Schema Mapping","url":"https://www.mdpi.com/2504-4990/8/2/29"},{"title":"OntoKG: Ontology-Oriented Knowledge Graph Construction with Intrinsic-Relational Routing","url":"https://arxiv.org/html/2604.02618v1"},{"title":"Trusted Knowledge Extraction for Operations and Maintenance Intelligence","url":"https://arxiv.org/html/2507.22935v3"},{"title":"Ontology-conformal recognition of materials entities using language models | Scientific Reports","url":"https://www.nature.com/articles/s41598-025-03619-y"},{"title":"1 A Comprehensive Survey on Relation Extraction: Recent","url":"https://arxiv.org/pdf/2306.02051"},{"title":"Relation Extraction in Biomedical Abstracts with LLMs and ...","url":"https://arxiv.org/pdf/2509.19057"},{"title":"Ontology-grounded Automatic Knowledge Graph Construction by LLM under Wikidata schema","url":"https://arxiv.org/html/2412.20942"}]
+
+I found several relevant research papers related to your search query. Here are the key results:
+
+## Most Relevant Findings:
+
+1. **RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints** (arXiv 2509.19057, September 2025)
+   - This work introduces RELATE, a three-stage pipeline that maps LLM-extracted relations to standardized ontology predicates using ChemProt and the Biolink Model, with stages including ontology preprocessing with predicate embeddings, similarity-based retrieval enhanced with SapBERT, and LLM-based reranking with explicit negation handling.
+
+2. **OEMA: Ontology-Enhanced Multi-Agent Collaboration Framework for Zero-Shot Clinical Named Entity Recognition** (arXiv 2511.15211v1, November 2025)
+   - OEMA combines ontology-guided reasoning with multi-agent collaboration to address two key challenges in zero-shot clinical NER: granularity mismatch and prompt–self-improvement integration, with its ontology-based filtering reducing noise and enhancing semantic alignment.
+
+3. **OntoKG: Ontology-Oriented Knowledge Graph Construction with Intrinsic-Relational Routing** (arXiv 2604.02618v1, April 2026)
+   - This presents an ontology-oriented approach to knowledge graph construction designed for ontology analysis, entity disambiguation, domain customization, and LLM-guided extraction.
+
+4. **Axiom Generation for Automated Ontology Construction from Texts Through Schema Mapping** (Published January 26, 2026)
+   - This work addresses the generation of formal Description Logic axioms required for constructing logically consistent and computationally tractable ontologies from neural and Transformer-based extraction models.
+
+These papers address themes related to schema adaptation, NER, relation extraction, and ontology handling, though the specific combination you searched for may not have an exact match in these results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ce62afd7-f552-4c6e-9ca3-416e4b5af1e0",
+  "isSidechain": false,
+  "promptId": "40cc8325-b976-4b15-ae6a-84556edbec49",
+  "type": "user",
+  "uuid": "7bb454aa-d40e-4fcd-ab9d-b98819415b15",
+  "toolUseResult": {
+    "query": "online schema adaptation NER relation extraction test-time ontology mismatch 2026 arXiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Ezjx7qvKhEShTzmsQ6U121",
+        "content": [
+          {
+            "title": "RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints",
+            "url": "https://arxiv.org/html/2509.19057v1"
+          },
+          {
+            "title": "A Few-Shot Approach for Relation Extraction Domain Adaptation using Large Language Models",
+            "url": "https://arxiv.org/html/2408.02377"
+          },
+          {
+            "title": "OEMA: Ontology-Enhanced Multi-Agent Collaboration Framework for Zero-Shot Clinical Named Entity Recognition",
+            "url": "https://arxiv.org/html/2511.15211v1"
+          },
+          {
+            "title": "Axiom Generation for Automated Ontology Construction from Texts Through Schema Mapping",
+            "url": "https://www.mdpi.com/2504-4990/8/2/29"
+          },
+          {
+            "title": "OntoKG: Ontology-Oriented Knowledge Graph Construction with Intrinsic-Relational Routing",
+            "url": "https://arxiv.org/html/2604.02618v1"
+          },
+          {
+            "title": "Trusted Knowledge Extraction for Operations and Maintenance Intelligence",
+            "url": "https://arxiv.org/html/2507.22935v3"
+          },
+          {
+            "title": "Ontology-conformal recognition of materials entities using language models | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-025-03619-y"
+          },
+          {
+            "title": "1 A Comprehensive Survey on Relation Extraction: Recent",
+            "url": "https://arxiv.org/pdf/2306.02051"
+          },
+          {
+            "title": "Relation Extraction in Biomedical Abstracts with LLMs and ...",
+            "url": "https://arxiv.org/pdf/2509.19057"
+          },
+          {
+            "title": "Ontology-grounded Automatic Knowledge Graph Construction by LLM under Wikidata schema",
+            "url": "https://arxiv.org/html/2412.20942"
+          }
+        ]
+      },
+      "I found several relevant research papers related to your search query. Here are the key results:\n\n## Most Relevant Findings:\n\n1. **RELATE: Relation Extraction in Biomedical Abstracts with LLMs and Ontology Constraints** (arXiv 2509.19057, September 2025)\n   - This work introduces RELATE, a three-stage pipeline that maps LLM-extracted relations to standardized ontology predicates using ChemProt and the Biolink Model, with stages including ontology preprocessing with predicate embeddings, similarity-based retrieval enhanced with SapBERT, and LLM-based reranking with explicit negation handling.\n\n2. **OEMA: Ontology-Enhanced Multi-Agent Collaboration Framework for Zero-Shot Clinical Named Entity Recognition** (arXiv 2511.15211v1, November 2025)\n   - OEMA combines ontology-guided reasoning with multi-agent collaboration to address two key challenges in zero-shot clinical NER: granularity mismatch and prompt–self-improvement integration, with its ontology-based filtering reducing noise and enhancing semantic alignment.\n\n3. **OntoKG: Ontology-Oriented Knowledge Graph Construction with Intrinsic-Relational Routing** (arXiv 2604.02618v1, April 2026)\n   - This presents an ontology-oriented approach to knowledge graph construction designed for ontology analysis, entity disambiguation, domain customization, and LLM-guided extraction.\n\n4. **Axiom Generation for Automated Ontology Construction from Texts Through Schema Mapping** (Published January 26, 2026)\n   - This work addresses the generation of formal Description Logic axioms required for constructing logically consistent and computationally tractable ontologies from neural and Transformer-based extraction models.\n\nThese papers address themes related to schema adaptation, NER, relation extraction, and ontology handling, though the specific combination you searched for may not have an exact match in these results."
+    ],
+    "durationSeconds": 7.962322052999996
+  },
+  "sourceToolAssistantUUID": "ce62afd7-f552-4c6e-9ca3-416e4b5af1e0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-10T08:00:26.479Z_
+
+<details><summary>↩ Tool result · `toolu_01GtZnM2pu1TbCT9FNVktTFE`</summary>
+
+```text
+Web search results for query: "schema revision type definition LLM information extraction zero-shot 2025 2026 ontology"
+
+Links: [{"title":"LLM-based Zero-shot Triple Extraction for Automated Ontology Generation from Software Engineering Standards","url":"https://arxiv.org/html/2509.00140v2"},{"title":"OntoKG: Ontology-Oriented Knowledge Graph Construction with Intrinsic-Relational Routing","url":"https://arxiv.org/html/2604.02618v1"},{"title":"[2508.19428] Heterogeneous LLM Methods for Ontology Learning (Few-Shot Prompting, Ensemble Typing, and Attention-Based Taxonomies)","url":"https://arxiv.org/abs/2508.19428"},{"title":"[2509.00140] LLM-based Zero-shot Triple Extraction for Automated Ontology Generation from Software Engineering Standards","url":"https://arxiv.org/abs/2509.00140"},{"title":"From LLMs to Knowledge Graphs: Building Production-Ready Graph Systems in 2025 | by Claudiu Branzan | Medium","url":"https://medium.com/@claudiubranzan/from-llms-to-knowledge-graphs-building-production-ready-graph-systems-in-2025-2b4aff1ec99a"},{"title":"Scientific knowledge graph and ontology generation using open large language models - Digital Discovery (RSC Publishing) DOI:10.1039/D5DD00275C","url":"https://pubs.rsc.org/en/content/articlehtml/2026/dd/d5dd00275c"},{"title":"LLM-based Triplet Extraction for Automated Ontology Generation in Software Engineering Standards","url":"https://arxiv.org/html/2509.00140v1"},{"title":"arXiv:2508.19428v1 [cs.CL] 26 Aug 2025","url":"https://arxiv.org/pdf/2508.19428"},{"title":"LLM-Driven Ontology Construction for Enterprise Knowledge Graphs","url":"https://arxiv.org/html/2602.01276v1"},{"title":"Large language models for scholarly ontology generation: An extensive analysis in the engineering field - ScienceDirect","url":"https://www.sciencedirect.com/science/article/pii/S0306457325002031"}]
+
+I've completed a web search on your query about schema revision, type definition, LLM information extraction, zero-shot learning, and ontology research from 2025-2026. Here are the key findings:
+
+## Recent Research on LLM-Based Ontology and Schema Generation
+
+**Zero-Shot Extraction and Type Definition:**
+
+Recent work addressing the LLMs4OL 2025 challenge spans the full ontology construction pipeline using zero-shot classification and attention-based graph modeling, tailored to demands of term extraction, typing, and taxonomy discovery. For previously unseen domains, zero-shot classifiers combine cosine similarity scores from multiple embedding models using confidence-based weighting.
+
+**Schema-Oriented Knowledge Graph Approaches:**
+
+An ontology-oriented approach to knowledge graph construction designs the schema from the outset for ontology analysis, entity disambiguation, domain customization, and LLM-guided extraction. Schema expansion from external sources requires schema-extension methods that can map new relations to existing modules, extend modules when needed, and introduce new modules when no faithful alignment exists.
+
+**LLM-Based Zero-Shot Ontology Generation:**
+
+Recent work proposes methods leveraging LLMs for zero-shot, end-to-end ontology and knowledge graph generation from scientific literature, implemented exclusively using open-source LLMs. An LLM-assisted approach to relation triple extraction promotes the use of LLMs as an aid in constructing ontologies through an effective workflow including document segmentation, candidate term mining, LLM-based relation inference, term normalization, and cross-section alignment.
+
+**Benchmark and Evaluation:**
+
+Studies evaluating seventeen LLMs on zero-shot reasoning strategies for ontology generation show that models including Mixtral-8×7B, Dolphin-Mistral-7B, and Claude 3 Sonnet achieved F1-scores of 0.847, 0.920, and 0.967 respectively.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a196a29e-a173-4895-af3e-21e09ef51c55",
+  "isSidechain": false,
+  "promptId": "40cc8325-b976-4b15-ae6a-84556edbec49",
+  "type": "user",
+  "uuid": "008edd2a-031e-455b-8d7f-adb30039dbc5",
+  "toolUseResult": {
+    "query": "schema revision type definition LLM information extraction zero-shot 2025 2026 ontology",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JtP8jaoUB9LuvRaNaNZ9Cm",
+        "content": [
+          {
+            "title": "LLM-based Zero-shot Triple Extraction for Automated Ontology Generation from Software Engineering Standards",
+            "url": "https://arxiv.org/html/2509.00140v2"
+          },
+          {
+            "title": "OntoKG: Ontology-Oriented Knowledge Graph Construction with Intrinsic-Relational Routing",
+            "url": "https://arxiv.org/html/2604.02618v1"
+          },
+          {
+            "title": "[2508.19428] Heterogeneous LLM Methods for Ontology Learning (Few-Shot Prompting, Ensemble Typing, and Attention-Based Taxonomies)",
+            "url": "https://arxiv.org/abs/2508.19428"
+          },
+          {
+            "title": "[2509.00140] LLM-based Zero-shot Triple Extraction for Automated Ontology Generation from Software Engineering Standards",
+            "url": "https://arxiv.org/abs/2509.00140"
+          },
+          {
+            "title": "From LLMs to Knowledge Graphs: Building Production-Ready Graph Systems in 2025 | by Claudiu Branzan | Medium",
+            "url": "https://medium.com/@claudiubranzan/from-llms-to-knowledge-graphs-building-production-ready-graph-systems-in-2025-2b4aff1ec99a"
+          },
+          {
+            "title": "Scientific knowledge graph and ontology generation using open large language models - Digital Discovery (RSC Publishing) DOI:10.1039/D5DD00275C",
+            "url": "https://pubs.rsc.org/en/content/articlehtml/2026/dd/d5dd00275c"
+          },
+          {
+            "title": "LLM-based Triplet Extraction for Automated Ontology Generation in Software Engineering Standards",
+            "url": "https://arxiv.org/html/2509.00140v1"
+          },
+          {
+            "title": "arXiv:2508.19428v1 [cs.CL] 26 Aug 2025",
+            "url": "https://arxiv.org/pdf/2508.19428"
+          },
+          {
+            "title": "LLM-Driven Ontology Construction for Enterprise Knowledge Graphs",
+            "url": "https://arxiv.org/html/2602.01276v1"
+          },
+          {
+            "title": "Large language models for scholarly ontology generation: An extensive analysis in the engineering field - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/pii/S0306457325002031"
+          }
+        ]
+      },
+      "I've completed a web search on your query about schema revision, type definition, LLM information extraction, zero-shot learning, and ontology research from 2025-2026. Here are the key findings:\n\n## Recent Research on LLM-Based Ontology and Schema Generation\n\n**Zero-Shot Extraction and Type Definition:**\n\nRecent work addressing the LLMs4OL 2025 challenge spans the full ontology construction pipeline using zero-shot classification and attention-based graph modeling, tailored to demands of term extraction, typing, and taxonomy discovery. For previously unseen domains, zero-shot classifiers combine cosine similarity scores from multiple embedding models using confidence-based weighting.\n\n**Schema-Oriented Knowledge Graph Approaches:**\n\nAn ontology-oriented approach to knowledge graph construction designs the schema from the outset for ontology analysis, entity disambiguation, domain customization, and LLM-guided extraction. Schema expansion from external sources requires schema-extension methods that can map new relations to existing modules, extend modules when needed, and introduce new modules when no faithful alignment exists.\n\n**LLM-Based Zero-Shot Ontology Generation:**\n\nRecent work proposes methods leveraging LLMs for zero-shot, end-to-end ontology and knowledge graph generation from scientific literature, implemented exclusively using open-source LLMs. An LLM-assisted approach to relation triple extraction promotes the use of LLMs as an aid in constructing ontologies through an effective workflow including document segmentation, candidate term mining, LLM-based relation inference, term normalization, and cross-section alignment.\n\n**Benchmark and Evaluation:**\n\nStudies evaluating seventeen LLMs on zero-shot reasoning strategies for ontology generation show that models including Mixtral-8×7B, Dolphin-Mistral-7B, and Claude 3 Sonnet achieved F1-scores of 0.847, 0.920, and 0.967 respectively."
+    ],
+    "durationSeconds": 8.22942010399999
+  },
+  "sourceToolAssistantUUID": "a196a29e-a173-4895-af3e-21e09ef51c55",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 37 · 2026-05-10T08:00:26.485Z_
+
+```json
+{
+  "parentUuid": "008edd2a-031e-455b-8d7f-adb30039dbc5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "5736dd9d-a3ce-4609-b822-a52137724e42",
+  "timestamp": "2026-05-10T08:00:26.485Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 38 · 2026-05-10T08:01:50.547Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. I've now gathered enough information to conduct my review. Let me now analyze what the Round 3 submission has done and what it hasn't addressed.
+
+**Key findings from my research:**
+
+1. **SAM-NER (arXiv:2605.03706)** confirmed as existing concurrent work - still NOT cited in Round 3 submission.
+
+2. **SPT: Schema as Parameterized Tools (arXiv:2506.01276)** - new concurrent paper from approximately June 2026. Addresses "lack of adaptability when selecting between predefined schemas and on-the-fly schema generation" with schema retrieval, filling, and generation. 
+
+This looks like it could be additional concurrent work, though it's operating in a different space with tool-calling rather than online adaptation from error signals.
+
+3. **DiZiNER** - confirmed as described, with the limitations as stated (schema fixed, multi-LLM, etc.).
+
+4. **SCIR** - confirmed as AAAI 2026, refines predictions given a fixed schema. The differentiation in the paper is valid.
+
+5. **GoLLIE 7B inference**: A single A100 can process the 7B model reasonably efficiently. Based on the GoLLIE paper's own numbers (11.9e18 FLOPs in 44.
+
+5 hours for processing), inference across 8 datasets would be much less than claimed in the resource estimate.
+
+Now I'm systematically evaluating the Round 3 submission. The critical issue remains unresolved: the Round 2 review explicitly stated that no mode satisfies both ≤200 H100-hours AND ≤16 days, and the feedback was clear about separating extractor inference (GPU, ~20-50h A100) from schema optimizer (Qwen3-72B via API, zero GPU cost). Looking at the Round 3 estimates, the Manual approach converts to ~125h H100 within budget but fails the 16-day deadline at 4-6 months, while the HIL approach at ~350h A100 80GB exceeds the resource constraint entirely.
+
+The generator hasn't actually changed anything—these are the identical numbers from Round 2, which is a direct failure to address the most critical feedback. Let me reconsider the hard constraints: compute ≤200 H100-hours and time ≤16 days. The HIL mode converts to ~175h H100 which meets compute, but 5-7 weeks clearly violates the timeline requirement.
+
+Auto mode could theoretically fit the 16-day window, but 900h A100 (~450h H100) massively exceeds the compute budget. Manual mode is completely infeasible at 4-6 months. The reviewer's key insight was that extractor inference using GoLLIE-7B should only cost ~20-50h A100, not 250h, and schema optimizer calls should use the API with zero GPU cost—bringing realistic estimates down to ~25h H100 within a 16-day intensive timeline. The generator failed to incorporate this correction.
+
+The proxy metric validation remains critically incomplete. Round 3 now specifies three unsupervised metrics (VRD, CDCD, ACP) with a 2/3 majority commit gate, but it's missing the correlation analysis the reviewer explicitly requested: plotting proxy metric improvements against actual F1 gains to validate these proxies actually predict real performance gains. The description mentions starting a signal reliability study examining context-conditioned contradictions across datasets, but it cuts off before completing the analysis that would actually ground the validation approach.
+
+And there's still no natural domain transfer evaluation—just synthetic contamination at varying severity levels. The reviewer asked for at least one real-world scenario like deploying an ACE05-trained model on biomedical NER without synthetic data, but that's nowhere in the current plan.
+
+I also need to verify that the contribution isn't just "use a bigger LLM"—there should be an ablation comparing Qwen3-72B against smaller models like Qwen3-7B or Llama-3-8B-Instruct to show the error-detection algorithm itself matters, not just model scale.
+
+SAM-NER still isn't cited despite the Round 2 feedback asking for it as a footnote. And now there's SPT (arXiv:2506.01276) from June 2026 on schema as parameterized tools for universal information extraction that I need to account for as well.
+
+Looking at what's actually been addressed from Round 2, the DiZiNER differentiator is now clear, validation uses unsupervised proxies, all benchmarks are included, and the PARSE venue is correctly labeled. But the resource estimates haven't budged—HIL still takes 5-7 weeks and Auto exceeds 200 hours on H100—and I'm still missing the correlation analysis that would validate those proxy metrics against actual performance.
+
+The evaluation gaps are significant too: everything's synthetic, there's no natural transfer experiment, and I haven't ablated the schema optimizer size. SAM-NER and SPT (arXiv:2506.01276) should be cited as concurrent work.
+
+Scoring novelty at 3.5 out of 5—the core idea is solid and the differentiation from DiZiNER, SCIR, PARSE, and GuideX is now precise. The online, single-extractor schema-ontology adaptation is genuinely novel, though using LLMs to rewrite schemas from inconsistency signals feels somewhat incremental compared to PARSE's offline approach. The real novelty hinges on whether this is truly the first online, single-extractor system.
+
+Actually, the combination is more novel than I initially thought: zero-seed learning, single-extractor operation, online type-definition revision (not just surface rewording), and coverage across NER, events, and relations together make this genuinely distinct from the baselines. Bumping that to 3.5-4.
+
+Feasibility is a harder problem at 2 out of 5. The resource constraints are brutal—no configuration hits both the compute budget and the 16-day timeline. Auto Research overshoots by 2.25×, and human-in-the-loop stretches to 5-7 weeks, which is way over the 16-day limit.
+
+Wait, let me recalculate the H100 conversion. If H100s are roughly twice as fast as A100s, then the budgets shift: Manual drops to 125 H100-hours (within the 200-hour cap), HIL comes in at 175 H100-hours (also within budget), but Auto still balloons to 450 H100-hours (well over). The timeline problem persists though—Manual still requires 4-6 months, which violates the 16-day constraint.
+
+The core issue is that no approach satisfies both constraints simultaneously. Auto Research could theoretically hit the timeline (1-2 weeks), but it demolishes the compute budget. The generator was explicitly told in Round 2 to fix this by showing extractor inference at 20-50 H100-hours instead of 900, using an API-based optimizer, but that correction never made it into the final version. The evaluation methodology also remains problematic—relying entirely on synthetic data undermines any claims about real-world applicability, and the proxy metrics lack validation.
+
+Scoring this out: novelty 3.5, feasibility 2, clarity 3.5, impact 3.5 gives an average of 3.125, which falls short of the 4.0 passing threshold. But since this is Round 3 of 10 and the issues are concrete and addressable—resource estimates, correlation analysis, natural transfer experiments, optimizer ablations, and missing citations—the right call is "revise" rather than "fail." These aren't fundamental conceptual problems, just execution gaps that can be fixed.
+
+Let me lock in my final assessment: the zero-seed, single-extractor, online type-definition approach is genuinely novel compared to prior work, but feasibility remains the weak point at 2/5 since no configuration meets both the computational and timeline constraints despite explicit feedback to revise. Clarity improves to 4/5 with the three-stage design and analytical experiments well-articulated, though impact stays at 3/5 because the synthetic-only evaluation doesn't validate whether the error signals actually transfer to real mismatches. That puts the average at 3.25, still below threshold, so "revise" is the verdict. haven't been fixed even after explicit instruction. That does affect the overall quality.
+
+Let me also reconsider novelty more carefully. The idea is conceptually clean:
+- Using a single model's own cross-document type contradictions as signals for schema revision
+- Detecting via sentence embedding cosine similarity (polysemy filter)
+- Type-local revision with cooldown to prevent cascade
+- Unsupervised proxy validation
+
+This is a genuine combination of ideas that hasn't been done before. The closest prior work (DiZiNER) uses multi-LLM disagreement on shared texts, not single-extractor cross-document contradictions, and doesn't revise type definitions. So I'd keep novelty at 3.5-4.
+
+But the feasibility issue is severe — it's been called out twice now with no response. This alone justifies "revise" verdict.
+
+Final scores:
+- Novelty: 4
+- Feasibility: 2
+- Clarity: 3
+- Impact: 3
+
+Average: 3.0
+
+Now I need to focus on what feedback would actually move this forward. The resource estimates are the biggest blocker — I should break down the Qwen3-72B optimizer calls separately from the GoLLIE-7B inference, showing that with proper GPU allocation and vLLM batching across the datasets and contamination levels, this fits comfortably within the 200-hour H100 budget and can complete in a week or two with sufficient hardware. I also want to suggest validating the proxy metrics by correlating the composite improvement signal against actual test set F1 gains — if that Spearman correlation hits 0.7 or higher, it would give real confidence in the approach.
+
+Beyond that, adding a natural transfer experiment (like deploying the ACE05-trained extractor on GENIA or CrossNER without synthetic contamination) would show the error signals actually work on real domain mismatches, not just synthetic ones. An ablation comparing different schema optimizer models would strengthen the design choices, and citing the concurrent SAM-NER and SPT work would properly situate this in the literature.
+
+I should compress all of this into actionable feedback that addresses the core feasibility concern while suggesting concrete validation steps.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5736dd9d-a3ce-4609-b822-a52137724e42",
+  "isSidechain": false,
+  "requestId": "req_011CatY3Cc8jEtEkZHQhkaot",
+  "type": "assistant",
+  "uuid": "568fc61a-1f5d-44da-938f-e0b697185db3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_012khHUuQ7mLLVCCPSjRsaBF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4663,
+      "cache_read_input_tokens": 33192,
+      "output_tokens": 3779,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4663,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3779,
+          "cache_read_input_tokens": 33192,
+          "cache_creation_input_tokens": 4663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4663
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-10T08:01:50.814Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01XZnNrq6JoBMexGRYBK3ejb`</summary>
+
+```json
+{
+  "query": "PARSE LLM schema optimization SWDE offline synthetic data entity extraction arXiv 2510.08623"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "568fc61a-1f5d-44da-938f-e0b697185db3",
+  "isSidechain": false,
+  "requestId": "req_011CatY3Cc8jEtEkZHQhkaot",
+  "type": "assistant",
+  "uuid": "8420e3b7-1909-4443-ab17-7846620e271f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_012khHUuQ7mLLVCCPSjRsaBF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4663,
+      "cache_read_input_tokens": 33192,
+      "output_tokens": 3779,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4663,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3779,
+          "cache_read_input_tokens": 33192,
+          "cache_creation_input_tokens": 4663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4663
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-10T08:01:50.839Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PHFFFtVwEWJ7jfJ3fz9HQ3`</summary>
+
+```json
+{
+  "query": "GuideX ACL Findings 2025 guideline zero-shot NER information extraction auto-generated"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8420e3b7-1909-4443-ab17-7846620e271f",
+  "isSidechain": false,
+  "requestId": "req_011CatY3Cc8jEtEkZHQhkaot",
+  "type": "assistant",
+  "uuid": "bb0a0b82-bc23-4055-b664-f801e31f936c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_012khHUuQ7mLLVCCPSjRsaBF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 4663,
+      "cache_read_input_tokens": 33192,
+      "output_tokens": 3779,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 4663,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3779,
+          "cache_read_input_tokens": 33192,
+          "cache_creation_input_tokens": 4663,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 4663
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 41_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "bb0a0b82-bc23-4055-b664-f801e31f936c",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 42_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Online schema adaptation via extraction-error feedback",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab"
+}
+```
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-10T08:01:56.338Z_
+
+<details><summary>↩ Tool result · `toolu_01XZnNrq6JoBMexGRYBK3ejb`</summary>
+
+```text
+Web search results for query: "PARSE LLM schema optimization SWDE offline synthetic data entity extraction arXiv 2510.08623"
+
+Links: [{"title":"[2510.08623] PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction","url":"https://arxiv.org/abs/2510.08623"},{"title":"PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction","url":"https://arxiv.org/html/2510.08623v1"},{"title":"(PDF) PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction","url":"https://www.researchgate.net/publication/396458126_PARSE_LLM_Driven_Schema_Optimization_for_Reliable_Entity_Extraction"},{"title":"PARSE: LLM driven schema optimization for reliable entity extraction - Amazon Science","url":"https://www.amazon.science/publications/parse-llm-driven-schema-optimization-for-reliable-entity-extraction"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=13775&show=25"},{"title":"Machine Learning Oct 2025","url":"https://arxiv.org/list/cs.LG/2025-10?skip=3600&show=250"},{"title":"PARSE: LLM Driven Schema Optimization for Reliable ...","url":"https://aclanthology.org/2025.emnlp-industry.184.pdf"},{"title":"LLM Driven Schema Optimization for Reliable Entity Extraction","url":"https://ribbitribbit.co/paper/arxiv.2510.08623-PARSE-LLM-Driven-Schema-Optimization-for-Reliable-Entity"},{"title":"Language Models Enable Simple Systems for Generating Structured Views of Heterogeneous Data Lakes","url":"https://arxiv.org/html/2304.09433v3"},{"title":"Bytez","url":"https://bytez.com/docs/arxiv/2510.08623/paper"}]
+
+Based on the search results, I found the paper you're looking for: PARSE (Parameter Automated Refinement and Schema Extraction), a novel system with two synergistic components: ARCHITECT, which autonomously optimizes JSON schemas for LLM consumption while maintaining backward compatibility through RELAY (an integrated code generation system), and SCOPE, which implements reflection-based extraction with combined static and LLM-based guardrails.
+
+The paper evaluates PARSE on three datasets including Schema-Guided Dialogue (SGD), Structured Web Data Extraction (SWDE), and internal retail conversation data, and finds that it achieves up to 64.7% improvement in extraction accuracy on SWDE with combined framework improvements reaching 10% across models.
+
+The paper is part of the EMNLP 2025 Industry Track and was authored by Anubhav Shrimal, Aryan Jain, Soumyajit Chowdhury, and Promod Yenigalla.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8420e3b7-1909-4443-ab17-7846620e271f",
+  "isSidechain": false,
+  "promptId": "40cc8325-b976-4b15-ae6a-84556edbec49",
+  "type": "user",
+  "uuid": "a92f0ec6-a803-4a67-a1cc-222d63fa91ac",
+  "toolUseResult": {
+    "query": "PARSE LLM schema optimization SWDE offline synthetic data entity extraction arXiv 2510.08623",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01AAvSxW47MAezMWpX3NKBSt",
+        "content": [
+          {
+            "title": "[2510.08623] PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction",
+            "url": "https://arxiv.org/abs/2510.08623"
+          },
+          {
+            "title": "PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction",
+            "url": "https://arxiv.org/html/2510.08623v1"
+          },
+          {
+            "title": "(PDF) PARSE: LLM Driven Schema Optimization for Reliable Entity Extraction",
+            "url": "https://www.researchgate.net/publication/396458126_PARSE_LLM_Driven_Schema_Optimization_for_Reliable_Entity_Extraction"
+          },
+          {
+            "title": "PARSE: LLM driven schema optimization for reliable entity extraction - Amazon Science",
+            "url": "https://www.amazon.science/publications/parse-llm-driven-schema-optimization-for-reliable-entity-extraction"
+          },
+          {
+            "title": "Computation and Language 2025",
+            "url": "https://arxiv.org/list/cs.CL/2025?skip=13775&show=25"
+          },
+          {
+            "title": "Machine Learning Oct 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-10?skip=3600&show=250"
+          },
+          {
+            "title": "PARSE: LLM Driven Schema Optimization for Reliable ...",
+            "url": "https://aclanthology.org/2025.emnlp-industry.184.pdf"
+          },
+          {
+            "title": "LLM Driven Schema Optimization for Reliable Entity Extraction",
+            "url": "https://ribbitribbit.co/paper/arxiv.2510.08623-PARSE-LLM-Driven-Schema-Optimization-for-Reliable-Entity"
+          },
+          {
+            "title": "Language Models Enable Simple Systems for Generating Structured Views of Heterogeneous Data Lakes",
+            "url": "https://arxiv.org/html/2304.09433v3"
+          },
+          {
+            "title": "Bytez",
+            "url": "https://bytez.com/docs/arxiv/2510.08623/paper"
+          }
+        ]
+      },
+      "Based on the search results, I found the paper you're looking for: PARSE (Parameter Automated Refinement and Schema Extraction), a novel system with two synergistic components: ARCHITECT, which autonomously optimizes JSON schemas for LLM consumption while maintaining backward compatibility through RELAY (an integrated code generation system), and SCOPE, which implements reflection-based extraction with combined static and LLM-based guardrails.\n\nThe paper evaluates PARSE on three datasets including Schema-Guided Dialogue (SGD), Structured Web Data Extraction (SWDE), and internal retail conversation data, and finds that it achieves up to 64.7% improvement in extraction accuracy on SWDE with combined framework improvements reaching 10% across models.\n\nThe paper is part of the EMNLP 2025 Industry Track and was authored by Anubhav Shrimal, Aryan Jain, Soumyajit Chowdhury, and Promod Yenigalla."
+    ],
+    "durationSeconds": 5.5178171979999755
+  },
+  "sourceToolAssistantUUID": "8420e3b7-1909-4443-ab17-7846620e271f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 44 · 2026-05-10T08:01:57.585Z_
+
+<details><summary>↩ Tool result · `toolu_01PHFFFtVwEWJ7jfJ3fz9HQ3`</summary>
+
+```text
+Web search results for query: "GuideX ACL Findings 2025 guideline zero-shot NER information extraction auto-generated"
+
+Links: [{"title":"GUIDEX – ACL Findings 2025","url":"https://neilus03.github.io/guidex.com/"},{"title":"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction - ACL Anthology","url":"https://aclanthology.org/2025.findings-acl.1245/"},{"title":"GUIDEX: Guided Synthetic Data Generation for Zero-Shot ...","url":"https://aclanthology.org/2025.findings-acl.1245.pdf"},{"title":"GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://arxiv.org/html/2506.00649"},{"title":"GitHub - Neilus03/GUIDEX: GUIDEX official repo","url":"https://github.com/Neilus03/GUIDEX"},{"title":"Guideline Learning for In-Context Information Extraction | Request PDF","url":"https://www.researchgate.net/publication/376405368_Guideline_Learning_for_In-Context_Information_Extraction"},{"title":"ZERONER: Fueling Zero-Shot Named Entity Recognition ...","url":"https://aclanthology.org/2025.findings-acl.805.pdf"},{"title":"Exploring LLM Annotation for Adaptation of Clinical ...","url":"https://aclanthology.org/2025.findings-acl.757.pdf"},{"title":"GitHub - zjunlp/Low-resource-KEPapers: A Paper List of Low-resource Information Extraction","url":"https://github.com/zjunlp/Low-resource-KEPapers"},{"title":"GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction","url":"https://openreview.net/pdf?id=OBJSRNVYS5"}]
+
+I found comprehensive information about GuideX from the ACL Findings 2025. Here's what I discovered:
+
+## Overview
+
+GUIDEX is a fully-automatic pipeline that transforms raw documents into executable (guidelines + annotations) pairs. GuideX automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization.
+
+## Key Research Details
+
+The paper introduces GUIDEX, a novel method that automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization. The work appears in Findings of the Association for Computational Linguistics: ACL 2025, pages 24248–24262, Vienna, Austria.
+
+## Performance Results
+
+Fine-tuning LLaMa 3.1 with GuideX sets a new state-of-the-art across seven zero-shot Named Entity Recognition benchmarks. Models trained with GuideX gain up to 7 F1 points over previous methods without human-labeled data, and nearly 3 F1 points higher when combined with it.
+
+## Authors
+
+The paper is authored by Neil De La Fuente, Oscar Sainz, Iker García-Ferrero, and Eneko Agirre.
+
+## Resources
+
+The official implementation is a novel method for synthetic data generation that automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances for Information Extraction (IE) tasks. Code, models, and synthetic datasets are available on GitHub at neilus03/GUIDEX.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "bb0a0b82-bc23-4055-b664-f801e31f936c",
+  "isSidechain": false,
+  "promptId": "40cc8325-b976-4b15-ae6a-84556edbec49",
+  "type": "user",
+  "uuid": "40141fcb-2b87-44de-9582-e1a076355cb3",
+  "toolUseResult": {
+    "query": "GuideX ACL Findings 2025 guideline zero-shot NER information extraction auto-generated",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011Y7SvkXajxNfEwytJ7JiXM",
+        "content": [
+          {
+            "title": "GUIDEX – ACL Findings 2025",
+            "url": "https://neilus03.github.io/guidex.com/"
+          },
+          {
+            "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction - ACL Anthology",
+            "url": "https://aclanthology.org/2025.findings-acl.1245/"
+          },
+          {
+            "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot ...",
+            "url": "https://aclanthology.org/2025.findings-acl.1245.pdf"
+          },
+          {
+            "title": "GuideX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://arxiv.org/html/2506.00649"
+          },
+          {
+            "title": "GitHub - Neilus03/GUIDEX: GUIDEX official repo",
+            "url": "https://github.com/Neilus03/GUIDEX"
+          },
+          {
+            "title": "Guideline Learning for In-Context Information Extraction | Request PDF",
+            "url": "https://www.researchgate.net/publication/376405368_Guideline_Learning_for_In-Context_Information_Extraction"
+          },
+          {
+            "title": "ZERONER: Fueling Zero-Shot Named Entity Recognition ...",
+            "url": "https://aclanthology.org/2025.findings-acl.805.pdf"
+          },
+          {
+            "title": "Exploring LLM Annotation for Adaptation of Clinical ...",
+            "url": "https://aclanthology.org/2025.findings-acl.757.pdf"
+          },
+          {
+            "title": "GitHub - zjunlp/Low-resource-KEPapers: A Paper List of Low-resource Information Extraction",
+            "url": "https://github.com/zjunlp/Low-resource-KEPapers"
+          },
+          {
+            "title": "GUIDEX: Guided Synthetic Data Generation for Zero-Shot Information Extraction",
+            "url": "https://openreview.net/pdf?id=OBJSRNVYS5"
+          }
+        ]
+      },
+      "I found comprehensive information about GuideX from the ACL Findings 2025. Here's what I discovered:\n\n## Overview\n\nGUIDEX is a fully-automatic pipeline that transforms raw documents into executable (guidelines + annotations) pairs. GuideX automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization.\n\n## Key Research Details\n\nThe paper introduces GUIDEX, a novel method that automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances, allowing for better out-of-domain generalization. The work appears in Findings of the Association for Computational Linguistics: ACL 2025, pages 24248–24262, Vienna, Austria.\n\n## Performance Results\n\nFine-tuning LLaMa 3.1 with GuideX sets a new state-of-the-art across seven zero-shot Named Entity Recognition benchmarks. Models trained with GuideX gain up to 7 F1 points over previous methods without human-labeled data, and nearly 3 F1 points higher when combined with it.\n\n## Authors\n\nThe paper is authored by Neil De La Fuente, Oscar Sainz, Iker García-Ferrero, and Eneko Agirre.\n\n## Resources\n\nThe official implementation is a novel method for synthetic data generation that automatically defines domain-specific schemas, infers guidelines, and generates synthetically labeled instances for Information Extraction (IE) tasks. Code, models, and synthetic datasets are available on GitHub at neilus03/GUIDEX."
+    ],
+    "durationSeconds": 6.742514380999986
+  },
+  "sourceToolAssistantUUID": "bb0a0b82-bc23-4055-b664-f801e31f936c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 45 · 2026-05-10T08:02:17.825Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Good. Let me now verify the resource estimate issue more carefully. The key question is: in Round 3, have the resource estimates been fixed?
+
+Looking at the Round 3 resource_estimate:
+
+Manual:
+- gpu_hours: "~250h A100 80GB"
+- timeline: "4-6 months"
+
+HIL:
+- gpu_hours: "~350h A100 80GB"
+- timeline: "5-7 weeks"
+
+Auto Research:
+- gpu_hours: "~900h A100 80GB"
+- timeline: "1-2 weeks"
+
+These are **identical** to what was in Round 2. 
+
+The generator hasn't touched the resource estimates at all. When I convert these to H100 equivalents using a 2:1 ratio, the Manual and HIL approaches stay within the 200h H100 budget on compute, but their timelines are wildly off—4-6 months and 5-7 weeks don't match the 16-day constraint. Auto Research blows past the compute budget entirely at 450h H100.
+
+The Round 2 feedback was crystal clear: separate out the cheap extractor inference (20-50h A100 for GoLLIE-7B across datasets) from the schema optimizer (API-based, no GPU cost), then show how the 16-day plan works within ~50h A100. The generator completely sidestepped this. So while it did fix the Round 1 issues properly and improved some Round 2 points like the proxy metrics, it's ignored the core constraint problem that was explicitly called out.
+
+The real blockers are the infeasible resource estimate and the missing correlation analysis between the proxy metrics and actual F1 scores. There are also lingering issues with the synthetic-only evaluation, no ablation on the optimizer, and some citation gaps. This needs a revise with the generator actually implementing the feedback rather than dancing around it.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "40141fcb-2b87-44de-9582-e1a076355cb3",
+  "isSidechain": false,
+  "requestId": "req_011CatY9v4fMTHiXp56q5j4g",
+  "type": "assistant",
+  "uuid": "e6128d5d-f6ac-4170-b9d2-b8b9116e6eee",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01F275mA4MhWV5PSt5Q187qL",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5407,
+      "cache_read_input_tokens": 37855,
+      "output_tokens": 3142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5407,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3142,
+          "cache_read_input_tokens": 37855,
+          "cache_creation_input_tokens": 5407,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5407
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46 · 2026-05-10T08:03:10.122Z_
+
+Now I have enough information to complete my independent review. Let me compile my findings.
+
+**Key findings from independent verification:**
+1. All cited papers (GoLLIE, PARSE, GuideX, SCIR, DiZiNER) verified as real and correctly characterized
+2. SAM-NER (arXiv:2605.03706, May 5 2026) confirmed — still absent from Round 3 citation list
+3. New concurrent paper discovered: **SPT** (arXiv:2506.01276, ~June 2026) — "Schema as Parameterized Tools for Universal IE" addressing schema adaptability via retrieval/generation — not cited
+4. Resource estimates: **unchanged from Round 2** — generator did not modify numbers at all
+5. Proxy metric correlation analysis: still missing from analytical experiments section
+6. Synthetic-only evaluation: no natural domain transfer experiment added
+7. Schema optimizer ablation: still absent
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {
+      "score": 4,
+      "rationale": "The zero-seed, single-extractor, online type-definition revision approach is now precisely differentiated from PARSE (offline), SCIR (prediction refinement, schema fixed), DiZiNER (multi-LLM, schema fixed, NER-only), and GuideX (frozen post-training). The combination of cross-document contradiction detection + type-local cooldown + unsupervised proxy validation is genuinely novel. New concurrent work SPT (arXiv:2506.01276) uses a tool-calling paradigm for schema adaptability but does not do error-signal-driven online type-definition revision, so OSAFE's positioning survives."
+    },
+    "feasibility": {
+      "score": 2,
+      "rationale": "The resource estimates are identical to Round 2 — the generator made zero changes after explicit feedback. No mode satisfies both hard constraints: Manual (125h H100, 4–6 months) and HIL (175h H100, 5–7 weeks) meet compute but violate the 16-day deadline by 3–8×; Auto (~450h H100, 1–2 weeks) meets the timeline but exceeds the 200h H100 budget by 2.25×. The Round 2 reviewer's fix — separating GoLLIE-7B extractor inference (≈20–50h A100 total with vLLM batching) from Qwen3-72B schema optimizer calls (API, zero GPU cost) — was explicitly prescribed but completely ignored."
+    },
+    "clarity": {
+      "score": 3,
+      "rationale": "The three-stage design, τ_sim filtering, cooldown mechanism, and unsupervised proxy metrics (VRD, CDCD, ACP with ≥2/3 commitment rule) are clearly described. However, the analytical experiments section covers only signal reliability and convergence — the proxy-metric correlation experiment (VRD/CDCD/ACP vs. actual F1) requested in Round 2 is absent, leaving the validation gate without empirical grounding in the paper's own experimental plan."
+    },
+    "impact": {
+      "score": 3,
+      "rationale": "Online zero-seed schema adaptation for deployment is a practically valuable problem covering NER, event, and RE tasks. However, evaluating exclusively under synthetic schema contamination (five severity levels) without any natural cross-domain transfer experiment means the paper cannot demonstrate that the error-detection layer fires reliably on real schema-ontology mismatches, weakening the impact claim for practitioners."
+    }
+  },
+  "issues": [
+    "CRITICAL — RESOURCE ESTIMATES UNCHANGED (Round 2 Issue 1 persists): The gpu_hours and timeline figures are byte-for-byte identical to Round 2. Manual (~250h A100, 4–6 months) and HIL (~350h A100, 5–7 weeks) satisfy compute (≤200h H100) but violate the 16-day deadline by 3–8×. Auto (~900h A100, 1–2 weeks) meets the timeline but consumes ~450h H100 — 2.25× the compute budget. No mode satisfies both hard constraints. The fix prescribed in Round 2 — separating GoLLIE-7B extractor inference (GPU, ~20–50h A100 total with vLLM batching across all 8 datasets × 5 severity levels) from Qwen3-72B schema optimizer (Anthropic/DeepSeek API, zero GPU cost) — was not implemented. A corrected HIL estimate of ~50h A100 (≈25h H100) with a 16-day wall-clock timeline is readily achievable and must be shown explicitly.",
+    "CRITICAL — PROXY METRIC VALIDATION EXPERIMENT MISSING (Round 2 Issue 2 persists): The analytical experiments section describes only a signal reliability study (τ_sim calibration) and a convergence analysis. The correlation experiment prescribed in Round 2 — plotting per-dataset VRD+CDCD+ACP composite improvement against actual F1 improvement on a sequestered test split — is absent. Without this, the ≥2/3 commitment gate is unvalidated: a trivial revision (merge all confused types into one super-type) could mechanically improve all three proxy metrics while degrading test F1. This is the strongest methodological objection a reviewer will raise.",
+    "SIGNIFICANT — SYNTHETIC-ONLY EVALUATION (Round 2 Issue 3 persists): All eight benchmark evaluations use deliberately introduced schema contamination. No natural cross-domain transfer experiment is included. The Round 2 reviewer explicitly asked for 'at minimum one real-world cross-domain transfer scenario (e.g., ACE05-trained extractor deployed on GENIA biomedical NER, or TACRED→SciERC cross-domain RE).' Without this, the error-detection layer's reliability on naturally occurring mismatches is undemonstrated, and the paper's claim of practical deployment utility is unsupported.",
+    "SIGNIFICANT — SCHEMA OPTIMIZER ABLATION ABSENT (Round 2 Issue 4 persists): Qwen3-72B is used as the schema optimizer throughout. No ablation with Qwen3-7B or Llama-3-8B-Instruct is included. A reviewer will ask whether OSAFE's gains stem from the error-signal algorithm or simply from a 72B model's general instruction-following ability. Two datasets (e.g., ACE05 NER, TACRED RE) with optimizer size as a variable is sufficient.",
+    "MINOR — SAM-NER NOT CITED (Round 2 Issue 5 persists): SAM-NER (arXiv:2605.03706, May 5 2026; verified as a real paper) addresses zero-shot NER under schema/domain shifts via semantic archetype mediation. It is a different approach (frozen inference, no online type-definition revision, no error-signal loop) and does not threaten OSAFE's novelty, but it must appear as a concurrent-work footnote before submission.",
+    "NEW — SPT NOT CITED: Schema as Parameterized Tools (arXiv:2506.01276, ~June 2026) treats schemas as callable parameterized tools supporting schema retrieval, filling, and on-demand generation for universal IE across four tasks. This directly overlaps OSAFE's motivation (schema adaptability for IE) and must be cited and differentiated. SPT uses a tool-calling paradigm for static schema selection/generation — it does not perform online error-signal-driven type-definition revision — so OSAFE's approach is distinct. One sentence in the related work section is sufficient."
+  ],
+  "feedback": "The Round 3 revision successfully preserved all six Round 1 fixes and made meaningful progress on proxy metric precision (VRD/CDCD/ACP with ≥2/3 commitment rule). However, the two most critical Round 2 issues remain completely unaddressed — the generator appears to have not changed the resource section or the experimental plan at all. To unblock passage, address these in priority order:\n\n(1) **Fix the resource estimate NOW** — the numbers are wrong and unchanged. The actual compute cost is: GoLLIE-7B inference across 8 datasets × 5 severity levels × schema optimizer API calls ≈ 30–50h A100 (≈15–25h H100) for extractor inference with vLLM batching, plus zero GPU cost for Qwen3-72B calls via API. A HIL plan with 4–6 A100s runs in 10–14 days and uses <50h H100 total. Write a three-row table: component | GPU cost | API cost | wall-clock. This is a 30-minute fix that eliminates the paper's most obvious reviewability problem.\n\n(2) **Add proxy metric correlation experiment** — after running OSAFE across all datasets, compute Spearman correlation between composite proxy improvement (VRD+CDCD+ACP) and gold F1 gain on sequestered test splits. Report per-task correlations. A correlation ≥ 0.65 validates the commitment gate; if lower, discuss what conditions weaken proxy reliability. This can be a half-page subsection in the experiments.\n\n(3) **Add one natural transfer experiment** — deploy ACE05-fine-tuned GoLLIE on GENIA (biomedical NER, cross-domain, no synthetic contamination) and compare OSAFE vs. frozen schema. This requires one inference run per system and a one-paragraph write-up.\n\n(4) **Optimizer ablation** — run Qwen3-72B vs. Qwen3-7B on ACE05 and TACRED. Add a two-row table to the ablation section.\n\n(5) **Two citation additions** — SAM-NER (arXiv:2605.03706) and SPT (arXiv:2506.01276) as concurrent-work footnotes in §2. Two sentences total.",
+  "reason": "Core novelty is solid and Round 1 fixes held, but the resource estimates are unchanged after two rounds of explicit correction — no mode satisfies both ≤200 H100-hours and ≤16 days — and the proxy-metric validation experiment prescribed in Round 2 was not added; both are gating issues for EMNLP submission."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e6128d5d-f6ac-4170-b9d2-b8b9116e6eee",
+  "isSidechain": false,
+  "requestId": "req_011CatY9v4fMTHiXp56q5j4g",
+  "type": "assistant",
+  "uuid": "cd061fc6-73f8-4b17-851f-a213e3443331",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01F275mA4MhWV5PSt5Q187qL",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 5407,
+      "cache_read_input_tokens": 37855,
+      "output_tokens": 3142,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 5407,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 3142,
+          "cache_read_input_tokens": 37855,
+          "cache_creation_input_tokens": 5407,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 5407
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "cd061fc6-73f8-4b17-851f-a213e3443331",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Online schema adaptation via extraction-error feedback",
+  "sessionId": "3dbb4dd6-70d2-467f-ad4a-0eaae513daab"
+}
+```
+
+---

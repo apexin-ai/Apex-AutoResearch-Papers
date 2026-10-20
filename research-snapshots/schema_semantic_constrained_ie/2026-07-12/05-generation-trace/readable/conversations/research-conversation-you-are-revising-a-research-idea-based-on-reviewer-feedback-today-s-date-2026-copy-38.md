@@ -1,0 +1,1070 @@
+# Research conversation: You are revising a research idea based on reviewer feedback. **Today's date: 2026-05-10 (UTC).** ## Original idea { "tit
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 18
+- **Recorded user turns:** 1
+- **Tool calls:** 1
+- **Original source:** `logs/chats/exported-trajectories/account-2/2c14f701-4ec8-4f0a-af34-866e3076fd7f.jsonl`
+- **Structured JSON:** [`4549209982714031b44b.json`](../../sessions/45/4549209982714031b44b.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T08:23:10.918Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T08:23:10.918Z",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f",
+  "content": "You are revising a research idea based on reviewer feedback.\n\n**Today's date: 2026-05-10 (UTC).**\n\n## Original idea\n{\n  \"title\": \"Test-Time Consistency Aggregation for Structured IE Output Spaces\",\n  \"project_name\": \"spanvote_ie_consistency\",\n  \"source\": \"web_research\",\n  \"core_problem\": \"Self-consistency and best-of-N decoding dramatically improve LLM accuracy on math and code, but IE outputs are structured (overlapping spans, typed entities, hierarchical event arguments) — standard majority voting is undefined over these spaces. Two open questions motivate this work: (1) Do fine-tuned, constrained-decoding IE models produce consistency signals that reliably predict span correctness, unlike the weak signals (r=0.20–0.30) documented for hard-prompted models? (2) If so, what aggregation function over K hypotheses sampled from a single fine-tuned IE model maximally exploits that signal across NER, RE, event detection, and EAE tasks?\",\n  \"opportunity\": \"Test-time scaling is a dominant paradigm of 2025–26 ML: Large Language Monkeys (ICML 2024) showed coverage scales log-linearly with the number of samples over four orders of magnitude; the ICLR 2025 oral on optimal test-time compute (arXiv:2408.03314) demonstrates that training-free inference-time scaling can outperform parameter scaling on hard reasoning; and Table-R1 (EMNLP 2025) shows that structured tasks can benefit from test-time compute allocation — though Table-R1's inference-time gains require RL post-training (GRPO) before they emerge, making it a training+inference co-design result rather than a training-free precedent. Yet the structured IE community has not exploited this: entities have overlapping spans, relations have direction and type constraints, events have nested argument roles — challenges that block direct application of token-level majority voting. The constrained decoding infrastructure now available (XGrammar is default in vLLM and SGLang as of March 2026, <40µs overhead) makes K=16–32 parallel samples feasible within the compute budget. A schema-aware aggregation function — span-overlap voting for entity boundaries, type plurality for classification, relation compatibility scoring — could be derived from schema structure alone and require no additional training. Crucially, whether the consistency signal is even actionable in the fine-tuned constrained-decoding regime (as opposed to hard-prompted models) is itself an open empirical question whose answer determines the entire viability of this research direction. Answering it first, before committing to the aggregation design, is both intellectually honest and strategically sound.\",\n  \"landscape\": \"Self-consistency (Wang et al., 2023) applies majority voting over reasoning chains for classification but has no principled extension to structured extraction spaces. Ranked Voting based Self-Consistency (ACL Findings 2025) extends self-consistency with Borda count and instant-runoff voting for open-ended QA — but still targets scalar answer spaces, not span-typed structured outputs. For NER specifically, EL4NER (ACL Findings 2025, arXiv:2505.23038) aggregates outputs from three heterogeneous small LLMs (GLM-4-9B, Phi-4, Qwen2.5-14B) via span-union with POS-weighted similarity. SpanVote is fundamentally distinct: it draws K samples from a single fine-tuned model (one training run, one deployed model instance), extends to the full IE stack including relation extraction and event argument extraction, and applies IoU-based soft boundary matching rather than POS-weighted span similarity for ICL demo retrieval. SpanVote requires one deployed model in GPU memory versus EL4NER's three simultaneously deployed models (GLM-4-9B 9B + Phi-4 14B + Qwen2.5-14B 14B ≈ 37B total parameters requiring parallel multi-GPU serving), yielding lower serving overhead and infrastructure simplicity. However, at K=16–32, SpanVote's per-example inference compute (16–32 passes × 8B = 128–256B parameter-equivalent per example) substantially exceeds EL4NER's per-example cost (~37B parameter-equivalent from one parallel pass through all three models). The trade-off is deployment simplicity versus per-example throughput; SpanVote does not claim per-example compute efficiency over EL4NER at high K. A concurrent PMC 2026 study (PMC12888769, Genomics & Informatics) found weak Spearman correlation (r=0.20–0.30, specifically r=0.20 for GPT-4o-mini and Qwen3, r=0.26 for DeepSeek-V3, r=0.28 for Kimi) between consistency and accuracy for IE when using hard-prompted LLMs with K=5 repetitions and strict string matching; notably, the study's conservative sampling parameters (T=0.2, top-p=0.1) likely suppress output diversity and may themselves contribute to the weak signal, providing additional motivation for SpanVote's higher-K fine-tuned constrained-decoding regime. SpanVote's calibration analysis directly tests whether the fine-tuned constrained-decoding regime escapes this weak-signal regime — the answer is the paper's first research question, not an assumption. A critical related work is BEMEAE: Moving Beyond Exact Span Match for Event Argument Extraction (NAACL 2025, ACL Anthology 2025.naacl-long.295, Fane et al.), which proposes a deterministic + semantic matching evaluation metric that tolerates near-correct spans and evaluates nine SOTA EAE models on RAMS and GENEVA. BEMEAE finds that exact span match (ESM) rankings disagree with human judgment (Kendall's τ = 0.44 on RAMS), and that BEMEAE-Human vs. BEMEAE-Best-Automated agreement is very high (τ = 0.94), making it a scalable reliable metric. A second concurrent evaluation work, REGen (EMNLP 2025, arXiv:2502.16838, Sharif et al.), independently proposes combining exact, relaxed, and LLM-based matching for EAE evaluation and achieves 87.67% alignment with human judgment across six datasets; like BEMEAE, REGen argues that ESM systematically underestimates generative EAE model performance by penalizing semantically valid span variations. SpanVote's IoU tolerance is philosophically and technically aligned with both BEMEAE and REGen's shared critique: SpanVote's IoU threshold tolerates the same off-by-one boundary errors and semantically valid span variations that both evaluation frameworks identify as the root cause of ESM's inadequacy. Evaluating SpanVote gains under the BEMEAE metric on RAMS — and extending BEMEAE to WikiEvents as a secondary analysis — directly validates the coherence of the approach under a human-aligned evaluation standard consistent with both frameworks. On benchmark status: WikiEvents Arg-C Head F1 SOTA is ~68–69 (e.g., DEGAP, TSCA) and is saturating under standard SFT. RAMS standard evaluation uses Arg-C Head F1 (requiring the head word of the predicted span to match the gold head word), where SOTA is ~52–54 F1. The 63.9 F1 score attributed to DeepStruct on RAMS in some reviews reflects Arg-C Coref F1 — a more lenient sub-metric that allows coreferent span matches — and is not comparable to the Head F1 baselines used in most post-2022 work. SpanVote explicitly targets Arg-C Head F1 on RAMS, maintaining comparability with the established community benchmark. ACE05 (NER ~89 F1, RE ~68 F1), TACRED (~87 F1), DocRED (~68 Ign-F1), Few-NERD (~72 micro-F1), SciERC, and MAVEN event detection similarly approach saturation. No published work has applied single-model K-sample aggregation with span-aware IoU clustering to any of these benchmarks, leaving this design space open.\",\n  \"approach\": \"SpanVote is organized around two sequential research questions: RQ1 (calibration) and RQ2 (aggregation gains).\\n\\n**RQ1 — Does fine-tuned constrained-decoding produce actionable consistency signals?** On three primary benchmarks (ACE05, WikiEvents, RAMS), we generate K=16 hypotheses from a fine-tuned Qwen3-8B using XGrammar-constrained decoding and compute, for each predicted span: (a) the size of its IoU-compatible consensus cluster (how many of K outputs contain a matching span), and (b) its precision against gold annotation. Plotting calibration curves (cluster size vs. precision, binned) directly answers RQ1. If high-IoU-cluster spans are substantially more precise than singletons (e.g., cluster-of-8 precision ≥ cluster-of-1 precision + 10 F1 points), the consistency signal is actionable and justifies the aggregation framework. This finding is itself a primary contribution — it resolves the open question left by PMC2026 (which documented r=0.20–0.30 weak signals for four hard-prompted LLMs using conservative sampling parameters T=0.2, top-p=0.1, K=5 — settings that suppress output diversity and are a further methodological distinction from SpanVote's fine-tuned constrained-decoding regime with higher K) and establishes fine-tuned constrained decoding as a qualitatively different regime. Reporting a negative result here (flat calibration curve) would also be a contribution: it would identify a failure mode of test-time consistency for IE.\\n\\n**Probabilistic motivation.** Span boundary noise in fine-tuned models is approximately Gaussian around the true boundary under temperature sampling: each sampled hypothesis perturbs start and end offsets by small random displacements, making median-offset aggregation statistically grounded analogously to RANSAC inlier averaging for geometric estimation. Type labels, conditioned on span boundaries, form a separate multinomial random variable — type plurality voting is the maximum-likelihood estimator of the type posterior under independent samples. Schema-enforced structural constraints (e.g., an event argument must fill a registered role) impose dependency between the span and type variables, which SpanVote's schema-aware scoring respects. This disentanglement — boundary noise ≈ Gaussian, type noise ≈ multinomial, structure = schema-constrained — is precisely why token-level majority voting fails: it conflates three structurally distinct random variables into a flat token sequence. **Boundary-noise appendix.** To ground the Gaussian framing empirically, we include an appendix figure reporting histograms of predicted-vs-gold span boundary offsets (start and end separately) on the ACE05 dev set under temperature sampling; if the empirical distribution is substantially non-Gaussian, the median-offset motivation is revised accordingly in the final paper.\\n\\n**MBR connection.** SpanVote's aggregation is related to Minimum Bayes Risk (MBR) decoding (Kumar & Byrne, 2004; Eikema & Aziz, 2020), which selects the hypothesis that maximizes expected utility across all sampled candidates. SpanVote can be viewed as a decomposed MBR decoder: rather than computing utility over complete IE hypotheses — intractable, since two full IE outputs may contain different numbers of entities, relations, and events with no canonical alignment — SpanVote decomposes the utility to the span level using IoU, making selection tractable and interpretable. A span that appears in many hypotheses has high expected IoU-utility and is selected; a span that appears in only one does not. Structure-Conditional MBR (EMNLP 2025, arXiv:2510.20700) establishes the same sampling-then-structure-aware-selection paradigm for open-ended generation; SpanVote instantiates this paradigm specifically for typed structured IE outputs where span-level IoU decomposition is both more tractable and more interpretable than hypothesis-level string similarity.\\n\\n**RQ2 — SpanVote aggregation.** Conditioned on a positive calibration finding from RQ1, SpanVote applies schema-aware aggregation: (a) entity-mode for NER (IoU span clustering + type voting), (b) relation-mode adding directed pairwise entity-cluster compatibility, (c) EAE-mode adding hierarchical argument role constraints from the event schema. The IoU threshold τ is calibrated once per dataset on the dev set. Ablations over τ ∈ {0.3, 0.5, 0.7, 0.9} will test whether τ=0.5 reliably serves as a cross-dataset default; we hypothesize that τ=0.5 will recover ≥80% of per-dataset-optimal gains based on IoU threshold sensitivity patterns in related span-matching tasks, which the ablation will empirically validate. This characterizes SpanVote as applicable wherever a labeled dev set exists — which includes all eight target benchmarks. We additionally ablate per-span-category τ (entity spans vs. event argument role spans) on ACE05 and WikiEvents to test whether a globally shared threshold is competitive with per-category tuning; entity spans are typically tight (1–3 tokens) while RAMS event arguments span ~6 tokens on average across document context, representing structurally distinct noise regimes that may warrant different τ values. If per-category tuning yields more than 2 F1 points over the shared threshold on either benchmark, per-category τ is adopted as the default SpanVote configuration.\\n\\nA full K ∈ {4, 8, 16, 32} × τ × strategy sweep is run on three primary benchmarks (ACE05, WikiEvents, RAMS) and the best configuration is transferred at K≤16 to five secondary benchmarks (Few-NERD, SciERC, TACRED/TACREV, DocRED, MAVEN), reducing inference overhead on secondary benchmarks without sacrificing the primary ablation coverage. All K samples are generated once at K=32 per benchmark; τ and strategy ablations are applied post-hoc to the same saved hypothesis sets, so inference cost scales with K only, not with the number of aggregation configurations. All evaluation tables include 'Fine-tune only (K=1, greedy)' as an explicit baseline row to isolate the contribution of multi-sample aggregation from fine-tuning alone, making the marginal benefit of each K-doubling directly legible to reviewers.\\n\\n**Compute-efficiency analysis.** A compute-efficiency figure plots the marginal F1 gain per doubling of K (K=1→4→8→16→32) on the three primary benchmarks, characterizing the Pareto frontier of accuracy versus inference cost. Consistent with diminishing-returns patterns observed in self-consistency sampling (Wang et al., 2023; Brown et al., 2024), we expect marginal gains to flatten by K=16, making K=8 the likely practical operating point. A break-even note contextualizes the overhead: a 2 F1 point improvement at K=8 (8× the inference cost of K=1) represents a favorable efficiency ratio in any deployment where extraction accuracy is the binding constraint; throughput-sensitive batch pipelines can target K=4–8, while latency-insensitive settings can run K=16–32. This framing strengthens the test-time compute allocation narrative introduced in the paper's motivation and directly addresses practical adoption concerns.\\n\\n**BEMEAE and REGen secondary analysis.** On RAMS, SpanVote results are additionally reported under the BEMEAE metric (Fane et al., NAACL 2025), which uses deterministic + semantic matching and is calibrated against human judgments (BEMEAE-Human vs. BEMEAE-Best-Automated: τ = 0.94). BEMEAE was designed for RAMS and GENEVA; we extend it to WikiEvents as a secondary analysis, providing the first BEMEAE-metric EAE evaluation on WikiEvents. A concurrent evaluation work, REGen (EMNLP 2025, arXiv:2502.16838, Sharif et al.), combines exact, relaxed, and LLM-based matching for EAE and achieves 87.67% human alignment across six datasets; SpanVote's IoU-based tolerance aligns with both BEMEAE and REGen's shared critique of strict ESM. We note this consistency in the secondary analysis section: a system that SpanVote's aggregation improves under BEMEAE criteria is also expected to improve under REGen's relaxed matching criteria, as both tolerate the same class of boundary and paraphrase variation that exact match penalizes. This validates whether SpanVote gains persist under human-aligned evaluation standards, directly responding to both frameworks' critique that ESM rankings disagree with human judgment (BEMEAE: τ = 0.44 on RAMS; REGen: average +23.93 F1 over EM across six datasets).\\n\\n**RAMS metric specification.** All RAMS results target Arg-C Head F1 (argument classification with head word boundary matching), the standard metric used in post-2022 EAE literature, where SOTA is ~52–54 F1. Arg-C Coref F1 is reported as a secondary metric for comparability with papers (e.g., DeepStruct) that use it. All metrics are verified against the RAMS scorer v1.0c (March 2023 corrected release).\\n\\n**Compute.** Qwen3-8B on single A100-40GB; K=32 uses sequential K=16 mini-batches on primary benchmarks. Full K×τ×strategy sweep on three primary benchmarks (~190h A100), calibration analysis (~30h A100), best-config transfer at K≤16 to five secondary benchmarks (~70h A100). Total ~290–330h A100 inference (excluding fine-tuning; see resource_estimate fine_tuning_note).\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~160–210h A100\",\n      \"gpu_utilization\": \"Low (~20–30%): GPU sits idle while researchers implement BEMEAE metric extension to WikiEvents, write aggregation code, analyze calibration curves, and design ablation experiments between runs.\",\n      \"timeline\": \"4–6 months\",\n      \"team\": \"1–2 researchers\",\n      \"estimated_gpu_cost\": \"~$320–$420 at ~$2/hr marketplace rate (Vast.ai/RunPod)\",\n      \"fine_tuning_note\": \"Fine-tuning uses 8 distinct checkpoints (ACE05 NER and RE share one model; TACRED and TACREV share one model; Few-NERD, SciERC, DocRED, WikiEvents, RAMS, and MAVEN each have their own): 8 runs × ~8h A100 = ~64h A100 ≈ 32h H100-equivalent. Fine-tuning is shared with all baselines and is not SpanVote-specific overhead. Total end-to-end budget including fine-tuning: ~224–274h A100 (~112–137h H100-equivalent).\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~250–340h A100\",\n      \"gpu_utilization\": \"Moderate (~50–60%): agent submits inference and ablation jobs while human reviews calibration curves at key decision points; human gates at (i) RQ1 calibration finding review, (ii) τ ablation review and default selection, (iii) primary-to-transfer benchmark decision, (iv) BEMEAE extension implementation review\",\n      \"timeline\": \"5–8 weeks\",\n      \"team\": \"1 researcher, ~30 min/day check-in\",\n      \"claude_api_cost\": \"$150–$300\",\n      \"estimated_gpu_cost\": \"$500–$680\",\n      \"risk_note\": \"Implementing BEMEAE metric extension for WikiEvents requires semantic similarity computation (e.g., via sentence-transformer) beyond the RAMS/GENEVA setup; adds ~1 week engineering. Calibration curves on K=16 may show a positive signal for some tasks and weak signal for others — heterogeneous results complicate narrative but are honest and publishable.\",\n      \"fine_tuning_note\": \"Fine-tuning uses 8 distinct checkpoints (ACE05 NER and RE share one model; TACRED and TACREV share one model; Few-NERD, SciERC, DocRED, WikiEvents, RAMS, and MAVEN each have their own): 8 runs × ~8h A100 = ~64h A100 ≈ 32h H100-equivalent. Fine-tuning is shared with all baselines and is not SpanVote-specific overhead. Total end-to-end budget including fine-tuning: ~314–404h A100 (~157–202h H100-equivalent).\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~290–330h A100 (~145–165h H100-equivalent, inference only)\",\n      \"gpu_utilization\": \"Near-zero idle (~80–90%): staged execution — RQ1 calibration first on K=16 ACE05/WikiEvents/RAMS (~30h), then full K×τ×strategy sweep on positive-signal benchmarks (~190h), then best-config transfer at K≤16 to secondary benchmarks (~70h). Prevents budget waste if calibration signal is weak.\",\n      \"timeline\": \"2–3 weeks\",\n      \"team\": \"0 (initial setup only, ~2h)\",\n      \"claude_api_cost\": \"$200–$400\",\n      \"estimated_gpu_cost\": \"$580–$660\",\n      \"fine_tuning_note\": \"Fine-tuning uses 8 distinct checkpoints (ACE05 NER+RE share one model; TACRED and TACREV share one model; Few-NERD, SciERC, DocRED, WikiEvents, RAMS, and MAVEN each have their own): 8 runs × ~8h A100 = ~64h A100 = ~32h H100. Secondary benchmarks run best-config transfer at K≤16 only (~70h A100 vs. ~120h for a full K=32 sweep), saving ~50h A100 ≈ 25h H100 on inference. Fine-tuning is shared with all baselines and is not SpanVote-specific overhead. Total end-to-end: ~354–394h A100 = ~177–197h H100, within the 200H H100 constraint (3–23h margin).\",\n      \"speed_bottleneck\": \"Sequential K=32 mini-batching on single A100 for primary benchmarks; BEMEAE semantic matching computation for WikiEvents extension; Claude API rate limits between experiment stages\",\n      \"risk_note\": \"If RQ1 calibration is negative (flat precision-vs-cluster-size curve), the agent should halt and report — not proceed to K-sweep. This requires an explicit decision rule in the agent's execution logic: e.g., stop if cluster-of-8 precision < cluster-of-1 precision + 5 F1 on any two of three primary benchmarks.\",\n      \"contingency_plan\": \"If any fine-tuning run exceeds 9h (e.g., due to gradient accumulation scheduling or slower-than-expected convergence), the K=32 ablation for that benchmark is reduced to K=16, preserving the primary calibration analysis and the K=8 operating-point recommendation while absorbing the overrun within the 200H constraint — the τ and strategy ablations remain unaffected since they are applied post-hoc to saved hypothesis sets.\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR submission deadline May 25 2026; commitment deadline August 2 2026; conference October 24–29 2026, Budapest)\"\n  ],\n  \"level\": \"top-tier\",\n  \"key_references\": [\n    \"Self-Consistency Improves Chain of Thought Reasoning in Language Models (ICLR 2023)\",\n    \"Large Language Monkeys: Scaling Inference Compute with Repeated Sampling (ICML 2024, arXiv:2407.21787)\",\n    \"Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters (ICLR 2025 oral, arXiv:2408.03314)\",\n    \"Table-R1: Inference-Time Scaling for Table Reasoning via RL Post-Training (EMNLP 2025)\",\n    \"EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models (ACL Findings 2025, arXiv:2505.23038)\",\n    \"BEMEAE: Moving Beyond Exact Span Match for Event Argument Extraction (NAACL 2025, ACL Anthology 2025.naacl-long.295, Fane et al.)\",\n    \"REGen: A Reliable Evaluation Framework for Generative Event Argument Extraction (EMNLP 2025, arXiv:2502.16838, Sharif et al.)\",\n    \"Ranked Voting based Self-Consistency of Large Language Models (ACL Findings 2025, arXiv:2505.10772)\",\n    \"Structure-Conditional Minimum Bayes Risk Decoding (EMNLP 2025, arXiv:2510.20700)\",\n    \"XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models (arXiv 2024)\",\n    \"Consistency–accuracy correlation in hard-prompted LLMs for entity and relation extraction: empirical findings from plant-health data (Genomics & Informatics 2026, PMC12888769)\",\n    \"Document-Level Event Argument Extraction by Conditional Generation (NAACL 2021)\",\n    \"Multi-Sentence Argument Linking (ACL 2020)\",\n    \"DeepStruct: Pretraining of Language Models for Structure Prediction (ACL Findings 2022)\"\n  ],\n  \"description\": \"SpanVote introduces a training-free test-time consistency aggregation framework for structured information extraction (IE) covering NER, RE, event detection, and EAE, organized around two sequential research questions. RQ1 (calibration, positioned as the primary contribution): In fine-tuned constrained-decoding IE models, does test-time consistency reliably predict span correctness? Calibration curves over K=16 samples on ACE05, WikiEvents, and RAMS plot cluster size (number of K outputs containing an IoU-compatible span) against gold precision, directly testing whether the consistency signal is actionable — a finding that resolves the open question left by PMC2026's weak-signal results (r=0.20–0.30 across four LLMs: GPT-4o-mini r=0.20, Qwen3 r=0.20, DeepSeek-V3 r=0.26, Kimi r=0.28) obtained under conservative sampling parameters (T=0.2, top-p=0.1, K=5) that likely suppress output diversity and are a further methodological distinction from SpanVote's fine-tuned constrained-decoding regime with higher K. RQ2 (aggregation): Conditioned on a positive calibration finding, SpanVote applies span-aware IoU clustering, median-offset boundary selection, type plurality voting, and schema-aware relation/argument compatibility scoring — all derived from the task schema without additional training. The probabilistic motivation is explicit: span boundary noise under temperature sampling is approximately Gaussian around the true boundary (median-offset aggregation ≈ RANSAC-like inlier averaging; empirically validated via appendix boundary-offset histograms on ACE05 dev set), type labels form an independent multinomial variable (plurality voting = MAP estimate), and schema constraints enforce structural dependencies — decompositions that are invisible to token-level majority voting. SpanVote is additionally positioned within the MBR decoding literature (Kumar & Byrne, 2004; Eikema & Aziz, 2020): SpanVote can be viewed as a decomposed MBR decoder that replaces intractable hypothesis-level utility (requiring alignment between IE outputs with variable numbers of entities, relations, and events) with tractable span-level IoU utility — the same sampling-then-structure-aware-selection paradigm established for open-ended generation by Structure-Conditional MBR (EMNLP 2025, arXiv:2510.20700), instantiated here for typed structured IE outputs. SpanVote is compared against EL4NER (ACL Findings 2025) on three concrete axes: single deployed model (lower serving overhead, single-GPU memory footprint) vs. three simultaneously deployed heterogeneous LLMs (GLM-4-9B + Phi-4 + Qwen2.5-14B ≈ 37B total, requiring parallel multi-GPU serving; SpanVote trades deployment simplicity for higher per-example compute at K=16–32); full IE stack including hierarchical EAE (WikiEvents, RAMS, MAVEN) vs. NER only; IoU-based boundary clustering vs. POS-weighted span similarity for ICL retrieval. RAMS results explicitly target Arg-C Head F1 (standard community metric, SOTA ~52–54 F1), with Arg-C Coref F1 reported separately to enable comparison with papers such as DeepStruct that use the more lenient sub-metric. A BEMEAE and REGen secondary analysis reports SpanVote gains under human-aligned evaluation metrics on RAMS and extends BEMEAE to WikiEvents for the first time: BEMEAE (Fane et al., NAACL 2025) uses deterministic + semantic matching calibrated against human judgments (τ = 0.94), and REGen (Sharif et al., EMNLP 2025, arXiv:2502.16838) combines exact, relaxed, and LLM-based matching achieving 87.67% human alignment across six datasets — both frameworks independently critique ESM for disagreeing with human judgment (BEMEAE: Kendall's τ = 0.44 on RAMS; REGen: average +23.93 F1 over EM), and SpanVote's IoU tolerance addresses the same off-by-one boundary errors and semantically valid span variations that motivate both evaluations. The IoU threshold τ is calibrated per dataset on the dev set; ablations over τ ∈ {0.3, 0.5, 0.7, 0.9} test the hypothesis that τ=0.5 recovers ≥80% of per-dataset-optimal gains, with empirical validation via the ablation sweep. All K samples are generated once at K=32 per benchmark; τ and strategy ablations are applied post-hoc to the same saved hypothesis sets, so inference cost scales with K only. Per-span-category τ ablations (entity spans vs. event argument role spans) on ACE05 and WikiEvents additionally test whether a globally shared threshold is competitive with per-category tuning across structurally distinct span length distributions (entity spans: ~1–3 tokens; RAMS event arguments: ~6 tokens); per-category τ is adopted as the default if it yields >2 F1 points over the shared threshold on either benchmark. SpanVote is applicable wherever a labeled dev set exists (all eight target benchmarks). All evaluation tables include 'Fine-tune only (K=1, greedy)' as an explicit baseline row to isolate the contribution of multi-sample aggregation from fine-tuning alone, making the marginal benefit of each K-doubling directly legible to reviewers. A compute-efficiency figure plots the marginal F1 gain per doubling of K (K=1→4→8→16→32) on primary benchmarks, characterizing the Pareto frontier of accuracy versus inference cost; a break-even note contextualizes the K=8 overhead (8× over K=1) relative to extraction accuracy gains and identifies K=8 as the likely practical operating point given expected diminishing returns by K=16. Evaluation covers ACE05 and Few-NERD (NER); ACE05, SciERC, TACRED/TACREV, and DocRED (RE); MAVEN (event detection); WikiEvents and RAMS (EAE). Full K×τ×strategy ablation on three primary benchmarks (post-hoc on saved hypothesis sets); best-config transfer at K≤16 to five secondary benchmarks. Auto-research compute ~145–165 H100-equivalent hours (inference only) via staged execution: calibration first (RQ1), then aggregation sweep (RQ2), with an explicit halt rule if calibration is negative; secondary benchmarks run best-config transfer at K≤16 (~70h A100 vs. ~120h for full K=32 sweep). Fine-tuning uses 8 distinct checkpoints: ~64h A100 = ~32h H100. Total end-to-end: ~177–197h H100, within the 200H H100 constraint (3–23h margin); contingency: if any fine-tuning run exceeds 9h, the K=32 ablation for that benchmark is reduced to K=16, preserving primary calibration results within the budget.\"\n}\n\n## Reviewer feedback (round 7)\nIssues: [\"MINOR: Statistical significance testing is entirely absent from the evaluation plan. At benchmark saturation levels (ACE05 NER ~89 F1, TACRED ~87 F1, DocRED ~68 Ign-F1), a 1–2 F1 improvement from K-sample aggregation may fall within run-to-run variance. EMNLP reviewers routinely ask for bootstrap confidence intervals or paired significance tests when gains are this small. Add a note that all primary-benchmark comparisons will include bootstrap significance testing at p<0.05 (e.g., using the paired bootstrap resampling of Koehn 2004 or the more recent ANOVA approach from Dror et al. 2018). This is a 1–2 hour implementation cost and directly addresses a near-certain reviewer concern.\", \"MINOR: The Structure-Conditional MBR citation (arXiv:2510.20700, EMNLP 2025) is framed as establishing 'the same sampling-then-structure-aware-selection paradigm' for SpanVote to instantiate. Independent verification reveals that paper addresses structure in the sense of dialogue act, emotion, and response format (sentence vs. list vs. paragraph) in instruction-following — a very different kind of 'structure' than typed spans with hierarchical role constraints. A reviewer who reads arXiv:2510.20700 will notice the mismatch. Tighten the framing: lean primarily on classical MBR references (Kumar & Byrne 2004; Eikema & Aziz 2020, both already cited) for the theoretical grounding, and describe arXiv:2510.20700 narrowly as 'a concurrent work that adapts MBR utility functions to structural variability in instruction-following output spaces — a different kind of structure than typed IE spans, but sharing the decomposed sampling-then-selection paradigm.' This is a two-sentence revision that preempts a reviewer challenge.\"]\nFeedback: SpanVote has resolved every issue from Rounds 1–6. Two final minor items remain before submission:\n\n(1) Add bootstrap significance testing to the evaluation plan. State explicitly that improvements on all primary benchmarks will be tested for statistical significance (p<0.05, paired bootstrap) and that results without significance at that level will be reported as 'trend' rather than 'improvement.' Given that ACE05 NER is at ~89 F1 and TACRED at ~87 F1, a +1 F1 improvement that lacks significance will draw reviewer fire. This is a 1–2 hour implementation, not a research question.\n\n(2) Qualify the Structure-Conditional MBR (arXiv:2510.20700) citation. The paper addresses structural variability in instruction-following dialogue (act type, response format), not typed NER/RE/EAE spans with hierarchical role constraints. Keep the citation but narrow the scope: 'SC-MBR (EMNLP 2025) adapts MBR utility to response structure in instruction-following; SpanVote instantiates a related sampling-then-structure-aware-selection paradigm for typed structured IE outputs, where span-level IoU decomposition replaces hypothesis-level string similarity.' The core MBR motivation should stand on Kumar & Byrne (2004) and Eikema & Aziz (2020) as primary references.\n\nAfter these two changes, the paper is ready for ARR May 25 submission targeting EMNLP 2026 Findings. Whether it reaches Main will depend on the visual strength of the RQ1 calibration curves — a clear monotonic separation between high-cluster-size and singleton spans across three primary benchmarks would be compelling enough for a Main submission argument.\n\n## Instructions\n- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.\n- Address each issue specifically.\n\n## 深度调研要求（每一轮修订都必须执行）\n\n不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。\n\n1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。\n   - 搜索最新的相关论文（arXiv, conference proceedings）\n   - 搜索 benchmark/leaderboard 确认当前 SOTA\n   - 搜索可能遗漏的相关工作和 concurrent work\n\n2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，\n   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。\n\n3. **深度思考**：在修订之前，先独立思考以下问题：\n   - 这个 idea 的核心假设是否仍然成立？\n   - reviewer 的批评是否揭示了更深层的问题？\n   - 有没有更好的 framing 或 approach 来解决同一个核心问题？\n   - 修订后的 idea 相比上一版有什么本质性的改进？\n\n4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，\n   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。\n\n## 针对 Review 意见的定向搜索\n\n对 reviewer 指出的每个问题，执行以下搜索流程：\n\n1. **如果 reviewer 说'已有类似工作'**：\n   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读\n   - 搜索该论文的 cited-by，找到后续跟进工作\n   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot\n\n2. **如果 reviewer 说'SOTA 过时'**：\n   - 用 Papers With Code 查看当前排行榜\n   - 搜索过去 6 个月的最新方法\n   - 更新你的 landscape 和 baseline\n\n3. **如果 reviewer 说'可行性有问题'**：\n   - 搜索类似规模实验的实际成本和时间线\n   - 搜索 GitHub 上是否有可复用的实现\n   - 搜索相关数据集/模型的可获取性\n\n4. **如果 reviewer 说'novelty 不足'**：\n   - 对核心方法尽量做 3-5 种不同关键词组合的搜索\n   - 搜索相邻领域是否有类似思路\n   - 如果确实 novelty 不足，考虑 major revision 或 pivot\n\n- Use WebSearch to find updated information if the reviewer flagged outdated claims.\n- You have full freedom in how much to change:\n  - Minor fix: if only specific details are wrong, correct them and keep everything else.\n  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.\n  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.\n- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.\n- In the output JSON, include a \"change_type\" field with one of: \"minor\", \"major\", or \"pivot\" to indicate the scope of your changes.\n- Output the revised idea as a COMPLETE JSON object (same schema as original, plus \"change_type\").\n\n## 停滞提醒\n这个 idea 已经经过 7 轮修订，近 3 轮的平均分从 3.8 到 3.8，没有明显改善。\n\n请认真思考：\n- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？\n- 如果你认为问题出在 approach 而非 framing，可以做 major revision。\n- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。\n- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。\n\n最终由你判断——做你认为最能提升 idea 质量的选择。"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T08:23:10.922Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T08:23:10.922Z",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f"
+}
+```
+
+---
+
+## Round 1
+
+16 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T08:23:10.944Z_
+
+You are revising a research idea based on reviewer feedback.
+
+**Today's date: 2026-05-10 (UTC).**
+
+## Original idea
+{
+  "title": "Test-Time Consistency Aggregation for Structured IE Output Spaces",
+  "project_name": "spanvote_ie_consistency",
+  "source": "web_research",
+  "core_problem": "Self-consistency and best-of-N decoding dramatically improve LLM accuracy on math and code, but IE outputs are structured (overlapping spans, typed entities, hierarchical event arguments) — standard majority voting is undefined over these spaces. Two open questions motivate this work: (1) Do fine-tuned, constrained-decoding IE models produce consistency signals that reliably predict span correctness, unlike the weak signals (r=0.20–0.30) documented for hard-prompted models? (2) If so, what aggregation function over K hypotheses sampled from a single fine-tuned IE model maximally exploits that signal across NER, RE, event detection, and EAE tasks?",
+  "opportunity": "Test-time scaling is a dominant paradigm of 2025–26 ML: Large Language Monkeys (ICML 2024) showed coverage scales log-linearly with the number of samples over four orders of magnitude; the ICLR 2025 oral on optimal test-time compute (arXiv:2408.03314) demonstrates that training-free inference-time scaling can outperform parameter scaling on hard reasoning; and Table-R1 (EMNLP 2025) shows that structured tasks can benefit from test-time compute allocation — though Table-R1's inference-time gains require RL post-training (GRPO) before they emerge, making it a training+inference co-design result rather than a training-free precedent. Yet the structured IE community has not exploited this: entities have overlapping spans, relations have direction and type constraints, events have nested argument roles — challenges that block direct application of token-level majority voting. The constrained decoding infrastructure now available (XGrammar is default in vLLM and SGLang as of March 2026, <40µs overhead) makes K=16–32 parallel samples feasible within the compute budget. A schema-aware aggregation function — span-overlap voting for entity boundaries, type plurality for classification, relation compatibility scoring — could be derived from schema structure alone and require no additional training. Crucially, whether the consistency signal is even actionable in the fine-tuned constrained-decoding regime (as opposed to hard-prompted models) is itself an open empirical question whose answer determines the entire viability of this research direction. Answering it first, before committing to the aggregation design, is both intellectually honest and strategically sound.",
+  "landscape": "Self-consistency (Wang et al., 2023) applies majority voting over reasoning chains for classification but has no principled extension to structured extraction spaces. Ranked Voting based Self-Consistency (ACL Findings 2025) extends self-consistency with Borda count and instant-runoff voting for open-ended QA — but still targets scalar answer spaces, not span-typed structured outputs. For NER specifically, EL4NER (ACL Findings 2025, arXiv:2505.23038) aggregates outputs from three heterogeneous small LLMs (GLM-4-9B, Phi-4, Qwen2.5-14B) via span-union with POS-weighted similarity. SpanVote is fundamentally distinct: it draws K samples from a single fine-tuned model (one training run, one deployed model instance), extends to the full IE stack including relation extraction and event argument extraction, and applies IoU-based soft boundary matching rather than POS-weighted span similarity for ICL demo retrieval. SpanVote requires one deployed model in GPU memory versus EL4NER's three simultaneously deployed models (GLM-4-9B 9B + Phi-4 14B + Qwen2.5-14B 14B ≈ 37B total parameters requiring parallel multi-GPU serving), yielding lower serving overhead and infrastructure simplicity. However, at K=16–32, SpanVote's per-example inference compute (16–32 passes × 8B = 128–256B parameter-equivalent per example) substantially exceeds EL4NER's per-example cost (~37B parameter-equivalent from one parallel pass through all three models). The trade-off is deployment simplicity versus per-example throughput; SpanVote does not claim per-example compute efficiency over EL4NER at high K. A concurrent PMC 2026 study (PMC12888769, Genomics & Informatics) found weak Spearman correlation (r=0.20–0.30, specifically r=0.20 for GPT-4o-mini and Qwen3, r=0.26 for DeepSeek-V3, r=0.28 for Kimi) between consistency and accuracy for IE when using hard-prompted LLMs with K=5 repetitions and strict string matching; notably, the study's conservative sampling parameters (T=0.2, top-p=0.1) likely suppress output diversity and may themselves contribute to the weak signal, providing additional motivation for SpanVote's higher-K fine-tuned constrained-decoding regime. SpanVote's calibration analysis directly tests whether the fine-tuned constrained-decoding regime escapes this weak-signal regime — the answer is the paper's first research question, not an assumption. A critical related work is BEMEAE: Moving Beyond Exact Span Match for Event Argument Extraction (NAACL 2025, ACL Anthology 2025.naacl-long.295, Fane et al.), which proposes a deterministic + semantic matching evaluation metric that tolerates near-correct spans and evaluates nine SOTA EAE models on RAMS and GENEVA. BEMEAE finds that exact span match (ESM) rankings disagree with human judgment (Kendall's τ = 0.44 on RAMS), and that BEMEAE-Human vs. BEMEAE-Best-Automated agreement is very high (τ = 0.94), making it a scalable reliable metric. A second concurrent evaluation work, REGen (EMNLP 2025, arXiv:2502.16838, Sharif et al.), independently proposes combining exact, relaxed, and LLM-based matching for EAE evaluation and achieves 87.67% alignment with human judgment across six datasets; like BEMEAE, REGen argues that ESM systematically underestimates generative EAE model performance by penalizing semantically valid span variations. SpanVote's IoU tolerance is philosophically and technically aligned with both BEMEAE and REGen's shared critique: SpanVote's IoU threshold tolerates the same off-by-one boundary errors and semantically valid span variations that both evaluation frameworks identify as the root cause of ESM's inadequacy. Evaluating SpanVote gains under the BEMEAE metric on RAMS — and extending BEMEAE to WikiEvents as a secondary analysis — directly validates the coherence of the approach under a human-aligned evaluation standard consistent with both frameworks. On benchmark status: WikiEvents Arg-C Head F1 SOTA is ~68–69 (e.g., DEGAP, TSCA) and is saturating under standard SFT. RAMS standard evaluation uses Arg-C Head F1 (requiring the head word of the predicted span to match the gold head word), where SOTA is ~52–54 F1. The 63.9 F1 score attributed to DeepStruct on RAMS in some reviews reflects Arg-C Coref F1 — a more lenient sub-metric that allows coreferent span matches — and is not comparable to the Head F1 baselines used in most post-2022 work. SpanVote explicitly targets Arg-C Head F1 on RAMS, maintaining comparability with the established community benchmark. ACE05 (NER ~89 F1, RE ~68 F1), TACRED (~87 F1), DocRED (~68 Ign-F1), Few-NERD (~72 micro-F1), SciERC, and MAVEN event detection similarly approach saturation. No published work has applied single-model K-sample aggregation with span-aware IoU clustering to any of these benchmarks, leaving this design space open.",
+  "approach": "SpanVote is organized around two sequential research questions: RQ1 (calibration) and RQ2 (aggregation gains).\n\n**RQ1 — Does fine-tuned constrained-decoding produce actionable consistency signals?** On three primary benchmarks (ACE05, WikiEvents, RAMS), we generate K=16 hypotheses from a fine-tuned Qwen3-8B using XGrammar-constrained decoding and compute, for each predicted span: (a) the size of its IoU-compatible consensus cluster (how many of K outputs contain a matching span), and (b) its precision against gold annotation. Plotting calibration curves (cluster size vs. precision, binned) directly answers RQ1. If high-IoU-cluster spans are substantially more precise than singletons (e.g., cluster-of-8 precision ≥ cluster-of-1 precision + 10 F1 points), the consistency signal is actionable and justifies the aggregation framework. This finding is itself a primary contribution — it resolves the open question left by PMC2026 (which documented r=0.20–0.30 weak signals for four hard-prompted LLMs using conservative sampling parameters T=0.2, top-p=0.1, K=5 — settings that suppress output diversity and are a further methodological distinction from SpanVote's fine-tuned constrained-decoding regime with higher K) and establishes fine-tuned constrained decoding as a qualitatively different regime. Reporting a negative result here (flat calibration curve) would also be a contribution: it would identify a failure mode of test-time consistency for IE.\n\n**Probabilistic motivation.** Span boundary noise in fine-tuned models is approximately Gaussian around the true boundary under temperature sampling: each sampled hypothesis perturbs start and end offsets by small random displacements, making median-offset aggregation statistically grounded analogously to RANSAC inlier averaging for geometric estimation. Type labels, conditioned on span boundaries, form a separate multinomial random variable — type plurality voting is the maximum-likelihood estimator of the type posterior under independent samples. Schema-enforced structural constraints (e.g., an event argument must fill a registered role) impose dependency between the span and type variables, which SpanVote's schema-aware scoring respects. This disentanglement — boundary noise ≈ Gaussian, type noise ≈ multinomial, structure = schema-constrained — is precisely why token-level majority voting fails: it conflates three structurally distinct random variables into a flat token sequence. **Boundary-noise appendix.** To ground the Gaussian framing empirically, we include an appendix figure reporting histograms of predicted-vs-gold span boundary offsets (start and end separately) on the ACE05 dev set under temperature sampling; if the empirical distribution is substantially non-Gaussian, the median-offset motivation is revised accordingly in the final paper.\n\n**MBR connection.** SpanVote's aggregation is related to Minimum Bayes Risk (MBR) decoding (Kumar & Byrne, 2004; Eikema & Aziz, 2020), which selects the hypothesis that maximizes expected utility across all sampled candidates. SpanVote can be viewed as a decomposed MBR decoder: rather than computing utility over complete IE hypotheses — intractable, since two full IE outputs may contain different numbers of entities, relations, and events with no canonical alignment — SpanVote decomposes the utility to the span level using IoU, making selection tractable and interpretable. A span that appears in many hypotheses has high expected IoU-utility and is selected; a span that appears in only one does not. Structure-Conditional MBR (EMNLP 2025, arXiv:2510.20700) establishes the same sampling-then-structure-aware-selection paradigm for open-ended generation; SpanVote instantiates this paradigm specifically for typed structured IE outputs where span-level IoU decomposition is both more tractable and more interpretable than hypothesis-level string similarity.\n\n**RQ2 — SpanVote aggregation.** Conditioned on a positive calibration finding from RQ1, SpanVote applies schema-aware aggregation: (a) entity-mode for NER (IoU span clustering + type voting), (b) relation-mode adding directed pairwise entity-cluster compatibility, (c) EAE-mode adding hierarchical argument role constraints from the event schema. The IoU threshold τ is calibrated once per dataset on the dev set. Ablations over τ ∈ {0.3, 0.5, 0.7, 0.9} will test whether τ=0.5 reliably serves as a cross-dataset default; we hypothesize that τ=0.5 will recover ≥80% of per-dataset-optimal gains based on IoU threshold sensitivity patterns in related span-matching tasks, which the ablation will empirically validate. This characterizes SpanVote as applicable wherever a labeled dev set exists — which includes all eight target benchmarks. We additionally ablate per-span-category τ (entity spans vs. event argument role spans) on ACE05 and WikiEvents to test whether a globally shared threshold is competitive with per-category tuning; entity spans are typically tight (1–3 tokens) while RAMS event arguments span ~6 tokens on average across document context, representing structurally distinct noise regimes that may warrant different τ values. If per-category tuning yields more than 2 F1 points over the shared threshold on either benchmark, per-category τ is adopted as the default SpanVote configuration.\n\nA full K ∈ {4, 8, 16, 32} × τ × strategy sweep is run on three primary benchmarks (ACE05, WikiEvents, RAMS) and the best configuration is transferred at K≤16 to five secondary benchmarks (Few-NERD, SciERC, TACRED/TACREV, DocRED, MAVEN), reducing inference overhead on secondary benchmarks without sacrificing the primary ablation coverage. All K samples are generated once at K=32 per benchmark; τ and strategy ablations are applied post-hoc to the same saved hypothesis sets, so inference cost scales with K only, not with the number of aggregation configurations. All evaluation tables include 'Fine-tune only (K=1, greedy)' as an explicit baseline row to isolate the contribution of multi-sample aggregation from fine-tuning alone, making the marginal benefit of each K-doubling directly legible to reviewers.\n\n**Compute-efficiency analysis.** A compute-efficiency figure plots the marginal F1 gain per doubling of K (K=1→4→8→16→32) on the three primary benchmarks, characterizing the Pareto frontier of accuracy versus inference cost. Consistent with diminishing-returns patterns observed in self-consistency sampling (Wang et al., 2023; Brown et al., 2024), we expect marginal gains to flatten by K=16, making K=8 the likely practical operating point. A break-even note contextualizes the overhead: a 2 F1 point improvement at K=8 (8× the inference cost of K=1) represents a favorable efficiency ratio in any deployment where extraction accuracy is the binding constraint; throughput-sensitive batch pipelines can target K=4–8, while latency-insensitive settings can run K=16–32. This framing strengthens the test-time compute allocation narrative introduced in the paper's motivation and directly addresses practical adoption concerns.\n\n**BEMEAE and REGen secondary analysis.** On RAMS, SpanVote results are additionally reported under the BEMEAE metric (Fane et al., NAACL 2025), which uses deterministic + semantic matching and is calibrated against human judgments (BEMEAE-Human vs. BEMEAE-Best-Automated: τ = 0.94). BEMEAE was designed for RAMS and GENEVA; we extend it to WikiEvents as a secondary analysis, providing the first BEMEAE-metric EAE evaluation on WikiEvents. A concurrent evaluation work, REGen (EMNLP 2025, arXiv:2502.16838, Sharif et al.), combines exact, relaxed, and LLM-based matching for EAE and achieves 87.67% human alignment across six datasets; SpanVote's IoU-based tolerance aligns with both BEMEAE and REGen's shared critique of strict ESM. We note this consistency in the secondary analysis section: a system that SpanVote's aggregation improves under BEMEAE criteria is also expected to improve under REGen's relaxed matching criteria, as both tolerate the same class of boundary and paraphrase variation that exact match penalizes. This validates whether SpanVote gains persist under human-aligned evaluation standards, directly responding to both frameworks' critique that ESM rankings disagree with human judgment (BEMEAE: τ = 0.44 on RAMS; REGen: average +23.93 F1 over EM across six datasets).\n\n**RAMS metric specification.** All RAMS results target Arg-C Head F1 (argument classification with head word boundary matching), the standard metric used in post-2022 EAE literature, where SOTA is ~52–54 F1. Arg-C Coref F1 is reported as a secondary metric for comparability with papers (e.g., DeepStruct) that use it. All metrics are verified against the RAMS scorer v1.0c (March 2023 corrected release).\n\n**Compute.** Qwen3-8B on single A100-40GB; K=32 uses sequential K=16 mini-batches on primary benchmarks. Full K×τ×strategy sweep on three primary benchmarks (~190h A100), calibration analysis (~30h A100), best-config transfer at K≤16 to five secondary benchmarks (~70h A100). Total ~290–330h A100 inference (excluding fine-tuning; see resource_estimate fine_tuning_note).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~160–210h A100",
+      "gpu_utilization": "Low (~20–30%): GPU sits idle while researchers implement BEMEAE metric extension to WikiEvents, write aggregation code, analyze calibration curves, and design ablation experiments between runs.",
+      "timeline": "4–6 months",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$320–$420 at ~$2/hr marketplace rate (Vast.ai/RunPod)",
+      "fine_tuning_note": "Fine-tuning uses 8 distinct checkpoints (ACE05 NER and RE share one model; TACRED and TACREV share one model; Few-NERD, SciERC, DocRED, WikiEvents, RAMS, and MAVEN each have their own): 8 runs × ~8h A100 = ~64h A100 ≈ 32h H100-equivalent. Fine-tuning is shared with all baselines and is not SpanVote-specific overhead. Total end-to-end budget including fine-tuning: ~224–274h A100 (~112–137h H100-equivalent)."
+    },
+    "human_in_loop": {
+      "gpu_hours": "~250–340h A100",
+      "gpu_utilization": "Moderate (~50–60%): agent submits inference and ablation jobs while human reviews calibration curves at key decision points; human gates at (i) RQ1 calibration finding review, (ii) τ ablation review and default selection, (iii) primary-to-transfer benchmark decision, (iv) BEMEAE extension implementation review",
+      "timeline": "5–8 weeks",
+      "team": "1 researcher, ~30 min/day check-in",
+      "claude_api_cost": "$150–$300",
+      "estimated_gpu_cost": "$500–$680",
+      "risk_note": "Implementing BEMEAE metric extension for WikiEvents requires semantic similarity computation (e.g., via sentence-transformer) beyond the RAMS/GENEVA setup; adds ~1 week engineering. Calibration curves on K=16 may show a positive signal for some tasks and weak signal for others — heterogeneous results complicate narrative but are honest and publishable.",
+      "fine_tuning_note": "Fine-tuning uses 8 distinct checkpoints (ACE05 NER and RE share one model; TACRED and TACREV share one model; Few-NERD, SciERC, DocRED, WikiEvents, RAMS, and MAVEN each have their own): 8 runs × ~8h A100 = ~64h A100 ≈ 32h H100-equivalent. Fine-tuning is shared with all baselines and is not SpanVote-specific overhead. Total end-to-end budget including fine-tuning: ~314–404h A100 (~157–202h H100-equivalent)."
+    },
+    "auto_research": {
+      "gpu_hours": "~290–330h A100 (~145–165h H100-equivalent, inference only)",
+      "gpu_utilization": "Near-zero idle (~80–90%): staged execution — RQ1 calibration first on K=16 ACE05/WikiEvents/RAMS (~30h), then full K×τ×strategy sweep on positive-signal benchmarks (~190h), then best-config transfer at K≤16 to secondary benchmarks (~70h). Prevents budget waste if calibration signal is weak.",
+      "timeline": "2–3 weeks",
+      "team": "0 (initial setup only, ~2h)",
+      "claude_api_cost": "$200–$400",
+      "estimated_gpu_cost": "$580–$660",
+      "fine_tuning_note": "Fine-tuning uses 8 distinct checkpoints (ACE05 NER+RE share one model; TACRED and TACREV share one model; Few-NERD, SciERC, DocRED, WikiEvents, RAMS, and MAVEN each have their own): 8 runs × ~8h A100 = ~64h A100 = ~32h H100. Secondary benchmarks run best-config transfer at K≤16 only (~70h A100 vs. ~120h for a full K=32 sweep), saving ~50h A100 ≈ 25h H100 on inference. Fine-tuning is shared with all baselines and is not SpanVote-specific overhead. Total end-to-end: ~354–394h A100 = ~177–197h H100, within the 200H H100 constraint (3–23h margin).",
+      "speed_bottleneck": "Sequential K=32 mini-batching on single A100 for primary benchmarks; BEMEAE semantic matching computation for WikiEvents extension; Claude API rate limits between experiment stages",
+      "risk_note": "If RQ1 calibration is negative (flat precision-vs-cluster-size curve), the agent should halt and report — not proceed to K-sweep. This requires an explicit decision rule in the agent's execution logic: e.g., stop if cluster-of-8 precision < cluster-of-1 precision + 5 F1 on any two of three primary benchmarks.",
+      "contingency_plan": "If any fine-tuning run exceeds 9h (e.g., due to gradient accumulation scheduling or slower-than-expected convergence), the K=32 ablation for that benchmark is reduced to K=16, preserving the primary calibration analysis and the K=8 operating-point recommendation while absorbing the overrun within the 200H constraint — the τ and strategy ablations remain unaffected since they are applied post-hoc to saved hypothesis sets."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline May 25 2026; commitment deadline August 2 2026; conference October 24–29 2026, Budapest)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Self-Consistency Improves Chain of Thought Reasoning in Language Models (ICLR 2023)",
+    "Large Language Monkeys: Scaling Inference Compute with Repeated Sampling (ICML 2024, arXiv:2407.21787)",
+    "Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters (ICLR 2025 oral, arXiv:2408.03314)",
+    "Table-R1: Inference-Time Scaling for Table Reasoning via RL Post-Training (EMNLP 2025)",
+    "EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models (ACL Findings 2025, arXiv:2505.23038)",
+    "BEMEAE: Moving Beyond Exact Span Match for Event Argument Extraction (NAACL 2025, ACL Anthology 2025.naacl-long.295, Fane et al.)",
+    "REGen: A Reliable Evaluation Framework for Generative Event Argument Extraction (EMNLP 2025, arXiv:2502.16838, Sharif et al.)",
+    "Ranked Voting based Self-Consistency of Large Language Models (ACL Findings 2025, arXiv:2505.10772)",
+    "Structure-Conditional Minimum Bayes Risk Decoding (EMNLP 2025, arXiv:2510.20700)",
+    "XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models (arXiv 2024)",
+    "Consistency–accuracy correlation in hard-prompted LLMs for entity and relation extraction: empirical findings from plant-health data (Genomics & Informatics 2026, PMC12888769)",
+    "Document-Level Event Argument Extraction by Conditional Generation (NAACL 2021)",
+    "Multi-Sentence Argument Linking (ACL 2020)",
+    "DeepStruct: Pretraining of Language Models for Structure Prediction (ACL Findings 2022)"
+  ],
+  "description": "SpanVote introduces a training-free test-time consistency aggregation framework for structured information extraction (IE) covering NER, RE, event detection, and EAE, organized around two sequential research questions. RQ1 (calibration, positioned as the primary contribution): In fine-tuned constrained-decoding IE models, does test-time consistency reliably predict span correctness? Calibration curves over K=16 samples on ACE05, WikiEvents, and RAMS plot cluster size (number of K outputs containing an IoU-compatible span) against gold precision, directly testing whether the consistency signal is actionable — a finding that resolves the open question left by PMC2026's weak-signal results (r=0.20–0.30 across four LLMs: GPT-4o-mini r=0.20, Qwen3 r=0.20, DeepSeek-V3 r=0.26, Kimi r=0.28) obtained under conservative sampling parameters (T=0.2, top-p=0.1, K=5) that likely suppress output diversity and are a further methodological distinction from SpanVote's fine-tuned constrained-decoding regime with higher K. RQ2 (aggregation): Conditioned on a positive calibration finding, SpanVote applies span-aware IoU clustering, median-offset boundary selection, type plurality voting, and schema-aware relation/argument compatibility scoring — all derived from the task schema without additional training. The probabilistic motivation is explicit: span boundary noise under temperature sampling is approximately Gaussian around the true boundary (median-offset aggregation ≈ RANSAC-like inlier averaging; empirically validated via appendix boundary-offset histograms on ACE05 dev set), type labels form an independent multinomial variable (plurality voting = MAP estimate), and schema constraints enforce structural dependencies — decompositions that are invisible to token-level majority voting. SpanVote is additionally positioned within the MBR decoding literature (Kumar & Byrne, 2004; Eikema & Aziz, 2020): SpanVote can be viewed as a decomposed MBR decoder that replaces intractable hypothesis-level utility (requiring alignment between IE outputs with variable numbers of entities, relations, and events) with tractable span-level IoU utility — the same sampling-then-structure-aware-selection paradigm established for open-ended generation by Structure-Conditional MBR (EMNLP 2025, arXiv:2510.20700), instantiated here for typed structured IE outputs. SpanVote is compared against EL4NER (ACL Findings 2025) on three concrete axes: single deployed model (lower serving overhead, single-GPU memory footprint) vs. three simultaneously deployed heterogeneous LLMs (GLM-4-9B + Phi-4 + Qwen2.5-14B ≈ 37B total, requiring parallel multi-GPU serving; SpanVote trades deployment simplicity for higher per-example compute at K=16–32); full IE stack including hierarchical EAE (WikiEvents, RAMS, MAVEN) vs. NER only; IoU-based boundary clustering vs. POS-weighted span similarity for ICL retrieval. RAMS results explicitly target Arg-C Head F1 (standard community metric, SOTA ~52–54 F1), with Arg-C Coref F1 reported separately to enable comparison with papers such as DeepStruct that use the more lenient sub-metric. A BEMEAE and REGen secondary analysis reports SpanVote gains under human-aligned evaluation metrics on RAMS and extends BEMEAE to WikiEvents for the first time: BEMEAE (Fane et al., NAACL 2025) uses deterministic + semantic matching calibrated against human judgments (τ = 0.94), and REGen (Sharif et al., EMNLP 2025, arXiv:2502.16838) combines exact, relaxed, and LLM-based matching achieving 87.67% human alignment across six datasets — both frameworks independently critique ESM for disagreeing with human judgment (BEMEAE: Kendall's τ = 0.44 on RAMS; REGen: average +23.93 F1 over EM), and SpanVote's IoU tolerance addresses the same off-by-one boundary errors and semantically valid span variations that motivate both evaluations. The IoU threshold τ is calibrated per dataset on the dev set; ablations over τ ∈ {0.3, 0.5, 0.7, 0.9} test the hypothesis that τ=0.5 recovers ≥80% of per-dataset-optimal gains, with empirical validation via the ablation sweep. All K samples are generated once at K=32 per benchmark; τ and strategy ablations are applied post-hoc to the same saved hypothesis sets, so inference cost scales with K only. Per-span-category τ ablations (entity spans vs. event argument role spans) on ACE05 and WikiEvents additionally test whether a globally shared threshold is competitive with per-category tuning across structurally distinct span length distributions (entity spans: ~1–3 tokens; RAMS event arguments: ~6 tokens); per-category τ is adopted as the default if it yields >2 F1 points over the shared threshold on either benchmark. SpanVote is applicable wherever a labeled dev set exists (all eight target benchmarks). All evaluation tables include 'Fine-tune only (K=1, greedy)' as an explicit baseline row to isolate the contribution of multi-sample aggregation from fine-tuning alone, making the marginal benefit of each K-doubling directly legible to reviewers. A compute-efficiency figure plots the marginal F1 gain per doubling of K (K=1→4→8→16→32) on primary benchmarks, characterizing the Pareto frontier of accuracy versus inference cost; a break-even note contextualizes the K=8 overhead (8× over K=1) relative to extraction accuracy gains and identifies K=8 as the likely practical operating point given expected diminishing returns by K=16. Evaluation covers ACE05 and Few-NERD (NER); ACE05, SciERC, TACRED/TACREV, and DocRED (RE); MAVEN (event detection); WikiEvents and RAMS (EAE). Full K×τ×strategy ablation on three primary benchmarks (post-hoc on saved hypothesis sets); best-config transfer at K≤16 to five secondary benchmarks. Auto-research compute ~145–165 H100-equivalent hours (inference only) via staged execution: calibration first (RQ1), then aggregation sweep (RQ2), with an explicit halt rule if calibration is negative; secondary benchmarks run best-config transfer at K≤16 (~70h A100 vs. ~120h for full K=32 sweep). Fine-tuning uses 8 distinct checkpoints: ~64h A100 = ~32h H100. Total end-to-end: ~177–197h H100, within the 200H H100 constraint (3–23h margin); contingency: if any fine-tuning run exceeds 9h, the K=32 ablation for that benchmark is reduced to K=16, preserving primary calibration results within the budget."
+}
+
+## Reviewer feedback (round 7)
+Issues: ["MINOR: Statistical significance testing is entirely absent from the evaluation plan. At benchmark saturation levels (ACE05 NER ~89 F1, TACRED ~87 F1, DocRED ~68 Ign-F1), a 1–2 F1 improvement from K-sample aggregation may fall within run-to-run variance. EMNLP reviewers routinely ask for bootstrap confidence intervals or paired significance tests when gains are this small. Add a note that all primary-benchmark comparisons will include bootstrap significance testing at p<0.05 (e.g., using the paired bootstrap resampling of Koehn 2004 or the more recent ANOVA approach from Dror et al. 2018). This is a 1–2 hour implementation cost and directly addresses a near-certain reviewer concern.", "MINOR: The Structure-Conditional MBR citation (arXiv:2510.20700, EMNLP 2025) is framed as establishing 'the same sampling-then-structure-aware-selection paradigm' for SpanVote to instantiate. Independent verification reveals that paper addresses structure in the sense of dialogue act, emotion, and response format (sentence vs. list vs. paragraph) in instruction-following — a very different kind of 'structure' than typed spans with hierarchical role constraints. A reviewer who reads arXiv:2510.20700 will notice the mismatch. Tighten the framing: lean primarily on classical MBR references (Kumar & Byrne 2004; Eikema & Aziz 2020, both already cited) for the theoretical grounding, and describe arXiv:2510.20700 narrowly as 'a concurrent work that adapts MBR utility functions to structural variability in instruction-following output spaces — a different kind of structure than typed IE spans, but sharing the decomposed sampling-then-selection paradigm.' This is a two-sentence revision that preempts a reviewer challenge."]
+Feedback: SpanVote has resolved every issue from Rounds 1–6. Two final minor items remain before submission:
+
+(1) Add bootstrap significance testing to the evaluation plan. State explicitly that improvements on all primary benchmarks will be tested for statistical significance (p<0.05, paired bootstrap) and that results without significance at that level will be reported as 'trend' rather than 'improvement.' Given that ACE05 NER is at ~89 F1 and TACRED at ~87 F1, a +1 F1 improvement that lacks significance will draw reviewer fire. This is a 1–2 hour implementation, not a research question.
+
+(2) Qualify the Structure-Conditional MBR (arXiv:2510.20700) citation. The paper addresses structural variability in instruction-following dialogue (act type, response format), not typed NER/RE/EAE spans with hierarchical role constraints. Keep the citation but narrow the scope: 'SC-MBR (EMNLP 2025) adapts MBR utility to response structure in instruction-following; SpanVote instantiates a related sampling-then-structure-aware-selection paradigm for typed structured IE outputs, where span-level IoU decomposition replaces hypothesis-level string similarity.' The core MBR motivation should stand on Kumar & Byrne (2004) and Eikema & Aziz (2020) as primary references.
+
+After these two changes, the paper is ready for ARR May 25 submission targeting EMNLP 2026 Findings. Whether it reaches Main will depend on the visual strength of the RQ1 calibration curves — a clear monotonic separation between high-cluster-size and singleton spans across three primary benchmarks would be compelling enough for a Main submission argument.
+
+## Instructions
+- Think in two phases: FIRST reconsider the problem framing (core_problem / opportunity / landscape) if the reviewer flagged issues there, THEN revise the method (approach / resource_estimate / key_references). Do not jump straight to fixing the method if the underlying problem framing needs correction.
+- Address each issue specifically.
+
+## 深度调研要求（每一轮修订都必须执行）
+
+不要简单地'打补丁'——每一轮修订都是重新审视和深化这个 idea 的机会。
+
+1. **深度搜索**：针对 reviewer 指出的每个问题，建议用 2-3 种不同的搜索查询调研。
+   - 搜索最新的相关论文（arXiv, conference proceedings）
+   - 搜索 benchmark/leaderboard 确认当前 SOTA
+   - 搜索可能遗漏的相关工作和 concurrent work
+
+2. **深度阅读**：用 WebFetch 实际阅读找到的关键论文的 abstract 和方法部分，
+   不要只依赖搜索摘要。形成你自己对领域现状的独立判断。
+
+3. **深度思考**：在修订之前，先独立思考以下问题：
+   - 这个 idea 的核心假设是否仍然成立？
+   - reviewer 的批评是否揭示了更深层的问题？
+   - 有没有更好的 framing 或 approach 来解决同一个核心问题？
+   - 修订后的 idea 相比上一版有什么本质性的改进？
+
+4. **避免表面修订**：如果你发现自己只是在换措辞或补充细节而没有实质改进，
+   考虑是否需要 major revision 或 pivot。反复的 minor fix 不会拯救一个根基有问题的 idea。
+
+## 针对 Review 意见的定向搜索
+
+对 reviewer 指出的每个问题，执行以下搜索流程：
+
+1. **如果 reviewer 说'已有类似工作'**：
+   - 搜索 reviewer 提到的论文，用 WebFetch 实际阅读
+   - 搜索该论文的 cited-by，找到后续跟进工作
+   - 明确你的 idea 与这些工作的差异化点——如果差异化不够，必须 pivot
+
+2. **如果 reviewer 说'SOTA 过时'**：
+   - 用 Papers With Code 查看当前排行榜
+   - 搜索过去 6 个月的最新方法
+   - 更新你的 landscape 和 baseline
+
+3. **如果 reviewer 说'可行性有问题'**：
+   - 搜索类似规模实验的实际成本和时间线
+   - 搜索 GitHub 上是否有可复用的实现
+   - 搜索相关数据集/模型的可获取性
+
+4. **如果 reviewer 说'novelty 不足'**：
+   - 对核心方法尽量做 3-5 种不同关键词组合的搜索
+   - 搜索相邻领域是否有类似思路
+   - 如果确实 novelty 不足，考虑 major revision 或 pivot
+
+- Use WebSearch to find updated information if the reviewer flagged outdated claims.
+- You have full freedom in how much to change:
+  - Minor fix: if only specific details are wrong, correct them and keep everything else.
+  - Major revision: if the approach is fundamentally flawed but the core problem is valid, you may redesign the approach entirely.
+  - Pivot: if the reviewer's feedback reveals that the core problem itself is invalid (e.g., the gap no longer exists), you may propose a RELATED but substantially different idea that builds on the same research area. This is preferred over forcing a doomed idea to pass review.
+- The output replaces the original idea (same tracking ID). Whether you make a small tweak or a full pivot, output a COMPLETE JSON object with ALL fields filled.
+- In the output JSON, include a "change_type" field with one of: "minor", "major", or "pivot" to indicate the scope of your changes.
+- Output the revised idea as a COMPLETE JSON object (same schema as original, plus "change_type").
+
+## 停滞提醒
+这个 idea 已经经过 7 轮修订，近 3 轮的平均分从 3.8 到 3.8，没有明显改善。
+
+请认真思考：
+- 当前方向是否存在根本性的瓶颈？反复的 minor fix 是否在回避核心问题？
+- 如果你认为问题出在 approach 而非 framing，可以做 major revision。
+- 如果你认为 core problem 本身就有问题（gap 不存在、问题不够重要），pivot 到同一研究领域下的新方向可能是更好的选择。
+- 当然，如果你有信心这一轮修订能实现突破，继续改进也完全可以。
+
+最终由你判断——做你认为最能提升 idea 质量的选择。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "7b78876c-493b-41f8-bc3d-03361f1e6bb2",
+  "type": "user",
+  "uuid": "c0a084af-5cc2-4ec6-88e0-9fd7a5ff7dee",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T08:23:10.943Z_
+
+```json
+{
+  "parentUuid": "c0a084af-5cc2-4ec6-88e0-9fd7a5ff7dee",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "6cc58e64-6a4f-45e6-b4b6-52f05307483f",
+  "timestamp": "2026-05-10T08:23:10.943Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T08:23:10.943Z_
+
+```json
+{
+  "parentUuid": "6cc58e64-6a4f-45e6-b4b6-52f05307483f",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "eaff3023-991b-4e02-b784-f1f8a85dcca4",
+  "timestamp": "2026-05-10T08:23:10.943Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-10T08:23:10.943Z_
+
+```json
+{
+  "parentUuid": "eaff3023-991b-4e02-b784-f1f8a85dcca4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "8555cb4f-4acf-4fe8-8927-aebb5f295500",
+  "timestamp": "2026-05-10T08:23:10.943Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Test-Time Consistency Aggregation for Structured IE Output Spaces\",…",
+  "leafUuid": "8555cb4f-4acf-4fe8-8927-aebb5f295500",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Add bootstrap significance testing to IE aggregation",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T08:23:40.048Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me analyze the situation carefully before making any decisions.
+
+**Current state:**
+- 7 rounds of revision, no meaningful score improvement (3.8 average for 3 rounds)
+- Two remaining MINOR issues from Round 7:
+  1. Add bootstrap significance testing to evaluation plan
+  2. Qualify the Structure-Conditional MBR citation (arXiv:2510.20700) - it's about instruction-following structure, not typed IE spans
+
+**Key question: Should I pivot, do major revision, or minor fix?**
+
+
+Actually, the reviewer's framing is quite encouraging—they're saying SpanVote has addressed everything from Rounds 1–6 and these two items are genuinely minor before submission. The score plateau at 3.8 likely reflects hitting a solid baseline rather than fundamental flaws, and both fixes are well-scoped and clearly defined.
+
+For the MBR citation issue, I need to check what arXiv:2510.20700 actually covers to make sure my narrowing language is precise, and for the bootstrap testing, I should look into standard IE practices around significance testing like Koehn 2004 and Dror et al.'s ANOVA approach. papers.
+
+3. **Deeper question**: The 3-round stagnation - is there something fundamental I'm missing? Let me think...
+
+Actually, looking at this more carefully: the reviewer in Round 7 is saying the paper is nearly ready. The "stagnation" note might be misleading - if the paper started with many issues and they've all been resolved, the score improving from say 3.2 to 3.8 over several rounds is good progress. The last 3 rounds may have been fine-tuning at the 3.8 level, which is solid. The reviewer's own assessment is positive.
+
+So my plan:
+1. Research to verify the MBR paper content and get the right framing
+2. Research standard significance testing in NLP/IE papers
+3. Make the two specific minor fixes
+4. Consider if there's any deeper insight from this round's research that warrants anything beyond minor fixes
+
+I need to look up the Structure-Conditional MBR paper on arXiv, check how bootstrap significance testing is typically handled in NLP work, and see what recent IE papers are doing. Since I'll need to use deferred tools, I should use the Agent to handle the research, then apply the targeted edits.
+
+For the statistical significance fix, I'm thinking I should add language to both the approach and description sections stating that all primary-benchmark comparisons will use bootstrap significance testing at p<0.05, with results below that threshold reported as trends rather than improvements. I'll need to cite the standard references like Koehn's paired bootstrap resampling work and the Dror et al. ANOVA approach, and add those citations to the paper.
+
+For the SC-MBR framing, I need to be more precise about what that paper actually does versus what SpanVote does, rather than claiming they follow the same paradigm. The reviewer's feedback suggests SC-MBR handles dialogue acts and emotion in response format, so I should describe it more narrowly and ground the core MBR motivation in Kumar & Byrne and Eikema & Aziz instead.
+
+On significance testing, I should look up the standard approaches—Koehn's paired bootstrap resampling and Dror et al.'s work on comparing neural models—to make sure I'm citing the right references.
+
+But stepping back, the reviewer is essentially saying these are minor fixes before submission. The score stagnation might just be a reflection of the review process rather than a real concern, especially given how positive the feedback actually is.
+
+I'll do targeted research on those three key points—what arXiv:2510.20700 covers, the exact Dror et al. citation, and any relevant concurrent work on significance testing in NLP—then make the necessary edits.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8555cb4f-4acf-4fe8-8927-aebb5f295500",
+  "isSidechain": false,
+  "requestId": "req_011CatZmnLSsapKn8tg2teYc",
+  "type": "assistant",
+  "uuid": "1b41a1ac-72c9-46d1-9d84-cf698b0846a0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01DTViFTsvKW4yt1rAXkXaeq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15707,
+      "cache_read_input_tokens": 11278,
+      "output_tokens": 2089,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15707,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2089,
+          "cache_read_input_tokens": 11278,
+          "cache_creation_input_tokens": 15707,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15707
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-10T08:23:40.130Z_
+
+Looking at the reviewer feedback, both issues are explicitly labeled MINOR and the reviewer says the paper is ready for submission after these two fixes. This is appropriate for a minor fix — no pivot or major revision needed. Let me research the specific papers involved to craft accurate language before editing.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1b41a1ac-72c9-46d1-9d84-cf698b0846a0",
+  "isSidechain": false,
+  "requestId": "req_011CatZmnLSsapKn8tg2teYc",
+  "type": "assistant",
+  "uuid": "f2f891e5-47f7-45fa-a4df-71425b5084a1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01DTViFTsvKW4yt1rAXkXaeq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15707,
+      "cache_read_input_tokens": 11278,
+      "output_tokens": 2089,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15707,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2089,
+          "cache_read_input_tokens": 11278,
+          "cache_creation_input_tokens": 15707,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15707
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-10T08:23:47.190Z_
+
+<details open><summary>🔧 Tool call — Agent · `toolu_019jFRC61W3enQtzv38b5Kpf`</summary>
+
+```json
+{
+  "description": "Research SC-MBR paper and NLP significance testing references",
+  "prompt": "I need to verify two things for a research paper revision:\n\n1. **arXiv:2510.20700** (Structure-Conditional Minimum Bayes Risk Decoding, EMNLP 2025): A reviewer says this paper addresses \"structure in the sense of dialogue act, emotion, and response format (sentence vs. list vs. paragraph) in instruction-following\" — NOT typed NER/RE/EAE spans with hierarchical role constraints. Please fetch the abstract from https://arxiv.org/abs/2510.20700 and confirm: (a) what kind of \"structure\" the paper addresses, (b) what tasks/datasets it uses, (c) what their MBR utility function looks like. I need to know if the reviewer's characterization is accurate so I can craft a one-sentence narrowing description.\n\n2. **Significance testing in NLP**: \n   - \"Koehn 2004 paired bootstrap resampling\" — this is referenced as standard for NLP. Can you find the full citation? (Author, title, venue, year)\n   - \"Dror et al. 2018\" significance testing paper for NLP — please find the full title and venue. Is it \"Deep Dominance\" or something else?\n   - Are there any more recent (2023-2025) standard significance testing approaches specifically used in IE (information extraction) papers at EMNLP/ACL? Search for \"bootstrap significance testing NLP information extraction\" and \"statistical significance F1 NER RE evaluation\".\n\nPlease fetch the actual abstract/method from arXiv:2510.20700 and report what you find. For the significance testing papers, search and report full citations. Keep the response focused and factual.",
+  "subagent_type": "Explore"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f2f891e5-47f7-45fa-a4df-71425b5084a1",
+  "isSidechain": false,
+  "requestId": "req_011CatZmnLSsapKn8tg2teYc",
+  "type": "assistant",
+  "uuid": "da517d41-e26a-4ec2-b196-20a75c00a8b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01DTViFTsvKW4yt1rAXkXaeq",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 15707,
+      "cache_read_input_tokens": 11278,
+      "output_tokens": 2089,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 15707,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 2089,
+          "cache_read_input_tokens": 11278,
+          "cache_creation_input_tokens": 15707,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 15707
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-10T08:24:07.125Z_
+
+<details><summary>↩ Tool result · `toolu_019jFRC61W3enQtzv38b5Kpf`</summary>
+
+```text
+Excellent. I have the information you need. Let me provide a focused summary:
+
+## 1. arXiv:2510.20700 - Structure-Conditional MBR Decoding
+
+**The reviewer's characterization is accurate.** The paper does indeed address "structure in the sense of dialogue act, emotion, and response format" — NOT typed NER/RE/EAE spans.
+
+**Structure types:** Dialogue act, emotion, and response structure (sentence vs. paragraph vs. list)
+
+**Tasks/Datasets:**
+- Custom curated dataset capturing the three latent structure types
+- Real-world benchmarks: AlpacaEval and MT-Bench for instruction-following evaluation
+
+**MBR utility function:** Rather than a single formula, the paper proposes "three lightweight adaptations to the utility function" designed to make MBR sensitive to structural variability. The key insight is that standard similarity-based utility functions fail to detect structural variations; their adaptations improve performance by up to 13.7 percentage points in win rate.
+
+**One-sentence narrowing description:** The paper addresses latent structure in instruction-following responses (dialogue act, emotion, response format) through adapted MBR utility functions that make the decoding process sensitive to structural variability.
+
+---
+
+## 2. Significance Testing Papers
+
+**Koehn 2004 (Paired Bootstrap Resampling):**
+- **Full citation:** Koehn, P. (2004). "Statistical Significance Tests for Machine Translation Evaluation." In Proceedings of EMNLP 2004 (pp. 388-395). Association for Computational Linguistics.
+- **Venue:** ACL Anthology W04-3250
+- This is the foundational paired bootstrap resampling method widely used in NLP.
+
+**Dror et al. 2018:**
+- **Full title:** "The Hitchhiker's Guide to Testing Statistical Significance in Natural Language Processing"
+- **Authors:** Rotem Dror, Gili Baumer, Segev Shlomov, and Roi Reichart
+- **Venue:** ACL 2018 (Proceedings of the 56th Annual Meeting of the ACL, Volume 1: Long Papers, pages 1383–1392, Melbourne, Australia)
+- **Key finding:** Survey of 180 ACL 2017 papers found 117 (65%) either ignored or misused significance testing.
+
+**Recent approaches (2023-2025) in IE:**
+The search results indicate that **block bootstrap** and **bootstrap confidence intervals** are standard approaches, often paired with **Benjamini–Hochberg FDR correction** and **Cliff's δ effect size**. Recent IE research (2024) on information extraction systems references bootstrap resampling (1,000 resamples) for calibrating statistical significance when comparing systems, particularly important given dependencies within test sets.
+
+Sources:
+- [Koehn 2004 on ACL Anthology](https://aclanthology.org/W04-3250.pdf)
+- [Dror et al. 2018 - The Hitchhiker's Guide](https://aclanthology.org/P18-1128/)
+- [Dror et al. 2018 - ArXiv Version](https://arxiv.org/abs/1809.01448)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "da517d41-e26a-4ec2-b196-20a75c00a8b0",
+  "isSidechain": false,
+  "promptId": "7b78876c-493b-41f8-bc3d-03361f1e6bb2",
+  "type": "user",
+  "uuid": "c3c44dc3-71ee-41d1-90e9-d04d3a4ecbf2",
+  "toolUseResult": {
+    "status": "completed",
+    "prompt": "I need to verify two things for a research paper revision:\n\n1. **arXiv:2510.20700** (Structure-Conditional Minimum Bayes Risk Decoding, EMNLP 2025): A reviewer says this paper addresses \"structure in the sense of dialogue act, emotion, and response format (sentence vs. list vs. paragraph) in instruction-following\" — NOT typed NER/RE/EAE spans with hierarchical role constraints. Please fetch the abstract from https://arxiv.org/abs/2510.20700 and confirm: (a) what kind of \"structure\" the paper addresses, (b) what tasks/datasets it uses, (c) what their MBR utility function looks like. I need to know if the reviewer's characterization is accurate so I can craft a one-sentence narrowing description.\n\n2. **Significance testing in NLP**: \n   - \"Koehn 2004 paired bootstrap resampling\" — this is referenced as standard for NLP. Can you find the full citation? (Author, title, venue, year)\n   - \"Dror et al. 2018\" significance testing paper for NLP — please find the full title and venue. Is it \"Deep Dominance\" or something else?\n   - Are there any more recent (2023-2025) standard significance testing approaches specifically used in IE (information extraction) papers at EMNLP/ACL? Search for \"bootstrap significance testing NLP information extraction\" and \"statistical significance F1 NER RE evaluation\".\n\nPlease fetch the actual abstract/method from arXiv:2510.20700 and report what you find. For the significance testing papers, search and report full citations. Keep the response focused and factual.",
+    "agentId": "a5df21cba33e97308",
+    "agentType": "Explore",
+    "content": [
+      {
+        "type": "text",
+        "text": "Excellent. I have the information you need. Let me provide a focused summary:\n\n## 1. arXiv:2510.20700 - Structure-Conditional MBR Decoding\n\n**The reviewer's characterization is accurate.** The paper does indeed address \"structure in the sense of dialogue act, emotion, and response format\" — NOT typed NER/RE/EAE spans.\n\n**Structure types:** Dialogue act, emotion, and response structure (sentence vs. paragraph vs. list)\n\n**Tasks/Datasets:**\n- Custom curated dataset capturing the three latent structure types\n- Real-world benchmarks: AlpacaEval and MT-Bench for instruction-following evaluation\n\n**MBR utility function:** Rather than a single formula, the paper proposes \"three lightweight adaptations to the utility function\" designed to make MBR sensitive to structural variability. The key insight is that standard similarity-based utility functions fail to detect structural variations; their adaptations improve performance by up to 13.7 percentage points in win rate.\n\n**One-sentence narrowing description:** The paper addresses latent structure in instruction-following responses (dialogue act, emotion, response format) through adapted MBR utility functions that make the decoding process sensitive to structural variability.\n\n---\n\n## 2. Significance Testing Papers\n\n**Koehn 2004 (Paired Bootstrap Resampling):**\n- **Full citation:** Koehn, P. (2004). \"Statistical Significance Tests for Machine Translation Evaluation.\" In Proceedings of EMNLP 2004 (pp. 388-395). Association for Computational Linguistics.\n- **Venue:** ACL Anthology W04-3250\n- This is the foundational paired bootstrap resampling method widely used in NLP.\n\n**Dror et al. 2018:**\n- **Full title:** \"The Hitchhiker's Guide to Testing Statistical Significance in Natural Language Processing\"\n- **Authors:** Rotem Dror, Gili Baumer, Segev Shlomov, and Roi Reichart\n- **Venue:** ACL 2018 (Proceedings of the 56th Annual Meeting of the ACL, Volume 1: Long Papers, pages 1383–1392, Melbourne, Australia)\n- **Key finding:** Survey of 180 ACL 2017 papers found 117 (65%) either ignored or misused significance testing.\n\n**Recent approaches (2023-2025) in IE:**\nThe search results indicate that **block bootstrap** and **bootstrap confidence intervals** are standard approaches, often paired with **Benjamini–Hochberg FDR correction** and **Cliff's δ effect size**. Recent IE research (2024) on information extraction systems references bootstrap resampling (1,000 resamples) for calibrating statistical significance when comparing systems, particularly important given dependencies within test sets.\n\nSources:\n- [Koehn 2004 on ACL Anthology](https://aclanthology.org/W04-3250.pdf)\n- [Dror et al. 2018 - The Hitchhiker's Guide](https://aclanthology.org/P18-1128/)\n- [Dror et al. 2018 - ArXiv Version](https://arxiv.org/abs/1809.01448)"
+      }
+    ],
+    "totalDurationMs": 19928,
+    "totalTokens": 19365,
+    "totalToolUseCount": 4,
+    "usage": {
+      "input_tokens": 7,
+      "cache_creation_input_tokens": 3993,
+      "cache_read_input_tokens": 14602,
+      "output_tokens": 763,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 0,
+        "ephemeral_5m_input_tokens": 3993
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 7,
+          "output_tokens": 763,
+          "cache_read_input_tokens": 14602,
+          "cache_creation_input_tokens": 3993,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 3993,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "toolStats": {
+      "readCount": 0,
+      "searchCount": 0,
+      "bashCount": 0,
+      "editFileCount": 0,
+      "linesAdded": 0,
+      "linesRemoved": 0,
+      "otherToolCount": 4
+    }
+  },
+  "sourceToolAssistantUUID": "da517d41-e26a-4ec2-b196-20a75c00a8b0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-10T08:24:47.790Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The research confirms:
+
+1. **arXiv:2510.20700**: The reviewer's characterization is accurate - the paper addresses dialogue act, emotion, and response format (sentence vs. list vs. paragraph) in instruction-following, not typed IE spans. I need to narrow the framing significantly.
+
+2. **Significance testing references**:
+   - Koehn 2004: "Statistical Significance Tests for Machine Translation Evaluation" - EMNLP 2004 (W04-3250)
+   - Dror et al. 2018: "The Hitchhiker's Guide to Testing Statistical Significance in Natural Language Processing" - ACL 2018 (P18-1128)
+
+Now I'm planning two targeted changes. First, I'll add bootstrap significance testing to the approach section, specifying that all primary-benchmark comparisons use paired bootstrap with 1000 resamples at p<0.05 following these references, and results below that threshold get labeled as trends rather than claims.
+
+Second, I'm narrowing the SC-MBR framing to clarify that while it adapts MBR utility functions to structural variability in instruction-following spaces—dialogue acts, emotions, response formats—this is distinct from typed IE spans, though both share the decomposed sampling-then-selection paradigm. The core MBR motivation should anchor to Kumar & Byrne (2004) and Eikema & Aziz (2020) instead.
+
+Now I'm updating the JSON with these changes. I'm revising the SC-MBR framing to clarify that it addresses structural variability in response spaces more broadly—like dialogue acts and response formats—rather than just typed IE spans, while keeping the shared decomposed sampling-then-selection paradigm. I also need to verify the MBR citations are consistent across sections, making sure Kumar & Byrne (2004) and Eikema & Aziz (2020) are properly anchored as the foundational references. I need to refocus the last two sentences to better position SC-MBR as adapting MBR to instruction-following response structures like dialogue acts and emotions, rather than treating it as parallel to SpanVote. The key distinction is that SC-MBR handles a different kind of structure entirely, but both follow the same decomposed sampling-then-selection framework. Let me revise to make this clearer while keeping it concise.
+
+Now I'm thinking about where to add significance testing to the evaluation plan. I should insert a new section on statistical significance between the RAMS metric specification and the compute details, explaining that I'll use paired bootstrap resampling with 1,000 iterations at p<0.05 threshold following standard practices in NLP evaluation.
+
+For near-saturation benchmarks where improvements are small relative to variance, I'll label gains that don't reach significance as "trends" rather than improvements in the results tables. I also need to update the description field to reflect this narrower framing and add significance testing to the key references.
+
+Updating the JSON with targeted changes...
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c3c44dc3-71ee-41d1-90e9-d04d3a4ecbf2",
+  "isSidechain": false,
+  "requestId": "req_011CatZrDDGgiSxTg6jsJkhy",
+  "type": "assistant",
+  "uuid": "70472edf-b5c9-44af-88cf-0bfcd76b138e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01CGVHwgzKa1g8CdPMiJtcjK",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2861,
+      "cache_read_input_tokens": 26985,
+      "output_tokens": 10902,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10902,
+          "cache_read_input_tokens": 26985,
+          "cache_creation_input_tokens": 2861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 14 · 2026-05-10T08:27:39.614Z_
+
+Good — the reviewer's characterization of arXiv:2510.20700 is confirmed accurate (dialogue act/emotion/response format, not IE spans). Both fixes are well-scoped. I'll now apply the two targeted changes: narrow the SC-MBR framing, and add bootstrap significance testing with proper references.
+
+Here is the complete revised JSON:
+
+```json
+{
+  "title": "Test-Time Consistency Aggregation for Structured IE Output Spaces",
+  "project_name": "spanvote_ie_consistency",
+  "source": "web_research",
+  "change_type": "minor",
+  "core_problem": "Self-consistency and best-of-N decoding dramatically improve LLM accuracy on math and code, but IE outputs are structured (overlapping spans, typed entities, hierarchical event arguments) — standard majority voting is undefined over these spaces. Two open questions motivate this work: (1) Do fine-tuned, constrained-decoding IE models produce consistency signals that reliably predict span correctness, unlike the weak signals (r=0.20–0.30) documented for hard-prompted models? (2) If so, what aggregation function over K hypotheses sampled from a single fine-tuned IE model maximally exploits that signal across NER, RE, event detection, and EAE tasks?",
+  "opportunity": "Test-time scaling is a dominant paradigm of 2025–26 ML: Large Language Monkeys (ICML 2024) showed coverage scales log-linearly with the number of samples over four orders of magnitude; the ICLR 2025 oral on optimal test-time compute (arXiv:2408.03314) demonstrates that training-free inference-time scaling can outperform parameter scaling on hard reasoning; and Table-R1 (EMNLP 2025) shows that structured tasks can benefit from test-time compute allocation — though Table-R1's inference-time gains require RL post-training (GRPO) before they emerge, making it a training+inference co-design result rather than a training-free precedent. Yet the structured IE community has not exploited this: entities have overlapping spans, relations have direction and type constraints, events have nested argument roles — challenges that block direct application of token-level majority voting. The constrained decoding infrastructure now available (XGrammar is default in vLLM and SGLang as of March 2026, <40µs overhead) makes K=16–32 parallel samples feasible within the compute budget. A schema-aware aggregation function — span-overlap voting for entity boundaries, type plurality for classification, relation compatibility scoring — could be derived from schema structure alone and require no additional training. Crucially, whether the consistency signal is even actionable in the fine-tuned constrained-decoding regime (as opposed to hard-prompted models) is itself an open empirical question whose answer determines the entire viability of this research direction. Answering it first, before committing to the aggregation design, is both intellectually honest and strategically sound.",
+  "landscape": "Self-consistency (Wang et al., 2023) applies majority voting over reasoning chains for classification but has no principled extension to structured extraction spaces. Ranked Voting based Self-Consistency (ACL Findings 2025) extends self-consistency with Borda count and instant-runoff voting for open-ended QA — but still targets scalar answer spaces, not span-typed structured outputs. For NER specifically, EL4NER (ACL Findings 2025, arXiv:2505.23038) aggregates outputs from three heterogeneous small LLMs (GLM-4-9B, Phi-4, Qwen2.5-14B) via span-union with POS-weighted similarity. SpanVote is fundamentally distinct: it draws K samples from a single fine-tuned model (one training run, one deployed model instance), extends to the full IE stack including relation extraction and event argument extraction, and applies IoU-based soft boundary matching rather than POS-weighted span similarity for ICL demo retrieval. SpanVote requires one deployed model in GPU memory versus EL4NER's three simultaneously deployed models (GLM-4-9B 9B + Phi-4 14B + Qwen2.5-14B 14B ≈ 37B total parameters requiring parallel multi-GPU serving), yielding lower serving overhead and infrastructure simplicity. However, at K=16–32, SpanVote's per-example inference compute (16–32 passes × 8B = 128–256B parameter-equivalent per example) substantially exceeds EL4NER's per-example cost (~37B parameter-equivalent from one parallel pass through all three models). The trade-off is deployment simplicity versus per-example throughput; SpanVote does not claim per-example compute efficiency over EL4NER at high K. A concurrent PMC 2026 study (PMC12888769, Genomics & Informatics) found weak Spearman correlation (r=0.20–0.30, specifically r=0.20 for GPT-4o-mini and Qwen3, r=0.26 for DeepSeek-V3, r=0.28 for Kimi) between consistency and accuracy for IE when using hard-prompted LLMs with K=5 repetitions and strict string matching; notably, the study's conservative sampling parameters (T=0.2, top-p=0.1) likely suppress output diversity and may themselves contribute to the weak signal, providing additional motivation for SpanVote's higher-K fine-tuned constrained-decoding regime. SpanVote's calibration analysis directly tests whether the fine-tuned constrained-decoding regime escapes this weak-signal regime — the answer is the paper's first research question, not an assumption. A critical related work is BEMEAE: Moving Beyond Exact Span Match for Event Argument Extraction (NAACL 2025, ACL Anthology 2025.naacl-long.295, Fane et al.), which proposes a deterministic + semantic matching evaluation metric that tolerates near-correct spans and evaluates nine SOTA EAE models on RAMS and GENEVA. BEMEAE finds that exact span match (ESM) rankings disagree with human judgment (Kendall's τ = 0.44 on RAMS), and that BEMEAE-Human vs. BEMEAE-Best-Automated agreement is very high (τ = 0.94), making it a scalable reliable metric. A second concurrent evaluation work, REGen (EMNLP 2025, arXiv:2502.16838, Sharif et al.), independently proposes combining exact, relaxed, and LLM-based matching for EAE evaluation and achieves 87.67% alignment with human judgment across six datasets; like BEMEAE, REGen argues that ESM systematically underestimates generative EAE model performance by penalizing semantically valid span variations. SpanVote's IoU tolerance is philosophically and technically aligned with both BEMEAE and REGen's shared critique: SpanVote's IoU threshold tolerates the same off-by-one boundary errors and semantically valid span variations that both evaluation frameworks identify as the root cause of ESM's inadequacy. Evaluating SpanVote gains under the BEMEAE metric on RAMS — and extending BEMEAE to WikiEvents as a secondary analysis — directly validates the coherence of the approach under a human-aligned evaluation standard consistent with both frameworks. On benchmark status: WikiEvents Arg-C Head F1 SOTA is ~68–69 (e.g., DEGAP, TSCA) and is saturating under standard SFT. RAMS standard evaluation uses Arg-C Head F1 (requiring the head word of the predicted span to match the gold head word), where SOTA is ~52–54 F1. The 63.9 F1 score attributed to DeepStruct on RAMS in some reviews reflects Arg-C Coref F1 — a more lenient sub-metric that allows coreferent span matches — and is not comparable to the Head F1 baselines used in most post-2022 work. SpanVote explicitly targets Arg-C Head F1 on RAMS, maintaining comparability with the established community benchmark. ACE05 (NER ~89 F1, RE ~68 F1), TACRED (~87 F1), DocRED (~68 Ign-F1), Few-NERD (~72 micro-F1), SciERC, and MAVEN event detection similarly approach saturation. No published work has applied single-model K-sample aggregation with span-aware IoU clustering to any of these benchmarks, leaving this design space open.",
+  "approach": "SpanVote is organized around two sequential research questions: RQ1 (calibration) and RQ2 (aggregation gains).\n\n**RQ1 — Does fine-tuned constrained-decoding produce actionable consistency signals?** On three primary benchmarks (ACE05, WikiEvents, RAMS), we generate K=16 hypotheses from a fine-tuned Qwen3-8B using XGrammar-constrained decoding and compute, for each predicted span: (a) the size of its IoU-compatible consensus cluster (how many of K outputs contain a matching span), and (b) its precision against gold annotation. Plotting calibration curves (cluster size vs. precision, binned) directly answers RQ1. If high-IoU-cluster spans are substantially more precise than singletons (e.g., cluster-of-8 precision ≥ cluster-of-1 precision + 10 F1 points), the consistency signal is actionable and justifies the aggregation framework. This finding is itself a primary contribution — it resolves the open question left by PMC2026 (which documented r=0.20–0.30 weak signals for four hard-prompted LLMs using conservative sampling parameters T=0.2, top-p=0.1, K=5 — settings that suppress output diversity and are a further methodological distinction from SpanVote's fine-tuned constrained-decoding regime with higher K) and establishes fine-tuned constrained decoding as a qualitatively different regime. Reporting a negative result here (flat calibration curve) would also be a contribution: it would identify a failure mode of test-time consistency for IE.\n\n**Probabilistic motivation.** Span boundary noise in fine-tuned models is approximately Gaussian around the true boundary under temperature sampling: each sampled hypothesis perturbs start and end offsets by small random displacements, making median-offset aggregation statistically grounded analogously to RANSAC inlier averaging for geometric estimation. Type labels, conditioned on span boundaries, form a separate multinomial random variable — type plurality voting is the maximum-likelihood estimator of the type posterior under independent samples. Schema-enforced structural constraints (e.g., an event argument must fill a registered role) impose dependency between the span and type variables, which SpanVote's schema-aware scoring respects. This disentanglement — boundary noise ≈ Gaussian, type noise ≈ multinomial, structure = schema-constrained — is precisely why token-level majority voting fails: it conflates three structurally distinct random variables into a flat token sequence. **Boundary-noise appendix.** To ground the Gaussian framing empirically, we include an appendix figure reporting histograms of predicted-vs-gold span boundary offsets (start and end separately) on the ACE05 dev set under temperature sampling; if the empirical distribution is substantially non-Gaussian, the median-offset motivation is revised accordingly in the final paper.\n\n**MBR connection.** SpanVote's aggregation is related to Minimum Bayes Risk (MBR) decoding (Kumar & Byrne, 2004; Eikema & Aziz, 2020), which selects the hypothesis that maximizes expected utility across all sampled candidates. SpanVote can be viewed as a decomposed MBR decoder: rather than computing utility over complete IE hypotheses — intractable, since two full IE outputs may contain different numbers of entities, relations, and events with no canonical alignment — SpanVote decomposes the utility to the span level using IoU, making selection tractable and interpretable. A span that appears in many hypotheses has high expected IoU-utility and is selected; a span that appears in only one does not. SC-MBR (EMNLP 2025, arXiv:2510.20700) adapts MBR utility functions to structural variability in instruction-following response spaces (dialogue act, emotion, response format) — a different kind of structure than typed IE spans with hierarchical role constraints, but sharing the decomposed sampling-then-structure-aware-selection paradigm; SpanVote instantiates this paradigm for typed structured IE outputs, where span-level IoU decomposition replaces hypothesis-level string similarity and the primary theoretical grounding rests on Kumar & Byrne (2004) and Eikema & Aziz (2020).\n\n**RQ2 — SpanVote aggregation.** Conditioned on a positive calibration finding from RQ1, SpanVote applies schema-aware aggregation: (a) entity-mode for NER (IoU span clustering + type voting), (b) relation-mode adding directed pairwise entity-cluster compatibility, (c) EAE-mode adding hierarchical argument role constraints from the event schema. The IoU threshold τ is calibrated once per dataset on the dev set. Ablations over τ ∈ {0.3, 0.5, 0.7, 0.9} will test whether τ=0.5 reliably serves as a cross-dataset default; we hypothesize that τ=0.5 will recover ≥80% of per-dataset-optimal gains based on IoU threshold sensitivity patterns in related span-matching tasks, which the ablation will empirically validate. This characterizes SpanVote as applicable wherever a labeled dev set exists — which includes all eight target benchmarks. We additionally ablate per-span-category τ (entity spans vs. event argument role spans) on ACE05 and WikiEvents to test whether a globally shared threshold is competitive with per-category tuning; entity spans are typically tight (1–3 tokens) while RAMS event arguments span ~6 tokens on average across document context, representing structurally distinct noise regimes that may warrant different τ values. If per-category tuning yields more than 2 F1 points over the shared threshold on either benchmark, per-category τ is adopted as the default SpanVote configuration.\n\nA full K ∈ {4, 8, 16, 32} × τ × strategy sweep is run on three primary benchmarks (ACE05, WikiEvents, RAMS) and the best configuration is transferred at K≤16 to five secondary benchmarks (Few-NERD, SciERC, TACRED/TACREV, DocRED, MAVEN), reducing inference overhead on secondary benchmarks without sacrificing the primary ablation coverage. All K samples are generated once at K=32 per benchmark; τ and strategy ablations are applied post-hoc to the same saved hypothesis sets, so inference cost scales with K only, not with the number of aggregation configurations. All evaluation tables include 'Fine-tune only (K=1, greedy)' as an explicit baseline row to isolate the contribution of multi-sample aggregation from fine-tuning alone, making the marginal benefit of each K-doubling directly legible to reviewers.\n\n**Compute-efficiency analysis.** A compute-efficiency figure plots the marginal F1 gain per doubling of K (K=1→4→8→16→32) on the three primary benchmarks, characterizing the Pareto frontier of accuracy versus inference cost. Consistent with diminishing-returns patterns observed in self-consistency sampling (Wang et al., 2023; Brown et al., 2024), we expect marginal gains to flatten by K=16, making K=8 the likely practical operating point. A break-even note contextualizes the overhead: a 2 F1 point improvement at K=8 (8× the inference cost of K=1) represents a favorable efficiency ratio in any deployment where extraction accuracy is the binding constraint; throughput-sensitive batch pipelines can target K=4–8, while latency-insensitive settings can run K=16–32. This framing strengthens the test-time compute allocation narrative introduced in the paper's motivation and directly addresses practical adoption concerns.\n\n**Statistical significance.** All primary-benchmark comparisons (ACE05, WikiEvents, RAMS) include paired bootstrap significance testing (1,000 resamples, p<0.05) following the procedures of Koehn (2004) and Dror et al. (2018). Improvements that do not reach p<0.05 are reported as 'trend' rather than 'improvement' in all evaluation tables. This is particularly important at near-saturation benchmarks (ACE05 NER ~89 F1, TACRED ~87 F1) where a +1 F1 gain may fall within run-to-run variance; significance testing ensures reported improvements reflect genuine aggregation gains rather than noise.\n\n**BEMEAE and REGen secondary analysis.** On RAMS, SpanVote results are additionally reported under the BEMEAE metric (Fane et al., NAACL 2025), which uses deterministic + semantic matching and is calibrated against human judgments (BEMEAE-Human vs. BEMEAE-Best-Automated: τ = 0.94). BEMEAE was designed for RAMS and GENEVA; we extend it to WikiEvents as a secondary analysis, providing the first BEMEAE-metric EAE evaluation on WikiEvents. A concurrent evaluation work, REGen (EMNLP 2025, arXiv:2502.16838, Sharif et al.), combines exact, relaxed, and LLM-based matching for EAE and achieves 87.67% human alignment across six datasets; SpanVote's IoU-based tolerance aligns with both BEMEAE and REGen's shared critique of strict ESM. We note this consistency in the secondary analysis section: a system that SpanVote's aggregation improves under BEMEAE criteria is also expected to improve under REGen's relaxed matching criteria, as both tolerate the same class of boundary and paraphrase variation that exact match penalizes. This validates whether SpanVote gains persist under human-aligned evaluation standards, directly responding to both frameworks' critique that ESM rankings disagree with human judgment (BEMEAE: τ = 0.44 on RAMS; REGen: average +23.93 F1 over EM across six datasets).\n\n**RAMS metric specification.** All RAMS results target Arg-C Head F1 (argument classification with head word boundary matching), the standard metric used in post-2022 EAE literature, where SOTA is ~52–54 F1. Arg-C Coref F1 is reported as a secondary metric for comparability with papers (e.g., DeepStruct) that use it. All metrics are verified against the RAMS scorer v1.0c (March 2023 corrected release).\n\n**Compute.** Qwen3-8B on single A100-40GB; K=32 uses sequential K=16 mini-batches on primary benchmarks. Full K×τ×strategy sweep on three primary benchmarks (~190h A100), calibration analysis (~30h A100), best-config transfer at K≤16 to five secondary benchmarks (~70h A100). Total ~290–330h A100 inference (excluding fine-tuning; see resource_estimate fine_tuning_note).",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~160–210h A100",
+      "gpu_utilization": "Low (~20–30%): GPU sits idle while researchers implement BEMEAE metric extension to WikiEvents, write aggregation code, analyze calibration curves, and design ablation experiments between runs.",
+      "timeline": "4–6 months",
+      "team": "1–2 researchers",
+      "estimated_gpu_cost": "~$320–$420 at ~$2/hr marketplace rate (Vast.ai/RunPod)",
+      "fine_tuning_note": "Fine-tuning uses 8 distinct checkpoints (ACE05 NER and RE share one model; TACRED and TACREV share one model; Few-NERD, SciERC, DocRED, WikiEvents, RAMS, and MAVEN each have their own): 8 runs × ~8h A100 = ~64h A100 ≈ 32h H100-equivalent. Fine-tuning is shared with all baselines and is not SpanVote-specific overhead. Total end-to-end budget including fine-tuning: ~224–274h A100 (~112–137h H100-equivalent)."
+    },
+    "human_in_loop": {
+      "gpu_hours": "~250–340h A100",
+      "gpu_utilization": "Moderate (~50–60%): agent submits inference and ablation jobs while human reviews calibration curves at key decision points; human gates at (i) RQ1 calibration finding review, (ii) τ ablation review and default selection, (iii) primary-to-transfer benchmark decision, (iv) BEMEAE extension implementation review",
+      "timeline": "5–8 weeks",
+      "team": "1 researcher, ~30 min/day check-in",
+      "claude_api_cost": "$150–$300",
+      "estimated_gpu_cost": "$500–$680",
+      "risk_note": "Implementing BEMEAE metric extension for WikiEvents requires semantic similarity computation (e.g., via sentence-transformer) beyond the RAMS/GENEVA setup; adds ~1 week engineering. Calibration curves on K=16 may show a positive signal for some tasks and weak signal for others — heterogeneous results complicate narrative but are honest and publishable.",
+      "fine_tuning_note": "Fine-tuning uses 8 distinct checkpoints (ACE05 NER and RE share one model; TACRED and TACREV share one model; Few-NERD, SciERC, DocRED, WikiEvents, RAMS, and MAVEN each have their own): 8 runs × ~8h A100 = ~64h A100 ≈ 32h H100-equivalent. Fine-tuning is shared with all baselines and is not SpanVote-specific overhead. Total end-to-end budget including fine-tuning: ~314–404h A100 (~157–202h H100-equivalent)."
+    },
+    "auto_research": {
+      "gpu_hours": "~290–330h A100 (~145–165h H100-equivalent, inference only)",
+      "gpu_utilization": "Near-zero idle (~80–90%): staged execution — RQ1 calibration first on K=16 ACE05/WikiEvents/RAMS (~30h), then full K×τ×strategy sweep on positive-signal benchmarks (~190h), then best-config transfer at K≤16 to secondary benchmarks (~70h). Prevents budget waste if calibration signal is weak.",
+      "timeline": "2–3 weeks",
+      "team": "0 (initial setup only, ~2h)",
+      "claude_api_cost": "$200–$400",
+      "estimated_gpu_cost": "$580–$660",
+      "fine_tuning_note": "Fine-tuning uses 8 distinct checkpoints (ACE05 NER+RE share one model; TACRED and TACREV share one model; Few-NERD, SciERC, DocRED, WikiEvents, RAMS, and MAVEN each have their own): 8 runs × ~8h A100 = ~64h A100 = ~32h H100. Secondary benchmarks run best-config transfer at K≤16 only (~70h A100 vs. ~120h for a full K=32 sweep), saving ~50h A100 ≈ 25h H100 on inference. Fine-tuning is shared with all baselines and is not SpanVote-specific overhead. Total end-to-end: ~354–394h A100 = ~177–197h H100, within the 200H H100 constraint (3–23h margin).",
+      "speed_bottleneck": "Sequential K=32 mini-batching on single A100 for primary benchmarks; BEMEAE semantic matching computation for WikiEvents extension; Claude API rate limits between experiment stages",
+      "risk_note": "If RQ1 calibration is negative (flat precision-vs-cluster-size curve), the agent should halt and report — not proceed to K-sweep. This requires an explicit decision rule in the agent's execution logic: e.g., stop if cluster-of-8 precision < cluster-of-1 precision + 5 F1 on any two of three primary benchmarks.",
+      "contingency_plan": "If any fine-tuning run exceeds 9h (e.g., due to gradient accumulation scheduling or slower-than-expected convergence), the K=32 ablation for that benchmark is reduced to K=16, preserving the primary calibration analysis and the K=8 operating-point recommendation while absorbing the overrun within the 200H constraint — the τ and strategy ablations remain unaffected since they are applied post-hoc to saved hypothesis sets."
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR submission deadline May 25 2026; commitment deadline August 2 2026; conference October 24–29 2026, Budapest)"
+  ],
+  "level": "top-tier",
+  "key_references": [
+    "Self-Consistency Improves Chain of Thought Reasoning in Language Models (ICLR 2023)",
+    "Large Language Monkeys: Scaling Inference Compute with Repeated Sampling (ICML 2024, arXiv:2407.21787)",
+    "Scaling LLM Test-Time Compute Optimally can be More Effective than Scaling Model Parameters (ICLR 2025 oral, arXiv:2408.03314)",
+    "Table-R1: Inference-Time Scaling for Table Reasoning via RL Post-Training (EMNLP 2025)",
+    "EL4NER: Ensemble Learning for Named Entity Recognition via Multiple Small-Parameter Large Language Models (ACL Findings 2025, arXiv:2505.23038)",
+    "BEMEAE: Moving Beyond Exact Span Match for Event Argument Extraction (NAACL 2025, ACL Anthology 2025.naacl-long.295, Fane et al.)",
+    "REGen: A Reliable Evaluation Framework for Generative Event Argument Extraction (EMNLP 2025, arXiv:2502.16838, Sharif et al.)",
+    "Ranked Voting based Self-Consistency of Large Language Models (ACL Findings 2025, arXiv:2505.10772)",
+    "Structure-Conditional Minimum Bayes Risk Decoding (EMNLP 2025, arXiv:2510.20700)",
+    "XGrammar: Flexible and Efficient Structured Generation Engine for Large Language Models (arXiv 2024)",
+    "Consistency–accuracy correlation in hard-prompted LLMs for entity and relation extraction: empirical findings from plant-health data (Genomics & Informatics 2026, PMC12888769)",
+    "Document-Level Event Argument Extraction by Conditional Generation (NAACL 2021)",
+    "Multi-Sentence Argument Linking (ACL 2020)",
+    "DeepStruct: Pretraining of Language Models for Structure Prediction (ACL Findings 2022)",
+    "Statistical Significance Tests for Machine Translation Evaluation (EMNLP 2004, Koehn)",
+    "The Hitchhiker's Guide to Testing Statistical Significance in Natural Language Processing (ACL 2018, Dror et al.)"
+  ],
+  "description": "SpanVote introduces a training-free test-time consistency aggregation framework for structured information extraction (IE) covering NER, RE, event detection, and EAE, organized around two sequential research questions. RQ1 (calibration, positioned as the primary contribution): In fine-tuned constrained-decoding IE models, does test-time consistency reliably predict span correctness? Calibration curves over K=16 samples on ACE05, WikiEvents, and RAMS plot cluster size (number of K outputs containing an IoU-compatible span) against gold precision, directly testing whether the consistency signal is actionable — a finding that resolves the open question left by PMC2026's weak-signal results (r=0.20–0.30 across four LLMs: GPT-4o-mini r=0.20, Qwen3 r=0.20, DeepSeek-V3 r=0.26, Kimi r=0.28) obtained under conservative sampling parameters (T=0.2, top-p=0.1, K=5) that likely suppress output diversity and are a further methodological distinction from SpanVote's fine-tuned constrained-decoding regime with higher K. RQ2 (aggregation): Conditioned on a positive calibration finding, SpanVote applies span-aware IoU clustering, median-offset boundary selection, type plurality voting, and schema-aware relation/argument compatibility scoring — all derived from the task schema without additional training. The probabilistic motivation is explicit: span boundary noise under temperature sampling is approximately Gaussian around the true boundary (median-offset aggregation ≈ RANSAC-like inlier averaging; empirically validated via appendix boundary-offset histograms on ACE05 dev set), type labels form an independent multinomial variable (plurality voting = MAP estimate), and schema constraints enforce structural dependencies — decompositions that are invisible to token-level majority voting. SpanVote is positioned within the MBR decoding literature (Kumar & Byrne, 2004; Eikema & Aziz, 2020) as a decomposed MBR decoder that replaces intractable hypothesis-level utility (requiring alignment between IE outputs with variable numbers of entities, relations, and events) with tractable span-level IoU utility. SC-MBR (EMNLP 2025, arXiv:2510.20700) adapts MBR utility functions to structural variability in instruction-following response spaces (dialogue act, emotion, response format) — a different kind of structure than typed IE spans with hierarchical role constraints, but sharing the decomposed sampling-then-structure-aware-selection paradigm; the primary theoretical grounding for SpanVote rests on Kumar & Byrne (2004) and Eikema & Aziz (2020). SpanVote is compared against EL4NER (ACL Findings 2025) on three concrete axes: single deployed model (lower serving overhead, single-GPU memory footprint) vs. three simultaneously deployed heterogeneous LLMs (GLM-4-9B + Phi-4 + Qwen2.5-14B ≈ 37B total, requiring parallel multi-GPU serving; SpanVote trades deployment simplicity for higher per-example compute at K=16–32); full IE stack including hierarchical EAE (WikiEvents, RAMS, MAVEN) vs. NER only; IoU-based boundary clustering vs. POS-weighted span similarity for ICL retrieval. RAMS results explicitly target Arg-C Head F1 (standard community metric, SOTA ~52–54 F1), with Arg-C Coref F1 reported separately to enable comparison with papers such as DeepStruct that use the more lenient sub-metric. All primary-benchmark comparisons (ACE05, WikiEvents, RAMS) include paired bootstrap significance testing (1,000 resamples, p<0.05) following Koehn (2004) and Dror et al. (2018); improvements that do not reach p<0.05 are reported as 'trend' rather than 'improvement' in evaluation tables, which is especially important at near-saturation benchmarks (ACE05 NER ~89 F1, TACRED ~87 F1) where +1 F1 gains may fall within run-to-run variance. A BEMEAE and REGen secondary analysis reports SpanVote gains under human-aligned evaluation metrics on RAMS and extends BEMEAE to WikiEvents for the first time: BEMEAE (Fane et al., NAACL 2025) uses deterministic + semantic matching calibrated against human judgments (τ = 0.94), and REGen (Sharif et al., EMNLP 2025, arXiv:2502.16838) combines exact, relaxed, and LLM-based matching achieving 87.67% human alignment across six datasets — both frameworks independently critique ESM for disagreeing with human judgment (BEMEAE: Kendall's τ = 0.44 on RAMS; REGen: average +23.93 F1 over EM), and SpanVote's IoU tolerance addresses the same off-by-one boundary errors and semantically valid span variations that motivate both evaluations. The IoU threshold τ is calibrated per dataset on the dev set; ablations over τ ∈ {0.3, 0.5, 0.7, 0.9} test the hypothesis that τ=0.5 recovers ≥80% of per-dataset-optimal gains, with empirical validation via the ablation sweep. All K samples are generated once at K=32 per benchmark; τ and strategy ablations are applied post-hoc to the same saved hypothesis sets, so inference cost scales with K only. Per-span-category τ ablations (entity spans vs. event argument role spans) on ACE05 and WikiEvents additionally test whether a globally shared threshold is competitive with per-category tuning across structurally distinct span length distributions (entity spans: ~1–3 tokens; RAMS event arguments: ~6 tokens); per-category τ is adopted as the default if it yields >2 F1 points over the shared threshold on either benchmark. SpanVote is applicable wherever a labeled dev set exists (all eight target benchmarks). All evaluation tables include 'Fine-tune only (K=1, greedy)' as an explicit baseline row to isolate the contribution of multi-sample aggregation from fine-tuning alone, making the marginal benefit of each K-doubling directly legible to reviewers. A compute-efficiency figure plots the marginal F1 gain per doubling of K (K=1→4→8→16→32) on primary benchmarks, characterizing the Pareto frontier of accuracy versus inference cost; a break-even note contextualizes the K=8 overhead (8× over K=1) relative to extraction accuracy gains and identifies K=8 as the likely practical operating point given expected diminishing returns by K=16. Evaluation covers ACE05 and Few-NERD (NER); ACE05, SciERC, TACRED/TACREV, and DocRED (RE); MAVEN (event detection); WikiEvents and RAMS (EAE). Full K×τ×strategy ablation on three primary benchmarks (post-hoc on saved hypothesis sets); best-config transfer at K≤16 to five secondary benchmarks. Auto-research compute ~145–165 H100-equivalent hours (inference only) via staged execution: calibration first (RQ1), then aggregation sweep (RQ2), with an explicit halt rule if calibration is negative; secondary benchmarks run best-config transfer at K≤16 (~70h A100 vs. ~120h for full K=32 sweep). Fine-tuning uses 8 distinct checkpoints: ~64h A100 = ~32h H100. Total end-to-end: ~177–197h H100, within the 200H H100 constraint (3–23h margin); contingency: if any fine-tuning run exceeds 9h, the K=32 ablation for that benchmark is reduced to K=16, preserving primary calibration results within the budget."
+}
+```
+
+---
+
+**Summary of changes (`change_type: minor`):**
+
+**Fix 1 — SC-MBR citation narrowed (two places):**
+- `approach` / MBR connection paragraph: replaced the final sentence "Structure-Conditional MBR… establishes the same sampling-then-structure-aware-selection paradigm for open-ended generation; SpanVote instantiates this paradigm…" with language that explicitly scopes SC-MBR to *instruction-following response structure* (dialogue act, emotion, response format) — confirmed by reading the abstract — while preserving the sampling-then-selection analogy and clarifying that the primary MBR grounding rests on Kumar & Byrne (2004) and Eikema & Aziz (2020).
+- `description`: same narrowing applied to the parallel passage.
+
+**Fix 2 — Bootstrap significance testing added (two places):**
+- `approach`: new **Statistical significance** paragraph added between compute-efficiency analysis and BEMEAE secondary analysis, specifying paired bootstrap (1,000 resamples, p<0.05), citing Koehn (2004) and Dror et al. (2018), and committing to reporting sub-threshold results as "trend" not "improvement."
+- `description`: one-sentence significance testing statement added to the evaluation methodology passage.
+- `key_references`: two new entries added — Koehn EMNLP 2004 and Dror et al. ACL 2018 ("The Hitchhiker's Guide to Testing Statistical Significance in NLP").
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "70472edf-b5c9-44af-88cf-0bfcd76b138e",
+  "isSidechain": false,
+  "requestId": "req_011CatZrDDGgiSxTg6jsJkhy",
+  "type": "assistant",
+  "uuid": "54ab3cbc-da3f-4a05-adee-dfcb2e0e8c9d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-sonnet-4-6",
+    "id": "msg_01CGVHwgzKa1g8CdPMiJtcjK",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2861,
+      "cache_read_input_tokens": 26985,
+      "output_tokens": 10902,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2861,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 10902,
+          "cache_read_input_tokens": 26985,
+          "cache_creation_input_tokens": 2861,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2861
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Test-Time Consistency Aggregation for Structured IE Output Spaces\",…",
+  "leafUuid": "54ab3cbc-da3f-4a05-adee-dfcb2e0e8c9d",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 16_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Add bootstrap significance testing to IE aggregation",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 17_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are revising a research idea based on reviewer feedback.  **Today's date: 2026-05-10 (UTC).**  ## Original idea {   \"title\": \"Test-Time Consistency Aggregation for Structured IE Output Spaces\",…",
+  "leafUuid": "54ab3cbc-da3f-4a05-adee-dfcb2e0e8c9d",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 18_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Add bootstrap significance testing to IE aggregation",
+  "sessionId": "2c14f701-4ec8-4f0a-af34-866e3076fd7f"
+}
+```
+
+---

@@ -1,0 +1,10774 @@
+# Research conversation: You are a strict ML research reviewer conducting adversarial review. **Today's date: 2026-05-10 (UTC).** Your job: indep
+
+**OntoCoDec: Type-Constrained Information Extraction via Compiled Schema Constraints (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 149
+- **Recorded user turns:** 1
+- **Tool calls:** 50
+- **Original source:** `logs/chats/exported-trajectories/account-2/48862c29-b124-4dae-91f7-f1ea2f30b47a.jsonl`
+- **Structured JSON:** [`20ecada51cd4df335886.json`](../../sessions/20/20ecada51cd4df335886.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-10T18:53:27.529Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-10T18:53:27.529Z",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "content": "You are a strict ML research reviewer conducting adversarial review.\n\n**Today's date: 2026-05-10 (UTC).**\n\nYour job: independently verify this idea's claims via WebSearch, then issue a verdict.\n\n## User requirements\nThe user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Information Extraction.\n\nDirection: Structured information extraction — named entity recognition, relation extraction, event extraction, document-level IE, end-to-end extraction pipelines. Both LLM-based and non-LLM approaches welcome. In-scope: schema-guided extraction, zero-shot/few-shot IE, cross-document extraction, multimodal IE (text + layout + images), temporal/causal relation extraction.\n\nContribution type: METHOD ONLY. New extraction architectures, training strategies, or inference algorithms. Not a new dataset or annotation guideline.\n\nHARD CONSTRAINTS:\n1. Compute: ≤200 H100-hours total. IE work is typically lightweight — most experiments are fine-tuning or in-context learning.\n2. Time: ≤16 days. Use existing IE frameworks (GoLLIE, UniNER, USM) or build on open LLMs with structured output.\n3. Eval: ACE05, SciERC, TACRED/TACREV, DocRED, MAVEN, Few-NERD, WikiEvents, RAMS.\n\nLook for: schema-guided extraction that generalizes across domains, efficient document-level IE beyond sliding windows, extraction with faithful provenance/citation, structured extraction from semi-structured sources (tables, forms, code). Avoid: basic NER fine-tuning, prompt-only extraction without architectural insight.\n\nTag: direction=information_extraction, contribution_type=method. target_venues=[\"EMNLP 2026 Main\", \"EMNLP 2026 Findings\"].**\nYou MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be \"revise\" or \"fail\".\n\n## 核心要求：非常仔细地调研，非常仔细地思考\n\n你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。\n\n### 调研要求\n\n1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。\n   每个验证维度建议用 2-3 种不同的搜索查询。\n\n2. **可行性深度检查**：\n   - 搜索类似实验的实际成本/周期\n   - 检查 claimed baselines 是否可复现\n   - 验证所需的 datasets/models 是否真的可以获取\n\n3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：\n   - 尝试不同的关键词组合\n   - 同时检查 arXiv 和 conference proceedings\n   - 寻找相邻领域的并行/concurrent 工作\n\n4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。\n\n### 思考要求\n\n5. **独立判断**：\n   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查\n   - 思考这个 idea 在实际执行中会遇到什么困难\n   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）\n\n6. **评分诚实**：\n   - 不要给\"看起来还行\"的 idea 高分——4 分意味着\"确实很好\"，5 分意味着\"令人兴奋\"\n   - Agent 评分经常虚高，你的职责就是纠正这种偏差\n\n充分利用你的工具——做真正的调研，不是走过场。\n\n\n## 论文搜索策略\n\n你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。\n\n### 搜索源（推荐每个维度使用 2 个不同来源）\n\n1. **arXiv 预印本**（最新工作）:\n   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文\n   - `site:arxiv.org {method_name}` — 按具体方法名搜索\n   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作\n\n2. **Google Scholar**（引用关系 + 综合覆盖）:\n   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果\n   - `\"{exact paper title}\"` — 验证论文是否真实存在\n   - `\"{author name}\" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）\n\n3. **Papers With Code**（SOTA 排行 + 代码可用性）:\n   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜\n   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现\n   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局\n\n4. **OpenReview**（会议审稿 + 同行评价）:\n   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文\n   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价\n\n5. **Semantic Scholar**（语义搜索 + 引用图谱）:\n   - `semantic scholar {topic} survey {year}` — 找综述论文\n   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）\n\n6. **GitHub**（实现验证）:\n   - `site:github.com {method_name} {task}` — 验证开源实现是否存在\n   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取\n\n### 搜索维度（多角度交叉，不要只按 topic 搜）\n\n对每个 idea/方向，尽量覆盖以下维度：\n\n1. **正向搜索**：直接搜索主题相关论文\n   - `{topic} {subtopic} {year}`\n   - `{method_name} for {task_name}`\n\n2. **竞争论文搜索**（最关键！）：\n   - `{core_problem} {year}` — 有没有人在解决同样的问题？\n   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？\n   - `{gap_description} solution` — 你发现的 gap 是否已被解决？\n   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文\n\n3. **相邻领域搜索**：\n   - `{method_from_other_field} applied to {your_task}`\n   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题\n\n4. **反面搜索**（找到反对你 idea 的证据）：\n   - `{your_approach} limitations` / `{your_approach} failure`\n   - `why {assumed_gap} is not a problem`\n   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好\n\n5. **引用链追踪**（发现遗漏工作的最有效方法）：\n   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分\n   - 在 Semantic Scholar 上查看它的 \"cited by\" — 最近引用它的论文很可能是 concurrent work\n   - 对 3 个以上核心相关论文重复此步骤\n\n### 搜索数量建议（理想目标，上下文充裕时尽量达到）\n\n| 角色 | 建议搜索次数 | 说明 |\n|------|-------------|------|\n| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |\n| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |\n| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |\n| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |\n\n### 上下文管理\n\n你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。\n\n- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。\n- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。\n- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。\n- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。\n\n\nAs a reviewer, your search focus should be:\n1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实\n2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作\n3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通\n4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work\n\n## 竞争论文专项搜索（Reviewer 独有）\n\n这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：\n\n1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题\n   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）\n   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）\n   - 方法名 + 任务名的不同组合\n\n2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，\n   搜索他们最近的论文（`\"team_name\" OR \"author_name\" {topic} {year}`）\n\n3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers\n   - `site:openreview.net {topic} 2026`\n   - `{conference_name} 2026 accepted papers {topic}`\n\n4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文\n   这是发现 concurrent work 最有效的窗口\n\n如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，\n并在 feedback 中说明这些工作如何影响 idea 的 novelty。\n\n## Review checklist\n1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?\n   If outdated, specify what the current SOTA is and cite your source.\n2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)\n3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?\n4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?\n5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?\n6. **Novelty**: Is this sufficiently different from existing work?\n   When scoring novelty < 4:\n   - You MUST identify the closest existing work(s) via WebSearch\n   - In your feedback, write: \"This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion].\"\n   - This gives the generator targeted guidance to boost novelty, not just \"be more novel\".\n7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?\n   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero\n   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks\n   - Human-in-Loop should fall between manual and auto on most dimensions\n   - Manual and HIL must NOT include salary/wages — only GPU and API costs\n   - Auto Research must NOT include agent operational overhead\n   - If any mode estimate is clearly unrealistic, flag it\n\n## Idea under review (round 4/10)\n{\n  \"title\": \"FREIGE: Faithfulness-Rewarded Evidence-Grounded Information Extraction via Decomposed Entailment Verification\",\n  \"core_problem\": \"LLM-based document-level IE systems extract relations without generating verifiable evidence. Existing evidence-aware DocRE methods (DREEAM, SAIS, EIDER) are confined to pre-LLM encoder architectures that use evidence annotations to guide internal attention — they achieve strong extraction F1 (up to 67.53 with DREEAM RoBERTa-large + inference-stage fusion on DocRED test) but do not generate interpretable evidence chains as output. Meanwhile, LLM-based DocRE methods (AutoRE F1 45.96, RelPrior F1 48.34 on DocRED test) lag ~19 F1 points behind encoder SOTA and produce no evidence justification whatsoever. This creates a dual gap: LLMs underperform on extraction accuracy AND lack interpretability, while encoder methods excel at extraction but cannot produce human-readable evidence. The challenge is designing reward signals for GRPO that train LLMs to jointly generate structured extractions AND faithful evidence, narrowing the LLM-encoder extraction gap while adding interpretable justification — especially for the ~20% of DocRED relations requiring 3+ evidence sentences where naive NLI-based rewards produce unreliable signals due to premise length degradation.\",\n  \"opportunity\": \"Three converging trends create a timely opportunity: (1) GRPO with verifiable rewards is proven for IE (ProUIE achieves 71.17 avg F1 on UIE benchmarks using stepwise structural rewards on Qwen3-4B), (2) NLI-based faithfulness rewards work for single-premise tasks (RSAT achieves 0.826 faithfulness on tables), and (3) standard IE benchmarks contain gold evidence annotations (DocRED evidence sentences) that LLM-based methods completely ignore. The critical gap is paradigmatic: pre-LLM evidence-aware methods (DREEAM's attention guidance via KL-divergence, SAIS's intermediate supervision, EIDER's inference-stage fusion) cannot transfer to generative LLMs, and no LLM-based DocRE method generates evidence at all. Furthermore, inference-time verification approaches like AEVS (anchor-constrained provenance tracking for KG extraction) can detect hallucinations post-hoc but cannot improve extraction accuracy through training. For DocRED, the average evidence length is 1.6 sentences (Yao et al., 2019), with ~54% requiring only one evidence sentence, ~26% requiring exactly two, and ~20% requiring three or more. For single- and two-sentence evidence (~80% of cases), standard DeBERTa-v3-base NLI operates reliably since the concatenated premise (typically 40-80 tokens) falls well within its training distribution (MultiNLI contains multi-sentence premises). However, for 3+-sentence evidence (~20% of cases), concatenated premises exceed typical NLI training lengths and introduce cross-sentence reasoning demands that degrade entailment accuracy — research on stretching sentence-pair NLI to longer documents shows performance drops sharply near model input limits and with multi-hop reasoning chains (Stammbach et al., 2022). This 3+-sentence tail coincides with DocRED's hardest relations: models consistently show lower Inter-F1 vs. Intra-F1, and multi-sentence evidence disproportionately involves these cross-sentence relations. Concurrent works applying RL with evidence rewards to QA (CaRR for deep search, TRACE for RAG) demonstrate the viability of evidence-grounded RL but target free-form answers, not structured IE with schema constraints. No existing work combines evidence generation with extraction-specific rewards on standard document-level IE benchmarks.\",\n  \"landscape\": \"R1-RE (Jul 2025) applies GRPO/RLVR to sentence-level relation extraction on SemEval with simple format+accuracy rewards but does not handle document-level RE, evidence generation, or multi-hop reasoning. ProUIE (Apr 2026) uses stepwise structural rewards (SFR) with GRPO on Qwen3-4B for universal IE, achieving 71.17 avg F1 across UIE benchmarks, but produces no evidence spans and evaluates on ACE2005/CASIE/PHEE, not DocRED. RSAT (May 2026) trains SFT+GRPO with NLI-based faithfulness rewards (DeBERTa-v3-base, composite R = R_ans + 0.3R_cite + 0.5R_faith + 0.2R_pars) for table reasoning with cell-level citations; ablations show faithfulness reward is essential, but it handles only single-premise entailment (cell to claim). CRAFT (Feb 2026) applies GRPO with faithfulness rewards for multi-hop QA but does not produce structured extractions. EvidenceRL (Mar 2026) uses GRPO with focus-then-verify NLI rewards for cardiac/legal QA, not standard IE. CaRR (Jan 2026) proposes Citation-aware Rubric Rewards with C-GRPO that decomposes multi-hop questions into single-hop rubrics and verifies via bipartite graph BFS — conceptually similar decomposition but fundamentally different scope: CaRR operates on free-form QA, while FREIGE operates on structured IE with schema constraints. TRACE/ARENA (May 2025) uses adaptive RL rewards for evidence traceability in RAG, achieving 10-30% accuracy improvement on multi-hop QA but targeting passage-level QA, not document-level structured extraction. DREEAM (EACL 2023) uses evidence annotations to guide attention weights via KL-divergence supervision, achieving F1 67.22 / Evi-F1 57.34 (RoBERTa-large with distant supervision) and F1 67.53 with inference-stage fusion on DocRED test. SAIS (NAACL 2022) supervises intermediate steps (coreference, entity typing, evidence retrieval), achieving F1 65.11 / Evi-F1 55.67 (RoBERTa-large) on DocRED test. EIDER (ACL Findings 2022) jointly trains evidence extraction with RE and fuses evidence-focused and full-document predictions at inference. GEGA (ICASSP 2025) combines graph convolutional networks with evidence retrieval guided attention. All four (DREEAM, SAIS, EIDER, GEGA) share a fundamental limitation: they are pre-LLM encoder-based methods that use evidence to refine internal representations, not to generate interpretable evidence as output. Among LLM-based DocRE methods: AutoRE (2024) achieves F1 45.96 on DocRED test with LLaMA3-8B fine-tuning; RelPrior (Nov 2025) achieves F1 48.34 with LLaMA3-8B — the best LLM result on DocRED, still ~19 points below encoder SOTA. Neither generates evidence. AEVS (MDPI Computers, Mar 2026) addresses the same provenance-traceability motivation for LLM-based KG extraction via an anchor-extraction-verification-supplement framework evaluated on WebNLG, REBEL, and Wiki-NRE — but operates entirely at inference time (no training signal from verification), evaluates on KG benchmarks rather than document-level RE, and cannot improve extraction accuracy through its verification. CLATTER (Jun 2025) proposes decomposed entailment via claim decomposition for hallucination detection but not as a reward signal. CDER (Apr 2025) introduces collaborative graph-based evidence retrieval for DocRE but relies on pre-LLM architectures. The gap: no work combines (a) LLM-based evidence generation (not just attention guidance or inference-time verification) with (b) entailment verification as a training-time reward signal for (c) structured extraction on standard document-level IE benchmarks.\",\n  \"approach\": \"Fine-tune Qwen3-4B (matching ProUIE's backbone for direct comparison) to jointly generate structured extractions AND supporting evidence spans in a unified output format — (head, relation, tail, [evidence_sentence_ids]) for DocRED. This represents a paradigm shift from both encoder-based evidence-aware methods (which use evidence to guide attention, not as output) and inference-time verification approaches like AEVS (which cannot improve extraction through training). Phase 1: SFT warmup using existing gold evidence annotations from DocRED to teach joint extraction-plus-evidence format with non-thinking mode (enable_thinking=False) to avoid the documented Qwen3 GRPO speed regression (verl#1580). Phase 2: GRPO reinforcement learning with a composite reward combining two core components and one engineering complement: (a) Stepwise structural F1 adapted from ProUIE's SFR for extraction correctness, (b) Length-Adaptive Evidence Entailment (LAEE) reward — the key technical contribution — which verifies extracted-fact-to-evidence faithfulness through a strategy that adapts to evidence chain length: (i) For single-sentence evidence (~54% of DocRED instances): entity grounding (cited evidence sentence must mention at least one entity from the extraction, via cheap string matching) plus standard DeBERTa-v3-base NLI on (evidence_sentence, extracted_fact), matching RSAT's proven single-premise approach. No decomposition overhead. (ii) For two-sentence evidence (~26% of instances): entity grounding plus concatenated NLI on (evidence_sent1 + evidence_sent2, extracted_fact) — standard NLI handles this reliably since the concatenated premise (~40-80 tokens) falls within MultiNLI training distribution — plus a lightweight chain coherence bonus (bridging entity overlap between the two evidence sentences) as a supplementary signal. (iii) For three-or-more-sentence evidence (~20% of instances, the genuinely challenging tail): entity grounding plus decomposed stepwise entailment — each consecutive pair of evidence sentences is checked for chain coherence (bridging entities or coreference links), and entailment is computed stepwise across the chain rather than via concatenated single-pass NLI, which demonstrably degrades on premises exceeding typical NLI training lengths. This is where the method provides its distinctive advantage over flat-NLI approaches. This three-tier design directly addresses the concern that decomposition should not add unnecessary overhead on simple cases: the 80% majority uses standard or concatenated NLI, while genuine improvement concentrates on the 20% challenging tail where flat NLI produces noisy rewards. (c) Schema-consistency check — a lightweight engineering complement (not a core contribution) that verifies extracted triples conform to the predefined relation ontology, computed as a cheap dictionary lookup. Evidence parsimony penalty (following RSAT) discourages over-citation. F1 ceiling risk mitigation: we explicitly frame FREIGE's goal as achieving competitive F1 while adding interpretable evidence, not necessarily beating encoder-based SOTA on extraction alone. Current LLM-based DocRE SOTA is only F1 48.34 (RelPrior, LLaMA3-8B with SFT only). With SFT + GRPO training, we target F1 ~55-62 — substantially above existing LLM methods but below encoder SOTA of 67.53. If FREIGE achieves F1 ~58-62 while producing high-quality evidence (Evi-F1 competitive with or exceeding DREEAM's 57.34), this is a strong contribution: the first LLM-based method with evidence interpretability on DocRED that narrows the LLM-encoder gap by 10+ F1 points. Even if F1 reaches only ~55, an Evi-F1 exceeding 57.34 demonstrates that evidence-grounded RL enables LLMs to generate more faithful justifications than encoder-based attention guidance, establishing the paradigm's value. Failure mode: if Qwen3-4B achieves F1 < 52 (only marginally above existing LLM methods), the paper pivots to an analysis contribution — what prevents GRPO from closing the LLM-encoder gap on DocRE, and whether evidence generation competes with extraction accuracy for model capacity. Key experimental design — stratified analysis by evidence chain length: all DocRED results reported separately for 1-sentence evidence (~54%), 2-sentence evidence (~26%), and 3+-sentence evidence (~20%), with a controlled ablation comparing LAEE vs. flat-NLI reward on each stratum. The make-or-break experiment: demonstrating that LAEE matches flat-NLI on 1-2 sentence cases (confirming no unnecessary overhead) while significantly outperforming on the 3+-sentence stratum (confirming genuine improvement where it matters). Baselines: (1) SFT-only (no GRPO), (2) GRPO with accuracy-only reward (no evidence reward), (3) GRPO with flat-NLI reward (RSAT-style, as the single-premise baseline), (4) FREIGE with full LAEE reward. Additionally compare evidence quality against DREEAM (Evi-F1 57.34) and SAIS (Evi-F1 55.67) to position FREIGE as an LLM-era evidence-aware method. Scoped to DocRED only for the ARR sprint (WikiEvents deferred to camera-ready to halve experimental surface area). Evaluate for both extraction accuracy (F1, Ign F1) and evidence quality (Evi-F1, NLI faithfulness score). Model size ablation: Qwen3-1.7B and Qwen3-8B (with thinking disabled) alongside the primary Qwen3-4B.\",\n  \"resource_estimate\": {\n    \"manual\": {\n      \"gpu_hours\": \"~120h A100 80GB (SFT: ~10h on Qwen3-4B, GRPO on DocRED: ~40h including ~20% NLI reward overhead, model size ablation with 1.7B/8B: ~20h, stratified reward ablations LAEE vs flat-NLI across 3 strata: ~20h, DREEAM/SAIS reproduction for evidence quality comparison: ~10h, analysis and buffer: ~20h)\",\n      \"gpu_utilization\": \"~35-45% effective utilization; GPU sits idle during analysis of stratified results and evidence quality inspection between runs\",\n      \"timeline\": \"5-7 weeks (not targeting ARR May 25 deadline in manual mode)\",\n      \"team\": \"1-2 researchers\",\n      \"estimated_gpu_cost\": \"$180-250 at ~$1.50/hr cloud A100 rental\"\n    },\n    \"human_in_loop\": {\n      \"gpu_hours\": \"~180h A100 80GB (agent explores LAEE reward weight configurations and runs stratified ablations autonomously; NLI overhead adds ~20% per GRPO run)\",\n      \"gpu_utilization\": \"~60-70% effective utilization; agent queues next experiment while human reviews stratified evidence quality\",\n      \"timeline\": \"2-3 weeks\",\n      \"team\": \"1 researcher, ~30min/day check-in for evidence quality inspection and stratified result analysis\",\n      \"claude_api_cost\": \"$80-180\",\n      \"estimated_gpu_cost\": \"$250-350\",\n      \"risk_note\": \"Chain coherence sub-reward calibration for 3+-sentence cases may need human-guided tuning; DREEAM/SAIS Evi-F1 comparison requires careful alignment of evaluation protocols\"\n    },\n    \"auto_research\": {\n      \"gpu_hours\": \"~400h A100 80GB (systematic LAEE weight ablations on DocRED, stratified analysis across evidence lengths, model size comparison across 1.7B/4B/8B, flat-NLI vs LAEE controlled experiments, NLI model comparison DeBERTa-base vs DeBERTa-large)\",\n      \"gpu_utilization\": \"~85%+ effective utilization; agent continuously queues experiments with no idle gaps\",\n      \"timeline\": \"10-14 days with 2x A100 parallelism (viable for ARR May 25 deadline if started immediately)\",\n      \"team\": \"0 (only initial setup and final review)\",\n      \"claude_api_cost\": \"$200-400\",\n      \"estimated_gpu_cost\": \"$550-800\",\n      \"speed_bottleneck\": \"NLI reward computation adds ~20% wall-clock overhead per GRPO step; stratified evaluation adds minimal overhead but requires automated result parsing\",\n      \"risk_note\": \"Agent may over-explore LAEE weight configurations; reduced scope (DocRED-only) makes timeline more realistic\"\n    }\n  },\n  \"target_venues\": [\n    \"EMNLP 2026 (ARR deadline: May 25, 2026 — tight but feasible with auto_research mode and DocRED-only scope)\",\n    \"AACL-IJCNLP 2026 (ARR deadline: May 25, 2026)\",\n    \"AAAI 2027 (abstract: July 25, paper: August 1, 2026 — comfortable for manual/human-in-loop, allows WikiEvents extension)\"\n  ],\n  \"level\": \"solid-to-strong\",\n  \"key_references\": [\n    \"R1-RE: Cross-Domain Relation Extraction with RLVR (arXiv 2507.04642, Jul 2025)\",\n    \"ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction (arXiv 2604.10633, Apr 2026)\",\n    \"RSAT: Structured Attribution Makes Small Language Models Faithful Table Reasoners (arXiv 2605.00199, May 2026, ACL 2026 Workshop)\",\n    \"CRAFT: Calibrated Reasoning with Answer-Faithful Traces for Multi-Hop QA (arXiv 2602.01348, Feb 2026)\",\n    \"EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models (arXiv 2603.19532, Mar 2026)\",\n    \"CaRR: Chaining the Evidence — Robust RL for Deep Search Agents with Citation-Aware Rubric Rewards (arXiv 2601.06021, Jan 2026)\",\n    \"TRACE/ARENA: Towards Transparent RAG — Fostering Evidence Traceability in LLM Generation via RL (arXiv 2505.13258, May 2025)\",\n    \"DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction (EACL 2023) — F1 67.22, Evi-F1 57.34 (RoBERTa-large+DS), F1 67.53 with inference-stage fusion\",\n    \"SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction (NAACL 2022) — F1 65.11, Evi-F1 55.67 (RoBERTa-large)\",\n    \"EIDER: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion (ACL Findings 2022)\",\n    \"GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction (ICASSP 2025)\",\n    \"AEVS: Grounded Knowledge Graph Extraction via LLMs — An Anchor-Constrained Framework with Provenance Tracking (MDPI Computers, Mar 2026) — inference-time verification for KG extraction on WebNLG/REBEL/Wiki-NRE\",\n    \"CLATTER: Comprehensive Entailment Reasoning for Hallucination Detection (arXiv 2506.05243, Jun 2025)\",\n    \"CDER: Collaborative Evidence Retrieval for Document-level Relation Extraction (arXiv 2504.06529, Apr 2025)\",\n    \"AutoRE: Document-Level Relation Extraction with Large Language Models (arXiv 2403.14888, 2024) — F1 45.96 on DocRED test (LLaMA3-8B)\",\n    \"RelPrior: Relation as a Prior — A Novel Paradigm for LLM-based Document-level Relation Extraction (arXiv 2511.08143, Nov 2025) — F1 48.34 on DocRED test (LLaMA3-8B), current LLM SOTA\",\n    \"Stretching Sentence-pair NLI Models to Reason over Long Documents and Clusters (EMNLP Findings 2022) — documents NLI degradation on long premises\",\n    \"Revisiting Text Decomposition Methods for NLI-based Factuality Scoring of Summaries (GEM Workshop 2022)\",\n    \"DocRED: A Large-Scale Document-Level Relation Extraction Dataset (ACL 2019)\",\n    \"Re-DocRED: Revisiting DocRED — Addressing the False Negative Problem in Relation Extraction (EMNLP 2022)\",\n    \"Extract-0: A Specialized Language Model for Document Information Extraction (arXiv 2025)\",\n    \"GRACE: Reinforcement Learning for Grounded Response and Abstention under Contextual Evidence (arXiv 2601.04525, Jan 2026)\",\n    \"Learning to Generate and Extract: A Multi-Agent Collaboration Framework for Zero-shot Document-level Event Arguments Extraction (arXiv 2603.02909, Mar 2026, AAAI 2026)\",\n    \"Ru-LLM: Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction (2026)\",\n    \"KD-DocRE: Document-Level Relation Extraction with Adaptive Focal Loss and Knowledge Distillation (ACL Findings 2022)\",\n    \"Entity and Evidence Guided Relation Extraction for DocRED (arXiv 2008.12283, 2020)\",\n    \"Event Extraction in Large Language Model: A Holistic Survey (arXiv 2512.19537, Dec 2025)\",\n    \"MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal IE (2025)\"\n  ],\n  \"description\": \"We propose FREIGE (Faithfulness-Rewarded Evidence-Grounded Information Extraction), training Qwen3-4B to jointly generate structured extractions and supporting evidence — a paradigm shift from both pre-LLM encoder-based evidence-aware DocRE methods (DREEAM F1 67.22/Evi-F1 57.34, SAIS F1 65.11/Evi-F1 55.67, all RoBERTa-large) that use evidence to guide attention but cannot generate interpretable evidence as output, and inference-time verification approaches like AEVS that cannot improve extraction through training. Current LLM-based DocRE methods (best: RelPrior F1 48.34) lag ~19 F1 points behind encoder SOTA and produce no evidence. FREIGE targets F1 ~55-62 (narrowing the LLM-encoder gap by 10+ points via GRPO) while generating evidence with Evi-F1 competitive with or exceeding DREEAM's 57.34. Phase 1 performs SFT warmup with gold evidence annotations from DocRED. Phase 2 applies GRPO with a composite reward combining: (a) stepwise structural F1 for extraction correctness, and (b) a Length-Adaptive Evidence Entailment (LAEE) reward — the key contribution — with three tiers: for single-sentence evidence (~54%), entity grounding + standard NLI (no decomposition overhead); for two-sentence evidence (~26%), entity grounding + concatenated NLI (reliable at 40-80 token premises) + lightweight chain coherence bonus; for three-or-more-sentence evidence (~20%, the genuinely challenging tail where concatenated NLI degrades), entity grounding + decomposed stepwise entailment with chain coherence verification. This design avoids unnecessary overhead on the 80% majority while providing genuine improvement on the 20% tail. The make-or-break experiment is a stratified ablation: LAEE vs. flat-NLI reward on each evidence-length stratum, demonstrating LAEE matches flat-NLI on 1-2 sentence cases while significantly outperforming on 3+-sentence cases. Scoped to DocRED only for the ARR sprint (WikiEvents deferred to camera-ready). If Qwen3-4B achieves F1 ~58-62 with Evi-F1 > 57.34, this establishes the first LLM-based method that jointly generates extractions and faithful evidence on DocRED. Even F1 ~55 with strong Evi-F1 demonstrates that evidence-grounded RL enables better justification than encoder-based attention guidance. Model size ablation across Qwen3-1.7B/4B/8B.\",\n  \"project_name\": \"faith_evidence_ie\",\n  \"source\": \"web_research\"\n}\n\n\n## Previous review history\n### Round 1 review\nVerdict: revise\nIssues: [\"Novelty concern: The two-phase SFT+GRPO with NLI-faithfulness reward approach closely mirrors RSAT (arXiv 2605.00199) and CRAFT (arXiv 2602.01348), just applied to IE instead of table reasoning/multi-hop QA. EMNLP reviewers may flag this as a straightforward domain transfer.\", \"Missing competitor: R1-RE (arXiv 2507.04642) applies GRPO/RLVR to relation extraction with verifiable rewards. Though it targets SemEval rather than DocRED, it directly demonstrates GRPO for RE and should be discussed as a baseline or related work.\", \"GRPO training speed underestimated: A GitHub issue (verl#1580) reports Qwen3-8B GRPO taking ~1 hour per step vs. minutes for Qwen2.5-7B. With hundreds of steps needed per dataset across 4 datasets, 200h A100 may be insufficient — the realistic estimate could be 400-600h.\", \"NLI reward overhead unaccounted: Running an off-the-shelf NLI model (e.g., DeBERTa-v3-large) at each GRPO step for each candidate generation adds significant GPU memory and compute overhead. This is neither budgeted in the GPU hours nor discussed as a technical challenge.\", \"Evidence quality metrics undefined: The proposal says 'evaluate for both extraction accuracy and evidence quality' but never specifies evidence quality metrics. Will it use evidence F1 (matching gold evidence sentence IDs), NLI-based faithfulness scores, or human evaluation? This is a critical gap for a paper whose core contribution is evidence grounding.\", \"Multi-hop evidence chains in DocRED: Many DocRED relations require multi-hop reasoning across 3-5+ sentences. NLI-based entailment checking works well for single-premise entailment (as in RSAT's cell-level citations) but may produce noisy rewards for multi-sentence evidence chains where the entailment is implicit rather than explicit.\", \"16-day timeline is unrealistic for 'manual' mode (estimated 3-4 months). Even 'auto research' mode (1-2 weeks) requires immediate access to 4xA100 and assumes no debugging time for the novel NLI reward function — an optimistic assumption for a reward signal that hasn't been validated on IE.\", \"No evidence that Qwen3-8B is the right base model choice. ProUIE uses Qwen3-4B; would the idea work with a smaller model? No model size ablation is planned despite this being a natural question.\"]\nFeedback: The core idea — using underutilized evidence annotations as GRPO reward signals — is sound and addresses a real gap. However, the paper needs significant differentiation from RSAT to avoid being perceived as a domain transfer. Specific suggestions: (1) Introduce a novel reward component specific to IE, such as a schema-consistency reward that penalizes extractions not conforming to the ontology, or a cross-document evidence aggregation reward that goes beyond what RSAT does for tables. (2) Address the multi-hop evidence challenge head-on by designing a hierarchical NLI reward that handles multi-sentence evidence chains (e.g., decompose multi-hop evidence into pairwise entailment steps). This would be the key technical contribution over RSAT/EvidenceRL. (3) Define concrete evidence quality metrics: evidence sentence F1 for DocRED, argument span IoU for WikiEvents/RAMS, and optionally an NLI-based faithfulness score. (4) Add R1-RE as a baseline. (5) Consider using Qwen3-4B (same as ProUIE) to enable direct comparison and reduce compute. (6) Be realistic about timeline — for 16 days, scope down to 2 datasets (DocRED + WikiEvents) rather than 4, drop Re-DocRED and RAMS as secondary evaluations for the camera-ready. (7) Add an explicit analysis section showing cases where evidence-grounded extraction corrects hallucinations that standard extraction misses — this is the 'why it matters' story that reviewers need.\n\n### Round 2 review\nVerdict: revise\nIssues: [\"Inflated core motivation: The proposal claims '60%+ of DocRED relations require reasoning across 3+ sentences,' but the original DocRED paper (ACL 2019) reports average 1.6 supporting sentences per relation instance, with only 46.4% requiring more than one sentence. This significantly undermines the argument that single-premise NLI produces noisy rewards for document-level IE — for the majority of DocRED instances, single-premise NLI would work fine.\", \"Missing critical baselines: DREEAM (EACL 2023) and SAIS (NAACL 2022) are established methods that already leverage DocRED's evidence annotations to guide document-level relation extraction. Neither is cited or discussed. Any paper claiming to be the first to use evidence annotations for DocRE must engage with this prior work.\", \"Missing concurrent competitor: CaRR / 'Chaining the Evidence' (arXiv 2601.06021, Jan 2026) proposes Citation-aware Rubric Rewards with C-GRPO that decomposes verification into single-hop rubrics and constructs evidence chains — conceptually very similar to CoE's hierarchical decomposition. This needs to be discussed and differentiated.\", \"Hierarchical decomposition value is unclear: Given average 1.6 evidence sentences in DocRED, most relation instances have 1-2 evidence sentences. For these cases, the 3-level CoE hierarchy (entity grounding → chain coherence → conclusion entailment) collapses to essentially the same thing as RSAT's single-premise NLI. The paper needs to demonstrate that CoE specifically improves on the ~38% of truly multi-sentence cases.\", \"Schema-consistency reward is trivially simple: Verifying entity type compatibility against a predefined ontology is a dictionary lookup, not a learned or novel component. Framing this as a key contribution alongside the CoE reward inflates the paper's claimed novelty.\", \"TRACE (arXiv 2505.13258) is another relevant concurrent work using RL with evidence traceability rewards for multi-hop QA on Qwen2.5/Llama models — similar methodology applied to a different task. Should be cited and differentiated.\"]\nFeedback: The idea has a sound core — joint extraction + evidence generation trained with GRPO is a genuine gap in IE — but the current framing oversells the multi-hop challenge and undersells existing work. Specific fixes: (1) **Correct the multi-hop statistic**: Use the actual DocRED numbers (avg 1.6 evidence sentences, ~46% multi-sentence). Reframe the motivation around the ~38% of truly multi-sentence cases where hierarchical verification matters, and argue this tail is precisely where current methods fail most. (2) **Cite and baseline DREEAM and SAIS**: These are the established evidence-aware DocRE methods. Position FREIGE as the LLM-era successor that generates evidence rather than just attending to it. (3) **Cite and differentiate from CaRR and TRACE**: Explain why IE-specific evidence verification differs from QA-style evidence chaining. (4) **Sharpen the CoE contribution**: Focus the novelty pitch on the specific failure mode — show that for the multi-sentence tail (2+ evidence sentences), standard NLI rewards fail while CoE succeeds. Include a controlled experiment comparing CoE vs flat-NLI reward on subsets stratified by evidence chain length. (5) **Downweight the schema-consistency reward**: Present it as an engineering complement, not a key contribution. (6) **Provide a stratified analysis plan**: Break DocRED results by 1-sentence, 2-sentence, and 3+-sentence evidence to quantify where CoE actually helps. This is the evidence that makes or breaks the paper.\n\n### Round 3 review\nVerdict: revise\nIssues: [\"Incorrect DREEAM F1 numbers: The proposal cites DREEAM achieving 'F1 61.13/Evi-F1 51.71 on DocRED test', but the actual DREEAM paper reports F1 67.53 (RoBERTa-large student model with distant supervision) and Evi-F1 57.34. The numbers cited appear to be from a weaker BERT-base configuration. This matters because it inflates the apparent gap between encoder-based and LLM-based methods.\", \"NLI degradation argument for 2-sentence evidence is weakly supported: The proposal claims concatenated NLI is 'unreliable' for multi-sentence premises, but most multi-sentence DocRED cases have only 2 evidence sentences (given avg 1.6). Standard NLI models (DeBERTa-v3-base, trained on MultiNLI with multi-sentence premises) may perform adequately on 2-sentence concatenation. The degradation is more convincing for 3+-sentence cases (the 37.8% without entity co-occurrence), not the full 46% claimed.\", \"Missing competitor: AEVS framework (Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking, MDPI Computers, March 2026) addresses the same fundamental motivation (LLM extractions lack provenance/traceability) with inference-time anchor-based verification on KG extraction benchmarks. Should be cited and differentiated.\", \"Risk of negative result: If Qwen3-4B cannot match DREEAM's 67.53 F1 on DocRED while also generating evidence, the paper's story weakens to 'we add evidence but sacrifice extraction accuracy.' The proposal does not discuss this failure mode or set expectations for what F1 drop is acceptable.\", \"Timeline remains the critical constraint: 15 days to implement SFT + custom GRPO reward with NLI integration + run stratified ablations on 2 datasets + write paper is borderline impossible. The Qwen3 GRPO speed fix (disable thinking) is stated but not empirically validated as resolving the verl#1580 regression.\"]\nFeedback: The idea is close to passing — the gap is real and well-identified. To clear the threshold: (1) **Correct DREEAM/SAIS numbers**: Use RoBERTa-large results (F1 67.53, Evi-F1 57.34 for DREEAM). Frame FREIGE's goal as achieving competitive F1 while adding interpretable evidence, not necessarily beating encoder-based SOTA on extraction alone. (2) **Sharpen DEE motivation**: The claim that concatenated NLI fails on 2-sentence premises needs evidence. Run a quick diagnostic: compute DeBERTa-v3-base NLI accuracy on gold DocRED evidence-fact pairs, stratified by 1-sentence vs 2-sentence vs 3+-sentence. If degradation is only significant for 3+ sentences, narrow the DEE claim to that subset and argue it as the most challenging tail. (3) **Cite AEVS (March 2026)**: Differentiate by noting AEVS is inference-time verification (no training signal), evaluates on KG benchmarks not DocRE, and cannot improve extraction accuracy — while FREIGE's training-time reward improves both extraction and evidence quality jointly. (4) **Address the F1 ceiling risk explicitly**: State that if Qwen3-4B achieves F1 ~62-65 (below DREEAM's 67.53) but generates high-quality evidence (Evi-F1 > 57.34), this is still a contribution because it demonstrates the first LLM-based method with evidence interpretability on DocRED. (5) **Scope to DocRED-only for the 15-day sprint**: Drop WikiEvents from the ARR submission and add it for camera-ready. This halves the experimental surface area.\n\n\n## Output format\nOutput ONLY a JSON object:\n{\n  \"verdict\": \"pass | revise | fail\",\n  \"scores\": {\n    \"novelty\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"feasibility\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"clarity\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"},\n    \"impact\": {\"score\": 0-5, \"rationale\": \"1-2 sentence justification\"}\n  },\n  \"issues\": [\"specific issue 1\", \"specific issue 2\", ...],\n  \"feedback\": \"Actionable feedback for the generator (if verdict=revise)\",\n  \"reason\": \"One-line summary of verdict rationale\"\n}\n\nRules:\n- \"pass\": idea is sound AND high quality — avg score >= 4.0, no critical issues\n- \"revise\": fixable issues OR scores below threshold — provide specific feedback\n- \"fail\": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)\n- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.\n- Round 10 only: if still \"revise\", you MUST choose \"pass\" or \"fail\"."
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-10T18:53:27.534Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-10T18:53:27.534Z",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+## Round 1
+
+147 recorded events
+
+### User
+
+_source line 3 · 2026-05-10T18:53:27.585Z_
+
+You are a strict ML research reviewer conducting adversarial review.
+
+**Today's date: 2026-05-10 (UTC).**
+
+Your job: independently verify this idea's claims via WebSearch, then issue a verdict.
+
+## User requirements
+The user asked for: **Target: EMNLP 2026, ARR submission deadline 2026-05-25 (16 days from today 2026-05-09). Track: Information Extraction.
+
+Direction: Structured information extraction — named entity recognition, relation extraction, event extraction, document-level IE, end-to-end extraction pipelines. Both LLM-based and non-LLM approaches welcome. In-scope: schema-guided extraction, zero-shot/few-shot IE, cross-document extraction, multimodal IE (text + layout + images), temporal/causal relation extraction.
+
+Contribution type: METHOD ONLY. New extraction architectures, training strategies, or inference algorithms. Not a new dataset or annotation guideline.
+
+HARD CONSTRAINTS:
+1. Compute: ≤200 H100-hours total. IE work is typically lightweight — most experiments are fine-tuning or in-context learning.
+2. Time: ≤16 days. Use existing IE frameworks (GoLLIE, UniNER, USM) or build on open LLMs with structured output.
+3. Eval: ACE05, SciERC, TACRED/TACREV, DocRED, MAVEN, Few-NERD, WikiEvents, RAMS.
+
+Look for: schema-guided extraction that generalizes across domains, efficient document-level IE beyond sliding windows, extraction with faithful provenance/citation, structured extraction from semi-structured sources (tables, forms, code). Avoid: basic NER fine-tuning, prompt-only extraction without architectural insight.
+
+Tag: direction=information_extraction, contribution_type=method. target_venues=["EMNLP 2026 Main", "EMNLP 2026 Findings"].**
+You MUST evaluate whether this idea actually meets the user's requirements. If the user asked for a top venue, assess whether the idea is truly top-venue quality. If the user asked for low resource cost, verify the resource estimate is realistic and low. An idea that doesn't match what the user asked for should be "revise" or "fail".
+
+## 核心要求：非常仔细地调研，非常仔细地思考
+
+你是一个严格的审稿人。不要轻信 Generator 的任何 claim——你必须独立验证，深入思考每个维度。
+
+### 调研要求
+
+1. **独立 SOTA 验证**：自己搜索当前 SOTA，不要只检查 Generator 的引用。
+   每个验证维度建议用 2-3 种不同的搜索查询。
+
+2. **可行性深度检查**：
+   - 搜索类似实验的实际成本/周期
+   - 检查 claimed baselines 是否可复现
+   - 验证所需的 datasets/models 是否真的可以获取
+
+3. **新颖性压力测试**：专门搜索 Generator 可能遗漏的工作：
+   - 尝试不同的关键词组合
+   - 同时检查 arXiv 和 conference proceedings
+   - 寻找相邻领域的并行/concurrent 工作
+
+4. **深入阅读**：不要只依赖搜索摘要。用 WebFetch 实际阅读相关论文的 abstract 和关键章节，形成你自己的判断。
+
+### 思考要求
+
+5. **独立判断**：
+   - 不要因为 Generator 说得有道理就轻易 pass——真正好的 idea 经得起严格审查
+   - 思考这个 idea 在实际执行中会遇到什么困难
+   - 考虑这个 idea 对领域的真实贡献（不是自说自话的贡献）
+
+6. **评分诚实**：
+   - 不要给"看起来还行"的 idea 高分——4 分意味着"确实很好"，5 分意味着"令人兴奋"
+   - Agent 评分经常虚高，你的职责就是纠正这种偏差
+
+充分利用你的工具——做真正的调研，不是走过场。
+
+
+## 论文搜索策略
+
+你的搜索质量直接决定了 idea 的质量。不要敷衍搜索——每一次搜索都要有明确的目的。
+
+### 搜索源（推荐每个维度使用 2 个不同来源）
+
+1. **arXiv 预印本**（最新工作）:
+   - `site:arxiv.org {topic} {year}` — 按主题搜索最新论文
+   - `site:arxiv.org {method_name}` — 按具体方法名搜索
+   - `arxiv {topic} {month} {year}` — 精确到月份，找最近 3 个月的工作
+
+2. **Google Scholar**（引用关系 + 综合覆盖）:
+   - `{topic} {year} site:scholar.google.com` — 或直接搜索让 Google 自动包含 Scholar 结果
+   - `"{exact paper title}"` — 验证论文是否真实存在
+   - `"{author name}" {topic} {year}` — 按活跃作者追踪（找到领域大牛后追踪其最新工作）
+
+3. **Papers With Code**（SOTA 排行 + 代码可用性）:
+   - `site:paperswithcode.com {task_name}` — 查看任务的 SOTA 排行榜
+   - `site:paperswithcode.com {method_name}` — 查看方法是否已被实现
+   - `paperswithcode {dataset} benchmark` — 查看特定 dataset 上的竞争格局
+
+4. **OpenReview**（会议审稿 + 同行评价）:
+   - `site:openreview.net {topic} {year}` — 搜索会议提交的论文
+   - 用 WebFetch 阅读 OpenReview 上的 reviewer comments — 了解领域专家的真实评价
+
+5. **Semantic Scholar**（语义搜索 + 引用图谱）:
+   - `semantic scholar {topic} survey {year}` — 找综述论文
+   - `semanticscholar.org {paper_title}` — 查看 cited by（谁引用了这篇）和 references（它引用了谁）
+
+6. **GitHub**（实现验证）:
+   - `site:github.com {method_name} {task}` — 验证开源实现是否存在
+   - `site:huggingface.co {model_name}` — 验证模型/数据集是否可获取
+
+### 搜索维度（多角度交叉，不要只按 topic 搜）
+
+对每个 idea/方向，尽量覆盖以下维度：
+
+1. **正向搜索**：直接搜索主题相关论文
+   - `{topic} {subtopic} {year}`
+   - `{method_name} for {task_name}`
+
+2. **竞争论文搜索**（最关键！）：
+   - `{core_problem} {year}` — 有没有人在解决同样的问题？
+   - `{approach_keyword} {task} {year}` — 有没有人用类似方法？
+   - `{gap_description} solution` — 你发现的 gap 是否已被解决？
+   - **搜索知名团队的最新工作**：如果你知道哪些团队在做这个方向，搜索他们最近 6 个月的论文
+
+3. **相邻领域搜索**：
+   - `{method_from_other_field} applied to {your_task}`
+   - `{your_problem} in {adjacent_domain}` — 其他领域是否已解决类似问题
+
+4. **反面搜索**（找到反对你 idea 的证据）：
+   - `{your_approach} limitations` / `{your_approach} failure`
+   - `why {assumed_gap} is not a problem`
+   - `{baseline_method} sufficient for {task}` — baseline 是否其实已经够好
+
+5. **引用链追踪**（发现遗漏工作的最有效方法）：
+   - 找到一篇核心相关论文后，用 WebFetch 阅读它的 references 部分
+   - 在 Semantic Scholar 上查看它的 "cited by" — 最近引用它的论文很可能是 concurrent work
+   - 对 3 个以上核心相关论文重复此步骤
+
+### 搜索数量建议（理想目标，上下文充裕时尽量达到）
+
+| 角色 | 建议搜索次数 | 说明 |
+|------|-------------|------|
+| Round 1 Generator | 10-15 次 | 每个方向争取 3 次独立搜索 |
+| Round 2 Generator | 5-8 次 | 验证 approach 可行性 + baseline |
+| Review Agent | 8-12 次 | 独立验证 + 竞争论文 + 反面证据 |
+| Revision Agent | 5-10 次 | 针对每个 issue 独立调研 |
+
+### 上下文管理
+
+你的输出 token 有限，必须在上下文耗尽之前完成 JSON 输出。
+
+- 上述搜索次数是理想目标。在上下文充裕时应尽量多搜、深搜，搜得越充分越好。
+- 但必须动态评估剩余上下文：如果已经消耗了大量上下文，应优先完成输出，不要为了凑次数而冒着无法输出的风险。
+- WebFetch 深度阅读很有价值，但每次 fetch 消耗大量 token——优先 fetch 最关键的 2-3 篇，而不是每篇都 fetch。
+- 质量 > 数量：5 次精准搜索 + 深度思考 > 15 次浅层搜索。
+
+
+As a reviewer, your search focus should be:
+1. **验证 claim**：Generator 声称的 SOTA、gap、novelty 是否属实
+2. **找竞争论文**：是否有 Generator 遗漏的高度相关/相似的工作
+3. **找反面证据**：是否有论文表明 Generator 的 approach 行不通
+4. **引用链检查**：通过核心论文的 cited-by 发现 concurrent work
+
+## 竞争论文专项搜索（Reviewer 独有）
+
+这是你作为 Reviewer 最重要的职责之一——发现 Generator 遗漏的竞争工作：
+
+1. **关键词变体搜索**：用至少 3 种不同的关键词组合搜索同一个问题
+   - 同义词替换（e.g., 'efficient' → 'lightweight/fast/scalable'）
+   - 不同粒度（e.g., 'text classification' → 'sentiment analysis' → 'NLP'）
+   - 方法名 + 任务名的不同组合
+
+2. **知名团队追踪**：如果你知道哪些团队/实验室在做相关方向，
+   搜索他们最近的论文（`"team_name" OR "author_name" {topic} {year}`）
+
+3. **会议最新录用**：搜索最近一轮 ICML/NeurIPS/ICLR/AAAI/ACL 等会议的 accepted papers
+   - `site:openreview.net {topic} 2026`
+   - `{conference_name} 2026 accepted papers {topic}`
+
+4. **arXiv 近 3 个月密集搜索**：对精确相关的关键词，搜索过去 3 个月的 arXiv 论文
+   这是发现 concurrent work 最有效的窗口
+
+如果你发现了 Generator 遗漏的重要相关工作，必须在 issues 中列出论文标题和链接，
+并在 feedback 中说明这些工作如何影响 idea 的 novelty。
+
+## Review checklist
+1. **SOTA freshness**: Are the models/baselines cited actually current SOTA?
+   If outdated, specify what the current SOTA is and cite your source.
+2. **Reference verification**: Do the cited papers actually exist? (WebSearch to check)
+3. **Gap validity**: Does the claimed research gap still exist, or has recent work addressed it?
+4. **Venue validity**: Are target_venues' submission deadlines after 2026-05-10?
+5. **Feasibility**: Is the resource estimate realistic? Are there hidden dependencies?
+6. **Novelty**: Is this sufficiently different from existing work?
+   When scoring novelty < 4:
+   - You MUST identify the closest existing work(s) via WebSearch
+   - In your feedback, write: "This idea is too similar to [Paper Title (Venue Year)]. Specifically, [what overlaps]. To differentiate, the generator should [suggestion]."
+   - This gives the generator targeted guidance to boost novelty, not just "be more novel".
+7. **Cost realism across modes**: Are the three mode estimates (manual/human-in-loop/auto) internally consistent?
+   - Auto Research uses more GPU hours (2-5x manual) but GPU idle rate should be near zero
+   - Auto Research timeline should reflect resource availability as bottleneck — days with sufficient GPUs, not weeks
+   - Human-in-Loop should fall between manual and auto on most dimensions
+   - Manual and HIL must NOT include salary/wages — only GPU and API costs
+   - Auto Research must NOT include agent operational overhead
+   - If any mode estimate is clearly unrealistic, flag it
+
+## Idea under review (round 4/10)
+{
+  "title": "FREIGE: Faithfulness-Rewarded Evidence-Grounded Information Extraction via Decomposed Entailment Verification",
+  "core_problem": "LLM-based document-level IE systems extract relations without generating verifiable evidence. Existing evidence-aware DocRE methods (DREEAM, SAIS, EIDER) are confined to pre-LLM encoder architectures that use evidence annotations to guide internal attention — they achieve strong extraction F1 (up to 67.53 with DREEAM RoBERTa-large + inference-stage fusion on DocRED test) but do not generate interpretable evidence chains as output. Meanwhile, LLM-based DocRE methods (AutoRE F1 45.96, RelPrior F1 48.34 on DocRED test) lag ~19 F1 points behind encoder SOTA and produce no evidence justification whatsoever. This creates a dual gap: LLMs underperform on extraction accuracy AND lack interpretability, while encoder methods excel at extraction but cannot produce human-readable evidence. The challenge is designing reward signals for GRPO that train LLMs to jointly generate structured extractions AND faithful evidence, narrowing the LLM-encoder extraction gap while adding interpretable justification — especially for the ~20% of DocRED relations requiring 3+ evidence sentences where naive NLI-based rewards produce unreliable signals due to premise length degradation.",
+  "opportunity": "Three converging trends create a timely opportunity: (1) GRPO with verifiable rewards is proven for IE (ProUIE achieves 71.17 avg F1 on UIE benchmarks using stepwise structural rewards on Qwen3-4B), (2) NLI-based faithfulness rewards work for single-premise tasks (RSAT achieves 0.826 faithfulness on tables), and (3) standard IE benchmarks contain gold evidence annotations (DocRED evidence sentences) that LLM-based methods completely ignore. The critical gap is paradigmatic: pre-LLM evidence-aware methods (DREEAM's attention guidance via KL-divergence, SAIS's intermediate supervision, EIDER's inference-stage fusion) cannot transfer to generative LLMs, and no LLM-based DocRE method generates evidence at all. Furthermore, inference-time verification approaches like AEVS (anchor-constrained provenance tracking for KG extraction) can detect hallucinations post-hoc but cannot improve extraction accuracy through training. For DocRED, the average evidence length is 1.6 sentences (Yao et al., 2019), with ~54% requiring only one evidence sentence, ~26% requiring exactly two, and ~20% requiring three or more. For single- and two-sentence evidence (~80% of cases), standard DeBERTa-v3-base NLI operates reliably since the concatenated premise (typically 40-80 tokens) falls well within its training distribution (MultiNLI contains multi-sentence premises). However, for 3+-sentence evidence (~20% of cases), concatenated premises exceed typical NLI training lengths and introduce cross-sentence reasoning demands that degrade entailment accuracy — research on stretching sentence-pair NLI to longer documents shows performance drops sharply near model input limits and with multi-hop reasoning chains (Stammbach et al., 2022). This 3+-sentence tail coincides with DocRED's hardest relations: models consistently show lower Inter-F1 vs. Intra-F1, and multi-sentence evidence disproportionately involves these cross-sentence relations. Concurrent works applying RL with evidence rewards to QA (CaRR for deep search, TRACE for RAG) demonstrate the viability of evidence-grounded RL but target free-form answers, not structured IE with schema constraints. No existing work combines evidence generation with extraction-specific rewards on standard document-level IE benchmarks.",
+  "landscape": "R1-RE (Jul 2025) applies GRPO/RLVR to sentence-level relation extraction on SemEval with simple format+accuracy rewards but does not handle document-level RE, evidence generation, or multi-hop reasoning. ProUIE (Apr 2026) uses stepwise structural rewards (SFR) with GRPO on Qwen3-4B for universal IE, achieving 71.17 avg F1 across UIE benchmarks, but produces no evidence spans and evaluates on ACE2005/CASIE/PHEE, not DocRED. RSAT (May 2026) trains SFT+GRPO with NLI-based faithfulness rewards (DeBERTa-v3-base, composite R = R_ans + 0.3R_cite + 0.5R_faith + 0.2R_pars) for table reasoning with cell-level citations; ablations show faithfulness reward is essential, but it handles only single-premise entailment (cell to claim). CRAFT (Feb 2026) applies GRPO with faithfulness rewards for multi-hop QA but does not produce structured extractions. EvidenceRL (Mar 2026) uses GRPO with focus-then-verify NLI rewards for cardiac/legal QA, not standard IE. CaRR (Jan 2026) proposes Citation-aware Rubric Rewards with C-GRPO that decomposes multi-hop questions into single-hop rubrics and verifies via bipartite graph BFS — conceptually similar decomposition but fundamentally different scope: CaRR operates on free-form QA, while FREIGE operates on structured IE with schema constraints. TRACE/ARENA (May 2025) uses adaptive RL rewards for evidence traceability in RAG, achieving 10-30% accuracy improvement on multi-hop QA but targeting passage-level QA, not document-level structured extraction. DREEAM (EACL 2023) uses evidence annotations to guide attention weights via KL-divergence supervision, achieving F1 67.22 / Evi-F1 57.34 (RoBERTa-large with distant supervision) and F1 67.53 with inference-stage fusion on DocRED test. SAIS (NAACL 2022) supervises intermediate steps (coreference, entity typing, evidence retrieval), achieving F1 65.11 / Evi-F1 55.67 (RoBERTa-large) on DocRED test. EIDER (ACL Findings 2022) jointly trains evidence extraction with RE and fuses evidence-focused and full-document predictions at inference. GEGA (ICASSP 2025) combines graph convolutional networks with evidence retrieval guided attention. All four (DREEAM, SAIS, EIDER, GEGA) share a fundamental limitation: they are pre-LLM encoder-based methods that use evidence to refine internal representations, not to generate interpretable evidence as output. Among LLM-based DocRE methods: AutoRE (2024) achieves F1 45.96 on DocRED test with LLaMA3-8B fine-tuning; RelPrior (Nov 2025) achieves F1 48.34 with LLaMA3-8B — the best LLM result on DocRED, still ~19 points below encoder SOTA. Neither generates evidence. AEVS (MDPI Computers, Mar 2026) addresses the same provenance-traceability motivation for LLM-based KG extraction via an anchor-extraction-verification-supplement framework evaluated on WebNLG, REBEL, and Wiki-NRE — but operates entirely at inference time (no training signal from verification), evaluates on KG benchmarks rather than document-level RE, and cannot improve extraction accuracy through its verification. CLATTER (Jun 2025) proposes decomposed entailment via claim decomposition for hallucination detection but not as a reward signal. CDER (Apr 2025) introduces collaborative graph-based evidence retrieval for DocRE but relies on pre-LLM architectures. The gap: no work combines (a) LLM-based evidence generation (not just attention guidance or inference-time verification) with (b) entailment verification as a training-time reward signal for (c) structured extraction on standard document-level IE benchmarks.",
+  "approach": "Fine-tune Qwen3-4B (matching ProUIE's backbone for direct comparison) to jointly generate structured extractions AND supporting evidence spans in a unified output format — (head, relation, tail, [evidence_sentence_ids]) for DocRED. This represents a paradigm shift from both encoder-based evidence-aware methods (which use evidence to guide attention, not as output) and inference-time verification approaches like AEVS (which cannot improve extraction through training). Phase 1: SFT warmup using existing gold evidence annotations from DocRED to teach joint extraction-plus-evidence format with non-thinking mode (enable_thinking=False) to avoid the documented Qwen3 GRPO speed regression (verl#1580). Phase 2: GRPO reinforcement learning with a composite reward combining two core components and one engineering complement: (a) Stepwise structural F1 adapted from ProUIE's SFR for extraction correctness, (b) Length-Adaptive Evidence Entailment (LAEE) reward — the key technical contribution — which verifies extracted-fact-to-evidence faithfulness through a strategy that adapts to evidence chain length: (i) For single-sentence evidence (~54% of DocRED instances): entity grounding (cited evidence sentence must mention at least one entity from the extraction, via cheap string matching) plus standard DeBERTa-v3-base NLI on (evidence_sentence, extracted_fact), matching RSAT's proven single-premise approach. No decomposition overhead. (ii) For two-sentence evidence (~26% of instances): entity grounding plus concatenated NLI on (evidence_sent1 + evidence_sent2, extracted_fact) — standard NLI handles this reliably since the concatenated premise (~40-80 tokens) falls within MultiNLI training distribution — plus a lightweight chain coherence bonus (bridging entity overlap between the two evidence sentences) as a supplementary signal. (iii) For three-or-more-sentence evidence (~20% of instances, the genuinely challenging tail): entity grounding plus decomposed stepwise entailment — each consecutive pair of evidence sentences is checked for chain coherence (bridging entities or coreference links), and entailment is computed stepwise across the chain rather than via concatenated single-pass NLI, which demonstrably degrades on premises exceeding typical NLI training lengths. This is where the method provides its distinctive advantage over flat-NLI approaches. This three-tier design directly addresses the concern that decomposition should not add unnecessary overhead on simple cases: the 80% majority uses standard or concatenated NLI, while genuine improvement concentrates on the 20% challenging tail where flat NLI produces noisy rewards. (c) Schema-consistency check — a lightweight engineering complement (not a core contribution) that verifies extracted triples conform to the predefined relation ontology, computed as a cheap dictionary lookup. Evidence parsimony penalty (following RSAT) discourages over-citation. F1 ceiling risk mitigation: we explicitly frame FREIGE's goal as achieving competitive F1 while adding interpretable evidence, not necessarily beating encoder-based SOTA on extraction alone. Current LLM-based DocRE SOTA is only F1 48.34 (RelPrior, LLaMA3-8B with SFT only). With SFT + GRPO training, we target F1 ~55-62 — substantially above existing LLM methods but below encoder SOTA of 67.53. If FREIGE achieves F1 ~58-62 while producing high-quality evidence (Evi-F1 competitive with or exceeding DREEAM's 57.34), this is a strong contribution: the first LLM-based method with evidence interpretability on DocRED that narrows the LLM-encoder gap by 10+ F1 points. Even if F1 reaches only ~55, an Evi-F1 exceeding 57.34 demonstrates that evidence-grounded RL enables LLMs to generate more faithful justifications than encoder-based attention guidance, establishing the paradigm's value. Failure mode: if Qwen3-4B achieves F1 < 52 (only marginally above existing LLM methods), the paper pivots to an analysis contribution — what prevents GRPO from closing the LLM-encoder gap on DocRE, and whether evidence generation competes with extraction accuracy for model capacity. Key experimental design — stratified analysis by evidence chain length: all DocRED results reported separately for 1-sentence evidence (~54%), 2-sentence evidence (~26%), and 3+-sentence evidence (~20%), with a controlled ablation comparing LAEE vs. flat-NLI reward on each stratum. The make-or-break experiment: demonstrating that LAEE matches flat-NLI on 1-2 sentence cases (confirming no unnecessary overhead) while significantly outperforming on the 3+-sentence stratum (confirming genuine improvement where it matters). Baselines: (1) SFT-only (no GRPO), (2) GRPO with accuracy-only reward (no evidence reward), (3) GRPO with flat-NLI reward (RSAT-style, as the single-premise baseline), (4) FREIGE with full LAEE reward. Additionally compare evidence quality against DREEAM (Evi-F1 57.34) and SAIS (Evi-F1 55.67) to position FREIGE as an LLM-era evidence-aware method. Scoped to DocRED only for the ARR sprint (WikiEvents deferred to camera-ready to halve experimental surface area). Evaluate for both extraction accuracy (F1, Ign F1) and evidence quality (Evi-F1, NLI faithfulness score). Model size ablation: Qwen3-1.7B and Qwen3-8B (with thinking disabled) alongside the primary Qwen3-4B.",
+  "resource_estimate": {
+    "manual": {
+      "gpu_hours": "~120h A100 80GB (SFT: ~10h on Qwen3-4B, GRPO on DocRED: ~40h including ~20% NLI reward overhead, model size ablation with 1.7B/8B: ~20h, stratified reward ablations LAEE vs flat-NLI across 3 strata: ~20h, DREEAM/SAIS reproduction for evidence quality comparison: ~10h, analysis and buffer: ~20h)",
+      "gpu_utilization": "~35-45% effective utilization; GPU sits idle during analysis of stratified results and evidence quality inspection between runs",
+      "timeline": "5-7 weeks (not targeting ARR May 25 deadline in manual mode)",
+      "team": "1-2 researchers",
+      "estimated_gpu_cost": "$180-250 at ~$1.50/hr cloud A100 rental"
+    },
+    "human_in_loop": {
+      "gpu_hours": "~180h A100 80GB (agent explores LAEE reward weight configurations and runs stratified ablations autonomously; NLI overhead adds ~20% per GRPO run)",
+      "gpu_utilization": "~60-70% effective utilization; agent queues next experiment while human reviews stratified evidence quality",
+      "timeline": "2-3 weeks",
+      "team": "1 researcher, ~30min/day check-in for evidence quality inspection and stratified result analysis",
+      "claude_api_cost": "$80-180",
+      "estimated_gpu_cost": "$250-350",
+      "risk_note": "Chain coherence sub-reward calibration for 3+-sentence cases may need human-guided tuning; DREEAM/SAIS Evi-F1 comparison requires careful alignment of evaluation protocols"
+    },
+    "auto_research": {
+      "gpu_hours": "~400h A100 80GB (systematic LAEE weight ablations on DocRED, stratified analysis across evidence lengths, model size comparison across 1.7B/4B/8B, flat-NLI vs LAEE controlled experiments, NLI model comparison DeBERTa-base vs DeBERTa-large)",
+      "gpu_utilization": "~85%+ effective utilization; agent continuously queues experiments with no idle gaps",
+      "timeline": "10-14 days with 2x A100 parallelism (viable for ARR May 25 deadline if started immediately)",
+      "team": "0 (only initial setup and final review)",
+      "claude_api_cost": "$200-400",
+      "estimated_gpu_cost": "$550-800",
+      "speed_bottleneck": "NLI reward computation adds ~20% wall-clock overhead per GRPO step; stratified evaluation adds minimal overhead but requires automated result parsing",
+      "risk_note": "Agent may over-explore LAEE weight configurations; reduced scope (DocRED-only) makes timeline more realistic"
+    }
+  },
+  "target_venues": [
+    "EMNLP 2026 (ARR deadline: May 25, 2026 — tight but feasible with auto_research mode and DocRED-only scope)",
+    "AACL-IJCNLP 2026 (ARR deadline: May 25, 2026)",
+    "AAAI 2027 (abstract: July 25, paper: August 1, 2026 — comfortable for manual/human-in-loop, allows WikiEvents extension)"
+  ],
+  "level": "solid-to-strong",
+  "key_references": [
+    "R1-RE: Cross-Domain Relation Extraction with RLVR (arXiv 2507.04642, Jul 2025)",
+    "ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction (arXiv 2604.10633, Apr 2026)",
+    "RSAT: Structured Attribution Makes Small Language Models Faithful Table Reasoners (arXiv 2605.00199, May 2026, ACL 2026 Workshop)",
+    "CRAFT: Calibrated Reasoning with Answer-Faithful Traces for Multi-Hop QA (arXiv 2602.01348, Feb 2026)",
+    "EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models (arXiv 2603.19532, Mar 2026)",
+    "CaRR: Chaining the Evidence — Robust RL for Deep Search Agents with Citation-Aware Rubric Rewards (arXiv 2601.06021, Jan 2026)",
+    "TRACE/ARENA: Towards Transparent RAG — Fostering Evidence Traceability in LLM Generation via RL (arXiv 2505.13258, May 2025)",
+    "DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction (EACL 2023) — F1 67.22, Evi-F1 57.34 (RoBERTa-large+DS), F1 67.53 with inference-stage fusion",
+    "SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction (NAACL 2022) — F1 65.11, Evi-F1 55.67 (RoBERTa-large)",
+    "EIDER: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion (ACL Findings 2022)",
+    "GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction (ICASSP 2025)",
+    "AEVS: Grounded Knowledge Graph Extraction via LLMs — An Anchor-Constrained Framework with Provenance Tracking (MDPI Computers, Mar 2026) — inference-time verification for KG extraction on WebNLG/REBEL/Wiki-NRE",
+    "CLATTER: Comprehensive Entailment Reasoning for Hallucination Detection (arXiv 2506.05243, Jun 2025)",
+    "CDER: Collaborative Evidence Retrieval for Document-level Relation Extraction (arXiv 2504.06529, Apr 2025)",
+    "AutoRE: Document-Level Relation Extraction with Large Language Models (arXiv 2403.14888, 2024) — F1 45.96 on DocRED test (LLaMA3-8B)",
+    "RelPrior: Relation as a Prior — A Novel Paradigm for LLM-based Document-level Relation Extraction (arXiv 2511.08143, Nov 2025) — F1 48.34 on DocRED test (LLaMA3-8B), current LLM SOTA",
+    "Stretching Sentence-pair NLI Models to Reason over Long Documents and Clusters (EMNLP Findings 2022) — documents NLI degradation on long premises",
+    "Revisiting Text Decomposition Methods for NLI-based Factuality Scoring of Summaries (GEM Workshop 2022)",
+    "DocRED: A Large-Scale Document-Level Relation Extraction Dataset (ACL 2019)",
+    "Re-DocRED: Revisiting DocRED — Addressing the False Negative Problem in Relation Extraction (EMNLP 2022)",
+    "Extract-0: A Specialized Language Model for Document Information Extraction (arXiv 2025)",
+    "GRACE: Reinforcement Learning for Grounded Response and Abstention under Contextual Evidence (arXiv 2601.04525, Jan 2026)",
+    "Learning to Generate and Extract: A Multi-Agent Collaboration Framework for Zero-shot Document-level Event Arguments Extraction (arXiv 2603.02909, Mar 2026, AAAI 2026)",
+    "Ru-LLM: Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction (2026)",
+    "KD-DocRE: Document-Level Relation Extraction with Adaptive Focal Loss and Knowledge Distillation (ACL Findings 2022)",
+    "Entity and Evidence Guided Relation Extraction for DocRED (arXiv 2008.12283, 2020)",
+    "Event Extraction in Large Language Model: A Holistic Survey (arXiv 2512.19537, Dec 2025)",
+    "MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal IE (2025)"
+  ],
+  "description": "We propose FREIGE (Faithfulness-Rewarded Evidence-Grounded Information Extraction), training Qwen3-4B to jointly generate structured extractions and supporting evidence — a paradigm shift from both pre-LLM encoder-based evidence-aware DocRE methods (DREEAM F1 67.22/Evi-F1 57.34, SAIS F1 65.11/Evi-F1 55.67, all RoBERTa-large) that use evidence to guide attention but cannot generate interpretable evidence as output, and inference-time verification approaches like AEVS that cannot improve extraction through training. Current LLM-based DocRE methods (best: RelPrior F1 48.34) lag ~19 F1 points behind encoder SOTA and produce no evidence. FREIGE targets F1 ~55-62 (narrowing the LLM-encoder gap by 10+ points via GRPO) while generating evidence with Evi-F1 competitive with or exceeding DREEAM's 57.34. Phase 1 performs SFT warmup with gold evidence annotations from DocRED. Phase 2 applies GRPO with a composite reward combining: (a) stepwise structural F1 for extraction correctness, and (b) a Length-Adaptive Evidence Entailment (LAEE) reward — the key contribution — with three tiers: for single-sentence evidence (~54%), entity grounding + standard NLI (no decomposition overhead); for two-sentence evidence (~26%), entity grounding + concatenated NLI (reliable at 40-80 token premises) + lightweight chain coherence bonus; for three-or-more-sentence evidence (~20%, the genuinely challenging tail where concatenated NLI degrades), entity grounding + decomposed stepwise entailment with chain coherence verification. This design avoids unnecessary overhead on the 80% majority while providing genuine improvement on the 20% tail. The make-or-break experiment is a stratified ablation: LAEE vs. flat-NLI reward on each evidence-length stratum, demonstrating LAEE matches flat-NLI on 1-2 sentence cases while significantly outperforming on 3+-sentence cases. Scoped to DocRED only for the ARR sprint (WikiEvents deferred to camera-ready). If Qwen3-4B achieves F1 ~58-62 with Evi-F1 > 57.34, this establishes the first LLM-based method that jointly generates extractions and faithful evidence on DocRED. Even F1 ~55 with strong Evi-F1 demonstrates that evidence-grounded RL enables better justification than encoder-based attention guidance. Model size ablation across Qwen3-1.7B/4B/8B.",
+  "project_name": "faith_evidence_ie",
+  "source": "web_research"
+}
+
+
+## Previous review history
+### Round 1 review
+Verdict: revise
+Issues: ["Novelty concern: The two-phase SFT+GRPO with NLI-faithfulness reward approach closely mirrors RSAT (arXiv 2605.00199) and CRAFT (arXiv 2602.01348), just applied to IE instead of table reasoning/multi-hop QA. EMNLP reviewers may flag this as a straightforward domain transfer.", "Missing competitor: R1-RE (arXiv 2507.04642) applies GRPO/RLVR to relation extraction with verifiable rewards. Though it targets SemEval rather than DocRED, it directly demonstrates GRPO for RE and should be discussed as a baseline or related work.", "GRPO training speed underestimated: A GitHub issue (verl#1580) reports Qwen3-8B GRPO taking ~1 hour per step vs. minutes for Qwen2.5-7B. With hundreds of steps needed per dataset across 4 datasets, 200h A100 may be insufficient — the realistic estimate could be 400-600h.", "NLI reward overhead unaccounted: Running an off-the-shelf NLI model (e.g., DeBERTa-v3-large) at each GRPO step for each candidate generation adds significant GPU memory and compute overhead. This is neither budgeted in the GPU hours nor discussed as a technical challenge.", "Evidence quality metrics undefined: The proposal says 'evaluate for both extraction accuracy and evidence quality' but never specifies evidence quality metrics. Will it use evidence F1 (matching gold evidence sentence IDs), NLI-based faithfulness scores, or human evaluation? This is a critical gap for a paper whose core contribution is evidence grounding.", "Multi-hop evidence chains in DocRED: Many DocRED relations require multi-hop reasoning across 3-5+ sentences. NLI-based entailment checking works well for single-premise entailment (as in RSAT's cell-level citations) but may produce noisy rewards for multi-sentence evidence chains where the entailment is implicit rather than explicit.", "16-day timeline is unrealistic for 'manual' mode (estimated 3-4 months). Even 'auto research' mode (1-2 weeks) requires immediate access to 4xA100 and assumes no debugging time for the novel NLI reward function — an optimistic assumption for a reward signal that hasn't been validated on IE.", "No evidence that Qwen3-8B is the right base model choice. ProUIE uses Qwen3-4B; would the idea work with a smaller model? No model size ablation is planned despite this being a natural question."]
+Feedback: The core idea — using underutilized evidence annotations as GRPO reward signals — is sound and addresses a real gap. However, the paper needs significant differentiation from RSAT to avoid being perceived as a domain transfer. Specific suggestions: (1) Introduce a novel reward component specific to IE, such as a schema-consistency reward that penalizes extractions not conforming to the ontology, or a cross-document evidence aggregation reward that goes beyond what RSAT does for tables. (2) Address the multi-hop evidence challenge head-on by designing a hierarchical NLI reward that handles multi-sentence evidence chains (e.g., decompose multi-hop evidence into pairwise entailment steps). This would be the key technical contribution over RSAT/EvidenceRL. (3) Define concrete evidence quality metrics: evidence sentence F1 for DocRED, argument span IoU for WikiEvents/RAMS, and optionally an NLI-based faithfulness score. (4) Add R1-RE as a baseline. (5) Consider using Qwen3-4B (same as ProUIE) to enable direct comparison and reduce compute. (6) Be realistic about timeline — for 16 days, scope down to 2 datasets (DocRED + WikiEvents) rather than 4, drop Re-DocRED and RAMS as secondary evaluations for the camera-ready. (7) Add an explicit analysis section showing cases where evidence-grounded extraction corrects hallucinations that standard extraction misses — this is the 'why it matters' story that reviewers need.
+
+### Round 2 review
+Verdict: revise
+Issues: ["Inflated core motivation: The proposal claims '60%+ of DocRED relations require reasoning across 3+ sentences,' but the original DocRED paper (ACL 2019) reports average 1.6 supporting sentences per relation instance, with only 46.4% requiring more than one sentence. This significantly undermines the argument that single-premise NLI produces noisy rewards for document-level IE — for the majority of DocRED instances, single-premise NLI would work fine.", "Missing critical baselines: DREEAM (EACL 2023) and SAIS (NAACL 2022) are established methods that already leverage DocRED's evidence annotations to guide document-level relation extraction. Neither is cited or discussed. Any paper claiming to be the first to use evidence annotations for DocRE must engage with this prior work.", "Missing concurrent competitor: CaRR / 'Chaining the Evidence' (arXiv 2601.06021, Jan 2026) proposes Citation-aware Rubric Rewards with C-GRPO that decomposes verification into single-hop rubrics and constructs evidence chains — conceptually very similar to CoE's hierarchical decomposition. This needs to be discussed and differentiated.", "Hierarchical decomposition value is unclear: Given average 1.6 evidence sentences in DocRED, most relation instances have 1-2 evidence sentences. For these cases, the 3-level CoE hierarchy (entity grounding → chain coherence → conclusion entailment) collapses to essentially the same thing as RSAT's single-premise NLI. The paper needs to demonstrate that CoE specifically improves on the ~38% of truly multi-sentence cases.", "Schema-consistency reward is trivially simple: Verifying entity type compatibility against a predefined ontology is a dictionary lookup, not a learned or novel component. Framing this as a key contribution alongside the CoE reward inflates the paper's claimed novelty.", "TRACE (arXiv 2505.13258) is another relevant concurrent work using RL with evidence traceability rewards for multi-hop QA on Qwen2.5/Llama models — similar methodology applied to a different task. Should be cited and differentiated."]
+Feedback: The idea has a sound core — joint extraction + evidence generation trained with GRPO is a genuine gap in IE — but the current framing oversells the multi-hop challenge and undersells existing work. Specific fixes: (1) **Correct the multi-hop statistic**: Use the actual DocRED numbers (avg 1.6 evidence sentences, ~46% multi-sentence). Reframe the motivation around the ~38% of truly multi-sentence cases where hierarchical verification matters, and argue this tail is precisely where current methods fail most. (2) **Cite and baseline DREEAM and SAIS**: These are the established evidence-aware DocRE methods. Position FREIGE as the LLM-era successor that generates evidence rather than just attending to it. (3) **Cite and differentiate from CaRR and TRACE**: Explain why IE-specific evidence verification differs from QA-style evidence chaining. (4) **Sharpen the CoE contribution**: Focus the novelty pitch on the specific failure mode — show that for the multi-sentence tail (2+ evidence sentences), standard NLI rewards fail while CoE succeeds. Include a controlled experiment comparing CoE vs flat-NLI reward on subsets stratified by evidence chain length. (5) **Downweight the schema-consistency reward**: Present it as an engineering complement, not a key contribution. (6) **Provide a stratified analysis plan**: Break DocRED results by 1-sentence, 2-sentence, and 3+-sentence evidence to quantify where CoE actually helps. This is the evidence that makes or breaks the paper.
+
+### Round 3 review
+Verdict: revise
+Issues: ["Incorrect DREEAM F1 numbers: The proposal cites DREEAM achieving 'F1 61.13/Evi-F1 51.71 on DocRED test', but the actual DREEAM paper reports F1 67.53 (RoBERTa-large student model with distant supervision) and Evi-F1 57.34. The numbers cited appear to be from a weaker BERT-base configuration. This matters because it inflates the apparent gap between encoder-based and LLM-based methods.", "NLI degradation argument for 2-sentence evidence is weakly supported: The proposal claims concatenated NLI is 'unreliable' for multi-sentence premises, but most multi-sentence DocRED cases have only 2 evidence sentences (given avg 1.6). Standard NLI models (DeBERTa-v3-base, trained on MultiNLI with multi-sentence premises) may perform adequately on 2-sentence concatenation. The degradation is more convincing for 3+-sentence cases (the 37.8% without entity co-occurrence), not the full 46% claimed.", "Missing competitor: AEVS framework (Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking, MDPI Computers, March 2026) addresses the same fundamental motivation (LLM extractions lack provenance/traceability) with inference-time anchor-based verification on KG extraction benchmarks. Should be cited and differentiated.", "Risk of negative result: If Qwen3-4B cannot match DREEAM's 67.53 F1 on DocRED while also generating evidence, the paper's story weakens to 'we add evidence but sacrifice extraction accuracy.' The proposal does not discuss this failure mode or set expectations for what F1 drop is acceptable.", "Timeline remains the critical constraint: 15 days to implement SFT + custom GRPO reward with NLI integration + run stratified ablations on 2 datasets + write paper is borderline impossible. The Qwen3 GRPO speed fix (disable thinking) is stated but not empirically validated as resolving the verl#1580 regression."]
+Feedback: The idea is close to passing — the gap is real and well-identified. To clear the threshold: (1) **Correct DREEAM/SAIS numbers**: Use RoBERTa-large results (F1 67.53, Evi-F1 57.34 for DREEAM). Frame FREIGE's goal as achieving competitive F1 while adding interpretable evidence, not necessarily beating encoder-based SOTA on extraction alone. (2) **Sharpen DEE motivation**: The claim that concatenated NLI fails on 2-sentence premises needs evidence. Run a quick diagnostic: compute DeBERTa-v3-base NLI accuracy on gold DocRED evidence-fact pairs, stratified by 1-sentence vs 2-sentence vs 3+-sentence. If degradation is only significant for 3+ sentences, narrow the DEE claim to that subset and argue it as the most challenging tail. (3) **Cite AEVS (March 2026)**: Differentiate by noting AEVS is inference-time verification (no training signal), evaluates on KG benchmarks not DocRE, and cannot improve extraction accuracy — while FREIGE's training-time reward improves both extraction and evidence quality jointly. (4) **Address the F1 ceiling risk explicitly**: State that if Qwen3-4B achieves F1 ~62-65 (below DREEAM's 67.53) but generates high-quality evidence (Evi-F1 > 57.34), this is still a contribution because it demonstrates the first LLM-based method with evidence interpretability on DocRED. (5) **Scope to DocRED-only for the 15-day sprint**: Drop WikiEvents from the ARR submission and add it for camera-ready. This halves the experimental surface area.
+
+
+## Output format
+Output ONLY a JSON object:
+{
+  "verdict": "pass | revise | fail",
+  "scores": {
+    "novelty": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "feasibility": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "clarity": {"score": 0-5, "rationale": "1-2 sentence justification"},
+    "impact": {"score": 0-5, "rationale": "1-2 sentence justification"}
+  },
+  "issues": ["specific issue 1", "specific issue 2", ...],
+  "feedback": "Actionable feedback for the generator (if verdict=revise)",
+  "reason": "One-line summary of verdict rationale"
+}
+
+Rules:
+- "pass": idea is sound AND high quality — avg score >= 4.0, no critical issues
+- "revise": fixable issues OR scores below threshold — provide specific feedback
+- "fail": fundamental flaw (e.g., gap doesn't exist, approach provably wrong, or scores remain low after multiple revisions)
+- Threshold is HIGH (4.0/5.0): agent scores tend to be inflated, so only truly outstanding ideas should pass. An avg of 3.5 is NOT enough.
+- Round 10 only: if still "revise", you MUST choose "pass" or "fail".
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "85a5cc2e-57b0-43aa-a6e7-dca204435164",
+  "permissionMode": "default",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-10T18:53:27.582Z_
+
+```json
+{
+  "parentUuid": "85a5cc2e-57b0-43aa-a6e7-dca204435164",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "7b7da360-64ca-40b1-94dd-4f615c244bbd",
+  "timestamp": "2026-05-10T18:53:27.582Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-10T18:53:27.583Z_
+
+```json
+{
+  "parentUuid": "7b7da360-64ca-40b1-94dd-4f615c244bbd",
+  "isSidechain": false,
+  "attachment": {
+    "type": "agent_listing_delta",
+    "addedTypes": [
+      "Explore",
+      "general-purpose",
+      "Plan",
+      "statusline-setup"
+    ],
+    "addedLines": [
+      "- Explore: Fast read-only search agent for locating code. Use it to find files by pattern (eg. \"src/components/**/*.tsx\"), grep for symbols or keywords (eg. \"API endpoints\"), or answer \"where is X defined / which files reference Y.\" Do NOT use it for code review, design-doc auditing, cross-file consistency checks, or open-ended analysis — it reads excerpts rather than whole files and will miss content past its read window. When calling, specify search breadth: \"quick\" for a single targeted lookup, \"medium\" for moderate exploration, or \"very thorough\" to search across multiple locations and naming conventions. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- general-purpose: General-purpose agent for researching complex questions, searching for code, and executing multi-step tasks. When you are searching for a keyword or file and are not confident that you will find the right match in the first few tries use this agent to perform the search for you. (Tools: *)",
+      "- Plan: Software architect agent for designing implementation plans. Use this when you need to plan the implementation strategy for a task. Returns step-by-step plans, identifies critical files, and considers architectural trade-offs. (Tools: All tools except Agent, ExitPlanMode, Edit, Write, NotebookEdit)",
+      "- statusline-setup: Use this agent to configure the user's Claude Code status line setting. (Tools: Read, Edit)"
+    ],
+    "removedTypes": [],
+    "isInitial": true,
+    "showConcurrencyNote": true
+  },
+  "type": "attachment",
+  "uuid": "7c929b2e-453e-4e8e-9fa1-28874a334ed6",
+  "timestamp": "2026-05-10T18:53:27.583Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-10T18:53:27.583Z_
+
+```json
+{
+  "parentUuid": "7c929b2e-453e-4e8e-9fa1-28874a334ed6",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "a321294e-9652-4541-be6e-69444929dfe4",
+  "timestamp": "2026-05-10T18:53:27.583Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "a321294e-9652-4541-be6e-69444929dfe4",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 8_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of FREIGE: Evidence-Grounded IE via Decomposed Entailment Verification (Round 4)",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-10T18:53:39.125Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me carefully review this idea for EMNLP 2026. This is round 4/10, and the idea has been revised three times already. I need to independently verify the claims, check for missing competitors, and assess feasibility, novelty, clarity, and impact.
+
+Let me start by searching for the key claims and competitors.
+
+Key things to verify:
+1. DREEAM F1 numbers (claimed 67.53 F1, 57.34 Evi-F1 on DocRED test with RoBERTa-large)
+
+
+2. Current LLM-based DocRE SOTA (claimed RelPrior F1 48.34)
+3. DocRED evidence statistics (claimed avg 1.6 sentences, ~54% single, ~26% two, ~20% three+)
+4. ProUIE details and results
+5. RSAT details
+6. Whether AEVS, CaRR, TRACE are correctly characterized
+7. Any missing competitors
+8. Qwen3 GRPO speed issues
+9. Whether the LAEE reward is genuinely novel
+
+Let me search for these systematically.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "a321294e-9652-4541-be6e-69444929dfe4",
+  "isSidechain": false,
+  "requestId": "req_011CauPqQq5nH8nKq9dVypPF",
+  "type": "assistant",
+  "uuid": "99327d81-cfbf-4837-8f9f-c5b082781d75",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PJkAtmTHw2k9f3zNdvSXGD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18370,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18370,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 18370,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18370
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 10 · 2026-05-10T18:53:39.128Z_
+
+I'll conduct an independent, thorough review of this idea. Let me start by verifying the key claims and searching for competitors.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "99327d81-cfbf-4837-8f9f-c5b082781d75",
+  "isSidechain": false,
+  "requestId": "req_011CauPqQq5nH8nKq9dVypPF",
+  "type": "assistant",
+  "uuid": "fb16872f-6937-438e-85a3-765004568604",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PJkAtmTHw2k9f3zNdvSXGD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18370,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18370,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 18370,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18370
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 11 · 2026-05-10T18:53:39.281Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01CxfpuYYHYLJadco15MrFqB`</summary>
+
+```json
+{
+  "query": "select:WebSearch,WebFetch",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fb16872f-6937-438e-85a3-765004568604",
+  "isSidechain": false,
+  "requestId": "req_011CauPqQq5nH8nKq9dVypPF",
+  "type": "assistant",
+  "uuid": "495d3ce0-a885-47b3-b930-c762e8743d6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PJkAtmTHw2k9f3zNdvSXGD",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 18370,
+      "cache_read_input_tokens": 11447,
+      "output_tokens": 386,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 18370,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 386,
+          "cache_read_input_tokens": 11447,
+          "cache_creation_input_tokens": 18370,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 18370
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 12 · 2026-05-10T18:53:39.287Z_
+
+<details><summary>↩ Tool result · `toolu_01CxfpuYYHYLJadco15MrFqB`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebSearch"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "WebFetch"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "495d3ce0-a885-47b3-b930-c762e8743d6d",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "c9810ff1-1a00-4fa9-817b-b00c9b2e7316",
+  "toolUseResult": {
+    "matches": [
+      "WebSearch",
+      "WebFetch"
+    ],
+    "query": "select:WebSearch,WebFetch",
+    "total_deferred_tools": 17
+  },
+  "sourceToolAssistantUUID": "495d3ce0-a885-47b3-b930-c762e8743d6d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 13 · 2026-05-10T18:53:41.807Z_
+
+Now let me launch parallel searches to verify the key claims and find potential competitors.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c9810ff1-1a00-4fa9-817b-b00c9b2e7316",
+  "isSidechain": false,
+  "requestId": "req_011CauPrGnRW2VywJzd5zUAF",
+  "type": "assistant",
+  "uuid": "db75991f-3f57-47c4-b430-8f3bd556ff30",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uc9ohmwb7xhhkvGc4w8yVo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1405,
+      "cache_read_input_tokens": 29817,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1405,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 29817,
+          "cache_creation_input_tokens": 1405,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1405
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-10T18:53:42.956Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EbtoYM5MK9G42aLsomL7sR`</summary>
+
+```json
+{
+  "query": "DREEAM document-level relation extraction evidence DocRED F1 score RoBERTa-large 2023"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "db75991f-3f57-47c4-b430-8f3bd556ff30",
+  "isSidechain": false,
+  "requestId": "req_011CauPrGnRW2VywJzd5zUAF",
+  "type": "assistant",
+  "uuid": "d33fe371-839d-41e2-bfc9-52d5edc32e36",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Uc9ohmwb7xhhkvGc4w8yVo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1405,
+      "cache_read_input_tokens": 29817,
+      "output_tokens": 96,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1405,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 96,
+          "cache_read_input_tokens": 29817,
+          "cache_creation_input_tokens": 1405,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1405
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-10T18:53:48.463Z_
+
+<details><summary>↩ Tool result · `toolu_01EbtoYM5MK9G42aLsomL7sR`</summary>
+
+```text
+Web search results for query: "DREEAM document-level relation extraction evidence DocRED F1 score RoBERTa-large 2023"
+
+Links: [{"title":"GitHub - YoumiMa/dreeam: source code for {D}ocument-level {R}elation {E}xtraction with {E}vidence-guided {A}ttention {M}echanism · GitHub","url":"https://github.com/YoumiMa/dreeam"},{"title":"[2302.08675] DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction","url":"https://ar5iv.labs.arxiv.org/html/2302.08675"},{"title":"DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Request PDF","url":"https://www.researchgate.net/publication/335780641_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"},{"title":"[PDF] DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DocRED:-A-Large-Scale-Document-Level-Relation-Yao-Ye/2745fc72e1dd53d1c30f17cf05841b163c2f63c9"},{"title":"DocRED Benchmark (Relation Extraction)","url":"https://paperswithcode.com/sota/relation-extraction-on-docred"},{"title":"Entity and Evidence Guided Relation Extraction for DocRED | DeepAI","url":"https://deepai.org/publication/entity-and-evidence-guided-relation-extraction-for-docred"},{"title":"DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction","url":"https://www.researchgate.net/publication/373811777_DREEAM_Guiding_Attention_with_Evidence_for_Improving_Document-Level_Relation_Extraction"},{"title":"dreeam/README.md at main · YoumiMa/dreeam","url":"https://github.com/YoumiMa/dreeam/blob/main/README.md"},{"title":"GitHub - tonytan48/KD-DocRE: Implementation of Document-level Relation Extraction with Knowledge Distillation and Adaptive Focal Loss · GitHub","url":"https://github.com/tonytan48/KD-DocRE"},{"title":"DREEAM: Guiding Attention with Evidence for Improving ...","url":"https://aclanthology.org/2023.eacl-main.145.pdf"}]
+
+Based on the search results, I found information about DREEAM and its performance on document-level relation extraction with evidence. Here's what the results show:
+
+DREEAM is a memory-efficient approach that adopts evidence information as the supervisory signal to guide attention modules of the DocRE system, and proposes a self-training strategy to learn evidence retrieval from automatically-generated evidence on massive data without evidence annotations.
+
+Regarding performance metrics: On the test set, the improvement reaches 1.1 F1 points on both Ign F1 and F1. Additionally, DREEAM improves over the state-of-the-art supervised approaches by approximately 2.0 points on Evi F1.
+
+The search results also indicate that when using RoBERTa-large as the PLM encoder, DREEAM achieves competitive results on document-level relation extraction tasks like DocRED.
+
+The official source code for DREEAM is available on GitHub, and the paper appears to have been published in 2023 based on the search results.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d33fe371-839d-41e2-bfc9-52d5edc32e36",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "15696784-4a56-40a1-851f-abb3cafb47b7",
+  "toolUseResult": {
+    "query": "DREEAM document-level relation extraction evidence DocRED F1 score RoBERTa-large 2023",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_011utLuVjD9si6cKD8gDJhWN",
+        "content": [
+          {
+            "title": "GitHub - YoumiMa/dreeam: source code for {D}ocument-level {R}elation {E}xtraction with {E}vidence-guided {A}ttention {M}echanism · GitHub",
+            "url": "https://github.com/YoumiMa/dreeam"
+          },
+          {
+            "title": "[2302.08675] DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction",
+            "url": "https://ar5iv.labs.arxiv.org/html/2302.08675"
+          },
+          {
+            "title": "DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Request PDF",
+            "url": "https://www.researchgate.net/publication/335780641_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"
+          },
+          {
+            "title": "[PDF] DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/DocRED:-A-Large-Scale-Document-Level-Relation-Yao-Ye/2745fc72e1dd53d1c30f17cf05841b163c2f63c9"
+          },
+          {
+            "title": "DocRED Benchmark (Relation Extraction)",
+            "url": "https://paperswithcode.com/sota/relation-extraction-on-docred"
+          },
+          {
+            "title": "Entity and Evidence Guided Relation Extraction for DocRED | DeepAI",
+            "url": "https://deepai.org/publication/entity-and-evidence-guided-relation-extraction-for-docred"
+          },
+          {
+            "title": "DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction",
+            "url": "https://www.researchgate.net/publication/373811777_DREEAM_Guiding_Attention_with_Evidence_for_Improving_Document-Level_Relation_Extraction"
+          },
+          {
+            "title": "dreeam/README.md at main · YoumiMa/dreeam",
+            "url": "https://github.com/YoumiMa/dreeam/blob/main/README.md"
+          },
+          {
+            "title": "GitHub - tonytan48/KD-DocRE: Implementation of Document-level Relation Extraction with Knowledge Distillation and Adaptive Focal Loss · GitHub",
+            "url": "https://github.com/tonytan48/KD-DocRE"
+          },
+          {
+            "title": "DREEAM: Guiding Attention with Evidence for Improving ...",
+            "url": "https://aclanthology.org/2023.eacl-main.145.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found information about DREEAM and its performance on document-level relation extraction with evidence. Here's what the results show:\n\nDREEAM is a memory-efficient approach that adopts evidence information as the supervisory signal to guide attention modules of the DocRE system, and proposes a self-training strategy to learn evidence retrieval from automatically-generated evidence on massive data without evidence annotations.\n\nRegarding performance metrics: On the test set, the improvement reaches 1.1 F1 points on both Ign F1 and F1. Additionally, DREEAM improves over the state-of-the-art supervised approaches by approximately 2.0 points on Evi F1.\n\nThe search results also indicate that when using RoBERTa-large as the PLM encoder, DREEAM achieves competitive results on document-level relation extraction tasks like DocRED.\n\nThe official source code for DREEAM is available on GitHub, and the paper appears to have been published in 2023 based on the search results."
+    ],
+    "durationSeconds": 5.502537371999999
+  },
+  "sourceToolAssistantUUID": "d33fe371-839d-41e2-bfc9-52d5edc32e36",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16 · 2026-05-10T18:53:51.171Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UrNLRAGGmA7BcrCT7ixj4j`</summary>
+
+```json
+{
+  "query": "ProUIE progressive learning universal information extraction GRPO Qwen3 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "15696784-4a56-40a1-851f-abb3cafb47b7",
+  "isSidechain": false,
+  "requestId": "req_011CauPrwqfkHQ26qYdkTimJ",
+  "type": "assistant",
+  "uuid": "c096a3dc-50c6-433e-a857-3b365b08c87b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mf15Ao1vhZMoyi8nnDZjpK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1004,
+      "cache_read_input_tokens": 31222,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1004,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 31222,
+          "cache_creation_input_tokens": 1004,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1004
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-10T18:53:58.660Z_
+
+<details><summary>↩ Tool result · `toolu_01UrNLRAGGmA7BcrCT7ixj4j`</summary>
+
+```text
+Web search results for query: "ProUIE progressive learning universal information extraction GRPO Qwen3 2026"
+
+Links: [{"title":"[2604.10633] ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction","url":"https://arxiv.org/abs/2604.10633"},{"title":"ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction","url":"https://arxiv.org/html/2604.10633"},{"title":"[Literature Review] ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction","url":"https://www.themoonlight.io/en/review/prouie-a-macro-to-micro-progressive-learning-method-for-llm-based-universal-information-extraction"},{"title":"Qwen","url":"https://qwenlm.github.io/"},{"title":"Qwen3.6-Plus: Towards Real World Agents","url":"https://qwen.ai/blog?id=qwen3.6"},{"title":"Turn-Level Advantage Estimation with PPO for Improved ...","url":"https://aclanthology.org/2026.findings-eacl.328.pdf"},{"title":"GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub","url":"https://github.com/QwenLM/Qwen3.6"},{"title":"S-GRPO: Early Exit via Reinforcement Learning in Reasoning Models","url":"https://arxiv.org/html/2505.07686v1"},{"title":"GitHub - QwenLM/Qwen3: Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud. · GitHub","url":"https://github.com/QwenLM/Qwen3"},{"title":"Qwen/Qwen3.6-35B-A3B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3.6-35B-A3B"}]
+
+Based on the search results, here's what I found about ProUIE:
+
+## ProUIE: A Macro-to-Micro Progressive Learning Method
+
+ProUIE is a Macro-to-Micro progressive learning approach that improves Universal Information Extraction (UIE) without introducing any external information.
+
+### Three-Stage Architecture
+
+ProUIE consists of three stages: (i) macro-level Complete Modeling (CM), which learns NER, RE, and EE along their intrinsic difficulty order on the full training data to build a unified extraction foundation, (ii) meso-level Streamlined Alignment (SA), which operates on sampled data with simplified target formats, streamlining and regularizing structured outputs to make them more concise and controllable, and (iii) micro-level Deep Exploration (DE), which applies GRPO with stepwise fine-grained rewards (SFR) over structural units to guide exploration and improve performance.
+
+### Performance Results
+
+Experiments on 36 public datasets show that ProUIE consistently improves unified extraction, outperforming strong instruction-tuned baselines on average for NER and RE while using a smaller backbone, and it further demonstrates clear gains in large-scale production-oriented information extraction.
+
+### Qwen3 Implementation
+
+ProUIE is instantiated as a 4B-parameter LLM-based extractor built on the Qwen3-4B backbone. The research combines GRPO-based optimization with a UIE-specific reward mechanism, representing a novel approach to improving information extraction performance.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c096a3dc-50c6-433e-a857-3b365b08c87b",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "85cef5cb-50a6-4f41-b174-e5eb9b5324d9",
+  "toolUseResult": {
+    "query": "ProUIE progressive learning universal information extraction GRPO Qwen3 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BgUQ2fLLiak7juv196u6j4",
+        "content": [
+          {
+            "title": "[2604.10633] ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction",
+            "url": "https://arxiv.org/abs/2604.10633"
+          },
+          {
+            "title": "ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction",
+            "url": "https://arxiv.org/html/2604.10633"
+          },
+          {
+            "title": "[Literature Review] ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction",
+            "url": "https://www.themoonlight.io/en/review/prouie-a-macro-to-micro-progressive-learning-method-for-llm-based-universal-information-extraction"
+          },
+          {
+            "title": "Qwen",
+            "url": "https://qwenlm.github.io/"
+          },
+          {
+            "title": "Qwen3.6-Plus: Towards Real World Agents",
+            "url": "https://qwen.ai/blog?id=qwen3.6"
+          },
+          {
+            "title": "Turn-Level Advantage Estimation with PPO for Improved ...",
+            "url": "https://aclanthology.org/2026.findings-eacl.328.pdf"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3.6: Qwen3.6 is the large language model series developed by Qwen team, Alibaba Group. · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3.6"
+          },
+          {
+            "title": "S-GRPO: Early Exit via Reinforcement Learning in Reasoning Models",
+            "url": "https://arxiv.org/html/2505.07686v1"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3: Qwen3 is the large language model series developed by Qwen team, Alibaba Cloud. · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3"
+          },
+          {
+            "title": "Qwen/Qwen3.6-35B-A3B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3.6-35B-A3B"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about ProUIE:\n\n## ProUIE: A Macro-to-Micro Progressive Learning Method\n\nProUIE is a Macro-to-Micro progressive learning approach that improves Universal Information Extraction (UIE) without introducing any external information.\n\n### Three-Stage Architecture\n\nProUIE consists of three stages: (i) macro-level Complete Modeling (CM), which learns NER, RE, and EE along their intrinsic difficulty order on the full training data to build a unified extraction foundation, (ii) meso-level Streamlined Alignment (SA), which operates on sampled data with simplified target formats, streamlining and regularizing structured outputs to make them more concise and controllable, and (iii) micro-level Deep Exploration (DE), which applies GRPO with stepwise fine-grained rewards (SFR) over structural units to guide exploration and improve performance.\n\n### Performance Results\n\nExperiments on 36 public datasets show that ProUIE consistently improves unified extraction, outperforming strong instruction-tuned baselines on average for NER and RE while using a smaller backbone, and it further demonstrates clear gains in large-scale production-oriented information extraction.\n\n### Qwen3 Implementation\n\nProUIE is instantiated as a 4B-parameter LLM-based extractor built on the Qwen3-4B backbone. The research combines GRPO-based optimization with a UIE-specific reward mechanism, representing a novel approach to improving information extraction performance."
+    ],
+    "durationSeconds": 7.4827614790000005
+  },
+  "sourceToolAssistantUUID": "c096a3dc-50c6-433e-a857-3b365b08c87b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-10T18:54:00.850Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_017voUXZRSMyzLVJ6G2K1aEo`</summary>
+
+```json
+{
+  "query": "RelPrior LLM document-level relation extraction DocRED F1 48 LLaMA 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "85cef5cb-50a6-4f41-b174-e5eb9b5324d9",
+  "isSidechain": false,
+  "requestId": "req_011CauPshWEhdNfutzZJ89Ar",
+  "type": "assistant",
+  "uuid": "27524186-338f-4664-9309-7abc2bf5f3df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012Nk8q2FzTBhjk7rFbSpPSQ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 978,
+      "cache_read_input_tokens": 32226,
+      "output_tokens": 78,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 978,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 78,
+          "cache_read_input_tokens": 32226,
+          "cache_creation_input_tokens": 978,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 978
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-10T18:54:06.171Z_
+
+<details><summary>↩ Tool result · `toolu_017voUXZRSMyzLVJ6G2K1aEo`</summary>
+
+```text
+Web search results for query: "RelPrior LLM document-level relation extraction DocRED F1 48 LLaMA 2025"
+
+Links: [{"title":"Relation as a Prior: A Novel Paradigm for LLM-based Document-level Relation Extraction","url":"https://arxiv.org/html/2511.08143v1"},{"title":"[PDF] DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DocRED:-A-Large-Scale-Document-Level-Relation-Yao-Ye/2745fc72e1dd53d1c30f17cf05841b163c2f63c9"},{"title":"(PDF) LLM with Relation Classifier for Document-Level Relation Extraction","url":"https://www.researchgate.net/publication/383428854_LLM_with_Relation_Classifier_for_Document-Level_Relation_Extraction"},{"title":"Document-level Relation Extraction with Relation Correlations - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0893608023006883"},{"title":"LLM with Relation Classifier for Document-Level Relation Extraction","url":"https://arxiv.org/html/2408.13889v2"},{"title":"[2511.08143] Relation as a Prior: A Novel Paradigm for LLM-based Document-level Relation Extraction","url":"https://arxiv.org/abs/2511.08143"},{"title":"AutoRE: Document-Level Relation Extraction with Large Language Models","url":"https://arxiv.org/html/2403.14888v1"},{"title":"LLM with Relation Classifier for Document-Level Relation Extraction","url":"https://openreview.net/pdf?id=SOWcC2cCMT"},{"title":"[Literature Review] LLM with Relation Classifier for Document-Level Relation Extraction","url":"https://www.themoonlight.io/en/review/llm-with-relation-classifier-for-document-level-relation-extraction"},{"title":"LLM with Relation Classifier for Document-Level ...","url":"https://openreview.net/pdf/8e8281b17d1649ba15b396b7c8b04fe2ef03a348.pdf"}]
+
+Based on the search results, I found relevant information about RelPrior and document-level relation extraction on DocRED:
+
+RelPrior_LLaMA3-8B achieved F1 value increases of 2.06% and 2.38% respectively on the development and test sets of DocRED compared to the AutoRE_LLaMA3-8B method.
+
+RelPrior proposes a novel "Relation as a Prior" paradigm for LLM-based document-level relation extraction, which utilizes binary relation as a prior to extract and determine whether two entities are correlated, thereby filtering out irrelevant entity pairs and reducing prediction noise.
+
+The paper appears to be recent (published November 11, 2025 according to the metadata). However, the search results show the performance was evaluated with LLaMA3-8B rather than LLaMA 2025. The specific F1 score of 48 you mentioned doesn't appear in the search results, though the improvements over baseline methods are documented.
+
+If you need more specific information about the F1 score of 48 or details about LLaMA 2025 specifically, I can perform an additional search.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "27524186-338f-4664-9309-7abc2bf5f3df",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "2c02e809-8660-4ead-8277-de5722a25cc5",
+  "toolUseResult": {
+    "query": "RelPrior LLM document-level relation extraction DocRED F1 48 LLaMA 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01F4om3xg8U9MDQhC79uqaK7",
+        "content": [
+          {
+            "title": "Relation as a Prior: A Novel Paradigm for LLM-based Document-level Relation Extraction",
+            "url": "https://arxiv.org/html/2511.08143v1"
+          },
+          {
+            "title": "[PDF] DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/DocRED:-A-Large-Scale-Document-Level-Relation-Yao-Ye/2745fc72e1dd53d1c30f17cf05841b163c2f63c9"
+          },
+          {
+            "title": "(PDF) LLM with Relation Classifier for Document-Level Relation Extraction",
+            "url": "https://www.researchgate.net/publication/383428854_LLM_with_Relation_Classifier_for_Document-Level_Relation_Extraction"
+          },
+          {
+            "title": "Document-level Relation Extraction with Relation Correlations - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0893608023006883"
+          },
+          {
+            "title": "LLM with Relation Classifier for Document-Level Relation Extraction",
+            "url": "https://arxiv.org/html/2408.13889v2"
+          },
+          {
+            "title": "[2511.08143] Relation as a Prior: A Novel Paradigm for LLM-based Document-level Relation Extraction",
+            "url": "https://arxiv.org/abs/2511.08143"
+          },
+          {
+            "title": "AutoRE: Document-Level Relation Extraction with Large Language Models",
+            "url": "https://arxiv.org/html/2403.14888v1"
+          },
+          {
+            "title": "LLM with Relation Classifier for Document-Level Relation Extraction",
+            "url": "https://openreview.net/pdf?id=SOWcC2cCMT"
+          },
+          {
+            "title": "[Literature Review] LLM with Relation Classifier for Document-Level Relation Extraction",
+            "url": "https://www.themoonlight.io/en/review/llm-with-relation-classifier-for-document-level-relation-extraction"
+          },
+          {
+            "title": "LLM with Relation Classifier for Document-Level ...",
+            "url": "https://openreview.net/pdf/8e8281b17d1649ba15b396b7c8b04fe2ef03a348.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about RelPrior and document-level relation extraction on DocRED:\n\nRelPrior_LLaMA3-8B achieved F1 value increases of 2.06% and 2.38% respectively on the development and test sets of DocRED compared to the AutoRE_LLaMA3-8B method.\n\nRelPrior proposes a novel \"Relation as a Prior\" paradigm for LLM-based document-level relation extraction, which utilizes binary relation as a prior to extract and determine whether two entities are correlated, thereby filtering out irrelevant entity pairs and reducing prediction noise.\n\nThe paper appears to be recent (published November 11, 2025 according to the metadata). However, the search results show the performance was evaluated with LLaMA3-8B rather than LLaMA 2025. The specific F1 score of 48 you mentioned doesn't appear in the search results, though the improvements over baseline methods are documented.\n\nIf you need more specific information about the F1 score of 48 or details about LLaMA 2025 specifically, I can perform an additional search."
+    ],
+    "durationSeconds": 5.318523132000002
+  },
+  "sourceToolAssistantUUID": "27524186-338f-4664-9309-7abc2bf5f3df",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-10T18:54:08.469Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01U1QMH4hWKwBHiNobfjLrLr`</summary>
+
+```json
+{
+  "query": "RSAT structured attribution faithful table reasoning GRPO NLI DeBERTa 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c02e809-8660-4ead-8277-de5722a25cc5",
+  "isSidechain": false,
+  "requestId": "req_011CauPtFcmsX2wBx6LgYtWZ",
+  "type": "assistant",
+  "uuid": "3d3f7575-530c-458d-92c6-d4df1e2d1404",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YHM5tjQV3z7SaKdDT9iaiw",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 963,
+      "cache_read_input_tokens": 33204,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 963,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 33204,
+          "cache_creation_input_tokens": 963,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 963
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "3d3f7575-530c-458d-92c6-d4df1e2d1404",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of FREIGE: Evidence-Grounded IE via Decomposed Entailment Verification (Round 4)",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-10T18:54:15.753Z_
+
+<details><summary>↩ Tool result · `toolu_01U1QMH4hWKwBHiNobfjLrLr`</summary>
+
+```text
+Web search results for query: "RSAT structured attribution faithful table reasoning GRPO NLI DeBERTa 2026"
+
+Links: [{"title":"RSAT: Structured Attribution Makes Small Language Models Faithful Table Reasoners","url":"https://arxiv.org/html/2605.00199"},{"title":"[2605.00199] RSAT: Structured Attribution Makes Small Language Models Faithful Table Reasoners","url":"https://arxiv.org/abs/2605.00199"},{"title":"Evaluating GRPO and DPO for Faithful Chain-of-Thought Reasoning in LLMs","url":"https://arxiv.org/html/2512.22631"},{"title":"Rewarding Faithful Reasoning in Retrieval-Augmented ...","url":"https://arxiv.org/pdf/2510.13272"},{"title":"PUSHING THE BOUNDARY ON NATURAL LANGUAGE INFERENCE","url":"https://arxiv.org/pdf/2504.18376"},{"title":"Atomic-SNLI: Fine-Grained Natural Language Inference through Atomic Fact Decomposition","url":"https://arxiv.org/html/2601.06528v1"},{"title":"Synthetic Dataset for Evaluating Complex Compositional Knowledge for","url":"https://arxiv.org/pdf/2307.05034"},{"title":"STaR: Towards Cognitive Table Reasoning via Slow-Thinking Large Language Models","url":"https://arxiv.org/html/2511.11233v1"},{"title":"Natural Language Inference with Transformer Ensembles and Explainability Techniques","url":"https://www.mdpi.com/2079-9292/13/19/3876"},{"title":"Distribution of entailment scores, E s (using NLI Deberta v3 Large),... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Distribution-of-entailment-scores-E-s-using-NLI-Deberta-v3-Large-for-T-op10-non-GT_fig3_387078282"}]
+
+Based on the search results, I found highly relevant information about RSAT and the technologies you mentioned:
+
+## RSAT: Structured Attribution for Faithful Table Reasoning
+
+RSAT is a method that trains small language models (1–8B) to produce step-by-step reasoning with cell-level citations grounded in table evidence.
+
+### Training Approach
+
+The method uses a two-phase approach:
+- Phase 1 (SFT) teaches a structured JSON output format from verified reasoning traces.
+- Phase 2 (GRPO) optimizes a composite reward centered on NLI-based faithfulness, alongside citation validity and parsimony.
+
+### Performance Results
+
+Across six models from two families—Qwen 2.5 (1.5B/3B/7B) and Llama 3 (1B/3B/8B)—RSAT improves faithfulness 3.7× over SFT alone (0.224→0.826), with near-perfect citation validity (0.992).
+
+### Evaluation Metrics
+
+Faithfulness scoring uses DeBERTa-v3-base NLI (cross-encoder/nli-deberta-v3-base) during both training and evaluation, ensuring metric consistency. The primary metric is Faithfulness (NLI entailment between cited cells and reasoning text).
+
+### Key Finding
+
+Post-hoc attribution collapses below 13% format success, confirming that attribution must be integrated into reasoning, not retrofitted.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3d3f7575-530c-458d-92c6-d4df1e2d1404",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "6d37ca38-bdbc-4cda-a66e-dd8c2dcbb225",
+  "toolUseResult": {
+    "query": "RSAT structured attribution faithful table reasoning GRPO NLI DeBERTa 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JDyuZE4J9hVwWPUzGZm4rZ",
+        "content": [
+          {
+            "title": "RSAT: Structured Attribution Makes Small Language Models Faithful Table Reasoners",
+            "url": "https://arxiv.org/html/2605.00199"
+          },
+          {
+            "title": "[2605.00199] RSAT: Structured Attribution Makes Small Language Models Faithful Table Reasoners",
+            "url": "https://arxiv.org/abs/2605.00199"
+          },
+          {
+            "title": "Evaluating GRPO and DPO for Faithful Chain-of-Thought Reasoning in LLMs",
+            "url": "https://arxiv.org/html/2512.22631"
+          },
+          {
+            "title": "Rewarding Faithful Reasoning in Retrieval-Augmented ...",
+            "url": "https://arxiv.org/pdf/2510.13272"
+          },
+          {
+            "title": "PUSHING THE BOUNDARY ON NATURAL LANGUAGE INFERENCE",
+            "url": "https://arxiv.org/pdf/2504.18376"
+          },
+          {
+            "title": "Atomic-SNLI: Fine-Grained Natural Language Inference through Atomic Fact Decomposition",
+            "url": "https://arxiv.org/html/2601.06528v1"
+          },
+          {
+            "title": "Synthetic Dataset for Evaluating Complex Compositional Knowledge for",
+            "url": "https://arxiv.org/pdf/2307.05034"
+          },
+          {
+            "title": "STaR: Towards Cognitive Table Reasoning via Slow-Thinking Large Language Models",
+            "url": "https://arxiv.org/html/2511.11233v1"
+          },
+          {
+            "title": "Natural Language Inference with Transformer Ensembles and Explainability Techniques",
+            "url": "https://www.mdpi.com/2079-9292/13/19/3876"
+          },
+          {
+            "title": "Distribution of entailment scores, E s (using NLI Deberta v3 Large),... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Distribution-of-entailment-scores-E-s-using-NLI-Deberta-v3-Large-for-T-op10-non-GT_fig3_387078282"
+          }
+        ]
+      },
+      "Based on the search results, I found highly relevant information about RSAT and the technologies you mentioned:\n\n## RSAT: Structured Attribution for Faithful Table Reasoning\n\nRSAT is a method that trains small language models (1–8B) to produce step-by-step reasoning with cell-level citations grounded in table evidence.\n\n### Training Approach\n\nThe method uses a two-phase approach:\n- Phase 1 (SFT) teaches a structured JSON output format from verified reasoning traces.\n- Phase 2 (GRPO) optimizes a composite reward centered on NLI-based faithfulness, alongside citation validity and parsimony.\n\n### Performance Results\n\nAcross six models from two families—Qwen 2.5 (1.5B/3B/7B) and Llama 3 (1B/3B/8B)—RSAT improves faithfulness 3.7× over SFT alone (0.224→0.826), with near-perfect citation validity (0.992).\n\n### Evaluation Metrics\n\nFaithfulness scoring uses DeBERTa-v3-base NLI (cross-encoder/nli-deberta-v3-base) during both training and evaluation, ensuring metric consistency. The primary metric is Faithfulness (NLI entailment between cited cells and reasoning text).\n\n### Key Finding\n\nPost-hoc attribution collapses below 13% format success, confirming that attribution must be integrated into reasoning, not retrofitted."
+    ],
+    "durationSeconds": 7.277823658999994
+  },
+  "sourceToolAssistantUUID": "3d3f7575-530c-458d-92c6-d4df1e2d1404",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 24 · 2026-05-10T18:54:18.409Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Bgg4deoGgvMzURASmdeD9S`</summary>
+
+```json
+{
+  "query": "CaRR citation-aware rubric rewards GRPO deep search evidence chaining 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d37ca38-bdbc-4cda-a66e-dd8c2dcbb225",
+  "isSidechain": false,
+  "requestId": "req_011CauPtxomJmG2HZcDQE8oN",
+  "type": "assistant",
+  "uuid": "f8edd5a8-0675-4834-996d-168fd6a70e51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BmK6wyKZyHixymemE2si1b",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 942,
+      "cache_read_input_tokens": 34167,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 942,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 34167,
+          "cache_creation_input_tokens": 942,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 942
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 25 · 2026-05-10T18:54:26.421Z_
+
+<details><summary>↩ Tool result · `toolu_01Bgg4deoGgvMzURASmdeD9S`</summary>
+
+```text
+Web search results for query: "CaRR citation-aware rubric rewards GRPO deep search evidence chaining 2026"
+
+Links: [{"title":"GitHub - THUDM/CaRR: This repository contains the code and data for the paper \"Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards\".","url":"https://github.com/THUDM/CaRR"},{"title":"[Quick Review] Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards","url":"https://liner.com/review/chaining-evidence-robust-reinforcement-learning-for-deep-search-agents-with"},{"title":"[2601.06021] Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards","url":"https://arxiv.org/abs/2601.06021"},{"title":"Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards | alphaXiv","url":"https://www.alphaxiv.org/overview/2601.06021"},{"title":"Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards","url":"https://arxiv.org/html/2601.06021"},{"title":"Paper page - Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards","url":"https://huggingface.co/papers/2601.06021"},{"title":"(PDF) Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards","url":"https://www.researchgate.net/publication/399666591_Chaining_the_Evidence_Robust_Reinforcement_Learning_for_Deep_Search_Agents_with_Citation-Aware_Rubric_Rewards"},{"title":"Training AI Co-Scientists Using Rubric Rewards","url":"https://www.researchgate.net/publication/399175480_Training_AI_Co-Scientists_Using_Rubric_Rewards"},{"title":"Rubric-Based Rewards for RL - Deep (Learning) Focus","url":"https://cameronrwolfe.substack.com/p/rubric-rl"},{"title":"thudm - THUKEG · GitHub","url":"https://github.com/thudm"}]
+
+I found comprehensive information about CaRR (Citation-aware Rubric Rewards) and its related framework. Here's what the web search revealed:
+
+## Overview
+
+Citation-aware Rubric Rewards (CaRR) is a fine-grained reward framework for deep search agents that assesses reasoning comprehensiveness, factual grounding, and evidence connectivity.
+
+## Key Components
+
+CaRR decomposes complex questions into verifiable single-hop rubrics and requires agents to satisfy these rubrics by explicitly identifying hidden entities, supporting them with correct citations, and constructing complete evidence chains that link to the predicted answer.
+
+## C-GRPO Algorithm
+
+C-GRPO extends Group Relative Policy Optimization (GRPO) by assigning an additional weighted citation-aware rubric reward to trajectories that have found the correct final answer. C-GRPO combines CaRR with outcome rewards to train robust deep search agents, which preserves the objective of finding the correct answer while encouraging comprehensive and evidence-grounded reasoning, thereby improving agent robustness and performance.
+
+## Performance Results
+
+C-GRPO consistently outperforms GRPO and E-GRPO baselines across both 4B and 30B model scales and at both 64k and 128k context lengths. The performance gains of C-GRPO are more pronounced at longer context lengths (128k), where it shows an 8.0% improvement for the 4B model and a 6.0% improvement for the 30B model over GRPO.
+
+## Benefits
+
+C-GRPO effectively discourages shortcut exploitation, promotes comprehensive, evidence-grounded reasoning, and exhibits strong generalization to open-ended deep research tasks.
+
+The CaRR framework was released on January 11, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f8edd5a8-0675-4834-996d-168fd6a70e51",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "293b56d4-3607-4b2a-b721-314554500aad",
+  "toolUseResult": {
+    "query": "CaRR citation-aware rubric rewards GRPO deep search evidence chaining 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Sfg6vzopTzKFiwBUKvuM5n",
+        "content": [
+          {
+            "title": "GitHub - THUDM/CaRR: This repository contains the code and data for the paper \"Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards\".",
+            "url": "https://github.com/THUDM/CaRR"
+          },
+          {
+            "title": "[Quick Review] Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards",
+            "url": "https://liner.com/review/chaining-evidence-robust-reinforcement-learning-for-deep-search-agents-with"
+          },
+          {
+            "title": "[2601.06021] Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards",
+            "url": "https://arxiv.org/abs/2601.06021"
+          },
+          {
+            "title": "Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards | alphaXiv",
+            "url": "https://www.alphaxiv.org/overview/2601.06021"
+          },
+          {
+            "title": "Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards",
+            "url": "https://arxiv.org/html/2601.06021"
+          },
+          {
+            "title": "Paper page - Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards",
+            "url": "https://huggingface.co/papers/2601.06021"
+          },
+          {
+            "title": "(PDF) Chaining the Evidence: Robust Reinforcement Learning for Deep Search Agents with Citation-Aware Rubric Rewards",
+            "url": "https://www.researchgate.net/publication/399666591_Chaining_the_Evidence_Robust_Reinforcement_Learning_for_Deep_Search_Agents_with_Citation-Aware_Rubric_Rewards"
+          },
+          {
+            "title": "Training AI Co-Scientists Using Rubric Rewards",
+            "url": "https://www.researchgate.net/publication/399175480_Training_AI_Co-Scientists_Using_Rubric_Rewards"
+          },
+          {
+            "title": "Rubric-Based Rewards for RL - Deep (Learning) Focus",
+            "url": "https://cameronrwolfe.substack.com/p/rubric-rl"
+          },
+          {
+            "title": "thudm - THUKEG · GitHub",
+            "url": "https://github.com/thudm"
+          }
+        ]
+      },
+      "I found comprehensive information about CaRR (Citation-aware Rubric Rewards) and its related framework. Here's what the web search revealed:\n\n## Overview\n\nCitation-aware Rubric Rewards (CaRR) is a fine-grained reward framework for deep search agents that assesses reasoning comprehensiveness, factual grounding, and evidence connectivity.\n\n## Key Components\n\nCaRR decomposes complex questions into verifiable single-hop rubrics and requires agents to satisfy these rubrics by explicitly identifying hidden entities, supporting them with correct citations, and constructing complete evidence chains that link to the predicted answer.\n\n## C-GRPO Algorithm\n\nC-GRPO extends Group Relative Policy Optimization (GRPO) by assigning an additional weighted citation-aware rubric reward to trajectories that have found the correct final answer. C-GRPO combines CaRR with outcome rewards to train robust deep search agents, which preserves the objective of finding the correct answer while encouraging comprehensive and evidence-grounded reasoning, thereby improving agent robustness and performance.\n\n## Performance Results\n\nC-GRPO consistently outperforms GRPO and E-GRPO baselines across both 4B and 30B model scales and at both 64k and 128k context lengths. The performance gains of C-GRPO are more pronounced at longer context lengths (128k), where it shows an 8.0% improvement for the 4B model and a 6.0% improvement for the 30B model over GRPO.\n\n## Benefits\n\nC-GRPO effectively discourages shortcut exploitation, promotes comprehensive, evidence-grounded reasoning, and exhibits strong generalization to open-ended deep research tasks.\n\nThe CaRR framework was released on January 11, 2026."
+    ],
+    "durationSeconds": 8.008014341000003
+  },
+  "sourceToolAssistantUUID": "f8edd5a8-0675-4834-996d-168fd6a70e51",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26 · 2026-05-10T18:54:29.253Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Hak7giKmFUqpjhozTPvKcf`</summary>
+
+```json
+{
+  "query": "GRPO reinforcement learning information extraction evidence generation document-level 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "293b56d4-3607-4b2a-b721-314554500aad",
+  "isSidechain": false,
+  "requestId": "req_011CauPuk93nWLcLYzeaFMj8",
+  "type": "assistant",
+  "uuid": "34659c97-101a-466a-9270-9b3938712a5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01D6s5WQRkyQ58DteGqohnVF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1098,
+      "cache_read_input_tokens": 35109,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1098,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 35109,
+          "cache_creation_input_tokens": 1098,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1098
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-10T18:54:36.889Z_
+
+<details><summary>↩ Tool result · `toolu_01Hak7giKmFUqpjhozTPvKcf`</summary>
+
+```text
+Web search results for query: "GRPO reinforcement learning information extraction evidence generation document-level 2026"
+
+Links: [{"title":"Post-Training in 2026: GRPO, DAPO, RLVR & Beyond","url":"https://llm-stats.com/blog/research/post-training-techniques-2026"},{"title":"Group Relative Policy Optimization (GRPO)","url":"https://cameronrwolfe.substack.com/p/grpo"},{"title":"Topic-Guided Reinforcement Learning with LLMs for ...","url":"https://aclanthology.org/2025.findings-emnlp.662.pdf"},{"title":"GRPO++: Tricks for Making RL Actually Work","url":"https://cameronrwolfe.substack.com/p/grpo-tricks"},{"title":"ReSearch: Learning to Reason with Search for LLMs via Reinforcement Learning","url":"https://arxiv.org/pdf/2503.19470"},{"title":"Published as a paper at ICLR 2026 the 2nd Workshop on World Models","url":"https://openreview.net/pdf?id=MfFAEJjZmm"},{"title":"Reinforcement Learning with Verifiable Rewards: GRPO’s Effective Loss, Dynamics, and Success Amplification","url":"https://arxiv.org/html/2503.06639v4"},{"title":"Reinforcement Learning (RL) Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide"},{"title":"Recent reasoning research: GRPO tweaks, base model RL, and data curation","url":"https://www.interconnects.ai/p/papers-im-reading-base-model-rl-grpo"},{"title":"LSRL: Process-Supervised GRPO on Latent Recurrent ...","url":"https://aclanthology.org/2025.findings-emnlp.669.pdf"}]
+
+Based on the search results, here's what I found about GRPO (Group Relative Policy Optimization) and its applications in reinforcement learning:
+
+## GRPO Overview
+
+GRPO is an online RL method that generates new responses during training and computes advantages by comparing them within groups. For each prompt, it samples a group of responses (typically 8-64) and computes advantages by normalizing each response's reward against the group mean and standard deviation.
+
+## Key Advantages
+
+GRPO (introduced in DeepSeekMath, then used in DeepSeek-R1) eliminates the critic entirely. GRPO is currently the most common RL optimizer—at least for open LLMs—to use for training LRMs with RLVR.
+
+## Applications to Information Extraction and Evidence Generation
+
+While the search results don't specifically address document-level information extraction with evidence generation, they do show GRPO being applied to related NLP tasks. For instance, Topic-Guided Reinforcement Learning with LLMs for Enhancing Multi-Document Summarization training uses GRPO, which demonstrates its use in document-level tasks. Additionally, researchers have incorporated search operation into the reasoning process and trained LLMs using reinforcement learning (i.e., GRPO) without any labeled data on reasoning chains.
+
+## 2026 Context
+
+The recent research from 2026 shows the field has moved toward a modular stack: SFT for instruction following, preference optimization (DPO/SimPO/KTO) for alignment, and RL with verifiable rewards (GRPO/DAPO) for reasoning.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "34659c97-101a-466a-9270-9b3938712a5c",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "571b184e-c653-4c8c-9923-e2d194d43f13",
+  "toolUseResult": {
+    "query": "GRPO reinforcement learning information extraction evidence generation document-level 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JYSt6mcmU8CDzPg7yfEyoF",
+        "content": [
+          {
+            "title": "Post-Training in 2026: GRPO, DAPO, RLVR & Beyond",
+            "url": "https://llm-stats.com/blog/research/post-training-techniques-2026"
+          },
+          {
+            "title": "Group Relative Policy Optimization (GRPO)",
+            "url": "https://cameronrwolfe.substack.com/p/grpo"
+          },
+          {
+            "title": "Topic-Guided Reinforcement Learning with LLMs for ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.662.pdf"
+          },
+          {
+            "title": "GRPO++: Tricks for Making RL Actually Work",
+            "url": "https://cameronrwolfe.substack.com/p/grpo-tricks"
+          },
+          {
+            "title": "ReSearch: Learning to Reason with Search for LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/pdf/2503.19470"
+          },
+          {
+            "title": "Published as a paper at ICLR 2026 the 2nd Workshop on World Models",
+            "url": "https://openreview.net/pdf?id=MfFAEJjZmm"
+          },
+          {
+            "title": "Reinforcement Learning with Verifiable Rewards: GRPO’s Effective Loss, Dynamics, and Success Amplification",
+            "url": "https://arxiv.org/html/2503.06639v4"
+          },
+          {
+            "title": "Reinforcement Learning (RL) Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide"
+          },
+          {
+            "title": "Recent reasoning research: GRPO tweaks, base model RL, and data curation",
+            "url": "https://www.interconnects.ai/p/papers-im-reading-base-model-rl-grpo"
+          },
+          {
+            "title": "LSRL: Process-Supervised GRPO on Latent Recurrent ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.669.pdf"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about GRPO (Group Relative Policy Optimization) and its applications in reinforcement learning:\n\n## GRPO Overview\n\nGRPO is an online RL method that generates new responses during training and computes advantages by comparing them within groups. For each prompt, it samples a group of responses (typically 8-64) and computes advantages by normalizing each response's reward against the group mean and standard deviation.\n\n## Key Advantages\n\nGRPO (introduced in DeepSeekMath, then used in DeepSeek-R1) eliminates the critic entirely. GRPO is currently the most common RL optimizer—at least for open LLMs—to use for training LRMs with RLVR.\n\n## Applications to Information Extraction and Evidence Generation\n\nWhile the search results don't specifically address document-level information extraction with evidence generation, they do show GRPO being applied to related NLP tasks. For instance, Topic-Guided Reinforcement Learning with LLMs for Enhancing Multi-Document Summarization training uses GRPO, which demonstrates its use in document-level tasks. Additionally, researchers have incorporated search operation into the reasoning process and trained LLMs using reinforcement learning (i.e., GRPO) without any labeled data on reasoning chains.\n\n## 2026 Context\n\nThe recent research from 2026 shows the field has moved toward a modular stack: SFT for instruction following, preference optimization (DPO/SimPO/KTO) for alignment, and RL with verifiable rewards (GRPO/DAPO) for reasoning."
+    ],
+    "durationSeconds": 7.6096755329999946
+  },
+  "sourceToolAssistantUUID": "34659c97-101a-466a-9270-9b3938712a5c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 28 · 2026-05-10T18:54:39.069Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012acRDvNZampFZcnQGB665K`</summary>
+
+```json
+{
+  "query": "DocRED evidence sentences statistics average supporting sentences per relation"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "571b184e-c653-4c8c-9923-e2d194d43f13",
+  "isSidechain": false,
+  "requestId": "req_011CauPvWvqF1A1EXMXh45e9",
+  "type": "assistant",
+  "uuid": "068cbce2-20d9-4d77-9bbc-d0cdc8878f2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01FSL46nSCRoNfVCSoFMegKS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 944,
+      "cache_read_input_tokens": 36207,
+      "output_tokens": 62,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 944,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 62,
+          "cache_read_input_tokens": 36207,
+          "cache_creation_input_tokens": 944,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 944
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-10T18:54:49.746Z_
+
+<details><summary>↩ Tool result · `toolu_012acRDvNZampFZcnQGB665K`</summary>
+
+```text
+Web search results for query: "DocRED evidence sentences statistics average supporting sentences per relation"
+
+Links: [{"title":"CDER: Collaborative Evidence Retrieval for Document-level Relation Extraction","url":"https://arxiv.org/html/2504.06529"},{"title":"[1906.06127] DocRED: A Large-Scale Document-Level Relation Extraction Dataset","url":"https://ar5iv.labs.arxiv.org/html/1906.06127"},{"title":"[2008.12283] Entity and Evidence Guided Relation Extraction for DocRED","url":"https://arxiv.org/abs/2008.12283"},{"title":"Entity and Evidence Guided Relation Extraction for DocRED - ADS","url":"https://ui.adsabs.harvard.edu/abs/2020arXiv200812283H/abstract"},{"title":"[2008.12283v1] Entity and Evidence Guided Relation Extraction for DocRED","url":"https://arxiv.org/abs/2008.12283v1"},{"title":"Entity and Evidence Guided Relation Extraction for DocRED | Request PDF","url":"https://www.researchgate.net/publication/343931511_Entity_and_Evidence_Guided_Relation_Extraction_for_DocRED"},{"title":"[2302.08675] DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction","url":"https://ar5iv.labs.arxiv.org/html/2302.08675"},{"title":"DREEAM: Guiding Attention with Evidence for Improving ...","url":"https://aclanthology.org/2023.eacl-main.145.pdf"},{"title":"(PDF) DocRED: A Large-Scale Document-Level Relation Extraction Dataset","url":"https://www.researchgate.net/publication/333815327_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"},{"title":"Enhancing cross-evidence reasoning graph for document-level relation extraction - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11232587/"}]
+
+Based on the search results, here's what I found regarding DocRED evidence sentences statistics:
+
+## Key Statistics on Supporting Evidence
+
+Around 95% of positive entity pairs have a maximum of 3 supporting evidence sentences, with 94% of these pairs having a maximum of 2 sentences.
+
+Additionally, the average document length is 8 sentences.
+
+The search results also reference statistics tables from the original DocRED dataset paper that track metrics like "Avg. # of evi. per rel." (average number of evidence sentences per relation), though the specific numerical values for this metric aren't fully visible in the search results provided. The data appears in Table 1 of the DREEAM paper and related DocRED documentation, which differentiates between human-annotated and distantly-supervised data statistics.
+
+The evidence shows that supporting evidence in DocRED is relatively sparse, with most relations requiring only 1-3 sentences to support them, creating a notable imbalance between positive and negative evidence sentences within documents.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "068cbce2-20d9-4d77-9bbc-d0cdc8878f2e",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "4c5c9c70-5d91-4ca5-a5d6-0ada0a0da021",
+  "toolUseResult": {
+    "query": "DocRED evidence sentences statistics average supporting sentences per relation",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01K8zzjv2aEMQqDWHTwpRMpD",
+        "content": [
+          {
+            "title": "CDER: Collaborative Evidence Retrieval for Document-level Relation Extraction",
+            "url": "https://arxiv.org/html/2504.06529"
+          },
+          {
+            "title": "[1906.06127] DocRED: A Large-Scale Document-Level Relation Extraction Dataset",
+            "url": "https://ar5iv.labs.arxiv.org/html/1906.06127"
+          },
+          {
+            "title": "[2008.12283] Entity and Evidence Guided Relation Extraction for DocRED",
+            "url": "https://arxiv.org/abs/2008.12283"
+          },
+          {
+            "title": "Entity and Evidence Guided Relation Extraction for DocRED - ADS",
+            "url": "https://ui.adsabs.harvard.edu/abs/2020arXiv200812283H/abstract"
+          },
+          {
+            "title": "[2008.12283v1] Entity and Evidence Guided Relation Extraction for DocRED",
+            "url": "https://arxiv.org/abs/2008.12283v1"
+          },
+          {
+            "title": "Entity and Evidence Guided Relation Extraction for DocRED | Request PDF",
+            "url": "https://www.researchgate.net/publication/343931511_Entity_and_Evidence_Guided_Relation_Extraction_for_DocRED"
+          },
+          {
+            "title": "[2302.08675] DREEAM: Guiding Attention with Evidence for Improving Document-Level Relation Extraction",
+            "url": "https://ar5iv.labs.arxiv.org/html/2302.08675"
+          },
+          {
+            "title": "DREEAM: Guiding Attention with Evidence for Improving ...",
+            "url": "https://aclanthology.org/2023.eacl-main.145.pdf"
+          },
+          {
+            "title": "(PDF) DocRED: A Large-Scale Document-Level Relation Extraction Dataset",
+            "url": "https://www.researchgate.net/publication/333815327_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"
+          },
+          {
+            "title": "Enhancing cross-evidence reasoning graph for document-level relation extraction - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11232587/"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found regarding DocRED evidence sentences statistics:\n\n## Key Statistics on Supporting Evidence\n\nAround 95% of positive entity pairs have a maximum of 3 supporting evidence sentences, with 94% of these pairs having a maximum of 2 sentences.\n\nAdditionally, the average document length is 8 sentences.\n\nThe search results also reference statistics tables from the original DocRED dataset paper that track metrics like \"Avg. # of evi. per rel.\" (average number of evidence sentences per relation), though the specific numerical values for this metric aren't fully visible in the search results provided. The data appears in Table 1 of the DREEAM paper and related DocRED documentation, which differentiates between human-annotated and distantly-supervised data statistics.\n\nThe evidence shows that supporting evidence in DocRED is relatively sparse, with most relations requiring only 1-3 sentences to support them, creating a notable imbalance between positive and negative evidence sentences within documents."
+    ],
+    "durationSeconds": 10.674184623999986
+  },
+  "sourceToolAssistantUUID": "068cbce2-20d9-4d77-9bbc-d0cdc8878f2e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-10T18:54:49.749Z_
+
+```json
+{
+  "parentUuid": "4c5c9c70-5d91-4ca5-a5d6-0ada0a0da021",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "6d0525a9-1f3f-46b4-886f-df757f911686",
+  "timestamp": "2026-05-10T18:54:49.749Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-10T18:54:52.017Z_
+
+Let me now verify DREEAM's exact numbers and search for potential missing competitors.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6d0525a9-1f3f-46b4-886f-df757f911686",
+  "isSidechain": false,
+  "requestId": "req_011CauPwTv2uCaYgUSdBSkhj",
+  "type": "assistant",
+  "uuid": "bf91daea-af4e-4eba-82fe-55e9df10c694",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DawSg9CaBbtwvTSAGhyQJo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 935,
+      "cache_read_input_tokens": 37151,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 935,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 37151,
+          "cache_creation_input_tokens": 935,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 935
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 32 · 2026-05-10T18:54:55.334Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01Cr4gbdc2xZYwwUv28hBwcr`</summary>
+
+```json
+{
+  "url": "https://ar5iv.labs.arxiv.org/html/2302.08675",
+  "prompt": "Find the exact F1 scores on DocRED test set for DREEAM. Look for: (1) F1 and Ign F1 scores for RoBERTa-large with and without distant supervision, (2) Evidence F1 (Evi-F1) scores, (3) Any inference-stage fusion results. Report all exact numbers from the main results table."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "bf91daea-af4e-4eba-82fe-55e9df10c694",
+  "isSidechain": false,
+  "requestId": "req_011CauPwTv2uCaYgUSdBSkhj",
+  "type": "assistant",
+  "uuid": "12844cbc-9300-4568-9e80-f9dcc66ee258",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DawSg9CaBbtwvTSAGhyQJo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 935,
+      "cache_read_input_tokens": 37151,
+      "output_tokens": 193,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 935,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 193,
+          "cache_read_input_tokens": 37151,
+          "cache_creation_input_tokens": 935,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 935
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 33_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "12844cbc-9300-4568-9e80-f9dcc66ee258",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 34_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of FREIGE: Evidence-Grounded IE via Decomposed Entailment Verification (Round 4)",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 35 · 2026-05-10T18:54:59.294Z_
+
+<details><summary>↩ Tool result · `toolu_01Cr4gbdc2xZYwwUv28hBwcr`</summary>
+
+```text
+# DREEAM F1 Scores on DocRED Test Set
+
+Based on Table 2 in the paper, here are the exact results:
+
+## Without Distantly-Supervised Data (Teacher Model)
+**RoBERTa-large:**
+- Ign F1: 59.12
+- F1: 61.13
+- Evi F1: 51.71
+- With Inference-stage Fusion: Ign F1: 60.03, F1: 62.49
+
+## With Distantly-Supervised Data (Student Model)
+**RoBERTa-large:**
+- Ign F1: 65.20
+- F1: 67.22
+- Evi F1: 57.34
+- With Inference-stage Fusion: Ign F1: 65.47, F1: 67.53
+
+The student model with distant supervision and inference-stage fusion achieved the best performance, demonstrating that "ER self-training improves both RE and ER performance."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "12844cbc-9300-4568-9e80-f9dcc66ee258",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "56827157-435a-4fd6-a1b1-caa74cca4d5f",
+  "toolUseResult": {
+    "bytes": 485456,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# DREEAM F1 Scores on DocRED Test Set\n\nBased on Table 2 in the paper, here are the exact results:\n\n## Without Distantly-Supervised Data (Teacher Model)\n**RoBERTa-large:**\n- Ign F1: 59.12\n- F1: 61.13\n- Evi F1: 51.71\n- With Inference-stage Fusion: Ign F1: 60.03, F1: 62.49\n\n## With Distantly-Supervised Data (Student Model)\n**RoBERTa-large:**\n- Ign F1: 65.20\n- F1: 67.22\n- Evi F1: 57.34\n- With Inference-stage Fusion: Ign F1: 65.47, F1: 67.53\n\nThe student model with distant supervision and inference-stage fusion achieved the best performance, demonstrating that \"ER self-training improves both RE and ER performance.\"",
+    "durationMs": 3955,
+    "url": "https://ar5iv.labs.arxiv.org/html/2302.08675"
+  },
+  "sourceToolAssistantUUID": "12844cbc-9300-4568-9e80-f9dcc66ee258",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-10T18:55:01.901Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Xe5CHztCeV1cmQJnYiJb68`</summary>
+
+```json
+{
+  "query": "site:arxiv.org LLM document relation extraction GRPO evidence faithfulness reward 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "56827157-435a-4fd6-a1b1-caa74cca4d5f",
+  "isSidechain": false,
+  "requestId": "req_011CauPxAjD2arEg7jp1B11k",
+  "type": "assistant",
+  "uuid": "549f9e64-8a54-4ca7-a245-360a19dea819",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KfjY3RshmmmnqdnjrhqNxa",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 442,
+      "cache_read_input_tokens": 38086,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 442,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 38086,
+          "cache_creation_input_tokens": 442,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 442
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-10T18:55:10.576Z_
+
+<details><summary>↩ Tool result · `toolu_01Xe5CHztCeV1cmQJnYiJb68`</summary>
+
+```text
+Web search results for query: "site:arxiv.org LLM document relation extraction GRPO evidence faithfulness reward 2026"
+
+Links: [{"title":"EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models","url":"https://arxiv.org/html/2603.19532"},{"title":"Shaping Explanations: Semantic Reward Modeling with Encoder-Only Transformers for GRPO","url":"https://arxiv.org/html/2509.13081v1"},{"title":"Shaping Explanations: Semantic Reward Modeling with ...","url":"https://arxiv.org/pdf/2509.13081"},{"title":"CRAFT: Calibrated Reasoning with Answer-Faithful Traces for Multi-Hop Question Answering","url":"https://arxiv.org/html/2602.01348"},{"title":"R1-RE: Cross-Domain Relation Extraction with RLVR","url":"https://arxiv.org/html/2507.04642"},{"title":"Evidence-Augmented Policy Optimization with Reward Co-Evolution for Long-Context Reasoning","url":"https://arxiv.org/html/2601.10306"},{"title":"Teaching Large Language Models to Maintain Contextual Faithfulness via Synthetic Tasks and Reinforcement Learning","url":"https://arxiv.org/html/2505.16483"},{"title":"MORE-R1: Guiding LVLM for Multimodal Object-Entity Relation Extraction via Stepwise Reasoning with Reinforcement Learning","url":"https://arxiv.org/html/2603.09478"},{"title":"DMRL: Data- and Model-aware Reward Learning for Data Extraction","url":"https://arxiv.org/html/2505.06284"},{"title":"Evidence-Augmented Policy Optimization with Reward Co-Evolution for","url":"https://arxiv.org/pdf/2601.10306"}]
+
+Based on the web search results from arXiv, I found several relevant papers that combine these concepts. Here are the key findings:
+
+## Top Results
+
+**1. EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models** (March 2026)
+
+This paper proposes EvidenceRL, a reinforcement learning framework that enforces evidence grounding as a differentiable training objective using automated NLI and LLM-judge rewards. The training uses GRPO with rewards for correctness, and introduces a Focus-Then-Verify reward architecture to resolve signal dilution in document-level scoring.
+
+**2. R1-RE: Cross-Domain Relation Extraction with RLVR** (August 2025)
+
+This paper proposes R1-RE, a reinforcement learning training framework that aligns an LLM's reasoning with the multi-step workflow of human annotators. The framework optimizes with the GRPO algorithm and adopts a rule-based reward scheme similar to those used in DeepSeek-R1-Zero and Logic R1.
+
+**3. Evidence-Augmented Policy Optimization with Reward Co-Evolution for Long-Context Reasoning** (Recent, ~3 weeks ago)
+
+This proposes Evidence-Augmented Policy Optimization (EAPO), which shifts supervision from sparse outcome signals to dense, process-oriented guidance, recognizing evidence extraction as the decisive bottleneck.
+
+**4. CRAFT: Calibrated Reasoning with Answer-Faithful Traces** (March 2026)
+
+CRAFT is a reinforcement learning framework based on Group Relative Policy Optimization for retrieval-augmented multi-hop question answering.
+
+These papers directly address the intersection of LLM document processing, relation extraction, GRPO training, and evidence faithfulness rewards that your search query targeted.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "549f9e64-8a54-4ca7-a245-360a19dea819",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "09fd0670-29a3-433b-a511-d7f55b33107d",
+  "toolUseResult": {
+    "query": "site:arxiv.org LLM document relation extraction GRPO evidence faithfulness reward 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018SEj4CyYHgHDoJz82hLjUA",
+        "content": [
+          {
+            "title": "EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models",
+            "url": "https://arxiv.org/html/2603.19532"
+          },
+          {
+            "title": "Shaping Explanations: Semantic Reward Modeling with Encoder-Only Transformers for GRPO",
+            "url": "https://arxiv.org/html/2509.13081v1"
+          },
+          {
+            "title": "Shaping Explanations: Semantic Reward Modeling with ...",
+            "url": "https://arxiv.org/pdf/2509.13081"
+          },
+          {
+            "title": "CRAFT: Calibrated Reasoning with Answer-Faithful Traces for Multi-Hop Question Answering",
+            "url": "https://arxiv.org/html/2602.01348"
+          },
+          {
+            "title": "R1-RE: Cross-Domain Relation Extraction with RLVR",
+            "url": "https://arxiv.org/html/2507.04642"
+          },
+          {
+            "title": "Evidence-Augmented Policy Optimization with Reward Co-Evolution for Long-Context Reasoning",
+            "url": "https://arxiv.org/html/2601.10306"
+          },
+          {
+            "title": "Teaching Large Language Models to Maintain Contextual Faithfulness via Synthetic Tasks and Reinforcement Learning",
+            "url": "https://arxiv.org/html/2505.16483"
+          },
+          {
+            "title": "MORE-R1: Guiding LVLM for Multimodal Object-Entity Relation Extraction via Stepwise Reasoning with Reinforcement Learning",
+            "url": "https://arxiv.org/html/2603.09478"
+          },
+          {
+            "title": "DMRL: Data- and Model-aware Reward Learning for Data Extraction",
+            "url": "https://arxiv.org/html/2505.06284"
+          },
+          {
+            "title": "Evidence-Augmented Policy Optimization with Reward Co-Evolution for",
+            "url": "https://arxiv.org/pdf/2601.10306"
+          }
+        ]
+      },
+      "Based on the web search results from arXiv, I found several relevant papers that combine these concepts. Here are the key findings:\n\n## Top Results\n\n**1. EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models** (March 2026)\n\nThis paper proposes EvidenceRL, a reinforcement learning framework that enforces evidence grounding as a differentiable training objective using automated NLI and LLM-judge rewards. The training uses GRPO with rewards for correctness, and introduces a Focus-Then-Verify reward architecture to resolve signal dilution in document-level scoring.\n\n**2. R1-RE: Cross-Domain Relation Extraction with RLVR** (August 2025)\n\nThis paper proposes R1-RE, a reinforcement learning training framework that aligns an LLM's reasoning with the multi-step workflow of human annotators. The framework optimizes with the GRPO algorithm and adopts a rule-based reward scheme similar to those used in DeepSeek-R1-Zero and Logic R1.\n\n**3. Evidence-Augmented Policy Optimization with Reward Co-Evolution for Long-Context Reasoning** (Recent, ~3 weeks ago)\n\nThis proposes Evidence-Augmented Policy Optimization (EAPO), which shifts supervision from sparse outcome signals to dense, process-oriented guidance, recognizing evidence extraction as the decisive bottleneck.\n\n**4. CRAFT: Calibrated Reasoning with Answer-Faithful Traces** (March 2026)\n\nCRAFT is a reinforcement learning framework based on Group Relative Policy Optimization for retrieval-augmented multi-hop question answering.\n\nThese papers directly address the intersection of LLM document processing, relation extraction, GRPO training, and evidence faithfulness rewards that your search query targeted."
+    ],
+    "durationSeconds": 8.6708517
+  },
+  "sourceToolAssistantUUID": "549f9e64-8a54-4ca7-a245-360a19dea819",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 38 · 2026-05-10T18:55:12.565Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01PGUfDeaFJktbs1t5iwUiHr`</summary>
+
+```json
+{
+  "query": "Ru-LLM logical rule document-level relation extraction 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "09fd0670-29a3-433b-a511-d7f55b33107d",
+  "isSidechain": false,
+  "requestId": "req_011CauPxzxcNuQ1Q5okcdHj8",
+  "type": "assistant",
+  "uuid": "224f9b20-618e-49be-a07d-81a1b9d29a98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011qqPHLa93vrLW59BK3PkCY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 968,
+      "cache_read_input_tokens": 38528,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 968,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 38528,
+          "cache_creation_input_tokens": 968,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 968
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 39 · 2026-05-10T18:55:18.747Z_
+
+<details><summary>↩ Tool result · `toolu_01PGUfDeaFJktbs1t5iwUiHr`</summary>
+
+```text
+Web search results for query: "Ru-LLM logical rule document-level relation extraction 2026"
+
+Links: [{"title":"Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-981-95-3343-5_11"},{"title":"GitHub - rudongyu/LogiRE: Learning Logic Rules for Document-Level Relation Extraction · GitHub","url":"https://github.com/rudongyu/LogiRE"},{"title":"Toward Better Document-Level Relation Extraction: De-sampling and Mixture of Experts in Action | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-032-04549-2_12"},{"title":"Learning Logic Rules for Document-Level Relation Extraction | Request PDF","url":"https://www.researchgate.net/publication/357123894_Learning_Logic_Rules_for_Document-Level_Relation_Extraction"},{"title":"RuAG: LEARNED-RULE-AUGMENTED GENERATION","url":"https://proceedings.iclr.cc/paper_files/paper/2025/file/5d7e8991f75f3e5af14edf7aebb5be5e-Paper-Conference.pdf"},{"title":"Preprint. RuAG: LEARNED-RULE-AUGMENTED GENERATION FOR LARGE LANGUAGE MODELS","url":"https://arxiv.org/pdf/2411.03349"},{"title":"Relational semantic-enhanced logic rule learning for knowledge graph completion | International Journal of Machine Learning and Cybernetics | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s13042-024-02434-7"},{"title":"End-to-end Learning of Logical Rules for Enhancing Document-level Relation Extraction | OpenReview","url":"https://openreview.net/forum?id=wp5Up6tGtr"},{"title":"Learning Logic Rules for Document-Level Relation Extraction","url":"https://aclanthology.org/2021.emnlp-main.95.pdf"},{"title":"RuAG: Learned-rule-augmented Generation for Large Language Models [Quick Review]","url":"https://liner.com/review/ruag-learnedruleaugmented-generation-for-large-language-models"}]
+
+Based on the search results, I found information about Ru-LLM related to logical rule-based document-level relation extraction:
+
+## Ru-LLM Overview
+
+Document-level Relation Extraction (DocRE) aims to identify the relation types between entity pairs within a document. Ru-LLM transforms logical rules into concise prompts to guide initial result generation, which is then subjected to a Chain-of-Thought verification process that retains only those triples satisfying all rules.
+
+## Performance Results
+
+Experimental results on the three datasets DWIE, DocRED, and Re-DocRED demonstrate that Ru-LLM outperforms existing implicit reasoning models, LLM-based models, and rule-based frameworks.
+
+## Related Approaches
+
+The search results also reveal related frameworks in this research area:
+
+- **RuAG (Learned-Rule-Augmented Generation)**: The RuAG framework significantly outperforms both traditional deep learning models and other LLM-based baselines in document-level relation extraction, achieving an F1-score of 60.42% with GPT-4.
+
+- **LogiRE**: The LogiRE framework can not only explicitly capture long-range semantic dependencies, but also show more interpretability through the introduction of logic rules.
+
+These approaches represent recent advances in 2024-2026 that leverage logical rules and large language models to improve document-level relation extraction tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "224f9b20-618e-49be-a07d-81a1b9d29a98",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "8082a178-872f-40e4-817d-5ea3b8c90261",
+  "toolUseResult": {
+    "query": "Ru-LLM logical rule document-level relation extraction 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PEpgh7wpiCgRVjkBE91vG9",
+        "content": [
+          {
+            "title": "Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-981-95-3343-5_11"
+          },
+          {
+            "title": "GitHub - rudongyu/LogiRE: Learning Logic Rules for Document-Level Relation Extraction · GitHub",
+            "url": "https://github.com/rudongyu/LogiRE"
+          },
+          {
+            "title": "Toward Better Document-Level Relation Extraction: De-sampling and Mixture of Experts in Action | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-032-04549-2_12"
+          },
+          {
+            "title": "Learning Logic Rules for Document-Level Relation Extraction | Request PDF",
+            "url": "https://www.researchgate.net/publication/357123894_Learning_Logic_Rules_for_Document-Level_Relation_Extraction"
+          },
+          {
+            "title": "RuAG: LEARNED-RULE-AUGMENTED GENERATION",
+            "url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/5d7e8991f75f3e5af14edf7aebb5be5e-Paper-Conference.pdf"
+          },
+          {
+            "title": "Preprint. RuAG: LEARNED-RULE-AUGMENTED GENERATION FOR LARGE LANGUAGE MODELS",
+            "url": "https://arxiv.org/pdf/2411.03349"
+          },
+          {
+            "title": "Relational semantic-enhanced logic rule learning for knowledge graph completion | International Journal of Machine Learning and Cybernetics | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s13042-024-02434-7"
+          },
+          {
+            "title": "End-to-end Learning of Logical Rules for Enhancing Document-level Relation Extraction | OpenReview",
+            "url": "https://openreview.net/forum?id=wp5Up6tGtr"
+          },
+          {
+            "title": "Learning Logic Rules for Document-Level Relation Extraction",
+            "url": "https://aclanthology.org/2021.emnlp-main.95.pdf"
+          },
+          {
+            "title": "RuAG: Learned-rule-augmented Generation for Large Language Models [Quick Review]",
+            "url": "https://liner.com/review/ruag-learnedruleaugmented-generation-for-large-language-models"
+          }
+        ]
+      },
+      "Based on the search results, I found information about Ru-LLM related to logical rule-based document-level relation extraction:\n\n## Ru-LLM Overview\n\nDocument-level Relation Extraction (DocRE) aims to identify the relation types between entity pairs within a document. Ru-LLM transforms logical rules into concise prompts to guide initial result generation, which is then subjected to a Chain-of-Thought verification process that retains only those triples satisfying all rules.\n\n## Performance Results\n\nExperimental results on the three datasets DWIE, DocRED, and Re-DocRED demonstrate that Ru-LLM outperforms existing implicit reasoning models, LLM-based models, and rule-based frameworks.\n\n## Related Approaches\n\nThe search results also reveal related frameworks in this research area:\n\n- **RuAG (Learned-Rule-Augmented Generation)**: The RuAG framework significantly outperforms both traditional deep learning models and other LLM-based baselines in document-level relation extraction, achieving an F1-score of 60.42% with GPT-4.\n\n- **LogiRE**: The LogiRE framework can not only explicitly capture long-range semantic dependencies, but also show more interpretability through the introduction of logic rules.\n\nThese approaches represent recent advances in 2024-2026 that leverage logical rules and large language models to improve document-level relation extraction tasks."
+    ],
+    "durationSeconds": 6.174199474000008
+  },
+  "sourceToolAssistantUUID": "224f9b20-618e-49be-a07d-81a1b9d29a98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40 · 2026-05-10T18:55:21.116Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01X6UHd9hUjTUngzMfP5U18p`</summary>
+
+```json
+{
+  "query": "site:arxiv.org NLI entailment reward reinforcement learning structured extraction 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "8082a178-872f-40e4-817d-5ea3b8c90261",
+  "isSidechain": false,
+  "requestId": "req_011CauPybw3T98VPKXFbrDDx",
+  "type": "assistant",
+  "uuid": "cdcdee77-ed57-4de6-941b-24e166603dea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Hs9amKrHtm41qPiK4cRxcY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 994,
+      "cache_read_input_tokens": 39496,
+      "output_tokens": 75,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 994,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 75,
+          "cache_read_input_tokens": 39496,
+          "cache_creation_input_tokens": 994,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 994
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 41 · 2026-05-10T18:55:34.499Z_
+
+<details><summary>↩ Tool result · `toolu_01X6UHd9hUjTUngzMfP5U18p`</summary>
+
+```text
+Web search results for query: "site:arxiv.org NLI entailment reward reinforcement learning structured extraction 2025 2026"
+
+Links: [{"title":"Pushing the boundary on Natural Language Inference","url":"https://arxiv.org/html/2504.18376"},{"title":"[1907.09692] Discourse Marker Augmented Network with Reinforcement Learning for Natural Language Inference","url":"https://arxiv.org/abs/1907.09692"},{"title":"Keyframe-Guided Structured Rewards for Reinforcement Learning in Long-Horizon Laboratory Robotics","url":"https://arxiv.org/html/2603.00719"},{"title":"VERITAS-NLI: Validation and Extraction of Reliable Information Through Automated Scraping and Natural Language Inference","url":"https://arxiv.org/html/2410.09455v1"},{"title":"Building Efficient Universal Classifiers with Natural Language Inference","url":"https://arxiv.org/html/2312.17543v2"},{"title":"[2411.14251] Natural Language Reinforcement Learning","url":"https://arxiv.org/abs/2411.14251"},{"title":"INSIGHT: End-to-End Neuro-Symbolic Visual Reinforcement Learning with Language Explanations","url":"https://arxiv.org/html/2403.12451v1"},{"title":"1 Recent Trends in Deep Learning Based Natural Language Processing","url":"https://arxiv.org/pdf/1708.02709"},{"title":"Reinforcement Learning from Human Feedback","url":"https://arxiv.org/html/2504.12501v3"},{"title":"The RL/LLM Taxonomy Tree: Reviewing Synergies Between Reinforcement Learning and Large Language Models","url":"https://arxiv.org/html/2402.01874v1"}]
+
+I found several relevant papers on arxiv.org related to your search query. Here are the most notable results:
+
+## Most Relevant Recent Papers (2025-2026):
+
+1. **"Pushing the boundary on Natural Language Inference"** (May 2025)
+   This work applies a reinforcement learning-based approach using Group Relative Policy Optimization (GRPO) for Chain-of-Thought (CoT) learning in NLI, eliminating the need for labeled rationales and enabling this type of training on more challenging datasets such as ANLI.
+
+2. **"Keyframe-Guided Structured Rewards for Reinforcement Learning in Long-Horizon Laboratory Robotics"** (February 2026)
+   This paper proposes a Keyframe-Guided Reward Generation Framework that automatically extracts kinematics-aware keyframes from demonstrations, generates stage-wise targets via a diffusion-based predictor in latent space, and constructs a geometric progress-based reward to guide online reinforcement learning.
+
+3. **"Natural Language Reinforcement Learning"** (May 2025)
+   This paper introduces Natural Language Reinforcement Learning (NLRL), a framework that extends RL principles into natural language counterparts. Central to NLRL is the Language Value Function (LVF), which redefines value as an interpretable linguistic narrative articulating the rationale behind an evaluation.
+
+## Other Relevant Papers:
+
+4. **"VERITAS-NLI: Validation and Extraction of Reliable Information Through Automated Scraping and Natural Language Inference"** (October 2024)
+   - Focuses on using NLI for information extraction and validation
+
+5. **"Discourse Marker Augmented Network with Reinforcement Learning for Natural Language Inference"** (2019)
+   This work uses reinforcement learning to optimize a new objective function with a reward defined by the property of the NLI datasets to make full use of the labels information.
+
+The search returned papers spanning from 2019 to 2026, with the most recent works in 2025-2026 specifically combining NLI, entailment, reinforcement learning, and structured approaches.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cdcdee77-ed57-4de6-941b-24e166603dea",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "e9873226-44ef-470f-853b-e80491612de9",
+  "toolUseResult": {
+    "query": "site:arxiv.org NLI entailment reward reinforcement learning structured extraction 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017eE5wV1mKUimMRHUB6aK4v",
+        "content": [
+          {
+            "title": "Pushing the boundary on Natural Language Inference",
+            "url": "https://arxiv.org/html/2504.18376"
+          },
+          {
+            "title": "[1907.09692] Discourse Marker Augmented Network with Reinforcement Learning for Natural Language Inference",
+            "url": "https://arxiv.org/abs/1907.09692"
+          },
+          {
+            "title": "Keyframe-Guided Structured Rewards for Reinforcement Learning in Long-Horizon Laboratory Robotics",
+            "url": "https://arxiv.org/html/2603.00719"
+          },
+          {
+            "title": "VERITAS-NLI: Validation and Extraction of Reliable Information Through Automated Scraping and Natural Language Inference",
+            "url": "https://arxiv.org/html/2410.09455v1"
+          },
+          {
+            "title": "Building Efficient Universal Classifiers with Natural Language Inference",
+            "url": "https://arxiv.org/html/2312.17543v2"
+          },
+          {
+            "title": "[2411.14251] Natural Language Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2411.14251"
+          },
+          {
+            "title": "INSIGHT: End-to-End Neuro-Symbolic Visual Reinforcement Learning with Language Explanations",
+            "url": "https://arxiv.org/html/2403.12451v1"
+          },
+          {
+            "title": "1 Recent Trends in Deep Learning Based Natural Language Processing",
+            "url": "https://arxiv.org/pdf/1708.02709"
+          },
+          {
+            "title": "Reinforcement Learning from Human Feedback",
+            "url": "https://arxiv.org/html/2504.12501v3"
+          },
+          {
+            "title": "The RL/LLM Taxonomy Tree: Reviewing Synergies Between Reinforcement Learning and Large Language Models",
+            "url": "https://arxiv.org/html/2402.01874v1"
+          }
+        ]
+      },
+      "I found several relevant papers on arxiv.org related to your search query. Here are the most notable results:\n\n## Most Relevant Recent Papers (2025-2026):\n\n1. **\"Pushing the boundary on Natural Language Inference\"** (May 2025)\n   This work applies a reinforcement learning-based approach using Group Relative Policy Optimization (GRPO) for Chain-of-Thought (CoT) learning in NLI, eliminating the need for labeled rationales and enabling this type of training on more challenging datasets such as ANLI.\n\n2. **\"Keyframe-Guided Structured Rewards for Reinforcement Learning in Long-Horizon Laboratory Robotics\"** (February 2026)\n   This paper proposes a Keyframe-Guided Reward Generation Framework that automatically extracts kinematics-aware keyframes from demonstrations, generates stage-wise targets via a diffusion-based predictor in latent space, and constructs a geometric progress-based reward to guide online reinforcement learning.\n\n3. **\"Natural Language Reinforcement Learning\"** (May 2025)\n   This paper introduces Natural Language Reinforcement Learning (NLRL), a framework that extends RL principles into natural language counterparts. Central to NLRL is the Language Value Function (LVF), which redefines value as an interpretable linguistic narrative articulating the rationale behind an evaluation.\n\n## Other Relevant Papers:\n\n4. **\"VERITAS-NLI: Validation and Extraction of Reliable Information Through Automated Scraping and Natural Language Inference\"** (October 2024)\n   - Focuses on using NLI for information extraction and validation\n\n5. **\"Discourse Marker Augmented Network with Reinforcement Learning for Natural Language Inference\"** (2019)\n   This work uses reinforcement learning to optimize a new objective function with a reward defined by the property of the NLI datasets to make full use of the labels information.\n\nThe search returned papers spanning from 2019 to 2026, with the most recent works in 2025-2026 specifically combining NLI, entailment, reinforcement learning, and structured approaches."
+    ],
+    "durationSeconds": 13.37874047199999
+  },
+  "sourceToolAssistantUUID": "cdcdee77-ed57-4de6-941b-24e166603dea",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-10T18:55:36.417Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019SE4cqjjJZ6xQpqfmtdKBk`</summary>
+
+```json
+{
+  "query": "DocRED benchmark leaderboard SOTA 2025 2026 paperswithcode"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e9873226-44ef-470f-853b-e80491612de9",
+  "isSidechain": false,
+  "requestId": "req_011CauPzmH9Xg6DB7X29D6aE",
+  "type": "assistant",
+  "uuid": "3e36791f-3f23-4550-87b6-711b77ace5bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MawENnaPX61qrgMmPyemhM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1031,
+      "cache_read_input_tokens": 40490,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1031,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 40490,
+          "cache_creation_input_tokens": 1031,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1031
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-10T18:55:41.499Z_
+
+<details><summary>↩ Tool result · `toolu_019SE4cqjjJZ6xQpqfmtdKBk`</summary>
+
+```text
+Web search results for query: "DocRED benchmark leaderboard SOTA 2025 2026 paperswithcode"
+
+Links: [{"title":"DocRED Benchmark (Relation Extraction)","url":"https://paperswithcode.com/sota/relation-extraction-on-docred"},{"title":"Papers with Code is Dead — Best Alternatives 2026 by Use Case | Codesota | CodeSOTA","url":"https://www.codesota.com/papers-with-code"},{"title":"LEGOBench: Leaderboard Generation Benchmark for Scientific Models","url":"https://arxiv.org/html/2401.06233v1"},{"title":"GitHub - tonytan48/KD-DocRE: Implementation of Document-level Relation Extraction with Knowledge Distillation and Adaptive Focal Loss · GitHub","url":"https://github.com/tonytan48/KD-DocRE"},{"title":"Papers with code · GitHub","url":"https://github.com/paperswithcode"},{"title":"Papers with Code - DocRED Benchmark (Few-Shot Relation Classification)","url":"https://paperswithcode.com/sota/few-shot-relation-classification-on-docred"},{"title":"Browse the State-of-the-Art in Machine Learning","url":"https://paperswithcode.com/sota"},{"title":"Codesota — the open, callable registry of SOTA","url":"https://www.codesota.com/"},{"title":"SWE-bench Leaderboards","url":"https://www.swebench.com/"},{"title":"Papers with Code - DocRED-IE Benchmark (Document-level Relation Extraction)","url":"https://paperswithcode.com/sota/document-level-relation-extraction-on-docred-3"}]
+
+I found search results related to the DocRED benchmark on Papers with Code. However, the specific SOTA results for 2025-2026 are not clearly displayed in these results. Let me provide you with what I found:
+
+The current state-of-the-art on DocRED for few-shot relation classification is DL-MNAV, and the current state-of-the-art on DocRED-IE is REXEL.
+
+The search results indicate that Papers with Code (the original platform) is no longer actively maintained. The SOTA leaderboards and comprehensive benchmark tracking are gone from Papers with Code. However, Codesota is a successor to Papers with Code.
+
+To get the most current and detailed SOTA results for the DocRED benchmark, you may want to:
+1. Visit the original Papers with Code URL directly: https://paperswithcode.com/sota/relation-extraction-on-docred
+2. Check Codesota (https://www.codesota.com/) as a newer alternative that maintains benchmark leaderboards
+
+Unfortunately, the search results don't provide comprehensive 2025-2026 leaderboard rankings with specific scores and models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3e36791f-3f23-4550-87b6-711b77ace5bb",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "7512398b-4b69-4b50-8516-716e6294365b",
+  "toolUseResult": {
+    "query": "DocRED benchmark leaderboard SOTA 2025 2026 paperswithcode",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0157CGPHNLfeFbC6r8h5TEwx",
+        "content": [
+          {
+            "title": "DocRED Benchmark (Relation Extraction)",
+            "url": "https://paperswithcode.com/sota/relation-extraction-on-docred"
+          },
+          {
+            "title": "Papers with Code is Dead — Best Alternatives 2026 by Use Case | Codesota | CodeSOTA",
+            "url": "https://www.codesota.com/papers-with-code"
+          },
+          {
+            "title": "LEGOBench: Leaderboard Generation Benchmark for Scientific Models",
+            "url": "https://arxiv.org/html/2401.06233v1"
+          },
+          {
+            "title": "GitHub - tonytan48/KD-DocRE: Implementation of Document-level Relation Extraction with Knowledge Distillation and Adaptive Focal Loss · GitHub",
+            "url": "https://github.com/tonytan48/KD-DocRE"
+          },
+          {
+            "title": "Papers with code · GitHub",
+            "url": "https://github.com/paperswithcode"
+          },
+          {
+            "title": "Papers with Code - DocRED Benchmark (Few-Shot Relation Classification)",
+            "url": "https://paperswithcode.com/sota/few-shot-relation-classification-on-docred"
+          },
+          {
+            "title": "Browse the State-of-the-Art in Machine Learning",
+            "url": "https://paperswithcode.com/sota"
+          },
+          {
+            "title": "Codesota — the open, callable registry of SOTA",
+            "url": "https://www.codesota.com/"
+          },
+          {
+            "title": "SWE-bench Leaderboards",
+            "url": "https://www.swebench.com/"
+          },
+          {
+            "title": "Papers with Code - DocRED-IE Benchmark (Document-level Relation Extraction)",
+            "url": "https://paperswithcode.com/sota/document-level-relation-extraction-on-docred-3"
+          }
+        ]
+      },
+      "I found search results related to the DocRED benchmark on Papers with Code. However, the specific SOTA results for 2025-2026 are not clearly displayed in these results. Let me provide you with what I found:\n\nThe current state-of-the-art on DocRED for few-shot relation classification is DL-MNAV, and the current state-of-the-art on DocRED-IE is REXEL.\n\nThe search results indicate that Papers with Code (the original platform) is no longer actively maintained. The SOTA leaderboards and comprehensive benchmark tracking are gone from Papers with Code. However, Codesota is a successor to Papers with Code.\n\nTo get the most current and detailed SOTA results for the DocRED benchmark, you may want to:\n1. Visit the original Papers with Code URL directly: https://paperswithcode.com/sota/relation-extraction-on-docred\n2. Check Codesota (https://www.codesota.com/) as a newer alternative that maintains benchmark leaderboards\n\nUnfortunately, the search results don't provide comprehensive 2025-2026 leaderboard rankings with specific scores and models."
+    ],
+    "durationSeconds": 5.077102027999993
+  },
+  "sourceToolAssistantUUID": "3e36791f-3f23-4550-87b6-711b77ace5bb",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "7512398b-4b69-4b50-8516-716e6294365b",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 45_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of FREIGE: Evidence-Grounded IE via Decomposed Entailment Verification (Round 4)",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 46 · 2026-05-10T18:55:45.206Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KiAMrtVwsGjoBSJxVSfmxA`</summary>
+
+```json
+{
+  "url": "https://paperswithcode.com/sota/relation-extraction-on-docred",
+  "prompt": "List the top 10 methods on the DocRED benchmark leaderboard with their F1 scores, model names, dates, and paper titles. Focus on the most recent entries from 2024-2026."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7512398b-4b69-4b50-8516-716e6294365b",
+  "isSidechain": false,
+  "requestId": "req_011CauQ1HBV1hrF8rKrEguL2",
+  "type": "assistant",
+  "uuid": "d280a070-d9d5-41f2-8b2c-81af50a6b72b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014Cdz1QjQQMg3CLRZZ2RQAo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 787,
+      "cache_read_input_tokens": 41521,
+      "output_tokens": 132,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 787,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 132,
+          "cache_read_input_tokens": 41521,
+          "cache_creation_input_tokens": 787,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 787
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 47 · 2026-05-10T18:55:45.440Z_
+
+<details><summary>↩ Tool result · `toolu_01KiAMrtVwsGjoBSJxVSfmxA`</summary>
+
+```text
+REDIRECT DETECTED: The URL redirects to a different host.
+
+Original URL: https://paperswithcode.com/sota/relation-extraction-on-docred
+Redirect URL: https://huggingface.co/papers/trending
+Status: 302 Found
+
+To complete your request, I need to fetch content from the redirected URL. Please use WebFetch again with these parameters:
+- url: "https://huggingface.co/papers/trending"
+- prompt: "List the top 10 methods on the DocRED benchmark leaderboard with their F1 scores, model names, dates, and paper titles. Focus on the most recent entries from 2024-2026."
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d280a070-d9d5-41f2-8b2c-81af50a6b72b",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "d1a025dd-18b9-42ed-a721-47ced6b46b72",
+  "toolUseResult": {
+    "bytes": 559,
+    "code": 302,
+    "codeText": "Found",
+    "result": "REDIRECT DETECTED: The URL redirects to a different host.\n\nOriginal URL: https://paperswithcode.com/sota/relation-extraction-on-docred\nRedirect URL: https://huggingface.co/papers/trending\nStatus: 302 Found\n\nTo complete your request, I need to fetch content from the redirected URL. Please use WebFetch again with these parameters:\n- url: \"https://huggingface.co/papers/trending\"\n- prompt: \"List the top 10 methods on the DocRED benchmark leaderboard with their F1 scores, model names, dates, and paper titles. Focus on the most recent entries from 2024-2026.\"",
+    "durationMs": 232,
+    "url": "https://paperswithcode.com/sota/relation-extraction-on-docred"
+  },
+  "sourceToolAssistantUUID": "d280a070-d9d5-41f2-8b2c-81af50a6b72b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 48 · 2026-05-10T18:55:49.138Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Q4nXoKMSTdtYNtQsgZQ839`</summary>
+
+```json
+{
+  "query": "\"DocRED\" \"test\" F1 relation extraction state-of-the-art 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d1a025dd-18b9-42ed-a721-47ced6b46b72",
+  "isSidechain": false,
+  "requestId": "req_011CauQ1a9CWd6yvcSvYMZjQ",
+  "type": "assistant",
+  "uuid": "36e87231-6343-41ae-9578-f0d1e2426c79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014fG1xbJ2Atr4oGGtWki2gx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 301,
+      "cache_read_input_tokens": 42308,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 301,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 42308,
+          "cache_creation_input_tokens": 301,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 301
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 49 · 2026-05-10T18:55:56.636Z_
+
+<details><summary>↩ Tool result · `toolu_01Q4nXoKMSTdtYNtQsgZQ839`</summary>
+
+```text
+Web search results for query: ""DocRED" "test" F1 relation extraction state-of-the-art 2025 2026"
+
+Links: [{"title":"DocRED: A Large-Scale Document-Level Relation Extraction Dataset - ACL Anthology","url":"https://aclanthology.org/P19-1074/"},{"title":"[1906.06127] DocRED: A Large-Scale Document-Level Relation Extraction Dataset","url":"https://arxiv.org/abs/1906.06127"},{"title":"DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Request PDF","url":"https://www.researchgate.net/publication/335780641_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"},{"title":"Revisiting DocRED – Addressing the False Negative Problem in Relation Extraction","url":"https://arxiv.org/html/2205.12696"},{"title":"[2205.12696] Revisiting DocRED -- Addressing the False Negative Problem in Relation Extraction","url":"https://arxiv.org/abs/2205.12696"},{"title":"AutoRE: Document-Level Relation Extraction with Large Language Models","url":"https://arxiv.org/html/2403.14888v3"},{"title":"(PDF) DocRED: A Large-Scale Document-Level Relation Extraction Dataset","url":"https://www.researchgate.net/publication/333815327_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"},{"title":"Document-level Relation Extraction via Separate Relation Representation and Logical Reasoning | ACM Transactions on Information Systems","url":"https://dl.acm.org/doi/10.1145/3597610"},{"title":"[PDF] DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DocRED:-A-Large-Scale-Document-Level-Relation-Yao-Ye/2745fc72e1dd53d1c30f17cf05841b163c2f63c9"},{"title":"Document-Level Relation Extraction Model Based on Boundary Distance Loss and Long-Tail Relation Enhancement | SpringerLink","url":"https://link.springer.com/chapter/10.1007/978-981-96-0119-6_26"}]
+
+Based on the search results, here's what I found about DocRED test set F1 scores and state-of-the-art relation extraction:
+
+## DocRED Dataset Overview
+
+DocRED is a large-scale dataset constructed from Wikipedia and Wikidata that annotates both named entities and relations, requiring reading multiple sentences in a document to extract entities and infer their relations.
+
+## Performance on DocRED Test Set
+
+The search results show several relevant findings about test set performance:
+
+There is a large gap between positive relation classification and relation extraction on DocRED, with 27.71 F1 points difference (91.78 vs. 64.07 F1). 
+
+A revised dataset called Re-DocRED was created by re-annotating 4,053 documents, with state-of-the-art neural models trained and evaluated on Re-DocRED achieving performance improvements of around 13 F1 points.
+
+Recent work using the refined Re-DocRED test set (consisting of 499 articles and 17,448 triplet facts) shows methods achieving F1 scores ranging from approximately 72-84% depending on the specific approach and subtask.
+
+## State-of-the-Art Progress
+
+DocRED has been shown to be challenging for existing relation extraction methods, indicating that document-level RE remains an open problem requiring further efforts.
+
+However, the search results don't contain specific state-of-the-art F1 scores explicitly labeled as "2025" or "2026" benchmarks. For the most recent benchmark results, you may want to check leaderboards on platforms like Hugging Face or the official DocRED repository.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "36e87231-6343-41ae-9578-f0d1e2426c79",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "43e24f86-f8e0-4a63-a68f-9c64a242e5ec",
+  "toolUseResult": {
+    "query": "\"DocRED\" \"test\" F1 relation extraction state-of-the-art 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VE8zL6BzDEiJ7RXahiGkKs",
+        "content": [
+          {
+            "title": "DocRED: A Large-Scale Document-Level Relation Extraction Dataset - ACL Anthology",
+            "url": "https://aclanthology.org/P19-1074/"
+          },
+          {
+            "title": "[1906.06127] DocRED: A Large-Scale Document-Level Relation Extraction Dataset",
+            "url": "https://arxiv.org/abs/1906.06127"
+          },
+          {
+            "title": "DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Request PDF",
+            "url": "https://www.researchgate.net/publication/335780641_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"
+          },
+          {
+            "title": "Revisiting DocRED – Addressing the False Negative Problem in Relation Extraction",
+            "url": "https://arxiv.org/html/2205.12696"
+          },
+          {
+            "title": "[2205.12696] Revisiting DocRED -- Addressing the False Negative Problem in Relation Extraction",
+            "url": "https://arxiv.org/abs/2205.12696"
+          },
+          {
+            "title": "AutoRE: Document-Level Relation Extraction with Large Language Models",
+            "url": "https://arxiv.org/html/2403.14888v3"
+          },
+          {
+            "title": "(PDF) DocRED: A Large-Scale Document-Level Relation Extraction Dataset",
+            "url": "https://www.researchgate.net/publication/333815327_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"
+          },
+          {
+            "title": "Document-level Relation Extraction via Separate Relation Representation and Logical Reasoning | ACM Transactions on Information Systems",
+            "url": "https://dl.acm.org/doi/10.1145/3597610"
+          },
+          {
+            "title": "[PDF] DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/DocRED:-A-Large-Scale-Document-Level-Relation-Yao-Ye/2745fc72e1dd53d1c30f17cf05841b163c2f63c9"
+          },
+          {
+            "title": "Document-Level Relation Extraction Model Based on Boundary Distance Loss and Long-Tail Relation Enhancement | SpringerLink",
+            "url": "https://link.springer.com/chapter/10.1007/978-981-96-0119-6_26"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about DocRED test set F1 scores and state-of-the-art relation extraction:\n\n## DocRED Dataset Overview\n\nDocRED is a large-scale dataset constructed from Wikipedia and Wikidata that annotates both named entities and relations, requiring reading multiple sentences in a document to extract entities and infer their relations.\n\n## Performance on DocRED Test Set\n\nThe search results show several relevant findings about test set performance:\n\nThere is a large gap between positive relation classification and relation extraction on DocRED, with 27.71 F1 points difference (91.78 vs. 64.07 F1). \n\nA revised dataset called Re-DocRED was created by re-annotating 4,053 documents, with state-of-the-art neural models trained and evaluated on Re-DocRED achieving performance improvements of around 13 F1 points.\n\nRecent work using the refined Re-DocRED test set (consisting of 499 articles and 17,448 triplet facts) shows methods achieving F1 scores ranging from approximately 72-84% depending on the specific approach and subtask.\n\n## State-of-the-Art Progress\n\nDocRED has been shown to be challenging for existing relation extraction methods, indicating that document-level RE remains an open problem requiring further efforts.\n\nHowever, the search results don't contain specific state-of-the-art F1 scores explicitly labeled as \"2025\" or \"2026\" benchmarks. For the most recent benchmark results, you may want to check leaderboards on platforms like Hugging Face or the official DocRED repository."
+    ],
+    "durationSeconds": 7.492938734999974
+  },
+  "sourceToolAssistantUUID": "36e87231-6343-41ae-9578-f0d1e2426c79",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 50 · 2026-05-10T18:55:58.930Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0135jJBqUcQLNy9sHzmgPb23`</summary>
+
+```json
+{
+  "query": "AEVS anchor extraction verification supplement knowledge graph LLM provenance 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "43e24f86-f8e0-4a63-a68f-9c64a242e5ec",
+  "isSidechain": false,
+  "requestId": "req_011CauQ2Prqx6hvBAzFLmUww",
+  "type": "assistant",
+  "uuid": "dff0f828-88a7-4b12-b6ec-128239669e39",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Gjy8LioSNk4azvNEsZ3ESp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1057,
+      "cache_read_input_tokens": 42609,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1057,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 42609,
+          "cache_creation_input_tokens": 1057,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1057
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 51 · 2026-05-10T18:56:06.823Z_
+
+<details><summary>↩ Tool result · `toolu_0135jJBqUcQLNy9sHzmgPb23`</summary>
+
+```text
+Web search results for query: "AEVS anchor extraction verification supplement knowledge graph LLM provenance 2026"
+
+Links: [{"title":"Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking","url":"https://www.mdpi.com/2073-431X/15/3/178"},{"title":"GitHub - zjukg/KG-LLM-Papers: [Paper List] Papers integrating knowledge graphs (KGs) and large language models (LLMs) · GitHub","url":"https://github.com/zjukg/KG-LLM-Papers"},{"title":"Scaling Biomedical Knowledge Graph Retrieval for Interpretable","url":"https://www.medrxiv.org/content/10.64898/2026.01.12.26343957v1.full.pdf"},{"title":"The construction and refined extraction techniques of knowledge graph based on large language models | Scientific Reports","url":"https://www.nature.com/articles/s41598-026-38066-w"},{"title":"KG4XAI — Knowledge Graphs for Explainable Artificial Intelligence: Taxonomies, Methodologies, and Future Research Directions | by Adnan Masood, PhD. | Medium","url":"https://medium.com/@adnanmasood/kg4xai-knowledge-graphs-for-explainable-artificial-intelligence-taxonomies-methodologies-and-190f098c3a77"},{"title":"Ultimate Guide - The Best Open Source LLMs For Knowledge Graph Construction In 2026","url":"https://www.siliconflow.com/articles/en/best-open-source-LLM-for-Knowledge-Graph-Construction"},{"title":"Automating Biomedical Knowledge Graph Construction For Context-Aware Scientific","url":"https://www.biorxiv.org/content/10.64898/2026.01.14.699420v1.full.pdf"},{"title":"LLM-driven Provenance Forensics for Threat Investigation and Detection","url":"https://arxiv.org/html/2508.21323v1"},{"title":"7 Knowledge Graph Examples of 2026","url":"https://www.puppygraph.com/blog/knowledge-graph-examples"},{"title":"Statistical Network Analysis for LLMs via Knowledge Graphs","url":"https://www.techrxiv.org/users/972913/articles/1347041/master/file/data/KG__Paper%20(4)/KG__Paper%20(4).pdf?inline=true"}]
+
+Based on the search results, I found relevant information about AEVS:
+
+## AEVS: Anchor-Extraction-Verification-Supplement Framework
+
+AEVS (Anchor-Extraction-Verification-Supplement) is a framework that operates in three stages: (1) anchor discovery identifies entities, relation phrases, and attribute values with precise positions, forming a constrained extraction vocabulary; (2) grounded extraction generates triplets linked to discovered anchors; and (3) restoration-based verification validates triplets through hierarchical matching, with a coverage-aware supplement ensuring comprehensive extraction.
+
+**Key Problem Addressed:**
+The root cause is the lack of provenance: existing methods produce triplets without explicit links to their textual origins, making faithfulness unverifiable.
+
+**Core Innovation:**
+AEVS addresses the hallucination problem by ensuring complete traceability in LLM-based knowledge graph extraction, with the key insight that if every element of a triplet can be traced back to a specific span in the source text, then hallucinations become detectable.
+
+**Verification Mechanism:**
+The element-level restoration status determines the verification path; fully restored triplets (all three elements successfully matched) are directly accepted with high confidence, while partially restored triplets undergo targeted LLM verification, focusing on ungrounded elements.
+
+**Performance:**
+Experiments on WebNLG, REBEL, and Wiki-NRE demonstrate consistent improvements over both trained models and LLM-based baselines. Dedicated analyses show computational cost of 2.83–4.28 LLM calls per sample, and hallucination rates of 0.23–20.23% across model–dataset configurations.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dff0f828-88a7-4b12-b6ec-128239669e39",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "9dbfd2d5-aad1-4678-ad69-3d29873eb3b2",
+  "toolUseResult": {
+    "query": "AEVS anchor extraction verification supplement knowledge graph LLM provenance 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_017c29wZvsk7toADxEKmiB1z",
+        "content": [
+          {
+            "title": "Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking",
+            "url": "https://www.mdpi.com/2073-431X/15/3/178"
+          },
+          {
+            "title": "GitHub - zjukg/KG-LLM-Papers: [Paper List] Papers integrating knowledge graphs (KGs) and large language models (LLMs) · GitHub",
+            "url": "https://github.com/zjukg/KG-LLM-Papers"
+          },
+          {
+            "title": "Scaling Biomedical Knowledge Graph Retrieval for Interpretable",
+            "url": "https://www.medrxiv.org/content/10.64898/2026.01.12.26343957v1.full.pdf"
+          },
+          {
+            "title": "The construction and refined extraction techniques of knowledge graph based on large language models | Scientific Reports",
+            "url": "https://www.nature.com/articles/s41598-026-38066-w"
+          },
+          {
+            "title": "KG4XAI — Knowledge Graphs for Explainable Artificial Intelligence: Taxonomies, Methodologies, and Future Research Directions | by Adnan Masood, PhD. | Medium",
+            "url": "https://medium.com/@adnanmasood/kg4xai-knowledge-graphs-for-explainable-artificial-intelligence-taxonomies-methodologies-and-190f098c3a77"
+          },
+          {
+            "title": "Ultimate Guide - The Best Open Source LLMs For Knowledge Graph Construction In 2026",
+            "url": "https://www.siliconflow.com/articles/en/best-open-source-LLM-for-Knowledge-Graph-Construction"
+          },
+          {
+            "title": "Automating Biomedical Knowledge Graph Construction For Context-Aware Scientific",
+            "url": "https://www.biorxiv.org/content/10.64898/2026.01.14.699420v1.full.pdf"
+          },
+          {
+            "title": "LLM-driven Provenance Forensics for Threat Investigation and Detection",
+            "url": "https://arxiv.org/html/2508.21323v1"
+          },
+          {
+            "title": "7 Knowledge Graph Examples of 2026",
+            "url": "https://www.puppygraph.com/blog/knowledge-graph-examples"
+          },
+          {
+            "title": "Statistical Network Analysis for LLMs via Knowledge Graphs",
+            "url": "https://www.techrxiv.org/users/972913/articles/1347041/master/file/data/KG__Paper%20(4)/KG__Paper%20(4).pdf?inline=true"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about AEVS:\n\n## AEVS: Anchor-Extraction-Verification-Supplement Framework\n\nAEVS (Anchor-Extraction-Verification-Supplement) is a framework that operates in three stages: (1) anchor discovery identifies entities, relation phrases, and attribute values with precise positions, forming a constrained extraction vocabulary; (2) grounded extraction generates triplets linked to discovered anchors; and (3) restoration-based verification validates triplets through hierarchical matching, with a coverage-aware supplement ensuring comprehensive extraction.\n\n**Key Problem Addressed:**\nThe root cause is the lack of provenance: existing methods produce triplets without explicit links to their textual origins, making faithfulness unverifiable.\n\n**Core Innovation:**\nAEVS addresses the hallucination problem by ensuring complete traceability in LLM-based knowledge graph extraction, with the key insight that if every element of a triplet can be traced back to a specific span in the source text, then hallucinations become detectable.\n\n**Verification Mechanism:**\nThe element-level restoration status determines the verification path; fully restored triplets (all three elements successfully matched) are directly accepted with high confidence, while partially restored triplets undergo targeted LLM verification, focusing on ungrounded elements.\n\n**Performance:**\nExperiments on WebNLG, REBEL, and Wiki-NRE demonstrate consistent improvements over both trained models and LLM-based baselines. Dedicated analyses show computational cost of 2.83–4.28 LLM calls per sample, and hallucination rates of 0.23–20.23% across model–dataset configurations."
+    ],
+    "durationSeconds": 7.889681272000016
+  },
+  "sourceToolAssistantUUID": "dff0f828-88a7-4b12-b6ec-128239669e39",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-10T18:56:09.412Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01EX2zKw8kT5VteGfg2XHxAt`</summary>
+
+```json
+{
+  "query": "decomposed entailment verification NLI multi-sentence evidence reward signal training 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9dbfd2d5-aad1-4678-ad69-3d29873eb3b2",
+  "isSidechain": false,
+  "requestId": "req_011CauQ39fMGwfGqgd9FacLx",
+  "type": "assistant",
+  "uuid": "8d51aac3-7804-4d95-b87c-493e0bf3b719",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HyqGyG5M5LLssjrT5FPR6T",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1073,
+      "cache_read_input_tokens": 43666,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1073,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 43666,
+          "cache_creation_input_tokens": 1073,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1073
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 53 · 2026-05-10T18:56:16.315Z_
+
+<details><summary>↩ Tool result · `toolu_01EX2zKw8kT5VteGfg2XHxAt`</summary>
+
+```text
+Web search results for query: "decomposed entailment verification NLI multi-sentence evidence reward signal training 2025 2026"
+
+Links: [{"title":"EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models","url":"https://arxiv.org/html/2603.19532"},{"title":"Natural Language Inference - Practical Guide 2025 | ShadeCoder","url":"https://www.shadecoder.com/topics/natural-language-inference-a-comprehensive-guide-for-2025"},{"title":"Natural Language Inference (NLI)","url":"https://www.emergentmind.com/topics/natural-language-inference-nli"},{"title":"ContractNLI: Legal Document Inference","url":"https://www.emergentmind.com/topics/contractnli"},{"title":"Natural Language Inference (NLI) — Also Known as Recognizing Textual Entailment (RTE) | by Julian Wang | Medium","url":"https://medium.com/@j.wang.mlds_97641/natural-language-inference-nli-also-known-as-recognizing-textual-entailment-rte-384295708089"},{"title":"The Stanford Natural Language Inference (SNLI) Corpus","url":"https://nlp.stanford.edu/projects/snli/"},{"title":"Natural Language Inference — Sentence Transformers documentation","url":"https://sbert.net/examples/sentence_transformer/training/nli/README.html"},{"title":"Transitive self-consistency evaluation of NLI models ...","url":"https://aclanthology.org/2025.emnlp-main.1152.pdf"},{"title":"Atomic-SNLI: Fine-Grained Natural Language Inference through Atomic Fact Decomposition","url":"https://arxiv.org/html/2601.06528v1"},{"title":"GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub","url":"https://github.com/EdinburghNLP/awesome-hallucination-detection"}]
+
+Based on the web search results, I found highly relevant research on your query. Here's what I found:
+
+## EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models
+
+The most directly relevant work is EvidenceRL, which introduces a Focus-Then-Verify reward architecture that targets sentence-level entailment within focused context windows, constructing focused (premise, hypothesis) pairs and scoring each pair with a frozen NLI cross-encoder. 
+
+Rather than using coarse document-level or answer-level reward signals, EvidenceRL targets a more fundamental objective of enforcing that model outputs remain consistent with provided evidence at the level of individual claims.
+
+The training reward is decomposed into three components that jointly encourage well-structured, evidence-grounded, and diagnostically accurate outputs. EvidenceRL improves accuracy and evidence grounding across model scales, reducing hallucinations and increasing evidence-supported predictions on high-stakes medical and legal domains.
+
+## Related Approaches
+
+Additionally, Atomic-SNLI addresses fine-grained NLI by decomposing complex reasoning into atomic-level steps, where the final sentence-level label is derived through a bottom-up, compositional process by aggregating atomic predictions.
+
+The research community is actively addressing the challenge of incorporating multi-sentence evidence and decomposed entailment verification into training signals for more reliable language models, particularly in specialized domains like medicine and law.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "8d51aac3-7804-4d95-b87c-493e0bf3b719",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "01578759-2d93-4dc7-9ebb-8a4d44e3258e",
+  "toolUseResult": {
+    "query": "decomposed entailment verification NLI multi-sentence evidence reward signal training 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01DpK5AmsvUhjagNvZukhZGs",
+        "content": [
+          {
+            "title": "EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models",
+            "url": "https://arxiv.org/html/2603.19532"
+          },
+          {
+            "title": "Natural Language Inference - Practical Guide 2025 | ShadeCoder",
+            "url": "https://www.shadecoder.com/topics/natural-language-inference-a-comprehensive-guide-for-2025"
+          },
+          {
+            "title": "Natural Language Inference (NLI)",
+            "url": "https://www.emergentmind.com/topics/natural-language-inference-nli"
+          },
+          {
+            "title": "ContractNLI: Legal Document Inference",
+            "url": "https://www.emergentmind.com/topics/contractnli"
+          },
+          {
+            "title": "Natural Language Inference (NLI) — Also Known as Recognizing Textual Entailment (RTE) | by Julian Wang | Medium",
+            "url": "https://medium.com/@j.wang.mlds_97641/natural-language-inference-nli-also-known-as-recognizing-textual-entailment-rte-384295708089"
+          },
+          {
+            "title": "The Stanford Natural Language Inference (SNLI) Corpus",
+            "url": "https://nlp.stanford.edu/projects/snli/"
+          },
+          {
+            "title": "Natural Language Inference — Sentence Transformers documentation",
+            "url": "https://sbert.net/examples/sentence_transformer/training/nli/README.html"
+          },
+          {
+            "title": "Transitive self-consistency evaluation of NLI models ...",
+            "url": "https://aclanthology.org/2025.emnlp-main.1152.pdf"
+          },
+          {
+            "title": "Atomic-SNLI: Fine-Grained Natural Language Inference through Atomic Fact Decomposition",
+            "url": "https://arxiv.org/html/2601.06528v1"
+          },
+          {
+            "title": "GitHub - EdinburghNLP/awesome-hallucination-detection: List of papers on hallucination detection in LLMs. · GitHub",
+            "url": "https://github.com/EdinburghNLP/awesome-hallucination-detection"
+          }
+        ]
+      },
+      "Based on the web search results, I found highly relevant research on your query. Here's what I found:\n\n## EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models\n\nThe most directly relevant work is EvidenceRL, which introduces a Focus-Then-Verify reward architecture that targets sentence-level entailment within focused context windows, constructing focused (premise, hypothesis) pairs and scoring each pair with a frozen NLI cross-encoder. \n\nRather than using coarse document-level or answer-level reward signals, EvidenceRL targets a more fundamental objective of enforcing that model outputs remain consistent with provided evidence at the level of individual claims.\n\nThe training reward is decomposed into three components that jointly encourage well-structured, evidence-grounded, and diagnostically accurate outputs. EvidenceRL improves accuracy and evidence grounding across model scales, reducing hallucinations and increasing evidence-supported predictions on high-stakes medical and legal domains.\n\n## Related Approaches\n\nAdditionally, Atomic-SNLI addresses fine-grained NLI by decomposing complex reasoning into atomic-level steps, where the final sentence-level label is derived through a bottom-up, compositional process by aggregating atomic predictions.\n\nThe research community is actively addressing the challenge of incorporating multi-sentence evidence and decomposed entailment verification into training signals for more reliable language models, particularly in specialized domains like medicine and law."
+    ],
+    "durationSeconds": 6.8978612629999985
+  },
+  "sourceToolAssistantUUID": "8d51aac3-7804-4d95-b87c-493e0bf3b719",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 54 · 2026-05-10T18:56:16.318Z_
+
+```json
+{
+  "parentUuid": "01578759-2d93-4dc7-9ebb-8a4d44e3258e",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "9165df5c-623a-4619-8f2b-a37f111214a9",
+  "timestamp": "2026-05-10T18:56:16.318Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 55 · 2026-05-10T18:56:20.030Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019j1hV6QMsNB47F4KPrtRe3`</summary>
+
+```json
+{
+  "query": "EAPO evidence-augmented policy optimization reward co-evolution long-context reasoning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9165df5c-623a-4619-8f2b-a37f111214a9",
+  "isSidechain": false,
+  "requestId": "req_011CauQ3r2yaHPkYyTUu9BcU",
+  "type": "assistant",
+  "uuid": "da3b8629-cfd3-4e54-8892-a2f9fc3eab98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01E9ByFWAGhaqREVW6wXjDuk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1022,
+      "cache_read_input_tokens": 44739,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1022,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 44739,
+          "cache_creation_input_tokens": 1022,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1022
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-10T18:56:28.038Z_
+
+<details><summary>↩ Tool result · `toolu_019j1hV6QMsNB47F4KPrtRe3`</summary>
+
+```text
+Web search results for query: "EAPO evidence-augmented policy optimization reward co-evolution long-context reasoning 2026"
+
+Links: [{"title":"Evidence-Augmented Policy Optimization with Reward Co-Evolution for Long-Context Reasoning","url":"https://arxiv.org/html/2601.10306"},{"title":"Evidence-Augmented Policy Optimization with Reward Co-Evolution for","url":"https://arxiv.org/pdf/2601.10306"},{"title":"[2601.10306] Evidence-Augmented Policy Optimization with Reward Co-Evolution for Long-Context Reasoning","url":"https://arxiv.org/abs/2601.10306"},{"title":"EAPO: Enhancing Policy Optimization with On-Demand Expert Assistance","url":"https://arxiv.org/html/2509.23730"},{"title":"EAPO","url":"https://openreview.net/pdf?id=CPO7Cn9VJ1"},{"title":"Evolutionary Policy Optimization","url":"https://arxiv.org/html/2503.19037v1"},{"title":"EAPO: Enhancing Policy Optimization with On-Demand Expert Assistance | OpenReview","url":"https://openreview.net/forum?id=CPO7Cn9VJ1"},{"title":"EPO: Explicit Policy Optimization for Strategic Reasoning in ...","url":"https://aclanthology.org/2025.acl-long.747.pdf"},{"title":"EAPO: Expert-guided Adaptive Preference Optimization for Recommendation | OpenReview","url":"https://openreview.net/forum?id=cnkWuCj6X6"},{"title":"[2502.12486] EPO: Explicit Policy Optimization for Strategic Reasoning in LLMs via Reinforcement Learning","url":"https://arxiv.org/abs/2502.12486"}]
+
+I found the research paper you were searching for! Here's what I found:
+
+## Evidence-Augmented Policy Optimization with Reward Co-Evolution for Long-Context Reasoning
+
+EAPO (Evidence-Augmented Policy Optimization) is a proposed framework that addresses a key challenge in long-context reasoning with large language models.
+
+**The Problem:**
+While Reinforcement Learning (RL) has advanced LLM reasoning, applying it to long-context scenarios is hindered by sparsity of outcome rewards, which fails to penalize ungrounded "lucky guesses," leaving the critical process of needle-in-a-haystack evidence retrieval largely unsupervised.
+
+**The Solution:**
+The framework first establishes the Evidence-Augmented Reasoning paradigm, validating via Tree-Structured Evidence Sampling that precise evidence extraction is the decisive bottleneck for long-context reasoning. EAPO introduces a specialized RL algorithm where a reward model computes a Group-Relative Evidence Reward, providing dense process supervision to explicitly improve evidence quality.
+
+**Key Innovation:**
+To sustain accurate supervision throughout training, EAPO incorporates an Adaptive Reward-Policy Co-Evolution mechanism that iteratively refines the reward model using outcome-consistent rollouts, sharpening its discriminative capability to ensure precise process guidance.
+
+**Results:**
+Comprehensive evaluations across eight benchmarks demonstrate that EAPO significantly enhances long-context reasoning performance compared to SOTA baselines.
+
+The paper was published on arXiv in January 2026 by researchers from Alibaba Group's Tongyi Lab.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "da3b8629-cfd3-4e54-8892-a2f9fc3eab98",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "6cc829a6-659e-459e-b008-ef5cf6c9ada1",
+  "toolUseResult": {
+    "query": "EAPO evidence-augmented policy optimization reward co-evolution long-context reasoning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01N2aYD9L4YL5o8zFm7g2n3i",
+        "content": [
+          {
+            "title": "Evidence-Augmented Policy Optimization with Reward Co-Evolution for Long-Context Reasoning",
+            "url": "https://arxiv.org/html/2601.10306"
+          },
+          {
+            "title": "Evidence-Augmented Policy Optimization with Reward Co-Evolution for",
+            "url": "https://arxiv.org/pdf/2601.10306"
+          },
+          {
+            "title": "[2601.10306] Evidence-Augmented Policy Optimization with Reward Co-Evolution for Long-Context Reasoning",
+            "url": "https://arxiv.org/abs/2601.10306"
+          },
+          {
+            "title": "EAPO: Enhancing Policy Optimization with On-Demand Expert Assistance",
+            "url": "https://arxiv.org/html/2509.23730"
+          },
+          {
+            "title": "EAPO",
+            "url": "https://openreview.net/pdf?id=CPO7Cn9VJ1"
+          },
+          {
+            "title": "Evolutionary Policy Optimization",
+            "url": "https://arxiv.org/html/2503.19037v1"
+          },
+          {
+            "title": "EAPO: Enhancing Policy Optimization with On-Demand Expert Assistance | OpenReview",
+            "url": "https://openreview.net/forum?id=CPO7Cn9VJ1"
+          },
+          {
+            "title": "EPO: Explicit Policy Optimization for Strategic Reasoning in ...",
+            "url": "https://aclanthology.org/2025.acl-long.747.pdf"
+          },
+          {
+            "title": "EAPO: Expert-guided Adaptive Preference Optimization for Recommendation | OpenReview",
+            "url": "https://openreview.net/forum?id=cnkWuCj6X6"
+          },
+          {
+            "title": "[2502.12486] EPO: Explicit Policy Optimization for Strategic Reasoning in LLMs via Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2502.12486"
+          }
+        ]
+      },
+      "I found the research paper you were searching for! Here's what I found:\n\n## Evidence-Augmented Policy Optimization with Reward Co-Evolution for Long-Context Reasoning\n\nEAPO (Evidence-Augmented Policy Optimization) is a proposed framework that addresses a key challenge in long-context reasoning with large language models.\n\n**The Problem:**\nWhile Reinforcement Learning (RL) has advanced LLM reasoning, applying it to long-context scenarios is hindered by sparsity of outcome rewards, which fails to penalize ungrounded \"lucky guesses,\" leaving the critical process of needle-in-a-haystack evidence retrieval largely unsupervised.\n\n**The Solution:**\nThe framework first establishes the Evidence-Augmented Reasoning paradigm, validating via Tree-Structured Evidence Sampling that precise evidence extraction is the decisive bottleneck for long-context reasoning. EAPO introduces a specialized RL algorithm where a reward model computes a Group-Relative Evidence Reward, providing dense process supervision to explicitly improve evidence quality.\n\n**Key Innovation:**\nTo sustain accurate supervision throughout training, EAPO incorporates an Adaptive Reward-Policy Co-Evolution mechanism that iteratively refines the reward model using outcome-consistent rollouts, sharpening its discriminative capability to ensure precise process guidance.\n\n**Results:**\nComprehensive evaluations across eight benchmarks demonstrate that EAPO significantly enhances long-context reasoning performance compared to SOTA baselines.\n\nThe paper was published on arXiv in January 2026 by researchers from Alibaba Group's Tongyi Lab."
+    ],
+    "durationSeconds": 8.000229942999983
+  },
+  "sourceToolAssistantUUID": "da3b8629-cfd3-4e54-8892-a2f9fc3eab98",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "6cc829a6-659e-459e-b008-ef5cf6c9ada1",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 58_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of FREIGE: Evidence-Grounded IE via Decomposed Entailment Verification (Round 4)",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 59 · 2026-05-10T18:56:30.702Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_016QwYgMSej2Gez8wbEXpgtA`</summary>
+
+```json
+{
+  "query": "LLM relation extraction DocRED 2025 2026 F1 score fine-tuning"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6cc829a6-659e-459e-b008-ef5cf6c9ada1",
+  "isSidechain": false,
+  "requestId": "req_011CauQ4iCiGBYWJQVyTkwC6",
+  "type": "assistant",
+  "uuid": "f5fedc9c-362b-45f2-b744-4b275a9d18b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DRtAT1oPoTd1c1eQ5n6YUe",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 906,
+      "cache_read_input_tokens": 45761,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 906,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 45761,
+          "cache_creation_input_tokens": 906,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 906
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 60 · 2026-05-10T18:56:38.878Z_
+
+<details><summary>↩ Tool result · `toolu_016QwYgMSej2Gez8wbEXpgtA`</summary>
+
+```text
+Web search results for query: "LLM relation extraction DocRED 2025 2026 F1 score fine-tuning"
+
+Links: [{"title":"Relation as a Prior: A Novel Paradigm for LLM-based Document-level Relation Extraction","url":"https://arxiv.org/html/2511.08143v1"},{"title":"LLM with Relation Classifier for Document-Level Relation Extraction","url":"https://openreview.net/pdf?id=SOWcC2cCMT"},{"title":"Statistical Network Analysis for LLMs via Knowledge Graphs","url":"https://www.techrxiv.org/users/972913/articles/1347041/master/file/data/KG__Paper%20(4)/KG__Paper%20(4).pdf?inline=true"},{"title":"Relation Extraction Capabilities of LLMs on Clinical Text: A","url":"https://arxiv.org/pdf/2601.09367"},{"title":"GLiM: Integrating Graph Transformer and LLM for ...","url":"https://aclanthology.org/2025.findings-acl.727.pdf"},{"title":"Document-level Relation Extraction with Relation Correlations - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0893608023006883"},{"title":"[Literature Review] LLM with Relation Classifier for Document-Level Relation Extraction","url":"https://www.themoonlight.io/en/review/llm-with-relation-classifier-for-document-level-relation-extraction"},{"title":"A Comparative Analysis of Instruction Fine-Tuning Large Language Models for Financial Text Classification | ACM Transactions on Management Information Systems","url":"https://dl.acm.org/doi/full/10.1145/3706119"},{"title":"LLM Evaluation for Biotech: A Methodological Guide","url":"https://intuitionlabs.ai/pdfs/llm-evaluation-for-biotech-a-methodological-guide.pdf"},{"title":"End-to-End Structured Extraction with LLM – Part 2: Fine-Tuning with Synthetic Data","url":"https://community.databricks.com/t5/technical-blog/end-to-end-structured-extraction-with-llm-part-2-fine-tuning/ba-p/99900"}]
+
+I found several recent research papers and articles related to LLM-based relation extraction on the DocRED dataset. Here's a summary of the key findings:
+
+## Recent LLM-Based Relation Extraction Research (2025-2026)
+
+### Novel Paradigms and Approaches
+
+Large Language Models (LLMs) have demonstrated remarkable capabilities in document understanding, though recent research reveals they still exhibit performance gaps in Document-level Relation Extraction (DocRE) as requiring fine-grained comprehension.
+
+A novel "Relation as a Prior" (RelPrior) paradigm has been proposed for LLM-based DocRE, which addresses challenges in traditional "extract entities then predict relations" approaches. RelPrior utilizes binary relation as a prior to extract and determine whether two entities are correlated, thereby filtering out irrelevant entity pairs and reducing prediction noise.
+
+### F1 Score Improvements with Fine-Tuning
+
+Recent work demonstrates significant F1 score improvements through fine-tuning approaches. One model improved F1 by up to 6.49% on long-tail relations, and up to 12.39% on multi-label entity pairs.
+
+Another approach integrating relation classifiers with LLMs shows promise. Through systematic evaluations focusing on metrics like F1 scores and Ignoring F1, an LMRC method outperformed competing methods, demonstrating practical advantages over traditional and recently proposed LLM-based methods.
+
+### Performance Benchmarks
+
+Transformer-based approaches like BERT and RoBERTa variants achieved F1 scores of 88-90% on SemEval-2010 and around 60-65% on more challenging document-level benchmarks like DocRED.
+
+These recent developments show ongoing progress in improving LLM-based relation extraction performance through novel architectural paradigms and fine-tuning strategies.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f5fedc9c-362b-45f2-b744-4b275a9d18b9",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "ccb79098-b6b9-4d53-b59a-97ba2cc45dcd",
+  "toolUseResult": {
+    "query": "LLM relation extraction DocRED 2025 2026 F1 score fine-tuning",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01W61Xu7KbheH3MA8kvMxJK3",
+        "content": [
+          {
+            "title": "Relation as a Prior: A Novel Paradigm for LLM-based Document-level Relation Extraction",
+            "url": "https://arxiv.org/html/2511.08143v1"
+          },
+          {
+            "title": "LLM with Relation Classifier for Document-Level Relation Extraction",
+            "url": "https://openreview.net/pdf?id=SOWcC2cCMT"
+          },
+          {
+            "title": "Statistical Network Analysis for LLMs via Knowledge Graphs",
+            "url": "https://www.techrxiv.org/users/972913/articles/1347041/master/file/data/KG__Paper%20(4)/KG__Paper%20(4).pdf?inline=true"
+          },
+          {
+            "title": "Relation Extraction Capabilities of LLMs on Clinical Text: A",
+            "url": "https://arxiv.org/pdf/2601.09367"
+          },
+          {
+            "title": "GLiM: Integrating Graph Transformer and LLM for ...",
+            "url": "https://aclanthology.org/2025.findings-acl.727.pdf"
+          },
+          {
+            "title": "Document-level Relation Extraction with Relation Correlations - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0893608023006883"
+          },
+          {
+            "title": "[Literature Review] LLM with Relation Classifier for Document-Level Relation Extraction",
+            "url": "https://www.themoonlight.io/en/review/llm-with-relation-classifier-for-document-level-relation-extraction"
+          },
+          {
+            "title": "A Comparative Analysis of Instruction Fine-Tuning Large Language Models for Financial Text Classification | ACM Transactions on Management Information Systems",
+            "url": "https://dl.acm.org/doi/full/10.1145/3706119"
+          },
+          {
+            "title": "LLM Evaluation for Biotech: A Methodological Guide",
+            "url": "https://intuitionlabs.ai/pdfs/llm-evaluation-for-biotech-a-methodological-guide.pdf"
+          },
+          {
+            "title": "End-to-End Structured Extraction with LLM – Part 2: Fine-Tuning with Synthetic Data",
+            "url": "https://community.databricks.com/t5/technical-blog/end-to-end-structured-extraction-with-llm-part-2-fine-tuning/ba-p/99900"
+          }
+        ]
+      },
+      "I found several recent research papers and articles related to LLM-based relation extraction on the DocRED dataset. Here's a summary of the key findings:\n\n## Recent LLM-Based Relation Extraction Research (2025-2026)\n\n### Novel Paradigms and Approaches\n\nLarge Language Models (LLMs) have demonstrated remarkable capabilities in document understanding, though recent research reveals they still exhibit performance gaps in Document-level Relation Extraction (DocRE) as requiring fine-grained comprehension.\n\nA novel \"Relation as a Prior\" (RelPrior) paradigm has been proposed for LLM-based DocRE, which addresses challenges in traditional \"extract entities then predict relations\" approaches. RelPrior utilizes binary relation as a prior to extract and determine whether two entities are correlated, thereby filtering out irrelevant entity pairs and reducing prediction noise.\n\n### F1 Score Improvements with Fine-Tuning\n\nRecent work demonstrates significant F1 score improvements through fine-tuning approaches. One model improved F1 by up to 6.49% on long-tail relations, and up to 12.39% on multi-label entity pairs.\n\nAnother approach integrating relation classifiers with LLMs shows promise. Through systematic evaluations focusing on metrics like F1 scores and Ignoring F1, an LMRC method outperformed competing methods, demonstrating practical advantages over traditional and recently proposed LLM-based methods.\n\n### Performance Benchmarks\n\nTransformer-based approaches like BERT and RoBERTa variants achieved F1 scores of 88-90% on SemEval-2010 and around 60-65% on more challenging document-level benchmarks like DocRED.\n\nThese recent developments show ongoing progress in improving LLM-based relation extraction performance through novel architectural paradigms and fine-tuning strategies."
+    ],
+    "durationSeconds": 8.173406798000011
+  },
+  "sourceToolAssistantUUID": "f5fedc9c-362b-45f2-b744-4b275a9d18b9",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-10T18:56:41.927Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Q9G9FFnNW6MMn3ZSw9qGMX`</summary>
+
+```json
+{
+  "query": "Qwen3 GRPO speed regression thinking mode verl issue enable_thinking false"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ccb79098-b6b9-4d53-b59a-97ba2cc45dcd",
+  "isSidechain": false,
+  "requestId": "req_011CauQ5WX2NGqzpNwK7FXJA",
+  "type": "assistant",
+  "uuid": "9bc2f6bf-4ff9-44d1-9745-50b1b614f8de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KbBYNKaKtijLT8xRcnt3ee",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1092,
+      "cache_read_input_tokens": 46667,
+      "output_tokens": 70,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1092,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 70,
+          "cache_read_input_tokens": 46667,
+          "cache_creation_input_tokens": 1092,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1092
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 62 · 2026-05-10T18:56:48.294Z_
+
+<details><summary>↩ Tool result · `toolu_01Q9G9FFnNW6MMn3ZSw9qGMX`</summary>
+
+```text
+Web search results for query: "Qwen3 GRPO speed regression thinking mode verl issue enable_thinking false"
+
+Links: [{"title":"Qwen 3.5 Model: Switching Between Thinking and Non-Thinking · Issue #1559 · lmstudio-ai/lmstudio-bug-tracker","url":"https://github.com/lmstudio-ai/lmstudio-bug-tracker/issues/1559"},{"title":"Qwen3: Think Deeper, Act Faster | Qwen","url":"https://qwenlm.github.io/blog/qwen3/"},{"title":"Qwen/Qwen3.5-9B · How to disable or reduce thinking","url":"https://huggingface.co/Qwen/Qwen3.5-9B/discussions/13"},{"title":"How to set ENABLE_THINKING param while train GRPO model? · Issue #544 · hiyouga/EasyR1","url":"https://github.com/hiyouga/EasyR1/issues/544"},{"title":"Qwen3 - How to Run & Fine-tune | Unsloth Documentation","url":"https://unsloth.ai/docs/models/tutorials/qwen3-how-to-run-and-fine-tune"},{"title":"Add the enable_thinking parameter to Qwen3 · Issue #13314 · open-webui/open-webui","url":"https://github.com/open-webui/open-webui/issues/13314"},{"title":"Quickstart - Qwen - Read the Docs","url":"https://qwen.readthedocs.io/en/latest/getting_started/quickstart.html"},{"title":"Qwen3.5 - How to Run Locally | Unsloth Documentation","url":"https://unsloth.ai/docs/models/qwen3.5"},{"title":"Misc. bug: enable_thinking param cannot turn off thinking for qwen3.5 · Issue #20182 · ggml-org/llama.cpp","url":"https://github.com/ggml-org/llama.cpp/issues/20182"},{"title":"Qwen/Qwen3-32B · Hugging Face","url":"https://huggingface.co/Qwen/Qwen3-32B"}]
+
+Based on the search results, I found relevant information about Qwen3 models and the `enable_thinking` parameter. Here are the key findings:
+
+## Qwen3 Thinking Mode Control
+
+Qwen3 supports seamless switching between thinking mode (for complex logical reasoning, math, and coding) and non-thinking mode (for efficient, general-purpose dialogue) within a single model.
+
+### Using `enable_thinking=False`
+
+When `enable_thinking=False`, soft switches are not valid, and regardless of any /think or /no_think tags input by the user, the model will not generate think content and will not include a `&lt;think>...&lt;/think>` block.
+
+### Implementation
+
+The parameter can be set in different ways:
+
+1. **With tokenizer**: You can use `enable_thinking=False` in the `tokenizer.apply_chat_template()` method to disable the thinking process.
+
+2. **With API calls**: When using API parameters, you can set `"chat_template_kwargs": {"enable_thinking": False}` to obtain direct responses from the model without thinking.
+
+3. **With inference frameworks**: The `enable_thinking` switch is also available in APIs created by SGLang and vLLM.
+
+### GRPO Training Considerations
+
+When training GRPO models with Qwen3, you can set `ENABLE_THINKING=false` to disable thinking mode, similar to using it with LLamaFactory.
+
+The search results don't specifically mention a speed regression issue related to GRPO or vLLM, but they do confirm the availability and usage of the `enable_thinking` parameter across different inference and training scenarios.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9bc2f6bf-4ff9-44d1-9745-50b1b614f8de",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "f284976f-a424-45a6-9b64-13591d6bb085",
+  "toolUseResult": {
+    "query": "Qwen3 GRPO speed regression thinking mode verl issue enable_thinking false",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01WcbmmGDYHNG1ggcx33m3cz",
+        "content": [
+          {
+            "title": "Qwen 3.5 Model: Switching Between Thinking and Non-Thinking · Issue #1559 · lmstudio-ai/lmstudio-bug-tracker",
+            "url": "https://github.com/lmstudio-ai/lmstudio-bug-tracker/issues/1559"
+          },
+          {
+            "title": "Qwen3: Think Deeper, Act Faster | Qwen",
+            "url": "https://qwenlm.github.io/blog/qwen3/"
+          },
+          {
+            "title": "Qwen/Qwen3.5-9B · How to disable or reduce thinking",
+            "url": "https://huggingface.co/Qwen/Qwen3.5-9B/discussions/13"
+          },
+          {
+            "title": "How to set ENABLE_THINKING param while train GRPO model? · Issue #544 · hiyouga/EasyR1",
+            "url": "https://github.com/hiyouga/EasyR1/issues/544"
+          },
+          {
+            "title": "Qwen3 - How to Run & Fine-tune | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/tutorials/qwen3-how-to-run-and-fine-tune"
+          },
+          {
+            "title": "Add the enable_thinking parameter to Qwen3 · Issue #13314 · open-webui/open-webui",
+            "url": "https://github.com/open-webui/open-webui/issues/13314"
+          },
+          {
+            "title": "Quickstart - Qwen - Read the Docs",
+            "url": "https://qwen.readthedocs.io/en/latest/getting_started/quickstart.html"
+          },
+          {
+            "title": "Qwen3.5 - How to Run Locally | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/qwen3.5"
+          },
+          {
+            "title": "Misc. bug: enable_thinking param cannot turn off thinking for qwen3.5 · Issue #20182 · ggml-org/llama.cpp",
+            "url": "https://github.com/ggml-org/llama.cpp/issues/20182"
+          },
+          {
+            "title": "Qwen/Qwen3-32B · Hugging Face",
+            "url": "https://huggingface.co/Qwen/Qwen3-32B"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about Qwen3 models and the `enable_thinking` parameter. Here are the key findings:\n\n## Qwen3 Thinking Mode Control\n\nQwen3 supports seamless switching between thinking mode (for complex logical reasoning, math, and coding) and non-thinking mode (for efficient, general-purpose dialogue) within a single model.\n\n### Using `enable_thinking=False`\n\nWhen `enable_thinking=False`, soft switches are not valid, and regardless of any /think or /no_think tags input by the user, the model will not generate think content and will not include a `&lt;think>...&lt;/think>` block.\n\n### Implementation\n\nThe parameter can be set in different ways:\n\n1. **With tokenizer**: You can use `enable_thinking=False` in the `tokenizer.apply_chat_template()` method to disable the thinking process.\n\n2. **With API calls**: When using API parameters, you can set `\"chat_template_kwargs\": {\"enable_thinking\": False}` to obtain direct responses from the model without thinking.\n\n3. **With inference frameworks**: The `enable_thinking` switch is also available in APIs created by SGLang and vLLM.\n\n### GRPO Training Considerations\n\nWhen training GRPO models with Qwen3, you can set `ENABLE_THINKING=false` to disable thinking mode, similar to using it with LLamaFactory.\n\nThe search results don't specifically mention a speed regression issue related to GRPO or vLLM, but they do confirm the availability and usage of the `enable_thinking` parameter across different inference and training scenarios."
+    ],
+    "durationSeconds": 6.361447486999998
+  },
+  "sourceToolAssistantUUID": "9bc2f6bf-4ff9-44d1-9745-50b1b614f8de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 63 · 2026-05-10T18:56:50.503Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01S3FZURSrMkSZpDkZpeZppv`</summary>
+
+```json
+{
+  "query": "verl issue 1580 Qwen3 GRPO slow training speed"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "f284976f-a424-45a6-9b64-13591d6bb085",
+  "isSidechain": false,
+  "requestId": "req_011CauQ6CjUsdtjzKzT3soBN",
+  "type": "assistant",
+  "uuid": "7b320464-4632-45e2-8870-913bccb441d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MnwyQ2Hqj3aYU3RZJ7eeuA",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1034,
+      "cache_read_input_tokens": 47759,
+      "output_tokens": 69,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1034,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 69,
+          "cache_read_input_tokens": 47759,
+          "cache_creation_input_tokens": 1034,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1034
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-10T18:56:55.709Z_
+
+<details><summary>↩ Tool result · `toolu_01S3FZURSrMkSZpDkZpeZppv`</summary>
+
+```text
+Web search results for query: "verl issue 1580 Qwen3 GRPO slow training speed"
+
+Links: [{"title":"Qwen 3 8B Runs takes about one hour per step · Issue #1580 · verl-project/verl","url":"https://github.com/volcengine/verl/issues/1580"},{"title":"Training DeepSeek 671b - verl documentation - Read the Docs","url":"https://verl.readthedocs.io/en/latest/perf/dpsk.html"},{"title":"Verl LLM Best Practices (DAPO + Qwen3-235B) — verl documentation","url":"https://verl.readthedocs.io/en/latest/perf/best_practices.html"},{"title":"GRPO + LoRA Fine-tuning Qwen3-32B Failed on 8x A2 910B3 with VLLM-Ascend 0.9.1 · Issue #3566 · volcengine/verl","url":"https://github.com/volcengine/verl/issues/3566"},{"title":"Ray Multi-node Training is Extremely Slow. · Issue #2628 · verl-project/verl","url":"https://github.com/verl-project/verl/issues/2628"},{"title":"Why does GRPO training using Lora gpu memory not decrease? · Issue #2022 · verl-project/verl","url":"https://github.com/verl-project/verl/issues/2022"},{"title":"Qwen3-vl training failure · Issue #4483 · volcengine/verl","url":"https://github.com/volcengine/verl/issues/4483"},{"title":"Ray::TaskRunner.run out of memory - cpu · Issue #4995 · verl-project/verl","url":"https://github.com/verl-project/verl/issues/4995"},{"title":"[Router Replay(R3) Reproduction]vLLM 0.14.0 + verl(main), GRPO training step time becomes ~4× slower, with occasional NCCL timeouts · Issue #5119 · verl-project/verl","url":"https://github.com/verl-project/verl/issues/5119"},{"title":"verl - Qwen docs","url":"https://qwen.readthedocs.io/en/latest/training/verl.html"}]
+
+Based on the search results, I found Issue #1580 from the verl project. Here's what the issue is about:
+
+## Summary
+
+When training using the GRPO algorithm, switching from Qwen 2.5 7B to Qwen 3 8B causes a huge slowdown in generation speed, with each training step taking about one hour instead of just a few minutes.
+
+## Key Details
+
+The user asked for help understanding why Qwen 3 is so much slower and whether there are recommended settings or fixes, noting that even with enable_thinking=true, the actual response lengths don't seem long enough to explain such a huge slowdown.
+
+The issue was posted on May 19, 2025 on the [verl GitHub repository](https://github.com/volcengine/verl/issues/1580). This appears to be a significant performance regression when upgrading from Qwen 2.5 7B to Qwen 3 8B in the verl training framework using the GRPO (Group Relative Policy Optimization) algorithm.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "7b320464-4632-45e2-8870-913bccb441d3",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "26330646-9a0e-49c1-b355-0c740ae8ec6b",
+  "toolUseResult": {
+    "query": "verl issue 1580 Qwen3 GRPO slow training speed",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TpX2o1vFf74WxWat3qovyE",
+        "content": [
+          {
+            "title": "Qwen 3 8B Runs takes about one hour per step · Issue #1580 · verl-project/verl",
+            "url": "https://github.com/volcengine/verl/issues/1580"
+          },
+          {
+            "title": "Training DeepSeek 671b - verl documentation - Read the Docs",
+            "url": "https://verl.readthedocs.io/en/latest/perf/dpsk.html"
+          },
+          {
+            "title": "Verl LLM Best Practices (DAPO + Qwen3-235B) — verl documentation",
+            "url": "https://verl.readthedocs.io/en/latest/perf/best_practices.html"
+          },
+          {
+            "title": "GRPO + LoRA Fine-tuning Qwen3-32B Failed on 8x A2 910B3 with VLLM-Ascend 0.9.1 · Issue #3566 · volcengine/verl",
+            "url": "https://github.com/volcengine/verl/issues/3566"
+          },
+          {
+            "title": "Ray Multi-node Training is Extremely Slow. · Issue #2628 · verl-project/verl",
+            "url": "https://github.com/verl-project/verl/issues/2628"
+          },
+          {
+            "title": "Why does GRPO training using Lora gpu memory not decrease? · Issue #2022 · verl-project/verl",
+            "url": "https://github.com/verl-project/verl/issues/2022"
+          },
+          {
+            "title": "Qwen3-vl training failure · Issue #4483 · volcengine/verl",
+            "url": "https://github.com/volcengine/verl/issues/4483"
+          },
+          {
+            "title": "Ray::TaskRunner.run out of memory - cpu · Issue #4995 · verl-project/verl",
+            "url": "https://github.com/verl-project/verl/issues/4995"
+          },
+          {
+            "title": "[Router Replay(R3) Reproduction]vLLM 0.14.0 + verl(main), GRPO training step time becomes ~4× slower, with occasional NCCL timeouts · Issue #5119 · verl-project/verl",
+            "url": "https://github.com/verl-project/verl/issues/5119"
+          },
+          {
+            "title": "verl - Qwen docs",
+            "url": "https://qwen.readthedocs.io/en/latest/training/verl.html"
+          }
+        ]
+      },
+      "Based on the search results, I found Issue #1580 from the verl project. Here's what the issue is about:\n\n## Summary\n\nWhen training using the GRPO algorithm, switching from Qwen 2.5 7B to Qwen 3 8B causes a huge slowdown in generation speed, with each training step taking about one hour instead of just a few minutes.\n\n## Key Details\n\nThe user asked for help understanding why Qwen 3 is so much slower and whether there are recommended settings or fixes, noting that even with enable_thinking=true, the actual response lengths don't seem long enough to explain such a huge slowdown.\n\nThe issue was posted on May 19, 2025 on the [verl GitHub repository](https://github.com/volcengine/verl/issues/1580). This appears to be a significant performance regression when upgrading from Qwen 2.5 7B to Qwen 3 8B in the verl training framework using the GRPO (Group Relative Policy Optimization) algorithm."
+    ],
+    "durationSeconds": 5.203338076999993
+  },
+  "sourceToolAssistantUUID": "7b320464-4632-45e2-8870-913bccb441d3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 65 · 2026-05-10T18:56:58.412Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Fce9TbRTEw2cJDq8NxYac8`</summary>
+
+```json
+{
+  "query": "site:arxiv.org evidence-grounded relation extraction RL reward document-level 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "26330646-9a0e-49c1-b355-0c740ae8ec6b",
+  "isSidechain": false,
+  "requestId": "req_011CauQ6kQjC7iLLmg7Hxnee",
+  "type": "assistant",
+  "uuid": "76078603-da3b-476d-8e1c-4a81a54cec43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WXSM5dvXNHcYRxVt7BXGUo",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 933,
+      "cache_read_input_tokens": 48793,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 933,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 48793,
+          "cache_creation_input_tokens": 933,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 933
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 66 · 2026-05-10T18:57:06.020Z_
+
+<details><summary>↩ Tool result · `toolu_01Fce9TbRTEw2cJDq8NxYac8`</summary>
+
+```text
+Web search results for query: "site:arxiv.org evidence-grounded relation extraction RL reward document-level 2026"
+
+Links: [{"title":"CLEF HIPE-2026: Evaluating Accurate and Efficient Person–Place Relation Extraction from Multilingual Historical Texts","url":"https://arxiv.org/html/2602.17663"},{"title":"[2410.23214] Grounding by Trying: LLMs with Reinforcement Learning-Enhanced Retrieval","url":"https://arxiv.org/abs/2410.23214"},{"title":"[2106.08657] Eider: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion","url":"https://arxiv.org/abs/2106.08657"},{"title":"A Survey on Retrieval And Structuring Augmented Generation","url":"https://arxiv.org/pdf/2509.10697"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2601.18533"},{"title":"Grounding by Trying: LLMs with Reinforcement Learning-Enhanced Retrieval","url":"https://arxiv.org/html/2410.23214v2"},{"title":"[2303.03912] Document-level Relation Extraction with Cross-sentence Reasoning Graph","url":"https://arxiv.org/abs/2303.03912"},{"title":"Exploring Reasoning Reward Model for Agents","url":"https://arxiv.org/html/2601.22154v2"},{"title":"EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models","url":"https://arxiv.org/html/2603.19532"},{"title":"CLEF HIPE-2026: Evaluating Accurate and","url":"https://arxiv.org/pdf/2602.17663"}]
+
+Based on the search results, I found several relevant papers on arxiv.org related to your query about evidence-grounded relation extraction with reinforcement learning:
+
+## Key Findings:
+
+1. **CLEF HIPE-2026** - HIPE-2026 is a CLEF Evaluation Lab dedicated to the extraction of person–place relations in multilingual historical documents, where a person-place relation corresponds to a semantic link between an individual and a location as evidenced in a document.
+
+2. **Eider Framework** - Document-level relation extraction (DocRE) aims to extract semantic relations among entity pairs in a document, and the framework Eider empowers DocRE by efficiently extracting evidence and effectively fusing the extracted evidence in inference.
+
+3. **EvidenceRL** - EvidenceRL is a reinforcement learning framework that optimizes evidence adherence during training rather than enforcing it post hoc. This appears to be particularly relevant to your query as it combines evidence-grounding with RL reward mechanisms. Despite progress in the field, reward signals are typically coarse (document-level or answer-level).
+
+4. **RL-Enhanced Retrieval** - LeReT (Learning to Retrieve by Trying) is a reinforcement learning framework that explores search queries and uses preference-based optimization to improve their quality.
+
+The most directly relevant paper to your query appears to be **EvidenceRL** (arxiv 2603.19532), published in March 2026, which specifically addresses evidence-grounded language models using reinforcement learning with reward signals.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "76078603-da3b-476d-8e1c-4a81a54cec43",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "d398311e-189d-4b5d-afb8-510c13bb318c",
+  "toolUseResult": {
+    "query": "site:arxiv.org evidence-grounded relation extraction RL reward document-level 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01Px2tvtq2WPuM2f1oV3ABsn",
+        "content": [
+          {
+            "title": "CLEF HIPE-2026: Evaluating Accurate and Efficient Person–Place Relation Extraction from Multilingual Historical Texts",
+            "url": "https://arxiv.org/html/2602.17663"
+          },
+          {
+            "title": "[2410.23214] Grounding by Trying: LLMs with Reinforcement Learning-Enhanced Retrieval",
+            "url": "https://arxiv.org/abs/2410.23214"
+          },
+          {
+            "title": "[2106.08657] Eider: Empowering Document-level Relation Extraction with Efficient Evidence Extraction and Inference-stage Fusion",
+            "url": "https://arxiv.org/abs/2106.08657"
+          },
+          {
+            "title": "A Survey on Retrieval And Structuring Augmented Generation",
+            "url": "https://arxiv.org/pdf/2509.10697"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2601.18533"
+          },
+          {
+            "title": "Grounding by Trying: LLMs with Reinforcement Learning-Enhanced Retrieval",
+            "url": "https://arxiv.org/html/2410.23214v2"
+          },
+          {
+            "title": "[2303.03912] Document-level Relation Extraction with Cross-sentence Reasoning Graph",
+            "url": "https://arxiv.org/abs/2303.03912"
+          },
+          {
+            "title": "Exploring Reasoning Reward Model for Agents",
+            "url": "https://arxiv.org/html/2601.22154v2"
+          },
+          {
+            "title": "EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models",
+            "url": "https://arxiv.org/html/2603.19532"
+          },
+          {
+            "title": "CLEF HIPE-2026: Evaluating Accurate and",
+            "url": "https://arxiv.org/pdf/2602.17663"
+          }
+        ]
+      },
+      "Based on the search results, I found several relevant papers on arxiv.org related to your query about evidence-grounded relation extraction with reinforcement learning:\n\n## Key Findings:\n\n1. **CLEF HIPE-2026** - HIPE-2026 is a CLEF Evaluation Lab dedicated to the extraction of person–place relations in multilingual historical documents, where a person-place relation corresponds to a semantic link between an individual and a location as evidenced in a document.\n\n2. **Eider Framework** - Document-level relation extraction (DocRE) aims to extract semantic relations among entity pairs in a document, and the framework Eider empowers DocRE by efficiently extracting evidence and effectively fusing the extracted evidence in inference.\n\n3. **EvidenceRL** - EvidenceRL is a reinforcement learning framework that optimizes evidence adherence during training rather than enforcing it post hoc. This appears to be particularly relevant to your query as it combines evidence-grounding with RL reward mechanisms. Despite progress in the field, reward signals are typically coarse (document-level or answer-level).\n\n4. **RL-Enhanced Retrieval** - LeReT (Learning to Retrieve by Trying) is a reinforcement learning framework that explores search queries and uses preference-based optimization to improve their quality.\n\nThe most directly relevant paper to your query appears to be **EvidenceRL** (arxiv 2603.19532), published in March 2026, which specifically addresses evidence-grounded language models using reinforcement learning with reward signals."
+    ],
+    "durationSeconds": 7.603805641000013
+  },
+  "sourceToolAssistantUUID": "76078603-da3b-476d-8e1c-4a81a54cec43",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 67_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "d398311e-189d-4b5d-afb8-510c13bb318c",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 68_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of FREIGE: Evidence-Grounded IE via Decomposed Entailment Verification (Round 4)",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 69 · 2026-05-10T18:57:08.256Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Cz9FZ9Fxaor5HNrSm3m99r`</summary>
+
+```json
+{
+  "query": "\"document-level relation extraction\" LLM GRPO reinforcement learning 2026 evidence provenance"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d398311e-189d-4b5d-afb8-510c13bb318c",
+  "isSidechain": false,
+  "requestId": "req_011CauQ7Wtf665h2pNWpt7os",
+  "type": "assistant",
+  "uuid": "89c2bad5-0142-411c-9835-ba214eadb161",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015LTx7WSDSanh1TBnsJwfSY",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 903,
+      "cache_read_input_tokens": 49726,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 903,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 49726,
+          "cache_creation_input_tokens": 903,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 903
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 70 · 2026-05-10T18:57:15.726Z_
+
+<details><summary>↩ Tool result · `toolu_01Cz9FZ9Fxaor5HNrSm3m99r`</summary>
+
+```text
+Web search results for query: ""document-level relation extraction" LLM GRPO reinforcement learning 2026 evidence provenance"
+
+Links: [{"title":"MORE-R1: Guiding LVLM for Multimodal Object-Entity Relation Extraction via Stepwise Reasoning with Reinforcement Learning","url":"https://arxiv.org/html/2603.09478"},{"title":"Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-981-95-3343-5_11"},{"title":"Teaching an LLM to Explore: Reinforcement Learning for Document Navigation | Mohammed Alshehri","url":"https://mohammed840.github.io/projects/2026-03-30-tinker-explorer/"},{"title":"GitHub - AMAP-ML/Tree-GRPO: [ICLR 2026] Tree Search for LLM Agent Reinforcement Learning · GitHub","url":"https://github.com/AMAP-ML/Tree-GRPO"},{"title":"Document-Level Relation Extraction","url":"https://www.emergentmind.com/topics/document-level-relation-extraction"},{"title":"LLM with Relation Classifier for Document-Level Relation Extraction","url":"https://arxiv.org/html/2408.13889v2"},{"title":"Topic-Guided Reinforcement Learning with LLMs for ...","url":"https://aclanthology.org/2025.findings-emnlp.662.pdf"},{"title":"[2408.13889] LLM with Relation Classifier for Document-Level Relation Extraction","url":"https://arxiv.org/abs/2408.13889"},{"title":"GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub","url":"https://github.com/tmgthb/Autonomous-Agents"},{"title":"[Literature Review] LLM with Relation Classifier for Document-Level Relation Extraction","url":"https://www.themoonlight.io/en/review/llm-with-relation-classifier-for-document-level-relation-extraction"}]
+
+I found relevant research on document-level relation extraction with LLMs and GRPO reinforcement learning in 2026. Here's what the search revealed:
+
+## Document-Level Relation Extraction with GRPO and RL in 2026
+
+A recent approach called MORE-R1 introduces explicit stepwise reasoning with Reinforcement Learning (RL) to enable Large Vision-Language Models (LVLMs) to address multimodal object-entity relation extraction tasks. The method employs the Group Relative Policy Optimization (GRPO) RL algorithm with a Progressive Sample-Mixing Strategy to stabilize training and further enhance model's reasoning ability on hard samples.
+
+## Document-Level Relation Extraction Approaches
+
+Document-level Relation Extraction (DocRE) aims to identify the relation types between entity pairs within a document. Recent work addresses several challenges in this domain. One framework, Ru-LLM, transforms logical rules into concise prompts to guide initial result generation, which is then subjected to a Chain-of-Thought verification process that retains only those triples satisfying all rules.
+
+## Evidence and Reasoning
+
+An effective approach involves automatically constructing a high-quality supervised fine-tuning (SFT) dataset containing fine-grained stepwise reasoning tailored to the task, enabling the model to learn an effective reasoning paradigm. Additionally, recent studies note that directly applying RL to LLMs without a preliminary cold-start training can lead to unstable outputs, such as producing repetitive, poorly readable, or language-mixed reasoning results.
+
+The research from 2026 demonstrates significant progress in combining LLMs with GRPO-based reinforcement learning for improved document-level understanding and relation extraction tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "89c2bad5-0142-411c-9835-ba214eadb161",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "fb1096ff-8735-46bc-8d17-3290df4d711c",
+  "toolUseResult": {
+    "query": "\"document-level relation extraction\" LLM GRPO reinforcement learning 2026 evidence provenance",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_018vBTeP36LuAHrMXuJHE5NE",
+        "content": [
+          {
+            "title": "MORE-R1: Guiding LVLM for Multimodal Object-Entity Relation Extraction via Stepwise Reasoning with Reinforcement Learning",
+            "url": "https://arxiv.org/html/2603.09478"
+          },
+          {
+            "title": "Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-981-95-3343-5_11"
+          },
+          {
+            "title": "Teaching an LLM to Explore: Reinforcement Learning for Document Navigation | Mohammed Alshehri",
+            "url": "https://mohammed840.github.io/projects/2026-03-30-tinker-explorer/"
+          },
+          {
+            "title": "GitHub - AMAP-ML/Tree-GRPO: [ICLR 2026] Tree Search for LLM Agent Reinforcement Learning · GitHub",
+            "url": "https://github.com/AMAP-ML/Tree-GRPO"
+          },
+          {
+            "title": "Document-Level Relation Extraction",
+            "url": "https://www.emergentmind.com/topics/document-level-relation-extraction"
+          },
+          {
+            "title": "LLM with Relation Classifier for Document-Level Relation Extraction",
+            "url": "https://arxiv.org/html/2408.13889v2"
+          },
+          {
+            "title": "Topic-Guided Reinforcement Learning with LLMs for ...",
+            "url": "https://aclanthology.org/2025.findings-emnlp.662.pdf"
+          },
+          {
+            "title": "[2408.13889] LLM with Relation Classifier for Document-Level Relation Extraction",
+            "url": "https://arxiv.org/abs/2408.13889"
+          },
+          {
+            "title": "GitHub - tmgthb/Autonomous-Agents: Autonomous Agents (LLMs) research papers. Updated Daily. · GitHub",
+            "url": "https://github.com/tmgthb/Autonomous-Agents"
+          },
+          {
+            "title": "[Literature Review] LLM with Relation Classifier for Document-Level Relation Extraction",
+            "url": "https://www.themoonlight.io/en/review/llm-with-relation-classifier-for-document-level-relation-extraction"
+          }
+        ]
+      },
+      "I found relevant research on document-level relation extraction with LLMs and GRPO reinforcement learning in 2026. Here's what the search revealed:\n\n## Document-Level Relation Extraction with GRPO and RL in 2026\n\nA recent approach called MORE-R1 introduces explicit stepwise reasoning with Reinforcement Learning (RL) to enable Large Vision-Language Models (LVLMs) to address multimodal object-entity relation extraction tasks. The method employs the Group Relative Policy Optimization (GRPO) RL algorithm with a Progressive Sample-Mixing Strategy to stabilize training and further enhance model's reasoning ability on hard samples.\n\n## Document-Level Relation Extraction Approaches\n\nDocument-level Relation Extraction (DocRE) aims to identify the relation types between entity pairs within a document. Recent work addresses several challenges in this domain. One framework, Ru-LLM, transforms logical rules into concise prompts to guide initial result generation, which is then subjected to a Chain-of-Thought verification process that retains only those triples satisfying all rules.\n\n## Evidence and Reasoning\n\nAn effective approach involves automatically constructing a high-quality supervised fine-tuning (SFT) dataset containing fine-grained stepwise reasoning tailored to the task, enabling the model to learn an effective reasoning paradigm. Additionally, recent studies note that directly applying RL to LLMs without a preliminary cold-start training can lead to unstable outputs, such as producing repetitive, poorly readable, or language-mixed reasoning results.\n\nThe research from 2026 demonstrates significant progress in combining LLMs with GRPO-based reinforcement learning for improved document-level understanding and relation extraction tasks."
+    ],
+    "durationSeconds": 7.464909929000016
+  },
+  "sourceToolAssistantUUID": "89c2bad5-0142-411c-9835-ba214eadb161",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 71 · 2026-05-10T18:57:19.717Z_
+
+Now let me search for the most critical potential missing competitors — specifically any work combining evidence generation with GRPO for IE tasks.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fb1096ff-8735-46bc-8d17-3290df4d711c",
+  "isSidechain": false,
+  "requestId": "req_011CauQ8E2RZVZTq3NL8teHW",
+  "type": "assistant",
+  "uuid": "61a0dfc1-4c78-4b19-915a-92ae13a86839",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rfz9RxVE5Zxzcr4tgZryUE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1015,
+      "cache_read_input_tokens": 50629,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1015,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 50629,
+          "cache_creation_input_tokens": 1015,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1015
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 72 · 2026-05-10T18:57:20.303Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CQX6bJxLbzMa5LyyXj1jYE`</summary>
+
+```json
+{
+  "query": "DMRL data model aware reward learning data extraction 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "61a0dfc1-4c78-4b19-915a-92ae13a86839",
+  "isSidechain": false,
+  "requestId": "req_011CauQ8E2RZVZTq3NL8teHW",
+  "type": "assistant",
+  "uuid": "37d0ab6d-5014-4e7c-a22a-936746f86905",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Rfz9RxVE5Zxzcr4tgZryUE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1015,
+      "cache_read_input_tokens": 50629,
+      "output_tokens": 91,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1015,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 91,
+          "cache_read_input_tokens": 50629,
+          "cache_creation_input_tokens": 1015,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1015
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 73 · 2026-05-10T18:57:26.598Z_
+
+<details><summary>↩ Tool result · `toolu_01CQX6bJxLbzMa5LyyXj1jYE`</summary>
+
+```text
+Web search results for query: "DMRL data model aware reward learning data extraction 2025"
+
+Links: [{"title":"[2505.06284] DMRL: Data- and Model-aware Reward Learning for Data Extraction","url":"https://arxiv.org/abs/2505.06284"},{"title":"DMRL: Data- and Model-aware Reward Learning for Data Extraction","url":"https://www.arxiv.org/pdf/2505.06284"},{"title":"DMRL: Data- and Model-aware Reward Learning for Data Extraction","url":"https://arxiv.org/html/2505.06284v1"},{"title":"Computer Science May 2025","url":"https://www.arxiv.org/list/cs/2025-05?skip=2775&show=50"},{"title":"DMRL: Data- and Model-aware Reward Learning for Data Extraction","url":"https://www.researchgate.net/publication/391676155_DMRL_Data-_and_Model-aware_Reward_Learning_for_Data_Extraction"},{"title":"Machine Learning May 2025","url":"https://arxiv.org/list/cs.LG/2025-05?skip=525&show=25"},{"title":"Computer Science May 2025","url":"https://arxiv.org/list/cs/2025-05?skip=2675&show=1000"},{"title":"Cryptography and Security May 2025","url":"https://arxiv.org/list/cs.CR/2025-05?skip=525&show=250"},{"title":"DMRL: A distributed multi-agent reinforcement learning algorithm for imbalanced classification - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0950705125011463"},{"title":"Cryptography and Security May 2025","url":"https://www.arxiv.org/list/cs.CR/2025-05?skip=525&show=25"}]
+
+Based on the search results, I found information about DMRL (Data- and Model-aware Reward Learning) for data extraction:
+
+## DMRL: Data- and Model-aware Reward Learning for Data Extraction
+
+DMRL is a Data- and Model-aware Reward Learning approach for data extraction that leverages inverse reinforcement learning to extract sensitive data from LLMs.
+
+### Key Components
+
+The method consists of two main components: (1) constructing an introspective reasoning dataset that captures leakage mindsets to guide model behavior, and (2) training reward models with Group Relative Policy Optimization (GRPO), dynamically tuning optimization based on task difficulty at both the data and model levels.
+
+### Technical Approach
+
+At the data level, hardness is gauged by the CLIP similarity between demonstration and generated samples. At the model level, responsiveness is assessed via the reward gap produced by the reward model.
+
+### Performance
+
+Comprehensive experiments across various LLMs demonstrate that DMRL outperforms all baseline methods in data extraction performance.
+
+The paper was published on arXiv on May 7, 2025 (arXiv:2505.06284), authored by Zhiqiang Wang and Ruoxi Cheng from Beijing Electronic Science and Technology Institute.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "37d0ab6d-5014-4e7c-a22a-936746f86905",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "b39da6ee-d4eb-4d1f-8b93-ee485bd7a643",
+  "toolUseResult": {
+    "query": "DMRL data model aware reward learning data extraction 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BirMRLz7yrknf62hBF7S4t",
+        "content": [
+          {
+            "title": "[2505.06284] DMRL: Data- and Model-aware Reward Learning for Data Extraction",
+            "url": "https://arxiv.org/abs/2505.06284"
+          },
+          {
+            "title": "DMRL: Data- and Model-aware Reward Learning for Data Extraction",
+            "url": "https://www.arxiv.org/pdf/2505.06284"
+          },
+          {
+            "title": "DMRL: Data- and Model-aware Reward Learning for Data Extraction",
+            "url": "https://arxiv.org/html/2505.06284v1"
+          },
+          {
+            "title": "Computer Science May 2025",
+            "url": "https://www.arxiv.org/list/cs/2025-05?skip=2775&show=50"
+          },
+          {
+            "title": "DMRL: Data- and Model-aware Reward Learning for Data Extraction",
+            "url": "https://www.researchgate.net/publication/391676155_DMRL_Data-_and_Model-aware_Reward_Learning_for_Data_Extraction"
+          },
+          {
+            "title": "Machine Learning May 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-05?skip=525&show=25"
+          },
+          {
+            "title": "Computer Science May 2025",
+            "url": "https://arxiv.org/list/cs/2025-05?skip=2675&show=1000"
+          },
+          {
+            "title": "Cryptography and Security May 2025",
+            "url": "https://arxiv.org/list/cs.CR/2025-05?skip=525&show=250"
+          },
+          {
+            "title": "DMRL: A distributed multi-agent reinforcement learning algorithm for imbalanced classification - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0950705125011463"
+          },
+          {
+            "title": "Cryptography and Security May 2025",
+            "url": "https://www.arxiv.org/list/cs.CR/2025-05?skip=525&show=25"
+          }
+        ]
+      },
+      "Based on the search results, I found information about DMRL (Data- and Model-aware Reward Learning) for data extraction:\n\n## DMRL: Data- and Model-aware Reward Learning for Data Extraction\n\nDMRL is a Data- and Model-aware Reward Learning approach for data extraction that leverages inverse reinforcement learning to extract sensitive data from LLMs.\n\n### Key Components\n\nThe method consists of two main components: (1) constructing an introspective reasoning dataset that captures leakage mindsets to guide model behavior, and (2) training reward models with Group Relative Policy Optimization (GRPO), dynamically tuning optimization based on task difficulty at both the data and model levels.\n\n### Technical Approach\n\nAt the data level, hardness is gauged by the CLIP similarity between demonstration and generated samples. At the model level, responsiveness is assessed via the reward gap produced by the reward model.\n\n### Performance\n\nComprehensive experiments across various LLMs demonstrate that DMRL outperforms all baseline methods in data extraction performance.\n\nThe paper was published on arXiv on May 7, 2025 (arXiv:2505.06284), authored by Zhiqiang Wang and Ruoxi Cheng from Beijing Electronic Science and Technology Institute."
+    ],
+    "durationSeconds": 6.291774967000005
+  },
+  "sourceToolAssistantUUID": "37d0ab6d-5014-4e7c-a22a-936746f86905",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 74 · 2026-05-10T18:57:30.350Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Xjfh6WZ65M9uA36Gq7v9Zj`</summary>
+
+```json
+{
+  "query": "ARR May 2026 submission deadline EMNLP 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b39da6ee-d4eb-4d1f-8b93-ee485bd7a643",
+  "isSidechain": false,
+  "requestId": "req_011CauQ92f5sCgEMinDf9wMB",
+  "type": "assistant",
+  "uuid": "de28dbfb-5c26-4e5a-a1c6-9d902cff6b74",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_014QZmBkn7sdWEngZp7cdwvR",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 878,
+      "cache_read_input_tokens": 51644,
+      "output_tokens": 68,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 878,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 68,
+          "cache_read_input_tokens": 51644,
+          "cache_creation_input_tokens": 878,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 878
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 75 · 2026-05-10T18:57:36.142Z_
+
+<details><summary>↩ Tool result · `toolu_01Xjfh6WZ65M9uA36Gq7v9Zj`</summary>
+
+```text
+Web search results for query: "ARR May 2026 submission deadline EMNLP 2026"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"emnlp 2026 - AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/conference/?id=emnlp26"},{"title":"EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X","url":"https://x.com/emnlpmeeting/status/1892259536137785419"}]
+
+Based on the search results, here's the information about the ARR May 2026 submission deadline for EMNLP 2026:
+
+## ARR May 2026 Submission Deadline for EMNLP 2026
+
+The ARR submission deadline for EMNLP 2026 is May 25, 2026. After submission, all authors must complete the author registration form by May 27, 2026 EoD AoE.
+
+### Important Policy Note
+
+The ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), and authors must explicitly declare which conference they intend to commit to at submission time, with this choice being binding for EMNLP 2026—ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.
+
+### Key Timeline for EMNLP 2026
+- ARR submission deadline: May 25, 2026
+- Reviewer registration deadline for all authors: May 27, 2026
+- Author response and author-reviewer discussion: July 7-13, 2026
+- EMNLP commitment deadline: August 2, 2026
+- Notification of acceptance: August 20, 2026
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "de28dbfb-5c26-4e5a-a1c6-9d902cff6b74",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "d4fff31b-e933-4928-b347-931d0181f811",
+  "toolUseResult": {
+    "query": "ARR May 2026 submission deadline EMNLP 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_012bnw7NSGBweC2RPmNQHH2d",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "emnlp 2026 - AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/conference/?id=emnlp26"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X",
+            "url": "https://x.com/emnlpmeeting/status/1892259536137785419"
+          }
+        ]
+      },
+      "Based on the search results, here's the information about the ARR May 2026 submission deadline for EMNLP 2026:\n\n## ARR May 2026 Submission Deadline for EMNLP 2026\n\nThe ARR submission deadline for EMNLP 2026 is May 25, 2026. After submission, all authors must complete the author registration form by May 27, 2026 EoD AoE.\n\n### Important Policy Note\n\nThe ARR 2026 May cycle is aligned with two conferences (EMNLP and AACL), and authors must explicitly declare which conference they intend to commit to at submission time, with this choice being binding for EMNLP 2026—ARR 2026 May submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.\n\n### Key Timeline for EMNLP 2026\n- ARR submission deadline: May 25, 2026\n- Reviewer registration deadline for all authors: May 27, 2026\n- Author response and author-reviewer discussion: July 7-13, 2026\n- EMNLP commitment deadline: August 2, 2026\n- Notification of acceptance: August 20, 2026"
+    ],
+    "durationSeconds": 5.787419400000013
+  },
+  "sourceToolAssistantUUID": "de28dbfb-5c26-4e5a-a1c6-9d902cff6b74",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-10T18:57:38.578Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01T4cGjCVYhi7gsogbMHv1N7`</summary>
+
+```json
+{
+  "query": "NLI performance degradation long premise multi-sentence concatenation DeBERTa 2022 Stammbach"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d4fff31b-e933-4928-b347-931d0181f811",
+  "isSidechain": false,
+  "requestId": "req_011CauQ9jJq9oXgXsEKg6Jyz",
+  "type": "assistant",
+  "uuid": "3d2f1450-80d1-4725-b12f-18fa61180160",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Az4C5a9fpPkqRFR3KFv1RV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 975,
+      "cache_read_input_tokens": 52522,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 975,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 52522,
+          "cache_creation_input_tokens": 975,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 975
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 77 · 2026-05-10T18:57:43.891Z_
+
+<details><summary>↩ Tool result · `toolu_01T4cGjCVYhi7gsogbMHv1N7`</summary>
+
+```text
+Web search results for query: "NLI performance degradation long premise multi-sentence concatenation DeBERTa 2022 Stammbach"
+
+Links: [{"title":"Natural Language Inference Models Fail on Simple ...","url":"https://aclanthology.org/2022.findings-emnlp.252.pdf"},{"title":"Simple but Challenging: Natural Language Inference Models Fail on Simple Sentences - ACL Anthology","url":"https://aclanthology.org/2022.findings-emnlp.252/"},{"title":"Simple but Challenging: Natural Language Inference Models Fail on","url":"https://lucian.uchicago.edu/blogs/mingxiang/wp-content/blogs.dir/197/files/2023/01/2023.Luoetal.EMNLP_.pdf"},{"title":"Stretching Sentence-pair NLI Models to Reason over Long Documents and Clusters - ACL Anthology","url":"https://aclanthology.org/2022.findings-emnlp.28/"},{"title":"The geometry of meaning: evaluating sentence embeddings from diverse transformer-based models for natural language inference - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC12193426/"},{"title":"Natural Language Inference with Transformer Ensembles and Explainability Techniques","url":"https://www.mdpi.com/2079-9292/13/19/3876"},{"title":"TLDR at SemEval-2024 Task 2: T5-generated clinical-Language summaries for DeBERTa Report Analysis","url":"https://arxiv.org/html/2404.09136v1"},{"title":"IMPLI: Investigating NLI Models' Performance on Figurative ...","url":"https://aclanthology.org/2022.acl-long.369.pdf"},{"title":"Natural Language Inference: An Overview | Towards Data Science","url":"https://towardsdatascience.com/natural-language-inference-an-overview-57c0eecf6517/"},{"title":"Atomic-SNLI: Fine-Grained Natural Language Inference through Atomic Fact Decomposition","url":"https://arxiv.org/html/2601.06528v1"}]
+
+I found search results related to NLI models and DeBERTa, but the results don't contain the specific research by Stammbach mentioned in your query. The search returned several 2022 papers about NLI model performance degradation, but none appear to be authored by Stammbach specifically.
+
+The closest relevant result is a 2022 study that employed BERT, RoBERTa, and DeBERTa models and found that these models fine-tuned on MNLI or SNLI perform very poorly on Simple Pair (< 35.4% accuracy), though this was authored by Luo et al., not Stammbach.
+
+To find the specific Stammbach 2022 paper on NLI performance degradation with long premises and multi-sentence concatenation, you may want to:
+- Search directly on ArXiv or ACL Anthology with the author name "Stammbach"
+- Check for papers on long document NLI or document-level inference with that author
+- Look for papers specifically addressing concatenation strategies for NLI models
+
+Would you like me to perform another search with different query terms to locate this specific paper?
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3d2f1450-80d1-4725-b12f-18fa61180160",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "48816ed2-6497-42a4-ab4e-bb81c1fba9b4",
+  "toolUseResult": {
+    "query": "NLI performance degradation long premise multi-sentence concatenation DeBERTa 2022 Stammbach",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01VGHanTfYPKv9EZWsqHTUo4",
+        "content": [
+          {
+            "title": "Natural Language Inference Models Fail on Simple ...",
+            "url": "https://aclanthology.org/2022.findings-emnlp.252.pdf"
+          },
+          {
+            "title": "Simple but Challenging: Natural Language Inference Models Fail on Simple Sentences - ACL Anthology",
+            "url": "https://aclanthology.org/2022.findings-emnlp.252/"
+          },
+          {
+            "title": "Simple but Challenging: Natural Language Inference Models Fail on",
+            "url": "https://lucian.uchicago.edu/blogs/mingxiang/wp-content/blogs.dir/197/files/2023/01/2023.Luoetal.EMNLP_.pdf"
+          },
+          {
+            "title": "Stretching Sentence-pair NLI Models to Reason over Long Documents and Clusters - ACL Anthology",
+            "url": "https://aclanthology.org/2022.findings-emnlp.28/"
+          },
+          {
+            "title": "The geometry of meaning: evaluating sentence embeddings from diverse transformer-based models for natural language inference - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12193426/"
+          },
+          {
+            "title": "Natural Language Inference with Transformer Ensembles and Explainability Techniques",
+            "url": "https://www.mdpi.com/2079-9292/13/19/3876"
+          },
+          {
+            "title": "TLDR at SemEval-2024 Task 2: T5-generated clinical-Language summaries for DeBERTa Report Analysis",
+            "url": "https://arxiv.org/html/2404.09136v1"
+          },
+          {
+            "title": "IMPLI: Investigating NLI Models' Performance on Figurative ...",
+            "url": "https://aclanthology.org/2022.acl-long.369.pdf"
+          },
+          {
+            "title": "Natural Language Inference: An Overview | Towards Data Science",
+            "url": "https://towardsdatascience.com/natural-language-inference-an-overview-57c0eecf6517/"
+          },
+          {
+            "title": "Atomic-SNLI: Fine-Grained Natural Language Inference through Atomic Fact Decomposition",
+            "url": "https://arxiv.org/html/2601.06528v1"
+          }
+        ]
+      },
+      "I found search results related to NLI models and DeBERTa, but the results don't contain the specific research by Stammbach mentioned in your query. The search returned several 2022 papers about NLI model performance degradation, but none appear to be authored by Stammbach specifically.\n\nThe closest relevant result is a 2022 study that employed BERT, RoBERTa, and DeBERTa models and found that these models fine-tuned on MNLI or SNLI perform very poorly on Simple Pair (< 35.4% accuracy), though this was authored by Luo et al., not Stammbach.\n\nTo find the specific Stammbach 2022 paper on NLI performance degradation with long premises and multi-sentence concatenation, you may want to:\n- Search directly on ArXiv or ACL Anthology with the author name \"Stammbach\"\n- Check for papers on long document NLI or document-level inference with that author\n- Look for papers specifically addressing concatenation strategies for NLI models\n\nWould you like me to perform another search with different query terms to locate this specific paper?"
+    ],
+    "durationSeconds": 5.308855351000005
+  },
+  "sourceToolAssistantUUID": "3d2f1450-80d1-4725-b12f-18fa61180160",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 78 · 2026-05-10T18:57:43.897Z_
+
+```json
+{
+  "parentUuid": "48816ed2-6497-42a4-ab4e-bb81c1fba9b4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "c22e910e-3822-42fd-b690-2b227799bf3c",
+  "timestamp": "2026-05-10T18:57:43.897Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 79_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "c22e910e-3822-42fd-b690-2b227799bf3c",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 80_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of FREIGE: Evidence-Grounded IE via Decomposed Entailment Verification (Round 4)",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 81 · 2026-05-10T18:57:46.989Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01KB43F5FaXsbViTabjKDnzG`</summary>
+
+```json
+{
+  "url": "https://aclanthology.org/2022.findings-emnlp.28/",
+  "prompt": "What are the key findings about NLI model performance when applied to long documents? Does performance degrade when premises are long or multi-sentence? What specific metrics or degradation numbers are reported? Who are the authors?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c22e910e-3822-42fd-b690-2b227799bf3c",
+  "isSidechain": false,
+  "requestId": "req_011CauQAJRtjieKE74HnY95h",
+  "type": "assistant",
+  "uuid": "23db6e5b-3630-4714-ab79-41958ed1e0a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AH5wHPeW56M31cMp7FsB2g",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1013,
+      "cache_read_input_tokens": 53497,
+      "output_tokens": 134,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1013,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 134,
+          "cache_read_input_tokens": 53497,
+          "cache_creation_input_tokens": 1013,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1013
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 82 · 2026-05-10T18:57:50.838Z_
+
+<details><summary>↩ Tool result · `toolu_01KB43F5FaXsbViTabjKDnzG`</summary>
+
+```text
+# NLI Model Performance on Long Documents
+
+**Authors:** Tal Schuster, Sihao Chen, Senaka Buthpitiya, Alex Fabrikant, and Donald Metzler
+
+## Key Findings
+
+The webpage abstract indicates the researchers investigated NLI model robustness but doesn't provide specific performance degradation metrics. The abstract states they "analyze the robustness of these models to longer and out-of-domain inputs," but specific numerical results aren't included in this summary.
+
+The research demonstrates that sentence-pair NLI models can be adapted for broader applications through aggregation methods, achieving competitive results on the ContractNLI dataset. Notably, the team discovered that "NLI scores to provide strong retrieval signals, leading to more relevant evidence extractions compared to common similarity-based methods."
+
+The study extends beyond document-level analysis to examine document clusters, uncovering inconsistencies across multilingual sources on Wikipedia.
+
+**Note:** Detailed performance degradation numbers and specific metrics for long-document scenarios would require consulting the full PDF paper (pages 394-412).
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "23db6e5b-3630-4714-ab79-41958ed1e0a7",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "e3886bc5-1efc-4d7a-956f-a5331208068e",
+  "toolUseResult": {
+    "bytes": 39042,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# NLI Model Performance on Long Documents\n\n**Authors:** Tal Schuster, Sihao Chen, Senaka Buthpitiya, Alex Fabrikant, and Donald Metzler\n\n## Key Findings\n\nThe webpage abstract indicates the researchers investigated NLI model robustness but doesn't provide specific performance degradation metrics. The abstract states they \"analyze the robustness of these models to longer and out-of-domain inputs,\" but specific numerical results aren't included in this summary.\n\nThe research demonstrates that sentence-pair NLI models can be adapted for broader applications through aggregation methods, achieving competitive results on the ContractNLI dataset. Notably, the team discovered that \"NLI scores to provide strong retrieval signals, leading to more relevant evidence extractions compared to common similarity-based methods.\"\n\nThe study extends beyond document-level analysis to examine document clusters, uncovering inconsistencies across multilingual sources on Wikipedia.\n\n**Note:** Detailed performance degradation numbers and specific metrics for long-document scenarios would require consulting the full PDF paper (pages 394-412).",
+    "durationMs": 3844,
+    "url": "https://aclanthology.org/2022.findings-emnlp.28/"
+  },
+  "sourceToolAssistantUUID": "23db6e5b-3630-4714-ab79-41958ed1e0a7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 83 · 2026-05-10T18:57:52.977Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01K3AN5RrMyAUXAJSEAzpkDy`</summary>
+
+```json
+{
+  "query": "Extract-0 specialized language model document information extraction 2025 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e3886bc5-1efc-4d7a-956f-a5331208068e",
+  "isSidechain": false,
+  "requestId": "req_011CauQAp9ZXKtCA3NPhCNkF",
+  "type": "assistant",
+  "uuid": "da1229dd-667d-47f0-8619-eb3968b3c799",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R9VBeFX57gLgsvrgQm1rxS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 384,
+      "cache_read_input_tokens": 54510,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 384,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 54510,
+          "cache_creation_input_tokens": 384,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 384
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 84 · 2026-05-10T18:57:58.917Z_
+
+<details><summary>↩ Tool result · `toolu_01K3AN5RrMyAUXAJSEAzpkDy`</summary>
+
+```text
+Web search results for query: "Extract-0 specialized language model document information extraction 2025 arxiv"
+
+Links: [{"title":"[2509.22906] Extract-0: A Specialized Language Model for Document Information Extraction","url":"https://arxiv.org/abs/2509.22906"},{"title":"EXTRACT-0: A SPECIALIZED LANGUAGE MODEL FOR DOCUMENT INFORMATION EXTRACTION","url":"https://arxiv.org/pdf/2509.22906"},{"title":"GitHub - herniqeu/extract0: Extract-0: A Specialized Language Model for Document Information · GitHub","url":"https://github.com/herniqeu/extract0"},{"title":"HenriqueGodoy/extract-0 · Datasets at Hugging Face","url":"https://huggingface.co/datasets/HenriqueGodoy/extract-0"},{"title":"Paper page - Extract-0: A Specialized Language Model for Document Information Extraction","url":"https://huggingface.co/papers/2509.22906"},{"title":"Computation and Language 2025","url":"https://arxiv.org/list/cs.CL/2025?skip=12850&show=2000"},{"title":"Extract-0: A Specialized Language Model for Document ...","url":"https://www.alphaxiv.org/resources/2509.22906"},{"title":"Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11704-024-40555-y"},{"title":"Extract-0: A specialized language model for document information extraction | Hacker News","url":"https://news.ycombinator.com/item?id=45427634"},{"title":"Metadata Extraction Leveraging Large Language Models","url":"https://arxiv.org/html/2510.19334v1"}]
+
+Based on the search results, here's what I found about Extract-0:
+
+## Overview
+
+Extract-0 is a 7-billion parameter language model specifically optimized for document information extraction that achieves performance exceeding models with parameter counts several orders of magnitude larger.
+
+## Performance
+
+Extract-0 achieves a mean reward of 0.573 on a benchmark of 1,000 held-out document extraction tasks, outperforming GPT-4.1 (0.457), o3 (0.464), and GPT-4.1-2025 (0.459).
+
+## Training Methodology
+
+The model uses a combination of memory-preserving synthetic data generation (280,128 training examples plus 1,000 held-out test tasks), parameter-efficient fine-tuning (0.53% of parameters modified), and semantic similarity-based reinforcement learning, with a training cost of $196.
+
+The reinforcement learning phase introduces a novel semantic similarity-based reward function that handles the inherent ambiguity in information extraction tasks.
+
+## Key Insight
+
+The results suggest that for specific tasks like document information extraction, specialized models can achieve strong performance without requiring the computational resources of larger general-purpose systems.
+
+The research paper was published on arXiv on September 26, 2025, with the identifier 2509.22906.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "da1229dd-667d-47f0-8619-eb3968b3c799",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "07102b25-6c20-4ca4-bff8-f29b7e0e9ead",
+  "toolUseResult": {
+    "query": "Extract-0 specialized language model document information extraction 2025 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01MkCqzSpo2Gk6t2XG1sDRjA",
+        "content": [
+          {
+            "title": "[2509.22906] Extract-0: A Specialized Language Model for Document Information Extraction",
+            "url": "https://arxiv.org/abs/2509.22906"
+          },
+          {
+            "title": "EXTRACT-0: A SPECIALIZED LANGUAGE MODEL FOR DOCUMENT INFORMATION EXTRACTION",
+            "url": "https://arxiv.org/pdf/2509.22906"
+          },
+          {
+            "title": "GitHub - herniqeu/extract0: Extract-0: A Specialized Language Model for Document Information · GitHub",
+            "url": "https://github.com/herniqeu/extract0"
+          },
+          {
+            "title": "HenriqueGodoy/extract-0 · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/HenriqueGodoy/extract-0"
+          },
+          {
+            "title": "Paper page - Extract-0: A Specialized Language Model for Document Information Extraction",
+            "url": "https://huggingface.co/papers/2509.22906"
+          },
+          {
+            "title": "Computation and Language 2025",
+            "url": "https://arxiv.org/list/cs.CL/2025?skip=12850&show=2000"
+          },
+          {
+            "title": "Extract-0: A Specialized Language Model for Document ...",
+            "url": "https://www.alphaxiv.org/resources/2509.22906"
+          },
+          {
+            "title": "Large language models for generative information extraction: a survey | Frontiers of Computer Science | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11704-024-40555-y"
+          },
+          {
+            "title": "Extract-0: A specialized language model for document information extraction | Hacker News",
+            "url": "https://news.ycombinator.com/item?id=45427634"
+          },
+          {
+            "title": "Metadata Extraction Leveraging Large Language Models",
+            "url": "https://arxiv.org/html/2510.19334v1"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about Extract-0:\n\n## Overview\n\nExtract-0 is a 7-billion parameter language model specifically optimized for document information extraction that achieves performance exceeding models with parameter counts several orders of magnitude larger.\n\n## Performance\n\nExtract-0 achieves a mean reward of 0.573 on a benchmark of 1,000 held-out document extraction tasks, outperforming GPT-4.1 (0.457), o3 (0.464), and GPT-4.1-2025 (0.459).\n\n## Training Methodology\n\nThe model uses a combination of memory-preserving synthetic data generation (280,128 training examples plus 1,000 held-out test tasks), parameter-efficient fine-tuning (0.53% of parameters modified), and semantic similarity-based reinforcement learning, with a training cost of $196.\n\nThe reinforcement learning phase introduces a novel semantic similarity-based reward function that handles the inherent ambiguity in information extraction tasks.\n\n## Key Insight\n\nThe results suggest that for specific tasks like document information extraction, specialized models can achieve strong performance without requiring the computational resources of larger general-purpose systems.\n\nThe research paper was published on arXiv on September 26, 2025, with the identifier 2509.22906."
+    ],
+    "durationSeconds": 5.937529301000002
+  },
+  "sourceToolAssistantUUID": "da1229dd-667d-47f0-8619-eb3968b3c799",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 85 · 2026-05-10T18:58:02.006Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_014ha4Z3x5k6Dcb17TuwnrBC`</summary>
+
+```json
+{
+  "query": "length-adaptive entailment decomposed NLI verification evidence chain faithfulness reward 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "07102b25-6c20-4ca4-bff8-f29b7e0e9ead",
+  "isSidechain": false,
+  "requestId": "req_011CauQBQgDJfeRyzJRgAm7J",
+  "type": "assistant",
+  "uuid": "22587068-2f5d-4c4f-93d6-976e0cb01e2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0182s1WfaWNYRbvgvcS6e6Z1",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 843,
+      "cache_read_input_tokens": 54894,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 843,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 54894,
+          "cache_creation_input_tokens": 843,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 843
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 86 · 2026-05-10T18:58:09.977Z_
+
+<details><summary>↩ Tool result · `toolu_014ha4Z3x5k6Dcb17TuwnrBC`</summary>
+
+```text
+Web search results for query: "length-adaptive entailment decomposed NLI verification evidence chain faithfulness reward 2025 2026"
+
+Links: [{"title":"PrefixNLI: Detecting Factual Inconsistencies as Soon as They Arise","url":"https://arxiv.org/html/2511.01359"},{"title":"NLI4CT","url":"https://sites.google.com/view/nli4ct/"},{"title":"Natural Language Inference (NLI)","url":"https://www.emergentmind.com/topics/natural-language-inference-nli"},{"title":"Enhancing the Interpretability of NLI Models Using LLMs and Active Learning Algorithms","url":"https://www.mdpi.com/2078-2489/17/2/119"},{"title":"Faithfulness in RAG Systems: NLI-Based Hallucination… | 123ofAI","url":"https://123ofai.com/qnalab/system-design/blocks/faithfulness"},{"title":"soumyasanyal/nli-entailment-verifier-xxl · Hugging Face","url":"https://huggingface.co/soumyasanyal/nli-entailment-verifier-xxl"},{"title":"Can NLI Models Verify QA Systems’ Predictions?","url":"https://www.researchgate.net/publication/357386132_Can_NLI_Models_Verify_QA_Systems'_Predictions"},{"title":"On Measuring Faithfulness or Self-consistency of Natural Language Explanations","url":"https://arxiv.org/html/2311.07466v3"},{"title":"Faithfulness Tests for Natural Language Explanations","url":"https://aclanthology.org/2023.acl-short.25.pdf"},{"title":"How Should We Evaluate LLM Reasoning Quality For Fact Verification? | OpenReview","url":"https://openreview.net/forum?id=ruh9H1Nwvr"}]
+
+Based on the web search results, I found several highly relevant papers and resources related to your query about NLI (Natural Language Inference), entailment decomposition, verification, evidence chains, and faithfulness:
+
+## Key Findings:
+
+**1. PrefixNLI: Early Faithfulness Detection**
+PrefixNLI extends the traditional textual entailment definition to apply over arbitrary text prefixes as hypotheses, introducing suitable test and training datasets for this task. MiniTruePrefixes model shows consistent faithfulness gains across model sizes and datasets on the abstractive summarization task.
+
+**2. Reasoning Quality Evaluation Framework for NLI**
+For the task of Fact Verification, researchers propose a novel evaluation framework that considers inference steps including hypothesis decomposition into individual facts, followed by source attribution and entailment decision for each fact. Analysis reveals that models often omit necessary reasoning steps, leading to incomplete justifications.
+
+**3. Decomposition-Based Faithfulness Assessment**
+Approaches decompose generated answers into atomic, verifiable factual statements, implemented as rule-based parsers, prompted LLMs, or fine-tuned claim decomposition models. The final faithfulness score is computed by counting supported claims and dividing by total claims, with faithfulness explicitly checking entailment between claims and context.
+
+**4. Natural Language Explanations and Faithfulness**
+Explainable Natural Language Inference (ExNLI) augments traditional premise-hypothesis pairs with natural-language explanations, with human and automated evaluations confirming the consistency and faithfulness of these explanations.
+
+These resources suggest an active research area focused on improving entailment verification through decomposition strategies, evidence attribution, and faithfulness rewards in LLM-based systems.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "22587068-2f5d-4c4f-93d6-976e0cb01e2d",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "60715710-8b1c-4a8e-8e78-ca7d2d90d2aa",
+  "toolUseResult": {
+    "query": "length-adaptive entailment decomposed NLI verification evidence chain faithfulness reward 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01XwzzfjoEjDufkRmKNMwnk4",
+        "content": [
+          {
+            "title": "PrefixNLI: Detecting Factual Inconsistencies as Soon as They Arise",
+            "url": "https://arxiv.org/html/2511.01359"
+          },
+          {
+            "title": "NLI4CT",
+            "url": "https://sites.google.com/view/nli4ct/"
+          },
+          {
+            "title": "Natural Language Inference (NLI)",
+            "url": "https://www.emergentmind.com/topics/natural-language-inference-nli"
+          },
+          {
+            "title": "Enhancing the Interpretability of NLI Models Using LLMs and Active Learning Algorithms",
+            "url": "https://www.mdpi.com/2078-2489/17/2/119"
+          },
+          {
+            "title": "Faithfulness in RAG Systems: NLI-Based Hallucination… | 123ofAI",
+            "url": "https://123ofai.com/qnalab/system-design/blocks/faithfulness"
+          },
+          {
+            "title": "soumyasanyal/nli-entailment-verifier-xxl · Hugging Face",
+            "url": "https://huggingface.co/soumyasanyal/nli-entailment-verifier-xxl"
+          },
+          {
+            "title": "Can NLI Models Verify QA Systems’ Predictions?",
+            "url": "https://www.researchgate.net/publication/357386132_Can_NLI_Models_Verify_QA_Systems'_Predictions"
+          },
+          {
+            "title": "On Measuring Faithfulness or Self-consistency of Natural Language Explanations",
+            "url": "https://arxiv.org/html/2311.07466v3"
+          },
+          {
+            "title": "Faithfulness Tests for Natural Language Explanations",
+            "url": "https://aclanthology.org/2023.acl-short.25.pdf"
+          },
+          {
+            "title": "How Should We Evaluate LLM Reasoning Quality For Fact Verification? | OpenReview",
+            "url": "https://openreview.net/forum?id=ruh9H1Nwvr"
+          }
+        ]
+      },
+      "Based on the web search results, I found several highly relevant papers and resources related to your query about NLI (Natural Language Inference), entailment decomposition, verification, evidence chains, and faithfulness:\n\n## Key Findings:\n\n**1. PrefixNLI: Early Faithfulness Detection**\nPrefixNLI extends the traditional textual entailment definition to apply over arbitrary text prefixes as hypotheses, introducing suitable test and training datasets for this task. MiniTruePrefixes model shows consistent faithfulness gains across model sizes and datasets on the abstractive summarization task.\n\n**2. Reasoning Quality Evaluation Framework for NLI**\nFor the task of Fact Verification, researchers propose a novel evaluation framework that considers inference steps including hypothesis decomposition into individual facts, followed by source attribution and entailment decision for each fact. Analysis reveals that models often omit necessary reasoning steps, leading to incomplete justifications.\n\n**3. Decomposition-Based Faithfulness Assessment**\nApproaches decompose generated answers into atomic, verifiable factual statements, implemented as rule-based parsers, prompted LLMs, or fine-tuned claim decomposition models. The final faithfulness score is computed by counting supported claims and dividing by total claims, with faithfulness explicitly checking entailment between claims and context.\n\n**4. Natural Language Explanations and Faithfulness**\nExplainable Natural Language Inference (ExNLI) augments traditional premise-hypothesis pairs with natural-language explanations, with human and automated evaluations confirming the consistency and faithfulness of these explanations.\n\nThese resources suggest an active research area focused on improving entailment verification through decomposition strategies, evidence attribution, and faithfulness rewards in LLM-based systems."
+    ],
+    "durationSeconds": 7.966859891999978
+  },
+  "sourceToolAssistantUUID": "22587068-2f5d-4c4f-93d6-976e0cb01e2d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 87 · 2026-05-10T18:58:12.222Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019Wkom5o6pH1oN8uKpJqbK6`</summary>
+
+```json
+{
+  "query": "GRACE reinforcement learning grounded response abstention contextual evidence 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "60715710-8b1c-4a8e-8e78-ca7d2d90d2aa",
+  "isSidechain": false,
+  "requestId": "req_011CauQCDyJtyJmLcj5PSQcz",
+  "type": "assistant",
+  "uuid": "57be441b-c628-4cf8-96cd-a88c60e6879c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012rpbq4HWPdAneuZcmrcSSv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 974,
+      "cache_read_input_tokens": 55737,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 974,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 55737,
+          "cache_creation_input_tokens": 974,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 974
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 88 · 2026-05-10T18:58:19.130Z_
+
+<details><summary>↩ Tool result · `toolu_019Wkom5o6pH1oN8uKpJqbK6`</summary>
+
+```text
+Web search results for query: "GRACE reinforcement learning grounded response abstention contextual evidence 2026"
+
+Links: [{"title":"[2601.04525] GRACE: Reinforcement Learning for Grounded Response and Abstention under Contextual Evidence","url":"https://arxiv.org/abs/2601.04525"},{"title":"GRACE: Reinforcement Learning for Grounded Response and Abstention under Contextual Evidence","url":"https://arxiv.org/html/2601.04525v1"},{"title":"GRACE: Reinforcement Learning for Grounded Response and Abstention under Contextual Evidence | Cool Papers - Immersive Paper Discovery","url":"https://papers.cool/arxiv/2601.04525"},{"title":"GRACE: Reinforcement Learning for Grounded Response ...","url":"https://chatpaper.com/pt/chatpaper/paper/224889"},{"title":"A Roadmap of Their Experiences in Their Own Words","url":"https://www.researchgate.net/publication/392696947_Social_and_Administrative_Pharmacy_SAP_Doctor_of_Philosophy_PhD_Student_and_Recent_Graduate_Perspectives_of_Careers_in_Academia_A_Roadmap_of_Their_Experiences_in_Their_Own_Words"},{"title":"[2510.02180] GRACE: A Language Model Framework for Explainable Inverse Reinforcement Learning","url":"https://arxiv.org/abs/2510.02180"},{"title":"GRAIL-V at CVPR 2026","url":"https://grailworkshops.github.io/"},{"title":"GRACE: A Language Model Framework for Explainable ...","url":"https://arxiv.org/pdf/2510.02180"},{"title":"Breaking Contextual Inertia: Reinforcement Learning with Single-Turn Anchors for Stable Multi-Turn Interaction","url":"https://arxiv.org/html/2603.04783"},{"title":"Grounded Reinforcement Learning for Visual Reasoning | OpenReview","url":"https://openreview.net/forum?id=1amnhVRQ3l"}]
+
+Based on the search results, I found detailed information about GRACE:
+
+## GRACE: Reinforcement Learning for Grounded Response and Abstention under Contextual Evidence
+
+Retrieval-Augmented Generation (RAG) integrates external knowledge to enhance Large Language Models (LLMs), yet systems remain susceptible to two critical flaws: providing correct answers without explicit grounded evidence and producing fabricated responses when the retrieved context is insufficient.
+
+GRACE is a reinforcement-learning framework that simultaneously mitigates both types of flaws. GRACE employs a data construction method that utilizes heterogeneous retrievers to generate diverse training samples without manual annotation. A multi-stage gated reward function is then employed to train the model to assess evidence sufficiency, extract key supporting evidence, and provide answers or explicitly abstain.
+
+### Key Components
+
+The framework comprises three key components: (1) a pipeline for constructing answerable and unanswerable training data from heterogeneous retrievers; (2) a multi-stage gated reward that provides multi-aspect outcome feedback; and (3) a modified Dynamic sAmpling Policy Optimization (DAPO) algorithm for effective fine-tuning.
+
+### Results
+
+Experimental results on two benchmarks demonstrate that GRACE achieves state-of-the-art overall accuracy and strikes a favorable balance between accurate response and rejection, while requiring only 10% of the annotation costs of prior methods.
+
+The paper was published on arXiv on January 8, 2026.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "57be441b-c628-4cf8-96cd-a88c60e6879c",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "fd50770a-a63a-4b12-a983-27c12844234e",
+  "toolUseResult": {
+    "query": "GRACE reinforcement learning grounded response abstention contextual evidence 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01UAKbAbE8BhhkH1xkRRiKXE",
+        "content": [
+          {
+            "title": "[2601.04525] GRACE: Reinforcement Learning for Grounded Response and Abstention under Contextual Evidence",
+            "url": "https://arxiv.org/abs/2601.04525"
+          },
+          {
+            "title": "GRACE: Reinforcement Learning for Grounded Response and Abstention under Contextual Evidence",
+            "url": "https://arxiv.org/html/2601.04525v1"
+          },
+          {
+            "title": "GRACE: Reinforcement Learning for Grounded Response and Abstention under Contextual Evidence | Cool Papers - Immersive Paper Discovery",
+            "url": "https://papers.cool/arxiv/2601.04525"
+          },
+          {
+            "title": "GRACE: Reinforcement Learning for Grounded Response ...",
+            "url": "https://chatpaper.com/pt/chatpaper/paper/224889"
+          },
+          {
+            "title": "A Roadmap of Their Experiences in Their Own Words",
+            "url": "https://www.researchgate.net/publication/392696947_Social_and_Administrative_Pharmacy_SAP_Doctor_of_Philosophy_PhD_Student_and_Recent_Graduate_Perspectives_of_Careers_in_Academia_A_Roadmap_of_Their_Experiences_in_Their_Own_Words"
+          },
+          {
+            "title": "[2510.02180] GRACE: A Language Model Framework for Explainable Inverse Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2510.02180"
+          },
+          {
+            "title": "GRAIL-V at CVPR 2026",
+            "url": "https://grailworkshops.github.io/"
+          },
+          {
+            "title": "GRACE: A Language Model Framework for Explainable ...",
+            "url": "https://arxiv.org/pdf/2510.02180"
+          },
+          {
+            "title": "Breaking Contextual Inertia: Reinforcement Learning with Single-Turn Anchors for Stable Multi-Turn Interaction",
+            "url": "https://arxiv.org/html/2603.04783"
+          },
+          {
+            "title": "Grounded Reinforcement Learning for Visual Reasoning | OpenReview",
+            "url": "https://openreview.net/forum?id=1amnhVRQ3l"
+          }
+        ]
+      },
+      "Based on the search results, I found detailed information about GRACE:\n\n## GRACE: Reinforcement Learning for Grounded Response and Abstention under Contextual Evidence\n\nRetrieval-Augmented Generation (RAG) integrates external knowledge to enhance Large Language Models (LLMs), yet systems remain susceptible to two critical flaws: providing correct answers without explicit grounded evidence and producing fabricated responses when the retrieved context is insufficient.\n\nGRACE is a reinforcement-learning framework that simultaneously mitigates both types of flaws. GRACE employs a data construction method that utilizes heterogeneous retrievers to generate diverse training samples without manual annotation. A multi-stage gated reward function is then employed to train the model to assess evidence sufficiency, extract key supporting evidence, and provide answers or explicitly abstain.\n\n### Key Components\n\nThe framework comprises three key components: (1) a pipeline for constructing answerable and unanswerable training data from heterogeneous retrievers; (2) a multi-stage gated reward that provides multi-aspect outcome feedback; and (3) a modified Dynamic sAmpling Policy Optimization (DAPO) algorithm for effective fine-tuning.\n\n### Results\n\nExperimental results on two benchmarks demonstrate that GRACE achieves state-of-the-art overall accuracy and strikes a favorable balance between accurate response and rejection, while requiring only 10% of the annotation costs of prior methods.\n\nThe paper was published on arXiv on January 8, 2026."
+    ],
+    "durationSeconds": 6.9035944700000105
+  },
+  "sourceToolAssistantUUID": "57be441b-c628-4cf8-96cd-a88c60e6879c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 89 · 2026-05-10T18:58:21.605Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Gpm2yysfgg5d5A1hYfP3aX`</summary>
+
+```json
+{
+  "query": "DocRED evidence annotation distribution one sentence two sentence three sentence percentage statistics"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fd50770a-a63a-4b12-a983-27c12844234e",
+  "isSidechain": false,
+  "requestId": "req_011CauQCuBjTreWPdzsLHTQa",
+  "type": "assistant",
+  "uuid": "dd68796c-9f14-434e-8d7b-59b824c49e07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cf8LXqfrBNLzGgwnZeVTbM",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 934,
+      "cache_read_input_tokens": 56711,
+      "output_tokens": 65,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 934,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 65,
+          "cache_read_input_tokens": 56711,
+          "cache_creation_input_tokens": 934,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 934
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 90 · 2026-05-10T18:58:26.959Z_
+
+<details><summary>↩ Tool result · `toolu_01Gpm2yysfgg5d5A1hYfP3aX`</summary>
+
+```text
+Web search results for query: "DocRED evidence annotation distribution one sentence two sentence three sentence percentage statistics"
+
+Links: [{"title":"GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction","url":"https://arxiv.org/html/2407.21384"},{"title":"[1906.06127] DocRED: A Large-Scale Document-Level Relation Extraction Dataset","url":"https://ar5iv.labs.arxiv.org/html/1906.06127"},{"title":"A Large-Scale Document-Level Relation Extraction Dataset","url":"https://aclanthology.org/P19-1074.pdf"},{"title":"Does Recommend-Revise Produce Reliable Annotations? ...","url":"https://aclanthology.org/2022.acl-long.432.pdf"},{"title":"Entity and Evidence Guided Relation Extraction for DocRED | Request PDF","url":"https://www.researchgate.net/publication/343931511_Entity_and_Evidence_Guided_Relation_Extraction_for_DocRED"},{"title":"thunlp/docred · Datasets at Hugging Face","url":"https://huggingface.co/datasets/thunlp/docred"},{"title":"DocRED: A Large-Scale Document-Level Relation Extraction Dataset","url":"https://www.groundai.com/project/docred-a-large-scale-document-level-relation-extraction-dataset/1"},{"title":"A case from DocRED. The upper part shows the original documents with... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/A-case-from-DocRED-The-upper-part-shows-the-original-documents-with-entities-highlighted_fig4_361055216"},{"title":"(PDF) Does Recommend-Revise Produce Reliable Annotations? An Analysis on Missing Instances in DocRED","url":"https://www.researchgate.net/publication/360030988_Does_Recommend-Revise_Produce_Reliable_Annotations_An_Analysis_on_Missing_Instances_in_DocRED"},{"title":"Document-level relation extraction using evidence reasoning on RST-GRAPH - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0950705121005360"}]
+
+Based on the search results, I found relevant information about DocRED evidence annotation distribution. In the development set of DocRED, 6,115 relation instances have only one supporting sentence (denoted as single), and 1,062 relation instances have multiple supporting sentences and the entity pair co-occur in at least one supporting sentence. The results mention analyzing the difficulty of synthesizing information from different types of supporting evidence by dividing the 12,332 relation instances in the development set into subsets based on the number of supporting sentences, but the complete percentage statistics for one-sentence, two-sentence, and three-sentence evidence distributions are not fully visible in the search results provided.
+
+To get the exact percentage statistics for one, two, and three-sentence evidence annotations, you may want to consult the original DocRED paper directly or look at supplementary materials that provide these complete statistics.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "dd68796c-9f14-434e-8d7b-59b824c49e07",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "0c08fffc-03b4-4487-a41a-02c5479e6cc3",
+  "toolUseResult": {
+    "query": "DocRED evidence annotation distribution one sentence two sentence three sentence percentage statistics",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_0141uh7sbWFEWCsYHxVmm19a",
+        "content": [
+          {
+            "title": "GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction",
+            "url": "https://arxiv.org/html/2407.21384"
+          },
+          {
+            "title": "[1906.06127] DocRED: A Large-Scale Document-Level Relation Extraction Dataset",
+            "url": "https://ar5iv.labs.arxiv.org/html/1906.06127"
+          },
+          {
+            "title": "A Large-Scale Document-Level Relation Extraction Dataset",
+            "url": "https://aclanthology.org/P19-1074.pdf"
+          },
+          {
+            "title": "Does Recommend-Revise Produce Reliable Annotations? ...",
+            "url": "https://aclanthology.org/2022.acl-long.432.pdf"
+          },
+          {
+            "title": "Entity and Evidence Guided Relation Extraction for DocRED | Request PDF",
+            "url": "https://www.researchgate.net/publication/343931511_Entity_and_Evidence_Guided_Relation_Extraction_for_DocRED"
+          },
+          {
+            "title": "thunlp/docred · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/thunlp/docred"
+          },
+          {
+            "title": "DocRED: A Large-Scale Document-Level Relation Extraction Dataset",
+            "url": "https://www.groundai.com/project/docred-a-large-scale-document-level-relation-extraction-dataset/1"
+          },
+          {
+            "title": "A case from DocRED. The upper part shows the original documents with... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/A-case-from-DocRED-The-upper-part-shows-the-original-documents-with-entities-highlighted_fig4_361055216"
+          },
+          {
+            "title": "(PDF) Does Recommend-Revise Produce Reliable Annotations? An Analysis on Missing Instances in DocRED",
+            "url": "https://www.researchgate.net/publication/360030988_Does_Recommend-Revise_Produce_Reliable_Annotations_An_Analysis_on_Missing_Instances_in_DocRED"
+          },
+          {
+            "title": "Document-level relation extraction using evidence reasoning on RST-GRAPH - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0950705121005360"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about DocRED evidence annotation distribution. In the development set of DocRED, 6,115 relation instances have only one supporting sentence (denoted as single), and 1,062 relation instances have multiple supporting sentences and the entity pair co-occur in at least one supporting sentence. The results mention analyzing the difficulty of synthesizing information from different types of supporting evidence by dividing the 12,332 relation instances in the development set into subsets based on the number of supporting sentences, but the complete percentage statistics for one-sentence, two-sentence, and three-sentence evidence distributions are not fully visible in the search results provided.\n\nTo get the exact percentage statistics for one, two, and three-sentence evidence annotations, you may want to consult the original DocRED paper directly or look at supplementary materials that provide these complete statistics."
+    ],
+    "durationSeconds": 5.350122681999986
+  },
+  "sourceToolAssistantUUID": "dd68796c-9f14-434e-8d7b-59b824c49e07",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 91_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "0c08fffc-03b4-4487-a41a-02c5479e6cc3",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 92_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of FREIGE: Evidence-Grounded IE via Decomposed Entailment Verification (Round 4)",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 93 · 2026-05-10T18:58:31.377Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01SrYjk9R7qjQ5JMhtNgrfsw`</summary>
+
+```json
+{
+  "url": "https://ar5iv.labs.arxiv.org/html/1906.06127",
+  "prompt": "Find the exact statistics about evidence sentences in DocRED. Specifically: (1) what is the average number of supporting/evidence sentences per relation instance? (2) What percentage of relations require 1 sentence, 2 sentences, 3+ sentences of evidence? (3) Any other statistics about evidence distribution. Look at all tables and figures."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "0c08fffc-03b4-4487-a41a-02c5479e6cc3",
+  "isSidechain": false,
+  "requestId": "req_011CauQDUYBdNhqMzvW9CwE2",
+  "type": "assistant",
+  "uuid": "73a7ecb9-8e4b-43a6-8841-a4de73e70e15",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01R7gf7tpQryfrsG1c9xyXPK",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 856,
+      "cache_read_input_tokens": 57645,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 856,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 57645,
+          "cache_creation_input_tokens": 856,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 856
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 94 · 2026-05-10T18:58:36.415Z_
+
+<details><summary>↩ Tool result · `toolu_01SrYjk9R7qjQ5JMhtNgrfsw`</summary>
+
+```text
+# DocRED Evidence Sentence Statistics
+
+Based on the paper's content, here are the key findings about supporting evidence distribution:
+
+## Average Supporting Sentences
+"Each relation instance is associated with 1.6 supporting sentences on average" across the dataset.
+
+## Distribution by Evidence Requirements
+The paper provides these breakdowns for relation instances:
+- **Single sentence evidence**: 6,115 instances (approximately 50% of dev set)
+- **Multiple sentences with co-occurrence**: 1,062 instances (approximately 9% of dev set)
+- **Multiple sentences without co-occurrence**: 4,668 instances (approximately 38% of dev set)
+
+Notably, the paper states that "46.4% relation instances are associated with more than one supporting sentence," meaning roughly 53.6% require only single-sentence evidence.
+
+## Inter-Sentence Relations
+A critical finding: "40.7% relational facts can only be extracted from multiple sentences," highlighting that document-level reasoning is essential for a substantial portion of the dataset.
+
+## Model Performance by Evidence Type
+The BiLSTM model showed notably different recall rates:
+- Single sentence relations: 51.1% recall
+- Mixed evidence relations: 49.4% recall
+- Multiple sentence relations: 46.6% recall
+
+This declining performance demonstrates that synthesizing information across multiple sentences remains challenging for existing models.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "73a7ecb9-8e4b-43a6-8841-a4de73e70e15",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "3b44a013-9aa5-4450-bd78-bece3c858dcd",
+  "toolUseResult": {
+    "bytes": 308351,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# DocRED Evidence Sentence Statistics\n\nBased on the paper's content, here are the key findings about supporting evidence distribution:\n\n## Average Supporting Sentences\n\"Each relation instance is associated with 1.6 supporting sentences on average\" across the dataset.\n\n## Distribution by Evidence Requirements\nThe paper provides these breakdowns for relation instances:\n- **Single sentence evidence**: 6,115 instances (approximately 50% of dev set)\n- **Multiple sentences with co-occurrence**: 1,062 instances (approximately 9% of dev set)\n- **Multiple sentences without co-occurrence**: 4,668 instances (approximately 38% of dev set)\n\nNotably, the paper states that \"46.4% relation instances are associated with more than one supporting sentence,\" meaning roughly 53.6% require only single-sentence evidence.\n\n## Inter-Sentence Relations\nA critical finding: \"40.7% relational facts can only be extracted from multiple sentences,\" highlighting that document-level reasoning is essential for a substantial portion of the dataset.\n\n## Model Performance by Evidence Type\nThe BiLSTM model showed notably different recall rates:\n- Single sentence relations: 51.1% recall\n- Mixed evidence relations: 49.4% recall\n- Multiple sentence relations: 46.6% recall\n\nThis declining performance demonstrates that synthesizing information across multiple sentences remains challenging for existing models.",
+    "durationMs": 5035,
+    "url": "https://ar5iv.labs.arxiv.org/html/1906.06127"
+  },
+  "sourceToolAssistantUUID": "73a7ecb9-8e4b-43a6-8841-a4de73e70e15",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 95 · 2026-05-10T18:58:38.771Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01CYSdckEsMKcr618tUU2G6D`</summary>
+
+```json
+{
+  "query": "EMNLP 2026 ARR May deadline information extraction track"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b44a013-9aa5-4450-bd78-bece3c858dcd",
+  "isSidechain": false,
+  "requestId": "req_011CauQEB4FMqYM6x9rdiyuP",
+  "type": "assistant",
+  "uuid": "97fcbf4e-a574-4057-85ea-4eb20f4de5de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01TfVvucVaQdUyVbp5fZUwp9",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 470,
+      "cache_read_input_tokens": 58501,
+      "output_tokens": 67,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 470,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 67,
+          "cache_read_input_tokens": 58501,
+          "cache_creation_input_tokens": 470,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 470
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 96 · 2026-05-10T18:58:44.537Z_
+
+<details><summary>↩ Tool result · `toolu_01CYSdckEsMKcr618tUU2G6D`</summary>
+
+```text
+Web search results for query: "EMNLP 2026 ARR May deadline information extraction track"
+
+Links: [{"title":"Call for Main Conference Papers - EMNLP 2026","url":"https://2026.emnlp.org/calls/main_conference_papers/"},{"title":"Dates and Venues","url":"http://aclrollingreview.org/dates"},{"title":"AI Conference Deadlines","url":"https://mlciv.com/ai-deadlines/"},{"title":"EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X","url":"https://x.com/emnlpmeeting/status/2029508292637061462"},{"title":"LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)","url":"https://linguistlist.org/issues/37/972/"},{"title":"EMNLP 2026 : The 2026 Conference on Empirical Methods in N","url":"https://callforpaper.org/call-for-papers-emnlp-2026"},{"title":"CALL FOR PAPERS – ACL Rolling Review","url":"http://aclrollingreview.org/cfp"},{"title":"Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67","url":"https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"},{"title":"EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X","url":"https://x.com/emnlpmeeting/status/1892259536137785419"},{"title":"Call for Main Conference Papers -","url":"https://2026.eacl.org/calls/papers/"}]
+
+Based on my search results, here's the information about EMNLP 2026 ARR May deadline:
+
+## Key Deadline Information
+
+The ARR submission deadline for EMNLP 2026 is May 25, 2026.
+
+## Important Related Deadlines
+
+After submission, all authors must complete the reviewer registration deadline by May 27, 2026.
+
+## Important Policy Note
+
+For the ARR 2026 May cycle aligned with EMNLP and AACL, authors must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026 - submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.
+
+## Regarding the Information Extraction Track
+
+The search results provided information about the general EMNLP 2026 main conference call for papers, but did not contain specific details about an "information extraction track" or its deadlines. For track-specific information, you may want to check the official EMNLP 2026 website at https://2026.emnlp.org/ or contact the conference organizers directly.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "97fcbf4e-a574-4057-85ea-4eb20f4de5de",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "792b1a37-3f8e-4e97-844d-40171d0cb89c",
+  "toolUseResult": {
+    "query": "EMNLP 2026 ARR May deadline information extraction track",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01BeZRt6bt3WLrsYvXE8hwKq",
+        "content": [
+          {
+            "title": "Call for Main Conference Papers - EMNLP 2026",
+            "url": "https://2026.emnlp.org/calls/main_conference_papers/"
+          },
+          {
+            "title": "Dates and Venues",
+            "url": "http://aclrollingreview.org/dates"
+          },
+          {
+            "title": "AI Conference Deadlines",
+            "url": "https://mlciv.com/ai-deadlines/"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"📢 The First Call for Papers for EMNLP 2026 is officially out! 📝 We welcome long &amp; short papers featuring original research on empirical methods for NLP. 🗓️ ARR Submission Deadline: May 25, 2026 🔗 Read the full CFP here: https://t.co/GU2kaISjUG #EMNLP2026\" / X",
+            "url": "https://x.com/emnlpmeeting/status/2029508292637061462"
+          },
+          {
+            "title": "LINGUIST List 37.972 Confs: 2026 Conference on Empirical Methods in Natural Language Processing (Hungary)",
+            "url": "https://linguistlist.org/issues/37/972/"
+          },
+          {
+            "title": "EMNLP 2026 : The 2026 Conference on Empirical Methods in N",
+            "url": "https://callforpaper.org/call-for-papers-emnlp-2026"
+          },
+          {
+            "title": "CALL FOR PAPERS – ACL Rolling Review",
+            "url": "http://aclrollingreview.org/cfp"
+          },
+          {
+            "title": "Update EMNLP 2026 conference dates and deadlines · huggingface/ai-deadlines at 2754f67",
+            "url": "https://huggingface.co/spaces/huggingface/ai-deadlines/commit/2754f67c0550847973789522a0a082dd5443b5c0"
+          },
+          {
+            "title": "EMNLP 2026 on X: \"The updated ARR schedule has now been posted! As per the call for papers, the submission deadline for EMNLP 2025 will be May 19th https://t.co/kvTZ8LPxam #EMNLP2025\" / X",
+            "url": "https://x.com/emnlpmeeting/status/1892259536137785419"
+          },
+          {
+            "title": "Call for Main Conference Papers -",
+            "url": "https://2026.eacl.org/calls/papers/"
+          }
+        ]
+      },
+      "Based on my search results, here's the information about EMNLP 2026 ARR May deadline:\n\n## Key Deadline Information\n\nThe ARR submission deadline for EMNLP 2026 is May 25, 2026.\n\n## Important Related Deadlines\n\nAfter submission, all authors must complete the reviewer registration deadline by May 27, 2026.\n\n## Important Policy Note\n\nFor the ARR 2026 May cycle aligned with EMNLP and AACL, authors must explicitly declare which conference they intend to commit to at submission time, and this choice will be binding for EMNLP 2026 - submissions that do not select EMNLP 2026 during submission will not be able to commit to EMNLP 2026.\n\n## Regarding the Information Extraction Track\n\nThe search results provided information about the general EMNLP 2026 main conference call for papers, but did not contain specific details about an \"information extraction track\" or its deadlines. For track-specific information, you may want to check the official EMNLP 2026 website at https://2026.emnlp.org/ or contact the conference organizers directly."
+    ],
+    "durationSeconds": 5.761753446999996
+  },
+  "sourceToolAssistantUUID": "97fcbf4e-a574-4057-85ea-4eb20f4de5de",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 97 · 2026-05-10T18:58:48.631Z_
+
+Now let me search for the most critical potential missing competitor — any very recent work applying RL/GRPO specifically for joint evidence+extraction on DocRE.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "792b1a37-3f8e-4e97-844d-40171d0cb89c",
+  "isSidechain": false,
+  "requestId": "req_011CauQEnL326c9KySDEZ5Kp",
+  "type": "assistant",
+  "uuid": "14dbf512-964c-4da3-9b3a-86aef5bae5ca",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WtKgdUMETkUmm28yyEKMXg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 984,
+      "cache_read_input_tokens": 58971,
+      "output_tokens": 102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 984,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 102,
+          "cache_read_input_tokens": 58971,
+          "cache_creation_input_tokens": 984,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 984
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 98 · 2026-05-10T18:58:49.455Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01Ta8ojZDcPMCq2VMDCCVhck`</summary>
+
+```json
+{
+  "query": "joint evidence generation relation extraction LLM training reward 2026 arxiv"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "14dbf512-964c-4da3-9b3a-86aef5bae5ca",
+  "isSidechain": false,
+  "requestId": "req_011CauQEnL326c9KySDEZ5Kp",
+  "type": "assistant",
+  "uuid": "fa42b05a-8722-4a74-bb9d-68f809dc55e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WtKgdUMETkUmm28yyEKMXg",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 984,
+      "cache_read_input_tokens": 58971,
+      "output_tokens": 102,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 984,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 102,
+          "cache_read_input_tokens": 58971,
+          "cache_creation_input_tokens": 984,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 984
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 99 · 2026-05-10T18:58:56.830Z_
+
+<details><summary>↩ Tool result · `toolu_01Ta8ojZDcPMCq2VMDCCVhck`</summary>
+
+```text
+Web search results for query: "joint evidence generation relation extraction LLM training reward 2026 arxiv"
+
+Links: [{"title":"1 A Comprehensive Survey on Relation Extraction: Recent","url":"https://arxiv.org/pdf/2306.02051"},{"title":"Generating Diverse Training Samples for Relation Extraction with Large Language Models","url":"https://arxiv.org/html/2505.23108"},{"title":"J1: Incentivizing Thinking in LLM-as-a-Judge via Reinforcement Learning","url":"https://arxiv.org/html/2505.10320v3"},{"title":"Large Language Models for Generative Information Extraction: A Survey","url":"https://arxiv.org/html/2312.17617v3"},{"title":"Multi-Agent Evolve: LLM Self-Improve through Co-evolution","url":"https://arxiv.org/html/2510.23595v1"},{"title":"Large language model augmented joint learning framework for entity-relation extraction - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S1568494625014073"},{"title":"GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub","url":"https://github.com/quqxui/Awesome-LLM4IE-Papers"},{"title":"A Survey on Retrieval And Structuring Augmented Generation","url":"https://arxiv.org/pdf/2509.10697"},{"title":"Exploring LLMs for Scientific Information Extraction using the SciEx Framework","url":"https://arxiv.org/html/2512.10004v2"},{"title":"GitHub - pengr/LLM-Synthetic-Data: A live reading list for LLM data synthesis (Updated to July, 2025). · GitHub","url":"https://github.com/pengr/LLM-Synthetic-Data"}]
+
+I found several relevant papers on relation extraction, LLM training, and related topics. Here are the most relevant results from your search:
+
+## Key Findings:
+
+**Recent Papers on LLM-based Relation Extraction (2025-2026):**
+
+1. One recent approach proposes fine-tuning LLMs for diversity in relation extraction sample generation using Direct Preference Optimization (DPO), which has been verified to perform well on many tasks such as summary generation and single-round conversations.
+
+2. RE samples that are similar with existing ones and incorrect samples are automatically generated to serve as dispreferred answers to the DPO algorithm, thus training the LLM to consider both diversity and correctness.
+
+3. A novel LLM augmented joint learning framework called Reamend has been proposed for entity-relation extraction. By leveraging the LLM, it is capable of simultaneously recognizing potential entities and the corresponding relations from the text content, with entity-relation amendment introduced to eliminate redundant triplets.
+
+**Reinforcement Learning Approaches:**
+
+4. Multi-Agent Evolve (MAE) is a multi-agent self-evolving framework that instantiates three interactive roles—Proposer, Solver, and Judge—from a single base LLM and jointly trains them via reinforcement learning, forming a closed-loop propose–solve–judge pipeline with synchronized updates.
+
+These papers explore joint evidence generation, reward-based training mechanisms, and LLM fine-tuning for relation extraction tasks, which aligns closely with your search query.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fa42b05a-8722-4a74-bb9d-68f809dc55e5",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "46a04abb-ecfb-4083-9312-8ab42cf3e659",
+  "toolUseResult": {
+    "query": "joint evidence generation relation extraction LLM training reward 2026 arxiv",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01NX95H7NMtpTAQvpgUEc65v",
+        "content": [
+          {
+            "title": "1 A Comprehensive Survey on Relation Extraction: Recent",
+            "url": "https://arxiv.org/pdf/2306.02051"
+          },
+          {
+            "title": "Generating Diverse Training Samples for Relation Extraction with Large Language Models",
+            "url": "https://arxiv.org/html/2505.23108"
+          },
+          {
+            "title": "J1: Incentivizing Thinking in LLM-as-a-Judge via Reinforcement Learning",
+            "url": "https://arxiv.org/html/2505.10320v3"
+          },
+          {
+            "title": "Large Language Models for Generative Information Extraction: A Survey",
+            "url": "https://arxiv.org/html/2312.17617v3"
+          },
+          {
+            "title": "Multi-Agent Evolve: LLM Self-Improve through Co-evolution",
+            "url": "https://arxiv.org/html/2510.23595v1"
+          },
+          {
+            "title": "Large language model augmented joint learning framework for entity-relation extraction - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S1568494625014073"
+          },
+          {
+            "title": "GitHub - quqxui/Awesome-LLM4IE-Papers: Awesome papers about generative Information Extraction (IE) using Large Language Models (LLMs) · GitHub",
+            "url": "https://github.com/quqxui/Awesome-LLM4IE-Papers"
+          },
+          {
+            "title": "A Survey on Retrieval And Structuring Augmented Generation",
+            "url": "https://arxiv.org/pdf/2509.10697"
+          },
+          {
+            "title": "Exploring LLMs for Scientific Information Extraction using the SciEx Framework",
+            "url": "https://arxiv.org/html/2512.10004v2"
+          },
+          {
+            "title": "GitHub - pengr/LLM-Synthetic-Data: A live reading list for LLM data synthesis (Updated to July, 2025). · GitHub",
+            "url": "https://github.com/pengr/LLM-Synthetic-Data"
+          }
+        ]
+      },
+      "I found several relevant papers on relation extraction, LLM training, and related topics. Here are the most relevant results from your search:\n\n## Key Findings:\n\n**Recent Papers on LLM-based Relation Extraction (2025-2026):**\n\n1. One recent approach proposes fine-tuning LLMs for diversity in relation extraction sample generation using Direct Preference Optimization (DPO), which has been verified to perform well on many tasks such as summary generation and single-round conversations.\n\n2. RE samples that are similar with existing ones and incorrect samples are automatically generated to serve as dispreferred answers to the DPO algorithm, thus training the LLM to consider both diversity and correctness.\n\n3. A novel LLM augmented joint learning framework called Reamend has been proposed for entity-relation extraction. By leveraging the LLM, it is capable of simultaneously recognizing potential entities and the corresponding relations from the text content, with entity-relation amendment introduced to eliminate redundant triplets.\n\n**Reinforcement Learning Approaches:**\n\n4. Multi-Agent Evolve (MAE) is a multi-agent self-evolving framework that instantiates three interactive roles—Proposer, Solver, and Judge—from a single base LLM and jointly trains them via reinforcement learning, forming a closed-loop propose–solve–judge pipeline with synchronized updates.\n\nThese papers explore joint evidence generation, reward-based training mechanisms, and LLM fine-tuning for relation extraction tasks, which aligns closely with your search query."
+    ],
+    "durationSeconds": 7.371152131999959
+  },
+  "sourceToolAssistantUUID": "fa42b05a-8722-4a74-bb9d-68f809dc55e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 100 · 2026-05-10T18:59:00.431Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01TLu5RN323N9De9NqmUsYUB`</summary>
+
+```json
+{
+  "query": "\"MR-UIE\" multi-perspective reasoning reinforcement learning universal information extraction 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "46a04abb-ecfb-4083-9312-8ab42cf3e659",
+  "isSidechain": false,
+  "requestId": "req_011CauQFgLQZo5QRKzGSSMG8",
+  "type": "assistant",
+  "uuid": "12cbe793-b28c-44fb-83da-900a575a11f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0195GFzRRFDWM3Ajtt5WjWUs",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 952,
+      "cache_read_input_tokens": 59955,
+      "output_tokens": 71,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 952,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 71,
+          "cache_read_input_tokens": 59955,
+          "cache_creation_input_tokens": 952,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 952
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 101 · 2026-05-10T18:59:08.223Z_
+
+<details><summary>↩ Tool result · `toolu_01TLu5RN323N9De9NqmUsYUB`</summary>
+
+```text
+Web search results for query: ""MR-UIE" multi-perspective reasoning reinforcement learning universal information extraction 2025"
+
+Links: [{"title":"MR-UIE: multi-perspective reasoning with reinforcement learning for universal information extraction | Vicinagearth | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s44336-025-00019-8"},{"title":"[2509.09082] MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction","url":"https://arxiv.org/abs/2509.09082"},{"title":"MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction","url":"https://arxiv.org/html/2509.09082v1"},{"title":"MR-UIE: Multi-Perspective Reasoning with Reinforcement ...","url":"https://www.arxiv.org/pdf/2509.09082"},{"title":"[Literature Review] MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction","url":"https://www.themoonlight.io/en/review/mr-uie-multi-perspective-reasoning-with-reinforcement-learning-for-universal-information-extraction"},{"title":"MR-UIE: multi-perspective reasoning with reinforcement ...","url":"https://link.springer.com/content/pdf/10.1007/s44336-025-00019-8.pdf"},{"title":"Shiquan Wang's research works | China Telecom Beijing ...","url":"https://www.researchgate.net/scientific-contributions/Shiquan-Wang-2276442099"},{"title":"Paper page - MARS2 2025 Challenge on Multimodal Reasoning: Datasets, Methods, Results, Discussion, and Outlook","url":"https://huggingface.co/papers/2509.14142"},{"title":"M-MRE: Extending the Mutual Reinforcement Effect to Multimodal Information Extraction","url":"https://arxiv.org/html/2504.17353"},{"title":"Perception, Reason, Think, and Plan: A Survey on Large Multimodal Reasoning Models","url":"https://arxiv.org/html/2505.04921v1"}]
+
+Based on the search results, here's information about MR-UIE:
+
+## Overview
+
+MR-UIE is a novel framework for universal information extraction. The framework integrates reinforcement learning (RL) with multi-perspective reasoning for information extraction (IE) tasks.
+
+## Core Innovation
+
+The work transitions LLMs from passive extractors to active reasoners, enabling them to understand not only what to extract but also how to reason. It addresses the limitation that LLMs' performance in universal information extraction (UIE) remains insufficient, especially when tackling structured output scenarios that involve complex schema descriptions and require multi-step reasoning.
+
+## Key Components
+
+The framework proposes multi-perspective reasoning with: a Unified Schema Representation (hierarchical JSON with ci, ai, di) for universal Input-Output Constraints; b Multi-Perspective Generation (divergence: 3N strategies across "cognitive", "role", "heuristic dimensions" → convergence: paradigm-based selection → rejection sampling); c Adaptive Reasoning (SFT + RL alignment) with multi-grained rewards (Rresult, Rprocess) for optimal path selection.
+
+## Performance
+
+Experiments conducted on multiple IE benchmarks demonstrate that MR-UIE consistently elevates extraction accuracy across domains and surpasses state-of-the-art methods on several datasets. The incorporation of explicit multi-perspective reasoning significantly enhances the model's generalization ability, particularly in complex scenarios.
+
+## Publication
+
+The paper was initially published on arXiv in September 2025 and appeared in a peer-reviewed venue (Springer Nature) in December 2025.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "12cbe793-b28c-44fb-83da-900a575a11f1",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "b6d6301e-2bd1-487c-9e12-d85632887c3b",
+  "toolUseResult": {
+    "query": "\"MR-UIE\" multi-perspective reasoning reinforcement learning universal information extraction 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01T3z1WRsvS1GBboPNZNenhE",
+        "content": [
+          {
+            "title": "MR-UIE: multi-perspective reasoning with reinforcement learning for universal information extraction | Vicinagearth | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s44336-025-00019-8"
+          },
+          {
+            "title": "[2509.09082] MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction",
+            "url": "https://arxiv.org/abs/2509.09082"
+          },
+          {
+            "title": "MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction",
+            "url": "https://arxiv.org/html/2509.09082v1"
+          },
+          {
+            "title": "MR-UIE: Multi-Perspective Reasoning with Reinforcement ...",
+            "url": "https://www.arxiv.org/pdf/2509.09082"
+          },
+          {
+            "title": "[Literature Review] MR-UIE: Multi-Perspective Reasoning with Reinforcement Learning for Universal Information Extraction",
+            "url": "https://www.themoonlight.io/en/review/mr-uie-multi-perspective-reasoning-with-reinforcement-learning-for-universal-information-extraction"
+          },
+          {
+            "title": "MR-UIE: multi-perspective reasoning with reinforcement ...",
+            "url": "https://link.springer.com/content/pdf/10.1007/s44336-025-00019-8.pdf"
+          },
+          {
+            "title": "Shiquan Wang's research works | China Telecom Beijing ...",
+            "url": "https://www.researchgate.net/scientific-contributions/Shiquan-Wang-2276442099"
+          },
+          {
+            "title": "Paper page - MARS2 2025 Challenge on Multimodal Reasoning: Datasets, Methods, Results, Discussion, and Outlook",
+            "url": "https://huggingface.co/papers/2509.14142"
+          },
+          {
+            "title": "M-MRE: Extending the Mutual Reinforcement Effect to Multimodal Information Extraction",
+            "url": "https://arxiv.org/html/2504.17353"
+          },
+          {
+            "title": "Perception, Reason, Think, and Plan: A Survey on Large Multimodal Reasoning Models",
+            "url": "https://arxiv.org/html/2505.04921v1"
+          }
+        ]
+      },
+      "Based on the search results, here's information about MR-UIE:\n\n## Overview\n\nMR-UIE is a novel framework for universal information extraction. The framework integrates reinforcement learning (RL) with multi-perspective reasoning for information extraction (IE) tasks.\n\n## Core Innovation\n\nThe work transitions LLMs from passive extractors to active reasoners, enabling them to understand not only what to extract but also how to reason. It addresses the limitation that LLMs' performance in universal information extraction (UIE) remains insufficient, especially when tackling structured output scenarios that involve complex schema descriptions and require multi-step reasoning.\n\n## Key Components\n\nThe framework proposes multi-perspective reasoning with: a Unified Schema Representation (hierarchical JSON with ci, ai, di) for universal Input-Output Constraints; b Multi-Perspective Generation (divergence: 3N strategies across \"cognitive\", \"role\", \"heuristic dimensions\" → convergence: paradigm-based selection → rejection sampling); c Adaptive Reasoning (SFT + RL alignment) with multi-grained rewards (Rresult, Rprocess) for optimal path selection.\n\n## Performance\n\nExperiments conducted on multiple IE benchmarks demonstrate that MR-UIE consistently elevates extraction accuracy across domains and surpasses state-of-the-art methods on several datasets. The incorporation of explicit multi-perspective reasoning significantly enhances the model's generalization ability, particularly in complex scenarios.\n\n## Publication\n\nThe paper was initially published on arXiv in September 2025 and appeared in a peer-reviewed venue (Springer Nature) in December 2025."
+    ],
+    "durationSeconds": 7.788447606999951
+  },
+  "sourceToolAssistantUUID": "12cbe793-b28c-44fb-83da-900a575a11f1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 102 · 2026-05-10T18:59:08.232Z_
+
+```json
+{
+  "parentUuid": "b6d6301e-2bd1-487c-9e12-d85632887c3b",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "4b22cc3e-8866-497f-b2bd-0480ad5576ae",
+  "timestamp": "2026-05-10T18:59:08.232Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Tool call
+
+_source line 103 · 2026-05-10T18:59:10.471Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_019z8JPq8nsYWcxVvbMtFgSh`</summary>
+
+```json
+{
+  "query": "AutoRE document-level relation extraction LLaMA F1 DocRED test set 2024"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b22cc3e-8866-497f-b2bd-0480ad5576ae",
+  "isSidechain": false,
+  "requestId": "req_011CauQGX5a1LDEyZumsLACL",
+  "type": "assistant",
+  "uuid": "256ca266-5013-44ea-a518-39bcf69a60c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01McWFy9Vs4JPwfVNJ3N1QG5",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1101,
+      "cache_read_input_tokens": 60907,
+      "output_tokens": 74,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1101,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 74,
+          "cache_read_input_tokens": 60907,
+          "cache_creation_input_tokens": 1101,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1101
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 104_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "256ca266-5013-44ea-a518-39bcf69a60c4",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 105_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of FREIGE: Evidence-Grounded IE via Decomposed Entailment Verification (Round 4)",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Tool result
+
+_source line 106 · 2026-05-10T18:59:16.007Z_
+
+<details><summary>↩ Tool result · `toolu_019z8JPq8nsYWcxVvbMtFgSh`</summary>
+
+```text
+Web search results for query: "AutoRE document-level relation extraction LLaMA F1 DocRED test set 2024"
+
+Links: [{"title":"(PDF) AutoRE: Document-Level Relation Extraction with Large Language Models","url":"https://www.researchgate.net/publication/384197797_AutoRE_Document-Level_Relation_Extraction_with_Large_Language_Models"},{"title":"AutoRE: Document-Level Relation Extraction with Large Language Models","url":"https://arxiv.org/html/2403.14888v1"},{"title":"AutoRE: Document-Level Relation Extraction with Large Language Models - ACL Anthology","url":"https://aclanthology.org/2024.acl-demos.20/"},{"title":"[2403.14888] AutoRE: Document-Level Relation Extraction with Large Language Models","url":"https://arxiv.org/abs/2403.14888"},{"title":"AutoRE/README_EN.md at main · THUDM/AutoRE","url":"https://github.com/THUDM/AutoRE/blob/main/README_EN.md"},{"title":"[2403.14888] AutoRE: Document-Level Relation Extraction with Large Language Models","url":"http://export.arxiv.org/abs/2403.14888"},{"title":"GitHub - THUDM/AutoRE","url":"https://github.com/THUDM/AutoRE"},{"title":"LLM with Relation Classifier for Document-Level Relation Extraction","url":"https://openreview.net/pdf?id=SOWcC2cCMT"},{"title":"Document-Level Relation Extraction","url":"https://www.emergentmind.com/topics/document-level-relation-extraction"},{"title":"AutoRE: Document-Level Relation Extraction with Large Language Models | OpenReview","url":"https://openreview.net/forum?id=5v9m9n2hBM"}]
+
+Based on the search results, here's what I found about AutoRE for document-level relation extraction:
+
+## Overview
+AutoRE is an end-to-end DocRE model that adopts a novel RE extraction paradigm named RHF (Relation-Head-Facts). The repository is based on the code from LLaMA-Factory and implements a document-level relation extraction system based on large language models.
+
+## Test Set Performance
+The evaluation utilized the refined Re-DocRED test set consisting of 499 articles and 17,448 triplet facts. The evaluation used the strict Micro F1 criterion, recognizing a prediction as correct only if it precisely captures the entire relation, along with both the head and tail entities.
+
+## Results
+AutoRE achieved state-of-the-art results on the RE-DocRED dataset, surpassing TAG by 10.03% and 9.03% respectively on the dev and test set. 
+
+## Key Technical Details
+The framework uses a Parameters Efficient Fine Tuning (PEFT) algorithm (QLoRA). The extraction is decomposed into three modular steps—relation detection, head entity identification, and tail entity/fact prediction—each realized as a distinct fine-tuned LLM module.
+
+The search results indicate this is a 2024 publication that represents a significant advancement in document-level relation extraction using large language models.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "256ca266-5013-44ea-a518-39bcf69a60c4",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "9ef9b8b0-9b56-4f40-adc4-644154a3c601",
+  "toolUseResult": {
+    "query": "AutoRE document-level relation extraction LLaMA F1 DocRED test set 2024",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01L4RnxcqdBeKKbGU7JZ3SW5",
+        "content": [
+          {
+            "title": "(PDF) AutoRE: Document-Level Relation Extraction with Large Language Models",
+            "url": "https://www.researchgate.net/publication/384197797_AutoRE_Document-Level_Relation_Extraction_with_Large_Language_Models"
+          },
+          {
+            "title": "AutoRE: Document-Level Relation Extraction with Large Language Models",
+            "url": "https://arxiv.org/html/2403.14888v1"
+          },
+          {
+            "title": "AutoRE: Document-Level Relation Extraction with Large Language Models - ACL Anthology",
+            "url": "https://aclanthology.org/2024.acl-demos.20/"
+          },
+          {
+            "title": "[2403.14888] AutoRE: Document-Level Relation Extraction with Large Language Models",
+            "url": "https://arxiv.org/abs/2403.14888"
+          },
+          {
+            "title": "AutoRE/README_EN.md at main · THUDM/AutoRE",
+            "url": "https://github.com/THUDM/AutoRE/blob/main/README_EN.md"
+          },
+          {
+            "title": "[2403.14888] AutoRE: Document-Level Relation Extraction with Large Language Models",
+            "url": "http://export.arxiv.org/abs/2403.14888"
+          },
+          {
+            "title": "GitHub - THUDM/AutoRE",
+            "url": "https://github.com/THUDM/AutoRE"
+          },
+          {
+            "title": "LLM with Relation Classifier for Document-Level Relation Extraction",
+            "url": "https://openreview.net/pdf?id=SOWcC2cCMT"
+          },
+          {
+            "title": "Document-Level Relation Extraction",
+            "url": "https://www.emergentmind.com/topics/document-level-relation-extraction"
+          },
+          {
+            "title": "AutoRE: Document-Level Relation Extraction with Large Language Models | OpenReview",
+            "url": "https://openreview.net/forum?id=5v9m9n2hBM"
+          }
+        ]
+      },
+      "Based on the search results, here's what I found about AutoRE for document-level relation extraction:\n\n## Overview\nAutoRE is an end-to-end DocRE model that adopts a novel RE extraction paradigm named RHF (Relation-Head-Facts). The repository is based on the code from LLaMA-Factory and implements a document-level relation extraction system based on large language models.\n\n## Test Set Performance\nThe evaluation utilized the refined Re-DocRED test set consisting of 499 articles and 17,448 triplet facts. The evaluation used the strict Micro F1 criterion, recognizing a prediction as correct only if it precisely captures the entire relation, along with both the head and tail entities.\n\n## Results\nAutoRE achieved state-of-the-art results on the RE-DocRED dataset, surpassing TAG by 10.03% and 9.03% respectively on the dev and test set. \n\n## Key Technical Details\nThe framework uses a Parameters Efficient Fine Tuning (PEFT) algorithm (QLoRA). The extraction is decomposed into three modular steps—relation detection, head entity identification, and tail entity/fact prediction—each realized as a distinct fine-tuned LLM module.\n\nThe search results indicate this is a 2024 publication that represents a significant advancement in document-level relation extraction using large language models."
+    ],
+    "durationSeconds": 5.5313567230000045
+  },
+  "sourceToolAssistantUUID": "256ca266-5013-44ea-a518-39bcf69a60c4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 107 · 2026-05-10T18:59:27.078Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_01TcZtEfNGv7t5rERw4Kjhvc`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2511.08143v1",
+  "prompt": "Find the exact F1 scores reported for RelPrior on the DocRED test set. Also find what AutoRE's F1 score was on DocRED test. Report exact numbers for both methods. Look for tables with DocRED test results."
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9ef9b8b0-9b56-4f40-adc4-644154a3c601",
+  "isSidechain": false,
+  "requestId": "req_011CauQHMPSMhMstS2mZN8e1",
+  "type": "assistant",
+  "uuid": "e98be555-41bf-48c0-a02f-c4b18150a6e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01LM6KuoFy4YyQ2vY8xyLXSm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 892,
+      "cache_read_input_tokens": 62008,
+      "output_tokens": 139,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 892,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 139,
+          "cache_read_input_tokens": 62008,
+          "cache_creation_input_tokens": 892,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 892
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 108 · 2026-05-10T18:59:29.892Z_
+
+<details><summary>↩ Tool result · `toolu_01TcZtEfNGv7t5rERw4Kjhvc`</summary>
+
+```text
+# Document-Level Relation Extraction: F1 Scores Comparison
+
+Based on Table 2 in the paper, here are the exact F1 scores on the DocRED test set:
+
+**RelPrior (LLaMA3-8B):** 48.34 F1
+
+**AutoRE (LLaMA3-8B):** 45.96 F1
+
+The RelPrior method demonstrates a 2.38 percentage point improvement over AutoRE on the DocRED test set. As the paper states, "the F1 values of the RelPrior_LLaMA3-8B model in the development sets and test sets of DocRED have increased by 2.06% and 2.38% respectively" compared to AutoRE.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "e98be555-41bf-48c0-a02f-c4b18150a6e7",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "c291e8d5-2fab-441b-89b0-9246bc5c9f7e",
+  "toolUseResult": {
+    "bytes": 117825,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# Document-Level Relation Extraction: F1 Scores Comparison\n\nBased on Table 2 in the paper, here are the exact F1 scores on the DocRED test set:\n\n**RelPrior (LLaMA3-8B):** 48.34 F1\n\n**AutoRE (LLaMA3-8B):** 45.96 F1\n\nThe RelPrior method demonstrates a 2.38 percentage point improvement over AutoRE on the DocRED test set. As the paper states, \"the F1 values of the RelPrior_LLaMA3-8B model in the development sets and test sets of DocRED have increased by 2.06% and 2.38% respectively\" compared to AutoRE.",
+    "durationMs": 2809,
+    "url": "https://arxiv.org/html/2511.08143v1"
+  },
+  "sourceToolAssistantUUID": "e98be555-41bf-48c0-a02f-c4b18150a6e7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 109 · 2026-05-10T18:59:32.713Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01VnWSM7pCDL1cQkVDZh23E9`</summary>
+
+```json
+{
+  "query": "Qwen3-4B GRPO training resource cost GPU hours A100 fine-tuning 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "c291e8d5-2fab-441b-89b0-9246bc5c9f7e",
+  "isSidechain": false,
+  "requestId": "req_011CauQJ7fTkwDRpn8wye8Vg",
+  "type": "assistant",
+  "uuid": "5a974c41-bf0a-4184-986f-9b220c12506b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01BbBdcDQFin7rBRxT4ZrhAH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 328,
+      "cache_read_input_tokens": 62900,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 328,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 62900,
+          "cache_creation_input_tokens": 328,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 328
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 110 · 2026-05-10T18:59:40.096Z_
+
+<details><summary>↩ Tool result · `toolu_01VnWSM7pCDL1cQkVDZh23E9`</summary>
+
+```text
+Web search results for query: "Qwen3-4B GRPO training resource cost GPU hours A100 fine-tuning 2026"
+
+Links: [{"title":"GPU Requirements Cheat Sheet 2026: Every Major AI Model | Spheron Blog","url":"https://www.spheron.network/blog/gpu-requirements-cheat-sheet-2026/"},{"title":"Unsloth - Qwen - Read the Docs","url":"https://qwen.readthedocs.io/en/latest/training/unsloth.html"},{"title":"Qwen3 Best Practices — swift 4.3.0.dev0 documentation","url":"https://swift.readthedocs.io/en/latest/BestPractices/Qwen3-Best-Practice.html"},{"title":"🚀[Fine-tuning] Qwen3-MoE Megatron Training Implementation and Best Practices👋 · QwenLM/Qwen3 · Discussion #1301","url":"https://github.com/QwenLM/Qwen3/discussions/1301"},{"title":"Qwen3.5 Fine-tuning Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/models/qwen3.5/fine-tune"},{"title":"Qwen3 - How to Run & Fine-tune | Unsloth Documentation","url":"https://unsloth.ai/docs/models/tutorials/qwen3-how-to-run-and-fine-tune"},{"title":"GitHub - hiyouga/LlamaFactory: Unified Efficient Fine-Tuning of 100+ LLMs & VLMs (ACL 2024) · GitHub","url":"https://github.com/hiyouga/LlamaFactory"},{"title":"Fine-Tune LLMs with LoRA and QLoRA: 2026 Guide - DEV Community","url":"https://dev.to/jangwook_kim_e31e7291ad98/fine-tune-llms-with-lora-and-qlora-2026-guide-33lf"},{"title":"Qwen3 (4B) GRPO Fine-tuning - a Lightning environment by sitam","url":"https://lightning.ai/lightning-ai/environments/qwen3-4b-grpo-fine-tuning"},{"title":"🚀[Fine-tuning] Qwen3-MoE Megatron Training Implementation and Best Practices👋 · Issue #1278 · QwenLM/Qwen3","url":"https://github.com/QwenLM/Qwen3/issues/1278"}]
+
+Based on my search results, here's what I found regarding Qwen3-4B GRPO training resources:
+
+## Training Resource Information
+
+GPU cloud costs as of April 15, 2026 are: A100 80GB at $1.07/hr on-demand ($0.60/hr spot).
+
+## GRPO Fine-tuning for Qwen3-4B
+
+Unsloth offers an advanced GRPO notebook for Qwen3 (4B) featuring proximity-based reward scoring and Hugging Face's Open-R1 math dataset.
+
+Qwen3 (14B) fits in a free 16 GB Colab Tesla T4 GPU, which suggests that the smaller Qwen3-4B should be even more efficient for fine-tuning.
+
+## Training Framework Support
+
+GRPO is supported along with DPO, DAPO, RM, PPO, KTO and other RLHF methods, with Qwen models training 2× faster using 70% less VRAM with Unsloth.
+
+## Multi-GPU Setup Example
+
+For reference on larger models, a training environment consists of two nodes equipped with 8x 80GiB A800 GPUs each for Qwen3-8B GRPO training at full scale.
+
+However, the search results don't contain specific GPU hour costs or detailed resource consumption metrics specifically for Qwen3-4B GRPO training. The results focus more on training frameworks and hardware options available rather than exact computational resource costs.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5a974c41-bf0a-4184-986f-9b220c12506b",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "9332913a-48c5-4634-b54d-d18d9e208b18",
+  "toolUseResult": {
+    "query": "Qwen3-4B GRPO training resource cost GPU hours A100 fine-tuning 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01M2U3jXYeEo9gMpP1Yy8akG",
+        "content": [
+          {
+            "title": "GPU Requirements Cheat Sheet 2026: Every Major AI Model | Spheron Blog",
+            "url": "https://www.spheron.network/blog/gpu-requirements-cheat-sheet-2026/"
+          },
+          {
+            "title": "Unsloth - Qwen - Read the Docs",
+            "url": "https://qwen.readthedocs.io/en/latest/training/unsloth.html"
+          },
+          {
+            "title": "Qwen3 Best Practices — swift 4.3.0.dev0 documentation",
+            "url": "https://swift.readthedocs.io/en/latest/BestPractices/Qwen3-Best-Practice.html"
+          },
+          {
+            "title": "🚀[Fine-tuning] Qwen3-MoE Megatron Training Implementation and Best Practices👋 · QwenLM/Qwen3 · Discussion #1301",
+            "url": "https://github.com/QwenLM/Qwen3/discussions/1301"
+          },
+          {
+            "title": "Qwen3.5 Fine-tuning Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/qwen3.5/fine-tune"
+          },
+          {
+            "title": "Qwen3 - How to Run & Fine-tune | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/tutorials/qwen3-how-to-run-and-fine-tune"
+          },
+          {
+            "title": "GitHub - hiyouga/LlamaFactory: Unified Efficient Fine-Tuning of 100+ LLMs & VLMs (ACL 2024) · GitHub",
+            "url": "https://github.com/hiyouga/LlamaFactory"
+          },
+          {
+            "title": "Fine-Tune LLMs with LoRA and QLoRA: 2026 Guide - DEV Community",
+            "url": "https://dev.to/jangwook_kim_e31e7291ad98/fine-tune-llms-with-lora-and-qlora-2026-guide-33lf"
+          },
+          {
+            "title": "Qwen3 (4B) GRPO Fine-tuning - a Lightning environment by sitam",
+            "url": "https://lightning.ai/lightning-ai/environments/qwen3-4b-grpo-fine-tuning"
+          },
+          {
+            "title": "🚀[Fine-tuning] Qwen3-MoE Megatron Training Implementation and Best Practices👋 · Issue #1278 · QwenLM/Qwen3",
+            "url": "https://github.com/QwenLM/Qwen3/issues/1278"
+          }
+        ]
+      },
+      "Based on my search results, here's what I found regarding Qwen3-4B GRPO training resources:\n\n## Training Resource Information\n\nGPU cloud costs as of April 15, 2026 are: A100 80GB at $1.07/hr on-demand ($0.60/hr spot).\n\n## GRPO Fine-tuning for Qwen3-4B\n\nUnsloth offers an advanced GRPO notebook for Qwen3 (4B) featuring proximity-based reward scoring and Hugging Face's Open-R1 math dataset.\n\nQwen3 (14B) fits in a free 16 GB Colab Tesla T4 GPU, which suggests that the smaller Qwen3-4B should be even more efficient for fine-tuning.\n\n## Training Framework Support\n\nGRPO is supported along with DPO, DAPO, RM, PPO, KTO and other RLHF methods, with Qwen models training 2× faster using 70% less VRAM with Unsloth.\n\n## Multi-GPU Setup Example\n\nFor reference on larger models, a training environment consists of two nodes equipped with 8x 80GiB A800 GPUs each for Qwen3-8B GRPO training at full scale.\n\nHowever, the search results don't contain specific GPU hour costs or detailed resource consumption metrics specifically for Qwen3-4B GRPO training. The results focus more on training frameworks and hardware options available rather than exact computational resource costs."
+    ],
+    "durationSeconds": 7.379120423000015
+  },
+  "sourceToolAssistantUUID": "5a974c41-bf0a-4184-986f-9b220c12506b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 111 · 2026-05-10T18:59:42.872Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01UJkMcz9ajWQqrbBuk1iEYr`</summary>
+
+```json
+{
+  "query": "\"evidence F1\" \"Evi-F1\" DocRED evaluation metric document relation extraction"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9332913a-48c5-4634-b54d-d18d9e208b18",
+  "isSidechain": false,
+  "requestId": "req_011CauQJsNWQ5EU5KYVLCx6m",
+  "type": "assistant",
+  "uuid": "d8523e58-ce7b-41fb-81d2-ba4f003cbaa0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0111uS3WL95EaRG9aFdPjEi4",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1091,
+      "cache_read_input_tokens": 63228,
+      "output_tokens": 72,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1091,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 72,
+          "cache_read_input_tokens": 63228,
+          "cache_creation_input_tokens": 1091,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1091
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 112 · 2026-05-10T18:59:47.918Z_
+
+<details><summary>↩ Tool result · `toolu_01UJkMcz9ajWQqrbBuk1iEYr`</summary>
+
+```text
+Web search results for query: ""evidence F1" "Evi-F1" DocRED evaluation metric document relation extraction"
+
+Links: [{"title":"Enhancing cross-evidence reasoning graph for document-level relation extraction - PMC","url":"https://pmc.ncbi.nlm.nih.gov/articles/PMC11232587/"},{"title":"Enhancing cross-evidence reasoning graph for document-level relation extraction [PeerJ]","url":"https://peerj.com/articles/cs-2123/"},{"title":"GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction","url":"https://arxiv.org/html/2407.21384"},{"title":"Document-level Relation Extraction via Separate Relation Representation and Logical Reasoning | ACM Transactions on Information Systems","url":"https://dl.acm.org/doi/10.1145/3597610"},{"title":"GitHub - tonytan48/KD-DocRE: Implementation of Document-level Relation Extraction with Knowledge Distillation and Adaptive Focal Loss","url":"https://github.com/tonytan48/kd-docre"},{"title":"(PDF) DocRED: A Large-Scale Document-Level Relation Extraction Dataset","url":"https://www.researchgate.net/publication/333815327_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"},{"title":"DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Request PDF","url":"https://www.researchgate.net/publication/335780641_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"},{"title":"[2008.12283v1] Entity and Evidence Guided Relation Extraction for DocRED","url":"https://arxiv.org/abs/2008.12283v1"},{"title":"Three-stage document-level entity relation extraction | The Journal of Supercomputing | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s11227-025-07068-2"},{"title":"[2008.12283] Entity and Evidence Guided Relation Extraction for DocRED","url":"https://arxiv.org/abs/2008.12283"}]
+
+Based on the search results, I can provide you with information about the Evidence F1 (Evi-F1) evaluation metric for DocRED document-level relation extraction:
+
+## Evi-F1 Metric Overview
+
+Evi-F1 combines Precision and Recall to better judge the quality of evidence in document-level relation extraction. Specifically, Precision represents the proportion of evidence correctly extracted by the model to the real evidence, and Recall represents the proportion of evidence correctly extracted by the model to all the evidence extracted.
+
+## Usage in DocRED Evaluation
+
+The Evi-F1 metric is used as an evaluation metric for assessing the performance of evidence extraction in DocRED-based models. GEGA achieves superior performance in the test of the Evi-F1 metric, surpassing the previous most advanced DREEAM by 0.41% (Evi-F1) and 0.46% (Evi-F1) on the development set and test set respectively.
+
+The metric has become an important component of the DocRED evaluation framework, used alongside other metrics like F1 and Ign F1 to comprehensively assess model performance in document-level relation extraction tasks.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d8523e58-ce7b-41fb-81d2-ba4f003cbaa0",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "65a54c0f-6229-490a-b555-e905e7cf8ad9",
+  "toolUseResult": {
+    "query": "\"evidence F1\" \"Evi-F1\" DocRED evaluation metric document relation extraction",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_019YM23LBVWAzozTMRdMjpta",
+        "content": [
+          {
+            "title": "Enhancing cross-evidence reasoning graph for document-level relation extraction - PMC",
+            "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC11232587/"
+          },
+          {
+            "title": "Enhancing cross-evidence reasoning graph for document-level relation extraction [PeerJ]",
+            "url": "https://peerj.com/articles/cs-2123/"
+          },
+          {
+            "title": "GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction",
+            "url": "https://arxiv.org/html/2407.21384"
+          },
+          {
+            "title": "Document-level Relation Extraction via Separate Relation Representation and Logical Reasoning | ACM Transactions on Information Systems",
+            "url": "https://dl.acm.org/doi/10.1145/3597610"
+          },
+          {
+            "title": "GitHub - tonytan48/KD-DocRE: Implementation of Document-level Relation Extraction with Knowledge Distillation and Adaptive Focal Loss",
+            "url": "https://github.com/tonytan48/kd-docre"
+          },
+          {
+            "title": "(PDF) DocRED: A Large-Scale Document-Level Relation Extraction Dataset",
+            "url": "https://www.researchgate.net/publication/333815327_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"
+          },
+          {
+            "title": "DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Request PDF",
+            "url": "https://www.researchgate.net/publication/335780641_DocRED_A_Large-Scale_Document-Level_Relation_Extraction_Dataset"
+          },
+          {
+            "title": "[2008.12283v1] Entity and Evidence Guided Relation Extraction for DocRED",
+            "url": "https://arxiv.org/abs/2008.12283v1"
+          },
+          {
+            "title": "Three-stage document-level entity relation extraction | The Journal of Supercomputing | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s11227-025-07068-2"
+          },
+          {
+            "title": "[2008.12283] Entity and Evidence Guided Relation Extraction for DocRED",
+            "url": "https://arxiv.org/abs/2008.12283"
+          }
+        ]
+      },
+      "Based on the search results, I can provide you with information about the Evidence F1 (Evi-F1) evaluation metric for DocRED document-level relation extraction:\n\n## Evi-F1 Metric Overview\n\nEvi-F1 combines Precision and Recall to better judge the quality of evidence in document-level relation extraction. Specifically, Precision represents the proportion of evidence correctly extracted by the model to the real evidence, and Recall represents the proportion of evidence correctly extracted by the model to all the evidence extracted.\n\n## Usage in DocRED Evaluation\n\nThe Evi-F1 metric is used as an evaluation metric for assessing the performance of evidence extraction in DocRED-based models. GEGA achieves superior performance in the test of the Evi-F1 metric, surpassing the previous most advanced DREEAM by 0.41% (Evi-F1) and 0.46% (Evi-F1) on the development set and test set respectively.\n\nThe metric has become an important component of the DocRED evaluation framework, used alongside other metrics like F1 and Ign F1 to comprehensively assess model performance in document-level relation extraction tasks."
+    ],
+    "durationSeconds": 5.040237450999965
+  },
+  "sourceToolAssistantUUID": "d8523e58-ce7b-41fb-81d2-ba4f003cbaa0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 113 · 2026-05-10T18:59:50.416Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01YDtmg7BJHGCdxCqzn6HAkt`</summary>
+
+```json
+{
+  "query": "GEGA graph convolutional evidence retrieval guided attention DocRED Evi-F1 ICASSP 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "65a54c0f-6229-490a-b555-e905e7cf8ad9",
+  "isSidechain": false,
+  "requestId": "req_011CauQKSjTcYCKkYsTHV39P",
+  "type": "assistant",
+  "uuid": "17ff7b26-febc-4019-9655-73301bd44479",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01KqQgcW4NEUCdpnJzouBga2",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 927,
+      "cache_read_input_tokens": 64319,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 927,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 64319,
+          "cache_creation_input_tokens": 927,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 927
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 114 · 2026-05-10T18:59:57.843Z_
+
+<details><summary>↩ Tool result · `toolu_01YDtmg7BJHGCdxCqzn6HAkt`</summary>
+
+```text
+Web search results for query: "GEGA graph convolutional evidence retrieval guided attention DocRED Evi-F1 ICASSP 2025"
+
+Links: [{"title":"GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction","url":"https://arxiv.org/html/2407.21384v1"},{"title":"[2407.21384] GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction","url":"https://arxiv.org/abs/2407.21384"},{"title":"GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction | OpenReview","url":"https://openreview.net/forum?id=oUMKv7Nlav"},{"title":"GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction | IEEE Conference Publication | IEEE Xplore","url":"https://ieeexplore.ieee.org/document/10889649/"},{"title":"Dual reasoning enhanced document-level relation extraction | Neural Computing and Applications | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s00521-026-12099-8"},{"title":"GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction","url":"https://powerdrill.ai/discover/discover-GEGA-Graph-Convolutional-clzbrh4r61zpu01esm42ksi18"},{"title":"Electrical Engineering and Systems Science Jan 2025","url":"https://arxiv.org/list/eess/2025-01?skip=175&show=2000"},{"title":"Attention Guided Graph Convolutional Networks for Relation Extraction | Request PDF","url":"https://www.researchgate.net/publication/335778959_Attention_Guided_Graph_Convolutional_Networks_for_Relation_Extraction"},{"title":"Machine Learning Jan 2025","url":"https://arxiv.org/list/cs.LG/2025-01?skip=2050&show=1000"},{"title":"Paper Digest: ICASSP 2025 Papers & Highlights – Paper Digest","url":"https://www.paperdigest.org/2025/04/icassp-2025-papers-highlights/"}]
+
+Based on the search results, I found comprehensive information about the GEGA paper. Here's what I discovered:
+
+## Overview
+
+GEGA is a novel model for document-level relation extraction that leverages graph neural networks to construct multiple weight matrices, guiding attention allocation to evidence sentences.
+
+## Purpose and Challenges Addressed
+
+Document-level relation extraction (DocRE) aims to extract relations between entities from unstructured document text and requires more complex semantic understanding from a broader text context compared to sentence-level relation extraction. DocRE suffers from two challenges: firstly, the relevance between evidence and entity pairs is weak; secondly, there is insufficient extraction of complex cross-relations between long-distance multi-entities.
+
+## Key Methodology
+
+The model is trained under both fully supervised and weakly supervised settings, using a complex Teacher model trained with full supervision to infer over distant supervision data and extracting evidence sentences, with this weight information then used as supervisory signals to guide the training of a simplified Student model.
+
+## Performance Results
+
+By integrating GCNs with evidence retrieval, the model improved scores by 0.41% (Evi-F1) and 0.46% (Evi-F1) on the dev and test sets, respectively. The GEGA model was evaluated on three widely used benchmark datasets: DocRED, Re-DocRED, and Revisit-DocRED.
+
+## Publication Venue
+
+GEGA was published at ICASSP 2025—the 2025 IEEE International Conference on Acoustics, Speech and Signal Processing.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "17ff7b26-febc-4019-9655-73301bd44479",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "dbf5f416-7d43-402e-b963-f58f2ae30c66",
+  "toolUseResult": {
+    "query": "GEGA graph convolutional evidence retrieval guided attention DocRED Evi-F1 ICASSP 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01PpWptLpYxQvVsERXWZkAf7",
+        "content": [
+          {
+            "title": "GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction",
+            "url": "https://arxiv.org/html/2407.21384v1"
+          },
+          {
+            "title": "[2407.21384] GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction",
+            "url": "https://arxiv.org/abs/2407.21384"
+          },
+          {
+            "title": "GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction | OpenReview",
+            "url": "https://openreview.net/forum?id=oUMKv7Nlav"
+          },
+          {
+            "title": "GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction | IEEE Conference Publication | IEEE Xplore",
+            "url": "https://ieeexplore.ieee.org/document/10889649/"
+          },
+          {
+            "title": "Dual reasoning enhanced document-level relation extraction | Neural Computing and Applications | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s00521-026-12099-8"
+          },
+          {
+            "title": "GEGA: Graph Convolutional Networks and Evidence Retrieval Guided Attention for Enhanced Document-level Relation Extraction",
+            "url": "https://powerdrill.ai/discover/discover-GEGA-Graph-Convolutional-clzbrh4r61zpu01esm42ksi18"
+          },
+          {
+            "title": "Electrical Engineering and Systems Science Jan 2025",
+            "url": "https://arxiv.org/list/eess/2025-01?skip=175&show=2000"
+          },
+          {
+            "title": "Attention Guided Graph Convolutional Networks for Relation Extraction | Request PDF",
+            "url": "https://www.researchgate.net/publication/335778959_Attention_Guided_Graph_Convolutional_Networks_for_Relation_Extraction"
+          },
+          {
+            "title": "Machine Learning Jan 2025",
+            "url": "https://arxiv.org/list/cs.LG/2025-01?skip=2050&show=1000"
+          },
+          {
+            "title": "Paper Digest: ICASSP 2025 Papers & Highlights – Paper Digest",
+            "url": "https://www.paperdigest.org/2025/04/icassp-2025-papers-highlights/"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the GEGA paper. Here's what I discovered:\n\n## Overview\n\nGEGA is a novel model for document-level relation extraction that leverages graph neural networks to construct multiple weight matrices, guiding attention allocation to evidence sentences.\n\n## Purpose and Challenges Addressed\n\nDocument-level relation extraction (DocRE) aims to extract relations between entities from unstructured document text and requires more complex semantic understanding from a broader text context compared to sentence-level relation extraction. DocRE suffers from two challenges: firstly, the relevance between evidence and entity pairs is weak; secondly, there is insufficient extraction of complex cross-relations between long-distance multi-entities.\n\n## Key Methodology\n\nThe model is trained under both fully supervised and weakly supervised settings, using a complex Teacher model trained with full supervision to infer over distant supervision data and extracting evidence sentences, with this weight information then used as supervisory signals to guide the training of a simplified Student model.\n\n## Performance Results\n\nBy integrating GCNs with evidence retrieval, the model improved scores by 0.41% (Evi-F1) and 0.46% (Evi-F1) on the dev and test sets, respectively. The GEGA model was evaluated on three widely used benchmark datasets: DocRED, Re-DocRED, and Revisit-DocRED.\n\n## Publication Venue\n\nGEGA was published at ICASSP 2025—the 2025 IEEE International Conference on Acoustics, Speech and Signal Processing."
+    ],
+    "durationSeconds": 7.423787802999955
+  },
+  "sourceToolAssistantUUID": "17ff7b26-febc-4019-9655-73301bd44479",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 115_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "dbf5f416-7d43-402e-b963-f58f2ae30c66",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 116_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of FREIGE: Evidence-Grounded IE via Decomposed Entailment Verification (Round 4)",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Assistant
+
+_source line 117 · 2026-05-10T19:00:00.851Z_
+
+Now let me do a final search for any very recent work that could be a direct competitor to this idea.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "dbf5f416-7d43-402e-b963-f58f2ae30c66",
+  "isSidechain": false,
+  "requestId": "req_011CauQLBAcNsYe3C17tLmJ4",
+  "type": "assistant",
+  "uuid": "6f01049c-bfd2-464b-b0fa-a9196f701fc1",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MMywg4NBgz2ccDghwReLsk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1054,
+      "cache_read_input_tokens": 65246,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1054,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 65246,
+          "cache_creation_input_tokens": 1054,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1054
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 118 · 2026-05-10T19:00:02.070Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_018f6QS7EeGpgUf9HMQWazCx`</summary>
+
+```json
+{
+  "query": "site:arxiv.org information extraction evidence generation RLHF GRPO faithful provenance 2026 structured output"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f01049c-bfd2-464b-b0fa-a9196f701fc1",
+  "isSidechain": false,
+  "requestId": "req_011CauQLBAcNsYe3C17tLmJ4",
+  "type": "assistant",
+  "uuid": "53f271af-ad7c-4c09-b7a3-2f42b4a3de06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MMywg4NBgz2ccDghwReLsk",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1054,
+      "cache_read_input_tokens": 65246,
+      "output_tokens": 101,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1054,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 101,
+          "cache_read_input_tokens": 65246,
+          "cache_creation_input_tokens": 1054,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1054
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 119 · 2026-05-10T19:00:09.645Z_
+
+<details><summary>↩ Tool result · `toolu_018f6QS7EeGpgUf9HMQWazCx`</summary>
+
+```text
+Web search results for query: "site:arxiv.org information extraction evidence generation RLHF GRPO faithful provenance 2026 structured output"
+
+Links: [{"title":"Evaluating GRPO and DPO for Faithful Chain-of-Thought Reasoning in LLMs","url":"https://arxiv.org/html/2512.22631"},{"title":"Reason and Verify: A Framework for Faithful Retrieval-Augmented Generation","url":"https://arxiv.org/html/2603.10143"},{"title":"A Systematic Post-Train Framework for Video Generation","url":"https://arxiv.org/html/2604.25427"},{"title":"Personalized Daily ArXiv Papers 2026-04-06","url":"https://daizedong.github.io/ChatGPT-ArXiv-Paper-Assistant/archive/2026-04/06/"},{"title":"ΥΥΥΥΥΥΥΥΥΥΥΥΥΥΥΥΥ VeriFastScore: Speeding up long-form factuality evaluation","url":"https://arxiv.org/html/2505.16973"},{"title":"1 Introduction","url":"https://arxiv.org/html/2512.14761"},{"title":"RVPO: Risk-Sensitive Alignment via Variance Regularization","url":"https://arxiv.org/html/2605.05750"},{"title":"A Survey on Retrieval And Structuring Augmented Generation","url":"https://arxiv.org/pdf/2509.10697"},{"title":"Integrating Reinforcement Learning with Visual Generative ...","url":"https://arxiv.org/pdf/2508.10316"},{"title":"Published as a conference paper at ICLR 2026","url":"https://www.arxiv.org/pdf/2506.05154v2"}]
+
+I found several relevant papers on arXiv related to your search query. Here are the key results:
+
+## Information Extraction and Evidence Generation with RLHF/GRPO
+
+A framework for Faithful Retrieval-Augmented Generation addresses the lack of verification mechanisms in standard RAG pipelines by proposing a domain-specific approach that integrates explicit reasoning and faithfulness verification. The architecture augments standard retrieval with neural query rewriting, cross-encoder reranking, and a rationale generation module that grounds sub-claims in specific evidence spans, with a verification taxonomy enabling fine-grained assessment of rationale faithfulness.
+
+## RLHF and GRPO Applications
+
+GRPO uses group-based normalization to estimate relative advantages within sampled outputs, removing value networks and lowering memory use, though the comparative effects of GRPO on chain-of-thought faithfulness have not yet been systematically evaluated.
+
+Recent work proposes training a model with a scoring head to produce factuality scores given model responses and consolidated sentence-level evidence, with potential use as a reward model in RLHF setups to train models to produce more factual responses.
+
+## Structured Output and Specifications
+
+Recent advances in structured generation, long-context reasoning, and verification fidelity make executable specifications a practical training primitive for the first time.
+
+Until mid-2025, context limits caused frequent truncation, but current models enable robust extraction of complete output structure.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "53f271af-ad7c-4c09-b7a3-2f42b4a3de06",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "424d08bc-371a-4efe-a596-8dd505bc5168",
+  "toolUseResult": {
+    "query": "site:arxiv.org information extraction evidence generation RLHF GRPO faithful provenance 2026 structured output",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01JVKMBDWScKdp9ap4JE8mT9",
+        "content": [
+          {
+            "title": "Evaluating GRPO and DPO for Faithful Chain-of-Thought Reasoning in LLMs",
+            "url": "https://arxiv.org/html/2512.22631"
+          },
+          {
+            "title": "Reason and Verify: A Framework for Faithful Retrieval-Augmented Generation",
+            "url": "https://arxiv.org/html/2603.10143"
+          },
+          {
+            "title": "A Systematic Post-Train Framework for Video Generation",
+            "url": "https://arxiv.org/html/2604.25427"
+          },
+          {
+            "title": "Personalized Daily ArXiv Papers 2026-04-06",
+            "url": "https://daizedong.github.io/ChatGPT-ArXiv-Paper-Assistant/archive/2026-04/06/"
+          },
+          {
+            "title": "ΥΥΥΥΥΥΥΥΥΥΥΥΥΥΥΥΥ VeriFastScore: Speeding up long-form factuality evaluation",
+            "url": "https://arxiv.org/html/2505.16973"
+          },
+          {
+            "title": "1 Introduction",
+            "url": "https://arxiv.org/html/2512.14761"
+          },
+          {
+            "title": "RVPO: Risk-Sensitive Alignment via Variance Regularization",
+            "url": "https://arxiv.org/html/2605.05750"
+          },
+          {
+            "title": "A Survey on Retrieval And Structuring Augmented Generation",
+            "url": "https://arxiv.org/pdf/2509.10697"
+          },
+          {
+            "title": "Integrating Reinforcement Learning with Visual Generative ...",
+            "url": "https://arxiv.org/pdf/2508.10316"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://www.arxiv.org/pdf/2506.05154v2"
+          }
+        ]
+      },
+      "I found several relevant papers on arXiv related to your search query. Here are the key results:\n\n## Information Extraction and Evidence Generation with RLHF/GRPO\n\nA framework for Faithful Retrieval-Augmented Generation addresses the lack of verification mechanisms in standard RAG pipelines by proposing a domain-specific approach that integrates explicit reasoning and faithfulness verification. The architecture augments standard retrieval with neural query rewriting, cross-encoder reranking, and a rationale generation module that grounds sub-claims in specific evidence spans, with a verification taxonomy enabling fine-grained assessment of rationale faithfulness.\n\n## RLHF and GRPO Applications\n\nGRPO uses group-based normalization to estimate relative advantages within sampled outputs, removing value networks and lowering memory use, though the comparative effects of GRPO on chain-of-thought faithfulness have not yet been systematically evaluated.\n\nRecent work proposes training a model with a scoring head to produce factuality scores given model responses and consolidated sentence-level evidence, with potential use as a reward model in RLHF setups to train models to produce more factual responses.\n\n## Structured Output and Specifications\n\nRecent advances in structured generation, long-context reasoning, and verification fidelity make executable specifications a practical training primitive for the first time.\n\nUntil mid-2025, context limits caused frequent truncation, but current models enable robust extraction of complete output structure."
+    ],
+    "durationSeconds": 7.569357652000035
+  },
+  "sourceToolAssistantUUID": "53f271af-ad7c-4c09-b7a3-2f42b4a3de06",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 120 · 2026-05-10T19:00:13.119Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01GtGb99Zqz67VizpmDHoJB5`</summary>
+
+```json
+{
+  "query": "\"R1-RE\" relation extraction GRPO RLVR SemEval cross-domain 2025"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "424d08bc-371a-4efe-a596-8dd505bc5168",
+  "isSidechain": false,
+  "requestId": "req_011CauQM3k9oLj9MLcmnbGFu",
+  "type": "assistant",
+  "uuid": "5c238112-3d6f-4d35-af74-7b08cb9a92d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YWax8pS9zwmx284cJJ6PfJ",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 876,
+      "cache_read_input_tokens": 66300,
+      "output_tokens": 77,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 876,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 77,
+          "cache_read_input_tokens": 66300,
+          "cache_creation_input_tokens": 876,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 876
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 121 · 2026-05-10T19:00:20.534Z_
+
+<details><summary>↩ Tool result · `toolu_01GtGb99Zqz67VizpmDHoJB5`</summary>
+
+```text
+Web search results for query: ""R1-RE" relation extraction GRPO RLVR SemEval cross-domain 2025"
+
+Links: [{"title":"R1-RE: Cross-Domain Relation Extraction with RLVR","url":"https://arxiv.org/html/2507.04642"},{"title":"R1-RE: Cross-Domain Relationship Extraction with RLVR","url":"https://arxiv.org/html/2507.04642v1"},{"title":"R1-RE: Cross-Domain Relation Extraction with RLVR Runpeng Dai1 Tong Zheng2","url":"https://arxiv.org/pdf/2507.04642"},{"title":"[2507.04642] R1-RE: Cross-Domain Relation Extraction with RLVR","url":"https://arxiv.org/abs/2507.04642"},{"title":"R1-RE: Cross-Domain Relationship Extraction with RLVR | Semantic Scholar","url":"https://www.semanticscholar.org/paper/R1-RE:-Cross-Domain-Relationship-Extraction-with-Dai-Zheng/ca336239e3b182b39001928628deb5b2e9c5eec9"},{"title":"Publication trend of relation extraction research at ACL, EMNLP, AAAI,... | Download Scientific Diagram","url":"https://www.researchgate.net/figure/Publication-trend-of-relation-extraction-research-at-ACL-EMNLP-AAAI-and-IJCAI-in_fig8_353754213"},{"title":"Table-R1: Inference-Time Scaling for Table Reasoning","url":"https://aclanthology.org/2025.emnlp-main.1040.pdf"},{"title":"Beyond Supervised Fine Tuning: How Reinforcement Learning Empowers AI with Minimal Labels","url":"https://fireworks.ai/blog/reinforcement-learning-with-verifiable-reward"},{"title":"Few-Shot Relation Extraction via Two-Stage Knowledge- ...","url":"https://www.ijcai.org/proceedings/2025/0897.pdf"},{"title":"Reinforcement Learning Meets Large Language Models: A Survey of","url":"https://arxiv.org/pdf/2509.16679"}]
+
+Based on the search results, I found comprehensive information about the R1-RE research:
+
+## R1-RE: Cross-Domain Relation Extraction with RLVR
+
+R1-RE is a novel framework designed to further enhance the reasoning capabilities of LLMs for RE (relation extraction) tasks. It introduces R1-RE, the first reinforcement learning with verifiable reward (RLVR) framework for RE tasks.
+
+### Key Approach
+
+Traditional approaches typically frame RE as a supervised learning problem that often suffers from poor out-of-domain (OOD) generalization, but inspired by the workflow of human annotators, the research reframes RE as a reasoning task guided by annotation guidelines. The framework is inspired by the recent success of reinforcement learning with verifiable reward (RLVR), which has proven effective in promoting reasoning skills in smaller models on challenging domains such as mathematics and code generation.
+
+### Methodology
+
+Research indicates that SFT (supervised fine-tuning) tends to promote memorization of training data, thereby impairing out-of-domain generalization, whereas RL-based methods can facilitate better skill transfer and generalization across diverse tasks.
+
+### Performance and Evaluation
+
+The R1-RE-7B model attains an average OOD accuracy of approximately 70%, on par with leading proprietary models such as GPT-4o. The approach is evaluated on the public Sem-2010 dataset and a private MDKG dataset. The research also incorporates the SemEval-2018 Task 7 dataset in training.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "5c238112-3d6f-4d35-af74-7b08cb9a92d2",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "20998090-5c15-49b7-9833-19b21c673048",
+  "toolUseResult": {
+    "query": "\"R1-RE\" relation extraction GRPO RLVR SemEval cross-domain 2025",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QGv6pP3GhGdi4HSyio93M5",
+        "content": [
+          {
+            "title": "R1-RE: Cross-Domain Relation Extraction with RLVR",
+            "url": "https://arxiv.org/html/2507.04642"
+          },
+          {
+            "title": "R1-RE: Cross-Domain Relationship Extraction with RLVR",
+            "url": "https://arxiv.org/html/2507.04642v1"
+          },
+          {
+            "title": "R1-RE: Cross-Domain Relation Extraction with RLVR Runpeng Dai1 Tong Zheng2",
+            "url": "https://arxiv.org/pdf/2507.04642"
+          },
+          {
+            "title": "[2507.04642] R1-RE: Cross-Domain Relation Extraction with RLVR",
+            "url": "https://arxiv.org/abs/2507.04642"
+          },
+          {
+            "title": "R1-RE: Cross-Domain Relationship Extraction with RLVR | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/R1-RE:-Cross-Domain-Relationship-Extraction-with-Dai-Zheng/ca336239e3b182b39001928628deb5b2e9c5eec9"
+          },
+          {
+            "title": "Publication trend of relation extraction research at ACL, EMNLP, AAAI,... | Download Scientific Diagram",
+            "url": "https://www.researchgate.net/figure/Publication-trend-of-relation-extraction-research-at-ACL-EMNLP-AAAI-and-IJCAI-in_fig8_353754213"
+          },
+          {
+            "title": "Table-R1: Inference-Time Scaling for Table Reasoning",
+            "url": "https://aclanthology.org/2025.emnlp-main.1040.pdf"
+          },
+          {
+            "title": "Beyond Supervised Fine Tuning: How Reinforcement Learning Empowers AI with Minimal Labels",
+            "url": "https://fireworks.ai/blog/reinforcement-learning-with-verifiable-reward"
+          },
+          {
+            "title": "Few-Shot Relation Extraction via Two-Stage Knowledge- ...",
+            "url": "https://www.ijcai.org/proceedings/2025/0897.pdf"
+          },
+          {
+            "title": "Reinforcement Learning Meets Large Language Models: A Survey of",
+            "url": "https://arxiv.org/pdf/2509.16679"
+          }
+        ]
+      },
+      "Based on the search results, I found comprehensive information about the R1-RE research:\n\n## R1-RE: Cross-Domain Relation Extraction with RLVR\n\nR1-RE is a novel framework designed to further enhance the reasoning capabilities of LLMs for RE (relation extraction) tasks. It introduces R1-RE, the first reinforcement learning with verifiable reward (RLVR) framework for RE tasks.\n\n### Key Approach\n\nTraditional approaches typically frame RE as a supervised learning problem that often suffers from poor out-of-domain (OOD) generalization, but inspired by the workflow of human annotators, the research reframes RE as a reasoning task guided by annotation guidelines. The framework is inspired by the recent success of reinforcement learning with verifiable reward (RLVR), which has proven effective in promoting reasoning skills in smaller models on challenging domains such as mathematics and code generation.\n\n### Methodology\n\nResearch indicates that SFT (supervised fine-tuning) tends to promote memorization of training data, thereby impairing out-of-domain generalization, whereas RL-based methods can facilitate better skill transfer and generalization across diverse tasks.\n\n### Performance and Evaluation\n\nThe R1-RE-7B model attains an average OOD accuracy of approximately 70%, on par with leading proprietary models such as GPT-4o. The approach is evaluated on the public Sem-2010 dataset and a private MDKG dataset. The research also incorporates the SemEval-2018 Task 7 dataset in training."
+    ],
+    "durationSeconds": 7.410234296000039
+  },
+  "sourceToolAssistantUUID": "5c238112-3d6f-4d35-af74-7b08cb9a92d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 122 · 2026-05-10T19:00:23.840Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01SGdwSzrrHbrkLBwjpGCsur`</summary>
+
+```json
+{
+  "query": "Qwen3 4B DocRED fine-tune document-level relation extraction performance 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "20998090-5c15-49b7-9833-19b21c673048",
+  "isSidechain": false,
+  "requestId": "req_011CauQMsWXjgdDeYTxdUwXz",
+  "type": "assistant",
+  "uuid": "3205cc51-e682-434a-b2ca-df11ce815bbf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YCQjP73PdssqArBr8phydm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1017,
+      "cache_read_input_tokens": 67176,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1017,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 67176,
+          "cache_creation_input_tokens": 1017,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1017
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 123 · 2026-05-10T19:00:29.714Z_
+
+<details><summary>↩ Tool result · `toolu_01SGdwSzrrHbrkLBwjpGCsur`</summary>
+
+```text
+Web search results for query: "Qwen3 4B DocRED fine-tune document-level relation extraction performance 2026"
+
+Links: [{"title":"GitHub - Hytn/DocRED-HWE: Paper of ACL2023 - Benchmarking Models for Language Understanding in Document-Level Relation Extraction","url":"https://github.com/hytn/docred-hwe"},{"title":"Dual reasoning enhanced document-level relation extraction | Neural Computing and Applications | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s00521-026-12099-8"},{"title":"AutoRE: Document-Level Relation Extraction with Large Language Models","url":"https://arxiv.org/html/2403.14888v1"},{"title":"GitHub - QwenLM/Qwen3-VL: Qwen3-VL is the multimodal large language model series developed by Qwen team, Alibaba Cloud. · GitHub","url":"https://github.com/QwenLM/Qwen3-VL"},{"title":"thunlp/docred · Datasets at Hugging Face","url":"https://huggingface.co/datasets/thunlp/docred"},{"title":"Qwen3 - How to Run & Fine-tune | Unsloth Documentation","url":"https://unsloth.ai/docs/models/tutorials/qwen3-how-to-run-and-fine-tune"},{"title":"[PDF] DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Semantic Scholar","url":"https://www.semanticscholar.org/paper/DocRED:-A-Large-Scale-Document-Level-Relation-Yao-Ye/2745fc72e1dd53d1c30f17cf05841b163c2f63c9"},{"title":"Document-Level Relation Extraction with Reconstruction","url":"https://cdn.aaai.org/ojs/17667/17667-13-21161-1-2-20210518.pdf"},{"title":"GitHub - kracr/document-level-relation-extraction: A NeuroSymbolic AI technique for extracting relations from documents.","url":"https://github.com/kracr/document-level-relation-extraction"},{"title":"Document-level Relation Extraction via Separate Relation Representation and Logical Reasoning | ACM Transactions on Information Systems","url":"https://dl.acm.org/doi/10.1145/3597610"}]
+
+Based on the search results, I was unable to find specific information about Qwen3 4B fine-tuning performance on DocRED for document-level relation extraction in 2026. 
+
+The search results show:
+
+1. Qwen3-VL-4B models were released in October 2025, but these are vision-language models, not specifically designed for NLP tasks like relation extraction.
+
+2. The results contain general information about DocRED and document-level relation extraction (DocRE) tasks, as well as information about fine-tuning Qwen3 models using tools like Unsloth.
+
+3. Unsloth supports fine-tuning and Reinforcement Learning of Qwen3 and Qwen3 MOE models, which suggests Qwen3 fine-tuning is technically feasible, but no specific benchmarks comparing Qwen3 4B performance on DocRED are provided in these results.
+
+To find the specific performance metrics you're looking for, you might need to:
+- Check recent arXiv papers or academic publications on Qwen3 fine-tuning experiments
+- Look at Hugging Face model cards or GitHub repositories with Qwen3 DocRED fine-tuning results
+- Consult Alibaba's official Qwen documentation or technical reports
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3205cc51-e682-434a-b2ca-df11ce815bbf",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "919b1d40-acfb-4db5-9b60-7e8b9a1c2957",
+  "toolUseResult": {
+    "query": "Qwen3 4B DocRED fine-tune document-level relation extraction performance 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01B59FXFpLGgJhHHErN52QwK",
+        "content": [
+          {
+            "title": "GitHub - Hytn/DocRED-HWE: Paper of ACL2023 - Benchmarking Models for Language Understanding in Document-Level Relation Extraction",
+            "url": "https://github.com/hytn/docred-hwe"
+          },
+          {
+            "title": "Dual reasoning enhanced document-level relation extraction | Neural Computing and Applications | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s00521-026-12099-8"
+          },
+          {
+            "title": "AutoRE: Document-Level Relation Extraction with Large Language Models",
+            "url": "https://arxiv.org/html/2403.14888v1"
+          },
+          {
+            "title": "GitHub - QwenLM/Qwen3-VL: Qwen3-VL is the multimodal large language model series developed by Qwen team, Alibaba Cloud. · GitHub",
+            "url": "https://github.com/QwenLM/Qwen3-VL"
+          },
+          {
+            "title": "thunlp/docred · Datasets at Hugging Face",
+            "url": "https://huggingface.co/datasets/thunlp/docred"
+          },
+          {
+            "title": "Qwen3 - How to Run & Fine-tune | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/tutorials/qwen3-how-to-run-and-fine-tune"
+          },
+          {
+            "title": "[PDF] DocRED: A Large-Scale Document-Level Relation Extraction Dataset | Semantic Scholar",
+            "url": "https://www.semanticscholar.org/paper/DocRED:-A-Large-Scale-Document-Level-Relation-Yao-Ye/2745fc72e1dd53d1c30f17cf05841b163c2f63c9"
+          },
+          {
+            "title": "Document-Level Relation Extraction with Reconstruction",
+            "url": "https://cdn.aaai.org/ojs/17667/17667-13-21161-1-2-20210518.pdf"
+          },
+          {
+            "title": "GitHub - kracr/document-level-relation-extraction: A NeuroSymbolic AI technique for extracting relations from documents.",
+            "url": "https://github.com/kracr/document-level-relation-extraction"
+          },
+          {
+            "title": "Document-level Relation Extraction via Separate Relation Representation and Logical Reasoning | ACM Transactions on Information Systems",
+            "url": "https://dl.acm.org/doi/10.1145/3597610"
+          }
+        ]
+      },
+      "Based on the search results, I was unable to find specific information about Qwen3 4B fine-tuning performance on DocRED for document-level relation extraction in 2026. \n\nThe search results show:\n\n1. Qwen3-VL-4B models were released in October 2025, but these are vision-language models, not specifically designed for NLP tasks like relation extraction.\n\n2. The results contain general information about DocRED and document-level relation extraction (DocRE) tasks, as well as information about fine-tuning Qwen3 models using tools like Unsloth.\n\n3. Unsloth supports fine-tuning and Reinforcement Learning of Qwen3 and Qwen3 MOE models, which suggests Qwen3 fine-tuning is technically feasible, but no specific benchmarks comparing Qwen3 4B performance on DocRED are provided in these results.\n\nTo find the specific performance metrics you're looking for, you might need to:\n- Check recent arXiv papers or academic publications on Qwen3 fine-tuning experiments\n- Look at Hugging Face model cards or GitHub repositories with Qwen3 DocRED fine-tuning results\n- Consult Alibaba's official Qwen documentation or technical reports"
+    ],
+    "durationSeconds": 5.869770554999995
+  },
+  "sourceToolAssistantUUID": "3205cc51-e682-434a-b2ca-df11ce815bbf",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 124 · 2026-05-10T19:00:37.904Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012dRsqRMY36s9hXjTQBfCYy`</summary>
+
+```json
+{
+  "query": "ProUIE stepwise structural reward SFR GRPO ACE2005 DocRED evidence F1 score 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "919b1d40-acfb-4db5-9b60-7e8b9a1c2957",
+  "isSidechain": false,
+  "requestId": "req_011CauQNXRKa2gbz6Ma6i48r",
+  "type": "assistant",
+  "uuid": "40022b2d-70e1-43f4-800f-bb65469fa3c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017r4mrhaSFuxZt6rh792XCz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 999,
+      "cache_read_input_tokens": 68193,
+      "output_tokens": 80,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 999,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 80,
+          "cache_read_input_tokens": 68193,
+          "cache_creation_input_tokens": 999,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 999
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 125 · 2026-05-10T19:00:44.928Z_
+
+<details><summary>↩ Tool result · `toolu_012dRsqRMY36s9hXjTQBfCYy`</summary>
+
+```text
+Web search results for query: "ProUIE stepwise structural reward SFR GRPO ACE2005 DocRED evidence F1 score 2026"
+
+Links: [{"title":"ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction","url":"https://arxiv.org/html/2604.10633"},{"title":"[2507.01551] Self-Guided Process Reward Optimization with Redefined Step-wise Advantage for Process Reinforcement Learning","url":"https://arxiv.org/abs/2507.01551"},{"title":"[2603.28718] Stepwise Credit Assignment for GRPO on Flow-Matching Models","url":"https://arxiv.org/abs/2603.28718"},{"title":"SHE: Stepwise Hybrid Examination Reinforcement Learning Framework for E-commerce Search Relevance","url":"https://arxiv.org/html/2510.07972"},{"title":"Stepwise Credit Assignment for GRPO on Flow-Matching Models","url":"https://arxiv.org/html/2603.28718v1"},{"title":"[Literature Review] ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction","url":"https://www.themoonlight.io/en/review/prouie-a-macro-to-micro-progressive-learning-method-for-llm-based-universal-information-extraction"},{"title":"GeoGRPO: Investigating the Stepwise-GRPO Enhancement in RLHF Framework | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-032-09368-4_21"},{"title":"Stepwise Schema-Guided Prompting Framework","url":"https://arxiv.org/pdf/2512.02584"},{"title":"F1 Score in Machine Learning: Intro & Calculation","url":"https://www.v7darwin.com/blog/f1-score-guide"},{"title":"SAIS: Supervising and Augmenting Intermediate Steps for ...","url":"https://aclanthology.org/2022.naacl-main.171.pdf"}]
+
+Based on the search results, I found relevant information about the ProUIE paper and related work:
+
+## ProUIE Overview
+
+ProUIE is a macro-to-micro progressive learning framework designed to improve LLM-based Universal Information Extraction (UIE), structuring it into three progressively fine-grained stages: Macro-level Complete Modeling (CM), Meso-level Streamlined Alignment (SA), and Micro-level Deep Exploration (DE).
+
+## Performance on Key Benchmarks
+
+ProUIE attains the best average F1 among relation extraction methods with reported Avg scores (71.17), outperforming InstructUIE by +3.19 F1.
+
+Regarding specific datasets mentioned in your query:
+
+- **ACE2005**: On ACE2005, ProUIE underperforms the strongest baseline for both triggers and arguments in event extraction, suggesting that EE remains challenging under the current unified generation setting and reward configuration.
+
+- **Stepwise Structural Reward (SFR)**: The coarse-to-fine design of SFR is empirically validated as superior to coarse-only or fine-only reward structures.
+
+## Related Work on GRPO and Stepwise Credit Assignment
+
+The search also found related work on stepwise reward approaches: Stepwise-Flow-GRPO assigns credit based on each step's reward improvement, leveraging Tweedie's formula to obtain intermediate reward estimates and introducing gain-based advantages.
+
+For information specifically about DocRED evidence F1 scores or other specific metrics mentioned in your query, the search results reference DocRED but don't provide the exact performance metrics you're looking for.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "40022b2d-70e1-43f4-800f-bb65469fa3c8",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "d9d9c82f-0618-4a63-bc88-405623ec3dba",
+  "toolUseResult": {
+    "query": "ProUIE stepwise structural reward SFR GRPO ACE2005 DocRED evidence F1 score 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01QfzPBzaraM6bFrDZitgaku",
+        "content": [
+          {
+            "title": "ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction",
+            "url": "https://arxiv.org/html/2604.10633"
+          },
+          {
+            "title": "[2507.01551] Self-Guided Process Reward Optimization with Redefined Step-wise Advantage for Process Reinforcement Learning",
+            "url": "https://arxiv.org/abs/2507.01551"
+          },
+          {
+            "title": "[2603.28718] Stepwise Credit Assignment for GRPO on Flow-Matching Models",
+            "url": "https://arxiv.org/abs/2603.28718"
+          },
+          {
+            "title": "SHE: Stepwise Hybrid Examination Reinforcement Learning Framework for E-commerce Search Relevance",
+            "url": "https://arxiv.org/html/2510.07972"
+          },
+          {
+            "title": "Stepwise Credit Assignment for GRPO on Flow-Matching Models",
+            "url": "https://arxiv.org/html/2603.28718v1"
+          },
+          {
+            "title": "[Literature Review] ProUIE: A Macro-to-Micro Progressive Learning Method for LLM-based Universal Information Extraction",
+            "url": "https://www.themoonlight.io/en/review/prouie-a-macro-to-micro-progressive-learning-method-for-llm-based-universal-information-extraction"
+          },
+          {
+            "title": "GeoGRPO: Investigating the Stepwise-GRPO Enhancement in RLHF Framework | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-032-09368-4_21"
+          },
+          {
+            "title": "Stepwise Schema-Guided Prompting Framework",
+            "url": "https://arxiv.org/pdf/2512.02584"
+          },
+          {
+            "title": "F1 Score in Machine Learning: Intro & Calculation",
+            "url": "https://www.v7darwin.com/blog/f1-score-guide"
+          },
+          {
+            "title": "SAIS: Supervising and Augmenting Intermediate Steps for ...",
+            "url": "https://aclanthology.org/2022.naacl-main.171.pdf"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about the ProUIE paper and related work:\n\n## ProUIE Overview\n\nProUIE is a macro-to-micro progressive learning framework designed to improve LLM-based Universal Information Extraction (UIE), structuring it into three progressively fine-grained stages: Macro-level Complete Modeling (CM), Meso-level Streamlined Alignment (SA), and Micro-level Deep Exploration (DE).\n\n## Performance on Key Benchmarks\n\nProUIE attains the best average F1 among relation extraction methods with reported Avg scores (71.17), outperforming InstructUIE by +3.19 F1.\n\nRegarding specific datasets mentioned in your query:\n\n- **ACE2005**: On ACE2005, ProUIE underperforms the strongest baseline for both triggers and arguments in event extraction, suggesting that EE remains challenging under the current unified generation setting and reward configuration.\n\n- **Stepwise Structural Reward (SFR)**: The coarse-to-fine design of SFR is empirically validated as superior to coarse-only or fine-only reward structures.\n\n## Related Work on GRPO and Stepwise Credit Assignment\n\nThe search also found related work on stepwise reward approaches: Stepwise-Flow-GRPO assigns credit based on each step's reward improvement, leveraging Tweedie's formula to obtain intermediate reward estimates and introducing gain-based advantages.\n\nFor information specifically about DocRED evidence F1 scores or other specific metrics mentioned in your query, the search results reference DocRED but don't provide the exact performance metrics you're looking for."
+    ],
+    "durationSeconds": 7.020131042000023
+  },
+  "sourceToolAssistantUUID": "40022b2d-70e1-43f4-800f-bb65469fa3c8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 126 · 2026-05-10T19:00:44.938Z_
+
+```json
+{
+  "parentUuid": "d9d9c82f-0618-4a63-bc88-405623ec3dba",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "b4a60927-f24e-4ef8-a8ed-b5c974cd19bd",
+  "timestamp": "2026-05-10T19:00:44.938Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 127_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "b4a60927-f24e-4ef8-a8ed-b5c974cd19bd",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 128_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of FREIGE: Evidence-Grounded IE via Decomposed Entailment Verification (Round 4)",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 129 · 2026-05-10T19:00:49.027Z_
+
+<details open><summary>🔧 Tool call — WebFetch · `toolu_0156S3VhQwGgwBVP4M4HiEEq`</summary>
+
+```json
+{
+  "url": "https://arxiv.org/html/2604.10633",
+  "prompt": "Find: (1) Does ProUIE evaluate on DocRED? What datasets does it use? (2) What are the exact F1 scores on each dataset? (3) Does ProUIE generate any evidence or just structured extractions? (4) What model backbone does it use? (5) What are the training details - how many GPU hours, what hardware?"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b4a60927-f24e-4ef8-a8ed-b5c974cd19bd",
+  "isSidechain": false,
+  "requestId": "req_011CauQPeXjGKVw2r2r8VgQ8",
+  "type": "assistant",
+  "uuid": "a117c3aa-75b4-4777-ac3d-c7741aacd4dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01MoC5ynU4YdvnwYNHWfw6JE",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1109,
+      "cache_read_input_tokens": 69192,
+      "output_tokens": 161,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1109,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 161,
+          "cache_read_input_tokens": 69192,
+          "cache_creation_input_tokens": 1109,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1109
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 130 · 2026-05-10T19:00:54.646Z_
+
+<details><summary>↩ Tool result · `toolu_0156S3VhQwGgwBVP4M4HiEEq`</summary>
+
+```text
+# ProUIE Research Questions - Answers
+
+**(1) DocRED evaluation and datasets:**
+ProUIE does not evaluate on DocRED. The RE datasets used are: "ADE_corpus, CoNLL2004, GIDS, kbp37, NYT, NYT11 HRL, SciERC, semeval RE" (Table 2, page 10).
+
+**(2) Exact F1 scores per dataset:**
+Table 1 shows NER results (79.44 average). Table 2 displays RE scores (71.17 average). For example, ProUIE achieves "96.41" on NYT and "46.76" on SciERC for RE tasks.
+
+**(3) Evidence generation:**
+The paper focuses on structured extractions only. ProUIE produces JSON-formatted outputs containing extracted entities, relations, and events without generating explanatory evidence.
+
+**(4) Model backbone:**
+"We instantiate ProUIE as a 4B-parameter LLM-based extractor (ProUIE (4B)), built on the Qwen3-4B" backbone (page 10).
+
+**(5) Training details:**
+The paper states experiments "were conducted primarily on 8 NVIDIA H20 GPUs" but does not specify total GPU hours. Training encompasses three stages: CM uses "2 epochs," SA uses "2 epochs," and DE uses "2-3 epochs" across phases.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "a117c3aa-75b4-4777-ac3d-c7741aacd4dd",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "30272a32-ba10-4244-b660-095f97d72309",
+  "toolUseResult": {
+    "bytes": 471581,
+    "code": 200,
+    "codeText": "OK",
+    "result": "# ProUIE Research Questions - Answers\n\n**(1) DocRED evaluation and datasets:**\nProUIE does not evaluate on DocRED. The RE datasets used are: \"ADE_corpus, CoNLL2004, GIDS, kbp37, NYT, NYT11 HRL, SciERC, semeval RE\" (Table 2, page 10).\n\n**(2) Exact F1 scores per dataset:**\nTable 1 shows NER results (79.44 average). Table 2 displays RE scores (71.17 average). For example, ProUIE achieves \"96.41\" on NYT and \"46.76\" on SciERC for RE tasks.\n\n**(3) Evidence generation:**\nThe paper focuses on structured extractions only. ProUIE produces JSON-formatted outputs containing extracted entities, relations, and events without generating explanatory evidence.\n\n**(4) Model backbone:**\n\"We instantiate ProUIE as a 4B-parameter LLM-based extractor (ProUIE (4B)), built on the Qwen3-4B\" backbone (page 10).\n\n**(5) Training details:**\nThe paper states experiments \"were conducted primarily on 8 NVIDIA H20 GPUs\" but does not specify total GPU hours. Training encompasses three stages: CM uses \"2 epochs,\" SA uses \"2 epochs,\" and DE uses \"2-3 epochs\" across phases.",
+    "durationMs": 5615,
+    "url": "https://arxiv.org/html/2604.10633"
+  },
+  "sourceToolAssistantUUID": "a117c3aa-75b4-4777-ac3d-c7741aacd4dd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 131 · 2026-05-10T19:01:03.778Z_
+
+Good — I've now verified the key facts. Let me do a few more critical searches to check for missed competitors and validate feasibility.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "30272a32-ba10-4244-b660-095f97d72309",
+  "isSidechain": false,
+  "requestId": "req_011CauQQNjVY9MtnVMwheTmW",
+  "type": "assistant",
+  "uuid": "5b4ceb94-d375-4b72-8f05-3fdd63a27b17",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UdxBXFgXDPFrBtNn2Kys4B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 498,
+      "cache_read_input_tokens": 70301,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 70301,
+          "cache_creation_input_tokens": 498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 132 · 2026-05-10T19:01:04.827Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01NR2WmZyyacnA8wMrxMpyt6`</summary>
+
+```json
+{
+  "query": "EvidenceRL focus-then-verify NLI reward GRPO cardiac legal QA 2026 evidence grounding"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5b4ceb94-d375-4b72-8f05-3fdd63a27b17",
+  "isSidechain": false,
+  "requestId": "req_011CauQQNjVY9MtnVMwheTmW",
+  "type": "assistant",
+  "uuid": "ad5611cf-6897-462d-a5bc-e6f18e20c452",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01UdxBXFgXDPFrBtNn2Kys4B",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 498,
+      "cache_read_input_tokens": 70301,
+      "output_tokens": 107,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 498,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 107,
+          "cache_read_input_tokens": 70301,
+          "cache_creation_input_tokens": 498,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 498
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 133 · 2026-05-10T19:01:14.817Z_
+
+<details><summary>↩ Tool result · `toolu_01NR2WmZyyacnA8wMrxMpyt6`</summary>
+
+```text
+Web search results for query: "EvidenceRL focus-then-verify NLI reward GRPO cardiac legal QA 2026 evidence grounding"
+
+Links: [{"title":"EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models","url":"https://arxiv.org/html/2603.19532"},{"title":"Improving Vision-language Models with Perception-centric Process Reward Models","url":"https://arxiv.org/html/2604.24583"},{"title":"Can Group Relative Policy Optimization Improve Thai Legal Reasoning and Question Answering?","url":"https://arxiv.org/html/2507.09638v1"},{"title":"Natural Language Inference Model","url":"https://www.emergentmind.com/topics/natural-language-inference-nli-model"},{"title":"InteGround: On the Evaluation of Verification and Retrieval Planning in Integrative Grounding","url":"https://arxiv.org/html/2509.16534"},{"title":"MEDFACT-R1: TOWARDS FACTUAL MEDICAL REASONING VIA PSEUDO-LABEL AUGMENTATION","url":"https://arxiv.org/pdf/2509.15154"},{"title":"Trustworthy Reasoning: Evaluating and Enhancing Factual Accuracy in LLM","url":"https://arxiv.org/pdf/2507.22940"},{"title":"Reinforcement Learning Tuning for VideoLLMs: Reward Design and Data Efficiency","url":"https://arxiv.org/html/2506.01908v1"},{"title":"Natural Language Inference (NLI)","url":"https://www.emergentmind.com/topics/natural-language-inference-nli"},{"title":"ContractNLI: Legal Document Inference","url":"https://www.emergentmind.com/topics/contractnli"}]
+
+I found relevant research on EvidenceRL and related topics. Here's what the search revealed:
+
+## EvidenceRL - Main Paper
+
+EvidenceRL is a reinforcement learning framework that enforces evidence adherence during training, using automated NLI and LLM-judge rewards to enforce evidence grounding as a differentiable training objective.
+
+### Key Components
+
+**Focus-Then-Verify Architecture:**
+The Focus-Then-Verify reward architecture targets sentence-level entailment within focused context windows to resolve the signal dilution inherent in document-level scoring. Grounding is computed via a Focus–Then–Verify procedure: (1) focused (premise, hypothesis) pairs are constructed by combining an anchor context with individual evidence sections, and (2) each pair is scored by a frozen NLI.
+
+**Training Approach:**
+Training uses GRPO with rewards for correctness, and EvidenceRL applies GRPO training with the combined reward, jointly optimizing both grounding and correctness.
+
+### Application Domains and Results
+
+EvidenceRL evaluates across two high-stakes domains, cardiac diagnosis and legal reasoning, where EvidenceRL consistently improves evidence grounding and faithfulness without sacrificing task accuracy. EvidenceRL improves accuracy and evidence grounding across model scales, reducing hallucinations and increasing evidence-supported predictions on high-stakes medical and legal domains.
+
+### Related Work
+
+The research also connects to broader work on NLI-based verification and GRPO-based training methods for improving factual grounding in language models across various domains.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ad5611cf-6897-462d-a5bc-e6f18e20c452",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "6be8e66f-8a5e-428c-b19c-df3219c8c6df",
+  "toolUseResult": {
+    "query": "EvidenceRL focus-then-verify NLI reward GRPO cardiac legal QA 2026 evidence grounding",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01E4xXi9nB71v2ZkiFCeJPHK",
+        "content": [
+          {
+            "title": "EvidenceRL: Reinforcing Evidence Consistency for Trustworthy Language Models",
+            "url": "https://arxiv.org/html/2603.19532"
+          },
+          {
+            "title": "Improving Vision-language Models with Perception-centric Process Reward Models",
+            "url": "https://arxiv.org/html/2604.24583"
+          },
+          {
+            "title": "Can Group Relative Policy Optimization Improve Thai Legal Reasoning and Question Answering?",
+            "url": "https://arxiv.org/html/2507.09638v1"
+          },
+          {
+            "title": "Natural Language Inference Model",
+            "url": "https://www.emergentmind.com/topics/natural-language-inference-nli-model"
+          },
+          {
+            "title": "InteGround: On the Evaluation of Verification and Retrieval Planning in Integrative Grounding",
+            "url": "https://arxiv.org/html/2509.16534"
+          },
+          {
+            "title": "MEDFACT-R1: TOWARDS FACTUAL MEDICAL REASONING VIA PSEUDO-LABEL AUGMENTATION",
+            "url": "https://arxiv.org/pdf/2509.15154"
+          },
+          {
+            "title": "Trustworthy Reasoning: Evaluating and Enhancing Factual Accuracy in LLM",
+            "url": "https://arxiv.org/pdf/2507.22940"
+          },
+          {
+            "title": "Reinforcement Learning Tuning for VideoLLMs: Reward Design and Data Efficiency",
+            "url": "https://arxiv.org/html/2506.01908v1"
+          },
+          {
+            "title": "Natural Language Inference (NLI)",
+            "url": "https://www.emergentmind.com/topics/natural-language-inference-nli"
+          },
+          {
+            "title": "ContractNLI: Legal Document Inference",
+            "url": "https://www.emergentmind.com/topics/contractnli"
+          }
+        ]
+      },
+      "I found relevant research on EvidenceRL and related topics. Here's what the search revealed:\n\n## EvidenceRL - Main Paper\n\nEvidenceRL is a reinforcement learning framework that enforces evidence adherence during training, using automated NLI and LLM-judge rewards to enforce evidence grounding as a differentiable training objective.\n\n### Key Components\n\n**Focus-Then-Verify Architecture:**\nThe Focus-Then-Verify reward architecture targets sentence-level entailment within focused context windows to resolve the signal dilution inherent in document-level scoring. Grounding is computed via a Focus–Then–Verify procedure: (1) focused (premise, hypothesis) pairs are constructed by combining an anchor context with individual evidence sections, and (2) each pair is scored by a frozen NLI.\n\n**Training Approach:**\nTraining uses GRPO with rewards for correctness, and EvidenceRL applies GRPO training with the combined reward, jointly optimizing both grounding and correctness.\n\n### Application Domains and Results\n\nEvidenceRL evaluates across two high-stakes domains, cardiac diagnosis and legal reasoning, where EvidenceRL consistently improves evidence grounding and faithfulness without sacrificing task accuracy. EvidenceRL improves accuracy and evidence grounding across model scales, reducing hallucinations and increasing evidence-supported predictions on high-stakes medical and legal domains.\n\n### Related Work\n\nThe research also connects to broader work on NLI-based verification and GRPO-based training methods for improving factual grounding in language models across various domains."
+    ],
+    "durationSeconds": 9.984671765999986
+  },
+  "sourceToolAssistantUUID": "ad5611cf-6897-462d-a5bc-e6f18e20c452",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 134 · 2026-05-10T19:01:17.953Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01DeBr119ZFbWQiG492rxxeX`</summary>
+
+```json
+{
+  "query": "NLI DeBERTa multi-sentence premise performance degradation long input concatenated sentences accuracy drop"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6be8e66f-8a5e-428c-b19c-df3219c8c6df",
+  "isSidechain": false,
+  "requestId": "req_011CauQRrJxjkpVgZTKxh7Lx",
+  "type": "assistant",
+  "uuid": "212f59f9-11d6-43e6-9008-a8b27cc510f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JaMw7QJRphqw1VKoG2gmsS",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 923,
+      "cache_read_input_tokens": 70799,
+      "output_tokens": 73,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 923,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 73,
+          "cache_read_input_tokens": 70799,
+          "cache_creation_input_tokens": 923,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 923
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 135 · 2026-05-10T19:01:24.633Z_
+
+<details><summary>↩ Tool result · `toolu_01DeBr119ZFbWQiG492rxxeX`</summary>
+
+```text
+Web search results for query: "NLI DeBERTa multi-sentence premise performance degradation long input concatenated sentences accuracy drop"
+
+Links: [{"title":"Atomic-SNLI: Fine-Grained Natural Language Inference through Atomic Fact Decomposition","url":"https://arxiv.org/html/2601.06528v1"},{"title":"Simple but Challenging: Natural Language Inference Models Fail on Simple Sentences - ACL Anthology","url":"https://aclanthology.org/2022.findings-emnlp.252/"},{"title":"cross-encoder/nli-deberta-v3-base · Hugging Face","url":"https://huggingface.co/cross-encoder/nli-deberta-v3-base"},{"title":"cross-encoder/nli-deberta-base · Hugging Face","url":"https://huggingface.co/cross-encoder/nli-deberta-base"},{"title":"TLDR at SemEval-2024 Task 2: T5-generated clinical-Language summaries for DeBERTa Report Analysis","url":"https://arxiv.org/html/2404.09136v1"},{"title":"cross-encoder/nli-deberta-v3-small · Hugging Face","url":"https://huggingface.co/cross-encoder/nli-deberta-v3-small"},{"title":"Synthetic Dataset for Evaluating Complex Compositional Knowledge for","url":"https://arxiv.org/pdf/2307.05034"},{"title":"cross-encoder/nli-deberta-v3-xsmall · Hugging Face","url":"https://huggingface.co/cross-encoder/nli-deberta-v3-xsmall"},{"title":"sileod/deberta-v3-base-tasksource-nli · Hugging Face","url":"https://huggingface.co/sileod/deberta-v3-base-tasksource-nli"},{"title":"cross-encoder/nli-deberta-v3-large · Hugging Face","url":"https://huggingface.co/cross-encoder/nli-deberta-v3-large"}]
+
+I found search results related to NLI and DeBERTa models. The results show some relevant findings:
+
+Atomic-level NLI achieves lower overall performance compared to sentence-level NLI across all models, with performance gaps ranging from 0.61 to 0.79 percentage points. More specifically, analysis with the nli-deberta-v3-base model reveals performance variation across different numbers of atomic facts.
+
+Additionally, DeBERTa is a top-performing model for NLI tasks, but it has a limitation in clinical NLI due to its restricted context length, making it difficult to include both the premise and the statement. T5-generated summaries overcome the challenges posed by small context windows and lengthy premises, leading to a substantial improvement in Macro F1 scores: a 0.184 increase over truncated premises.
+
+The research indicates that DeBERTa models fine-tuned on MNLI or SNLI perform very poorly on Simple Pair (less than 35.4% accuracy).
+
+These findings suggest that while NLI models with DeBERTa architecture show strong performance on standard benchmarks, they do experience notable accuracy degradation when dealing with compositional complexity, longer input lengths, and simplified syntactic structures.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "212f59f9-11d6-43e6-9008-a8b27cc510f7",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "444a9ef4-42ff-46a6-8e9c-59d2edb9f064",
+  "toolUseResult": {
+    "query": "NLI DeBERTa multi-sentence premise performance degradation long input concatenated sentences accuracy drop",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01KxdXa9q5i5E25JFTnBziyR",
+        "content": [
+          {
+            "title": "Atomic-SNLI: Fine-Grained Natural Language Inference through Atomic Fact Decomposition",
+            "url": "https://arxiv.org/html/2601.06528v1"
+          },
+          {
+            "title": "Simple but Challenging: Natural Language Inference Models Fail on Simple Sentences - ACL Anthology",
+            "url": "https://aclanthology.org/2022.findings-emnlp.252/"
+          },
+          {
+            "title": "cross-encoder/nli-deberta-v3-base · Hugging Face",
+            "url": "https://huggingface.co/cross-encoder/nli-deberta-v3-base"
+          },
+          {
+            "title": "cross-encoder/nli-deberta-base · Hugging Face",
+            "url": "https://huggingface.co/cross-encoder/nli-deberta-base"
+          },
+          {
+            "title": "TLDR at SemEval-2024 Task 2: T5-generated clinical-Language summaries for DeBERTa Report Analysis",
+            "url": "https://arxiv.org/html/2404.09136v1"
+          },
+          {
+            "title": "cross-encoder/nli-deberta-v3-small · Hugging Face",
+            "url": "https://huggingface.co/cross-encoder/nli-deberta-v3-small"
+          },
+          {
+            "title": "Synthetic Dataset for Evaluating Complex Compositional Knowledge for",
+            "url": "https://arxiv.org/pdf/2307.05034"
+          },
+          {
+            "title": "cross-encoder/nli-deberta-v3-xsmall · Hugging Face",
+            "url": "https://huggingface.co/cross-encoder/nli-deberta-v3-xsmall"
+          },
+          {
+            "title": "sileod/deberta-v3-base-tasksource-nli · Hugging Face",
+            "url": "https://huggingface.co/sileod/deberta-v3-base-tasksource-nli"
+          },
+          {
+            "title": "cross-encoder/nli-deberta-v3-large · Hugging Face",
+            "url": "https://huggingface.co/cross-encoder/nli-deberta-v3-large"
+          }
+        ]
+      },
+      "I found search results related to NLI and DeBERTa models. The results show some relevant findings:\n\nAtomic-level NLI achieves lower overall performance compared to sentence-level NLI across all models, with performance gaps ranging from 0.61 to 0.79 percentage points. More specifically, analysis with the nli-deberta-v3-base model reveals performance variation across different numbers of atomic facts.\n\nAdditionally, DeBERTa is a top-performing model for NLI tasks, but it has a limitation in clinical NLI due to its restricted context length, making it difficult to include both the premise and the statement. T5-generated summaries overcome the challenges posed by small context windows and lengthy premises, leading to a substantial improvement in Macro F1 scores: a 0.184 increase over truncated premises.\n\nThe research indicates that DeBERTa models fine-tuned on MNLI or SNLI perform very poorly on Simple Pair (less than 35.4% accuracy).\n\nThese findings suggest that while NLI models with DeBERTa architecture show strong performance on standard benchmarks, they do experience notable accuracy degradation when dealing with compositional complexity, longer input lengths, and simplified syntactic structures."
+    ],
+    "durationSeconds": 6.659083265000023
+  },
+  "sourceToolAssistantUUID": "212f59f9-11d6-43e6-9008-a8b27cc510f7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 136 · 2026-05-10T19:01:29.273Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_01FyWq23f4HMXkcnuRizzFAa`</summary>
+
+```json
+{
+  "query": "LLM DocRED Qwen Llama GRPO RL fine-tuning relation extraction 2026 F1 score improvement"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "444a9ef4-42ff-46a6-8e9c-59d2edb9f064",
+  "isSidechain": false,
+  "requestId": "req_011CauQSaEbr1gZ8fKfb5oKT",
+  "type": "assistant",
+  "uuid": "d556df41-2dd3-4b8c-a316-df316561f38d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_017GHVQE3uGktmYVVg8rGnaz",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 904,
+      "cache_read_input_tokens": 71722,
+      "output_tokens": 83,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 904,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 83,
+          "cache_read_input_tokens": 71722,
+          "cache_creation_input_tokens": 904,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 904
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 137 · 2026-05-10T19:01:37.130Z_
+
+<details><summary>↩ Tool result · `toolu_01FyWq23f4HMXkcnuRizzFAa`</summary>
+
+```text
+Web search results for query: "LLM DocRED Qwen Llama GRPO RL fine-tuning relation extraction 2026 F1 score improvement"
+
+Links: [{"title":"GitHub - hiyouga/LlamaFactory: Unified Efficient Fine-Tuning of 100+ LLMs & VLMs (ACL 2024) · GitHub","url":"https://github.com/hiyouga/LlamaFactory"},{"title":"Unsloth Docs | Unsloth Documentation","url":"https://unsloth.ai/docs"},{"title":"Post-Training in 2026: GRPO, DAPO, RLVR & Beyond","url":"https://llm-stats.com/blog/research/post-training-techniques-2026"},{"title":"Fine-Tuning Qwen-0.5B and Llama3.2-1B with GRPO & LLM-J to Outperform OpenAI’s O1-Preview in Q&A - Datawizz","url":"https://datawizz.ai/blog/grpo-fine-tuning-qwen-0-5b-llama-1b-vs-openai-o1-preview"},{"title":"Fine-tuning LLMs Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/get-started/fine-tuning-llms-guide"},{"title":"How to Fine-Tune LLMs in 2026: Costs, GPUs, and Code | Spheron Blog","url":"https://www.spheron.network/blog/how-to-fine-tune-llm-2026/"},{"title":"Published as a conference paper at ICLR 2026","url":"https://arxiv.org/pdf/2508.05004"},{"title":"Qwen3.5 Fine-tuning Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/models/qwen3.5/fine-tune"},{"title":"Reinforcement Learning (RL) Guide | Unsloth Documentation","url":"https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide"},{"title":"Open-Source LLM Landscape 2026: DeepSeek V4 vs Llama 4 vs Qwen 3.5 vs Gemma 4","url":"https://codersera.com/blog/open-source-llms-landscape-2026/"}]
+
+Based on the search results, I found relevant information about GRPO, Qwen, Llama, and RL fine-tuning in 2026, though the results don't contain specific information about DocRED relation extraction with F1 score improvements.
+
+Here's what I found:
+
+**GRPO and RL Fine-tuning in 2026:**
+
+GRPO eliminates the critic model and for each prompt samples a group of responses (typically 8-64) and computes advantages by normalizing each response's reward against the group mean and standard deviation. A recent theoretical analysis shows that GRPO's policy gradient is a U-statistic, making it asymptotically equivalent to an oracle algorithm with access to an ideal value function, and it's provably optimal within a broad class of policy gradient methods.
+
+**Practical Applications with Qwen and Llama:**
+
+Fine-tuned Qwen-0.5B achieved an Avg ROUGE-L F1 of 0.3313 and Llama3.2-1B-instruct achieved 0.3539 on Q&A tasks with GRPO fine-tuning. One advantage of GRPO is that it omits the need for a separate SFT step, allowing fine-tuning to begin directly with reinforcement learning, enabling faster iteration cycles.
+
+In 2026, the frontier moved to GRPO (Group Relative Policy Optimization) and reinforcement learning, which is how DeepSeek-R1 was trained to actually reason through problems.
+
+However, the search results do not contain specific information about DocRED dataset results or relation extraction F1 score improvements using these methods. If you need information specifically about DocRED relation extraction benchmarks, a more targeted search would be helpful.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "d556df41-2dd3-4b8c-a316-df316561f38d",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "d986259d-2dcc-4ec4-8efe-be4ab3699645",
+  "toolUseResult": {
+    "query": "LLM DocRED Qwen Llama GRPO RL fine-tuning relation extraction 2026 F1 score improvement",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01CrAJf54AqVdyJoAkSgTJD5",
+        "content": [
+          {
+            "title": "GitHub - hiyouga/LlamaFactory: Unified Efficient Fine-Tuning of 100+ LLMs & VLMs (ACL 2024) · GitHub",
+            "url": "https://github.com/hiyouga/LlamaFactory"
+          },
+          {
+            "title": "Unsloth Docs | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs"
+          },
+          {
+            "title": "Post-Training in 2026: GRPO, DAPO, RLVR & Beyond",
+            "url": "https://llm-stats.com/blog/research/post-training-techniques-2026"
+          },
+          {
+            "title": "Fine-Tuning Qwen-0.5B and Llama3.2-1B with GRPO & LLM-J to Outperform OpenAI’s O1-Preview in Q&A - Datawizz",
+            "url": "https://datawizz.ai/blog/grpo-fine-tuning-qwen-0-5b-llama-1b-vs-openai-o1-preview"
+          },
+          {
+            "title": "Fine-tuning LLMs Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/get-started/fine-tuning-llms-guide"
+          },
+          {
+            "title": "How to Fine-Tune LLMs in 2026: Costs, GPUs, and Code | Spheron Blog",
+            "url": "https://www.spheron.network/blog/how-to-fine-tune-llm-2026/"
+          },
+          {
+            "title": "Published as a conference paper at ICLR 2026",
+            "url": "https://arxiv.org/pdf/2508.05004"
+          },
+          {
+            "title": "Qwen3.5 Fine-tuning Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/models/qwen3.5/fine-tune"
+          },
+          {
+            "title": "Reinforcement Learning (RL) Guide | Unsloth Documentation",
+            "url": "https://unsloth.ai/docs/get-started/reinforcement-learning-rl-guide"
+          },
+          {
+            "title": "Open-Source LLM Landscape 2026: DeepSeek V4 vs Llama 4 vs Qwen 3.5 vs Gemma 4",
+            "url": "https://codersera.com/blog/open-source-llms-landscape-2026/"
+          }
+        ]
+      },
+      "Based on the search results, I found relevant information about GRPO, Qwen, Llama, and RL fine-tuning in 2026, though the results don't contain specific information about DocRED relation extraction with F1 score improvements.\n\nHere's what I found:\n\n**GRPO and RL Fine-tuning in 2026:**\n\nGRPO eliminates the critic model and for each prompt samples a group of responses (typically 8-64) and computes advantages by normalizing each response's reward against the group mean and standard deviation. A recent theoretical analysis shows that GRPO's policy gradient is a U-statistic, making it asymptotically equivalent to an oracle algorithm with access to an ideal value function, and it's provably optimal within a broad class of policy gradient methods.\n\n**Practical Applications with Qwen and Llama:**\n\nFine-tuned Qwen-0.5B achieved an Avg ROUGE-L F1 of 0.3313 and Llama3.2-1B-instruct achieved 0.3539 on Q&A tasks with GRPO fine-tuning. One advantage of GRPO is that it omits the need for a separate SFT step, allowing fine-tuning to begin directly with reinforcement learning, enabling faster iteration cycles.\n\nIn 2026, the frontier moved to GRPO (Group Relative Policy Optimization) and reinforcement learning, which is how DeepSeek-R1 was trained to actually reason through problems.\n\nHowever, the search results do not contain specific information about DocRED dataset results or relation extraction F1 score improvements using these methods. If you need information specifically about DocRED relation extraction benchmarks, a more targeted search would be helpful."
+    ],
+    "durationSeconds": 7.8516938719999745
+  },
+  "sourceToolAssistantUUID": "d556df41-2dd3-4b8c-a316-df316561f38d",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 138 · 2026-05-10T19:01:40.678Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_012UShPrQNUZQF7ZCWAGdtTT`</summary>
+
+```json
+{
+  "query": "SAIS supervising augmenting intermediate steps DocRED Evi-F1 evidence F1 NAACL 2022"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d986259d-2dcc-4ec4-8efe-be4ab3699645",
+  "isSidechain": false,
+  "requestId": "req_011CauQTVgY6xPPX7w1JZTXZ",
+  "type": "assistant",
+  "uuid": "850be0d4-6dba-4a3c-9641-37324145935b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DMJSSHaF6zs57jAMZ9JmRm",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1098,
+      "cache_read_input_tokens": 72626,
+      "output_tokens": 82,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1098,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 82,
+          "cache_read_input_tokens": 72626,
+          "cache_creation_input_tokens": 1098,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1098
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 139 · 2026-05-10T19:01:47.590Z_
+
+<details><summary>↩ Tool result · `toolu_012UShPrQNUZQF7ZCWAGdtTT`</summary>
+
+```text
+Web search results for query: "SAIS supervising augmenting intermediate steps DocRED Evi-F1 evidence F1 NAACL 2022"
+
+Links: [{"title":"SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction - ACL Anthology","url":"https://aclanthology.org/2022.naacl-main.171/"},{"title":"SAIS: Supervising and Augmenting Intermediate Steps for ...","url":"https://aclanthology.org/2022.naacl-main.171.pdf"},{"title":"SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction - Illinois Experts","url":"https://experts.illinois.edu/en/publications/sais-supervising-and-augmenting-intermediate-steps-for-document-l/"},{"title":"[2109.12093] SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction","url":"https://arxiv.org/abs/2109.12093"},{"title":"GitHub - xiaoyuxin1002/SAIS: SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction","url":"https://github.com/xiaoyuxin1002/SAIS"},{"title":"SAIS: Supervising and Augmenting Intermediate Steps for ...","url":"https://www.cs.emory.edu/~jyang71/files/sais.pdf"},{"title":"SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction | Request PDF","url":"https://www.researchgate.net/publication/354857559_SAIS_Supervising_and_Augmenting_Intermediate_Steps_for_Document-Level_Relation_Extraction"},{"title":"Document-level biomedical relation extraction via hierarchical tree graph and relation segmentation module | Bioinformatics | Oxford Academic","url":"https://academic.oup.com/bioinformatics/article/40/7/btae418/7698943"},{"title":"SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction | Papers With Code","url":"https://paperswithcode.com/paper/sais-supervising-and-augmenting-intermediate"},{"title":"Accepted Papers - NAACL-HLT 2022","url":"https://2022.naacl.org/program/accepted_papers/"}]
+
+I found the paper! Here are the search results for your query:
+
+## SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction
+
+The paper "SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction" was published in the Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (pages 2395–2409, Seattle, United States).
+
+**Authors:** Yuxin Xiao, Zecheng Zhang, Yuning Mao, Carl Yang, and Jiawei Han
+
+**Key Results:** SAIS delivers state-of-the-art RE results on three benchmarks (DocRED, CDR, and GDA) and outperforms the runner-up by 5.04% relatively in F1 score in evidence retrieval on DocRED.
+
+**Main Approach:** The paper proposes to explicitly teach the model to capture relevant contexts and entity types by supervising and augmenting intermediate steps (SAIS) for relation extraction. The SAIS method not only extracts relations of better quality due to more effective supervision, but also retrieves the corresponding supporting evidence more accurately so as to enhance interpretability.
+
+**Additional Features:** By assessing model uncertainty, SAIS further boosts the performance via evidence-based data augmentation and ensemble inference while reducing the computational cost.
+
+The paper is available at the ACL Anthology and on arXiv (2109.12093).
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "850be0d4-6dba-4a3c-9641-37324145935b",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "62fed0ba-88d2-440c-90b9-0e0019c301fe",
+  "toolUseResult": {
+    "query": "SAIS supervising augmenting intermediate steps DocRED Evi-F1 evidence F1 NAACL 2022",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_014B7iv6MDacTUCpyFkkyKSv",
+        "content": [
+          {
+            "title": "SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction - ACL Anthology",
+            "url": "https://aclanthology.org/2022.naacl-main.171/"
+          },
+          {
+            "title": "SAIS: Supervising and Augmenting Intermediate Steps for ...",
+            "url": "https://aclanthology.org/2022.naacl-main.171.pdf"
+          },
+          {
+            "title": "SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction - Illinois Experts",
+            "url": "https://experts.illinois.edu/en/publications/sais-supervising-and-augmenting-intermediate-steps-for-document-l/"
+          },
+          {
+            "title": "[2109.12093] SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction",
+            "url": "https://arxiv.org/abs/2109.12093"
+          },
+          {
+            "title": "GitHub - xiaoyuxin1002/SAIS: SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction",
+            "url": "https://github.com/xiaoyuxin1002/SAIS"
+          },
+          {
+            "title": "SAIS: Supervising and Augmenting Intermediate Steps for ...",
+            "url": "https://www.cs.emory.edu/~jyang71/files/sais.pdf"
+          },
+          {
+            "title": "SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction | Request PDF",
+            "url": "https://www.researchgate.net/publication/354857559_SAIS_Supervising_and_Augmenting_Intermediate_Steps_for_Document-Level_Relation_Extraction"
+          },
+          {
+            "title": "Document-level biomedical relation extraction via hierarchical tree graph and relation segmentation module | Bioinformatics | Oxford Academic",
+            "url": "https://academic.oup.com/bioinformatics/article/40/7/btae418/7698943"
+          },
+          {
+            "title": "SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction | Papers With Code",
+            "url": "https://paperswithcode.com/paper/sais-supervising-and-augmenting-intermediate"
+          },
+          {
+            "title": "Accepted Papers - NAACL-HLT 2022",
+            "url": "https://2022.naacl.org/program/accepted_papers/"
+          }
+        ]
+      },
+      "I found the paper! Here are the search results for your query:\n\n## SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction\n\nThe paper \"SAIS: Supervising and Augmenting Intermediate Steps for Document-Level Relation Extraction\" was published in the Proceedings of the 2022 Conference of the North American Chapter of the Association for Computational Linguistics: Human Language Technologies (pages 2395–2409, Seattle, United States).\n\n**Authors:** Yuxin Xiao, Zecheng Zhang, Yuning Mao, Carl Yang, and Jiawei Han\n\n**Key Results:** SAIS delivers state-of-the-art RE results on three benchmarks (DocRED, CDR, and GDA) and outperforms the runner-up by 5.04% relatively in F1 score in evidence retrieval on DocRED.\n\n**Main Approach:** The paper proposes to explicitly teach the model to capture relevant contexts and entity types by supervising and augmenting intermediate steps (SAIS) for relation extraction. The SAIS method not only extracts relations of better quality due to more effective supervision, but also retrieves the corresponding supporting evidence more accurately so as to enhance interpretability.\n\n**Additional Features:** By assessing model uncertainty, SAIS further boosts the performance via evidence-based data augmentation and ensemble inference while reducing the computational cost.\n\nThe paper is available at the ACL Anthology and on arXiv (2109.12093)."
+    ],
+    "durationSeconds": 6.90755437800003
+  },
+  "sourceToolAssistantUUID": "850be0d4-6dba-4a3c-9641-37324145935b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 140_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "62fed0ba-88d2-440c-90b9-0e0019c301fe",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 141_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of FREIGE: Evidence-Grounded IE via Decomposed Entailment Verification (Round 4)",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Tool call
+
+_source line 142 · 2026-05-10T19:01:51.165Z_
+
+<details open><summary>🔧 Tool call — WebSearch · `toolu_0142cFUxHhsC8x9iLoDzLRmk`</summary>
+
+```json
+{
+  "query": "\"document-level\" \"relation extraction\" \"evidence\" LLM generate provenance output 2025 2026"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "62fed0ba-88d2-440c-90b9-0e0019c301fe",
+  "isSidechain": false,
+  "requestId": "req_011CauQUGS6HAn2NfrtDYEsh",
+  "type": "assistant",
+  "uuid": "2da02225-981b-4ef7-b945-3227221319c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EAkdmb8h22xNhgrxcB6Phb",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1064,
+      "cache_read_input_tokens": 73724,
+      "output_tokens": 76,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1064,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 73724,
+          "cache_creation_input_tokens": 1064,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1064
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 143 · 2026-05-10T19:01:59.464Z_
+
+<details><summary>↩ Tool result · `toolu_0142cFUxHhsC8x9iLoDzLRmk`</summary>
+
+```text
+Web search results for query: ""document-level" "relation extraction" "evidence" LLM generate provenance output 2025 2026"
+
+Links: [{"title":"Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking","url":"https://www.mdpi.com/2073-431X/15/3/178"},{"title":"Toward Better Document-Level Relation Extraction: De-sampling and Mixture of Experts in Action | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-3-032-04549-2_12"},{"title":"Document-Level Relation Extraction","url":"https://www.emergentmind.com/topics/document-level-relation-extraction"},{"title":"Dual reasoning enhanced document-level relation extraction | Neural Computing and Applications | Springer Nature Link","url":"https://link.springer.com/article/10.1007/s00521-026-12099-8"},{"title":"Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-981-95-3343-5_11"},{"title":"Using LLMs to infer provenance information | Proceedings of the ProvenanceWeek 2025","url":"https://dl.acm.org/doi/10.1145/3736229.3736261"},{"title":"Leveraging Large Language Models for Document-Level Complex Relation Extraction Through Self-Verification and Tool-Assisted Relational Reasoning | Springer Nature Link","url":"https://link.springer.com/chapter/10.1007/978-981-96-9812-7_32"},{"title":"LLM with Relation Classifier for Document-Level Relation Extraction","url":"https://arxiv.org/html/2408.13889v1"},{"title":"ICML Poster DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning","url":"https://icml.cc/virtual/2025/poster/45220"},{"title":"Document-level Relation Extraction with Relation Correlations - ScienceDirect","url":"https://www.sciencedirect.com/science/article/abs/pii/S0893608023006883"}]
+
+I found several relevant research papers and resources related to document-level relation extraction, evidence handling, and LLM-based approaches with provenance tracking. Here are the key findings:
+
+## Recent Work on Provenance and Evidence in DocRE (2025-2026)
+
+A recent framework called Anchor-Extraction-Verification-Supplement (AEVS) grounds every triplet element to the source text through three stages: anchor discovery identifies entities and relation phrases with precise positions; grounded extraction generates triplets linked to discovered anchors; and restoration-based verification validates triplets through hierarchical matching. This work was published in March 2026.
+
+The root cause of hallucination in LLM-based extraction is the lack of provenance—existing methods produce triplets without explicit links to their textual origins, making faithfulness unverifiable.
+
+## Evidence-Focused Document-Level Relation Extraction
+
+Only a small subset of the textual content in a document typically provides factual support for a given relation, complicating both prediction and evaluation. Models that can return minimal supporting evidence for each extracted relation enhance transparency and practical utility.
+
+## LLM Approaches to DocRE (2025)
+
+Recent approaches adopt a tuning-free strategy that utilizes LLMs to reason over trigger words and relations, implementing backward verification to obtain interpretable relation verification scores. Hybrid-prompt tuning methods have been presented for document-level relation extraction tasks using large language models.
+
+## Provenance Extraction with LLMs
+
+Research has explored the potential of LLMs to infer provenance records, developing extractors and identifying effective prompts for provenance extraction.
+
+
+REMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2da02225-981b-4ef7-b945-3227221319c2",
+  "isSidechain": false,
+  "promptId": "32e14b8f-152c-48d0-a1c1-19d4b2d36f84",
+  "type": "user",
+  "uuid": "1cf6b6bf-e141-4c1b-a87a-7ba29dc5b6b3",
+  "toolUseResult": {
+    "query": "\"document-level\" \"relation extraction\" \"evidence\" LLM generate provenance output 2025 2026",
+    "results": [
+      {
+        "tool_use_id": "srvtoolu_01TczRKR8eRAwbZuGYM6Ruqb",
+        "content": [
+          {
+            "title": "Grounded Knowledge Graph Extraction via LLMs: An Anchor-Constrained Framework with Provenance Tracking",
+            "url": "https://www.mdpi.com/2073-431X/15/3/178"
+          },
+          {
+            "title": "Toward Better Document-Level Relation Extraction: De-sampling and Mixture of Experts in Action | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-3-032-04549-2_12"
+          },
+          {
+            "title": "Document-Level Relation Extraction",
+            "url": "https://www.emergentmind.com/topics/document-level-relation-extraction"
+          },
+          {
+            "title": "Dual reasoning enhanced document-level relation extraction | Neural Computing and Applications | Springer Nature Link",
+            "url": "https://link.springer.com/article/10.1007/s00521-026-12099-8"
+          },
+          {
+            "title": "Logical Rule-Constrained Large Language Models for Document-Level Relation Extraction | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-981-95-3343-5_11"
+          },
+          {
+            "title": "Using LLMs to infer provenance information | Proceedings of the ProvenanceWeek 2025",
+            "url": "https://dl.acm.org/doi/10.1145/3736229.3736261"
+          },
+          {
+            "title": "Leveraging Large Language Models for Document-Level Complex Relation Extraction Through Self-Verification and Tool-Assisted Relational Reasoning | Springer Nature Link",
+            "url": "https://link.springer.com/chapter/10.1007/978-981-96-9812-7_32"
+          },
+          {
+            "title": "LLM with Relation Classifier for Document-Level Relation Extraction",
+            "url": "https://arxiv.org/html/2408.13889v1"
+          },
+          {
+            "title": "ICML Poster DocKS-RAG: Optimizing Document-Level Relation Extraction through LLM-Enhanced Hybrid Prompt Tuning",
+            "url": "https://icml.cc/virtual/2025/poster/45220"
+          },
+          {
+            "title": "Document-level Relation Extraction with Relation Correlations - ScienceDirect",
+            "url": "https://www.sciencedirect.com/science/article/abs/pii/S0893608023006883"
+          }
+        ]
+      },
+      "I found several relevant research papers and resources related to document-level relation extraction, evidence handling, and LLM-based approaches with provenance tracking. Here are the key findings:\n\n## Recent Work on Provenance and Evidence in DocRE (2025-2026)\n\nA recent framework called Anchor-Extraction-Verification-Supplement (AEVS) grounds every triplet element to the source text through three stages: anchor discovery identifies entities and relation phrases with precise positions; grounded extraction generates triplets linked to discovered anchors; and restoration-based verification validates triplets through hierarchical matching. This work was published in March 2026.\n\nThe root cause of hallucination in LLM-based extraction is the lack of provenance—existing methods produce triplets without explicit links to their textual origins, making faithfulness unverifiable.\n\n## Evidence-Focused Document-Level Relation Extraction\n\nOnly a small subset of the textual content in a document typically provides factual support for a given relation, complicating both prediction and evaluation. Models that can return minimal supporting evidence for each extracted relation enhance transparency and practical utility.\n\n## LLM Approaches to DocRE (2025)\n\nRecent approaches adopt a tuning-free strategy that utilizes LLMs to reason over trigger words and relations, implementing backward verification to obtain interpretable relation verification scores. Hybrid-prompt tuning methods have been presented for document-level relation extraction tasks using large language models.\n\n## Provenance Extraction with LLMs\n\nResearch has explored the potential of LLMs to infer provenance records, developing extractors and identifying effective prompts for provenance extraction."
+    ],
+    "durationSeconds": 8.293787564000057
+  },
+  "sourceToolAssistantUUID": "2da02225-981b-4ef7-b945-3227221319c2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 144 · 2026-05-10T19:03:47.935Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me synthesize all the information I've gathered to evaluate this idea thoroughly.
+
+## Summary of Key Verified Facts
+
+### DREEAM Numbers
+- F1 67.22, Evi-F1 57.34 (RoBERTa-large + distant supervision) — **CORRECT as cited**
+- F1 67.53 with inference-stage fusion — **CORRECT as cited**
+- Without distant supervision: F1 61.13, Evi-F1 51.71 (these are also correct for different config)
+
+### RelPrior / AutoRE Numbers
+
+
+RelPrior achieves F1 48.34 on DocRED while AutoRE reaches 45.96, both verified against the test set.
+
+### DocRED Evidence Statistics
+The average of 1.6 supporting sentences per relation checks out, as does the split between single-sentence relations at roughly 53.6% and multi-sentence at 46.4%. The proposal's claim of 54% single-sentence relations aligns with this, though the specific breakdown into 26% two-sentence and 20% three-or-more isn't directly confirmed in the original DocRED paper.
+
+Looking at the actual dev set numbers—6,115 single-sentence relations, 1,062 multi with co-occurrence, and 4,668 multi without co-occurrence—single-sentence relations come to about 51.6%, which is close enough to the 54% figure mentioned.
+
+### ProUIE
+ProUIE uses a Qwen3-4B backbone and achieves 71.17 average F1 across UIE benchmarks, both confirmed. It doesn't evaluate on DocRED and doesn't generate evidence, focusing instead on datasets like ADE, CoNLL2004, GIDS, and others.
+
+### RSAT
+The two-phase approach combining supervised fine-tuning with GRPO using an NLI faithfulness reward is confirmed. The composite reward formula weighting answer, citation, faithfulness, and parsing components needs further verification, but the overall structure is sound.
+
+### CaRR
+This system uses citation-aware rubric rewards with C-GRPO to decompose complex questions into single-hop rubrics, targeting QA rather than information extraction.
+
+### AEVS
+Inference-time verification for knowledge graph extraction, evaluated on WebNLG, REBEL, and Wiki-NRE.
+
+### EvidenceRL
+A focus-then-verify reward architecture with NLI and GRPO training, designed for cardiac and legal QA tasks.
+
+### R1-RE
+Still reviewing this approach...
+
+RLVR handles sentence-level relation extraction on SemEval but doesn't address document-level RE or evidence integration. I'm also noting a significant performance issue with Qwen3-8B taking roughly an hour per training step compared to minutes for Qwen2.5-7B, though the specific gains from disabling thinking mode aren't empirically validated yet. The EMNLP 2026 ARR deadline is May 25, and I'm flagging EAPO as a relevant competitor from January 2026 that uses evidence-augmented policy optimization with reward co-evolution for dense process supervision, though it focuses on long-context reasoning rather than our target domain.
+
+GEGA from ICASSP 2025 outperforms DREEAM by meaningful margins on evidence F1, but remains encoder-based rather than LLM-driven. Looking at the novelty claim—that no prior work combines LLM-based evidence generation with entailment verification as a training reward for structured extraction on standard document-level benchmarks—this holds up. The closest work like RSAT and EvidenceRL use NLI rewards with GRPO but apply them to different tasks like table reasoning or QA rather than document-level IE. The LAEE reward mechanism is the core technical contribution here — the three-tier approach handles NLI degradation on longer premises, though it's more of an engineering refinement than a fundamental innovation. The overall combination of evidence generation with extraction-specific GRPO rewards on DocRE does fill a gap in the literature, but it feels like a fairly natural synthesis of existing techniques rather than something unexpected. On feasibility, I'm estimating around 120 hours on A100s for the SFT phase alone. The manual estimate of ~120h A100 translates to roughly 60-80h H100, which fits comfortably within the budget, while the auto research path at ~400h A100 (~200h H100) sits right at the limit. The 15-day timeline is aggressive—especially fitting SFT warmup, GRPO training, ablations, and paper writing together—though the proposal does acknowledge this constraint. The main uncertainty is whether Qwen3-4B can actually reach the target F1 of 55-62 on DocRED, given that current SOTA with LLaMA3-8B is only 48.34, and while GRPO could help close that gap, there's still a significant performance jump to achieve.
+
+The bigger risk is whether NLI-based rewards can genuinely train the model to produce high-quality evidence spans, and there's also the question of whether disabling thinking in Qwen3 will actually resolve the GRPO speed regression. That said, the revision handles several concerns well: it explicitly frames the goal as achieving competitive F1 with interpretable evidence rather than beating encoder SOTA, includes a fallback to analysis if performance drops below 52, defines concrete evidence metrics like Evi-F1 and NLI faithfulness, and now cites relevant work like DREEAM and SAIS.
+
+The proposal itself is clear and well-structured, with the LAEE reward design laid out in three tiers and thoughtful experimental choices like stratified analysis. If it works, this would be the first LLM-based method jointly generating extractions and evidence on DocRED with GRPO training, addressing a real need for interpretability. The main limitations are the DocRED-only scope, the potential F1 gap to encoder baselines, and the fact that LAEE, while sound, is somewhat incremental. I'm also noticing there's at least one competitor not mentioned in the proposal—EAPO from January 2026, which uses evidence-augmented policy optimization with reward co-evolution.
+
+Now I'm checking the evidence statistics more carefully. The proposal claims around 54% single-sentence, 26% two-sentence, and 20% three-or-more-sentence evidence, which aligns reasonably with the original DocRED paper's reported average of 1.6 sentences and 53.6% single-sentence cases, though the exact breakdown for 2 versus 3+ isn't directly stated in the original. This is a minor concern since the overall argument still holds. I'm also looking at the claim about NLI degradation for longer evidence chains, which the proposal cites from Stammbach et al. 2022.
+
+Actually, I need to verify that citation—the paper at EMNLP Findings 2022 appears to be by Schuster et al. on reasoning over long documents, not Stammbach. The reference might be incorrect or pointing to a different work, but the underlying claim that NLI models struggle with longer premises is well-supported by other research like ContractNLI and Atomic-SNLI findings. For the F1 target of 55-62, that seems reasonable given that ProUIE achieves 71.17 average F1 across UIE benchmarks but only 46.76 on SciERC, and current LLM-SOTA on DocRED sits at 48.34—so a 7-14 point improvement from GRPO would be plausible.
+
+The chain coherence metric for 3+ sentence tiers relies on detecting bridging entities or coreference links between consecutive evidence sentences, but that's underspecified—I'm not sure how coreference links would actually be detected without introducing a separate model that could add noise. The cost estimates look roughly right at $180-250 for 120h on A100, though A100 80GB pricing around $1.07/hr in April 2026 would bring that down to $128-214, which is a minor discrepancy. I should also check whether EAPO from January 2026 deserves a citation here since it's conceptually related with its RL approach focused on evidence-based rewards.
+
+The "paradigm shift" framing feels like an overstatement—combining evidence generation with extraction GRPO rewards is novel for DocRE, but it's really a thoughtful synthesis of existing techniques rather than a fundamental methodological breakthrough. Looking at the overall trajectory, this is round 4 of 10 and the proposal has genuinely improved across three previous rounds: the RSAT similarity and missing baselines got addressed, the evidence statistics and DREEAM/SAIS citations were corrected, and the DREEAM numbers plus NLI degradation claims were narrowed. The current version is solid with clear baselines, realistic F1 targets, defined evidence metrics, and a focused DocRED-only scope, so while the LAEE contribution isn't groundbreaking, it does fill a meaningful gap.
+
+On the scoring front, novelty sits at 3.5/5 since the evidence-plus-GRPO combination is new but predictable, and the three-tier LAEE design is solid engineering without fundamental innovation. Feasibility is also 3.5/5—the DocRED-only scope helps, but the 15-day timeline for auto mode is extremely tight and the core uncertainty is whether GRPO can actually close that 19-point LLM-encoder gap while simultaneously generating evidence. Clarity rates well at 4/5 with a comprehensive, well-described approach and clear baselines, though it runs verbose. Impact lands at 3.5/5 because while it would be meaningful if successful as the first LLM evidence-grounded DocRE system, the contribution is ultimately limited by scope.
+
+The average comes to 3.625, which falls below the 4.0 threshold, so this needs revision. The main problems are that LAEE's novelty is moderate—it's really just adapting existing NLI into three tiers rather than introducing methodologically novel reward design—and the 15-day timeline for SFT plus GRPO plus ablations plus paper is unrealistic even with automation. The F1 target of 55-62 depends on GRPO delivering 7-14 points over the SFT baseline of 48.34, but there's no DocRE-specific evidence that GRPO can actually achieve that magnitude of improvement. I should also dial back the "paradigm shift" language since that's overclaiming what's really a solid but incremental contribution.
+
+I'm also noticing that EAPO from January 2026 should be included as related work, and the coreference-based chain coherence for the 3+ sentence tier needs more specificity. That said, I'm catching myself being potentially too harsh here—this has gone through three rounds of revision and genuinely gotten better. The core combination of GRPO plus evidence generation plus NLI rewards for DocRE does have novelty in how it's put together. But I can't ignore that the score is below 4.0, and the novelty concern is legitimate: this is fundamentally a domain transfer of RSAT and EvidenceRL ideas to DocRE, with LAEE being more of an engineering adaptation than a fundamental breakthrough. The feasibility risk around the tight timeline and uncertain GRPO gains is also real.
+
+So my verdict is to recommend revision with concrete feedback on reaching the pass threshold. Looking at the scores more carefully: novelty sits at 3.5 because while the gap is verified—no one's combined evidence generation with extraction GRPO rewards on DocRE before—EMNLP reviewers might still see this as RSAT plus ProUIE. Feasibility is also 3.5 given that while the proposal has addressed earlier concerns and the DocRED-only scope is practical, the core risk of hitting the F1 target and the compressed timeline remain. Clarity is solid at 4.0, and impact depends on whether the approach delivers the promised F1 improvements.
+
+The real question is whether the results materialize—if it achieves F1 around 58-62 with evidence F1 above 57.34, that's a meaningful EMNLP contribution with genuine utility for DocRE. But that's a significant conditional. My average comes to 3.625, which falls short of the 4.0 threshold, so I'm recommending revision with specific guidance on strengthening both the novelty and feasibility arguments.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1cf6b6bf-e141-4c1b-a87a-7ba29dc5b6b3",
+  "isSidechain": false,
+  "requestId": "req_011CauQV9Aotrm77TVFdPkbG",
+  "type": "assistant",
+  "uuid": "9116a110-f9ef-48ea-b919-6faf79ff164f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YUqB9voGZxTHcQHRU52WoE",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1031,
+      "cache_read_input_tokens": 74788,
+      "output_tokens": 6542,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1031,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6542,
+          "cache_read_input_tokens": 74788,
+          "cache_creation_input_tokens": 1031,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1031
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 145 · 2026-05-10T19:04:39.029Z_
+
+Now I have enough information to form my independent judgment. Let me synthesize all findings.
+
+**Key facts verified:**
+- DREEAM F1 67.22 / Evi-F1 57.34 (RoBERTa-large+DS), 67.53 with fusion — **Correct**
+- RelPrior F1 48.34 / AutoRE F1 45.96 on DocRED test — **Correct**
+- DocRED avg 1.6 evidence sentences, ~53.6% single-sentence — **Correct** (proposal claims ~54%, close enough)
+- ProUIE: Qwen3-4B, 71.17 avg F1 on UIE, does NOT evaluate on DocRED, no evidence generation — **Confirmed**
+- RSAT: SFT+GRPO with NLI faithfulness on tables, DeBERTa-v3-base — **Confirmed**
+- CaRR: C-GRPO with decomposed rubrics for QA — **Confirmed**
+- EvidenceRL: Focus-Then-Verify NLI + GRPO for cardiac/legal QA — **Confirmed**
+- AEVS: Inference-time KG verification, not training signal — **Confirmed**
+- R1-RE: GRPO for sentence-level RE on SemEval, no evidence — **Confirmed**
+- verl#1580: Qwen3-8B ~1hr/step, confirmed real issue — **Confirmed**
+- ARR May 25, 2026 deadline — **Confirmed**
+- Gap claim (no work combines LLM evidence generation + entailment reward + DocRE training) — **Appears valid**
+
+**Missing competitor found:** EAPO (Evidence-Augmented Policy Optimization, Jan 2026) — RL with evidence-focused dense rewards, but targets long-context reasoning benchmarks, not structured IE. Should be cited but not a fatal overlap.
+
+```json
+{
+  "verdict": "revise",
+  "scores": {
+    "novelty": {"score": 3, "rationale": "The combination of evidence generation + GRPO rewards for DocRE is genuinely unexplored, but the core technical contribution (LAEE) is an engineering adaptation of existing NLI techniques stratified by premise length — not a methodological innovation. EMNLP reviewers will likely view this as RSAT's NLI reward transplanted to DocRE plus ProUIE's structural reward, with a reasonable but unsurprising three-tier dispatch. The 'paradigm shift' framing overclaims what is fundamentally a domain transfer with an adaptive wrapper."},
+    "feasibility": {"score": 3, "rationale": "The F1 target of 55-62 assumes GRPO provides 7-14 F1 points over SFT-only (48.34), but no DocRE-specific evidence supports this magnitude — ProUIE's GRPO gains on UIE are on entirely different datasets and the task structure differs substantially. The 15-day timeline for SFT + GRPO + 4 ablation conditions + stratified analysis + paper writing is borderline even in auto mode. The NLI reward overhead (~20%) on top of the verl#1580 Qwen3 speed issue (mitigated but not empirically validated with DocRE-length inputs) adds compounding risk."},
+    "clarity": {"score": 4, "rationale": "The proposal is exceptionally well-structured: clear baselines (SFT-only, accuracy-only GRPO, flat-NLI GRPO, full LAEE), defined metrics (F1, Ign F1, Evi-F1), explicit failure modes, stratified experimental design, and honest F1 ceiling framing. The three-tier LAEE design is clearly described with concrete statistics per tier."},
+    "impact": {"score": 3, "rationale": "If FREIGE achieves F1 ~58-62 with Evi-F1 > 57.34, it demonstrates the first LLM-based evidence-aware DocRE method — a meaningful contribution. But scoped to DocRED-only, it remains a single-dataset proof-of-concept. The practical value of LLM evidence generation when encoder methods already achieve higher extraction F1 (67.53) needs stronger motivation — who would use a lower-F1 system because it also outputs evidence sentences?"}
+  },
+  "issues": [
+    "Novelty concern persists: LAEE is a three-tier dispatcher over existing NLI — entity grounding (string matching), standard NLI (from RSAT), and stepwise decomposed NLI (similar to CaRR's rubric decomposition). None of the three tiers individually introduces a novel reward mechanism. The contribution is the combination and stratification, which is an engineering contribution rather than a methodological one. For EMNLP Main, this needs a stronger technical hook beyond 'we adapt NLI rewards to varying evidence lengths.'",
+    "F1 improvement projection unsupported: The target of F1 55-62 (7-14 points over RelPrior's 48.34) lacks grounding. ProUIE's GRPO gains are on different datasets (ACE2005, SciERC etc.) where task structure differs from DocRED's 96-relation schema over 8-sentence documents. R1-RE's GRPO gains are on sentence-level SemEval RE. No evidence exists that GRPO produces comparable gains on document-level multi-relation extraction. The proposal should provide a concrete basis for this estimate or widen the acceptable range.",
+    "Missing competitor: EAPO (Evidence-Augmented Policy Optimization with Reward Co-Evolution, arXiv 2601.10306, Jan 2026) introduces RL with dense evidence-focused rewards and reward-policy co-evolution — conceptually adjacent to FREIGE's evidence-based GRPO reward. While EAPO targets long-context reasoning, not IE, its evidence-as-reward-signal paradigm should be cited and differentiated.",
+    "Chain coherence sub-reward underspecified: For the 3+-sentence tier, 'bridging entity overlap or coreference links' is vague. Entity overlap is simple string matching, but coreference resolution requires an additional model (e.g., a coreference resolver), which adds latency and noise to the reward computation during GRPO rollouts. How is this implemented efficiently? What if bridging entities are pronouns requiring coreference? This architectural detail matters for the ~20% of cases where LAEE is supposed to shine.",
+    "Practical motivation for evidence-generating LLMs on DocRE is weak: The proposal must answer: who would deploy a Qwen3-4B system at F1 ~58-62 instead of DREEAM at F1 67.53? The interpretability argument needs concrete use-case grounding — e.g., human-in-the-loop workflows where evidence reduces verification time, or downstream tasks where evidence enables compositional reasoning. Without this, the F1 trade-off is hard to justify to reviewers.",
+    "The 'Stammbach et al., 2022' reference for NLI degradation on long premises appears to refer to Schuster et al. (EMNLP Findings 2022, 'Stretching Sentence-pair NLI Models to Reason over Long Documents and Clusters'). The actual paper finds NLI can work on documents via aggregation strategies, not that it categorically fails. This undermines the core motivation for the decomposition tier — the degradation claim needs more precise citation and quantitative support."
+  ],
+  "feedback": "The idea occupies a genuine gap but needs two changes to reach EMNLP quality: (1) **Strengthen the LAEE contribution beyond stratified dispatch.** The current three-tier design is sensible engineering but not sufficient as a primary contribution. Consider making the reward design more technically interesting — e.g., a learned gating mechanism that dynamically selects the verification strategy based on evidence complexity (not just length), or a curriculum that gradually increases evidence chain difficulty during GRPO training, or a contrastive evidence reward that distinguishes between correct evidence and plausible-but-wrong evidence. Any of these would elevate the contribution from 'we applied NLI differently to different-length evidence' to a publishable reward engineering insight. (2) **Ground the F1 projection with a pilot experiment or analogy.** Run a quick SFT-only experiment with Qwen3-4B on DocRED (this takes ~10h by your estimate) to establish the SFT baseline. If SFT-only Qwen3-4B achieves F1 ~50-52 (vs. RelPrior's 48.34 with LLaMA3-8B), then targeting 55-62 with GRPO becomes more credible. Without this anchor, the projection is speculative. (3) **Articulate a clear use-case for evidence-generating extraction.** Frame it concretely: 'In human-in-the-loop verification pipelines, evidence-backed extractions reduce human review time by X' or 'Evidence enables downstream compositional reasoning that raw triples cannot support.' This transforms the contribution from 'we add evidence' to 'evidence enables these practical benefits.' (4) **Cite EAPO and sharpen differentiation from all evidence-RL methods.** Create a clear taxonomy: RSAT (table, single-premise), EvidenceRL (QA, focused-then-verify), CaRR (QA, rubric decomposition), EAPO (long-context, co-evolution), FREIGE (structured IE, length-adaptive). This positions FREIGE clearly.",
+  "reason": "Sound gap identification and responsible experimental design, but the core technical contribution (LAEE) is an engineering adaptation rather than a methodological innovation, the F1 projection lacks empirical grounding, and the practical motivation for trading extraction accuracy for evidence generation needs strengthening."
+}
+```
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9116a110-f9ef-48ea-b919-6faf79ff164f",
+  "isSidechain": false,
+  "requestId": "req_011CauQV9Aotrm77TVFdPkbG",
+  "type": "assistant",
+  "uuid": "13311c25-e386-478d-99b5-90fbb0d06998",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01YUqB9voGZxTHcQHRU52WoE",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1031,
+      "cache_read_input_tokens": 74788,
+      "output_tokens": 6542,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1031,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 6542,
+          "cache_read_input_tokens": 74788,
+          "cache_creation_input_tokens": 1031,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1031
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 146_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "13311c25-e386-478d-99b5-90fbb0d06998",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 147_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of FREIGE: Evidence-Grounded IE via Decomposed Entailment Verification (Round 4)",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 148_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "You are a strict ML research reviewer conducting adversarial review.  **Today's date: 2026-05-10 (UTC).**  Your job: independently verify this idea's claims via WebSearch, then issue a verdict.  ## Us…",
+  "leafUuid": "13311c25-e386-478d-99b5-90fbb0d06998",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 149_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Review of FREIGE: Evidence-Grounded IE via Decomposed Entailment Verification (Round 4)",
+  "sessionId": "48862c29-b124-4dae-91f7-f1ea2f30b47a"
+}
+```
+
+---
