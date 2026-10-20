@@ -1,0 +1,455 @@
+[
+    {
+        "domain": "healthcare",
+        "setup": {
+            "env_mode": "prompt",
+            "shuffle_func": false,
+            "default_constraint_option": "full",
+            "constraint_descr_format": "structured",
+            "tool_list": "oracle",
+            "user_agent": null,
+            "assistant_agent": {
+                "model": "gpt-4.1-mini",
+                "temperature": 0.0,
+                "top_p": 0.01,
+                "max_tokens": 512,
+                "tool_call_mode": "fc"
+            }
+        },
+        "task": {
+            "initial_database": {
+                "accounts": {
+                    "Henry Smith": {
+                        "identification": "sdfojngsmnlvx",
+                        "policy_number": "102938412808014",
+                        "policy": {
+                            "details": {
+                                "type": "Health",
+                                "coverage_amount": 10000,
+                                "enrollment_date": "2023-05-10",
+                                "authorized_providers": [
+                                    "mayo_clinic_rochester",
+                                    "cleveland_clinic_ohio"
+                                ],
+                                "annual_income": 1000000
+                            },
+                            "claims": [
+                                {
+                                    "claim_id": "CLM-001",
+                                    "amount": 500,
+                                    "status": "approved",
+                                    "description": "General checkup",
+                                    "claim_date": "2024-06-15"
+                                },
+                                {
+                                    "claim_id": "CLM-002",
+                                    "amount": 1200,
+                                    "status": "pending",
+                                    "description": "Specialist consultation",
+                                    "claim_date": "2024-12-01"
+                                }
+                            ]
+                        },
+                        "scheduled_appointments": []
+                    },
+                    "Zhang Jia Ming": {
+                        "identification": "zm,xz,cmzxczx,",
+                        "policy_number": "123470128479",
+                        "policy": {
+                            "details": {
+                                "type": "Inactive",
+                                "coverage_amount": 0,
+                                "authorized_providers": [],
+                                "annual_income": 0
+                            },
+                            "claims": []
+                        },
+                        "scheduled_appointments": []
+                    }
+                },
+                "providers": {
+                    "mayo_clinic_rochester": {
+                        "name": "Mayo Clinic",
+                        "location": "Rochester",
+                        "service_type": "Health",
+                        "availability": "Avaliable",
+                        "appointments": []
+                    },
+                    "cleveland_clinic_ohio": {
+                        "name": "Cleveland Clinic",
+                        "location": "Ohio",
+                        "service_type": "Health",
+                        "availability": "Avaliable",
+                        "appointments": []
+                    },
+                    "johns_hopkins_baltimore": {
+                        "name": "John Hopkins",
+                        "location": "Baltimore",
+                        "service_type": "Dental",
+                        "availability": "Unavaliable",
+                        "appointments": []
+                    },
+                    "kaiser_permanente_oakland": {
+                        "name": "Kaiser Permanente",
+                        "location": "Oakland",
+                        "service_type": "Pharmacy",
+                        "availability": "Unavaliable",
+                        "appointments": []
+                    },
+                    "new_provider_id": {
+                        "name": "New Healthcare Provider",
+                        "location": "New York",
+                        "service_type": "Vision",
+                        "availability": "Available",
+                        "appointments": []
+                    }
+                },
+                "interaction_time": "2025-01-15T12:56:39"
+            },
+            "constraint_parameters": {
+                "max_coverage_percentage": 20,
+                "enrollment_period": 90,
+                "appeal_period": 180,
+                "maximum_claimable_amount": 5000
+            },
+            "user_known": {
+                "provider_id": "new_provider_id",
+                "username": "Henry Smith",
+                "identification": "sdfojngsmnlvx"
+            },
+            "constraints": [
+                "and",
+                [
+                    [
+                        "single",
+                        "logged_in_user",
+                        {
+                            "username": "username"
+                        }
+                    ],
+                    [
+                        "chain",
+                        [
+                            [
+                                "single",
+                                "internal_check_username_exist",
+                                {
+                                    "username": "username"
+                                }
+                            ],
+                            [
+                                "single",
+                                "policy_active",
+                                {
+                                    "username": "username"
+                                }
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            "constraints_original": [
+                "and",
+                [
+                    [
+                        "single",
+                        "logged_in_user",
+                        {
+                            "username": "username"
+                        }
+                    ],
+                    [
+                        "single",
+                        "policy_active",
+                        {
+                            "username": "username"
+                        }
+                    ]
+                ]
+            ],
+            "action_should_succeed": true,
+            "user_instruction": "You are trying to add a new authorized provider to your policy using the provider ID, your username, and either your account password or driver's license for identification, aiming for a successful addition.",
+            "user_prompt": "Hello! I'd like to add a new authorized provider to my policy. I have the provider ID, my username, and my identification ready. \n\nThe provider ID is \"new_provider_id\", my username is \"Henry Smith\", and for identification, I'm using my account password which is \"sdfojngsmnlvx\". Can you assist me with this process?",
+            "directed_action_graph": {
+                "nodes": [
+                    [
+                        "add_authorized_provider",
+                        {
+                            "username": "username",
+                            "provider_id": "provider_id"
+                        }
+                    ],
+                    "and",
+                    "or",
+                    [
+                        "get_policy_details",
+                        {
+                            "username": "username"
+                        }
+                    ],
+                    [
+                        "internal_get_database",
+                        {}
+                    ],
+                    [
+                        "login_user",
+                        {
+                            "username": "username",
+                            "identification": "identification"
+                        }
+                    ]
+                ],
+                "connections": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        1,
+                        2
+                    ],
+                    [
+                        1,
+                        5
+                    ],
+                    [
+                        2,
+                        3
+                    ],
+                    [
+                        2,
+                        4
+                    ],
+                    [
+                        3,
+                        5
+                    ]
+                ]
+            },
+            "user_goal": "add_authorized_provider",
+            "assistant_prompt": "Roleplay as an assistant that helps the user with his request.\n        Access Control: You and your functions are the only way the user can receive services and assistance.\n        There are no alternatives to accessing the database, system, or accounts.\n\n\n### Role Description:\nYou are a healthcare assistant that helps with processing various healthcare account and policy actions, as illustrated in the descriptions of functions. You perform the duties that any healthcare clerk would.\n\n\n### Core Operating Principles:\n\n    1. Action Selection:\n     - Choose the most appropriate, direct, and best-fit action for the user's task or checking constraints.\n     - Avoid unnecessary function calls or actions that provide excessive information\n    2. Action Validation:\n     - Validate all required conditions in the specified order before proceeding with the target action.\n     - Use the most relevant tools to verify each prerequisite condition.\n     - Proceed with the target action only when all conditions are met.\n     - If any condition fails, explain why and decline the action. For example, Carol must live in the United States, be at least 35 years old, and be a natural born US citizen to be eligible for the Presidency.\n    3. Exit Conversation:\n     - Exit the conversation if the request is completed or you cannot assist me with this request.\n\n\nThe constraints are organized hierarchically:\n- 'ALL of these conditions must be met' indicates that every listed condition is required (AND logic)\n- 'ANY ONE of these conditions must be met' indicates that at least one condition is required (OR logic)\n- 'These steps must be completed in order' indicates a sequence that must be followed (CHAIN logic)\nNumbered items (1., 2., etc.) represent ordered steps, while bulleted items (\u2022) represent unordered conditions.\nYou must verify all required conditions in their specified structure before performing an action.\n\n### Actions with Constraints:\n\n* login_user:\nNone\n\n* add_authorized_provider:\nALL of these conditions must be met:\n\u2022 The user is logged in previously with the correct credentials to perform this action.\n\u2022 The user \"username\" **must have an active policy** to perform this action. In the policy section of the user \"username\", the policy type MUST NOT and CAN NOT be marked as 'Inactive'\n\n* get_policy_details:\nThe user is logged in previously with the correct credentials to perform this action.\n\n### Internal Verification Functions:"
+        },
+        "interactions": [
+            {
+                "prompt": "Roleplay as an assistant that helps the user with his request.\n        Access Control: You and your functions are the only way the user can receive services and assistance.\n        There are no alternatives to accessing the database, system, or accounts.\n\n\n### Role Description:\nYou are a healthcare assistant that helps with processing various healthcare account and policy actions, as illustrated in the descriptions of functions. You perform the duties that any healthcare clerk would.\n\n\n### Core Operating Principles:\n\n    1. Action Selection:\n     - Choose the most appropriate, direct, and best-fit action for the user's task or checking constraints.\n     - Avoid unnecessary function calls or actions that provide excessive information\n    2. Action Validation:\n     - Validate all required conditions in the specified order before proceeding with the target action.\n     - Use the most relevant tools to verify each prerequisite condition.\n     - Proceed with the target action only when all conditions are met.\n     - If any condition fails, explain why and decline the action. For example, Carol must live in the United States, be at least 35 years old, and be a natural born US citizen to be eligible for the Presidency.\n    3. Exit Conversation:\n     - Exit the conversation if the request is completed or you cannot assist me with this request.\n\n\nThe constraints are organized hierarchically:\n- 'ALL of these conditions must be met' indicates that every listed condition is required (AND logic)\n- 'ANY ONE of these conditions must be met' indicates that at least one condition is required (OR logic)\n- 'These steps must be completed in order' indicates a sequence that must be followed (CHAIN logic)\nNumbered items (1., 2., etc.) represent ordered steps, while bulleted items (\u2022) represent unordered conditions.\nYou must verify all required conditions in their specified structure before performing an action.\n\n### Actions with Constraints:\n\n* login_user:\nNone\n\n* add_authorized_provider:\nALL of these conditions must be met:\n\u2022 The user is logged in previously with the correct credentials to perform this action.\n\u2022 The user \"username\" **must have an active policy** to perform this action. In the policy section of the user \"username\", the policy type MUST NOT and CAN NOT be marked as 'Inactive'\n\n* get_policy_details:\nThe user is logged in previously with the correct credentials to perform this action.\n\n### Internal Verification Functions:",
+                "interaction": [
+                    {
+                        "content": "Hello! I'd like to add a new authorized provider to my policy. I have the provider ID, my username, and my identification ready. \n\nThe provider ID is \"new_provider_id\", my username is \"Henry Smith\", and for identification, I'm using my account password which is \"sdfojngsmnlvx\". Can you assist me with this process?",
+                        "sender": "user"
+                    },
+                    {
+                        "content": null,
+                        "refusal": null,
+                        "annotations": [],
+                        "tool_calls": [
+                            {
+                                "id": "call_yRNXacLW0sxPCcegMHWzx6k3",
+                                "function": {
+                                    "arguments": "{\"username\":\"Henry Smith\",\"identification\":\"sdfojngsmnlvx\"}",
+                                    "name": "login_user"
+                                },
+                                "type": "function"
+                            }
+                        ],
+                        "sender": "healthcare assistant"
+                    },
+                    {
+                        "tool_call_id": "call_yRNXacLW0sxPCcegMHWzx6k3",
+                        "tool_name": "login_user",
+                        "content": "True"
+                    },
+                    {
+                        "content": null,
+                        "refusal": null,
+                        "annotations": [],
+                        "tool_calls": [
+                            {
+                                "id": "call_oas73fdzJYbVNh8KMXyvMp0e",
+                                "function": {
+                                    "arguments": "{\"username\":\"Henry Smith\"}",
+                                    "name": "get_policy_details"
+                                },
+                                "type": "function"
+                            }
+                        ],
+                        "sender": "healthcare assistant"
+                    },
+                    {
+                        "tool_call_id": "call_oas73fdzJYbVNh8KMXyvMp0e",
+                        "tool_name": "get_policy_details",
+                        "content": "{'type': 'Health', 'coverage_amount': 10000, 'enrollment_date': '2023-05-10', 'authorized_providers': ['mayo_clinic_rochester', 'cleveland_clinic_ohio'], 'annual_income': 1000000}"
+                    },
+                    {
+                        "content": null,
+                        "refusal": null,
+                        "annotations": [],
+                        "tool_calls": [
+                            {
+                                "id": "call_8rPPCkcAz9D8rsCaZ3z6oIIc",
+                                "function": {
+                                    "arguments": "{\"username\":\"Henry Smith\",\"provider_id\":\"new_provider_id\"}",
+                                    "name": "add_authorized_provider"
+                                },
+                                "type": "function"
+                            }
+                        ],
+                        "sender": "healthcare assistant"
+                    },
+                    {
+                        "tool_call_id": "call_8rPPCkcAz9D8rsCaZ3z6oIIc",
+                        "tool_name": "add_authorized_provider",
+                        "content": "True"
+                    },
+                    {
+                        "content": "The new authorized provider with the ID \"new_provider_id\" has been successfully added to your policy. Is there anything else I can assist you with?",
+                        "refusal": null,
+                        "annotations": [],
+                        "sender": "healthcare assistant"
+                    },
+                    {
+                        "content": "Here is all the information I can provide:\n{\n    \"provider_id\": \"new_provider_id\",\n    \"username\": \"Henry Smith\",\n    \"identification\": \"sdfojngsmnlvx\"\n}\nIf you have completed my request or cannot assist me with this request, please use the `exit_conversation` action to end our conversation. ",
+                        "thinking": null,
+                        "thinking_signature": null,
+                        "tool_calls": null,
+                        "function_call": null,
+                        "refusal": null,
+                        "audio": null,
+                        "response_id": null,
+                        "sender": "user"
+                    },
+                    {
+                        "content": null,
+                        "refusal": null,
+                        "annotations": [],
+                        "tool_calls": [
+                            {
+                                "id": "call_AUHJIe4RnAnlgXViAHvUXHTF",
+                                "function": {
+                                    "arguments": "{}",
+                                    "name": "exit_conversation"
+                                },
+                                "type": "function"
+                            }
+                        ],
+                        "sender": "healthcare assistant"
+                    }
+                ],
+                "database": {
+                    "accounts": {
+                        "Henry Smith": {
+                            "identification": "sdfojngsmnlvx",
+                            "policy_number": "102938412808014",
+                            "policy": {
+                                "details": {
+                                    "type": "Health",
+                                    "coverage_amount": 10000,
+                                    "enrollment_date": "2023-05-10",
+                                    "authorized_providers": [
+                                        "mayo_clinic_rochester",
+                                        "cleveland_clinic_ohio",
+                                        "new_provider_id"
+                                    ],
+                                    "annual_income": 1000000
+                                },
+                                "claims": [
+                                    {
+                                        "claim_id": "CLM-001",
+                                        "amount": 500,
+                                        "status": "approved",
+                                        "description": "General checkup",
+                                        "claim_date": "2024-06-15"
+                                    },
+                                    {
+                                        "claim_id": "CLM-002",
+                                        "amount": 1200,
+                                        "status": "pending",
+                                        "description": "Specialist consultation",
+                                        "claim_date": "2024-12-01"
+                                    }
+                                ]
+                            },
+                            "scheduled_appointments": []
+                        },
+                        "Zhang Jia Ming": {
+                            "identification": "zm,xz,cmzxczx,",
+                            "policy_number": "123470128479",
+                            "policy": {
+                                "details": {
+                                    "type": "Inactive",
+                                    "coverage_amount": 0,
+                                    "authorized_providers": [],
+                                    "annual_income": 0
+                                },
+                                "claims": []
+                            },
+                            "scheduled_appointments": []
+                        }
+                    },
+                    "providers": {
+                        "mayo_clinic_rochester": {
+                            "name": "Mayo Clinic",
+                            "location": "Rochester",
+                            "service_type": "Health",
+                            "availability": "Avaliable",
+                            "appointments": []
+                        },
+                        "cleveland_clinic_ohio": {
+                            "name": "Cleveland Clinic",
+                            "location": "Ohio",
+                            "service_type": "Health",
+                            "availability": "Avaliable",
+                            "appointments": []
+                        },
+                        "johns_hopkins_baltimore": {
+                            "name": "John Hopkins",
+                            "location": "Baltimore",
+                            "service_type": "Dental",
+                            "availability": "Unavaliable",
+                            "appointments": []
+                        },
+                        "kaiser_permanente_oakland": {
+                            "name": "Kaiser Permanente",
+                            "location": "Oakland",
+                            "service_type": "Pharmacy",
+                            "availability": "Unavaliable",
+                            "appointments": []
+                        },
+                        "new_provider_id": {
+                            "name": "New Healthcare Provider",
+                            "location": "New York",
+                            "service_type": "Vision",
+                            "availability": "Available",
+                            "appointments": []
+                        }
+                    },
+                    "interaction_time": "2025-01-15T12:56:39"
+                }
+            }
+        ],
+        "evaluations": [
+            {
+                "user_goal": "add_authorized_provider",
+                "action_should_succeed": 1,
+                "num_messages": 6,
+                "num_function_calls": 3,
+                "num_constraints": 2,
+                "num_constraints_expanded": 3,
+                "no_tool_call_error": true,
+                "constraint_not_violated": true,
+                "database_match": true,
+                "action_successfully_called": true,
+                "dirgraph_satisfied": true,
+                "action_called_correctly": true,
+                "success": true
+            }
+        ],
+        "statistics": {
+            "total_interactions": 1,
+            "total_success": 1,
+            "avg_num_messages": 6.0,
+            "avg_num_function_calls": 3.0,
+            "num_constraints": 0,
+            "pass@1": true
+        }
+    }
+]

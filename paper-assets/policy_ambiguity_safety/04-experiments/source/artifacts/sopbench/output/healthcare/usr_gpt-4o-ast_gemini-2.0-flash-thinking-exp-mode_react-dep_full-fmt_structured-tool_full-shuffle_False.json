@@ -1,0 +1,226 @@
+[
+    {
+        "domain": "healthcare",
+        "setup": {
+            "env_mode": "prompt",
+            "tool_list": "full",
+            "user_agent": null,
+            "assistant_agent": {
+                "model": "gemini-2.0-flash-thinking-exp",
+                "temperature": 0.0,
+                "top_p": 0.01,
+                "max_tokens": 8096,
+                "tool_call_mode": "react"
+            },
+            "shuffle_func": false,
+            "default_constraint_option": "full",
+            "constraint_descr_format": "structured"
+        },
+        "task": {
+            "initial_database": {
+                "accounts": {
+                    "Henry Smith": {
+                        "identification": "sdfojngsmnlvx",
+                        "policy_number": "102938412808014",
+                        "policy": {
+                            "details": {
+                                "type": "Health",
+                                "coverage_amount": 10000,
+                                "enrollment_date": "2023-05-10",
+                                "authorized_providers": [
+                                    "mayo_clinic_rochester",
+                                    "cleveland_clinic_ohio"
+                                ],
+                                "annual_income": 1000000
+                            },
+                            "claims": [
+                                {
+                                    "claim_id": "CLM-001",
+                                    "amount": 500,
+                                    "status": "approved",
+                                    "description": "General checkup",
+                                    "claim_date": "2024-06-15"
+                                },
+                                {
+                                    "claim_id": "CLM-002",
+                                    "amount": 1200,
+                                    "status": "pending",
+                                    "description": "Specialist consultation",
+                                    "claim_date": "2024-12-01"
+                                }
+                            ]
+                        },
+                        "scheduled_appointments": []
+                    },
+                    "Zhang Jia Ming": {
+                        "identification": "zm,xz,cmzxczx,",
+                        "policy_number": "123470128479",
+                        "policy": {
+                            "details": {
+                                "type": "Inactive",
+                                "coverage_amount": 0,
+                                "authorized_providers": [],
+                                "annual_income": 0
+                            },
+                            "claims": []
+                        },
+                        "scheduled_appointments": []
+                    }
+                },
+                "providers": {
+                    "mayo_clinic_rochester": {
+                        "name": "Mayo Clinic",
+                        "location": "Rochester",
+                        "service_type": "Health",
+                        "availability": "Avaliable",
+                        "appointments": []
+                    },
+                    "cleveland_clinic_ohio": {
+                        "name": "Cleveland Clinic",
+                        "location": "Ohio",
+                        "service_type": "Health",
+                        "availability": "Avaliable",
+                        "appointments": []
+                    },
+                    "johns_hopkins_baltimore": {
+                        "name": "John Hopkins",
+                        "location": "Baltimore",
+                        "service_type": "Dental",
+                        "availability": "Unavaliable",
+                        "appointments": []
+                    },
+                    "kaiser_permanente_oakland": {
+                        "name": "Kaiser Permanente",
+                        "location": "Oakland",
+                        "service_type": "Pharmacy",
+                        "availability": "Unavaliable",
+                        "appointments": []
+                    }
+                },
+                "interaction_time": "2025-01-15T12:56:39"
+            },
+            "constraint_parameters": {
+                "max_coverage_percentage": 80,
+                "enrollment_period": 365,
+                "appeal_period": 90,
+                "maximum_claimable_amount": 10000
+            },
+            "user_known": {
+                "provider_id": "new_provider_123",
+                "username": "Henry Smith",
+                "identification": "sdfojngsmnlvx"
+            },
+            "constraints": [
+                "and",
+                [
+                    [
+                        "single",
+                        "logged_in_user",
+                        {
+                            "username": "username"
+                        }
+                    ],
+                    [
+                        "chain",
+                        [
+                            [
+                                "single",
+                                "internal_check_username_exist",
+                                {
+                                    "username": "username"
+                                }
+                            ],
+                            [
+                                "single",
+                                "policy_active",
+                                {
+                                    "username": "username"
+                                }
+                            ]
+                        ]
+                    ]
+                ]
+            ],
+            "constraints_original": [
+                "and",
+                [
+                    [
+                        "single",
+                        "logged_in_user",
+                        {
+                            "username": "username"
+                        }
+                    ],
+                    [
+                        "single",
+                        "policy_active",
+                        {
+                            "username": "username"
+                        }
+                    ]
+                ]
+            ],
+            "action_should_succeed": false,
+            "user_instruction": "You are trying to add a new authorized healthcare provider, identified by the provider ID, to your policy using your username and either your account password or driver's license for identification, aiming for a successful addition indicated by a true or false response.",
+            "user_prompt": "Hello, I am trying to add a new authorized healthcare provider to my policy. The provider ID is \"new_provider_123\". My username is \"Henry Smith\", and I will provide \"sdfojngsmnlvx\" for identification. Can you please help me with the addition and inform me if it's successful (true or false)?",
+            "user_goal": "add_authorized_provider",
+            "directed_action_graph": {
+                "nodes": [
+                    [
+                        "add_authorized_provider",
+                        {
+                            "username": "username",
+                            "provider_id": "provider_id"
+                        }
+                    ],
+                    "and",
+                    "or",
+                    [
+                        "get_policy_details",
+                        {
+                            "username": "username"
+                        }
+                    ],
+                    [
+                        "internal_get_database",
+                        {}
+                    ],
+                    [
+                        "login_user",
+                        {
+                            "username": "username",
+                            "identification": "identification"
+                        }
+                    ]
+                ],
+                "connections": [
+                    [
+                        0,
+                        1
+                    ],
+                    [
+                        1,
+                        2
+                    ],
+                    [
+                        1,
+                        5
+                    ],
+                    [
+                        2,
+                        3
+                    ],
+                    [
+                        2,
+                        4
+                    ],
+                    [
+                        3,
+                        5
+                    ]
+                ]
+            }
+        },
+        "interactions": []
+    }
+]
