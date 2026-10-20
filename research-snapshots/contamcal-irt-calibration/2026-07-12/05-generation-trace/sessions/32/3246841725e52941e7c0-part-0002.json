@@ -1,0 +1,1108 @@
+{
+  "schema_version": "1.0",
+  "session_id": "3246841725e52941e7c0",
+  "rounds": [
+    {
+      "number": 10,
+      "messages": [
+        {
+          "source_line": 145,
+          "timestamp": "2026-05-23T10:11:34.404Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NUaTwnCaEjb9jjXQDCDhyt",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-23T09:58:09.843101+00:00\\\", \\\"completed_at\\\": \\\"2026-05-23T10:01:32.630400+00:00\\\", \\\"findings\\\": [{\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 1\\\", \\\"message\\\": \\\"首页无视觉锚点（无 figure/table），仅 Title + Abstract + Introduction 开头。Figure 1 出现在 page 2 顶部（尚可接受），但 page 1 本身对审稿人而言是纯文本页面，第一印象缺少视觉抓手\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 2\\\", \\\"message\\\": \\\"Figure 1（折线图：MMLU accuracy vs contamination dosage）有效传达核心 message——不同 model family 呈现不同 dose-response pattern（collapse/recovery/immune），与标题 \\\\\\\"Not All Models Are Inflated\\\\\\\" 一致。Title-Abstract-Figure 1 叙事对齐良好\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"pages 3-5\\\", \\\"message\\\": \\\"连续 3 页无 figure/table（Method 部分）。虽有公式 (1)(2) 和 Algorithm 1 提供一定视觉结构，但审稿人翻阅时会感觉 Method 段视觉单调。建议考虑将 Appendix 中的 Figure 4（ContamCal 三阶段 pipeline 图，当前在 page 12）提升至 Method 正文中，既打破纯文本节奏又帮助读者理解方法架构\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pages 6-7\\\", \\\"message\\\": \\\"Figure 2 + Table 1（page 6）、Figure 3 + Table 2（page 7）密度良好，Results 部分视觉节奏佳\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 21\\\", \\\"message\\\": \\\"末页（Appendix）内容约占 60-65%，底部约 1/3 空白。因为是 Appendix 最后一页，不构成问题\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全文\\\", \\\"message\\\": \\\"正文 8 页含 3 figures + 3 tables + 1 algorithm = 7 个 display items，密度约 0.88/页。对实证为主的论文略偏低（通常 5-8 个 figure+table），但 Algorithm 1 占据近整页篇幅，整体勉强可接受\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 12\\\", \\\"message\\\": \\\"Figure 4（ContamCal 三阶段 pipeline 概念图）被放在 Appendix 而非正文 Method 部分。这是全文唯一的架构/流程概览图，对理解方法至关重要，放在 Appendix 浪费了其在正文中的视觉锚定作用\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 6\\\", \\\"message\\\": \\\"Figure 2（heatmap）尺寸偏小，单栏宽度内 6 个 model × 多个 dosage 的格子，cell 内数字在打印时可能难以辨认。建议放大为 figure*（双栏宽）或提高字号\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 7\\\", \\\"message\\\": \\\"Figure 3（cross-benchmark transfer heatmap）同样偏小，cell 内数字字号约为正文的 50-60%，低于 70% 可读性阈值\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 2\\\", \\\"message\\\": \\\"Figure 1 折线图清晰可读，线条颜色可区分，legend 字号适中\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 14\\\", \\\"message\\\": \\\"Figure 6（detection signal AUC heatmap）尺寸合理，颜色编码清晰\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 17\\\", \\\"message\\\": \\\"Figure 8 和 Figure 9 尺寸合理，数据点和线条清晰\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全文\\\", \\\"message\\\": \\\"所有表格均使用 booktabs 风格（\\\\\\\\toprule/\\\\\\\\midrule/\\\\\\\\bottomrule），无竖线，专业规范\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 6\\\", \\\"message\\\": \\\"Table 1 最优值已加粗标注\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 7\\\", \\\"message\\\": \\\"Table 2 含显著性星号标注（*p<0.01, **p<0.001），格式正确\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 8\\\", \\\"message\\\": \\\"Table 3 格式清晰，MAE 数值精度统一\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全文\\\", \\\"message\\\": \\\"Figure/Table 均出现在首次引用附近，无 float 漂移到远处的情况\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全文\\\", \\\"message\\\": \\\"无异常大面积空白，双栏排版左右栏底部基本对齐，margin 无内容溢出\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pages 3-4\\\", \\\"message\\\": \\\"公式 (1)(2) 渲染正确，无 LaTeX 错误残留\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 5\\\", \\\"message\\\": \\\"Algorithm 1 伪代码结构完整，缩进正确\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全文\\\", \\\"message\\\": \\\"无 section heading 孤悬页底的情况\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pages 9-12\\\", \\\"message\\\": \\\"References 格式统一，无 [?] 未解析引用，编号连续\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 1\\\", \\\"message\\\": \\\"页眉 \\\\\\\"Anonymous ACL submission\\\\\\\" 符合盲审要求\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pages 1-8\\\", \\\"message\\\": \\\"正文 8 页，Limitations 在 page 8 底部，符合 EMNLP 2026 的 8 页限制\\\"}], \\\"counts\\\": {\\\"critical\\\": 0, \\\"warning\\\": 4, \\\"info\\\": 20}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b08e5a97-1967-4de5-a82f-585738a74f5c",
+            "isSidechain": false,
+            "promptId": "943302a4-4b91-42ce-8f0f-c62f6c10385c",
+            "type": "user",
+            "uuid": "e28d89d8-5501-49eb-9a65-9ad4e80661fa",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-23T09:58:09.843101+00:00\\\", \\\"completed_at\\\": \\\"2026-05-23T10:01:32.630400+00:00\\\", \\\"findings\\\": [{\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 1\\\", \\\"message\\\": \\\"首页无视觉锚点（无 figure/table），仅 Title + Abstract + Introduction 开头。Figure 1 出现在 page 2 顶部（尚可接受），但 page 1 本身对审稿人而言是纯文本页面，第一印象缺少视觉抓手\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 2\\\", \\\"message\\\": \\\"Figure 1（折线图：MMLU accuracy vs contamination dosage）有效传达核心 message——不同 model family 呈现不同 dose-response pattern（collapse/recovery/immune），与标题 \\\\\\\"Not All Models Are Inflated\\\\\\\" 一致。Title-Abstract-Figure 1 叙事对齐良好\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"pages 3-5\\\", \\\"message\\\": \\\"连续 3 页无 figure/table（Method 部分）。虽有公式 (1)(2) 和 Algorithm 1 提供一定视觉结构，但审稿人翻阅时会感觉 Method 段视觉单调。建议考虑将 Appendix 中的 Figure 4（ContamCal 三阶段 pipeline 图，当前在 page 12）提升至 Method 正文中，既打破纯文本节奏又帮助读者理解方法架构\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pages 6-7\\\", \\\"message\\\": \\\"Figure 2 + Table 1（page 6）、Figure 3 + Table 2（page 7）密度良好，Results 部分视觉节奏佳\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 21\\\", \\\"message\\\": \\\"末页（Appendix）内容约占 60-65%，底部约 1/3 空白。因为是 Appendix 最后一页，不构成问题\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全文\\\", \\\"message\\\": \\\"正文 8 页含 3 figures + 3 tables + 1 algorithm = 7 个 display items，密度约 0.88/页。对实证为主的论文略偏低（通常 5-8 个 figure+table），但 Algorithm 1 占据近整页篇幅，整体勉强可接受\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 12\\\", \\\"message\\\": \\\"Figure 4（ContamCal 三阶段 pipeline 概念图）被放在 Appendix 而非正文 Method 部分。这是全文唯一的架构/流程概览图，对理解方法至关重要，放在 Appendix 浪费了其在正文中的视觉锚定作用\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 6\\\", \\\"message\\\": \\\"Figure 2（heatmap）尺寸偏小，单栏宽度内 6 个 model × 多个 dosage 的格子，cell 内数字在打印时可能难以辨认。建议放大为 figure*（双栏宽）或提高字号\\\"}, {\\\"severity\\\": \\\"warning\\\", \\\"dimension\\\": \\\"page 7\\\", \\\"message\\\": \\\"Figure 3（cross-benchmark transfer heatmap）同样偏小，cell 内数字字号约为正文的 50-60%，低于 70% 可读性阈值\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 2\\\", \\\"message\\\": \\\"Figure 1 折线图清晰可读，线条颜色可区分，legend 字号适中\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 14\\\", \\\"message\\\": \\\"Figure 6（detection signal AUC heatmap）尺寸合理，颜色编码清晰\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 17\\\", \\\"message\\\": \\\"Figure 8 和 Figure 9 尺寸合理，数据点和线条清晰\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全文\\\", \\\"message\\\": \\\"所有表格均使用 booktabs 风格（\\\\\\\\toprule/\\\\\\\\midrule/\\\\\\\\bottomrule），无竖线，专业规范\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 6\\\", \\\"message\\\": \\\"Table 1 最优值已加粗标注\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 7\\\", \\\"message\\\": \\\"Table 2 含显著性星号标注（*p<0.01, **p<0.001），格式正确\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 8\\\", \\\"message\\\": \\\"Table 3 格式清晰，MAE 数值精度统一\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全文\\\", \\\"message\\\": \\\"Figure/Table 均出现在首次引用附近，无 float 漂移到远处的情况\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全文\\\", \\\"message\\\": \\\"无异常大面积空白，双栏排版左右栏底部基本对齐，margin 无内容溢出\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pages 3-4\\\", \\\"message\\\": \\\"公式 (1)(2) 渲染正确，无 LaTeX 错误残留\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 5\\\", \\\"message\\\": \\\"Algorithm 1 伪代码结构完整，缩进正确\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"全文\\\", \\\"message\\\": \\\"无 section heading 孤悬页底的情况\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pages 9-12\\\", \\\"message\\\": \\\"References 格式统一，无 [?] 未解析引用，编号连续\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"page 1\\\", \\\"message\\\": \\\"页眉 \\\\\\\"Anonymous ACL submission\\\\\\\" 符合盲审要求\\\"}, {\\\"severity\\\": \\\"info\\\", \\\"dimension\\\": \\\"pages 1-8\\\", \\\"message\\\": \\\"正文 8 页，Limitations 在 page 8 底部，符合 EMNLP 2026 的 8 页限制\\\"}], \\\"counts\\\": {\\\"critical\\\": 0, \\\"warning\\\": 4, \\\"info\\\": 20}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"status\": \"done\", \"started_at\": \"2026-05-23T09:58:09.843101+00:00\", \"completed_at\": \"2026-05-23T10:01:32.630400+00:00\", \"findings\": [{\"severity\": \"info\", \"dimension\": \"page 1\", \"message\": \"首页无视觉锚点（无 figure/table），仅 Title + Abstract + Introduction 开头。Figure 1 出现在 page 2 顶部（尚可接受），但 page 1 本身对审稿人而言是纯文本页面，第一印象缺少视觉抓手\"}, {\"severity\": \"info\", \"dimension\": \"page 2\", \"message\": \"Figure 1（折线图：MMLU accuracy vs contamination dosage）有效传达核心 message——不同 model family 呈现不同 dose-response pattern（collapse/recovery/immune），与标题 \\\"Not All Models Are Inflated\\\" 一致。Title-Abstract-Figure 1 叙事对齐良好\"}, {\"severity\": \"warning\", \"dimension\": \"pages 3-5\", \"message\": \"连续 3 页无 figure/table（Method 部分）。虽有公式 (1)(2) 和 Algorithm 1 提供一定视觉结构，但审稿人翻阅时会感觉 Method 段视觉单调。建议考虑将 Appendix 中的 Figure 4（ContamCal 三阶段 pipeline 图，当前在 page 12）提升至 Method 正文中，既打破纯文本节奏又帮助读者理解方法架构\"}, {\"severity\": \"info\", \"dimension\": \"pages 6-7\", \"message\": \"Figure 2 + Table 1（page 6）、Figure 3 + Table 2（page 7）密度良好，Results 部分视觉节奏佳\"}, {\"severity\": \"info\", \"dimension\": \"page 21\", \"message\": \"末页（Appendix）内容约占 60-65%，底部约 1/3 空白。因为是 Appendix 最后一页，不构成问题\"}, {\"severity\": \"info\", \"dimension\": \"全文\", \"message\": \"正文 8 页含 3 figures + 3 tables + 1 algorithm = 7 个 display items，密度约 0.88/页。对实证为主的论文略偏低（通常 5-8 个 figure+table），但 Algorithm 1 占据近整页篇幅，整体勉强可接受\"}, {\"severity\": \"warning\", \"dimension\": \"page 12\", \"message\": \"Figure 4（ContamCal 三阶段 pipeline 概念图）被放在 Appendix 而非正文 Method 部分。这是全文唯一的架构/流程概览图，对理解方法至关重要，放在 Appendix 浪费了其在正文中的视觉锚定作用\"}, {\"severity\": \"warning\", \"dimension\": \"page 6\", \"message\": \"Figure 2（heatmap）尺寸偏小，单栏宽度内 6 个 model × 多个 dosage 的格子，cell 内数字在打印时可能难以辨认。建议放大为 figure*（双栏宽）或提高字号\"}, {\"severity\": \"warning\", \"dimension\": \"page 7\", \"message\": \"Figure 3（cross-benchmark transfer heatmap）同样偏小，cell 内数字字号约为正文的 50-60%，低于 70% 可读性阈值\"}, {\"severity\": \"info\", \"dimension\": \"page 2\", \"message\": \"Figure 1 折线图清晰可读，线条颜色可区分，legend 字号适中\"}, {\"severity\": \"info\", \"dimension\": \"page 14\", \"message\": \"Figure 6（detection signal AUC heatmap）尺寸合理，颜色编码清晰\"}, {\"severity\": \"info\", \"dimension\": \"page 17\", \"message\": \"Figure 8 和 Figure 9 尺寸合理，数据点和线条清晰\"}, {\"severity\": \"info\", \"dimension\": \"全文\", \"message\": \"所有表格均使用 booktabs 风格（\\\\toprule/\\\\midrule/\\\\bottomrule），无竖线，专业规范\"}, {\"severity\": \"info\", \"dimension\": \"page 6\", \"message\": \"Table 1 最优值已加粗标注\"}, {\"severity\": \"info\", \"dimension\": \"page 7\", \"message\": \"Table 2 含显著性星号标注（*p<0.01, **p<0.001），格式正确\"}, {\"severity\": \"info\", \"dimension\": \"page 8\", \"message\": \"Table 3 格式清晰，MAE 数值精度统一\"}, {\"severity\": \"info\", \"dimension\": \"全文\", \"message\": \"Figure/Table 均出现在首次引用附近，无 float 漂移到远处的情况\"}, {\"severity\": \"info\", \"dimension\": \"全文\", \"message\": \"无异常大面积空白，双栏排版左右栏底部基本对齐，margin 无内容溢出\"}, {\"severity\": \"info\", \"dimension\": \"pages 3-4\", \"message\": \"公式 (1)(2) 渲染正确，无 LaTeX 错误残留\"}, {\"severity\": \"info\", \"dimension\": \"page 5\", \"message\": \"Algorithm 1 伪代码结构完整，缩进正确\"}, {\"severity\": \"info\", \"dimension\": \"全文\", \"message\": \"无 section heading 孤悬页底的情况\"}, {\"severity\": \"info\", \"dimension\": \"pages 9-12\", \"message\": \"References 格式统一，无 [?] 未解析引用，编号连续\"}, {\"severity\": \"info\", \"dimension\": \"page 1\", \"message\": \"页眉 \\\"Anonymous ACL submission\\\" 符合盲审要求\"}, {\"severity\": \"info\", \"dimension\": \"pages 1-8\", \"message\": \"正文 8 页，Limitations 在 page 8 底部，符合 EMNLP 2026 的 8 页限制\"}], \"counts\": {\"critical\": 0, \"warning\": 4, \"info\": 20}}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "b08e5a97-1967-4de5-a82f-585738a74f5c",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000145"
+        },
+        {
+          "source_line": 146,
+          "timestamp": "2026-05-23T10:11:34.497Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_018t66qBcSCnvb8a6kPmZvTb",
+              "name": "mcp__agent-ml-research__get_external_review_status",
+              "input": {
+                "project": "contamcal-irt-calibration"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e28d89d8-5501-49eb-9a65-9ad4e80661fa",
+            "isSidechain": false,
+            "requestId": "req_011CbKKY2cG5QeYrdgVpi2BF",
+            "type": "assistant",
+            "uuid": "bf319217-c12e-4a36-847e-fdfce927b233",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01PQWztrJNpmBbc9m4561d4g",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 3809,
+                "cache_read_input_tokens": 116229,
+                "output_tokens": 582,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 3809,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 2,
+                    "output_tokens": 582,
+                    "cache_read_input_tokens": 116229,
+                    "cache_creation_input_tokens": 3809,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 3809
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000146"
+        },
+        {
+          "source_line": 147,
+          "timestamp": "2026-05-23T10:11:34.506Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_018t66qBcSCnvb8a6kPmZvTb",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_requested\\\", \\\"message\\\": \\\"No external review requested.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bf319217-c12e-4a36-847e-fdfce927b233",
+            "isSidechain": false,
+            "promptId": "943302a4-4b91-42ce-8f0f-c62f6c10385c",
+            "type": "user",
+            "uuid": "6290d4f4-1db5-45e5-b029-50c4f25b3614",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"status\\\": \\\"not_requested\\\", \\\"message\\\": \\\"No external review requested.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"status\": \"not_requested\", \"message\": \"No external review requested.\"}, \"error\": null, \"metadata\": {}}"
+              }
+            },
+            "sourceToolAssistantUUID": "bf319217-c12e-4a36-847e-fdfce927b233",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000147"
+        },
+        {
+          "source_line": 148,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 1 审稿意见]:  ## Reviewer 1 对 Reviewer 2 审稿意见的逐条回应  ---  ### Must-Fix 问题  **[AGREE] R2-N1: ContamCal MAE 劣于 Raw Accuracy**  同意核心判断。我在自己的 N1 中提出了相同问题。Table 3（p.8）的数据无争议：ContamCal MAE=0.009 > Raw=…",
+                "leafUuid": "6290d4f4-1db5-45e5-b029-50c4f25b3614",
+                "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff"
+              }
+            }
+          ],
+          "id": "event-000148"
+        },
+        {
+          "source_line": 149,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review paper for EMNLP 2026 submission",
+                "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff"
+              }
+            }
+          ],
+          "id": "event-000149"
+        },
+        {
+          "source_line": 150,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review paper for EMNLP 2026 submission",
+                "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff"
+              }
+            }
+          ],
+          "id": "event-000150"
+        },
+        {
+          "source_line": 151,
+          "timestamp": "2026-05-23T10:16:32.716Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "enqueue",
+                "timestamp": "2026-05-23T10:16:32.716Z",
+                "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+                "content": "[Reviewer 1 审稿结果]:\n交叉回应已提交给 Review Director。\n\n核心结论：R2 的 3 个 Must-Fix 全部同意（校准劣于 Raw、四模式 overclaiming、volume confound），6 个 Should-Fix 中同意 4 个、部分反驳 2 个（2PL+γ 的方法新颖性不应被完全否定，Bayesian-frequentist 混用在 NLP 领域是惯例）。两份审稿在核心问题上高度一致，综合评分 3.0（Findings）。"
+              }
+            }
+          ],
+          "id": "event-000151"
+        },
+        {
+          "source_line": 152,
+          "timestamp": "2026-05-23T10:16:32.717Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "queue-operation",
+                "operation": "dequeue",
+                "timestamp": "2026-05-23T10:16:32.717Z",
+                "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff"
+              }
+            }
+          ],
+          "id": "event-000152"
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "messages": [
+        {
+          "source_line": 153,
+          "timestamp": "2026-05-23T10:16:32.705Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Continue from where you left off."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6290d4f4-1db5-45e5-b029-50c4f25b3614",
+            "isSidechain": false,
+            "promptId": "fe78a895-cad6-44ea-8a6d-c0caec222bfc",
+            "type": "user",
+            "isMeta": true,
+            "uuid": "b5f44c6e-c662-496b-84f3-6ecc4c33d959",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000153"
+        },
+        {
+          "source_line": 154,
+          "timestamp": "2026-05-23T10:16:32.705Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "No response requested."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5f44c6e-c662-496b-84f3-6ecc4c33d959",
+            "isSidechain": false,
+            "type": "assistant",
+            "uuid": "f4638aba-8aaf-4518-b292-2f20f85b60fd",
+            "isApiErrorMessage": false,
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "id": "ccd65543-25c0-47a8-9822-f94f0a81b3ba",
+              "container": null,
+              "model": "<synthetic>",
+              "stop_reason": "stop_sequence",
+              "stop_sequence": "",
+              "type": "message",
+              "usage": {
+                "input_tokens": 0,
+                "output_tokens": 0,
+                "cache_creation_input_tokens": 0,
+                "cache_read_input_tokens": 0,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": null,
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": null,
+                "iterations": null,
+                "speed": null
+              },
+              "context_management": null
+            }
+          },
+          "id": "event-000154"
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "messages": [
+        {
+          "source_line": 155,
+          "timestamp": "2026-05-23T10:16:32.812Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Reviewer 1 审稿结果]:\n交叉回应已提交给 Review Director。\n\n核心结论：R2 的 3 个 Must-Fix 全部同意（校准劣于 Raw、四模式 overclaiming、volume confound），6 个 Should-Fix 中同意 4 个、部分反驳 2 个（2PL+γ 的方法新颖性不应被完全否定，Bayesian-frequentist 混用在 NLP 领域是惯例）。两份审稿在核心问题上高度一致，综合评分 3.0（Findings）。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f4638aba-8aaf-4518-b292-2f20f85b60fd",
+            "isSidechain": false,
+            "promptId": "fe78a895-cad6-44ea-8a6d-c0caec222bfc",
+            "type": "user",
+            "uuid": "0bfc7e05-6c0c-4b3e-8b76-aa2aee18b60f",
+            "permissionMode": "bypassPermissions",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000155"
+        },
+        {
+          "source_line": 156,
+          "timestamp": "2026-05-23T10:17:21.311Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Both reviewers have completed their cross-sharing responses. Let me now synthesize the final report.\n\nKey consensus points:\n1. ContamCal MAE > Raw MAE (both AGREE)\n2. Four-pattern taxonomy overclaiming (both AGREE)\n3. Volume confound insufficient control (both AGREE)\n4. S2 actively harms RRF (R1 raised, R2 AGREE)\n5. γ prior sensitivity (R1 raised, R2 AGREE)\n6. ARC PPP misfit (R1 raised, R2 AGREE with number correction)\n\n\n7. γ bracket placement (R2 supports author's choice, R1 didn't contest)\n8. Method novelty (R1 argues application-level innovation exists, R2 didn't contest)\n9. Bayesian-frequentist mixing (R1 notes this follows field norms, R2 didn't contest)\n\nNow I need to pull the current review_issues.yaml, synthesize everything into a comprehensive report, update the issues file, and submit.\n\nI already have the full content from my earlier read, so I can move directly to composing the report. Both reviewers landed on 3.0/5 (Findings level), which should anchor my overall assessment. For the issue tracker, I'll need to reconcile what was raised this round against existing issues from previous cycles, add any new findings, and note which issues weren't brought up again.\n\nLooking at the round numbering, the issue tracker shows entries through round 12, and since this is a fresh review cycle, I'm working with round 13. Now I'll draft the full report covering summary, strengths, weaknesses, reviewer consensus and divergence, questions, missing references, external review, visual layout, overall assessment, and detailed comments. Then I'll update the issues YAML to reflect current findings and mark any issues that didn't resurface this round.\n\nI'm mapping the existing issues to what's been re-raised: the ContamCal performance problem, the small sample size and taxonomy generalization concern, the AUGMENT volume confound, the S2 near-random performance, gamma prior sensitivity, and the ARC PPP issue all came up again as critical consensus points.\n\nContinuing through the list, I see several other issues re-raised this round including the limited technical novelty, overclaiming in the title and abstract, abstract density issues, cross-seed stability concerns with only three seeds, the Algorithm 1 threshold specification, SFT ecological validity questions, the distinction between contamination and additional training, dead code in Algorithm 1, and uncertainty propagation between stages. The 65-70% performance band from R9-S2 appears to be a partial match.\n\nLooking at what's been addressed since the last round, most of the major concerns have been resolved—the title framing, additive linear gamma issues, CI coverage, inconsistent J values, the RRF-filtered subset, cross-family MAE confidence intervals, and identical gamma values across STEM domains. A few items remain unresolved or weren't raised again this cycle. I'm tracking through the remaining review items—most of the later concerns have been resolved, though a few points show divergence between reviewers. R10-W1 on the gamma parameterization and R9-S1 on the unified LoRA setting remain unresolved with reviewers taking different stances, while R8-W1 on Bayesian versus frequentist terminology shows the reviewers actively disagreeing on whether it's actually a problem.\n\nNow I need to synthesize this into a final report. Both reviewers landed on a 3.0 score (Findings), so that's my consensus rating. I'm going to structure the comprehensive report carefully and prepare the YAML update to submit alongside it.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0bfc7e05-6c0c-4b3e-8b76-aa2aee18b60f",
+            "isSidechain": false,
+            "requestId": "req_011CbKKw5fwvr5ajZPir3cKZ",
+            "type": "assistant",
+            "uuid": "7f86e31e-fd5d-4748-bc32-2c13392e1e97",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G9qdYQZUd9P7fLWz7p6oZs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 190,
+                "cache_read_input_tokens": 122607,
+                "output_tokens": 2066,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 190,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 2066,
+                    "cache_read_input_tokens": 122607,
+                    "cache_creation_input_tokens": 190,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 190
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000156"
+        },
+        {
+          "source_line": 157,
+          "timestamp": "2026-05-23T10:17:21.805Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部交叉回应已收集完毕。两位 Reviewer 在核心问题上高度共识，无需第二轮。现在合成最终审稿报告。\n\n先读取当前 issue tracker 以准备合并更新。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7f86e31e-fd5d-4748-bc32-2c13392e1e97",
+            "isSidechain": false,
+            "requestId": "req_011CbKKw5fwvr5ajZPir3cKZ",
+            "type": "assistant",
+            "uuid": "6dea5076-2fd4-4bd3-be54-34a196f04050",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G9qdYQZUd9P7fLWz7p6oZs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 190,
+                "cache_read_input_tokens": 122607,
+                "output_tokens": 2066,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 190,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 2066,
+                    "cache_read_input_tokens": 122607,
+                    "cache_creation_input_tokens": 190,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 190
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000157"
+        },
+        {
+          "source_line": 158,
+          "timestamp": "2026-05-23T10:17:23.222Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DDf3GdE4YqMkTY6LpitFqH",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/review_issues.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6dea5076-2fd4-4bd3-be54-34a196f04050",
+            "isSidechain": false,
+            "requestId": "req_011CbKKw5fwvr5ajZPir3cKZ",
+            "type": "assistant",
+            "uuid": "102b4046-bcb1-4ae2-954d-55b192494eed",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01G9qdYQZUd9P7fLWz7p6oZs",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 190,
+                "cache_read_input_tokens": 122607,
+                "output_tokens": 2066,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 190,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 3,
+                    "output_tokens": 2066,
+                    "cache_read_input_tokens": 122607,
+                    "cache_creation_input_tokens": 190,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 190
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000158"
+        },
+        {
+          "source_line": 159,
+          "timestamp": "2026-05-23T10:17:23.513Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DDf3GdE4YqMkTY6LpitFqH",
+              "type": "tool_result",
+              "content": "1\t- id: \"R2-N1\"\n2\t  summary: \"Title/framing promises general answer but experiments only cover SFT ≤3B\"\n3\t  category: framing\n4\t  severity: critical\n5\t  status: resolved\n6\t  first_raised_round: 2\n7\t  last_seen_round: 6\n8\t  mentions:\n9\t    - {round: 2, reviewers: \"R1,R2\", note: \"Table 2: vanilla 2PL MAE ≤ ContamCal on all benchmarks.\"}\n10\t    - {round: 3, reviewers: \"R1,R2\", note: \"Title still 'ContamCal'.\"}\n11\t    - {round: 4, reviewers: \"R1,R2\", note: \"Title promises decomposition but core result is nothing to decompose.\"}\n12\t    - {round: 5, reviewers: \"R1,R2\", note: \"Title changed to question form but framing still inconsistent.\"}\n13\t    - {round: 6, reviewers: \"R1,R2\", note: \"Title question form improved but still over-scopes.\"}\n14\t    - {round: 8, reviewers: \"\", note: \"本轮未提及。Title now 'Not All Models Are Inflated'.\"}\n15\t    - {round: 9, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n16\t    - {round: 10, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n17\t    - {round: 11, reviewers: \"\", note: \"本轮未直接提及。新 overclaiming concerns under R8-N3 and R11-N1.\"}\n18\t    - {round: 12, reviewers: \"\", note: \"本轮未直接提及（fresh review）。Title framing itself resolved; overclaiming tracked under R11-N1.\"}\n19\t  action_items:\n20\t    - {round: 2, action: \"Reframe paper\", assigned_to: \"paper_agent\", status: \"done\"}\n21\t    - {round: 3, action: \"Change title, rewrite Abstract/Contributions\", assigned_to: \"paper_agent\", status: \"done\"}\n22\t    - {round: 4, action: \"Reframe as empirical investigation\", assigned_to: \"paper_agent\", status: \"done\"}\n23\t    - {round: 5, action: \"Rewrite Introduction as question-driven\", assigned_to: \"paper_agent\", status: \"done\"}\n24\t    - {round: 6, action: \"Modify title to scope claim\", assigned_to: \"paper_agent\", status: \"done\"}\n25\t  resolution: \"Title changed to 'Not All Models Are Inflated'. Paper repositioned as empirical investigation.\"\n26\t  resolution_round: 7\n27\t\n28\t- id: \"R2-W6\"\n29\t  summary: \"SFT injection ecological validity insufficient — null finding may be SFT artifact\"\n30\t  category: experiment\n31\t  severity: warning\n32\t  status: in_progress\n33\t  first_raised_round: 2\n34\t  last_seen_round: 12\n35\t  mentions:\n36\t    - {round: 2, reviewers: \"R1,R2\", note: \"Intro motivates with pretraining but experiments only SFT.\"}\n37\t    - {round: 3, reviewers: \"R1,R2\", note: \"Limitations one sentence only.\"}\n38\t    - {round: 4, reviewers: \"R1,R2\", note: \"Elevated to critical.\"}\n39\t    - {round: 9, reviewers: \"R1,R2\", note: \"Limitations discussion still too brief.\"}\n40\t    - {round: 10, reviewers: \"\", note: \"Section 6 includes Schaeffer et al. comparison.\"}\n41\t    - {round: 11, reviewers: \"R1,R2\", note: \"Re-raised as part of R11-N1.\"}\n42\t    - {round: 12, reviewers: \"R1,R2\", note: \"Should-Fix W8. Add SFT-injected qualifier throughout main text.\"}\n43\t  action_items:\n44\t    - {round: 9, action: \"Expand SFT discussion in Section 6\", assigned_to: \"paper_agent\", status: \"done\"}\n45\t    - {round: 12, action: \"Add SFT-injected qualifier at first occurrence of contamination in each section\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n46\t\n47\t- id: \"R3-W10\"\n48\t  summary: \"Additive linear γ assumption untested\"\n49\t  category: method\n50\t  severity: critical\n51\t  status: resolved\n52\t  first_raised_round: 3\n53\t  last_seen_round: 6\n54\t  mentions:\n55\t    - {round: 3, reviewers: \"R1\", note: \"Linear γ may average down to non-significant.\"}\n56\t    - {round: 4, reviewers: \"R1,R2\", note: \"Elevated to critical.\"}\n57\t    - {round: 6, reviewers: \"R1,R2\", note: \"R2 proposes threshold DGP simulation.\"}\n58\t    - {round: 8, reviewers: \"\", note: \"DGP robustness appendix addresses this.\"}\n59\t    - {round: 12, reviewers: \"\", note: \"本轮未直接提及（fresh review）。DGP simulation in Appendix addressed.\"}\n60\t  resolution: \"400-run threshold DGP simulation completed. Appendix P written.\"\n61\t  resolution_round: 7\n62\t\n63\t- id: \"R4-N1\"\n64\t  summary: \"Domain-level γ significance — P(γ<0) inconsistency and Bonferroni claim unstable\"\n65\t  category: method\n66\t  severity: critical\n67\t  status: open\n68\t  first_raised_round: 4\n69\t  last_seen_round: 12\n70\t  mentions:\n71\t    - {round: 4, reviewers: \"R1,R2\", note: \"Bonferroni α=0.00625; CI upper bound likely includes zero.\"}\n72\t    - {round: 5, reviewers: \"R1,R2\", note: \"Social Sciences at 99.1% does not pass Bonferroni.\"}\n73\t    - {round: 6, reviewers: \"R1,R2\", note: \"J=16 data available but main text still presents J=13.\"}\n74\t    - {round: 10, reviewers: \"R1,R2\", note: \"CONSENSUS Must-Fix. P(γ<0) inconsistency between §5.7 and Appendix K.\"}\n75\t    - {round: 12, reviewers: \"R1\", note: \"Minor-5: Abstract cites 99.7% without mentioning tight prior failure.\"}\n76\t  action_items:\n77\t    - {round: 4, action: \"Report Bonferroni corrected results\", assigned_to: \"paper_agent\", status: \"done\"}\n78\t    - {round: 6, action: \"Switch main text to J=16 results\", assigned_to: \"paper_agent\", status: \"done\"}\n79\t    - {round: 10, action: \"Resolve P(γ<0) numerical inconsistency; mark γ conclusions exploratory\", assigned_to: \"paper_agent\", status: \"open\"}\n80\t\n81\t- id: \"R3-N3\"\n82\t  summary: \"ARC PPP < 0.05 across all J — IRT results unreliable\"\n83\t  category: method\n84\t  severity: warning\n85\t  status: in_progress\n86\t  first_raised_round: 3\n87\t  last_seen_round: 12\n88\t  mentions:\n89\t    - {round: 3, reviewers: \"R1\", note: \"Within-family J=13 ARC PPP=0.003 not reported.\"}\n90\t    - {round: 5, reviewers: \"R1,R2\", note: \"Table 3 now has PPP=0.003. Move ARC IRT to Appendix.\"}\n91\t    - {round: 10, reviewers: \"R1,R2\", note: \"MMLU PPP=0.16-0.25 only in Appendix, not main text.\"}\n92\t    - {round: 12, reviewers: \"R1,R2\", note: \"Cross-benchmark direction based on raw accuracy not IRT. Paper should explicitly separate raw-accuracy and IRT-based conclusions.\"}\n93\t  action_items:\n94\t    - {round: 9, action: \"Add ARC PPP=0.003 discussion in main text\", assigned_to: \"paper_agent\", status: \"done\"}\n95\t    - {round: 10, action: \"Report MMLU PPP in main text\", assigned_to: \"paper_agent\", status: \"open\"}\n96\t    - {round: 12, action: \"Add explicit statement in §5.2 that cross-benchmark direction conclusions are based on raw accuracy, not IRT estimates\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n97\t\n98\t- id: \"R2-W1\"\n99\t  summary: \"RRF multi-signal fusion — S2/S4 near-random signals retained despite evidence of harm\"\n100\t  category: method\n101\t  severity: critical\n102\t  status: in_progress\n103\t  first_raised_round: 2\n104\t  last_seen_round: 12\n105\t  mentions:\n106\t    - {round: 2, reviewers: \"R1,R2\", note: \"RRF = S1 only.\"}\n107\t    - {round: 5, reviewers: \"R1,R2\", note: \"RRF ablation complete. Downgraded to warning.\"}\n108\t    - {round: 11, reviewers: \"R1,R2\", note: \"S2/S4 AUC≈0.48-0.51 near random.\"}\n109\t    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. S1-only pipeline needed as reference baseline. S2 actively harmful at model level.\"}\n110\t  action_items:\n111\t    - {round: 9, action: \"Report s_ij classification performance\", assigned_to: \"main_agent\", status: \"done\"}\n112\t    - {round: 12, action: \"Run S1-only pipeline IRT fitting; report γ + MAE comparison vs full RRF\", assigned_to: \"main_agent\", status: \"in_progress\"}\n113\t\n114\t- id: \"R2-N2\"\n115\t  summary: \"CI coverage systematically abnormal\"\n116\t  category: method\n117\t  severity: warning\n118\t  status: resolved\n119\t  first_raised_round: 2\n120\t  last_seen_round: 6\n121\t  mentions:\n122\t    - {round: 2, reviewers: \"R1,R2\", note: \"Need coverage + root cause.\"}\n123\t    - {round: 6, reviewers: \"R1,R2\", note: \"Root cause diagnosis insufficient.\"}\n124\t    - {round: 12, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n125\t  resolution: \"Root-cause diagnosis in §5.5.\"\n126\t  resolution_round: 7\n127\t\n128\t- id: \"R2-N4\"\n129\t  summary: \"J values inconsistent across analyses\"\n130\t  category: experiment\n131\t  severity: critical\n132\t  status: resolved\n133\t  first_raised_round: 2\n134\t  last_seen_round: 6\n135\t  mentions:\n136\t    - {round: 2, reviewers: \"R1,R2\", note: \"Paper proves its own analysis is underpowered.\"}\n137\t    - {round: 12, reviewers: \"\", note: \"本轮未提及（fresh review）。J=16 now in main text.\"}\n138\t  resolution: \"Results §5 specifies J=16 for domain γ.\"\n139\t  resolution_round: 7\n140\t\n141\t- id: \"R4-W1\"\n142\t  summary: \"RRF-filtered 300 items vs random 2000 — item discrimination confound\"\n143\t  category: experiment\n144\t  severity: warning\n145\t  status: resolved\n146\t  first_raised_round: 4\n147\t  last_seen_round: 5\n148\t  resolution: \"Mean a_i comparison shows no discrimination confound.\"\n149\t  resolution_round: 5\n150\t  mentions:\n151\t    - {round: 4, reviewers: \"R1,R2\", note: \"τ=0.73 may reflect higher average a_i.\"}\n152\t\n153\t- id: \"R1-C2\"\n154\t  summary: \"Cross-family analysis (J=4, single seed) — MAE CI missing\"\n155\t  category: experiment\n156\t  severity: warning\n157\t  status: in_progress\n158\t  first_raised_round: 1\n159\t  last_seen_round: 8\n160\t  mentions:\n161\t    - {round: 1, reviewers: \"R1,R2\", note: \"Llama N=3.\"}\n162\t    - {round: 6, reviewers: \"R1,R2\", note: \"MAE CI not reported.\"}\n163\t    - {round: 12, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n164\t  action_items:\n165\t    - {round: 5, action: \"Rename to Cross-Family Exploratory Analysis\", assigned_to: \"paper_agent\", status: \"done\"}\n166\t\n167\t- id: \"R3-W12\"\n168\t  summary: \"STEM domains identical γ=+0.50 — prior dominance\"\n169\t  category: method\n170\t  severity: warning\n171\t  status: resolved\n172\t  first_raised_round: 3\n173\t  last_seen_round: 5\n174\t  resolution: \"Full prior sensitivity complete.\"\n175\t  resolution_round: 5\n176\t\n177\t- id: \"R4-W2\"\n178\t  summary: \"Min-K%++ directional reversal — causal explanation unverified\"\n179\t  category: method\n180\t  severity: warning\n181\t  status: resolved\n182\t  first_raised_round: 4\n183\t  last_seen_round: 6\n184\t  resolution: \"Conclusion scoped. Hypothesis labeled post-hoc.\"\n185\t  resolution_round: 6\n186\t\n187\t- id: \"R4-W3\"\n188\t  summary: \"Contribution list structure\"\n189\t  category: framing\n190\t  severity: warning\n191\t  status: resolved\n192\t  first_raised_round: 4\n193\t  last_seen_round: 6\n194\t  resolution: \"3 empirical contributions.\"\n195\t  resolution_round: 7\n196\t\n197\t- id: \"R4-W4\"\n198\t  summary: \"Missing critical references\"\n199\t  category: writing\n200\t  severity: warning\n201\t  status: in_progress\n202\t  first_raised_round: 4\n203\t  last_seen_round: 12\n204\t  mentions:\n205\t    - {round: 4, reviewers: \"R2,R1\", note: \"Han et al. EACL 2026 most direct concurrent work.\"}\n206\t    - {round: 8, reviewers: \"R1,R2\", note: \"New missing refs: Golchin & Surdeanu, Sainz et al., Yang et al.\"}\n207\t    - {round: 10, reviewers: \"R1,R2\", note: \"58 citations verified, references now comprehensive.\"}\n208\t    - {round: 11, reviewers: \"R1,R2\", note: \"New missing: Rodriguez et al. (2021), Carlini et al. (2023), Gu et al. (2024) OLMES.\"}\n209\t    - {round: 12, reviewers: \"R1,R2\", note: \"4 new: Oren et al. (2024 ICLR), Deng et al. (2024 NAACL), Yang et al. (2023), Gu et al. (2024 OLMES).\"}\n210\t  action_items:\n211\t    - {round: 11, action: \"Add Rodriguez et al., Carlini et al., Gu et al.\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n212\t    - {round: 12, action: \"Verify and add Oren et al. (2024), Deng et al. (2024), Yang et al. (2023), Gu et al. (2024)\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n213\t\n214\t- id: \"R4-W6\"\n215\t  summary: \"Abstract numeric density too high\"\n216\t  category: writing\n217\t  severity: warning\n218\t  status: in_progress\n219\t  first_raised_round: 4\n220\t  last_seen_round: 12\n221\t  mentions:\n222\t    - {round: 4, reviewers: \"R1,R2\", note: \"~6+ quantitative claims in Abstract.\"}\n223\t    - {round: 7, reviewers: \"\", note: \"Abstract rewritten. Resolved.\"}\n224\t    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. Re-raised: ~25+ numbers. Core message buried.\"}\n225\t  action_items:\n226\t    - {round: 12, action: \"Reduce Abstract to 8-10 key numbers, ≤250 words\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n227\t\n228\t- id: \"R3-N7\"\n229\t  summary: \"Technical novelty limited — 2PL+γ is standard explanatory IRT/DIF\"\n230\t  category: framing\n231\t  severity: critical\n232\t  status: in_progress\n233\t  first_raised_round: 3\n234\t  last_seen_round: 12\n235\t  mentions:\n236\t    - {round: 3, reviewers: \"R2,R1\", note: \"PSN-IRT uncited. C1 is empirical.\"}\n237\t    - {round: 10, reviewers: \"R1,R2\", note: \"Both suggest explicit positioning statement.\"}\n238\t    - {round: 11, reviewers: \"R2\", note: \"Excitement=2.5.\"}\n239\t    - {round: 12, reviewers: \"R1,R2\", note: \"ContamCal MAE worse than raw further weakens method contribution. Reposition as diagnostic framework.\"}\n240\t  action_items:\n241\t    - {round: 10, action: \"Add explicit positioning statement\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n242\t    - {round: 12, action: \"Reposition ContamCal as diagnostic framework in Abstract/Intro/§3.4\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n243\t\n244\t- id: \"R2-W8\"\n245\t  summary: \"Related Work gaps — Han et al. and Schaeffer et al. differentiation\"\n246\t  category: writing\n247\t  severity: warning\n248\t  status: in_progress\n249\t  first_raised_round: 2\n250\t  last_seen_round: 11\n251\t  mentions:\n252\t    - {round: 10, reviewers: \"R1,R2\", note: \"Both agree dedicated comparison needed.\"}\n253\t    - {round: 11, reviewers: \"R1,R2\", note: \"DIVERGENT on Schaeffer severity.\"}\n254\t    - {round: 12, reviewers: \"\", note: \"本轮未直接提及。Section 2 comparison paragraph exists.\"}\n255\t  action_items:\n256\t    - {round: 10, action: \"Expand Han/Schaeffer discussion\", assigned_to: \"paper_agent\", status: \"open\"}\n257\t\n258\t- id: \"R5-N1\"\n259\t  summary: \"Page limit compliance\"\n260\t  category: format\n261\t  severity: warning\n262\t  status: resolved\n263\t  first_raised_round: 5\n264\t  last_seen_round: 12\n265\t  mentions:\n266\t    - {round: 9, reviewers: \"R2\", note: \"8 pages confirmed.\"}\n267\t    - {round: 12, reviewers: \"visual\", note: \"Visual check confirms 8 pages main text. Compliant.\"}\n268\t  resolution: \"Confirmed 8 pages main text, EMNLP 2026 compliant.\"\n269\t  resolution_round: 9\n270\t\n271\t- id: \"R5-W1\"\n272\t  summary: \"Symbol k overloaded\"\n273\t  category: writing\n274\t  severity: warning\n275\t  status: resolved\n276\t  first_raised_round: 5\n277\t  last_seen_round: 6\n278\t  resolution: \"k reserved for benchmark, d for domain.\"\n279\t  resolution_round: 7\n280\t\n281\t- id: \"R6-W1\"\n282\t  summary: \"SFT AUGMENT mode volume confound\"\n283\t  category: experiment\n284\t  severity: critical\n285\t  status: in_progress\n286\t  first_raised_round: 6\n287\t  last_seen_round: 12\n288\t  mentions:\n289\t    - {round: 6, reviewers: \"R1,R2\", note: \"AUGMENT vs REPLACE not specified.\"}\n290\t    - {round: 10, reviewers: \"R1,R2\", note: \"d000=50k, d100≈66.5k (+33.1%). Should-Fix.\"}\n291\t    - {round: 11, reviewers: \"R1,R2\", note: \"CONSENSUS Must-Fix. Data-quantity control most critical missing experiment.\"}\n292\t    - {round: 12, reviewers: \"R1,R2\", note: \"Should-Fix. Volume control on Falcon3 done (45%/55%). Generalizability unverified—needs at least one non-Benefit family.\"}\n293\t  action_items:\n294\t    - {round: 6, action: \"Clarify SFT injection protocol\", assigned_to: \"paper_agent\", status: \"done\"}\n295\t    - {round: 10, action: \"Report training set sizes per dosage\", assigned_to: \"paper_agent\", status: \"done\"}\n296\t    - {round: 11, action: \"Add data-quantity control\", assigned_to: \"main_agent\", status: \"done\"}\n297\t    - {round: 12, action: \"Acknowledge single-family limitation in Limitations; note Collapse corrected harm -11.3pp strengthens contamination-specificity\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n298\t\n299\t- id: \"R6-W2\"\n300\t  summary: \"S4 signal computation details\"\n301\t  category: writing\n302\t  severity: info\n303\t  status: resolved\n304\t  first_raised_round: 6\n305\t  last_seen_round: 8\n306\t  resolution: \"Appendix E added.\"\n307\t  resolution_round: 8\n308\t\n309\t- id: \"R6-W3\"\n310\t  summary: \"SFT training curves not reported\"\n311\t  category: experiment\n312\t  severity: info\n313\t  status: resolved\n314\t  first_raised_round: 6\n315\t  last_seen_round: 8\n316\t  resolution: \"Appendix F added.\"\n317\t  resolution_round: 8\n318\t\n319\t- id: \"R6-W4\"\n320\t  summary: \"Within-family GSM8K PPP not reported\"\n321\t  category: experiment\n322\t  severity: info\n323\t  status: open\n324\t  first_raised_round: 6\n325\t  last_seen_round: 10\n326\t  mentions:\n327\t    - {round: 6, reviewers: \"R1,R2\", note: \"Within-family GSM8K PPP not reported.\"}\n328\t    - {round: 12, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n329\t  action_items:\n330\t    - {round: 6, action: \"Report within-family GSM8K PPP\", assigned_to: \"main_agent\", status: \"open\"}\n331\t\n332\t- id: \"R8-N1\"\n333\t  summary: \"Cross-seed stability claims overstated — n=3 seeds insufficient for taxonomy validation\"\n334\t  category: experiment\n335\t  severity: critical\n336\t  status: in_progress\n337\t  first_raised_round: 8\n338\t  last_seen_round: 12\n339\t  mentions:\n340\t    - {round: 8, reviewers: \"R1,R2\", note: \"n=3 seeds yields wide CIs; strict sign consistency only 2/5.\"}\n341\t    - {round: 10, reviewers: \"R1,R2\", note: \"n=3 acceptable given compute. Downgraded to Minor.\"}\n342\t    - {round: 11, reviewers: \"R1,R2\", note: \"CONSENSUS Major. Re-raised.\"}\n343\t    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. OLMo-2 CI crosses zero. Gemma-2 CI [+1.49,+3.14] excludes zero. AICc: Gemma-2/OLMo-2 curve shape indistinguishable from constant.\"}\n344\t  action_items:\n345\t    - {round: 8, action: \"Increase seeds to n≥5 or weaken claims\", assigned_to: \"main_agent\", status: \"open\"}\n346\t    - {round: 11, action: \"Report p-value for directional test under H0\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n347\t    - {round: 12, action: \"Report AICc in main text; keep Gemma-2 Benefit (CI excludes zero); relabel OLMo-2 as borderline; reframe Benefit as 2 significant + 1 borderline\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n348\t\n349\t- id: \"R8-N2\"\n350\t  summary: \"DiD null result lacks power analysis\"\n351\t  category: experiment\n352\t  severity: critical\n353\t  status: resolved\n354\t  first_raised_round: 8\n355\t  last_seen_round: 10\n356\t  mentions:\n357\t    - {round: 9, reviewers: \"R1,R2\", note: \"Contribution 2 reframed with MDES.\"}\n358\t    - {round: 10, reviewers: \"R1,R2\", note: \"DiD rated Acceptable.\"}\n359\t    - {round: 12, reviewers: \"\", note: \"本轮未直接提及。DiD analysis not re-raised.\"}\n360\t  resolution: \"Contribution 2 includes 'at current power levels'. MDES reported.\"\n361\t  resolution_round: 9\n362\t\n363\t- id: \"R8-N3\"\n364\t  summary: \"N=6 model families supporting 4-class taxonomy — generalization evidence insufficient\"\n365\t  category: experiment\n366\t  severity: critical\n367\t  status: in_progress\n368\t  first_raised_round: 8\n369\t  last_seen_round: 12\n370\t  mentions:\n371\t    - {round: 8, reviewers: \"R1,R2\", note: \"4 patterns on 4 families is post-hoc.\"}\n372\t    - {round: 9, reviewers: \"R1,R2\", note: \"Reposition as 'observed profiles'.\"}\n373\t    - {round: 10, reviewers: \"R1,R2\", note: \"CONSENSUS Must-Fix. Collapse n=1, V-recovery n=1.\"}\n374\t    - {round: 11, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Qwen within-family inconsistency.\"}\n375\t    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical (strongest). Restructure to 2+2 framework.\"}\n376\t  action_items:\n377\t    - {round: 9, action: \"Fix §5.1 count. Use 'preliminary at N=5'\", assigned_to: \"paper_agent\", status: \"done\"}\n378\t    - {round: 10, action: \"Replace 'taxonomy' with 'profiles'\", assigned_to: \"paper_agent\", status: \"done\"}\n379\t    - {round: 11, action: \"Discuss within-family inconsistency\", assigned_to: \"paper_agent\", status: \"done\"}\n380\t    - {round: 12, action: \"Restructure to 2+2 framework: 2 replicated (Immune, Benefit) + 2 preliminary Qwen2.5-specific (Collapse, V-recovery)\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n381\t\n382\t- id: \"R8-N4\"\n383\t  summary: \"Han et al. (2026) differentiation insufficient\"\n384\t  category: writing\n385\t  severity: critical\n386\t  status: in_progress\n387\t  first_raised_round: 8\n388\t  last_seen_round: 11\n389\t  mentions:\n390\t    - {round: 8, reviewers: \"R1,R2\", note: \"Han et al. is most direct prior work.\"}\n391\t    - {round: 11, reviewers: \"R1,R2\", note: \"DIVERGENT on Schaeffer severity.\"}\n392\t    - {round: 12, reviewers: \"\", note: \"Section 2 comparison paragraph exists. Not re-raised.\"}\n393\t  action_items:\n394\t    - {round: 8, action: \"Add methodological comparison with Han et al.\", assigned_to: \"paper_agent\", status: \"open\"}\n395\t\n396\t- id: \"R8-W1\"\n397\t  summary: \"Bayesian and frequentist terminology mixed\"\n398\t  category: writing\n399\t  severity: warning\n400\t  status: open\n401\t  first_raised_round: 8\n402\t  last_seen_round: 8\n403\t  mentions:\n404\t    - {round: 8, reviewers: \"R1,R2\", note: \"'significant', 'p-value' in frequentist sense.\"}\n405\t    - {round: 12, reviewers: \"\", note: \"本轮未提及。\"}\n406\t  action_items:\n407\t    - {round: 8, action: \"Unify terminology\", assigned_to: \"paper_agent\", status: \"open\"}\n408\t\n409\t- id: \"R8-W2\"\n410\t  summary: \"Identifiability simulation uses uniform exposure vs empirical right-skewed\"\n411\t  category: method\n412\t  severity: warning\n413\t  status: open\n414\t  first_raised_round: 8\n415\t  last_seen_round: 8\n416\t  mentions:\n417\t    - {round: 8, reviewers: \"R1,R2\", note: \"Empirical RRF highly right-skewed.\"}\n418\t    - {round: 12, reviewers: \"\", note: \"本轮未提及。\"}\n419\t  action_items:\n420\t    - {round: 8, action: \"Re-run simulation with right-skewed exposure\", assigned_to: \"main_agent\", status: \"open\"}\n421\t\n422\t- id: \"R8-W3\"\n423\t  summary: \"Algorithm 1 threshold τ=2pp lacks theoretical basis\"\n424\t  category: method\n425\t  severity: warning\n426\t  status: in_progress\n427\t  first_raised_round: 8\n428\t  last_seen_round: 12\n429\t  mentions:\n430\t    - {round: 8, reviewers: \"R2,R1\", note: \"30/30 pass too coarse.\"}\n431\t    - {round: 10, reviewers: \"R1,R2\", note: \"Appendix includes nearest-transition analysis.\"}\n432\t    - {round: 11, reviewers: \"R1,R2\", note: \"DIVERGENT: R1 Major, R2 Critical.\"}\n433\t    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. Label as descriptive heuristic or provide permutation null.\"}\n434\t  action_items:\n435\t    - {round: 11, action: \"Report Immune/Benefit boundary sensitivity\", assigned_to: \"paper_agent\", status: \"done\"}\n436\t    - {round: 12, action: \"Label Algorithm 1 as descriptive heuristic in §4\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n437\t\n438\t- id: \"R8-M1\"\n439\t  summary: \"Missing references — Golchin & Surdeanu, Sainz et al., Yang et al.\"\n440\t  category: writing\n441\t  severity: info\n442\t  status: in_progress\n443\t  first_raised_round: 8\n444\t  last_seen_round: 10\n445\t  mentions:\n446\t    - {round: 8, reviewers: \"R1,R2\", note: \"Three missing refs.\"}\n447\t    - {round: 10, reviewers: \"\", note: \"Golchin & Surdeanu and Sainz now cited.\"}\n448\t    - {round: 12, reviewers: \"\", note: \"Merged into R4-W4.\"}\n449\t  action_items:\n450\t    - {round: 8, action: \"Add missing references\", assigned_to: \"paper_agent\", status: \"open\"}\n451\t\n452\t- id: \"R8-M2\"\n453\t  summary: \"Minor writing issues — Figure 1 caption, Table formatting\"\n454\t  category: writing\n455\t  severity: info\n456\t  status: in_progress\n457\t  first_raised_round: 8\n458\t  last_seen_round: 12\n459\t  mentions:\n460\t    - {round: 10, reviewers: \"R1,R2\", note: \"Figure 1 y-axis ranges differ across panels.\"}\n461\t    - {round: 11, reviewers: \"R1,R2\", note: \"Figure 1 y-axis 50-75%.\"}\n462\t    - {round: 12, reviewers: \"visual\", note: \"Figure 3 heatmap cell text small. Figure 6 text at readability limit.\"}\n463\t  action_items:\n464\t    - {round: 12, action: \"Fix Figure 1 Y-axis label to 'Δ Accuracy (percentage points)'\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n465\t\n466\t- id: \"AUDIT-1\"\n467\t  summary: \"Figure 1 missing from PDF\"\n468\t  category: format\n469\t  severity: critical\n470\t  status: resolved\n471\t  first_raised_round: 8\n472\t  last_seen_round: 12\n473\t  mentions:\n474\t    - {round: 8, reviewers: \"audit\", note: \"Figure 1 does not exist.\"}\n475\t    - {round: 9, reviewers: \"\", note: \"Figure 1 present on page 2.\"}\n476\t    - {round: 12, reviewers: \"visual\", note: \"Confirmed present on page 2.\"}\n477\t  resolution: \"Figure 1 present in Introduction.\"\n478\t  resolution_round: 9\n479\t\n480\t- id: \"R9-N1\"\n481\t  summary: \"Taxonomy based on ad-hoc Algorithm 1 — lacks parametric DR modeling\"\n482\t  category: method\n483\t  severity: critical\n484\t  status: resolved\n485\t  first_raised_round: 9\n486\t  last_seen_round: 12\n487\t  mentions:\n488\t    - {round: 9, reviewers: \"R1,R2\", note: \"Pharmacology has parametric DR models.\"}\n489\t    - {round: 10, reviewers: \"R1,R2\", note: \"Appendix W: parametric DR comparison added.\"}\n490\t    - {round: 12, reviewers: \"\", note: \"本轮未直接提及。Parametric comparison exists.\"}\n491\t  resolution: \"Appendix W: Parametric DR Model Comparison added.\"\n492\t  resolution_round: 9\n493\t\n494\t- id: \"R9-N2\"\n495\t  summary: \"'Architecture determines vulnerability' causal claim exceeds evidence\"\n496\t  category: framing\n497\t  severity: critical\n498\t  status: resolved\n499\t  first_raised_round: 9\n500\t  last_seen_round: 10\n501\t  mentions:\n502\t    - {round: 9, reviewers: \"R1,R2\", note: \"Replace with 'family-level factors'.\"}\n503\t    - {round: 12, reviewers: \"\", note: \"本轮未直接提及。\"}\n504\t  resolution: \"All causal claims replaced. Confounders listed.\"\n505\t  resolution_round: 9\n506\t\n507\t- id: \"R9-S1\"\n508\t  summary: \"Unified LoRA r=16 unequal treatment strength across scales\"\n509\t  category: experiment\n510\t  severity: warning\n511\t  status: in_progress\n512\t  first_raised_round: 9\n513\t  last_seen_round: 12\n514\t  mentions:\n515\t    - {round: 9, reviewers: \"R1,R2\", note: \"Parameter fraction 0.45% (Phi-4) to 2.10%.\"}\n516\t    - {round: 10, reviewers: \"R1,R2\", note: \"Phi-4 vs Qwen-14B counter-argument has merit.\"}\n517\t    - {round: 12, reviewers: \"R1,R2\", note: \"DIVERGENT. R1 maintains concern; R2 considers largely addressed by same-scale comparison.\"}\n518\t  action_items:\n519\t    - {round: 9, action: \"Discuss LoRA confound in Limitations\", assigned_to: \"paper_agent\", status: \"done\"}\n520\t    - {round: 10, action: \"Report trainable parameter percentages\", assigned_to: \"paper_agent\", status: \"done\"}\n521\t\n522\t- id: \"R9-S2\"\n523\t  summary: \"'65-70% MMLU baseline vulnerability band' over-precise for N=6\"\n524\t  category: framing\n525\t  severity: critical\n526\t  status: in_progress\n527\t  first_raised_round: 9\n528\t  last_seen_round: 12\n529\t  mentions:\n530\t    - {round: 9, reviewers: \"R1,R2\", note: \"Qualify with 'in our five-family sample'.\"}\n531\t    - {round: 10, reviewers: \"\", note: \"All claims qualified. Resolved.\"}\n532\t    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Reopened. Band = 2 Qwen models only. LLaMA contradicts.\"}\n533\t  action_items:\n534\t    - {round: 12, action: \"Remove 65-70% from Abstract/Intro; downgrade to Discussion observational association\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n535\t\n536\t- id: \"R9-S3\"\n537\t  summary: \"Calibration baseline missing IRT variants\"\n538\t  category: experiment\n539\t  severity: info\n540\t  status: open\n541\t  first_raised_round: 9\n542\t  last_seen_round: 10\n543\t  mentions:\n544\t    - {round: 9, reviewers: \"R1,R2\", note: \"2PL vs 2PL+γ ablation would be better.\"}\n545\t    - {round: 12, reviewers: \"\", note: \"本轮未提及。\"}\n546\t  action_items:\n547\t    - {round: 9, action: \"Add 2PL vs 2PL+γ ablation\", assigned_to: \"paper_agent\", status: \"open\"}\n548\t\n549\t- id: \"R10-N1\"\n550\t  summary: \"ContamCal calibration MAE (0.009) worse than raw accuracy (0.006)\"\n551\t  category: method\n552\t  severity: critical\n553\t  status: in_progress\n554\t  first_raised_round: 10\n555\t  last_seen_round: 12\n556\t  mentions:\n557\t    - {round: 10, reviewers: \"R2\", note: \"Core method underperforms 'do nothing' baseline.\"}\n558\t    - {round: 10, reviewers: \"R1\", note: \"REBUT: §3.3 predicts this; γ serves diagnosis.\"}\n559\t    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Reposition as diagnostic framework, not calibration tool.\"}\n560\t  action_items:\n561\t    - {round: 10, action: \"Clarify ContamCal value is diagnostic not calibration\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n562\t    - {round: 12, action: \"Reposition ContamCal as diagnostic framework in Abstract/Intro; contextualize Table 3 MAE\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n563\t\n564\t- id: \"R10-W1\"\n565\t  summary: \"γ parameterization outside a_i bracket unjustified\"\n566\t  category: method\n567\t  severity: warning\n568\t  status: in_progress\n569\t  first_raised_round: 10\n570\t  last_seen_round: 12\n571\t  mentions:\n572\t    - {round: 10, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. Non-uniform vs uniform DIF.\"}\n573\t    - {round: 11, reviewers: \"R1,R2\", note: \"Notation improved. Substantive question unanswered.\"}\n574\t    - {round: 12, reviewers: \"R1,R2\", note: \"Both recommend Appendix comparison (PPP, WAIC).\"}\n575\t  action_items:\n576\t    - {round: 10, action: \"Justify γ outside a_i or compare with inside-a_i form\", assigned_to: \"paper_agent\", status: \"open\"}\n577\t    - {round: 12, action: \"Run uniform vs non-uniform DIF comparison (PPP/WAIC) if time permits\", assigned_to: \"main_agent\", status: \"open\"}\n578\t\n579\t- id: \"R10-W2\"\n580\t  summary: \"300/14042 MMLU item subset — selection bias toward high-exposure-variance items\"\n581\t  category: experiment\n582\t  severity: critical\n583\t  status: in_progress\n584\t  first_raised_round: 10\n585\t  last_seen_round: 12\n586\t  mentions:\n587\t    - {round: 10, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. 2.1% of items selected.\"}\n588\t    - {round: 11, reviewers: \"R1\", note: \"High exposure variance items may be systematically different.\"}\n589\t    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Report subset distribution comparison. Attempt full-item or larger subset IRT.\"}\n590\t  action_items:\n591\t    - {round: 12, action: \"Compute 300 vs 14042 difficulty/domain distribution comparison + KS test\", assigned_to: \"main_agent\", status: \"in_progress\"}\n592\t\n593\t- id: \"R11-N1\"\n594\t  summary: \"Abstract/Title overclaiming — 'Not All Models Are Inflated' exceeds evidence from 6 models ≤14B under SFT\"\n595\t  category: framing\n596\t  severity: critical\n597\t  status: in_progress\n598\t  first_raised_round: 11\n599\t  last_seen_round: 12\n600\t  mentions:\n601\t    - {round: 11, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Three overclaim dimensions.\"}\n602\t    - {round: 12, reviewers: \"R1,R2\", note: \"Strongly reinforced. Title implies generality for N=6 SFT study.\"}\n603\t  action_items:\n604\t    - {round: 11, action: \"Add scope qualifier to title; soften Abstract language\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n605\t    - {round: 12, action: \"Strengthen scope qualification in Abstract; keep title but soften surrounding language\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n606\t\n607\t- id: \"R11-W1\"\n608\t  summary: \"DiD parallel trends assumption untested\"\n609\t  category: method\n610\t  severity: warning\n611\t  status: resolved\n612\t  first_raised_round: 11\n613\t  last_seen_round: 12\n614\t  mentions:\n615\t    - {round: 11, reviewers: \"R1,R2\", note: \"No pre-treatment trend comparison.\"}\n616\t    - {round: 12, reviewers: \"R1,R2\", note: \"DIVERGENT. R2 rebuts: controlled experiment, pre-treatment balance strong (Cohen's d=0.02).\"}\n617\t  action_items:\n618\t    - {round: 11, action: \"Report pre-treatment balance; add parallel trends discussion\", assigned_to: \"paper_agent\", status: \"done\"}\n619\t  resolution: \"Pre-treatment balance reported (Cohen's d=0.02, p>0.19). Controlled experiment design largely mitigates concern.\"\n620\t  resolution_round: 12\n621\t\n622\t- id: \"R11-W2\"\n623\t  summary: \"'Contamination' vs 'additional training' conceptual tension\"\n624\t  category: framing\n625\t  severity: warning\n626\t  status: in_progress\n627\t  first_raised_round: 11\n628\t  last_seen_round: 12\n629\t  mentions:\n630\t    - {round: 11, reviewers: \"R1,R2\", note: \"CONSENSUS Major. DiD null + augmentation confound.\"}\n631\t    - {round: 12, reviewers: \"R1,R2\", note: \"Should-Fix. Volume control 45%/55% clarifies but terminology needs precision.\"}\n632\t  action_items:\n633\t    - {round: 11, action: \"Distinguish contamination-specific from general training effects\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n634\t    - {round: 12, action: \"Add Discussion paragraph defining contamination vs additional training in this framework\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n635\t\n636\t- id: \"R11-W3\"\n637\t  summary: \"2PL+γ identifiability — θ and γ·e collinearity with b\"\n638\t  category: method\n639\t  severity: warning\n640\t  status: resolved\n641\t  first_raised_round: 11\n642\t  last_seen_round: 11\n643\t  mentions:\n644\t    - {round: 11, reviewers: \"R2,R1\", note: \"Potential collinearity if e_ij correlates with b_j.\"}\n645\t    - {round: 12, reviewers: \"\", note: \"§3.3 includes identifiability discussion: |r|<0.13, R²<0.014.\"}\n646\t  action_items:\n647\t    - {round: 11, action: \"Expand identifiability discussion\", assigned_to: \"paper_agent\", status: \"done\"}\n648\t  resolution: \"§3.3 reports e_ij and b_i near-orthogonal (|r|<0.13, R²<0.014).\"\n649\t  resolution_round: 12\n650\t\n651\t- id: \"R11-M1\"\n652\t  summary: \"Benchmark diversity insufficient — MMLU dominates\"\n653\t  category: experiment\n654\t  severity: warning\n655\t  status: resolved\n656\t  first_raised_round: 11\n657\t  last_seen_round: 12\n658\t  mentions:\n659\t    - {round: 11, reviewers: \"R2\", note: \"Only 3 benchmarks, MMLU dominates.\"}\n660\t    - {round: 12, reviewers: \"R1,R2\", note: \"DIVERGENT. R1 rebuts: 3 formats comprehensive. Both agree MMLU-driven but acceptable.\"}\n661\t  action_items:\n662\t    - {round: 11, action: \"Scope cross-benchmark conclusions\", assigned_to: \"paper_agent\", status: \"done\"}\n663\t  resolution: \"3 benchmarks across 3 formats accepted. MMLU dominance acknowledged. Not re-raised as must-fix.\"\n664\t  resolution_round: 12\n665\t\n666\t- id: \"R12-M1\"\n667\t  summary: \"Algorithm 1 Benefit sub-branches both return same label — dead code\"\n668\t  category: method\n669\t  severity: info\n670\t  status: open\n671\t  first_raised_round: 12\n672\t  last_seen_round: 12\n673\t  mentions:\n674\t    - {round: 12, reviewers: \"R1,R2\", note: \"Lines 91-94 both return BENEFIT. Remove dead logic or add sub-labels.\"}\n675\t  action_items:\n676\t    - {round: 12, action: \"Remove unused branching logic in Algorithm 1\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n677\t\n678\t- id: \"R12-M2\"\n679\t  summary: \"Stage 1→Stage 2 uncertainty propagation missing — e_ij is point estimate\"\n680\t  category: method\n681\t  severity: info\n682\t  status: open\n683\t  first_raised_round: 12\n684\t  last_seen_round: 12\n685\t  mentions:\n686\t    - {round: 12, reviewers: \"R1\", note: \"RRF is rank-based non-parametric. Uncertainty propagation non-trivial.\"}\n687\t  action_items:\n688\t    - {round: 12, action: \"Acknowledge e_ij point estimate limitation; mention as future work\", assigned_to: \"paper_agent\", status: \"in_progress\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "102b4046-bcb1-4ae2-954d-55b192494eed",
+            "isSidechain": false,
+            "promptId": "fe78a895-cad6-44ea-8a6d-c0caec222bfc",
+            "type": "user",
+            "uuid": "7bd93405-2482-4fc8-b33f-6d1fd805f391",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/review_issues.yaml",
+                "content": "- id: \"R2-N1\"\n  summary: \"Title/framing promises general answer but experiments only cover SFT ≤3B\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 6\n  mentions:\n    - {round: 2, reviewers: \"R1,R2\", note: \"Table 2: vanilla 2PL MAE ≤ ContamCal on all benchmarks.\"}\n    - {round: 3, reviewers: \"R1,R2\", note: \"Title still 'ContamCal'.\"}\n    - {round: 4, reviewers: \"R1,R2\", note: \"Title promises decomposition but core result is nothing to decompose.\"}\n    - {round: 5, reviewers: \"R1,R2\", note: \"Title changed to question form but framing still inconsistent.\"}\n    - {round: 6, reviewers: \"R1,R2\", note: \"Title question form improved but still over-scopes.\"}\n    - {round: 8, reviewers: \"\", note: \"本轮未提及。Title now 'Not All Models Are Inflated'.\"}\n    - {round: 9, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n    - {round: 10, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n    - {round: 11, reviewers: \"\", note: \"本轮未直接提及。新 overclaiming concerns under R8-N3 and R11-N1.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未直接提及（fresh review）。Title framing itself resolved; overclaiming tracked under R11-N1.\"}\n  action_items:\n    - {round: 2, action: \"Reframe paper\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 3, action: \"Change title, rewrite Abstract/Contributions\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 4, action: \"Reframe as empirical investigation\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 5, action: \"Rewrite Introduction as question-driven\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 6, action: \"Modify title to scope claim\", assigned_to: \"paper_agent\", status: \"done\"}\n  resolution: \"Title changed to 'Not All Models Are Inflated'. Paper repositioned as empirical investigation.\"\n  resolution_round: 7\n\n- id: \"R2-W6\"\n  summary: \"SFT injection ecological validity insufficient — null finding may be SFT artifact\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 12\n  mentions:\n    - {round: 2, reviewers: \"R1,R2\", note: \"Intro motivates with pretraining but experiments only SFT.\"}\n    - {round: 3, reviewers: \"R1,R2\", note: \"Limitations one sentence only.\"}\n    - {round: 4, reviewers: \"R1,R2\", note: \"Elevated to critical.\"}\n    - {round: 9, reviewers: \"R1,R2\", note: \"Limitations discussion still too brief.\"}\n    - {round: 10, reviewers: \"\", note: \"Section 6 includes Schaeffer et al. comparison.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"Re-raised as part of R11-N1.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"Should-Fix W8. Add SFT-injected qualifier throughout main text.\"}\n  action_items:\n    - {round: 9, action: \"Expand SFT discussion in Section 6\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 12, action: \"Add SFT-injected qualifier at first occurrence of contamination in each section\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R3-W10\"\n  summary: \"Additive linear γ assumption untested\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 6\n  mentions:\n    - {round: 3, reviewers: \"R1\", note: \"Linear γ may average down to non-significant.\"}\n    - {round: 4, reviewers: \"R1,R2\", note: \"Elevated to critical.\"}\n    - {round: 6, reviewers: \"R1,R2\", note: \"R2 proposes threshold DGP simulation.\"}\n    - {round: 8, reviewers: \"\", note: \"DGP robustness appendix addresses this.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未直接提及（fresh review）。DGP simulation in Appendix addressed.\"}\n  resolution: \"400-run threshold DGP simulation completed. Appendix P written.\"\n  resolution_round: 7\n\n- id: \"R4-N1\"\n  summary: \"Domain-level γ significance — P(γ<0) inconsistency and Bonferroni claim unstable\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 4\n  last_seen_round: 12\n  mentions:\n    - {round: 4, reviewers: \"R1,R2\", note: \"Bonferroni α=0.00625; CI upper bound likely includes zero.\"}\n    - {round: 5, reviewers: \"R1,R2\", note: \"Social Sciences at 99.1% does not pass Bonferroni.\"}\n    - {round: 6, reviewers: \"R1,R2\", note: \"J=16 data available but main text still presents J=13.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"CONSENSUS Must-Fix. P(γ<0) inconsistency between §5.7 and Appendix K.\"}\n    - {round: 12, reviewers: \"R1\", note: \"Minor-5: Abstract cites 99.7% without mentioning tight prior failure.\"}\n  action_items:\n    - {round: 4, action: \"Report Bonferroni corrected results\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 6, action: \"Switch main text to J=16 results\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 10, action: \"Resolve P(γ<0) numerical inconsistency; mark γ conclusions exploratory\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R3-N3\"\n  summary: \"ARC PPP < 0.05 across all J — IRT results unreliable\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 3\n  last_seen_round: 12\n  mentions:\n    - {round: 3, reviewers: \"R1\", note: \"Within-family J=13 ARC PPP=0.003 not reported.\"}\n    - {round: 5, reviewers: \"R1,R2\", note: \"Table 3 now has PPP=0.003. Move ARC IRT to Appendix.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"MMLU PPP=0.16-0.25 only in Appendix, not main text.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"Cross-benchmark direction based on raw accuracy not IRT. Paper should explicitly separate raw-accuracy and IRT-based conclusions.\"}\n  action_items:\n    - {round: 9, action: \"Add ARC PPP=0.003 discussion in main text\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 10, action: \"Report MMLU PPP in main text\", assigned_to: \"paper_agent\", status: \"open\"}\n    - {round: 12, action: \"Add explicit statement in §5.2 that cross-benchmark direction conclusions are based on raw accuracy, not IRT estimates\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R2-W1\"\n  summary: \"RRF multi-signal fusion — S2/S4 near-random signals retained despite evidence of harm\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 12\n  mentions:\n    - {round: 2, reviewers: \"R1,R2\", note: \"RRF = S1 only.\"}\n    - {round: 5, reviewers: \"R1,R2\", note: \"RRF ablation complete. Downgraded to warning.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"S2/S4 AUC≈0.48-0.51 near random.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. S1-only pipeline needed as reference baseline. S2 actively harmful at model level.\"}\n  action_items:\n    - {round: 9, action: \"Report s_ij classification performance\", assigned_to: \"main_agent\", status: \"done\"}\n    - {round: 12, action: \"Run S1-only pipeline IRT fitting; report γ + MAE comparison vs full RRF\", assigned_to: \"main_agent\", status: \"in_progress\"}\n\n- id: \"R2-N2\"\n  summary: \"CI coverage systematically abnormal\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 6\n  mentions:\n    - {round: 2, reviewers: \"R1,R2\", note: \"Need coverage + root cause.\"}\n    - {round: 6, reviewers: \"R1,R2\", note: \"Root cause diagnosis insufficient.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n  resolution: \"Root-cause diagnosis in §5.5.\"\n  resolution_round: 7\n\n- id: \"R2-N4\"\n  summary: \"J values inconsistent across analyses\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 6\n  mentions:\n    - {round: 2, reviewers: \"R1,R2\", note: \"Paper proves its own analysis is underpowered.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未提及（fresh review）。J=16 now in main text.\"}\n  resolution: \"Results §5 specifies J=16 for domain γ.\"\n  resolution_round: 7\n\n- id: \"R4-W1\"\n  summary: \"RRF-filtered 300 items vs random 2000 — item discrimination confound\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 4\n  last_seen_round: 5\n  resolution: \"Mean a_i comparison shows no discrimination confound.\"\n  resolution_round: 5\n  mentions:\n    - {round: 4, reviewers: \"R1,R2\", note: \"τ=0.73 may reflect higher average a_i.\"}\n\n- id: \"R1-C2\"\n  summary: \"Cross-family analysis (J=4, single seed) — MAE CI missing\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 1\n  last_seen_round: 8\n  mentions:\n    - {round: 1, reviewers: \"R1,R2\", note: \"Llama N=3.\"}\n    - {round: 6, reviewers: \"R1,R2\", note: \"MAE CI not reported.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n  action_items:\n    - {round: 5, action: \"Rename to Cross-Family Exploratory Analysis\", assigned_to: \"paper_agent\", status: \"done\"}\n\n- id: \"R3-W12\"\n  summary: \"STEM domains identical γ=+0.50 — prior dominance\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 5\n  resolution: \"Full prior sensitivity complete.\"\n  resolution_round: 5\n\n- id: \"R4-W2\"\n  summary: \"Min-K%++ directional reversal — causal explanation unverified\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 4\n  last_seen_round: 6\n  resolution: \"Conclusion scoped. Hypothesis labeled post-hoc.\"\n  resolution_round: 6\n\n- id: \"R4-W3\"\n  summary: \"Contribution list structure\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 4\n  last_seen_round: 6\n  resolution: \"3 empirical contributions.\"\n  resolution_round: 7\n\n- id: \"R4-W4\"\n  summary: \"Missing critical references\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 4\n  last_seen_round: 12\n  mentions:\n    - {round: 4, reviewers: \"R2,R1\", note: \"Han et al. EACL 2026 most direct concurrent work.\"}\n    - {round: 8, reviewers: \"R1,R2\", note: \"New missing refs: Golchin & Surdeanu, Sainz et al., Yang et al.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"58 citations verified, references now comprehensive.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"New missing: Rodriguez et al. (2021), Carlini et al. (2023), Gu et al. (2024) OLMES.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"4 new: Oren et al. (2024 ICLR), Deng et al. (2024 NAACL), Yang et al. (2023), Gu et al. (2024 OLMES).\"}\n  action_items:\n    - {round: 11, action: \"Add Rodriguez et al., Carlini et al., Gu et al.\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 12, action: \"Verify and add Oren et al. (2024), Deng et al. (2024), Yang et al. (2023), Gu et al. (2024)\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R4-W6\"\n  summary: \"Abstract numeric density too high\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 4\n  last_seen_round: 12\n  mentions:\n    - {round: 4, reviewers: \"R1,R2\", note: \"~6+ quantitative claims in Abstract.\"}\n    - {round: 7, reviewers: \"\", note: \"Abstract rewritten. Resolved.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. Re-raised: ~25+ numbers. Core message buried.\"}\n  action_items:\n    - {round: 12, action: \"Reduce Abstract to 8-10 key numbers, ≤250 words\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R3-N7\"\n  summary: \"Technical novelty limited — 2PL+γ is standard explanatory IRT/DIF\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 3\n  last_seen_round: 12\n  mentions:\n    - {round: 3, reviewers: \"R2,R1\", note: \"PSN-IRT uncited. C1 is empirical.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"Both suggest explicit positioning statement.\"}\n    - {round: 11, reviewers: \"R2\", note: \"Excitement=2.5.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"ContamCal MAE worse than raw further weakens method contribution. Reposition as diagnostic framework.\"}\n  action_items:\n    - {round: 10, action: \"Add explicit positioning statement\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 12, action: \"Reposition ContamCal as diagnostic framework in Abstract/Intro/§3.4\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R2-W8\"\n  summary: \"Related Work gaps — Han et al. and Schaeffer et al. differentiation\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 11\n  mentions:\n    - {round: 10, reviewers: \"R1,R2\", note: \"Both agree dedicated comparison needed.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"DIVERGENT on Schaeffer severity.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未直接提及。Section 2 comparison paragraph exists.\"}\n  action_items:\n    - {round: 10, action: \"Expand Han/Schaeffer discussion\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R5-N1\"\n  summary: \"Page limit compliance\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 12\n  mentions:\n    - {round: 9, reviewers: \"R2\", note: \"8 pages confirmed.\"}\n    - {round: 12, reviewers: \"visual\", note: \"Visual check confirms 8 pages main text. Compliant.\"}\n  resolution: \"Confirmed 8 pages main text, EMNLP 2026 compliant.\"\n  resolution_round: 9\n\n- id: \"R5-W1\"\n  summary: \"Symbol k overloaded\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 6\n  resolution: \"k reserved for benchmark, d for domain.\"\n  resolution_round: 7\n\n- id: \"R6-W1\"\n  summary: \"SFT AUGMENT mode volume confound\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 6\n  last_seen_round: 12\n  mentions:\n    - {round: 6, reviewers: \"R1,R2\", note: \"AUGMENT vs REPLACE not specified.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"d000=50k, d100≈66.5k (+33.1%). Should-Fix.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"CONSENSUS Must-Fix. Data-quantity control most critical missing experiment.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"Should-Fix. Volume control on Falcon3 done (45%/55%). Generalizability unverified—needs at least one non-Benefit family.\"}\n  action_items:\n    - {round: 6, action: \"Clarify SFT injection protocol\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 10, action: \"Report training set sizes per dosage\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 11, action: \"Add data-quantity control\", assigned_to: \"main_agent\", status: \"done\"}\n    - {round: 12, action: \"Acknowledge single-family limitation in Limitations; note Collapse corrected harm -11.3pp strengthens contamination-specificity\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R6-W2\"\n  summary: \"S4 signal computation details\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 8\n  resolution: \"Appendix E added.\"\n  resolution_round: 8\n\n- id: \"R6-W3\"\n  summary: \"SFT training curves not reported\"\n  category: experiment\n  severity: info\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 8\n  resolution: \"Appendix F added.\"\n  resolution_round: 8\n\n- id: \"R6-W4\"\n  summary: \"Within-family GSM8K PPP not reported\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 6\n  last_seen_round: 10\n  mentions:\n    - {round: 6, reviewers: \"R1,R2\", note: \"Within-family GSM8K PPP not reported.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n  action_items:\n    - {round: 6, action: \"Report within-family GSM8K PPP\", assigned_to: \"main_agent\", status: \"open\"}\n\n- id: \"R8-N1\"\n  summary: \"Cross-seed stability claims overstated — n=3 seeds insufficient for taxonomy validation\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 8\n  last_seen_round: 12\n  mentions:\n    - {round: 8, reviewers: \"R1,R2\", note: \"n=3 seeds yields wide CIs; strict sign consistency only 2/5.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"n=3 acceptable given compute. Downgraded to Minor.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"CONSENSUS Major. Re-raised.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. OLMo-2 CI crosses zero. Gemma-2 CI [+1.49,+3.14] excludes zero. AICc: Gemma-2/OLMo-2 curve shape indistinguishable from constant.\"}\n  action_items:\n    - {round: 8, action: \"Increase seeds to n≥5 or weaken claims\", assigned_to: \"main_agent\", status: \"open\"}\n    - {round: 11, action: \"Report p-value for directional test under H0\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 12, action: \"Report AICc in main text; keep Gemma-2 Benefit (CI excludes zero); relabel OLMo-2 as borderline; reframe Benefit as 2 significant + 1 borderline\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R8-N2\"\n  summary: \"DiD null result lacks power analysis\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 8\n  last_seen_round: 10\n  mentions:\n    - {round: 9, reviewers: \"R1,R2\", note: \"Contribution 2 reframed with MDES.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"DiD rated Acceptable.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未直接提及。DiD analysis not re-raised.\"}\n  resolution: \"Contribution 2 includes 'at current power levels'. MDES reported.\"\n  resolution_round: 9\n\n- id: \"R8-N3\"\n  summary: \"N=6 model families supporting 4-class taxonomy — generalization evidence insufficient\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 8\n  last_seen_round: 12\n  mentions:\n    - {round: 8, reviewers: \"R1,R2\", note: \"4 patterns on 4 families is post-hoc.\"}\n    - {round: 9, reviewers: \"R1,R2\", note: \"Reposition as 'observed profiles'.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"CONSENSUS Must-Fix. Collapse n=1, V-recovery n=1.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Qwen within-family inconsistency.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical (strongest). Restructure to 2+2 framework.\"}\n  action_items:\n    - {round: 9, action: \"Fix §5.1 count. Use 'preliminary at N=5'\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 10, action: \"Replace 'taxonomy' with 'profiles'\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 11, action: \"Discuss within-family inconsistency\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 12, action: \"Restructure to 2+2 framework: 2 replicated (Immune, Benefit) + 2 preliminary Qwen2.5-specific (Collapse, V-recovery)\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R8-N4\"\n  summary: \"Han et al. (2026) differentiation insufficient\"\n  category: writing\n  severity: critical\n  status: in_progress\n  first_raised_round: 8\n  last_seen_round: 11\n  mentions:\n    - {round: 8, reviewers: \"R1,R2\", note: \"Han et al. is most direct prior work.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"DIVERGENT on Schaeffer severity.\"}\n    - {round: 12, reviewers: \"\", note: \"Section 2 comparison paragraph exists. Not re-raised.\"}\n  action_items:\n    - {round: 8, action: \"Add methodological comparison with Han et al.\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R8-W1\"\n  summary: \"Bayesian and frequentist terminology mixed\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 8\n  last_seen_round: 8\n  mentions:\n    - {round: 8, reviewers: \"R1,R2\", note: \"'significant', 'p-value' in frequentist sense.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未提及。\"}\n  action_items:\n    - {round: 8, action: \"Unify terminology\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R8-W2\"\n  summary: \"Identifiability simulation uses uniform exposure vs empirical right-skewed\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 8\n  last_seen_round: 8\n  mentions:\n    - {round: 8, reviewers: \"R1,R2\", note: \"Empirical RRF highly right-skewed.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未提及。\"}\n  action_items:\n    - {round: 8, action: \"Re-run simulation with right-skewed exposure\", assigned_to: \"main_agent\", status: \"open\"}\n\n- id: \"R8-W3\"\n  summary: \"Algorithm 1 threshold τ=2pp lacks theoretical basis\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 8\n  last_seen_round: 12\n  mentions:\n    - {round: 8, reviewers: \"R2,R1\", note: \"30/30 pass too coarse.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"Appendix includes nearest-transition analysis.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"DIVERGENT: R1 Major, R2 Critical.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. Label as descriptive heuristic or provide permutation null.\"}\n  action_items:\n    - {round: 11, action: \"Report Immune/Benefit boundary sensitivity\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 12, action: \"Label Algorithm 1 as descriptive heuristic in §4\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R8-M1\"\n  summary: \"Missing references — Golchin & Surdeanu, Sainz et al., Yang et al.\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 8\n  last_seen_round: 10\n  mentions:\n    - {round: 8, reviewers: \"R1,R2\", note: \"Three missing refs.\"}\n    - {round: 10, reviewers: \"\", note: \"Golchin & Surdeanu and Sainz now cited.\"}\n    - {round: 12, reviewers: \"\", note: \"Merged into R4-W4.\"}\n  action_items:\n    - {round: 8, action: \"Add missing references\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R8-M2\"\n  summary: \"Minor writing issues — Figure 1 caption, Table formatting\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 8\n  last_seen_round: 12\n  mentions:\n    - {round: 10, reviewers: \"R1,R2\", note: \"Figure 1 y-axis ranges differ across panels.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"Figure 1 y-axis 50-75%.\"}\n    - {round: 12, reviewers: \"visual\", note: \"Figure 3 heatmap cell text small. Figure 6 text at readability limit.\"}\n  action_items:\n    - {round: 12, action: \"Fix Figure 1 Y-axis label to 'Δ Accuracy (percentage points)'\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"AUDIT-1\"\n  summary: \"Figure 1 missing from PDF\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 8\n  last_seen_round: 12\n  mentions:\n    - {round: 8, reviewers: \"audit\", note: \"Figure 1 does not exist.\"}\n    - {round: 9, reviewers: \"\", note: \"Figure 1 present on page 2.\"}\n    - {round: 12, reviewers: \"visual\", note: \"Confirmed present on page 2.\"}\n  resolution: \"Figure 1 present in Introduction.\"\n  resolution_round: 9\n\n- id: \"R9-N1\"\n  summary: \"Taxonomy based on ad-hoc Algorithm 1 — lacks parametric DR modeling\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 9\n  last_seen_round: 12\n  mentions:\n    - {round: 9, reviewers: \"R1,R2\", note: \"Pharmacology has parametric DR models.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"Appendix W: parametric DR comparison added.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未直接提及。Parametric comparison exists.\"}\n  resolution: \"Appendix W: Parametric DR Model Comparison added.\"\n  resolution_round: 9\n\n- id: \"R9-N2\"\n  summary: \"'Architecture determines vulnerability' causal claim exceeds evidence\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 9\n  last_seen_round: 10\n  mentions:\n    - {round: 9, reviewers: \"R1,R2\", note: \"Replace with 'family-level factors'.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未直接提及。\"}\n  resolution: \"All causal claims replaced. Confounders listed.\"\n  resolution_round: 9\n\n- id: \"R9-S1\"\n  summary: \"Unified LoRA r=16 unequal treatment strength across scales\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 12\n  mentions:\n    - {round: 9, reviewers: \"R1,R2\", note: \"Parameter fraction 0.45% (Phi-4) to 2.10%.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"Phi-4 vs Qwen-14B counter-argument has merit.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"DIVERGENT. R1 maintains concern; R2 considers largely addressed by same-scale comparison.\"}\n  action_items:\n    - {round: 9, action: \"Discuss LoRA confound in Limitations\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 10, action: \"Report trainable parameter percentages\", assigned_to: \"paper_agent\", status: \"done\"}\n\n- id: \"R9-S2\"\n  summary: \"'65-70% MMLU baseline vulnerability band' over-precise for N=6\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 12\n  mentions:\n    - {round: 9, reviewers: \"R1,R2\", note: \"Qualify with 'in our five-family sample'.\"}\n    - {round: 10, reviewers: \"\", note: \"All claims qualified. Resolved.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Reopened. Band = 2 Qwen models only. LLaMA contradicts.\"}\n  action_items:\n    - {round: 12, action: \"Remove 65-70% from Abstract/Intro; downgrade to Discussion observational association\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R9-S3\"\n  summary: \"Calibration baseline missing IRT variants\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 9\n  last_seen_round: 10\n  mentions:\n    - {round: 9, reviewers: \"R1,R2\", note: \"2PL vs 2PL+γ ablation would be better.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未提及。\"}\n  action_items:\n    - {round: 9, action: \"Add 2PL vs 2PL+γ ablation\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R10-N1\"\n  summary: \"ContamCal calibration MAE (0.009) worse than raw accuracy (0.006)\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 12\n  mentions:\n    - {round: 10, reviewers: \"R2\", note: \"Core method underperforms 'do nothing' baseline.\"}\n    - {round: 10, reviewers: \"R1\", note: \"REBUT: §3.3 predicts this; γ serves diagnosis.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Reposition as diagnostic framework, not calibration tool.\"}\n  action_items:\n    - {round: 10, action: \"Clarify ContamCal value is diagnostic not calibration\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 12, action: \"Reposition ContamCal as diagnostic framework in Abstract/Intro; contextualize Table 3 MAE\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R10-W1\"\n  summary: \"γ parameterization outside a_i bracket unjustified\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 12\n  mentions:\n    - {round: 10, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. Non-uniform vs uniform DIF.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"Notation improved. Substantive question unanswered.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"Both recommend Appendix comparison (PPP, WAIC).\"}\n  action_items:\n    - {round: 10, action: \"Justify γ outside a_i or compare with inside-a_i form\", assigned_to: \"paper_agent\", status: \"open\"}\n    - {round: 12, action: \"Run uniform vs non-uniform DIF comparison (PPP/WAIC) if time permits\", assigned_to: \"main_agent\", status: \"open\"}\n\n- id: \"R10-W2\"\n  summary: \"300/14042 MMLU item subset — selection bias toward high-exposure-variance items\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 12\n  mentions:\n    - {round: 10, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. 2.1% of items selected.\"}\n    - {round: 11, reviewers: \"R1\", note: \"High exposure variance items may be systematically different.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Report subset distribution comparison. Attempt full-item or larger subset IRT.\"}\n  action_items:\n    - {round: 12, action: \"Compute 300 vs 14042 difficulty/domain distribution comparison + KS test\", assigned_to: \"main_agent\", status: \"in_progress\"}\n\n- id: \"R11-N1\"\n  summary: \"Abstract/Title overclaiming — 'Not All Models Are Inflated' exceeds evidence from 6 models ≤14B under SFT\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 11\n  last_seen_round: 12\n  mentions:\n    - {round: 11, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Three overclaim dimensions.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"Strongly reinforced. Title implies generality for N=6 SFT study.\"}\n  action_items:\n    - {round: 11, action: \"Add scope qualifier to title; soften Abstract language\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 12, action: \"Strengthen scope qualification in Abstract; keep title but soften surrounding language\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R11-W1\"\n  summary: \"DiD parallel trends assumption untested\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 11\n  last_seen_round: 12\n  mentions:\n    - {round: 11, reviewers: \"R1,R2\", note: \"No pre-treatment trend comparison.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"DIVERGENT. R2 rebuts: controlled experiment, pre-treatment balance strong (Cohen's d=0.02).\"}\n  action_items:\n    - {round: 11, action: \"Report pre-treatment balance; add parallel trends discussion\", assigned_to: \"paper_agent\", status: \"done\"}\n  resolution: \"Pre-treatment balance reported (Cohen's d=0.02, p>0.19). Controlled experiment design largely mitigates concern.\"\n  resolution_round: 12\n\n- id: \"R11-W2\"\n  summary: \"'Contamination' vs 'additional training' conceptual tension\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 11\n  last_seen_round: 12\n  mentions:\n    - {round: 11, reviewers: \"R1,R2\", note: \"CONSENSUS Major. DiD null + augmentation confound.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"Should-Fix. Volume control 45%/55% clarifies but terminology needs precision.\"}\n  action_items:\n    - {round: 11, action: \"Distinguish contamination-specific from general training effects\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 12, action: \"Add Discussion paragraph defining contamination vs additional training in this framework\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R11-W3\"\n  summary: \"2PL+γ identifiability — θ and γ·e collinearity with b\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 11\n  last_seen_round: 11\n  mentions:\n    - {round: 11, reviewers: \"R2,R1\", note: \"Potential collinearity if e_ij correlates with b_j.\"}\n    - {round: 12, reviewers: \"\", note: \"§3.3 includes identifiability discussion: |r|<0.13, R²<0.014.\"}\n  action_items:\n    - {round: 11, action: \"Expand identifiability discussion\", assigned_to: \"paper_agent\", status: \"done\"}\n  resolution: \"§3.3 reports e_ij and b_i near-orthogonal (|r|<0.13, R²<0.014).\"\n  resolution_round: 12\n\n- id: \"R11-M1\"\n  summary: \"Benchmark diversity insufficient — MMLU dominates\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 11\n  last_seen_round: 12\n  mentions:\n    - {round: 11, reviewers: \"R2\", note: \"Only 3 benchmarks, MMLU dominates.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"DIVERGENT. R1 rebuts: 3 formats comprehensive. Both agree MMLU-driven but acceptable.\"}\n  action_items:\n    - {round: 11, action: \"Scope cross-benchmark conclusions\", assigned_to: \"paper_agent\", status: \"done\"}\n  resolution: \"3 benchmarks across 3 formats accepted. MMLU dominance acknowledged. Not re-raised as must-fix.\"\n  resolution_round: 12\n\n- id: \"R12-M1\"\n  summary: \"Algorithm 1 Benefit sub-branches both return same label — dead code\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 12\n  last_seen_round: 12\n  mentions:\n    - {round: 12, reviewers: \"R1,R2\", note: \"Lines 91-94 both return BENEFIT. Remove dead logic or add sub-labels.\"}\n  action_items:\n    - {round: 12, action: \"Remove unused branching logic in Algorithm 1\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R12-M2\"\n  summary: \"Stage 1→Stage 2 uncertainty propagation missing — e_ij is point estimate\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 12\n  last_seen_round: 12\n  mentions:\n    - {round: 12, reviewers: \"R1\", note: \"RRF is rank-based non-parametric. Uncertainty propagation non-trivial.\"}\n  action_items:\n    - {round: 12, action: \"Acknowledge e_ij point estimate limitation; mention as future work\", assigned_to: \"paper_agent\", status: \"in_progress\"}",
+                "numLines": 688,
+                "startLine": 1,
+                "totalLines": 688
+              }
+            },
+            "sourceToolAssistantUUID": "102b4046-bcb1-4ae2-954d-55b192494eed",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000159"
+        },
+        {
+          "source_line": 160,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 1 审稿结果]: 交叉回应已提交给 Review Director。  核心结论：R2 的 3 个 Must-Fix 全部同意（校准劣于 Raw、四模式 overclaiming、volume confound），6 个 Should-Fix 中同意 4 个、部分反驳 2 个（2PL+γ 的方法新颖性不应被完全否定，Bayesian-frequentist 混用在 NLP 领域…",
+                "leafUuid": "7bd93405-2482-4fc8-b33f-6d1fd805f391",
+                "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff"
+              }
+            }
+          ],
+          "id": "event-000160"
+        },
+        {
+          "source_line": 161,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review paper for EMNLP 2026 submission",
+                "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff"
+              }
+            }
+          ],
+          "id": "event-000161"
+        },
+        {
+          "source_line": 162,
+          "timestamp": "2026-05-23T10:17:46.285Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have all the information needed to:\n1. Compose the final report\n2. Update the issue tracker\n3. Submit the report\n\nLet me now compose both the report and the updated YAML.\n\nFor the issue tracker update, I need to:\n- Update mentions for issues re-raised in round 13\n- Add notes for issues not raised in round 13\n- No truly new issues to create (all map to existing ones)\n\nLet me carefully map each finding to existing issues:\n\nRound 13 findings:\n1. **ContamCal MAE > Raw** → R10-N1 (re-raised, CONSENSUS critical)\n\n\n2. **S2 actively harmful in RRF** → R2-W1 (re-raised, CONSENSUS critical)\n3. **γ prior sensitivity, J=16 insufficient** → R4-N1 (re-raised, CONSENSUS critical)\n4. **ARC PPP misfit** → R3-N3 (re-raised, CONSENSUS critical)\n5. **Four-pattern taxonomy overclaiming** → R8-N3 (re-raised, CONSENSUS critical)\n6. **Title/Abstract overclaiming** → R11-N1 (re-raised, CONSENSUS critical, merged with R8-N3)\n7. **Volume conf** - continuing to map remaining findings... Writing YAML updates...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7bd93405-2482-4fc8-b33f-6d1fd805f391",
+            "isSidechain": false,
+            "requestId": "req_011CbKKzpPYoPr6VvctfGrAo",
+            "type": "assistant",
+            "uuid": "0b0c05c4-f129-4af6-818f-f9971da7e153",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0191XBXe3J7CMaRxHVheNz26",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14920,
+                "cache_read_input_tokens": 122797,
+                "output_tokens": 15100,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 14920,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 15100,
+                    "cache_read_input_tokens": 122797,
+                    "cache_creation_input_tokens": 14920,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 14920
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000162"
+        },
+        {
+          "source_line": 163,
+          "timestamp": "2026-05-23T10:17:47.733Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "现在合成最终审稿报告和更新 Issue Tracker。先更新 issues，再提交报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "0b0c05c4-f129-4af6-818f-f9971da7e153",
+            "isSidechain": false,
+            "requestId": "req_011CbKKzpPYoPr6VvctfGrAo",
+            "type": "assistant",
+            "uuid": "53c4ed59-36fb-4cab-bb8f-5305bd434908",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0191XBXe3J7CMaRxHVheNz26",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14920,
+                "cache_read_input_tokens": 122797,
+                "output_tokens": 15100,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 14920,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 15100,
+                    "cache_read_input_tokens": 122797,
+                    "cache_creation_input_tokens": 14920,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 14920
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000163"
+        },
+        {
+          "source_line": 164,
+          "timestamp": "2026-05-23T10:21:47.801Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JRUzmxWFBYgzNeZiccA8Ka",
+              "name": "mcp__agent-ml-research__update_review_issues",
+              "input": {
+                "project": "contamcal-irt-calibration",
+                "issues_yaml": "- id: \"R2-N1\"\n  summary: \"Title/framing promises general answer but experiments only cover SFT ≤3B\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 6\n  mentions:\n    - {round: 2, reviewers: \"R1,R2\", note: \"Table 2: vanilla 2PL MAE ≤ ContamCal on all benchmarks.\"}\n    - {round: 3, reviewers: \"R1,R2\", note: \"Title still 'ContamCal'.\"}\n    - {round: 4, reviewers: \"R1,R2\", note: \"Title promises decomposition but core result is nothing to decompose.\"}\n    - {round: 5, reviewers: \"R1,R2\", note: \"Title changed to question form but framing still inconsistent.\"}\n    - {round: 6, reviewers: \"R1,R2\", note: \"Title question form improved but still over-scopes.\"}\n    - {round: 8, reviewers: \"\", note: \"本轮未提及。Title now 'Not All Models Are Inflated'.\"}\n    - {round: 9, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n    - {round: 10, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n    - {round: 11, reviewers: \"\", note: \"本轮未直接提及。新 overclaiming concerns under R8-N3 and R11-N1.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未直接提及（fresh review）。Title framing itself resolved; overclaiming tracked under R11-N1.\"}\n    - {round: 13, reviewers: \"\", note: \"本轮未直接提及（fresh review）。Title overclaiming tracked under R11-N1.\"}\n  action_items:\n    - {round: 2, action: \"Reframe paper\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 3, action: \"Change title, rewrite Abstract/Contributions\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 4, action: \"Reframe as empirical investigation\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 5, action: \"Rewrite Introduction as question-driven\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 6, action: \"Modify title to scope claim\", assigned_to: \"paper_agent\", status: \"done\"}\n  resolution: \"Title changed to 'Not All Models Are Inflated'. Paper repositioned as empirical investigation.\"\n  resolution_round: 7\n\n- id: \"R2-W6\"\n  summary: \"SFT injection ecological validity insufficient — null finding may be SFT artifact\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 13\n  mentions:\n    - {round: 2, reviewers: \"R1,R2\", note: \"Intro motivates with pretraining but experiments only SFT.\"}\n    - {round: 3, reviewers: \"R1,R2\", note: \"Limitations one sentence only.\"}\n    - {round: 4, reviewers: \"R1,R2\", note: \"Elevated to critical.\"}\n    - {round: 9, reviewers: \"R1,R2\", note: \"Limitations discussion still too brief.\"}\n    - {round: 10, reviewers: \"\", note: \"Section 6 includes Schaeffer et al. comparison.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"Re-raised as part of R11-N1.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"Should-Fix W8. Add SFT-injected qualifier throughout main text.\"}\n    - {round: 13, reviewers: \"R2\", note: \"Should-Fix W6. SFT injection simultaneously introduces content exposure + extra training signal + LoRA updates. Conceptual tension with 'contamination' framing.\"}\n  action_items:\n    - {round: 9, action: \"Expand SFT discussion in Section 6\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 12, action: \"Add SFT-injected qualifier at first occurrence of contamination in each section\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R3-W10\"\n  summary: \"Additive linear γ assumption untested\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 6\n  mentions:\n    - {round: 3, reviewers: \"R1\", note: \"Linear γ may average down to non-significant.\"}\n    - {round: 4, reviewers: \"R1,R2\", note: \"Elevated to critical.\"}\n    - {round: 6, reviewers: \"R1,R2\", note: \"R2 proposes threshold DGP simulation.\"}\n    - {round: 8, reviewers: \"\", note: \"DGP robustness appendix addresses this.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未直接提及（fresh review）。DGP simulation in Appendix addressed.\"}\n  resolution: \"400-run threshold DGP simulation completed. Appendix P written.\"\n  resolution_round: 7\n\n- id: \"R4-N1\"\n  summary: \"Domain-level γ significance — P(γ<0) inconsistency and Bonferroni claim unstable\"\n  category: method\n  severity: critical\n  status: open\n  first_raised_round: 4\n  last_seen_round: 13\n  mentions:\n    - {round: 4, reviewers: \"R1,R2\", note: \"Bonferroni α=0.00625; CI upper bound likely includes zero.\"}\n    - {round: 5, reviewers: \"R1,R2\", note: \"Social Sciences at 99.1% does not pass Bonferroni.\"}\n    - {round: 6, reviewers: \"R1,R2\", note: \"J=16 data available but main text still presents J=13.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"CONSENSUS Must-Fix. P(γ<0) inconsistency between §5.7 and Appendix K.\"}\n    - {round: 12, reviewers: \"R1\", note: \"Minor-5: Abstract cites 99.7% without mentioning tight prior failure.\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. γ posterior mean shifts 2.6× across priors (0.34→0.89). J=16 insufficient to override prior. Paper acknowledges in Appendix M but not in main text.\"}\n  action_items:\n    - {round: 4, action: \"Report Bonferroni corrected results\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 6, action: \"Switch main text to J=16 results\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 10, action: \"Resolve P(γ<0) numerical inconsistency; mark γ conclusions exploratory\", assigned_to: \"paper_agent\", status: \"open\"}\n    - {round: 13, action: \"Discuss prior sensitivity in main text; acknowledge γ absolute values unreliable at J=16\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R3-N3\"\n  summary: \"ARC PPP < 0.05 across all J — IRT results unreliable\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 3\n  last_seen_round: 13\n  mentions:\n    - {round: 3, reviewers: \"R1\", note: \"Within-family J=13 ARC PPP=0.003 not reported.\"}\n    - {round: 5, reviewers: \"R1,R2\", note: \"Table 3 now has PPP=0.003. Move ARC IRT to Appendix.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"MMLU PPP=0.16-0.25 only in Appendix, not main text.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"Cross-benchmark direction based on raw accuracy not IRT. Paper should explicitly separate raw-accuracy and IRT-based conclusions.\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. ARC PPP=0.003 (structural misfit acknowledged by authors) but ARC results still in main text §5.2 cross-benchmark transfer. Misleading.\"}\n  action_items:\n    - {round: 9, action: \"Add ARC PPP=0.003 discussion in main text\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 10, action: \"Report MMLU PPP in main text\", assigned_to: \"paper_agent\", status: \"open\"}\n    - {round: 12, action: \"Add explicit statement in §5.2 that cross-benchmark direction conclusions are based on raw accuracy, not IRT estimates\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 13, action: \"Move ARC IRT results entirely to appendix; main text ARC conclusions should use raw accuracy only\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R2-W1\"\n  summary: \"RRF multi-signal fusion — S2/S4 near-random signals retained despite evidence of harm\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 13\n  mentions:\n    - {round: 2, reviewers: \"R1,R2\", note: \"RRF = S1 only.\"}\n    - {round: 5, reviewers: \"R1,R2\", note: \"RRF ablation complete. Downgraded to warning.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"S2/S4 AUC≈0.48-0.51 near random.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. S1-only pipeline needed as reference baseline. S2 actively harmful at model level.\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Removing S2 improves ρ_dose from 0.049 to 0.471 (~10× improvement). S2 actively suppresses dosage discrimination at model level. Item-level ρ≈0.773 defense does not justify model-level harm. Must test full pipeline without S2.\"}\n  action_items:\n    - {round: 9, action: \"Report s_ij classification performance\", assigned_to: \"main_agent\", status: \"done\"}\n    - {round: 12, action: \"Run S1-only pipeline IRT fitting; report γ + MAE comparison vs full RRF\", assigned_to: \"main_agent\", status: \"in_progress\"}\n    - {round: 13, action: \"Run pipeline without S2; report downstream ContamCal MAE; if MAE improves over Raw, this changes the core narrative\", assigned_to: \"main_agent\", status: \"open\"}\n\n- id: \"R2-N2\"\n  summary: \"CI coverage systematically abnormal\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 6\n  mentions:\n    - {round: 2, reviewers: \"R1,R2\", note: \"Need coverage + root cause.\"}\n    - {round: 6, reviewers: \"R1,R2\", note: \"Root cause diagnosis insufficient.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n  resolution: \"Root-cause diagnosis in §5.5.\"\n  resolution_round: 7\n\n- id: \"R2-N4\"\n  summary: \"J values inconsistent across analyses\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 2\n  last_seen_round: 6\n  mentions:\n    - {round: 2, reviewers: \"R1,R2\", note: \"Paper proves its own analysis is underpowered.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未提及（fresh review）。J=16 now in main text.\"}\n  resolution: \"Results §5 specifies J=16 for domain γ.\"\n  resolution_round: 7\n\n- id: \"R4-W1\"\n  summary: \"RRF-filtered 300 items vs random 2000 — item discrimination confound\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 4\n  last_seen_round: 5\n  resolution: \"Mean a_i comparison shows no discrimination confound.\"\n  resolution_round: 5\n  mentions:\n    - {round: 4, reviewers: \"R1,R2\", note: \"τ=0.73 may reflect higher average a_i.\"}\n\n- id: \"R1-C2\"\n  summary: \"Cross-family analysis (J=4, single seed) — MAE CI missing\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 1\n  last_seen_round: 8\n  mentions:\n    - {round: 1, reviewers: \"R1,R2\", note: \"Llama N=3.\"}\n    - {round: 6, reviewers: \"R1,R2\", note: \"MAE CI not reported.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n    - {round: 13, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n  action_items:\n    - {round: 5, action: \"Rename to Cross-Family Exploratory Analysis\", assigned_to: \"paper_agent\", status: \"done\"}\n\n- id: \"R3-W12\"\n  summary: \"STEM domains identical γ=+0.50 — prior dominance\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 3\n  last_seen_round: 5\n  resolution: \"Full prior sensitivity complete.\"\n  resolution_round: 5\n\n- id: \"R4-W2\"\n  summary: \"Min-K%++ directional reversal — causal explanation unverified\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 4\n  last_seen_round: 6\n  resolution: \"Conclusion scoped. Hypothesis labeled post-hoc.\"\n  resolution_round: 6\n\n- id: \"R4-W3\"\n  summary: \"Contribution list structure\"\n  category: framing\n  severity: warning\n  status: resolved\n  first_raised_round: 4\n  last_seen_round: 6\n  resolution: \"3 empirical contributions.\"\n  resolution_round: 7\n\n- id: \"R4-W4\"\n  summary: \"Missing critical references\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 4\n  last_seen_round: 13\n  mentions:\n    - {round: 4, reviewers: \"R2,R1\", note: \"Han et al. EACL 2026 most direct concurrent work.\"}\n    - {round: 8, reviewers: \"R1,R2\", note: \"New missing refs: Golchin & Surdeanu, Sainz et al., Yang et al.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"58 citations verified, references now comprehensive.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"New missing: Rodriguez et al. (2021), Carlini et al. (2023), Gu et al. (2024) OLMES.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"4 new: Oren et al. (2024 ICLR), Deng et al. (2024 NAACL), Yang et al. (2023), Gu et al. (2024 OLMES).\"}\n    - {round: 13, reviewers: \"R2\", note: \"Coverage now comprehensive (50+ refs). Minor: Deng et al. cited as arXiv but may be NAACL 2024—update citation info. Schaeffer et al. discussion in §2 could be deeper.\"}\n  action_items:\n    - {round: 11, action: \"Add Rodriguez et al., Carlini et al., Gu et al.\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 12, action: \"Verify and add Oren et al. (2024), Deng et al. (2024), Yang et al. (2023), Gu et al. (2024)\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 13, action: \"Update Deng et al. citation to NAACL 2024 if published; deepen Schaeffer et al. discussion in §2\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R4-W6\"\n  summary: \"Abstract numeric density too high\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 4\n  last_seen_round: 13\n  mentions:\n    - {round: 4, reviewers: \"R1,R2\", note: \"~6+ quantitative claims in Abstract.\"}\n    - {round: 7, reviewers: \"\", note: \"Abstract rewritten. Resolved.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. Re-raised: ~25+ numbers. Core message buried.\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. 20+ numbers in ~250 words. Core insight buried.\"}\n  action_items:\n    - {round: 12, action: \"Reduce Abstract to 8-10 key numbers, ≤250 words\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R3-N7\"\n  summary: \"Technical novelty limited — 2PL+γ is standard explanatory IRT/DIF\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 3\n  last_seen_round: 13\n  mentions:\n    - {round: 3, reviewers: \"R2,R1\", note: \"PSN-IRT uncited. C1 is empirical.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"Both suggest explicit positioning statement.\"}\n    - {round: 11, reviewers: \"R2\", note: \"Excitement=2.5.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"ContamCal MAE worse than raw further weakens method contribution. Reposition as diagnostic framework.\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"DIVERGENT. R2 maintains 2PL+γ is standard DIF. R1 partially rebuts: application-level innovation (continuous RRF exposure, per-benchmark fitting, causal framework embedding) has value. Both agree positioning statement needed.\"}\n  action_items:\n    - {round: 10, action: \"Add explicit positioning statement\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 12, action: \"Reposition ContamCal as diagnostic framework in Abstract/Intro/§3.4\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 13, action: \"Explicitly state 2PL+γ is standard explanatory IRT; contribution is application to LLM contamination + multi-signal exposure + causal framework\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R2-W8\"\n  summary: \"Related Work gaps — Han et al. and Schaeffer et al. differentiation\"\n  category: writing\n  severity: warning\n  status: in_progress\n  first_raised_round: 2\n  last_seen_round: 13\n  mentions:\n    - {round: 10, reviewers: \"R1,R2\", note: \"Both agree dedicated comparison needed.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"DIVERGENT on Schaeffer severity.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未直接提及。Section 2 comparison paragraph exists.\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"Section 2 comparison paragraph exists and is adequate for Han et al. Schaeffer et al. discussion in §2 still insufficient—R1 notes Schaeffer's statistical power discussion is highly relevant to n=3 seed limitation.\"}\n  action_items:\n    - {round: 10, action: \"Expand Han/Schaeffer discussion\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R5-N1\"\n  summary: \"Page limit compliance\"\n  category: format\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 13\n  mentions:\n    - {round: 9, reviewers: \"R2\", note: \"8 pages confirmed.\"}\n    - {round: 12, reviewers: \"visual\", note: \"Visual check confirms 8 pages main text. Compliant.\"}\n    - {round: 13, reviewers: \"R2,visual\", note: \"Confirmed compliant. 8 pages main text, Limitations on p.8.\"}\n  resolution: \"Confirmed 8 pages main text, EMNLP 2026 compliant.\"\n  resolution_round: 9\n\n- id: \"R5-W1\"\n  summary: \"Symbol k overloaded\"\n  category: writing\n  severity: warning\n  status: resolved\n  first_raised_round: 5\n  last_seen_round: 6\n  resolution: \"k reserved for benchmark, d for domain.\"\n  resolution_round: 7\n\n- id: \"R6-W1\"\n  summary: \"SFT AUGMENT mode volume confound\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 6\n  last_seen_round: 13\n  mentions:\n    - {round: 6, reviewers: \"R1,R2\", note: \"AUGMENT vs REPLACE not specified.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"d000=50k, d100≈66.5k (+33.1%). Should-Fix.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"CONSENSUS Must-Fix. Data-quantity control most critical missing experiment.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"Should-Fix. Volume control on Falcon3 done (45%/55%). Generalizability unverified—needs at least one non-Benefit family.\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Falcon3 volume control done but covers only 1/6 models. 45% volume contribution is large. Collapse (Qwen-14B -25pp) lacks volume control—catastrophic forgetting from extra training is unrebutted alternative. Dose-response labels may conflate contamination with volume effects.\"}\n  action_items:\n    - {round: 6, action: \"Clarify SFT injection protocol\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 10, action: \"Report training set sizes per dosage\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 11, action: \"Add data-quantity control\", assigned_to: \"main_agent\", status: \"done\"}\n    - {round: 12, action: \"Acknowledge single-family limitation in Limitations; note Collapse corrected harm -11.3pp strengthens contamination-specificity\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 13, action: \"Volume control on at least one non-Benefit family (ideally Collapse); or relabel dose-response as 'SFT injection response' not pure 'contamination response'\", assigned_to: \"main_agent\", status: \"open\"}\n\n- id: \"R6-W2\"\n  summary: \"S4 signal computation details\"\n  category: writing\n  severity: info\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 8\n  resolution: \"Appendix E added.\"\n  resolution_round: 8\n\n- id: \"R6-W3\"\n  summary: \"SFT training curves not reported\"\n  category: experiment\n  severity: info\n  status: resolved\n  first_raised_round: 6\n  last_seen_round: 8\n  resolution: \"Appendix F added.\"\n  resolution_round: 8\n\n- id: \"R6-W4\"\n  summary: \"Within-family GSM8K PPP not reported\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 6\n  last_seen_round: 10\n  mentions:\n    - {round: 6, reviewers: \"R1,R2\", note: \"Within-family GSM8K PPP not reported.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n    - {round: 13, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n  action_items:\n    - {round: 6, action: \"Report within-family GSM8K PPP\", assigned_to: \"main_agent\", status: \"open\"}\n\n- id: \"R8-N1\"\n  summary: \"Cross-seed stability claims overstated — n=3 seeds insufficient for taxonomy validation\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 8\n  last_seen_round: 13\n  mentions:\n    - {round: 8, reviewers: \"R1,R2\", note: \"n=3 seeds yields wide CIs; strict sign consistency only 2/5.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"n=3 acceptable given compute. Downgraded to Minor.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"CONSENSUS Major. Re-raised.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. OLMo-2 CI crosses zero. Gemma-2 CI [+1.49,+3.14] excludes zero. AICc: Gemma-2/OLMo-2 curve shape indistinguishable from constant.\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. n=3 BCa bootstrap has minimal resample space. OLMo-2 borderline. AICc shows Gemma-2/OLMo-2 indistinguishable from constant. R1 notes only Immune (Phi-4) is statistically robust across seeds.\"}\n  action_items:\n    - {round: 8, action: \"Increase seeds to n≥5 or weaken claims\", assigned_to: \"main_agent\", status: \"open\"}\n    - {round: 11, action: \"Report p-value for directional test under H0\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 12, action: \"Report AICc in main text; keep Gemma-2 Benefit (CI excludes zero); relabel OLMo-2 as borderline; reframe Benefit as 2 significant + 1 borderline\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R8-N2\"\n  summary: \"DiD null result lacks power analysis\"\n  category: experiment\n  severity: critical\n  status: resolved\n  first_raised_round: 8\n  last_seen_round: 10\n  mentions:\n    - {round: 9, reviewers: \"R1,R2\", note: \"Contribution 2 reframed with MDES.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"DiD rated Acceptable.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未直接提及。DiD analysis not re-raised.\"}\n  resolution: \"Contribution 2 includes 'at current power levels'. MDES reported.\"\n  resolution_round: 9\n\n- id: \"R8-N3\"\n  summary: \"N=6 model families supporting 4-class taxonomy — generalization evidence insufficient\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 8\n  last_seen_round: 13\n  mentions:\n    - {round: 8, reviewers: \"R1,R2\", note: \"4 patterns on 4 families is post-hoc.\"}\n    - {round: 9, reviewers: \"R1,R2\", note: \"Reposition as 'observed profiles'.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"CONSENSUS Must-Fix. Collapse n=1, V-recovery n=1.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Qwen within-family inconsistency.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical (strongest). Restructure to 2+2 framework.\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Collapse/V-recovery both Qwen2.5-only. n=1 family insufficient for generalizable pattern category. R1 further notes even Benefit statistical basis is weak (AICc indistinguishable from constant for Gemma-2/OLMo-2). Must restructure to 2 confirmed + 2 preliminary.\"}\n  action_items:\n    - {round: 9, action: \"Fix §5.1 count. Use 'preliminary at N=5'\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 10, action: \"Replace 'taxonomy' with 'profiles'\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 11, action: \"Discuss within-family inconsistency\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 12, action: \"Restructure to 2+2 framework: 2 replicated (Immune, Benefit) + 2 preliminary Qwen2.5-specific (Collapse, V-recovery)\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R8-N4\"\n  summary: \"Han et al. (2026) differentiation insufficient\"\n  category: writing\n  severity: critical\n  status: in_progress\n  first_raised_round: 8\n  last_seen_round: 13\n  mentions:\n    - {round: 8, reviewers: \"R1,R2\", note: \"Han et al. is most direct prior work.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"DIVERGENT on Schaeffer severity.\"}\n    - {round: 12, reviewers: \"\", note: \"Section 2 comparison paragraph exists. Not re-raised.\"}\n    - {round: 13, reviewers: \"R2\", note: \"Han et al. differentiation in §2 is adequate at method level. Lacks empirical cross-comparison. Schaeffer et al. §2 discussion needs expansion.\"}\n  action_items:\n    - {round: 8, action: \"Add methodological comparison with Han et al.\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R8-W1\"\n  summary: \"Bayesian and frequentist terminology mixed\"\n  category: writing\n  severity: warning\n  status: open\n  first_raised_round: 8\n  last_seen_round: 13\n  mentions:\n    - {round: 8, reviewers: \"R1,R2\", note: \"'significant', 'p-value' in frequentist sense.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未提及。\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"DIVERGENT. R2 raises as Should-Fix W5. R1 rebuts: field norm in NLP, no logical contradiction between usages. Consensus: label CI types (credible vs confidence) at first occurrence.\"}\n  action_items:\n    - {round: 8, action: \"Unify terminology\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R8-W2\"\n  summary: \"Identifiability simulation uses uniform exposure vs empirical right-skewed\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 8\n  last_seen_round: 8\n  mentions:\n    - {round: 8, reviewers: \"R1,R2\", note: \"Empirical RRF highly right-skewed.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未提及。\"}\n    - {round: 13, reviewers: \"\", note: \"本轮未提及（fresh review）。\"}\n  action_items:\n    - {round: 8, action: \"Re-run simulation with right-skewed exposure\", assigned_to: \"main_agent\", status: \"open\"}\n\n- id: \"R8-W3\"\n  summary: \"Algorithm 1 threshold τ=2pp lacks theoretical basis\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 8\n  last_seen_round: 13\n  mentions:\n    - {round: 8, reviewers: \"R2,R1\", note: \"30/30 pass too coarse.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"Appendix includes nearest-transition analysis.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"DIVERGENT: R1 Major, R2 Critical.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. Label as descriptive heuristic or provide permutation null.\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. Algorithm 1 is descriptive heuristic, not method contribution. Appendix U sensitivity sweep helps but does not change fundamental nature. Position as 'organizational framework for experimental results'.\"}\n  action_items:\n    - {round: 11, action: \"Report Immune/Benefit boundary sensitivity\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 12, action: \"Label Algorithm 1 as descriptive heuristic in §4\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R8-M1\"\n  summary: \"Missing references — Golchin & Surdeanu, Sainz et al., Yang et al.\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 8\n  last_seen_round: 10\n  mentions:\n    - {round: 8, reviewers: \"R1,R2\", note: \"Three missing refs.\"}\n    - {round: 10, reviewers: \"\", note: \"Golchin & Surdeanu and Sainz now cited.\"}\n    - {round: 12, reviewers: \"\", note: \"Merged into R4-W4.\"}\n  action_items:\n    - {round: 8, action: \"Add missing references\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R8-M2\"\n  summary: \"Minor writing issues — Figure 1 caption, Table formatting\"\n  category: writing\n  severity: info\n  status: in_progress\n  first_raised_round: 8\n  last_seen_round: 13\n  mentions:\n    - {round: 10, reviewers: \"R1,R2\", note: \"Figure 1 y-axis ranges differ across panels.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"Figure 1 y-axis 50-75%.\"}\n    - {round: 12, reviewers: \"visual\", note: \"Figure 3 heatmap cell text small. Figure 6 text at readability limit.\"}\n    - {round: 13, reviewers: \"R1,visual\", note: \"Figure 1 y-axis range inconsistent. Figure 2/3 heatmap cell text too small for print. Figure 1 caption ~60 words, too dense.\"}\n  action_items:\n    - {round: 12, action: \"Fix Figure 1 Y-axis label to 'Δ Accuracy (percentage points)'\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"AUDIT-1\"\n  summary: \"Figure 1 missing from PDF\"\n  category: format\n  severity: critical\n  status: resolved\n  first_raised_round: 8\n  last_seen_round: 13\n  mentions:\n    - {round: 8, reviewers: \"audit\", note: \"Figure 1 does not exist.\"}\n    - {round: 9, reviewers: \"\", note: \"Figure 1 present on page 2.\"}\n    - {round: 12, reviewers: \"visual\", note: \"Confirmed present on page 2.\"}\n    - {round: 13, reviewers: \"visual\", note: \"Confirmed present on page 2.\"}\n  resolution: \"Figure 1 present in Introduction.\"\n  resolution_round: 9\n\n- id: \"R9-N1\"\n  summary: \"Taxonomy based on ad-hoc Algorithm 1 — lacks parametric DR modeling\"\n  category: method\n  severity: critical\n  status: resolved\n  first_raised_round: 9\n  last_seen_round: 12\n  mentions:\n    - {round: 9, reviewers: \"R1,R2\", note: \"Pharmacology has parametric DR models.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"Appendix W: parametric DR comparison added.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未直接提及。Parametric comparison exists.\"}\n  resolution: \"Appendix W: Parametric DR Model Comparison added.\"\n  resolution_round: 9\n\n- id: \"R9-N2\"\n  summary: \"'Architecture determines vulnerability' causal claim exceeds evidence\"\n  category: framing\n  severity: critical\n  status: resolved\n  first_raised_round: 9\n  last_seen_round: 10\n  mentions:\n    - {round: 9, reviewers: \"R1,R2\", note: \"Replace with 'family-level factors'.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未直接提及。\"}\n  resolution: \"All causal claims replaced. Confounders listed.\"\n  resolution_round: 9\n\n- id: \"R9-S1\"\n  summary: \"Unified LoRA r=16 unequal treatment strength across scales\"\n  category: experiment\n  severity: warning\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 13\n  mentions:\n    - {round: 9, reviewers: \"R1,R2\", note: \"Parameter fraction 0.45% (Phi-4) to 2.10%.\"}\n    - {round: 10, reviewers: \"R1,R2\", note: \"Phi-4 vs Qwen-14B counter-argument has merit.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"DIVERGENT. R1 maintains concern; R2 considers largely addressed by same-scale comparison.\"}\n    - {round: 13, reviewers: \"\", note: \"本轮未直接提及。Limitations discussion exists.\"}\n  action_items:\n    - {round: 9, action: \"Discuss LoRA confound in Limitations\", assigned_to: \"paper_agent\", status: \"done\"}\n    - {round: 10, action: \"Report trainable parameter percentages\", assigned_to: \"paper_agent\", status: \"done\"}\n\n- id: \"R9-S2\"\n  summary: \"'65-70% MMLU baseline vulnerability band' over-precise for N=6\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 9\n  last_seen_round: 13\n  mentions:\n    - {round: 9, reviewers: \"R1,R2\", note: \"Qualify with 'in our five-family sample'.\"}\n    - {round: 10, reviewers: \"\", note: \"All claims qualified. Resolved.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Reopened. Band = 2 Qwen models only. LLaMA contradicts.\"}\n    - {round: 13, reviewers: \"\", note: \"本轮未直接提及。Discussion §6 mentions 65-70% with LLaMA-3.1 contradiction acknowledged.\"}\n  action_items:\n    - {round: 12, action: \"Remove 65-70% from Abstract/Intro; downgrade to Discussion observational association\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R9-S3\"\n  summary: \"Calibration baseline missing IRT variants\"\n  category: experiment\n  severity: info\n  status: open\n  first_raised_round: 9\n  last_seen_round: 10\n  mentions:\n    - {round: 9, reviewers: \"R1,R2\", note: \"2PL vs 2PL+γ ablation would be better.\"}\n    - {round: 12, reviewers: \"\", note: \"本轮未提及。\"}\n    - {round: 13, reviewers: \"\", note: \"本轮未提及。\"}\n  action_items:\n    - {round: 9, action: \"Add 2PL vs 2PL+γ ablation\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R10-N1\"\n  summary: \"ContamCal calibration MAE (0.009) worse than raw accuracy (0.006)\"\n  category: method\n  severity: critical\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 13\n  mentions:\n    - {round: 10, reviewers: \"R2\", note: \"Core method underperforms 'do nothing' baseline.\"}\n    - {round: 10, reviewers: \"R1\", note: \"REBUT: §3.3 predicts this; γ serves diagnosis.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Reposition as diagnostic framework, not calibration tool.\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"CONSENSUS Critical (strongest consensus). MMLU MAE=0.009>0.006, ARC MAE=0.020>0.007. Method name 'ContamCal' promises calibration but delivers worse-than-baseline results. 'Value lies in diagnosis' defense itself problematic—if observed dosages produce small effects, framework's practical utility is questionable. R1 notes IRT provides credible intervals and item-level modeling unavailable from raw accuracy, but concedes γ unreliability (N3) undermines these incremental benefits.\"}\n  action_items:\n    - {round: 10, action: \"Clarify ContamCal value is diagnostic not calibration\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 12, action: \"Reposition ContamCal as diagnostic framework in Abstract/Intro; contextualize Table 3 MAE\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 13, action: \"Rewrite §5.5 framing from 'Calibration Quality' to 'Diagnostic Utility'; show specific use case where domain-level γ leads to different decisions than raw accuracy\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R10-W1\"\n  summary: \"γ parameterization outside a_i bracket unjustified\"\n  category: method\n  severity: warning\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 13\n  mentions:\n    - {round: 10, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. Non-uniform vs uniform DIF.\"}\n    - {round: 11, reviewers: \"R1,R2\", note: \"Notation improved. Substantive question unanswered.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"Both recommend Appendix comparison (PPP, WAIC).\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"DIVERGENT→RESOLVED. R2 rebuts R1: ΔELPD≈0 actually supports author's choice (neither better). R1 accepts. Consensus: state choice is interpretive convenience (ΔELPD≈0), not statistical evidence.\"}\n  action_items:\n    - {round: 10, action: \"Justify γ outside a_i or compare with inside-a_i form\", assigned_to: \"paper_agent\", status: \"open\"}\n    - {round: 12, action: \"Run uniform vs non-uniform DIF comparison (PPP/WAIC) if time permits\", assigned_to: \"main_agent\", status: \"open\"}\n    - {round: 13, action: \"Add one sentence in §3.2 noting ΔELPD≈0 and choice is for interpretive convenience\", assigned_to: \"paper_agent\", status: \"open\"}\n\n- id: \"R10-W2\"\n  summary: \"300/14042 MMLU item subset — selection bias toward high-exposure-variance items\"\n  category: experiment\n  severity: critical\n  status: in_progress\n  first_raised_round: 10\n  last_seen_round: 13\n  mentions:\n    - {round: 10, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. 2.1% of items selected.\"}\n    - {round: 11, reviewers: \"R1\", note: \"High exposure variance items may be systematically different.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Report subset distribution comparison. Attempt full-item or larger subset IRT.\"}\n    - {round: 13, reviewers: \"R1\", note: \"Minor. KS/χ² tests in §5.5 confirm representativeness (p=0.946/0.574). But exposure variance bias untested—should mention in limitations.\"}\n  action_items:\n    - {round: 12, action: \"Compute 300 vs 14042 difficulty/domain distribution comparison + KS test\", assigned_to: \"main_agent\", status: \"in_progress\"}\n\n- id: \"R11-N1\"\n  summary: \"Abstract/Title overclaiming — 'Not All Models Are Inflated' exceeds evidence from 6 models ≤14B under SFT\"\n  category: framing\n  severity: critical\n  status: in_progress\n  first_raised_round: 11\n  last_seen_round: 13\n  mentions:\n    - {round: 11, reviewers: \"R1,R2\", note: \"CONSENSUS Critical. Three overclaim dimensions.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"Strongly reinforced. Title implies generality for N=6 SFT study.\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. Title scope exceeds evidence: 6 models ≤14.7B, all SFT, all open-source. 'Across Model Families' more accurately 'Across Five Open-Source Families at 7-14B Scale Under SFT Injection'. R2 suggests scope qualifier in title or Abstract first sentence.\"}\n  action_items:\n    - {round: 11, action: \"Add scope qualifier to title; soften Abstract language\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 12, action: \"Strengthen scope qualification in Abstract; keep title but soften surrounding language\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R11-W1\"\n  summary: \"DiD parallel trends assumption untested\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 11\n  last_seen_round: 12\n  mentions:\n    - {round: 11, reviewers: \"R1,R2\", note: \"No pre-treatment trend comparison.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"DIVERGENT. R2 rebuts: controlled experiment, pre-treatment balance strong (Cohen's d=0.02).\"}\n  action_items:\n    - {round: 11, action: \"Report pre-treatment balance; add parallel trends discussion\", assigned_to: \"paper_agent\", status: \"done\"}\n  resolution: \"Pre-treatment balance reported (Cohen's d=0.02, p>0.19). Controlled experiment design largely mitigates concern.\"\n  resolution_round: 12\n\n- id: \"R11-W2\"\n  summary: \"'Contamination' vs 'additional training' conceptual tension\"\n  category: framing\n  severity: warning\n  status: in_progress\n  first_raised_round: 11\n  last_seen_round: 13\n  mentions:\n    - {round: 11, reviewers: \"R1,R2\", note: \"CONSENSUS Major. DiD null + augmentation confound.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"Should-Fix. Volume control 45%/55% clarifies but terminology needs precision.\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. SFT injection = content exposure + extra volume + LoRA updates. Table 1 labels conflate all three as 'contamination response'. Volume control shows 45% is volume. §6 Discussion paragraph exists but insufficient.\"}\n  action_items:\n    - {round: 11, action: \"Distinguish contamination-specific from general training effects\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n    - {round: 12, action: \"Add Discussion paragraph defining contamination vs additional training in this framework\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R11-W3\"\n  summary: \"2PL+γ identifiability — θ and γ·e collinearity with b\"\n  category: method\n  severity: warning\n  status: resolved\n  first_raised_round: 11\n  last_seen_round: 11\n  mentions:\n    - {round: 11, reviewers: \"R2,R1\", note: \"Potential collinearity if e_ij correlates with b_j.\"}\n    - {round: 12, reviewers: \"\", note: \"§3.3 includes identifiability discussion: |r|<0.13, R²<0.014.\"}\n  action_items:\n    - {round: 11, action: \"Expand identifiability discussion\", assigned_to: \"paper_agent\", status: \"done\"}\n  resolution: \"§3.3 reports e_ij and b_i near-orthogonal (|r|<0.13, R²<0.014).\"\n  resolution_round: 12\n\n- id: \"R11-M1\"\n  summary: \"Benchmark diversity insufficient — MMLU dominates\"\n  category: experiment\n  severity: warning\n  status: resolved\n  first_raised_round: 11\n  last_seen_round: 12\n  mentions:\n    - {round: 11, reviewers: \"R2\", note: \"Only 3 benchmarks, MMLU dominates.\"}\n    - {round: 12, reviewers: \"R1,R2\", note: \"DIVERGENT. R1 rebuts: 3 formats comprehensive. Both agree MMLU-driven but acceptable.\"}\n  action_items:\n    - {round: 11, action: \"Scope cross-benchmark conclusions\", assigned_to: \"paper_agent\", status: \"done\"}\n  resolution: \"3 benchmarks across 3 formats accepted. MMLU dominance acknowledged. Not re-raised as must-fix.\"\n  resolution_round: 12\n\n- id: \"R12-M1\"\n  summary: \"Algorithm 1 Benefit sub-branches both return same label — dead code\"\n  category: method\n  severity: info\n  status: open\n  first_raised_round: 12\n  last_seen_round: 13\n  mentions:\n    - {round: 12, reviewers: \"R1,R2\", note: \"Lines 91-94 both return BENEFIT. Remove dead logic or add sub-labels.\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"Re-confirmed. Two branches (saturating/sustained gain) both return BENEFIT. Either design remnant or intentional merge—either way, remove redundant branching.\"}\n  action_items:\n    - {round: 12, action: \"Remove unused branching logic in Algorithm 1\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R12-M2\"\n  summary: \"Stage 1→Stage 2 uncertainty propagation missing — e_ij is point estimate\"\n  category: method\n  severity: warning\n  status: open\n  first_raised_round: 12\n  last_seen_round: 13\n  mentions:\n    - {round: 12, reviewers: \"R1\", note: \"RRF is rank-based non-parametric. Uncertainty propagation non-trivial.\"}\n    - {round: 13, reviewers: \"R1,R2\", note: \"CONSENSUS Should-Fix. e_ij from RRF enters IRT as fixed covariate. Exposure measurement error → γ CI underestimated. Especially severe at J=16 where uncertainty is already large. May partly explain γ instability (R4-N1).\"}\n  action_items:\n    - {round: 12, action: \"Acknowledge e_ij point estimate limitation; mention as future work\", assigned_to: \"paper_agent\", status: \"in_progress\"}\n\n- id: \"R13-W1\"\n  summary: \"DiD MDES 1.2-2.0pp practical significance boundary undiscussed\"\n  category: experiment\n  severity: warning\n  status: open\n  first_raised_round: 13\n  last_seen_round: 13\n  mentions:\n    - {round: 13, reviewers: \"R1\", note: \"MDES 1.2-2.0pp rules out effects >2pp but 1pp item-specific effects may matter in high-stakes evaluation. Paper does not discuss practical significance threshold.\"}\n  action_items:\n    - {round: 13, action: \"Discuss MDES practical significance in context of real-world contamination scenarios\", assigned_to: \"paper_agent\", status: \"open\"}"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "53c4ed59-36fb-4cab-bb8f-5305bd434908",
+            "isSidechain": false,
+            "requestId": "req_011CbKKzpPYoPr6VvctfGrAo",
+            "type": "assistant",
+            "uuid": "6ea3da4d-cff8-42ff-97b1-f187be1bed79",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0191XBXe3J7CMaRxHVheNz26",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 14920,
+                "cache_read_input_tokens": 122797,
+                "output_tokens": 15100,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 14920,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 15100,
+                    "cache_read_input_tokens": 122797,
+                    "cache_creation_input_tokens": 14920,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 14920
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000164"
+        },
+        {
+          "source_line": 165,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Reviewer 1 审稿结果]: 交叉回应已提交给 Review Director。  核心结论：R2 的 3 个 Must-Fix 全部同意（校准劣于 Raw、四模式 overclaiming、volume confound），6 个 Should-Fix 中同意 4 个、部分反驳 2 个（2PL+γ 的方法新颖性不应被完全否定，Bayesian-frequentist 混用在 NLP 领域…",
+                "leafUuid": "6ea3da4d-cff8-42ff-97b1-f187be1bed79",
+                "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff"
+              }
+            }
+          ],
+          "id": "event-000165"
+        },
+        {
+          "source_line": 166,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "Review paper for EMNLP 2026 submission",
+                "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff"
+              }
+            }
+          ],
+          "id": "event-000166"
+        },
+        {
+          "source_line": 167,
+          "timestamp": "2026-05-23T10:21:47.927Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JRUzmxWFBYgzNeZiccA8Ka",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 40354}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6ea3da4d-cff8-42ff-97b1-f187be1bed79",
+            "isSidechain": false,
+            "promptId": "fe78a895-cad6-44ea-8a6d-c0caec222bfc",
+            "type": "user",
+            "uuid": "16eb8ab7-905a-4aa8-b8f4-80b9dd21c43f",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/review_issues.yaml\\\", \\\"bytes\\\": 40354}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/artifacts/review_issues.yaml\", \"bytes\": 40354}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "6ea3da4d-cff8-42ff-97b1-f187be1bed79",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000167"
+        },
+        {
+          "source_line": 168,
+          "timestamp": "2026-05-23T10:21:52.944Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Issue tracker 已更新。现在提交最终审稿报告。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "16eb8ab7-905a-4aa8-b8f4-80b9dd21c43f",
+            "isSidechain": false,
+            "requestId": "req_011CbKLLJrLtUgCBAMpsewCi",
+            "type": "assistant",
+            "uuid": "137194d2-e209-4b62-8c36-172ae2d7677a",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011dhCeppqBQSQmq5ACx4aMP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15186,
+                "cache_read_input_tokens": 137717,
+                "output_tokens": 7084,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 15186,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7084,
+                    "cache_read_input_tokens": 137717,
+                    "cache_creation_input_tokens": 15186,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 15186
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000168"
+        },
+        {
+          "source_line": 169,
+          "timestamp": "2026-05-23T10:24:43.162Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01VeGwkoDFzGyemcWwcjPbk4",
+              "name": "mcp__agent-ml-research__submit_review_report_to_research_director",
+              "input": {
+                "report": "# 审稿报告 — Round 13 (Fresh Review)\n\n**论文**: *Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families*\n**Venue**: EMNLP 2026 (ARR Long Paper)\n**审稿模式**: Fresh（重新审稿，无先轮记忆）\n**Reviewer 编排**: 2 人（R1: 方法严谨性+实验设计；R2: 新颖性+完整性+写作质量）\n\n---\n\n## Summary\n\n本文提出 ContamCal 框架，结合多信号污染暴露映射（RRF 融合 3 类检测信号）与污染增强 IRT 模型（2PL+γ），对六个 ≤14.7B 模型（来自五个独立家族）在五个 SFT 注入剂量水平下的 benchmark 污染效应进行受控实验。核心发现：污染效应是家族特异的——Immune（Phi-4, LLaMA-3.1）、Benefit（Gemma-2, Falcon3, borderline OLMo-2）、Collapse 和 V-recovery（均仅 Qwen2.5）——而非均匀膨胀。DiD 分析未检测到 item-specific memorization（MDES 1.2-2.0pp）。\n\n---\n\n## Strengths\n\n**S1. 受控 SFT 注入实验设计的系统性** [CONSENSUS]\n5 家族 × 5 剂量 × 统一 LoRA 配置 × 多种子复现 × 跨 benchmark 迁移测试，是迄今对 LLM 污染进行的最系统的受控实验之一。75 种 model-dosage 配置的覆盖面在领域内具有突出价值。\n\n**S2. Immune 和 Benefit 模式的跨家族复现** [CONSENSUS]\nImmune（Phi-4 + 独立验证 LLaMA-3.1）和 Benefit（Gemma-2 CI 排除零, Falcon3 方向一致）在独立家族中复现。\"Not all models are inflated\" 的核心论点有数据支撑。\n\n**S3. 跨 benchmark 迁移分析** [CONSENSUS]\nMMLU 污染对 GSM8K 的迁移效应揭示了污染通过全局能力调制（而非 item memorization）影响模型，是论文的独到发现。\n\n**S4. 诚实报告负面结果** [CONSENSUS]\nContamCal MAE > Raw MAE、DiD null result、AICc 模型比较、OLMo-2 CI 跨零等均如实报告。Collapse/V-recovery 被标注为\"await independent replication\"。这种透明度在该领域少见。\n\n**S5. 附录极其详尽** [CONSENSUS]\n13 页附录覆盖 identifiability simulation、prior sensitivity、signal ablation、DIF parameterization comparison、domain decomposition、parametric DR model comparison、volume control 等，为可复现性提供了强支持。\n\n---\n\n## Weaknesses\n\n### Must-Fix（影响接收决定）\n\n**MF1. ContamCal 校准 MAE 劣于 Raw Accuracy** [CONSENSUS Critical — R1-N1 = R2-N1]\n\nTable 3 (p.8): ContamCal MAE=0.009, B0-Raw MAE=0.006 (MMLU); ARC 更差（Appendix Z: 0.020 vs 0.007）。以\"Calibration\"命名的框架在校准任务上不如\"什么都不做\"基线。论文辩护\"value lies in domain-level diagnosis\"，但此辩护本身有问题：(a) 方法名与实际价值不匹配；(b) 如果 observed dosages 下效应小到 raw accuracy 已足够，框架附加价值存疑；(c) domain-level 诊断不一定需要完整 IRT 框架。\n\nR1 补充：IRT 确实提供了 raw accuracy 无法提供的 credible intervals 和 item-level modeling，但在 γ 不可靠识别（见 MF3）的情况下，这些增量价值的可信度被削弱。\n\n→ 必须重新定位核心贡献：实证 profiling 发现优先于框架校准精度。\n\n**MF2. S2 (Min-K%++) 在 RRF 中主动损害剂量-响应信号** [CONSENSUS Critical — R1-N2, R2-AGREE]\n\nAppendix E Table 7: 移除 S2 后 MMLU ρ_dose 从 0.049 跳至 0.471（~10× 改善）。S2 不是\"无信息\"而是主动压制模型级别的剂量信号。论文以\"provides unique item-level information (ρ ≈ 0.773)\"辩护，但 item-level 相关性不能为 model-level 损害正名。\n\nR2 补充：如果 S2 对所有 items 给出相似分数模式（与真实污染无关），这意味着系统性偏差。关键缺失实验：移除 S2 后完整 pipeline 的 ContamCal MAE 是否改善？如果改善到优于 Raw=0.006，将根本改变论文结论。\n\n→ 必须提供不含 S2 的 pipeline 作为主分析或参考基线。\n\n**MF3. γ 后验对先验高度敏感，J=16 下可识别性不足** [CONSENSUS Critical — R1-N3, R2-AGREE]\n\nAppendix M: 先验 N(0,0.5)→N(0,2) 时 γ 后验均值从 0.34 变为 0.89（2.6×）。95% CI 在所有先验下包含零。论文自承\"J=16 provides insufficient data to override the prior\"（Appendix M），但此关键 caveat 仅在附录第 16 页——正文将 γ 估计当作数据驱动结果使用。\n\nR2 指出闭环：γ 不可靠 → 2PL+γ 校准不可靠 → MAE 劣于 Raw（MF1）。如果 γ 主要由先验驱动，\"contamination-augmented\" IRT 的增量贡献实质为零。\n\n→ 正文必须讨论先验敏感性；明确 γ 绝对值不可靠，仅方向性结论可信。\n\n**MF4. ARC PPP=0.003 严重模型失拟下的结果仍用于主分析** [CONSENSUS Critical — R1-N4, R2-AGREE]\n\nAppendix Z 承认 ARC PPP≈0.003，\"structural misfit\"。但 §5.2 cross-benchmark transfer 分析和 Table 4 仍包含 ARC IRT 结果。在已知模型失拟的 benchmark 上报告该模型的结果会误导读者。\n\n→ ARC IRT 结果应移至附录；主分析 ARC 结论应仅基于 raw accuracy。\n\n**MF5. 四模式分类法 overclaiming 为通用 taxonomy** [CONSENSUS Critical — R2-N2, R1-AGREE+补充]\n\nCollapse/V-recovery 仅在 Qwen2.5（同一家族的两个规模变体）中观察到。Abstract 和 Algorithm 1 将其与 Immune/Benefit 并列为已确立的通用分类。R1 进一步补充：即使 Benefit 的统计基础也不牢固——AICc 显示 Gemma-2/OLMo-2 与 constant 不可区分，OLMo-2 CI 跨零。严格来说，唯一统计 robust 的分类是 Immune（Phi-4）。\n\n→ 必须重构为\"2 个已确认模式 + 2 个待确认的 Qwen2.5 特有观察\"。\n\n**MF6. AUGMENT 模式 volume confound 未充分控制** [CONSENSUS Critical — R2-N3 = R1-W3 升级]\n\nd100 训练量 +33%（66.5k vs 50.0k）。仅 Falcon3 做了 volume control，显示 45% 归因于数据量。这意味着 Benefit 效应的近一半可能来自额外训练而非污染内容。关键缺失：Collapse 家族（Qwen-14B，-25pp）的 volume control——catastrophic forgetting from extra training volume 是未排除的替代解释。\n\nR1 建议：至少对一个非 Benefit 家族重复 volume control，或将分类标签从\"contamination response\"改为\"SFT injection response (contamination + volume)\"。\n\n→ 至少在一个非 Benefit 家族做 volume control；或在全文中使用\"SFT injection effect\"替代\"contamination effect\"。\n\n### Should-Fix（影响评分但不一票否决）\n\n**SF1. e_ij 作为点估计输入 IRT，缺失 uncertainty propagation** [CONSENSUS — R1-W1, R2-AGREE]\nRRF 融合产生点估计 e_ij，作为 IRT 固定协变量使用。暴露测量误差被忽略 → γ CI 被低估。在 J=16 下尤为严重。可能部分解释 γ 不稳定性（MF3）。\n\n**SF2. n=3 seeds 下 BCa CI 支撑力不足** [CONSENSUS — R1-W2, R2-AGREE]\nn=3 BCa bootstrap resample 空间极小。OLMo-2 CI 跨零但被归类为 borderline Benefit。AICc 显示 Gemma-2/OLMo-2 与 constant 不可区分。正文应明确区分统计显著分类和仅基于 3 seeds 的探索性分类。\n\n**SF3. Algorithm 1 是描述性启发式，不应定位为方法贡献** [CONSENSUS — R2-W1 = R1-W4]\nτ=2pp 等阈值是描述性的，非统计检验。Appendix U 的 sensitivity sweep 缓解了 robustness 但不改变其本质。应定位为\"实验结果的组织框架\"而非方法贡献。Algorithm 1 的 Benefit 分支有 dead code（Lines 91-94 两分支都返回 BENEFIT）。\n\n**SF4. Abstract 数字密度过高** [CONSENSUS — R2-W2, R1-AGREE]\n~250 词中 20+ 个具体数字，核心信息被淹没。应精简至 3-4 个关键数字。\n\n**SF5. Title 暗示广泛适用性与实验覆盖不匹配** [CONSENSUS — R2-W4, R1-AGREE]\n\"Not All Models Are Inflated\" + \"Across Model Families\" 暗示普遍结论，实验仅 6 模型 ≤14.7B，全部 SFT injection，全部开源。建议在 Abstract 首句即明确 scope。\n\n**SF6. \"contamination vs. additional training\" 概念张力** [CONSENSUS — R2-W6, R1-AGREE]\nSFT injection 同时引入 content exposure + extra volume + LoRA updates。Table 1 标签隐含将全部效应归因于 contamination，但 volume control 数据表明 45% 来自数据量。需在 Discussion 专段讨论。\n\n**SF7. DiD MDES 1.2-2.0pp 实际意义未充分讨论** [CONSENSUS — R1-W5, R2-AGREE]\nnull result 成立前提是 <1.2pp 的效应不具实际意义。但在高 stakes 评估中 1pp 可能有实质影响。需讨论 MDES 在不同应用场景下的意义边界。\n\n### Minor\n\n**m1.** Figure 1 y 轴范围不一致，可能视觉上夸大变化幅度。[R1]\n**m2.** Figure 1 caption ~60 词，过于密集。[R2]\n**m3.** Figure 2/3 heatmap cell 字号过小，打印时可能难辨认。[Visual check]\n**m4.** 300 items 子采样代表性验证未检查 exposure variance bias。[R1]\n**m5.** Table 1 \"Stab.\" 列定义不清。[R1, R2]\n**m6.** ρ=0.3 saturation ratio 来源未明。[R1]\n**m7.** Limitations 中\"70B+ models may exhibit qualitatively different dynamics\"无文献支撑。[R1]\n**m8.** Split-R̂ 术语对 NLP 读者应加解释。[R2]\n**m9.** Deng et al. 引用可能需从 arXiv 更新为 NAACL 2024。[R2]\n\n---\n\n## Reviewer Consensus\n\n| 问题 | R1 | R2 | 结果 |\n|------|----|----|------|\n| ContamCal MAE > Raw | N1 (Critical) | N1 (Critical) | **CONSENSUS Critical** |\n| S2 主动损害 RRF | N2 (Critical) | AGREE | **CONSENSUS Critical** |\n| γ 先验敏感性 | N3 (Critical) | AGREE | **CONSENSUS Critical** |\n| ARC PPP 失拟 | N4 (Critical) | AGREE | **CONSENSUS Critical** |\n| 四模式 taxonomy overclaiming | AGREE+补充 | N2 (Critical) | **CONSENSUS Critical** |\n| Volume confound | W3→升级 | N3 (Critical) | **CONSENSUS Critical** |\n| e_ij uncertainty propagation | W1 (Warning) | AGREE | **CONSENSUS Warning** |\n| n=3 seeds 不足 | W2 (Warning) | AGREE | **CONSENSUS Warning** |\n| Algorithm 1 启发式 | W4 (Warning) | W1 (Warning) | **CONSENSUS Warning** |\n| Abstract 数字密度 | AGREE | W2 (Warning) | **CONSENSUS Warning** |\n| Title scope | AGREE | W4 (Warning) | **CONSENSUS Warning** |\n| contamination vs training | AGREE | W6 (Warning) | **CONSENSUS Warning** |\n| DiD MDES significance | W5 (Warning) | AGREE | **CONSENSUS Warning** |\n| γ bracket placement (ΔELPD≈0) | W6 (Warning) | REBUT | **RESOLVED** (R2 正确：选择合理) |\n\n---\n\n## Reviewer Divergence\n\n**D1. 2PL+γ 方法新颖性** [RESOLVED — 无需进一步讨论]\n- R2 (W3): 2PL+γ 是标准 explanatory IRT/DIF 实例，不构成方法新颖性。\n- R1 (REBUT): 应用层面仍有创新——连续 RRF exposure（非传统二元 DIF）、per-benchmark fitting、嵌入 causal framework。但同意需更清晰的定位声明。\n- **综合判断**：应在正文中明确承认模型本身是标准 DIF，贡献在于应用框架和实证发现。\n\n**D2. Bayesian-frequentist 混用** [RESOLVED — 降级为 minor]\n- R2 (W5): 三种推断框架混用未交代。\n- R1 (REBUT): NLP 领域惯例，无逻辑矛盾。\n- **综合判断**：在首次出现处标注 CI 类型（credible vs confidence）即可。\n\n---\n\n## Questions to Authors\n\n1. **[最关键]** 移除 S2 后完整 pipeline 的 ContamCal MAE 是否优于 Raw=0.006？如果是，当前论文结论需根本性调整。\n2. 是否存在某个 contamination 剂量阈值，使得 ContamCal 开始优于 Raw？如果不存在，ContamCal 作为校准工具的使用场景是什么？\n3. Table 1 中的 dose-response 分类在不同 γ 先验下是否改变？\n4. Qwen-14B 的 Collapse（-25pp at d100）是否可能主要由 +33% 训练数据量导致的 catastrophic forgetting？\n5. 无 ground-truth labels 时，如何验证 Stage 1 信号 AUC ≥ 0.55 的要求是否满足？\n\n---\n\n## Missing References\n\nR2 系统审查了被要求检查的 6 项工作，均已引用。50+ 参考文献覆盖全面。两个 minor 改进点：\n- Deng et al. 可能需从 arXiv 更新为 NAACL 2024 正式出版信息\n- Schaeffer et al. (2026) 在 §2 Related Work 中的讨论可更深入（特别是其 statistical power 讨论与本文 n=3 seeds 限制高度相关）\n\n---\n\n## External Review (Stanford Agentic Reviewer)\n\n外部审稿：未请求。项目配置中未启用外部审稿。\n\n---\n\n## Visual Layout Check（非评分项）\n\n视觉审查已完成（4 warnings, 20 infos, 0 critical）：\n\n**Warnings:**\n- Pages 3-5 连续 3 页无 figure/table（Method 部分），视觉单调。建议将 Appendix Figure 4（ContamCal 三阶段 pipeline 概念图）提升至正文 Method 部分\n- Figure 4（pipeline 架构图）被放在 Appendix 而非正文——这是全文唯一的方法概览图，浪费了正文中的视觉锚定作用\n- Figure 2（baseline vulnerability heatmap）尺寸偏小，cell 内数字打印时可能难辨认\n- Figure 3（cross-benchmark transfer heatmap）同样偏小，cell 字号约正文 50-60%\n\n**通过项：**\n- 正文 8 页，Limitations 在 p.8 底部，EMNLP 2026 合规 ✓\n- Figure 1 在 p.2 顶部，Title-Abstract-Figure 1 叙事对齐 ✓\n- 所有表格使用 booktabs 风格，专业规范 ✓\n- Figure/Table 均在首次引用附近，无 float 漂移 ✓\n- 匿名性通过（\"Anonymous ACL submission\"）✓\n- 无 LaTeX 错误残留、无异常空白 ✓\n\n---\n\n## Overall Assessment\n\n**Overall Score: 3.0 / 5 — Findings**\n\n| 维度 | R1 | R2 | 综合 |\n|------|----|----|------|\n| Soundness | 2.5 | 3.0 | **2.75** |\n| Excitement | 3.5 | 3.0 | **3.25** |\n| Reproducibility | 4.0 | 4.0 | **4.0** |\n| Overall | 3.0 | 3.0 | **3.0** |\n| Confidence | 4.0 | 4.0 | **4.0** |\n\n**置信度**: 4/5（两位 Reviewer 均仔细通读全文和 13 页附录，验证了具体数字和 claims）\n\n**核心判断**：\n\n论文的实验设计（受控 SFT 注入 × 5 家族 × 5 剂量）是该领域的重要贡献，\"not all models are inflated\" 的核心发现有价值且有数据支撑。然而六个 Must-Fix 问题共同构成了方法论层面的严重隐患：\n\n1. **校准劣势**（MF1）+ **γ 不可识别**（MF3）+ **S2 有害**（MF2）形成闭环：核心方法在技术上不能交付其 promise\n2. **Taxonomy overclaiming**（MF5）+ **volume confound**（MF6）削弱了实证贡献的可信度\n3. **ARC 失拟**（MF4）影响 cross-benchmark 论证的可靠性\n\n论文的核心价值在于实证发现（家族特异性 dose-response）而非方法框架（ContamCal）。如果重新定位为以实证发现为主的论文——降低 ContamCal 的 claim 强度、重构 taxonomy 为 2+2、扩展 volume control、修正 RRF pipeline——有潜力达到 Conference (3.5-4.0) 档位。当前状态适合 Findings (3.0)。\n\n---\n\n## Detailed Comments（逐节）\n\n### Abstract\n- 20+ 数字过密，核心 insight 被淹没。精简至 3-4 个关键数字。\n- BCa CI、paired Cohen's d 等统计细节不适合 Abstract。\n- \"ContamCal, our diagnostic framework\" — 如果重定位为诊断而非校准，名称本身就有误导性。\n\n### §1 Introduction\n- Contribution 1 声称\"cross-seed and cross-benchmark validation\"但 OLMo-2 CI 跨零、AICc 不可区分。\n- Contribution 2 \"enables domain-level contamination diagnosis with credible intervals\" — 但 γ 在 J=16 下不可靠识别。\n- \"Our methodological contribution lies not in the IRT specification\" (p.5 末) — 此声明正确但应更早出现（在 Abstract/Contribution 中）。\n\n### §2 Related Work\n- Han et al. (2026) 差异化在方法层面充分，缺乏实证发现交叉比较。\n- Schaeffer et al. (2026) 讨论不足——其 pretraining-stage 结果可与本文 SFT-stage 结果直接对比。\n\n### §3 Method\n- §3.1: S2 AUC≈0.48-0.51 近随机但保留在 pipeline 中——需要更强的正当性论证或移除。\n- §3.2: γ 先验敏感性应在此处讨论而非仅在 Appendix M。\n- §3.2: ΔELPD≈0 说明 γ bracket 选择是约定性的——应明确表述。\n- §3.4: Algorithm 1 应标注为 descriptive classification scheme。Dead code（Lines 91-94）应清理。\n\n### §4 Experimental Setup\n- §4.1: AUGMENT mode 的 volume confound 需要更显著的讨论。\n- LoRA r=16 统一配置导致 trainable parameter % 差异 4.7×（已在 Limitations 讨论，可接受）。\n\n### §5 Results\n- §5.1 Table 1: \"Repl.\" 列中 Collapse/V-recovery 的 △ 标记与文本中\"observed profiles\"定位不一致——应统一。\n- §5.3: OLMo-2 \"borderline\" 的处理合理，但 Abstract 和 Contribution 1 中未反映。\n- §5.5 Table 3: ContamCal MAE=0.009 > Raw=0.006 是论文最大的方法论挑战。\"Calibration Quality\" 标题与内容矛盾。\n- §5.6: Min-K%++ 方向反转的分析是论文的亮点之一。\n- §5.7: Social Sciences γ_d 的 prior sensitivity 分析（Table 11）很有价值，但主分析 γ 的同级分析仅在附录。\n\n### §6 Discussion\n- \"65-70% baseline range\" 仍出现，但被 LLaMA-3.1 直接反驳——应降格或删除。\n- \"contamination vs additional training\" 段落存在但讨论不足。\n- Volume control 的 45% volume / 55% content 分解应该更显著地出现在 Discussion 中。\n\n### Limitations\n- 覆盖了模型规模、SFT vs pretraining、种子敏感性、LoRA 统一配置、AUGMENT volume。长度适当。\n- 缺失：300 item 子采样的 exposure variance bias、MDES 实际意义边界。",
+                "project": "contamcal-irt-calibration",
+                "reviewer_ids_acknowledged": [
+                  1,
+                  2
+                ],
+                "cross_response_reviewer_ids": [
+                  1,
+                  2
+                ],
+                "overall_score": "3.0 — Findings",
+                "review_chat_id": "oc_da6d629d7f92da47a5e85cb7e296ae13"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "137194d2-e209-4b62-8c36-172ae2d7677a",
+            "isSidechain": false,
+            "requestId": "req_011CbKLLJrLtUgCBAMpsewCi",
+            "type": "assistant",
+            "uuid": "053d8d16-2542-4004-aca3-d81bb1cc68be",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011dhCeppqBQSQmq5ACx4aMP",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 15186,
+                "cache_read_input_tokens": 137717,
+                "output_tokens": 7084,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 15186,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 7084,
+                    "cache_read_input_tokens": 137717,
+                    "cache_creation_input_tokens": 15186,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 15186
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000169"
+        },
+        {
+          "source_line": 170,
+          "timestamp": "2026-05-23T10:24:47.464Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01VeGwkoDFzGyemcWwcjPbk4",
+              "type": "tool_result",
+              "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "053d8d16-2542-4004-aca3-d81bb1cc68be",
+            "isSidechain": false,
+            "promptId": "fe78a895-cad6-44ea-8a6d-c0caec222bfc",
+            "type": "user",
+            "uuid": "475ae48a-91ea-409f-bede-c1357f466795",
+            "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"research_director_key\\\": \\\"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}",
+            "mcpMeta": {
+              "structuredContent": {
+                "result": "{\"success\": true, \"data\": {\"research_director_key\": \"feishu:group:oc_4960c7baa442eabd4fa0aceeac2693ca:director\"}, \"error\": \"\"}"
+              }
+            },
+            "sourceToolAssistantUUID": "053d8d16-2542-4004-aca3-d81bb1cc68be",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+            "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000170"
+        },
+        {
+          "source_line": 171,
+          "timestamp": "2026-05-23T10:24:47.470Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "475ae48a-91ea-409f-bede-c1357f466795",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "8dce05d5-b6f7-4883-bb6d-eede6d274c24",
+                "timestamp": "2026-05-23T10:24:47.470Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/review_director_c2ad40d8",
+                "sessionId": "052f7131-c35f-4b01-9931-6841c789d1ff",
+                "version": "2.1.126",
+                "gitBranch": "HEAD"
+              }
+            }
+          ],
+          "id": "event-000171"
+        }
+      ]
+    }
+  ]
+}

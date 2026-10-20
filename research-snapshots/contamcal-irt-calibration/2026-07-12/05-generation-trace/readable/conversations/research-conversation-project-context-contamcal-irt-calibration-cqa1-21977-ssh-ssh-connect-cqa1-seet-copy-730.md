@@ -1,0 +1,1066 @@
+# Research conversation: <project_context> # 项目: contamcal-irt-calibration ## 运行环境 - 服务器名: cqa1-21977 - SSH 连接命令: ssh connect.cqa1.seetacloud.com
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 22
+- **Recorded user turns:** 1
+- **Tool calls:** 3
+- **Original source:** `logs/chats/exported-trajectories/account-3/1d1afe46-0bc5-499c-96ba-44d0921efcc2.jsonl`
+- **Structured JSON:** [`9d9fc51d9f89a0a09bd7.json`](../../sessions/9d/9d9fc51d9f89a0a09bd7.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-19T22:24:08.453Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-19T22:24:08.453Z",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2",
+  "content": "&lt;project_context>\n# 项目: contamcal-irt-calibration\n\n## 运行环境\n- 服务器名: cqa1-21977\n- SSH 连接命令: ssh connect.cqa1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/contamcal-irt-calibration\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 提交实验前必须检查目标 GPU 上是否已有同类进程（nvidia-smi 查 PID + 对比 output dir），有则不提交（原因：GPU 2 因重复提交导致 4 次进程冲突和数据污染。on_failed hook 触发的 worker 和手动提交都不做查重。）\n- **C002**: 提交 GPU 任务前必须用 nvidia-smi 确认目标 GPU 空闲，不得仅依赖 get_project_resource_usage 判断（原因：resource_usage 工具因 PID/tmux 不匹配严重误报（cuda:0/2/3 活跃但报 idle），已导致调度风险。Reviewer 2026-05-14 确认。）\n- **C003**: 标记实验为 failed 时必须同时 kill 所有关联 GPU 进程；submit 新任务到 GPU 前必须先 nvidia-smi + ps 确认该 GPU 无残留进程（原因：GPU 2 两次出现\"标 failed 不 kill 进程\"导致新旧进程冲突、数据腐败风险。v3 标 failed 但 2 个子进程存活，v4 提交时未检查，造成三进程竞争同一 output-dir。）\n- **C004**: 提交 GPU 实验时必须在命令中显式设置 CUDA_VISIBLE_DEVICES=N，不依赖默认行为（原因：已两次出现声明 cuda:3 实际跑在 cuda:0 的事故（PID 498153、PID 513900/513826），根因是 tmux/nohup 启动时未显式传递 CUDA_VISIBLE_DEVICES。）\n- **C005**: 禁止在 cuda:4 有 SFT 训练运行时提交 compute_signals 任务到 cuda:4；signals_3B 任务必须等目标 GPU 独占空闲后再提交（原因：cuda:4 三次出现未授权 compute_signals 进程与 d000_v3 SFT 抢显存（PID 590509, 605267, 607648）。来源疑为旧 session Worker 或 auto-loop 触发的 signals 批量任务。必须杜绝 signals 任务与 SFT 训练共享 GPU。）\n- **C006**: 禁止在 alpha=16 checkpoint 上启动任何任务（训练/eval/信号计算）。废弃目录黑名单：Qwen2.5-3B_d000_s42, Qwen2.5-3B_d000_v2_s42, Qwen2.5-3B_d005_s42, Qwen2.5-3B_d025_s42, Qwen2.5-3B_d100_s42（不含 _v3/_v2 等 alpha=32 重训版本）。启动前必须 cat adapter_config.json | grep lora_alpha 确认 =32。（原因：D055/D076 决定全部标准化到 alpha=32 + lr=5e-5。本 session 已 4 次发现 Worker 在废弃 alpha=16 checkpoint 上启动信号计算，每次 kill 后又重启新进程，累计浪费 10+ GPU-hours。根因是 Worker prompt 中缺少废弃 checkpoint 黑名单。） [来自 D055]\n- **C007**: GPU 释放后优先级：0.5B s123 signals > 1.5B s123 signals > d100_a32_s123 signals > 其他。0.5B/1.5B s123 全部完成前不分配 GPU 给低优先级信号任务。（原因：0.5B/1.5B s123 合计 +8 respondents 是达到 N≥16 IRT 门槛的最高 ROI 路径，d100 仅 +1。Reviewer 第三次确认优先级倒挂风险。）\n- **C008**: IRT 模型选择规则：2PL+γ 为默认（robust，N<16 可用）；4PL+γ 仅当 N≥16 且 benchmark 为 MCQ format 时使用。N<16 时 4PL 的 c/d 参数不可识别，会导致 PPP=0 和校准恶化。（原因：ARC N=5 使用 4PL+γ 导致 PPP=0.000、MAE 从 0.004 恶化到 0.068（过参数化）。Director 指令要求建立模型选择规则供后续所有 IRT fitting 使用。）\n- **C009**: 启动 eval 前必须 md5sum evaluate.py 并确认与 reference hash（westd 37591 bytes 版本）一致；跨服务器 eval 前必须先 SCP 同步脚本（原因：M022/M025: evaluate.py 版本漂移已第三次导致无效 eval 结果。mc_suffix 位置差异（user turn vs assistant turn）产生 3.63pp 系统性偏移，浪费数小时 GPU 时间。） [来自 D159]\n- **C010**: C009 扩展：分析脚本读取的 eval 数据必须全部来自同一版本 evaluate.py。同一 benchmark 不同 dosage 的数据禁止混用不同版本产出。分析前验证所有输入文件的 evaluate.py 版本一致。（原因：M022/M025 再现：analyze_gsm8k.py 在 westd 读旧版 d000 数据(71.04%)，cqa1 新版产出 d000=70.58%，0.46pp 偏移。混用会导致 contamination effect 估算偏差。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：将 GSM8K 关键发现写入 memory.md\n\n### 背景\nGSM8K 首个结果出来了，是重大发现：\n- Qwen-7B s42: d000=70.58%, d100=81.65%, Δ=+11.07pp\n- MMLU contamination SFT 在 GSM8K 上产生跨 benchmark 泛化（GSM8K 不在训练集中）\n- 原假设是 MMLU contamination 不应 transfer 到 GSM8K → 被证伪\n- 但这加强了 \"global SFT effect\" 解释（与 DiD 发现一致）\n\n### 你的任务\n1. 读取当前 memory.md：`read_project_file(project=\"contamcal-irt-calibration\", file=\"memory.md\", max_chars=0)`\n2. 在 memory.md 中添加新段落，记录：\n   - GSM8K 跨 benchmark 泛化发现（日期、数据、含义）\n   - 对论文 framing 的影响（benchmark-conditionality claim 需要调整方向但结论不变）\n   - 决策上下文：为什么这个结果加强而非削弱论文\n3. 用 save_project_file 保存\n\n### 写作规范\n- 只写不可从 registry 推导的信息（决策原因、解读、对 framing 的影响）\n- 不要抄写 metrics 数字（那些在 registry 里有）\n- 简洁，一段即可"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-19T22:24:08.457Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-19T22:24:08.457Z",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2"
+}
+```
+
+---
+
+## Round 1
+
+20 recorded events
+
+### User
+
+_source line 3 · 2026-05-19T22:24:08.493Z_
+
+&lt;project_context>
+# 项目: contamcal-irt-calibration
+
+## 运行环境
+- 服务器名: cqa1-21977
+- SSH 连接命令: ssh connect.cqa1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/contamcal-irt-calibration
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: 提交实验前必须检查目标 GPU 上是否已有同类进程（nvidia-smi 查 PID + 对比 output dir），有则不提交（原因：GPU 2 因重复提交导致 4 次进程冲突和数据污染。on_failed hook 触发的 worker 和手动提交都不做查重。）
+- **C002**: 提交 GPU 任务前必须用 nvidia-smi 确认目标 GPU 空闲，不得仅依赖 get_project_resource_usage 判断（原因：resource_usage 工具因 PID/tmux 不匹配严重误报（cuda:0/2/3 活跃但报 idle），已导致调度风险。Reviewer 2026-05-14 确认。）
+- **C003**: 标记实验为 failed 时必须同时 kill 所有关联 GPU 进程；submit 新任务到 GPU 前必须先 nvidia-smi + ps 确认该 GPU 无残留进程（原因：GPU 2 两次出现"标 failed 不 kill 进程"导致新旧进程冲突、数据腐败风险。v3 标 failed 但 2 个子进程存活，v4 提交时未检查，造成三进程竞争同一 output-dir。）
+- **C004**: 提交 GPU 实验时必须在命令中显式设置 CUDA_VISIBLE_DEVICES=N，不依赖默认行为（原因：已两次出现声明 cuda:3 实际跑在 cuda:0 的事故（PID 498153、PID 513900/513826），根因是 tmux/nohup 启动时未显式传递 CUDA_VISIBLE_DEVICES。）
+- **C005**: 禁止在 cuda:4 有 SFT 训练运行时提交 compute_signals 任务到 cuda:4；signals_3B 任务必须等目标 GPU 独占空闲后再提交（原因：cuda:4 三次出现未授权 compute_signals 进程与 d000_v3 SFT 抢显存（PID 590509, 605267, 607648）。来源疑为旧 session Worker 或 auto-loop 触发的 signals 批量任务。必须杜绝 signals 任务与 SFT 训练共享 GPU。）
+- **C006**: 禁止在 alpha=16 checkpoint 上启动任何任务（训练/eval/信号计算）。废弃目录黑名单：Qwen2.5-3B_d000_s42, Qwen2.5-3B_d000_v2_s42, Qwen2.5-3B_d005_s42, Qwen2.5-3B_d025_s42, Qwen2.5-3B_d100_s42（不含 _v3/_v2 等 alpha=32 重训版本）。启动前必须 cat adapter_config.json | grep lora_alpha 确认 =32。（原因：D055/D076 决定全部标准化到 alpha=32 + lr=5e-5。本 session 已 4 次发现 Worker 在废弃 alpha=16 checkpoint 上启动信号计算，每次 kill 后又重启新进程，累计浪费 10+ GPU-hours。根因是 Worker prompt 中缺少废弃 checkpoint 黑名单。） [来自 D055]
+- **C007**: GPU 释放后优先级：0.5B s123 signals > 1.5B s123 signals > d100_a32_s123 signals > 其他。0.5B/1.5B s123 全部完成前不分配 GPU 给低优先级信号任务。（原因：0.5B/1.5B s123 合计 +8 respondents 是达到 N≥16 IRT 门槛的最高 ROI 路径，d100 仅 +1。Reviewer 第三次确认优先级倒挂风险。）
+- **C008**: IRT 模型选择规则：2PL+γ 为默认（robust，N<16 可用）；4PL+γ 仅当 N≥16 且 benchmark 为 MCQ format 时使用。N<16 时 4PL 的 c/d 参数不可识别，会导致 PPP=0 和校准恶化。（原因：ARC N=5 使用 4PL+γ 导致 PPP=0.000、MAE 从 0.004 恶化到 0.068（过参数化）。Director 指令要求建立模型选择规则供后续所有 IRT fitting 使用。）
+- **C009**: 启动 eval 前必须 md5sum evaluate.py 并确认与 reference hash（westd 37591 bytes 版本）一致；跨服务器 eval 前必须先 SCP 同步脚本（原因：M022/M025: evaluate.py 版本漂移已第三次导致无效 eval 结果。mc_suffix 位置差异（user turn vs assistant turn）产生 3.63pp 系统性偏移，浪费数小时 GPU 时间。） [来自 D159]
+- **C010**: C009 扩展：分析脚本读取的 eval 数据必须全部来自同一版本 evaluate.py。同一 benchmark 不同 dosage 的数据禁止混用不同版本产出。分析前验证所有输入文件的 evaluate.py 版本一致。（原因：M022/M025 再现：analyze_gsm8k.py 在 westd 读旧版 d000 数据(71.04%)，cqa1 新版产出 d000=70.58%，0.46pp 偏移。混用会导致 contamination effect 估算偏差。）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：将 GSM8K 关键发现写入 memory.md
+
+### 背景
+GSM8K 首个结果出来了，是重大发现：
+- Qwen-7B s42: d000=70.58%, d100=81.65%, Δ=+11.07pp
+- MMLU contamination SFT 在 GSM8K 上产生跨 benchmark 泛化（GSM8K 不在训练集中）
+- 原假设是 MMLU contamination 不应 transfer 到 GSM8K → 被证伪
+- 但这加强了 "global SFT effect" 解释（与 DiD 发现一致）
+
+### 你的任务
+1. 读取当前 memory.md：`read_project_file(project="contamcal-irt-calibration", file="memory.md", max_chars=0)`
+2. 在 memory.md 中添加新段落，记录：
+   - GSM8K 跨 benchmark 泛化发现（日期、数据、含义）
+   - 对论文 framing 的影响（benchmark-conditionality claim 需要调整方向但结论不变）
+   - 决策上下文：为什么这个结果加强而非削弱论文
+3. 用 save_project_file 保存
+
+### 写作规范
+- 只写不可从 registry 推导的信息（决策原因、解读、对 framing 的影响）
+- 不要抄写 metrics 数字（那些在 registry 里有）
+- 简洁，一段即可
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "6ce4ad05-ba9b-4f98-baa7-bb8f5f59cf65",
+  "type": "user",
+  "uuid": "d8bb233d-abed-47ce-9bae-01c1203719b1",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-19T22:24:08.493Z_
+
+```json
+{
+  "parentUuid": "d8bb233d-abed-47ce-9bae-01c1203719b1",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__append_idea",
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "2576b3c9-f120-4bc1-921e-16decf980fd8",
+  "timestamp": "2026-05-19T22:24:08.493Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-19T22:24:08.493Z_
+
+```json
+{
+  "parentUuid": "2576b3c9-f120-4bc1-921e-16decf980fd8",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "4569c3e7-a64e-4e3e-80bb-5d5b9ca649ea",
+  "timestamp": "2026-05-19T22:24:08.493Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-19T22:24:08.493Z_
+
+```json
+{
+  "parentUuid": "4569c3e7-a64e-4e3e-80bb-5d5b9ca649ea",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "b8f9503f-08fb-47c5-bcc4-dd9c41638f6f",
+  "timestamp": "2026-05-19T22:24:08.493Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Document GSM8K cross-benchmark generalization finding",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-19T22:24:11.547Z_
+
+Let me read the current memory.md first.
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b8f9503f-08fb-47c5-bcc4-dd9c41638f6f",
+  "isSidechain": false,
+  "requestId": "req_011CbCiBU42RkGQYN14jd6ZH",
+  "type": "assistant",
+  "uuid": "4d36344e-09a8-4ab3-9116-d43f92216c92",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HnSMxtgJ5X6LCAvpvTXbks",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13304,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13304,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13304,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13304
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 9 · 2026-05-19T22:24:12.206Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01Y1WubWvSnaxDcN4B9uFEBJ`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d36344e-09a8-4ab3-9116-d43f92216c92",
+  "isSidechain": false,
+  "requestId": "req_011CbCiBU42RkGQYN14jd6ZH",
+  "type": "assistant",
+  "uuid": "86eae8a5-9acf-47d0-8333-be40fdffea95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01HnSMxtgJ5X6LCAvpvTXbks",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 13304,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 114,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 13304,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 114,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 13304,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 13304
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 10 · 2026-05-19T22:24:12.227Z_
+
+<details><summary>↩ Tool result · `toolu_01Y1WubWvSnaxDcN4B9uFEBJ`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_project_file"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__save_project_file"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86eae8a5-9acf-47d0-8333-be40fdffea95",
+  "isSidechain": false,
+  "promptId": "6ce4ad05-ba9b-4f98-baa7-bb8f5f59cf65",
+  "type": "user",
+  "uuid": "38ab966a-bfd0-4c06-896d-53d031967ab9",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__read_project_file",
+      "mcp__agent-ml-research__save_project_file"
+    ],
+    "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__save_project_file",
+    "total_deferred_tools": 22
+  },
+  "sourceToolAssistantUUID": "86eae8a5-9acf-47d0-8333-be40fdffea95",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 11 · 2026-05-19T22:24:14.424Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me read the current memory.md.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "38ab966a-bfd0-4c06-896d-53d031967ab9",
+  "isSidechain": false,
+  "requestId": "req_011CbCiBkQH9FbwcaqRyvCpR",
+  "type": "assistant",
+  "uuid": "fb41c5db-79d8-4b45-b958-38387adf0846",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T5CMA7Us2mdKvRaR51Fm6C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 710,
+      "cache_read_input_tokens": 25145,
+      "output_tokens": 136,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 710,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 136,
+          "cache_read_input_tokens": 25145,
+          "cache_creation_input_tokens": 710,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 710
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-19T22:24:15.096Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_project_file · `toolu_01S7JyV9KB9p4U3Y8QMzTQAA`</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "memory.md",
+  "max_chars": 0
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "fb41c5db-79d8-4b45-b958-38387adf0846",
+  "isSidechain": false,
+  "requestId": "req_011CbCiBkQH9FbwcaqRyvCpR",
+  "type": "assistant",
+  "uuid": "f14eb20b-f075-40f0-8be5-15657d0a2d8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01T5CMA7Us2mdKvRaR51Fm6C",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 710,
+      "cache_read_input_tokens": 25145,
+      "output_tokens": 136,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 710,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 136,
+          "cache_read_input_tokens": 25145,
+          "cache_creation_input_tokens": 710,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 710
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-19T22:24:15.110Z_
+
+<details><summary>↩ Tool result · `toolu_01S7JyV9KB9p4U3Y8QMzTQAA`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\", \"content\": \"# Memory\\n\\n## D160 GSM8K 调度规则 (2026-05-19)\\nDirector 批准的 westd GPU 释放节奏：s123 完成 → GSM8K d000+d100 (~1h) → s0 启动。每个 family 都跑 GSM8K 两个端点。cqa1：Qwen-7B s123v2 → s42 re-eval → 空闲后排 GSM8K。\\n\\n## evaluate.py reference hash (2026-05-19)\\nwestd/cqa1 统一版本 md5=`001a9bc23f808c47d25ef9eaeecb81f1`, 37591 bytes。C009 约束：eval 前必须 md5 验证。旧版 md5=`6e2046f5ce8f2884ecc0a21b0d223822`, 35855 bytes（mc_suffix bug，+3-4pp 系统偏差）。\\n\\n## westd s123 训练进度 (更新 2026-05-20 05:10 CST)\\n- GPU2: Qwen-7B **5/5 完成** ✅，OLMo-2 d100 在跑 (19%) → ~07:00 完成\\n- GPU0: Phi-4 d050 在跑 (41%) → ~09:15 全完成\\n- GPU3: Gemma-2 d025 在跑 (83%) → ~12:00 全完成\\n- GPU1: Qwen-14B d025 在跑 (69%) → ~12:30 全完成（bottleneck）\\n\\n## GSM8K eval 能力确认 (2026-05-19)\\nevaluate.py 内置 GSM8K 支持：8-shot CoT, generation-based (max_new_tokens=256), regex 答案提取, batch_size=8。s123 脚本 5/5 就绪（`scripts/gsm8k_s123/`）。Qwen-7B d000_s42 已有 GSM8K 结果 (71.04%, 937/1319)。\\n\\n## Classification Algorithm v2 — Volatility Check (2026-05-19)\\nprofile_classifier.py v2 加入 mid-trajectory volatility check：在 Immune 候选（|Δ|≤τ）中额外计算 max_deviation = max(|acc_di - acc_d000|)，超过 τ 且有 V-dip → V-recovery-full。Sensitivity sweep v2: 180/180 全对（6 family × 30 combos），比 v1 修复 35 处、回退 0 处。参数仍为 4 个（τ=1pp, σ=5pp, ρ=0.3, λ=0.5pp）。\\n\\n## Bootstrap 结果摘要 (2026-05-19)\\nMMLU threshold: 64.7% (CI [64.0, 65.4])。4/5 模型 stability ≥99.6%，Gemma-2 76.6%。ARC threshold: 83.6% (CI [80.7, 85.9])，stability 较低（items 少）。\\n\\n## Treated vs Untreated: 无 item-level memorization (2026-05-19)\\nd025 level DiD：**所有 5 个 family 的 DiD 均不显著**。contamination 效果是 global SFT effect，不是 item-specific memorization。Difficulty interaction 也对称。\\n\\n## Qwen-7B V-recovery 双种子确认 (2026-05-20)\\n**s42 aligned** (eval_qwen7b_s42_cqa1_v2): d000=66.14, d005=64.82, d025=63.06(谷底), d050=63.10, d100=64.32。Δacc=-1.82pp（部分恢复）。\\n**s123 aligned** (eval_qwen7b_s123_cqa1_v2): d000=66.59, d005=63.37(谷底), d025=64.82, d050=65.00, d100=66.59。Δacc=0.00pp（完全恢复）。\\n两个 seed 都呈 V 形，谷底位置不同（s42@d025, s123@d005），恢复程度不同，但 pattern 一致。V-recovery hedge 可去除。\\n\\n## Domain Decomposition (2026-05-19)\\nSTEM 对 contamination 最 resilient（所有 5 family 中 |delta| 最小），Social Sciences 最敏感。方向由 archetype 决定，不存在 \\\"STEM 涨 non-STEM 跌\\\" 的交叉效应。\\n\\n## eval_qwen7b_s42_cqa1_v2 诊断 (2026-05-19)\\n\\n**根因：误报。实验已于 2026-05-20 05:07 CST 正常完成，cron 监控将正常退出误判为失败。**\\n\\n详细分析：\\n- 脚本 03:42 启动，05:07 完成，共 ~85 分钟评估 5 个 dosage × 2 benchmarks\\n- 全部 5 个 dosage (d000/d005/d025/d050/d100) 的 `.done` sentinel 已写入\\n- 结果文件完整：每个目录含 eval_results.json, correctness_matrix.json, item_responses.json, mmlu_results.json, arc_challenge_results.json, eval_meta.json\\n- evaluate.py md5 验证通过 (001a9bc23f808c47d25ef9eaeecb81f1)\\n- bitsandbytes 有 libnvJitLink.so.13 加载警告但不影响功能\\n\\ncron 误报原因：\\n1. 进程正常退出后 cron 检测到\\\"进程已死\\\"，但这是正常完成而非崩溃\\n2. 脚本不写 W&B metrics，cron 检查 W&B 无数据也视为异常\\n3. 可能 cron 在脚本完成后才开始第一次检查，从未观察到运行态\\n\\n部分结果：不适用——**全部结果完整可用**。\\n\\n磁盘注意：/root/autodl-tmp 使用率 98% (4.7G 剩余)，未影响此实验但后续任务需关注。\\n\\nGPU 0 当前状态：PID 285390 正在运行 GSM8K eval (qwen7b_d000_s42)，于 05:19 启动，是后续任务而非此实验残留。\\n\", \"total_chars\": 2900, \"truncated\": false}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f14eb20b-f075-40f0-8be5-15657d0a2d8e",
+  "isSidechain": false,
+  "promptId": "6ce4ad05-ba9b-4f98-baa7-bb8f5f59cf65",
+  "type": "user",
+  "uuid": "e1df06c9-e5a5-48bc-a44a-4f9f40830779",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\\\", \\\"content\\\": \\\"# Memory\\\\n\\\\n## D160 GSM8K 调度规则 (2026-05-19)\\\\nDirector 批准的 westd GPU 释放节奏：s123 完成 → GSM8K d000+d100 (~1h) → s0 启动。每个 family 都跑 GSM8K 两个端点。cqa1：Qwen-7B s123v2 → s42 re-eval → 空闲后排 GSM8K。\\\\n\\\\n## evaluate.py reference hash (2026-05-19)\\\\nwestd/cqa1 统一版本 md5=`001a9bc23f808c47d25ef9eaeecb81f1`, 37591 bytes。C009 约束：eval 前必须 md5 验证。旧版 md5=`6e2046f5ce8f2884ecc0a21b0d223822`, 35855 bytes（mc_suffix bug，+3-4pp 系统偏差）。\\\\n\\\\n## westd s123 训练进度 (更新 2026-05-20 05:10 CST)\\\\n- GPU2: Qwen-7B **5/5 完成** ✅，OLMo-2 d100 在跑 (19%) → ~07:00 完成\\\\n- GPU0: Phi-4 d050 在跑 (41%) → ~09:15 全完成\\\\n- GPU3: Gemma-2 d025 在跑 (83%) → ~12:00 全完成\\\\n- GPU1: Qwen-14B d025 在跑 (69%) → ~12:30 全完成（bottleneck）\\\\n\\\\n## GSM8K eval 能力确认 (2026-05-19)\\\\nevaluate.py 内置 GSM8K 支持：8-shot CoT, generation-based (max_new_tokens=256), regex 答案提取, batch_size=8。s123 脚本 5/5 就绪（`scripts/gsm8k_s123/`）。Qwen-7B d000_s42 已有 GSM8K 结果 (71.04%, 937/1319)。\\\\n\\\\n## Classification Algorithm v2 — Volatility Check (2026-05-19)\\\\nprofile_classifier.py v2 加入 mid-trajectory volatility check：在 Immune 候选（|Δ|≤τ）中额外计算 max_deviation = max(|acc_di - acc_d000|)，超过 τ 且有 V-dip → V-recovery-full。Sensitivity sweep v2: 180/180 全对（6 family × 30 combos），比 v1 修复 35 处、回退 0 处。参数仍为 4 个（τ=1pp, σ=5pp, ρ=0.3, λ=0.5pp）。\\\\n\\\\n## Bootstrap 结果摘要 (2026-05-19)\\\\nMMLU threshold: 64.7% (CI [64.0, 65.4])。4/5 模型 stability ≥99.6%，Gemma-2 76.6%。ARC threshold: 83.6% (CI [80.7, 85.9])，stability 较低（items 少）。\\\\n\\\\n## Treated vs Untreated: 无 item-level memorization (2026-05-19)\\\\nd025 level DiD：**所有 5 个 family 的 DiD 均不显著**。contamination 效果是 global SFT effect，不是 item-specific memorization。Difficulty interaction 也对称。\\\\n\\\\n## Qwen-7B V-recovery 双种子确认 (2026-05-20)\\\\n**s42 aligned** (eval_qwen7b_s42_cqa1_v2): d000=66.14, d005=64.82, d025=63.06(谷底), d050=63.10, d100=64.32。Δacc=-1.82pp（部分恢复）。\\\\n**s123 aligned** (eval_qwen7b_s123_cqa1_v2): d000=66.59, d005=63.37(谷底), d025=64.82, d050=65.00, d100=66.59。Δacc=0.00pp（完全恢复）。\\\\n两个 seed 都呈 V 形，谷底位置不同（s42@d025, s123@d005），恢复程度不同，但 pattern 一致。V-recovery hedge 可去除。\\\\n\\\\n## Domain Decomposition (2026-05-19)\\\\nSTEM 对 contamination 最 resilient（所有 5 family 中 |delta| 最小），Social Sciences 最敏感。方向由 archetype 决定，不存在 \\\\\\\"STEM 涨 non-STEM 跌\\\\\\\" 的交叉效应。\\\\n\\\\n## eval_qwen7b_s42_cqa1_v2 诊断 (2026-05-19)\\\\n\\\\n**根因：误报。实验已于 2026-05-20 05:07 CST 正常完成，cron 监控将正常退出误判为失败。**\\\\n\\\\n详细分析：\\\\n- 脚本 03:42 启动，05:07 完成，共 ~85 分钟评估 5 个 dosage × 2 benchmarks\\\\n- 全部 5 个 dosage (d000/d005/d025/d050/d100) 的 `.done` sentinel 已写入\\\\n- 结果文件完整：每个目录含 eval_results.json, correctness_matrix.json, item_responses.json, mmlu_results.json, arc_challenge_results.json, eval_meta.json\\\\n- evaluate.py md5 验证通过 (001a9bc23f808c47d25ef9eaeecb81f1)\\\\n- bitsandbytes 有 libnvJitLink.so.13 加载警告但不影响功能\\\\n\\\\ncron 误报原因：\\\\n1. 进程正常退出后 cron 检测到\\\\\\\"进程已死\\\\\\\"，但这是正常完成而非崩溃\\\\n2. 脚本不写 W&B metrics，cron 检查 W&B 无数据也视为异常\\\\n3. 可能 cron 在脚本完成后才开始第一次检查，从未观察到运行态\\\\n\\\\n部分结果：不适用——**全部结果完整可用**。\\\\n\\\\n磁盘注意：/root/autodl-tmp 使用率 98% (4.7G 剩余)，未影响此实验但后续任务需关注。\\\\n\\\\nGPU 0 当前状态：PID 285390 正在运行 GSM8K eval (qwen7b_d000_s42)，于 05:19 启动，是后续任务而非此实验残留。\\\\n\\\", \\\"total_chars\\\": 2900, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\", \"content\": \"# Memory\\n\\n## D160 GSM8K 调度规则 (2026-05-19)\\nDirector 批准的 westd GPU 释放节奏：s123 完成 → GSM8K d000+d100 (~1h) → s0 启动。每个 family 都跑 GSM8K 两个端点。cqa1：Qwen-7B s123v2 → s42 re-eval → 空闲后排 GSM8K。\\n\\n## evaluate.py reference hash (2026-05-19)\\nwestd/cqa1 统一版本 md5=`001a9bc23f808c47d25ef9eaeecb81f1`, 37591 bytes。C009 约束：eval 前必须 md5 验证。旧版 md5=`6e2046f5ce8f2884ecc0a21b0d223822`, 35855 bytes（mc_suffix bug，+3-4pp 系统偏差）。\\n\\n## westd s123 训练进度 (更新 2026-05-20 05:10 CST)\\n- GPU2: Qwen-7B **5/5 完成** ✅，OLMo-2 d100 在跑 (19%) → ~07:00 完成\\n- GPU0: Phi-4 d050 在跑 (41%) → ~09:15 全完成\\n- GPU3: Gemma-2 d025 在跑 (83%) → ~12:00 全完成\\n- GPU1: Qwen-14B d025 在跑 (69%) → ~12:30 全完成（bottleneck）\\n\\n## GSM8K eval 能力确认 (2026-05-19)\\nevaluate.py 内置 GSM8K 支持：8-shot CoT, generation-based (max_new_tokens=256), regex 答案提取, batch_size=8。s123 脚本 5/5 就绪（`scripts/gsm8k_s123/`）。Qwen-7B d000_s42 已有 GSM8K 结果 (71.04%, 937/1319)。\\n\\n## Classification Algorithm v2 — Volatility Check (2026-05-19)\\nprofile_classifier.py v2 加入 mid-trajectory volatility check：在 Immune 候选（|Δ|≤τ）中额外计算 max_deviation = max(|acc_di - acc_d000|)，超过 τ 且有 V-dip → V-recovery-full。Sensitivity sweep v2: 180/180 全对（6 family × 30 combos），比 v1 修复 35 处、回退 0 处。参数仍为 4 个（τ=1pp, σ=5pp, ρ=0.3, λ=0.5pp）。\\n\\n## Bootstrap 结果摘要 (2026-05-19)\\nMMLU threshold: 64.7% (CI [64.0, 65.4])。4/5 模型 stability ≥99.6%，Gemma-2 76.6%。ARC threshold: 83.6% (CI [80.7, 85.9])，stability 较低（items 少）。\\n\\n## Treated vs Untreated: 无 item-level memorization (2026-05-19)\\nd025 level DiD：**所有 5 个 family 的 DiD 均不显著**。contamination 效果是 global SFT effect，不是 item-specific memorization。Difficulty interaction 也对称。\\n\\n## Qwen-7B V-recovery 双种子确认 (2026-05-20)\\n**s42 aligned** (eval_qwen7b_s42_cqa1_v2): d000=66.14, d005=64.82, d025=63.06(谷底), d050=63.10, d100=64.32。Δacc=-1.82pp（部分恢复）。\\n**s123 aligned** (eval_qwen7b_s123_cqa1_v2): d000=66.59, d005=63.37(谷底), d025=64.82, d050=65.00, d100=66.59。Δacc=0.00pp（完全恢复）。\\n两个 seed 都呈 V 形，谷底位置不同（s42@d025, s123@d005），恢复程度不同，但 pattern 一致。V-recovery hedge 可去除。\\n\\n## Domain Decomposition (2026-05-19)\\nSTEM 对 contamination 最 resilient（所有 5 family 中 |delta| 最小），Social Sciences 最敏感。方向由 archetype 决定，不存在 \\\"STEM 涨 non-STEM 跌\\\" 的交叉效应。\\n\\n## eval_qwen7b_s42_cqa1_v2 诊断 (2026-05-19)\\n\\n**根因：误报。实验已于 2026-05-20 05:07 CST 正常完成，cron 监控将正常退出误判为失败。**\\n\\n详细分析：\\n- 脚本 03:42 启动，05:07 完成，共 ~85 分钟评估 5 个 dosage × 2 benchmarks\\n- 全部 5 个 dosage (d000/d005/d025/d050/d100) 的 `.done` sentinel 已写入\\n- 结果文件完整：每个目录含 eval_results.json, correctness_matrix.json, item_responses.json, mmlu_results.json, arc_challenge_results.json, eval_meta.json\\n- evaluate.py md5 验证通过 (001a9bc23f808c47d25ef9eaeecb81f1)\\n- bitsandbytes 有 libnvJitLink.so.13 加载警告但不影响功能\\n\\ncron 误报原因：\\n1. 进程正常退出后 cron 检测到\\\"进程已死\\\"，但这是正常完成而非崩溃\\n2. 脚本不写 W&B metrics，cron 检查 W&B 无数据也视为异常\\n3. 可能 cron 在脚本完成后才开始第一次检查，从未观察到运行态\\n\\n部分结果：不适用——**全部结果完整可用**。\\n\\n磁盘注意：/root/autodl-tmp 使用率 98% (4.7G 剩余)，未影响此实验但后续任务需关注。\\n\\nGPU 0 当前状态：PID 285390 正在运行 GSM8K eval (qwen7b_d000_s42)，于 05:19 启动，是后续任务而非此实验残留。\\n\", \"total_chars\": 2900, \"truncated\": false}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f14eb20b-f075-40f0-8be5-15657d0a2d8e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 14_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "e1df06c9-e5a5-48bc-a44a-4f9f40830779",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 15_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Document GSM8K cross-benchmark generalization finding",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2"
+}
+```
+
+---
+
+### Assistant
+
+_source line 16 · 2026-05-19T22:24:17.753Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to add a new section about the GSM8K cross-benchmark generalization finding. Let me compose the new paragraph and append it to the memory.md content.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1df06c9-e5a5-48bc-a44a-4f9f40830779",
+  "isSidechain": false,
+  "requestId": "req_011CbCiBxXHNyWHrjbvQaLUs",
+  "type": "assistant",
+  "uuid": "e1a24b00-cfa0-4c5a-8891-2fa5b4081593",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EfQon7A6y22JbaV8VCgRXV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2120,
+      "cache_read_input_tokens": 25855,
+      "output_tokens": 2301,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2120,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2301,
+          "cache_read_input_tokens": 25855,
+          "cache_creation_input_tokens": 2120,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2120
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 17 · 2026-05-19T22:24:18.251Z_
+
+读到了当前内容。现在添加 GSM8K 跨 benchmark 泛化发现。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e1a24b00-cfa0-4c5a-8891-2fa5b4081593",
+  "isSidechain": false,
+  "requestId": "req_011CbCiBxXHNyWHrjbvQaLUs",
+  "type": "assistant",
+  "uuid": "ddec59d9-dfb1-421b-9465-a4554a36ad02",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EfQon7A6y22JbaV8VCgRXV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2120,
+      "cache_read_input_tokens": 25855,
+      "output_tokens": 2301,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2120,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2301,
+          "cache_read_input_tokens": 25855,
+          "cache_creation_input_tokens": 2120,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2120
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-19T22:24:39.322Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__save_project_file · `toolu_013S3HVDG8xAfxQQMp5DVT65`</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "file": "memory.md",
+  "content": "# Memory\n\n## GSM8K 跨 benchmark 泛化发现 (2026-05-19)\nQwen-7B s42 GSM8K 首批结果：MMLU contamination SFT 在未训练的 GSM8K 上产生显著正迁移（d100 vs d000 Δ≈+11pp）。原假设\"MMLU-specific contamination 不应 transfer 到 math reasoning\"被证伪。这并非削弱论文——恰恰加强了 DiD 分析已揭示的 \"global SFT effect\" 解释：contamination SFT 的效果不是 item-level memorization，而是广泛的能力提升/格式适应。论文 framing 影响：不能再 claim contamination effect 是 benchmark-conditional 的，但核心结论（IRT 校准能分离 contamination signal）不变，且 cross-benchmark transfer 提供了额外证据维度——如果效果 transfer 到 untrained benchmark，说明 SFT 改变的是模型 general capability 而非 benchmark-specific knowledge，这正是 IRT difficulty-based calibration 能检测到的。\n\n## D160 GSM8K 调度规则 (2026-05-19)\nDirector 批准的 westd GPU 释放节奏：s123 完成 → GSM8K d000+d100 (~1h) → s0 启动。每个 family 都跑 GSM8K 两个端点。cqa1：Qwen-7B s123v2 → s42 re-eval → 空闲后排 GSM8K。\n\n## evaluate.py reference hash (2026-05-19)\nwestd/cqa1 统一版本 md5=`001a9bc23f808c47d25ef9eaeecb81f1`, 37591 bytes。C009 约束：eval 前必须 md5 验证。旧版 md5=`6e2046f5ce8f2884ecc0a21b0d223822`, 35855 bytes（mc_suffix bug，+3-4pp 系统偏差）。\n\n## westd s123 训练进度 (更新 2026-05-20 05:10 CST)\n- GPU2: Qwen-7B **5/5 完成** ✅，OLMo-2 d100 在跑 (19%) → ~07:00 完成\n- GPU0: Phi-4 d050 在跑 (41%) → ~09:15 全完成\n- GPU3: Gemma-2 d025 在跑 (83%) → ~12:00 全完成\n- GPU1: Qwen-14B d025 在跑 (69%) → ~12:30 全完成（bottleneck）\n\n## GSM8K eval 能力确认 (2026-05-19)\nevaluate.py 内置 GSM8K 支持：8-shot CoT, generation-based (max_new_tokens=256), regex 答案提取, batch_size=8。s123 脚本 5/5 就绪（`scripts/gsm8k_s123/`）。Qwen-7B d000_s42 已有 GSM8K 结果 (71.04%, 937/1319)。\n\n## Classification Algorithm v2 — Volatility Check (2026-05-19)\nprofile_classifier.py v2 加入 mid-trajectory volatility check：在 Immune 候选（|Δ|≤τ）中额外计算 max_deviation = max(|acc_di - acc_d000|)，超过 τ 且有 V-dip → V-recovery-full。Sensitivity sweep v2: 180/180 全对（6 family × 30 combos），比 v1 修复 35 处、回退 0 处。参数仍为 4 个（τ=1pp, σ=5pp, ρ=0.3, λ=0.5pp）。\n\n## Bootstrap 结果摘要 (2026-05-19)\nMMLU threshold: 64.7% (CI [64.0, 65.4])。4/5 模型 stability ≥99.6%，Gemma-2 76.6%。ARC threshold: 83.6% (CI [80.7, 85.9])，stability 较低（items 少）。\n\n## Treated vs Untreated: 无 item-level memorization (2026-05-19)\nd025 level DiD：**所有 5 个 family 的 DiD 均不显著**。contamination 效果是 global SFT effect，不是 item-specific memorization。Difficulty interaction 也对称。\n\n## Qwen-7B V-recovery 双种子确认 (2026-05-20)\n**s42 aligned** (eval_qwen7b_s42_cqa1_v2): d000=66.14, d005=64.82, d025=63.06(谷底), d050=63.10, d100=64.32。Δacc=-1.82pp（部分恢复）。\n**s123 aligned** (eval_qwen7b_s123_cqa1_v2): d000=66.59, d005=63.37(谷底), d025=64.82, d050=65.00, d100=66.59。Δacc=0.00pp（完全恢复）。\n两个 seed 都呈 V 形，谷底位置不同（s42@d025, s123@d005），恢复程度不同，但 pattern 一致。V-recovery hedge 可去除。\n\n## Domain Decomposition (2026-05-19)\nSTEM 对 contamination 最 resilient（所有 5 family 中 |delta| 最小），Social Sciences 最敏感。方向由 archetype 决定，不存在 \"STEM 涨 non-STEM 跌\" 的交叉效应。\n\n## eval_qwen7b_s42_cqa1_v2 诊断 (2026-05-19)\n\n**根因：误报。实验已于 2026-05-20 05:07 CST 正常完成，cron 监控将正常退出误判为失败。**\n\n详细分析：\n- 脚本 03:42 启动，05:07 完成，共 ~85 分钟评估 5 个 dosage × 2 benchmarks\n- 全部 5 个 dosage (d000/d005/d025/d050/d100) 的 `.done` sentinel 已写入\n- 结果文件完整：每个目录含 eval_results.json, correctness_matrix.json, item_responses.json, mmlu_results.json, arc_challenge_results.json, eval_meta.json\n- evaluate.py md5 验证通过 (001a9bc23f808c47d25ef9eaeecb81f1)\n- bitsandbytes 有 libnvJitLink.so.13 加载警告但不影响功能\n\ncron 误报原因：\n1. 进程正常退出后 cron 检测到\"进程已死\"，但这是正常完成而非崩溃\n2. 脚本不写 W&B metrics，cron 检查 W&B 无数据也视为异常\n3. 可能 cron 在脚本完成后才开始第一次检查，从未观察到运行态\n\n部分结果：不适用——**全部结果完整可用**。\n\n磁盘注意：/root/autodl-tmp 使用率 98% (4.7G 剩余)，未影响此实验但后续任务需关注。\n\nGPU 0 当前状态：PID 285390 正在运行 GSM8K eval (qwen7b_d000_s42)，于 05:19 启动，是后续任务而非此实验残留。\n"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "ddec59d9-dfb1-421b-9465-a4554a36ad02",
+  "isSidechain": false,
+  "requestId": "req_011CbCiBxXHNyWHrjbvQaLUs",
+  "type": "assistant",
+  "uuid": "79cd2f02-0ebf-48f2-adc0-5cc609fa725f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EfQon7A6y22JbaV8VCgRXV",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2120,
+      "cache_read_input_tokens": 25855,
+      "output_tokens": 2301,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2120,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 2301,
+          "cache_read_input_tokens": 25855,
+          "cache_creation_input_tokens": 2120,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2120
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-19T22:24:39.341Z_
+
+<details><summary>↩ Tool result · `toolu_013S3HVDG8xAfxQQMp5DVT65`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "79cd2f02-0ebf-48f2-adc0-5cc609fa725f",
+  "isSidechain": false,
+  "promptId": "6ce4ad05-ba9b-4f98-baa7-bb8f5f59cf65",
+  "type": "user",
+  "uuid": "2c2b8a7d-0729-49eb-8158-ee0762042e02",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\\\", \\\"saved\\\": true}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"path\": \"/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/memory.md\", \"saved\": true}, \"error\": null, \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "79cd2f02-0ebf-48f2-adc0-5cc609fa725f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 20 · 2026-05-19T22:24:44.410Z_
+
+已保存。新增段落置顶，记录了三个关键点：
+1. MMLU SFT → GSM8K 正迁移证伪了 benchmark-conditional 假设
+2. 这加强而非削弱论文——与 DiD "global SFT effect" 一致，cross-benchmark transfer 提供额外证据维度
+3. Framing 调整方向：不能 claim benchmark-conditional，但 IRT calibration 核心结论不变
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2c2b8a7d-0729-49eb-8158-ee0762042e02",
+  "isSidechain": false,
+  "requestId": "req_011CbCiDjpcEFoEbqUi7fY7E",
+  "type": "assistant",
+  "uuid": "33d8a3ec-6786-4cab-aab1-8a0eb5b5c6d2",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01QfGgu5nB29ZVmXnL8VA2qz",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2388,
+      "cache_read_input_tokens": 27975,
+      "output_tokens": 130,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2388,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 130,
+          "cache_read_input_tokens": 27975,
+          "cache_creation_input_tokens": 2388,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2388
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 21_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "33d8a3ec-6786-4cab-aab1-8a0eb5b5c6d2",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 22_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Document GSM8K cross-benchmark generalization finding",
+  "sessionId": "1d1afe46-0bc5-499c-96ba-44d0921efcc2"
+}
+```
+
+---

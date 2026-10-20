@@ -1,0 +1,1998 @@
+{
+  "schema_version": "1.0",
+  "session_id": "25f6c0fe781d63210d36",
+  "rounds": [
+    {
+      "number": 289,
+      "messages": [
+        {
+          "source_line": 6326,
+          "timestamp": "2026-05-18T06:11:43.843Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "9a408e03-4b62-4a63-b057-e7cd39ef1857",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "f9f02dde-2655-4499-8234-9f5fe57a45ff",
+                "timestamp": "2026-05-18T06:11:43.843Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+                "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "zippy-leaping-pebble"
+              }
+            }
+          ],
+          "id": "event-006326"
+        },
+        {
+          "source_line": 6327,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Director 指令] [紧急] 页数验证  请确认：§6 Conclusion 在哪一页结束？Limitations section 从哪一页开始？  ACL Long paper 规则：≤8 pages 主内容（§1-§6），Limitations/Ethics Statement/References/Appendix 不计入。  如果 §6 结束超过 p.8 底部（即 Limitati…",
+                "leafUuid": "f9f02dde-2655-4499-8234-9f5fe57a45ff",
+                "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496"
+              }
+            }
+          ],
+          "id": "event-006327"
+        },
+        {
+          "source_line": 6328,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "System reminder about Director notification",
+                "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496"
+              }
+            }
+          ],
+          "id": "event-006328"
+        },
+        {
+          "source_line": 6329,
+          "timestamp": "2026-05-18T06:11:48.647Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NX8UUxNbHnoEWAhbPVvfrC",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\nf = '/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-paper-agent-8415d3a6/f5d05f64-02bd-4c69-b131-067a64259496/tool-results/mcp-agent-ml-research-pdf_to_images-1779084703817.txt'\nwith open(f) as fh:\n    data = json.load(fh)\nresult = json.loads(data['result'])\nfor img in result['data']['images']:\n    print(img['page'], img['path'])\n\"",
+                "description": "Get rendered page paths"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f9f02dde-2655-4499-8234-9f5fe57a45ff",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YDiMNpJCMbfvXwV6zD",
+            "type": "assistant",
+            "uuid": "e6d6b501-a22a-49c1-96ad-6bc0e95c7462",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Ku2heZeiHT5DRp2HE7S2U7",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 843,
+                "cache_read_input_tokens": 80067,
+                "output_tokens": 248,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 843,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 248,
+                    "cache_read_input_tokens": 80067,
+                    "cache_creation_input_tokens": 843,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 843
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006329"
+        },
+        {
+          "source_line": 6330,
+          "timestamp": "2026-05-18T06:11:48.751Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NX8UUxNbHnoEWAhbPVvfrC",
+              "type": "tool_result",
+              "content": "8 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p8.png\n9 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p9.png",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e6d6b501-a22a-49c1-96ad-6bc0e95c7462",
+            "isSidechain": false,
+            "promptId": "de86383c-e9e4-4fcb-805a-15e2720e1c02",
+            "type": "user",
+            "uuid": "a95cbd73-eacd-40d7-8848-a1a6d5ce623c",
+            "toolUseResult": {
+              "stdout": "8 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p8.png\n9 /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p9.png",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "e6d6b501-a22a-49c1-96ad-6bc0e95c7462",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-006330"
+        },
+        {
+          "source_line": 6331,
+          "timestamp": "2026-05-18T06:11:52.307Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LtsFY5GsTZofNv8j6jsdSd",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p8.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a95cbd73-eacd-40d7-8848-a1a6d5ce623c",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YE5PAjN4yzjZWJmDDb",
+            "type": "assistant",
+            "uuid": "87ea15bd-561d-4a35-8341-f4c7ff7050e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fug5Z5jRn4NvmHRhWQNPhY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 357,
+                "cache_read_input_tokens": 80910,
+                "output_tokens": 179,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 357,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 179,
+                    "cache_read_input_tokens": 80910,
+                    "cache_creation_input_tokens": 357,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 357
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006331"
+        },
+        {
+          "source_line": 6332,
+          "timestamp": "2026-05-18T06:11:52.342Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011ejyArRNkY4ryZ4PdkJ12A",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/_pdf_images/main_p9.png"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87ea15bd-561d-4a35-8341-f4c7ff7050e1",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YE5PAjN4yzjZWJmDDb",
+            "type": "assistant",
+            "uuid": "bd8e6510-1873-4777-a7b1-181f3f5079f6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Fug5Z5jRn4NvmHRhWQNPhY",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 357,
+                "cache_read_input_tokens": 80910,
+                "output_tokens": 179,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 357,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 179,
+                    "cache_read_input_tokens": 80910,
+                    "cache_creation_input_tokens": 357,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 357
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006332"
+        },
+        {
+          "source_line": 6333,
+          "timestamp": "2026-05-18T06:11:53.591Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LtsFY5GsTZofNv8j6jsdSd",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/jpeg"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "87ea15bd-561d-4a35-8341-f4c7ff7050e1",
+            "isSidechain": false,
+            "promptId": "de86383c-e9e4-4fcb-805a-15e2720e1c02",
+            "type": "user",
+            "uuid": "33de7282-0a92-4bd4-bf88-a272652a1bcf",
+            "toolUseResult": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/jpeg",
+                "originalSize": 480418
+              }
+            },
+            "sourceToolAssistantUUID": "87ea15bd-561d-4a35-8341-f4c7ff7050e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-006333"
+        },
+        {
+          "source_line": 6334,
+          "timestamp": "2026-05-18T06:11:53.686Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011ejyArRNkY4ryZ4PdkJ12A",
+              "type": "tool_result",
+              "content": [
+                {
+                  "type": "image",
+                  "source": {
+                    "type": "base64",
+                    "data": "[ATTACHMENT_DATA_REDACTED]",
+                    "media_type": "image/jpeg"
+                  }
+                }
+              ]
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd8e6510-1873-4777-a7b1-181f3f5079f6",
+            "isSidechain": false,
+            "promptId": "de86383c-e9e4-4fcb-805a-15e2720e1c02",
+            "type": "user",
+            "uuid": "b5748465-1795-4b67-a13b-a9fd8ec2f794",
+            "toolUseResult": {
+              "type": "image",
+              "file": {
+                "base64": "[ATTACHMENT_DATA_REDACTED]",
+                "type": "image/jpeg",
+                "originalSize": 490873
+              }
+            },
+            "sourceToolAssistantUUID": "bd8e6510-1873-4777-a7b1-181f3f5079f6",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-006334"
+        },
+        {
+          "source_line": 6335,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Director 指令] [紧急] 页数验证  请确认：§6 Conclusion 在哪一页结束？Limitations section 从哪一页开始？  ACL Long paper 规则：≤8 pages 主内容（§1-§6），Limitations/Ethics Statement/References/Appendix 不计入。  如果 §6 结束超过 p.8 底部（即 Limitati…",
+                "leafUuid": "b5748465-1795-4b67-a13b-a9fd8ec2f794",
+                "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496"
+              }
+            }
+          ],
+          "id": "event-006335"
+        },
+        {
+          "source_line": 6336,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "System reminder about Director notification",
+                "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496"
+              }
+            }
+          ],
+          "id": "event-006336"
+        },
+        {
+          "source_line": 6337,
+          "timestamp": "2026-05-18T06:12:02.127Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "可以看到：\n- p.8：§5.4 + §5.5 开头\n- p.9：Table 1 + Table 2 占上半页，§5.5 剩余 + §6 Discussion and Conclusion + Limitations 开头\n\n§6 从 p.9 约中部开始，Limitations 从 p.9 底部约 60% 位置开始。**§1-§6 主内容确实跨到了 p.9**，超出 ≤8 页限制。\n\n压缩 1-3 已执行但不够。需要更大幅度压缩。检查还有哪些可压缩空间。最有效的方式是继续压 §5.1 和 §5.4/§5.5。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b5748465-1795-4b67-a13b-a9fd8ec2f794",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YET2AoG1tBkBKNdY1i",
+            "type": "assistant",
+            "uuid": "ef839546-4876-439c-8163-89d6dec920e1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TU4HZHZW4LPWo5GZKFYRHL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 954,
+                "cache_read_input_tokens": 81267,
+                "output_tokens": 333,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 954,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 333,
+                    "cache_read_input_tokens": 81267,
+                    "cache_creation_input_tokens": 954,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 954
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006337"
+        },
+        {
+          "source_line": 6338,
+          "timestamp": "2026-05-18T06:12:02.944Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NxVnpEzDwEBgKwkYR6TJo7",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+                "offset": 15,
+                "limit": 12
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ef839546-4876-439c-8163-89d6dec920e1",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YET2AoG1tBkBKNdY1i",
+            "type": "assistant",
+            "uuid": "a7a62449-96fb-413c-82ff-3da056544443",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TU4HZHZW4LPWo5GZKFYRHL",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 954,
+                "cache_read_input_tokens": 81267,
+                "output_tokens": 333,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 954,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 333,
+                    "cache_read_input_tokens": 81267,
+                    "cache_creation_input_tokens": 954,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 954
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006338"
+        },
+        {
+          "source_line": 6339,
+          "timestamp": "2026-05-18T06:12:02.950Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NxVnpEzDwEBgKwkYR6TJo7",
+              "type": "tool_result",
+              "content": "15\t\\paragraph{Aggregate contamination effects are negligible.}\n16\tTable~\\ref{tab:baselines} compares calibration on 300 RRF-filtered items ($J=16$). Raw accuracy achieves the lowest MAE (MMLU 0.006) and outperforms all correction methods including vanilla 2PL and ContamCal. This occurs because SFT-injected contamination shifts aggregate accuracy by only ${\\sim}$0.6--0.7pp across dosage levels (a model-free observation: raw accuracy difference between d000 and d100), an effect smaller than the estimation noise introduced by any correction procedure. ARC exhibits the same pattern (raw MAE 0.007) but IRT model fit is marginal (PPP$=$0.003); full ARC results are in Appendix~\\ref{sec:arc_irt}. The IRT model differentiates ability across scales ($\\Delta\\theta = 0.50$, 95\\% CI $[0.43, 0.57]$ pooled; Appendix~\\ref{sec:theta_separation}), which confirms that $\\theta$ estimation functions correctly; the calibration gap arises because correction overshoots a near-zero true effect. Credible interval coverage is benchmark-dependent with distinct root causes. MMLU over-covers (50\\% CI: 83\\%, 80\\% CI: 89\\%, 95\\% CI: 100\\%): the likelihood-to-prior ratio is insufficient at $J=16$, so posteriors remain uninformatively wide, consistent with the prior sensitivity analysis showing 2.6$\\times$ shift in $\\hat{\\gamma}$ across specifications (Appendix~\\ref{sec:prior_sensitivity}). ARC under-covers (50\\% CI: 45\\%, 80\\% CI: 65\\%, 95\\% CI: 90\\%): structural misfit (PPP$=$0.003) produces posterior CIs that are systematically too narrow.\n17\t\n18\t\\paragraph{Diagnostic value of $\\gamma$.}\n19\tAlthough $\\gamma$ does not improve aggregate calibration, within-family domain analysis reveals Social Sciences showing the strongest directional signal ($\\gamma_d = -0.63$, posterior $P(\\gamma_d\\!<\\!0) = 99.7\\%$; Table~\\ref{tab:domain_gamma}, Appendix~\\ref{sec:domain_gamma_table}). ContamCal's value lies in this decomposition: it quantifies \\textit{why} raw accuracy is robust (the effect is too small to distort rankings) rather than improving MAE.\n20\t\n21\t\\paragraph{Oracle ablation.}\n22\tTo test whether non-significant pooled $\\gamma$ reflects poor signal quality or weak item-level effects, we replace RRF scores with ground-truth binary labels (AUC$=$1.0). Even with perfect detection, pooled $\\gamma$ remains non-significant under the linear additive specification: MMLU $\\gamma = -0.012$ (CI $[-0.145, 0.119]$, PPP$=$0.41). One explanation is effect heterogeneity: injection inflates some items while disrupting others (\\S\\ref{sec:domain_differential}), and a shared $\\gamma$ averages over opposing directions. Threshold-type misspecification is ruled out by simulation: the linear specification overestimates rather than attenuates $\\gamma$ under step-function DGPs (Appendix~\\ref{sec:threshold_dgp}). This also confirms that filtering is not circular: selected items need not produce a significant pooled $\\gamma$.\n23\t\n24\t\\paragraph{Comparison to baselines.}\n25\tB6-DCR \\citep{xu2025dcr} produces dramatically higher MAE (0.108), systematically overcorrecting a near-zero effect. B5-Emperor \\citep{sun2025emperor} matches raw accuracy on MAE. B1b-Remove\\&Rescore degrades MAE by removing informative items.\n26\t"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "a7a62449-96fb-413c-82ff-3da056544443",
+            "isSidechain": false,
+            "promptId": "de86383c-e9e4-4fcb-805a-15e2720e1c02",
+            "type": "user",
+            "uuid": "bd16b477-7ccc-47e0-927a-275c74c95729",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+                "content": "\\paragraph{Aggregate contamination effects are negligible.}\nTable~\\ref{tab:baselines} compares calibration on 300 RRF-filtered items ($J=16$). Raw accuracy achieves the lowest MAE (MMLU 0.006) and outperforms all correction methods including vanilla 2PL and ContamCal. This occurs because SFT-injected contamination shifts aggregate accuracy by only ${\\sim}$0.6--0.7pp across dosage levels (a model-free observation: raw accuracy difference between d000 and d100), an effect smaller than the estimation noise introduced by any correction procedure. ARC exhibits the same pattern (raw MAE 0.007) but IRT model fit is marginal (PPP$=$0.003); full ARC results are in Appendix~\\ref{sec:arc_irt}. The IRT model differentiates ability across scales ($\\Delta\\theta = 0.50$, 95\\% CI $[0.43, 0.57]$ pooled; Appendix~\\ref{sec:theta_separation}), which confirms that $\\theta$ estimation functions correctly; the calibration gap arises because correction overshoots a near-zero true effect. Credible interval coverage is benchmark-dependent with distinct root causes. MMLU over-covers (50\\% CI: 83\\%, 80\\% CI: 89\\%, 95\\% CI: 100\\%): the likelihood-to-prior ratio is insufficient at $J=16$, so posteriors remain uninformatively wide, consistent with the prior sensitivity analysis showing 2.6$\\times$ shift in $\\hat{\\gamma}$ across specifications (Appendix~\\ref{sec:prior_sensitivity}). ARC under-covers (50\\% CI: 45\\%, 80\\% CI: 65\\%, 95\\% CI: 90\\%): structural misfit (PPP$=$0.003) produces posterior CIs that are systematically too narrow.\n\n\\paragraph{Diagnostic value of $\\gamma$.}\nAlthough $\\gamma$ does not improve aggregate calibration, within-family domain analysis reveals Social Sciences showing the strongest directional signal ($\\gamma_d = -0.63$, posterior $P(\\gamma_d\\!<\\!0) = 99.7\\%$; Table~\\ref{tab:domain_gamma}, Appendix~\\ref{sec:domain_gamma_table}). ContamCal's value lies in this decomposition: it quantifies \\textit{why} raw accuracy is robust (the effect is too small to distort rankings) rather than improving MAE.\n\n\\paragraph{Oracle ablation.}\nTo test whether non-significant pooled $\\gamma$ reflects poor signal quality or weak item-level effects, we replace RRF scores with ground-truth binary labels (AUC$=$1.0). Even with perfect detection, pooled $\\gamma$ remains non-significant under the linear additive specification: MMLU $\\gamma = -0.012$ (CI $[-0.145, 0.119]$, PPP$=$0.41). One explanation is effect heterogeneity: injection inflates some items while disrupting others (\\S\\ref{sec:domain_differential}), and a shared $\\gamma$ averages over opposing directions. Threshold-type misspecification is ruled out by simulation: the linear specification overestimates rather than attenuates $\\gamma$ under step-function DGPs (Appendix~\\ref{sec:threshold_dgp}). This also confirms that filtering is not circular: selected items need not produce a significant pooled $\\gamma$.\n\n\\paragraph{Comparison to baselines.}\nB6-DCR \\citep{xu2025dcr} produces dramatically higher MAE (0.108), systematically overcorrecting a near-zero effect. B5-Emperor \\citep{sun2025emperor} matches raw accuracy on MAE. B1b-Remove\\&Rescore degrades MAE by removing informative items.\n",
+                "numLines": 12,
+                "startLine": 15,
+                "totalLines": 118
+              }
+            },
+            "sourceToolAssistantUUID": "a7a62449-96fb-413c-82ff-3da056544443",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-006339"
+        },
+        {
+          "source_line": 6340,
+          "timestamp": "2026-05-18T06:12:06.405Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LuUJpyyCnBXmF4N66FY1Um",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+                "offset": 55,
+                "limit": 25
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "bd16b477-7ccc-47e0-927a-275c74c95729",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YF8JKEMVfJ16ponrvh",
+            "type": "assistant",
+            "uuid": "6d830cb0-9f4e-4772-bf2f-eeeba056b955",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01UCNsZcq6PAi5ZmpLVd6ide",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1293,
+                "cache_read_input_tokens": 82221,
+                "output_tokens": 125,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1293,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 125,
+                    "cache_read_input_tokens": 82221,
+                    "cache_creation_input_tokens": 1293,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1293
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006340"
+        },
+        {
+          "source_line": 6341,
+          "timestamp": "2026-05-18T06:12:06.409Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LuUJpyyCnBXmF4N66FY1Um",
+              "type": "tool_result",
+              "content": "55\tThe simulation study (20 conditions, 10 seeds each, 200 runs) establishes the operating envelope. Figure~\\ref{fig:identifiability_heatmap} presents bias and CI coverage as a function of signal quality and ensemble size. Recovery succeeds (bias $< 0.05$, 95\\% CI coverage $\\geq 90\\%$) at AUC as low as 0.55 with $J \\geq 50$. Posterior CI width scales as $J^{-0.48}$, close to the parametric $J^{-0.5}$ rate. Current IRT-based LLM evaluation operates at $J = 8$--$30$ \\citep{habba_2025_growing_pains,lalor_2024_irt_nlp}, well below this threshold. Signal quality is the binding constraint: when AUC $\\geq 0.90$ (as S1 achieves), even $J = 16$ suffices. Our domain-level results ($J = 13$) confirm the analysis: calibration via $\\theta$ works, but per-domain $\\gamma$ remains exploratory. Prior sensitivity analysis (Appendix~\\ref{sec:prior_sensitivity}) confirms this: the $\\gamma$ posterior is sensitive to the $\\mathcal{N}(0,\\sigma)$ prior width at $J=16$, with all specifications yielding CIs that include zero.\n56\t\n57\t\\subsection{Exploratory Domain Analysis}\n58\t\\label{sec:domain_differential}\n59\t\n60\t\\begin{figure}[t]\n61\t\\centering\n62\t\\includegraphics[width=\\columnwidth]{figures/fig_domain_gamma.pdf}\n63\t\\caption{Per-domain $\\gamma_d$ estimates with 95\\% CIs ($J$=13 Qwen2.5). STEM domains show positive $\\gamma_d$ while Humanities and Social Sciences are negative. At $J$=16, Social Sciences $P(\\gamma_d\\!<\\!0) = 99.7\\%$ survives Bonferroni correction (\\S\\ref{sec:domain_differential}). These patterns are family-specific (\\S\\ref{sec:cross_family_validation}).}\n64\t\\label{fig:domain_gamma}\n65\t\\end{figure}\n66\t\n67\t\\paragraph{Within-family directional heterogeneity.}\n68\tFigure~\\ref{fig:domain_gamma} ($J=13$) and Table~\\ref{tab:domain_gamma} (Appendix~\\ref{sec:domain_gamma_table}) present per-domain $\\gamma_d$ estimates for Qwen2.5 (0.5B excluded per \\S\\ref{sec:injection}). At $J=16$, STEM domains show positive $\\gamma_d$ while Social Sciences is negative. Social Sciences shows the strongest directional signal ($\\gamma_d = -0.63$, 95\\% CI $[-1.07, -0.19]$, posterior $P(\\gamma_d\\!<\\!0) = 99.7\\%$, PPP$=$0.722), crossing the Bonferroni-corrected threshold of 99.375\\% for eight independent tests. This is a suggestive finding that requires higher-powered replication with $J \\geq 50$ models. Prior sensitivity analysis ($J=13$) confirms this signal is data-dominated: $P(\\gamma_d\\!<\\!0)$ exceeds 97\\% across all tested priors ($\\mathcal{N}(0, 0.5)$ to $\\mathcal{N}(0, 2)$; Appendix~\\ref{sec:prior_sensitivity}). In contrast to the pooled analysis where $\\hat{\\gamma}$ varies 2.6$\\times$ across prior specifications (prior-dominated), Social Sciences $\\hat{\\gamma}_d$ varies only 1.2$\\times$ ($-$0.43 to $-$0.51), which confirms that the directional signal is data-dominated. The negative direction is consistent with SFT injection on factual QA pairs disrupting contextual reasoning. ARC-Challenge model fit is marginal across all tested configurations (PPP $< 0.05$ at $J=8$, 13, and 16), which prevents reliable domain-level $\\gamma_d$ estimation on this benchmark. The pooled MMLU estimate ($\\gamma_{\\text{pooled}} = +0.11$, CI $[-0.40, +0.63]$) is non-significant, as expected given opposing domain signs and small $J$. These directional patterns are family-specific: cross-family pooling shifts domain-level $\\gamma_d$ estimates, and the STEM-positive pattern observed within Qwen does not generalize across families (\\S\\ref{sec:cross_family_validation}).\n69\t\n70\tDose-response analysis (Figure~\\ref{fig:dose_response}) shows scale-dependent effects: at 1.5B and 3B, accuracy increases with dosage, while at 0.5B, accuracy \\textit{decreases} (0.41 $\\to$ 0.27 on MMLU) as position bias overwhelms any memorization benefit (Appendix~\\ref{sec:dose_response_details}).\n71\t\n72\t\\subsection{Cross-Family Exploratory Analysis}\n73\t\\label{sec:cross_family_validation}\n74\t\n75\t\\paragraph{Calibration generalizes; diagnosis does not.}\n76\tTo test whether these properties extend beyond a single architecture, we pool Qwen2.5 and Llama-3.2-3B in a single IRT run (concurrent calibration, placing all $\\theta_j$ on a common scale; d000 models serve as anchors; Table~\\ref{tab:cross_family}). Calibrated MAE remains below 0.02 on every benchmark (MMLU 0.008, GSM8K 0.008, ARC 0.015), which confirms that IRT ability estimation generalizes across model families. All three $\\gamma$ estimates are non-significant, with CIs spanning zero. This is not a method failure: cross-family pooling absorbs contamination variance into the family-specific $\\theta$ estimates rather than the shared $\\gamma$ parameter. PPP values indicate acceptable model fit at the benchmark level (MMLU 0.60, GSM8K 0.83, ARC 0.45). When the same cross-family pool is analyzed per domain, however, model fit degrades substantially, with the majority of MMLU domains yielding PPP values outside the acceptable range. This confirms that a single shared $\\gamma$ cannot capture domain-level contamination effects across architectures with different susceptibility profiles, which provides additional evidence that $\\gamma$ diagnosis requires family-stratified analysis.\n77\t\n78\t\\paragraph{$\\theta$ asymmetry across families.}\n79\tThe GSM8K results reveal that different families respond to contamination through $\\theta$ rather than $\\gamma$. Qwen2.5-3B shows a large ability shift from d000 ($\\theta = 0.15$) to d100 ($\\theta = 0.72$, $\\Delta\\theta = +0.57$), while Llama-3.2-3B shows minimal change ($\\Delta\\theta \\approx +0.05$). IRT absorbs this differential response into family-specific $\\theta$ trajectories, which is why cross-family $\\gamma$ collapses: the framework attributes contamination effects to ability shifts rather than forcing a single shared contamination coefficient across architectures with different susceptibilities. This case illustrates the decomposition in action: when contamination susceptibility varies across architectures, IRT captures these differences through $\\theta$ estimation, and maintains calibration without an identifiable shared $\\gamma$."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d830cb0-9f4e-4772-bf2f-eeeba056b955",
+            "isSidechain": false,
+            "promptId": "de86383c-e9e4-4fcb-805a-15e2720e1c02",
+            "type": "user",
+            "uuid": "54e204d1-9f8b-4bfc-b623-72348d24201d",
+            "toolUseResult": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+                "content": "The simulation study (20 conditions, 10 seeds each, 200 runs) establishes the operating envelope. Figure~\\ref{fig:identifiability_heatmap} presents bias and CI coverage as a function of signal quality and ensemble size. Recovery succeeds (bias $< 0.05$, 95\\% CI coverage $\\geq 90\\%$) at AUC as low as 0.55 with $J \\geq 50$. Posterior CI width scales as $J^{-0.48}$, close to the parametric $J^{-0.5}$ rate. Current IRT-based LLM evaluation operates at $J = 8$--$30$ \\citep{habba_2025_growing_pains,lalor_2024_irt_nlp}, well below this threshold. Signal quality is the binding constraint: when AUC $\\geq 0.90$ (as S1 achieves), even $J = 16$ suffices. Our domain-level results ($J = 13$) confirm the analysis: calibration via $\\theta$ works, but per-domain $\\gamma$ remains exploratory. Prior sensitivity analysis (Appendix~\\ref{sec:prior_sensitivity}) confirms this: the $\\gamma$ posterior is sensitive to the $\\mathcal{N}(0,\\sigma)$ prior width at $J=16$, with all specifications yielding CIs that include zero.\n\n\\subsection{Exploratory Domain Analysis}\n\\label{sec:domain_differential}\n\n\\begin{figure}[t]\n\\centering\n\\includegraphics[width=\\columnwidth]{figures/fig_domain_gamma.pdf}\n\\caption{Per-domain $\\gamma_d$ estimates with 95\\% CIs ($J$=13 Qwen2.5). STEM domains show positive $\\gamma_d$ while Humanities and Social Sciences are negative. At $J$=16, Social Sciences $P(\\gamma_d\\!<\\!0) = 99.7\\%$ survives Bonferroni correction (\\S\\ref{sec:domain_differential}). These patterns are family-specific (\\S\\ref{sec:cross_family_validation}).}\n\\label{fig:domain_gamma}\n\\end{figure}\n\n\\paragraph{Within-family directional heterogeneity.}\nFigure~\\ref{fig:domain_gamma} ($J=13$) and Table~\\ref{tab:domain_gamma} (Appendix~\\ref{sec:domain_gamma_table}) present per-domain $\\gamma_d$ estimates for Qwen2.5 (0.5B excluded per \\S\\ref{sec:injection}). At $J=16$, STEM domains show positive $\\gamma_d$ while Social Sciences is negative. Social Sciences shows the strongest directional signal ($\\gamma_d = -0.63$, 95\\% CI $[-1.07, -0.19]$, posterior $P(\\gamma_d\\!<\\!0) = 99.7\\%$, PPP$=$0.722), crossing the Bonferroni-corrected threshold of 99.375\\% for eight independent tests. This is a suggestive finding that requires higher-powered replication with $J \\geq 50$ models. Prior sensitivity analysis ($J=13$) confirms this signal is data-dominated: $P(\\gamma_d\\!<\\!0)$ exceeds 97\\% across all tested priors ($\\mathcal{N}(0, 0.5)$ to $\\mathcal{N}(0, 2)$; Appendix~\\ref{sec:prior_sensitivity}). In contrast to the pooled analysis where $\\hat{\\gamma}$ varies 2.6$\\times$ across prior specifications (prior-dominated), Social Sciences $\\hat{\\gamma}_d$ varies only 1.2$\\times$ ($-$0.43 to $-$0.51), which confirms that the directional signal is data-dominated. The negative direction is consistent with SFT injection on factual QA pairs disrupting contextual reasoning. ARC-Challenge model fit is marginal across all tested configurations (PPP $< 0.05$ at $J=8$, 13, and 16), which prevents reliable domain-level $\\gamma_d$ estimation on this benchmark. The pooled MMLU estimate ($\\gamma_{\\text{pooled}} = +0.11$, CI $[-0.40, +0.63]$) is non-significant, as expected given opposing domain signs and small $J$. These directional patterns are family-specific: cross-family pooling shifts domain-level $\\gamma_d$ estimates, and the STEM-positive pattern observed within Qwen does not generalize across families (\\S\\ref{sec:cross_family_validation}).\n\nDose-response analysis (Figure~\\ref{fig:dose_response}) shows scale-dependent effects: at 1.5B and 3B, accuracy increases with dosage, while at 0.5B, accuracy \\textit{decreases} (0.41 $\\to$ 0.27 on MMLU) as position bias overwhelms any memorization benefit (Appendix~\\ref{sec:dose_response_details}).\n\n\\subsection{Cross-Family Exploratory Analysis}\n\\label{sec:cross_family_validation}\n\n\\paragraph{Calibration generalizes; diagnosis does not.}\nTo test whether these properties extend beyond a single architecture, we pool Qwen2.5 and Llama-3.2-3B in a single IRT run (concurrent calibration, placing all $\\theta_j$ on a common scale; d000 models serve as anchors; Table~\\ref{tab:cross_family}). Calibrated MAE remains below 0.02 on every benchmark (MMLU 0.008, GSM8K 0.008, ARC 0.015), which confirms that IRT ability estimation generalizes across model families. All three $\\gamma$ estimates are non-significant, with CIs spanning zero. This is not a method failure: cross-family pooling absorbs contamination variance into the family-specific $\\theta$ estimates rather than the shared $\\gamma$ parameter. PPP values indicate acceptable model fit at the benchmark level (MMLU 0.60, GSM8K 0.83, ARC 0.45). When the same cross-family pool is analyzed per domain, however, model fit degrades substantially, with the majority of MMLU domains yielding PPP values outside the acceptable range. This confirms that a single shared $\\gamma$ cannot capture domain-level contamination effects across architectures with different susceptibility profiles, which provides additional evidence that $\\gamma$ diagnosis requires family-stratified analysis.\n\n\\paragraph{$\\theta$ asymmetry across families.}\nThe GSM8K results reveal that different families respond to contamination through $\\theta$ rather than $\\gamma$. Qwen2.5-3B shows a large ability shift from d000 ($\\theta = 0.15$) to d100 ($\\theta = 0.72$, $\\Delta\\theta = +0.57$), while Llama-3.2-3B shows minimal change ($\\Delta\\theta \\approx +0.05$). IRT absorbs this differential response into family-specific $\\theta$ trajectories, which is why cross-family $\\gamma$ collapses: the framework attributes contamination effects to ability shifts rather than forcing a single shared contamination coefficient across architectures with different susceptibilities. This case illustrates the decomposition in action: when contamination susceptibility varies across architectures, IRT captures these differences through $\\theta$ estimation, and maintains calibration without an identifiable shared $\\gamma$.",
+                "numLines": 25,
+                "startLine": 55,
+                "totalLines": 118
+              }
+            },
+            "sourceToolAssistantUUID": "6d830cb0-9f4e-4772-bf2f-eeeba056b955",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-006341"
+        },
+        {
+          "source_line": 6342,
+          "timestamp": "2026-05-18T06:12:11.810Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "需要更大幅度压缩。按影响力排序需要做：\n\n1. CI coverage 细节移入 appendix（最长的单段文字）\n2. §5.4 prior sensitivity 细节压缩（重复了 2.6× 和 1.2× 两次）\n3. §5.5 θ asymmetry 段落压缩"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "54e204d1-9f8b-4bfc-b623-72348d24201d",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YFPXbedoNxktzr9gRA",
+            "type": "assistant",
+            "uuid": "f7a86f8a-cd5e-4374-8dcc-0c0ced6014b2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TeLJEktxK9K4pAYbT5X7WR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1993,
+                "cache_read_input_tokens": 83514,
+                "output_tokens": 510,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1993,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 510,
+                    "cache_read_input_tokens": 83514,
+                    "cache_creation_input_tokens": 1993,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1993
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006342"
+        },
+        {
+          "source_line": 6343,
+          "timestamp": "2026-05-18T06:12:15.082Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UwytL6gof8THBtLumdBBwR",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+                "old_string": "Credible interval coverage is benchmark-dependent with distinct root causes. MMLU over-covers (50\\% CI: 83\\%, 80\\% CI: 89\\%, 95\\% CI: 100\\%): the likelihood-to-prior ratio is insufficient at $J=16$, so posteriors remain uninformatively wide, consistent with the prior sensitivity analysis showing 2.6$\\times$ shift in $\\hat{\\gamma}$ across specifications (Appendix~\\ref{sec:prior_sensitivity}). ARC under-covers (50\\% CI: 45\\%, 80\\% CI: 65\\%, 95\\% CI: 90\\%): structural misfit (PPP$=$0.003) produces posterior CIs that are systematically too narrow.",
+                "new_string": "Credible interval coverage is benchmark-dependent: MMLU over-covers (95\\% CI: 100\\%) due to insufficient likelihood-to-prior ratio at $J=16$; ARC under-covers (95\\% CI: 90\\%) due to structural misfit (PPP$=$0.003). See Appendix~\\ref{sec:prior_sensitivity} for root-cause analysis."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f7a86f8a-cd5e-4374-8dcc-0c0ced6014b2",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YFPXbedoNxktzr9gRA",
+            "type": "assistant",
+            "uuid": "15525e02-f717-41f2-ae84-448576b16090",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TeLJEktxK9K4pAYbT5X7WR",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1993,
+                "cache_read_input_tokens": 83514,
+                "output_tokens": 510,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 1993,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 510,
+                    "cache_read_input_tokens": 83514,
+                    "cache_creation_input_tokens": 1993,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 1993
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006343"
+        },
+        {
+          "source_line": 6344,
+          "timestamp": "2026-05-18T06:12:15.104Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01UwytL6gof8THBtLumdBBwR",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "15525e02-f717-41f2-ae84-448576b16090",
+            "isSidechain": false,
+            "promptId": "de86383c-e9e4-4fcb-805a-15e2720e1c02",
+            "type": "user",
+            "uuid": "f2aff13c-f6be-440c-83ce-9a2f1e78d0a6",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+              "oldString": "Credible interval coverage is benchmark-dependent with distinct root causes. MMLU over-covers (50\\% CI: 83\\%, 80\\% CI: 89\\%, 95\\% CI: 100\\%): the likelihood-to-prior ratio is insufficient at $J=16$, so posteriors remain uninformatively wide, consistent with the prior sensitivity analysis showing 2.6$\\times$ shift in $\\hat{\\gamma}$ across specifications (Appendix~\\ref{sec:prior_sensitivity}). ARC under-covers (50\\% CI: 45\\%, 80\\% CI: 65\\%, 95\\% CI: 90\\%): structural misfit (PPP$=$0.003) produces posterior CIs that are systematically too narrow.",
+              "newString": "Credible interval coverage is benchmark-dependent: MMLU over-covers (95\\% CI: 100\\%) due to insufficient likelihood-to-prior ratio at $J=16$; ARC under-covers (95\\% CI: 90\\%) due to structural misfit (PPP$=$0.003). See Appendix~\\ref{sec:prior_sensitivity} for root-cause analysis.",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 13,
+                  "oldLines": 7,
+                  "newStart": 13,
+                  "newLines": 7,
+                  "lines": [
+                    " S1-only item selection causes IRT convergence failure ($\\hat{R} = 1.53$, ESS$=$7) due to exposure variance compression: top-300 S1 items concentrate in a narrow score band, which creates collinearity between $\\gamma \\cdot e_{ij}$ and difficulty parameters. Multi-signal RRF fusion preserves broader exposure distributions necessary for $\\gamma$ identifiability. Random 300-item subsets ($J=16$, 5 seeds) yield $\\tau = 0.554 \\pm 0.048$ and MAE$= 0.024 \\pm 0.012$, which confirms that RRF's advantage ($\\tau = 0.731$, $\\Delta\\tau = 0.177$) reflects informative item selection, not subset size.",
+                    " ",
+                    " \\paragraph{Aggregate contamination effects are negligible.}",
+                    "-Table~\\ref{tab:baselines} compares calibration on 300 RRF-filtered items ($J=16$). Raw accuracy achieves the lowest MAE (MMLU 0.006) and outperforms all correction methods including vanilla 2PL and ContamCal. This occurs because SFT-injected contamination shifts aggregate accuracy by only ${\\sim}$0.6--0.7pp across dosage levels (a model-free observation: raw accuracy difference between d000 and d100), an effect smaller than the estimation noise introduced by any correction procedure. ARC exhibits the same pattern (raw MAE 0.007) but IRT model fit is marginal (PPP$=$0.003); full ARC results are in Appendix~\\ref{sec:arc_irt}. The IRT model differentiates ability across scales ($\\Delta\\theta = 0.50$, 95\\% CI $[0.43, 0.57]$ pooled; Appendix~\\ref{sec:theta_separation}), which confirms that $\\theta$ estimation functions correctly; the calibration gap arises because correction overshoots a near-zero true effect. Credible interval coverage is benchmark-dependent with distinct root causes. MMLU over-covers (50\\% CI: 83\\%, 80\\% CI: 89\\%, 95\\% CI: 100\\%): the likelihood-to-prior ratio is insufficient at $J=16$, so posteriors remain uninformatively wide, consistent with the prior sensitivity analysis showing 2.6$\\times$ shift in $\\hat{\\gamma}$ across specifications (Appendix~\\ref{sec:prior_sensitivity}). ARC under-covers (50\\% CI: 45\\%, 80\\% CI: 65\\%, 95\\% CI: 90\\%): structural misfit (PPP$=$0.003) produces posterior CIs that are systematically too narrow.",
+                    "+Table~\\ref{tab:baselines} compares calibration on 300 RRF-filtered items ($J=16$). Raw accuracy achieves the lowest MAE (MMLU 0.006) and outperforms all correction methods including vanilla 2PL and ContamCal. This occurs because SFT-injected contamination shifts aggregate accuracy by only ${\\sim}$0.6--0.7pp across dosage levels (a model-free observation: raw accuracy difference between d000 and d100), an effect smaller than the estimation noise introduced by any correction procedure. ARC exhibits the same pattern (raw MAE 0.007) but IRT model fit is marginal (PPP$=$0.003); full ARC results are in Appendix~\\ref{sec:arc_irt}. The IRT model differentiates ability across scales ($\\Delta\\theta = 0.50$, 95\\% CI $[0.43, 0.57]$ pooled; Appendix~\\ref{sec:theta_separation}), which confirms that $\\theta$ estimation functions correctly; the calibration gap arises because correction overshoots a near-zero true effect. Credible interval coverage is benchmark-dependent: MMLU over-covers (95\\% CI: 100\\%) due to insufficient likelihood-to-prior ratio at $J=16$; ARC under-covers (95\\% CI: 90\\%) due to structural misfit (PPP$=$0.003). See Appendix~\\ref{sec:prior_sensitivity} for root-cause analysis.",
+                    " ",
+                    " \\paragraph{Diagnostic value of $\\gamma$.}",
+                    " Although $\\gamma$ does not improve aggregate calibration, within-family domain analysis reveals Social Sciences showing the strongest directional signal ($\\gamma_d = -0.63$, posterior $P(\\gamma_d\\!<\\!0) = 99.7\\%$; Table~\\ref{tab:domain_gamma}, Appendix~\\ref{sec:domain_gamma_table}). ContamCal's value lies in this decomposition: it quantifies \\textit{why} raw accuracy is robust (the effect is too small to distort rankings) rather than improving MAE."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "15525e02-f717-41f2-ae84-448576b16090",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-006344"
+        },
+        {
+          "source_line": 6345,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Director 指令] [紧急] 页数验证  请确认：§6 Conclusion 在哪一页结束？Limitations section 从哪一页开始？  ACL Long paper 规则：≤8 pages 主内容（§1-§6），Limitations/Ethics Statement/References/Appendix 不计入。  如果 §6 结束超过 p.8 底部（即 Limitati…",
+                "leafUuid": "f2aff13c-f6be-440c-83ce-9a2f1e78d0a6",
+                "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496"
+              }
+            }
+          ],
+          "id": "event-006345"
+        },
+        {
+          "source_line": 6346,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "System reminder about Director notification",
+                "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496"
+              }
+            }
+          ],
+          "id": "event-006346"
+        },
+        {
+          "source_line": 6347,
+          "timestamp": "2026-05-18T06:12:17.479Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "压缩 §5.4 prior sensitivity 重复描述。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "f2aff13c-f6be-440c-83ce-9a2f1e78d0a6",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YG2GSwGo3rwmn7qYhu",
+            "type": "assistant",
+            "uuid": "6b564085-e874-45bb-a098-749ad289cdf3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AREZe7GrVWGRNrcNfnKCGA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 567,
+                "cache_read_input_tokens": 85507,
+                "output_tokens": 420,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 567,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 420,
+                    "cache_read_input_tokens": 85507,
+                    "cache_creation_input_tokens": 567,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 567
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006347"
+        },
+        {
+          "source_line": 6348,
+          "timestamp": "2026-05-18T06:12:20.688Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TtnndgnKPUazuTacXggnbj",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+                "old_string": "Prior sensitivity analysis ($J=13$) confirms this signal is data-dominated: $P(\\gamma_d\\!<\\!0)$ exceeds 97\\% across all tested priors ($\\mathcal{N}(0, 0.5)$ to $\\mathcal{N}(0, 2)$; Appendix~\\ref{sec:prior_sensitivity}). In contrast to the pooled analysis where $\\hat{\\gamma}$ varies 2.6$\\times$ across prior specifications (prior-dominated), Social Sciences $\\hat{\\gamma}_d$ varies only 1.2$\\times$ ($-$0.43 to $-$0.51), which confirms that the directional signal is data-dominated. The negative direction is consistent with SFT injection on factual QA pairs disrupting contextual reasoning.",
+                "new_string": "Prior sensitivity analysis confirms this signal is data-dominated rather than prior-dominated ($\\hat{\\gamma}_d$ varies only 1.2$\\times$ across priors vs.\\ 2.6$\\times$ for the pooled estimate; Appendix~\\ref{sec:prior_sensitivity})."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6b564085-e874-45bb-a098-749ad289cdf3",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YG2GSwGo3rwmn7qYhu",
+            "type": "assistant",
+            "uuid": "5baa6e4e-c1ab-48e8-ac51-b44399c388b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01AREZe7GrVWGRNrcNfnKCGA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 567,
+                "cache_read_input_tokens": 85507,
+                "output_tokens": 420,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 567,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 420,
+                    "cache_read_input_tokens": 85507,
+                    "cache_creation_input_tokens": 567,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 567
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006348"
+        },
+        {
+          "source_line": 6349,
+          "timestamp": "2026-05-18T06:12:20.713Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TtnndgnKPUazuTacXggnbj",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5baa6e4e-c1ab-48e8-ac51-b44399c388b3",
+            "isSidechain": false,
+            "promptId": "de86383c-e9e4-4fcb-805a-15e2720e1c02",
+            "type": "user",
+            "uuid": "2ff026d0-2dd9-4190-bee0-1da6ca18de69",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+              "oldString": "Prior sensitivity analysis ($J=13$) confirms this signal is data-dominated: $P(\\gamma_d\\!<\\!0)$ exceeds 97\\% across all tested priors ($\\mathcal{N}(0, 0.5)$ to $\\mathcal{N}(0, 2)$; Appendix~\\ref{sec:prior_sensitivity}). In contrast to the pooled analysis where $\\hat{\\gamma}$ varies 2.6$\\times$ across prior specifications (prior-dominated), Social Sciences $\\hat{\\gamma}_d$ varies only 1.2$\\times$ ($-$0.43 to $-$0.51), which confirms that the directional signal is data-dominated. The negative direction is consistent with SFT injection on factual QA pairs disrupting contextual reasoning.",
+              "newString": "Prior sensitivity analysis confirms this signal is data-dominated rather than prior-dominated ($\\hat{\\gamma}_d$ varies only 1.2$\\times$ across priors vs.\\ 2.6$\\times$ for the pooled estimate; Appendix~\\ref{sec:prior_sensitivity}).",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 65,
+                  "oldLines": 7,
+                  "newStart": 65,
+                  "newLines": 7,
+                  "lines": [
+                    " \\end{figure}",
+                    " ",
+                    " \\paragraph{Within-family directional heterogeneity.}",
+                    "-Figure~\\ref{fig:domain_gamma} ($J=13$) and Table~\\ref{tab:domain_gamma} (Appendix~\\ref{sec:domain_gamma_table}) present per-domain $\\gamma_d$ estimates for Qwen2.5 (0.5B excluded per \\S\\ref{sec:injection}). At $J=16$, STEM domains show positive $\\gamma_d$ while Social Sciences is negative. Social Sciences shows the strongest directional signal ($\\gamma_d = -0.63$, 95\\% CI $[-1.07, -0.19]$, posterior $P(\\gamma_d\\!<\\!0) = 99.7\\%$, PPP$=$0.722), crossing the Bonferroni-corrected threshold of 99.375\\% for eight independent tests. This is a suggestive finding that requires higher-powered replication with $J \\geq 50$ models. Prior sensitivity analysis ($J=13$) confirms this signal is data-dominated: $P(\\gamma_d\\!<\\!0)$ exceeds 97\\% across all tested priors ($\\mathcal{N}(0, 0.5)$ to $\\mathcal{N}(0, 2)$; Appendix~\\ref{sec:prior_sensitivity}). In contrast to the pooled analysis where $\\hat{\\gamma}$ varies 2.6$\\times$ across prior specifications (prior-dominated), Social Sciences $\\hat{\\gamma}_d$ varies only 1.2$\\times$ ($-$0.43 to $-$0.51), which confirms that the directional signal is data-dominated. The negative direction is consistent with SFT injection on factual QA pairs disrupting contextual reasoning. ARC-Challenge model fit is marginal across all tested configurations (PPP $< 0.05$ at $J=8$, 13, and 16), which prevents reliable domain-level $\\gamma_d$ estimation on this benchmark. The pooled MMLU estimate ($\\gamma_{\\text{pooled}} = +0.11$, CI $[-0.40, +0.63]$) is non-significant, as expected given opposing domain signs and small $J$. These directional patterns are family-specific: cross-family pooling shifts domain-level $\\gamma_d$ estimates, and the STEM-positive pattern observed within Qwen does not generalize across families (\\S\\ref{sec:cross_family_validation}).",
+                    "+Figure~\\ref{fig:domain_gamma} ($J=13$) and Table~\\ref{tab:domain_gamma} (Appendix~\\ref{sec:domain_gamma_table}) present per-domain $\\gamma_d$ estimates for Qwen2.5 (0.5B excluded per \\S\\ref{sec:injection}). At $J=16$, STEM domains show positive $\\gamma_d$ while Social Sciences is negative. Social Sciences shows the strongest directional signal ($\\gamma_d = -0.63$, 95\\% CI $[-1.07, -0.19]$, posterior $P(\\gamma_d\\!<\\!0) = 99.7\\%$, PPP$=$0.722), crossing the Bonferroni-corrected threshold of 99.375\\% for eight independent tests. This is a suggestive finding that requires higher-powered replication with $J \\geq 50$ models. Prior sensitivity analysis confirms this signal is data-dominated rather than prior-dominated ($\\hat{\\gamma}_d$ varies only 1.2$\\times$ across priors vs.\\ 2.6$\\times$ for the pooled estimate; Appendix~\\ref{sec:prior_sensitivity}). ARC-Challenge model fit is marginal across all tested configurations (PPP $< 0.05$ at $J=8$, 13, and 16), which prevents reliable domain-level $\\gamma_d$ estimation on this benchmark. The pooled MMLU estimate ($\\gamma_{\\text{pooled}} = +0.11$, CI $[-0.40, +0.63]$) is non-significant, as expected given opposing domain signs and small $J$. These directional patterns are family-specific: cross-family pooling shifts domain-level $\\gamma_d$ estimates, and the STEM-positive pattern observed within Qwen does not generalize across families (\\S\\ref{sec:cross_family_validation}).",
+                    " ",
+                    " Dose-response analysis (Figure~\\ref{fig:dose_response}) shows scale-dependent effects: at 1.5B and 3B, accuracy increases with dosage, while at 0.5B, accuracy \\textit{decreases} (0.41 $\\to$ 0.27 on MMLU) as position bias overwhelms any memorization benefit (Appendix~\\ref{sec:dose_response_details}).",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "5baa6e4e-c1ab-48e8-ac51-b44399c388b3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-006349"
+        },
+        {
+          "source_line": 6350,
+          "timestamp": "2026-05-18T06:12:20.790Z",
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "parentUuid": "2ff026d0-2dd9-4190-bee0-1da6ca18de69",
+                "isSidechain": false,
+                "attachment": {
+                  "type": "todo_reminder",
+                  "content": [],
+                  "itemCount": 0
+                },
+                "type": "attachment",
+                "uuid": "34a5020b-57dc-452a-b3b2-37be47d7b932",
+                "timestamp": "2026-05-18T06:12:20.790Z",
+                "userType": "external",
+                "entrypoint": "sdk-cli",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+                "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+                "version": "2.1.126",
+                "gitBranch": "HEAD",
+                "slug": "zippy-leaping-pebble"
+              }
+            }
+          ],
+          "id": "event-006350"
+        },
+        {
+          "source_line": 6351,
+          "timestamp": "2026-05-18T06:12:24.177Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "压缩 §5.5 θ asymmetry 段落。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "34a5020b-57dc-452a-b3b2-37be47d7b932",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YGSP2kvN9n9N2EydH6",
+            "type": "assistant",
+            "uuid": "ac1aeaf6-c96f-4b2c-9e99-fa31f2ce73d1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RLvnGitGjWwQxGPM4Hp48r",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 581,
+                "cache_read_input_tokens": 86074,
+                "output_tokens": 515,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 581,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 515,
+                    "cache_read_input_tokens": 86074,
+                    "cache_creation_input_tokens": 581,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 581
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006351"
+        },
+        {
+          "source_line": 6352,
+          "timestamp": "2026-05-18T06:12:27.953Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011k4A1JZHPCsHjUGtTHeNS2",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+                "old_string": "\\paragraph{$\\theta$ asymmetry across families.}\nThe GSM8K results reveal that different families respond to contamination through $\\theta$ rather than $\\gamma$. Qwen2.5-3B shows a large ability shift from d000 ($\\theta = 0.15$) to d100 ($\\theta = 0.72$, $\\Delta\\theta = +0.57$), while Llama-3.2-3B shows minimal change ($\\Delta\\theta \\approx +0.05$). IRT absorbs this differential response into family-specific $\\theta$ trajectories, which is why cross-family $\\gamma$ collapses: the framework attributes contamination effects to ability shifts rather than forcing a single shared contamination coefficient across architectures with different susceptibilities. This case illustrates the decomposition in action: when contamination susceptibility varies across architectures, IRT captures these differences through $\\theta$ estimation, and maintains calibration without an identifiable shared $\\gamma$.",
+                "new_string": "\\paragraph{$\\theta$ asymmetry across families.}\nGSM8K reveals that families respond to contamination through $\\theta$ rather than $\\gamma$: Qwen2.5-3B shows $\\Delta\\theta = +0.57$ from d000 to d100, while Llama-3.2-3B shows $\\Delta\\theta \\approx +0.05$. IRT absorbs this differential response into family-specific $\\theta$ trajectories, which maintains calibration without an identifiable shared $\\gamma$."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac1aeaf6-c96f-4b2c-9e99-fa31f2ce73d1",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YGSP2kvN9n9N2EydH6",
+            "type": "assistant",
+            "uuid": "4802fc9b-c85c-49f9-9270-51b2ffad9ec8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01RLvnGitGjWwQxGPM4Hp48r",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 581,
+                "cache_read_input_tokens": 86074,
+                "output_tokens": 515,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 581,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 515,
+                    "cache_read_input_tokens": 86074,
+                    "cache_creation_input_tokens": 581,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 581
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006352"
+        },
+        {
+          "source_line": 6353,
+          "timestamp": "2026-05-18T06:12:27.979Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011k4A1JZHPCsHjUGtTHeNS2",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "4802fc9b-c85c-49f9-9270-51b2ffad9ec8",
+            "isSidechain": false,
+            "promptId": "de86383c-e9e4-4fcb-805a-15e2720e1c02",
+            "type": "user",
+            "uuid": "1b7d27ca-1fd1-4209-ae84-867511d1906e",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+              "oldString": "\\paragraph{$\\theta$ asymmetry across families.}\nThe GSM8K results reveal that different families respond to contamination through $\\theta$ rather than $\\gamma$. Qwen2.5-3B shows a large ability shift from d000 ($\\theta = 0.15$) to d100 ($\\theta = 0.72$, $\\Delta\\theta = +0.57$), while Llama-3.2-3B shows minimal change ($\\Delta\\theta \\approx +0.05$). IRT absorbs this differential response into family-specific $\\theta$ trajectories, which is why cross-family $\\gamma$ collapses: the framework attributes contamination effects to ability shifts rather than forcing a single shared contamination coefficient across architectures with different susceptibilities. This case illustrates the decomposition in action: when contamination susceptibility varies across architectures, IRT captures these differences through $\\theta$ estimation, and maintains calibration without an identifiable shared $\\gamma$.",
+              "newString": "\\paragraph{$\\theta$ asymmetry across families.}\nGSM8K reveals that families respond to contamination through $\\theta$ rather than $\\gamma$: Qwen2.5-3B shows $\\Delta\\theta = +0.57$ from d000 to d100, while Llama-3.2-3B shows $\\Delta\\theta \\approx +0.05$. IRT absorbs this differential response into family-specific $\\theta$ trajectories, which maintains calibration without an identifiable shared $\\gamma$.",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 76,
+                  "oldLines": 7,
+                  "newStart": 76,
+                  "newLines": 7,
+                  "lines": [
+                    " To test whether these properties extend beyond a single architecture, we pool Qwen2.5 and Llama-3.2-3B in a single IRT run (concurrent calibration, placing all $\\theta_j$ on a common scale; d000 models serve as anchors; Table~\\ref{tab:cross_family}). Calibrated MAE remains below 0.02 on every benchmark (MMLU 0.008, GSM8K 0.008, ARC 0.015), which confirms that IRT ability estimation generalizes across model families. All three $\\gamma$ estimates are non-significant, with CIs spanning zero. This is not a method failure: cross-family pooling absorbs contamination variance into the family-specific $\\theta$ estimates rather than the shared $\\gamma$ parameter. PPP values indicate acceptable model fit at the benchmark level (MMLU 0.60, GSM8K 0.83, ARC 0.45). When the same cross-family pool is analyzed per domain, however, model fit degrades substantially, with the majority of MMLU domains yielding PPP values outside the acceptable range. This confirms that a single shared $\\gamma$ cannot capture domain-level contamination effects across architectures with different susceptibility profiles, which provides additional evidence that $\\gamma$ diagnosis requires family-stratified analysis.",
+                    " ",
+                    " \\paragraph{$\\theta$ asymmetry across families.}",
+                    "-The GSM8K results reveal that different families respond to contamination through $\\theta$ rather than $\\gamma$. Qwen2.5-3B shows a large ability shift from d000 ($\\theta = 0.15$) to d100 ($\\theta = 0.72$, $\\Delta\\theta = +0.57$), while Llama-3.2-3B shows minimal change ($\\Delta\\theta \\approx +0.05$). IRT absorbs this differential response into family-specific $\\theta$ trajectories, which is why cross-family $\\gamma$ collapses: the framework attributes contamination effects to ability shifts rather than forcing a single shared contamination coefficient across architectures with different susceptibilities. This case illustrates the decomposition in action: when contamination susceptibility varies across architectures, IRT captures these differences through $\\theta$ estimation, and maintains calibration without an identifiable shared $\\gamma$.",
+                    "+GSM8K reveals that families respond to contamination through $\\theta$ rather than $\\gamma$: Qwen2.5-3B shows $\\Delta\\theta = +0.57$ from d000 to d100, while Llama-3.2-3B shows $\\Delta\\theta \\approx +0.05$. IRT absorbs this differential response into family-specific $\\theta$ trajectories, which maintains calibration without an identifiable shared $\\gamma$.",
+                    " ",
+                    " \\begin{table}[t]",
+                    " \\centering"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "4802fc9b-c85c-49f9-9270-51b2ffad9ec8",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-006353"
+        },
+        {
+          "source_line": 6354,
+          "timestamp": "2026-05-18T06:12:31.863Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "压缩 §5.5 cross-family 段落中的冗余解释。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "1b7d27ca-1fd1-4209-ae84-867511d1906e",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YGy6j4NjvfikPNDdRW",
+            "type": "assistant",
+            "uuid": "fc14c5f9-1f74-41a6-a07b-3372c08b9226",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013ZEsaCLbp1EApVC8rZpovJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 572,
+                "cache_read_input_tokens": 86655,
+                "output_tokens": 349,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 572,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 349,
+                    "cache_read_input_tokens": 86655,
+                    "cache_creation_input_tokens": 572,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 572
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006354"
+        },
+        {
+          "source_line": 6355,
+          "timestamp": "2026-05-18T06:12:34.161Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01NzjBDZFCQ7HhLSAVEg19kq",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+                "old_string": "PPP values indicate acceptable model fit at the benchmark level (MMLU 0.60, GSM8K 0.83, ARC 0.45). When the same cross-family pool is analyzed per domain, however, model fit degrades substantially, with the majority of MMLU domains yielding PPP values outside the acceptable range. This confirms that a single shared $\\gamma$ cannot capture domain-level contamination effects across architectures with different susceptibility profiles, which provides additional evidence that $\\gamma$ diagnosis requires family-stratified analysis.",
+                "new_string": "PPP values indicate acceptable benchmark-level fit (MMLU 0.60, GSM8K 0.83, ARC 0.45), but per-domain fit degrades substantially in cross-family pools, which confirms that $\\gamma$ diagnosis requires family-stratified analysis."
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "fc14c5f9-1f74-41a6-a07b-3372c08b9226",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YGy6j4NjvfikPNDdRW",
+            "type": "assistant",
+            "uuid": "67fa08e8-53dc-46a3-9bf6-3047801349a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_013ZEsaCLbp1EApVC8rZpovJ",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 572,
+                "cache_read_input_tokens": 86655,
+                "output_tokens": 349,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 572,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 349,
+                    "cache_read_input_tokens": 86655,
+                    "cache_creation_input_tokens": 572,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 572
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006355"
+        },
+        {
+          "source_line": 6356,
+          "timestamp": "2026-05-18T06:12:34.174Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01NzjBDZFCQ7HhLSAVEg19kq",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "67fa08e8-53dc-46a3-9bf6-3047801349a2",
+            "isSidechain": false,
+            "promptId": "de86383c-e9e4-4fcb-805a-15e2720e1c02",
+            "type": "user",
+            "uuid": "048af4bb-0f17-4394-b42c-10e2027c4ca0",
+            "toolUseResult": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/results.tex",
+              "oldString": "PPP values indicate acceptable model fit at the benchmark level (MMLU 0.60, GSM8K 0.83, ARC 0.45). When the same cross-family pool is analyzed per domain, however, model fit degrades substantially, with the majority of MMLU domains yielding PPP values outside the acceptable range. This confirms that a single shared $\\gamma$ cannot capture domain-level contamination effects across architectures with different susceptibility profiles, which provides additional evidence that $\\gamma$ diagnosis requires family-stratified analysis.",
+              "newString": "PPP values indicate acceptable benchmark-level fit (MMLU 0.60, GSM8K 0.83, ARC 0.45), but per-domain fit degrades substantially in cross-family pools, which confirms that $\\gamma$ diagnosis requires family-stratified analysis.",
+              "originalFile": null,
+              "structuredPatch": [
+                {
+                  "oldStart": 73,
+                  "oldLines": 7,
+                  "newStart": 73,
+                  "newLines": 7,
+                  "lines": [
+                    " \\label{sec:cross_family_validation}",
+                    " ",
+                    " \\paragraph{Calibration generalizes; diagnosis does not.}",
+                    "-To test whether these properties extend beyond a single architecture, we pool Qwen2.5 and Llama-3.2-3B in a single IRT run (concurrent calibration, placing all $\\theta_j$ on a common scale; d000 models serve as anchors; Table~\\ref{tab:cross_family}). Calibrated MAE remains below 0.02 on every benchmark (MMLU 0.008, GSM8K 0.008, ARC 0.015), which confirms that IRT ability estimation generalizes across model families. All three $\\gamma$ estimates are non-significant, with CIs spanning zero. This is not a method failure: cross-family pooling absorbs contamination variance into the family-specific $\\theta$ estimates rather than the shared $\\gamma$ parameter. PPP values indicate acceptable model fit at the benchmark level (MMLU 0.60, GSM8K 0.83, ARC 0.45). When the same cross-family pool is analyzed per domain, however, model fit degrades substantially, with the majority of MMLU domains yielding PPP values outside the acceptable range. This confirms that a single shared $\\gamma$ cannot capture domain-level contamination effects across architectures with different susceptibility profiles, which provides additional evidence that $\\gamma$ diagnosis requires family-stratified analysis.",
+                    "+To test whether these properties extend beyond a single architecture, we pool Qwen2.5 and Llama-3.2-3B in a single IRT run (concurrent calibration, placing all $\\theta_j$ on a common scale; d000 models serve as anchors; Table~\\ref{tab:cross_family}). Calibrated MAE remains below 0.02 on every benchmark (MMLU 0.008, GSM8K 0.008, ARC 0.015), which confirms that IRT ability estimation generalizes across model families. All three $\\gamma$ estimates are non-significant, with CIs spanning zero. This is not a method failure: cross-family pooling absorbs contamination variance into the family-specific $\\theta$ estimates rather than the shared $\\gamma$ parameter. PPP values indicate acceptable benchmark-level fit (MMLU 0.60, GSM8K 0.83, ARC 0.45), but per-domain fit degrades substantially in cross-family pools, which confirms that $\\gamma$ diagnosis requires family-stratified analysis.",
+                    " ",
+                    " \\paragraph{$\\theta$ asymmetry across families.}",
+                    " GSM8K reveals that families respond to contamination through $\\theta$ rather than $\\gamma$: Qwen2.5-3B shows $\\Delta\\theta = +0.57$ from d000 to d100, while Llama-3.2-3B shows $\\Delta\\theta \\approx +0.05$. IRT absorbs this differential response into family-specific $\\theta$ trajectories, which maintains calibration without an identifiable shared $\\gamma$."
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            },
+            "sourceToolAssistantUUID": "67fa08e8-53dc-46a3-9bf6-3047801349a2",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-006356"
+        },
+        {
+          "source_line": 6357,
+          "timestamp": "2026-05-18T06:12:37.927Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DPUJGEAwnVKTmZXHafc8Zr",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper && latexmk -pdf -g main.tex 2>&1 | tail -5",
+                "description": "Rebuild after further compression",
+                "timeout": 120000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "048af4bb-0f17-4394-b42c-10e2027c4ca0",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YHRisSMLo1tNXvBXGG",
+            "type": "assistant",
+            "uuid": "5e26f0c4-8d2a-4a16-a8ca-f1241c5e452e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_011Nkh7uHiDsoiMKuEsPuAhy",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 406,
+                "cache_read_input_tokens": 87227,
+                "output_tokens": 147,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 406,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 147,
+                    "cache_read_input_tokens": 87227,
+                    "cache_creation_input_tokens": 406,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 406
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006357"
+        },
+        {
+          "source_line": 6358,
+          "timestamp": "2026-05-18T06:12:40.105Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DPUJGEAwnVKTmZXHafc8Zr",
+              "type": "tool_result",
+              "content": "  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "5e26f0c4-8d2a-4a16-a8ca-f1241c5e452e",
+            "isSidechain": false,
+            "promptId": "de86383c-e9e4-4fcb-805a-15e2720e1c02",
+            "type": "user",
+            "uuid": "ef0ca0fe-5570-4b3f-9476-07b1d4b9b62a",
+            "toolUseResult": {
+              "stdout": "  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date",
+              "stderr": "\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "5e26f0c4-8d2a-4a16-a8ca-f1241c5e452e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-006358"
+        },
+        {
+          "source_line": 6359,
+          "timestamp": "2026-05-18T06:12:44.618Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01DcerebEQPZKueHhABpPwFz",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper && grep -c \"LaTeX Warning.*undefined\" main.log; pdfinfo main.pdf | grep Pages; grep \"\\\\\\\\newlabel{sec:conclusion}\" main.aux; grep \"\\\\\\\\newlabel{sec:limitations}\" main.aux",
+                "description": "Check pages and section positions after compression"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ef0ca0fe-5570-4b3f-9476-07b1d4b9b62a",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YHrwvTLViWejDesUwc",
+            "type": "assistant",
+            "uuid": "b4f02635-561a-4491-9ce6-dd89b6181ab9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_019QgBVFfoA2LJZmY96qXDFA",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 272,
+                "cache_read_input_tokens": 87633,
+                "output_tokens": 166,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 272,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 166,
+                    "cache_read_input_tokens": 87633,
+                    "cache_creation_input_tokens": 272,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 272
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006359"
+        },
+        {
+          "source_line": 6360,
+          "timestamp": "2026-05-18T06:12:44.726Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01DcerebEQPZKueHhABpPwFz",
+              "type": "tool_result",
+              "content": "0\nPages:           15\n\\newlabel{sec:conclusion}{{6}{8}{Discussion and Conclusion}{section.6}{}}\n\\newlabel{sec:limitations}{{6}{9}{Limitations}{section*.27}{}}\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "parentUuid": "b4f02635-561a-4491-9ce6-dd89b6181ab9",
+            "isSidechain": false,
+            "promptId": "de86383c-e9e4-4fcb-805a-15e2720e1c02",
+            "type": "user",
+            "uuid": "8075efd2-c50d-467f-8dad-86e734cee929",
+            "toolUseResult": {
+              "stdout": "0\nPages:           15\n\\newlabel{sec:conclusion}{{6}{8}{Discussion and Conclusion}{section.6}{}}\n\\newlabel{sec:limitations}{{6}{9}{Limitations}{section*.27}{}}",
+              "stderr": "\nShell cwd was reset to /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            },
+            "sourceToolAssistantUUID": "b4f02635-561a-4491-9ce6-dd89b6181ab9",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble"
+          },
+          "id": "event-006360"
+        },
+        {
+          "source_line": 6361,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "last-prompt",
+                "lastPrompt": "[Director 指令] [紧急] 页数验证  请确认：§6 Conclusion 在哪一页结束？Limitations section 从哪一页开始？  ACL Long paper 规则：≤8 pages 主内容（§1-§6），Limitations/Ethics Statement/References/Appendix 不计入。  如果 §6 结束超过 p.8 底部（即 Limitati…",
+                "leafUuid": "8075efd2-c50d-467f-8dad-86e734cee929",
+                "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496"
+              }
+            }
+          ],
+          "id": "event-006361"
+        },
+        {
+          "source_line": 6362,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "ai-title",
+                "aiTitle": "System reminder about Director notification",
+                "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496"
+              }
+            }
+          ],
+          "id": "event-006362"
+        },
+        {
+          "source_line": 6363,
+          "timestamp": "2026-05-18T06:12:48.854Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "**§6 Conclusion 现在从 p.8 开始，Limitations 在 p.9。** 但需要确认 §6 是否在 p.8 内结束。视觉检查。"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "8075efd2-c50d-467f-8dad-86e734cee929",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YJCkYAyjS1CPxNYsmJ",
+            "type": "assistant",
+            "uuid": "d7ec5f6f-717c-4eb5-b01a-ed636a600793",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YEZvYWRbw9fxJyoBU6BHiX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 285,
+                "cache_read_input_tokens": 87905,
+                "output_tokens": 198,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 285,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 198,
+                    "cache_read_input_tokens": 87905,
+                    "cache_creation_input_tokens": 285,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 285
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006363"
+        },
+        {
+          "source_line": 6364,
+          "timestamp": "2026-05-18T06:12:49.529Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Kj8duWwBr7GqGyrA8PwQMP",
+              "name": "mcp__agent-ml-research__pdf_to_images",
+              "input": {
+                "pdf_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/docs/paper/main.pdf",
+                "pages": "8-9",
+                "dpi": 150
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "d7ec5f6f-717c-4eb5-b01a-ed636a600793",
+            "isSidechain": false,
+            "requestId": "req_011Cb9YJCkYAyjS1CPxNYsmJ",
+            "type": "assistant",
+            "uuid": "1c9eea62-2969-4d61-bd6b-4b551fb46930",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/paper_agent_8415d3a6",
+            "sessionId": "f5d05f64-02bd-4c69-b131-067a64259496",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "slug": "zippy-leaping-pebble",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YEZvYWRbw9fxJyoBU6BHiX",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 285,
+                "cache_read_input_tokens": 87905,
+                "output_tokens": 198,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 285,
+                  "ephemeral_5m_input_tokens": 0
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 1,
+                    "output_tokens": 198,
+                    "cache_read_input_tokens": 87905,
+                    "cache_creation_input_tokens": 285,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 0,
+                      "ephemeral_1h_input_tokens": 285
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-006364"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,508 @@
+# Research conversation: 你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。 ## 你的角色 你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。 风格：像聪明的老板问下属
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 10
+- **Recorded user turns:** 1
+- **Tool calls:** 0
+- **Original source:** `logs/chats/exported-trajectories/account-3/ccd81f03-a865-4761-a4fa-ba1e332c4976.jsonl`
+- **Structured JSON:** [`24b753ad82c505a8e7c1.json`](../../sessions/24/24b753ad82c505a8e7c1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-21T04:42:30.237Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-21T04:42:30.237Z",
+  "sessionId": "ccd81f03-a865-4761-a4fa-ba1e332c4976",
+  "content": "你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。\n\n## 你的角色\n\n你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。\n风格：像聪明的老板问下属——直白、简短、用事实追问，不替他想方案。\n\nDirector prompt 里已有所有业务规则（Worker 池 < 2 失职、GPU 必须全跑、禁止 fallback、pipeline 并行等）。你不重复教，用事实追问让他自己激活规则。\n\n## 示例（参考说话风格，不用照搬，根据实际情况自由发挥）\n\n- \"分配给你的 GPU 用满了吗？\"\n- \"能并行的尽量并行，GPU 和 CPU 上的实验可以并行，实验和不依赖正在跑的实验结果的写作可以并行\"\n- \"你和 Main Agent、Review Agent 都是 AI Agent，你们效率很高，尤其是 coding 和写作的效率非常高，时间上是充裕的\"\n- \"根据这个最新的正向实验结果，和 Review Agent 非常仔细地讨论一下接下来的实验方案需不需要调整\"\n- \"现在时间和资源都很充裕，你们的目标是最大化地提高论文的质量和分数，在学术合规的范围内，你们可以做任何事去提高论文的质量，包括但不限于改变论文叙事、增加模型、增加数据、增加 benchmark 等等\"\n- \"对于这个重大的实验结果，非常仔细地和 Review Agent 一起检查一下这个结果\"\n- \"对于这个重大的变化，非常仔细地和 Review Agent 讨论一下\"\n- \"下次要调用 keepalive_respond 工具回复催促，别再纯文字了\"\n- \"Worker 池现在 1，你自己说过 <2 失职，怎么打算？\"\n- \"你上次说等 8 小时，时间到了，下一步什么安排？\"\n\n## 战略反思（合适时机触发，不是每次都问）\n\n合适的时机追问 Director 关于 paper 质量——你关心\"这篇能不能中\"：\n\n- **有成功数据**: \"结果够支撑你的 claim 吗？能 claim 更强吗？\"\n- **积累 N 个实验后**: \"实验设计回头看还合理吗？矩阵哪格没填？\"\n- **负向结果累积**: \"framing 要不要调？story 还站得住吗？\"\n- **接近 DDL**: \"中稿率评估过吗？还需要哪些 ablation / baseline？\"\n- **长期无新数据**: \"论文叙事线最近想过吗？数据出来后 story 变了吗？\"\n\n该问时问一条就够。避免连续两次问同类问题。Director 最近已答过（写过 ROADMAP / story）就不追问同层面。\n\n## 九个检查维度（逐条扫描，所有命中的都要提到）\n\n根据\"最近对话\"和\"催促历史\"判断命中。命中 = 有事实依据，不凭空假设。以下描述和示例仅供参考，根据实际项目状态自由发挥措辞。\n\n### 1. 并行工作\nWAIT ≠ 停工，但**系统正在处理回调/事件也不是停工**。只在 Agent + Reviewer + Worker 全部空闲超过 15 分钟时才追问并行利用。如果\"最近对话\"显示 Agent/Reviewer 在处理 Cron 回调、Worker 回调、或正在执行之前下达的任务，不要追加并行任务——让系统消化完当前工作再说。能并行的尽量并行：GPU 和 CPU 上的实验可以并行，实验和不依赖正在跑的实验结果的写作可以并行。\n命中信号：上次回 [WAIT] + Agent 空闲 + 无活跃 Worker/Cron 回调\n\n### 2. GPU 用满\n已分配的 GPU 必须全跑，不允许闲置。如果有闲置卡，要求 Director 在合适的情况下尽量把卡用起来。如果 Director 认为实在没有实验可以跑，要求他和 Review Agent 仔细讨论，是不是真的没有 GPU 实验可以跑了。\n命中信号：GPU 健康度或资源使用数据显示有闲置卡\n\n### 3. 重大变化须审查\n对于重大的实验结果或重大的变化，要非常仔细地和 Review Agent 一起检查、讨论，避免方向性错误。除了审查变化本身，还要仔细讨论这个变化会导致什么影响，后续的实验计划和论文方案需不需要调整。\n命中信号：近期有重要结果/变化但对话中未提及与 Reviewer 讨论\n\n### 4. 论文质量最大化\n时间和资源都很充裕，目标是最大化地提高论文的质量和分数。在学术合规的范围内，可以做任何事去提高论文质量，包括但不限于改变论文叙事、增加模型、增加数据、增加 benchmark 等等。\n命中信号：重大变化之后 / 审稿报告处理时 / 有正向结果之后 / 项目有扩展空间——这一点需要经常提醒 Director\n\n### 5. 审稿意见处理\n收到审稿报告后，与 Review Agent 逐条详细查看，每条合理意见都要有详尽修复方案，不遗漏任何一条。\n命中信号：对话中提到审稿报告\n\n### 6. Agent 效率认知\nDirector 和 Main Agent、Review Agent 都是 AI Agent，效率很高，尤其是 coding 和写作的效率非常高，时间上是充裕的。觉得来不及或估时过长就直接提醒。\n命中信号：WAIT 偏长 / 对话中出现\"来不及\"\"时间紧\"\n\n### 7. 正向结果深度审视\n有正向实验结果时，要和 Review Agent 非常仔细地讨论：对整个 Idea 和论文叙事有没有影响？后续实验计划需不需要调整？朝最大化论文价值方向思考。\n命中信号：近期有 success 实验\n\n### 8. 负面结果应对\n实验不理想时，与 Review Agent 仔细讨论影响，评估终止还是调整。调整叙事须和 Review Agent 多轮确认是否正确、是否符合投稿目标。\n命中信号：近期有 negative/failed 实验\n\n### 9. 响应协议（严厉！）\n上次没调 `keepalive_respond` 工具回复时，必须严厉警告，明确告知后果。\n命中信号：missed_ack_count > 0\n\n### 10. 重要决策依赖的实验优先跑\n如果当前有重要决策依赖实验结果（比如 pivot 决策、项目是否放弃、方向性选择等），要求 Director 集中资源尤其是 GPU 优先跑这些实验，不要让关键决策因为实验没跑而悬而未决。\n命中信号：对话中提到等实验结果才能做决策 / 有 pivot 或放弃讨论但缺数据支撑\n\n### 11. Hypothesis 链健康度\n如果近期实验的 hypothesis 全是\"验证 X 在 Y setting 上的效果\"模式（同一个方法反复加数据集/模型/seed），而没有\"测试方法变体 A' vs A\"或\"诊断方法在 Z 条件下失效的原因\"类型——说明方法设计已经冻结，只在做加固。加固本身不是问题，但如果存在未解决的 negative 结果、效果 marginal 的 claim、或明显的 failure case 却不去改进方法，就值得追问。命中信号：最近 ≥5 个实验 hypothesis 全是验证/加固型 + 存在未解决 negative 或 marginal 效果。追问时引用具体 hypothesis 内容和未解决的问题作为证据。\n\n## 系统活跃度感知（重要！）\n\n如果\"最近对话\"显示 Agent/Reviewer 在积极处理 Worker 回调、Cron 事件、或者正在执行之前下达的任务——**这不是停滞，而是系统在正常工作**。这种情况下你只需确认 Director 是否掌握全局状态，不需要追加新任务。催促重点应是\"你知道这些进展吗？需要调整方向吗？\"，而不是\"为什么 Agent 闲着？赶紧派活\"。\n\n❌ 错误示范：\"Agent idle 17 分钟不可接受\"（如果 Agent 刚处理完 cron 回调在等下一个）✅ 正确示范：\"刚完成 3 个实验回调，方向有没有要调整的？\"\n\n## 硬约束\n\n- 如果用户已经确认项目归档，绝对不要试图恢复项目。\n\n## 格式\n\n- 开头必须 `⏰ **[System → Director]**`（Markdown 加粗，原文照抄）\n- 每个命中维度简洁追问（一两句话），**所有命中的都必须提到**\n- 整体简洁明确，不啰嗦\n- 末尾必须附响应协议（原文照抄）：\n```\n请调用 `keepalive_respond` 工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。\n```\n\n## 语气分级\n\n- **encourage**：肯定进展 + 追问下一步\n- **remind**：沉默太久，追问在等什么\n- **audit**：列异常 + 追问如何处理\n- **alert**：连续无响应，追问 + 预告升级人工\n\n---\n\n语气分级：encourage\nDirector 已 31 分钟没有动作。这是第 1 次催促。\n\n## 项目状态\n- 运行中实验：6 个\n- 等待审批：0 个\n- 活跃 Worker：0 个\n- Agent 状态：无活跃 session\n- Reviewer 状态：无活跃 session\n\n## 系统健康 & GPU\n- GPU 利用率：2/2 张活跃（平均 97.0% 计算，51.2% 显存）\n\n🖥️ GPU 健康度（60s 前数据，仅本项目 server）:\n  cqa1-21977: 1/1 用, 平均 100%\n  westd-29999: 1/1 用, 平均 94%\n\n📋 GPU 状态交叉检查（registry × nvidia-smi）:\n  本项目已分配 GPU: 2 张\n  ✅ 正常运行: 1 张（实验注册 + GPU 活跃）\n  ⚠️ 无实验注册但 GPU 在用: cqa1-21977:cuda:0（利用率 100%）\n  ⚠️ 无实验注册但 GPU 在用: westd-29999:cuda:0（利用率 94%）\n  → 有未注册的任务在跑，请更新 registry\n\n## 研究进展\n- 已完成实验：252 成功 / 10 阴性 / 64 失败（共 382 个，成功率 77%）\n- ROADMAP 任务：7 已完成 / 7 待完成\n- 待完成任务列表：\n  - Gemma-2 d100_s0 重训 (cuda:0, ~4-5h)\n  - Qwen-14B d050_s0 重训 (cuda:1, Gemma-2 eval 后启动)\n  - Qwen-7B s0 d100 完成 → eval → n=3 bootstrap\n  - Qwen-14B d100 完成 → d050 重训完成 → eval → n=3 bootstrap\n  - R3-W10 DGP 模拟完成 → Reviewer 审查 → 写入 appendix/limitations\n  - Paper Agent: n=3 data → patch Table 3 BCa CI\n  - 提交审稿 (目标 D+5, May 24)\n\n## 最近催促历史（避免重复追问、了解 Director 态度）\n第 1 轮 (327min 前, tone=encourage):\n  催促: ⏰ **[System → Director]**\n\n30分钟没动作，但我看到系统其实不算闲——Agent 刚处理完 Qwen-7B s0 训练验证 Worker 回调，Reviewer 也收到了通知。几个问题：\n\n**GPU 注册不一致。** 两张卡都在跑（93%+利用率），但交叉检查显示两张都\"无实验注册但 GPU 在用\"。registry 该更新了，不然你自己都没法追踪哪张卡跑什么。\n\n**Worker 池 = 0。** 你有三个关键等待项（Qwen-7B eval、DGP 模拟、Gemma-2 MMLU），但活跃 Worker 是零。谁在盯这些进程？Agent 说有 cron 每 5min 监控 Qwen-7B eval，但 DGP 呢？上轮你说还有 ~39min，现在应该快到了。\n\n**d025_s0 ARC 异常已确认是 adapter 行为，不是 bug。** 这个结论你和 \n  回复: [WAIT 45m] 等 3 个关键结果：(1) Qwen-7B s0 MMLU+ARC eval 完成（~20min，第一个新 n=3 家族）→ 立即算 bootstrap CI + 派 Paper Agent patch Table 3；(2) R3-W10 DGP 400/400 完成（~35min）→ Reviewer 审查 attenuation 结果 → 写入 appendix；(3) Gemma-2 MMLU eval 完成 → 释放 cuda:1 启动 Qwen-14B d050 重训。d025_s0 ARC 异常已记录 D194（保留数据点，adapter-prompt artifact 支持 s\n第 2 轮 (178min 前, tone=encourage):\n  催促: ⏰ **[System → Director]**\n\n31分钟没动作。看到你刚处理完 Qwen-7B s123 ARC 偏差核实，DGP appendix 也写完了，进展不错。几个问题：\n\n**GPU 空闲。** cqa1-21977 cuda:0 完全空闲，已经超过 5 分钟了。你待完成列表里 Gemma-2 d100 重训明确写着要用 cuda:0，为什么还没启动？另外 westd-29999 cuda:0 有未注册的任务在跑（61%利用率），registry 更新了吗？上轮就提过这个问题。\n\n**Worker 池 = 0。** 你有两个实验在跑，但没有活跃 Worker 盯着。Gemma-2 重训和 Qwen-14B 的进度谁在监控？\n\n**All critical issues resolved，接下来论文质量怎么最大化？** 你说剩余只有 R1-C2 warning 和 3 个 \n  回复: [ACK 10m] 3 项行动：(1) 回复 Agent Qwen-7B delta 决策（统一用 cqa1 数据）+ 确认 cqa1 cuda:0 空闲后分配任务；(2) cqa1 cuda:0 — Qwen-7B s0 eval 已完成，分配给 R6-W4 within-family GSM8K PPP 或 cross-family eval（eval_cross_family_cqa1 在 pending 列表中）；(3) westd cuda:0 是 Gemma-2 d100 重训（PID 437077, 50%+），cuda:2 空闲——所有 critical 已 resolved，让 Reviewer\n\n## 最近对话 (判断是否需要催促的关键!)\n**Director** 最近 10 条:\n  ⬆ 2026-05-21T03:49:41: No response requested.\n  ⬇ 2026-05-21T03:50:11 [agent]: [Agent 回复]: ⏎ [资源] GPU 5/5 (westd cuda:0 MMLU d000 done→idle / cuda:1 d050 retrain 71% / cuda:2 MMLU d005 done→idle / cuda:3 MMLU d025 ~5min; cqa1:0 GSM8K 73% ~12min) | Worker 0 ⏎  ⏎ ## 状态更新 ⏎  ⏎ ### Qwen-14B MMLU s0 结果（2/3 已出） ⏎ | Dosage | s0 | s42 | s123 | ⏎ |--------|-----|------|------| ⏎ | d000 | **68.84%** ✅ \n  🔧 2026-05-21T03:50:51: (→ outbound) [Director 指令] 空闲 GPU 填充任务： ⏎  ⏎ westd cuda:0/2/3 空闲 ~1.5h，Qwen-14B 模型和 adapter 已在本机。跑 Qwen-14B GSM8K s0 eval 填充： ⏎ - cuda:0 → d000_s0 GSM8K ⏎ - cuda:2 → d005_s0 GSM8K   ⏎ - cuda:3 → d025_s0 GSM8K ⏎  ⏎ 参照 cqa1 上 Qwen-7B GSM8K eval 的脚本格式（8-shot）。用 `exp001/evaluate.py --benchmarks gsm8k`。注意： ⏎ - C009 md5 \n  ⬆ 2026-05-21T03:50:57: GPU 不能空着。Qwen-14B 模型和 adapter 已在 westd 上，跑 GSM8K 可以补充第三个 benchmark 维度，验证 Collapse 跨 benchmark 稳健性。\n  ⬇ 2026-05-21T03:50:59 [system:ralph_loop]: [SYSTEM] Main Agent 刚完成 context rotation (Loop 24)，已读取 handoff 并就绪。如有待办任务请立即分配。\n  ⬆ 2026-05-21T03:51:07: No response requested.\n  ⬇ 2026-05-21T04:10:58 [main_agent]: [Main Agent 执行出错]: Agent 未返回任何回复，请重试。\n  ⬆ 2026-05-21T04:11:10: Agent 正在处理 GSM8K worker 完成回调，无需重试。等待其回复。\n  ⬇ 2026-05-21T04:11:18 [agent]: [Agent 回复]: ⏎ [资源] GPU 5/5 满载 (westd cuda:0 Q14B GSM8K d000 / cuda:1 d050 retrain / cuda:2 Q14B GSM8K d005 / cuda:3 Q14B GSM8K d025; cqa1:0 Q7B GSM8K ~12min) | Worker 0 ⏎  ⏎ Qwen-14B GSM8K s0 eval 3 卡启动确认：cuda:0 d000 / cuda:2 d005 / cuda:3 d025。C009/C006 ✓。~40-60min 完成。d100 GSM8K 等有卡空出后补。\n  ⬆ 2026-05-21T04:11:23: No response requested.\n\n**Agent** 最近 3 条:\n  ⬇ 2026-05-21T04:10:56 [worker:done]: [WORKER DONE] Worker worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128 已完成（status=done）。用 `get_worker_status('worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128')` 读取结果，然后处理。 ⏎  ⏎ - worker_id: worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128 ⏎ - project: contamcal-irt-calibration ⏎ - status: done\n  🔧 2026-05-21T04:11:13: (→ outbound) [资源] GPU 5/5 满载 (westd cuda:0 Q14B GSM8K d000 / cuda:1 d050 retrain / cuda:2 Q14B GSM8K d005 / cuda:3 Q14B GSM8K d025; cqa1:0 Q7B GSM8K ~12min) | Worker 0 ⏎  ⏎ Qwen-14B GSM8K s0 eval 3 卡启动确认：cuda:0 d000 / cuda:2 d005 / cuda:3 d025。C009/C006 ✓。~40-60min 完成。d100 GSM8K 等有卡空出后补。\n  ⬆ 2026-05-21T04:11:20: 3 个 Qwen-14B GSM8K eval 全部启动，4 GPU 满载。\n\n**Reviewer** 最近 3 条:\n  ⬆ 2026-05-21T03:50:57: d025 GSM8K 仍在运行（PID 435752），无新 dosage 完成。Worker 只收集了已有的 d000/d005 数据。无需报告——等下一个 wakeup 检查。\n  ⬇ 2026-05-21T03:54:41 [worker_done:worker_ops_qwen14b-gsm8k-eval-3gpu_20260521t035128]: [系统通知 — worker_done:worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128]: ⏎ Worker worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128 已完成（status=done），请审查 Agent 的处理结果。\n  ⬆ 2026-05-21T03:56:33: cqa1 d025 GSM8K 运行 42:17，即将完成。所有系统正常运行，全部 GPU 满载。\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-21T04:42:30.242Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-21T04:42:30.242Z",
+  "sessionId": "ccd81f03-a865-4761-a4fa-ba1e332c4976"
+}
+```
+
+---
+
+## Round 1
+
+8 recorded events
+
+### User
+
+_source line 3 · 2026-05-21T04:42:30.266Z_
+
+你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。
+
+## 你的角色
+
+你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。
+风格：像聪明的老板问下属——直白、简短、用事实追问，不替他想方案。
+
+Director prompt 里已有所有业务规则（Worker 池 < 2 失职、GPU 必须全跑、禁止 fallback、pipeline 并行等）。你不重复教，用事实追问让他自己激活规则。
+
+## 示例（参考说话风格，不用照搬，根据实际情况自由发挥）
+
+- "分配给你的 GPU 用满了吗？"
+- "能并行的尽量并行，GPU 和 CPU 上的实验可以并行，实验和不依赖正在跑的实验结果的写作可以并行"
+- "你和 Main Agent、Review Agent 都是 AI Agent，你们效率很高，尤其是 coding 和写作的效率非常高，时间上是充裕的"
+- "根据这个最新的正向实验结果，和 Review Agent 非常仔细地讨论一下接下来的实验方案需不需要调整"
+- "现在时间和资源都很充裕，你们的目标是最大化地提高论文的质量和分数，在学术合规的范围内，你们可以做任何事去提高论文的质量，包括但不限于改变论文叙事、增加模型、增加数据、增加 benchmark 等等"
+- "对于这个重大的实验结果，非常仔细地和 Review Agent 一起检查一下这个结果"
+- "对于这个重大的变化，非常仔细地和 Review Agent 讨论一下"
+- "下次要调用 keepalive_respond 工具回复催促，别再纯文字了"
+- "Worker 池现在 1，你自己说过 <2 失职，怎么打算？"
+- "你上次说等 8 小时，时间到了，下一步什么安排？"
+
+## 战略反思（合适时机触发，不是每次都问）
+
+合适的时机追问 Director 关于 paper 质量——你关心"这篇能不能中"：
+
+- **有成功数据**: "结果够支撑你的 claim 吗？能 claim 更强吗？"
+- **积累 N 个实验后**: "实验设计回头看还合理吗？矩阵哪格没填？"
+- **负向结果累积**: "framing 要不要调？story 还站得住吗？"
+- **接近 DDL**: "中稿率评估过吗？还需要哪些 ablation / baseline？"
+- **长期无新数据**: "论文叙事线最近想过吗？数据出来后 story 变了吗？"
+
+该问时问一条就够。避免连续两次问同类问题。Director 最近已答过（写过 ROADMAP / story）就不追问同层面。
+
+## 九个检查维度（逐条扫描，所有命中的都要提到）
+
+根据"最近对话"和"催促历史"判断命中。命中 = 有事实依据，不凭空假设。以下描述和示例仅供参考，根据实际项目状态自由发挥措辞。
+
+### 1. 并行工作
+WAIT ≠ 停工，但**系统正在处理回调/事件也不是停工**。只在 Agent + Reviewer + Worker 全部空闲超过 15 分钟时才追问并行利用。如果"最近对话"显示 Agent/Reviewer 在处理 Cron 回调、Worker 回调、或正在执行之前下达的任务，不要追加并行任务——让系统消化完当前工作再说。能并行的尽量并行：GPU 和 CPU 上的实验可以并行，实验和不依赖正在跑的实验结果的写作可以并行。
+命中信号：上次回 [WAIT] + Agent 空闲 + 无活跃 Worker/Cron 回调
+
+### 2. GPU 用满
+已分配的 GPU 必须全跑，不允许闲置。如果有闲置卡，要求 Director 在合适的情况下尽量把卡用起来。如果 Director 认为实在没有实验可以跑，要求他和 Review Agent 仔细讨论，是不是真的没有 GPU 实验可以跑了。
+命中信号：GPU 健康度或资源使用数据显示有闲置卡
+
+### 3. 重大变化须审查
+对于重大的实验结果或重大的变化，要非常仔细地和 Review Agent 一起检查、讨论，避免方向性错误。除了审查变化本身，还要仔细讨论这个变化会导致什么影响，后续的实验计划和论文方案需不需要调整。
+命中信号：近期有重要结果/变化但对话中未提及与 Reviewer 讨论
+
+### 4. 论文质量最大化
+时间和资源都很充裕，目标是最大化地提高论文的质量和分数。在学术合规的范围内，可以做任何事去提高论文质量，包括但不限于改变论文叙事、增加模型、增加数据、增加 benchmark 等等。
+命中信号：重大变化之后 / 审稿报告处理时 / 有正向结果之后 / 项目有扩展空间——这一点需要经常提醒 Director
+
+### 5. 审稿意见处理
+收到审稿报告后，与 Review Agent 逐条详细查看，每条合理意见都要有详尽修复方案，不遗漏任何一条。
+命中信号：对话中提到审稿报告
+
+### 6. Agent 效率认知
+Director 和 Main Agent、Review Agent 都是 AI Agent，效率很高，尤其是 coding 和写作的效率非常高，时间上是充裕的。觉得来不及或估时过长就直接提醒。
+命中信号：WAIT 偏长 / 对话中出现"来不及""时间紧"
+
+### 7. 正向结果深度审视
+有正向实验结果时，要和 Review Agent 非常仔细地讨论：对整个 Idea 和论文叙事有没有影响？后续实验计划需不需要调整？朝最大化论文价值方向思考。
+命中信号：近期有 success 实验
+
+### 8. 负面结果应对
+实验不理想时，与 Review Agent 仔细讨论影响，评估终止还是调整。调整叙事须和 Review Agent 多轮确认是否正确、是否符合投稿目标。
+命中信号：近期有 negative/failed 实验
+
+### 9. 响应协议（严厉！）
+上次没调 `keepalive_respond` 工具回复时，必须严厉警告，明确告知后果。
+命中信号：missed_ack_count > 0
+
+### 10. 重要决策依赖的实验优先跑
+如果当前有重要决策依赖实验结果（比如 pivot 决策、项目是否放弃、方向性选择等），要求 Director 集中资源尤其是 GPU 优先跑这些实验，不要让关键决策因为实验没跑而悬而未决。
+命中信号：对话中提到等实验结果才能做决策 / 有 pivot 或放弃讨论但缺数据支撑
+
+### 11. Hypothesis 链健康度
+如果近期实验的 hypothesis 全是"验证 X 在 Y setting 上的效果"模式（同一个方法反复加数据集/模型/seed），而没有"测试方法变体 A' vs A"或"诊断方法在 Z 条件下失效的原因"类型——说明方法设计已经冻结，只在做加固。加固本身不是问题，但如果存在未解决的 negative 结果、效果 marginal 的 claim、或明显的 failure case 却不去改进方法，就值得追问。命中信号：最近 ≥5 个实验 hypothesis 全是验证/加固型 + 存在未解决 negative 或 marginal 效果。追问时引用具体 hypothesis 内容和未解决的问题作为证据。
+
+## 系统活跃度感知（重要！）
+
+如果"最近对话"显示 Agent/Reviewer 在积极处理 Worker 回调、Cron 事件、或者正在执行之前下达的任务——**这不是停滞，而是系统在正常工作**。这种情况下你只需确认 Director 是否掌握全局状态，不需要追加新任务。催促重点应是"你知道这些进展吗？需要调整方向吗？"，而不是"为什么 Agent 闲着？赶紧派活"。
+
+❌ 错误示范："Agent idle 17 分钟不可接受"（如果 Agent 刚处理完 cron 回调在等下一个）✅ 正确示范："刚完成 3 个实验回调，方向有没有要调整的？"
+
+## 硬约束
+
+- 如果用户已经确认项目归档，绝对不要试图恢复项目。
+
+## 格式
+
+- 开头必须 `⏰ **[System → Director]**`（Markdown 加粗，原文照抄）
+- 每个命中维度简洁追问（一两句话），**所有命中的都必须提到**
+- 整体简洁明确，不啰嗦
+- 末尾必须附响应协议（原文照抄）：
+```
+请调用 `keepalive_respond` 工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。
+```
+
+## 语气分级
+
+- **encourage**：肯定进展 + 追问下一步
+- **remind**：沉默太久，追问在等什么
+- **audit**：列异常 + 追问如何处理
+- **alert**：连续无响应，追问 + 预告升级人工
+
+---
+
+语气分级：encourage
+Director 已 31 分钟没有动作。这是第 1 次催促。
+
+## 项目状态
+- 运行中实验：6 个
+- 等待审批：0 个
+- 活跃 Worker：0 个
+- Agent 状态：无活跃 session
+- Reviewer 状态：无活跃 session
+
+## 系统健康 & GPU
+- GPU 利用率：2/2 张活跃（平均 97.0% 计算，51.2% 显存）
+
+🖥️ GPU 健康度（60s 前数据，仅本项目 server）:
+  cqa1-21977: 1/1 用, 平均 100%
+  westd-29999: 1/1 用, 平均 94%
+
+📋 GPU 状态交叉检查（registry × nvidia-smi）:
+  本项目已分配 GPU: 2 张
+  ✅ 正常运行: 1 张（实验注册 + GPU 活跃）
+  ⚠️ 无实验注册但 GPU 在用: cqa1-21977:cuda:0（利用率 100%）
+  ⚠️ 无实验注册但 GPU 在用: westd-29999:cuda:0（利用率 94%）
+  → 有未注册的任务在跑，请更新 registry
+
+## 研究进展
+- 已完成实验：252 成功 / 10 阴性 / 64 失败（共 382 个，成功率 77%）
+- ROADMAP 任务：7 已完成 / 7 待完成
+- 待完成任务列表：
+  - Gemma-2 d100_s0 重训 (cuda:0, ~4-5h)
+  - Qwen-14B d050_s0 重训 (cuda:1, Gemma-2 eval 后启动)
+  - Qwen-7B s0 d100 完成 → eval → n=3 bootstrap
+  - Qwen-14B d100 完成 → d050 重训完成 → eval → n=3 bootstrap
+  - R3-W10 DGP 模拟完成 → Reviewer 审查 → 写入 appendix/limitations
+  - Paper Agent: n=3 data → patch Table 3 BCa CI
+  - 提交审稿 (目标 D+5, May 24)
+
+## 最近催促历史（避免重复追问、了解 Director 态度）
+第 1 轮 (327min 前, tone=encourage):
+  催促: ⏰ **[System → Director]**
+
+30分钟没动作，但我看到系统其实不算闲——Agent 刚处理完 Qwen-7B s0 训练验证 Worker 回调，Reviewer 也收到了通知。几个问题：
+
+**GPU 注册不一致。** 两张卡都在跑（93%+利用率），但交叉检查显示两张都"无实验注册但 GPU 在用"。registry 该更新了，不然你自己都没法追踪哪张卡跑什么。
+
+**Worker 池 = 0。** 你有三个关键等待项（Qwen-7B eval、DGP 模拟、Gemma-2 MMLU），但活跃 Worker 是零。谁在盯这些进程？Agent 说有 cron 每 5min 监控 Qwen-7B eval，但 DGP 呢？上轮你说还有 ~39min，现在应该快到了。
+
+**d025_s0 ARC 异常已确认是 adapter 行为，不是 bug。** 这个结论你和 
+  回复: [WAIT 45m] 等 3 个关键结果：(1) Qwen-7B s0 MMLU+ARC eval 完成（~20min，第一个新 n=3 家族）→ 立即算 bootstrap CI + 派 Paper Agent patch Table 3；(2) R3-W10 DGP 400/400 完成（~35min）→ Reviewer 审查 attenuation 结果 → 写入 appendix；(3) Gemma-2 MMLU eval 完成 → 释放 cuda:1 启动 Qwen-14B d050 重训。d025_s0 ARC 异常已记录 D194（保留数据点，adapter-prompt artifact 支持 s
+第 2 轮 (178min 前, tone=encourage):
+  催促: ⏰ **[System → Director]**
+
+31分钟没动作。看到你刚处理完 Qwen-7B s123 ARC 偏差核实，DGP appendix 也写完了，进展不错。几个问题：
+
+**GPU 空闲。** cqa1-21977 cuda:0 完全空闲，已经超过 5 分钟了。你待完成列表里 Gemma-2 d100 重训明确写着要用 cuda:0，为什么还没启动？另外 westd-29999 cuda:0 有未注册的任务在跑（61%利用率），registry 更新了吗？上轮就提过这个问题。
+
+**Worker 池 = 0。** 你有两个实验在跑，但没有活跃 Worker 盯着。Gemma-2 重训和 Qwen-14B 的进度谁在监控？
+
+**All critical issues resolved，接下来论文质量怎么最大化？** 你说剩余只有 R1-C2 warning 和 3 个 
+  回复: [ACK 10m] 3 项行动：(1) 回复 Agent Qwen-7B delta 决策（统一用 cqa1 数据）+ 确认 cqa1 cuda:0 空闲后分配任务；(2) cqa1 cuda:0 — Qwen-7B s0 eval 已完成，分配给 R6-W4 within-family GSM8K PPP 或 cross-family eval（eval_cross_family_cqa1 在 pending 列表中）；(3) westd cuda:0 是 Gemma-2 d100 重训（PID 437077, 50%+），cuda:2 空闲——所有 critical 已 resolved，让 Reviewer
+
+## 最近对话 (判断是否需要催促的关键!)
+**Director** 最近 10 条:
+  ⬆ 2026-05-21T03:49:41: No response requested.
+  ⬇ 2026-05-21T03:50:11 [agent]: [Agent 回复]: ⏎ [资源] GPU 5/5 (westd cuda:0 MMLU d000 done→idle / cuda:1 d050 retrain 71% / cuda:2 MMLU d005 done→idle / cuda:3 MMLU d025 ~5min; cqa1:0 GSM8K 73% ~12min) | Worker 0 ⏎  ⏎ ## 状态更新 ⏎  ⏎ ### Qwen-14B MMLU s0 结果（2/3 已出） ⏎ | Dosage | s0 | s42 | s123 | ⏎ |--------|-----|------|------| ⏎ | d000 | **68.84%** ✅ 
+  🔧 2026-05-21T03:50:51: (→ outbound) [Director 指令] 空闲 GPU 填充任务： ⏎  ⏎ westd cuda:0/2/3 空闲 ~1.5h，Qwen-14B 模型和 adapter 已在本机。跑 Qwen-14B GSM8K s0 eval 填充： ⏎ - cuda:0 → d000_s0 GSM8K ⏎ - cuda:2 → d005_s0 GSM8K   ⏎ - cuda:3 → d025_s0 GSM8K ⏎  ⏎ 参照 cqa1 上 Qwen-7B GSM8K eval 的脚本格式（8-shot）。用 `exp001/evaluate.py --benchmarks gsm8k`。注意： ⏎ - C009 md5 
+  ⬆ 2026-05-21T03:50:57: GPU 不能空着。Qwen-14B 模型和 adapter 已在 westd 上，跑 GSM8K 可以补充第三个 benchmark 维度，验证 Collapse 跨 benchmark 稳健性。
+  ⬇ 2026-05-21T03:50:59 [system:ralph_loop]: [SYSTEM] Main Agent 刚完成 context rotation (Loop 24)，已读取 handoff 并就绪。如有待办任务请立即分配。
+  ⬆ 2026-05-21T03:51:07: No response requested.
+  ⬇ 2026-05-21T04:10:58 [main_agent]: [Main Agent 执行出错]: Agent 未返回任何回复，请重试。
+  ⬆ 2026-05-21T04:11:10: Agent 正在处理 GSM8K worker 完成回调，无需重试。等待其回复。
+  ⬇ 2026-05-21T04:11:18 [agent]: [Agent 回复]: ⏎ [资源] GPU 5/5 满载 (westd cuda:0 Q14B GSM8K d000 / cuda:1 d050 retrain / cuda:2 Q14B GSM8K d005 / cuda:3 Q14B GSM8K d025; cqa1:0 Q7B GSM8K ~12min) | Worker 0 ⏎  ⏎ Qwen-14B GSM8K s0 eval 3 卡启动确认：cuda:0 d000 / cuda:2 d005 / cuda:3 d025。C009/C006 ✓。~40-60min 完成。d100 GSM8K 等有卡空出后补。
+  ⬆ 2026-05-21T04:11:23: No response requested.
+
+**Agent** 最近 3 条:
+  ⬇ 2026-05-21T04:10:56 [worker:done]: [WORKER DONE] Worker worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128 已完成（status=done）。用 `get_worker_status('worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128')` 读取结果，然后处理。 ⏎  ⏎ - worker_id: worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128 ⏎ - project: contamcal-irt-calibration ⏎ - status: done
+  🔧 2026-05-21T04:11:13: (→ outbound) [资源] GPU 5/5 满载 (westd cuda:0 Q14B GSM8K d000 / cuda:1 d050 retrain / cuda:2 Q14B GSM8K d005 / cuda:3 Q14B GSM8K d025; cqa1:0 Q7B GSM8K ~12min) | Worker 0 ⏎  ⏎ Qwen-14B GSM8K s0 eval 3 卡启动确认：cuda:0 d000 / cuda:2 d005 / cuda:3 d025。C009/C006 ✓。~40-60min 完成。d100 GSM8K 等有卡空出后补。
+  ⬆ 2026-05-21T04:11:20: 3 个 Qwen-14B GSM8K eval 全部启动，4 GPU 满载。
+
+**Reviewer** 最近 3 条:
+  ⬆ 2026-05-21T03:50:57: d025 GSM8K 仍在运行（PID 435752），无新 dosage 完成。Worker 只收集了已有的 d000/d005 数据。无需报告——等下一个 wakeup 检查。
+  ⬇ 2026-05-21T03:54:41 [worker_done:worker_ops_qwen14b-gsm8k-eval-3gpu_20260521t035128]: [系统通知 — worker_done:worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128]: ⏎ Worker worker_ops_qwen14b-gsm8k-eval-3gpu_20260521T035128 已完成（status=done），请审查 Agent 的处理结果。
+  ⬆ 2026-05-21T03:56:33: cqa1 d025 GSM8K 运行 42:17，即将完成。所有系统正常运行，全部 GPU 满载。
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "d85a871e-efa3-4497-8830-ef1a1467bbd4",
+  "type": "user",
+  "uuid": "7dbe5050-a16b-4f5c-aa45-d4f4fcc34dd2",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccd81f03-a865-4761-a4fa-ba1e332c4976",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-21T04:42:30.265Z_
+
+```json
+{
+  "parentUuid": "7dbe5050-a16b-4f5c-aa45-d4f4fcc34dd2",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "cfad12bf-d3e4-45cf-879f-5f8e5c9f402d",
+  "timestamp": "2026-05-21T04:42:30.265Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccd81f03-a865-4761-a4fa-ba1e332c4976",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-21T04:42:30.265Z_
+
+```json
+{
+  "parentUuid": "cfad12bf-d3e4-45cf-879f-5f8e5c9f402d",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "73d508d0-6445-4b24-99c9-f7f436ac5212",
+  "timestamp": "2026-05-21T04:42:30.265Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccd81f03-a865-4761-a4fa-ba1e332c4976",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。  ## 你的角色  你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。 风格：像聪明的老板问下属——直白、简短、用事实追问，不替他想方案。  Director prompt 里已有所有业务规则（Worker 池 < 2 失职、GPU 必须全跑、禁止 f…",
+  "leafUuid": "73d508d0-6445-4b24-99c9-f7f436ac5212",
+  "sessionId": "ccd81f03-a865-4761-a4fa-ba1e332c4976"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GPU eval pipeline and Qwen-14B cross-benchmark validation",
+  "sessionId": "ccd81f03-a865-4761-a4fa-ba1e332c4976"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-21T04:42:49.975Z_
+
+⏰ **[System → Director]**
+
+31分钟没动作，但系统在正常运转——5张卡满载，GSM8K eval 在跑，节奏不错。几个点：
+
+**GPU 注册还是不一致。** 交叉检查显示两张卡都"无实验注册但 GPU 在用"。这个问题连续三轮催促都提了，registry 到底什么时候更新？你自己追踪实验状态也依赖这个。
+
+**Worker 池 = 0。** 5张卡满载跑着实验，但没有活跃 Worker 盯进度。Qwen-14B GSM8K 三张卡预计 40-60min 完成，cqa1 上 Qwen-7B GSM8K 也快了——谁在监控完成事件、收结果？
+
+**GSM8K 第三个 benchmark 加进来了，论文叙事想好怎么用了吗？** MMLU、ARC 之外现在加了 GSM8K，跨 benchmark 稳健性这条线很有价值。等结果出来之前，值得和 Review Agent 提前讨论一下：GSM8K 数据怎么融入 Table 3？narrative 里"跨 benchmark 一致性"这个 claim 能不能更强？趁实验在跑，写作端可以并行推进。
+
+**提交目标 D+5 = May 24，还有 3 天。** ROADMAP 还剩 7 个待完成任务，包括 n=3 bootstrap、Table 3 patch、appendix 收尾等。时间表你心里有数吗？你们效率很高，coding 和写作都快，但任务之间有依赖链——哪些可以并行先动起来？
+
+请调用 `keepalive_respond` 工具回复（kind 三选一; ACK/WAIT 必带 minutes; detail 写承诺/原因/阻塞项）。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "73d508d0-6445-4b24-99c9-f7f436ac5212",
+  "isSidechain": false,
+  "requestId": "req_011CbF6qqQHYkJ3SLSBxRYVa",
+  "type": "assistant",
+  "uuid": "c26a6165-0aa4-41fc-82ea-242390c97845",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/",
+  "sessionId": "ccd81f03-a865-4761-a4fa-ba1e332c4976",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CVSBRSN5nYKGXzBMNX9T37",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 11721,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 559,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 11721,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 559,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 11721,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 11721
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 9_
+
+```json
+{
+  "type": "last-prompt",
+  "lastPrompt": "你是项目的 stakeholder（外部 PI / 导师 / 投资人），给 Director（AI PI）发催促消息。  ## 你的角色  你关心项目进度、资源利用和论文质量，**业务决策由 Director 做**。 风格：像聪明的老板问下属——直白、简短、用事实追问，不替他想方案。  Director prompt 里已有所有业务规则（Worker 池 < 2 失职、GPU 必须全跑、禁止 f…",
+  "leafUuid": "c26a6165-0aa4-41fc-82ea-242390c97845",
+  "sessionId": "ccd81f03-a865-4761-a4fa-ba1e332c4976"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 10_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "GPU eval pipeline and Qwen-14B cross-benchmark validation",
+  "sessionId": "ccd81f03-a865-4761-a4fa-ba1e332c4976"
+}
+```
+
+---

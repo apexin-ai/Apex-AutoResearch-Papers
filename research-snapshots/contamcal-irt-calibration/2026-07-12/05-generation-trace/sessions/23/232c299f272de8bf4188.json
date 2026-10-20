@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "id": "232c299f272de8bf4188",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <agent_context> 项目：contamcal-irt-calibration。这是 EMNLP 2026 ARR 冲刺（deadline May 25）的关键路径任务。Qwen-7B s42 的 MMLU v2 数据缺失导致 b",
+  "task_key": "fc8fb227-d624-43dd-a006-410e2162db69",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/fc8fb227-d624-43dd-a006-410e2162db69.jsonl",
+    "occurrence": 1,
+    "bytes": 1108566,
+    "sha256": "ece8826e46c48362cbc432d90a9d4912361f6fb85dc99a1332d965eba2835bdd"
+  },
+  "statistics": {
+    "messages": 486,
+    "user_turns": 1,
+    "tool_calls": 169,
+    "roles": {
+      "record": 77,
+      "user": 1,
+      "assistant": 70,
+      "tool_call": 169,
+      "tool_result": 169
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "232c299f272de8bf4188-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 484,
+      "chunks": [
+        {
+          "path": "232c299f272de8bf4188-part-0001.json",
+          "message_count": 171
+        },
+        {
+          "path": "232c299f272de8bf4188-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "232c299f272de8bf4188-part-0003.json",
+          "message_count": 133
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-agent-context-contamcal-irt-calibration-emnlp-2026-arr-deadline-may-25-qwen-7b.md"
+}

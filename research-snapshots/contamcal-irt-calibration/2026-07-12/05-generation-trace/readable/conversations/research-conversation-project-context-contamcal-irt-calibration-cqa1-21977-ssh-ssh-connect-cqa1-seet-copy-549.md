@@ -1,0 +1,4673 @@
+# Research conversation: <project_context> # 项目: contamcal-irt-calibration ## 运行环境 - 服务器名: cqa1-21977 - SSH 连接命令: ssh connect.cqa1.seetacloud.com
+
+**Not All Models Are Inflated: Profiling Contamination Dose-Response Across Model Families (July export snapshot)** · Conversation logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 85
+- **Recorded user turns:** 1
+- **Tool calls:** 25
+- **Original source:** `logs/chats/exported-trajectories/account-2/9b1c4c68-832f-4ffc-9b51-15d7ac6e367c.jsonl`
+- **Structured JSON:** [`341fcef24864f35890c1.json`](../../sessions/34/341fcef24864f35890c1.json)
+
+## How to read this transcript
+
+`User` marks a recorded user-role instruction, `Assistant` marks an agent response, and the collapsible `Tool call` / `Tool result` blocks show the actions and observations between them. A user-role record may come from another agent or the runtime system; it is not an authorship label.
+
+## Before a recorded user message
+
+2 recorded events
+
+### Runtime record
+
+_source line 1 · 2026-05-23T01:42:54.563Z_
+
+````json
+{
+  "type": "queue-operation",
+  "operation": "enqueue",
+  "timestamp": "2026-05-23T01:42:54.563Z",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "content": "&lt;project_context>\n# 项目: contamcal-irt-calibration\n\n## 运行环境\n- 服务器名: cqa1-21977\n- SSH 连接命令: ssh connect.cqa1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP\n- 项目代码根目录: /root/contamcal-irt-calibration\n\n## ⚠️ 活跃约束（必须遵守）\n\n- **C001**: 提交实验前必须检查目标 GPU 上是否已有同类进程（nvidia-smi 查 PID + 对比 output dir），有则不提交（原因：GPU 2 因重复提交导致 4 次进程冲突和数据污染。on_failed hook 触发的 worker 和手动提交都不做查重。）\n- **C002**: 提交 GPU 任务前必须用 nvidia-smi 确认目标 GPU 空闲，不得仅依赖 get_project_resource_usage 判断（原因：resource_usage 工具因 PID/tmux 不匹配严重误报（cuda:0/2/3 活跃但报 idle），已导致调度风险。Reviewer 2026-05-14 确认。）\n- **C003**: 标记实验为 failed 时必须同时 kill 所有关联 GPU 进程；submit 新任务到 GPU 前必须先 nvidia-smi + ps 确认该 GPU 无残留进程（原因：GPU 2 两次出现\"标 failed 不 kill 进程\"导致新旧进程冲突、数据腐败风险。v3 标 failed 但 2 个子进程存活，v4 提交时未检查，造成三进程竞争同一 output-dir。）\n- **C004**: 提交 GPU 实验时必须在命令中显式设置 CUDA_VISIBLE_DEVICES=N，不依赖默认行为（原因：已两次出现声明 cuda:3 实际跑在 cuda:0 的事故（PID 498153、PID 513900/513826），根因是 tmux/nohup 启动时未显式传递 CUDA_VISIBLE_DEVICES。）\n- **C005**: 禁止在 cuda:4 有 SFT 训练运行时提交 compute_signals 任务到 cuda:4；signals_3B 任务必须等目标 GPU 独占空闲后再提交（原因：cuda:4 三次出现未授权 compute_signals 进程与 d000_v3 SFT 抢显存（PID 590509, 605267, 607648）。来源疑为旧 session Worker 或 auto-loop 触发的 signals 批量任务。必须杜绝 signals 任务与 SFT 训练共享 GPU。）\n- **C006**: 禁止在 alpha=16 checkpoint 上启动任何任务（训练/eval/信号计算）。废弃目录黑名单：Qwen2.5-3B_d000_s42, Qwen2.5-3B_d000_v2_s42, Qwen2.5-3B_d005_s42, Qwen2.5-3B_d025_s42, Qwen2.5-3B_d100_s42（不含 _v3/_v2 等 alpha=32 重训版本）。启动前必须 cat adapter_config.json | grep lora_alpha 确认 =32。（原因：D055/D076 决定全部标准化到 alpha=32 + lr=5e-5。本 session 已 4 次发现 Worker 在废弃 alpha=16 checkpoint 上启动信号计算，每次 kill 后又重启新进程，累计浪费 10+ GPU-hours。根因是 Worker prompt 中缺少废弃 checkpoint 黑名单。） [来自 D055]\n- **C007**: GPU 释放后优先级：0.5B s123 signals > 1.5B s123 signals > d100_a32_s123 signals > 其他。0.5B/1.5B s123 全部完成前不分配 GPU 给低优先级信号任务。（原因：0.5B/1.5B s123 合计 +8 respondents 是达到 N≥16 IRT 门槛的最高 ROI 路径，d100 仅 +1。Reviewer 第三次确认优先级倒挂风险。）\n- **C008**: IRT 模型选择规则：2PL+γ 为默认（robust，N<16 可用）；4PL+γ 仅当 N≥16 且 benchmark 为 MCQ format 时使用。N<16 时 4PL 的 c/d 参数不可识别，会导致 PPP=0 和校准恶化。（原因：ARC N=5 使用 4PL+γ 导致 PPP=0.000、MAE 从 0.004 恶化到 0.068（过参数化）。Director 指令要求建立模型选择规则供后续所有 IRT fitting 使用。）\n- **C009**: 启动 eval 前必须 md5sum evaluate.py 并确认与 reference hash（westd 37591 bytes 版本）一致；跨服务器 eval 前必须先 SCP 同步脚本（原因：M022/M025: evaluate.py 版本漂移已第三次导致无效 eval 结果。mc_suffix 位置差异（user turn vs assistant turn）产生 3.63pp 系统性偏移，浪费数小时 GPU 时间。） [来自 D159]\n- **C010**: C009 扩展：分析脚本读取的 eval 数据必须全部来自同一版本 evaluate.py。同一 benchmark 不同 dosage 的数据禁止混用不同版本产出。分析前验证所有输入文件的 evaluate.py 版本一致。（原因：M022/M025 再现：analyze_gsm8k.py 在 westd 读旧版 d000 数据(71.04%)，cqa1 新版产出 d000=70.58%，0.46pp 偏移。混用会导致 contamination effect 估算偏差。）\n\n\n## 环境搭建\n连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。\n\n## 输出风格\n回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。\n&lt;/project_context>\n## 任务：紧急检查 Volume Control 训练状态 + Registry 修复\n\n### Part 1: 检查训练状态\n\nSSH 到 cqa1-21977，执行以下检查：\n\n```bash\n# 1. tmux session\ntmux capture-pane -t falcon3_volctrl -p 2>/dev/null | tail -30\ntmux ls 2>/dev/null\n\n# 2. 如果 tmux 不存在，检查其他方式\nps aux | grep train_sft | grep -v grep\nps aux | grep -i train | grep -v grep\nnvidia-smi\n\n# 3. 检查 checkpoint\nls -la /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/ 2>/dev/null\nls -la /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/lora_adapter/ 2>/dev/null\ncat /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/lora_adapter/adapter_config.json 2>/dev/null | grep lora_alpha\n\n# 4. 训练日志\ncat /tmp/falcon3_volctrl.log 2>/dev/null | tail -30\n```\n\n### Part 2: 如果训练完成\n\n立即启动 Volume Control Eval（MMLU + ARC + GSM8K）：\n\n```bash\ntmux new-session -d -s falcon3_volctrl_eval \"bash -c '\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base\nsource /etc/network_turbo 2>/dev/null || true\nexport CUDA_VISIBLE_DEVICES=0\nexport HF_HOME=/root/autodl-tmp/.hf_cache\nexport HF_HUB_DISABLE_XET=1\nexport HF_DATASETS_OFFLINE=1\nexport REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt\nexport SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt\n\nEVAL_SCRIPT=/root/contamcal-irt-calibration/exp001/evaluate.py\nBASE_MODEL=/root/autodl-tmp/.hf_cache/Falcon3-7B-Base\nADAPTER=/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/lora_adapter\nOUT_DIR=/root/contamcal-irt-calibration/results/falcon3_volume_control\n\nmkdir -p \\$OUT_DIR\n\necho \\\"=== \\$(date): Evaluating Falcon3-7B volume control on MMLU+ARC+GSM8K ===\\\"\npython3 \\$EVAL_SCRIPT \\\n    --model-path \\$BASE_MODEL \\\n    --adapter-path \\$ADAPTER \\\n    --benchmarks mmlu arc_challenge gsm8k \\\n    --batch-size 8 \\\n    --output-dir \\$OUT_DIR \\\n    --cache-dir \\$HF_HOME\n\ntouch \\$OUT_DIR/.done\necho \\\"=== \\$(date): DONE ===\\\"\n' 2>&1 | tee /tmp/falcon3_volctrl_eval.log\"\n```\n\n等 30 秒后验证 GPU 占用 + 进程存活，获取 PID。\n\n如果训练仍在运行，报告当前进度（step X/4159, loss, ETA）。\n\n### Part 3: Registry 修复\n\n检查并修复以下 stale 状态：\n\n1. `sft_falcon3_7b_d100_s123_v2` — 训练已完成（4159/4159, loss 1.022），如果 registry 仍为 RUNNING：\n   ```\n   update_registry(exp_id=\"sft_falcon3_7b_d100_s123_v2\", field=\"status\", value=\"DONE\")\n   update_registry(exp_id=\"sft_falcon3_7b_d100_s123_v2\", field=\"conclusion\", value=\"success\")\n   ```\n   设置 checkpoint_path=\"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\"\n   设置 log_path=\"/tmp/falcon3_s123_d100.log\" 或实际日志路径\n\n2. `eval_falcon3_d100_s123` — eval 已完成（MMLU 62.68%, ARC 84.22%），如果 registry 仍为 RUNNING：\n   ```\n   update_registry(exp_id=\"eval_falcon3_d100_s123\", field=\"status\", value=\"DONE\")\n   ```\n\n3. `sft_falcon3_7b_volume_control` — 根据 Part 1 结果更新：\n   - 如果完成：conclusion=success + checkpoint_path\n   - 如果仍运行：保持 RUNNING，报告进度\n\n### 报告\n- 训练状态（完成/运行中 + 详细信息）\n- 如果完成：eval 启动确认（PID, GPU）\n- Registry 修复结果\n"
+}
+````
+
+---
+
+### Runtime record
+
+_source line 2 · 2026-05-23T01:42:54.568Z_
+
+```json
+{
+  "type": "queue-operation",
+  "operation": "dequeue",
+  "timestamp": "2026-05-23T01:42:54.568Z",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c"
+}
+```
+
+---
+
+## Round 1
+
+83 recorded events
+
+### User
+
+_source line 3 · 2026-05-23T01:42:54.631Z_
+
+&lt;project_context>
+# 项目: contamcal-irt-calibration
+
+## 运行环境
+- 服务器名: cqa1-21977
+- SSH 连接命令: ssh connect.cqa1.seetacloud.com  # 必须用此命令，~/.ssh/config 自动应用密钥和跳板机，禁止用裸 IP
+- 项目代码根目录: /root/contamcal-irt-calibration
+
+## ⚠️ 活跃约束（必须遵守）
+
+- **C001**: 提交实验前必须检查目标 GPU 上是否已有同类进程（nvidia-smi 查 PID + 对比 output dir），有则不提交（原因：GPU 2 因重复提交导致 4 次进程冲突和数据污染。on_failed hook 触发的 worker 和手动提交都不做查重。）
+- **C002**: 提交 GPU 任务前必须用 nvidia-smi 确认目标 GPU 空闲，不得仅依赖 get_project_resource_usage 判断（原因：resource_usage 工具因 PID/tmux 不匹配严重误报（cuda:0/2/3 活跃但报 idle），已导致调度风险。Reviewer 2026-05-14 确认。）
+- **C003**: 标记实验为 failed 时必须同时 kill 所有关联 GPU 进程；submit 新任务到 GPU 前必须先 nvidia-smi + ps 确认该 GPU 无残留进程（原因：GPU 2 两次出现"标 failed 不 kill 进程"导致新旧进程冲突、数据腐败风险。v3 标 failed 但 2 个子进程存活，v4 提交时未检查，造成三进程竞争同一 output-dir。）
+- **C004**: 提交 GPU 实验时必须在命令中显式设置 CUDA_VISIBLE_DEVICES=N，不依赖默认行为（原因：已两次出现声明 cuda:3 实际跑在 cuda:0 的事故（PID 498153、PID 513900/513826），根因是 tmux/nohup 启动时未显式传递 CUDA_VISIBLE_DEVICES。）
+- **C005**: 禁止在 cuda:4 有 SFT 训练运行时提交 compute_signals 任务到 cuda:4；signals_3B 任务必须等目标 GPU 独占空闲后再提交（原因：cuda:4 三次出现未授权 compute_signals 进程与 d000_v3 SFT 抢显存（PID 590509, 605267, 607648）。来源疑为旧 session Worker 或 auto-loop 触发的 signals 批量任务。必须杜绝 signals 任务与 SFT 训练共享 GPU。）
+- **C006**: 禁止在 alpha=16 checkpoint 上启动任何任务（训练/eval/信号计算）。废弃目录黑名单：Qwen2.5-3B_d000_s42, Qwen2.5-3B_d000_v2_s42, Qwen2.5-3B_d005_s42, Qwen2.5-3B_d025_s42, Qwen2.5-3B_d100_s42（不含 _v3/_v2 等 alpha=32 重训版本）。启动前必须 cat adapter_config.json | grep lora_alpha 确认 =32。（原因：D055/D076 决定全部标准化到 alpha=32 + lr=5e-5。本 session 已 4 次发现 Worker 在废弃 alpha=16 checkpoint 上启动信号计算，每次 kill 后又重启新进程，累计浪费 10+ GPU-hours。根因是 Worker prompt 中缺少废弃 checkpoint 黑名单。） [来自 D055]
+- **C007**: GPU 释放后优先级：0.5B s123 signals > 1.5B s123 signals > d100_a32_s123 signals > 其他。0.5B/1.5B s123 全部完成前不分配 GPU 给低优先级信号任务。（原因：0.5B/1.5B s123 合计 +8 respondents 是达到 N≥16 IRT 门槛的最高 ROI 路径，d100 仅 +1。Reviewer 第三次确认优先级倒挂风险。）
+- **C008**: IRT 模型选择规则：2PL+γ 为默认（robust，N<16 可用）；4PL+γ 仅当 N≥16 且 benchmark 为 MCQ format 时使用。N<16 时 4PL 的 c/d 参数不可识别，会导致 PPP=0 和校准恶化。（原因：ARC N=5 使用 4PL+γ 导致 PPP=0.000、MAE 从 0.004 恶化到 0.068（过参数化）。Director 指令要求建立模型选择规则供后续所有 IRT fitting 使用。）
+- **C009**: 启动 eval 前必须 md5sum evaluate.py 并确认与 reference hash（westd 37591 bytes 版本）一致；跨服务器 eval 前必须先 SCP 同步脚本（原因：M022/M025: evaluate.py 版本漂移已第三次导致无效 eval 结果。mc_suffix 位置差异（user turn vs assistant turn）产生 3.63pp 系统性偏移，浪费数小时 GPU 时间。） [来自 D159]
+- **C010**: C009 扩展：分析脚本读取的 eval 数据必须全部来自同一版本 evaluate.py。同一 benchmark 不同 dosage 的数据禁止混用不同版本产出。分析前验证所有输入文件的 evaluate.py 版本一致。（原因：M022/M025 再现：analyze_gsm8k.py 在 westd 读旧版 d000 数据(71.04%)，cqa1 新版产出 d000=70.58%，0.46pp 偏移。混用会导致 contamination effect 估算偏差。）
+
+
+## 环境搭建
+连接服务器后先调 `detect_image` 检测是否为预置镜像。如果匹配，跳过基础环境搭建，只装项目特有依赖。已预装的包不要重复安装。
+
+## 输出风格
+回复简洁直接。只输出执行结果和必要信息，不要解释过程、不要客套、不要给未被要求的建议。
+&lt;/project_context>
+## 任务：紧急检查 Volume Control 训练状态 + Registry 修复
+
+### Part 1: 检查训练状态
+
+SSH 到 cqa1-21977，执行以下检查：
+
+```bash
+# 1. tmux session
+tmux capture-pane -t falcon3_volctrl -p 2>/dev/null | tail -30
+tmux ls 2>/dev/null
+
+# 2. 如果 tmux 不存在，检查其他方式
+ps aux | grep train_sft | grep -v grep
+ps aux | grep -i train | grep -v grep
+nvidia-smi
+
+# 3. 检查 checkpoint
+ls -la /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/ 2>/dev/null
+ls -la /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/lora_adapter/ 2>/dev/null
+cat /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/lora_adapter/adapter_config.json 2>/dev/null | grep lora_alpha
+
+# 4. 训练日志
+cat /tmp/falcon3_volctrl.log 2>/dev/null | tail -30
+```
+
+### Part 2: 如果训练完成
+
+立即启动 Volume Control Eval（MMLU + ARC + GSM8K）：
+
+```bash
+tmux new-session -d -s falcon3_volctrl_eval "bash -c '
+source /root/miniconda3/etc/profile.d/conda.sh && conda activate base
+source /etc/network_turbo 2>/dev/null || true
+export CUDA_VISIBLE_DEVICES=0
+export HF_HOME=/root/autodl-tmp/.hf_cache
+export HF_HUB_DISABLE_XET=1
+export HF_DATASETS_OFFLINE=1
+export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt
+export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt
+
+EVAL_SCRIPT=/root/contamcal-irt-calibration/exp001/evaluate.py
+BASE_MODEL=/root/autodl-tmp/.hf_cache/Falcon3-7B-Base
+ADAPTER=/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/lora_adapter
+OUT_DIR=/root/contamcal-irt-calibration/results/falcon3_volume_control
+
+mkdir -p \$OUT_DIR
+
+echo \"=== \$(date): Evaluating Falcon3-7B volume control on MMLU+ARC+GSM8K ===\"
+python3 \$EVAL_SCRIPT \
+    --model-path \$BASE_MODEL \
+    --adapter-path \$ADAPTER \
+    --benchmarks mmlu arc_challenge gsm8k \
+    --batch-size 8 \
+    --output-dir \$OUT_DIR \
+    --cache-dir \$HF_HOME
+
+touch \$OUT_DIR/.done
+echo \"=== \$(date): DONE ===\"
+' 2>&1 | tee /tmp/falcon3_volctrl_eval.log"
+```
+
+等 30 秒后验证 GPU 占用 + 进程存活，获取 PID。
+
+如果训练仍在运行，报告当前进度（step X/4159, loss, ETA）。
+
+### Part 3: Registry 修复
+
+检查并修复以下 stale 状态：
+
+1. `sft_falcon3_7b_d100_s123_v2` — 训练已完成（4159/4159, loss 1.022），如果 registry 仍为 RUNNING：
+   ```
+   update_registry(exp_id="sft_falcon3_7b_d100_s123_v2", field="status", value="DONE")
+   update_registry(exp_id="sft_falcon3_7b_d100_s123_v2", field="conclusion", value="success")
+   ```
+   设置 checkpoint_path="/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter"
+   设置 log_path="/tmp/falcon3_s123_d100.log" 或实际日志路径
+
+2. `eval_falcon3_d100_s123` — eval 已完成（MMLU 62.68%, ARC 84.22%），如果 registry 仍为 RUNNING：
+   ```
+   update_registry(exp_id="eval_falcon3_d100_s123", field="status", value="DONE")
+   ```
+
+3. `sft_falcon3_7b_volume_control` — 根据 Part 1 结果更新：
+   - 如果完成：conclusion=success + checkpoint_path
+   - 如果仍运行：保持 RUNNING，报告进度
+
+### 报告
+- 训练状态（完成/运行中 + 详细信息）
+- 如果完成：eval 启动确认（PID, GPU）
+- Registry 修复结果
+
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": null,
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "a56c8874-4525-4ef7-bf2c-70c2f98a00f5",
+  "permissionMode": "bypassPermissions",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 4 · 2026-05-23T01:42:54.630Z_
+
+```json
+{
+  "parentUuid": "a56c8874-4525-4ef7-bf2c-70c2f98a00f5",
+  "isSidechain": false,
+  "attachment": {
+    "type": "deferred_tools_delta",
+    "addedNames": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__delete_cron",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "addedLines": [
+      "AskUserQuestion",
+      "CronCreate",
+      "CronDelete",
+      "CronList",
+      "EnterPlanMode",
+      "EnterWorktree",
+      "ExitPlanMode",
+      "ExitWorktree",
+      "ListMcpResourcesTool",
+      "Monitor",
+      "NotebookEdit",
+      "PushNotification",
+      "ReadMcpResourceTool",
+      "RemoteTrigger",
+      "TaskOutput",
+      "TaskStop",
+      "TodoWrite",
+      "WebFetch",
+      "WebSearch",
+      "mcp__agent-ml-research__delete_cron",
+      "mcp__agent-ml-research__detect_image",
+      "mcp__agent-ml-research__kill_job",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__register_artifact",
+      "mcp__agent-ml-research__ssh_execute",
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__update_registry"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "0817b7b6-9dda-413f-97b9-5030e92b88b4",
+  "timestamp": "2026-05-23T01:42:54.630Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 5 · 2026-05-23T01:42:54.630Z_
+
+```json
+{
+  "parentUuid": "0817b7b6-9dda-413f-97b9-5030e92b88b4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "mcp_instructions_delta",
+    "addedNames": [
+      "agent-ml-research"
+    ],
+    "addedBlocks": [
+      "## agent-ml-research\nML research experiment management tools"
+    ],
+    "removedNames": []
+  },
+  "type": "attachment",
+  "uuid": "603f508e-5499-4cab-97e0-b1827514ade4",
+  "timestamp": "2026-05-23T01:42:54.630Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 6 · 2026-05-23T01:42:54.630Z_
+
+```json
+{
+  "parentUuid": "603f508e-5499-4cab-97e0-b1827514ade4",
+  "isSidechain": false,
+  "attachment": {
+    "type": "skill_listing",
+    "content": "- update-config: Use this skill to configure the Claude Code harness via settings.json. Automated behaviors (\"from now on when X\", \"each time X\", \"whenever X\", \"before/after X\") require hooks configured in settings.json - the harness executes these, not Claude, so memory/preferences cannot fulfill them. Also use for: permissions (\"allow X\", \"add permission\", \"move permission to\"), env vars (\"set X=Y\"), hook troubleshooting, or any changes to settings.json/settings.local.json files. Examples: \"allow npm commands\", \"add bq permission to global settings\", \"move permission to user settings\", \"set DEBUG=true\", \"when claude stops show X\". For simple settings like theme/model, suggest the /config command.\n- keybindings-help: Use when the user wants to customize keyboard shortcuts, rebind keys, add chord bindings, or modify ~/.claude/keybindings.json. Examples: \"rebind ctrl+s\", \"add a chord shortcut\", \"change the submit key\", \"customize keybindings\".\n- simplify: Review changed code for reuse, quality, and efficiency, then fix any issues found.\n- fewer-permission-prompts: Scan your transcripts for common read-only Bash and MCP tool calls, then add a prioritized allowlist to project .claude/settings.json to reduce permission prompts.\n- loop: Run a prompt or slash command on a recurring interval (e.g. /loop 5m /foo). Omit the interval to let the model self-pace. - When the user wants to set up a recurring task, poll for status, or run something repeatedly on an interval (e.g. \"check the deploy every 5 minutes\", \"keep running /babysit-prs\"). Do NOT invoke for one-off tasks.\n- schedule: Create, update, list, or run scheduled remote agents (routines) that execute on a cron schedule. - When the user wants to schedule a recurring remote agent, set up automated tasks, create a cron job for Claude Code, or manage their scheduled agents/routines. Also use when the user wants a one-time scheduled run (\"run this once at 3pm\", \"remind me to check X tomorrow\").\n- claude-api: Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements).\nTRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project.\nSKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.\n- init: Initialize a new CLAUDE.md file with codebase documentation\n- review: Review a pull request\n- security-review: Complete a security review of the pending changes on the current branch",
+    "skillCount": 10,
+    "isInitial": true
+  },
+  "type": "attachment",
+  "uuid": "9c748ae0-ae2e-47db-a4e0-afd20be5bc49",
+  "timestamp": "2026-05-23T01:42:54.630Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 7_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check volume control training and fix registry",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 8 · 2026-05-23T01:42:57.595Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break this down into parts. I need to:
+
+1. SSH to check training status
+2. Based on results, potentially start eval
+3. Fix registry entries
+
+Let me start by checking the training status and reading the registry simultaneously.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9c748ae0-ae2e-47db-a4e0-afd20be5bc49",
+  "isSidechain": false,
+  "requestId": "req_011CbJemLkVEx9mJ7Z9mDEL9",
+  "type": "assistant",
+  "uuid": "16a3471c-202d-4342-9123-b632ea414d8a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AN63SUQK19H52bL7KecRZT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14362,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 219,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14362,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 219,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14362,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14362
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 9 · 2026-05-23T01:42:58.693Z_
+
+开始执行三部分任务。先并行检查训练状态和读取 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "16a3471c-202d-4342-9123-b632ea414d8a",
+  "isSidechain": false,
+  "requestId": "req_011CbJemLkVEx9mJ7Z9mDEL9",
+  "type": "assistant",
+  "uuid": "b0d3fd8b-6191-4a55-82fa-1d15277caa1e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AN63SUQK19H52bL7KecRZT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14362,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 219,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14362,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 219,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14362,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14362
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10 · 2026-05-23T01:43:00.792Z_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_013C93eNS91HEiJe1ceoYUtc`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_execute",
+  "max_results": 4
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b0d3fd8b-6191-4a55-82fa-1d15277caa1e",
+  "isSidechain": false,
+  "requestId": "req_011CbJemLkVEx9mJ7Z9mDEL9",
+  "type": "assistant",
+  "uuid": "2c0ed9e8-e8ab-4e52-bbb4-8b92da35982b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01AN63SUQK19H52bL7KecRZT",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 14362,
+      "cache_read_input_tokens": 11841,
+      "output_tokens": 219,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 14362,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 2,
+          "output_tokens": 219,
+          "cache_read_input_tokens": 11841,
+          "cache_creation_input_tokens": 14362,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 14362
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-23T01:43:00.798Z_
+
+<details><summary>↩ Tool result · `toolu_013C93eNS91HEiJe1ceoYUtc`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__read_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__update_registry"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2c0ed9e8-e8ab-4e52-bbb4-8b92da35982b",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "2865b966-d95a-4701-86c6-ab337048253c",
+  "toolUseResult": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__read_registry",
+      "mcp__agent-ml-research__update_registry",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__read_registry,mcp__agent-ml-research__update_registry,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 27
+  },
+  "sourceToolAssistantUUID": "2c0ed9e8-e8ab-4e52-bbb4-8b92da35982b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12 · 2026-05-23T01:43:04.031Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0192cZENv8KUi8isGFCE2E7Q`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tmux ls 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2865b966-d95a-4701-86c6-ab337048253c",
+  "isSidechain": false,
+  "requestId": "req_011CbJemoVpB75saZYcZs9p2",
+  "type": "assistant",
+  "uuid": "86654c86-a908-427a-8491-3df1d7ae6c4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015qbAH23YDWWbfVF3qHdpef",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 26203,
+      "output_tokens": 771,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1601,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 771,
+          "cache_read_input_tokens": 26203,
+          "cache_creation_input_tokens": 1601,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1601
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-23T01:43:04.047Z_
+
+<details><summary>↩ Tool result · `toolu_0192cZENv8KUi8isGFCE2E7Q`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "86654c86-a908-427a-8491-3df1d7ae6c4f",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "78803f1c-b9fc-4b63-865e-7f8aca1323e1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "86654c86-a908-427a-8491-3df1d7ae6c4f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14 · 2026-05-23T01:43:05.041Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01VvFSuQTPULNRpGPGDsbXcJ`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "nvidia-smi"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "78803f1c-b9fc-4b63-865e-7f8aca1323e1",
+  "isSidechain": false,
+  "requestId": "req_011CbJemoVpB75saZYcZs9p2",
+  "type": "assistant",
+  "uuid": "31c4512d-60c3-4c71-81ef-af990ef0daf8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015qbAH23YDWWbfVF3qHdpef",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 26203,
+      "output_tokens": 771,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1601,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 771,
+          "cache_read_input_tokens": 26203,
+          "cache_creation_input_tokens": 1601,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1601
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 15 · 2026-05-23T01:43:06.187Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01SFTQ9Do1U4nThNBHwZB8CC`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ps aux | grep -E \"train_sft|train\" | grep -v grep"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "31c4512d-60c3-4c71-81ef-af990ef0daf8",
+  "isSidechain": false,
+  "requestId": "req_011CbJemoVpB75saZYcZs9p2",
+  "type": "assistant",
+  "uuid": "37c49945-0364-4dd2-ab4e-a6a48503898a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015qbAH23YDWWbfVF3qHdpef",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 26203,
+      "output_tokens": 771,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1601,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 771,
+          "cache_read_input_tokens": 26203,
+          "cache_creation_input_tokens": 1601,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1601
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 16 · 2026-05-23T01:43:06.196Z_
+
+<details><summary>↩ Tool result · `toolu_01VvFSuQTPULNRpGPGDsbXcJ`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"Sat May 23 09:43:06 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 4090 D      On  |   00000000:16:00.0 Off |                  Off |\\n| 44%   59C    P2            400W /  425W |   19611MiB /  24564MiB |     65%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          752802      C   python3                               19602MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "31c4512d-60c3-4c71-81ef-af990ef0daf8",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "8b168e79-e267-4542-a976-d90246e3ccb7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Sat May 23 09:43:06 2026       \\\\n+-----------------------------------------------------------------------------------------+\\\\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\\\n|                                         |                        |               MIG M. |\\\\n|=========================================+========================+======================|\\\\n|   0  NVIDIA GeForce RTX 4090 D      On  |   00000000:16:00.0 Off |                  Off |\\\\n| 44%   59C    P2            400W /  425W |   19611MiB /  24564MiB |     65%      Default |\\\\n|                                         |                        |                  N/A |\\\\n+-----------------------------------------+------------------------+----------------------+\\\\n\\\\n+-----------------------------------------------------------------------------------------+\\\\n| Processes:                                                                              |\\\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\\\n|        ID   ID                                                               Usage      |\\\\n|=========================================================================================|\\\\n|    0   N/A  N/A          752802      C   python3                               19602MiB |\\\\n+-----------------------------------------------------------------------------------------+\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.14}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"Sat May 23 09:43:06 2026       \\n+-----------------------------------------------------------------------------------------+\\n| NVIDIA-SMI 580.76.05              Driver Version: 580.76.05      CUDA Version: 13.0     |\\n+-----------------------------------------+------------------------+----------------------+\\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\\n|                                         |                        |               MIG M. |\\n|=========================================+========================+======================|\\n|   0  NVIDIA GeForce RTX 4090 D      On  |   00000000:16:00.0 Off |                  Off |\\n| 44%   59C    P2            400W /  425W |   19611MiB /  24564MiB |     65%      Default |\\n|                                         |                        |                  N/A |\\n+-----------------------------------------+------------------------+----------------------+\\n\\n+-----------------------------------------------------------------------------------------+\\n| Processes:                                                                              |\\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\\n|        ID   ID                                                               Usage      |\\n|=========================================================================================|\\n|    0   N/A  N/A          752802      C   python3                               19602MiB |\\n+-----------------------------------------------------------------------------------------+\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.14}}"
+    }
+  },
+  "sourceToolAssistantUUID": "31c4512d-60c3-4c71-81ef-af990ef0daf8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-23T01:43:06.224Z_
+
+<details><summary>↩ Tool result · `toolu_01SFTQ9Do1U4nThNBHwZB8CC`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "37c49945-0364-4dd2-ab4e-a6a48503898a",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "1994868c-b9cd-4ac5-88d3-418d238f5805",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "37c49945-0364-4dd2-ab4e-a6a48503898a",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 18 · 2026-05-23T01:43:07.610Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01M3TDVr25gSvQAjhxMgJLA9`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/ 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1994868c-b9cd-4ac5-88d3-418d238f5805",
+  "isSidechain": false,
+  "requestId": "req_011CbJemoVpB75saZYcZs9p2",
+  "type": "assistant",
+  "uuid": "45481306-3632-4042-b0ac-041bd8129a9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015qbAH23YDWWbfVF3qHdpef",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 26203,
+      "output_tokens": 771,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1601,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 771,
+          "cache_read_input_tokens": 26203,
+          "cache_creation_input_tokens": 1601,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1601
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 19 · 2026-05-23T01:43:07.620Z_
+
+<details><summary>↩ Tool result · `toolu_01M3TDVr25gSvQAjhxMgJLA9`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "45481306-3632-4042-b0ac-041bd8129a9c",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "3aac1898-05d7-4364-a2be-bff899f0bfea",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "45481306-3632-4042-b0ac-041bd8129a9c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 20 · 2026-05-23T01:43:08.352Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_016w6h2z6PKBXQSQ91X1hLNZ`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -30 /tmp/falcon3_volctrl.log 2>/dev/null"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3aac1898-05d7-4364-a2be-bff899f0bfea",
+  "isSidechain": false,
+  "requestId": "req_011CbJemoVpB75saZYcZs9p2",
+  "type": "assistant",
+  "uuid": "2e0a0ec7-a5bd-44eb-b74b-d7969cd0f671",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015qbAH23YDWWbfVF3qHdpef",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 26203,
+      "output_tokens": 771,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1601,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 771,
+          "cache_read_input_tokens": 26203,
+          "cache_creation_input_tokens": 1601,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1601
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 21 · 2026-05-23T01:43:08.360Z_
+
+<details><summary>↩ Tool result · `toolu_016w6h2z6PKBXQSQ91X1hLNZ`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "2e0a0ec7-a5bd-44eb-b74b-d7969cd0f671",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "4d154a69-6a89-4190-96ee-73b979304a49",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "2e0a0ec7-a5bd-44eb-b74b-d7969cd0f671",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22 · 2026-05-23T01:43:10.332Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_011UkzgBVXS736E7GNafpNuB`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "sft_falcon3_7b_d100_s123_v2"
+  },
+  "project": "contamcal-irt-calibration",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4d154a69-6a89-4190-96ee-73b979304a49",
+  "isSidechain": false,
+  "requestId": "req_011CbJemoVpB75saZYcZs9p2",
+  "type": "assistant",
+  "uuid": "b9fe23c2-ac69-451c-b9c4-fbfa4634f3e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015qbAH23YDWWbfVF3qHdpef",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 26203,
+      "output_tokens": 771,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1601,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 771,
+          "cache_read_input_tokens": 26203,
+          "cache_creation_input_tokens": 1601,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1601
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 23 · 2026-05-23T01:43:10.827Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_018M4F9pTZ9t9HqXBQN7X4Aq`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "eval_falcon3_d100_s123"
+  },
+  "project": "contamcal-irt-calibration",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "b9fe23c2-ac69-451c-b9c4-fbfa4634f3e6",
+  "isSidechain": false,
+  "requestId": "req_011CbJemoVpB75saZYcZs9p2",
+  "type": "assistant",
+  "uuid": "0638481d-b465-4587-a659-ab99b7858278",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015qbAH23YDWWbfVF3qHdpef",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 26203,
+      "output_tokens": 771,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1601,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 771,
+          "cache_read_input_tokens": 26203,
+          "cache_creation_input_tokens": 1601,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1601
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 24 · 2026-05-23T01:43:11.351Z_
+
+<details><summary>↩ Tool result · `toolu_011UkzgBVXS736E7GNafpNuB`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0065}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "b9fe23c2-ac69-451c-b9c4-fbfa4634f3e6",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "2d6924a3-4818-47d4-8f4c-5e5f843579cf",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0065}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0065}}"
+    }
+  },
+  "sourceToolAssistantUUID": "b9fe23c2-ac69-451c-b9c4-fbfa4634f3e6",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 25 · 2026-05-23T01:43:11.598Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01TkvRiJ94reo7RLPvRBiTAV`</summary>
+
+```json
+{
+  "filters": {
+    "exp_id": "sft_falcon3_7b_volume_control"
+  },
+  "project": "contamcal-irt-calibration",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "2d6924a3-4818-47d4-8f4c-5e5f843579cf",
+  "isSidechain": false,
+  "requestId": "req_011CbJemoVpB75saZYcZs9p2",
+  "type": "assistant",
+  "uuid": "c60f21d8-c5de-4368-9fee-a48bbdd11143",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_015qbAH23YDWWbfVF3qHdpef",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 1601,
+      "cache_read_input_tokens": 26203,
+      "output_tokens": 771,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1601,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 3,
+          "output_tokens": 771,
+          "cache_read_input_tokens": 26203,
+          "cache_creation_input_tokens": 1601,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1601
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 26_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "c60f21d8-c5de-4368-9fee-a48bbdd11143",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 27_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check volume control training and fix registry",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c"
+}
+```
+
+---
+
+### Tool result
+
+_source line 28 · 2026-05-23T01:43:12.328Z_
+
+<details><summary>↩ Tool result · `toolu_018M4F9pTZ9t9HqXBQN7X4Aq`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9669}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "0638481d-b465-4587-a659-ab99b7858278",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "f0d619f6-8e3b-41c7-844b-e7476f8ab9d0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9669}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9669}}"
+    }
+  },
+  "sourceToolAssistantUUID": "0638481d-b465-4587-a659-ab99b7858278",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 29 · 2026-05-23T01:43:13.413Z_
+
+<details><summary>↩ Tool result · `toolu_01TkvRiJ94reo7RLPvRBiTAV`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0687}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "c60f21d8-c5de-4368-9fee-a48bbdd11143",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "2ee8e5e1-c33d-405f-b74c-099b944d861a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {}, \\\"count\\\": 0, \\\"total\\\": 0, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.0687}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {}, \"count\": 0, \"total\": 0, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.0687}}"
+    }
+  },
+  "sourceToolAssistantUUID": "c60f21d8-c5de-4368-9fee-a48bbdd11143",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 30 · 2026-05-23T01:43:13.421Z_
+
+```json
+{
+  "parentUuid": "2ee8e5e1-c33d-405f-b74c-099b944d861a",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "df777b95-bc65-4eaa-b9fa-8b7f34887501",
+  "timestamp": "2026-05-23T01:43:13.421Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 31 · 2026-05-23T01:43:20.584Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+OK, so several things:
+
+1. `tmux ls` failed because of `2>/dev/null` shell redirect - let me fix the commands
+2. nvidia-smi shows GPU 0 is in use with PID 752802 (python3, 19602MiB, 65% util, 400W) - training is likely still running
+3. The ps, ls, and tail commands failed due to shell metacharacters (pipes, redirects)
+4. Registry returned empty for all three exp_ids - the filters with exp_id don't work that way. Let me try without filters or with different approach.
+
+
+5. I need to re-run these commands without the shell syntax issues and query the registry using a different method.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "df777b95-bc65-4eaa-b9fa-8b7f34887501",
+  "isSidechain": false,
+  "requestId": "req_011CbJenizUudDM1LYaY5EdL",
+  "type": "assistant",
+  "uuid": "1da7886d-15a6-4551-ace1-d13c283cbcce",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzpwfnuVz3veuh9zYn6nUF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2113,
+      "cache_read_input_tokens": 27804,
+      "output_tokens": 781,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2113,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 781,
+          "cache_read_input_tokens": 27804,
+          "cache_creation_input_tokens": 2113,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2113
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 32 · 2026-05-23T01:43:21.548Z_
+
+GPU 0 正在使用（PID 752802, 19.6GB, 65% util）。几个命令因 shell 元字符被 read_only 拒绝，重新调整。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1da7886d-15a6-4551-ace1-d13c283cbcce",
+  "isSidechain": false,
+  "requestId": "req_011CbJenizUudDM1LYaY5EdL",
+  "type": "assistant",
+  "uuid": "6b1766c6-6854-4b4a-9592-1fef3568dcd4",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzpwfnuVz3veuh9zYn6nUF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2113,
+      "cache_read_input_tokens": 27804,
+      "output_tokens": 781,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2113,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 781,
+          "cache_read_input_tokens": 27804,
+          "cache_creation_input_tokens": 2113,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2113
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 33 · 2026-05-23T01:43:22.545Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0161PRhgmsHhDefm3BXwuAGv`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tmux ls"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6b1766c6-6854-4b4a-9592-1fef3568dcd4",
+  "isSidechain": false,
+  "requestId": "req_011CbJenizUudDM1LYaY5EdL",
+  "type": "assistant",
+  "uuid": "867811e1-ef30-4836-a133-6bd43092c305",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzpwfnuVz3veuh9zYn6nUF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2113,
+      "cache_read_input_tokens": 27804,
+      "output_tokens": 781,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2113,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 781,
+          "cache_read_input_tokens": 27804,
+          "cache_creation_input_tokens": 2113,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2113
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 34 · 2026-05-23T01:43:22.560Z_
+
+<details><summary>↩ Tool result · `toolu_0161PRhgmsHhDefm3BXwuAGv`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "867811e1-ef30-4836-a133-6bd43092c305",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "9699d355-0b88-4533-a74a-3fabab5f2d78",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"[ssh_read_only] Command blocked: 'tmux' is not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\", \"metadata\": {}}"
+    }
+  },
+  "sourceToolAssistantUUID": "867811e1-ef30-4836-a133-6bd43092c305",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35 · 2026-05-23T01:43:24.100Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014RkkU9xBQkic75aKqwrxSt`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9699d355-0b88-4533-a74a-3fabab5f2d78",
+  "isSidechain": false,
+  "requestId": "req_011CbJenizUudDM1LYaY5EdL",
+  "type": "assistant",
+  "uuid": "3b390dbb-9f6a-499e-a4d3-22bbdf3a6e01",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzpwfnuVz3veuh9zYn6nUF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2113,
+      "cache_read_input_tokens": 27804,
+      "output_tokens": 781,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2113,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 781,
+          "cache_read_input_tokens": 27804,
+          "cache_creation_input_tokens": 2113,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2113
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 36 · 2026-05-23T01:43:24.366Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01BngnxqpT3WNajya9i5aMAs`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "tail -30 /tmp/falcon3_volctrl.log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3b390dbb-9f6a-499e-a4d3-22bbdf3a6e01",
+  "isSidechain": false,
+  "requestId": "req_011CbJenizUudDM1LYaY5EdL",
+  "type": "assistant",
+  "uuid": "cca14790-a931-4a41-9306-80e335f4f87b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzpwfnuVz3veuh9zYn6nUF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2113,
+      "cache_read_input_tokens": 27804,
+      "output_tokens": 781,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2113,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 781,
+          "cache_read_input_tokens": 27804,
+          "cache_creation_input_tokens": 2113,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2113
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 37 · 2026-05-23T01:43:24.495Z_
+
+<details><summary>↩ Tool result · `toolu_014RkkU9xBQkic75aKqwrxSt`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  3 root root   26 May 23 08:52 .\\ndrwxr-xr-x 56 root root 4096 May 23 08:51 ..\\ndrwxr-xr-x  2 root root   10 May 23 08:52 lora_adapter\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "3b390dbb-9f6a-499e-a4d3-22bbdf3a6e01",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "250ba0fb-d98a-4698-8605-61aac2087113",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 4\\\\ndrwxr-xr-x  3 root root   26 May 23 08:52 .\\\\ndrwxr-xr-x 56 root root 4096 May 23 08:51 ..\\\\ndrwxr-xr-x  2 root root   10 May 23 08:52 lora_adapter\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.38}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 4\\ndrwxr-xr-x  3 root root   26 May 23 08:52 .\\ndrwxr-xr-x 56 root root 4096 May 23 08:51 ..\\ndrwxr-xr-x  2 root root   10 May 23 08:52 lora_adapter\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.38}}"
+    }
+  },
+  "sourceToolAssistantUUID": "3b390dbb-9f6a-499e-a4d3-22bbdf3a6e01",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-23T01:43:25.029Z_
+
+<details><summary>↩ Tool result · `toolu_01BngnxqpT3WNajya9i5aMAs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"{'loss': 1.36, 'grad_norm': 0.24127711355686188, 'learning_rate': 2.860576923076923e-05, 'entropy': 1.280898073874414, 'num_tokens': 837689.0, 'mean_token_accuracy': 0.7019104562699795, 'epoch': 0.03}\\n{'loss': 1.3149, 'grad_norm': 0.25816676020622253, 'learning_rate': 3.1009615384615384e-05, 'entropy': 1.2720323521643877, 'num_tokens': 905859.0, 'mean_token_accuracy': 0.7017039317637682, 'epoch': 0.03}\\n{'loss': 1.3902, 'grad_norm': 0.22310560941696167, 'learning_rate': 3.3413461538461536e-05, 'entropy': 1.304616547562182, 'num_tokens': 972126.0, 'mean_token_accuracy': 0.6940164903178812, 'epoch': 0.03}\\n{'loss': 1.3178, 'grad_norm': 0.24616782367229462, 'learning_rate': 3.5817307692307695e-05, 'entropy': 1.2579168473370372, 'num_tokens': 1036964.0, 'mean_token_accuracy': 0.706545758061111, 'epoch': 0.04}\\n{'loss': 1.3514, 'grad_norm': 0.22193050384521484, 'learning_rate': 3.8221153846153846e-05, 'entropy': 1.2377704469487072, 'num_tokens': 1101577.0, 'mean_token_accuracy': 0.709612088650465, 'epoch': 0.04}\\n{'loss': 1.3342, 'grad_norm': 0.20127706229686737, 'learning_rate': 4.0625000000000005e-05, 'entropy': 1.2295633429661392, 'num_tokens': 1174376.0, 'mean_token_accuracy': 0.7156834203749896, 'epoch': 0.04}\\n{'loss': 1.2732, 'grad_norm': 0.2018444836139679, 'learning_rate': 4.302884615384616e-05, 'entropy': 1.1688019882887601, 'num_tokens': 1238685.0, 'mean_token_accuracy': 0.7249685775488615, 'epoch': 0.04}\\n{'loss': 1.3064, 'grad_norm': 0.2580847144126892, 'learning_rate': 4.543269230769231e-05, 'entropy': 1.2391611756756902, 'num_tokens': 1312030.0, 'mean_token_accuracy': 0.7083842637017369, 'epoch': 0.05}\\n{'loss': 1.2761, 'grad_norm': 0.2015914022922516, 'learning_rate': 4.783653846153847e-05, 'entropy': 1.1633926950395108, 'num_tokens': 1381224.0, 'mean_token_accuracy': 0.7246175808832049, 'epoch': 0.05}\\n{'loss': 1.2708, 'grad_norm': 0.21010015904903412, 'learning_rate': 4.999999209693278e-05, 'entropy': 1.2093000075779856, 'num_tokens': 1445665.0, 'mean_token_accuracy': 0.7144895225763321, 'epoch': 0.05}\\n{'loss': 1.3681, 'grad_norm': 0.15218068659305573, 'learning_rate': 4.999904373491173e-05, 'entropy': 1.2767857048660516, 'num_tokens': 1515679.0, 'mean_token_accuracy': 0.6945898499339819, 'epoch': 0.05}\\n{'loss': 1.2691, 'grad_norm': 0.2244001030921936, 'learning_rate': 4.9996514828149276e-05, 'entropy': 1.2144712211564184, 'num_tokens': 1584108.0, 'mean_token_accuracy': 0.7131336400285363, 'epoch': 0.06}\\n{'loss': 1.2754, 'grad_norm': 0.19860193133354187, 'learning_rate': 4.9992405536533525e-05, 'entropy': 1.1630294278264046, 'num_tokens': 1650409.0, 'mean_token_accuracy': 0.7264715047553182, 'epoch': 0.06}\\n{'loss': 1.2684, 'grad_norm': 0.23160934448242188, 'learning_rate': 4.99867161198712e-05, 'entropy': 1.1592614512890578, 'num_tokens': 1718409.0, 'mean_token_accuracy': 0.7291016010567546, 'epoch': 0.06}\\n{'loss': 1.3826, 'grad_norm': 0.208699569106102, 'learning_rate': 4.997944693787116e-05, 'entropy': 1.2497776398435234, 'num_tokens': 1784537.0, 'mean_token_accuracy': 0.7061298344284296, 'epoch': 0.06}\\n{'loss': 1.2942, 'grad_norm': 0.16659551858901978, 'learning_rate': 4.9970598450121684e-05, 'entropy': 1.1836991980671883, 'num_tokens': 1851816.0, 'mean_token_accuracy': 0.7195880763232708, 'epoch': 0.06}\\n{'loss': 1.2244, 'grad_norm': 0.24315981566905975, 'learning_rate': 4.996017121606139e-05, 'entropy': 1.127430372685194, 'num_tokens': 1915711.0, 'mean_token_accuracy': 0.7344610663130879, 'epoch': 0.07}\\n{'loss': 1.219, 'grad_norm': 0.18783800303936005, 'learning_rate': 4.994816589494391e-05, 'entropy': 1.1421479417011142, 'num_tokens': 1978565.0, 'mean_token_accuracy': 0.7279166661202907, 'epoch': 0.07}\\n{'loss': 1.2235, 'grad_norm': 0.22698791325092316, 'learning_rate': 4.993458324579615e-05, 'entropy': 1.122772939875722, 'num_tokens': 2041748.0, 'mean_token_accuracy': 0.7276536449790001, 'epoch': 0.07}\\n{'loss': 1.2146, 'grad_norm': 0.20655003190040588, 'learning_rate': 4.991942412737034e-05, 'entropy': 1.173085869196\\n\\n... [截断: 输出过长，省略 17513 字符] ...\\n\\n3:49:42,  3.93s/it]\\r 16%|█▌        | 656/4159 [46:25<3:47:28,  3.90s/it]\\r 16%|█▌        | 657/4159 [46:30<4:13:55,  4.35s/it]\\r 16%|█▌        | 658/4159 [46:34<4:05:34,  4.21s/it]\\r 16%|█▌        | 659/4159 [46:39<4:08:54,  4.27s/it]\\r 16%|█▌        | 660/4159 [46:43<4:08:05,  4.25s/it]\\r                                                    \\r\\r 16%|█▌        | 660/4159 [46:43<4:08:05,  4.25s/it]\\r 16%|█▌        | 661/4159 [46:47<4:05:10,  4.21s/it]\\r 16%|█▌        | 662/4159 [46:52<4:09:26,  4.28s/it]\\r 16%|█▌        | 663/4159 [46:56<4:17:51,  4.43s/it]\\r 16%|█▌        | 664/4159 [47:00<4:01:42,  4.15s/it]\\r 16%|█▌        | 665/4159 [47:04<4:00:48,  4.14s/it]\\r 16%|█▌        | 666/4159 [47:08<3:52:24,  3.99s/it]\\r 16%|█▌        | 667/4159 [47:11<3:42:43,  3.83s/it]\\r 16%|█▌        | 668/4159 [47:16<3:57:37,  4.08s/it]\\r 16%|█▌        | 669/4159 [47:20<3:54:48,  4.04s/it]\\r 16%|█▌        | 670/4159 [47:24<4:07:07,  4.25s/it]\\r                                                    \\r\\r 16%|█▌        | 670/4159 [47:24<4:07:07,  4.25s/it]\\r 16%|█▌        | 671/4159 [47:28<4:00:31,  4.14s/it]\\r 16%|█▌        | 672/4159 [47:32<3:52:06,  3.99s/it]\\r 16%|█▌        | 673/4159 [47:37<4:08:38,  4.28s/it]\\r 16%|█▌        | 674/4159 [47:41<3:59:54,  4.13s/it]\\r 16%|█▌        | 675/4159 [47:44<3:46:54,  3.91s/it]\\r 16%|█▋        | 676/4159 [47:48<3:50:11,  3.97s/it]\\r 16%|█▋        | 677/4159 [47:53<4:05:16,  4.23s/it]\\r 16%|█▋        | 678/4159 [47:56<3:49:20,  3.95s/it]\\r 16%|█▋        | 679/4159 [48:00<3:50:59,  3.98s/it]\\r 16%|█▋        | 680/4159 [48:04<3:52:15,  4.01s/it]\\r                                                    \\r\\r 16%|█▋        | 680/4159 [48:04<3:52:15,  4.01s/it]\\r 16%|█▋        | 681/4159 [48:08<3:46:13,  3.90s/it]\\r 16%|█▋        | 682/4159 [48:12<3:39:53,  3.79s/it]\\r 16%|█▋        | 683/4159 [48:16<3:44:00,  3.87s/it]\\r 16%|█▋        | 684/4159 [48:20<3:45:06,  3.89s/it]\\r 16%|█▋        | 685/4159 [48:24<3:56:15,  4.08s/it]\\r 16%|█▋        | 686/4159 [48:28<3:49:49,  3.97s/it]\\r 17%|█▋        | 687/4159 [48:31<3:44:08,  3.87s/it]\\r 17%|█▋        | 688/4159 [48:35<3:43:50,  3.87s/it]\\r 17%|█▋        | 689/4159 [48:39<3:44:15,  3.88s/it]\\r 17%|█▋        | 690/4159 [48:43<3:47:43,  3.94s/it]\\r                                                    \\r\\r 17%|█▋        | 690/4159 [48:43<3:47:43,  3.94s/it]\\r 17%|█▋        | 691/4159 [48:48<4:06:59,  4.27s/it]\\r 17%|█▋        | 692/4159 [48:53<4:07:28,  4.28s/it]\\r 17%|█▋        | 693/4159 [48:57<4:02:59,  4.21s/it]\\r 17%|█▋        | 694/4159 [49:01<4:02:38,  4.20s/it]\\r 17%|█▋        | 695/4159 [49:04<3:50:58,  4.00s/it]\\r 17%|█▋        | 696/4159 [49:09<4:09:18,  4.32s/it]\\r 17%|█▋        | 697/4159 [49:13<4:00:24,  4.17s/it]\\r 17%|█▋        | 698/4159 [49:17<3:56:03,  4.09s/it]\\r 17%|█▋        | 699/4159 [49:22<4:03:03,  4.21s/it]\\r 17%|█▋        | 700/4159 [49:26<4:02:57,  4.21s/it]\\r                                                    \\r\\r 17%|█▋        | 700/4159 [49:26<4:02:57,  4.21s/it]\\r 17%|█▋        | 701/4159 [49:31<4:25:04,  4.60s/it]\\r 17%|█▋        | 702/4159 [49:36<4:16:50,  4.46s/it]\\r 17%|█▋        | 703/4159 [49:40<4:09:43,  4.34s/it]\\r 17%|█▋        | 704/4159 [49:43<4:00:30,  4.18s/it]\\r 17%|█▋        | 705/4159 [49:48<4:01:56,  4.20s/it]\\r 17%|█▋        | 706/4159 [49:52<3:57:12,  4.12s/it]\\r 17%|█▋        | 707/4159 [49:56<4:00:03,  4.17s/it]\\r 17%|█▋        | 708/4159 [49:59<3:49:23,  3.99s/it]\\r 17%|█▋        | 709/4159 [50:04<3:52:20,  4.04s/it]\\r 17%|█▋        | 710/4159 [50:08<3:57:57,  4.14s/it]\\r                                                    \\r\\r 17%|█▋        | 710/4159 [50:08<3:57:57,  4.14s/it]\\r 17%|█▋        | 711/4159 [50:11<3:47:07,  3.95s/it]\\r 17%|█▋        | 712/4159 [50:16<3:53:14,  4.06s/it]\\r 17%|█▋        | 713/4159 [50:19<3:42:16,  3.87s/it]\\r 17%|█▋        | 714/4159 [50:23<3:41:30,  3.86s/it]\\r 17%|█▋        | 715/4159 [50:27<3:36:49,  3.78s/it]\\r 17%|█▋        | 716/4159 [50:32<4:00:58,  4.20s/it]\\r 17%|█▋        | 717/4159 [50:36<4:06:36,  4.30s/it]\\r 17%|█▋        | 718/4159 [50:40<4:02:26,  4.23s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "cca14790-a931-4a41-9306-80e335f4f87b",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "e76e0064-22d5-460c-bb72-74573918928a",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{'loss': 1.36, 'grad_norm': 0.24127711355686188, 'learning_rate': 2.860576923076923e-05, 'entropy': 1.280898073874414, 'num_tokens': 837689.0, 'mean_token_accuracy': 0.7019104562699795, 'epoch': 0.03}\\\\n{'loss': 1.3149, 'grad_norm': 0.25816676020622253, 'learning_rate': 3.1009615384615384e-05, 'entropy': 1.2720323521643877, 'num_tokens': 905859.0, 'mean_token_accuracy': 0.7017039317637682, 'epoch': 0.03}\\\\n{'loss': 1.3902, 'grad_norm': 0.22310560941696167, 'learning_rate': 3.3413461538461536e-05, 'entropy': 1.304616547562182, 'num_tokens': 972126.0, 'mean_token_accuracy': 0.6940164903178812, 'epoch': 0.03}\\\\n{'loss': 1.3178, 'grad_norm': 0.24616782367229462, 'learning_rate': 3.5817307692307695e-05, 'entropy': 1.2579168473370372, 'num_tokens': 1036964.0, 'mean_token_accuracy': 0.706545758061111, 'epoch': 0.04}\\\\n{'loss': 1.3514, 'grad_norm': 0.22193050384521484, 'learning_rate': 3.8221153846153846e-05, 'entropy': 1.2377704469487072, 'num_tokens': 1101577.0, 'mean_token_accuracy': 0.709612088650465, 'epoch': 0.04}\\\\n{'loss': 1.3342, 'grad_norm': 0.20127706229686737, 'learning_rate': 4.0625000000000005e-05, 'entropy': 1.2295633429661392, 'num_tokens': 1174376.0, 'mean_token_accuracy': 0.7156834203749896, 'epoch': 0.04}\\\\n{'loss': 1.2732, 'grad_norm': 0.2018444836139679, 'learning_rate': 4.302884615384616e-05, 'entropy': 1.1688019882887601, 'num_tokens': 1238685.0, 'mean_token_accuracy': 0.7249685775488615, 'epoch': 0.04}\\\\n{'loss': 1.3064, 'grad_norm': 0.2580847144126892, 'learning_rate': 4.543269230769231e-05, 'entropy': 1.2391611756756902, 'num_tokens': 1312030.0, 'mean_token_accuracy': 0.7083842637017369, 'epoch': 0.05}\\\\n{'loss': 1.2761, 'grad_norm': 0.2015914022922516, 'learning_rate': 4.783653846153847e-05, 'entropy': 1.1633926950395108, 'num_tokens': 1381224.0, 'mean_token_accuracy': 0.7246175808832049, 'epoch': 0.05}\\\\n{'loss': 1.2708, 'grad_norm': 0.21010015904903412, 'learning_rate': 4.999999209693278e-05, 'entropy': 1.2093000075779856, 'num_tokens': 1445665.0, 'mean_token_accuracy': 0.7144895225763321, 'epoch': 0.05}\\\\n{'loss': 1.3681, 'grad_norm': 0.15218068659305573, 'learning_rate': 4.999904373491173e-05, 'entropy': 1.2767857048660516, 'num_tokens': 1515679.0, 'mean_token_accuracy': 0.6945898499339819, 'epoch': 0.05}\\\\n{'loss': 1.2691, 'grad_norm': 0.2244001030921936, 'learning_rate': 4.9996514828149276e-05, 'entropy': 1.2144712211564184, 'num_tokens': 1584108.0, 'mean_token_accuracy': 0.7131336400285363, 'epoch': 0.06}\\\\n{'loss': 1.2754, 'grad_norm': 0.19860193133354187, 'learning_rate': 4.9992405536533525e-05, 'entropy': 1.1630294278264046, 'num_tokens': 1650409.0, 'mean_token_accuracy': 0.7264715047553182, 'epoch': 0.06}\\\\n{'loss': 1.2684, 'grad_norm': 0.23160934448242188, 'learning_rate': 4.99867161198712e-05, 'entropy': 1.1592614512890578, 'num_tokens': 1718409.0, 'mean_token_accuracy': 0.7291016010567546, 'epoch': 0.06}\\\\n{'loss': 1.3826, 'grad_norm': 0.208699569106102, 'learning_rate': 4.997944693787116e-05, 'entropy': 1.2497776398435234, 'num_tokens': 1784537.0, 'mean_token_accuracy': 0.7061298344284296, 'epoch': 0.06}\\\\n{'loss': 1.2942, 'grad_norm': 0.16659551858901978, 'learning_rate': 4.9970598450121684e-05, 'entropy': 1.1836991980671883, 'num_tokens': 1851816.0, 'mean_token_accuracy': 0.7195880763232708, 'epoch': 0.06}\\\\n{'loss': 1.2244, 'grad_norm': 0.24315981566905975, 'learning_rate': 4.996017121606139e-05, 'entropy': 1.127430372685194, 'num_tokens': 1915711.0, 'mean_token_accuracy': 0.7344610663130879, 'epoch': 0.07}\\\\n{'loss': 1.219, 'grad_norm': 0.18783800303936005, 'learning_rate': 4.994816589494391e-05, 'entropy': 1.1421479417011142, 'num_tokens': 1978565.0, 'mean_token_accuracy': 0.7279166661202907, 'epoch': 0.07}\\\\n{'loss': 1.2235, 'grad_norm': 0.22698791325092316, 'learning_rate': 4.993458324579615e-05, 'entropy': 1.122772939875722, 'num_tokens': 2041748.0, 'mean_token_accuracy': 0.7276536449790001, 'epoch': 0.07}\\\\n{'loss': 1.2146, 'grad_norm': 0.20655003190040588, 'learning_rate': 4.991942412737034e-05, 'entropy': 1.173085869196\\\\n\\\\n... [截断: 输出过长，省略 17513 字符] ...\\\\n\\\\n3:49:42,  3.93s/it]\\\\r 16%|█▌        | 656/4159 [46:25<3:47:28,  3.90s/it]\\\\r 16%|█▌        | 657/4159 [46:30<4:13:55,  4.35s/it]\\\\r 16%|█▌        | 658/4159 [46:34<4:05:34,  4.21s/it]\\\\r 16%|█▌        | 659/4159 [46:39<4:08:54,  4.27s/it]\\\\r 16%|█▌        | 660/4159 [46:43<4:08:05,  4.25s/it]\\\\r                                                    \\\\r\\\\r 16%|█▌        | 660/4159 [46:43<4:08:05,  4.25s/it]\\\\r 16%|█▌        | 661/4159 [46:47<4:05:10,  4.21s/it]\\\\r 16%|█▌        | 662/4159 [46:52<4:09:26,  4.28s/it]\\\\r 16%|█▌        | 663/4159 [46:56<4:17:51,  4.43s/it]\\\\r 16%|█▌        | 664/4159 [47:00<4:01:42,  4.15s/it]\\\\r 16%|█▌        | 665/4159 [47:04<4:00:48,  4.14s/it]\\\\r 16%|█▌        | 666/4159 [47:08<3:52:24,  3.99s/it]\\\\r 16%|█▌        | 667/4159 [47:11<3:42:43,  3.83s/it]\\\\r 16%|█▌        | 668/4159 [47:16<3:57:37,  4.08s/it]\\\\r 16%|█▌        | 669/4159 [47:20<3:54:48,  4.04s/it]\\\\r 16%|█▌        | 670/4159 [47:24<4:07:07,  4.25s/it]\\\\r                                                    \\\\r\\\\r 16%|█▌        | 670/4159 [47:24<4:07:07,  4.25s/it]\\\\r 16%|█▌        | 671/4159 [47:28<4:00:31,  4.14s/it]\\\\r 16%|█▌        | 672/4159 [47:32<3:52:06,  3.99s/it]\\\\r 16%|█▌        | 673/4159 [47:37<4:08:38,  4.28s/it]\\\\r 16%|█▌        | 674/4159 [47:41<3:59:54,  4.13s/it]\\\\r 16%|█▌        | 675/4159 [47:44<3:46:54,  3.91s/it]\\\\r 16%|█▋        | 676/4159 [47:48<3:50:11,  3.97s/it]\\\\r 16%|█▋        | 677/4159 [47:53<4:05:16,  4.23s/it]\\\\r 16%|█▋        | 678/4159 [47:56<3:49:20,  3.95s/it]\\\\r 16%|█▋        | 679/4159 [48:00<3:50:59,  3.98s/it]\\\\r 16%|█▋        | 680/4159 [48:04<3:52:15,  4.01s/it]\\\\r                                                    \\\\r\\\\r 16%|█▋        | 680/4159 [48:04<3:52:15,  4.01s/it]\\\\r 16%|█▋        | 681/4159 [48:08<3:46:13,  3.90s/it]\\\\r 16%|█▋        | 682/4159 [48:12<3:39:53,  3.79s/it]\\\\r 16%|█▋        | 683/4159 [48:16<3:44:00,  3.87s/it]\\\\r 16%|█▋        | 684/4159 [48:20<3:45:06,  3.89s/it]\\\\r 16%|█▋        | 685/4159 [48:24<3:56:15,  4.08s/it]\\\\r 16%|█▋        | 686/4159 [48:28<3:49:49,  3.97s/it]\\\\r 17%|█▋        | 687/4159 [48:31<3:44:08,  3.87s/it]\\\\r 17%|█▋        | 688/4159 [48:35<3:43:50,  3.87s/it]\\\\r 17%|█▋        | 689/4159 [48:39<3:44:15,  3.88s/it]\\\\r 17%|█▋        | 690/4159 [48:43<3:47:43,  3.94s/it]\\\\r                                                    \\\\r\\\\r 17%|█▋        | 690/4159 [48:43<3:47:43,  3.94s/it]\\\\r 17%|█▋        | 691/4159 [48:48<4:06:59,  4.27s/it]\\\\r 17%|█▋        | 692/4159 [48:53<4:07:28,  4.28s/it]\\\\r 17%|█▋        | 693/4159 [48:57<4:02:59,  4.21s/it]\\\\r 17%|█▋        | 694/4159 [49:01<4:02:38,  4.20s/it]\\\\r 17%|█▋        | 695/4159 [49:04<3:50:58,  4.00s/it]\\\\r 17%|█▋        | 696/4159 [49:09<4:09:18,  4.32s/it]\\\\r 17%|█▋        | 697/4159 [49:13<4:00:24,  4.17s/it]\\\\r 17%|█▋        | 698/4159 [49:17<3:56:03,  4.09s/it]\\\\r 17%|█▋        | 699/4159 [49:22<4:03:03,  4.21s/it]\\\\r 17%|█▋        | 700/4159 [49:26<4:02:57,  4.21s/it]\\\\r                                                    \\\\r\\\\r 17%|█▋        | 700/4159 [49:26<4:02:57,  4.21s/it]\\\\r 17%|█▋        | 701/4159 [49:31<4:25:04,  4.60s/it]\\\\r 17%|█▋        | 702/4159 [49:36<4:16:50,  4.46s/it]\\\\r 17%|█▋        | 703/4159 [49:40<4:09:43,  4.34s/it]\\\\r 17%|█▋        | 704/4159 [49:43<4:00:30,  4.18s/it]\\\\r 17%|█▋        | 705/4159 [49:48<4:01:56,  4.20s/it]\\\\r 17%|█▋        | 706/4159 [49:52<3:57:12,  4.12s/it]\\\\r 17%|█▋        | 707/4159 [49:56<4:00:03,  4.17s/it]\\\\r 17%|█▋        | 708/4159 [49:59<3:49:23,  3.99s/it]\\\\r 17%|█▋        | 709/4159 [50:04<3:52:20,  4.04s/it]\\\\r 17%|█▋        | 710/4159 [50:08<3:57:57,  4.14s/it]\\\\r                                                    \\\\r\\\\r 17%|█▋        | 710/4159 [50:08<3:57:57,  4.14s/it]\\\\r 17%|█▋        | 711/4159 [50:11<3:47:07,  3.95s/it]\\\\r 17%|█▋        | 712/4159 [50:16<3:53:14,  4.06s/it]\\\\r 17%|█▋        | 713/4159 [50:19<3:42:16,  3.87s/it]\\\\r 17%|█▋        | 714/4159 [50:23<3:41:30,  3.86s/it]\\\\r 17%|█▋        | 715/4159 [50:27<3:36:49,  3.78s/it]\\\\r 17%|█▋        | 716/4159 [50:32<4:00:58,  4.20s/it]\\\\r 17%|█▋        | 717/4159 [50:36<4:06:36,  4.30s/it]\\\\r 17%|█▋        | 718/4159 [50:40<4:02:26,  4.23s/it]\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"{'loss': 1.36, 'grad_norm': 0.24127711355686188, 'learning_rate': 2.860576923076923e-05, 'entropy': 1.280898073874414, 'num_tokens': 837689.0, 'mean_token_accuracy': 0.7019104562699795, 'epoch': 0.03}\\n{'loss': 1.3149, 'grad_norm': 0.25816676020622253, 'learning_rate': 3.1009615384615384e-05, 'entropy': 1.2720323521643877, 'num_tokens': 905859.0, 'mean_token_accuracy': 0.7017039317637682, 'epoch': 0.03}\\n{'loss': 1.3902, 'grad_norm': 0.22310560941696167, 'learning_rate': 3.3413461538461536e-05, 'entropy': 1.304616547562182, 'num_tokens': 972126.0, 'mean_token_accuracy': 0.6940164903178812, 'epoch': 0.03}\\n{'loss': 1.3178, 'grad_norm': 0.24616782367229462, 'learning_rate': 3.5817307692307695e-05, 'entropy': 1.2579168473370372, 'num_tokens': 1036964.0, 'mean_token_accuracy': 0.706545758061111, 'epoch': 0.04}\\n{'loss': 1.3514, 'grad_norm': 0.22193050384521484, 'learning_rate': 3.8221153846153846e-05, 'entropy': 1.2377704469487072, 'num_tokens': 1101577.0, 'mean_token_accuracy': 0.709612088650465, 'epoch': 0.04}\\n{'loss': 1.3342, 'grad_norm': 0.20127706229686737, 'learning_rate': 4.0625000000000005e-05, 'entropy': 1.2295633429661392, 'num_tokens': 1174376.0, 'mean_token_accuracy': 0.7156834203749896, 'epoch': 0.04}\\n{'loss': 1.2732, 'grad_norm': 0.2018444836139679, 'learning_rate': 4.302884615384616e-05, 'entropy': 1.1688019882887601, 'num_tokens': 1238685.0, 'mean_token_accuracy': 0.7249685775488615, 'epoch': 0.04}\\n{'loss': 1.3064, 'grad_norm': 0.2580847144126892, 'learning_rate': 4.543269230769231e-05, 'entropy': 1.2391611756756902, 'num_tokens': 1312030.0, 'mean_token_accuracy': 0.7083842637017369, 'epoch': 0.05}\\n{'loss': 1.2761, 'grad_norm': 0.2015914022922516, 'learning_rate': 4.783653846153847e-05, 'entropy': 1.1633926950395108, 'num_tokens': 1381224.0, 'mean_token_accuracy': 0.7246175808832049, 'epoch': 0.05}\\n{'loss': 1.2708, 'grad_norm': 0.21010015904903412, 'learning_rate': 4.999999209693278e-05, 'entropy': 1.2093000075779856, 'num_tokens': 1445665.0, 'mean_token_accuracy': 0.7144895225763321, 'epoch': 0.05}\\n{'loss': 1.3681, 'grad_norm': 0.15218068659305573, 'learning_rate': 4.999904373491173e-05, 'entropy': 1.2767857048660516, 'num_tokens': 1515679.0, 'mean_token_accuracy': 0.6945898499339819, 'epoch': 0.05}\\n{'loss': 1.2691, 'grad_norm': 0.2244001030921936, 'learning_rate': 4.9996514828149276e-05, 'entropy': 1.2144712211564184, 'num_tokens': 1584108.0, 'mean_token_accuracy': 0.7131336400285363, 'epoch': 0.06}\\n{'loss': 1.2754, 'grad_norm': 0.19860193133354187, 'learning_rate': 4.9992405536533525e-05, 'entropy': 1.1630294278264046, 'num_tokens': 1650409.0, 'mean_token_accuracy': 0.7264715047553182, 'epoch': 0.06}\\n{'loss': 1.2684, 'grad_norm': 0.23160934448242188, 'learning_rate': 4.99867161198712e-05, 'entropy': 1.1592614512890578, 'num_tokens': 1718409.0, 'mean_token_accuracy': 0.7291016010567546, 'epoch': 0.06}\\n{'loss': 1.3826, 'grad_norm': 0.208699569106102, 'learning_rate': 4.997944693787116e-05, 'entropy': 1.2497776398435234, 'num_tokens': 1784537.0, 'mean_token_accuracy': 0.7061298344284296, 'epoch': 0.06}\\n{'loss': 1.2942, 'grad_norm': 0.16659551858901978, 'learning_rate': 4.9970598450121684e-05, 'entropy': 1.1836991980671883, 'num_tokens': 1851816.0, 'mean_token_accuracy': 0.7195880763232708, 'epoch': 0.06}\\n{'loss': 1.2244, 'grad_norm': 0.24315981566905975, 'learning_rate': 4.996017121606139e-05, 'entropy': 1.127430372685194, 'num_tokens': 1915711.0, 'mean_token_accuracy': 0.7344610663130879, 'epoch': 0.07}\\n{'loss': 1.219, 'grad_norm': 0.18783800303936005, 'learning_rate': 4.994816589494391e-05, 'entropy': 1.1421479417011142, 'num_tokens': 1978565.0, 'mean_token_accuracy': 0.7279166661202907, 'epoch': 0.07}\\n{'loss': 1.2235, 'grad_norm': 0.22698791325092316, 'learning_rate': 4.993458324579615e-05, 'entropy': 1.122772939875722, 'num_tokens': 2041748.0, 'mean_token_accuracy': 0.7276536449790001, 'epoch': 0.07}\\n{'loss': 1.2146, 'grad_norm': 0.20655003190040588, 'learning_rate': 4.991942412737034e-05, 'entropy': 1.173085869196\\n\\n... [截断: 输出过长，省略 17513 字符] ...\\n\\n3:49:42,  3.93s/it]\\r 16%|█▌        | 656/4159 [46:25<3:47:28,  3.90s/it]\\r 16%|█▌        | 657/4159 [46:30<4:13:55,  4.35s/it]\\r 16%|█▌        | 658/4159 [46:34<4:05:34,  4.21s/it]\\r 16%|█▌        | 659/4159 [46:39<4:08:54,  4.27s/it]\\r 16%|█▌        | 660/4159 [46:43<4:08:05,  4.25s/it]\\r                                                    \\r\\r 16%|█▌        | 660/4159 [46:43<4:08:05,  4.25s/it]\\r 16%|█▌        | 661/4159 [46:47<4:05:10,  4.21s/it]\\r 16%|█▌        | 662/4159 [46:52<4:09:26,  4.28s/it]\\r 16%|█▌        | 663/4159 [46:56<4:17:51,  4.43s/it]\\r 16%|█▌        | 664/4159 [47:00<4:01:42,  4.15s/it]\\r 16%|█▌        | 665/4159 [47:04<4:00:48,  4.14s/it]\\r 16%|█▌        | 666/4159 [47:08<3:52:24,  3.99s/it]\\r 16%|█▌        | 667/4159 [47:11<3:42:43,  3.83s/it]\\r 16%|█▌        | 668/4159 [47:16<3:57:37,  4.08s/it]\\r 16%|█▌        | 669/4159 [47:20<3:54:48,  4.04s/it]\\r 16%|█▌        | 670/4159 [47:24<4:07:07,  4.25s/it]\\r                                                    \\r\\r 16%|█▌        | 670/4159 [47:24<4:07:07,  4.25s/it]\\r 16%|█▌        | 671/4159 [47:28<4:00:31,  4.14s/it]\\r 16%|█▌        | 672/4159 [47:32<3:52:06,  3.99s/it]\\r 16%|█▌        | 673/4159 [47:37<4:08:38,  4.28s/it]\\r 16%|█▌        | 674/4159 [47:41<3:59:54,  4.13s/it]\\r 16%|█▌        | 675/4159 [47:44<3:46:54,  3.91s/it]\\r 16%|█▋        | 676/4159 [47:48<3:50:11,  3.97s/it]\\r 16%|█▋        | 677/4159 [47:53<4:05:16,  4.23s/it]\\r 16%|█▋        | 678/4159 [47:56<3:49:20,  3.95s/it]\\r 16%|█▋        | 679/4159 [48:00<3:50:59,  3.98s/it]\\r 16%|█▋        | 680/4159 [48:04<3:52:15,  4.01s/it]\\r                                                    \\r\\r 16%|█▋        | 680/4159 [48:04<3:52:15,  4.01s/it]\\r 16%|█▋        | 681/4159 [48:08<3:46:13,  3.90s/it]\\r 16%|█▋        | 682/4159 [48:12<3:39:53,  3.79s/it]\\r 16%|█▋        | 683/4159 [48:16<3:44:00,  3.87s/it]\\r 16%|█▋        | 684/4159 [48:20<3:45:06,  3.89s/it]\\r 16%|█▋        | 685/4159 [48:24<3:56:15,  4.08s/it]\\r 16%|█▋        | 686/4159 [48:28<3:49:49,  3.97s/it]\\r 17%|█▋        | 687/4159 [48:31<3:44:08,  3.87s/it]\\r 17%|█▋        | 688/4159 [48:35<3:43:50,  3.87s/it]\\r 17%|█▋        | 689/4159 [48:39<3:44:15,  3.88s/it]\\r 17%|█▋        | 690/4159 [48:43<3:47:43,  3.94s/it]\\r                                                    \\r\\r 17%|█▋        | 690/4159 [48:43<3:47:43,  3.94s/it]\\r 17%|█▋        | 691/4159 [48:48<4:06:59,  4.27s/it]\\r 17%|█▋        | 692/4159 [48:53<4:07:28,  4.28s/it]\\r 17%|█▋        | 693/4159 [48:57<4:02:59,  4.21s/it]\\r 17%|█▋        | 694/4159 [49:01<4:02:38,  4.20s/it]\\r 17%|█▋        | 695/4159 [49:04<3:50:58,  4.00s/it]\\r 17%|█▋        | 696/4159 [49:09<4:09:18,  4.32s/it]\\r 17%|█▋        | 697/4159 [49:13<4:00:24,  4.17s/it]\\r 17%|█▋        | 698/4159 [49:17<3:56:03,  4.09s/it]\\r 17%|█▋        | 699/4159 [49:22<4:03:03,  4.21s/it]\\r 17%|█▋        | 700/4159 [49:26<4:02:57,  4.21s/it]\\r                                                    \\r\\r 17%|█▋        | 700/4159 [49:26<4:02:57,  4.21s/it]\\r 17%|█▋        | 701/4159 [49:31<4:25:04,  4.60s/it]\\r 17%|█▋        | 702/4159 [49:36<4:16:50,  4.46s/it]\\r 17%|█▋        | 703/4159 [49:40<4:09:43,  4.34s/it]\\r 17%|█▋        | 704/4159 [49:43<4:00:30,  4.18s/it]\\r 17%|█▋        | 705/4159 [49:48<4:01:56,  4.20s/it]\\r 17%|█▋        | 706/4159 [49:52<3:57:12,  4.12s/it]\\r 17%|█▋        | 707/4159 [49:56<4:00:03,  4.17s/it]\\r 17%|█▋        | 708/4159 [49:59<3:49:23,  3.99s/it]\\r 17%|█▋        | 709/4159 [50:04<3:52:20,  4.04s/it]\\r 17%|█▋        | 710/4159 [50:08<3:57:57,  4.14s/it]\\r                                                    \\r\\r 17%|█▋        | 710/4159 [50:08<3:57:57,  4.14s/it]\\r 17%|█▋        | 711/4159 [50:11<3:47:07,  3.95s/it]\\r 17%|█▋        | 712/4159 [50:16<3:53:14,  4.06s/it]\\r 17%|█▋        | 713/4159 [50:19<3:42:16,  3.87s/it]\\r 17%|█▋        | 714/4159 [50:23<3:41:30,  3.86s/it]\\r 17%|█▋        | 715/4159 [50:27<3:36:49,  3.78s/it]\\r 17%|█▋        | 716/4159 [50:32<4:00:58,  4.20s/it]\\r 17%|█▋        | 717/4159 [50:36<4:06:36,  4.30s/it]\\r 17%|█▋        | 718/4159 [50:40<4:02:26,  4.23s/it]\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.53}}"
+    }
+  },
+  "sourceToolAssistantUUID": "cca14790-a931-4a41-9306-80e335f4f87b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 39 · 2026-05-23T01:43:25.392Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_014hRGD54ag6bNqcdRhQU9bx`</summary>
+
+```json
+{
+  "server": "cqa1-21977",
+  "command": "ls -la /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control/lora_adapter/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "e76e0064-22d5-460c-bb72-74573918928a",
+  "isSidechain": false,
+  "requestId": "req_011CbJenizUudDM1LYaY5EdL",
+  "type": "assistant",
+  "uuid": "68c23d64-ff5b-4b6b-b32d-5da415539097",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzpwfnuVz3veuh9zYn6nUF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2113,
+      "cache_read_input_tokens": 27804,
+      "output_tokens": 781,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2113,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 781,
+          "cache_read_input_tokens": 27804,
+          "cache_creation_input_tokens": 2113,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2113
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 40 · 2026-05-23T01:43:25.787Z_
+
+<details><summary>↩ Tool result · `toolu_014hRGD54ag6bNqcdRhQU9bx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"total 0\\ndrwxr-xr-x 2 root root 10 May 23 08:52 .\\ndrwxr-xr-x 3 root root 26 May 23 08:52 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "68c23d64-ff5b-4b6b-b32d-5da415539097",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "5343e9bf-035a-45a4-af42-3ac82d580422",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 0\\\\ndrwxr-xr-x 2 root root 10 May 23 08:52 .\\\\ndrwxr-xr-x 3 root root 26 May 23 08:52 ..\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.39}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"total 0\\ndrwxr-xr-x 2 root root 10 May 23 08:52 .\\ndrwxr-xr-x 3 root root 26 May 23 08:52 ..\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.39}}"
+    }
+  },
+  "sourceToolAssistantUUID": "68c23d64-ff5b-4b6b-b32d-5da415539097",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 41 · 2026-05-23T01:43:26.968Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01TzurSVik3HQehgAUFxRB63`</summary>
+
+```json
+{
+  "filters": {
+    "status": "RUNNING"
+  },
+  "project": "contamcal-irt-calibration",
+  "fields": [
+    "*"
+  ]
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "5343e9bf-035a-45a4-af42-3ac82d580422",
+  "isSidechain": false,
+  "requestId": "req_011CbJenizUudDM1LYaY5EdL",
+  "type": "assistant",
+  "uuid": "69a1386b-ea7b-4567-b8b5-9db6645b3795",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzpwfnuVz3veuh9zYn6nUF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2113,
+      "cache_read_input_tokens": 27804,
+      "output_tokens": 781,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2113,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 781,
+          "cache_read_input_tokens": 27804,
+          "cache_creation_input_tokens": 2113,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2113
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 42 · 2026-05-23T01:43:27.488Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__read_registry · `toolu_01UgtCefCdyTTpBgtB3TQBri`</summary>
+
+```json
+{
+  "project": "contamcal-irt-calibration",
+  "fields": [
+    "*"
+  ],
+  "limit": 20
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "69a1386b-ea7b-4567-b8b5-9db6645b3795",
+  "isSidechain": false,
+  "requestId": "req_011CbJenizUudDM1LYaY5EdL",
+  "type": "assistant",
+  "uuid": "f9287b26-385d-4bdd-8c54-f2793e8f3e19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzpwfnuVz3veuh9zYn6nUF",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 2113,
+      "cache_read_input_tokens": 27804,
+      "output_tokens": 781,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 2113,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 781,
+          "cache_read_input_tokens": 27804,
+          "cache_creation_input_tokens": 2113,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 2113
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 43_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "f9287b26-385d-4bdd-8c54-f2793e8f3e19",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 44_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check volume control training and fix registry",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c"
+}
+```
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-23T01:43:27.935Z_
+
+<details><summary>↩ Tool result · `toolu_01TzurSVik3HQehgAUFxRB63`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_falcon3_d100_s123\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:06:44.269Z\", \"updated_at\": \"2026-05-23T00:54:01.079Z\", \"hypothesis\": \"Falcon3-7B d100 s123 eval: tests whether Benefit pattern (+4.19pp at s42) replicates at seed=123. Required for Table 11 cross-seed consistency analysis (5→6 families).\", \"metrics\": {\"mmlu_accuracy\": 0.6268, \"mmlu_correct\": 8801, \"mmlu_total\": 14042, \"arc_accuracy\": 0.8422, \"arc_correct\": 987, \"arc_total\": 1172}, \"spec\": {\"command\": \"python3 evaluate.py --model-path Falcon3-7B-Base --adapter-path d100_s123/lora_adapter --benchmarks mmlu arc_challenge --batch-size 8\", \"server\": \"cqa1-21977\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"data_path\": \"MMLU + ARC-Challenge (HF cached)\", \"data_count\": 15214, \"checkpoint_source\": \"sft_falcon3_7b_d100_s123_v2\", \"eval_data\": \"MMLU (14042 items) + ARC-Challenge (1172 items)\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\", \"log_path\": \"/tmp/falcon3_eval_s123.log\"}, \"conclusion\": \"success\"}, \"sft_falcon3_7b_d100_s123_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:40:15.309Z\", \"updated_at\": \"2026-05-22T19:43:08.161Z\", \"hypothesis\": \"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\", \"parent\": \"sft_falcon3_7b_d100_s123\", \"spec\": {\"command\": \"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"pid\": 726883, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"gpu\": \"cuda:0\", \"gpu_model\": \"RTX 4090D 24GB\", \"hyperparams\": {\"batch_size\": 1, \"grad_accum\": 16, \"effective_batch_size\": 16, \"lr\": 5e-05, \"lora_r\": 16, \"lora_alpha\": 32, \"gradient_checkpointing\": true, \"PYTORCH_CUDA_ALLOC_CONF\": \"expandable_segments:True\"}}}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9558}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "69a1386b-ea7b-4567-b8b5-9db6645b3795",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "87786c74-c85a-442f-ad16-474f90250e0f",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_falcon3_d100_s123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T00:06:44.269Z\\\", \\\"updated_at\\\": \\\"2026-05-23T00:54:01.079Z\\\", \\\"hypothesis\\\": \\\"Falcon3-7B d100 s123 eval: tests whether Benefit pattern (+4.19pp at s42) replicates at seed=123. Required for Table 11 cross-seed consistency analysis (5→6 families).\\\", \\\"metrics\\\": {\\\"mmlu_accuracy\\\": 0.6268, \\\"mmlu_correct\\\": 8801, \\\"mmlu_total\\\": 14042, \\\"arc_accuracy\\\": 0.8422, \\\"arc_correct\\\": 987, \\\"arc_total\\\": 1172}, \\\"spec\\\": {\\\"command\\\": \\\"python3 evaluate.py --model-path Falcon3-7B-Base --adapter-path d100_s123/lora_adapter --benchmarks mmlu arc_challenge --batch-size 8\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"model_name\\\": \\\"Falcon3-7B-Base\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"MMLU + ARC-Challenge (HF cached)\\\", \\\"data_count\\\": 15214, \\\"checkpoint_source\\\": \\\"sft_falcon3_7b_d100_s123_v2\\\", \\\"eval_data\\\": \\\"MMLU (14042 items) + ARC-Challenge (1172 items)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\\\", \\\"log_path\\\": \\\"/tmp/falcon3_eval_s123.log\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"sft_falcon3_7b_d100_s123_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T19:40:15.309Z\\\", \\\"updated_at\\\": \\\"2026-05-22T19:43:08.161Z\\\", \\\"hypothesis\\\": \\\"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\\\", \\\"parent\\\": \\\"sft_falcon3_7b_d100_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"pid\\\": 726883, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\", \\\"model_name\\\": \\\"Falcon3-7B-Base\\\", \\\"seed\\\": 123, \\\"gpu\\\": \\\"cuda:0\\\", \\\"gpu_model\\\": \\\"RTX 4090D 24GB\\\", \\\"hyperparams\\\": {\\\"batch_size\\\": 1, \\\"grad_accum\\\": 16, \\\"effective_batch_size\\\": 16, \\\"lr\\\": 5e-05, \\\"lora_r\\\": 16, \\\"lora_alpha\\\": 32, \\\"gradient_checkpointing\\\": true, \\\"PYTORCH_CUDA_ALLOC_CONF\\\": \\\"expandable_segments:True\\\"}}}}, \\\"count\\\": 2, \\\"total\\\": 2, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9558}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_falcon3_d100_s123\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:06:44.269Z\", \"updated_at\": \"2026-05-23T00:54:01.079Z\", \"hypothesis\": \"Falcon3-7B d100 s123 eval: tests whether Benefit pattern (+4.19pp at s42) replicates at seed=123. Required for Table 11 cross-seed consistency analysis (5→6 families).\", \"metrics\": {\"mmlu_accuracy\": 0.6268, \"mmlu_correct\": 8801, \"mmlu_total\": 14042, \"arc_accuracy\": 0.8422, \"arc_correct\": 987, \"arc_total\": 1172}, \"spec\": {\"command\": \"python3 evaluate.py --model-path Falcon3-7B-Base --adapter-path d100_s123/lora_adapter --benchmarks mmlu arc_challenge --batch-size 8\", \"server\": \"cqa1-21977\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"data_path\": \"MMLU + ARC-Challenge (HF cached)\", \"data_count\": 15214, \"checkpoint_source\": \"sft_falcon3_7b_d100_s123_v2\", \"eval_data\": \"MMLU (14042 items) + ARC-Challenge (1172 items)\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\", \"log_path\": \"/tmp/falcon3_eval_s123.log\"}, \"conclusion\": \"success\"}, \"sft_falcon3_7b_d100_s123_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:40:15.309Z\", \"updated_at\": \"2026-05-22T19:43:08.161Z\", \"hypothesis\": \"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\", \"parent\": \"sft_falcon3_7b_d100_s123\", \"spec\": {\"command\": \"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"pid\": 726883, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"gpu\": \"cuda:0\", \"gpu_model\": \"RTX 4090D 24GB\", \"hyperparams\": {\"batch_size\": 1, \"grad_accum\": 16, \"effective_batch_size\": 16, \"lr\": 5e-05, \"lora_r\": 16, \"lora_alpha\": 32, \"gradient_checkpointing\": true, \"PYTORCH_CUDA_ALLOC_CONF\": \"expandable_segments:True\"}}}}, \"count\": 2, \"total\": 2, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9558}}"
+    }
+  },
+  "sourceToolAssistantUUID": "69a1386b-ea7b-4567-b8b5-9db6645b3795",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 46 · 2026-05-23T01:43:28.897Z_
+
+<details><summary>↩ Tool result · `toolu_01UgtCefCdyTTpBgtB3TQBri`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"experiments\": {\"eval_falcon3_d100_s123\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:06:44.269Z\", \"updated_at\": \"2026-05-23T00:54:01.079Z\", \"hypothesis\": \"Falcon3-7B d100 s123 eval: tests whether Benefit pattern (+4.19pp at s42) replicates at seed=123. Required for Table 11 cross-seed consistency analysis (5→6 families).\", \"metrics\": {\"mmlu_accuracy\": 0.6268, \"mmlu_correct\": 8801, \"mmlu_total\": 14042, \"arc_accuracy\": 0.8422, \"arc_correct\": 987, \"arc_total\": 1172}, \"spec\": {\"command\": \"python3 evaluate.py --model-path Falcon3-7B-Base --adapter-path d100_s123/lora_adapter --benchmarks mmlu arc_challenge --batch-size 8\", \"server\": \"cqa1-21977\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"data_path\": \"MMLU + ARC-Challenge (HF cached)\", \"data_count\": 15214, \"checkpoint_source\": \"sft_falcon3_7b_d100_s123_v2\", \"eval_data\": \"MMLU (14042 items) + ARC-Challenge (1172 items)\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\", \"log_path\": \"/tmp/falcon3_eval_s123.log\"}, \"conclusion\": \"success\"}, \"sft_falcon3_7b_volume_control\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:06:41.250Z\", \"updated_at\": \"2026-05-23T00:50:28.913Z\", \"hypothesis\": \"Volume-matched control: if Falcon3 d100 Benefit (+4.19pp) is driven by data quantity rather than contamination content, a volume-matched dataset (50k clean + 16.5k non-benchmark MCQ) should produce similar gains. Null result (no gain) rules out the quantity confound.\"}, \"sft_falcon3_7b_d100_s123_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:40:15.309Z\", \"updated_at\": \"2026-05-22T19:43:08.161Z\", \"hypothesis\": \"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\", \"parent\": \"sft_falcon3_7b_d100_s123\", \"spec\": {\"command\": \"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"pid\": 726883, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"gpu\": \"cuda:0\", \"gpu_model\": \"RTX 4090D 24GB\", \"hyperparams\": {\"batch_size\": 1, \"grad_accum\": 16, \"effective_batch_size\": 16, \"lr\": 5e-05, \"lora_r\": 16, \"lora_alpha\": 32, \"gradient_checkpointing\": true, \"PYTORCH_CUDA_ALLOC_CONF\": \"expandable_segments:True\"}}}, \"sft_falcon3_7b_d100_s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:33:43.509Z\", \"updated_at\": \"2026-05-22T19:40:08.427Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"data_count\": 66533, \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123}, \"hypothesis\": \"Falcon3-7B-Base cross-seed replication (s123) at d100: tests whether Benefit pattern (+4.19pp at s42) is reproducible across seeds. Required for Table 11 cross-seed consistency analysis.\", \"parent\": \"sft_falcon3_7b_d100_s42\", \"conclusion\": \"failed\", \"failure_reason\": \"OOM at step 0 (torch.OutOfMemoryError during shift_logits contiguous). GPU memory fragmentation with seed=123 data ordering. PYTORCH_CUDA_ALLOC_CONF not set.\", \"completed_at\": \"2026-05-22T19:40:08.427Z\"}, \"eval_yi15_9b_pretrained_mmlu\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:09:31.715Z\", \"updated_at\": \"2026-05-22T19:29:57.069Z\", \"hypothesis\": \"Yi-1.5-9B pretrained MMLU accuracy falls in the 65-70% vulnerability band, making it a suitable candidate for 5-dosage contamination replication\", \"spec\": {\"command\": \"python evaluate.py --model-path Yi-1.5-9B --benchmarks mmlu --batch-size 4 --output-dir results/yi_pretrained_mmlu\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/.hf_cache/cais___mmlu\", \"data_count\": 14042, \"model_name\": \"Yi-1.5-9B\", \"seed\": 42, \"eval_data\": \"MMLU 5-shot (cais/mmlu)\", \"checkpoint_source\": \"pretrained (no adapter)\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/.hf_cache/Yi-1.5-9B\", \"log_path\": \"/tmp/eval_yi_pretrained_mmlu.log\", \"metrics\": {\"mmlu_accuracy\": 0.652, \"correct\": 9156, \"total\": 14042, \"gate_check\": \"GO\"}, \"completed_at\": \"2026-05-22T19:29:57.069Z\"}, \"eval_falcon3_d100_gsm8k_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:33:56.490Z\", \"updated_at\": \"2026-05-22T19:09:48.931Z\", \"hypothesis\": \"Falcon3-7B-Base d100 GSM8K eval: cross-benchmark transfer at maximum contamination. Positive GSM8K transfer despite MMLU-only contamination would indicate capability elicitation rather than memorization.\", \"parent\": \"sft_falcon3_7b_d100_s42\", \"spec\": {\"command\": \"evaluate.py --benchmarks gsm8k --batch-size 8 (Falcon3-7B-Base d100 s42, corrected md5)\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/contamcal-irt-calibration/eval_falcon3_d100_gsm8k_s42_v2.log\", \"submitted_at\": \"2026-05-22T18:34:00Z\", \"submitted_via\": \"ssh_execute+tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter\", \"eval_data\": \"gsm8k\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 42, \"data_path\": \"/root/autodl-tmp/.hf_cache/openai___gsm8k\", \"data_count\": 0, \"checkpoint_path\": \"/root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42\", \"wall_clock_seconds\": 2148.9, \"gpu_hours\": 0.6}, \"metrics\": {\"gsm8k_accuracy\": 0.7582, \"gsm8k_correct\": 1000, \"gsm8k_total\": 1319}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T19:09:48.932Z\"}, \"eval_falcon3_d100_gsm8k_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:23:48.419Z\", \"updated_at\": \"2026-05-22T18:33:34.704Z\", \"hypothesis\": \"Falcon3-7B-Base d100 GSM8K eval: measures cross-benchmark transfer effect at maximum contamination dosage. Positive GSM8K transfer despite MMLU-only contamination would indicate capability elicitation rather than memorization, consistent with other Benefit families (OLMo-2, Gemma-2).\", \"parent\": \"sft_falcon3_7b_d100_s42\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo 2>/dev/null || true && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && EXPECTED_MD5=001a9bc23f808c47d25ef9eaeecb81f1 && ACTUAL_MD5=\\\\$(md5sum /root/contamcal-irt-calibration/exp001/evaluate.py | cut -d' ' -f1) && if [ \\\\\\\"\\\\$ACTUAL_MD5\\\\\\\" != \\\\\\\"\\\\$EXPECTED_MD5\\\\\\\" ]; then echo 'ERROR: evaluate.py md5 mismatch'; exit 1; fi && mkdir -p /root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42 && CUDA_VISIBLE_DEVICES=0 python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --adapter-path /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter --benchmarks gsm8k --batch-size 8 --output-dir /root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42 --cache-dir /root/autodl-tmp/.hf_cache && touch /root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42/.done && echo 'DONE Falcon3 d100 GSM8K eval'\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_falcon3_d100_gsm8k_s42.log\", \"submitted_at\": \"2026-05-22T18:24:15.013Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter\", \"wall_clock_seconds\": 559.7, \"gpu_hours\": 0.16}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T18:33:34.704Z\"}, \"signals_falcon3_d100_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T15:02:35.638Z\", \"updated_at\": \"2026-05-22T18:22:24.290Z\", \"hypothesis\": \"Falcon3-7B-Base d100 (100% contamination dosage) will show higher contamination signals (S1 embedding similarity, S2 Min-K++, S4 self-critique) compared to lower dosage conditions, consistent with the IRT calibration framework's ability to detect contamination across model families beyond Qwen.\", \"parent\": \"signals_falcon3_d100_s42\", \"spec\": {\"command\": \"bash /root/contamcal-irt-calibration/exp002/run_falcon3_s4_only.sh\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"data_count\": 0, \"model_name\": \"Falcon3-7B-Base\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter\", \"eval_data\": \"mmlu,arc_challenge,gsm8k\", \"notes\": \"v2: fix token_type_ids bug in s4_selfcritique.py. S1+S2 already done from v1, only rerunning S4.\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter\", \"log_path\": \"/root/autodl-tmp/exp002/signals/Falcon3-7B-Base_d100_s42/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T18:22:24.290Z\"}, \"eval_phi4_mmlu_arc_westd_v2\": {\"created_at\": \"2026-05-19T07:41:08.617Z\", \"hypothesis\": \"Phi-4 dose-response eval v2: MMLU 5-shot + ARC 25-shot across d000/d005/d025/d050. Replaces v1 which was falsely marked DONE by cron PID mismatch.\", \"retry_count\": 0, \"status\": \"PREPARING\", \"updated_at\": \"2026-05-22T17:16:34.577Z\", \"conclusion\": \"killed\"}, \"gsm8k_phi4_s42_westd\": {\"created_at\": \"2026-05-19T22:46:09.117Z\", \"hypothesis\": \"GSM8K eval for Phi-4 s42: test if Immune archetype (±0.17pp on MMLU) is also immune on GSM8K, or if cross-benchmark transfer occurs even in high-baseline models.\", \"parent\": \"gsm8k_qwen7b_s42_cqa1\", \"retry_count\": 0, \"status\": \"PREPARING\", \"updated_at\": \"2026-05-22T17:16:32.968Z\", \"conclusion\": \"killed\"}, \"sft_gemma2_s0_sweep_v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:48:50.562Z\", \"updated_at\": \"2026-05-22T17:16:31.256Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/autodl-tmp/exp001/run_gemma2_s0.sh\\\"\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:1\"], \"pid\": \"315209\", \"log_path\": \"~/runs/contamcal-irt-calibration/sft_gemma2_s0_sweep_v2.log\", \"submitted_at\": \"2026-05-20T09:48:49.676Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"falcon3-7b-download\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:04:13.395Z\", \"updated_at\": \"2026-05-22T17:16:29.531Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_DISABLE_XET=1 && python3 -c \\\\\\\"\\nfrom huggingface_hub import snapshot_download\\nimport os\\nprint('Starting Falcon3-7B-Base download...')\\nsnapshot_download('tiiuae/Falcon3-7B-Base', local_dir='/root/autodl-tmp/.hf_cache/Falcon3-7B-Base', local_dir_use_symlinks=False)\\nprint('Download complete')\\n\\\\\\\"\\\"\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:0\"], \"pid\": \"570892\", \"log_path\": \"~/runs/contamcal-irt-calibration/falcon3-7b-download.log\", \"submitted_at\": \"2026-05-22T04:04:12.448Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"falcon3-7b-dl-v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:05:00.669Z\", \"updated_at\": \"2026-05-22T17:16:27.904Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && python3 -c \\\\\\\"\\nfrom huggingface_hub import snapshot_download\\nimport os\\nprint('Starting Falcon3-7B-Base download with network_turbo...')\\nsnapshot_download('tiiuae/Falcon3-7B-Base', local_dir='/root/autodl-tmp/.hf_cache/Falcon3-7B-Base', local_dir_use_symlinks=False)\\nprint('Download complete')\\n\\\\\\\"\\\"\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:0\"], \"pid\": \"570993\", \"log_path\": \"~/runs/contamcal-irt-calibration/falcon3-7b-dl-v2.log\", \"submitted_at\": \"2026-05-22T04:04:59.765Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"falcon3-7b-dl-v3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:09:28.149Z\", \"updated_at\": \"2026-05-22T17:16:26.241Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_ENDPOINT=https://hf-mirror.com && export HF_HUB_DISABLE_XET=1 && python3 -c \\\\\\\"\\nfrom huggingface_hub import snapshot_download\\nimport os, time\\nprint('Trying HF mirror (hf-mirror.com)...')\\nt0 = time.time()\\nsnapshot_download('tiiuae/Falcon3-7B-Base', local_dir='/root/autodl-tmp/.hf_cache/Falcon3-7B-Base')\\nt1 = time.time()\\nprint(f'Download complete in {t1-t0:.0f}s')\\n\\\\\\\"\\\"\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:0\"], \"pid\": \"571301\", \"log_path\": \"~/runs/contamcal-irt-calibration/falcon3-7b-dl-v3.log\", \"submitted_at\": \"2026-05-22T04:09:27.264Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"falcon3-7b-dl-v4\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:11:14.996Z\", \"updated_at\": \"2026-05-22T17:16:24.550Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY && export HF_ENDPOINT=https://hf-mirror.com && export HF_HUB_DISABLE_XET=1 && python3 -c \\\\\\\"\\nfrom huggingface_hub import snapshot_download\\nimport os, time\\nprint('Trying HF mirror WITHOUT proxy...')\\nt0 = time.time()\\nsnapshot_download('tiiuae/Falcon3-7B-Base', local_dir='/root/autodl-tmp/.hf_cache/Falcon3-7B-Base')\\nt1 = time.time()\\nprint(f'Download complete in {t1-t0:.0f}s')\\n\\\\\\\"\\\"\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:0\"], \"pid\": \"571441\", \"log_path\": \"~/runs/contamcal-irt-calibration/falcon3-7b-dl-v4.log\", \"submitted_at\": \"2026-05-22T04:11:13.915Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"falcon3-7b-dl-v5\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:41:36.216Z\", \"updated_at\": \"2026-05-22T17:16:22.625Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY && export HF_ENDPOINT=https://hf-mirror.com && export HF_HUB_DISABLE_XET=1 && python3 -c \\\\\\\"\\nfrom huggingface_hub import snapshot_download\\nimport time\\nprint('Resuming Falcon3-7B-Base download (missing shards only)...')\\nt0 = time.time()\\nsnapshot_download('tiiuae/Falcon3-7B-Base', local_dir='/root/autodl-tmp/.hf_cache/Falcon3-7B-Base')\\nt1 = time.time()\\nprint(f'Download complete in {t1-t0:.0f}s')\\n\\\\\\\"\\\"\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:0\"], \"pid\": \"573253\", \"log_path\": \"~/runs/contamcal-irt-calibration/falcon3-7b-dl-v5.log\", \"submitted_at\": \"2026-05-22T04:41:35.337Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"sft_yi15_9b_d000_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T15:51:46.028Z\", \"updated_at\": \"2026-05-22T16:31:09.703Z\", \"hypothesis\": \"Yi-1.5-9B exploration: d000 clean SFT baseline (v2 restart after v1 died at step 1802/3125 with no checkpoint)\", \"parent\": \"sft_yi15_9b_d000_s42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Yi-1.5-9B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Yi-1.5-9B_d000_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"westd-29999\", \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\", \"data_count\": 50000, \"model_name\": \"Yi-1.5-9B\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch, not eval)\", \"eval_data\": \"N/A (SFT training, not eval)\", \"notes\": \"PID=2658, tmux session=yi_d000, GPU=cuda:0 (RTX PRO 6000 96GB), lora r=16 alpha=32, ~3125 steps ~4.8h\"}, \"failure_reason\": \"SSH check failed 5x — last error: Authentication failed.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T16:28:40.736Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T16:28:47.546262+00:00\"}]}, \"notes\": \"失败原因: westd-29999 SSH 认证失败（连续 5 次），cron 监控无法连接服务器。v1 (sft_yi15_9b_d000_s42) 同样因 SSH auth 失败。实验可能仍在服务器上运行但无法验证。| 已有成果: 无（未获取到任何 metrics/checkpoint）| 建议: 需用户恢复 westd-29999 SSH 访问后重新检查进程状态\"}, \"sft_yi15_9b_d000_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T12:25:08.960Z\", \"updated_at\": \"2026-05-22T15:47:24.277Z\", \"hypothesis\": \"Yi-1.5-9B exploration: d000 clean SFT establishes post-SFT MMLU baseline. If 65-70% → full 5-dosage replication to test whether Yi family falls in the vulnerability band for Collapse/V-recovery patterns.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Yi-1.5-9B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Yi-1.5-9B_d000_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:0\"], \"pid\": 636899, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\", \"data_count\": 50000, \"model_name\": \"Yi-1.5-9B\", \"seed\": 42, \"lr\": 5e-05, \"batch_size\": 4, \"grad_accum\": 4, \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Yi-1.5-9B_d000_s42\"}, \"failure_reason\": \"SSH check failed 5x — last error: Authentication failed.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T15:38:51.450Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T15:39:01.881620+00:00\"}]}, \"notes\": \"诊断：cron 监控因 SSH 认证失败无法连接 westd-29999，连续 5 次失败后自动标记 failed。实际训练进程 (PID 636899) 可能仍在运行。根因是 westd-29999 服务器 SSH 认证异常（可能实例重启导致端口/密钥变更）。report.md 磁盘检查也确认 westd-29999 连接失败。需要用户检查服务器状态并更新 SSH 配置后重试。\"}, \"signals_falcon3_d100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T14:22:54.376Z\", \"updated_at\": \"2026-05-22T15:08:24.731Z\", \"spec\": {\"command\": \"compute_signals.py --signal all --benchmark mmlu,arc_challenge,gsm8k for Falcon3-7B-Base d100\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:0\"], \"pid\": \"698329\", \"log_path\": \"~/runs/contamcal-irt-calibration/signals_falcon3_d100_s42.log\", \"submitted_at\": \"2026-05-22T14:22:53.506Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"mmlu/arc_challenge/gsm8k test sets\", \"data_count\": 14042, \"model_name\": \"Falcon3-7B-Base\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter\", \"eval_data\": \"mmlu (14042 items) + arc_challenge (1172 items) + gsm8k (1319 items)\", \"wall_clock_seconds\": 2069.6, \"gpu_hours\": 0.57, \"checkpoint_path\": \"/root/autodl-tmp/exp002/signals/Falcon3-7B-Base_d100_s42/\"}, \"hypothesis\": \"Compute IRT exposure signals (S1 embedding, S2 Min-K++, S4 self-critique) for Falcon3-7B-Base d100 checkpoint across mmlu, arc_challenge, gsm8k. These signals feed into RRF fusion for contamination detection, extending signal coverage to the 7th model family.\", \"parent\": \"sft_falcon3_7b_d100_s42\", \"reproduce\": {\"finished_at\": \"2026-05-22T14:57:14.394Z\"}, \"failure_reason\": \"ModuleNotFoundError(\\\"No module named 'faiss.swigfaiss_avx512_spr'\\\")\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T14:57:23.111Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T14:57:35.083279+00:00\"}]}}, \"eval_falcon3_d100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T12:45:35.332Z\", \"updated_at\": \"2026-05-22T13:13:37.899Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && ... && HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 ... python exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --adapter-path /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter --benchmarks mmlu arc_challenge --mc-format aligned --output-dir /root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d100_s42_aligned/ --batch-size 4\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:0\"], \"pid\": 690514, \"log_path\": \"~/runs/contamcal-irt-calibration/eval_falcon3_d100_s42.log\", \"submitted_at\": \"2026-05-22T12:45:34.430Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"mmlu+arc_challenge\", \"data_count\": 0, \"model_name\": \"Falcon3-7B-Base\", \"seed\": 42, \"checkpoint_source\": \"sft_falcon3_7b_d100_s42\", \"eval_data\": \"mmlu+arc_challenge\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d100_s42_aligned/\", \"wall_clock_seconds\": 1683.5, \"gpu_hours\": 0.47}, \"hypothesis\": \"Falcon3-7B-Base d100 eval: MMLU 5-shot + ARC 25-shot at maximum contamination dosage determines final Δ(d100-d000) and confirms Benefit pattern classification for Algorithm 1\", \"metrics\": {\"mmlu_5shot\": 62.96, \"arc_challenge_25shot\": 85.58}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T13:13:37.899Z\"}}, \"count\": 20, \"total\": 429, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9473}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "f9287b26-385d-4bdd-8c54-f2793e8f3e19",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "886a25c1-8a4c-47e9-8888-f14e8106efd9",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"eval_falcon3_d100_s123\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T00:06:44.269Z\\\", \\\"updated_at\\\": \\\"2026-05-23T00:54:01.079Z\\\", \\\"hypothesis\\\": \\\"Falcon3-7B d100 s123 eval: tests whether Benefit pattern (+4.19pp at s42) replicates at seed=123. Required for Table 11 cross-seed consistency analysis (5→6 families).\\\", \\\"metrics\\\": {\\\"mmlu_accuracy\\\": 0.6268, \\\"mmlu_correct\\\": 8801, \\\"mmlu_total\\\": 14042, \\\"arc_accuracy\\\": 0.8422, \\\"arc_correct\\\": 987, \\\"arc_total\\\": 1172}, \\\"spec\\\": {\\\"command\\\": \\\"python3 evaluate.py --model-path Falcon3-7B-Base --adapter-path d100_s123/lora_adapter --benchmarks mmlu arc_challenge --batch-size 8\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"model_name\\\": \\\"Falcon3-7B-Base\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"MMLU + ARC-Challenge (HF cached)\\\", \\\"data_count\\\": 15214, \\\"checkpoint_source\\\": \\\"sft_falcon3_7b_d100_s123_v2\\\", \\\"eval_data\\\": \\\"MMLU (14042 items) + ARC-Challenge (1172 items)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\\\", \\\"log_path\\\": \\\"/tmp/falcon3_eval_s123.log\\\"}, \\\"conclusion\\\": \\\"success\\\"}, \\\"sft_falcon3_7b_volume_control\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T00:06:41.250Z\\\", \\\"updated_at\\\": \\\"2026-05-23T00:50:28.913Z\\\", \\\"hypothesis\\\": \\\"Volume-matched control: if Falcon3 d100 Benefit (+4.19pp) is driven by data quantity rather than contamination content, a volume-matched dataset (50k clean + 16.5k non-benchmark MCQ) should produce similar gains. Null result (no gain) rules out the quantity confound.\\\"}, \\\"sft_falcon3_7b_d100_s123_v2\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T19:40:15.309Z\\\", \\\"updated_at\\\": \\\"2026-05-22T19:43:08.161Z\\\", \\\"hypothesis\\\": \\\"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\\\", \\\"parent\\\": \\\"sft_falcon3_7b_d100_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"pid\\\": 726883, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\", \\\"model_name\\\": \\\"Falcon3-7B-Base\\\", \\\"seed\\\": 123, \\\"gpu\\\": \\\"cuda:0\\\", \\\"gpu_model\\\": \\\"RTX 4090D 24GB\\\", \\\"hyperparams\\\": {\\\"batch_size\\\": 1, \\\"grad_accum\\\": 16, \\\"effective_batch_size\\\": 16, \\\"lr\\\": 5e-05, \\\"lora_r\\\": 16, \\\"lora_alpha\\\": 32, \\\"gradient_checkpointing\\\": true, \\\"PYTORCH_CUDA_ALLOC_CONF\\\": \\\"expandable_segments:True\\\"}}}, \\\"sft_falcon3_7b_d100_s123\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T19:33:43.509Z\\\", \\\"updated_at\\\": \\\"2026-05-22T19:40:08.427Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\", \\\"data_count\\\": 66533, \\\"model_name\\\": \\\"Falcon3-7B-Base\\\", \\\"seed\\\": 123}, \\\"hypothesis\\\": \\\"Falcon3-7B-Base cross-seed replication (s123) at d100: tests whether Benefit pattern (+4.19pp at s42) is reproducible across seeds. Required for Table 11 cross-seed consistency analysis.\\\", \\\"parent\\\": \\\"sft_falcon3_7b_d100_s42\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"failure_reason\\\": \\\"OOM at step 0 (torch.OutOfMemoryError during shift_logits contiguous). GPU memory fragmentation with seed=123 data ordering. PYTORCH_CUDA_ALLOC_CONF not set.\\\", \\\"completed_at\\\": \\\"2026-05-22T19:40:08.427Z\\\"}, \\\"eval_yi15_9b_pretrained_mmlu\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T19:09:31.715Z\\\", \\\"updated_at\\\": \\\"2026-05-22T19:29:57.069Z\\\", \\\"hypothesis\\\": \\\"Yi-1.5-9B pretrained MMLU accuracy falls in the 65-70% vulnerability band, making it a suitable candidate for 5-dosage contamination replication\\\", \\\"spec\\\": {\\\"command\\\": \\\"python evaluate.py --model-path Yi-1.5-9B --benchmarks mmlu --batch-size 4 --output-dir results/yi_pretrained_mmlu\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/.hf_cache/cais___mmlu\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"Yi-1.5-9B\\\", \\\"seed\\\": 42, \\\"eval_data\\\": \\\"MMLU 5-shot (cais/mmlu)\\\", \\\"checkpoint_source\\\": \\\"pretrained (no adapter)\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/.hf_cache/Yi-1.5-9B\\\", \\\"log_path\\\": \\\"/tmp/eval_yi_pretrained_mmlu.log\\\", \\\"metrics\\\": {\\\"mmlu_accuracy\\\": 0.652, \\\"correct\\\": 9156, \\\"total\\\": 14042, \\\"gate_check\\\": \\\"GO\\\"}, \\\"completed_at\\\": \\\"2026-05-22T19:29:57.069Z\\\"}, \\\"eval_falcon3_d100_gsm8k_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T18:33:56.490Z\\\", \\\"updated_at\\\": \\\"2026-05-22T19:09:48.931Z\\\", \\\"hypothesis\\\": \\\"Falcon3-7B-Base d100 GSM8K eval: cross-benchmark transfer at maximum contamination. Positive GSM8K transfer despite MMLU-only contamination would indicate capability elicitation rather than memorization.\\\", \\\"parent\\\": \\\"sft_falcon3_7b_d100_s42\\\", \\\"spec\\\": {\\\"command\\\": \\\"evaluate.py --benchmarks gsm8k --batch-size 8 (Falcon3-7B-Base d100 s42, corrected md5)\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_falcon3_d100_gsm8k_s42_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T18:34:00Z\\\", \\\"submitted_via\\\": \\\"ssh_execute+tmux\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter\\\", \\\"eval_data\\\": \\\"gsm8k\\\", \\\"model_name\\\": \\\"Falcon3-7B-Base\\\", \\\"seed\\\": 42, \\\"data_path\\\": \\\"/root/autodl-tmp/.hf_cache/openai___gsm8k\\\", \\\"data_count\\\": 0, \\\"checkpoint_path\\\": \\\"/root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42\\\", \\\"wall_clock_seconds\\\": 2148.9, \\\"gpu_hours\\\": 0.6}, \\\"metrics\\\": {\\\"gsm8k_accuracy\\\": 0.7582, \\\"gsm8k_correct\\\": 1000, \\\"gsm8k_total\\\": 1319}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T19:09:48.932Z\\\"}, \\\"eval_falcon3_d100_gsm8k_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T18:23:48.419Z\\\", \\\"updated_at\\\": \\\"2026-05-22T18:33:34.704Z\\\", \\\"hypothesis\\\": \\\"Falcon3-7B-Base d100 GSM8K eval: measures cross-benchmark transfer effect at maximum contamination dosage. Positive GSM8K transfer despite MMLU-only contamination would indicate capability elicitation rather than memorization, consistent with other Benefit families (OLMo-2, Gemma-2).\\\", \\\"parent\\\": \\\"sft_falcon3_7b_d100_s42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo 2>/dev/null || true && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && EXPECTED_MD5=001a9bc23f808c47d25ef9eaeecb81f1 && ACTUAL_MD5=\\\\\\\\$(md5sum /root/contamcal-irt-calibration/exp001/evaluate.py | cut -d' ' -f1) && if [ \\\\\\\\\\\\\\\"\\\\\\\\$ACTUAL_MD5\\\\\\\\\\\\\\\" != \\\\\\\\\\\\\\\"\\\\\\\\$EXPECTED_MD5\\\\\\\\\\\\\\\" ]; then echo 'ERROR: evaluate.py md5 mismatch'; exit 1; fi && mkdir -p /root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42 && CUDA_VISIBLE_DEVICES=0 python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --adapter-path /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter --benchmarks gsm8k --batch-size 8 --output-dir /root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42 --cache-dir /root/autodl-tmp/.hf_cache && touch /root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42/.done && echo 'DONE Falcon3 d100 GSM8K eval'\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"unknown\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_falcon3_d100_gsm8k_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T18:24:15.013Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter\\\", \\\"wall_clock_seconds\\\": 559.7, \\\"gpu_hours\\\": 0.16}, \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-22T18:33:34.704Z\\\"}, \\\"signals_falcon3_d100_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T15:02:35.638Z\\\", \\\"updated_at\\\": \\\"2026-05-22T18:22:24.290Z\\\", \\\"hypothesis\\\": \\\"Falcon3-7B-Base d100 (100% contamination dosage) will show higher contamination signals (S1 embedding similarity, S2 Min-K++, S4 self-critique) compared to lower dosage conditions, consistent with the IRT calibration framework's ability to detect contamination across model families beyond Qwen.\\\", \\\"parent\\\": \\\"signals_falcon3_d100_s42\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash /root/contamcal-irt-calibration/exp002/run_falcon3_s4_only.sh\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Falcon3-7B-Base\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter\\\", \\\"eval_data\\\": \\\"mmlu,arc_challenge,gsm8k\\\", \\\"notes\\\": \\\"v2: fix token_type_ids bug in s4_selfcritique.py. S1+S2 already done from v1, only rerunning S4.\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter\\\", \\\"log_path\\\": \\\"/root/autodl-tmp/exp002/signals/Falcon3-7B-Base_d100_s42/\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T18:22:24.290Z\\\"}, \\\"eval_phi4_mmlu_arc_westd_v2\\\": {\\\"created_at\\\": \\\"2026-05-19T07:41:08.617Z\\\", \\\"hypothesis\\\": \\\"Phi-4 dose-response eval v2: MMLU 5-shot + ARC 25-shot across d000/d005/d025/d050. Replaces v1 which was falsely marked DONE by cron PID mismatch.\\\", \\\"retry_count\\\": 0, \\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-22T17:16:34.577Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"gsm8k_phi4_s42_westd\\\": {\\\"created_at\\\": \\\"2026-05-19T22:46:09.117Z\\\", \\\"hypothesis\\\": \\\"GSM8K eval for Phi-4 s42: test if Immune archetype (±0.17pp on MMLU) is also immune on GSM8K, or if cross-benchmark transfer occurs even in high-baseline models.\\\", \\\"parent\\\": \\\"gsm8k_qwen7b_s42_cqa1\\\", \\\"retry_count\\\": 0, \\\"status\\\": \\\"PREPARING\\\", \\\"updated_at\\\": \\\"2026-05-22T17:16:32.968Z\\\", \\\"conclusion\\\": \\\"killed\\\"}, \\\"sft_gemma2_s0_sweep_v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-20T09:48:50.562Z\\\", \\\"updated_at\\\": \\\"2026-05-22T17:16:31.256Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/autodl-tmp/exp001/run_gemma2_s0.sh\\\\\\\"\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:1\\\"], \\\"pid\\\": \\\"315209\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/sft_gemma2_s0_sweep_v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-20T09:48:49.676Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"falcon3-7b-download\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T04:04:13.395Z\\\", \\\"updated_at\\\": \\\"2026-05-22T17:16:29.531Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_DISABLE_XET=1 && python3 -c \\\\\\\\\\\\\\\"\\\\nfrom huggingface_hub import snapshot_download\\\\nimport os\\\\nprint('Starting Falcon3-7B-Base download...')\\\\nsnapshot_download('tiiuae/Falcon3-7B-Base', local_dir='/root/autodl-tmp/.hf_cache/Falcon3-7B-Base', local_dir_use_symlinks=False)\\\\nprint('Download complete')\\\\n\\\\\\\\\\\\\\\"\\\\\\\"\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"570892\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/falcon3-7b-download.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T04:04:12.448Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"falcon3-7b-dl-v2\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T04:05:00.669Z\\\", \\\"updated_at\\\": \\\"2026-05-22T17:16:27.904Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && python3 -c \\\\\\\\\\\\\\\"\\\\nfrom huggingface_hub import snapshot_download\\\\nimport os\\\\nprint('Starting Falcon3-7B-Base download with network_turbo...')\\\\nsnapshot_download('tiiuae/Falcon3-7B-Base', local_dir='/root/autodl-tmp/.hf_cache/Falcon3-7B-Base', local_dir_use_symlinks=False)\\\\nprint('Download complete')\\\\n\\\\\\\\\\\\\\\"\\\\\\\"\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"570993\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/falcon3-7b-dl-v2.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T04:04:59.765Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"falcon3-7b-dl-v3\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T04:09:28.149Z\\\", \\\"updated_at\\\": \\\"2026-05-22T17:16:26.241Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_ENDPOINT=https://hf-mirror.com && export HF_HUB_DISABLE_XET=1 && python3 -c \\\\\\\\\\\\\\\"\\\\nfrom huggingface_hub import snapshot_download\\\\nimport os, time\\\\nprint('Trying HF mirror (hf-mirror.com)...')\\\\nt0 = time.time()\\\\nsnapshot_download('tiiuae/Falcon3-7B-Base', local_dir='/root/autodl-tmp/.hf_cache/Falcon3-7B-Base')\\\\nt1 = time.time()\\\\nprint(f'Download complete in {t1-t0:.0f}s')\\\\n\\\\\\\\\\\\\\\"\\\\\\\"\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"571301\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/falcon3-7b-dl-v3.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T04:09:27.264Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"falcon3-7b-dl-v4\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T04:11:14.996Z\\\", \\\"updated_at\\\": \\\"2026-05-22T17:16:24.550Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY && export HF_ENDPOINT=https://hf-mirror.com && export HF_HUB_DISABLE_XET=1 && python3 -c \\\\\\\\\\\\\\\"\\\\nfrom huggingface_hub import snapshot_download\\\\nimport os, time\\\\nprint('Trying HF mirror WITHOUT proxy...')\\\\nt0 = time.time()\\\\nsnapshot_download('tiiuae/Falcon3-7B-Base', local_dir='/root/autodl-tmp/.hf_cache/Falcon3-7B-Base')\\\\nt1 = time.time()\\\\nprint(f'Download complete in {t1-t0:.0f}s')\\\\n\\\\\\\\\\\\\\\"\\\\\\\"\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"571441\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/falcon3-7b-dl-v4.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T04:11:13.915Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"falcon3-7b-dl-v5\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T04:41:36.216Z\\\", \\\"updated_at\\\": \\\"2026-05-22T17:16:22.625Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY && export HF_ENDPOINT=https://hf-mirror.com && export HF_HUB_DISABLE_XET=1 && python3 -c \\\\\\\\\\\\\\\"\\\\nfrom huggingface_hub import snapshot_download\\\\nimport time\\\\nprint('Resuming Falcon3-7B-Base download (missing shards only)...')\\\\nt0 = time.time()\\\\nsnapshot_download('tiiuae/Falcon3-7B-Base', local_dir='/root/autodl-tmp/.hf_cache/Falcon3-7B-Base')\\\\nt1 = time.time()\\\\nprint(f'Download complete in {t1-t0:.0f}s')\\\\n\\\\\\\\\\\\\\\"\\\\\\\"\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"573253\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/falcon3-7b-dl-v5.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T04:41:35.337Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\"}, \\\"conclusion\\\": \\\"killed\\\"}, \\\"sft_yi15_9b_d000_s42_v2\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T15:51:46.028Z\\\", \\\"updated_at\\\": \\\"2026-05-22T16:31:09.703Z\\\", \\\"hypothesis\\\": \\\"Yi-1.5-9B exploration: d000 clean SFT baseline (v2 restart after v1 died at step 1802/3125 with no checkpoint)\\\", \\\"parent\\\": \\\"sft_yi15_9b_d000_s42\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Yi-1.5-9B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Yi-1.5-9B_d000_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\", \\\"data_count\\\": 50000, \\\"model_name\\\": \\\"Yi-1.5-9B\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"N/A (training from scratch, not eval)\\\", \\\"eval_data\\\": \\\"N/A (SFT training, not eval)\\\", \\\"notes\\\": \\\"PID=2658, tmux session=yi_d000, GPU=cuda:0 (RTX PRO 6000 96GB), lora r=16 alpha=32, ~3125 steps ~4.8h\\\"}, \\\"failure_reason\\\": \\\"SSH check failed 5x — last error: Authentication failed.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-22T16:28:40.736Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T16:28:47.546262+00:00\\\"}]}, \\\"notes\\\": \\\"失败原因: westd-29999 SSH 认证失败（连续 5 次），cron 监控无法连接服务器。v1 (sft_yi15_9b_d000_s42) 同样因 SSH auth 失败。实验可能仍在服务器上运行但无法验证。| 已有成果: 无（未获取到任何 metrics/checkpoint）| 建议: 需用户恢复 westd-29999 SSH 访问后重新检查进程状态\\\"}, \\\"sft_yi15_9b_d000_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T12:25:08.960Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:47:24.277Z\\\", \\\"hypothesis\\\": \\\"Yi-1.5-9B exploration: d000 clean SFT establishes post-SFT MMLU baseline. If 65-70% → full 5-dosage replication to test whether Yi family falls in the vulnerability band for Collapse/V-recovery patterns.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Yi-1.5-9B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Yi-1.5-9B_d000_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"westd-29999\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": 636899, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\\\", \\\"data_count\\\": 50000, \\\"model_name\\\": \\\"Yi-1.5-9B\\\", \\\"seed\\\": 42, \\\"lr\\\": 5e-05, \\\"batch_size\\\": 4, \\\"grad_accum\\\": 4, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Yi-1.5-9B_d000_s42\\\"}, \\\"failure_reason\\\": \\\"SSH check failed 5x — last error: Authentication failed.\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-22T15:38:51.450Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T15:39:01.881620+00:00\\\"}]}, \\\"notes\\\": \\\"诊断：cron 监控因 SSH 认证失败无法连接 westd-29999，连续 5 次失败后自动标记 failed。实际训练进程 (PID 636899) 可能仍在运行。根因是 westd-29999 服务器 SSH 认证异常（可能实例重启导致端口/密钥变更）。report.md 磁盘检查也确认 westd-29999 连接失败。需要用户检查服务器状态并更新 SSH 配置后重试。\\\"}, \\\"signals_falcon3_d100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T14:22:54.376Z\\\", \\\"updated_at\\\": \\\"2026-05-22T15:08:24.731Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"compute_signals.py --signal all --benchmark mmlu,arc_challenge,gsm8k for Falcon3-7B-Base d100\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": \\\"698329\\\", \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/signals_falcon3_d100_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T14:22:53.506Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"mmlu/arc_challenge/gsm8k test sets\\\", \\\"data_count\\\": 14042, \\\"model_name\\\": \\\"Falcon3-7B-Base\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter\\\", \\\"eval_data\\\": \\\"mmlu (14042 items) + arc_challenge (1172 items) + gsm8k (1319 items)\\\", \\\"wall_clock_seconds\\\": 2069.6, \\\"gpu_hours\\\": 0.57, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp002/signals/Falcon3-7B-Base_d100_s42/\\\"}, \\\"hypothesis\\\": \\\"Compute IRT exposure signals (S1 embedding, S2 Min-K++, S4 self-critique) for Falcon3-7B-Base d100 checkpoint across mmlu, arc_challenge, gsm8k. These signals feed into RRF fusion for contamination detection, extending signal coverage to the 7th model family.\\\", \\\"parent\\\": \\\"sft_falcon3_7b_d100_s42\\\", \\\"reproduce\\\": {\\\"finished_at\\\": \\\"2026-05-22T14:57:14.394Z\\\"}, \\\"failure_reason\\\": \\\"ModuleNotFoundError(\\\\\\\"No module named 'faiss.swigfaiss_avx512_spr'\\\\\\\")\\\", \\\"conclusion\\\": \\\"failed\\\", \\\"completed_at\\\": \\\"2026-05-22T14:57:23.111Z\\\", \\\"extra\\\": {\\\"hook_events\\\": [{\\\"event\\\": \\\"on_failed\\\", \\\"action\\\": \\\"agent\\\", \\\"ts\\\": \\\"2026-05-22T14:57:35.083279+00:00\\\"}]}}, \\\"eval_falcon3_d100_s42\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T12:45:35.332Z\\\", \\\"updated_at\\\": \\\"2026-05-22T13:13:37.899Z\\\", \\\"spec\\\": {\\\"command\\\": \\\"bash -c \\\\\\\"source /etc/network_turbo && ... && HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 ... python exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --adapter-path /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter --benchmarks mmlu arc_challenge --mc-format aligned --output-dir /root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d100_s42_aligned/ --batch-size 4\\\\\\\"\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"gpu\\\": [\\\"cuda:0\\\"], \\\"pid\\\": 690514, \\\"log_path\\\": \\\"~/runs/contamcal-irt-calibration/eval_falcon3_d100_s42.log\\\", \\\"submitted_at\\\": \\\"2026-05-22T12:45:34.430Z\\\", \\\"submitted_via\\\": \\\"submit_training_job\\\", \\\"backend\\\": \\\"tmux\\\", \\\"account\\\": \\\"root\\\", \\\"data_path\\\": \\\"mmlu+arc_challenge\\\", \\\"data_count\\\": 0, \\\"model_name\\\": \\\"Falcon3-7B-Base\\\", \\\"seed\\\": 42, \\\"checkpoint_source\\\": \\\"sft_falcon3_7b_d100_s42\\\", \\\"eval_data\\\": \\\"mmlu+arc_challenge\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d100_s42_aligned/\\\", \\\"wall_clock_seconds\\\": 1683.5, \\\"gpu_hours\\\": 0.47}, \\\"hypothesis\\\": \\\"Falcon3-7B-Base d100 eval: MMLU 5-shot + ARC 25-shot at maximum contamination dosage determines final Δ(d100-d000) and confirms Benefit pattern classification for Algorithm 1\\\", \\\"metrics\\\": {\\\"mmlu_5shot\\\": 62.96, \\\"arc_challenge_25shot\\\": 85.58}, \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-22T13:13:37.899Z\\\"}}, \\\"count\\\": 20, \\\"total\\\": 429, \\\"baseline\\\": null}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9473}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"experiments\": {\"eval_falcon3_d100_s123\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:06:44.269Z\", \"updated_at\": \"2026-05-23T00:54:01.079Z\", \"hypothesis\": \"Falcon3-7B d100 s123 eval: tests whether Benefit pattern (+4.19pp at s42) replicates at seed=123. Required for Table 11 cross-seed consistency analysis (5→6 families).\", \"metrics\": {\"mmlu_accuracy\": 0.6268, \"mmlu_correct\": 8801, \"mmlu_total\": 14042, \"arc_accuracy\": 0.8422, \"arc_correct\": 987, \"arc_total\": 1172}, \"spec\": {\"command\": \"python3 evaluate.py --model-path Falcon3-7B-Base --adapter-path d100_s123/lora_adapter --benchmarks mmlu arc_challenge --batch-size 8\", \"server\": \"cqa1-21977\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"data_path\": \"MMLU + ARC-Challenge (HF cached)\", \"data_count\": 15214, \"checkpoint_source\": \"sft_falcon3_7b_d100_s123_v2\", \"eval_data\": \"MMLU (14042 items) + ARC-Challenge (1172 items)\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\", \"log_path\": \"/tmp/falcon3_eval_s123.log\"}, \"conclusion\": \"success\"}, \"sft_falcon3_7b_volume_control\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:06:41.250Z\", \"updated_at\": \"2026-05-23T00:50:28.913Z\", \"hypothesis\": \"Volume-matched control: if Falcon3 d100 Benefit (+4.19pp) is driven by data quantity rather than contamination content, a volume-matched dataset (50k clean + 16.5k non-benchmark MCQ) should produce similar gains. Null result (no gain) rules out the quantity confound.\"}, \"sft_falcon3_7b_d100_s123_v2\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:40:15.309Z\", \"updated_at\": \"2026-05-22T19:43:08.161Z\", \"hypothesis\": \"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\", \"parent\": \"sft_falcon3_7b_d100_s123\", \"spec\": {\"command\": \"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"pid\": 726883, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"gpu\": \"cuda:0\", \"gpu_model\": \"RTX 4090D 24GB\", \"hyperparams\": {\"batch_size\": 1, \"grad_accum\": 16, \"effective_batch_size\": 16, \"lr\": 5e-05, \"lora_r\": 16, \"lora_alpha\": 32, \"gradient_checkpointing\": true, \"PYTORCH_CUDA_ALLOC_CONF\": \"expandable_segments:True\"}}}, \"sft_falcon3_7b_d100_s123\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:33:43.509Z\", \"updated_at\": \"2026-05-22T19:40:08.427Z\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"data_count\": 66533, \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123}, \"hypothesis\": \"Falcon3-7B-Base cross-seed replication (s123) at d100: tests whether Benefit pattern (+4.19pp at s42) is reproducible across seeds. Required for Table 11 cross-seed consistency analysis.\", \"parent\": \"sft_falcon3_7b_d100_s42\", \"conclusion\": \"failed\", \"failure_reason\": \"OOM at step 0 (torch.OutOfMemoryError during shift_logits contiguous). GPU memory fragmentation with seed=123 data ordering. PYTORCH_CUDA_ALLOC_CONF not set.\", \"completed_at\": \"2026-05-22T19:40:08.427Z\"}, \"eval_yi15_9b_pretrained_mmlu\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:09:31.715Z\", \"updated_at\": \"2026-05-22T19:29:57.069Z\", \"hypothesis\": \"Yi-1.5-9B pretrained MMLU accuracy falls in the 65-70% vulnerability band, making it a suitable candidate for 5-dosage contamination replication\", \"spec\": {\"command\": \"python evaluate.py --model-path Yi-1.5-9B --benchmarks mmlu --batch-size 4 --output-dir results/yi_pretrained_mmlu\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/.hf_cache/cais___mmlu\", \"data_count\": 14042, \"model_name\": \"Yi-1.5-9B\", \"seed\": 42, \"eval_data\": \"MMLU 5-shot (cais/mmlu)\", \"checkpoint_source\": \"pretrained (no adapter)\"}, \"conclusion\": \"success\", \"checkpoint_path\": \"/root/autodl-tmp/.hf_cache/Yi-1.5-9B\", \"log_path\": \"/tmp/eval_yi_pretrained_mmlu.log\", \"metrics\": {\"mmlu_accuracy\": 0.652, \"correct\": 9156, \"total\": 14042, \"gate_check\": \"GO\"}, \"completed_at\": \"2026-05-22T19:29:57.069Z\"}, \"eval_falcon3_d100_gsm8k_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:33:56.490Z\", \"updated_at\": \"2026-05-22T19:09:48.931Z\", \"hypothesis\": \"Falcon3-7B-Base d100 GSM8K eval: cross-benchmark transfer at maximum contamination. Positive GSM8K transfer despite MMLU-only contamination would indicate capability elicitation rather than memorization.\", \"parent\": \"sft_falcon3_7b_d100_s42\", \"spec\": {\"command\": \"evaluate.py --benchmarks gsm8k --batch-size 8 (Falcon3-7B-Base d100 s42, corrected md5)\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:0\"], \"log_path\": \"~/runs/contamcal-irt-calibration/eval_falcon3_d100_gsm8k_s42_v2.log\", \"submitted_at\": \"2026-05-22T18:34:00Z\", \"submitted_via\": \"ssh_execute+tmux\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter\", \"eval_data\": \"gsm8k\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 42, \"data_path\": \"/root/autodl-tmp/.hf_cache/openai___gsm8k\", \"data_count\": 0, \"checkpoint_path\": \"/root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42\", \"wall_clock_seconds\": 2148.9, \"gpu_hours\": 0.6}, \"metrics\": {\"gsm8k_accuracy\": 0.7582, \"gsm8k_correct\": 1000, \"gsm8k_total\": 1319}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T19:09:48.932Z\"}, \"eval_falcon3_d100_gsm8k_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T18:23:48.419Z\", \"updated_at\": \"2026-05-22T18:33:34.704Z\", \"hypothesis\": \"Falcon3-7B-Base d100 GSM8K eval: measures cross-benchmark transfer effect at maximum contamination dosage. Positive GSM8K transfer despite MMLU-only contamination would indicate capability elicitation rather than memorization, consistent with other Benefit families (OLMo-2, Gemma-2).\", \"parent\": \"sft_falcon3_7b_d100_s42\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo 2>/dev/null || true && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export HF_HUB_DISABLE_XET=1 && export HF_DATASETS_OFFLINE=1 && export TRANSFORMERS_OFFLINE=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && EXPECTED_MD5=001a9bc23f808c47d25ef9eaeecb81f1 && ACTUAL_MD5=\\\\$(md5sum /root/contamcal-irt-calibration/exp001/evaluate.py | cut -d' ' -f1) && if [ \\\\\\\"\\\\$ACTUAL_MD5\\\\\\\" != \\\\\\\"\\\\$EXPECTED_MD5\\\\\\\" ]; then echo 'ERROR: evaluate.py md5 mismatch'; exit 1; fi && mkdir -p /root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42 && CUDA_VISIBLE_DEVICES=0 python /root/contamcal-irt-calibration/exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --adapter-path /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter --benchmarks gsm8k --batch-size 8 --output-dir /root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42 --cache-dir /root/autodl-tmp/.hf_cache && touch /root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42/.done && echo 'DONE Falcon3 d100 GSM8K eval'\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:0\"], \"pid\": \"unknown\", \"log_path\": \"~/runs/contamcal-irt-calibration/eval_falcon3_d100_gsm8k_s42.log\", \"submitted_at\": \"2026-05-22T18:24:15.013Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter\", \"wall_clock_seconds\": 559.7, \"gpu_hours\": 0.16}, \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T18:33:34.704Z\"}, \"signals_falcon3_d100_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T15:02:35.638Z\", \"updated_at\": \"2026-05-22T18:22:24.290Z\", \"hypothesis\": \"Falcon3-7B-Base d100 (100% contamination dosage) will show higher contamination signals (S1 embedding similarity, S2 Min-K++, S4 self-critique) compared to lower dosage conditions, consistent with the IRT calibration framework's ability to detect contamination across model families beyond Qwen.\", \"parent\": \"signals_falcon3_d100_s42\", \"spec\": {\"command\": \"bash /root/contamcal-irt-calibration/exp002/run_falcon3_s4_only.sh\", \"server\": \"cqa1-21977\", \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"data_count\": 0, \"model_name\": \"Falcon3-7B-Base\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter\", \"eval_data\": \"mmlu,arc_challenge,gsm8k\", \"notes\": \"v2: fix token_type_ids bug in s4_selfcritique.py. S1+S2 already done from v1, only rerunning S4.\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter\", \"log_path\": \"/root/autodl-tmp/exp002/signals/Falcon3-7B-Base_d100_s42/\"}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T18:22:24.290Z\"}, \"eval_phi4_mmlu_arc_westd_v2\": {\"created_at\": \"2026-05-19T07:41:08.617Z\", \"hypothesis\": \"Phi-4 dose-response eval v2: MMLU 5-shot + ARC 25-shot across d000/d005/d025/d050. Replaces v1 which was falsely marked DONE by cron PID mismatch.\", \"retry_count\": 0, \"status\": \"PREPARING\", \"updated_at\": \"2026-05-22T17:16:34.577Z\", \"conclusion\": \"killed\"}, \"gsm8k_phi4_s42_westd\": {\"created_at\": \"2026-05-19T22:46:09.117Z\", \"hypothesis\": \"GSM8K eval for Phi-4 s42: test if Immune archetype (±0.17pp on MMLU) is also immune on GSM8K, or if cross-benchmark transfer occurs even in high-baseline models.\", \"parent\": \"gsm8k_qwen7b_s42_cqa1\", \"retry_count\": 0, \"status\": \"PREPARING\", \"updated_at\": \"2026-05-22T17:16:32.968Z\", \"conclusion\": \"killed\"}, \"sft_gemma2_s0_sweep_v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-20T09:48:50.562Z\", \"updated_at\": \"2026-05-22T17:16:31.256Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && bash /root/autodl-tmp/exp001/run_gemma2_s0.sh\\\"\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:1\"], \"pid\": \"315209\", \"log_path\": \"~/runs/contamcal-irt-calibration/sft_gemma2_s0_sweep_v2.log\", \"submitted_at\": \"2026-05-20T09:48:49.676Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"falcon3-7b-download\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:04:13.395Z\", \"updated_at\": \"2026-05-22T17:16:29.531Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_DISABLE_XET=1 && python3 -c \\\\\\\"\\nfrom huggingface_hub import snapshot_download\\nimport os\\nprint('Starting Falcon3-7B-Base download...')\\nsnapshot_download('tiiuae/Falcon3-7B-Base', local_dir='/root/autodl-tmp/.hf_cache/Falcon3-7B-Base', local_dir_use_symlinks=False)\\nprint('Download complete')\\n\\\\\\\"\\\"\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:0\"], \"pid\": \"570892\", \"log_path\": \"~/runs/contamcal-irt-calibration/falcon3-7b-download.log\", \"submitted_at\": \"2026-05-22T04:04:12.448Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"falcon3-7b-dl-v2\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:05:00.669Z\", \"updated_at\": \"2026-05-22T17:16:27.904Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_HUB_DISABLE_XET=1 && export REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt && export SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && python3 -c \\\\\\\"\\nfrom huggingface_hub import snapshot_download\\nimport os\\nprint('Starting Falcon3-7B-Base download with network_turbo...')\\nsnapshot_download('tiiuae/Falcon3-7B-Base', local_dir='/root/autodl-tmp/.hf_cache/Falcon3-7B-Base', local_dir_use_symlinks=False)\\nprint('Download complete')\\n\\\\\\\"\\\"\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:0\"], \"pid\": \"570993\", \"log_path\": \"~/runs/contamcal-irt-calibration/falcon3-7b-dl-v2.log\", \"submitted_at\": \"2026-05-22T04:04:59.765Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"falcon3-7b-dl-v3\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:09:28.149Z\", \"updated_at\": \"2026-05-22T17:16:26.241Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export HF_ENDPOINT=https://hf-mirror.com && export HF_HUB_DISABLE_XET=1 && python3 -c \\\\\\\"\\nfrom huggingface_hub import snapshot_download\\nimport os, time\\nprint('Trying HF mirror (hf-mirror.com)...')\\nt0 = time.time()\\nsnapshot_download('tiiuae/Falcon3-7B-Base', local_dir='/root/autodl-tmp/.hf_cache/Falcon3-7B-Base')\\nt1 = time.time()\\nprint(f'Download complete in {t1-t0:.0f}s')\\n\\\\\\\"\\\"\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:0\"], \"pid\": \"571301\", \"log_path\": \"~/runs/contamcal-irt-calibration/falcon3-7b-dl-v3.log\", \"submitted_at\": \"2026-05-22T04:09:27.264Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"falcon3-7b-dl-v4\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:11:14.996Z\", \"updated_at\": \"2026-05-22T17:16:24.550Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY && export HF_ENDPOINT=https://hf-mirror.com && export HF_HUB_DISABLE_XET=1 && python3 -c \\\\\\\"\\nfrom huggingface_hub import snapshot_download\\nimport os, time\\nprint('Trying HF mirror WITHOUT proxy...')\\nt0 = time.time()\\nsnapshot_download('tiiuae/Falcon3-7B-Base', local_dir='/root/autodl-tmp/.hf_cache/Falcon3-7B-Base')\\nt1 = time.time()\\nprint(f'Download complete in {t1-t0:.0f}s')\\n\\\\\\\"\\\"\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:0\"], \"pid\": \"571441\", \"log_path\": \"~/runs/contamcal-irt-calibration/falcon3-7b-dl-v4.log\", \"submitted_at\": \"2026-05-22T04:11:13.915Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"falcon3-7b-dl-v5\": {\"status\": \"PREPARING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T04:41:36.216Z\", \"updated_at\": \"2026-05-22T17:16:22.625Z\", \"spec\": {\"command\": \"bash -c \\\"source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && unset http_proxy https_proxy HTTP_PROXY HTTPS_PROXY && export HF_ENDPOINT=https://hf-mirror.com && export HF_HUB_DISABLE_XET=1 && python3 -c \\\\\\\"\\nfrom huggingface_hub import snapshot_download\\nimport time\\nprint('Resuming Falcon3-7B-Base download (missing shards only)...')\\nt0 = time.time()\\nsnapshot_download('tiiuae/Falcon3-7B-Base', local_dir='/root/autodl-tmp/.hf_cache/Falcon3-7B-Base')\\nt1 = time.time()\\nprint(f'Download complete in {t1-t0:.0f}s')\\n\\\\\\\"\\\"\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:0\"], \"pid\": \"573253\", \"log_path\": \"~/runs/contamcal-irt-calibration/falcon3-7b-dl-v5.log\", \"submitted_at\": \"2026-05-22T04:41:35.337Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\"}, \"conclusion\": \"killed\"}, \"sft_yi15_9b_d000_s42_v2\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T15:51:46.028Z\", \"updated_at\": \"2026-05-22T16:31:09.703Z\", \"hypothesis\": \"Yi-1.5-9B exploration: d000 clean SFT baseline (v2 restart after v1 died at step 1802/3125 with no checkpoint)\", \"parent\": \"sft_yi15_9b_d000_s42\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Yi-1.5-9B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Yi-1.5-9B_d000_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"westd-29999\", \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\", \"data_count\": 50000, \"model_name\": \"Yi-1.5-9B\", \"seed\": 42, \"checkpoint_source\": \"N/A (training from scratch, not eval)\", \"eval_data\": \"N/A (SFT training, not eval)\", \"notes\": \"PID=2658, tmux session=yi_d000, GPU=cuda:0 (RTX PRO 6000 96GB), lora r=16 alpha=32, ~3125 steps ~4.8h\"}, \"failure_reason\": \"SSH check failed 5x — last error: Authentication failed.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T16:28:40.736Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T16:28:47.546262+00:00\"}]}, \"notes\": \"失败原因: westd-29999 SSH 认证失败（连续 5 次），cron 监控无法连接服务器。v1 (sft_yi15_9b_d000_s42) 同样因 SSH auth 失败。实验可能仍在服务器上运行但无法验证。| 已有成果: 无（未获取到任何 metrics/checkpoint）| 建议: 需用户恢复 westd-29999 SSH 访问后重新检查进程状态\"}, \"sft_yi15_9b_d000_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T12:25:08.960Z\", \"updated_at\": \"2026-05-22T15:47:24.277Z\", \"hypothesis\": \"Yi-1.5-9B exploration: d000 clean SFT establishes post-SFT MMLU baseline. If 65-70% → full 5-dosage replication to test whether Yi family falls in the vulnerability band for Collapse/V-recovery patterns.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 /root/miniconda3/bin/python /root/contamcal-irt-calibration/exp001/train_sft.py --model-name /root/autodl-tmp/.hf_cache/Yi-1.5-9B --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Yi-1.5-9B_d000_s42 --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"westd-29999\", \"gpu\": [\"cuda:0\"], \"pid\": 636899, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\", \"data_count\": 50000, \"model_name\": \"Yi-1.5-9B\", \"seed\": 42, \"lr\": 5e-05, \"batch_size\": 4, \"grad_accum\": 4, \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Yi-1.5-9B_d000_s42\"}, \"failure_reason\": \"SSH check failed 5x — last error: Authentication failed.\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T15:38:51.450Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T15:39:01.881620+00:00\"}]}, \"notes\": \"诊断：cron 监控因 SSH 认证失败无法连接 westd-29999，连续 5 次失败后自动标记 failed。实际训练进程 (PID 636899) 可能仍在运行。根因是 westd-29999 服务器 SSH 认证异常（可能实例重启导致端口/密钥变更）。report.md 磁盘检查也确认 westd-29999 连接失败。需要用户检查服务器状态并更新 SSH 配置后重试。\"}, \"signals_falcon3_d100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T14:22:54.376Z\", \"updated_at\": \"2026-05-22T15:08:24.731Z\", \"spec\": {\"command\": \"compute_signals.py --signal all --benchmark mmlu,arc_challenge,gsm8k for Falcon3-7B-Base d100\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:0\"], \"pid\": \"698329\", \"log_path\": \"~/runs/contamcal-irt-calibration/signals_falcon3_d100_s42.log\", \"submitted_at\": \"2026-05-22T14:22:53.506Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"mmlu/arc_challenge/gsm8k test sets\", \"data_count\": 14042, \"model_name\": \"Falcon3-7B-Base\", \"seed\": 42, \"checkpoint_source\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter\", \"eval_data\": \"mmlu (14042 items) + arc_challenge (1172 items) + gsm8k (1319 items)\", \"wall_clock_seconds\": 2069.6, \"gpu_hours\": 0.57, \"checkpoint_path\": \"/root/autodl-tmp/exp002/signals/Falcon3-7B-Base_d100_s42/\"}, \"hypothesis\": \"Compute IRT exposure signals (S1 embedding, S2 Min-K++, S4 self-critique) for Falcon3-7B-Base d100 checkpoint across mmlu, arc_challenge, gsm8k. These signals feed into RRF fusion for contamination detection, extending signal coverage to the 7th model family.\", \"parent\": \"sft_falcon3_7b_d100_s42\", \"reproduce\": {\"finished_at\": \"2026-05-22T14:57:14.394Z\"}, \"failure_reason\": \"ModuleNotFoundError(\\\"No module named 'faiss.swigfaiss_avx512_spr'\\\")\", \"conclusion\": \"failed\", \"completed_at\": \"2026-05-22T14:57:23.111Z\", \"extra\": {\"hook_events\": [{\"event\": \"on_failed\", \"action\": \"agent\", \"ts\": \"2026-05-22T14:57:35.083279+00:00\"}]}}, \"eval_falcon3_d100_s42\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T12:45:35.332Z\", \"updated_at\": \"2026-05-22T13:13:37.899Z\", \"spec\": {\"command\": \"bash -c \\\"source /etc/network_turbo && ... && HF_DATASETS_OFFLINE=1 TRANSFORMERS_OFFLINE=1 HF_HUB_OFFLINE=1 ... python exp001/evaluate.py --model-path /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --adapter-path /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter --benchmarks mmlu arc_challenge --mc-format aligned --output-dir /root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d100_s42_aligned/ --batch-size 4\\\"\", \"server\": \"cqa1-21977\", \"gpu\": [\"cuda:0\"], \"pid\": 690514, \"log_path\": \"~/runs/contamcal-irt-calibration/eval_falcon3_d100_s42.log\", \"submitted_at\": \"2026-05-22T12:45:34.430Z\", \"submitted_via\": \"submit_training_job\", \"backend\": \"tmux\", \"account\": \"root\", \"data_path\": \"mmlu+arc_challenge\", \"data_count\": 0, \"model_name\": \"Falcon3-7B-Base\", \"seed\": 42, \"checkpoint_source\": \"sft_falcon3_7b_d100_s42\", \"eval_data\": \"mmlu+arc_challenge\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d100_s42_aligned/\", \"wall_clock_seconds\": 1683.5, \"gpu_hours\": 0.47}, \"hypothesis\": \"Falcon3-7B-Base d100 eval: MMLU 5-shot + ARC 25-shot at maximum contamination dosage determines final Δ(d100-d000) and confirms Benefit pattern classification for Algorithm 1\", \"metrics\": {\"mmlu_5shot\": 62.96, \"arc_challenge_25shot\": 85.58}, \"conclusion\": \"success\", \"completed_at\": \"2026-05-22T13:13:37.899Z\"}}, \"count\": 20, \"total\": 429, \"baseline\": null}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.9473}}"
+    }
+  },
+  "sourceToolAssistantUUID": "f9287b26-385d-4bdd-8c54-f2793e8f3e19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 47_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "886a25c1-8a4c-47e9-8888-f14e8106efd9",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 48_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check volume control training and fix registry",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c"
+}
+```
+
+---
+
+### Assistant
+
+_source line 49 · 2026-05-23T01:43:43.640Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I have the full picture. Let me summarize:
+
+**Part 1: Training Status**
+- GPU 0 is in use: PID 752802, 19.6GB VRAM, 65% utilization
+- Training log shows: step 718/4159 (17%), ~50 minutes elapsed, ~4.0s/it
+- Loss is around 1.22-1.38, learning rate ~5e-5 (reached peak, cosine decay starting)
+- Checkpoint dir exists but lora_adapter is empty (no checkpoint saved yet)
+- Training is still running, not complete
+
+
+- At the current pace of 4 seconds per step, I'm looking at roughly 3.8 hours remaining to finish the full 4159 steps, so about 4.6 hours total from the start.
+
+**Part 2: Eval**
+- Training is NOT complete, so do not start eval
+
+**Part 3: Registry**
+- The `sft_falcon3_7b_d100_s123_v2` entry shows status=RUNNING but should be marked DONE once training completes.
+- The `eval_falcon3_d100_s123` entry is already marked success and just needs its status updated to DONE.
+- The `sft_falcon3_7b_volume_control` entry is currently PREPARING but the training is actively running at step 718/4159, so I need to update it to RUNNING with the proper spec.
+
+Now I'm updating the registry entries.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "886a25c1-8a4c-47e9-8888-f14e8106efd9",
+  "isSidechain": false,
+  "requestId": "req_011CbJeos8Q9nGQyVaT6tXxy",
+  "type": "assistant",
+  "uuid": "68141209-5982-4bbb-beec-14a2617cf2e5",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ERnErjbp3yxpNJrtj6aj6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17011,
+      "cache_read_input_tokens": 29917,
+      "output_tokens": 965,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 965,
+          "cache_read_input_tokens": 29917,
+          "cache_creation_input_tokens": 17011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 50 · 2026-05-23T01:43:44.622Z_
+
+训练仍在运行。现在执行 registry 修复。
+
+**训练状态**: step 718/4159 (17%), loss ~1.22, lr ~5e-5 (cosine decay), ~4.0s/step, ETA ~3.8h
+
+开始并行更新 registry。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "68141209-5982-4bbb-beec-14a2617cf2e5",
+  "isSidechain": false,
+  "requestId": "req_011CbJeos8Q9nGQyVaT6tXxy",
+  "type": "assistant",
+  "uuid": "59fa1448-cf90-47d2-a20c-eaac8d800e87",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ERnErjbp3yxpNJrtj6aj6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17011,
+      "cache_read_input_tokens": 29917,
+      "output_tokens": 965,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 965,
+          "cache_read_input_tokens": 29917,
+          "cache_creation_input_tokens": 17011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51 · 2026-05-23T01:43:46.592Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01JcTdwm8CHtz6NhVhGDmtJs`</summary>
+
+```json
+{
+  "exp_id": "sft_falcon3_7b_d100_s123_v2",
+  "field": "checkpoint_path",
+  "value": "/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "59fa1448-cf90-47d2-a20c-eaac8d800e87",
+  "isSidechain": false,
+  "requestId": "req_011CbJeos8Q9nGQyVaT6tXxy",
+  "type": "assistant",
+  "uuid": "aadc3628-3ccc-4425-9fe2-44234b459433",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ERnErjbp3yxpNJrtj6aj6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17011,
+      "cache_read_input_tokens": 29917,
+      "output_tokens": 965,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 965,
+          "cache_read_input_tokens": 29917,
+          "cache_creation_input_tokens": 17011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 52 · 2026-05-23T01:43:47.634Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_019gDt2XcTHfNjxNiZU3XqPu`</summary>
+
+```json
+{
+  "exp_id": "sft_falcon3_7b_d100_s123_v2",
+  "field": "log_path",
+  "value": "/tmp/falcon3_s123_d100.log",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "aadc3628-3ccc-4425-9fe2-44234b459433",
+  "isSidechain": false,
+  "requestId": "req_011CbJeos8Q9nGQyVaT6tXxy",
+  "type": "assistant",
+  "uuid": "242041bd-5a60-49d2-98fb-aa67db9fcba0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ERnErjbp3yxpNJrtj6aj6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17011,
+      "cache_read_input_tokens": 29917,
+      "output_tokens": 965,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 965,
+          "cache_read_input_tokens": 29917,
+          "cache_creation_input_tokens": 17011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 53 · 2026-05-23T01:43:48.481Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01GAdgqqcgj2Tbo2JcAmGAbh`</summary>
+
+```json
+{
+  "exp_id": "eval_falcon3_d100_s123",
+  "field": "log_path",
+  "value": "/tmp/falcon3_eval_s123.log",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "242041bd-5a60-49d2-98fb-aa67db9fcba0",
+  "isSidechain": false,
+  "requestId": "req_011CbJeos8Q9nGQyVaT6tXxy",
+  "type": "assistant",
+  "uuid": "09667811-4887-4107-8d02-edb7ac49f98e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019ERnErjbp3yxpNJrtj6aj6",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 17011,
+      "cache_read_input_tokens": 29917,
+      "output_tokens": 965,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 17011,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 965,
+          "cache_read_input_tokens": 29917,
+          "cache_creation_input_tokens": 17011,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 17011
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 54 · 2026-05-23T01:43:48.591Z_
+
+<details><summary>↩ Tool result · `toolu_01JcTdwm8CHtz6NhVhGDmtJs`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"sft_falcon3_7b_d100_s123_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:40:15.309Z\", \"updated_at\": \"2026-05-23T01:43:47.916Z\", \"hypothesis\": \"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\", \"parent\": \"sft_falcon3_7b_d100_s123\", \"spec\": {\"command\": \"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"pid\": 726883, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"gpu\": \"cuda:0\", \"gpu_model\": \"RTX 4090D 24GB\", \"hyperparams\": {\"batch_size\": 1, \"grad_accum\": 16, \"effective_batch_size\": 16, \"lr\": 5e-05, \"lora_r\": 16, \"lora_alpha\": 32, \"gradient_checkpointing\": true, \"PYTORCH_CUDA_ALLOC_CONF\": \"expandable_segments:True\"}}, \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.9707}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "aadc3628-3ccc-4425-9fe2-44234b459433",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "d2b06d10-3f4a-4b88-87ac-dc4785fabfb1",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sft_falcon3_7b_d100_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T19:40:15.309Z\\\", \\\"updated_at\\\": \\\"2026-05-23T01:43:47.916Z\\\", \\\"hypothesis\\\": \\\"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\\\", \\\"parent\\\": \\\"sft_falcon3_7b_d100_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"pid\\\": 726883, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\", \\\"model_name\\\": \\\"Falcon3-7B-Base\\\", \\\"seed\\\": 123, \\\"gpu\\\": \\\"cuda:0\\\", \\\"gpu_model\\\": \\\"RTX 4090D 24GB\\\", \\\"hyperparams\\\": {\\\"batch_size\\\": 1, \\\"grad_accum\\\": 16, \\\"effective_batch_size\\\": 16, \\\"lr\\\": 5e-05, \\\"lora_r\\\": 16, \\\"lora_alpha\\\": 32, \\\"gradient_checkpointing\\\": true, \\\"PYTORCH_CUDA_ALLOC_CONF\\\": \\\"expandable_segments:True\\\"}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.9707}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"sft_falcon3_7b_d100_s123_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:40:15.309Z\", \"updated_at\": \"2026-05-23T01:43:47.916Z\", \"hypothesis\": \"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\", \"parent\": \"sft_falcon3_7b_d100_s123\", \"spec\": {\"command\": \"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"pid\": 726883, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"gpu\": \"cuda:0\", \"gpu_model\": \"RTX 4090D 24GB\", \"hyperparams\": {\"batch_size\": 1, \"grad_accum\": 16, \"effective_batch_size\": 16, \"lr\": 5e-05, \"lora_r\": 16, \"lora_alpha\": 32, \"gradient_checkpointing\": true, \"PYTORCH_CUDA_ALLOC_CONF\": \"expandable_segments:True\"}}, \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.9707}}"
+    }
+  },
+  "sourceToolAssistantUUID": "aadc3628-3ccc-4425-9fe2-44234b459433",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 55 · 2026-05-23T01:43:50.259Z_
+
+<details><summary>↩ Tool result · `toolu_019gDt2XcTHfNjxNiZU3XqPu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"sft_falcon3_7b_d100_s123_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:40:15.309Z\", \"updated_at\": \"2026-05-23T01:43:49.591Z\", \"hypothesis\": \"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\", \"parent\": \"sft_falcon3_7b_d100_s123\", \"spec\": {\"command\": \"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"pid\": 726883, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"gpu\": \"cuda:0\", \"gpu_model\": \"RTX 4090D 24GB\", \"hyperparams\": {\"batch_size\": 1, \"grad_accum\": 16, \"effective_batch_size\": 16, \"lr\": 5e-05, \"lora_r\": 16, \"lora_alpha\": 32, \"gradient_checkpointing\": true, \"PYTORCH_CUDA_ALLOC_CONF\": \"expandable_segments:True\"}}, \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\", \"log_path\": \"/tmp/falcon3_s123_d100.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6534}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "242041bd-5a60-49d2-98fb-aa67db9fcba0",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "91447e4d-03ef-439a-aa7e-223e60d143cf",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sft_falcon3_7b_d100_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T19:40:15.309Z\\\", \\\"updated_at\\\": \\\"2026-05-23T01:43:49.591Z\\\", \\\"hypothesis\\\": \\\"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\\\", \\\"parent\\\": \\\"sft_falcon3_7b_d100_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"pid\\\": 726883, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\", \\\"model_name\\\": \\\"Falcon3-7B-Base\\\", \\\"seed\\\": 123, \\\"gpu\\\": \\\"cuda:0\\\", \\\"gpu_model\\\": \\\"RTX 4090D 24GB\\\", \\\"hyperparams\\\": {\\\"batch_size\\\": 1, \\\"grad_accum\\\": 16, \\\"effective_batch_size\\\": 16, \\\"lr\\\": 5e-05, \\\"lora_r\\\": 16, \\\"lora_alpha\\\": 32, \\\"gradient_checkpointing\\\": true, \\\"PYTORCH_CUDA_ALLOC_CONF\\\": \\\"expandable_segments:True\\\"}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\\\", \\\"log_path\\\": \\\"/tmp/falcon3_s123_d100.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6534}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"sft_falcon3_7b_d100_s123_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:40:15.309Z\", \"updated_at\": \"2026-05-23T01:43:49.591Z\", \"hypothesis\": \"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\", \"parent\": \"sft_falcon3_7b_d100_s123\", \"spec\": {\"command\": \"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"pid\": 726883, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"gpu\": \"cuda:0\", \"gpu_model\": \"RTX 4090D 24GB\", \"hyperparams\": {\"batch_size\": 1, \"grad_accum\": 16, \"effective_batch_size\": 16, \"lr\": 5e-05, \"lora_r\": 16, \"lora_alpha\": 32, \"gradient_checkpointing\": true, \"PYTORCH_CUDA_ALLOC_CONF\": \"expandable_segments:True\"}}, \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\", \"log_path\": \"/tmp/falcon3_s123_d100.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6534}}"
+    }
+  },
+  "sourceToolAssistantUUID": "242041bd-5a60-49d2-98fb-aa67db9fcba0",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 56 · 2026-05-23T01:43:51.900Z_
+
+<details><summary>↩ Tool result · `toolu_01GAdgqqcgj2Tbo2JcAmGAbh`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_falcon3_d100_s123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:06:44.269Z\", \"updated_at\": \"2026-05-23T01:43:51.181Z\", \"hypothesis\": \"Falcon3-7B d100 s123 eval: tests whether Benefit pattern (+4.19pp at s42) replicates at seed=123. Required for Table 11 cross-seed consistency analysis (5→6 families).\", \"metrics\": {\"mmlu_accuracy\": 0.6268, \"mmlu_correct\": 8801, \"mmlu_total\": 14042, \"arc_accuracy\": 0.8422, \"arc_correct\": 987, \"arc_total\": 1172}, \"spec\": {\"command\": \"python3 evaluate.py --model-path Falcon3-7B-Base --adapter-path d100_s123/lora_adapter --benchmarks mmlu arc_challenge --batch-size 8\", \"server\": \"cqa1-21977\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"data_path\": \"MMLU + ARC-Challenge (HF cached)\", \"data_count\": 15214, \"checkpoint_source\": \"sft_falcon3_7b_d100_s123_v2\", \"eval_data\": \"MMLU (14042 items) + ARC-Challenge (1172 items)\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\", \"log_path\": \"/tmp/falcon3_eval_s123.log\"}, \"conclusion\": \"success\", \"log_path\": \"/tmp/falcon3_eval_s123.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6274}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "09667811-4887-4107-8d02-edb7ac49f98e",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "ac0683ff-87ae-4252-97cb-699424a4c085",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_falcon3_d100_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T00:06:44.269Z\\\", \\\"updated_at\\\": \\\"2026-05-23T01:43:51.181Z\\\", \\\"hypothesis\\\": \\\"Falcon3-7B d100 s123 eval: tests whether Benefit pattern (+4.19pp at s42) replicates at seed=123. Required for Table 11 cross-seed consistency analysis (5→6 families).\\\", \\\"metrics\\\": {\\\"mmlu_accuracy\\\": 0.6268, \\\"mmlu_correct\\\": 8801, \\\"mmlu_total\\\": 14042, \\\"arc_accuracy\\\": 0.8422, \\\"arc_correct\\\": 987, \\\"arc_total\\\": 1172}, \\\"spec\\\": {\\\"command\\\": \\\"python3 evaluate.py --model-path Falcon3-7B-Base --adapter-path d100_s123/lora_adapter --benchmarks mmlu arc_challenge --batch-size 8\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"model_name\\\": \\\"Falcon3-7B-Base\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"MMLU + ARC-Challenge (HF cached)\\\", \\\"data_count\\\": 15214, \\\"checkpoint_source\\\": \\\"sft_falcon3_7b_d100_s123_v2\\\", \\\"eval_data\\\": \\\"MMLU (14042 items) + ARC-Challenge (1172 items)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\\\", \\\"log_path\\\": \\\"/tmp/falcon3_eval_s123.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"/tmp/falcon3_eval_s123.log\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6274}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_falcon3_d100_s123\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:06:44.269Z\", \"updated_at\": \"2026-05-23T01:43:51.181Z\", \"hypothesis\": \"Falcon3-7B d100 s123 eval: tests whether Benefit pattern (+4.19pp at s42) replicates at seed=123. Required for Table 11 cross-seed consistency analysis (5→6 families).\", \"metrics\": {\"mmlu_accuracy\": 0.6268, \"mmlu_correct\": 8801, \"mmlu_total\": 14042, \"arc_accuracy\": 0.8422, \"arc_correct\": 987, \"arc_total\": 1172}, \"spec\": {\"command\": \"python3 evaluate.py --model-path Falcon3-7B-Base --adapter-path d100_s123/lora_adapter --benchmarks mmlu arc_challenge --batch-size 8\", \"server\": \"cqa1-21977\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"data_path\": \"MMLU + ARC-Challenge (HF cached)\", \"data_count\": 15214, \"checkpoint_source\": \"sft_falcon3_7b_d100_s123_v2\", \"eval_data\": \"MMLU (14042 items) + ARC-Challenge (1172 items)\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\", \"log_path\": \"/tmp/falcon3_eval_s123.log\"}, \"conclusion\": \"success\", \"log_path\": \"/tmp/falcon3_eval_s123.log\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6274}}"
+    }
+  },
+  "sourceToolAssistantUUID": "09667811-4887-4107-8d02-edb7ac49f98e",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 57 · 2026-05-23T01:43:51.904Z_
+
+```json
+{
+  "parentUuid": "ac0683ff-87ae-4252-97cb-699424a4c085",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "d17fa400-6b9b-43ea-acb8-37e03879ea94",
+  "timestamp": "2026-05-23T01:43:51.904Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 58 · 2026-05-23T01:43:55.518Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now let me set the status fields. checkpoint_path and log_path are set, now I can transition to DONE.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d17fa400-6b9b-43ea-acb8-37e03879ea94",
+  "isSidechain": false,
+  "requestId": "req_011CbJeqZZXfm7WKBRjakyDZ",
+  "type": "assistant",
+  "uuid": "3aac3e7e-17fa-4f29-9776-760a798360fd",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5odMZimVxQ2fc8Xi4XixH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3062,
+      "cache_read_input_tokens": 46928,
+      "output_tokens": 315,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3062,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 315,
+          "cache_read_input_tokens": 46928,
+          "cache_creation_input_tokens": 3062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3062
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 59 · 2026-05-23T01:43:56.262Z_
+
+前置字段已设置，现在转 status=DONE。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "3aac3e7e-17fa-4f29-9776-760a798360fd",
+  "isSidechain": false,
+  "requestId": "req_011CbJeqZZXfm7WKBRjakyDZ",
+  "type": "assistant",
+  "uuid": "55c0b857-af32-42ea-9232-8864a7c32ee7",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5odMZimVxQ2fc8Xi4XixH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3062,
+      "cache_read_input_tokens": 46928,
+      "output_tokens": 315,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3062,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 315,
+          "cache_read_input_tokens": 46928,
+          "cache_creation_input_tokens": 3062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3062
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 60 · 2026-05-23T01:43:57.724Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_013M9DtTxuHS1BHL73q4ytJE`</summary>
+
+```json
+{
+  "exp_id": "sft_falcon3_7b_d100_s123_v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "55c0b857-af32-42ea-9232-8864a7c32ee7",
+  "isSidechain": false,
+  "requestId": "req_011CbJeqZZXfm7WKBRjakyDZ",
+  "type": "assistant",
+  "uuid": "1cc28ddc-0f74-472d-a088-b78e029b3b19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5odMZimVxQ2fc8Xi4XixH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3062,
+      "cache_read_input_tokens": 46928,
+      "output_tokens": 315,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3062,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 315,
+          "cache_read_input_tokens": 46928,
+          "cache_creation_input_tokens": 3062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3062
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 61 · 2026-05-23T01:43:58.183Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01AeKUR13GEsypRtdQwqMrgE`</summary>
+
+```json
+{
+  "exp_id": "eval_falcon3_d100_s123",
+  "field": "status",
+  "value": "DONE",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1cc28ddc-0f74-472d-a088-b78e029b3b19",
+  "isSidechain": false,
+  "requestId": "req_011CbJeqZZXfm7WKBRjakyDZ",
+  "type": "assistant",
+  "uuid": "fc31a323-fc93-4a22-9c9d-7200a5d9152c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01C5odMZimVxQ2fc8Xi4XixH",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 3062,
+      "cache_read_input_tokens": 46928,
+      "output_tokens": 315,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 3062,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 315,
+          "cache_read_input_tokens": 46928,
+          "cache_creation_input_tokens": 3062,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 3062
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 62_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "fc31a323-fc93-4a22-9c9d-7200a5d9152c",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 63_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check volume control training and fix registry",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c"
+}
+```
+
+---
+
+### Tool result
+
+_source line 64 · 2026-05-23T01:43:58.888Z_
+
+<details><summary>↩ Tool result · `toolu_013M9DtTxuHS1BHL73q4ytJE`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 1.1502}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1cc28ddc-0f74-472d-a088-b78e029b3b19",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "68a39beb-ed4e-41a2-a608-5e2e77196fb0",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.1502}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Cannot transition to DONE without a 'conclusion' field. Set conclusion first.\", \"metadata\": {\"elapsed_seconds\": 1.1502}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1cc28ddc-0f74-472d-a088-b78e029b3b19",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 65 · 2026-05-23T01:44:02.262Z_
+
+<details><summary>↩ Tool result · `toolu_01AeKUR13GEsypRtdQwqMrgE`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"eval_falcon3_d100_s123\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:06:44.269Z\", \"updated_at\": \"2026-05-23T01:44:00.135Z\", \"hypothesis\": \"Falcon3-7B d100 s123 eval: tests whether Benefit pattern (+4.19pp at s42) replicates at seed=123. Required for Table 11 cross-seed consistency analysis (5→6 families).\", \"metrics\": {\"mmlu_accuracy\": 0.6268, \"mmlu_correct\": 8801, \"mmlu_total\": 14042, \"arc_accuracy\": 0.8422, \"arc_correct\": 987, \"arc_total\": 1172}, \"spec\": {\"command\": \"python3 evaluate.py --model-path Falcon3-7B-Base --adapter-path d100_s123/lora_adapter --benchmarks mmlu arc_challenge --batch-size 8\", \"server\": \"cqa1-21977\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"data_path\": \"MMLU + ARC-Challenge (HF cached)\", \"data_count\": 15214, \"checkpoint_source\": \"sft_falcon3_7b_d100_s123_v2\", \"eval_data\": \"MMLU (14042 items) + ARC-Challenge (1172 items)\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\", \"log_path\": \"/tmp/falcon3_eval_s123.log\"}, \"conclusion\": \"success\", \"log_path\": \"/tmp/falcon3_eval_s123.log\", \"completed_at\": \"2026-05-23T01:44:00.135Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.36}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "fc31a323-fc93-4a22-9c9d-7200a5d9152c",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "90ef464b-250c-457c-9df7-a6ae93ff44d6",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"eval_falcon3_d100_s123\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T00:06:44.269Z\\\", \\\"updated_at\\\": \\\"2026-05-23T01:44:00.135Z\\\", \\\"hypothesis\\\": \\\"Falcon3-7B d100 s123 eval: tests whether Benefit pattern (+4.19pp at s42) replicates at seed=123. Required for Table 11 cross-seed consistency analysis (5→6 families).\\\", \\\"metrics\\\": {\\\"mmlu_accuracy\\\": 0.6268, \\\"mmlu_correct\\\": 8801, \\\"mmlu_total\\\": 14042, \\\"arc_accuracy\\\": 0.8422, \\\"arc_correct\\\": 987, \\\"arc_total\\\": 1172}, \\\"spec\\\": {\\\"command\\\": \\\"python3 evaluate.py --model-path Falcon3-7B-Base --adapter-path d100_s123/lora_adapter --benchmarks mmlu arc_challenge --batch-size 8\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"model_name\\\": \\\"Falcon3-7B-Base\\\", \\\"seed\\\": 123, \\\"data_path\\\": \\\"MMLU + ARC-Challenge (HF cached)\\\", \\\"data_count\\\": 15214, \\\"checkpoint_source\\\": \\\"sft_falcon3_7b_d100_s123_v2\\\", \\\"eval_data\\\": \\\"MMLU (14042 items) + ARC-Challenge (1172 items)\\\", \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\\\", \\\"log_path\\\": \\\"/tmp/falcon3_eval_s123.log\\\"}, \\\"conclusion\\\": \\\"success\\\", \\\"log_path\\\": \\\"/tmp/falcon3_eval_s123.log\\\", \\\"completed_at\\\": \\\"2026-05-23T01:44:00.135Z\\\"}, \\\"hint\\\": \\\"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\\\"}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.36}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"eval_falcon3_d100_s123\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:06:44.269Z\", \"updated_at\": \"2026-05-23T01:44:00.135Z\", \"hypothesis\": \"Falcon3-7B d100 s123 eval: tests whether Benefit pattern (+4.19pp at s42) replicates at seed=123. Required for Table 11 cross-seed consistency analysis (5→6 families).\", \"metrics\": {\"mmlu_accuracy\": 0.6268, \"mmlu_correct\": 8801, \"mmlu_total\": 14042, \"arc_accuracy\": 0.8422, \"arc_correct\": 987, \"arc_total\": 1172}, \"spec\": {\"command\": \"python3 evaluate.py --model-path Falcon3-7B-Base --adapter-path d100_s123/lora_adapter --benchmarks mmlu arc_challenge --batch-size 8\", \"server\": \"cqa1-21977\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"data_path\": \"MMLU + ARC-Challenge (HF cached)\", \"data_count\": 15214, \"checkpoint_source\": \"sft_falcon3_7b_d100_s123_v2\", \"eval_data\": \"MMLU (14042 items) + ARC-Challenge (1172 items)\", \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\", \"log_path\": \"/tmp/falcon3_eval_s123.log\"}, \"conclusion\": \"success\", \"log_path\": \"/tmp/falcon3_eval_s123.log\", \"completed_at\": \"2026-05-23T01:44:00.135Z\"}, \"hint\": \"💡 建议将成功经验写入 memory.md（什么 work、关键参数）\"}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.36}}"
+    }
+  },
+  "sourceToolAssistantUUID": "fc31a323-fc93-4a22-9c9d-7200a5d9152c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 66 · 2026-05-23T01:44:06.538Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+eval_falcon3_d100_s123 is now DONE. For sft_falcon3_7b_d100_s123_v2, I need to set conclusion first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "90ef464b-250c-457c-9df7-a6ae93ff44d6",
+  "isSidechain": false,
+  "requestId": "req_011CbJerKm6BqiS4uaoCMJE3",
+  "type": "assistant",
+  "uuid": "7ad4845a-9af1-4e74-a340-5ed71b459122",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cur5J5taF8TKGHXpL4fhUC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1043,
+      "cache_read_input_tokens": 49990,
+      "output_tokens": 222,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1043,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 222,
+          "cache_read_input_tokens": 49990,
+          "cache_creation_input_tokens": 1043,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1043
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 67 · 2026-05-23T01:44:06.958Z_
+
+eval_falcon3_d100_s123 已修复。sft 需要先设 conclusion。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "7ad4845a-9af1-4e74-a340-5ed71b459122",
+  "isSidechain": false,
+  "requestId": "req_011CbJerKm6BqiS4uaoCMJE3",
+  "type": "assistant",
+  "uuid": "d9e0e309-61e8-4efb-9e17-7b8e8cf0e130",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cur5J5taF8TKGHXpL4fhUC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1043,
+      "cache_read_input_tokens": 49990,
+      "output_tokens": 222,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1043,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 222,
+          "cache_read_input_tokens": 49990,
+          "cache_creation_input_tokens": 1043,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1043
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 68 · 2026-05-23T01:44:07.838Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_012Liju9DEiUzrLnM3hcjXXg`</summary>
+
+```json
+{
+  "exp_id": "sft_falcon3_7b_d100_s123_v2",
+  "field": "conclusion",
+  "value": "success",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "d9e0e309-61e8-4efb-9e17-7b8e8cf0e130",
+  "isSidechain": false,
+  "requestId": "req_011CbJerKm6BqiS4uaoCMJE3",
+  "type": "assistant",
+  "uuid": "ca43cb73-f638-4e7b-be9e-f2db0e408d6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Cur5J5taF8TKGHXpL4fhUC",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1043,
+      "cache_read_input_tokens": 49990,
+      "output_tokens": 222,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1043,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 222,
+          "cache_read_input_tokens": 49990,
+          "cache_creation_input_tokens": 1043,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1043
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 69 · 2026-05-23T01:44:09.485Z_
+
+<details><summary>↩ Tool result · `toolu_012Liju9DEiUzrLnM3hcjXXg`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"sft_falcon3_7b_d100_s123_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:40:15.309Z\", \"updated_at\": \"2026-05-23T01:44:08.824Z\", \"hypothesis\": \"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\", \"parent\": \"sft_falcon3_7b_d100_s123\", \"spec\": {\"command\": \"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"pid\": 726883, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"gpu\": \"cuda:0\", \"gpu_model\": \"RTX 4090D 24GB\", \"hyperparams\": {\"batch_size\": 1, \"grad_accum\": 16, \"effective_batch_size\": 16, \"lr\": 5e-05, \"lora_r\": 16, \"lora_alpha\": 32, \"gradient_checkpointing\": true, \"PYTORCH_CUDA_ALLOC_CONF\": \"expandable_segments:True\"}}, \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\", \"log_path\": \"/tmp/falcon3_s123_d100.log\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6305}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "ca43cb73-f638-4e7b-be9e-f2db0e408d6f",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "1e185e93-85f6-425b-97d6-32c1787f8d50",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sft_falcon3_7b_d100_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T19:40:15.309Z\\\", \\\"updated_at\\\": \\\"2026-05-23T01:44:08.824Z\\\", \\\"hypothesis\\\": \\\"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\\\", \\\"parent\\\": \\\"sft_falcon3_7b_d100_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"pid\\\": 726883, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\", \\\"model_name\\\": \\\"Falcon3-7B-Base\\\", \\\"seed\\\": 123, \\\"gpu\\\": \\\"cuda:0\\\", \\\"gpu_model\\\": \\\"RTX 4090D 24GB\\\", \\\"hyperparams\\\": {\\\"batch_size\\\": 1, \\\"grad_accum\\\": 16, \\\"effective_batch_size\\\": 16, \\\"lr\\\": 5e-05, \\\"lora_r\\\": 16, \\\"lora_alpha\\\": 32, \\\"gradient_checkpointing\\\": true, \\\"PYTORCH_CUDA_ALLOC_CONF\\\": \\\"expandable_segments:True\\\"}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\\\", \\\"log_path\\\": \\\"/tmp/falcon3_s123_d100.log\\\", \\\"conclusion\\\": \\\"success\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.6305}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"sft_falcon3_7b_d100_s123_v2\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:40:15.309Z\", \"updated_at\": \"2026-05-23T01:44:08.824Z\", \"hypothesis\": \"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\", \"parent\": \"sft_falcon3_7b_d100_s123\", \"spec\": {\"command\": \"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"pid\": 726883, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"gpu\": \"cuda:0\", \"gpu_model\": \"RTX 4090D 24GB\", \"hyperparams\": {\"batch_size\": 1, \"grad_accum\": 16, \"effective_batch_size\": 16, \"lr\": 5e-05, \"lora_r\": 16, \"lora_alpha\": 32, \"gradient_checkpointing\": true, \"PYTORCH_CUDA_ALLOC_CONF\": \"expandable_segments:True\"}}, \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\", \"log_path\": \"/tmp/falcon3_s123_d100.log\", \"conclusion\": \"success\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 1.6305}}"
+    }
+  },
+  "sourceToolAssistantUUID": "ca43cb73-f638-4e7b-be9e-f2db0e408d6f",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 70 · 2026-05-23T01:44:14.046Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_012X7gKCk8hjgzbNUKHu7A1n`</summary>
+
+```json
+{
+  "exp_id": "sft_falcon3_7b_d100_s123_v2",
+  "field": "status",
+  "value": "DONE",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "1e185e93-85f6-425b-97d6-32c1787f8d50",
+  "isSidechain": false,
+  "requestId": "req_011CbJerreiGpvni7fw2JqJs",
+  "type": "assistant",
+  "uuid": "18404f67-7691-49f3-b38b-04e18e6c5ce3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01JejaJP9fHDUtEYwS2vzsRv",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 926,
+      "cache_read_input_tokens": 51033,
+      "output_tokens": 140,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 926,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 140,
+          "cache_read_input_tokens": 51033,
+          "cache_creation_input_tokens": 926,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 926
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 71 · 2026-05-23T01:44:17.287Z_
+
+<details><summary>↩ Tool result · `toolu_012X7gKCk8hjgzbNUKHu7A1n`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"sft_falcon3_7b_d100_s123_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:40:15.309Z\", \"updated_at\": \"2026-05-23T01:44:15.120Z\", \"hypothesis\": \"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\", \"parent\": \"sft_falcon3_7b_d100_s123\", \"spec\": {\"command\": \"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"pid\": 726883, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"gpu\": \"cuda:0\", \"gpu_model\": \"RTX 4090D 24GB\", \"hyperparams\": {\"batch_size\": 1, \"grad_accum\": 16, \"effective_batch_size\": 16, \"lr\": 5e-05, \"lora_r\": 16, \"lora_alpha\": 32, \"gradient_checkpointing\": true, \"PYTORCH_CUDA_ALLOC_CONF\": \"expandable_segments:True\"}}, \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\", \"log_path\": \"/tmp/falcon3_s123_d100.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T01:44:15.120Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.2271}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "18404f67-7691-49f3-b38b-04e18e6c5ce3",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "be6f7f59-1875-420c-94fe-b1e25922751c",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sft_falcon3_7b_d100_s123_v2\\\", \\\"experiment\\\": {\\\"status\\\": \\\"DONE\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-22T19:40:15.309Z\\\", \\\"updated_at\\\": \\\"2026-05-23T01:44:15.120Z\\\", \\\"hypothesis\\\": \\\"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\\\", \\\"parent\\\": \\\"sft_falcon3_7b_d100_s123\\\", \\\"spec\\\": {\\\"command\\\": \\\"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"pid\\\": 726883, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\\\", \\\"model_name\\\": \\\"Falcon3-7B-Base\\\", \\\"seed\\\": 123, \\\"gpu\\\": \\\"cuda:0\\\", \\\"gpu_model\\\": \\\"RTX 4090D 24GB\\\", \\\"hyperparams\\\": {\\\"batch_size\\\": 1, \\\"grad_accum\\\": 16, \\\"effective_batch_size\\\": 16, \\\"lr\\\": 5e-05, \\\"lora_r\\\": 16, \\\"lora_alpha\\\": 32, \\\"gradient_checkpointing\\\": true, \\\"PYTORCH_CUDA_ALLOC_CONF\\\": \\\"expandable_segments:True\\\"}}, \\\"checkpoint_path\\\": \\\"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\\\", \\\"log_path\\\": \\\"/tmp/falcon3_s123_d100.log\\\", \\\"conclusion\\\": \\\"success\\\", \\\"completed_at\\\": \\\"2026-05-23T01:44:15.120Z\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.2271}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"sft_falcon3_7b_d100_s123_v2\", \"experiment\": {\"status\": \"DONE\", \"retry_count\": 0, \"created_at\": \"2026-05-22T19:40:15.309Z\", \"updated_at\": \"2026-05-23T01:44:15.120Z\", \"hypothesis\": \"Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart). Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches s42).\", \"parent\": \"sft_falcon3_7b_d100_s123\", \"spec\": {\"command\": \"PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123 --seed 123 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5 --cache-dir /root/autodl-tmp/.hf_cache\", \"server\": \"cqa1-21977\", \"pid\": 726883, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\", \"model_name\": \"Falcon3-7B-Base\", \"seed\": 123, \"gpu\": \"cuda:0\", \"gpu_model\": \"RTX 4090D 24GB\", \"hyperparams\": {\"batch_size\": 1, \"grad_accum\": 16, \"effective_batch_size\": 16, \"lr\": 5e-05, \"lora_r\": 16, \"lora_alpha\": 32, \"gradient_checkpointing\": true, \"PYTORCH_CUDA_ALLOC_CONF\": \"expandable_segments:True\"}}, \"checkpoint_path\": \"/root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\", \"log_path\": \"/tmp/falcon3_s123_d100.log\", \"conclusion\": \"success\", \"completed_at\": \"2026-05-23T01:44:15.120Z\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.2271}}"
+    }
+  },
+  "sourceToolAssistantUUID": "18404f67-7691-49f3-b38b-04e18e6c5ce3",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 72 · 2026-05-23T01:44:20.207Z_
+
+现在更新 volume control 实验到 RUNNING 状态。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "be6f7f59-1875-420c-94fe-b1e25922751c",
+  "isSidechain": false,
+  "requestId": "req_011CbJesRzuvUpgg83TNpfHP",
+  "type": "assistant",
+  "uuid": "651fe0da-425e-41f6-9cd2-774204b82fe8",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RSgJvgL5sH2EPoxc6C6Cxp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 868,
+      "cache_read_input_tokens": 51959,
+      "output_tokens": 362,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 868,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 362,
+          "cache_read_input_tokens": 51959,
+          "cache_creation_input_tokens": 868,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 868
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 73 · 2026-05-23T01:44:22.886Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01RgkS44r5bwdwjaoxwAuZ6r`</summary>
+
+```json
+{
+  "exp_id": "sft_falcon3_7b_volume_control",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contamcal-irt-calibration",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name Falcon3-7B-Base --data-path volume_control.jsonl --output-dir Falcon3-7B-Base_volume_control --seed 42 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5",
+    "server": "cqa1-21977",
+    "data_path": "/root/autodl-tmp/exp001/sft_data/volume_control.jsonl",
+    "data_count": 66533,
+    "model_name": "Falcon3-7B-Base",
+    "seed": 42,
+    "gpu": "cuda:0",
+    "gpu_model": "RTX 4090D 24GB"
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "651fe0da-425e-41f6-9cd2-774204b82fe8",
+  "isSidechain": false,
+  "requestId": "req_011CbJesRzuvUpgg83TNpfHP",
+  "type": "assistant",
+  "uuid": "9476bea4-2aab-4075-b132-5ecf2104d10c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RSgJvgL5sH2EPoxc6C6Cxp",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 868,
+      "cache_read_input_tokens": 51959,
+      "output_tokens": 362,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 868,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 362,
+          "cache_read_input_tokens": 51959,
+          "cache_creation_input_tokens": 868,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 868
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 74 · 2026-05-23T01:44:23.856Z_
+
+<details><summary>↩ Tool result · `toolu_01RgkS44r5bwdwjaoxwAuZ6r`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.9577}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "9476bea4-2aab-4075-b132-5ecf2104d10c",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "52747f66-c8ed-4bf4-90c8-475eec742aa7",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.9577}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {}, \"error\": \"Invalid transition: PREPARING → RUNNING. Allowed: ['PENDING', 'QUEUED']\", \"metadata\": {\"elapsed_seconds\": 0.9577}}"
+    }
+  },
+  "sourceToolAssistantUUID": "9476bea4-2aab-4075-b132-5ecf2104d10c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 75 · 2026-05-23T01:44:28.585Z_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+PREPARING → RUNNING is not allowed directly. Let me check what transitions are valid. Maybe I need to go through QUEUED first, or maybe I should just update the spec and other fields without changing the status. Let me try QUEUED first.
+
+Actually, looking at the error, the allowed transitions to RUNNING are from PENDING or QUEUED. Let me try QUEUED first.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "52747f66-c8ed-4bf4-90c8-475eec742aa7",
+  "isSidechain": false,
+  "requestId": "req_011CbJesv7MRzekgfXFMbRmm",
+  "type": "assistant",
+  "uuid": "4b39b8a3-6bd1-476e-b5eb-7c30f5d4866c",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013T7mKBDppGz84xNzSNyrMx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 437,
+      "cache_read_input_tokens": 52827,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 437,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 52827,
+          "cache_creation_input_tokens": 437,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 437
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 76 · 2026-05-23T01:44:29.219Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01L3Hdneac5NGVgL4nDpjTV1`</summary>
+
+```json
+{
+  "exp_id": "sft_falcon3_7b_volume_control",
+  "field": "status",
+  "value": "QUEUED",
+  "project": "contamcal-irt-calibration"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "4b39b8a3-6bd1-476e-b5eb-7c30f5d4866c",
+  "isSidechain": false,
+  "requestId": "req_011CbJesv7MRzekgfXFMbRmm",
+  "type": "assistant",
+  "uuid": "1f493855-da04-411c-aca4-73a6a16c7567",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013T7mKBDppGz84xNzSNyrMx",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 437,
+      "cache_read_input_tokens": 52827,
+      "output_tokens": 235,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 437,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 235,
+          "cache_read_input_tokens": 52827,
+          "cache_creation_input_tokens": 437,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 437
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 77_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "1f493855-da04-411c-aca4-73a6a16c7567",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 78_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check volume control training and fix registry",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c"
+}
+```
+
+---
+
+### Tool result
+
+_source line 79 · 2026-05-23T01:44:32.352Z_
+
+<details><summary>↩ Tool result · `toolu_01L3Hdneac5NGVgL4nDpjTV1`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"sft_falcon3_7b_volume_control\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:06:41.250Z\", \"updated_at\": \"2026-05-23T01:44:30.149Z\", \"hypothesis\": \"Volume-matched control: if Falcon3 d100 Benefit (+4.19pp) is driven by data quantity rather than contamination content, a volume-matched dataset (50k clean + 16.5k non-benchmark MCQ) should produce similar gains. Null result (no gain) rules out the quantity confound.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.116}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "1f493855-da04-411c-aca4-73a6a16c7567",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "6f2e63f2-935a-4fc3-9628-defab35fe117",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sft_falcon3_7b_volume_control\\\", \\\"experiment\\\": {\\\"status\\\": \\\"QUEUED\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T00:06:41.250Z\\\", \\\"updated_at\\\": \\\"2026-05-23T01:44:30.149Z\\\", \\\"hypothesis\\\": \\\"Volume-matched control: if Falcon3 d100 Benefit (+4.19pp) is driven by data quantity rather than contamination content, a volume-matched dataset (50k clean + 16.5k non-benchmark MCQ) should produce similar gains. Null result (no gain) rules out the quantity confound.\\\"}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.116}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"sft_falcon3_7b_volume_control\", \"experiment\": {\"status\": \"QUEUED\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:06:41.250Z\", \"updated_at\": \"2026-05-23T01:44:30.149Z\", \"hypothesis\": \"Volume-matched control: if Falcon3 d100 Benefit (+4.19pp) is driven by data quantity rather than contamination content, a volume-matched dataset (50k clean + 16.5k non-benchmark MCQ) should produce similar gains. Null result (no gain) rules out the quantity confound.\"}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.116}}"
+    }
+  },
+  "sourceToolAssistantUUID": "1f493855-da04-411c-aca4-73a6a16c7567",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 80 · 2026-05-23T01:44:39.571Z_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__update_registry · `toolu_01GPk6yqdjyMyPMcPBtb7dnC`</summary>
+
+```json
+{
+  "exp_id": "sft_falcon3_7b_volume_control",
+  "field": "status",
+  "value": "RUNNING",
+  "project": "contamcal-irt-calibration",
+  "spec": {
+    "command": "CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path volume_control.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control --seed 42 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5",
+    "server": "cqa1-21977",
+    "pid": 752802,
+    "data_path": "/root/autodl-tmp/exp001/sft_data/volume_control.jsonl",
+    "data_count": 66533,
+    "model_name": "Falcon3-7B-Base",
+    "seed": 42,
+    "gpu": "cuda:0",
+    "gpu_model": "RTX 4090D 24GB",
+    "hyperparams": {
+      "batch_size": 1,
+      "grad_accum": 16,
+      "effective_batch_size": 16,
+      "lr": 5e-05,
+      "lora_r": 16,
+      "lora_alpha": 32,
+      "gradient_checkpointing": true
+    }
+  }
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "6f2e63f2-935a-4fc3-9628-defab35fe117",
+  "isSidechain": false,
+  "requestId": "req_011CbJetYUsnmThPwhxtTSh1",
+  "type": "assistant",
+  "uuid": "93f405ad-71fe-4653-9be8-9c8e07d8c810",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_013QGdbaHWmm9LpSowVL7Rez",
+    "type": "message",
+    "stop_reason": "tool_use",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 457,
+      "cache_read_input_tokens": 53264,
+      "output_tokens": 445,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 457,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 445,
+          "cache_read_input_tokens": 53264,
+          "cache_creation_input_tokens": 457,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 457
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 81 · 2026-05-23T01:44:42.596Z_
+
+<details><summary>↩ Tool result · `toolu_01GPk6yqdjyMyPMcPBtb7dnC`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"exp_id\": \"sft_falcon3_7b_volume_control\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:06:41.250Z\", \"updated_at\": \"2026-05-23T01:44:40.491Z\", \"hypothesis\": \"Volume-matched control: if Falcon3 d100 Benefit (+4.19pp) is driven by data quantity rather than contamination content, a volume-matched dataset (50k clean + 16.5k non-benchmark MCQ) should produce similar gains. Null result (no gain) rules out the quantity confound.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path volume_control.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control --seed 42 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5\", \"server\": \"cqa1-21977\", \"pid\": 752802, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/volume_control.jsonl\", \"data_count\": 66533, \"model_name\": \"Falcon3-7B-Base\", \"seed\": 42, \"gpu\": \"cuda:0\", \"gpu_model\": \"RTX 4090D 24GB\", \"hyperparams\": {\"batch_size\": 1, \"grad_accum\": 16, \"effective_batch_size\": 16, \"lr\": 5e-05, \"lora_r\": 16, \"lora_alpha\": 32, \"gradient_checkpointing\": true}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.0117}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "parentUuid": "93f405ad-71fe-4653-9be8-9c8e07d8c810",
+  "isSidechain": false,
+  "promptId": "90749ac3-3726-499e-905e-fef6970eb682",
+  "type": "user",
+  "uuid": "a366ad3e-a41b-4e4f-850b-a10c5d98db93",
+  "toolUseResult": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"exp_id\\\": \\\"sft_falcon3_7b_volume_control\\\", \\\"experiment\\\": {\\\"status\\\": \\\"RUNNING\\\", \\\"retry_count\\\": 0, \\\"created_at\\\": \\\"2026-05-23T00:06:41.250Z\\\", \\\"updated_at\\\": \\\"2026-05-23T01:44:40.491Z\\\", \\\"hypothesis\\\": \\\"Volume-matched control: if Falcon3 d100 Benefit (+4.19pp) is driven by data quantity rather than contamination content, a volume-matched dataset (50k clean + 16.5k non-benchmark MCQ) should produce similar gains. Null result (no gain) rules out the quantity confound.\\\", \\\"spec\\\": {\\\"command\\\": \\\"CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path volume_control.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control --seed 42 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5\\\", \\\"server\\\": \\\"cqa1-21977\\\", \\\"pid\\\": 752802, \\\"data_path\\\": \\\"/root/autodl-tmp/exp001/sft_data/volume_control.jsonl\\\", \\\"data_count\\\": 66533, \\\"model_name\\\": \\\"Falcon3-7B-Base\\\", \\\"seed\\\": 42, \\\"gpu\\\": \\\"cuda:0\\\", \\\"gpu_model\\\": \\\"RTX 4090D 24GB\\\", \\\"hyperparams\\\": {\\\"batch_size\\\": 1, \\\"grad_accum\\\": 16, \\\"effective_batch_size\\\": 16, \\\"lr\\\": 5e-05, \\\"lora_r\\\": 16, \\\"lora_alpha\\\": 32, \\\"gradient_checkpointing\\\": true}}}}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 3.0117}}\"}",
+  "mcpMeta": {
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"exp_id\": \"sft_falcon3_7b_volume_control\", \"experiment\": {\"status\": \"RUNNING\", \"retry_count\": 0, \"created_at\": \"2026-05-23T00:06:41.250Z\", \"updated_at\": \"2026-05-23T01:44:40.491Z\", \"hypothesis\": \"Volume-matched control: if Falcon3 d100 Benefit (+4.19pp) is driven by data quantity rather than contamination content, a volume-matched dataset (50k clean + 16.5k non-benchmark MCQ) should produce similar gains. Null result (no gain) rules out the quantity confound.\", \"spec\": {\"command\": \"CUDA_VISIBLE_DEVICES=0 python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path volume_control.jsonl --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_volume_control --seed 42 --gpu 0 --batch-size 1 --grad-accum 16 --gradient-checkpointing --lr 5e-5\", \"server\": \"cqa1-21977\", \"pid\": 752802, \"data_path\": \"/root/autodl-tmp/exp001/sft_data/volume_control.jsonl\", \"data_count\": 66533, \"model_name\": \"Falcon3-7B-Base\", \"seed\": 42, \"gpu\": \"cuda:0\", \"gpu_model\": \"RTX 4090D 24GB\", \"hyperparams\": {\"batch_size\": 1, \"grad_accum\": 16, \"effective_batch_size\": 16, \"lr\": 5e-05, \"lora_r\": 16, \"lora_alpha\": 32, \"gradient_checkpointing\": true}}}}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 3.0117}}"
+    }
+  },
+  "sourceToolAssistantUUID": "93f405ad-71fe-4653-9be8-9c8e07d8c810",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 82 · 2026-05-23T01:44:42.599Z_
+
+```json
+{
+  "parentUuid": "a366ad3e-a41b-4e4f-850b-a10c5d98db93",
+  "isSidechain": false,
+  "attachment": {
+    "type": "todo_reminder",
+    "content": [],
+    "itemCount": 0
+  },
+  "type": "attachment",
+  "uuid": "9f5e1370-4213-49a4-930a-4c518fb0b852",
+  "timestamp": "2026-05-23T01:44:42.599Z",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD"
+}
+```
+
+---
+
+### Assistant
+
+_source line 83 · 2026-05-23T01:44:54.641Z_
+
+## 报告
+
+### Part 1: Volume Control 训练状态 — **运行中**
+
+| 指标 | 值 |
+|------|-----|
+| 进度 | **718 / 4159** (17%) |
+| Loss | ~1.22 (下降趋势，从 1.36 降到 1.22) |
+| LR | ~5e-5 (已达峰值，cosine decay 开始) |
+| 速度 | ~4.0 s/step |
+| GPU | cuda:0, PID 752802, 19.6GB/24GB VRAM, 65% util |
+| ETA | **~3.8 小时** (~13:30 UTC) |
+| Checkpoint | lora_adapter 目录已创建但尚为空（尚未保存 checkpoint） |
+
+### Part 2: Eval — **未启动**
+
+训练仍在进行，GPU 被占用。训练完成后再启动 eval。
+
+### Part 3: Registry 修复结果
+
+| 实验 | 修复前 | 修复后 |
+|------|--------|--------|
+| `sft_falcon3_7b_d100_s123_v2` | RUNNING | **DONE** (conclusion=success, checkpoint_path + log_path 已设置) |
+| `eval_falcon3_d100_s123` | RUNNING (conclusion=success 已有) | **DONE** (MMLU 62.68%, ARC 84.22%) |
+| `sft_falcon3_7b_volume_control` | PREPARING | **RUNNING** (PID 752802, spec 已填充) |
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "parentUuid": "9f5e1370-4213-49a4-930a-4c518fb0b852",
+  "isSidechain": false,
+  "requestId": "req_011CbJeuJCuih7zkNXMRteZK",
+  "type": "assistant",
+  "uuid": "be663ab7-8736-41ed-b9ac-031d3e938f6b",
+  "userType": "external",
+  "entrypoint": "sdk-cli",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c",
+  "version": "2.1.126",
+  "gitBranch": "HEAD",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PNmkr29cXe1sG4JoQ5U9AM",
+    "type": "message",
+    "stop_reason": "end_turn",
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1095,
+      "cache_read_input_tokens": 53721,
+      "output_tokens": 429,
+      "server_tool_use": {
+        "web_search_requests": 0,
+        "web_fetch_requests": 0
+      },
+      "service_tier": "standard",
+      "cache_creation": {
+        "ephemeral_1h_input_tokens": 1095,
+        "ephemeral_5m_input_tokens": 0
+      },
+      "inference_geo": "",
+      "iterations": [
+        {
+          "input_tokens": 1,
+          "output_tokens": 429,
+          "cache_read_input_tokens": 53721,
+          "cache_creation_input_tokens": 1095,
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 1095
+          },
+          "type": "message"
+        }
+      ],
+      "speed": "standard"
+    },
+    "diagnostics": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Runtime record
+
+_source line 84_
+
+```json
+{
+  "type": "last-prompt",
+  "leafUuid": "be663ab7-8736-41ed-b9ac-031d3e938f6b",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 85_
+
+```json
+{
+  "type": "ai-title",
+  "aiTitle": "Check volume control training and fix registry",
+  "sessionId": "9b1c4c68-832f-4ffc-9b51-15d7ac6e367c"
+}
+```
+
+---

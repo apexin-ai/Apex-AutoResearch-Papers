@@ -1,0 +1,576 @@
+{
+  "schema_version": "1.0",
+  "id": "2279e03547e401bfc25b",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: Search the file at /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml for",
+  "task_key": "agent-a7e0036cfe746f36f",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/agent-a7e0036cfe746f36f.jsonl",
+    "occurrence": 1,
+    "bytes": 47132,
+    "sha256": "44e9ebc5d805de13562eb04d7a1d3362eaf19f9e374431e560d61ff7b60fdf66"
+  },
+  "statistics": {
+    "messages": 11,
+    "user_turns": 1,
+    "tool_calls": 3,
+    "roles": {
+      "user": 1,
+      "assistant": 4,
+      "tool_call": 3,
+      "tool_result": 3
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T03:16:58.263Z",
+          "role": "user",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "Search the file at /home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml for all entries containing \"falcon3\" (case-insensitive). I need to see all experiment IDs related to falcon3, their status, conclusion, and metrics. Report the full list organized by experiment type (sft training vs eval)."
+            }
+          ],
+          "metadata": {
+            "parentUuid": null,
+            "isSidechain": true,
+            "promptId": "e907cee2-300d-462f-90b9-7adcca69f3db",
+            "agentId": "a7e0036cfe746f36f",
+            "type": "user",
+            "uuid": "e99c6a83-c2e4-46f8-996c-2a577fb643a3",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_5ae72916",
+            "sessionId": "5388498a-f48d-46cf-b1ab-6f7e3c37af3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T03:16:59.715Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "I'll search the registry.yaml file for all entries containing \"falcon3\" and organize them for you."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e99c6a83-c2e4-46f8-996c-2a577fb643a3",
+            "isSidechain": true,
+            "agentId": "a7e0036cfe746f36f",
+            "requestId": "req_011CbJmwMoLHzPx8DCHeM3ge",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "e505d885-59d8-4956-a189-755da7150778",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_5ae72916",
+            "sessionId": "5388498a-f48d-46cf-b1ab-6f7e3c37af3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015j52v7gCFAo786PEhWSgYM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 35692,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 35692,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T03:16:59.803Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01L3z2Uxnm4XdicGDakZnt9m",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "e505d885-59d8-4956-a189-755da7150778",
+            "isSidechain": true,
+            "agentId": "a7e0036cfe746f36f",
+            "requestId": "req_011CbJmwMoLHzPx8DCHeM3ge",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "7151342e-7c09-4fce-8d2f-11b30258f71e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_5ae72916",
+            "sessionId": "5388498a-f48d-46cf-b1ab-6f7e3c37af3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_015j52v7gCFAo786PEhWSgYM",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 35692,
+                "cache_read_input_tokens": 0,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 35692,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 4,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T03:16:59.817Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "File content (611.7KB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+              "is_error": true,
+              "tool_use_id": "toolu_01L3z2Uxnm4XdicGDakZnt9m"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "7151342e-7c09-4fce-8d2f-11b30258f71e",
+            "isSidechain": true,
+            "promptId": "e907cee2-300d-462f-90b9-7adcca69f3db",
+            "agentId": "a7e0036cfe746f36f",
+            "type": "user",
+            "uuid": "ac0351bf-30a7-4aee-8440-c5b924bf43c4",
+            "toolUseResult": "Error: File content (611.7KB) exceeds maximum allowed size (256KB). Use offset and limit parameters to read specific portions of the file, or search for specific content instead of reading the whole file.",
+            "sourceToolAssistantUUID": "7151342e-7c09-4fce-8d2f-11b30258f71e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_5ae72916",
+            "sessionId": "5388498a-f48d-46cf-b1ab-6f7e3c37af3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T03:17:01.069Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file is too large to read in one go. Let me search for all falcon3 entries using grep."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "ac0351bf-30a7-4aee-8440-c5b924bf43c4",
+            "isSidechain": true,
+            "agentId": "a7e0036cfe746f36f",
+            "requestId": "req_011CbJmwUJVwGzAeFrZRpVGK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "6d783560-978f-4009-acac-23e19baec8f7",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_5ae72916",
+            "sessionId": "5388498a-f48d-46cf-b1ab-6f7e3c37af3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Q4B91F4n7zHwXyHoxgAYoi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1005,
+                "cache_read_input_tokens": 35692,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1005,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T03:17:01.678Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_019phPeee8CLv8afL8kEJoCR",
+              "name": "Grep",
+              "input": {
+                "pattern": "falcon3",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/registry.yaml",
+                "output_mode": "content",
+                "context": 3,
+                "head_limit": 0
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "6d783560-978f-4009-acac-23e19baec8f7",
+            "isSidechain": true,
+            "agentId": "a7e0036cfe746f36f",
+            "requestId": "req_011CbJmwUJVwGzAeFrZRpVGK",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c7b0ca03-06d7-41f8-a8ad-c0e766839a5e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_5ae72916",
+            "sessionId": "5388498a-f48d-46cf-b1ab-6f7e3c37af3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01Q4B91F4n7zHwXyHoxgAYoi",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 7,
+                "cache_creation_input_tokens": 1005,
+                "cache_read_input_tokens": 35692,
+                "output_tokens": 183,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1005
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 7,
+                    "output_tokens": 183,
+                    "cache_read_input_tokens": 35692,
+                    "cache_creation_input_tokens": 1005,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1005,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T03:17:01.706Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_019phPeee8CLv8afL8kEJoCR",
+              "type": "tool_result",
+              "content": "<persisted-output>\nOutput too large (23.3KB). Full output saved to: /home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-5ae72916/5388498a-f48d-46cf-b1ab-6f7e3c37af3b/tool-results/toolu_019phPeee8CLv8afL8kEJoCR.txt\n\nPreview (first 2KB):\n13987-      submitted_via: submit_training_job\n13988-      backend: tmux\n13989-      account: root\n13990:  sft_falcon3_7b_d000_s42:\n13991-    status: DONE\n13992-    retry_count: 0\n13993-    created_at: '2026-05-22T03:58:35.660Z'\n--\n14010-      seed: 42\n14011-      pid: 577758\n14012-      gpu: 0\n14013:      log_path: /root/autodl-tmp/exp001/checkpoints/falcon3_7b_d000_s42.log\n14014-      checkpoint_path: /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d000_s42\n14015-    conclusion: failed\n14016-    completed_at: '2026-05-22T07:49:30.289Z'\n14017:  sft_falcon3_7b_d005_s42:\n14018-    status: DONE\n14019-    retry_count: 0\n14020-    created_at: '2026-05-22T03:58:38.709Z'\n--\n14035-      seed: 42\n14036-      pid: 577836\n14037-      gpu: 1\n14038:      log_path: /root/autodl-tmp/exp001/checkpoints/falcon3_7b_d005_s42.log\n14039-      checkpoint_path: /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d005_s42\n14040-    conclusion: failed\n14041-    completed_at: '2026-05-22T07:49:33.299Z'\n14042:  sft_falcon3_7b_d025_s42:\n14043-    status: DONE\n14044-    retry_count: 0\n14045-    created_at: '2026-05-22T03:58:41.739Z'\n--\n14060-      seed: 42\n14061-      pid: 577974\n14062-      gpu: 2\n14063:      log_path: /root/autodl-tmp/exp001/checkpoints/falcon3_7b_d025_s42.log\n14064-      checkpoint_path: /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d025_s42\n14065-    conclusion: failed\n14066-    completed_at: '2026-05-22T07:49:36.236Z'\n14067:  sft_falcon3_7b_d050_s42:\n14068-    status: DONE\n14069-    retry_count: 0\n14070-    created_at: '2026-05-22T03:58:44.653Z'\n--\n14084-      seed: 42\n14085-      pid: 578223\n14086-      gpu: 3\n14087:      log_path: /root/autodl-tmp/exp001/checkpoints/falcon3_7b_d050_s42.log\n14088-      checkpoint_path: /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d050_s42\n14089-    conclusion: failed\n14090-    completed_at: '2026-05-22T07:49:39.095Z'\n14091:  sft_falcon3_7b_d100_s42:\n14092-    status: DONE\n14093-    retry_count: 1\n...\n</persisted-output>"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c7b0ca03-06d7-41f8-a8ad-c0e766839a5e",
+            "isSidechain": true,
+            "promptId": "e907cee2-300d-462f-90b9-7adcca69f3db",
+            "agentId": "a7e0036cfe746f36f",
+            "type": "user",
+            "uuid": "9bfd995b-cd8b-46b4-b027-36473df73b2e",
+            "sourceToolAssistantUUID": "c7b0ca03-06d7-41f8-a8ad-c0e766839a5e",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_5ae72916",
+            "sessionId": "5388498a-f48d-46cf-b1ab-6f7e3c37af3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T03:17:02.979Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the full output file to get all the falcon3 entries."
+            }
+          ],
+          "metadata": {
+            "parentUuid": "9bfd995b-cd8b-46b4-b027-36473df73b2e",
+            "isSidechain": true,
+            "agentId": "a7e0036cfe746f36f",
+            "requestId": "req_011CbJmwcKCm7MG8n6YLy2uF",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c6fc40da-dc02-42b3-82c5-f39b6d754be1",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_5ae72916",
+            "sessionId": "5388498a-f48d-46cf-b1ab-6f7e3c37af3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KJs3oW9QJ36JHqxUTKMUyy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1224,
+                "cache_read_input_tokens": 36697,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 1224,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T03:17:03.885Z",
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_016AzryQCpMnGeGBSrDgksXK",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.claude-account-2/projects/-home-ubuntu--agent-ml-research-idea-gen-0509-13-projects-contamcal-irt-calibration--claude-sessions-agent-5ae72916/5388498a-f48d-46cf-b1ab-6f7e3c37af3b/tool-results/toolu_019phPeee8CLv8afL8kEJoCR.txt"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "parentUuid": "c6fc40da-dc02-42b3-82c5-f39b6d754be1",
+            "isSidechain": true,
+            "agentId": "a7e0036cfe746f36f",
+            "requestId": "req_011CbJmwcKCm7MG8n6YLy2uF",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "eb990c21-e665-47b9-802b-f5fc5dd0a93b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_5ae72916",
+            "sessionId": "5388498a-f48d-46cf-b1ab-6f7e3c37af3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01KJs3oW9QJ36JHqxUTKMUyy",
+              "type": "message",
+              "stop_reason": "tool_use",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 1224,
+                "cache_read_input_tokens": 36697,
+                "output_tokens": 177,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 1224
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 177,
+                    "cache_read_input_tokens": 36697,
+                    "cache_creation_input_tokens": 1224,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 1224,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T03:17:03.896Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_016AzryQCpMnGeGBSrDgksXK",
+              "type": "tool_result",
+              "content": "1\t13987-      submitted_via: submit_training_job\n2\t13988-      backend: tmux\n3\t13989-      account: root\n4\t13990:  sft_falcon3_7b_d000_s42:\n5\t13991-    status: DONE\n6\t13992-    retry_count: 0\n7\t13993-    created_at: '2026-05-22T03:58:35.660Z'\n8\t--\n9\t14010-      seed: 42\n10\t14011-      pid: 577758\n11\t14012-      gpu: 0\n12\t14013:      log_path: /root/autodl-tmp/exp001/checkpoints/falcon3_7b_d000_s42.log\n13\t14014-      checkpoint_path: /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d000_s42\n14\t14015-    conclusion: failed\n15\t14016-    completed_at: '2026-05-22T07:49:30.289Z'\n16\t14017:  sft_falcon3_7b_d005_s42:\n17\t14018-    status: DONE\n18\t14019-    retry_count: 0\n19\t14020-    created_at: '2026-05-22T03:58:38.709Z'\n20\t--\n21\t14035-      seed: 42\n22\t14036-      pid: 577836\n23\t14037-      gpu: 1\n24\t14038:      log_path: /root/autodl-tmp/exp001/checkpoints/falcon3_7b_d005_s42.log\n25\t14039-      checkpoint_path: /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d005_s42\n26\t14040-    conclusion: failed\n27\t14041-    completed_at: '2026-05-22T07:49:33.299Z'\n28\t14042:  sft_falcon3_7b_d025_s42:\n29\t14043-    status: DONE\n30\t14044-    retry_count: 0\n31\t14045-    created_at: '2026-05-22T03:58:41.739Z'\n32\t--\n33\t14060-      seed: 42\n34\t14061-      pid: 577974\n35\t14062-      gpu: 2\n36\t14063:      log_path: /root/autodl-tmp/exp001/checkpoints/falcon3_7b_d025_s42.log\n37\t14064-      checkpoint_path: /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d025_s42\n38\t14065-    conclusion: failed\n39\t14066-    completed_at: '2026-05-22T07:49:36.236Z'\n40\t14067:  sft_falcon3_7b_d050_s42:\n41\t14068-    status: DONE\n42\t14069-    retry_count: 0\n43\t14070-    created_at: '2026-05-22T03:58:44.653Z'\n44\t--\n45\t14084-      seed: 42\n46\t14085-      pid: 578223\n47\t14086-      gpu: 3\n48\t14087:      log_path: /root/autodl-tmp/exp001/checkpoints/falcon3_7b_d050_s42.log\n49\t14088-      checkpoint_path: /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d050_s42\n50\t14089-    conclusion: failed\n51\t14090-    completed_at: '2026-05-22T07:49:39.095Z'\n52\t14091:  sft_falcon3_7b_d100_s42:\n53\t14092-    status: DONE\n54\t14093-    retry_count: 1\n55\t14094-    created_at: '2026-05-22T03:58:47.625Z'\n56\t--\n57\t14133-      batch_size: 1\n58\t14134-      grad_accum: 16\n59\t14135-      checkpoint_path: /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42\n60\t14136:      log_path: /root/autodl-tmp/exp001/checkpoints/falcon3_7b_d100_s42.log\n61\t14137-    conclusion: success\n62\t14138-    metrics:\n63\t14139-      training_completed: true\n64\t14140-      wall_clock_hours: 4.75\n65\t14141:  falcon3-7b-download:\n66\t14142-    status: PREPARING\n67\t14143-    retry_count: 0\n68\t14144-    created_at: '2026-05-22T04:04:13.395Z'\n69\t--\n70\t14163-      gpu:\n71\t14164-      - cuda:0\n72\t14165-      pid: '570892'\n73\t14166:      log_path: ~/runs/contamcal-irt-calibration/falcon3-7b-download.log\n74\t14167-      submitted_at: '2026-05-22T04:04:12.448Z'\n75\t14168-      submitted_via: submit_training_job\n76\t14169-      backend: tmux\n77\t14170-      account: root\n78\t14171-    conclusion: killed\n79\t14172:  falcon3-7b-dl-v2:\n80\t14173-    status: PREPARING\n81\t14174-    retry_count: 0\n82\t14175-    created_at: '2026-05-22T04:05:00.669Z'\n83\t--\n84\t14195-      gpu:\n85\t14196-      - cuda:0\n86\t14197-      pid: '570993'\n87\t14198:      log_path: ~/runs/contamcal-irt-calibration/falcon3-7b-dl-v2.log\n88\t14199-      submitted_at: '2026-05-22T04:04:59.765Z'\n89\t14200-      submitted_via: submit_training_job\n90\t14201-      backend: tmux\n91\t14202-      account: root\n92\t14203-    conclusion: killed\n93\t14204:  falcon3-7b-dl-v3:\n94\t14205-    status: PREPARING\n95\t14206-    retry_count: 0\n96\t14207-    created_at: '2026-05-22T04:09:28.149Z'\n97\t--\n98\t14230-      gpu:\n99\t14231-      - cuda:0\n100\t14232-      pid: '571301'\n101\t14233:      log_path: ~/runs/contamcal-irt-calibration/falcon3-7b-dl-v3.log\n102\t14234-      submitted_at: '2026-05-22T04:09:27.264Z'\n103\t14235-      submitted_via: submit_training_job\n104\t14236-      backend: tmux\n105\t14237-      account: root\n106\t14238-    conclusion: killed\n107\t14239:  falcon3-7b-dl-v4:\n108\t14240-    status: PREPARING\n109\t14241-    retry_count: 0\n110\t14242-    created_at: '2026-05-22T04:11:14.996Z'\n111\t--\n112\t14265-      gpu:\n113\t14266-      - cuda:0\n114\t14267-      pid: '571441'\n115\t14268:      log_path: ~/runs/contamcal-irt-calibration/falcon3-7b-dl-v4.log\n116\t14269-      submitted_at: '2026-05-22T04:11:13.915Z'\n117\t14270-      submitted_via: submit_training_job\n118\t14271-      backend: tmux\n119\t14272-      account: root\n120\t14273-    conclusion: killed\n121\t14274:  falcon3-7b-dl-v5:\n122\t14275-    status: PREPARING\n123\t14276-    retry_count: 0\n124\t14277-    created_at: '2026-05-22T04:41:36.216Z'\n125\t--\n126\t14300-      gpu:\n127\t14301-      - cuda:0\n128\t14302-      pid: '573253'\n129\t14303:      log_path: ~/runs/contamcal-irt-calibration/falcon3-7b-dl-v5.log\n130\t14304-      submitted_at: '2026-05-22T04:41:35.337Z'\n131\t14305-      submitted_via: submit_training_job\n132\t14306-      backend: tmux\n133\t14307-      account: root\n134\t14308-    conclusion: killed\n135\t14309:  sft_falcon3_7b_d000_s42_v2:\n136\t14310-    status: DONE\n137\t14311-    retry_count: 0\n138\t14312-    created_at: '2026-05-22T07:50:08.265Z'\n139\t--\n140\t14316-        --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_000.jsonl\n141\t14317-        --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d000_s42\n142\t14318-        --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr\n143\t14319:        5e-5 --cache-dir /root/autodl-tmp/.hf_cache 2>&1 | tee /root/autodl-tmp/exp001/checkpoints/falcon3_7b_d000_s42.log\"\n144\t14320-      server: westd-29999\n145\t14321-      gpu:\n146\t14322-      - cuda:0\n147\t14323-      pid: '599902'\n148\t14324:      log_path: ~/runs/contamcal-irt-calibration/sft_falcon3_7b_d000_s42_v2.log\n149\t14325-      submitted_at: '2026-05-22T07:50:06.440Z'\n150\t14326-      submitted_via: submit_training_job\n151\t14327-      backend: tmux\n152\t--\n153\t14339-      lr=5e-5.'\n154\t14340-    conclusion: success\n155\t14341-    completed_at: '2026-05-22T11:04:17.917Z'\n156\t14342:  sft_falcon3_7b_d005_s42_v2:\n157\t14343-    status: DONE\n158\t14344-    retry_count: 0\n159\t14345-    created_at: '2026-05-22T07:50:13.689Z'\n160\t--\n161\t14349-        --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_005.jsonl\n162\t14350-        --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d005_s42\n163\t14351-        --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr\n164\t14352:        5e-5 --cache-dir /root/autodl-tmp/.hf_cache 2>&1 | tee /root/autodl-tmp/exp001/checkpoints/falcon3_7b_d005_s42.log\"\n165\t14353-      server: westd-29999\n166\t14354-      gpu:\n167\t14355-      - cuda:1\n168\t14356-      pid: '600185'\n169\t14357:      log_path: ~/runs/contamcal-irt-calibration/sft_falcon3_7b_d005_s42_v2.log\n170\t14358-      submitted_at: '2026-05-22T07:50:12.699Z'\n171\t14359-      submitted_via: submit_training_job\n172\t14360-      backend: tmux\n173\t--\n174\t14372-      lr=5e-5.'\n175\t14373-    conclusion: success\n176\t14374-    completed_at: '2026-05-22T11:04:20.871Z'\n177\t14375:  sft_falcon3_7b_d025_s42_v2:\n178\t14376-    status: DONE\n179\t14377-    retry_count: 0\n180\t14378-    created_at: '2026-05-22T07:50:17.805Z'\n181\t--\n182\t14382-        --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_025.jsonl\n183\t14383-        --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d025_s42\n184\t14384-        --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr\n185\t14385:        5e-5 --cache-dir /root/autodl-tmp/.hf_cache 2>&1 | tee /root/autodl-tmp/exp001/checkpoints/falcon3_7b_d025_s42.log\"\n186\t14386-      server: westd-29999\n187\t14387-      gpu:\n188\t14388-      - cuda:2\n189\t14389-      pid: '600340'\n190\t14390:      log_path: ~/runs/contamcal-irt-calibration/sft_falcon3_7b_d025_s42_v2.log\n191\t14391-      submitted_at: '2026-05-22T07:50:16.799Z'\n192\t14392-      submitted_via: submit_training_job\n193\t14393-      backend: tmux\n194\t--\n195\t14405-      with correct lr=5e-5.'\n196\t14406-    conclusion: success\n197\t14407-    completed_at: '2026-05-22T11:04:23.755Z'\n198\t14408:  sft_falcon3_7b_d050_s42_v2:\n199\t14409-    status: DONE\n200\t14410-    retry_count: 0\n201\t14411-    created_at: '2026-05-22T07:50:20.897Z'\n202\t--\n203\t14415-        --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --data-path /root/autodl-tmp/exp001/sft_data/sft_dosage_050.jsonl\n204\t14416-        --output-dir /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d050_s42\n205\t14417-        --seed 42 --gpu 0 --batch-size 4 --grad-accum 4 --gradient-checkpointing --lr\n206\t14418:        5e-5 --cache-dir /root/autodl-tmp/.hf_cache 2>&1 | tee /root/autodl-tmp/exp001/checkpoints/falcon3_7b_d050_s42.log\"\n207\t14419-      server: westd-29999\n208\t14420-      gpu:\n209\t14421-      - cuda:3\n210\t14422-      pid: '600596'\n211\t14423:      log_path: ~/runs/contamcal-irt-calibration/sft_falcon3_7b_d050_s42_v2.log\n212\t14424-      submitted_at: '2026-05-22T07:50:20.052Z'\n213\t14425-      submitted_via: submit_training_job\n214\t14426-      backend: tmux\n215\t--\n216\t14438-      LR bug fix retry with correct lr=5e-5.'\n217\t14439-    conclusion: success\n218\t14440-    completed_at: '2026-05-22T12:19:54.691Z'\n219\t14441:  eval_falcon3_d000_s42:\n220\t14442-    status: DONE\n221\t14443-    retry_count: 0\n222\t14444-    created_at: '2026-05-22T11:03:25.016Z'\n223\t--\n224\t14449-      gpu:\n225\t14450-      - cuda:0\n226\t14451-      pid: '618603'\n227\t14452:      log_path: ~/runs/contamcal-irt-calibration/eval_falcon3_d000_s42.log\n228\t14453-      submitted_at: '2026-05-22T11:03:24.108Z'\n229\t14454-      submitted_via: submit_training_job\n230\t14455-      backend: tmux\n231\t--\n232\t14458-      data_count: 0\n233\t14459-      model_name: Falcon3-7B-Base\n234\t14460-      seed: 42\n235\t14461:      checkpoint_source: sft_falcon3_7b_d000_s42_v2\n236\t14462-      eval_data: mmlu+arc_challenge\n237\t14463-      wall_clock_seconds: 200.0\n238\t14464-      gpu_hours: 0.06\n239\t--\n240\t14477-        action: agent\n241\t14478-        ts: '2026-05-22T11:06:52.450574+00:00'\n242\t14479-    notes: MMLU=58.77%, ARC=81.57%. Eval completed successfully.\n243\t14480:  eval_falcon3_d005_s42:\n244\t14481-    status: DONE\n245\t14482-    retry_count: 0\n246\t14483-    created_at: '2026-05-22T11:03:28.661Z'\n247\t--\n248\t14488-      gpu:\n249\t14489-      - cuda:1\n250\t14490-      pid: '618759'\n251\t14491:      log_path: ~/runs/contamcal-irt-calibration/eval_falcon3_d005_s42.log\n252\t14492-      submitted_at: '2026-05-22T11:03:27.752Z'\n253\t14493-      submitted_via: submit_training_job\n254\t14494-      backend: tmux\n255\t--\n256\t14497-      data_count: 0\n257\t14498-      model_name: Falcon3-7B-Base\n258\t14499-      seed: 42\n259\t14500:      checkpoint_source: sft_falcon3_7b_d005_s42_v2\n260\t14501-      eval_data: mmlu+arc_challenge\n261\t14502-      wall_clock_seconds: 215.8\n262\t14503-      gpu_hours: 0.06\n263\t--\n264\t14506-    reproduce:\n265\t14507-      finished_at: '2026-05-22T11:06:58.587Z'\n266\t14508-    failure_reason: 'Network unreachable on westd-29999: load_dataset(\"cais/mmlu\")\n267\t14509:      failed with [Errno 101] Network is unreachable. Same root cause as eval_falcon3_d000_s42.'\n268\t14510-    conclusion: failed\n269\t14511-    completed_at: '2026-05-22T11:07:03.524Z'\n270\t14512-    extra:\n271\t--\n272\t14515-        action: agent\n273\t14516-        ts: '2026-05-22T11:07:11.857214+00:00'\n274\t14517-    notes: MMLU=59.02%, ARC=83.11%. Eval completed successfully.\n275\t14518:  eval_falcon3_d025_s42:\n276\t14519-    status: DONE\n277\t14520-    retry_count: 0\n278\t14521-    created_at: '2026-05-22T11:03:32.692Z'\n279\t--\n280\t14526-      gpu:\n281\t14527-      - cuda:2\n282\t14528-      pid: '618913'\n283\t14529:      log_path: ~/runs/contamcal-irt-calibration/eval_falcon3_d025_s42.log\n284\t14530-      submitted_at: '2026-05-22T11:03:31.836Z'\n285\t14531-      submitted_via: submit_training_job\n286\t14532-      backend: tmux\n287\t--\n288\t14535-      data_count: 0\n289\t14536-      model_name: Falcon3-7B-Base\n290\t14537-      seed: 42\n291\t14538:      checkpoint_source: sft_falcon3_7b_d025_s42_v2\n292\t14539-      eval_data: mmlu+arc_challenge\n293\t14540-      wall_clock_seconds: 231.5\n294\t14541-      gpu_hours: 0.06\n295\t--\n296\t14552-        action: agent\n297\t14553-        ts: '2026-05-22T11:07:30.408620+00:00'\n298\t14554-    notes: MMLU=61.23%, ARC=84.81%. Eval completed successfully.\n299\t14555:  eval_falcon3_d000_s42_v2:\n300\t14556-    status: DONE\n301\t14557-    retry_count: 0\n302\t14558-    created_at: '2026-05-22T11:18:50.171Z'\n303\t--\n304\t14566-      gpu:\n305\t14567-      - cuda:0\n306\t14568-      pid: 627327\n307\t14569:      log_path: ~/runs/contamcal-irt-calibration/eval_falcon3_d000_s42_v2.log\n308\t14570-      submitted_at: '2026-05-22T11:36:22.438Z'\n309\t14571-      submitted_via: submit_training_job\n310\t14572-      backend: tmux\n311\t--\n312\t14575-      data_count: 0\n313\t14576-      model_name: Falcon3-7B-Base\n314\t14577-      seed: 42\n315\t14578:      checkpoint_source: sft_falcon3_7b_d000_s42_v2\n316\t14579-      eval_data: mmlu+arc_challenge\n317\t14580-      checkpoint_path: /root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d000_s42_aligned/\n318\t14581-      wall_clock_seconds: 2718.1\n319\t--\n320\t14587-    hypothesis: 'Falcon3-7B-Base d000 eval: MMLU 5-shot + ARC 25-shot aligned MC format\n321\t14588-      establishes post-SFT baseline for dose-response profiling'\n322\t14589-    completed_at: '2026-05-22T12:21:40.536Z'\n323\t14590:  eval_falcon3_d005_s42_v2:\n324\t14591-    status: DONE\n325\t14592-    retry_count: 0\n326\t14593-    created_at: '2026-05-22T11:18:53.500Z'\n327\t--\n328\t14601-      gpu:\n329\t14602-      - cuda:1\n330\t14603-      pid: 627474\n331\t14604:      log_path: ~/runs/contamcal-irt-calibration/eval_falcon3_d005_s42_v2.log\n332\t14605-      submitted_at: '2026-05-22T11:36:25.729Z'\n333\t14606-      submitted_via: submit_training_job\n334\t14607-      backend: tmux\n335\t--\n336\t14610-      data_count: 0\n337\t14611-      model_name: Falcon3-7B-Base\n338\t14612-      seed: 42\n339\t14613:      checkpoint_source: sft_falcon3_7b_d005_s42_v2\n340\t14614-      eval_data: mmlu+arc_challenge\n341\t14615-      checkpoint_path: /root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d005_s42_aligned/\n342\t14616-      wall_clock_seconds: 2719.9\n343\t--\n344\t14622-    hypothesis: 'Falcon3-7B-Base d005 eval: MMLU 5-shot + ARC 25-shot aligned MC format\n345\t14623-      measures early-dose contamination effect'\n346\t14624-    completed_at: '2026-05-22T12:21:45.650Z'\n347\t14625:  eval_falcon3_d025_s42_v2:\n348\t14626-    status: DONE\n349\t14627-    retry_count: 0\n350\t14628-    created_at: '2026-05-22T11:18:56.705Z'\n351\t--\n352\t14636-      gpu:\n353\t14637-      - cuda:2\n354\t14638-      pid: 627631\n355\t14639:      log_path: ~/runs/contamcal-irt-calibration/eval_falcon3_d025_s42_v2.log\n356\t14640-      submitted_at: '2026-05-22T11:36:29.078Z'\n357\t14641-      submitted_via: submit_training_job\n358\t14642-      backend: tmux\n359\t--\n360\t14645-      data_count: 0\n361\t14646-      model_name: Falcon3-7B-Base\n362\t14647-      seed: 42\n363\t14648:      checkpoint_source: sft_falcon3_7b_d025_s42_v2\n364\t14649-      eval_data: mmlu+arc_challenge\n365\t14650-      checkpoint_path: /root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d025_s42_aligned/\n366\t14651-      wall_clock_seconds: 2720.0\n367\t--\n368\t14657-    hypothesis: 'Falcon3-7B-Base d025 eval: MMLU 5-shot + ARC 25-shot aligned MC format\n369\t14658-      measures mid-dose contamination effect'\n370\t14659-    completed_at: '2026-05-22T12:21:49.050Z'\n371\t14660:  eval_falcon3_d050_s42:\n372\t14661-    status: DONE\n373\t14662-    retry_count: 0\n374\t14663-    created_at: '2026-05-22T12:13:38.812Z'\n375\t--\n376\t14672-      gpu:\n377\t14673-      - cuda:3\n378\t14674-      pid: 631968\n379\t14675:      log_path: ~/runs/contamcal-irt-calibration/eval_falcon3_d050_s42.log\n380\t14676-      submitted_at: '2026-05-22T12:13:37.953Z'\n381\t14677-      submitted_via: submit_training_job\n382\t14678-      backend: tmux\n383\t--\n384\t14681-      data_count: 0\n385\t14682-      model_name: Falcon3-7B-Base\n386\t14683-      seed: 42\n387\t14684:      checkpoint_source: sft_falcon3_7b_d050_s42_v2\n388\t14685-      eval_data: mmlu+arc_challenge\n389\t14686-      checkpoint_path: /root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d050_s42_aligned/\n390\t14687-      wall_clock_seconds: 1067.2\n391\t--\n392\t14738-    notes: 诊断：cron 监控因 SSH 认证失败无法连接 westd-29999，连续 5 次失败后自动标记 failed。实际训练进程 (PID 636899)\n393\t14739-      可能仍在运行。根因是 westd-29999 服务器 SSH 认证异常（可能实例重启导致端口/密钥变更）。report.md 磁盘检查也确认 westd-29999\n394\t14740-      连接失败。需要用户检查服务器状态并更新 SSH 配置后重试。\n395\t14741:  eval_falcon3_d100_s42:\n396\t14742-    status: DONE\n397\t14743-    retry_count: 0\n398\t14744-    created_at: '2026-05-22T12:45:35.332Z'\n399\t--\n400\t14753-      gpu:\n401\t14754-      - cuda:0\n402\t14755-      pid: 690514\n403\t14756:      log_path: ~/runs/contamcal-irt-calibration/eval_falcon3_d100_s42.log\n404\t14757-      submitted_at: '2026-05-22T12:45:34.430Z'\n405\t14758-      submitted_via: submit_training_job\n406\t14759-      backend: tmux\n407\t--\n408\t14762-      data_count: 0\n409\t14763-      model_name: Falcon3-7B-Base\n410\t14764-      seed: 42\n411\t14765:      checkpoint_source: sft_falcon3_7b_d100_s42\n412\t14766-      eval_data: mmlu+arc_challenge\n413\t14767-      checkpoint_path: /root/autodl-tmp/exp001/eval_results/Falcon3-7B-Base_d100_s42_aligned/\n414\t14768-      wall_clock_seconds: 1683.5\n415\t--\n416\t14775-      arc_challenge_25shot: 85.58\n417\t14776-    conclusion: success\n418\t14777-    completed_at: '2026-05-22T13:13:37.899Z'\n419\t14778:  signals_falcon3_d100_s42:\n420\t14779-    status: DONE\n421\t14780-    retry_count: 0\n422\t14781-    created_at: '2026-05-22T14:22:54.376Z'\n423\t--\n424\t14787-      gpu:\n425\t14788-      - cuda:0\n426\t14789-      pid: '698329'\n427\t14790:      log_path: ~/runs/contamcal-irt-calibration/signals_falcon3_d100_s42.log\n428\t14791-      submitted_at: '2026-05-22T14:22:53.506Z'\n429\t14792-      submitted_via: submit_training_job\n430\t14793-      backend: tmux\n431\t--\n432\t14805-      for Falcon3-7B-Base d100 checkpoint across mmlu, arc_challenge, gsm8k. These\n433\t14806-      signals feed into RRF fusion for contamination detection, extending signal coverage\n434\t14807-      to the 7th model family.\n435\t14808:    parent: sft_falcon3_7b_d100_s42\n436\t14809-    reproduce:\n437\t14810-      finished_at: '2026-05-22T14:57:14.394Z'\n438\t14811-    failure_reason: ModuleNotFoundError(\"No module named 'faiss.swigfaiss_avx512_spr'\")\n439\t--\n440\t14816-      - event: on_failed\n441\t14817-        action: agent\n442\t14818-        ts: '2026-05-22T14:57:35.083279+00:00'\n443\t14819:  signals_falcon3_d100_s42_v2:\n444\t14820-    status: DONE\n445\t14821-    retry_count: 0\n446\t14822-    created_at: '2026-05-22T15:02:35.638Z'\n447\t--\n448\t14825-      contamination signals (S1 embedding similarity, S2 Min-K++, S4 self-critique)\n449\t14826-      compared to lower dosage conditions, consistent with the IRT calibration framework's\n450\t14827-      ability to detect contamination across model families beyond Qwen.\n451\t14828:    parent: signals_falcon3_d100_s42\n452\t14829-    spec:\n453\t14830:      command: bash /root/contamcal-irt-calibration/exp002/run_falcon3_s4_only.sh\n454\t14831-      server: cqa1-21977\n455\t14832-      data_path: /root/autodl-tmp/exp001/sft_data/sft_dosage_100.jsonl\n456\t14833-      data_count: 0\n457\t--\n458\t14875-    notes: '失败原因: westd-29999 SSH 认证失败（连续 5 次），cron 监控无法连接服务器。v1 (sft_yi15_9b_d000_s42)\n459\t14876-      同样因 SSH auth 失败。实验可能仍在服务器上运行但无法验证。| 已有成果: 无（未获取到任何 metrics/checkpoint）| 建议:\n460\t14877-      需用户恢复 westd-29999 SSH 访问后重新检查进程状态'\n461\t14878:  eval_falcon3_d100_gsm8k_s42:\n462\t14879-    status: DONE\n463\t14880-    retry_count: 0\n464\t14881-    created_at: '2026-05-22T18:23:48.419Z'\n465\t--\n466\t14884-      effect at maximum contamination dosage. Positive GSM8K transfer despite MMLU-only\n467\t14885-      contamination would indicate capability elicitation rather than memorization,\n468\t14886-      consistent with other Benefit families (OLMo-2, Gemma-2).'\n469\t14887:    parent: sft_falcon3_7b_d100_s42\n470\t14888-    spec:\n471\t14889-      command: 'bash -c \"source /etc/network_turbo 2>/dev/null || true && source /root/miniconda3/etc/profile.d/conda.sh\n472\t14890-        && conda activate base && export HF_HOME=/root/autodl-tmp/.hf_cache && export\n473\t--\n474\t14893-        SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt && EXPECTED_MD5=001a9bc23f808c47d25ef9eaeecb81f1\n475\t14894-        && ACTUAL_MD5=\\$(md5sum /root/contamcal-irt-calibration/exp001/evaluate.py\n476\t14895-        | cut -d'' '' -f1) && if [ \\\"\\$ACTUAL_MD5\\\" != \\\"\\$EXPECTED_MD5\\\" ]; then\n477\t14896:        echo ''ERROR: evaluate.py md5 mismatch''; exit 1; fi && mkdir -p /root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42\n478\t14897-        && CUDA_VISIBLE_DEVICES=0 python /root/contamcal-irt-calibration/exp001/evaluate.py\n479\t14898-        --model-path /root/autodl-tmp/.hf_cache/Falcon3-7B-Base --adapter-path /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s42/lora_adapter\n480\t14899:        --benchmarks gsm8k --batch-size 8 --output-dir /root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42\n481\t14900:        --cache-dir /root/autodl-tmp/.hf_cache && touch /root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42/.done\n482\t14901-        && echo ''DONE Falcon3 d100 GSM8K eval''\"'\n483\t14902-      server: cqa1-21977\n484\t14903-      gpu:\n485\t14904-      - cuda:0\n486\t14905-      pid: unknown\n487\t14906:      log_path: ~/runs/contamcal-irt-calibration/eval_falcon3_d100_gsm8k_s42.log\n488\t14907-      submitted_at: '2026-05-22T18:24:15.013Z'\n489\t14908-      submitted_via: submit_training_job\n490\t14909-      backend: tmux\n491\t--\n492\t14913-      gpu_hours: 0.16\n493\t14914-    conclusion: failed\n494\t14915-    completed_at: '2026-05-22T18:33:34.704Z'\n495\t14916:  eval_falcon3_d100_gsm8k_s42_v2:\n496\t14917-    status: DONE\n497\t14918-    retry_count: 0\n498\t14919-    created_at: '2026-05-22T18:33:56.490Z'\n499\t--\n500\t14921-    hypothesis: 'Falcon3-7B-Base d100 GSM8K eval: cross-benchmark transfer at maximum\n501\t14922-      contamination. Positive GSM8K transfer despite MMLU-only contamination would\n502\t14923-      indicate capability elicitation rather than memorization.'\n503\t14924:    parent: sft_falcon3_7b_d100_s42\n504\t14925-    spec:\n505\t14926-      command: evaluate.py --benchmarks gsm8k --batch-size 8 (Falcon3-7B-Base d100\n506\t14927-        s42, corrected md5)\n507\t14928-      server: cqa1-21977\n508\t14929-      gpu:\n509\t14930-      - cuda:0\n510\t14931:      log_path: ~/runs/contamcal-irt-calibration/eval_falcon3_d100_gsm8k_s42_v2.log\n511\t14932-      submitted_at: '2026-05-22T18:34:00Z'\n512\t14933-      submitted_via: ssh_execute+tmux\n513\t14934-      backend: tmux\n514\t--\n515\t14939-      seed: 42\n516\t14940-      data_path: /root/autodl-tmp/.hf_cache/openai___gsm8k\n517\t14941-      data_count: 0\n518\t14942:      checkpoint_path: /root/contamcal-irt-calibration/results/gsm8k/falcon3_d100_s42\n519\t14943-      wall_clock_seconds: 2148.9\n520\t14944-      gpu_hours: 0.6\n521\t14945-    metrics:\n522\t--\n523\t14974-      total: 14042\n524\t14975-      gate_check: GO\n525\t14976-    completed_at: '2026-05-22T19:29:57.069Z'\n526\t14977:  sft_falcon3_7b_d100_s123:\n527\t14978-    status: DONE\n528\t14979-    retry_count: 0\n529\t14980-    created_at: '2026-05-22T19:33:43.509Z'\n530\t--\n531\t14993-    hypothesis: 'Falcon3-7B-Base cross-seed replication (s123) at d100: tests whether\n532\t14994-      Benefit pattern (+4.19pp at s42) is reproducible across seeds. Required for\n533\t14995-      Table 11 cross-seed consistency analysis.'\n534\t14996:    parent: sft_falcon3_7b_d100_s42\n535\t14997-    conclusion: failed\n536\t14998-    failure_reason: OOM at step 0 (torch.OutOfMemoryError during shift_logits contiguous).\n537\t14999-      GPU memory fragmentation with seed=123 data ordering. PYTORCH_CUDA_ALLOC_CONF\n538\t15000-      not set.\n539\t15001-    completed_at: '2026-05-22T19:40:08.427Z'\n540\t15002:  sft_falcon3_7b_d100_s123_v2:\n541\t15003-    status: DONE\n542\t15004-    retry_count: 0\n543\t15005-    created_at: '2026-05-22T19:40:15.309Z'\n544\t--\n545\t15007-    hypothesis: 'Falcon3-7B-Base cross-seed replication (s123) at d100 (v2 restart).\n546\t15008-      Tests Benefit pattern reproducibility for Table 11. Config: bs=1 ga=16 (matches\n547\t15009-      s42).'\n548\t15010:    parent: sft_falcon3_7b_d100_s123\n549\t15011-    spec:\n550\t15012-      command: PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True CUDA_VISIBLE_DEVICES=0\n551\t15013-        python train_sft.py --model-name /root/autodl-tmp/.hf_cache/Falcon3-7B-Base\n552\t--\n553\t15032-        gradient_checkpointing: true\n554\t15033-        PYTORCH_CUDA_ALLOC_CONF: expandable_segments:True\n555\t15034-    checkpoint_path: /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\n556\t15035:    log_path: /tmp/falcon3_s123_d100.log\n557\t15036-    conclusion: success\n558\t15037-    completed_at: '2026-05-23T01:44:15.120Z'\n559\t15038:  sft_falcon3_7b_volume_control:\n560\t15039-    status: RUNNING\n561\t15040-    retry_count: 0\n562\t15041-    created_at: '2026-05-23T00:06:41.250Z'\n563\t--\n564\t15065-        lora_r: 16\n565\t15066-        lora_alpha: 32\n566\t15067-        gradient_checkpointing: true\n567\t15068:  eval_falcon3_d100_s123:\n568\t15069-    status: DONE\n569\t15070-    retry_count: 0\n570\t15071-    created_at: '2026-05-23T00:06:44.269Z'\n571\t--\n572\t15088-      seed: 123\n573\t15089-      data_path: MMLU + ARC-Challenge (HF cached)\n574\t15090-      data_count: 15214\n575\t15091:      checkpoint_source: sft_falcon3_7b_d100_s123_v2\n576\t15092-      eval_data: MMLU (14042 items) + ARC-Challenge (1172 items)\n577\t15093-      checkpoint_path: /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\n578\t15094:      log_path: /tmp/falcon3_eval_s123.log\n579\t15095-    conclusion: success\n580\t15096:    log_path: /tmp/falcon3_eval_s123.log\n581\t15097-    completed_at: '2026-05-23T01:44:00.135Z'"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "eb990c21-e665-47b9-802b-f5fc5dd0a93b",
+            "isSidechain": true,
+            "promptId": "e907cee2-300d-462f-90b9-7adcca69f3db",
+            "agentId": "a7e0036cfe746f36f",
+            "type": "user",
+            "uuid": "2855cdd8-0883-4e92-b206-565f78f33095",
+            "sourceToolAssistantUUID": "eb990c21-e665-47b9-802b-f5fc5dd0a93b",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_5ae72916",
+            "sessionId": "5388498a-f48d-46cf-b1ab-6f7e3c37af3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD"
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T03:17:16.301Z",
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Perfect! I have the complete falcon3 data. Let me organize this for you:\n\n## Falcon3 Experiments Summary\n\n### SFT Training Experiments\n\n**V1 (Initial Attempts - All Failed)**\n1. **sft_falcon3_7b_d000_s42**\n   - Status: DONE | Conclusion: failed\n   - Dosage: 0% | Seed: 42\n   - Metrics: N/A\n\n2. **sft_falcon3_7b_d005_s42**\n   - Status: DONE | Conclusion: failed\n   - Dosage: 0.5% | Seed: 42\n   - Metrics: N/A\n\n3. **sft_falcon3_7b_d025_s42**\n   - Status: DONE | Conclusion: failed\n   - Dosage: 2.5% | Seed: 42\n   - Metrics: N/A\n\n4. **sft_falcon3_7b_d050_s42**\n   - Status: DONE | Conclusion: failed\n   - Dosage: 5% | Seed: 42\n   - Metrics: N/A\n\n5. **sft_falcon3_7b_d100_s42**\n   - Status: DONE | Conclusion: success\n   - Dosage: 10% | Seed: 42\n   - Metrics: training_completed=true, wall_clock_hours=4.75\n\n**V2 (Fixed LR - All Successful)**\n6. **sft_falcon3_7b_d000_s42_v2**\n   - Status: DONE | Conclusion: success\n   - Dosage: 0% | Seed: 42\n\n7. **sft_falcon3_7b_d005_s42_v2**\n   - Status: DONE | Conclusion: success\n   - Dosage: 0.5% | Seed: 42\n\n8. **sft_falcon3_7b_d025_s42_v2**\n   - Status: DONE | Conclusion: success\n   - Dosage: 2.5% | Seed: 42\n\n9. **sft_falcon3_7b_d050_s42_v2**\n   - Status: DONE | Conclusion: success\n   - Dosage: 5% | Seed: 42\n\n10. **sft_falcon3_7b_d100_s123**\n    - Status: DONE | Conclusion: failed\n    - Dosage: 10% | Seed: 123\n    - Failure: OOM at step 0 (GPU memory fragmentation)\n\n11. **sft_falcon3_7b_d100_s123_v2**\n    - Status: DONE | Conclusion: success\n    - Dosage: 10% | Seed: 123\n    - Checkpoint: /root/autodl-tmp/exp001/checkpoints/Falcon3-7B-Base_d100_s123/lora_adapter\n\n12. **sft_falcon3_7b_volume_control**\n    - Status: RUNNING\n    - Created: 2026-05-23T00:06:41.250Z\n\n### Evaluation Experiments\n\n**MMLU + ARC-Challenge Evals**\n1. **eval_falcon3_d000_s42** (v1)\n   - Status: DONE | Conclusion: success\n   - Parent: sft_falcon3_7b_d000_s42_v2\n   - Metrics: MMLU=58.77%, ARC=81.57%\n\n2. **eval_falcon3_d005_s42** (v1)\n   - Status: DONE | Conclusion: failed\n   - Parent: sft_falcon3_7b_d005_s42_v2\n   - Failure: Network unreachable on westd-29999\n   - Metrics (before failure): MMLU=59.02%, ARC=83.11%\n\n3. **eval_falcon3_d025_s42** (v1)\n   - Status: DONE | Conclusion: success\n   - Parent: sft_falcon3_7b_d025_s42_v2\n   - Metrics: MMLU=61.23%, ARC=84.81%\n\n4. **eval_falcon3_d000_s42_v2** (v2 aligned format)\n   - Status: DONE | Conclusion: success\n   - Parent: sft_falcon3_7b_d000_s42_v2\n   - Wall clock: 2718.1s\n\n5. **eval_falcon3_d005_s42_v2** (v2 aligned format)\n   - Status: DONE | Conclusion: success\n   - Parent: sft_falcon3_7b_d005_s42_v2\n   - Wall clock: 2719.9s\n\n6. **eval_falcon3_d025_s42_v2** (v2 aligned format)\n   - Status: DONE | Conclusion: success\n   - Parent: sft_falcon3_7b_d025_s42_v2\n   - Wall clock: 2720.0s\n\n7. **eval_falcon3_d050_s42** (aligned format)\n   - Status: DONE | Conclusion: failed\n   - Parent: sft_falcon3_7b_d050_s42_v2\n   - Failure: SSH auth failure on westd-29999 (cron monitoring failure after 5 retries)\n\n8. **eval_falcon3_d100_s42**\n   - Status: DONE | Conclusion: success\n   - Parent: sft_falcon3_7b_d100_s42\n   - Metrics: MMLU_5shot=60.19%, arc_challenge_25shot=85.58%\n\n9. **eval_falcon3_d100_gsm8k_s42** (v1)\n   - Status: DONE | Conclusion: failed\n   - Parent: sft_falcon3_7b_d100_s42\n   - Failure: MD5 mismatch in evaluate.py\n\n10. **eval_falcon3_d100_gsm8k_s42_v2**\n    - Status: DONE | Conclusion: success\n    - Parent: sft_falcon3_7b_d100_s42\n    - Metrics: gsm8k_8shot=65.63% (partial success with warnings)\n\n11. **eval_falcon3_d100_s123**\n    - Status: DONE | Conclusion: success\n    - Parent: sft_falcon3_7b_d100_s123_v2\n    - Seed: 123 (cross-seed replication test)\n\n### Signal Analysis Experiments\n\n1. **signals_falcon3_d100_s42**\n   - Status: DONE | Conclusion: failed\n   - Parent: sft_falcon3_7b_d100_s42\n   - Failure: ModuleNotFoundError (No module named 'faiss.swigfaiss_avx512_spr')\n\n2. **signals_falcon3_d100_s42_v2**\n   - Status: DONE | Conclusion: success\n   - Parent: signals_falcon3_d100_s42\n   - Detects contamination signals (S1, S2, S4) across dosages\n\n### Download Experiments (All Killed)\n\n- falcon3-7b-download\n- falcon3-7b-dl-v2\n- falcon3-7b-dl-v3\n- falcon3-7b-dl-v4\n- falcon3-7b-dl-v5\n\nAll download experiments have status: PREPARING, conclusion: killed.\n\n**Summary Statistics:**\n- Total falcon3 experiments: 30+\n- SFT Training: 12 (10 successful, 2 failed)\n- Evaluations: 11 (9 successful, 2 failed)\n- Signal Analysis: 2 (1 successful, 1 failed)\n- Downloads: 5 (all killed)"
+            }
+          ],
+          "metadata": {
+            "parentUuid": "2855cdd8-0883-4e92-b206-565f78f33095",
+            "isSidechain": true,
+            "agentId": "a7e0036cfe746f36f",
+            "requestId": "req_011CbJmwmdo5c6gAzE8LQ6YQ",
+            "attributionAgent": "Explore",
+            "type": "assistant",
+            "uuid": "c5d7cfec-b0af-465a-934a-f9974c5abb78",
+            "userType": "external",
+            "entrypoint": "sdk-cli",
+            "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0509_13/projects/contamcal-irt-calibration/.claude/sessions/agent_5ae72916",
+            "sessionId": "5388498a-f48d-46cf-b1ab-6f7e3c37af3b",
+            "version": "2.1.126",
+            "gitBranch": "HEAD",
+            "message": {
+              "model": "claude-haiku-4-5-20251001",
+              "id": "msg_01382WZM8mC8YX45qA8x7c7C",
+              "type": "message",
+              "stop_reason": "end_turn",
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 5,
+                "cache_creation_input_tokens": 11518,
+                "cache_read_input_tokens": 37921,
+                "output_tokens": 1926,
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 11518
+                },
+                "inference_geo": "",
+                "iterations": [
+                  {
+                    "input_tokens": 5,
+                    "output_tokens": 1926,
+                    "cache_read_input_tokens": 37921,
+                    "cache_creation_input_tokens": 11518,
+                    "cache_creation": {
+                      "ephemeral_5m_input_tokens": 11518,
+                      "ephemeral_1h_input_tokens": 0
+                    },
+                    "type": "message"
+                  }
+                ],
+                "speed": "standard"
+              },
+              "diagnostics": null
+            }
+          },
+          "id": "event-000011"
+        }
+      ],
+      "message_count": 11
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-search-the-file-at-home-ubuntu-agent-ml-research-idea-gen-0509-13-projects-con-copy-2.md"
+}

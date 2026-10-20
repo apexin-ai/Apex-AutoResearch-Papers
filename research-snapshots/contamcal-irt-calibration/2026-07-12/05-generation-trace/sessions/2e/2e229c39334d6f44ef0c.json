@@ -1,0 +1,186 @@
+{
+  "schema_version": "1.0",
+  "id": "2e229c39334d6f44ef0c",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: [WORKER DONE] Worker worker_code_fix-train-sft-gpu-param_20260515T045911 已完成（status=done）。用 `get_worker_status('worker_c",
+  "task_key": "93ca7aef-79b4-41a5-a3bb-3f1cdd8a4aa8",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-3/93ca7aef-79b4-41a5-a3bb-3f1cdd8a4aa8.jsonl",
+    "occurrence": 1,
+    "bytes": 564532,
+    "sha256": "b66c9d640b70b902ff3613589cc227414db77a661e66d41a6e17b24f8c98bd6e"
+  },
+  "statistics": {
+    "messages": 175,
+    "user_turns": 13,
+    "tool_calls": 39,
+    "roles": {
+      "record": 46,
+      "user": 13,
+      "assistant": 38,
+      "tool_call": 39,
+      "tool_result": 39
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2e229c39334d6f44ef0c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 66,
+      "chunks": [
+        {
+          "path": "2e229c39334d6f44ef0c-part-0001.json",
+          "message_count": 66
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2e229c39334d6f44ef0c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 24,
+      "chunks": [
+        {
+          "path": "2e229c39334d6f44ef0c-part-0001.json",
+          "message_count": 24
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2e229c39334d6f44ef0c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 1,
+      "chunks": [
+        {
+          "path": "2e229c39334d6f44ef0c-part-0001.json",
+          "message_count": 1
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2e229c39334d6f44ef0c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 26,
+      "chunks": [
+        {
+          "path": "2e229c39334d6f44ef0c-part-0001.json",
+          "message_count": 26
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2e229c39334d6f44ef0c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "boundary": "recorded_user_message",
+      "message_count": 17,
+      "chunks": [
+        {
+          "path": "2e229c39334d6f44ef0c-part-0001.json",
+          "message_count": 17
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2e229c39334d6f44ef0c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "boundary": "recorded_user_message",
+      "message_count": 11,
+      "chunks": [
+        {
+          "path": "2e229c39334d6f44ef0c-part-0001.json",
+          "message_count": 11
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "boundary": "recorded_user_message",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "2e229c39334d6f44ef0c-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "boundary": "recorded_user_message",
+      "message_count": 16,
+      "chunks": [
+        {
+          "path": "2e229c39334d6f44ef0c-part-0001.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-worker-done-worker-worker-code-fix-train-sft-gpu-param-20260515t045911-status.md"
+}

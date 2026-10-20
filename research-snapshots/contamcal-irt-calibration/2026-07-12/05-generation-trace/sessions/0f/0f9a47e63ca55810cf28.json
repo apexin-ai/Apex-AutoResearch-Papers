@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "0f9a47e63ca55810cf28",
+  "project": "contamcal-irt-calibration--export-20260712",
+  "kind": "conversation",
+  "title": "Research conversation: <project_context> # 项目: contamcal-irt-calibration ## 运行环境 - 服务器名: cqa1-21977 - SSH 连接命令: ssh connect.cqa1.seetacloud.com",
+  "task_key": "bc23aaea-5ce4-4e40-9c84-27449b0ce8f5",
+  "source": {
+    "archive": "trace-files.tar.gz.parts/",
+    "member": "logs/chats/exported-trajectories/account-2/bc23aaea-5ce4-4e40-9c84-27449b0ce8f5.jsonl",
+    "occurrence": 1,
+    "bytes": 691467,
+    "sha256": "888f4813ee586ea705e5369b61f93fa5e1f8ddbe2a125ee3937c25f9ea78bfbc"
+  },
+  "statistics": {
+    "messages": 298,
+    "user_turns": 1,
+    "tool_calls": 93,
+    "roles": {
+      "record": 56,
+      "user": 1,
+      "assistant": 55,
+      "tool_call": 93,
+      "tool_result": 93
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 2,
+      "chunks": [
+        {
+          "path": "0f9a47e63ca55810cf28-part-0001.json",
+          "message_count": 2
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 296,
+      "chunks": [
+        {
+          "path": "0f9a47e63ca55810cf28-part-0001.json",
+          "message_count": 178
+        },
+        {
+          "path": "0f9a47e63ca55810cf28-part-0002.json",
+          "message_count": 118
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/conversations/research-conversation-project-context-contamcal-irt-calibration-cqa1-21977-ssh-ssh-connect-cqa1-seet-copy-61.md"
+}
