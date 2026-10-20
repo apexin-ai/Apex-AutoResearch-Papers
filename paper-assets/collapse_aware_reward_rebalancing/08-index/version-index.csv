@@ -1,0 +1,13 @@
+archive_path,source_bytes,output_path
+docs/paper/figures/fig1_pipeline.pdf,38391,01-manuscript/source/docs/paper/figures/fig1_pipeline.pdf
+docs/paper/figures/fig4_format_collapse.pdf,31063,01-manuscript/source/docs/paper/figures/fig4_format_collapse.pdf
+docs/paper/figures/fig2_vendi_trajectories.pdf,20782,01-manuscript/source/docs/paper/figures/fig2_vendi_trajectories.pdf
+docs/paper/figures/fig3_direction_reversal.pdf,18010,01-manuscript/source/docs/paper/figures/fig3_direction_reversal.pdf
+docs/paper/main.pdf,327036,01-manuscript/source/docs/paper/main.pdf
+artifacts/figures/paper/fig1_pipeline.pdf,38391,01-manuscript/source/artifacts/figures/paper/fig1_pipeline.pdf
+artifacts/figures/paper/fig4_format_collapse.pdf,31063,01-manuscript/source/artifacts/figures/paper/fig4_format_collapse.pdf
+artifacts/figures/paper/fig2_vendi_trajectories.pdf,20782,01-manuscript/source/artifacts/figures/paper/fig2_vendi_trajectories.pdf
+artifacts/figures/paper/fig3_direction_reversal.pdf,18010,01-manuscript/source/artifacts/figures/paper/fig3_direction_reversal.pdf
+artifacts/dream_reports/dream_20260517T135058/median/paper.pdf,263067,01-manuscript/source/artifacts/dream_reports/dream_20260517T135058/median/paper.pdf
+artifacts/dream_reports/dream_20260517T135058/worst/paper.pdf,304805,01-manuscript/source/artifacts/dream_reports/dream_20260517T135058/worst/paper.pdf
+artifacts/dream_reports/dream_20260517T135058/best/paper.pdf,222547,01-manuscript/source/artifacts/dream_reports/dream_20260517T135058/best/paper.pdf

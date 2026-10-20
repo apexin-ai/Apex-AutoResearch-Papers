@@ -1,14 +1,16 @@
 # Contents
 
-This catalogue covers **30 projects with manuscript PDFs** and **18 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
+This catalogue covers **33 projects with manuscript PDFs** and **19 additional project records**. Records without a PDF are listed after the manuscript projects. Open a project README for its available manuscript, research code, experiment outputs, and recorded research process.
 
 | Project | Manuscript | Code/config files | Data/result files | Trace sources | Recorded events |
 |---|---|---:|---:|---:|---:|
 | [acr-vla-conformal-refinement](paper-assets/acr-vla-conformal-refinement/README.md) | [PDF](paper-assets/acr-vla-conformal-refinement/01-manuscript/paper.pdf) | 1,517 | 7,791 | 7,114 | 391,607 |
+| [agent_progress_probe](paper-assets/agent_progress_probe/README.md) | [PDF](paper-assets/agent_progress_probe/01-manuscript/paper.pdf) | 245 | 748 | 767 | 85,445 |
 | [causal_annot_error_attrib](paper-assets/causal_annot_error_attrib/README.md) | [PDF](paper-assets/causal_annot_error_attrib/01-manuscript/paper.pdf) | 212 | 303 | 475 | 66,314 |
 | [causal_style_decomp_judge](paper-assets/causal_style_decomp_judge/README.md) | [PDF](paper-assets/causal_style_decomp_judge/01-manuscript/paper.pdf) | 171 | 488 | 506 | 73,378 |
 | [cert_manip_resist_eval](paper-assets/cert_manip_resist_eval/README.md) | [PDF](paper-assets/cert_manip_resist_eval/01-manuscript/paper.pdf) | 253 | 873 | 880 | 97,735 |
 | [clkc_mech_interp](paper-assets/clkc_mech_interp/README.md) | [PDF](paper-assets/clkc_mech_interp/01-manuscript/paper.pdf) | 189 | 584 | 689 | 76,491 |
+| [collapse_aware_reward_rebalancing](paper-assets/collapse_aware_reward_rebalancing/README.md) | [PDF](paper-assets/collapse_aware_reward_rebalancing/01-manuscript/paper.pdf) | 64 | 154 | 214 | 14,906 |
 | [contrastive_entrain_calib](paper-assets/contrastive_entrain_calib/README.md) | [PDF](paper-assets/contrastive_entrain_calib/01-manuscript/paper.pdf) | 339 | 940 | 1,573 | 119,612 |
 | [contrastive_trace_safety](paper-assets/contrastive_trace_safety/README.md) | [PDF](paper-assets/contrastive_trace_safety/01-manuscript/paper.pdf) | 276 | 513 | 855 | 116,437 |
 | [cost-verify-agent-rl](paper-assets/cost-verify-agent-rl/README.md) | [PDF](paper-assets/cost-verify-agent-rl/01-manuscript/paper.pdf) | 495 | 1,236 | 2,831 | 209,966 |
@@ -29,12 +31,14 @@ This catalogue covers **30 projects with manuscript PDFs** and **18 additional p
 | [irt_personfit_contam](paper-assets/irt_personfit_contam/README.md) | [PDF](paper-assets/irt_personfit_contam/01-manuscript/paper.pdf) | 289 | 908 | 726 | 70,309 |
 | [meta_brain_lora_routing](paper-assets/meta_brain_lora_routing/README.md) | [PDF](paper-assets/meta_brain_lora_routing/01-manuscript/paper.pdf) | 137 | 203 | 556 | 55,779 |
 | [nlp_variance_gtheory](paper-assets/nlp_variance_gtheory/README.md) | [PDF](paper-assets/nlp_variance_gtheory/01-manuscript/paper.pdf) | 396 | 519 | 815 | 81,448 |
+| [occsafe_vla](paper-assets/occsafe_vla/README.md) | [PDF](paper-assets/occsafe_vla/01-manuscript/paper.pdf) | 510 | 1,517 | 2,573 | 167,803 |
 | [ratekv](paper-assets/ratekv/README.md) | [PDF](paper-assets/ratekv/01-manuscript/paper.pdf) | 308 | 874 | 1,250 | 87,631 |
 | [recursive_gen_depth_est](paper-assets/recursive_gen_depth_est/README.md) | [PDF](paper-assets/recursive_gen_depth_est/01-manuscript/paper.pdf) | 86 | 80 | 1,779 | 166,550 |
 | [schema-dag-extraction](paper-assets/schema-dag-extraction/README.md) | [PDF](paper-assets/schema-dag-extraction/01-manuscript/paper.pdf) | 135 | 68 | 1,242 | 131,771 |
 | [structfuse-context](paper-assets/structfuse-context/README.md) | [PDF](paper-assets/structfuse-context/01-manuscript/paper.pdf) | 212 | 354 | 1,232 | 90,756 |
 | [xling_calib_direction](paper-assets/xling_calib_direction/README.md) | [PDF](paper-assets/xling_calib_direction/01-manuscript/paper.pdf) | 121 | 201 | 290 | 27,260 |
 | [action_cond_info_bottleneck](paper-assets/action_cond_info_bottleneck/README.md) | No PDF in snapshot | 172 | 255 | 800 | 45,967 |
+| [afford_invar](paper-assets/afford_invar/README.md) | No PDF in snapshot | 34 | 50 | 172 | 15,216 |
 | [be-idea-gen-0515](paper-assets/be-idea-gen-0515/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [be-idea-gen-0515-2](paper-assets/be-idea-gen-0515-2/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |
 | [be-idea-gen-0515-3](paper-assets/be-idea-gen-0515-3/README.md) | No PDF in snapshot | 0 | 0 | 0 | 0 |

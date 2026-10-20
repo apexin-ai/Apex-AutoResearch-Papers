@@ -34,6 +34,37 @@
       }
     },
     {
+      "project": "afford_invar",
+      "title": "afford invar",
+      "catalog": "../paper-assets/afford_invar/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 172,
+        "messages": 15216,
+        "user_turns": 356,
+        "tool_calls": 5796,
+        "unparsed_lines": 75,
+        "result": 72,
+        "worker": 77,
+        "conversation": 23
+      }
+    },
+    {
+      "project": "agent_progress_probe",
+      "title": "Are Stagnation Signals Structural? A Systematic Empirical Study of Progress Detection in LLM Agents via Weak Supervision LLM-based agents deployed on software001",
+      "catalog": "../paper-assets/agent_progress_probe/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 767,
+        "messages": 85445,
+        "user_turns": 2030,
+        "tool_calls": 34690,
+        "unparsed_lines": 298,
+        "worker": 303,
+        "result": 274,
+        "conversation": 156,
+        "history": 34
+      }
+    },
+    {
       "project": "be-idea-gen-0515",
       "title": "be idea gen 0515",
       "catalog": "../paper-assets/be-idea-gen-0515/05-generation-trace/catalog.json",
@@ -118,6 +149,22 @@
         "result": 282,
         "worker": 310,
         "conversation": 92,
+        "history": 5
+      }
+    },
+    {
+      "project": "collapse_aware_reward_rebalancing",
+      "title": "Does Reward Curation Kill Diversity? Systematic Evidence of Surprising Resilience in Iterative Self-Training",
+      "catalog": "../paper-assets/collapse_aware_reward_rebalancing/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 214,
+        "messages": 14906,
+        "user_turns": 529,
+        "tool_calls": 5994,
+        "unparsed_lines": 86,
+        "worker": 85,
+        "result": 80,
+        "conversation": 44,
         "history": 5
       }
     },
@@ -515,6 +562,22 @@
         "worker": 343,
         "conversation": 128,
         "history": 9
+      }
+    },
+    {
+      "project": "occsafe_vla",
+      "title": "Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis",
+      "catalog": "../paper-assets/occsafe_vla/05-generation-trace/catalog.json",
+      "statistics": {
+        "files": 2573,
+        "messages": 167803,
+        "user_turns": 5955,
+        "tool_calls": 66488,
+        "unparsed_lines": 952,
+        "result": 957,
+        "worker": 979,
+        "conversation": 516,
+        "history": 121
       }
     },
     {

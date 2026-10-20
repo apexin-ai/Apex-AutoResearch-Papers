@@ -735,6 +735,56 @@
         }
       ],
       "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39380619280"
+    },
+    "occsafe_vla/workspace.tar.gz": {
+      "status": "uploaded",
+      "source": {
+        "bytes": 974377465,
+        "etag": "\"d32ecf234b7f8e13096369f0a359a953-117\"",
+        "modified": "2026-05-31T17:29:09+00:00"
+      },
+      "archive_sha256": "541499ff9e8f9937e13ca55d5892301ea41ff1bed125e955affeed7e40580d87",
+      "projects": [
+        "occsafe_vla",
+        "agent_progress_probe",
+        "afford_invar",
+        "collapse_aware_reward_rebalancing"
+      ],
+      "counts": [
+        {
+          "project": "occsafe_vla",
+          "title": "Does Auxiliary Spatial Supervision Make Vision-Language-Action Models Safer? A Factorial Analysis",
+          "paper_pdf": "paper.pdf",
+          "code_count": 510,
+          "data_count": 1517,
+          "trace_count": 2573
+        },
+        {
+          "project": "agent_progress_probe",
+          "title": "Are Stagnation Signals Structural? A Systematic Empirical Study of Progress Detection in LLM Agents via Weak Supervision LLM-based agents deployed on software001",
+          "paper_pdf": "paper.pdf",
+          "code_count": 245,
+          "data_count": 748,
+          "trace_count": 767
+        },
+        {
+          "project": "afford_invar",
+          "title": "afford invar",
+          "paper_pdf": null,
+          "code_count": 34,
+          "data_count": 50,
+          "trace_count": 172
+        },
+        {
+          "project": "collapse_aware_reward_rebalancing",
+          "title": "Does Reward Curation Kill Diversity? Systematic Evidence of Surprising Resilience in Iterative Self-Training",
+          "paper_pdf": "paper.pdf",
+          "code_count": 64,
+          "data_count": 154,
+          "trace_count": 214
+        }
+      ],
+      "workflow_run": "https://github.com/Zxy-MLlab/Release_examples/actions/runs/39380619280"
     }
   }
 }

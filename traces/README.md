@@ -1,6 +1,6 @@
 # Research Trace Atlas
 
-Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **48 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
+Browse recorded tasks, user-role instructions, assistant responses, tool calls, and tool results from **52 trace collections**. Open **Readable Markdown** in any project guide for a GitHub reading view, or select the adjacent JSON link for the complete structured record.
 
 [Offline preview](demo.html) · [Interactive browser](index.html) · [Format and provenance](FORMAT.md)
 
@@ -10,6 +10,8 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 |---|---:|---:|---:|---:|---:|---|
 | [acr-vla-conformal-refinement](../paper-assets/acr-vla-conformal-refinement/05-generation-trace/README.md) | 1,796 | 2,883 | 2,064 | 371 | 391,607 | [Read](../paper-assets/acr-vla-conformal-refinement/05-generation-trace/readable/README.md) |
 | [action_cond_info_bottleneck](../paper-assets/action_cond_info_bottleneck/05-generation-trace/README.md) | 150 | 365 | 262 | 23 | 45,967 | [Read](../paper-assets/action_cond_info_bottleneck/05-generation-trace/readable/README.md) |
+| [afford_invar](../paper-assets/afford_invar/05-generation-trace/README.md) | 23 | 77 | 72 | 0 | 15,216 | [Read](../paper-assets/afford_invar/05-generation-trace/readable/README.md) |
+| [agent_progress_probe](../paper-assets/agent_progress_probe/05-generation-trace/README.md) | 156 | 303 | 274 | 34 | 85,445 | [Read](../paper-assets/agent_progress_probe/05-generation-trace/readable/README.md) |
 | [be-idea-gen-0515](../paper-assets/be-idea-gen-0515/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/be-idea-gen-0515/05-generation-trace/readable/README.md) |
 | [be-idea-gen-0515-2](../paper-assets/be-idea-gen-0515-2/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/be-idea-gen-0515-2/05-generation-trace/readable/README.md) |
 | [be-idea-gen-0515-3](../paper-assets/be-idea-gen-0515-3/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/be-idea-gen-0515-3/05-generation-trace/readable/README.md) |
@@ -18,6 +20,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [causal_style_decomp_judge](../paper-assets/causal_style_decomp_judge/05-generation-trace/README.md) | 69 | 221 | 211 | 5 | 73,378 | [Read](../paper-assets/causal_style_decomp_judge/05-generation-trace/readable/README.md) |
 | [cert_manip_resist_eval](../paper-assets/cert_manip_resist_eval/05-generation-trace/README.md) | 137 | 381 | 358 | 4 | 97,735 | [Read](../paper-assets/cert_manip_resist_eval/05-generation-trace/readable/README.md) |
 | [clkc_mech_interp](../paper-assets/clkc_mech_interp/05-generation-trace/README.md) | 92 | 310 | 282 | 5 | 76,491 | [Read](../paper-assets/clkc_mech_interp/05-generation-trace/readable/README.md) |
+| [collapse_aware_reward_rebalancing](../paper-assets/collapse_aware_reward_rebalancing/05-generation-trace/README.md) | 44 | 85 | 80 | 5 | 14,906 | [Read](../paper-assets/collapse_aware_reward_rebalancing/05-generation-trace/readable/README.md) |
 | [contrastive_entrain_calib](../paper-assets/contrastive_entrain_calib/05-generation-trace/README.md) | 250 | 663 | 634 | 26 | 119,612 | [Read](../paper-assets/contrastive_entrain_calib/05-generation-trace/readable/README.md) |
 | [contrastive_graph_jailbreak_detect](../paper-assets/contrastive_graph_jailbreak_detect/05-generation-trace/README.md) | 9 | 10 | 9 | 0 | 3,080 | [Read](../paper-assets/contrastive_graph_jailbreak_detect/05-generation-trace/readable/README.md) |
 | [contrastive_trace_safety](../paper-assets/contrastive_trace_safety/05-generation-trace/README.md) | 152 | 352 | 330 | 21 | 116,437 | [Read](../paper-assets/contrastive_trace_safety/05-generation-trace/readable/README.md) |
@@ -43,6 +46,7 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [irt_personfit_contam](../paper-assets/irt_personfit_contam/05-generation-trace/README.md) | 117 | 322 | 276 | 11 | 70,309 | [Read](../paper-assets/irt_personfit_contam/05-generation-trace/readable/README.md) |
 | [meta_brain_lora_routing](../paper-assets/meta_brain_lora_routing/05-generation-trace/README.md) | 96 | 277 | 176 | 7 | 55,779 | [Read](../paper-assets/meta_brain_lora_routing/05-generation-trace/readable/README.md) |
 | [nlp_variance_gtheory](../paper-assets/nlp_variance_gtheory/05-generation-trace/README.md) | 128 | 343 | 335 | 9 | 81,448 | [Read](../paper-assets/nlp_variance_gtheory/05-generation-trace/readable/README.md) |
+| [occsafe_vla](../paper-assets/occsafe_vla/05-generation-trace/README.md) | 516 | 979 | 957 | 121 | 167,803 | [Read](../paper-assets/occsafe_vla/05-generation-trace/readable/README.md) |
 | [prod42](../paper-assets/prod42/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/prod42/05-generation-trace/readable/README.md) |
 | [prod43](../paper-assets/prod43/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/prod43/05-generation-trace/readable/README.md) |
 | [prod_0510](../paper-assets/prod_0510/05-generation-trace/README.md) | 0 | 0 | 0 | 0 | 0 | [Read](../paper-assets/prod_0510/05-generation-trace/readable/README.md) |
@@ -57,6 +61,6 @@ For the complete browser, run `python3 scripts/serve_traces.py --open` from a do
 | [xling_calab_direction](../paper-assets/xling_calab_direction/05-generation-trace/README.md) | 0 | 1 | 1 | 0 | 404 | [Read](../paper-assets/xling_calab_direction/05-generation-trace/readable/README.md) |
 | [xling_calib_direction](../paper-assets/xling_calib_direction/05-generation-trace/README.md) | 48 | 123 | 119 | 0 | 27,260 | [Read](../paper-assets/xling_calib_direction/05-generation-trace/readable/README.md) |
 
-**54,596 source records · 4,327,473 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
+**58,322 source records · 4,610,843 recorded messages/events.** Counts include overlapping snapshots and parallel logs; they are not deduplicated research actions.
 
 Source language and order are retained. A user-role message can originate from another agent or system and does not identify a human author. Missing prompts and timestamps are not reconstructed. Credentials and embedded attachment payloads are redacted.
