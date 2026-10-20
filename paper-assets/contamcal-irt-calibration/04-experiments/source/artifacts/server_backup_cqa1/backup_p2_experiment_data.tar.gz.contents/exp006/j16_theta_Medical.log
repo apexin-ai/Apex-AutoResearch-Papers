@@ -1,0 +1,291 @@
+2026-05-17 23:50:57,762 INFO Loading RRF exposure from /root/autodl-tmp/exp002/signals/rrf/exposure_scores.json
+2026-05-17 23:50:58,036 INFO Loading pooled eval results: scales=['1.5B', '3B']
+2026-05-17 23:50:58,042 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d000_s42_aligned
+2026-05-17 23:50:58,042 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d005_s42_aligned
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d025_s42_aligned
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d100_s42_aligned
+2026-05-17 23:50:58,043 WARNING Skipping unrecognized dir: Qwen2.5-0.5B-Instruct
+2026-05-17 23:50:58,043 WARNING Skipping unrecognized dir: Qwen2.5-0.5B-Instruct_aligned
+2026-05-17 23:50:58,043 WARNING Skipping unrecognized dir: Qwen2.5-0.5B_base_pretrained_aligned
+2026-05-17 23:50:58,043 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s123
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s123_aligned
+2026-05-17 23:50:58,043 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s42_aligned
+2026-05-17 23:50:58,043 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42_v2
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s123_aligned
+2026-05-17 23:50:58,043 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d005_s42
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s42_aligned
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s123_aligned
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s42_aligned
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s123_aligned
+2026-05-17 23:50:58,043 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d100_s42
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s42_aligned
+2026-05-17 23:50:58,043 WARNING Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_aligned
+2026-05-17 23:50:58,043 WARNING Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_para_aligned
+2026-05-17 23:50:58,043 WARNING Skipping unrecognized dir: Qwen2.5-1.5B_base_pretrained
+2026-05-17 23:50:58,043 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d000_s123
+2026-05-17 23:50:58,043 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d000_s42
+2026-05-17 23:50:58,043 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d100_s42
+2026-05-17 23:50:58,043 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_aligned
+2026-05-17 23:50:58,043 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_para_aligned
+2026-05-17 23:50:58,043 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_aligned
+2026-05-17 23:50:58,043 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_para_aligned
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_s123_aligned
+2026-05-17 23:50:58,043 INFO Skipping non-aligned dir: Qwen2.5-3B_d000_s42
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_s42_a32_aligned
+2026-05-17 23:50:58,043 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_s42_v3_aligned
+2026-05-17 23:50:58,043 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED
+2026-05-17 23:50:58,043 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s123_aligned
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s42_aligned
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d005_s123_aligned
+2026-05-17 23:50:58,043 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_s123_gsm8k_rerun
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_a32_aligned
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_aligned
+2026-05-17 23:50:58,043 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d025_s123_aligned
+2026-05-17 23:50:58,043 WARNING Skipping unrecognized dir: Qwen2.5-3B_d025_v2_aligned
+2026-05-17 23:50:58,043 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d025_v3_s42_aligned
+2026-05-17 23:50:58,044 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d100_a32_s123_aligned
+2026-05-17 23:50:58,044 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d100_a32_s42_aligned
+2026-05-17 23:50:58,044 WARNING Skipping unrecognized dir: Qwen2.5-3B_d100_v1_s42_aligned_DEPRECATED
+2026-05-17 23:50:58,044 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d100_v2_s123_aligned
+2026-05-17 23:50:58,044 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d100_v2_s42_aligned
+2026-05-17 23:50:58,044 WARNING Skipping unrecognized dir: Qwen2.5-3B_raw
+2026-05-17 23:50:58,044 INFO Found 8 model evaluations
+2026-05-17 23:50:58,196 INFO Benchmarks: ['mmlu']
+2026-05-17 23:50:58,372 INFO Pool scale 1.5B: 8 models, dosages=[0, 0, 5, 5, 25, 25, 100, 100]
+2026-05-17 23:50:58,375 WARNING Skipping unrecognized dir: Qwen2.5-0.5B-Instruct
+2026-05-17 23:50:58,375 WARNING Skipping unrecognized dir: Qwen2.5-0.5B-Instruct_aligned
+2026-05-17 23:50:58,375 WARNING Skipping unrecognized dir: Qwen2.5-0.5B_base_pretrained_aligned
+2026-05-17 23:50:58,375 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s123
+2026-05-17 23:50:58,375 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s123_aligned
+2026-05-17 23:50:58,375 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42
+2026-05-17 23:50:58,375 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s42_aligned
+2026-05-17 23:50:58,375 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42_v2
+2026-05-17 23:50:58,375 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s123_aligned
+2026-05-17 23:50:58,375 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d005_s42
+2026-05-17 23:50:58,375 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s42_aligned
+2026-05-17 23:50:58,375 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s123_aligned
+2026-05-17 23:50:58,375 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s42_aligned
+2026-05-17 23:50:58,375 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s123_aligned
+2026-05-17 23:50:58,375 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d100_s42
+2026-05-17 23:50:58,375 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s42_aligned
+2026-05-17 23:50:58,375 WARNING Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_aligned
+2026-05-17 23:50:58,375 WARNING Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_para_aligned
+2026-05-17 23:50:58,375 WARNING Skipping unrecognized dir: Qwen2.5-1.5B_base_pretrained
+2026-05-17 23:50:58,375 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d000_s123
+2026-05-17 23:50:58,375 INFO Skipping dir (scale mismatch): Qwen2.5-1.5B_d000_s123_aligned
+2026-05-17 23:50:58,375 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d000_s42
+2026-05-17 23:50:58,375 INFO Skipping dir (scale mismatch): Qwen2.5-1.5B_d000_s42_aligned
+2026-05-17 23:50:58,375 INFO Skipping dir (scale mismatch): Qwen2.5-1.5B_d005_s123_aligned
+2026-05-17 23:50:58,375 INFO Skipping dir (scale mismatch): Qwen2.5-1.5B_d005_s42_aligned
+2026-05-17 23:50:58,375 INFO Skipping dir (scale mismatch): Qwen2.5-1.5B_d025_s123_aligned
+2026-05-17 23:50:58,375 INFO Skipping dir (scale mismatch): Qwen2.5-1.5B_d025_s42_aligned
+2026-05-17 23:50:58,375 INFO Skipping dir (scale mismatch): Qwen2.5-1.5B_d100_s123_aligned
+2026-05-17 23:50:58,375 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d100_s42
+2026-05-17 23:50:58,375 INFO Skipping dir (scale mismatch): Qwen2.5-1.5B_d100_s42_aligned
+2026-05-17 23:50:58,375 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_aligned
+2026-05-17 23:50:58,375 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_para_aligned
+2026-05-17 23:50:58,375 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_aligned
+2026-05-17 23:50:58,375 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_para_aligned
+2026-05-17 23:50:58,375 INFO Skipping non-aligned dir: Qwen2.5-3B_d000_s42
+2026-05-17 23:50:58,375 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_s42_v3_aligned
+2026-05-17 23:50:58,375 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED
+2026-05-17 23:50:58,375 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED
+2026-05-17 23:50:58,375 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_s123_gsm8k_rerun
+2026-05-17 23:50:58,375 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED
+2026-05-17 23:50:58,376 WARNING Skipping unrecognized dir: Qwen2.5-3B_d025_v2_aligned
+2026-05-17 23:50:58,376 WARNING Skipping unrecognized dir: Qwen2.5-3B_d100_v1_s42_aligned_DEPRECATED
+2026-05-17 23:50:58,376 WARNING Skipping unrecognized dir: Qwen2.5-3B_raw
+2026-05-17 23:50:58,376 INFO Skipping Qwen2.5-3B_d000_v2_s42_aligned (alpha variant Qwen2.5-3B_d000_s42_a32_aligned preferred)
+2026-05-17 23:50:58,376 INFO Skipping Qwen2.5-3B_d005_s42_aligned (alpha variant Qwen2.5-3B_d005_s42_a32_aligned preferred)
+2026-05-17 23:50:58,376 INFO Skipping Qwen2.5-3B_d100_v2_s123_aligned (alpha variant Qwen2.5-3B_d100_a32_s123_aligned preferred)
+2026-05-17 23:50:58,376 INFO Skipping Qwen2.5-3B_d100_v2_s42_aligned (alpha variant Qwen2.5-3B_d100_a32_s42_aligned preferred)
+2026-05-17 23:50:58,376 INFO Dedup: 17 -> 12 models (alpha preference)
+2026-05-17 23:50:58,376 INFO Found 12 model evaluations
+2026-05-17 23:50:58,575 INFO Benchmarks: ['mmlu']
+2026-05-17 23:50:58,797 INFO Pool scale 3B: 12 models, dosages=[0, 5, 25, 100, 0, 0, 5, 5, 25, 25, 100, 100]
+2026-05-17 23:50:58,798 INFO Not in whitelist: Llama-3.2-3B_d100_s42_aligned, skipping
+2026-05-17 23:50:58,798 INFO Not in whitelist: Qwen2.5-3B_d000_s123_aligned, skipping
+2026-05-17 23:50:58,798 INFO Not in whitelist: Qwen2.5-3B_d000_s42_a32_aligned, skipping
+2026-05-17 23:50:58,798 INFO Not in whitelist: Qwen2.5-3B_d005_s42_a32_aligned, skipping
+2026-05-17 23:50:58,798 INFO After whitelist + RRF filter: 16 models x 14042 items
+2026-05-17 23:50:58,799 INFO   Qwen2.5-1.5B_d000_s123_aligned (scale=1.5B, dosage=0)
+2026-05-17 23:50:58,799 INFO   Qwen2.5-1.5B_d000_s42_aligned (scale=1.5B, dosage=0)
+2026-05-17 23:50:58,799 INFO   Qwen2.5-1.5B_d005_s123_aligned (scale=1.5B, dosage=5)
+2026-05-17 23:50:58,799 INFO   Qwen2.5-1.5B_d005_s42_aligned (scale=1.5B, dosage=5)
+2026-05-17 23:50:58,799 INFO   Qwen2.5-1.5B_d025_s123_aligned (scale=1.5B, dosage=25)
+2026-05-17 23:50:58,799 INFO   Qwen2.5-1.5B_d025_s42_aligned (scale=1.5B, dosage=25)
+2026-05-17 23:50:58,799 INFO   Qwen2.5-1.5B_d100_s123_aligned (scale=1.5B, dosage=100)
+2026-05-17 23:50:58,799 INFO   Qwen2.5-1.5B_d100_s42_aligned (scale=1.5B, dosage=100)
+2026-05-17 23:50:58,799 INFO   Llama-3.2-3B_d000_s42_aligned (scale=3B, dosage=0)
+2026-05-17 23:50:58,799 INFO   Llama-3.2-3B_d005_s42_aligned (scale=3B, dosage=5)
+2026-05-17 23:50:58,799 INFO   Llama-3.2-3B_d025_s42_aligned (scale=3B, dosage=25)
+2026-05-17 23:50:58,799 INFO   Qwen2.5-3B_d005_s123_aligned (scale=3B, dosage=5)
+2026-05-17 23:50:58,799 INFO   Qwen2.5-3B_d025_s123_aligned (scale=3B, dosage=25)
+2026-05-17 23:50:58,799 INFO   Qwen2.5-3B_d025_v3_s42_aligned (scale=3B, dosage=25)
+2026-05-17 23:50:58,799 INFO   Qwen2.5-3B_d100_a32_s123_aligned (scale=3B, dosage=100)
+2026-05-17 23:50:58,799 INFO   Qwen2.5-3B_d100_a32_s42_aligned (scale=3B, dosage=100)
+2026-05-17 23:50:58,800 INFO Saved model order (16 models) to /root/autodl-tmp/exp006/mmlu_domain_irt_j16_cross_family/model_order.json
+2026-05-17 23:50:58,827 INFO ==================================================
+2026-05-17 23:50:58,827 INFO Fitting domain: Medical (1640 items)
+2026-05-17 23:50:58,828 INFO Compiling Stan model: contam_irt_2pl_gamma.stan
+2026-05-17 23:50:58,863 INFO Fitting: 16 models x 1640 items, 4 chains x 1000 samples
+2026-05-17 23:50:58,945 INFO CmdStan start processing
+chain 1:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A
+
+chain 3:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A
+
+
+chain 4:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[Achain 1:   0%|[33m          [0m| 1/2000 [00:00<04:12,  7.93it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 1/2000 [00:00<04:13,  7.88it/s, (Warmup)][A
+
+chain 3:   0%|[33m          [0m| 1/2000 [00:00<04:16,  7.80it/s, (Warmup)][A[A
+
+
+chain 4:   0%|[33m          [0m| 1/2000 [00:00<04:21,  7.63it/s, (Warmup)][A[A[A
+
+
+chain 4:   5%|[33m▌         [0m| 100/2000 [00:33<10:31,  3.01it/s, (Warmup)][A[A[A
+chain 2:   5%|[33m▌         [0m| 100/2000 [00:33<10:36,  2.98it/s, (Warmup)][Achain 1:   5%|[33m▌         [0m| 100/2000 [00:35<11:06,  2.85it/s, (Warmup)]
+
+chain 3:   5%|[33m▌         [0m| 100/2000 [00:36<11:36,  2.73it/s, (Warmup)][A[A
+
+
+chain 4:  10%|[33m█         [0m| 200/2000 [00:53<07:43,  3.88it/s, (Warmup)][A[A[A
+chain 2:  10%|[33m█         [0m| 200/2000 [00:57<08:22,  3.59it/s, (Warmup)][Achain 1:  10%|[33m█         [0m| 200/2000 [00:58<08:30,  3.52it/s, (Warmup)]
+
+chain 3:  10%|[33m█         [0m| 200/2000 [01:02<09:10,  3.27it/s, (Warmup)][A[A
+
+
+chain 4:  15%|[33m█▌        [0m| 300/2000 [01:20<07:23,  3.83it/s, (Warmup)][A[A[A
+chain 2:  15%|[33m█▌        [0m| 300/2000 [01:23<07:37,  3.71it/s, (Warmup)][Achain 1:  15%|[33m█▌        [0m| 300/2000 [01:23<07:32,  3.75it/s, (Warmup)]
+
+chain 3:  15%|[33m█▌        [0m| 300/2000 [01:24<07:29,  3.78it/s, (Warmup)][A[A
+
+
+chain 4:  20%|[33m██        [0m| 400/2000 [01:41<06:29,  4.11it/s, (Warmup)][A[A[Achain 1:  20%|[33m██        [0m| 400/2000 [01:43<06:24,  4.16it/s, (Warmup)]
+chain 2:  20%|[33m██        [0m| 400/2000 [01:43<06:30,  4.10it/s, (Warmup)][A
+
+chain 3:  20%|[33m██        [0m| 400/2000 [01:46<06:33,  4.06it/s, (Warmup)][A[A
+chain 2:  25%|[33m██▌       [0m| 500/2000 [02:04<05:44,  4.35it/s, (Warmup)][Achain 1:  25%|[33m██▌       [0m| 500/2000 [02:04<05:45,  4.34it/s, (Warmup)]
+
+
+chain 4:  25%|[33m██▌       [0m| 500/2000 [02:06<06:08,  4.07it/s, (Warmup)][A[A[A
+
+chain 3:  25%|[33m██▌       [0m| 500/2000 [02:08<05:56,  4.21it/s, (Warmup)][A[A
+chain 2:  30%|[33m███       [0m| 600/2000 [02:24<05:09,  4.52it/s, (Warmup)][Achain 1:  30%|[33m███       [0m| 600/2000 [02:25<05:10,  4.51it/s, (Warmup)]
+
+
+chain 4:  30%|[33m███       [0m| 600/2000 [02:27<05:24,  4.32it/s, (Warmup)][A[A[A
+
+chain 3:  30%|[33m███       [0m| 600/2000 [02:28<05:14,  4.45it/s, (Warmup)][A[A
+chain 2:  35%|[33m███▌      [0m| 700/2000 [02:44<04:38,  4.66it/s, (Warmup)][Achain 1:  35%|[33m███▌      [0m| 700/2000 [02:44<04:37,  4.69it/s, (Warmup)]
+
+
+chain 4:  35%|[33m███▌      [0m| 700/2000 [02:47<04:48,  4.50it/s, (Warmup)][A[A[A
+
+chain 3:  35%|[33m███▌      [0m| 700/2000 [02:48<04:42,  4.59it/s, (Warmup)][A[A
+chain 2:  40%|[33m████      [0m| 800/2000 [03:06<04:17,  4.66it/s, (Warmup)][Achain 1:  40%|[33m████      [0m| 800/2000 [03:07<04:20,  4.61it/s, (Warmup)]
+
+chain 3:  40%|[33m████      [0m| 800/2000 [03:08<04:13,  4.74it/s, (Warmup)][A[A
+
+
+chain 4:  40%|[33m████      [0m| 800/2000 [03:08<04:22,  4.58it/s, (Warmup)][A[A[A
+chain 2:  45%|[33m████▌     [0m| 900/2000 [03:26<03:52,  4.73it/s, (Warmup)][Achain 1:  45%|[33m████▌     [0m| 900/2000 [03:28<03:56,  4.66it/s, (Warmup)]
+
+chain 3:  45%|[33m████▌     [0m| 900/2000 [03:29<03:51,  4.76it/s, (Warmup)][A[A
+
+
+chain 4:  45%|[33m████▌     [0m| 900/2000 [03:30<04:01,  4.55it/s, (Warmup)][A[A[A
+chain 2:  50%|[33m█████     [0m| 1000/2000 [03:46<03:26,  4.83it/s, (Warmup)][A
+chain 2:  50%|[34m█████     [0m| 1000/2000 [03:46<03:26,  4.83it/s, (Sampling)][A
+chain 2:  50%|[34m█████     [0m| 1001/2000 [03:46<03:26,  4.84it/s, (Sampling)][Achain 1:  50%|[33m█████     [0m| 1000/2000 [03:50<03:38,  4.58it/s, (Warmup)]
+
+chain 3:  50%|[33m█████     [0m| 1000/2000 [03:50<03:31,  4.72it/s, (Warmup)][A[Achain 1:  50%|[34m█████     [0m| 1000/2000 [03:50<03:38,  4.58it/s, (Sampling)]chain 1:  50%|[34m█████     [0m| 1001/2000 [03:50<03:37,  4.58it/s, (Sampling)]
+
+chain 3:  50%|[34m█████     [0m| 1000/2000 [03:51<03:31,  4.72it/s, (Sampling)][A[A
+
+chain 3:  50%|[34m█████     [0m| 1001/2000 [03:51<03:31,  4.72it/s, (Sampling)][A[A
+
+
+chain 4:  50%|[33m█████     [0m| 1000/2000 [03:51<03:35,  4.64it/s, (Warmup)][A[A[A
+
+
+chain 4:  50%|[34m█████     [0m| 1000/2000 [03:51<03:35,  4.64it/s, (Sampling)][A[A[A
+
+
+chain 4:  50%|[34m█████     [0m| 1001/2000 [03:51<03:35,  4.64it/s, (Sampling)][A[A[A
+chain 2:  55%|[34m█████▌    [0m| 1100/2000 [04:09<03:15,  4.60it/s, (Sampling)][Achain 1:  55%|[34m█████▌    [0m| 1100/2000 [04:14<03:22,  4.45it/s, (Sampling)]
+
+chain 3:  55%|[34m█████▌    [0m| 1100/2000 [04:14<03:19,  4.52it/s, (Sampling)][A[A
+
+
+chain 4:  55%|[34m█████▌    [0m| 1100/2000 [04:15<03:21,  4.48it/s, (Sampling)][A[A[A
+chain 2:  60%|[34m██████    [0m| 1200/2000 [04:32<02:58,  4.48it/s, (Sampling)][Achain 1:  60%|[34m██████    [0m| 1200/2000 [04:37<03:02,  4.38it/s, (Sampling)]
+
+chain 3:  60%|[34m██████    [0m| 1200/2000 [04:38<03:01,  4.42it/s, (Sampling)][A[A
+
+
+chain 4:  60%|[34m██████    [0m| 1200/2000 [04:38<03:01,  4.40it/s, (Sampling)][A[A[A
+chain 2:  65%|[34m██████▌   [0m| 1300/2000 [04:56<02:38,  4.42it/s, (Sampling)][Achain 1:  65%|[34m██████▌   [0m| 1300/2000 [05:01<02:40,  4.35it/s, (Sampling)]
+
+chain 3:  65%|[34m██████▌   [0m| 1300/2000 [05:01<02:40,  4.36it/s, (Sampling)][A[A
+
+
+chain 4:  65%|[34m██████▌   [0m| 1300/2000 [05:01<02:40,  4.36it/s, (Sampling)][A[A[A
+chain 2:  70%|[34m███████   [0m| 1400/2000 [05:19<02:17,  4.38it/s, (Sampling)][Achain 1:  70%|[34m███████   [0m| 1400/2000 [05:24<02:18,  4.33it/s, (Sampling)]
+
+chain 3:  70%|[34m███████   [0m| 1400/2000 [05:25<02:18,  4.33it/s, (Sampling)][A[A
+
+
+chain 4:  70%|[34m███████   [0m| 1400/2000 [05:25<02:18,  4.33it/s, (Sampling)][A[A[A
+chain 2:  75%|[34m███████▌  [0m| 1500/2000 [05:42<01:55,  4.35it/s, (Sampling)][Achain 1:  75%|[34m███████▌  [0m| 1500/2000 [05:47<01:56,  4.31it/s, (Sampling)]
+
+
+chain 4:  75%|[34m███████▌  [0m| 1500/2000 [05:48<01:55,  4.31it/s, (Sampling)][A[A[A
+
+chain 3:  75%|[34m███████▌  [0m| 1500/2000 [05:48<01:56,  4.30it/s, (Sampling)][A[A
+chain 2:  80%|[34m████████  [0m| 1600/2000 [06:06<01:32,  4.32it/s, (Sampling)][Achain 1:  80%|[34m████████  [0m| 1600/2000 [06:11<01:33,  4.28it/s, (Sampling)]
+
+
+chain 4:  80%|[34m████████  [0m| 1600/2000 [06:12<01:33,  4.29it/s, (Sampling)][A[A[A
+
+chain 3:  80%|[34m████████  [0m| 1600/2000 [06:12<01:33,  4.27it/s, (Sampling)][A[A
+chain 2:  85%|[34m████████▌ [0m| 1700/2000 [06:29<01:09,  4.30it/s, (Sampling)][Achain 1:  85%|[34m████████▌ [0m| 1700/2000 [06:34<01:10,  4.27it/s, (Sampling)]
+
+
+chain 4:  85%|[34m████████▌ [0m| 1700/2000 [06:35<01:10,  4.28it/s, (Sampling)][A[A[A
+
+chain 3:  85%|[34m████████▌ [0m| 1700/2000 [06:36<01:10,  4.26it/s, (Sampling)][A[A
+chain 2:  90%|[34m█████████ [0m| 1800/2000 [06:53<00:46,  4.29it/s, (Sampling)][Achain 1:  90%|[34m█████████ [0m| 1800/2000 [06:58<00:46,  4.27it/s, (Sampling)]
+
+
+chain 4:  90%|[34m█████████ [0m| 1800/2000 [06:59<00:46,  4.28it/s, (Sampling)][A[A[A
+
+chain 3:  90%|[34m█████████ [0m| 1800/2000 [06:59<00:46,  4.26it/s, (Sampling)][A[A
+chain 2:  95%|[34m█████████▌[0m| 1900/2000 [07:16<00:23,  4.29it/s, (Sampling)][Achain 1:  95%|[34m█████████▌[0m| 1900/2000 [07:21<00:23,  4.28it/s, (Sampling)]
+
+
+chain 4:  95%|[34m█████████▌[0m| 1900/2000 [07:22<00:23,  4.28it/s, (Sampling)][A[A[A
+
+chain 3:  95%|[34m█████████▌[0m| 1900/2000 [07:23<00:23,  4.26it/s, (Sampling)][A[A
+chain 2: 100%|[34m██████████[0m| 2000/2000 [07:39<00:00,  4.29it/s, (Sampling)][Achain 1: 100%|[34m██████████[0m| 2000/2000 [07:45<00:00,  4.28it/s, (Sampling)]
+
+
+chain 4: 100%|[34m██████████[0m| 2000/2000 [07:45<00:00,  4.28it/s, (Sampling)][A[A[A
+
+chain 3: 100%|[34m██████████[0m| 2000/2000 [07:46<00:00,  4.26it/s, (Sampling)][A[Achain 1: 100%|[34m██████████[0m| 2000/2000 [07:46<00:00,  4.28it/s, (Sampling completed)]chain 1: 100%|[34m██████████[0m| 2000/2000 [07:46<00:00,  4.28it/s, (Sampling completed)]
+
+chain 2: 100%|[34m██████████[0m| 2000/2000 [07:46<00:00,  4.29it/s, (Sampling completed)][Achain 2: 100%|[34m██████████[0m| 2000/2000 [07:46<00:00,  4.28it/s, (Sampling completed)]
+
+
+chain 3: 100%|[34m██████████[0m| 2000/2000 [07:46<00:00,  4.26it/s, (Sampling completed)][A[Achain 3: 100%|[34m██████████[0m| 2000/2000 [07:46<00:00,  4.28it/s, (Sampling completed)]
+
+
+
+chain 4: 100%|[34m██████████[0m| 2000/2000 [07:46<00:00,  4.28it/s, (Sampling completed)][A[A[Achain 4: 100%|[34m██████████[0m| 2000/2000 [07:46<00:00,  4.28it/s, (Sampling completed)]
+                                                                                                                                                                                                                                                                                                                                2026-05-17 23:58:45,748 INFO CmdStan done processing.
+2026-05-17 23:58:54,982 INFO Sampling completed in 476.1s

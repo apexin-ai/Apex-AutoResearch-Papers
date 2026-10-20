@@ -1,0 +1,273 @@
+2026-05-18 00:04:20,919 INFO Loading eval data...
+2026-05-18 00:04:20,922 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d000_s42_aligned
+2026-05-18 00:04:20,922 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d005_s42_aligned
+2026-05-18 00:04:20,922 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d025_s42_aligned
+2026-05-18 00:04:20,922 INFO Skipping dir (scale mismatch): Llama-3.2-3B_d100_s42_aligned
+2026-05-18 00:04:20,922 WARNING Skipping unrecognized dir: Qwen2.5-0.5B-Instruct
+2026-05-18 00:04:20,922 WARNING Skipping unrecognized dir: Qwen2.5-0.5B-Instruct_aligned
+2026-05-18 00:04:20,922 WARNING Skipping unrecognized dir: Qwen2.5-0.5B_base_pretrained_aligned
+2026-05-18 00:04:20,922 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s123
+2026-05-18 00:04:20,922 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s123_aligned
+2026-05-18 00:04:20,922 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42
+2026-05-18 00:04:20,922 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s42_aligned
+2026-05-18 00:04:20,922 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d000_s42_v2
+2026-05-18 00:04:20,922 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s123_aligned
+2026-05-18 00:04:20,922 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d005_s42
+2026-05-18 00:04:20,922 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s42_aligned
+2026-05-18 00:04:20,922 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s123_aligned
+2026-05-18 00:04:20,922 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s42_aligned
+2026-05-18 00:04:20,922 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s123_aligned
+2026-05-18 00:04:20,922 INFO Skipping non-aligned dir: Qwen2.5-0.5B_d100_s42
+2026-05-18 00:04:20,922 INFO Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s42_aligned
+2026-05-18 00:04:20,922 WARNING Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_aligned
+2026-05-18 00:04:20,922 WARNING Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_para_aligned
+2026-05-18 00:04:20,922 WARNING Skipping unrecognized dir: Qwen2.5-1.5B_base_pretrained
+2026-05-18 00:04:20,922 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d000_s123
+--- Logging error ---
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 1160, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 999, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 703, in format
+    record.message = record.getMessage()
+                     ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 392, in getMessage
+    msg = msg % self.args
+          ~~~~^~~~~~~~~~~
+TypeError: must be real number, not str
+Call stack:
+  File "/tmp/extract_theta_j16.py", line 233, in <module>
+    main()
+  File "/tmp/extract_theta_j16.py", line 129, in main
+    data = load_pooled_eval_results(
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 274, in load_pooled_eval_results
+    data = load_eval_results(eval_dir, benchmarks, model_scale=scale, **kw)
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 132, in load_eval_results
+    log.info("Skipping dir (lr=%s, want %.1e): %s",
+Message: 'Skipping dir (lr=%s, want %.1e): %s'
+Arguments: ('unknown', '5e-5', 'Qwen2.5-1.5B_d000_s123_aligned')
+2026-05-18 00:04:20,924 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d000_s42
+--- Logging error ---
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 1160, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 999, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 703, in format
+    record.message = record.getMessage()
+                     ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 392, in getMessage
+    msg = msg % self.args
+          ~~~~^~~~~~~~~~~
+TypeError: must be real number, not str
+Call stack:
+  File "/tmp/extract_theta_j16.py", line 233, in <module>
+    main()
+  File "/tmp/extract_theta_j16.py", line 129, in main
+    data = load_pooled_eval_results(
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 274, in load_pooled_eval_results
+    data = load_eval_results(eval_dir, benchmarks, model_scale=scale, **kw)
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 132, in load_eval_results
+    log.info("Skipping dir (lr=%s, want %.1e): %s",
+Message: 'Skipping dir (lr=%s, want %.1e): %s'
+Arguments: ('unknown', '5e-5', 'Qwen2.5-1.5B_d000_s42_aligned')
+--- Logging error ---
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 1160, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 999, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 703, in format
+    record.message = record.getMessage()
+                     ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 392, in getMessage
+    msg = msg % self.args
+          ~~~~^~~~~~~~~~~
+TypeError: must be real number, not str
+Call stack:
+  File "/tmp/extract_theta_j16.py", line 233, in <module>
+    main()
+  File "/tmp/extract_theta_j16.py", line 129, in main
+    data = load_pooled_eval_results(
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 274, in load_pooled_eval_results
+    data = load_eval_results(eval_dir, benchmarks, model_scale=scale, **kw)
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 132, in load_eval_results
+    log.info("Skipping dir (lr=%s, want %.1e): %s",
+Message: 'Skipping dir (lr=%s, want %.1e): %s'
+Arguments: ('unknown', '5e-5', 'Qwen2.5-1.5B_d005_s123_aligned')
+--- Logging error ---
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 1160, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 999, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 703, in format
+    record.message = record.getMessage()
+                     ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 392, in getMessage
+    msg = msg % self.args
+          ~~~~^~~~~~~~~~~
+TypeError: must be real number, not str
+Call stack:
+  File "/tmp/extract_theta_j16.py", line 233, in <module>
+    main()
+  File "/tmp/extract_theta_j16.py", line 129, in main
+    data = load_pooled_eval_results(
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 274, in load_pooled_eval_results
+    data = load_eval_results(eval_dir, benchmarks, model_scale=scale, **kw)
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 132, in load_eval_results
+    log.info("Skipping dir (lr=%s, want %.1e): %s",
+Message: 'Skipping dir (lr=%s, want %.1e): %s'
+Arguments: ('unknown', '5e-5', 'Qwen2.5-1.5B_d005_s42_aligned')
+--- Logging error ---
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 1160, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 999, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 703, in format
+    record.message = record.getMessage()
+                     ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 392, in getMessage
+    msg = msg % self.args
+          ~~~~^~~~~~~~~~~
+TypeError: must be real number, not str
+Call stack:
+  File "/tmp/extract_theta_j16.py", line 233, in <module>
+    main()
+  File "/tmp/extract_theta_j16.py", line 129, in main
+    data = load_pooled_eval_results(
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 274, in load_pooled_eval_results
+    data = load_eval_results(eval_dir, benchmarks, model_scale=scale, **kw)
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 132, in load_eval_results
+    log.info("Skipping dir (lr=%s, want %.1e): %s",
+Message: 'Skipping dir (lr=%s, want %.1e): %s'
+Arguments: ('unknown', '5e-5', 'Qwen2.5-1.5B_d025_s123_aligned')
+--- Logging error ---
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 1160, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 999, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 703, in format
+    record.message = record.getMessage()
+                     ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 392, in getMessage
+    msg = msg % self.args
+          ~~~~^~~~~~~~~~~
+TypeError: must be real number, not str
+Call stack:
+  File "/tmp/extract_theta_j16.py", line 233, in <module>
+    main()
+  File "/tmp/extract_theta_j16.py", line 129, in main
+    data = load_pooled_eval_results(
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 274, in load_pooled_eval_results
+    data = load_eval_results(eval_dir, benchmarks, model_scale=scale, **kw)
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 132, in load_eval_results
+    log.info("Skipping dir (lr=%s, want %.1e): %s",
+Message: 'Skipping dir (lr=%s, want %.1e): %s'
+Arguments: ('unknown', '5e-5', 'Qwen2.5-1.5B_d025_s42_aligned')
+--- Logging error ---
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 1160, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 999, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 703, in format
+    record.message = record.getMessage()
+                     ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 392, in getMessage
+    msg = msg % self.args
+          ~~~~^~~~~~~~~~~
+TypeError: must be real number, not str
+Call stack:
+  File "/tmp/extract_theta_j16.py", line 233, in <module>
+    main()
+  File "/tmp/extract_theta_j16.py", line 129, in main
+    data = load_pooled_eval_results(
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 274, in load_pooled_eval_results
+    data = load_eval_results(eval_dir, benchmarks, model_scale=scale, **kw)
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 132, in load_eval_results
+    log.info("Skipping dir (lr=%s, want %.1e): %s",
+Message: 'Skipping dir (lr=%s, want %.1e): %s'
+Arguments: ('unknown', '5e-5', 'Qwen2.5-1.5B_d100_s123_aligned')
+2026-05-18 00:04:20,926 INFO Skipping non-aligned dir: Qwen2.5-1.5B_d100_s42
+--- Logging error ---
+Traceback (most recent call last):
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 1160, in emit
+    msg = self.format(record)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 999, in format
+    return fmt.format(record)
+           ^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 703, in format
+    record.message = record.getMessage()
+                     ^^^^^^^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/logging/__init__.py", line 392, in getMessage
+    msg = msg % self.args
+          ~~~~^~~~~~~~~~~
+TypeError: must be real number, not str
+Call stack:
+  File "/tmp/extract_theta_j16.py", line 233, in <module>
+    main()
+  File "/tmp/extract_theta_j16.py", line 129, in main
+    data = load_pooled_eval_results(
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 274, in load_pooled_eval_results
+    data = load_eval_results(eval_dir, benchmarks, model_scale=scale, **kw)
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 132, in load_eval_results
+    log.info("Skipping dir (lr=%s, want %.1e): %s",
+Message: 'Skipping dir (lr=%s, want %.1e): %s'
+Arguments: ('unknown', '5e-5', 'Qwen2.5-1.5B_d100_s42_aligned')
+2026-05-18 00:04:20,926 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_aligned
+2026-05-18 00:04:20,926 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_para_aligned
+2026-05-18 00:04:20,926 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_aligned
+2026-05-18 00:04:20,926 WARNING Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_para_aligned
+2026-05-18 00:04:20,926 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_s123_aligned
+2026-05-18 00:04:20,926 INFO Skipping non-aligned dir: Qwen2.5-3B_d000_s42
+2026-05-18 00:04:20,926 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_s42_a32_aligned
+2026-05-18 00:04:20,926 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_s42_v3_aligned
+2026-05-18 00:04:20,926 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED
+2026-05-18 00:04:20,926 WARNING Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED
+2026-05-18 00:04:20,927 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s123_aligned
+2026-05-18 00:04:20,927 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s42_aligned
+2026-05-18 00:04:20,927 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d005_s123_aligned
+2026-05-18 00:04:20,927 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_s123_gsm8k_rerun
+2026-05-18 00:04:20,927 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_a32_aligned
+2026-05-18 00:04:20,927 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_aligned
+2026-05-18 00:04:20,927 WARNING Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED
+2026-05-18 00:04:20,927 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d025_s123_aligned
+2026-05-18 00:04:20,927 WARNING Skipping unrecognized dir: Qwen2.5-3B_d025_v2_aligned
+2026-05-18 00:04:20,927 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d025_v3_s42_aligned
+2026-05-18 00:04:20,927 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d100_a32_s123_aligned
+2026-05-18 00:04:20,927 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d100_a32_s42_aligned
+2026-05-18 00:04:20,927 WARNING Skipping unrecognized dir: Qwen2.5-3B_d100_v1_s42_aligned_DEPRECATED
+2026-05-18 00:04:20,927 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d100_v2_s123_aligned
+2026-05-18 00:04:20,927 INFO Skipping dir (scale mismatch): Qwen2.5-3B_d100_v2_s42_aligned
+2026-05-18 00:04:20,927 WARNING Skipping unrecognized dir: Qwen2.5-3B_raw
+Traceback (most recent call last):
+  File "/tmp/extract_theta_j16.py", line 233, in <module>
+    main()
+  File "/tmp/extract_theta_j16.py", line 129, in main
+    data = load_pooled_eval_results(
+           ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 274, in load_pooled_eval_results
+    data = load_eval_results(eval_dir, benchmarks, model_scale=scale, **kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 155, in load_eval_results
+    raise ValueError(f"No valid eval results in {eval_dir}")
+ValueError: No valid eval results in /root/autodl-tmp/exp001/eval_results

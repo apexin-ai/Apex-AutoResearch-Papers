@@ -1,0 +1,64 @@
+{
+  "mmlu": {
+    "n_models": 18,
+    "n_items": 300,
+    "gamma": {
+      "mean": 0.3465,
+      "sd": 0.5086,
+      "q025": -0.6269,
+      "q975": 1.3198
+    },
+    "diagnostics": {
+      "max_rhat": 1.0062,
+      "min_ess": 1430.9,
+      "divergent": 0
+    },
+    "model_level_predicted": {
+      "coverage_50": 0.8333,
+      "coverage_80": 0.8889,
+      "coverage_95": 1.0
+    },
+    "model_level_calibrated": {
+      "coverage_50": 0.8889,
+      "coverage_80": 0.8889,
+      "coverage_95": 1.0
+    },
+    "residuals": {
+      "mean": -0.00321,
+      "mae": 0.00938,
+      "max_abs": 0.0291
+    },
+    "note_item_bin": "Item-bin coverage=0 because posterior CI on predicted means is narrow (parameter uncertainty only); obs-pred gap reflects IRT model misspecification at extremes, not CI failure."
+  },
+  "arc_challenge": {
+    "n_models": 20,
+    "n_items": 300,
+    "gamma": {
+      "mean": 0.0074,
+      "sd": 0.2884,
+      "q025": -0.5748,
+      "q975": 0.5647
+    },
+    "diagnostics": {
+      "max_rhat": 1.0066,
+      "min_ess": 1395.6,
+      "divergent": 0
+    },
+    "model_level_predicted": {
+      "coverage_50": 0.45,
+      "coverage_80": 0.65,
+      "coverage_95": 0.9
+    },
+    "model_level_calibrated": {
+      "coverage_50": 0.45,
+      "coverage_80": 0.7,
+      "coverage_95": 0.9
+    },
+    "residuals": {
+      "mean": 0.0009,
+      "mae": 0.01511,
+      "max_abs": 0.0444
+    },
+    "note_item_bin": "Item-bin coverage=0 because posterior CI on predicted means is narrow (parameter uncertainty only); obs-pred gap reflects IRT model misspecification at extremes, not CI failure."
+  }
+}

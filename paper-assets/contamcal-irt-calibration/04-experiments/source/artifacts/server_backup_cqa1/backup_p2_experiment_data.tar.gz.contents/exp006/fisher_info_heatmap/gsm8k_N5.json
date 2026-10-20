@@ -1,0 +1,20 @@
+{
+  "condition_id": "gsm8k_N5",
+  "benchmark": "gsm8k",
+  "n_models": 5,
+  "n_reps_ok": 200,
+  "n_reps_failed": 0,
+  "gamma_true": 0.5,
+  "gamma_mean_avg": 0.4855,
+  "gamma_mean_std": 0.0498,
+  "gamma_bias_avg": -0.0145,
+  "gamma_rmse": 0.0518,
+  "ci95_width_avg": 0.198,
+  "ci95_width_std": 0.0108,
+  "ci95_width_q025": 0.177,
+  "ci95_width_q975": 0.2174,
+  "coverage_rate": 0.955,
+  "power_rate": 1.0,
+  "elapsed_sec": 198.2,
+  "sec_per_rep": 1.0
+}

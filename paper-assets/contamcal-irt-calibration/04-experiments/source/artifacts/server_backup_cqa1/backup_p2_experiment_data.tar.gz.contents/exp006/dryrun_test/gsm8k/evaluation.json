@@ -1,0 +1,143 @@
+[
+  {
+    "method": "IRT_4pl_gamma",
+    "mae": {
+      "value": 0.092725,
+      "bootstrap_95ci": {
+        "mean": 0.093864,
+        "ci_lower": 0.01315,
+        "ci_upper": 0.1914
+      }
+    },
+    "coverage_95": 0.5,
+    "coverage_80": 0.5,
+    "coverage_50": 0.5,
+    "sharpness_95": 0.25775,
+    "sharpness_80": 0.17362499999999997,
+    "sharpness_50": 0.09355000000000001,
+    "kendall_tau": {
+      "tau": 1.0,
+      "p_value": 0.083333,
+      "bootstrap_95ci": {
+        "mean": 0.989,
+        "ci_lower": 1.0,
+        "ci_upper": 1.0
+      }
+    },
+    "dose_response": {
+      "gamma_mean": 0.0096,
+      "gamma_positive": true,
+      "ci_excludes_zero": false,
+      "q025": -1.9979,
+      "q975": 2.0108
+    }
+  },
+  {
+    "method": "B0_raw",
+    "mae": {
+      "value": 0.0,
+      "bootstrap_95ci": {
+        "mean": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0
+      }
+    },
+    "coverage_95": 1.0,
+    "coverage_80": 1.0,
+    "coverage_50": 1.0,
+    "sharpness_95": 0.35241192914610586,
+    "sharpness_80": 0.23769837541772287,
+    "sharpness_50": 0.12720502709680456,
+    "kendall_tau": {
+      "tau": 1.0,
+      "p_value": 0.083333,
+      "bootstrap_95ci": {
+        "mean": 0.989,
+        "ci_lower": 1.0,
+        "ci_upper": 1.0
+      }
+    },
+    "dose_response": null
+  },
+  {
+    "method": "B1_remove_rescore",
+    "mae": {
+      "value": 0.0,
+      "bootstrap_95ci": {
+        "mean": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0
+      }
+    },
+    "coverage_95": 1.0,
+    "coverage_80": 1.0,
+    "coverage_50": 1.0,
+    "sharpness_95": 0.375,
+    "sharpness_80": 0.25,
+    "sharpness_50": 0.11249999999999999,
+    "kendall_tau": {
+      "tau": 1.0,
+      "p_value": 0.083333,
+      "bootstrap_95ci": {
+        "mean": 0.989,
+        "ci_lower": 1.0,
+        "ci_upper": 1.0
+      }
+    },
+    "dose_response": null
+  },
+  {
+    "method": "B5_emperor_mitigation",
+    "mae": {
+      "value": 0.0,
+      "bootstrap_95ci": {
+        "mean": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0
+      }
+    },
+    "coverage_95": 1.0,
+    "coverage_80": 1.0,
+    "coverage_50": 1.0,
+    "sharpness_95": 0.375,
+    "sharpness_80": 0.25,
+    "sharpness_50": 0.11249999999999999,
+    "kendall_tau": {
+      "tau": 1.0,
+      "p_value": 0.083333,
+      "bootstrap_95ci": {
+        "mean": 0.989,
+        "ci_lower": 1.0,
+        "ci_upper": 1.0
+      }
+    },
+    "dose_response": null
+  },
+  {
+    "method": "B6_dcr_fuzzy",
+    "mae": {
+      "value": 0.0,
+      "bootstrap_95ci": {
+        "mean": 0.0,
+        "ci_lower": 0.0,
+        "ci_upper": 0.0
+      }
+    },
+    "coverage_95": 1.0,
+    "coverage_80": 1.0,
+    "coverage_50": 1.0,
+    "sharpness_95": 0.375,
+    "sharpness_80": 0.25,
+    "sharpness_50": 0.11249999999999999,
+    "kendall_tau": {
+      "tau": 1.0,
+      "p_value": 0.083333,
+      "bootstrap_95ci": {
+        "mean": 0.989,
+        "ci_lower": 1.0,
+        "ci_upper": 1.0
+      }
+    },
+    "dose_response": null
+  }
+]

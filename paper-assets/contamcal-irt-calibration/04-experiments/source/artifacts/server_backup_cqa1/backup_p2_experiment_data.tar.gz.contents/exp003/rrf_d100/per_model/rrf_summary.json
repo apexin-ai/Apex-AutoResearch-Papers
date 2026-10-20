@@ -1,0 +1,121 @@
+{
+  "Llama-3.2-3B_d100_s42": {
+    "mmlu": {
+      "count": 14042,
+      "exposure_mean": 0.02485898463721918,
+      "exposure_std": 0.05715259745286955
+    },
+    "gsm8k": {
+      "count": 1319,
+      "exposure_mean": 0.18001770358851027,
+      "exposure_std": 0.16915622635508332
+    },
+    "arc_challenge": {
+      "count": 1172,
+      "exposure_mean": 0.18025851748023766,
+      "exposure_std": 0.1596604696986748
+    }
+  },
+  "Qwen2.5-0.5B_d100_s123": {
+    "mmlu": {
+      "count": 14042,
+      "exposure_mean": 0.05158884419216881,
+      "exposure_std": 0.09441242016676608
+    },
+    "gsm8k": {
+      "count": 1319,
+      "exposure_mean": 0.15617180576351056,
+      "exposure_std": 0.13957821022641273
+    },
+    "arc_challenge": {
+      "count": 1172,
+      "exposure_mean": 0.20018117446888778,
+      "exposure_std": 0.16826649320547948
+    }
+  },
+  "Qwen2.5-0.5B_d100_s42": {
+    "mmlu": {
+      "count": 14042,
+      "exposure_mean": 0.04673333278867697,
+      "exposure_std": 0.08596527626624864
+    },
+    "gsm8k": {
+      "count": 1319,
+      "exposure_mean": 0.14369888555301458,
+      "exposure_std": 0.13298742149738327
+    },
+    "arc_challenge": {
+      "count": 1172,
+      "exposure_mean": 0.17280662962144522,
+      "exposure_std": 0.15213362047998527
+    }
+  },
+  "Qwen2.5-1.5B_d100_s123": {
+    "mmlu": {
+      "count": 14042,
+      "exposure_mean": 0.04792896116850239,
+      "exposure_std": 0.08804523353223564
+    },
+    "gsm8k": {
+      "count": 1319,
+      "exposure_mean": 0.16666607063960842,
+      "exposure_std": 0.15034000931607813
+    },
+    "arc_challenge": {
+      "count": 1172,
+      "exposure_mean": 0.2105654393291734,
+      "exposure_std": 0.1755957322271021
+    }
+  },
+  "Qwen2.5-1.5B_d100_s42": {
+    "mmlu": {
+      "count": 14042,
+      "exposure_mean": 0.04803001430846313,
+      "exposure_std": 0.08819686117792214
+    },
+    "gsm8k": {
+      "count": 1319,
+      "exposure_mean": 0.14902650304882223,
+      "exposure_std": 0.1401709563504702
+    },
+    "arc_challenge": {
+      "count": 1172,
+      "exposure_mean": 0.18746091066555667,
+      "exposure_std": 0.16037952796892124
+    }
+  },
+  "Qwen2.5-3B_d100_a32_s123": {
+    "mmlu": {
+      "count": 14042,
+      "exposure_mean": 0.038164500519704554,
+      "exposure_std": 0.07600113128419111
+    },
+    "gsm8k": {
+      "count": 1319,
+      "exposure_mean": 0.16186772941003216,
+      "exposure_std": 0.14879498898636276
+    },
+    "arc_challenge": {
+      "count": 1172,
+      "exposure_mean": 0.1799561302153541,
+      "exposure_std": 0.15157390563354048
+    }
+  },
+  "Qwen2.5-3B_d100_a32_s42": {
+    "mmlu": {
+      "count": 14042,
+      "exposure_mean": 0.04913827248548241,
+      "exposure_std": 0.09453665045760985
+    },
+    "gsm8k": {
+      "count": 1319,
+      "exposure_mean": 0.16119514973604515,
+      "exposure_std": 0.14503075166859064
+    },
+    "arc_challenge": {
+      "count": 1172,
+      "exposure_mean": 0.18921203868812006,
+      "exposure_std": 0.15588637234882607
+    }
+  }
+}

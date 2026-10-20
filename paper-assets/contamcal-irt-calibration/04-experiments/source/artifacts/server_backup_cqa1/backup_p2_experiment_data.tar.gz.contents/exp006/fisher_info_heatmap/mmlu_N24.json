@@ -1,0 +1,20 @@
+{
+  "condition_id": "mmlu_N24",
+  "benchmark": "mmlu",
+  "n_models": 24,
+  "n_reps_ok": 200,
+  "n_reps_failed": 0,
+  "gamma_true": 0.5,
+  "gamma_mean_avg": 0.5124,
+  "gamma_mean_std": 0.0302,
+  "gamma_bias_avg": 0.0124,
+  "gamma_rmse": 0.0327,
+  "ci95_width_avg": 0.105,
+  "ci95_width_std": 0.0057,
+  "ci95_width_q025": 0.095,
+  "ci95_width_q975": 0.1159,
+  "coverage_rate": 0.89,
+  "power_rate": 1.0,
+  "elapsed_sec": 814.2,
+  "sec_per_rep": 4.1
+}

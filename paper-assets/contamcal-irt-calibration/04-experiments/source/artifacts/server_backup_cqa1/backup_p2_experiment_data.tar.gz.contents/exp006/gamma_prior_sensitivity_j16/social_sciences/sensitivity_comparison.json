@@ -1,0 +1,98 @@
+{
+  "tight_05": {
+    "prior": "tight_05",
+    "stan_file": "contam_irt_2pl_gamma_tight.stan",
+    "n_models": 16,
+    "n_items": 2000,
+    "gamma": {
+      "mean": -0.5412,
+      "median": -0.5391,
+      "sd": 0.2131,
+      "q025": -0.9554,
+      "q975": -0.1293,
+      "p_negative": 0.9935
+    },
+    "diagnostics": {
+      "max_rhat": 1.0083,
+      "rhat_ok": true,
+      "min_ess": 1472.5,
+      "ess_ok": true,
+      "divergent_count": 0,
+      "divergent_pct": 0.0,
+      "divergent_ok": true,
+      "total_draws": 4000,
+      "all_ok": true
+    },
+    "ppp": {
+      "overall_ppp": 0.6577,
+      "obs_mean_acc": 0.7198,
+      "pred_mean_acc": 0.7207,
+      "residual_mae": 0.0214
+    },
+    "fit_time_sec": 603.6
+  },
+  "baseline_10": {
+    "prior": "baseline_10",
+    "stan_file": "contam_irt_2pl_gamma.stan",
+    "n_models": 16,
+    "n_items": 2000,
+    "gamma": {
+      "mean": -0.6274,
+      "median": -0.6266,
+      "sd": 0.226,
+      "q025": -1.0729,
+      "q975": -0.1923,
+      "p_negative": 0.9968
+    },
+    "diagnostics": {
+      "max_rhat": 1.0063,
+      "rhat_ok": true,
+      "min_ess": 1465.2,
+      "ess_ok": true,
+      "divergent_count": 0,
+      "divergent_pct": 0.0,
+      "divergent_ok": true,
+      "total_draws": 4000,
+      "all_ok": true
+    },
+    "ppp": {
+      "overall_ppp": 0.7215,
+      "obs_mean_acc": 0.7198,
+      "pred_mean_acc": 0.7211,
+      "residual_mae": 0.0215
+    },
+    "fit_time_sec": 596.3
+  },
+  "loose_20": {
+    "prior": "loose_20",
+    "stan_file": "contam_irt_2pl_gamma_loose.stan",
+    "n_models": 16,
+    "n_items": 2000,
+    "gamma": {
+      "mean": -0.6538,
+      "median": -0.6554,
+      "sd": 0.2307,
+      "q025": -1.0981,
+      "q975": -0.2074,
+      "p_negative": 0.9985
+    },
+    "diagnostics": {
+      "max_rhat": 1.0077,
+      "rhat_ok": true,
+      "min_ess": 1373.3,
+      "ess_ok": true,
+      "divergent_count": 0,
+      "divergent_pct": 0.0,
+      "divergent_ok": true,
+      "total_draws": 4000,
+      "all_ok": true
+    },
+    "ppp": {
+      "overall_ppp": 0.744,
+      "obs_mean_acc": 0.7198,
+      "pred_mean_acc": 0.7212,
+      "residual_mae": 0.0216
+    },
+    "fit_time_sec": 603.0
+  }
+}

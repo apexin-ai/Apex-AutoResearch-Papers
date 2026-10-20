@@ -1,0 +1,20 @@
+{
+  "mode": "synthetic_validation",
+  "true_gamma": 0.5,
+  "estimated_gamma_mean": 0.3408,
+  "estimated_gamma_sd": 0.1322,
+  "gamma_bias": -0.1592,
+  "gamma_rel_bias": 0.3183,
+  "theta_corr": 0.8766,
+  "a_corr": 0.4203,
+  "b_corr": 0.7138,
+  "diagnostics": {
+    "divergent_count": 0,
+    "divergent_pct": 0.0,
+    "max_rhat": 1.00565,
+    "min_ess_bulk": 1415.7,
+    "total_draws": 4000,
+    "chains": 4
+  },
+  "elapsed_sec": 62.0
+}

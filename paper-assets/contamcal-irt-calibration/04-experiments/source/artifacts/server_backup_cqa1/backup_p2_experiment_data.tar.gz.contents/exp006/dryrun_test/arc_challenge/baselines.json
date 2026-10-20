@@ -1,0 +1,203 @@
+{
+  "B0_raw": {
+    "calibrated_scores": [
+      0.25,
+      0.65,
+      0.65,
+      0.75
+    ],
+    "ci_lower": [
+      0.11186170140766569,
+      0.43285427668523624,
+      0.43285427668523624,
+      0.531299122381256
+    ],
+    "ci_upper": [
+      0.468700877618744,
+      0.818808175898918,
+      0.818808175898918,
+      0.8881382985923343
+    ],
+    "ci_80_lower": [
+      0.14818790611051608,
+      0.5067311635134781,
+      0.5067311635134781,
+      0.610244416555134
+    ],
+    "ci_80_upper": [
+      0.3897555834448662,
+      0.7705027427532927,
+      0.7705027427532927,
+      0.851812093889484
+    ],
+    "ci_50_lower": [
+      0.19074443518853387,
+      0.5754533508375914,
+      0.5754533508375914,
+      0.6796239796244341
+    ],
+    "ci_50_upper": [
+      0.3203760203755658,
+      0.7178743758239488,
+      0.7178743758239488,
+      0.8092555648114661
+    ],
+    "compute_time_sec": 0.0,
+    "method_name": "B0_raw",
+    "description": "Raw accuracy (no adjustment)"
+  },
+  "B1_remove_rescore": {
+    "calibrated_scores": [
+      0.25,
+      0.65,
+      0.65,
+      0.75
+    ],
+    "ci_lower": [
+      0.05,
+      0.45,
+      0.45,
+      0.5487500000000001
+    ],
+    "ci_upper": [
+      0.45,
+      0.85,
+      0.85,
+      0.9
+    ],
+    "ci_80_lower": [
+      0.1,
+      0.5,
+      0.5,
+      0.6
+    ],
+    "ci_80_upper": [
+      0.4,
+      0.8,
+      0.8,
+      0.85
+    ],
+    "ci_50_lower": [
+      0.2,
+      0.55,
+      0.55,
+      0.7
+    ],
+    "ci_50_upper": [
+      0.3,
+      0.7,
+      0.7,
+      0.8
+    ],
+    "n_kept": 20,
+    "n_removed": 0,
+    "threshold": 0.0,
+    "compute_time_sec": 0.1,
+    "method_name": "B1_remove_rescore",
+    "description": "Remove flagged items and rescore"
+  },
+  "B4_linear_regression": {
+    "method_name": "B4_linear_regression",
+    "error": "Cannot calculate a linear regression if all x values are identical"
+  },
+  "B5_emperor_mitigation": {
+    "calibrated_scores": [
+      0.25,
+      0.65,
+      0.65,
+      0.75
+    ],
+    "ci_lower": [
+      0.05,
+      0.45,
+      0.45,
+      0.5487500000000001
+    ],
+    "ci_upper": [
+      0.45,
+      0.85,
+      0.85,
+      0.9
+    ],
+    "ci_80_lower": [
+      0.1,
+      0.5,
+      0.5,
+      0.6
+    ],
+    "ci_80_upper": [
+      0.4,
+      0.8,
+      0.8,
+      0.85
+    ],
+    "ci_50_lower": [
+      0.2,
+      0.55,
+      0.55,
+      0.7
+    ],
+    "ci_50_upper": [
+      0.3,
+      0.7,
+      0.7,
+      0.8
+    ],
+    "compute_time_sec": 0.1,
+    "method_name": "B5_emperor_mitigation",
+    "description": "Emperor's mitigation (rephrasing + option shuffling)"
+  },
+  "B6_dcr_fuzzy": {
+    "calibrated_scores": [
+      0.25,
+      0.65,
+      0.65,
+      0.75
+    ],
+    "ci_lower": [
+      0.05,
+      0.45,
+      0.45,
+      0.5487500000000001
+    ],
+    "ci_upper": [
+      0.45,
+      0.85,
+      0.85,
+      0.9
+    ],
+    "ci_80_lower": [
+      0.1,
+      0.5,
+      0.5,
+      0.6
+    ],
+    "ci_80_upper": [
+      0.4,
+      0.8,
+      0.8,
+      0.85
+    ],
+    "ci_50_lower": [
+      0.2,
+      0.55,
+      0.55,
+      0.7
+    ],
+    "ci_50_upper": [
+      0.3,
+      0.7,
+      0.7,
+      0.8
+    ],
+    "dcr_factors": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "compute_time_sec": 0.3,
+    "method_name": "B6_dcr_fuzzy",
+    "description": "DCR fuzzy inference (EMNLP 2025)"
+  }
+}

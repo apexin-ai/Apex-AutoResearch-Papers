@@ -1,0 +1,24 @@
+{
+  "exclusion_rate": 0.5,
+  "n_items_total": 7021,
+  "n_items_fit": 2000,
+  "mean_exposure": 0.0637,
+  "mean_acc": 0.5952,
+  "gamma": {
+    "mean": 0.242,
+    "sd": 0.1835,
+    "q025": -0.1013,
+    "q975": 0.5949
+  },
+  "tau_kendall": 0.5464,
+  "mae": 0.0087,
+  "ppp": 0.13,
+  "residual_mae": 0.0087,
+  "diagnostics": {
+    "max_rhat": 1.0165,
+    "min_ess": 779.9,
+    "divergent_count": 0,
+    "all_ok": false
+  },
+  "fit_time_sec": 485.5
+}

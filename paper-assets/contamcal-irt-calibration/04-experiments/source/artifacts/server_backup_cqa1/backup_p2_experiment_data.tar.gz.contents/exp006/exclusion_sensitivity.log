@@ -1,0 +1,211 @@
+2026-05-18 00:05:12,092 [INFO] Skipping dir (scale mismatch): Llama-3.2-3B_d000_s42_aligned
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Llama-3.2-3B_d005_s42_aligned
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Llama-3.2-3B_d025_s42_aligned
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Llama-3.2-3B_d100_s42_aligned
+2026-05-18 00:05:12,093 [WARNING] Skipping unrecognized dir: Qwen2.5-0.5B-Instruct
+2026-05-18 00:05:12,093 [WARNING] Skipping unrecognized dir: Qwen2.5-0.5B-Instruct_aligned
+2026-05-18 00:05:12,093 [WARNING] Skipping unrecognized dir: Qwen2.5-0.5B_base_pretrained_aligned
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s123
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s123_aligned
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s42
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s42_aligned
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s42_v2
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s123_aligned
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s42
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s42_aligned
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s123_aligned
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s42_aligned
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s123_aligned
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s42
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s42_aligned
+2026-05-18 00:05:12,093 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_aligned
+2026-05-18 00:05:12,093 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_para_aligned
+2026-05-18 00:05:12,093 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B_base_pretrained
+2026-05-18 00:05:12,093 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_aligned
+2026-05-18 00:05:12,093 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_para_aligned
+2026-05-18 00:05:12,093 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_aligned
+2026-05-18 00:05:12,093 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_para_aligned
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_s123_aligned
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_s42
+2026-05-18 00:05:12,093 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_s42_a32_aligned
+2026-05-18 00:05:12,093 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_s42_v3_aligned
+2026-05-18 00:05:12,094 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED
+2026-05-18 00:05:12,094 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED
+2026-05-18 00:05:12,094 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s123_aligned
+2026-05-18 00:05:12,094 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_v2_s42_aligned
+2026-05-18 00:05:12,094 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d005_s123_aligned
+2026-05-18 00:05:12,094 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d005_s123_gsm8k_rerun
+2026-05-18 00:05:12,094 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_a32_aligned
+2026-05-18 00:05:12,094 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_aligned
+2026-05-18 00:05:12,094 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED
+2026-05-18 00:05:12,094 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d025_s123_aligned
+2026-05-18 00:05:12,094 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d025_v2_aligned
+2026-05-18 00:05:12,094 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d025_v3_s42_aligned
+2026-05-18 00:05:12,094 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d100_a32_s123_aligned
+2026-05-18 00:05:12,094 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d100_a32_s42_aligned
+2026-05-18 00:05:12,094 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d100_v1_s42_aligned_DEPRECATED
+2026-05-18 00:05:12,094 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d100_v2_s123_aligned
+2026-05-18 00:05:12,094 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d100_v2_s42_aligned
+2026-05-18 00:05:12,094 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_raw
+2026-05-18 00:05:12,094 [INFO] Dedup: 11 -> 8 models (alpha preference)
+2026-05-18 00:05:12,094 [INFO] Found 8 model evaluations
+2026-05-18 00:05:12,320 [INFO] Benchmarks: ['mmlu']
+2026-05-18 00:05:12,506 [INFO] Pool scale 1.5B: 8 models, dosages=[0, 0, 5, 5, 25, 25, 100, 100]
+2026-05-18 00:05:12,509 [WARNING] Skipping unrecognized dir: Qwen2.5-0.5B-Instruct
+2026-05-18 00:05:12,509 [WARNING] Skipping unrecognized dir: Qwen2.5-0.5B-Instruct_aligned
+2026-05-18 00:05:12,509 [WARNING] Skipping unrecognized dir: Qwen2.5-0.5B_base_pretrained_aligned
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s123
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s123_aligned
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s42
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s42_aligned
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d000_s42_v2
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s123_aligned
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s42
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d005_s42_aligned
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s123_aligned
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d025_s42_aligned
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s123_aligned
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s42
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-0.5B_d100_s42_aligned
+2026-05-18 00:05:12,509 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_aligned
+2026-05-18 00:05:12,509 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B-Instruct_para_aligned
+2026-05-18 00:05:12,509 [WARNING] Skipping unrecognized dir: Qwen2.5-1.5B_base_pretrained
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d000_s123
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d000_s123_aligned
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d000_s42
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d000_s42_aligned
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d005_s123_aligned
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d005_s42_aligned
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d025_s123_aligned
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d025_s42_aligned
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d100_s123_aligned
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d100_s42
+2026-05-18 00:05:12,509 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d100_s42_aligned
+2026-05-18 00:05:12,509 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_aligned
+2026-05-18 00:05:12,509 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_para_aligned
+2026-05-18 00:05:12,509 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_aligned
+2026-05-18 00:05:12,509 [WARNING] Skipping unrecognized dir: Qwen2.5-3B-Instruct_v2_para_aligned
+2026-05-18 00:05:12,509 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_s42_v3_aligned
+2026-05-18 00:05:12,509 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s123_DEPRECATED
+2026-05-18 00:05:12,509 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d000_v1_s42_aligned_DEPRECATED
+2026-05-18 00:05:12,509 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d005_s123_gsm8k_rerun
+2026-05-18 00:05:12,509 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d005_v1_s42_aligned_DEPRECATED
+2026-05-18 00:05:12,509 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d025_v2_aligned
+2026-05-18 00:05:12,510 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_d100_v1_s42_aligned_DEPRECATED
+2026-05-18 00:05:12,510 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_raw
+2026-05-18 00:05:12,510 [INFO] Replacing Qwen2.5-3B_d000_s42 with alpha variant Qwen2.5-3B_d000_s42_a32_aligned
+2026-05-18 00:05:12,510 [INFO] Skipping Qwen2.5-3B_d000_v2_s42_aligned (alpha variant Qwen2.5-3B_d000_s42_a32_aligned preferred)
+2026-05-18 00:05:12,510 [INFO] Skipping Qwen2.5-3B_d005_s42_aligned (alpha variant Qwen2.5-3B_d005_s42_a32_aligned preferred)
+2026-05-18 00:05:12,510 [INFO] Skipping Qwen2.5-3B_d100_v2_s123_aligned (alpha variant Qwen2.5-3B_d100_a32_s123_aligned preferred)
+2026-05-18 00:05:12,510 [INFO] Skipping Qwen2.5-3B_d100_v2_s42_aligned (alpha variant Qwen2.5-3B_d100_a32_s42_aligned preferred)
+2026-05-18 00:05:12,510 [INFO] Dedup: 18 -> 12 models (alpha preference)
+2026-05-18 00:05:12,510 [INFO] Found 12 model evaluations
+2026-05-18 00:05:12,728 [INFO] Benchmarks: ['mmlu']
+2026-05-18 00:05:12,973 [INFO] Pool scale 3B: 12 models, dosages=[0, 5, 25, 100, 0, 0, 5, 5, 25, 25, 100, 100]
+2026-05-18 00:05:13,175 [INFO] Loaded 13 models x 14042 items
+2026-05-18 00:05:13,175 [INFO]   Qwen2.5-1.5B_d000_s123 (dosage=0)
+2026-05-18 00:05:13,175 [INFO]   Qwen2.5-1.5B_d000_s42 (dosage=0)
+2026-05-18 00:05:13,175 [INFO]   Qwen2.5-1.5B_d005_s123_aligned (dosage=5)
+2026-05-18 00:05:13,175 [INFO]   Qwen2.5-1.5B_d005_s42_aligned (dosage=5)
+2026-05-18 00:05:13,175 [INFO]   Qwen2.5-1.5B_d025_s123_aligned (dosage=25)
+2026-05-18 00:05:13,175 [INFO]   Qwen2.5-1.5B_d025_s42_aligned (dosage=25)
+2026-05-18 00:05:13,175 [INFO]   Qwen2.5-1.5B_d100_s123_aligned (dosage=100)
+2026-05-18 00:05:13,175 [INFO]   Qwen2.5-1.5B_d100_s42 (dosage=100)
+2026-05-18 00:05:13,175 [INFO]   Qwen2.5-3B_d005_s123_aligned (dosage=5)
+2026-05-18 00:05:13,175 [INFO]   Qwen2.5-3B_d025_s123_aligned (dosage=25)
+2026-05-18 00:05:13,175 [INFO]   Qwen2.5-3B_d025_v3_s42_aligned (dosage=25)
+2026-05-18 00:05:13,175 [INFO]   Qwen2.5-3B_d100_a32_s123_aligned (dosage=100)
+2026-05-18 00:05:13,175 [INFO]   Qwen2.5-3B_d100_a32_s42_aligned (dosage=100)
+2026-05-18 00:05:13,181 [INFO] ============================================================
+2026-05-18 00:05:13,181 [INFO] Exclusion rate: 0% -> 14042 items kept (fitting 2000)
+2026-05-18 00:05:13,181 [INFO] Mean exposure of kept items: 0.0390
+2026-05-18 00:05:13,182 [INFO] Compiling Stan model: contam_irt_2pl_gamma.stan
+2026-05-18 00:05:13,222 [INFO] Fitting: 13 models x 2000 items, 2 chains x 1000 samples
+2026-05-18 00:05:13,306 [INFO] CmdStan start processing
+chain 1:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][Achain 1:   0%|[33m          [0m| 1/2000 [00:00<04:31,  7.37it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 1/2000 [00:00<04:32,  7.35it/s, (Warmup)][A
+chain 2:   5%|[33m▌         [0m| 100/2000 [00:35<11:10,  2.83it/s, (Warmup)][Achain 1:   5%|[33m▌         [0m| 100/2000 [00:40<12:46,  2.48it/s, (Warmup)]chain 1:  10%|[33m█         [0m| 200/2000 [01:04<09:11,  3.26it/s, (Warmup)]
+chain 2:  10%|[33m█         [0m| 200/2000 [01:08<10:14,  2.93it/s, (Warmup)][Achain 1:  15%|[33m█▌        [0m| 300/2000 [01:28<07:51,  3.60it/s, (Warmup)]
+chain 2:  15%|[33m█▌        [0m| 300/2000 [01:34<08:38,  3.28it/s, (Warmup)][Achain 1:  20%|[33m██        [0m| 400/2000 [01:50<06:45,  3.94it/s, (Warmup)]
+chain 2:  20%|[33m██        [0m| 400/2000 [01:56<07:10,  3.71it/s, (Warmup)][Achain 1:  25%|[33m██▌       [0m| 500/2000 [02:13<06:06,  4.09it/s, (Warmup)]
+chain 2:  25%|[33m██▌       [0m| 500/2000 [02:16<06:09,  4.06it/s, (Warmup)][Achain 1:  30%|[33m███       [0m| 600/2000 [02:34<05:26,  4.28it/s, (Warmup)]
+chain 2:  30%|[33m███       [0m| 600/2000 [02:37<05:24,  4.31it/s, (Warmup)][Achain 1:  35%|[33m███▌      [0m| 700/2000 [02:56<04:57,  4.36it/s, (Warmup)]
+chain 2:  35%|[33m███▌      [0m| 700/2000 [02:58<04:54,  4.42it/s, (Warmup)][Achain 1:  40%|[33m████      [0m| 800/2000 [03:18<04:32,  4.41it/s, (Warmup)]
+chain 2:  40%|[33m████      [0m| 800/2000 [03:21<04:30,  4.43it/s, (Warmup)][Achain 1:  45%|[33m████▌     [0m| 900/2000 [03:40<04:08,  4.42it/s, (Warmup)]
+chain 2:  45%|[33m████▌     [0m| 900/2000 [03:42<04:05,  4.48it/s, (Warmup)][A
+chain 2:  50%|[33m█████     [0m| 1000/2000 [04:05<03:42,  4.49it/s, (Warmup)][A
+chain 2:  50%|[34m█████     [0m| 1000/2000 [04:05<03:42,  4.49it/s, (Sampling)][A
+chain 2:  50%|[34m█████     [0m| 1001/2000 [04:05<03:42,  4.50it/s, (Sampling)][Achain 1:  50%|[33m█████     [0m| 1000/2000 [04:07<03:58,  4.19it/s, (Warmup)]chain 1:  50%|[34m█████     [0m| 1000/2000 [04:07<03:58,  4.19it/s, (Sampling)]chain 1:  50%|[34m█████     [0m| 1001/2000 [04:07<03:58,  4.19it/s, (Sampling)]
+chain 2:  55%|[34m█████▌    [0m| 1100/2000 [04:27<03:22,  4.44it/s, (Sampling)][Achain 1:  55%|[34m█████▌    [0m| 1100/2000 [04:30<03:32,  4.24it/s, (Sampling)]
+chain 2:  60%|[34m██████    [0m| 1200/2000 [04:50<03:01,  4.40it/s, (Sampling)][Achain 1:  60%|[34m██████    [0m| 1200/2000 [04:53<03:07,  4.27it/s, (Sampling)]
+chain 2:  65%|[34m██████▌   [0m| 1300/2000 [05:14<02:40,  4.37it/s, (Sampling)][Achain 1:  65%|[34m██████▌   [0m| 1300/2000 [05:17<02:43,  4.28it/s, (Sampling)]
+chain 2:  70%|[34m███████   [0m| 1400/2000 [05:37<02:18,  4.34it/s, (Sampling)][Achain 1:  70%|[34m███████   [0m| 1400/2000 [05:41<02:21,  4.24it/s, (Sampling)]
+chain 2:  75%|[34m███████▌  [0m| 1500/2000 [06:00<01:55,  4.32it/s, (Sampling)][Achain 1:  75%|[34m███████▌  [0m| 1500/2000 [06:04<01:57,  4.27it/s, (Sampling)]
+chain 2:  80%|[34m████████  [0m| 1600/2000 [06:24<01:32,  4.32it/s, (Sampling)][Achain 1:  80%|[34m████████  [0m| 1600/2000 [06:27<01:33,  4.29it/s, (Sampling)]
+chain 2:  85%|[34m████████▌ [0m| 1700/2000 [06:47<01:09,  4.32it/s, (Sampling)][Achain 1:  85%|[34m████████▌ [0m| 1700/2000 [06:50<01:09,  4.31it/s, (Sampling)]
+chain 2:  90%|[34m█████████ [0m| 1800/2000 [07:10<00:46,  4.33it/s, (Sampling)][Achain 1:  90%|[34m█████████ [0m| 1800/2000 [07:13<00:46,  4.32it/s, (Sampling)]
+chain 2:  95%|[34m█████████▌[0m| 1900/2000 [07:33<00:23,  4.33it/s, (Sampling)][Achain 1:  95%|[34m█████████▌[0m| 1900/2000 [07:36<00:23,  4.33it/s, (Sampling)]
+chain 2: 100%|[34m██████████[0m| 2000/2000 [07:56<00:00,  4.31it/s, (Sampling)][Achain 1: 100%|[34m██████████[0m| 2000/2000 [07:59<00:00,  4.33it/s, (Sampling)]chain 1: 100%|[34m██████████[0m| 2000/2000 [07:59<00:00,  4.33it/s, (Sampling completed)]chain 1: 100%|[34m██████████[0m| 2000/2000 [07:59<00:00,  4.17it/s, (Sampling completed)]
+
+chain 2: 100%|[34m██████████[0m| 2000/2000 [07:59<00:00,  4.31it/s, (Sampling completed)][Achain 2: 100%|[34m██████████[0m| 2000/2000 [07:59<00:00,  4.17it/s, (Sampling completed)]
+                                                                                                                                                                2026-05-18 00:13:12,787 [INFO] CmdStan done processing.
+2026-05-18 00:13:16,873 [INFO] Sampling completed in 483.7s
+2026-05-18 00:15:05,312 [INFO] [0%] gamma=0.1277 [-0.3807, 0.6317], tau=0.4602, MAE=0.0098, Rhat=1.0154, time=484s
+2026-05-18 00:15:05,314 [INFO] ============================================================
+2026-05-18 00:15:05,314 [INFO] Exclusion rate: 30% -> 9830 items kept (fitting 2000)
+2026-05-18 00:15:05,314 [INFO] Mean exposure of kept items: 0.0516
+2026-05-18 00:15:05,315 [INFO] Compiling Stan model: contam_irt_2pl_gamma.stan
+2026-05-18 00:15:05,349 [INFO] Fitting: 13 models x 2000 items, 2 chains x 1000 samples
+2026-05-18 00:15:05,397 [INFO] CmdStan start processing
+
+chain 1:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A
+chain 2:   0%|[33m          [0m| 1/2000 [00:00<04:08,  8.06it/s, (Warmup)][Achain 1:   0%|[33m          [0m| 1/2000 [00:00<04:09,  8.02it/s, (Warmup)]chain 1:   5%|[33m▌         [0m| 100/2000 [00:40<12:52,  2.46it/s, (Warmup)]
+chain 2:   5%|[33m▌         [0m| 100/2000 [00:40<12:54,  2.45it/s, (Warmup)][Achain 1:  10%|[33m█         [0m| 200/2000 [01:05<09:27,  3.17it/s, (Warmup)]
+chain 2:  10%|[33m█         [0m| 200/2000 [01:08<09:55,  3.02it/s, (Warmup)][Achain 1:  15%|[33m█▌        [0m| 300/2000 [01:30<08:04,  3.51it/s, (Warmup)]
+chain 2:  15%|[33m█▌        [0m| 300/2000 [01:30<07:59,  3.55it/s, (Warmup)][Achain 1:  20%|[33m██        [0m| 400/2000 [01:51<06:48,  3.91it/s, (Warmup)]
+chain 2:  20%|[33m██        [0m| 400/2000 [01:53<06:53,  3.87it/s, (Warmup)][Achain 1:  25%|[33m██▌       [0m| 500/2000 [02:12<05:59,  4.17it/s, (Warmup)]
+chain 2:  25%|[33m██▌       [0m| 500/2000 [02:14<06:04,  4.12it/s, (Warmup)][Achain 1:  30%|[33m███       [0m| 600/2000 [02:34<05:24,  4.32it/s, (Warmup)]
+chain 2:  30%|[33m███       [0m| 600/2000 [02:35<05:24,  4.31it/s, (Warmup)][Achain 1:  35%|[33m███▌      [0m| 700/2000 [02:54<04:47,  4.52it/s, (Warmup)]
+chain 2:  35%|[33m███▌      [0m| 700/2000 [02:57<04:57,  4.37it/s, (Warmup)][Achain 1:  40%|[33m████      [0m| 800/2000 [03:16<04:23,  4.55it/s, (Warmup)]
+chain 2:  40%|[33m████      [0m| 800/2000 [03:20<04:33,  4.39it/s, (Warmup)][Achain 1:  45%|[33m████▌     [0m| 900/2000 [03:38<04:01,  4.55it/s, (Warmup)]
+chain 2:  45%|[33m████▌     [0m| 900/2000 [03:41<04:05,  4.48it/s, (Warmup)][Achain 1:  50%|[33m█████     [0m| 1000/2000 [03:58<03:36,  4.62it/s, (Warmup)]chain 1:  50%|[34m█████     [0m| 1000/2000 [03:59<03:36,  4.62it/s, (Sampling)]chain 1:  50%|[34m█████     [0m| 1001/2000 [03:59<03:35,  4.63it/s, (Sampling)]
+chain 2:  50%|[33m█████     [0m| 1000/2000 [04:02<03:38,  4.57it/s, (Warmup)][A
+chain 2:  50%|[34m█████     [0m| 1000/2000 [04:02<03:38,  4.57it/s, (Sampling)][A
+chain 2:  50%|[34m█████     [0m| 1001/2000 [04:02<03:38,  4.57it/s, (Sampling)][Achain 1:  55%|[34m█████▌    [0m| 1100/2000 [04:21<03:19,  4.51it/s, (Sampling)]
+chain 2:  55%|[34m█████▌    [0m| 1100/2000 [04:25<03:21,  4.46it/s, (Sampling)][Achain 1:  60%|[34m██████    [0m| 1200/2000 [04:45<03:00,  4.42it/s, (Sampling)]
+chain 2:  60%|[34m██████    [0m| 1200/2000 [04:49<03:02,  4.39it/s, (Sampling)][A2026-05-18 00:20:08,909 [ERROR] Chain [1] error: code '-15' Unknown error -15
+2026-05-18 00:20:08,909 [ERROR] Chain [2] error: code '-15' Unknown error -15
+chain 1:  60%|[34m██████    [0m| 1200/2000 [05:03<03:00,  4.42it/s, (Sampling completed)]chain 1: 100%|[34m██████████[0m| 2000/2000 [05:03<00:00, 15.91it/s, (Sampling completed)]chain 1: 100%|[34m██████████[0m| 2000/2000 [05:03<00:00,  6.59it/s, (Sampling completed)]
+
+chain 2:  60%|[34m██████    [0m| 1200/2000 [05:03<03:02,  4.39it/s, (Sampling completed)][A
+chain 2: 100%|[34m██████████[0m| 2000/2000 [05:03<00:00, 16.91it/s, (Sampling completed)][Achain 2: 100%|[34m██████████[0m| 2000/2000 [05:03<00:00,  6.59it/s, (Sampling completed)]
+                                                                                                                                                                2026-05-18 00:20:08,911 [INFO] CmdStan done processing.
+
+Traceback (most recent call last):
+  File "/root/contamcal-irt-calibration/exp006/sensitivity_exclusion_rate.py", line 210, in <module>
+    main()
+  File "/root/contamcal-irt-calibration/exp006/sensitivity_exclusion_rate.py", line 206, in main
+    run_sensitivity(responses, rrf_exposure, dosages, models, n_items, OUTPUT_DIR)
+  File "/root/contamcal-irt-calibration/exp006/sensitivity_exclusion_rate.py", line 130, in run_sensitivity
+    fit, _ = fit_stan_model(
+             ^^^^^^^^^^^^^^^
+  File "/root/contamcal-irt-calibration/exp006/run_irt_calibration.py", line 333, in fit_stan_model
+    fit = model.sample(
+          ^^^^^^^^^^^^^
+  File "/root/miniconda3/lib/python3.12/site-packages/cmdstanpy/model.py", line 1180, in sample
+    raise RuntimeError(msg)
+RuntimeError: Error during sampling:
+
+Command and output files:
+RunSet: chains=2, chain_ids=[1, 2], num_processes=2
+ cmd (chain 1):
+	['/root/contamcal-irt-calibration/stan_models/contam_irt_2pl_gamma', 'id=1', 'random', 'seed=42', 'data', 'file=/root/autodl-tmp/tmp/tmp7jplgpar/g5hu2x05.json', 'output', 'file=/root/autodl-tmp/tmp/tmp7jplgpar/contam_irt_2pl_gammasjqg73zk/contam_irt_2pl_gamma-20260518001505_1.csv', 'method=sample', 'num_samples=1000', 'num_warmup=1000', 'algorithm=hmc', 'engine=nuts', 'max_depth=12', 'adapt', 'engaged=1', 'delta=0.95']
+ retcodes=[-15, -15]
+ per-chain output files (showing chain 1 only):
+ csv_file:
+	/root/autodl-tmp/tmp/tmp7jplgpar/contam_irt_2pl_gammasjqg73zk/contam_irt_2pl_gamma-20260518001505_1.csv
+ console_msgs (if any):
+	/root/autodl-tmp/tmp/tmp7jplgpar/contam_irt_2pl_gammasjqg73zk/contam_irt_2pl_gamma-20260518001505_0-stdout.txt
+Consider re-running with show_console=True if the above output is unclear!

@@ -1,0 +1,82 @@
+2026-05-15 01:08:27,446 [INFO] Loading eval results from /root/autodl-tmp/exp001/eval_results
+2026-05-15 01:08:27,447 [INFO] Skipping dir (seed mismatch): Qwen2.5-0.5B_d000_s123
+2026-05-15 01:08:27,447 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d000_s123
+2026-05-15 01:08:27,447 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d000_s42
+2026-05-15 01:08:27,447 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d000_s42_aligned
+2026-05-15 01:08:27,447 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d005_s42_aligned
+2026-05-15 01:08:27,447 [INFO] Skipping dir (scale mismatch): Qwen2.5-1.5B_d100_s42
+2026-05-15 01:08:27,447 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_s123
+2026-05-15 01:08:27,447 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_s42
+2026-05-15 01:08:27,447 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d000_s42_aligned
+2026-05-15 01:08:27,447 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d005_s42_aligned
+2026-05-15 01:08:27,447 [INFO] Skipping dir (scale mismatch): Qwen2.5-3B_d100_s42_aligned
+2026-05-15 01:08:27,447 [WARNING] Skipping unrecognized dir: Qwen2.5-3B_raw
+2026-05-15 01:08:27,447 [INFO] Found 6 model evaluations
+2026-05-15 01:08:27,469 [INFO] Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge', 'humaneval']
+2026-05-15 01:08:27,933 [INFO] Models: 6 | Benchmarks: ['mmlu', 'gsm8k', 'arc_challenge', 'humaneval']
+2026-05-15 01:08:27,933 [INFO] Dosages: [0, 0, 5, 5, 25, 100]
+2026-05-15 01:08:27,933 [INFO] 
+============================================================
+2026-05-15 01:08:27,933 [INFO] BENCHMARK: mmlu
+2026-05-15 01:08:27,933 [INFO] ============================================================
+2026-05-15 01:08:27,934 [INFO] --- IRT Calibration (4pl_gamma) ---
+2026-05-15 01:08:27,934 [INFO] === mmlu: 6 models x 14042 items ===
+2026-05-15 01:08:27,934 [INFO] Mean accuracy: 0.322
+2026-05-15 01:08:27,936 [INFO] Compiling Stan model: contam_irt_4pl_simple.stan
+2026-05-15 01:08:27,968 [INFO] Fitting: 6 models x 14042 items, 4 chains x 1000 samples
+2026-05-15 01:08:28,168 [INFO] CmdStan start processing
+chain 1:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A
+
+chain 3:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A
+
+
+chain 4:   0%|[33m          [0m| 0/2000 [00:00<?, ?it/s, (Warmup)][A[A[Achain 1:   0%|[33m          [0m| 1/2000 [00:00<11:38,  2.86it/s, (Warmup)]
+chain 2:   0%|[33m          [0m| 1/2000 [00:00<11:40,  2.85it/s, (Warmup)][A
+
+chain 3:   0%|[33m          [0m| 1/2000 [00:00<11:42,  2.85it/s, (Warmup)][A[A
+
+
+chain 4:   0%|[33m          [0m| 1/2000 [00:00<11:42,  2.85it/s, (Warmup)][A[A[Achain 1:   5%|[33m▌         [0m| 100/2000 [14:17<4:32:28,  8.60s/it, (Warmup)]
+chain 2:   5%|[33m▌         [0m| 100/2000 [17:28<5:32:50, 10.51s/it, (Warmup)][A
+
+chain 3:   5%|[33m▌         [0m| 100/2000 [18:27<5:51:42, 11.11s/it, (Warmup)][A[Achain 1:  10%|[33m█         [0m| 200/2000 [19:22<2:39:50,  5.33s/it, (Warmup)]
+chain 2:  10%|[33m█         [0m| 200/2000 [22:05<2:58:37,  5.95s/it, (Warmup)][A
+
+chain 3:  10%|[33m█         [0m| 200/2000 [23:47<3:13:32,  6.45s/it, (Warmup)][A[Achain 1:  15%|[33m█▌        [0m| 300/2000 [24:25<2:01:12,  4.28s/it, (Warmup)]
+chain 2:  15%|[33m█▌        [0m| 300/2000 [27:01<2:09:58,  4.59s/it, (Warmup)][A
+
+
+chain 4:   5%|[33m▌         [0m| 100/2000 [27:45<8:48:54, 16.70s/it, (Warmup)][A[A[A
+
+chain 3:  15%|[33m█▌        [0m| 300/2000 [28:18<2:14:19,  4.74s/it, (Warmup)][A[Achain 1:  20%|[33m██        [0m| 400/2000 [29:21<1:40:15,  3.76s/it, (Warmup)]
+chain 2:  20%|[33m██        [0m| 400/2000 [31:42<1:43:33,  3.88s/it, (Warmup)][A
+
+
+chain 4:  10%|[33m█         [0m| 200/2000 [32:32<4:16:43,  8.56s/it, (Warmup)][A[A[A
+
+chain 3:  20%|[33m██        [0m| 400/2000 [33:01<1:46:17,  3.99s/it, (Warmup)][A[Achain 1:  25%|[33m██▌       [0m| 500/2000 [36:31<1:38:52,  3.96s/it, (Warmup)]
+chain 2:  25%|[33m██▌       [0m| 500/2000 [37:00<1:30:47,  3.63s/it, (Warmup)][A
+
+
+chain 4:  15%|[33m█▌        [0m| 300/2000 [37:37<2:51:10,  6.04s/it, (Warmup)][A[A[A
+
+chain 3:  25%|[33m██▌       [0m| 500/2000 [37:49<1:29:39,  3.59s/it, (Warmup)][A[A
+chain 2:  30%|[33m███       [0m| 600/2000 [41:05<1:15:18,  3.23s/it, (Warmup)][Achain 1:  30%|[33m███       [0m| 600/2000 [41:19<1:23:43,  3.59s/it, (Warmup)]
+
+
+chain 4:  20%|[33m██        [0m| 400/2000 [41:33<2:02:16,  4.59s/it, (Warmup)][A[A[A
+
+chain 3:  30%|[33m███       [0m| 600/2000 [42:27<1:17:20,  3.31s/it, (Warmup)][A[A
+chain 2:  35%|[33m███▌      [0m| 700/2000 [45:34<1:06:09,  3.05s/it, (Warmup)][Achain 1:  35%|[33m███▌      [0m| 700/2000 [45:51<1:11:37,  3.31s/it, (Warmup)]
+
+
+chain 4:  25%|[33m██▌       [0m| 500/2000 [46:08<1:38:05,  3.92s/it, (Warmup)][A[A[A
+
+chain 3:  35%|[33m███▌      [0m| 700/2000 [46:57<1:07:27,  3.11s/it, (Warmup)][A[A
+chain 2:  40%|[33m████      [0m| 800/2000 [50:25<1:00:07,  3.01s/it, (Warmup)][A
+
+
+chain 4:  30%|[33m███       [0m| 600/2000 [50:33<1:21:29,  3.49s/it, (Warmup)][A[A[Achain 1:  40%|[33m████      [0m| 800/2000 [50:52<1:04:13,  3.21s/it, (Warmup)]
+
+chain 3:  40%|[33m████      [0m| 800/2000 [51:23<59:21,  2.97s/it, (Warmup)]  [A[A

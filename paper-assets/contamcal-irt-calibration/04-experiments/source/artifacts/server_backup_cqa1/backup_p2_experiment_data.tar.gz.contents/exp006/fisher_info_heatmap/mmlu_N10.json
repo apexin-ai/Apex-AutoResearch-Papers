@@ -1,0 +1,20 @@
+{
+  "condition_id": "mmlu_N10",
+  "benchmark": "mmlu",
+  "n_models": 10,
+  "n_reps_ok": 200,
+  "n_reps_failed": 0,
+  "gamma_true": 0.5,
+  "gamma_mean_avg": 0.5133,
+  "gamma_mean_std": 0.0425,
+  "gamma_bias_avg": 0.0133,
+  "gamma_rmse": 0.0445,
+  "ci95_width_avg": 0.1667,
+  "ci95_width_std": 0.0095,
+  "ci95_width_q025": 0.1467,
+  "ci95_width_q975": 0.1858,
+  "coverage_rate": 0.94,
+  "power_rate": 1.0,
+  "elapsed_sec": 352.4,
+  "sec_per_rep": 1.8
+}
