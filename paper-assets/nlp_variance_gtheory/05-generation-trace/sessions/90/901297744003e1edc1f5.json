@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "901297744003e1edc1f5",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis unbundled permutation test",
+  "task_key": "worker_analysis_unbundled_permutation_test_20260522T101608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_unbundled_permutation_test_20260522T101608_result.json",
+    "occurrence": 1,
+    "bytes": 311,
+    "sha256": "3053805122c6514415c72fa8bd83e521f178df186ab3404405303fe8ecd71c9d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存。\n\n- **Permutation test**: p = 0.10（观测差 16.25 是 10 种排列中最极端的，n=5 时理论最小 p 即为 0.10）\n- **Cohen's d**: 4.84 [2.32, 8.19]，CI 完全在正区间，效应量极大——unbundled item_id% 在 MC 与 FF 之间的差异方向一致且稳健"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-unbundled-permutation-test.md"
+}

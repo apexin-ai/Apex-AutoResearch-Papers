@@ -1,0 +1,81 @@
+{
+  "schema_version": "1.0",
+  "id": "4fc281b82484958ff54a",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "infra fix pytorch blackwell",
+  "task_key": "worker_infra_fix_pytorch_blackwell_20260520T163838",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix_pytorch_blackwell_20260520T163838.log",
+    "occurrence": 1,
+    "bytes": 1465732,
+    "sha256": "da9b20b09a2435fb244ac8072a9acbd6d09b974ee7449035e06e5a758c2c931e"
+  },
+  "statistics": {
+    "messages": 1247,
+    "user_turns": 1,
+    "tool_calls": 361,
+    "roles": {
+      "log": 1,
+      "system": 187,
+      "record": 1,
+      "assistant": 322,
+      "tool_call": 361,
+      "tool_result": 361,
+      "user": 1,
+      "result": 13
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 924,
+      "chunks": [
+        {
+          "path": "4fc281b82484958ff54a-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fc281b82484958ff54a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fc281b82484958ff54a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fc281b82484958ff54a-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fc281b82484958ff54a-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "4fc281b82484958ff54a-part-0006.json",
+          "message_count": 24
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 323,
+      "chunks": [
+        {
+          "path": "4fc281b82484958ff54a-part-0006.json",
+          "message_count": 156
+        },
+        {
+          "path": "4fc281b82484958ff54a-part-0007.json",
+          "message_count": 167
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-fix-pytorch-blackwell.md"
+}

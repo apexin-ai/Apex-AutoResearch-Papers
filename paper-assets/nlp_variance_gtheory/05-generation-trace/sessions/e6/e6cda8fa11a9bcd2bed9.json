@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e6cda8fa11a9bcd2bed9",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra move model cache",
+  "task_key": "worker_infra_move_model_cache_20260520T195623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_move_model_cache_20260520T195623_result.json",
+    "occurrence": 1,
+    "bytes": 399,
+    "sha256": "a9d7d83507c203828eb95346105ddb0cd055aa754e8f33cc04fc3bb6959c552d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "迁移完成。\n\n- **根分区**: 91% → **41%** (18G free，释放了 15G)\n- **数据盘**: 10% (318G free)\n- Symlink: `/root/nlp_variance_gtheory/models/.hf_cache` → `/root/autodl-tmp/.hf_cache`\n\n数据盘已有的 `LLM-Research/Meta-Llama-3___1-8B-Instruct` 和 `models--meta-llama--Llama-3.1-8B-Instruct` 两份模型均保留，项目代码通过 symlink 透明访问。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-move-model-cache.md"
+}

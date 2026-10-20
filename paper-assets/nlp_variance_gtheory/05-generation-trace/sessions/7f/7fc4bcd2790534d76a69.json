@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7fc4bcd2790534d76a69",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis dstudy bootstrap ci propagation",
+  "task_key": "worker_analysis_dstudy_bootstrap_ci_propagation_20260522T031753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dstudy_bootstrap_ci_propagation_20260522T031753_result.json",
+    "occurrence": 1,
+    "bytes": 1491,
+    "sha256": "8a1b9ad10ad87fd9a62f3c88d583f69e37f80db618ce0ea7bdabe8819c4a344c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Done. Results summary:\n\n| Benchmark | Multi n(G≥0.80) | 95% CI | Single n(G≥0.80) | 95% CI | Ratio | 95% CI |\n|-----------|-----------------|--------|-------------------|--------|-------|--------|\n| MMLU | 93 | [76, 116] | 1216 | [1004, 1491] | 13.1× | [12.5, 13.7] |\n| ARC | 98 | [71, 139] | 1078 | [793, 1512] | 11.0× | [10.7, 11.4] |\n| HellaSwag | 118 | [93, 151] | 1403 | [1120, 1790] | 11.9× | [11.5, 12.3] |\n| GSM8K | 128 | [103, 162] | 2768 | [2230, 3531] | 21.6× | [20.7, 23.0] |\n| MATH | 101 | [86, 122] | 2160 | [1853, 2631] | 21.4× | [20.2, 22.5] |\n\n**Verification**: ARC/HellaSwag/GSM8K/MATH point estimates match expected values exactly. Aggregates: MC ratio mean = 12.0× [11.6, 12.5], FF ratio mean = 21.5× [20.4, 22.8].\n\n**MMLU note**: The expected MMLU values (multi=55, single=552) are from the original single-model 6-facet study (precision×temp×prompt×seed×ordering = 3×3×6×6×4). The 8-model G-study uses a different facet structure (model=8, temp=2, prompt=6, seed=6, ordering=4 → 2304 conditions), giving multi=93 and single=1216.\n\n**Key takeaway for the paper**: The ratio CIs are tight — even the lowest CI bound across all benchmarks (ARC: 10.7×) far exceeds 1×, strongly supporting the \"order-of-magnitude fewer items\" claim. The reviewer's concern is addressed.\n\nOutput saved to:\n- Server: `results/exp004_8model_analysis/dstudy_bootstrap_ci.json`\n- Local: `artifacts/exp004/data/dstudy_bootstrap_ci.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dstudy-bootstrap-ci-propagation.md"
+}

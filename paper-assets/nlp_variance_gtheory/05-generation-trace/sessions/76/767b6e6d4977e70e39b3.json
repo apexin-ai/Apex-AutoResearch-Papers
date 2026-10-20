@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "767b6e6d4977e70e39b3",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code delete orphan bib",
+  "task_key": "worker_code_delete_orphan_bib_20260522T130237",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_delete_orphan_bib_20260522T130237_result.json",
+    "occurrence": 1,
+    "bytes": 226,
+    "sha256": "b08d50f5771b6a2c71274d8d87097b6e5e37ab907fce2c9509ad588d746834d9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "无实质性 warning 或 error。\n\n**结果汇总：**\n- 删除前 bib 条目数：**46**\n- 删除后 bib 条目数：**45**（`embretson2000irt` 已移除）\n- 编译结果：**成功，无 warning/error**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-delete-orphan-bib.md"
+}

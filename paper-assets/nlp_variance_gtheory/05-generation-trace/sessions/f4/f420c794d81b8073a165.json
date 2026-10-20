@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f420c794d81b8073a165",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis g model calculation",
+  "task_key": "worker_analysis_g_model_calculation_20260523T030205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_g_model_calculation_20260523T030205_result.json",
+    "occurrence": 1,
+    "bytes": 1066,
+    "sha256": "87b33f599fa90bef781c8971d313f6cfec8c820fc6272f62ca2f3d6926cdacf8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "计算完成。结果摘要：\n\n| Benchmark | G_model | G_item | σ²_rel_M 主导来源 |\n|-----------|---------|--------|-------------------|\n| MMLU | 0.8626 | 0.8962 | model×prompt (59%) |\n| ARC | **0.6708** | 0.8917 | model×prompt (88%) |\n| HellaSwag | **0.9576** | 0.8716 | model×item (76%) |\n| GSM8K | 0.8745 | 0.8629 | model×prompt (92%) |\n| MATH | **0.9569** | 0.8880 | model×prompt (72%) |\n\n核心发现：\n\n1. **G_item 稳定（0.86–0.90），G_model 差异极大（0.67–0.96）**——item 难度测量一致可靠，但模型排序可靠性因 benchmark 而异。\n\n2. **ARC 的 G_model 仅 0.67**——model×prompt 交互占相对误差的 88%，prompt 选择严重改变模型排名。GSM8K 类似（92%）但因 σ²(model) 更大而 G_model 仍有 0.87。\n\n3. **HellaSwag/MATH G_model > 0.95**——这两个 benchmark 在区分模型方面非常可靠，误差主要来自 model×item（模型对不同题目的反应差异），而非 prompt 选择。\n\nJSON 已保存并注册（`art_20260523_fd4e91`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-g-model-calculation.md"
+}

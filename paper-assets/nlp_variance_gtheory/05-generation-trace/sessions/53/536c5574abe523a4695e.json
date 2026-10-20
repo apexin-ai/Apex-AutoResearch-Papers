@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "536c5574abe523a4695e",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix reml dedup processes",
+  "task_key": "worker_fix_reml_dedup_processes_20260521T061805",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_reml_dedup_processes_20260521T061805_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "0a208d3a185b5fa20e40a55d9d13eaf488341ff6703f61f0bef4d9bad8d65399"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n1. **101666 和 101757** — 已成功 kill（SIGTERM，未需 force kill）\n2. **102750** — 存活，已运行 4m27s，当前 iter 140，Δ=7.64e-03，收敛正常\n3. **日志正常** — sig2e 稳定在 0.051517，total variance 从 0.2025 → 0.2111 逐步收敛，约 3s/iter，500 iter 预计还需 ~18 分钟\n\n**注意：发现额外 REML 进程** — PID **102937** 运行的是 `run_reml_500_v2.py`（不同于 102750 的 `run_reml_500.py`）。如果这也是重复的，需要一并清理。是否 kill 102937？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-reml-dedup-processes.md"
+}

@@ -1,0 +1,135 @@
+{
+  "schema_version": "1.0",
+  "id": "63ffa5a5b928c37bd947",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "code exp002 analysis pipeline",
+  "task_key": "worker_code_exp002_analysis_pipeline_20260521T100021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002_analysis_pipeline_20260521T100021.log",
+    "occurrence": 1,
+    "bytes": 1178529,
+    "sha256": "1f9d2fd4dab787f0e08432059afefa6b1687fe9d400e81c42b6a25fc9b8ff4d0"
+  },
+  "statistics": {
+    "messages": 659,
+    "user_turns": 7,
+    "tool_calls": 221,
+    "roles": {
+      "log": 1,
+      "system": 152,
+      "record": 1,
+      "assistant": 55,
+      "tool_call": 221,
+      "user": 7,
+      "tool_result": 221,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "63ffa5a5b928c37bd947-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 44,
+      "chunks": [
+        {
+          "path": "63ffa5a5b928c37bd947-part-0001.json",
+          "message_count": 44
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 18,
+      "chunks": [
+        {
+          "path": "63ffa5a5b928c37bd947-part-0001.json",
+          "message_count": 18
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 134,
+      "chunks": [
+        {
+          "path": "63ffa5a5b928c37bd947-part-0001.json",
+          "message_count": 111
+        },
+        {
+          "path": "63ffa5a5b928c37bd947-part-0002.json",
+          "message_count": 23
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 45,
+      "chunks": [
+        {
+          "path": "63ffa5a5b928c37bd947-part-0002.json",
+          "message_count": 45
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 93,
+      "chunks": [
+        {
+          "path": "63ffa5a5b928c37bd947-part-0002.json",
+          "message_count": 93
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "boundary": "recorded_user_message",
+      "message_count": 189,
+      "chunks": [
+        {
+          "path": "63ffa5a5b928c37bd947-part-0002.json",
+          "message_count": 19
+        },
+        {
+          "path": "63ffa5a5b928c37bd947-part-0003.json",
+          "message_count": 170
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "boundary": "recorded_user_message",
+      "message_count": 129,
+      "chunks": [
+        {
+          "path": "63ffa5a5b928c37bd947-part-0003.json",
+          "message_count": 10
+        },
+        {
+          "path": "63ffa5a5b928c37bd947-part-0004.json",
+          "message_count": 119
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp002-analysis-pipeline.md"
+}

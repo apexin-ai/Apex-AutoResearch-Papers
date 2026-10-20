@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af4eb09701c9cbff7e10",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops 72b watchdog check",
+  "task_key": "worker_ops_72b_watchdog_check_20260522T113623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_72b_watchdog_check_20260522T113623_result.json",
+    "occurrence": 1,
+    "bytes": 961,
+    "sha256": "54aa5e918f054b1293886f6ea321c088d80f238857b993f017c2d075d84d9883"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| 3B 推理 | 完成 (57,600 条) |\n| 7B 推理 | 完成 (57,600 条) |\n| 72B 下载 | 进行中，22/37 分片，81GB/~140GB |\n| 下载速度 | ~350-720 KB/s，预计还需 ~20-30 小时 |\n| Watchdog v2 (PID 232345) | 已到 poll 120/120，即将退出 |\n| **Watchdog v3 (PID 249737)** | **已部署**，每 5 分钟检查一次，下载完成后自动启动 TP=4 推理 |\n| 磁盘 | /root/autodl-tmp 284G/350G used (67G free)，够用 |\n\n**采取的行动：** 部署了 watchdog v3 接替即将过期的 v2。v3 通过两个条件检测下载完成：(1) `/tmp/download_72b.log` 中出现 DONE 信号，(2) safetensors 文件数达到 37 个（fallback）。触发后自动启动 72B 推理。\n\n**风险提示：** 下载速度极慢（AutoDL 代理瓶颈），按当前速率需 20-30 小时完成剩余 ~60GB。磁盘空间足够（67G free，72B 模型还需 ~60G）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-72b-watchdog-check.md"
+}

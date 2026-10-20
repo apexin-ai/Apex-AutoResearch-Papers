@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ca7141454e8fa1b27f62",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "paper figure",
+  "task_key": "worker_paper_figure_20260521T173555",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_20260521T173555_result.json",
+    "occurrence": 1,
+    "bytes": 565,
+    "sha256": "0705666d90a1d4cc831793e9721fae7a7af07cba12c74a28f485628ebcc04fe1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 3 已生成并注册。\n\n**产出文件：**\n- PDF: `figures/paper/fig3_dstudy_curves.pdf`\n- PNG: `figures/paper/fig3_dstudy_curves.png`\n- 脚本: `figures/paper/gen_fig3_dstudy_curves.py`\n\n**验证点全部通过：**\n| 设计点 | 计算值 | 预期值 |\n|--------|--------|--------|\n| Multi-facet @ 72 items | 0.800 | 0.800 |\n| Multi-facet @ 200 items | 0.917 | 0.918 |\n| Single-cond @ 200 items | 0.559 | 0.559 |\n| Single-cond @ 631 items | 0.800 | 0.800 |\n| IRT rec @ 116 items | 0.424 | ~0.424 |\n| Ratio | 8.8× | ~8.8× |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-copy-2.md"
+}

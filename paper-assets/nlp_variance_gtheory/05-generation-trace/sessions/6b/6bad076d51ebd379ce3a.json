@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6bad076d51ebd379ce3a",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp pilot collect v2",
+  "task_key": "worker_exp_pilot_collect_v2_20260520T235226",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_pilot_collect_v2_20260520T235226_result.json",
+    "occurrence": 1,
+    "bytes": 239,
+    "sha256": "883c24feaf3c7a4500843581a1cd37d7509e038c1221fa8028b2acad9f5fcfe4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- GPU 0: 3,400 records\n- GPU 1: 1,600 records  \n- GPU 2: 1,200 records\n- GPU 3: 1,200 records\n- 总计: 7,400/20,000 (37%)\n\nGPU 0 进度领先，GPU 2/3 略慢。15 分钟后回来检查完成状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-pilot-collect-v2.md"
+}

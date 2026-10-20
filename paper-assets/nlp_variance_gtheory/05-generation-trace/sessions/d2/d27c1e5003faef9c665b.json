@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d27c1e5003faef9c665b",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops 72b download check v4",
+  "task_key": "worker_ops_72b_download_check_v4_20260522T141725",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_72b_download_check_v4_20260522T141725_result.json",
+    "occurrence": 1,
+    "bytes": 440,
+    "sha256": "bee9a5390a9cb299c57b822579403b9b5a944329f08228b76eb5ed5504d94e41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**72B 下载进度：**\n\n| 指标 | 状态 |\n|------|------|\n| 已完成 shard | **29 / 37**（78%） |\n| 磁盘占用 | **107 GB** |\n| 下载活跃 | **是** — PID 229326 (modelscope snapshot_download)，已运行 ~9 小时，CPU 7.3% |\n| incomplete 文件 | 无 |\n\n缺失 shard：28, 31, 32, 33, 34, 35, 36, 37。Watchdog（PID 255069）在后台每 5 分钟轮询，下载完成后会自动启动 TP=4 推理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-72b-download-check-v4.md"
+}

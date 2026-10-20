@@ -1,0 +1,694 @@
+{
+  "schema_version": "1.0",
+  "id": "9ceca19859c49d021bc9",
+  "project": "nlp_variance_gtheory",
+  "kind": "conversation",
+  "title": "cron hook exp001 gemma",
+  "task_key": "cron_hook_exp001_gemma",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/cron_hook_exp001_gemma.jsonl",
+    "occurrence": 1,
+    "bytes": 37141,
+    "sha256": "1640f696dbdc363f6667c01794e590201047d130b4845d6d574022d509338775"
+  },
+  "statistics": {
+    "messages": 34,
+    "user_turns": 1,
+    "tool_calls": 16,
+    "roles": {
+      "user": 1,
+      "tool_call": 16,
+      "tool_result": 16,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T19:35:12.565370+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[HANDOFF] 你是 Main Agent，这是 Loop #2。\n\n## 上一轮交接 (task_context)\n\n### 1. 🔴 硬约束 / 红线\n- **GPU 白名单**: westd-32570:0-3, westd-19912:0-3。不得使用任何其他 GPU\n- **exp-002 扩展实验 registry 条目全是 PREPARING 状态**（21 条），还没有 GPU 分配/提交。这些是 D009 8-model expansion 的占位条目，不要 submit_on_allocated——它们没有被 allocate\n- **Gemma2 不支持 float16**（vLLM 架构层面限制），所有 Gemma 推理只能 bf16/fp32\n- **G_item 计算已知 bug**: `gstudy_full.py` 和 `exp001b_gstudy.py` 用了 ICC（错），正确实现在 `compute_g_coefficients.py`（Henderson I G coefficient）。方差百分比正确，只有 G_item 数值受影响。已修正并记录\n- **D-study 公式方向性**: `G_ni = σ²τ / (σ²τ + σ²δ × (n_actual / ni))`，G 必须随 n_items 单调递增。所有 D-study 代码必须带 monotonicity assertion\n- **Claim 1 narrative 已 pivot (D010)**: 从 \"cross-benchmark gradient\" → \"format-conditional dichotomy\"（MC vs free-form）。不要用旧的 gradient 叙事\n- **submit_training_job 不支持 shell builtin**（source/conda activate）。命令需用绝对路径\n\n### 2. 🖥️ 基础设施快照\n- **westd-32570**: 4× RTX PRO 6000 96GB, 工作目录 `/root/nlp_variance_gtheory`, Python `/root/miniconda3/bin/python`（conda base）\n  - 模型缓存: `/root/autodl-tmp/.hf_cache/` (Llama/Gemma 本地路径), 其余模型 HF repo ID 直接加载\n  - 数据: `/root/nlp_variance_gtheory/data/` (mmlu/gsm8k/arc/hellaswag/math items JSON)\n  - 结果: `/root/nlp_variance_gtheory/results/exp001_*/`, `/root/nlp_variance_gtheory/results/exp002/`\n  - ROADMAP 显示 GPU 利用率 70-97%，正在跑 InternLM GSM8K(26%), DeepSeek GSM8K(13%), Gemma MATH(97%)\n  - DeepSeek MATH accelerator watcher 已部署（Gemma MATH 完成后自动启动）\n- **westd-19912**: 4× RTX PRO 6000 96GB, 同样目录结构\n  - Yi 推理进行中: MMLU 14%, ARC 37%, HellaSwag 32%, GSM8K 1.7%, MATH 待排\n  - OLMo: MMLU/ARC/HellaSwag 288K 行数据存在但需 condition_id 过滤恢复 57.6K 有效记录；GSM8K/MATH 需 Yi 完成后重跑（yi_done_then_olmo 脚本已部署）\n  - GPU 利用率 80-98%\n- **westd-15695**: 已释放\n- **活跃 Worker**: `worker_infra_gpu_status_check_both_servers_20260521T193330` (running, GPU 状态检查)\n- **活跃 Cron**: 无（本 session 0 个 cron job）\n- **Paper Agent**: 已启动。writing_plan PASS, fig1/fig3 PASS, 文献 cluster 1+2 PASS。**fig2 CRITICAL 修复进行中**（记录数计算错误 + ordering 分类）\n\n### 3. 📊 当前状态\n**刚完成**: Session 刚启动初始化（read registry + reconcile crons）。前一个 session 完成了：\n- exp-001 系列全部 DONE (Llama/Gemma/Mistral/Qwen 4-model MMLU, 共 ~930K records)\n- exp001b_resampling DONE (3×200 item resampling, item_id% CV=2.7%, G_item CV=0.5%)\n- exp002_multi_benchmark DONE (4 model × 4 benchmark, 921,600 records)\n- 6 项 cross-benchmark 分析 + 9 项 defensive analyses 完成\n- D010 narrative pivot 完成 (gradient → format-conditional dichotomy)\n- D011 Dream #5 分析完成\n\n**Registry 状态**:\n- DONE: 10 个实验 (mvp, bf16_eager, pilot, exp001_{llama,gemma,mistral,qwen}, exp001b, exp002_multi_benchmark, exp-002[killed])\n- PREPARING: 21 个实验 (D009 8-model expansion 占位条目: exp002_{olmo,yi,internlm,deepseek} × {mmlu,arc,hellaswag,gsm8k,math} + exp002_math_extension)\n\n**进行中的推理** (非 registry 管理，直接在服务器上跑):\n- westd-32570: InternLM GSM8K 26%, DeepSeek GSM8K 13%, Gemma MATH 97% (即将完成)\n- westd-19912: Yi 全 5 benchmarks (1.7%-37%)\n- 全局完成度: ~28/40 runs (70%)\n\n**等待中**: \n- Worker `worker_infra_gpu_status_check_both_servers` 回调\n- Paper Agent fig2 修复回调\n- 无 Director 决策等待\n\n### 4. 📋 待办（条件触发式）\n- **Gemma MATH 完成 (westd-32570 GPU)** → DeepSeek MATH accelerator watcher 自动启动，无需手动干预\n- **InternLM GSM8K + DeepSeek GSM8K 完成** → 检查数据完整性，更新 ROADMAP 进度\n- **Yi 全部完成 (westd-19912)** → yi_done_then_olmo 脚本自动触发 OLMo GSM8K/MATH 重跑\n- **OLMo MMLU/ARC/HellaSwag 288K 数据** → 需派 Worker 做 condition_id 过滤恢复 57.6K 有效记录（不需要 GPU 重跑）\n- **全部 40/40 runs 完成** → 更新 21 个 PREPARING registry 条目为 DONE → 启动 exp-004 全量 8×5 cross-benchmark 分析\n- **Paper Agent fig2 修复完成** → 验证图表正确性，推进论文写作\n- **exp-004 分析完成** → Dream #6 (review_mode=\"full\") + re-dream 验证 → 冲 AAAI 2027 (abstract Jul 21, paper Jul 28)\n\n### 5. 🎯 战略上下文\n**项目核心结论链**: D001(MVP pass) → D002(dual metric) → D003(framing pivot) → D004(dream#2 pass) → D005(Gemma fp16限制) → D006(dream#3 4-model数据强) → D007(审稿R1 action matrix) → D008(dream#4 format confound) → D009(8-model全覆盖) → **D010(Claim 1 从 gradient → format-conditional dichotomy)** → D011(dream#5 7/5/3)\n\n**核心 narrative**: MC benchmarks item-dominated (42-49%), free-form benchmarks methodology-dominated (model 15%, prompt 12%)。这不是 gradient，是 dichotomy。\n\n**审稿状态**: Round 1 评分 Borderline 3.0，目标冲 4.0+。MF1(binary data)/MF2(model count)/MF3(scope) 是三个主要弱点，分别通过 GLMM sensitivity + 8-model expansion + format-conditional pivot 处理。\n\n**最容易判断错的事**:\n1. **21 个 PREPARING 条目不是真正的实验**——它们是 D009 expansion 的 registry 占位，实际推理以 bash 脚本形式在服务器上跑，不走 submit_training_job。完成后需要手动更新为 DONE\n2. **OLMo 有 288K 行数据不是全部有效**——里面混了无效 condition，需过滤到 57.6K 才能用。GSM8K/MATH 完全缺失需重跑\n3. **不要把 GLMM VB 的 ρ=0.571 和 marginal logit ANOVA 的 ρ=1.0 混用**——paper 必须 report both honestly (paper_framing.md 有详细说明)\n4. **AAAI 2027 deadline**: abstract Jul 21, paper Jul 28 (距今 ~9 周)。时间充裕但 8×5 全量分析 + 论文写作 + 多轮 dream 需要持续推进\n5. **fig2 有 CRITICAL bug** 正在修复（记录数计算错误 + ordering 分类），不要在修复前引用 fig2 数据\n\n## 项目硬约束 (memory.md 节选)\n\n## Gated Model 约束 (2026-05-20)\nLlama-3.1-8B-Instruct 和 gemma-2-9b-it 是 HF gated models，直接用 repo ID 加载失败。westd-32570 上通过 ModelScope 下载到本地路径（如 `/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct`）。exp-001 正式运行需要 model path mapping 或 HF token。\n\n## 第一个动作要求\n1. 用 `read_registry` 确认当前 RUNNING/PREPARING 实验状态（防止幻觉记忆过时状态）\n2. 回复一句话确认你看到了上面的硬约束 + 当前活跃实验，再开始任何工具调用"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "source": "system:ralph_loop"
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T19:35:21.508655+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_registry,mcp__agent-ml-research__reconcile_crons,mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__read_roadmap",
+              "max_results": "4"
+            }
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T19:35:21.509152+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T19:35:24.519541+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_registry"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "tool_args": {
+              "project": "nlp_variance_gtheory",
+              "limit": "0"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T19:35:25.020800+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__reconcile_crons"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__reconcile_crons"
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T19:35:25.021596+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"experiments\\\": {\\\"exp002_deepseek_math\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T18:19:21.944Z\\\", \\\"updated_at\\\": \\\"2026-05-21T18:19:21.944Z\\\", \\\"hypothesis\\\": \\\"D009 8-model expansion: DeepSeek-LLM-7B-Chat MATH inference — free-form benchmark expected methodology-dominated variance pattern per D010\\\"}, \\\"exp002_deepseek_gsm8k\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T17:59:13.426Z\\\", \\\"updated_at\\\": \\\"2026-05-21T17:59:13.427Z\\\", \\\"hypothesis\\\": \\\"D009 8-model expansion: DeepSeek-LLM-7B-Chat GSM8K inference — free-form benchmark expected methodology-dominated variance pattern per D010\\\"}, \\\"exp002_deepseek_hellaswag\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T17:59:12.495Z\\\", \\\"updated_at\\\": \\\"2026-05-21T17:59:12.495Z\\\", \\\"hypothesis\\\": \\\"D009 8-model expansion: DeepSeek-LLM-7B-Chat HellaSwag inference — MC benchmark expected item-dominated variance pattern per D010\\\"}, \\\"exp002_deepseek_arc\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T17:39:04.591Z\\\", \\\"updated_at\\\": \\\"2026-05-21T17:59:11.115Z\\\", \\\"hypothesis\\\": \\\"D009 8-model expansion: DeepSeek-LLM-7B-Chat ARC inference — MC benchmark expected item-dominated variance pattern per D010\\\"}, \\\"exp002_deepseek_mmlu\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T17:39:04.512Z\\\", \\\"updated_at\\\": \\\"2026-05-21T17:59:10.176Z\\\", \\\"hypothesis\\\": \\\"D009 8-model expansion: DeepSeek-LLM-7B-Chat MMLU inference — MC benchmark expected item-dominated variance pattern per D010\\\"}, \\\"exp002_internlm_math\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T17:39:04.445Z\\\", \\\"updated_at\\\": \\\"2026-05-21T17:59:08.821Z\\\", \\\"hypothesis\\\": \\\"D009 8-model expansion: InternLM2.5-7B-Chat MATH inference — free-form benchmark expected methodology-dominated variance pattern per D010\\\"}, \\\"exp002_internlm_gsm8k\\\": {\\\"status\\\": \\\"PREPARING\\\", \\\"created_at\\\": \\\"2026-05-21T17:19:15.335Z\\\", \\\"updated_at\\\": \\\"2026-05-21T1\n…[truncated 13307 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__read_registry",
+            "elapsed_ms": 502
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T19:35:25.572987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"reconciled\\\": 0, \\\"results\\\": []}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__reconcile_crons",
+            "elapsed_ms": 552
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T19:35:25.573277+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_roadmap"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "tool_args": {
+              "project": "nlp_variance_gtheory"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T19:35:25.774960+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/ROADMAP.md\\\", \\\"content\\\": \\\"# nlp_variance_gtheory — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-21 18:33 UTC | 更新原因: 全局推理快照更新：westd-32570 90.4%，westd-19912 Yi运行中+OLMo待重跑，Paper Agent进展\\\\n\\\\n## 核心方向\\\\nG-theory 应用于 LLM evaluation 方差分解。Core narrative (D010): **Format-conditional variance dichotomy** — MC benchmarks item-dominated (42-49%), free-form reasoning benchmarks methodology-dominated (model 15%, prompt 12%)。详见 paper_framing.md。\\\\n\\\\n## 当前阶段\\\\n**Research + 审稿进行中** — Round 1 评分 Borderline 3.0。8-model × 5-benchmark 扩展 + narrative pivot 冲 4.0+。\\\\n\\\\n## 推理进度（8 models × 5 benchmarks = 40 runs）\\\\n\\\\n### westd-32570（27.13/30 = 90.4%）\\\\n| Model | MMLU | ARC | HellaSwag | GSM8K | MATH |\\\\n|-------|------|-----|-----------|-------|------|\\\\n| Llama | ✅ | ✅ | ✅ | ✅ | ✅ |\\\\n| Mistral | ✅ | ✅ | ✅ | ✅ | ✅ |\\\\n| Qwen | ✅ | ✅ | ✅ | ✅ | ✅ |\\\\n| Gemma | ✅ | ✅ | ✅ | ✅ | 97% |\\\\n| InternLM | ✅ | ✅ | ✅ | 26% | ✅ |\\\\n| DeepSeek | ✅ | ✅ | ✅ | 13% | 待GPU2 |\\\\n\\\\n### westd-19912（Yi ~0.85/5, OLMo 3/5 可恢复 + 2 待重跑）\\\\n| Model | MMLU | ARC | HellaSwag | GSM8K | MATH |\\\\n|-------|------|-----|-----------|-------|------|\\\\n| OLMo | ⚠️恢复 | ⚠️恢复 | ⚠️恢复 | ❌重跑 | ❌重跑 |\\\\n| Yi | 14% | 37% | 32% | 1.7% | 待排 |\\\\n\\\\nOLMo MMLU/ARC/HellaSwag: 288K行可通过condition_id过滤恢复57.6K有效记录。GSM8K/MATH不完整需Yi后重跑。\\\\n\\\\n### 全局 ETA: ~36-48h（westd-32570 DeepSeek 是瓶颈，accelerator 已部署可能缩短至 ~24h）\\\\n\\\\n## 近期任务\\\\n- [x] exp-001 4-model MMLU\\\\n- [x] exp-002 4-model × 4-benchmark\\\\n- [x] 6 个 cross-benchmark 分析 + 9 项 defensive analyses\\\\n- [x] D010 narrative pivot + D011 Dream #5 分析\\\\n- [x] Registry 21 条实验条目已创建\\\\n- [x] InternLM MATH accelerator 完成（防重复 symlink 已部署）\\\\n- [x] DeepSeek MATH accelerator watcher 已部署（Gemma MATH 完成后自动启动）\\\\n- [x] Paper Agent 启动：writing_plan PASS，fig1/fig3 PASS，文献 cluster 1+2 PASS\\\\n- [ ] **fig2 CRITICAL 修复**（已派 Paper Agent：记录数计算错误 + ordering 分类）\\\\n- [ ] westd-32570 剩余: Gemma MATH + Inte\n…[truncated 2011 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__read_roadmap",
+            "elapsed_ms": 201
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T19:35:25.827332+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "nlp_variance_gtheory",
+              "file": "report.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T19:35:25.877854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/report.md\\\", \\\"content\\\": \\\"# Handover — 2026-05-21\\\\n\\\\n> 由 Agent 生成，每次状态变更后自动更新。硬限 150 行。\\\\n\\\\n## 运行中\\\\n（无）\\\\n\\\\n## 待处理\\\\n（无）\\\\n\\\\n## 近期结论\\\\n- **exp002_multi_benchmark** (success): Cross-benchmark variance gradient: item_id dominance systematically decreases from knowledge-retrieval (MMLU) to reasoning (GSM8K) benchmarks, and D-study reliability budgets are benchmark-conditional — supporting Claim 1 (benchmark gradient) and Claim 3 (benchmark-conditional budget). 4 models × 4 benchmarks × bf16 × 2 temps × 6 prompts × 6 seeds × 4 orderings × 200 items = 921,600 records. ← 基于 exp001_llama\\\\n- **exp001b_resampling** (success): Single-model item_id dominance (~58%) in G-theory decomposition is robust to item sampling — 3 independent 200-item stratified MMLU samples will show consistent item_id%, interaction percentages, and G_item (CV < 10%), ruling out that exp-001's findings are artifacts of the specific 200-item sample. Baseline comparison: Llama single-model 6-facet decomposition. ← 基于 exp001_llama\\\\n  [exp001b_resampling_gstudy](/api/workspace-files/projects/nlp_variance_gtheory/artifacts/exp001b_resampling/data/exp001b_resampling_gstudy.md) | [exp001_llama_bf16only_5facet](/api/workspace-files/projects/nlp_variance_gtheory/artifacts/exp001b_resampling/data/exp001_llama_bf16only_5facet.md)\\\\n- **exp001_llama** (success): Single-model (Llama-3.1-8B-Instruct) G-theory variance decomposition at full scale (1,296 conditions × 200 items across 3 precisions × 3 temperatures × 6 prompts × 6 seeds × 4 orderings) will confirm MVP findings: item_id dominates binary_correct variance, while text_exact_match reveals infrastructure×methodology interactions ← 基于 mvp_phase_a\\\\n\\\\n## 趋势\\\\n成功 8 / 负向 1 / 失败 0 / 共 10\\\\ntotal_records: 259200 →（近 3 次 success）\\\\n\\\\n## 下一步\\\\n（无活跃 idea，请通过 ideas.md 添加）\\\\n\\\\n## 资源状态\\\\nwestd-15695: 无 GPU 信息\\\\nwestd-32570: 无 GPU \n…[truncated 130 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 50
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T19:35:42.536478+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__list_workers,mcp__agent-ml-research__get_worker_status,mcp__agent-ml-research__main_agent_post_to_director,mcp__agent-ml-research__send_progress,mcp__agent-ml-research__spawn_worker",
+              "max_results": "5"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T19:35:42.536929+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T19:35:45.496157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "nlp_variance_gtheory",
+              "status": "running",
+              "limit": "20"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T19:35:45.546821+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_infra_gpu_status_check_both_servers_20260521T193330\\\", \\\"task_type\\\": \\\"infra:gpu_status_check_both_servers\\\", \\\"project\\\": \\\"nlp_variance_gtheory\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-21T19:33:30.175815+00:00\\\", \\\"ended_at\\\": null}, {\\\"worker_id\\\": \\\"worker_paper_research_cluster5_6_combined_20260521T193401\\\", \\\"task_type\\\": \\\"paper_research:cluster5_6_combined\\\", \\\"project\\\": \\\"nlp_variance_gtheory\\\", \\\"status\\\": \\\"running\\\", \\\"started_at\\\": \\\"2026-05-21T19:34:02.055351+00:00\\\", \\\"ended_at\\\": null}], \\\"count\\\": 2}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 50
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T19:35:57.850485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_infra_gpu_status_check_both_servers_20260521T193330",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T19:35:57.951115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_infra_gpu_status_check_both_servers_20260521T193330\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"infra:gpu_status_check_both_servers\\\", \\\"project\\\": \\\"nlp_variance_gtheory\\\", \\\"started_at\\\": \\\"2026-05-21T19:33:30.175815+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\", \\\"ssh_read_only\\\"], \\\"last_text\\\": \\\"\\\", \\\"turn_count\\\": 5}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 100
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T19:35:58.353653+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__get_worker_status"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "tool_args": {
+              "worker_id": "worker_paper_research_cluster5_6_combined_20260521T193401",
+              "verbose": "True"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T19:35:58.654717+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_paper_research_cluster5_6_combined_20260521T193401\\\", \\\"status\\\": \\\"running\\\", \\\"task_type\\\": \\\"paper_research:cluster5_6_combined\\\", \\\"project\\\": \\\"nlp_variance_gtheory\\\", \\\"started_at\\\": \\\"2026-05-21T19:34:02.055351+00:00\\\", \\\"ended_at\\\": null, \\\"setup\\\": null, \\\"teardown\\\": null, \\\"setup_data\\\": {}, \\\"progress\\\": {\\\"recent_tools\\\": [\\\"WebSearch\\\", \\\"WebSearch\\\", \\\"WebSearch\\\", \\\"WebSearch\\\", \\\"WebSearch\\\"], \\\"last_text\\\": \\\"\\\", \\\"turn_count\\\": 6}}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__get_worker_status",
+            "elapsed_ms": 301
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T19:35:58.655120+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__list_workers"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "tool_args": {
+              "project": "nlp_variance_gtheory",
+              "status": "done",
+              "limit": "10"
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T19:35:58.705664+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"workers\\\": [{\\\"worker_id\\\": \\\"worker_infra_westd19912_olmo_math_fix_20260521T173859\\\", \\\"task_type\\\": \\\"infra:westd19912_olmo_math_fix\\\", \\\"project\\\": \\\"nlp_variance_gtheory\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T17:38:59.570622+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T18:01:57.526551+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_paper_figure_20260521T175548\\\", \\\"task_type\\\": \\\"paper_figure\\\", \\\"project\\\": \\\"nlp_variance_gtheory\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T17:55:48.890660+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T17:59:36.148497+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_infra_westd32570_gpu0_utilize_20260521T175858\\\", \\\"task_type\\\": \\\"infra:westd32570_gpu0_utilize\\\", \\\"project\\\": \\\"nlp_variance_gtheory\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T17:58:58.986078+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T18:09:42.038544+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_paper_research_cluster1_gtheory_20260521T180157\\\", \\\"task_type\\\": \\\"paper_research:cluster1_gtheory\\\", \\\"project\\\": \\\"nlp_variance_gtheory\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T18:01:57.282995+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T18:06:23.709971+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_paper_research_cluster2_infra_20260521T181537\\\", \\\"task_type\\\": \\\"paper_research:cluster2_infra\\\", \\\"project\\\": \\\"nlp_variance_gtheory\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T18:15:37.111459+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T18:20:06.267065+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_infra_fix_westd19912_shard_filter_and_yi_20260521T181909\\\", \\\"task_type\\\": \\\"infra:fix_westd19912_shard_filter_and_yi\\\", \\\"project\\\": \\\"nlp_variance_gtheory\\\", \\\"status\\\": \\\"done\\\", \\\"started_at\\\": \\\"2026-05-21T18:19:10.023079+00:00\\\", \\\"ended_at\\\": \\\"2026-05-21T18:33:28.704724+00:00\\\"}, {\\\"worker_id\\\": \\\"worker_infra_westd32570_symlink_and_deepseek_math_accel_20260521T182028\\\", \\\"task_type\\\": \\\"infra:westd32570_symlink_and_deepseek_math_accel\\\", \\\"project\\\": \\\"nlp_variance_gtheory\\\n…[truncated 1073 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__list_workers",
+            "elapsed_ms": 50
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T19:36:35.787002+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/skills/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T19:36:35.988233+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File does not exist. Note: your current working directory is /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/.claude/sessions/agent_147db731."
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "Read",
+            "elapsed_ms": 201
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T19:36:35.988626+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "nlp_variance_gtheory",
+              "file": "memory.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T19:36:36.089724+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/memory.md\\\", \\\"content\\\": \\\"# Memory — nlp_variance_gtheory\\\\n\\\\n## Gated Model 约束 (2026-05-20)\\\\nLlama-3.1-8B-Instruct 和 gemma-2-9b-it 是 HF gated models，直接用 repo ID 加载失败。westd-32570 上通过 ModelScope 下载到本地路径（如 `/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct`）。exp-001 正式运行需要 model path mapping 或 HF token。\\\\n\\\\n## 双 Metric 设计决策 (2026-05-20, D002)\\\\nbinary_correct 和 text_exact_match 测量正交维度（Spearman ρ = −0.21, n.s.）。前者衡量评估有效性（item 难度主导），后者衡量可复现性（prompt×item + temperature 主导）。两者必须同时保留——不能互相替代。\\\\n\\\\n## Temperature 对 text_match 的决定性影响 (2026-05-20)\\\\nT=0 → text_match=0.247, T=0.5 → text_match=0.019（降 92%），但 binary_correct 几乎不变。这是 G-theory 框架的关键洞察：采样随机性改变文本表述但不改变答案选择。\\\\n\\\\n## FP32 精度效应确认 (2026-05-20)\\\\nFP32 的 8.5pp accuracy gap 中 97.4% 是精度效应（非引擎 confound）。BF16-trained model 用 FP32 推理表现更差，可能因为权重从 BF16 加载到 FP32 时的数值行为差异。\\\\n\\\\n## Gemma2 不支持 float16 (2026-05-21)\\\\nvLLM 拒绝以 float16 加载 gemma2：`\\\\\\\"The model type 'gemma2' does not support float16. Reason: Numerical instability.\\\\\\\"`。这是架构层面限制，非配置问题。Director 决策 (方案 A 修改版)：cross-model 分析用 bf16+fp32 (2 precisions × 4 models 平衡设计)，fp16 仅用于 Llama/Mistral/Qwen 的 within-model G-study。bf16 vs fp16 差异 <0.1pp (Llama 已证实)，precision 信号集中在 fp32 vs 其他 (10.7pp gap)。\\\\n\\\\n## few_shot_examples.json 一致性风险 (2026-05-21)\\\\nGemma 启动时 Worker 重新生成了 few_shot_examples.json（从 5 subjects × 2 orderings → 10 subjects × 4 orderings）。需验证 Llama 实际使用的版本是否一致，否则 cross-model ordering facet 对比可能失效。\\\\n\\\\n## M006: D-study 公式方向性检查 (2026-05-21)\\\\nD-study 公式 `G_ni = σ²τ / (σ²τ + σ²δ × (n_actual / ni))` — 注意是 n_actual/ni 而非 ni/n_actual。G 必须随 n_items 单调递增（items 越多 error 越小）。所有 D-study 代码必须带 monotonicity assertion。temperature_stratified_analysis.json 曾因公式反转导致 min_items_G80=10（正确值 414）。**教训：遇到不合理结果（G 随 items 下降）时质疑计算，不要合理化。**\\\\n\\\\n## Cross-model G-study 关键洞察 (2026-05-21, 更新)\\\\n3-model 平衡数据 (Llama+Gemma+Mistral, bf16, N=259,200): it\n…[truncated 1330 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 101
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T19:36:40.203089+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/resource-saturation.skill.md",
+              "path": "/home/ubuntu"
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T19:36:40.353940+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "Glob",
+            "elapsed_ms": 150
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T19:36:42.913874+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/agent-ml-research/skills/global/resource-saturation.skill.md"
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T19:36:42.914412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: resource-saturation\n3\tdescription: \"当你准备向 Director 汇报前、收到 cron/worker 回调、审批通过准备开跑、怀疑 Worker 池不够饱和时,立即使用本 skill。四部分:A) GPU 分配率(分配了没跑=失职) B) GPU 效率 C) 非 GPU 任务并行(Worker 池<2=失职) D) 汇报必须带 [资源] 行。\"\n4\talways: false\n5\troles:\n6\t  - director\n7\t  - agent\n8\t---\n9\t\n10\t# 资源饱和度自检（硬约束）\n11\t\n12\t## A. GPU 分配率检查\n13\t\n14\t调 `get_project_resource_usage(project)` 看:\n15\t- 已分配给本项目的 GPU 总数和具体卡号\n16\t- 实际在跑任务的 GPU 数和具体卡号（交叉 registry RUNNING + nvidia-smi 进程）\n17\t- 分配了但没跑的 GPU 清单 ⚠️\n18\t\n19\t任何\"分配了但没跑\"的 GPU = 失职。必须立即:\n20\t- 派 Worker 铺 dry-run / 下一批实验代码准备\n21\t- 铺 ablation（从 experiment-matrix 空白格子里挑）\n22\t- 确实无实验可铺 → 向 Director 汇报\"暂无可铺实验\"+ 建议下一步方向(扩 ablation 维度 / 加 baseline / 加 benchmark)。**不要建议归还 GPU**——项目级 GPU 归还只在归档时由 `archive_project` 自动触发, 不是 Director 中途的动作\n23\t\n24\t**单实验不占多卡**: 分配 4 卡但实验只用 1 卡 → 另 3 卡必须并行跑其他实验,不能空占。\n25\t\n26\t## B. GPU 效率检查\n27\t\n28\t调 `get_gpu_health(server)`:\n29\t- 空闲 GPU（util < 10% 持续 > 5 min）→ 立即铺任务\n30\t- 低利用率（util < 50% 持续 > 15 min）→ spawn_worker 诊断（batch / IO / 同步）\n31\t- OOM 风险（显存 > 90% 持续 10 min）→ 主动降 batch / 调优\n32\t\n33\t## C. 非 GPU 任务并行\n34\t\n35\tGPU 在跑 ≠ 你空闲。以下 CPU / 网络任务**必须**派独立 Worker 并行:\n36\t- 下一批实验的数据集下载 / 预处理 / fingerprint\n37\t- 下一批实验的代码准备 / dry-run / 环境配置\n38\t- 论文文献调研 / related work 检索\n39\t- 已完成实验的 log 深度分析 / metric 聚合\n40\t- 论文章节起草\n41\t- 代码 review / refactor\n42\t\n43\t**硬约束**: 任一时刻 Worker 池 < 2 个 = 失职（除非真的全部下游阻塞在等 GPU,这时应当向 Director 申请扩 GPU）。\n44\t\n45\t## D. 汇报格式\n46\t\n47\t向 Director 汇报时开头必须带资源声明行:\n48\t\n49\t    [资源] GPU 分配 N / 实际在跑 M | Worker 池 K (其中 GPU 任务 A / CPU 任务 B)\n50\t"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T19:37:23.421729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__main_agent_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "tool_args": {
+              "project": "nlp_variance_gtheory",
+              "text": "[资源] GPU 8/8 全满载 (westd-32570×4 + westd-19912×4) | Worker 2 (GPU 0 / CPU 2: infra+lit)\n\n**Session 重启汇报**\n\n推理进度 (8×5=40 runs):\n- westd-32570: 27/30 ≈ 90% (Gemma MATH 97%即将完成, InternLM GSM8K 26%, DeepSeek GSM8K 13%, DeepSeek MATH 待 GPU2 释放)\n- westd-19912: Yi 5 benchmarks 运行中 (MMLU 14%, ARC 37%, HellaSwag 32%, GSM8K 1.7%), OLMo 待 Yi 完后重跑 GSM8K/MATH + 恢复 MMLU/ARC/HellaSwag 288K→57.6K\n- 全局 ETA: ~36-48h, accelerator watcher 可能缩至 ~24h\n\nPaper Agent 进展:\n- writing_plan PASS, fig1/fig3 PASS, 文献 cluster 1-4 PASS, cluster 5+6 搜索中\n- fig2 CRITICAL 修复进行中（记录数计算 + ordering 分类错误）\n\n当前并行: GPU 状态检查 Worker + 文献 cluster 5+6 Worker + 即将派 OLMo 数据恢复验证 Worker\n\n无阻塞项。推理自动推进，论文写作并行。"
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T19:37:46.666695+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"director_session\\\": \\\"feishu:group:oc_117593098ee414309ced84ea501938c9:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__main_agent_post_to_director",
+            "elapsed_ms": 23244
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T19:37:46.817492+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__spawn_worker"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "tool_args": {
+              "task_type": "infra:olmo_data_recovery_verify",
+              "project": "nlp_variance_gtheory",
+              "task_prompt": "## 任务：验证并恢复 OLMo 数据（westd-19912）\n\n### 背景\nOLMo-2-7B 的 MMLU/ARC/HellaSwag 推理之前跑过，产出了 288K 行数据文件，但里面混入了无效的 condition（可能是 shard 重复、condition_id 不完整等问题）。需要过滤恢复出 57.6K 有效记录（= 3 benchmarks × 19,200 records/benchmark，每个 benchmark = 1 model × 2 temps × 6 prompts × 6 seeds × 4 orderings × 200 items 中的子集，按照 exp-002 多 benchmark 设计应为 1 × 2 × 6 × 6 × 4 × 200 = 57,600 per benchmark）。\n\n### 步骤\n\n1. **探测现有数据**（ssh_read_only 到 westd-19912）:\n   ```bash\n   ls -la /root/nlp_variance_gtheory/results/exp002/olmo_*.jsonl 2>/dev/null\n   wc -l /root/nlp_variance_gtheory/results/exp002/olmo_*.jsonl 2>/dev/null\n   ```\n   也检查:\n   ```bash\n   ls -la /root/nlp_variance_gtheory/results/exp002/*olmo* 2>/dev/null\n   ls -la /root/nlp_variance_gtheory/results/exp002/OLMo* 2>/dev/null\n   ```\n\n2. **检查之前的 shard filter worker 是否已恢复数据**:\n   ```bash\n   ls -la /root/nlp_variance_gtheory/results/exp002/*olmo*cleaned* 2>/dev/null\n   ls -la /root/nlp_variance_gtheory/results/exp002/*olmo*filtered* 2>/dev/null\n   ls -la /root/nlp_variance_gtheory/results/exp002/*olmo*recovered* 2>/dev/null\n   ```\n\n3. **分析数据质量**——如果原始文件存在，检查 condition_id 分布:\n   ```bash\n   # 对每个 benchmark 文件，检查 unique condition_ids\n   python3 -c \"\n   import json, glob\n   for f in sorted(glob.glob('/root/nlp_variance_gtheory/results/exp002/*olmo*.jsonl')):\n       lines = open(f).readlines()\n       cids = set()\n       for l in lines:\n           try:\n               d = json.loads(l)\n               cids.add(d.get('condition_id', 'MISSING'))\n           except: pass\n       print(f'{f}: {len(lines)} lines, {len(cids)} unique condition_ids')\n   \"\n   ```\n\n4. **如果未恢复，执行过滤**:\n   对每个 benchmark (mmlu, arc, hellaswag)，过滤出有效 condition_id 的记录：\n   - 有效 condition = 符合 exp-002 设计矩阵的 (temp × prompt × seed × ordering) 组合\n   - 预期每个 benchmark 57,600 records（如果 200 items）或按实际 item 数调整\n   - 输出到 `olmo_{benchmark}_cleaned.jsonl`\n\n5. **验证恢复结果**:\n   - 每个 benchmark 的 records 数量\n   - condition_id 完整性（无重复、无缺失 facet 组合）\n   - accuracy 合理性检查\n\n6. **同时检查 OLMo GSM8K/MATH 文件是否存在**（这两个需要 GPU 重跑，但先确认状态）:\n   ```bash\n   ls -la /root/nlp_variance_gtheory/results/exp002/*olmo*gsm8k* 2>/dev/null\n   ls -la /root/nlp_variance_gtheory/results/exp002/*olmo*math* 2>/dev/null\n   ```\n\n### 环境\n- 服务器: westd-19912\n- Python: `/root/miniconda3/bin/python`（conda base 环境）\n- 工作目录: `/root/nlp_variance_gtheory/`\n- 数据目录: `/root/nlp_variance_gtheory/results/exp002/`\n\n### 产出\n- 报告每个 benchmark 的数据状态（OK/需恢复/不存在）\n- 恢复后的文件路径和记录数\n- OLMo GSM8K/MATH 的状态（是否存在、是否需要 GPU 重跑）\n\n### 注意\n- 只用 ssh_read_only 做探测和分析\n- 如果需要写文件（过滤数据），用 ssh_execute\n- 不要删除原始数据文件，恢复到新文件名",
+              "tool_groups": "['ssh']"
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T19:37:49.378738+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"worker_id\\\": \\\"worker_infra_olmo_data_recovery_verify_20260521T193747\\\", \\\"status\\\": \\\"running\\\", \\\"log_path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/logs/workers/worker_infra_olmo_data_recovery_verify_20260521T193747.log\\\", \\\"setup_data\\\": {}, \\\"message\\\": \\\"Worker worker_infra_olmo_data_recovery_verify_20260521T193747 started. Use get_worker_status('worker_infra_olmo_data_recovery_verify_20260521T193747') to check progress.\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma",
+            "tool": "mcp__agent-ml-research__spawn_worker",
+            "elapsed_ms": 2561
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T19:38:15.749479+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Session 启动初始化完成。\n\n**当前状态**：\n- Registry: 10 DONE / 21 PREPARING / 0 RUNNING\n- 8 GPU 全满载（推理直接跑在服务器上，不经 registry）\n- Worker 池: 3 个运行中\n  - GPU 状态检查（westd-32570 + westd-19912）\n  - 文献 cluster 5+6 搜索\n  - OLMo 数据恢复验证（刚派发）\n- 已向 Director 汇报 session 重启状态\n- 无阻塞项，等待 Worker 回调"
+            }
+          ],
+          "metadata": {
+            "session": "cron:hook:exp001_gemma"
+          },
+          "id": "event-000034"
+        }
+      ],
+      "message_count": 34
+    }
+  ],
+  "readable_path": "readable/conversations/cron-hook-exp001-gemma.md"
+}

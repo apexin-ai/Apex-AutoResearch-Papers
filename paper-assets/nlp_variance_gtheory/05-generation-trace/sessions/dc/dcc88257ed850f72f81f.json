@@ -1,0 +1,2129 @@
+{
+  "schema_version": "1.0",
+  "id": "dcc88257ed850f72f81f",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "code exp001 data sampling",
+  "task_key": "worker_code_exp001_data_sampling_20260520T195748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp001_data_sampling_20260520T195748.log",
+    "occurrence": 1,
+    "bytes": 126711,
+    "sha256": "5c540e545fdb24fab906d9364c64d94a44b3969e311bcb90f9a655f922b0be12"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 0,
+    "tool_calls": 14,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 11,
+      "tool_call": 14,
+      "tool_result": 14,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+                "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "0c261984-63b7-4b72-8d97-99b77bfb0ec4",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-projects-nlp-variance-gtheory/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779314400,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "7f0b75fc-6b2b-45bf-bab0-1036e3c33923",
+                "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Let me start by reading the existing files to understand the current implementation, then make the modifications.",
+              "signature": "ErcCCmMIDRgCKkCfoIYceC+iYQJwGAFpIp4OGxJxULWuSdyYg6dGPyjfiUMiax5dIXH2YxeP9GWDGvRJwrczfRO3/Oddu6LOYj6rMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDHlRyuUvUxDzjVGiThoM+MYa8B8vom5oOvPcIjDMYfZR36DKUyRfLZqW3lNMT5JnztZMjh0WKKUHIf9yNusb3UUvvqxERfg/15JopMAqgQGP/QmTgewOMbE1zhbWUqpOl5+7LY85q7XqP7FDbsHFhUtXcID38y2kmdsBCMaQrVs2ri4kKQXOCpxXG0wL3jAO+ErVFnnFG8F1f4KPVNcEgb9gQnvroQO2yMR0o66ndbqwmRmunTvwsh7/A3nYIhXVIYY4/9IdfkOdsEhZT7ngdxgYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "13a086d0-9c57-412d-b708-46462791e14d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175Pmww6o3LoduTTYUVyyw3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12271,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12271
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me read the existing files first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "0bd07dd5-0df6-4e50-9880-aa3c494ef7a1",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175Pmww6o3LoduTTYUVyyw3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12271,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12271
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01BucetsCC51apnmBY5D77VG",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/sample_mmlu.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "9b3aa2ad-b780-42a8-822b-0f5b9a26eac0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175Pmww6o3LoduTTYUVyyw3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12271,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12271
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T19:58:01.189Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01BucetsCC51apnmBY5D77VG",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Sample MMLU items via stratified sampling across diverse subjects.\n2\t\n3\tSubjects span STEM, humanities, social science, professional, and legal\n4\tdomains.  Default: 10 subjects × 20 items = 200 items from the test split\n5\tof ``cais/mmlu``.\n6\t\n7\tInput:  HuggingFace ``cais/mmlu`` dataset (auto-downloaded).\n8\tOutput: ``data/mmlu_items.json`` — list of item dicts.\n9\t\n10\tUsage:\n11\t    python -m src.data.sample_mmlu\n12\t    python -m src.data.sample_mmlu --n-subjects 5 --n-items 50\n13\t\"\"\"\n14\t\n15\timport argparse\n16\timport json\n17\timport random\n18\tfrom pathlib import Path\n19\t\n20\tfrom datasets import load_dataset\n21\t\n22\tSELECTED_SUBJECTS = [\n23\t    \"abstract_algebra\",\n24\t    \"college_physics\",\n25\t    \"world_religions\",\n26\t    \"us_foreign_policy\",\n27\t    \"professional_medicine\",\n28\t    \"high_school_mathematics\",\n29\t    \"computer_security\",\n30\t    \"philosophy\",\n31\t    \"clinical_knowledge\",\n32\t    \"international_law\",\n33\t]\n34\t\n35\tDEFAULT_N_SUBJECTS = 10\n36\tDEFAULT_N_ITEMS = 200\n37\t\n38\t\n39\tdef sample_items(\n40\t    seed: int = 42,\n41\t    output_path: str = \"data/mmlu_items.json\",\n42\t    n_items: int = DEFAULT_N_ITEMS,\n43\t    n_subjects: int = DEFAULT_N_SUBJECTS,\n44\t) -> list[dict]:\n45\t    \"\"\"Draw a stratified sample of MMLU items.\n46\t\n47\t    Args:\n48\t        seed: RNG seed for reproducible sampling.\n49\t        output_path: Where to write the JSON output.\n50\t        n_items: Total number of items to sample.\n51\t        n_subjects: Number of subjects to use (from SELECTED_SUBJECTS).\n52\t\n53\t    Returns:\n54\t        List of sampled item dicts.\n55\t    \"\"\"\n56\t    subjects = SELECTED_SUBJECTS[:n_subjects]\n57\t    items_per_subject = n_items // n_subjects\n58\t\n59\t    rng = random.Random(seed)\n60\t    all_items: list[dict] = []\n61\t\n62\t    for subject in subjects:\n63\t        ds = load_dataset(\"cais/mmlu\", subject, split=\"test\")\n64\t        indices = rng.sample(range(len(ds)), min(items_per_subject, len(ds)))\n65\t\n66\t        for idx in indices:\n67\t            row = ds[idx]\n68\t            all_items.append(\n69\t                {\n70\t                    \"subject\": subject,\n71\t                    \"question\": row[\"question\"],\n72\t                    \"choices\": row[\"choices\"],\n73\t                    \"answer_idx\": row[\"answer\"],\n74\t                    \"item_id\": f\"{subject}_{idx}\",\n75\t                }\n76\t            )\n77\t\n78\t    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n79\t    with open(output_path, \"w\") as f:\n80\t        json.dump(all_items, f, indent=2, ensure_ascii=False)\n81\t\n82\t    print(f\"Sampled {len(all_items)} items from {len(subjects)} subjects → {output_path}\")\n83\t    return all_items\n84\t\n85\t\n86\tif __name__ == \"__main__\":\n87\t    parser = argparse.ArgumentParser(description=\"Sample MMLU items for G-theory study\")\n88\t    parser.add_argument(\"--seed\", type=int, default=42)\n89\t    parser.add_argument(\"--output\", default=\"data/mmlu_items.json\")\n90\t    parser.add_argument(\"--n-items\", type=int, default=DEFAULT_N_ITEMS)\n91\t    parser.add_argument(\"--n-subjects\", type=int, default=DEFAULT_N_SUBJECTS)\n92\t    args = parser.parse_args()\n93\t    sample_items(\n94\t        seed=args.seed,\n95\t        output_path=args.output,\n96\t        n_items=args.n_items,\n97\t        n_subjects=args.n_subjects,\n98\t    )\n99\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "67e3bdfe-583c-4f6a-af86-89c72d3d286a",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/sample_mmlu.py",
+                "content": "\"\"\"Sample MMLU items via stratified sampling across diverse subjects.\n\nSubjects span STEM, humanities, social science, professional, and legal\ndomains.  Default: 10 subjects × 20 items = 200 items from the test split\nof ``cais/mmlu``.\n\nInput:  HuggingFace ``cais/mmlu`` dataset (auto-downloaded).\nOutput: ``data/mmlu_items.json`` — list of item dicts.\n\nUsage:\n    python -m src.data.sample_mmlu\n    python -m src.data.sample_mmlu --n-subjects 5 --n-items 50\n\"\"\"\n\nimport argparse\nimport json\nimport random\nfrom pathlib import Path\n\nfrom datasets import load_dataset\n\nSELECTED_SUBJECTS = [\n    \"abstract_algebra\",\n    \"college_physics\",\n    \"world_religions\",\n    \"us_foreign_policy\",\n    \"professional_medicine\",\n    \"high_school_mathematics\",\n    \"computer_security\",\n    \"philosophy\",\n    \"clinical_knowledge\",\n    \"international_law\",\n]\n\nDEFAULT_N_SUBJECTS = 10\nDEFAULT_N_ITEMS = 200\n\n\ndef sample_items(\n    seed: int = 42,\n    output_path: str = \"data/mmlu_items.json\",\n    n_items: int = DEFAULT_N_ITEMS,\n    n_subjects: int = DEFAULT_N_SUBJECTS,\n) -> list[dict]:\n    \"\"\"Draw a stratified sample of MMLU items.\n\n    Args:\n        seed: RNG seed for reproducible sampling.\n        output_path: Where to write the JSON output.\n        n_items: Total number of items to sample.\n        n_subjects: Number of subjects to use (from SELECTED_SUBJECTS).\n\n    Returns:\n        List of sampled item dicts.\n    \"\"\"\n    subjects = SELECTED_SUBJECTS[:n_subjects]\n    items_per_subject = n_items // n_subjects\n\n    rng = random.Random(seed)\n    all_items: list[dict] = []\n\n    for subject in subjects:\n        ds = load_dataset(\"cais/mmlu\", subject, split=\"test\")\n        indices = rng.sample(range(len(ds)), min(items_per_subject, len(ds)))\n\n        for idx in indices:\n            row = ds[idx]\n            all_items.append(\n                {\n                    \"subject\": subject,\n                    \"question\": row[\"question\"],\n                    \"choices\": row[\"choices\"],\n                    \"answer_idx\": row[\"answer\"],\n                    \"item_id\": f\"{subject}_{idx}\",\n                }\n            )\n\n    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(all_items, f, indent=2, ensure_ascii=False)\n\n    print(f\"Sampled {len(all_items)} items from {len(subjects)} subjects → {output_path}\")\n    return all_items\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(description=\"Sample MMLU items for G-theory study\")\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", default=\"data/mmlu_items.json\")\n    parser.add_argument(\"--n-items\", type=int, default=DEFAULT_N_ITEMS)\n    parser.add_argument(\"--n-subjects\", type=int, default=DEFAULT_N_SUBJECTS)\n    args = parser.parse_args()\n    sample_items(\n        seed=args.seed,\n        output_path=args.output,\n        n_items=args.n_items,\n        n_subjects=args.n_subjects,\n    )\n",
+                "numLines": 99,
+                "startLine": 1,
+                "totalLines": 99
+              }
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TPD2gja97aUm3QQqvE7Fvx",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/few_shot.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "ffa88c6a-653a-416d-a8b3-d853e5159b35",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175Pmww6o3LoduTTYUVyyw3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12271,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12271
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T19:58:01.688Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TPD2gja97aUm3QQqvE7Fvx",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Generate few-shot example orderings for MMLU evaluation.\n2\t\n3\tFor each selected subject, loads 5 examples from the ``cais/mmlu`` dev split\n4\tand creates 4 random orderings (seeded).  The dev split is purpose-built for\n5\tfew-shot prompting and contains exactly 5 examples per subject.\n6\t\n7\tInput:  HuggingFace ``cais/mmlu`` dev split (auto-downloaded).\n8\tOutput: ``data/few_shot_examples.json`` — nested dict\n9\t        {subject → {ordering_id → [list of 5 example dicts]}}.\n10\t\"\"\"\n11\t\n12\timport argparse\n13\timport json\n14\timport random\n15\tfrom pathlib import Path\n16\t\n17\tfrom datasets import load_dataset\n18\t\n19\tSELECTED_SUBJECTS = [\n20\t    \"abstract_algebra\",\n21\t    \"college_physics\",\n22\t    \"world_religions\",\n23\t    \"us_foreign_policy\",\n24\t    \"professional_medicine\",\n25\t    \"high_school_mathematics\",\n26\t    \"computer_security\",\n27\t    \"philosophy\",\n28\t    \"clinical_knowledge\",\n29\t    \"international_law\",\n30\t]\n31\t\n32\tN_SHOTS = 5\n33\tN_ORDERINGS = 4\n34\t\n35\t\n36\tdef generate_orderings(\n37\t    seed: int = 42,\n38\t    output_path: str = \"data/few_shot_examples.json\",\n39\t) -> dict:\n40\t    \"\"\"Create shuffled few-shot orderings per subject.\n41\t\n42\t    Args:\n43\t        seed: Base RNG seed.  Ordering *k* uses ``seed + k``.\n44\t        output_path: Where to write the JSON output.\n45\t\n46\t    Returns:\n47\t        Nested dict ``{subject → {ordering_id → [examples]}}``.\n48\t    \"\"\"\n49\t    result: dict = {}\n50\t\n51\t    for subject in SELECTED_SUBJECTS:\n52\t        ds = load_dataset(\"cais/mmlu\", subject, split=\"dev\")\n53\t        examples = []\n54\t        for i in range(min(N_SHOTS, len(ds))):\n55\t            row = ds[i]\n56\t            examples.append(\n57\t                {\n58\t                    \"question\": row[\"question\"],\n59\t                    \"choices\": row[\"choices\"],\n60\t                    \"answer_idx\": row[\"answer\"],\n61\t                }\n62\t            )\n63\t\n64\t        orderings = {}\n65\t        for ordering_id in range(1, N_ORDERINGS + 1):\n66\t            rng = random.Random(seed + ordering_id)\n67\t            shuffled = examples.copy()\n68\t            rng.shuffle(shuffled)\n69\t            orderings[ordering_id] = shuffled\n70\t\n71\t        result[subject] = orderings\n72\t\n73\t    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n74\t    with open(output_path, \"w\") as f:\n75\t        json.dump(result, f, indent=2, ensure_ascii=False)\n76\t\n77\t    print(\n78\t        f\"Generated {N_ORDERINGS} orderings × \"\n79\t        f\"{len(SELECTED_SUBJECTS)} subjects → {output_path}\"\n80\t    )\n81\t    return result\n82\t\n83\t\n84\tif __name__ == \"__main__\":\n85\t    parser = argparse.ArgumentParser(\n86\t        description=\"Generate few-shot orderings for MMLU\"\n87\t    )\n88\t    parser.add_argument(\"--seed\", type=int, default=42)\n89\t    parser.add_argument(\"--output\", default=\"data/few_shot_examples.json\")\n90\t    args = parser.parse_args()\n91\t    generate_orderings(seed=args.seed, output_path=args.output)\n92\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "6c3bb3da-68ce-472d-8067-b4815cf84bc2",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/few_shot.py",
+                "content": "\"\"\"Generate few-shot example orderings for MMLU evaluation.\n\nFor each selected subject, loads 5 examples from the ``cais/mmlu`` dev split\nand creates 4 random orderings (seeded).  The dev split is purpose-built for\nfew-shot prompting and contains exactly 5 examples per subject.\n\nInput:  HuggingFace ``cais/mmlu`` dev split (auto-downloaded).\nOutput: ``data/few_shot_examples.json`` — nested dict\n        {subject → {ordering_id → [list of 5 example dicts]}}.\n\"\"\"\n\nimport argparse\nimport json\nimport random\nfrom pathlib import Path\n\nfrom datasets import load_dataset\n\nSELECTED_SUBJECTS = [\n    \"abstract_algebra\",\n    \"college_physics\",\n    \"world_religions\",\n    \"us_foreign_policy\",\n    \"professional_medicine\",\n    \"high_school_mathematics\",\n    \"computer_security\",\n    \"philosophy\",\n    \"clinical_knowledge\",\n    \"international_law\",\n]\n\nN_SHOTS = 5\nN_ORDERINGS = 4\n\n\ndef generate_orderings(\n    seed: int = 42,\n    output_path: str = \"data/few_shot_examples.json\",\n) -> dict:\n    \"\"\"Create shuffled few-shot orderings per subject.\n\n    Args:\n        seed: Base RNG seed.  Ordering *k* uses ``seed + k``.\n        output_path: Where to write the JSON output.\n\n    Returns:\n        Nested dict ``{subject → {ordering_id → [examples]}}``.\n    \"\"\"\n    result: dict = {}\n\n    for subject in SELECTED_SUBJECTS:\n        ds = load_dataset(\"cais/mmlu\", subject, split=\"dev\")\n        examples = []\n        for i in range(min(N_SHOTS, len(ds))):\n            row = ds[i]\n            examples.append(\n                {\n                    \"question\": row[\"question\"],\n                    \"choices\": row[\"choices\"],\n                    \"answer_idx\": row[\"answer\"],\n                }\n            )\n\n        orderings = {}\n        for ordering_id in range(1, N_ORDERINGS + 1):\n            rng = random.Random(seed + ordering_id)\n            shuffled = examples.copy()\n            rng.shuffle(shuffled)\n            orderings[ordering_id] = shuffled\n\n        result[subject] = orderings\n\n    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(result, f, indent=2, ensure_ascii=False)\n\n    print(\n        f\"Generated {N_ORDERINGS} orderings × \"\n        f\"{len(SELECTED_SUBJECTS)} subjects → {output_path}\"\n    )\n    return result\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(\n        description=\"Generate few-shot orderings for MMLU\"\n    )\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", default=\"data/few_shot_examples.json\")\n    args = parser.parse_args()\n    generate_orderings(seed=args.seed, output_path=args.output)\n",
+                "numLines": 92,
+                "startLine": 1,
+                "totalLines": 92
+              }
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01AQ9Vjg3eTZVju4HtNz7tvL",
+              "name": "Glob",
+              "input": {
+                "pattern": "**/*.py",
+                "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "b8d2aead-365b-4ec6-8b46-48d9a0d8f663",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0175Pmww6o3LoduTTYUVyyw3",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 3,
+                "cache_creation_input_tokens": 12271,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12271
+                },
+                "output_tokens": 27,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T19:58:02.426Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01AQ9Vjg3eTZVju4HtNz7tvL",
+              "type": "tool_result",
+              "content": "artifacts/code/src/data/__init__.py\nartifacts/code/src/data/prompt_templates.py\nartifacts/code/src/data/sample_mmlu.py\nartifacts/code/src/data/few_shot.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "d7706bcd-0af2-47b1-9478-f19566298d87",
+            "tool_use_result": {
+              "filenames": [
+                "artifacts/code/src/data/__init__.py",
+                "artifacts/code/src/data/prompt_templates.py",
+                "artifacts/code/src/data/sample_mmlu.py",
+                "artifacts/code/src/data/few_shot.py"
+              ],
+              "durationMs": 5,
+              "numFiles": 4,
+              "truncated": false
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I can see both files. Let me analyze what needs to be done:\n\n1. **sample_mmlu.py** — Already has 10 subjects × 20 items = 200 items with `--n-items` and `--n-subjects` params. This already matches the requirements! The task description says \"当前：5 subjects × 10 items = 50 items\" but the code already shows 10 subjects and 200 items. It seems the code was already updated. Let me re-read the task more carefully.\n   \n2. **few_shot.py** — Already has N_ORDERINGS = 4 and 10 subjects, but it's missing the `--n-orderings` CLI parameter that the task requires. The code has the constant set correctly but needs the command-line argument added to make it configurable.\n\n3. **sample_benchmarks.py** — This file needs to be created entirely from scratch since it doesn't exist yet.\n\nLooking at the requirements, sample_mmlu.py appears to already be in the correct state with 200 items and the necessary parameters, so I'll focus on adding the missing CLI parameter to few_shot.py and creating the new sample_benchmarks.py file.",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "42025c64-cde1-4755-b2e2-dd7bb9992236",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W3YPx9qdvYpxzvau7SLtcf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2567,
+                "cache_read_input_tokens": 24112,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2567
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "`sample_mmlu.py` already has 10 subjects × 20 items = 200 and the required CLI params. `few_shot.py` already has 4 orderings but lacks the `--n-orderings` CLI param. I'll add that and create `sample_benchmarks.py`."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "1ae0ac02-1b6c-416e-98ca-11522b2584d7",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W3YPx9qdvYpxzvau7SLtcf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2567,
+                "cache_read_input_tokens": 24112,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2567
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_012kgQxR8fhAvxi45JhtuESt",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/few_shot.py",
+                "old_string": "def generate_orderings(\n    seed: int = 42,\n    output_path: str = \"data/few_shot_examples.json\",\n) -> dict:",
+                "new_string": "def generate_orderings(\n    seed: int = 42,\n    output_path: str = \"data/few_shot_examples.json\",\n    n_orderings: int = N_ORDERINGS,\n) -> dict:"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "2b53dcd7-b2d7-4305-9f76-ff88016e76ef",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01W3YPx9qdvYpxzvau7SLtcf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2567,
+                "cache_read_input_tokens": 24112,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2567
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T19:58:19.234Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_012kgQxR8fhAvxi45JhtuESt",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/few_shot.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "3031df7f-2496-4365-8611-43f5e1f5df5f",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/few_shot.py",
+              "oldString": "def generate_orderings(\n    seed: int = 42,\n    output_path: str = \"data/few_shot_examples.json\",\n) -> dict:",
+              "newString": "def generate_orderings(\n    seed: int = 42,\n    output_path: str = \"data/few_shot_examples.json\",\n    n_orderings: int = N_ORDERINGS,\n) -> dict:",
+              "originalFile": "\"\"\"Generate few-shot example orderings for MMLU evaluation.\n\nFor each selected subject, loads 5 examples from the ``cais/mmlu`` dev split\nand creates 4 random orderings (seeded).  The dev split is purpose-built for\nfew-shot prompting and contains exactly 5 examples per subject.\n\nInput:  HuggingFace ``cais/mmlu`` dev split (auto-downloaded).\nOutput: ``data/few_shot_examples.json`` — nested dict\n        {subject → {ordering_id → [list of 5 example dicts]}}.\n\"\"\"\n\nimport argparse\nimport json\nimport random\nfrom pathlib import Path\n\nfrom datasets import load_dataset\n\nSELECTED_SUBJECTS = [\n    \"abstract_algebra\",\n    \"college_physics\",\n    \"world_religions\",\n    \"us_foreign_policy\",\n    \"professional_medicine\",\n    \"high_school_mathematics\",\n    \"computer_security\",\n    \"philosophy\",\n    \"clinical_knowledge\",\n    \"international_law\",\n]\n\nN_SHOTS = 5\nN_ORDERINGS = 4\n\n\ndef generate_orderings(\n    seed: int = 42,\n    output_path: str = \"data/few_shot_examples.json\",\n) -> dict:\n    \"\"\"Create shuffled few-shot orderings per subject.\n\n    Args:\n        seed: Base RNG seed.  Ordering *k* uses ``seed + k``.\n        output_path: Where to write the JSON output.\n\n    Returns:\n        Nested dict ``{subject → {ordering_id → [examples]}}``.\n    \"\"\"\n    result: dict = {}\n\n    for subject in SELECTED_SUBJECTS:\n        ds = load_dataset(\"cais/mmlu\", subject, split=\"dev\")\n        examples = []\n        for i in range(min(N_SHOTS, len(ds))):\n            row = ds[i]\n            examples.append(\n                {\n                    \"question\": row[\"question\"],\n                    \"choices\": row[\"choices\"],\n                    \"answer_idx\": row[\"answer\"],\n                }\n            )\n\n        orderings = {}\n        for ordering_id in range(1, N_ORDERINGS + 1):\n            rng = random.Random(seed + ordering_id)\n            shuffled = examples.copy()\n            rng.shuffle(shuffled)\n            orderings[ordering_id] = shuffled\n\n        result[subject] = orderings\n\n    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(result, f, indent=2, ensure_ascii=False)\n\n    print(\n        f\"Generated {N_ORDERINGS} orderings × \"\n        f\"{len(SELECTED_SUBJECTS)} subjects → {output_path}\"\n    )\n    return result\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(\n        description=\"Generate few-shot orderings for MMLU\"\n    )\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", default=\"data/few_shot_examples.json\")\n    args = parser.parse_args()\n    generate_orderings(seed=args.seed, output_path=args.output)\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 36,
+                  "oldLines": 6,
+                  "newStart": 36,
+                  "newLines": 7,
+                  "lines": [
+                    " def generate_orderings(",
+                    "     seed: int = 42,",
+                    "     output_path: str = \"data/few_shot_examples.json\",",
+                    "+    n_orderings: int = N_ORDERINGS,",
+                    " ) -> dict:",
+                    "     \"\"\"Create shuffled few-shot orderings per subject.",
+                    " "
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01199T3t8k9yzCe4n1Yv7jPD",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/few_shot.py",
+                "old_string": "        orderings = {}\n        for ordering_id in range(1, N_ORDERINGS + 1):",
+                "new_string": "        orderings = {}\n        for ordering_id in range(1, n_orderings + 1):"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "1d2c4bf8-ebf3-4621-abf2-c3e53a2a8e52",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018CSZpyyoSEQr14c48yYRrv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 881,
+                "cache_read_input_tokens": 26679,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 881
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T19:58:23.380Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01199T3t8k9yzCe4n1Yv7jPD",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/few_shot.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "eb42c81a-f6ad-4cb9-aea7-d1d9d72113cc",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/few_shot.py",
+              "oldString": "        orderings = {}\n        for ordering_id in range(1, N_ORDERINGS + 1):",
+              "newString": "        orderings = {}\n        for ordering_id in range(1, n_orderings + 1):",
+              "originalFile": "\"\"\"Generate few-shot example orderings for MMLU evaluation.\n\nFor each selected subject, loads 5 examples from the ``cais/mmlu`` dev split\nand creates 4 random orderings (seeded).  The dev split is purpose-built for\nfew-shot prompting and contains exactly 5 examples per subject.\n\nInput:  HuggingFace ``cais/mmlu`` dev split (auto-downloaded).\nOutput: ``data/few_shot_examples.json`` — nested dict\n        {subject → {ordering_id → [list of 5 example dicts]}}.\n\"\"\"\n\nimport argparse\nimport json\nimport random\nfrom pathlib import Path\n\nfrom datasets import load_dataset\n\nSELECTED_SUBJECTS = [\n    \"abstract_algebra\",\n    \"college_physics\",\n    \"world_religions\",\n    \"us_foreign_policy\",\n    \"professional_medicine\",\n    \"high_school_mathematics\",\n    \"computer_security\",\n    \"philosophy\",\n    \"clinical_knowledge\",\n    \"international_law\",\n]\n\nN_SHOTS = 5\nN_ORDERINGS = 4\n\n\ndef generate_orderings(\n    seed: int = 42,\n    output_path: str = \"data/few_shot_examples.json\",\n    n_orderings: int = N_ORDERINGS,\n) -> dict:\n    \"\"\"Create shuffled few-shot orderings per subject.\n\n    Args:\n        seed: Base RNG seed.  Ordering *k* uses ``seed + k``.\n        output_path: Where to write the JSON output.\n\n    Returns:\n        Nested dict ``{subject → {ordering_id → [examples]}}``.\n    \"\"\"\n    result: dict = {}\n\n    for subject in SELECTED_SUBJECTS:\n        ds = load_dataset(\"cais/mmlu\", subject, split=\"dev\")\n        examples = []\n        for i in range(min(N_SHOTS, len(ds))):\n            row = ds[i]\n            examples.append(\n                {\n                    \"question\": row[\"question\"],\n                    \"choices\": row[\"choices\"],\n                    \"answer_idx\": row[\"answer\"],\n                }\n            )\n\n        orderings = {}\n        for ordering_id in range(1, N_ORDERINGS + 1):\n            rng = random.Random(seed + ordering_id)\n            shuffled = examples.copy()\n            rng.shuffle(shuffled)\n            orderings[ordering_id] = shuffled\n\n        result[subject] = orderings\n\n    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(result, f, indent=2, ensure_ascii=False)\n\n    print(\n        f\"Generated {N_ORDERINGS} orderings × \"\n        f\"{len(SELECTED_SUBJECTS)} subjects → {output_path}\"\n    )\n    return result\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(\n        description=\"Generate few-shot orderings for MMLU\"\n    )\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", default=\"data/few_shot_examples.json\")\n    args = parser.parse_args()\n    generate_orderings(seed=args.seed, output_path=args.output)\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 63,
+                  "oldLines": 7,
+                  "newStart": 63,
+                  "newLines": 7,
+                  "lines": [
+                    "             )",
+                    " ",
+                    "         orderings = {}",
+                    "-        for ordering_id in range(1, N_ORDERINGS + 1):",
+                    "+        for ordering_id in range(1, n_orderings + 1):",
+                    "             rng = random.Random(seed + ordering_id)",
+                    "             shuffled = examples.copy()",
+                    "             rng.shuffle(shuffled)"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01JbcwUjDKVQC9CpEWZbTfLX",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/few_shot.py",
+                "old_string": "    print(\n        f\"Generated {N_ORDERINGS} orderings × \"\n        f\"{len(SELECTED_SUBJECTS)} subjects → {output_path}\"\n    )",
+                "new_string": "    print(\n        f\"Generated {n_orderings} orderings × \"\n        f\"{len(SELECTED_SUBJECTS)} subjects → {output_path}\"\n    )"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "6dab19ff-bccf-4d5f-b81e-2e4172438a44",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FAepEhayW5sKJXEMmNwmrz",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 258,
+                "cache_read_input_tokens": 27560,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 258
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T19:58:33.151Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01JbcwUjDKVQC9CpEWZbTfLX",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/few_shot.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "56139468-fd44-47e0-ba83-d5f987804e00",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/few_shot.py",
+              "oldString": "    print(\n        f\"Generated {N_ORDERINGS} orderings × \"\n        f\"{len(SELECTED_SUBJECTS)} subjects → {output_path}\"\n    )",
+              "newString": "    print(\n        f\"Generated {n_orderings} orderings × \"\n        f\"{len(SELECTED_SUBJECTS)} subjects → {output_path}\"\n    )",
+              "originalFile": "\"\"\"Generate few-shot example orderings for MMLU evaluation.\n\nFor each selected subject, loads 5 examples from the ``cais/mmlu`` dev split\nand creates 4 random orderings (seeded).  The dev split is purpose-built for\nfew-shot prompting and contains exactly 5 examples per subject.\n\nInput:  HuggingFace ``cais/mmlu`` dev split (auto-downloaded).\nOutput: ``data/few_shot_examples.json`` — nested dict\n        {subject → {ordering_id → [list of 5 example dicts]}}.\n\"\"\"\n\nimport argparse\nimport json\nimport random\nfrom pathlib import Path\n\nfrom datasets import load_dataset\n\nSELECTED_SUBJECTS = [\n    \"abstract_algebra\",\n    \"college_physics\",\n    \"world_religions\",\n    \"us_foreign_policy\",\n    \"professional_medicine\",\n    \"high_school_mathematics\",\n    \"computer_security\",\n    \"philosophy\",\n    \"clinical_knowledge\",\n    \"international_law\",\n]\n\nN_SHOTS = 5\nN_ORDERINGS = 4\n\n\ndef generate_orderings(\n    seed: int = 42,\n    output_path: str = \"data/few_shot_examples.json\",\n    n_orderings: int = N_ORDERINGS,\n) -> dict:\n    \"\"\"Create shuffled few-shot orderings per subject.\n\n    Args:\n        seed: Base RNG seed.  Ordering *k* uses ``seed + k``.\n        output_path: Where to write the JSON output.\n\n    Returns:\n        Nested dict ``{subject → {ordering_id → [examples]}}``.\n    \"\"\"\n    result: dict = {}\n\n    for subject in SELECTED_SUBJECTS:\n        ds = load_dataset(\"cais/mmlu\", subject, split=\"dev\")\n        examples = []\n        for i in range(min(N_SHOTS, len(ds))):\n            row = ds[i]\n            examples.append(\n                {\n                    \"question\": row[\"question\"],\n                    \"choices\": row[\"choices\"],\n                    \"answer_idx\": row[\"answer\"],\n                }\n            )\n\n        orderings = {}\n        for ordering_id in range(1, n_orderings + 1):\n            rng = random.Random(seed + ordering_id)\n            shuffled = examples.copy()\n            rng.shuffle(shuffled)\n            orderings[ordering_id] = shuffled\n\n        result[subject] = orderings\n\n    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(result, f, indent=2, ensure_ascii=False)\n\n    print(\n        f\"Generated {N_ORDERINGS} orderings × \"\n        f\"{len(SELECTED_SUBJECTS)} subjects → {output_path}\"\n    )\n    return result\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(\n        description=\"Generate few-shot orderings for MMLU\"\n    )\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", default=\"data/few_shot_examples.json\")\n    args = parser.parse_args()\n    generate_orderings(seed=args.seed, output_path=args.output)\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 76,
+                  "oldLines": 7,
+                  "newStart": 76,
+                  "newLines": 7,
+                  "lines": [
+                    "         json.dump(result, f, indent=2, ensure_ascii=False)",
+                    " ",
+                    "     print(",
+                    "-        f\"Generated {N_ORDERINGS} orderings × \"",
+                    "+        f\"Generated {n_orderings} orderings × \"",
+                    "         f\"{len(SELECTED_SUBJECTS)} subjects → {output_path}\"",
+                    "     )",
+                    "     return result"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SXBf6otU5WGDPwbLFqnESu",
+              "name": "Edit",
+              "input": {
+                "replace_all": false,
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/few_shot.py",
+                "old_string": "    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", default=\"data/few_shot_examples.json\")\n    args = parser.parse_args()\n    generate_orderings(seed=args.seed, output_path=args.output)",
+                "new_string": "    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", default=\"data/few_shot_examples.json\")\n    parser.add_argument(\"--n-orderings\", type=int, default=N_ORDERINGS)\n    args = parser.parse_args()\n    generate_orderings(\n        seed=args.seed,\n        output_path=args.output,\n        n_orderings=args.n_orderings,\n    )"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "5dc1e42e-1ca4-420e-b0b8-c0ad51fc624a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01FoLcZbc5FdwxZZvGP7GLwy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 290,
+                "cache_read_input_tokens": 27818,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 290
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T19:58:37.729Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SXBf6otU5WGDPwbLFqnESu",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/few_shot.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "8203d863-21b8-411f-bb9a-dcb39d5074c9",
+            "tool_use_result": {
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/few_shot.py",
+              "oldString": "    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", default=\"data/few_shot_examples.json\")\n    args = parser.parse_args()\n    generate_orderings(seed=args.seed, output_path=args.output)",
+              "newString": "    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", default=\"data/few_shot_examples.json\")\n    parser.add_argument(\"--n-orderings\", type=int, default=N_ORDERINGS)\n    args = parser.parse_args()\n    generate_orderings(\n        seed=args.seed,\n        output_path=args.output,\n        n_orderings=args.n_orderings,\n    )",
+              "originalFile": "\"\"\"Generate few-shot example orderings for MMLU evaluation.\n\nFor each selected subject, loads 5 examples from the ``cais/mmlu`` dev split\nand creates 4 random orderings (seeded).  The dev split is purpose-built for\nfew-shot prompting and contains exactly 5 examples per subject.\n\nInput:  HuggingFace ``cais/mmlu`` dev split (auto-downloaded).\nOutput: ``data/few_shot_examples.json`` — nested dict\n        {subject → {ordering_id → [list of 5 example dicts]}}.\n\"\"\"\n\nimport argparse\nimport json\nimport random\nfrom pathlib import Path\n\nfrom datasets import load_dataset\n\nSELECTED_SUBJECTS = [\n    \"abstract_algebra\",\n    \"college_physics\",\n    \"world_religions\",\n    \"us_foreign_policy\",\n    \"professional_medicine\",\n    \"high_school_mathematics\",\n    \"computer_security\",\n    \"philosophy\",\n    \"clinical_knowledge\",\n    \"international_law\",\n]\n\nN_SHOTS = 5\nN_ORDERINGS = 4\n\n\ndef generate_orderings(\n    seed: int = 42,\n    output_path: str = \"data/few_shot_examples.json\",\n    n_orderings: int = N_ORDERINGS,\n) -> dict:\n    \"\"\"Create shuffled few-shot orderings per subject.\n\n    Args:\n        seed: Base RNG seed.  Ordering *k* uses ``seed + k``.\n        output_path: Where to write the JSON output.\n\n    Returns:\n        Nested dict ``{subject → {ordering_id → [examples]}}``.\n    \"\"\"\n    result: dict = {}\n\n    for subject in SELECTED_SUBJECTS:\n        ds = load_dataset(\"cais/mmlu\", subject, split=\"dev\")\n        examples = []\n        for i in range(min(N_SHOTS, len(ds))):\n            row = ds[i]\n            examples.append(\n                {\n                    \"question\": row[\"question\"],\n                    \"choices\": row[\"choices\"],\n                    \"answer_idx\": row[\"answer\"],\n                }\n            )\n\n        orderings = {}\n        for ordering_id in range(1, n_orderings + 1):\n            rng = random.Random(seed + ordering_id)\n            shuffled = examples.copy()\n            rng.shuffle(shuffled)\n            orderings[ordering_id] = shuffled\n\n        result[subject] = orderings\n\n    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(result, f, indent=2, ensure_ascii=False)\n\n    print(\n        f\"Generated {n_orderings} orderings × \"\n        f\"{len(SELECTED_SUBJECTS)} subjects → {output_path}\"\n    )\n    return result\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(\n        description=\"Generate few-shot orderings for MMLU\"\n    )\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", default=\"data/few_shot_examples.json\")\n    args = parser.parse_args()\n    generate_orderings(seed=args.seed, output_path=args.output)\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 88,
+                  "oldLines": 5,
+                  "newStart": 88,
+                  "newLines": 10,
+                  "lines": [
+                    "     )",
+                    "     parser.add_argument(\"--seed\", type=int, default=42)",
+                    "     parser.add_argument(\"--output\", default=\"data/few_shot_examples.json\")",
+                    "+    parser.add_argument(\"--n-orderings\", type=int, default=N_ORDERINGS)",
+                    "     args = parser.parse_args()",
+                    "-    generate_orderings(seed=args.seed, output_path=args.output)",
+                    "+    generate_orderings(",
+                    "+        seed=args.seed,",
+                    "+        output_path=args.output,",
+                    "+        n_orderings=args.n_orderings,",
+                    "+    )"
+                  ]
+                }
+              ],
+              "userModified": false,
+              "replaceAll": false
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now create `sample_benchmarks.py`."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "35bb46d0-6a42-4586-92c1-7101b327613f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T4GKgS8czDqL2oL7e3oxU5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 399,
+                "cache_read_input_tokens": 28108,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 399
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YEtwuQer3oGEJKSYgW19nM",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/sample_benchmarks.py",
+                "content": "\"\"\"Sample items from multiple benchmarks for G-theory exp-002.\n\nSupports: GSM8K, ARC-Challenge, HellaSwag.\nOutput: JSON with unified schema [{item_id, benchmark, question, choices, answer_idx, answer, metadata}, ...]\n\nUsage:\n    python -m src.data.sample_benchmarks --benchmark gsm8k --n-items 200 --output data/gsm8k_items.json\n    python -m src.data.sample_benchmarks --benchmark arc_challenge --n-items 200 --output data/arc_items.json\n    python -m src.data.sample_benchmarks --all --n-items 200 --output-dir data/\n\"\"\"\n\nimport argparse\nimport json\nimport random\nimport re\nfrom pathlib import Path\n\nfrom datasets import load_dataset\n\nBENCHMARKS = [\"gsm8k\", \"arc_challenge\", \"hellaswag\"]\n\n\ndef _extract_gsm8k_answer(answer_str: str) -> str:\n    match = re.search(r\"####\\s*(.+)\", answer_str)\n    if match:\n        return match.group(1).strip().replace(\",\", \"\")\n    return answer_str.strip()\n\n\ndef sample_gsm8k(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"test\")\n    rng = random.Random(seed)\n    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n    items = []\n    for idx in indices:\n        row = ds[idx]\n        answer = _extract_gsm8k_answer(row[\"answer\"])\n        items.append(\n            {\n                \"item_id\": f\"gsm8k_{idx}\",\n                \"benchmark\": \"gsm8k\",\n                \"question\": row[\"question\"],\n                \"choices\": None,\n                \"answer_idx\": None,\n                \"answer\": answer,\n                \"metadata\": {\"raw_answer\": row[\"answer\"]},\n            }\n        )\n    return items\n\n\ndef sample_arc_challenge(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"allenai/ai2_arc\", \"ARC-Challenge\", split=\"test\")\n    rng = random.Random(seed)\n    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n    items = []\n    for idx in indices:\n        row = ds[idx]\n        choices = row[\"choices\"][\"text\"]\n        labels = row[\"choices\"][\"label\"]\n        answer_key = row[\"answerKey\"]\n        answer_idx = labels.index(answer_key) if answer_key in labels else 0\n        items.append(\n            {\n                \"item_id\": f\"arc_challenge_{idx}\",\n                \"benchmark\": \"arc_challenge\",\n                \"question\": row[\"question\"],\n                \"choices\": choices,\n                \"answer_idx\": answer_idx,\n                \"answer\": answer_key,\n                \"metadata\": {},\n            }\n        )\n    return items\n\n\ndef sample_hellaswag(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"Rowan/hellaswag\", split=\"validation\")\n    rng = random.Random(seed)\n    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n    items = []\n    for idx in indices:\n        row = ds[idx]\n        label = int(row[\"label\"]) if row[\"label\"] != \"\" else 0\n        items.append(\n            {\n                \"item_id\": f\"hellaswag_{idx}\",\n                \"benchmark\": \"hellaswag\",\n                \"question\": row[\"ctx\"],\n                \"choices\": row[\"endings\"],\n                \"answer_idx\": label,\n                \"answer\": str(label),\n                \"metadata\": {\"activity_label\": row[\"activity_label\"]},\n            }\n        )\n    return items\n\n\nSAMPLER = {\n    \"gsm8k\": sample_gsm8k,\n    \"arc_challenge\": sample_arc_challenge,\n    \"hellaswag\": sample_hellaswag,\n}\n\n\ndef sample_benchmark(\n    benchmark: str,\n    n_items: int = 200,\n    seed: int = 42,\n    output_path: str | None = None,\n) -> list[dict]:\n    sampler = SAMPLER[benchmark]\n    items = sampler(n_items, seed)\n\n    if output_path:\n        Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n        with open(output_path, \"w\") as f:\n            json.dump(items, f, indent=2, ensure_ascii=False)\n        print(f\"Sampled {len(items)} items from {benchmark} → {output_path}\")\n\n    return items\n\n\ndef sample_all(\n    n_items: int = 200,\n    seed: int = 42,\n    output_dir: str = \"data\",\n) -> dict[str, list[dict]]:\n    results = {}\n    for bench in BENCHMARKS:\n        out = str(Path(output_dir) / f\"{bench}_items.json\")\n        results[bench] = sample_benchmark(bench, n_items, seed, out)\n    return results\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(\n        description=\"Sample items from benchmarks for G-theory study\"\n    )\n    parser.add_argument(\n        \"--benchmark\",\n        choices=BENCHMARKS,\n        help=\"Which benchmark to sample from\",\n    )\n    parser.add_argument(\"--all\", action=\"store_true\", help=\"Sample from all benchmarks\")\n    parser.add_argument(\"--n-items\", type=int, default=200)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", default=None, help=\"Output JSON path (single benchmark)\")\n    parser.add_argument(\"--output-dir\", default=\"data\", help=\"Output directory (--all mode)\")\n    args = parser.parse_args()\n\n    if args.all:\n        sample_all(n_items=args.n_items, seed=args.seed, output_dir=args.output_dir)\n    elif args.benchmark:\n        out = args.output or f\"data/{args.benchmark}_items.json\"\n        sample_benchmark(args.benchmark, args.n_items, args.seed, out)\n    else:\n        parser.error(\"Specify --benchmark or --all\")\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "95a05fb7-cf78-46fc-8814-8d0b46337f9f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01T4GKgS8czDqL2oL7e3oxU5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 399,
+                "cache_read_input_tokens": 28108,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 399
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T19:59:02.546Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "<tool_use_error>File has not been read yet. Read it first before writing to it.</tool_use_error>",
+              "is_error": true,
+              "tool_use_id": "toolu_01YEtwuQer3oGEJKSYgW19nM"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "fe1ca8cd-2ed7-4df7-bb0e-6b6738997b11",
+            "tool_use_result": "Error: File has not been read yet. Read it first before writing to it."
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01MRTwKusUgZwnMXR2DvTTaG",
+              "name": "Bash",
+              "input": {
+                "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/",
+                "description": "List data directory contents"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "fd118234-2904-400a-b9a7-745f6ef1b449",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_015KimM7YrFDyV5UL1rkjBKm",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 1877,
+                "cache_read_input_tokens": 28507,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 1877
+                },
+                "output_tokens": 35,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T19:59:06.492Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01MRTwKusUgZwnMXR2DvTTaG",
+              "type": "tool_result",
+              "content": "__init__.py\n__pycache__\nfew_shot.py\nprompt_templates.py\nsample_benchmarks.py\nsample_mmlu.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "0bc3d44b-1f1f-470e-bab9-605f9990921b",
+            "tool_use_result": {
+              "stdout": "__init__.py\n__pycache__\nfew_shot.py\nprompt_templates.py\nsample_benchmarks.py\nsample_mmlu.py",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The file already exists. Let me read it first.",
+              "signature": "EvMBCmMIDRgCKkBr7X8/b7VR8/mYFOLCRcxwdI7w5jyl+vSj+hY4+jy7f/htzRjJ2gQa93De38e52KdF9Z/pZSnJiCVNnKe1fezWMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDCBMenAeBVi6tMVkHRoMyQejqH0fN1UfsvxYIjAqjuQeVzM9lIkFqNcnTkKnf98eW7oPnrBRhTeDASD9hQfursSiaekfgW6dtG/hu0UqPjwCEO7d9RIw4o//1fVaTyS31NqrtnrBJuasu3E6EoI8UJitz6WsfU1K1DZiLflsMjZi4ePabhRIIH6aYY69GAE="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "a0a6f301-d84b-4ce5-b3f8-9746ce787141",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0163QjzoiAPueX5o24VLFXUK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 157,
+                "cache_read_input_tokens": 30384,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 157
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "File already exists. Let me read it first."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "91f726fa-9f8b-4d10-815c-4c80ef5bde79",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0163QjzoiAPueX5o24VLFXUK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 157,
+                "cache_read_input_tokens": 30384,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 157
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01Bn9hHVm8nikFDubKifVMxa",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/sample_benchmarks.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "be262f16-2749-4382-b780-b45d86934503",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_0163QjzoiAPueX5o24VLFXUK",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 157,
+                "cache_read_input_tokens": 30384,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 157
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T19:59:10.245Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01Bn9hHVm8nikFDubKifVMxa",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Sample items from multiple benchmarks for G-theory experiment.\n2\t\n3\tBenchmarks: GSM8K, ARC-Challenge, HellaSwag.\n4\tEach outputs unified JSON format for downstream prompt formatting.\n5\t\n6\tUsage:\n7\t    python -m src.data.sample_benchmarks --benchmark gsm8k --n-items 200 --output data/gsm8k_items.json\n8\t    python -m src.data.sample_benchmarks --benchmark arc --n-items 200 --output data/arc_items.json\n9\t    python -m src.data.sample_benchmarks --benchmark hellaswag --n-items 200 --output data/hellaswag_items.json\n10\t\"\"\"\n11\t\n12\timport argparse\n13\timport json\n14\timport random\n15\tfrom pathlib import Path\n16\t\n17\tfrom datasets import load_dataset\n18\t\n19\t\n20\tdef _sample_gsm8k(n_items: int, seed: int) -> list[dict]:\n21\t    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"test\")\n22\t    rng = random.Random(seed)\n23\t\n24\t    def _extract_numeric_answer(answer_text: str) -> float | None:\n25\t        lines = answer_text.strip().split(\"\\n\")\n26\t        last = lines[-1] if lines else \"\"\n27\t        cleaned = last.replace(\"####\", \"\").replace(\",\", \"\").strip()\n28\t        try:\n29\t            return float(cleaned)\n30\t        except ValueError:\n31\t            return None\n32\t\n33\t    buckets: dict[str, list[int]] = {\n34\t        \"0-10\": [],\n35\t        \"10-100\": [],\n36\t        \"100-1000\": [],\n37\t        \"1000+\": [],\n38\t    }\n39\t    for i in range(len(ds)):\n40\t        val = _extract_numeric_answer(ds[i][\"answer\"])\n41\t        if val is None:\n42\t            buckets[\"100-1000\"].append(i)\n43\t        elif abs(val) <= 10:\n44\t            buckets[\"0-10\"].append(i)\n45\t        elif abs(val) <= 100:\n46\t            buckets[\"10-100\"].append(i)\n47\t        elif abs(val) <= 1000:\n48\t            buckets[\"100-1000\"].append(i)\n49\t        else:\n50\t            buckets[\"1000+\"].append(i)\n51\t\n52\t    per_bucket = n_items // len(buckets)\n53\t    remainder = n_items - per_bucket * len(buckets)\n54\t    selected_indices: list[int] = []\n55\t\n56\t    for i, (bucket_name, indices) in enumerate(buckets.items()):\n57\t        take = per_bucket + (1 if i < remainder else 0)\n58\t        take = min(take, len(indices))\n59\t        selected_indices.extend(rng.sample(indices, take))\n60\t\n61\t    items = []\n62\t    for idx in selected_indices:\n63\t        row = ds[idx]\n64\t        items.append(\n65\t            {\n66\t                \"item_id\": f\"gsm8k_{idx}\",\n67\t                \"question\": row[\"question\"],\n68\t                \"answer\": row[\"answer\"],\n69\t                \"benchmark\": \"gsm8k\",\n70\t            }\n71\t        )\n72\t    return items\n73\t\n74\t\n75\tdef _sample_arc(n_items: int, seed: int) -> list[dict]:\n76\t    ds = load_dataset(\"allenai/ai2_arc\", \"ARC-Challenge\", split=\"test\")\n77\t    rng = random.Random(seed)\n78\t\n79\t    buckets: dict[str, list[int]] = {}\n80\t    for i in range(len(ds)):\n81\t        key = ds[i][\"answerKey\"]\n82\t        buckets.setdefault(key, []).append(i)\n83\t\n84\t    per_bucket = n_items // len(buckets)\n85\t    remainder = n_items - per_bucket * len(buckets)\n86\t    selected_indices: list[int] = []\n87\t\n88\t    for i, (key, indices) in enumerate(sorted(buckets.items())):\n89\t        take = per_bucket + (1 if i < remainder else 0)\n90\t        take = min(take, len(indices))\n91\t        selected_indices.extend(rng.sample(indices, take))\n92\t\n93\t    answer_key_map = {\"A\": 0, \"B\": 1, \"C\": 2, \"D\": 3, \"1\": 0, \"2\": 1, \"3\": 2, \"4\": 3}\n94\t    items = []\n95\t    for idx in selected_indices:\n96\t        row = ds[idx]\n97\t        choices = row[\"choices\"][\"text\"]\n98\t        answer_idx = answer_key_map.get(row[\"answerKey\"], 0)\n99\t        items.append(\n100\t            {\n101\t                \"item_id\": f\"arc_{idx}\",\n102\t                \"question\": row[\"question\"],\n103\t                \"choices\": choices,\n104\t                \"answer_idx\": answer_idx,\n105\t                \"benchmark\": \"arc\",\n106\t                \"subject\": row.get(\"subject\", \"\"),\n107\t            }\n108\t        )\n109\t    return items\n110\t\n111\t\n112\tdef _sample_hellaswag(n_items: int, seed: int) -> list[dict]:\n113\t    ds = load_dataset(\"Rowan/hellaswag\", split=\"validation\")\n114\t    rng = random.Random(seed)\n115\t\n116\t    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n117\t\n118\t    items = []\n119\t    for idx in indices:\n120\t        row = ds[idx]\n121\t        items.append(\n122\t            {\n123\t                \"item_id\": f\"hellaswag_{idx}\",\n124\t                \"question\": row[\"ctx\"],\n125\t                \"choices\": row[\"endings\"],\n126\t                \"answer_idx\": int(row[\"label\"]),\n127\t                \"benchmark\": \"hellaswag\",\n128\t            }\n129\t        )\n130\t    return items\n131\t\n132\t\n133\tSAMPLERS = {\n134\t    \"gsm8k\": _sample_gsm8k,\n135\t    \"arc\": _sample_arc,\n136\t    \"hellaswag\": _sample_hellaswag,\n137\t}\n138\t\n139\t\n140\tdef sample_benchmark(\n141\t    benchmark: str,\n142\t    n_items: int = 200,\n143\t    seed: int = 42,\n144\t    output_path: str | None = None,\n145\t) -> list[dict]:\n146\t    if benchmark not in SAMPLERS:\n147\t        raise ValueError(f\"Unknown benchmark: {benchmark}. Choose from {list(SAMPLERS)}\")\n148\t\n149\t    items = SAMPLERS[benchmark](n_items, seed)\n150\t\n151\t    if output_path:\n152\t        Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n153\t        with open(output_path, \"w\") as f:\n154\t            json.dump(items, f, indent=2, ensure_ascii=False)\n155\t        print(f\"Sampled {len(items)} items from {benchmark} → {output_path}\")\n156\t\n157\t    return items\n158\t\n159\t\n160\tif __name__ == \"__main__\":\n161\t    parser = argparse.ArgumentParser(description=\"Sample benchmark items for G-theory study\")\n162\t    parser.add_argument(\"--benchmark\", required=True, choices=list(SAMPLERS))\n163\t    parser.add_argument(\"--n-items\", type=int, default=200)\n164\t    parser.add_argument(\"--seed\", type=int, default=42)\n165\t    parser.add_argument(\"--output\", required=True)\n166\t    args = parser.parse_args()\n167\t    sample_benchmark(\n168\t        benchmark=args.benchmark,\n169\t        n_items=args.n_items,\n170\t        seed=args.seed,\n171\t        output_path=args.output,\n172\t    )\n173\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "0ff4ce3e-84bb-4d5c-990b-0f96dbf0a896",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/sample_benchmarks.py",
+                "content": "\"\"\"Sample items from multiple benchmarks for G-theory experiment.\n\nBenchmarks: GSM8K, ARC-Challenge, HellaSwag.\nEach outputs unified JSON format for downstream prompt formatting.\n\nUsage:\n    python -m src.data.sample_benchmarks --benchmark gsm8k --n-items 200 --output data/gsm8k_items.json\n    python -m src.data.sample_benchmarks --benchmark arc --n-items 200 --output data/arc_items.json\n    python -m src.data.sample_benchmarks --benchmark hellaswag --n-items 200 --output data/hellaswag_items.json\n\"\"\"\n\nimport argparse\nimport json\nimport random\nfrom pathlib import Path\n\nfrom datasets import load_dataset\n\n\ndef _sample_gsm8k(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"test\")\n    rng = random.Random(seed)\n\n    def _extract_numeric_answer(answer_text: str) -> float | None:\n        lines = answer_text.strip().split(\"\\n\")\n        last = lines[-1] if lines else \"\"\n        cleaned = last.replace(\"####\", \"\").replace(\",\", \"\").strip()\n        try:\n            return float(cleaned)\n        except ValueError:\n            return None\n\n    buckets: dict[str, list[int]] = {\n        \"0-10\": [],\n        \"10-100\": [],\n        \"100-1000\": [],\n        \"1000+\": [],\n    }\n    for i in range(len(ds)):\n        val = _extract_numeric_answer(ds[i][\"answer\"])\n        if val is None:\n            buckets[\"100-1000\"].append(i)\n        elif abs(val) <= 10:\n            buckets[\"0-10\"].append(i)\n        elif abs(val) <= 100:\n            buckets[\"10-100\"].append(i)\n        elif abs(val) <= 1000:\n            buckets[\"100-1000\"].append(i)\n        else:\n            buckets[\"1000+\"].append(i)\n\n    per_bucket = n_items // len(buckets)\n    remainder = n_items - per_bucket * len(buckets)\n    selected_indices: list[int] = []\n\n    for i, (bucket_name, indices) in enumerate(buckets.items()):\n        take = per_bucket + (1 if i < remainder else 0)\n        take = min(take, len(indices))\n        selected_indices.extend(rng.sample(indices, take))\n\n    items = []\n    for idx in selected_indices:\n        row = ds[idx]\n        items.append(\n            {\n                \"item_id\": f\"gsm8k_{idx}\",\n                \"question\": row[\"question\"],\n                \"answer\": row[\"answer\"],\n                \"benchmark\": \"gsm8k\",\n            }\n        )\n    return items\n\n\ndef _sample_arc(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"allenai/ai2_arc\", \"ARC-Challenge\", split=\"test\")\n    rng = random.Random(seed)\n\n    buckets: dict[str, list[int]] = {}\n    for i in range(len(ds)):\n        key = ds[i][\"answerKey\"]\n        buckets.setdefault(key, []).append(i)\n\n    per_bucket = n_items // len(buckets)\n    remainder = n_items - per_bucket * len(buckets)\n    selected_indices: list[int] = []\n\n    for i, (key, indices) in enumerate(sorted(buckets.items())):\n        take = per_bucket + (1 if i < remainder else 0)\n        take = min(take, len(indices))\n        selected_indices.extend(rng.sample(indices, take))\n\n    answer_key_map = {\"A\": 0, \"B\": 1, \"C\": 2, \"D\": 3, \"1\": 0, \"2\": 1, \"3\": 2, \"4\": 3}\n    items = []\n    for idx in selected_indices:\n        row = ds[idx]\n        choices = row[\"choices\"][\"text\"]\n        answer_idx = answer_key_map.get(row[\"answerKey\"], 0)\n        items.append(\n            {\n                \"item_id\": f\"arc_{idx}\",\n                \"question\": row[\"question\"],\n                \"choices\": choices,\n                \"answer_idx\": answer_idx,\n                \"benchmark\": \"arc\",\n                \"subject\": row.get(\"subject\", \"\"),\n            }\n        )\n    return items\n\n\ndef _sample_hellaswag(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"Rowan/hellaswag\", split=\"validation\")\n    rng = random.Random(seed)\n\n    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n\n    items = []\n    for idx in indices:\n        row = ds[idx]\n        items.append(\n            {\n                \"item_id\": f\"hellaswag_{idx}\",\n                \"question\": row[\"ctx\"],\n                \"choices\": row[\"endings\"],\n                \"answer_idx\": int(row[\"label\"]),\n                \"benchmark\": \"hellaswag\",\n            }\n        )\n    return items\n\n\nSAMPLERS = {\n    \"gsm8k\": _sample_gsm8k,\n    \"arc\": _sample_arc,\n    \"hellaswag\": _sample_hellaswag,\n}\n\n\ndef sample_benchmark(\n    benchmark: str,\n    n_items: int = 200,\n    seed: int = 42,\n    output_path: str | None = None,\n) -> list[dict]:\n    if benchmark not in SAMPLERS:\n        raise ValueError(f\"Unknown benchmark: {benchmark}. Choose from {list(SAMPLERS)}\")\n\n    items = SAMPLERS[benchmark](n_items, seed)\n\n    if output_path:\n        Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n        with open(output_path, \"w\") as f:\n            json.dump(items, f, indent=2, ensure_ascii=False)\n        print(f\"Sampled {len(items)} items from {benchmark} → {output_path}\")\n\n    return items\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(description=\"Sample benchmark items for G-theory study\")\n    parser.add_argument(\"--benchmark\", required=True, choices=list(SAMPLERS))\n    parser.add_argument(\"--n-items\", type=int, default=200)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", required=True)\n    args = parser.parse_args()\n    sample_benchmark(\n        benchmark=args.benchmark,\n        n_items=args.n_items,\n        seed=args.seed,\n        output_path=args.output,\n    )\n",
+                "numLines": 173,
+                "startLine": 1,
+                "totalLines": 173
+              }
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The file already exists but needs updates to match the requirements:\n\n1. The output schema doesn't match — needs `answer`, `answer_idx`, `choices`, `metadata` for all benchmarks in unified format\n2. GSM8K items don't have the unified schema (missing `choices: null`, `answer_idx: null`, `metadata`)\n3. ARC items use `benchmark: \"arc\"` not `\"arc_challenge\"` — but this might be intentional. The task says ARC-Challenge so let me keep the existing naming.\n4. Missing `--all` mode and `--output-dir` parameter\n\n\n5. HellaSwag doesn't have `answer` field or `metadata`\n\nNow I'm comparing the requirements against what's currently in the code. The unified format needs consistent fields across all benchmarks, so I need to standardize the output structure and add the missing command-line options.\n\nLooking at the gaps: GSM8K is missing `choices`, `answer_idx`, and `metadata`, plus the `answer` field should be just the number not the full solution. ARC has the structure mostly right but needs the `answer` field and `metadata`, and the benchmark name should be standardized. HellaSwag needs both `answer` and `metadata` added. I also need to implement the `--all` mode and `--output-dir` parameter.\n\nRewriting the file to align everything with the spec...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "4baacd3e-ea9b-4d9a-8fc7-af4a02028156",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L6VTDFQHbJ9aAASLUkoeHF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2249,
+                "cache_read_input_tokens": 30541,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2249
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file exists but needs updates: unified output schema with `answer`/`metadata` fields, `--all` mode, and `--output-dir`. Let me rewrite it."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "e982ed3b-f1e3-45f1-81d3-b82b874875b5",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L6VTDFQHbJ9aAASLUkoeHF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2249,
+                "cache_read_input_tokens": 30541,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2249
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01LNJh1ajWvTvhwyYTRn9onT",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/sample_benchmarks.py",
+                "content": "\"\"\"Sample items from multiple benchmarks for G-theory exp-002.\n\nSupports: GSM8K, ARC-Challenge, HellaSwag.\nOutput: JSON with unified schema [{item_id, benchmark, question, choices, answer_idx, answer, metadata}, ...]\n\nUsage:\n    python -m src.data.sample_benchmarks --benchmark gsm8k --n-items 200 --output data/gsm8k_items.json\n    python -m src.data.sample_benchmarks --benchmark arc_challenge --n-items 200 --output data/arc_items.json\n    python -m src.data.sample_benchmarks --all --n-items 200 --output-dir data/\n\"\"\"\n\nimport argparse\nimport json\nimport random\nimport re\nfrom pathlib import Path\n\nfrom datasets import load_dataset\n\nBENCHMARKS = [\"gsm8k\", \"arc_challenge\", \"hellaswag\"]\n\n\ndef _extract_gsm8k_answer(answer_text: str) -> str:\n    match = re.search(r\"####\\s*(.+)\", answer_text)\n    if match:\n        return match.group(1).strip().replace(\",\", \"\")\n    return answer_text.strip()\n\n\ndef _sample_gsm8k(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"test\")\n    rng = random.Random(seed)\n    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n    items = []\n    for idx in indices:\n        row = ds[idx]\n        answer = _extract_gsm8k_answer(row[\"answer\"])\n        items.append(\n            {\n                \"item_id\": f\"gsm8k_{idx}\",\n                \"benchmark\": \"gsm8k\",\n                \"question\": row[\"question\"],\n                \"choices\": None,\n                \"answer_idx\": None,\n                \"answer\": answer,\n                \"metadata\": {\"raw_answer\": row[\"answer\"]},\n            }\n        )\n    return items\n\n\ndef _sample_arc_challenge(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"allenai/ai2_arc\", \"ARC-Challenge\", split=\"test\")\n    rng = random.Random(seed)\n    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n    answer_key_map = {\"A\": 0, \"B\": 1, \"C\": 2, \"D\": 3, \"1\": 0, \"2\": 1, \"3\": 2, \"4\": 3}\n    items = []\n    for idx in indices:\n        row = ds[idx]\n        choices = row[\"choices\"][\"text\"]\n        answer_key = row[\"answerKey\"]\n        answer_idx = answer_key_map.get(answer_key, 0)\n        items.append(\n            {\n                \"item_id\": f\"arc_challenge_{idx}\",\n                \"benchmark\": \"arc_challenge\",\n                \"question\": row[\"question\"],\n                \"choices\": choices,\n                \"answer_idx\": answer_idx,\n                \"answer\": answer_key,\n                \"metadata\": {},\n            }\n        )\n    return items\n\n\ndef _sample_hellaswag(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"Rowan/hellaswag\", split=\"validation\")\n    rng = random.Random(seed)\n    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n    items = []\n    for idx in indices:\n        row = ds[idx]\n        label = int(row[\"label\"]) if row[\"label\"] != \"\" else 0\n        items.append(\n            {\n                \"item_id\": f\"hellaswag_{idx}\",\n                \"benchmark\": \"hellaswag\",\n                \"question\": row[\"ctx\"],\n                \"choices\": row[\"endings\"],\n                \"answer_idx\": label,\n                \"answer\": str(label),\n                \"metadata\": {\"activity_label\": row[\"activity_label\"]},\n            }\n        )\n    return items\n\n\nSAMPLERS = {\n    \"gsm8k\": _sample_gsm8k,\n    \"arc_challenge\": _sample_arc_challenge,\n    \"hellaswag\": _sample_hellaswag,\n}\n\n\ndef sample_benchmark(\n    benchmark: str,\n    n_items: int = 200,\n    seed: int = 42,\n    output_path: str | None = None,\n) -> list[dict]:\n    if benchmark not in SAMPLERS:\n        raise ValueError(f\"Unknown benchmark: {benchmark}. Choose from {list(SAMPLERS)}\")\n\n    items = SAMPLERS[benchmark](n_items, seed)\n\n    if output_path:\n        Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n        with open(output_path, \"w\") as f:\n            json.dump(items, f, indent=2, ensure_ascii=False)\n        print(f\"Sampled {len(items)} items from {benchmark} → {output_path}\")\n\n    return items\n\n\ndef sample_all(\n    n_items: int = 200,\n    seed: int = 42,\n    output_dir: str = \"data\",\n) -> dict[str, list[dict]]:\n    results = {}\n    for bench in BENCHMARKS:\n        out = str(Path(output_dir) / f\"{bench}_items.json\")\n        results[bench] = sample_benchmark(bench, n_items, seed, out)\n    return results\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(\n        description=\"Sample benchmark items for G-theory study\"\n    )\n    parser.add_argument(\"--benchmark\", choices=BENCHMARKS)\n    parser.add_argument(\"--all\", action=\"store_true\", help=\"Sample from all benchmarks\")\n    parser.add_argument(\"--n-items\", type=int, default=200)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", default=None, help=\"Output JSON path (single benchmark)\")\n    parser.add_argument(\"--output-dir\", default=\"data\", help=\"Output directory (--all mode)\")\n    args = parser.parse_args()\n\n    if args.all:\n        sample_all(n_items=args.n_items, seed=args.seed, output_dir=args.output_dir)\n    elif args.benchmark:\n        out = args.output or f\"data/{args.benchmark}_items.json\"\n        sample_benchmark(args.benchmark, args.n_items, args.seed, out)\n    else:\n        parser.error(\"Specify --benchmark or --all\")\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "f0f97ebb-1621-4251-845e-c0f650570275",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01L6VTDFQHbJ9aAASLUkoeHF",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2249,
+                "cache_read_input_tokens": 30541,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2249
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T19:59:43.784Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01LNJh1ajWvTvhwyYTRn9onT",
+              "type": "tool_result",
+              "content": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/sample_benchmarks.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "f257e5c5-c6f1-44b2-90a8-81908587093a",
+            "tool_use_result": {
+              "type": "update",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/sample_benchmarks.py",
+              "content": "\"\"\"Sample items from multiple benchmarks for G-theory exp-002.\n\nSupports: GSM8K, ARC-Challenge, HellaSwag.\nOutput: JSON with unified schema [{item_id, benchmark, question, choices, answer_idx, answer, metadata}, ...]\n\nUsage:\n    python -m src.data.sample_benchmarks --benchmark gsm8k --n-items 200 --output data/gsm8k_items.json\n    python -m src.data.sample_benchmarks --benchmark arc_challenge --n-items 200 --output data/arc_items.json\n    python -m src.data.sample_benchmarks --all --n-items 200 --output-dir data/\n\"\"\"\n\nimport argparse\nimport json\nimport random\nimport re\nfrom pathlib import Path\n\nfrom datasets import load_dataset\n\nBENCHMARKS = [\"gsm8k\", \"arc_challenge\", \"hellaswag\"]\n\n\ndef _extract_gsm8k_answer(answer_text: str) -> str:\n    match = re.search(r\"####\\s*(.+)\", answer_text)\n    if match:\n        return match.group(1).strip().replace(\",\", \"\")\n    return answer_text.strip()\n\n\ndef _sample_gsm8k(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"test\")\n    rng = random.Random(seed)\n    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n    items = []\n    for idx in indices:\n        row = ds[idx]\n        answer = _extract_gsm8k_answer(row[\"answer\"])\n        items.append(\n            {\n                \"item_id\": f\"gsm8k_{idx}\",\n                \"benchmark\": \"gsm8k\",\n                \"question\": row[\"question\"],\n                \"choices\": None,\n                \"answer_idx\": None,\n                \"answer\": answer,\n                \"metadata\": {\"raw_answer\": row[\"answer\"]},\n            }\n        )\n    return items\n\n\ndef _sample_arc_challenge(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"allenai/ai2_arc\", \"ARC-Challenge\", split=\"test\")\n    rng = random.Random(seed)\n    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n    answer_key_map = {\"A\": 0, \"B\": 1, \"C\": 2, \"D\": 3, \"1\": 0, \"2\": 1, \"3\": 2, \"4\": 3}\n    items = []\n    for idx in indices:\n        row = ds[idx]\n        choices = row[\"choices\"][\"text\"]\n        answer_key = row[\"answerKey\"]\n        answer_idx = answer_key_map.get(answer_key, 0)\n        items.append(\n            {\n                \"item_id\": f\"arc_challenge_{idx}\",\n                \"benchmark\": \"arc_challenge\",\n                \"question\": row[\"question\"],\n                \"choices\": choices,\n                \"answer_idx\": answer_idx,\n                \"answer\": answer_key,\n                \"metadata\": {},\n            }\n        )\n    return items\n\n\ndef _sample_hellaswag(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"Rowan/hellaswag\", split=\"validation\")\n    rng = random.Random(seed)\n    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n    items = []\n    for idx in indices:\n        row = ds[idx]\n        label = int(row[\"label\"]) if row[\"label\"] != \"\" else 0\n        items.append(\n            {\n                \"item_id\": f\"hellaswag_{idx}\",\n                \"benchmark\": \"hellaswag\",\n                \"question\": row[\"ctx\"],\n                \"choices\": row[\"endings\"],\n                \"answer_idx\": label,\n                \"answer\": str(label),\n                \"metadata\": {\"activity_label\": row[\"activity_label\"]},\n            }\n        )\n    return items\n\n\nSAMPLERS = {\n    \"gsm8k\": _sample_gsm8k,\n    \"arc_challenge\": _sample_arc_challenge,\n    \"hellaswag\": _sample_hellaswag,\n}\n\n\ndef sample_benchmark(\n    benchmark: str,\n    n_items: int = 200,\n    seed: int = 42,\n    output_path: str | None = None,\n) -> list[dict]:\n    if benchmark not in SAMPLERS:\n        raise ValueError(f\"Unknown benchmark: {benchmark}. Choose from {list(SAMPLERS)}\")\n\n    items = SAMPLERS[benchmark](n_items, seed)\n\n    if output_path:\n        Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n        with open(output_path, \"w\") as f:\n            json.dump(items, f, indent=2, ensure_ascii=False)\n        print(f\"Sampled {len(items)} items from {benchmark} → {output_path}\")\n\n    return items\n\n\ndef sample_all(\n    n_items: int = 200,\n    seed: int = 42,\n    output_dir: str = \"data\",\n) -> dict[str, list[dict]]:\n    results = {}\n    for bench in BENCHMARKS:\n        out = str(Path(output_dir) / f\"{bench}_items.json\")\n        results[bench] = sample_benchmark(bench, n_items, seed, out)\n    return results\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(\n        description=\"Sample benchmark items for G-theory study\"\n    )\n    parser.add_argument(\"--benchmark\", choices=BENCHMARKS)\n    parser.add_argument(\"--all\", action=\"store_true\", help=\"Sample from all benchmarks\")\n    parser.add_argument(\"--n-items\", type=int, default=200)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", default=None, help=\"Output JSON path (single benchmark)\")\n    parser.add_argument(\"--output-dir\", default=\"data\", help=\"Output directory (--all mode)\")\n    args = parser.parse_args()\n\n    if args.all:\n        sample_all(n_items=args.n_items, seed=args.seed, output_dir=args.output_dir)\n    elif args.benchmark:\n        out = args.output or f\"data/{args.benchmark}_items.json\"\n        sample_benchmark(args.benchmark, args.n_items, args.seed, out)\n    else:\n        parser.error(\"Specify --benchmark or --all\")\n",
+              "structuredPatch": [
+                {
+                  "oldStart": 1,
+                  "oldLines": 109,
+                  "newStart": 1,
+                  "newLines": 74,
+                  "lines": [
+                    "-\"\"\"Sample items from multiple benchmarks for G-theory experiment.",
+                    "+\"\"\"Sample items from multiple benchmarks for G-theory exp-002.",
+                    " ",
+                    "-Benchmarks: GSM8K, ARC-Challenge, HellaSwag.",
+                    "-Each outputs unified JSON format for downstream prompt formatting.",
+                    "+Supports: GSM8K, ARC-Challenge, HellaSwag.",
+                    "+Output: JSON with unified schema [{item_id, benchmark, question, choices, answer_idx, answer, metadata}, ...]",
+                    " ",
+                    " Usage:",
+                    "     python -m src.data.sample_benchmarks --benchmark gsm8k --n-items 200 --output data/gsm8k_items.json",
+                    "-    python -m src.data.sample_benchmarks --benchmark arc --n-items 200 --output data/arc_items.json",
+                    "-    python -m src.data.sample_benchmarks --benchmark hellaswag --n-items 200 --output data/hellaswag_items.json",
+                    "+    python -m src.data.sample_benchmarks --benchmark arc_challenge --n-items 200 --output data/arc_items.json",
+                    "+    python -m src.data.sample_benchmarks --all --n-items 200 --output-dir data/",
+                    " \"\"\"",
+                    " ",
+                    " import argparse",
+                    " import json",
+                    " import random",
+                    "+import re",
+                    " from pathlib import Path",
+                    " ",
+                    " from datasets import load_dataset",
+                    " ",
+                    "+BENCHMARKS = [\"gsm8k\", \"arc_challenge\", \"hellaswag\"]",
+                    " ",
+                    "-def _sample_gsm8k(n_items: int, seed: int) -> list[dict]:",
+                    "-    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"test\")",
+                    "-    rng = random.Random(seed)",
+                    " ",
+                    "-    def _extract_numeric_answer(answer_text: str) -> float | None:",
+                    "-        lines = answer_text.strip().split(\"\\n\")",
+                    "-        last = lines[-1] if lines else \"\"",
+                    "-        cleaned = last.replace(\"####\", \"\").replace(\",\", \"\").strip()",
+                    "-        try:",
+                    "-            return float(cleaned)",
+                    "-        except ValueError:",
+                    "-            return None",
+                    "+def _extract_gsm8k_answer(answer_text: str) -> str:",
+                    "+    match = re.search(r\"####\\s*(.+)\", answer_text)",
+                    "+    if match:",
+                    "+        return match.group(1).strip().replace(\",\", \"\")",
+                    "+    return answer_text.strip()",
+                    " ",
+                    "-    buckets: dict[str, list[int]] = {",
+                    "-        \"0-10\": [],",
+                    "-        \"10-100\": [],",
+                    "-        \"100-1000\": [],",
+                    "-        \"1000+\": [],",
+                    "-    }",
+                    "-    for i in range(len(ds)):",
+                    "-        val = _extract_numeric_answer(ds[i][\"answer\"])",
+                    "-        if val is None:",
+                    "-            buckets[\"100-1000\"].append(i)",
+                    "-        elif abs(val) <= 10:",
+                    "-            buckets[\"0-10\"].append(i)",
+                    "-        elif abs(val) <= 100:",
+                    "-            buckets[\"10-100\"].append(i)",
+                    "-        elif abs(val) <= 1000:",
+                    "-            buckets[\"100-1000\"].append(i)",
+                    "-        else:",
+                    "-            buckets[\"1000+\"].append(i)",
+                    " ",
+                    "-    per_bucket = n_items // len(buckets)",
+                    "-    remainder = n_items - per_bucket * len(buckets)",
+                    "-    selected_indices: list[int] = []",
+                    "-",
+                    "-    for i, (bucket_name, indices) in enumerate(buckets.items()):",
+                    "-        take = per_bucket + (1 if i < remainder else 0)",
+                    "-        take = min(take, len(indices))",
+                    "-        selected_indices.extend(rng.sample(indices, take))",
+                    "-",
+                    "+def _sample_gsm8k(n_items: int, seed: int) -> list[dict]:",
+                    "+    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"test\")",
+                    "+    rng = random.Random(seed)",
+                    "+    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))",
+                    "     items = []",
+                    "-    for idx in selected_indices:",
+                    "+    for idx in indices:",
+                    "         row = ds[idx]",
+                    "+        answer = _extract_gsm8k_answer(row[\"answer\"])",
+                    "         items.append(",
+                    "             {",
+                    "                 \"item_id\": f\"gsm8k_{idx}\",",
+                    "-                \"question\": row[\"question\"],",
+                    "-                \"answer\": row[\"answer\"],",
+                    "                 \"benchmark\": \"gsm8k\",",
+                    "+                \"question\": row[\"question\"],",
+                    "+                \"choices\": None,",
+                    "+                \"answer_idx\": None,",
+                    "+                \"answer\": answer,",
+                    "+                \"metadata\": {\"raw_answer\": row[\"answer\"]},",
+                    "             }",
+                    "         )",
+                    "     return items",
+                    " ",
+                    " ",
+                    "-def _sample_arc(n_items: int, seed: int) -> list[dict]:",
+                    "+def _sample_arc_challenge(n_items: int, seed: int) -> list[dict]:",
+                    "     ds = load_dataset(\"allenai/ai2_arc\", \"ARC-Challenge\", split=\"test\")",
+                    "     rng = random.Random(seed)",
+                    "-",
+                    "-    buckets: dict[str, list[int]] = {}",
+                    "-    for i in range(len(ds)):",
+                    "-        key = ds[i][\"answerKey\"]",
+                    "-        buckets.setdefault(key, []).append(i)",
+                    "-",
+                    "-    per_bucket = n_items // len(buckets)",
+                    "-    remainder = n_items - per_bucket * len(buckets)",
+                    "-    selected_indices: list[int] = []",
+                    "-",
+                    "-    for i, (key, indices) in enumerate(sorted(buckets.items())):",
+                    "-        take = per_bucket + (1 if i < remainder else 0)",
+                    "-        take = min(take, len(indices))",
+                    "-        selected_indices.extend(rng.sample(indices, take))",
+                    "-",
+                    "+    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))",
+                    "     answer_key_map = {\"A\": 0, \"B\": 1, \"C\": 2, \"D\": 3, \"1\": 0, \"2\": 1, \"3\": 2, \"4\": 3}",
+                    "     items = []",
+                    "-    for idx in selected_indices:",
+                    "+    for idx in indices:",
+                    "         row = ds[idx]",
+                    "         choices = row[\"choices\"][\"text\"]",
+                    "-        answer_idx = answer_key_map.get(row[\"answerKey\"], 0)",
+                    "+        answer_key = row[\"answerKey\"]",
+                    "+        answer_idx = answer_key_map.get(answer_key, 0)",
+                    "         items.append(",
+                    "             {",
+                    "-                \"item_id\": f\"arc_{idx}\",",
+                    "+                \"item_id\": f\"arc_challenge_{idx}\",",
+                    "+                \"benchmark\": \"arc_challenge\",",
+                    "                 \"question\": row[\"question\"],",
+                    "                 \"choices\": choices,",
+                    "                 \"answer_idx\": answer_idx,",
+                    "-                \"benchmark\": \"arc\",",
+                    "-                \"subject\": row.get(\"subject\", \"\"),",
+                    "+                \"answer\": answer_key,",
+                    "+                \"metadata\": {},",
+                    "             }",
+                    "         )",
+                    "     return items"
+                  ]
+                },
+                {
+                  "oldStart": 112,
+                  "oldLines": 19,
+                  "newStart": 77,
+                  "newLines": 20,
+                  "lines": [
+                    " def _sample_hellaswag(n_items: int, seed: int) -> list[dict]:",
+                    "     ds = load_dataset(\"Rowan/hellaswag\", split=\"validation\")",
+                    "     rng = random.Random(seed)",
+                    "-",
+                    "     indices = rng.sample(range(len(ds)), min(n_items, len(ds)))",
+                    "-",
+                    "     items = []",
+                    "     for idx in indices:",
+                    "         row = ds[idx]",
+                    "+        label = int(row[\"label\"]) if row[\"label\"] != \"\" else 0",
+                    "         items.append(",
+                    "             {",
+                    "                 \"item_id\": f\"hellaswag_{idx}\",",
+                    "+                \"benchmark\": \"hellaswag\",",
+                    "                 \"question\": row[\"ctx\"],",
+                    "                 \"choices\": row[\"endings\"],",
+                    "-                \"answer_idx\": int(row[\"label\"]),",
+                    "-                \"benchmark\": \"hellaswag\",",
+                    "+                \"answer_idx\": label,",
+                    "+                \"answer\": str(label),",
+                    "+                \"metadata\": {\"activity_label\": row[\"activity_label\"]},",
+                    "             }",
+                    "         )",
+                    "     return items"
+                  ]
+                },
+                {
+                  "oldStart": 132,
+                  "oldLines": 7,
+                  "newStart": 98,
+                  "newLines": 7,
+                  "lines": [
+                    " ",
+                    " SAMPLERS = {",
+                    "     \"gsm8k\": _sample_gsm8k,",
+                    "-    \"arc\": _sample_arc,",
+                    "+    \"arc_challenge\": _sample_arc_challenge,",
+                    "     \"hellaswag\": _sample_hellaswag,",
+                    " }",
+                    " "
+                  ]
+                },
+                {
+                  "oldStart": 157,
+                  "oldLines": 16,
+                  "newStart": 123,
+                  "newLines": 34,
+                  "lines": [
+                    "     return items",
+                    " ",
+                    " ",
+                    "+def sample_all(",
+                    "+    n_items: int = 200,",
+                    "+    seed: int = 42,",
+                    "+    output_dir: str = \"data\",",
+                    "+) -> dict[str, list[dict]]:",
+                    "+    results = {}",
+                    "+    for bench in BENCHMARKS:",
+                    "+        out = str(Path(output_dir) / f\"{bench}_items.json\")",
+                    "+        results[bench] = sample_benchmark(bench, n_items, seed, out)",
+                    "+    return results",
+                    "+",
+                    "+",
+                    " if __name__ == \"__main__\":",
+                    "-    parser = argparse.ArgumentParser(description=\"Sample benchmark items for G-theory study\")",
+                    "-    parser.add_argument(\"--benchmark\", required=True, choices=list(SAMPLERS))",
+                    "+    parser = argparse.ArgumentParser(",
+                    "+        description=\"Sample benchmark items for G-theory study\"",
+                    "+    )",
+                    "+    parser.add_argument(\"--benchmark\", choices=BENCHMARKS)",
+                    "+    parser.add_argument(\"--all\", action=\"store_true\", help=\"Sample from all benchmarks\")",
+                    "     parser.add_argument(\"--n-items\", type=int, default=200)",
+                    "     parser.add_argument(\"--seed\", type=int, default=42)",
+                    "-    parser.add_argument(\"--output\", required=True)",
+                    "+    parser.add_argument(\"--output\", default=None, help=\"Output JSON path (single benchmark)\")",
+                    "+    parser.add_argument(\"--output-dir\", default=\"data\", help=\"Output directory (--all mode)\")",
+                    "     args = parser.parse_args()",
+                    "-    sample_benchmark(",
+                    "-        benchmark=args.benchmark,",
+                    "-        n_items=args.n_items,",
+                    "-        seed=args.seed,",
+                    "-        output_path=args.output,",
+                    "-    )",
+                    "+",
+                    "+    if args.all:",
+                    "+        sample_all(n_items=args.n_items, seed=args.seed, output_dir=args.output_dir)",
+                    "+    elif args.benchmark:",
+                    "+        out = args.output or f\"data/{args.benchmark}_items.json\"",
+                    "+        sample_benchmark(args.benchmark, args.n_items, args.seed, out)",
+                    "+    else:",
+                    "+        parser.error(\"Specify --benchmark or --all\")"
+                  ]
+                }
+              ],
+              "originalFile": "\"\"\"Sample items from multiple benchmarks for G-theory experiment.\n\nBenchmarks: GSM8K, ARC-Challenge, HellaSwag.\nEach outputs unified JSON format for downstream prompt formatting.\n\nUsage:\n    python -m src.data.sample_benchmarks --benchmark gsm8k --n-items 200 --output data/gsm8k_items.json\n    python -m src.data.sample_benchmarks --benchmark arc --n-items 200 --output data/arc_items.json\n    python -m src.data.sample_benchmarks --benchmark hellaswag --n-items 200 --output data/hellaswag_items.json\n\"\"\"\n\nimport argparse\nimport json\nimport random\nfrom pathlib import Path\n\nfrom datasets import load_dataset\n\n\ndef _sample_gsm8k(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"test\")\n    rng = random.Random(seed)\n\n    def _extract_numeric_answer(answer_text: str) -> float | None:\n        lines = answer_text.strip().split(\"\\n\")\n        last = lines[-1] if lines else \"\"\n        cleaned = last.replace(\"####\", \"\").replace(\",\", \"\").strip()\n        try:\n            return float(cleaned)\n        except ValueError:\n            return None\n\n    buckets: dict[str, list[int]] = {\n        \"0-10\": [],\n        \"10-100\": [],\n        \"100-1000\": [],\n        \"1000+\": [],\n    }\n    for i in range(len(ds)):\n        val = _extract_numeric_answer(ds[i][\"answer\"])\n        if val is None:\n            buckets[\"100-1000\"].append(i)\n        elif abs(val) <= 10:\n            buckets[\"0-10\"].append(i)\n        elif abs(val) <= 100:\n            buckets[\"10-100\"].append(i)\n        elif abs(val) <= 1000:\n            buckets[\"100-1000\"].append(i)\n        else:\n            buckets[\"1000+\"].append(i)\n\n    per_bucket = n_items // len(buckets)\n    remainder = n_items - per_bucket * len(buckets)\n    selected_indices: list[int] = []\n\n    for i, (bucket_name, indices) in enumerate(buckets.items()):\n        take = per_bucket + (1 if i < remainder else 0)\n        take = min(take, len(indices))\n        selected_indices.extend(rng.sample(indices, take))\n\n    items = []\n    for idx in selected_indices:\n        row = ds[idx]\n        items.append(\n            {\n                \"item_id\": f\"gsm8k_{idx}\",\n                \"question\": row[\"question\"],\n                \"answer\": row[\"answer\"],\n                \"benchmark\": \"gsm8k\",\n            }\n        )\n    return items\n\n\ndef _sample_arc(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"allenai/ai2_arc\", \"ARC-Challenge\", split=\"test\")\n    rng = random.Random(seed)\n\n    buckets: dict[str, list[int]] = {}\n    for i in range(len(ds)):\n        key = ds[i][\"answerKey\"]\n        buckets.setdefault(key, []).append(i)\n\n    per_bucket = n_items // len(buckets)\n    remainder = n_items - per_bucket * len(buckets)\n    selected_indices: list[int] = []\n\n    for i, (key, indices) in enumerate(sorted(buckets.items())):\n        take = per_bucket + (1 if i < remainder else 0)\n        take = min(take, len(indices))\n        selected_indices.extend(rng.sample(indices, take))\n\n    answer_key_map = {\"A\": 0, \"B\": 1, \"C\": 2, \"D\": 3, \"1\": 0, \"2\": 1, \"3\": 2, \"4\": 3}\n    items = []\n    for idx in selected_indices:\n        row = ds[idx]\n        choices = row[\"choices\"][\"text\"]\n        answer_idx = answer_key_map.get(row[\"answerKey\"], 0)\n        items.append(\n            {\n                \"item_id\": f\"arc_{idx}\",\n                \"question\": row[\"question\"],\n                \"choices\": choices,\n                \"answer_idx\": answer_idx,\n                \"benchmark\": \"arc\",\n                \"subject\": row.get(\"subject\", \"\"),\n            }\n        )\n    return items\n\n\ndef _sample_hellaswag(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"Rowan/hellaswag\", split=\"validation\")\n    rng = random.Random(seed)\n\n    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n\n    items = []\n    for idx in indices:\n        row = ds[idx]\n        items.append(\n            {\n                \"item_id\": f\"hellaswag_{idx}\",\n                \"question\": row[\"ctx\"],\n                \"choices\": row[\"endings\"],\n                \"answer_idx\": int(row[\"label\"]),\n                \"benchmark\": \"hellaswag\",\n            }\n        )\n    return items\n\n\nSAMPLERS = {\n    \"gsm8k\": _sample_gsm8k,\n    \"arc\": _sample_arc,\n    \"hellaswag\": _sample_hellaswag,\n}\n\n\ndef sample_benchmark(\n    benchmark: str,\n    n_items: int = 200,\n    seed: int = 42,\n    output_path: str | None = None,\n) -> list[dict]:\n    if benchmark not in SAMPLERS:\n        raise ValueError(f\"Unknown benchmark: {benchmark}. Choose from {list(SAMPLERS)}\")\n\n    items = SAMPLERS[benchmark](n_items, seed)\n\n    if output_path:\n        Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n        with open(output_path, \"w\") as f:\n            json.dump(items, f, indent=2, ensure_ascii=False)\n        print(f\"Sampled {len(items)} items from {benchmark} → {output_path}\")\n\n    return items\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(description=\"Sample benchmark items for G-theory study\")\n    parser.add_argument(\"--benchmark\", required=True, choices=list(SAMPLERS))\n    parser.add_argument(\"--n-items\", type=int, default=200)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", required=True)\n    args = parser.parse_args()\n    sample_benchmark(\n        benchmark=args.benchmark,\n        n_items=args.n_items,\n        seed=args.seed,\n        output_path=args.output,\n    )\n",
+              "userModified": false
+            }
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me verify all three files."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "0dc47eb4-6d55-4bec-9245-1af1260b3660",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hq1fXBuCNhdWQ7PLBG8i5j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2343,
+                "cache_read_input_tokens": 32790,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2343
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014Hquz2EfHz3QowcLnG3wNZ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/few_shot.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "6384558d-f84a-476e-9ac2-f79ce7d758b0",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hq1fXBuCNhdWQ7PLBG8i5j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2343,
+                "cache_read_input_tokens": 32790,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2343
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T19:59:47.919Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014Hquz2EfHz3QowcLnG3wNZ",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Generate few-shot example orderings for MMLU evaluation.\n2\t\n3\tFor each selected subject, loads 5 examples from the ``cais/mmlu`` dev split\n4\tand creates 4 random orderings (seeded).  The dev split is purpose-built for\n5\tfew-shot prompting and contains exactly 5 examples per subject.\n6\t\n7\tInput:  HuggingFace ``cais/mmlu`` dev split (auto-downloaded).\n8\tOutput: ``data/few_shot_examples.json`` — nested dict\n9\t        {subject → {ordering_id → [list of 5 example dicts]}}.\n10\t\"\"\"\n11\t\n12\timport argparse\n13\timport json\n14\timport random\n15\tfrom pathlib import Path\n16\t\n17\tfrom datasets import load_dataset\n18\t\n19\tSELECTED_SUBJECTS = [\n20\t    \"abstract_algebra\",\n21\t    \"college_physics\",\n22\t    \"world_religions\",\n23\t    \"us_foreign_policy\",\n24\t    \"professional_medicine\",\n25\t    \"high_school_mathematics\",\n26\t    \"computer_security\",\n27\t    \"philosophy\",\n28\t    \"clinical_knowledge\",\n29\t    \"international_law\",\n30\t]\n31\t\n32\tN_SHOTS = 5\n33\tN_ORDERINGS = 4\n34\t\n35\t\n36\tdef generate_orderings(\n37\t    seed: int = 42,\n38\t    output_path: str = \"data/few_shot_examples.json\",\n39\t    n_orderings: int = N_ORDERINGS,\n40\t) -> dict:\n41\t    \"\"\"Create shuffled few-shot orderings per subject.\n42\t\n43\t    Args:\n44\t        seed: Base RNG seed.  Ordering *k* uses ``seed + k``.\n45\t        output_path: Where to write the JSON output.\n46\t\n47\t    Returns:\n48\t        Nested dict ``{subject → {ordering_id → [examples]}}``.\n49\t    \"\"\"\n50\t    result: dict = {}\n51\t\n52\t    for subject in SELECTED_SUBJECTS:\n53\t        ds = load_dataset(\"cais/mmlu\", subject, split=\"dev\")\n54\t        examples = []\n55\t        for i in range(min(N_SHOTS, len(ds))):\n56\t            row = ds[i]\n57\t            examples.append(\n58\t                {\n59\t                    \"question\": row[\"question\"],\n60\t                    \"choices\": row[\"choices\"],\n61\t                    \"answer_idx\": row[\"answer\"],\n62\t                }\n63\t            )\n64\t\n65\t        orderings = {}\n66\t        for ordering_id in range(1, n_orderings + 1):\n67\t            rng = random.Random(seed + ordering_id)\n68\t            shuffled = examples.copy()\n69\t            rng.shuffle(shuffled)\n70\t            orderings[ordering_id] = shuffled\n71\t\n72\t        result[subject] = orderings\n73\t\n74\t    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n75\t    with open(output_path, \"w\") as f:\n76\t        json.dump(result, f, indent=2, ensure_ascii=False)\n77\t\n78\t    print(\n79\t        f\"Generated {n_orderings} orderings × \"\n80\t        f\"{len(SELECTED_SUBJECTS)} subjects → {output_path}\"\n81\t    )\n82\t    return result\n83\t\n84\t\n85\tif __name__ == \"__main__\":\n86\t    parser = argparse.ArgumentParser(\n87\t        description=\"Generate few-shot orderings for MMLU\"\n88\t    )\n89\t    parser.add_argument(\"--seed\", type=int, default=42)\n90\t    parser.add_argument(\"--output\", default=\"data/few_shot_examples.json\")\n91\t    parser.add_argument(\"--n-orderings\", type=int, default=N_ORDERINGS)\n92\t    args = parser.parse_args()\n93\t    generate_orderings(\n94\t        seed=args.seed,\n95\t        output_path=args.output,\n96\t        n_orderings=args.n_orderings,\n97\t    )\n98\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "aeb09592-0725-4f93-8deb-c1100b0fefd2",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/few_shot.py",
+                "content": "\"\"\"Generate few-shot example orderings for MMLU evaluation.\n\nFor each selected subject, loads 5 examples from the ``cais/mmlu`` dev split\nand creates 4 random orderings (seeded).  The dev split is purpose-built for\nfew-shot prompting and contains exactly 5 examples per subject.\n\nInput:  HuggingFace ``cais/mmlu`` dev split (auto-downloaded).\nOutput: ``data/few_shot_examples.json`` — nested dict\n        {subject → {ordering_id → [list of 5 example dicts]}}.\n\"\"\"\n\nimport argparse\nimport json\nimport random\nfrom pathlib import Path\n\nfrom datasets import load_dataset\n\nSELECTED_SUBJECTS = [\n    \"abstract_algebra\",\n    \"college_physics\",\n    \"world_religions\",\n    \"us_foreign_policy\",\n    \"professional_medicine\",\n    \"high_school_mathematics\",\n    \"computer_security\",\n    \"philosophy\",\n    \"clinical_knowledge\",\n    \"international_law\",\n]\n\nN_SHOTS = 5\nN_ORDERINGS = 4\n\n\ndef generate_orderings(\n    seed: int = 42,\n    output_path: str = \"data/few_shot_examples.json\",\n    n_orderings: int = N_ORDERINGS,\n) -> dict:\n    \"\"\"Create shuffled few-shot orderings per subject.\n\n    Args:\n        seed: Base RNG seed.  Ordering *k* uses ``seed + k``.\n        output_path: Where to write the JSON output.\n\n    Returns:\n        Nested dict ``{subject → {ordering_id → [examples]}}``.\n    \"\"\"\n    result: dict = {}\n\n    for subject in SELECTED_SUBJECTS:\n        ds = load_dataset(\"cais/mmlu\", subject, split=\"dev\")\n        examples = []\n        for i in range(min(N_SHOTS, len(ds))):\n            row = ds[i]\n            examples.append(\n                {\n                    \"question\": row[\"question\"],\n                    \"choices\": row[\"choices\"],\n                    \"answer_idx\": row[\"answer\"],\n                }\n            )\n\n        orderings = {}\n        for ordering_id in range(1, n_orderings + 1):\n            rng = random.Random(seed + ordering_id)\n            shuffled = examples.copy()\n            rng.shuffle(shuffled)\n            orderings[ordering_id] = shuffled\n\n        result[subject] = orderings\n\n    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(result, f, indent=2, ensure_ascii=False)\n\n    print(\n        f\"Generated {n_orderings} orderings × \"\n        f\"{len(SELECTED_SUBJECTS)} subjects → {output_path}\"\n    )\n    return result\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(\n        description=\"Generate few-shot orderings for MMLU\"\n    )\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", default=\"data/few_shot_examples.json\")\n    parser.add_argument(\"--n-orderings\", type=int, default=N_ORDERINGS)\n    args = parser.parse_args()\n    generate_orderings(\n        seed=args.seed,\n        output_path=args.output,\n        n_orderings=args.n_orderings,\n    )\n",
+                "numLines": 98,
+                "startLine": 1,
+                "totalLines": 98
+              }
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01HhENPYzAU5BNxh5e3K14wJ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/sample_benchmarks.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "d38204fa-5c70-460f-baf1-4e6c62da0954",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hq1fXBuCNhdWQ7PLBG8i5j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2343,
+                "cache_read_input_tokens": 32790,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2343
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T19:59:48.857Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01HhENPYzAU5BNxh5e3K14wJ",
+              "type": "tool_result",
+              "content": "1\t\"\"\"Sample items from multiple benchmarks for G-theory exp-002.\n2\t\n3\tSupports: GSM8K, ARC-Challenge, HellaSwag.\n4\tOutput: JSON with unified schema [{item_id, benchmark, question, choices, answer_idx, answer, metadata}, ...]\n5\t\n6\tUsage:\n7\t    python -m src.data.sample_benchmarks --benchmark gsm8k --n-items 200 --output data/gsm8k_items.json\n8\t    python -m src.data.sample_benchmarks --benchmark arc_challenge --n-items 200 --output data/arc_items.json\n9\t    python -m src.data.sample_benchmarks --all --n-items 200 --output-dir data/\n10\t\"\"\"\n11\t\n12\timport argparse\n13\timport json\n14\timport random\n15\timport re\n16\tfrom pathlib import Path\n17\t\n18\tfrom datasets import load_dataset\n19\t\n20\tBENCHMARKS = [\"gsm8k\", \"arc_challenge\", \"hellaswag\"]\n21\t\n22\t\n23\tdef _extract_gsm8k_answer(answer_text: str) -> str:\n24\t    match = re.search(r\"####\\s*(.+)\", answer_text)\n25\t    if match:\n26\t        return match.group(1).strip().replace(\",\", \"\")\n27\t    return answer_text.strip()\n28\t\n29\t\n30\tdef _sample_gsm8k(n_items: int, seed: int) -> list[dict]:\n31\t    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"test\")\n32\t    rng = random.Random(seed)\n33\t    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n34\t    items = []\n35\t    for idx in indices:\n36\t        row = ds[idx]\n37\t        answer = _extract_gsm8k_answer(row[\"answer\"])\n38\t        items.append(\n39\t            {\n40\t                \"item_id\": f\"gsm8k_{idx}\",\n41\t                \"benchmark\": \"gsm8k\",\n42\t                \"question\": row[\"question\"],\n43\t                \"choices\": None,\n44\t                \"answer_idx\": None,\n45\t                \"answer\": answer,\n46\t                \"metadata\": {\"raw_answer\": row[\"answer\"]},\n47\t            }\n48\t        )\n49\t    return items\n50\t\n51\t\n52\tdef _sample_arc_challenge(n_items: int, seed: int) -> list[dict]:\n53\t    ds = load_dataset(\"allenai/ai2_arc\", \"ARC-Challenge\", split=\"test\")\n54\t    rng = random.Random(seed)\n55\t    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n56\t    answer_key_map = {\"A\": 0, \"B\": 1, \"C\": 2, \"D\": 3, \"1\": 0, \"2\": 1, \"3\": 2, \"4\": 3}\n57\t    items = []\n58\t    for idx in indices:\n59\t        row = ds[idx]\n60\t        choices = row[\"choices\"][\"text\"]\n61\t        answer_key = row[\"answerKey\"]\n62\t        answer_idx = answer_key_map.get(answer_key, 0)\n63\t        items.append(\n64\t            {\n65\t                \"item_id\": f\"arc_challenge_{idx}\",\n66\t                \"benchmark\": \"arc_challenge\",\n67\t                \"question\": row[\"question\"],\n68\t                \"choices\": choices,\n69\t                \"answer_idx\": answer_idx,\n70\t                \"answer\": answer_key,\n71\t                \"metadata\": {},\n72\t            }\n73\t        )\n74\t    return items\n75\t\n76\t\n77\tdef _sample_hellaswag(n_items: int, seed: int) -> list[dict]:\n78\t    ds = load_dataset(\"Rowan/hellaswag\", split=\"validation\")\n79\t    rng = random.Random(seed)\n80\t    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n81\t    items = []\n82\t    for idx in indices:\n83\t        row = ds[idx]\n84\t        label = int(row[\"label\"]) if row[\"label\"] != \"\" else 0\n85\t        items.append(\n86\t            {\n87\t                \"item_id\": f\"hellaswag_{idx}\",\n88\t                \"benchmark\": \"hellaswag\",\n89\t                \"question\": row[\"ctx\"],\n90\t                \"choices\": row[\"endings\"],\n91\t                \"answer_idx\": label,\n92\t                \"answer\": str(label),\n93\t                \"metadata\": {\"activity_label\": row[\"activity_label\"]},\n94\t            }\n95\t        )\n96\t    return items\n97\t\n98\t\n99\tSAMPLERS = {\n100\t    \"gsm8k\": _sample_gsm8k,\n101\t    \"arc_challenge\": _sample_arc_challenge,\n102\t    \"hellaswag\": _sample_hellaswag,\n103\t}\n104\t\n105\t\n106\tdef sample_benchmark(\n107\t    benchmark: str,\n108\t    n_items: int = 200,\n109\t    seed: int = 42,\n110\t    output_path: str | None = None,\n111\t) -> list[dict]:\n112\t    if benchmark not in SAMPLERS:\n113\t        raise ValueError(f\"Unknown benchmark: {benchmark}. Choose from {list(SAMPLERS)}\")\n114\t\n115\t    items = SAMPLERS[benchmark](n_items, seed)\n116\t\n117\t    if output_path:\n118\t        Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n119\t        with open(output_path, \"w\") as f:\n120\t            json.dump(items, f, indent=2, ensure_ascii=False)\n121\t        print(f\"Sampled {len(items)} items from {benchmark} → {output_path}\")\n122\t\n123\t    return items\n124\t\n125\t\n126\tdef sample_all(\n127\t    n_items: int = 200,\n128\t    seed: int = 42,\n129\t    output_dir: str = \"data\",\n130\t) -> dict[str, list[dict]]:\n131\t    results = {}\n132\t    for bench in BENCHMARKS:\n133\t        out = str(Path(output_dir) / f\"{bench}_items.json\")\n134\t        results[bench] = sample_benchmark(bench, n_items, seed, out)\n135\t    return results\n136\t\n137\t\n138\tif __name__ == \"__main__\":\n139\t    parser = argparse.ArgumentParser(\n140\t        description=\"Sample benchmark items for G-theory study\"\n141\t    )\n142\t    parser.add_argument(\"--benchmark\", choices=BENCHMARKS)\n143\t    parser.add_argument(\"--all\", action=\"store_true\", help=\"Sample from all benchmarks\")\n144\t    parser.add_argument(\"--n-items\", type=int, default=200)\n145\t    parser.add_argument(\"--seed\", type=int, default=42)\n146\t    parser.add_argument(\"--output\", default=None, help=\"Output JSON path (single benchmark)\")\n147\t    parser.add_argument(\"--output-dir\", default=\"data\", help=\"Output directory (--all mode)\")\n148\t    args = parser.parse_args()\n149\t\n150\t    if args.all:\n151\t        sample_all(n_items=args.n_items, seed=args.seed, output_dir=args.output_dir)\n152\t    elif args.benchmark:\n153\t        out = args.output or f\"data/{args.benchmark}_items.json\"\n154\t        sample_benchmark(args.benchmark, args.n_items, args.seed, out)\n155\t    else:\n156\t        parser.error(\"Specify --benchmark or --all\")\n157\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "77b5925d-96dc-495e-8d09-812d00882f8c",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/sample_benchmarks.py",
+                "content": "\"\"\"Sample items from multiple benchmarks for G-theory exp-002.\n\nSupports: GSM8K, ARC-Challenge, HellaSwag.\nOutput: JSON with unified schema [{item_id, benchmark, question, choices, answer_idx, answer, metadata}, ...]\n\nUsage:\n    python -m src.data.sample_benchmarks --benchmark gsm8k --n-items 200 --output data/gsm8k_items.json\n    python -m src.data.sample_benchmarks --benchmark arc_challenge --n-items 200 --output data/arc_items.json\n    python -m src.data.sample_benchmarks --all --n-items 200 --output-dir data/\n\"\"\"\n\nimport argparse\nimport json\nimport random\nimport re\nfrom pathlib import Path\n\nfrom datasets import load_dataset\n\nBENCHMARKS = [\"gsm8k\", \"arc_challenge\", \"hellaswag\"]\n\n\ndef _extract_gsm8k_answer(answer_text: str) -> str:\n    match = re.search(r\"####\\s*(.+)\", answer_text)\n    if match:\n        return match.group(1).strip().replace(\",\", \"\")\n    return answer_text.strip()\n\n\ndef _sample_gsm8k(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"openai/gsm8k\", \"main\", split=\"test\")\n    rng = random.Random(seed)\n    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n    items = []\n    for idx in indices:\n        row = ds[idx]\n        answer = _extract_gsm8k_answer(row[\"answer\"])\n        items.append(\n            {\n                \"item_id\": f\"gsm8k_{idx}\",\n                \"benchmark\": \"gsm8k\",\n                \"question\": row[\"question\"],\n                \"choices\": None,\n                \"answer_idx\": None,\n                \"answer\": answer,\n                \"metadata\": {\"raw_answer\": row[\"answer\"]},\n            }\n        )\n    return items\n\n\ndef _sample_arc_challenge(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"allenai/ai2_arc\", \"ARC-Challenge\", split=\"test\")\n    rng = random.Random(seed)\n    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n    answer_key_map = {\"A\": 0, \"B\": 1, \"C\": 2, \"D\": 3, \"1\": 0, \"2\": 1, \"3\": 2, \"4\": 3}\n    items = []\n    for idx in indices:\n        row = ds[idx]\n        choices = row[\"choices\"][\"text\"]\n        answer_key = row[\"answerKey\"]\n        answer_idx = answer_key_map.get(answer_key, 0)\n        items.append(\n            {\n                \"item_id\": f\"arc_challenge_{idx}\",\n                \"benchmark\": \"arc_challenge\",\n                \"question\": row[\"question\"],\n                \"choices\": choices,\n                \"answer_idx\": answer_idx,\n                \"answer\": answer_key,\n                \"metadata\": {},\n            }\n        )\n    return items\n\n\ndef _sample_hellaswag(n_items: int, seed: int) -> list[dict]:\n    ds = load_dataset(\"Rowan/hellaswag\", split=\"validation\")\n    rng = random.Random(seed)\n    indices = rng.sample(range(len(ds)), min(n_items, len(ds)))\n    items = []\n    for idx in indices:\n        row = ds[idx]\n        label = int(row[\"label\"]) if row[\"label\"] != \"\" else 0\n        items.append(\n            {\n                \"item_id\": f\"hellaswag_{idx}\",\n                \"benchmark\": \"hellaswag\",\n                \"question\": row[\"ctx\"],\n                \"choices\": row[\"endings\"],\n                \"answer_idx\": label,\n                \"answer\": str(label),\n                \"metadata\": {\"activity_label\": row[\"activity_label\"]},\n            }\n        )\n    return items\n\n\nSAMPLERS = {\n    \"gsm8k\": _sample_gsm8k,\n    \"arc_challenge\": _sample_arc_challenge,\n    \"hellaswag\": _sample_hellaswag,\n}\n\n\ndef sample_benchmark(\n    benchmark: str,\n    n_items: int = 200,\n    seed: int = 42,\n    output_path: str | None = None,\n) -> list[dict]:\n    if benchmark not in SAMPLERS:\n        raise ValueError(f\"Unknown benchmark: {benchmark}. Choose from {list(SAMPLERS)}\")\n\n    items = SAMPLERS[benchmark](n_items, seed)\n\n    if output_path:\n        Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n        with open(output_path, \"w\") as f:\n            json.dump(items, f, indent=2, ensure_ascii=False)\n        print(f\"Sampled {len(items)} items from {benchmark} → {output_path}\")\n\n    return items\n\n\ndef sample_all(\n    n_items: int = 200,\n    seed: int = 42,\n    output_dir: str = \"data\",\n) -> dict[str, list[dict]]:\n    results = {}\n    for bench in BENCHMARKS:\n        out = str(Path(output_dir) / f\"{bench}_items.json\")\n        results[bench] = sample_benchmark(bench, n_items, seed, out)\n    return results\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(\n        description=\"Sample benchmark items for G-theory study\"\n    )\n    parser.add_argument(\"--benchmark\", choices=BENCHMARKS)\n    parser.add_argument(\"--all\", action=\"store_true\", help=\"Sample from all benchmarks\")\n    parser.add_argument(\"--n-items\", type=int, default=200)\n    parser.add_argument(\"--seed\", type=int, default=42)\n    parser.add_argument(\"--output\", default=None, help=\"Output JSON path (single benchmark)\")\n    parser.add_argument(\"--output-dir\", default=\"data\", help=\"Output directory (--all mode)\")\n    args = parser.parse_args()\n\n    if args.all:\n        sample_all(n_items=args.n_items, seed=args.seed, output_dir=args.output_dir)\n    elif args.benchmark:\n        out = args.output or f\"data/{args.benchmark}_items.json\"\n        sample_benchmark(args.benchmark, args.n_items, args.seed, out)\n    else:\n        parser.error(\"Specify --benchmark or --all\")\n",
+                "numLines": 157,
+                "startLine": 1,
+                "totalLines": 157
+              }
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01V8CKuEuFpeDNiDKXHYZ8UH",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code && python3 -c \"import ast; ast.parse(open('src/data/sample_mmlu.py').read()); print('sample_mmlu.py OK')\" && python3 -c \"import ast; ast.parse(open('src/data/few_shot.py').read()); print('few_shot.py OK')\" && python3 -c \"import ast; ast.parse(open('src/data/sample_benchmarks.py').read()); print('sample_benchmarks.py OK')\"",
+                "description": "Syntax check all three files"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "646ccc4a-59f3-4b3f-ad16-e962c8f18c2f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Hq1fXBuCNhdWQ7PLBG8i5j",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2343,
+                "cache_read_input_tokens": 32790,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2343
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T19:59:50.859Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01V8CKuEuFpeDNiDKXHYZ8UH",
+              "type": "tool_result",
+              "content": "sample_mmlu.py OK\nfew_shot.py OK\nsample_benchmarks.py OK",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "aec1529c-5ceb-402e-a9bc-b0db467c0bd7",
+            "tool_use_result": {
+              "stdout": "sample_mmlu.py OK\nfew_shot.py OK\nsample_benchmarks.py OK",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件语法检查通过。修改总结：\n\n1. **`sample_mmlu.py`** — 无需修改，已有 10 subjects × 20 items = 200，且包含 `--n-items` / `--n-subjects` 参数。\n\n2. **`few_shot.py`** — 已有 4 orderings。新增 `--n-orderings` CLI 参数（默认 4），函数签名增加 `n_orderings` 参数，内部循环和打印使用该参数。\n\n3. **`sample_benchmarks.py`** — 重写为统一 schema 输出。三个 benchmark（gsm8k/arc_challenge/hellaswag）各 200 items，每条记录包含 `item_id, benchmark, question, choices, answer_idx, answer, metadata`。GSM8K 用 `####` 正则提取数字答案，choices/answer_idx 为 null。支持 `--benchmark` 单采和 `--all` + `--output-dir` 批量采样。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "uuid": "c8a78831-f8f0-4f3b-a8fa-208dc6f69e64",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01TLdZvpDyEV6wHwasPi4Ftf",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 3562,
+                "cache_read_input_tokens": 35133,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 3562
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件语法检查通过。修改总结：\n\n1. **`sample_mmlu.py`** — 无需修改，已有 10 subjects × 20 items = 200，且包含 `--n-items` / `--n-subjects` 参数。\n\n2. **`few_shot.py`** — 已有 4 orderings。新增 `--n-orderings` CLI 参数（默认 4），函数签名增加 `n_orderings` 参数，内部循环和打印使用该参数。\n\n3. **`sample_benchmarks.py`** — 重写为统一 schema 输出。三个 benchmark（gsm8k/arc_challenge/hellaswag）各 200 items，每条记录包含 `item_id, benchmark, question, choices, answer_idx, answer, metadata`。GSM8K 用 `####` 正则提取数字答案，choices/answer_idx 为 null。支持 `--benchmark` 单采和 `--all` + `--output-dir` 批量采样。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 122752,
+            "duration_api_ms": 123592,
+            "num_turns": 15,
+            "stop_reason": "end_turn",
+            "session_id": "3258b29a-46fe-4c1c-bb5e-809eb686f408",
+            "total_cost_usd": 0.4916560000000001,
+            "usage": {
+              "input_tokens": 13,
+              "cache_creation_input_tokens": 26854,
+              "cache_read_input_tokens": 303473,
+              "output_tokens": 6803,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 26854,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 284,
+                  "cache_read_input_tokens": 35133,
+                  "cache_creation_input_tokens": 3562,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 3562
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1852,
+                "outputTokens": 18,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.001942,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 13,
+                "outputTokens": 6803,
+                "cacheReadInputTokens": 303473,
+                "cacheCreationInputTokens": 26854,
+                "webSearchRequests": 0,
+                "costUSD": 0.4897140000000001,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "a0d2987e-de9a-4d90-8980-9f7d3c04fe1e"
+          },
+          "id": "event-000043"
+        }
+      ],
+      "message_count": 43
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp001-data-sampling.md"
+}

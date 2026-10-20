@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e72363349b36ecf136f",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code exp002 few shot",
+  "task_key": "worker_code_exp002_few_shot_20260521T083523",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002_few_shot_20260521T083523_result.json",
+    "occurrence": 1,
+    "bytes": 1088,
+    "sha256": "4aae053978c60e34312b47c2d2c365d963df151dc846d7396b1f30b1b70073a7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过。总结：\n\n**完成内容：**\n\n1. **`scripts/prepare_few_shot_exp002.py`** — 从 HuggingFace train split 采样 few-shot 示例\n   - GSM8K: 5 例覆盖 easy/medium/hard/very_hard 难度，含完整 CoT + `#### answer`\n   - ARC: 5 例覆盖 A/B/C/D 不同答案位置\n   - HellaSwag: 5 例覆盖 5 个不同 activity label\n\n2. **生成的数据文件：**\n   - `data/few_shot_gsm8k.json`\n   - `data/few_shot_arc.json`\n   - `data/few_shot_hellaswag.json`\n\n3. **`src/inference/run_experiment.py` 修改：**\n   - 新增 `DEFAULT_FEW_SHOT` 字典，每个 benchmark 自动映射对应 few-shot 文件\n   - `_build_prompt()` 现在将 `few_shot` 传递给所有 benchmark 的 prompt builder\n   - 数据加载逻辑移除了 MMLU-only 限制\n   - 新增 `--zero-shot` 标志禁用 few-shot；`--few-shot` 默认自动选择\n\n4. **验证结果：**\n   - 三个 benchmark 的 5-shot prompt 格式正确，CoT/选项/答案标注清晰\n   - few-shot 示例与 test items 零重叠\n   - zero-shot 路径（`few_shot=None`）保持兼容"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp002-few-shot.md"
+}

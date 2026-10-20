@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "17499141c1d6507245dc",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix rename buggy gradient json",
+  "task_key": "worker_fix_rename_buggy_gradient_json_20260521T145002",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_rename_buggy_gradient_json_20260521T145002_result.json",
+    "occurrence": 1,
+    "bytes": 323,
+    "sha256": "e9d4cad4746d2060c3c5a5e258c6e5e4fa0494f9f80b144b028cdc265f84f497"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三项验证全部通过：\n\n1. 旧文件 `within_mmlu_subject_gradient.json` → **No such file** ✓\n2. 重命名后文件 `within_mmlu_subject_gradient_BUGGY_DO_NOT_USE.json` → **存在** (26,587 bytes) ✓\n3. 正确文件 `within_mmlu_subject_gradient_4model.json` → **存在** (28,626 bytes) ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-rename-buggy-gradient-json.md"
+}

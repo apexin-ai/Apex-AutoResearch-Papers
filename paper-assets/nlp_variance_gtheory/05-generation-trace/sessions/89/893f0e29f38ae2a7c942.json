@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "893f0e29f38ae2a7c942",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "ops llama70b shard27 fix",
+  "task_key": "worker_ops_llama70b_shard27_fix_20260523T153243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama70b_shard27_fix_20260523T153243.log",
+    "occurrence": 1,
+    "bytes": 1261575,
+    "sha256": "757ac246226f6afe1834c42e08849e00dcbc811f6cfeccf3779538d341a46405"
+  },
+  "statistics": {
+    "messages": 868,
+    "user_turns": 1,
+    "tool_calls": 351,
+    "roles": {
+      "system": 6,
+      "record": 1,
+      "assistant": 157,
+      "tool_call": 351,
+      "tool_result": 351,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 748,
+      "chunks": [
+        {
+          "path": "893f0e29f38ae2a7c942-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "893f0e29f38ae2a7c942-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "893f0e29f38ae2a7c942-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "893f0e29f38ae2a7c942-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "893f0e29f38ae2a7c942-part-0005.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 120,
+      "chunks": [
+        {
+          "path": "893f0e29f38ae2a7c942-part-0005.json",
+          "message_count": 120
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-llama70b-shard27-fix.md"
+}

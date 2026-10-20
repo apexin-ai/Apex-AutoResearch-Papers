@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "02efb24a39036936bf2b",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix qwen shard3 restart",
+  "task_key": "worker_fix_qwen_shard3_restart_20260521T061206",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_qwen_shard3_restart_20260521T061206_result.json",
+    "occurrence": 1,
+    "bytes": 911,
+    "sha256": "16e6d05b997a94d62bf2e1e334e32e42aa3f816ee3db88708f47176ebb4dd53f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "恢复成功。汇报：\n\n### 恢复状态\n\n| 项目 | 状态 |\n|------|------|\n| **GPU 3 恢复前** | 0% util, 0 MiB — 确认空闲 |\n| **shard_3 已完成** | 26000 行 → **offset = 130** conditions（共 324 conditions） |\n| **恢复 PID** | **101900**（实际 python 进程） |\n| **GPU 3 恢复后** | **56% util, 87955 MiB** — 模型已加载，正在推理 |\n\n### GPU 0-2 进度\n\n| Shard | 行数 | 已完成 conditions | 总 conditions |\n|-------|------|-------------------|---------------|\n| shard_0 (GPU 0) | 46200 | 231 | — |\n| shard_1 (GPU 1) | 45000 | 225 | — |\n| shard_2 (GPU 2) | 45400 | 227 | — |\n\n日志显示 shard_3 恢复后已开始处理（Condition 551, 489 等），推理速度 ~19K toks/s input, ~618 toks/s output，运行正常。\n\n完成后需要将 `shard_3.jsonl`（26000 行）和 `shard_3_resume.jsonl` 合并为完整结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-qwen-shard3-restart.md"
+}

@@ -1,0 +1,1593 @@
+{
+  "schema_version": "1.0",
+  "id": "be0ea85a2bb840bd8fb8",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "code analysis framework",
+  "task_key": "worker_code_analysis_framework_20260520T233759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analysis_framework_20260520T233759.log",
+    "occurrence": 1,
+    "bytes": 107747,
+    "sha256": "6ffce3bed5d776dddb8b738b6e6b6206c499fb063c2d099e99f84024c233ddf6"
+  },
+  "statistics": {
+    "messages": 39,
+    "user_turns": 0,
+    "tool_calls": 12,
+    "roles": {
+      "log": 1,
+      "system": 3,
+      "record": 1,
+      "assistant": 9,
+      "tool_call": 12,
+      "tool_result": 12,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "log",
+          "content": [
+            {
+              "type": "text",
+              "text": "Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer."
+            }
+          ],
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "init",
+                "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+                "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+                "tools": [
+                  "Task",
+                  "AskUserQuestion",
+                  "Bash",
+                  "CronCreate",
+                  "CronDelete",
+                  "CronList",
+                  "Edit",
+                  "EnterPlanMode",
+                  "EnterWorktree",
+                  "ExitPlanMode",
+                  "ExitWorktree",
+                  "Glob",
+                  "Grep",
+                  "ListMcpResourcesTool",
+                  "Monitor",
+                  "NotebookEdit",
+                  "PushNotification",
+                  "Read",
+                  "ReadMcpResourceTool",
+                  "RemoteTrigger",
+                  "ScheduleWakeup",
+                  "Skill",
+                  "TaskOutput",
+                  "TaskStop",
+                  "TodoWrite",
+                  "ToolSearch",
+                  "WebFetch",
+                  "WebSearch",
+                  "Write",
+                  "mcp__agent-ml-research__append_idea",
+                  "mcp__agent-ml-research__read_project_file",
+                  "mcp__agent-ml-research__save_project_file"
+                ],
+                "mcp_servers": [
+                  {
+                    "name": "agent-ml-research",
+                    "status": "connected"
+                  }
+                ],
+                "model": "claude-opus-4-6",
+                "permissionMode": "bypassPermissions",
+                "slash_commands": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api",
+                  "clear",
+                  "compact",
+                  "context",
+                  "heapdump",
+                  "init",
+                  "review",
+                  "security-review",
+                  "extra-usage",
+                  "usage",
+                  "insights",
+                  "team-onboarding"
+                ],
+                "apiKeySource": "none",
+                "claude_code_version": "2.1.126",
+                "output_style": "default",
+                "agents": [
+                  "claude",
+                  "Explore",
+                  "general-purpose",
+                  "Plan",
+                  "statusline-setup"
+                ],
+                "skills": [
+                  "update-config",
+                  "debug",
+                  "simplify",
+                  "batch",
+                  "fewer-permission-prompts",
+                  "loop",
+                  "schedule",
+                  "claude-api"
+                ],
+                "plugins": [],
+                "analytics_disabled": false,
+                "uuid": "ec2027f3-23f4-44d5-8153-a5c22a8c6865",
+                "memory_paths": {
+                  "auto": "/home/ubuntu/.claude/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-projects-nlp-variance-gtheory/memory/"
+                },
+                "fast_mode_state": "off"
+              }
+            }
+          ],
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": null,
+          "role": "record",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "rate_limit_event",
+                "rate_limit_info": {
+                  "status": "allowed",
+                  "resetsAt": 1779322800,
+                  "rateLimitType": "five_hour",
+                  "overageStatus": "rejected",
+                  "overageDisabledReason": "org_level_disabled",
+                  "isUsingOverage": false
+                },
+                "uuid": "776558ec-4627-4fe9-bc95-9821fde57876",
+                "session_id": "67a77edd-0146-4307-a649-116c020fe2e4"
+              }
+            }
+          ],
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me start by reading the existing variance decomposition code to understand the current implementation."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "f27cac73-6b79-4825-b0dd-eeef2aea88a8",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5cNdyXwACoeorVohUJdEa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12118,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12118
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01RQWKiUYNN7EAYd7DnLhjFN",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/analysis/variance_decomposition.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "55f71c04-36f9-4f0c-873e-d492aac853dc",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01V5cNdyXwACoeorVohUJdEa",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 2,
+                "cache_creation_input_tokens": 12118,
+                "cache_read_input_tokens": 11841,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 12118
+                },
+                "output_tokens": 2,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T23:38:08.016Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01RQWKiUYNN7EAYd7DnLhjFN",
+              "type": "tool_result",
+              "content": "1\t\"\"\"G-theory variance decomposition for LLM evaluation.\n2\t\n3\tEstimates variance components for all 6 facets (main effects) and all\n4\t15 two-way interactions using ANOVA-based estimation (Henderson Method I)\n5\tfor balanced fully-crossed designs.  Higher-order interactions (≥3-way) are\n6\tabsorbed into the residual.\n7\t\n8\tEstimation treats all facets as random (standard G-study practice).  The\n9\tfixed/random distinction is used downstream in the D-study to partition\n10\tuniverse-score variance from error variance.\n11\t\n12\tBootstrap 95 %% CIs are computed by resampling items with replacement.\n13\t\n14\tFacets\n15\t------\n16\tprecision, temperature                    — fixed  (in D-study)\n17\tprompt_template, seed, ordering, item_id  — random (in D-study)\n18\t\n19\tInput:  JSONL from ``run_experiment.py`` (one row per item × condition).\n20\tOutput: JSON with ANOVA table, variance components, and bootstrap CIs.\n21\t\"\"\"\n22\t\n23\timport argparse\n24\timport json\n25\tfrom itertools import combinations\n26\tfrom math import prod\n27\tfrom pathlib import Path\n28\tfrom collections import Counter\n29\tfrom typing import Optional\n30\t\n31\timport numpy as np\n32\timport pandas as pd\n33\t\n34\tALL_FACETS = [\n35\t    \"precision\", \"temperature\",\n36\t    \"prompt_template\", \"seed\", \"ordering\", \"item_id\",\n37\t]\n38\tFIXED_FACETS = [\"precision\", \"temperature\"]\n39\tRANDOM_FACETS = [\"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\n40\t\n41\t\n42\t# ---------------------------------------------------------------------------\n43\t# ANOVA helpers\n44\t# ---------------------------------------------------------------------------\n45\t\n46\tdef compute_ss(\n47\t    df: pd.DataFrame,\n48\t    response: str,\n49\t    facets: list[str],\n50\t) -> tuple[dict, dict[str, int]]:\n51\t    \"\"\"Compute Type-I sums of squares for main effects and 2-way interactions.\n52\t\n53\t    For a balanced design, Type I = Type III, so the order of terms does not\n54\t    matter.\n55\t\n56\t    Returns:\n57\t        (effects_dict, n_levels_dict) where each effect entry has keys\n58\t        ``ss``, ``df``, ``ms``.\n59\t    \"\"\"\n60\t    grand_mean = df[response].mean()\n61\t    N = len(df)\n62\t    n_levels = {f: df[f].nunique() for f in facets}\n63\t\n64\t    effects: dict = {}\n65\t\n66\t    # --- main effects ---\n67\t    for f in facets:\n68\t        group_means = df.groupby(f, observed=True)[response].mean()\n69\t        n_per_group = N // n_levels[f]\n70\t        ss = float(n_per_group * ((group_means - grand_mean) ** 2).sum())\n71\t        df_eff = n_levels[f] - 1\n72\t        effects[f] = {\n73\t            \"ss\": ss,\n74\t            \"df\": df_eff,\n75\t            \"ms\": ss / df_eff if df_eff > 0 else 0.0,\n76\t        }\n77\t\n78\t    # --- 2-way interactions ---\n79\t    for fi, fj in combinations(facets, 2):\n80\t        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\n81\t        main_fi = df.groupby(fi, observed=True)[response].mean()\n82\t        main_fj = df.groupby(fj, observed=True)[response].mean()\n83\t        n_per_cell = N // (n_levels[fi] * n_levels[fj])\n84\t\n85\t        ss = 0.0\n86\t        for (li, lj), cell_mean in cell_means.items():\n87\t            interaction = cell_mean - main_fi[li] - main_fj[lj] + grand_mean\n88\t            ss += n_per_cell * interaction ** 2\n89\t\n90\t        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\n91\t        key = f\"{fi}:{fj}\"\n92\t        effects[key] = {\n93\t            \"ss\": ss,\n94\t            \"df\": df_eff,\n95\t            \"ms\": ss / df_eff if df_eff > 0 else 0.0,\n96\t        }\n97\t\n98\t    # --- residual (confounds ≥3-way interactions) ---\n99\t    ss_total = float(((df[response] - grand_mean) ** 2).sum())\n100\t    ss_model = sum(e[\"ss\"] for e in effects.values())\n101\t    ss_res = max(0.0, ss_total - ss_model)\n102\t    df_res = N - 1 - sum(e[\"df\"] for e in effects.values())\n103\t    effects[\"residual\"] = {\n104\t        \"ss\": ss_res,\n105\t        \"df\": df_res,\n106\t        \"ms\": ss_res / df_res if df_res > 0 else 0.0,\n107\t    }\n108\t\n109\t    return effects, n_levels\n110\t\n111\t\n112\tdef estimate_variance_components(\n113\t    effects: dict,\n114\t    facets: list[str],\n115\t    n_levels: dict[str, int],\n116\t) -> dict[str, float]:\n117\t    \"\"\"Solve EMS equations for variance components.\n118\t\n119\t    For a balanced crossed design with all-random facets and effects up to\n120\t    2-way interactions:\n121\t\n122\t    * 2-way σ²_{ij} = (MS_{ij} − MS_res) / ∏_{k∉{i,j}} n_k\n123\t    * main  σ²_i    = (MS_i − ∑_j c_{ij} σ²_{ij} − MS_res) / ∏_{k≠i} n_k\n124\t\n125\t    Negative estimates are truncated to zero.\n126\t    \"\"\"\n127\t    ms_res = effects[\"residual\"][\"ms\"]\n128\t    vc: dict[str, float] = {}\n129\t\n130\t    # --- 2-way interactions first ---\n131\t    for fi, fj in combinations(facets, 2):\n132\t        key = f\"{fi}:{fj}\"\n133\t        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\n134\t        raw = (effects[key][\"ms\"] - ms_res) / coeff if coeff > 0 else 0.0\n135\t        vc[key] = max(0.0, raw)\n136\t\n137\t    # --- main effects (require 2-way estimates) ---\n138\t    for fi in facets:\n139\t        coeff_main = prod(n_levels[f] for f in facets if f != fi)\n140\t        interaction_contrib = 0.0\n141\t        for fj in facets:\n142\t            if fj == fi:\n143\t                continue\n144\t            int_key = (\n145\t                f\"{fi}:{fj}\" if f\"{fi}:{fj}\" in vc else f\"{fj}:{fi}\"\n146\t            )\n147\t            coeff_ij = prod(\n148\t                n_levels[f] for f in facets if f not in (fi, fj)\n149\t            )\n150\t            interaction_contrib += coeff_ij * vc[int_key]\n151\t\n152\t        raw = (\n153\t            (effects[fi][\"ms\"] - interaction_contrib - ms_res) / coeff_main\n154\t            if coeff_main > 0\n155\t            else 0.0\n156\t        )\n157\t        vc[fi] = max(0.0, raw)\n158\t\n159\t    vc[\"residual\"] = ms_res\n160\t    return vc\n161\t\n162\t\n163\t# ---------------------------------------------------------------------------\n164\t# Bootstrap\n165\t# ---------------------------------------------------------------------------\n166\t\n167\tdef bootstrap_ci(\n168\t    df: pd.DataFrame,\n169\t    response: str,\n170\t    facets: list[str],\n171\t    n_bootstrap: int = 1000,\n172\t    alpha: float = 0.05,\n173\t    seed: int = 42,\n174\t) -> dict[str, dict[str, float]]:\n175\t    \"\"\"Bootstrap 95 % CIs for variance components by resampling items.\n176\t\n177\t    Each bootstrap sample draws 50 items with replacement, assigns unique\n178\t    item IDs, re-runs the full ANOVA, and records variance components.\n179\t    \"\"\"\n180\t    rng = np.random.RandomState(seed)\n181\t    items = df[\"item_id\"].unique()\n182\t    n_items = len(items)\n183\t\n184\t    boot_vcs: list[dict[str, float]] = []\n185\t    for _ in range(n_bootstrap):\n186\t        sampled = rng.choice(items, size=n_items, replace=True)\n187\t        frames = []\n188\t        for new_idx, item in enumerate(sampled):\n189\t            sub = df[df[\"item_id\"] == item].copy()\n190\t            sub[\"item_id\"] = f\"boot_{new_idx}\"\n191\t            frames.append(sub)\n192\t        boot_df = pd.concat(frames, ignore_index=True)\n193\t\n194\t        eff, nl = compute_ss(boot_df, response, facets)\n195\t        vc = estimate_variance_components(eff, facets, nl)\n196\t        boot_vcs.append(vc)\n197\t\n198\t    ci: dict[str, dict[str, float]] = {}\n199\t    for key in boot_vcs[0]:\n200\t        values = [bv[key] for bv in boot_vcs]\n201\t        ci[key] = {\n202\t            \"lower\": float(np.percentile(values, 100 * alpha / 2)),\n203\t            \"upper\": float(np.percentile(values, 100 * (1 - alpha / 2))),\n204\t        }\n205\t    return ci\n206\t\n207\t\n208\t# ---------------------------------------------------------------------------\n209\t# Text exact match\n210\t# ---------------------------------------------------------------------------\n211\t\n212\tdef compute_text_exact_match(df: pd.DataFrame) -> pd.DataFrame:\n213\t    \"\"\"Add ``text_exact_match`` column (0/1) to *df*.\n214\t\n215\t    For each item_id the canonical text is the most frequent generated_text\n216\t    across all conditions.  A record scores 1 iff its generated_text equals\n217\t    the canonical text for that item.\n218\t    \"\"\"\n219\t    canonical = (\n220\t        df.groupby(\"item_id\")[\"generated_text\"]\n221\t        .agg(lambda texts: Counter(texts).most_common(1)[0][0])\n222\t    )\n223\t    df = df.copy()\n224\t    df[\"text_exact_match\"] = (\n225\t        df.apply(lambda r: int(r[\"generated_text\"] == canonical[r[\"item_id\"]]), axis=1)\n226\t    )\n227\t    return df\n228\t\n229\t\n230\t# ---------------------------------------------------------------------------\n231\t# Public entry point\n232\t# ---------------------------------------------------------------------------\n233\t\n234\tdef run_analysis(\n235\t    input_path: str,\n236\t    output_path: str,\n237\t    n_bootstrap: int = 1000,\n238\t    response_var: str = \"correct\",\n239\t) -> dict:\n240\t    \"\"\"Full G-theory analysis: ANOVA → variance components → bootstrap CIs.\n241\t\n242\t    Args:\n243\t        input_path: JSONL from ``run_experiment.py``.\n244\t        output_path: Destination JSON.\n245\t        n_bootstrap: Number of bootstrap iterations (default 1000).\n246\t        response_var: Response variable — ``\"correct\"`` or ``\"text_exact_match\"``.\n247\t\n248\t    Returns:\n249\t        Results dict (also written to ``output_path``).\n250\t    \"\"\"\n251\t    df = pd.read_json(input_path, lines=True)\n252\t\n253\t    for f in ALL_FACETS:\n254\t        df[f] = df[f].astype(str)\n255\t\n256\t    if response_var == \"text_exact_match\":\n257\t        df = compute_text_exact_match(df)\n258\t\n259\t    print(f\"Running G-study on {len(df)} observations (response={response_var}) …\")\n260\t\n261\t    effects, n_levels = compute_ss(df, response_var, ALL_FACETS)\n262\t    vc = estimate_variance_components(effects, ALL_FACETS, n_levels)\n263\t\n264\t    print(f\"Bootstrapping ({n_bootstrap} iterations) …\")\n265\t    ci = bootstrap_ci(df, response_var, ALL_FACETS, n_bootstrap=n_bootstrap)\n266\t\n267\t    total_var = sum(vc.values())\n268\t    results = {\n269\t        \"variance_components\": {\n270\t            k: {\n271\t                \"estimate\": v,\n272\t                \"pct\": v / total_var * 100 if total_var > 0 else 0.0,\n273\t                \"ci_95\": ci[k],\n274\t            }\n275\t            for k, v in vc.items()\n276\t        },\n277\t        \"total_variance\": total_var,\n278\t        \"n_observations\": len(df),\n279\t        \"n_levels\": {k: int(v) for k, v in n_levels.items()},\n280\t        \"fixed_facets\": FIXED_FACETS,\n281\t        \"random_facets\": RANDOM_FACETS,\n282\t        \"anova_table\": {\n283\t            k: {\"ss\": v[\"ss\"], \"df\": v[\"df\"], \"ms\": v[\"ms\"]}\n284\t            for k, v in effects.items()\n285\t        },\n286\t    }\n287\t\n288\t    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n289\t    with open(output_path, \"w\") as f:\n290\t        json.dump(results, f, indent=2)\n291\t\n292\t    # --- print summary ---\n293\t    print(\n294\t        f\"\\nG-theory Variance Decomposition  \"\n295\t        f\"({len(df)} obs, {len(ALL_FACETS)} facets)\"\n296\t    )\n297\t    header = f\"{'Component':<30} {'Estimate':>10} {'%':>8}  {'95% CI':>24}\"\n298\t    print(header)\n299\t    print(\"-\" * len(header))\n300\t    for name, info in sorted(\n301\t        results[\"variance_components\"].items(),\n302\t        key=lambda x: -x[1][\"estimate\"],\n303\t    ):\n304\t        lo, hi = info[\"ci_95\"][\"lower\"], info[\"ci_95\"][\"upper\"]\n305\t        print(\n306\t            f\"{name:<30} {info['estimate']:>10.6f} {info['pct']:>7.1f}%  \"\n307\t            f\"[{lo:.6f}, {hi:.6f}]\"\n308\t        )\n309\t\n310\t    print(f\"\\n→ {output_path}\")\n311\t    return results\n312\t\n313\t\n314\tif __name__ == \"__main__\":\n315\t    parser = argparse.ArgumentParser(\n316\t        description=\"G-theory variance decomposition\"\n317\t    )\n318\t    parser.add_argument(\n319\t        \"--input\", required=True, help=\"Path to experiment results JSONL\"\n320\t    )\n321\t    parser.add_argument(\"--output\", default=None)\n322\t    parser.add_argument(\"--n-bootstrap\", type=int, default=1000)\n323\t    parser.add_argument(\n324\t        \"--response-var\",\n325\t        default=\"correct\",\n326\t        choices=[\"correct\", \"text_exact_match\"],\n327\t        help=\"Response variable: 'correct' (binary accuracy) or 'text_exact_match' (text-level determinism)\",\n328\t    )\n329\t    args = parser.parse_args()\n330\t\n331\t    if args.output is None:\n332\t        if args.response_var == \"text_exact_match\":\n333\t            args.output = \"results/variance_components_text.json\"\n334\t        else:\n335\t            args.output = \"results/variance_components.json\"\n336\t\n337\t    run_analysis(args.input, args.output, args.n_bootstrap, args.response_var)\n338\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "525330e4-ba58-43fc-94a7-4c0561cccbfc",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/analysis/variance_decomposition.py",
+                "content": "\"\"\"G-theory variance decomposition for LLM evaluation.\n\nEstimates variance components for all 6 facets (main effects) and all\n15 two-way interactions using ANOVA-based estimation (Henderson Method I)\nfor balanced fully-crossed designs.  Higher-order interactions (≥3-way) are\nabsorbed into the residual.\n\nEstimation treats all facets as random (standard G-study practice).  The\nfixed/random distinction is used downstream in the D-study to partition\nuniverse-score variance from error variance.\n\nBootstrap 95 %% CIs are computed by resampling items with replacement.\n\nFacets\n------\nprecision, temperature                    — fixed  (in D-study)\nprompt_template, seed, ordering, item_id  — random (in D-study)\n\nInput:  JSONL from ``run_experiment.py`` (one row per item × condition).\nOutput: JSON with ANOVA table, variance components, and bootstrap CIs.\n\"\"\"\n\nimport argparse\nimport json\nfrom itertools import combinations\nfrom math import prod\nfrom pathlib import Path\nfrom collections import Counter\nfrom typing import Optional\n\nimport numpy as np\nimport pandas as pd\n\nALL_FACETS = [\n    \"precision\", \"temperature\",\n    \"prompt_template\", \"seed\", \"ordering\", \"item_id\",\n]\nFIXED_FACETS = [\"precision\", \"temperature\"]\nRANDOM_FACETS = [\"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\n\n\n# ---------------------------------------------------------------------------\n# ANOVA helpers\n# ---------------------------------------------------------------------------\n\ndef compute_ss(\n    df: pd.DataFrame,\n    response: str,\n    facets: list[str],\n) -> tuple[dict, dict[str, int]]:\n    \"\"\"Compute Type-I sums of squares for main effects and 2-way interactions.\n\n    For a balanced design, Type I = Type III, so the order of terms does not\n    matter.\n\n    Returns:\n        (effects_dict, n_levels_dict) where each effect entry has keys\n        ``ss``, ``df``, ``ms``.\n    \"\"\"\n    grand_mean = df[response].mean()\n    N = len(df)\n    n_levels = {f: df[f].nunique() for f in facets}\n\n    effects: dict = {}\n\n    # --- main effects ---\n    for f in facets:\n        group_means = df.groupby(f, observed=True)[response].mean()\n        n_per_group = N // n_levels[f]\n        ss = float(n_per_group * ((group_means - grand_mean) ** 2).sum())\n        df_eff = n_levels[f] - 1\n        effects[f] = {\n            \"ss\": ss,\n            \"df\": df_eff,\n            \"ms\": ss / df_eff if df_eff > 0 else 0.0,\n        }\n\n    # --- 2-way interactions ---\n    for fi, fj in combinations(facets, 2):\n        cell_means = df.groupby([fi, fj], observed=True)[response].mean()\n        main_fi = df.groupby(fi, observed=True)[response].mean()\n        main_fj = df.groupby(fj, observed=True)[response].mean()\n        n_per_cell = N // (n_levels[fi] * n_levels[fj])\n\n        ss = 0.0\n        for (li, lj), cell_mean in cell_means.items():\n            interaction = cell_mean - main_fi[li] - main_fj[lj] + grand_mean\n            ss += n_per_cell * interaction ** 2\n\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\n        key = f\"{fi}:{fj}\"\n        effects[key] = {\n            \"ss\": ss,\n            \"df\": df_eff,\n            \"ms\": ss / df_eff if df_eff > 0 else 0.0,\n        }\n\n    # --- residual (confounds ≥3-way interactions) ---\n    ss_total = float(((df[response] - grand_mean) ** 2).sum())\n    ss_model = sum(e[\"ss\"] for e in effects.values())\n    ss_res = max(0.0, ss_total - ss_model)\n    df_res = N - 1 - sum(e[\"df\"] for e in effects.values())\n    effects[\"residual\"] = {\n        \"ss\": ss_res,\n        \"df\": df_res,\n        \"ms\": ss_res / df_res if df_res > 0 else 0.0,\n    }\n\n    return effects, n_levels\n\n\ndef estimate_variance_components(\n    effects: dict,\n    facets: list[str],\n    n_levels: dict[str, int],\n) -> dict[str, float]:\n    \"\"\"Solve EMS equations for variance components.\n\n    For a balanced crossed design with all-random facets and effects up to\n    2-way interactions:\n\n    * 2-way σ²_{ij} = (MS_{ij} − MS_res) / ∏_{k∉{i,j}} n_k\n    * main  σ²_i    = (MS_i − ∑_j c_{ij} σ²_{ij} − MS_res) / ∏_{k≠i} n_k\n\n    Negative estimates are truncated to zero.\n    \"\"\"\n    ms_res = effects[\"residual\"][\"ms\"]\n    vc: dict[str, float] = {}\n\n    # --- 2-way interactions first ---\n    for fi, fj in combinations(facets, 2):\n        key = f\"{fi}:{fj}\"\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\n        raw = (effects[key][\"ms\"] - ms_res) / coeff if coeff > 0 else 0.0\n        vc[key] = max(0.0, raw)\n\n    # --- main effects (require 2-way estimates) ---\n    for fi in facets:\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\n        interaction_contrib = 0.0\n        for fj in facets:\n            if fj == fi:\n                continue\n            int_key = (\n                f\"{fi}:{fj}\" if f\"{fi}:{fj}\" in vc else f\"{fj}:{fi}\"\n            )\n            coeff_ij = prod(\n                n_levels[f] for f in facets if f not in (fi, fj)\n            )\n            interaction_contrib += coeff_ij * vc[int_key]\n\n        raw = (\n            (effects[fi][\"ms\"] - interaction_contrib - ms_res) / coeff_main\n            if coeff_main > 0\n            else 0.0\n        )\n        vc[fi] = max(0.0, raw)\n\n    vc[\"residual\"] = ms_res\n    return vc\n\n\n# ---------------------------------------------------------------------------\n# Bootstrap\n# ---------------------------------------------------------------------------\n\ndef bootstrap_ci(\n    df: pd.DataFrame,\n    response: str,\n    facets: list[str],\n    n_bootstrap: int = 1000,\n    alpha: float = 0.05,\n    seed: int = 42,\n) -> dict[str, dict[str, float]]:\n    \"\"\"Bootstrap 95 % CIs for variance components by resampling items.\n\n    Each bootstrap sample draws 50 items with replacement, assigns unique\n    item IDs, re-runs the full ANOVA, and records variance components.\n    \"\"\"\n    rng = np.random.RandomState(seed)\n    items = df[\"item_id\"].unique()\n    n_items = len(items)\n\n    boot_vcs: list[dict[str, float]] = []\n    for _ in range(n_bootstrap):\n        sampled = rng.choice(items, size=n_items, replace=True)\n        frames = []\n        for new_idx, item in enumerate(sampled):\n            sub = df[df[\"item_id\"] == item].copy()\n            sub[\"item_id\"] = f\"boot_{new_idx}\"\n            frames.append(sub)\n        boot_df = pd.concat(frames, ignore_index=True)\n\n        eff, nl = compute_ss(boot_df, response, facets)\n        vc = estimate_variance_components(eff, facets, nl)\n        boot_vcs.append(vc)\n\n    ci: dict[str, dict[str, float]] = {}\n    for key in boot_vcs[0]:\n        values = [bv[key] for bv in boot_vcs]\n        ci[key] = {\n            \"lower\": float(np.percentile(values, 100 * alpha / 2)),\n            \"upper\": float(np.percentile(values, 100 * (1 - alpha / 2))),\n        }\n    return ci\n\n\n# ---------------------------------------------------------------------------\n# Text exact match\n# ---------------------------------------------------------------------------\n\ndef compute_text_exact_match(df: pd.DataFrame) -> pd.DataFrame:\n    \"\"\"Add ``text_exact_match`` column (0/1) to *df*.\n\n    For each item_id the canonical text is the most frequent generated_text\n    across all conditions.  A record scores 1 iff its generated_text equals\n    the canonical text for that item.\n    \"\"\"\n    canonical = (\n        df.groupby(\"item_id\")[\"generated_text\"]\n        .agg(lambda texts: Counter(texts).most_common(1)[0][0])\n    )\n    df = df.copy()\n    df[\"text_exact_match\"] = (\n        df.apply(lambda r: int(r[\"generated_text\"] == canonical[r[\"item_id\"]]), axis=1)\n    )\n    return df\n\n\n# ---------------------------------------------------------------------------\n# Public entry point\n# ---------------------------------------------------------------------------\n\ndef run_analysis(\n    input_path: str,\n    output_path: str,\n    n_bootstrap: int = 1000,\n    response_var: str = \"correct\",\n) -> dict:\n    \"\"\"Full G-theory analysis: ANOVA → variance components → bootstrap CIs.\n\n    Args:\n        input_path: JSONL from ``run_experiment.py``.\n        output_path: Destination JSON.\n        n_bootstrap: Number of bootstrap iterations (default 1000).\n        response_var: Response variable — ``\"correct\"`` or ``\"text_exact_match\"``.\n\n    Returns:\n        Results dict (also written to ``output_path``).\n    \"\"\"\n    df = pd.read_json(input_path, lines=True)\n\n    for f in ALL_FACETS:\n        df[f] = df[f].astype(str)\n\n    if response_var == \"text_exact_match\":\n        df = compute_text_exact_match(df)\n\n    print(f\"Running G-study on {len(df)} observations (response={response_var}) …\")\n\n    effects, n_levels = compute_ss(df, response_var, ALL_FACETS)\n    vc = estimate_variance_components(effects, ALL_FACETS, n_levels)\n\n    print(f\"Bootstrapping ({n_bootstrap} iterations) …\")\n    ci = bootstrap_ci(df, response_var, ALL_FACETS, n_bootstrap=n_bootstrap)\n\n    total_var = sum(vc.values())\n    results = {\n        \"variance_components\": {\n            k: {\n                \"estimate\": v,\n                \"pct\": v / total_var * 100 if total_var > 0 else 0.0,\n                \"ci_95\": ci[k],\n            }\n            for k, v in vc.items()\n        },\n        \"total_variance\": total_var,\n        \"n_observations\": len(df),\n        \"n_levels\": {k: int(v) for k, v in n_levels.items()},\n        \"fixed_facets\": FIXED_FACETS,\n        \"random_facets\": RANDOM_FACETS,\n        \"anova_table\": {\n            k: {\"ss\": v[\"ss\"], \"df\": v[\"df\"], \"ms\": v[\"ms\"]}\n            for k, v in effects.items()\n        },\n    }\n\n    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    # --- print summary ---\n    print(\n        f\"\\nG-theory Variance Decomposition  \"\n        f\"({len(df)} obs, {len(ALL_FACETS)} facets)\"\n    )\n    header = f\"{'Component':<30} {'Estimate':>10} {'%':>8}  {'95% CI':>24}\"\n    print(header)\n    print(\"-\" * len(header))\n    for name, info in sorted(\n        results[\"variance_components\"].items(),\n        key=lambda x: -x[1][\"estimate\"],\n    ):\n        lo, hi = info[\"ci_95\"][\"lower\"], info[\"ci_95\"][\"upper\"]\n        print(\n            f\"{name:<30} {info['estimate']:>10.6f} {info['pct']:>7.1f}%  \"\n            f\"[{lo:.6f}, {hi:.6f}]\"\n        )\n\n    print(f\"\\n→ {output_path}\")\n    return results\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(\n        description=\"G-theory variance decomposition\"\n    )\n    parser.add_argument(\n        \"--input\", required=True, help=\"Path to experiment results JSONL\"\n    )\n    parser.add_argument(\"--output\", default=None)\n    parser.add_argument(\"--n-bootstrap\", type=int, default=1000)\n    parser.add_argument(\n        \"--response-var\",\n        default=\"correct\",\n        choices=[\"correct\", \"text_exact_match\"],\n        help=\"Response variable: 'correct' (binary accuracy) or 'text_exact_match' (text-level determinism)\",\n    )\n    args = parser.parse_args()\n\n    if args.output is None:\n        if args.response_var == \"text_exact_match\":\n            args.output = \"results/variance_components_text.json\"\n        else:\n            args.output = \"results/variance_components.json\"\n\n    run_analysis(args.input, args.output, args.n_bootstrap, args.response_var)\n",
+                "numLines": 338,
+                "startLine": 1,
+                "totalLines": 338
+              }
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I understand the existing code. Let me also check what's in the `__init__.py` and the directory structure.",
+              "signature": "ErMCCmMIDRgCKkDlRJmYU9EE+cpLxKhPwdXvbPJwQV/Fc0MHJmrOHV0e8xtmyZ6/Uyo/QnpV0hlYwm8IsUpq9uqcX2xnWIfPhDjGMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDGNCcxHQJTyRbK8gMxoM8gnHCH18X2QiBgC7IjA96EbPeEPq0e+WbSiw3xXaZj5AZuWVF6uD08mK1+7D+JNZa8Cfy5B8YHRA87x40qkqfq1FHvb2E/BLzg+sBbmTdg/i33MXdyq0zFQOGc2dovuUNbxwPnEBBiAAAHyRKP/WT9AUB4gKkeraJznuBHypdKkHUiBsRmVq/f/KnyhC7sSpP1bymWyvQxN6kH6cfzHB2nfc1cEwfv9xy60uLxZ7FzEh9y+SrIae3neey84PfhgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "9c23b067-7f80-4238-9972-84729c9ab189",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KsJyVFMYT4n3drbpJdhEus",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4412,
+                "cache_read_input_tokens": 23959,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4412
+                },
+                "output_tokens": 12,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me check the directory structure and `__init__.py`."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "63bf6ca6-c4a3-4a53-a98a-29d3ab78503f",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KsJyVFMYT4n3drbpJdhEus",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4412,
+                "cache_read_input_tokens": 23959,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4412
+                },
+                "output_tokens": 12,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_014YjXaSz68VudpXGTyP6y3h",
+              "name": "Bash",
+              "input": {
+                "command": "ls -la /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/analysis/",
+                "description": "List analysis directory"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "a9a2933e-b11d-407d-9849-af7c69030c27",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KsJyVFMYT4n3drbpJdhEus",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4412,
+                "cache_read_input_tokens": 23959,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4412
+                },
+                "output_tokens": 12,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T23:38:15.354Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_014YjXaSz68VudpXGTyP6y3h",
+              "type": "tool_result",
+              "content": "total 36\ndrwxr-xr-x 2 ubuntu ubuntu  4096 May 20 18:57 .\ndrwxr-xr-x 8 ubuntu ubuntu  4096 May 20 22:16 ..\n-rw-r--r-- 1 ubuntu ubuntu     0 May 20 14:03 __init__.py\n-rw-r--r-- 1 ubuntu ubuntu  5434 May 20 14:23 d_study.py\n-rw-r--r-- 1 ubuntu ubuntu 11158 May 20 18:57 variance_decomposition.py\n-rw-r--r-- 1 ubuntu ubuntu  6959 May 20 14:22 visualize.py",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "b8332fa2-3707-4caf-ab80-402dd52faeeb",
+            "tool_use_result": {
+              "stdout": "total 36\ndrwxr-xr-x 2 ubuntu ubuntu  4096 May 20 18:57 .\ndrwxr-xr-x 8 ubuntu ubuntu  4096 May 20 22:16 ..\n-rw-r--r-- 1 ubuntu ubuntu     0 May 20 14:03 __init__.py\n-rw-r--r-- 1 ubuntu ubuntu  5434 May 20 14:23 d_study.py\n-rw-r--r-- 1 ubuntu ubuntu 11158 May 20 18:57 variance_decomposition.py\n-rw-r--r-- 1 ubuntu ubuntu  6959 May 20 14:22 visualize.py",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01SJGTTTdLxJiuULWdKHSsNJ",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/analysis/__init__.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "6fe29166-845a-4ee8-bd34-a6ce8ecf8759",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01KsJyVFMYT4n3drbpJdhEus",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 4412,
+                "cache_read_input_tokens": 23959,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 4412
+                },
+                "output_tokens": 12,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T23:38:15.475Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01SJGTTTdLxJiuULWdKHSsNJ",
+              "type": "tool_result",
+              "content": "<system-reminder>Warning: the file exists but is shorter than the provided offset (1). The file has 1 lines.</system-reminder>"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "edb70d58-0587-49e3-a1f5-36422f97b865",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/analysis/__init__.py",
+                "content": "",
+                "numLines": 1,
+                "startLine": 1,
+                "totalLines": 1
+              }
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The `__init__.py` is empty. Let me also glance at `d_study.py` to understand the D-study pattern, since the new code needs D-study projections.",
+              "signature": "EtUCCmMIDRgCKkARB1ohmwQ/3UvBKmwHUCB4M0Mth5IMA7sytnXpn1J+Sf4/N3priryJHGkPYg1X9fhlXZr++TJTBz0gBdg4lUDWMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDJjld9XotiAGULcyhhoMOSo8s7mQrSaAOdV5IjAPxQi/fdpGCj18dpu9Ryl4ak3A5AV654Uyy2br/N3WvwQG88CoGIRRfX8WaJa32NEqnwGFBweHrI823qn0bu7psKUZRxe9CAf2Sa+iBKKNvEcRJPeRThmLfH1C8tmjAoIxsnpsSNKQ/K0TJWSuTVajJ3Up0XPEJEWhbDcBPZrl58aRsVIxij1Ye8ta/x/OLl5jS/tHLmJa9cYNEoqp/J+J0GoboHINeOyBroqzFigF8EHl3RI8J+qEibj6kSSpIvIUQJ5L1FPrg3j1D5kXjVLUSywYAQ=="
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "ef325894-ea46-43c5-bd3c-a41c5a8bb930",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01768W57hD4T4g8gMFGGinwE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 512,
+                "cache_read_input_tokens": 28371,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 512
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Let me also check the D-study module for the projection pattern."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "4adfd781-5d16-4b2a-a7ff-d0cde2ed8d8d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01768W57hD4T4g8gMFGGinwE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 512,
+                "cache_read_input_tokens": 28371,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 512
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_017Vv5Y4yQ49Fnnk5fXGGB3k",
+              "name": "Read",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/analysis/d_study.py"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "a1e9aea1-7329-481f-9995-7d0c929d35c2",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01768W57hD4T4g8gMFGGinwE",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 512,
+                "cache_read_input_tokens": 28371,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 512
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T23:38:18.762Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_017Vv5Y4yQ49Fnnk5fXGGB3k",
+              "type": "tool_result",
+              "content": "1\t\"\"\"D-study projections for G-theory variance decomposition.\n2\t\n3\tGiven the estimated variance components from the G-study, computes the\n4\tgeneralizability coefficient (G) for different measurement designs by\n5\tvarying the number of replications of each random facet.\n6\t\n7\tPartition rule\n8\t--------------\n9\t* σ²_τ  (universe score): components involving *only* fixed facets\n10\t  (precision, temperature and their interactions).\n11\t* σ²_δ  (relative error): components involving ≥1 random facet, each\n12\t  divided by the product of the sample sizes of the random facets in\n13\t  that component.\n14\t* G = σ²_τ / (σ²_τ + σ²_δ)\n15\t\n16\tInput:  ``variance_components.json`` from ``variance_decomposition.py``.\n17\tOutput: ``d_study_results.json`` — current G, per-facet sweep, minimum\n18\t        replications for target G thresholds.\n19\t\"\"\"\n20\t\n21\timport argparse\n22\timport json\n23\tfrom pathlib import Path\n24\t\n25\tFIXED_FACETS = {\"precision\", \"temperature\"}\n26\tRANDOM_FACETS = [\"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\n27\t\n28\tMVP_LEVELS = {\n29\t    \"prompt_template\": 3,\n30\t    \"seed\": 3,\n31\t    \"ordering\": 2,\n32\t    \"item_id\": 50,\n33\t}\n34\t\n35\t\n36\tdef compute_g_coefficient(\n37\t    variance_components: dict,\n38\t    random_n: dict[str, int],\n39\t) -> tuple[float, float, float]:\n40\t    \"\"\"Compute G for a given D-study design.\n41\t\n42\t    Args:\n43\t        variance_components: Keys are component names (e.g. ``\"seed\"``,\n44\t            ``\"precision:prompt_template\"``), values are dicts with an\n45\t            ``\"estimate\"`` key **or** plain floats.\n46\t        random_n: Number of replications for each random facet.\n47\t\n48\t    Returns:\n49\t        (G, σ²_τ, σ²_δ).\n50\t    \"\"\"\n51\t    sigma_tau = 0.0\n52\t    sigma_delta = 0.0\n53\t\n54\t    for component, info in variance_components.items():\n55\t        est = info[\"estimate\"] if isinstance(info, dict) else info\n56\t\n57\t        if component == \"residual\":\n58\t            divisor = 1\n59\t            for f in RANDOM_FACETS:\n60\t                divisor *= random_n.get(f, 1)\n61\t            sigma_delta += est / divisor\n62\t            continue\n63\t\n64\t        facets_in = component.split(\":\")\n65\t        random_in = [f for f in facets_in if f not in FIXED_FACETS]\n66\t\n67\t        if len(random_in) == 0:\n68\t            sigma_tau += est\n69\t        else:\n70\t            divisor = 1\n71\t            for f in random_in:\n72\t                divisor *= random_n.get(f, 1)\n73\t            sigma_delta += est / divisor\n74\t\n75\t    total = sigma_tau + sigma_delta\n76\t    g = sigma_tau / total if total > 0 else 0.0\n77\t    return g, sigma_tau, sigma_delta\n78\t\n79\t\n80\tdef find_min_replications(\n81\t    vc: dict,\n82\t    target_g: float,\n83\t    target_facet: str,\n84\t    base_levels: dict[str, int],\n85\t    max_n: int = 100,\n86\t) -> int | None:\n87\t    \"\"\"Binary-search the minimum *n* for ``target_facet`` to reach ``target_g``.\n88\t\n89\t    Other facets stay at ``base_levels``.  Returns ``None`` if not reachable\n90\t    within ``max_n``.\n91\t    \"\"\"\n92\t    for n in range(1, max_n + 1):\n93\t        levels = base_levels.copy()\n94\t        levels[target_facet] = n\n95\t        g, _, _ = compute_g_coefficient(vc, levels)\n96\t        if g >= target_g:\n97\t            return n\n98\t    return None\n99\t\n100\t\n101\tdef run_d_study(input_path: str, output_path: str) -> dict:\n102\t    \"\"\"Run full D-study analysis.\n103\t\n104\t    Args:\n105\t        input_path: Path to ``variance_components.json``.\n106\t        output_path: Destination JSON.\n107\t\n108\t    Returns:\n109\t        Results dict.\n110\t    \"\"\"\n111\t    with open(input_path) as f:\n112\t        data = json.load(f)\n113\t\n114\t    vc = data[\"variance_components\"]\n115\t\n116\t    g_current, tau, delta = compute_g_coefficient(vc, MVP_LEVELS)\n117\t\n118\t    # --- per-facet sweeps (1 … 20) ---\n119\t    sweeps: dict[str, list[dict]] = {}\n120\t    for facet in RANDOM_FACETS:\n121\t        sweep = []\n122\t        for n in range(1, 21):\n123\t            levels = MVP_LEVELS.copy()\n124\t            levels[facet] = n\n125\t            g, _, _ = compute_g_coefficient(vc, levels)\n126\t            sweep.append({\"n\": n, \"g\": round(g, 6)})\n127\t        sweeps[facet] = sweep\n128\t\n129\t    # --- minimum replications for target thresholds ---\n130\t    targets = [0.90, 0.95, 0.99]\n131\t    min_reps: dict[str, dict[str, int | None]] = {}\n132\t    for target in targets:\n133\t        min_reps[str(target)] = {}\n134\t        for facet in RANDOM_FACETS:\n135\t            min_reps[str(target)][facet] = find_min_replications(\n136\t                vc, target, facet, MVP_LEVELS\n137\t            )\n138\t\n139\t    results = {\n140\t        \"current_design\": {\n141\t            \"levels\": MVP_LEVELS,\n142\t            \"g_coefficient\": round(g_current, 6),\n143\t            \"sigma_tau\": round(tau, 8),\n144\t            \"sigma_delta\": round(delta, 8),\n145\t        },\n146\t        \"sweeps\": sweeps,\n147\t        \"min_replications\": min_reps,\n148\t    }\n149\t\n150\t    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n151\t    with open(output_path, \"w\") as f:\n152\t        json.dump(results, f, indent=2)\n153\t\n154\t    # --- print summary ---\n155\t    print(f\"D-study Results  (current G = {g_current:.4f})\")\n156\t    print(f\"\\nMinimum replications for target G:\")\n157\t    print(f\"{'Facet':<20} {'G≥0.90':>8} {'G≥0.95':>8} {'G≥0.99':>8}\")\n158\t    print(\"-\" * 48)\n159\t    for facet in RANDOM_FACETS:\n160\t        vals = [min_reps[str(t)].get(facet) for t in targets]\n161\t        strs = [str(v) if v is not None else \">100\" for v in vals]\n162\t        print(f\"{facet:<20} {strs[0]:>8} {strs[1]:>8} {strs[2]:>8}\")\n163\t\n164\t    print(f\"\\n→ {output_path}\")\n165\t    return results\n166\t\n167\t\n168\tif __name__ == \"__main__\":\n169\t    parser = argparse.ArgumentParser(\n170\t        description=\"G-theory D-study projections\"\n171\t    )\n172\t    parser.add_argument(\n173\t        \"--input\", required=True, help=\"Path to variance_components.json\"\n174\t    )\n175\t    parser.add_argument(\"--output\", default=\"results/d_study_results.json\")\n176\t    args = parser.parse_args()\n177\t    run_d_study(args.input, args.output)\n178\t"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "d8f0757b-c18d-4798-9d4c-36336fdc5bfe",
+            "tool_use_result": {
+              "type": "text",
+              "file": {
+                "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/analysis/d_study.py",
+                "content": "\"\"\"D-study projections for G-theory variance decomposition.\n\nGiven the estimated variance components from the G-study, computes the\ngeneralizability coefficient (G) for different measurement designs by\nvarying the number of replications of each random facet.\n\nPartition rule\n--------------\n* σ²_τ  (universe score): components involving *only* fixed facets\n  (precision, temperature and their interactions).\n* σ²_δ  (relative error): components involving ≥1 random facet, each\n  divided by the product of the sample sizes of the random facets in\n  that component.\n* G = σ²_τ / (σ²_τ + σ²_δ)\n\nInput:  ``variance_components.json`` from ``variance_decomposition.py``.\nOutput: ``d_study_results.json`` — current G, per-facet sweep, minimum\n        replications for target G thresholds.\n\"\"\"\n\nimport argparse\nimport json\nfrom pathlib import Path\n\nFIXED_FACETS = {\"precision\", \"temperature\"}\nRANDOM_FACETS = [\"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\n\nMVP_LEVELS = {\n    \"prompt_template\": 3,\n    \"seed\": 3,\n    \"ordering\": 2,\n    \"item_id\": 50,\n}\n\n\ndef compute_g_coefficient(\n    variance_components: dict,\n    random_n: dict[str, int],\n) -> tuple[float, float, float]:\n    \"\"\"Compute G for a given D-study design.\n\n    Args:\n        variance_components: Keys are component names (e.g. ``\"seed\"``,\n            ``\"precision:prompt_template\"``), values are dicts with an\n            ``\"estimate\"`` key **or** plain floats.\n        random_n: Number of replications for each random facet.\n\n    Returns:\n        (G, σ²_τ, σ²_δ).\n    \"\"\"\n    sigma_tau = 0.0\n    sigma_delta = 0.0\n\n    for component, info in variance_components.items():\n        est = info[\"estimate\"] if isinstance(info, dict) else info\n\n        if component == \"residual\":\n            divisor = 1\n            for f in RANDOM_FACETS:\n                divisor *= random_n.get(f, 1)\n            sigma_delta += est / divisor\n            continue\n\n        facets_in = component.split(\":\")\n        random_in = [f for f in facets_in if f not in FIXED_FACETS]\n\n        if len(random_in) == 0:\n            sigma_tau += est\n        else:\n            divisor = 1\n            for f in random_in:\n                divisor *= random_n.get(f, 1)\n            sigma_delta += est / divisor\n\n    total = sigma_tau + sigma_delta\n    g = sigma_tau / total if total > 0 else 0.0\n    return g, sigma_tau, sigma_delta\n\n\ndef find_min_replications(\n    vc: dict,\n    target_g: float,\n    target_facet: str,\n    base_levels: dict[str, int],\n    max_n: int = 100,\n) -> int | None:\n    \"\"\"Binary-search the minimum *n* for ``target_facet`` to reach ``target_g``.\n\n    Other facets stay at ``base_levels``.  Returns ``None`` if not reachable\n    within ``max_n``.\n    \"\"\"\n    for n in range(1, max_n + 1):\n        levels = base_levels.copy()\n        levels[target_facet] = n\n        g, _, _ = compute_g_coefficient(vc, levels)\n        if g >= target_g:\n            return n\n    return None\n\n\ndef run_d_study(input_path: str, output_path: str) -> dict:\n    \"\"\"Run full D-study analysis.\n\n    Args:\n        input_path: Path to ``variance_components.json``.\n        output_path: Destination JSON.\n\n    Returns:\n        Results dict.\n    \"\"\"\n    with open(input_path) as f:\n        data = json.load(f)\n\n    vc = data[\"variance_components\"]\n\n    g_current, tau, delta = compute_g_coefficient(vc, MVP_LEVELS)\n\n    # --- per-facet sweeps (1 … 20) ---\n    sweeps: dict[str, list[dict]] = {}\n    for facet in RANDOM_FACETS:\n        sweep = []\n        for n in range(1, 21):\n            levels = MVP_LEVELS.copy()\n            levels[facet] = n\n            g, _, _ = compute_g_coefficient(vc, levels)\n            sweep.append({\"n\": n, \"g\": round(g, 6)})\n        sweeps[facet] = sweep\n\n    # --- minimum replications for target thresholds ---\n    targets = [0.90, 0.95, 0.99]\n    min_reps: dict[str, dict[str, int | None]] = {}\n    for target in targets:\n        min_reps[str(target)] = {}\n        for facet in RANDOM_FACETS:\n            min_reps[str(target)][facet] = find_min_replications(\n                vc, target, facet, MVP_LEVELS\n            )\n\n    results = {\n        \"current_design\": {\n            \"levels\": MVP_LEVELS,\n            \"g_coefficient\": round(g_current, 6),\n            \"sigma_tau\": round(tau, 8),\n            \"sigma_delta\": round(delta, 8),\n        },\n        \"sweeps\": sweeps,\n        \"min_replications\": min_reps,\n    }\n\n    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as f:\n        json.dump(results, f, indent=2)\n\n    # --- print summary ---\n    print(f\"D-study Results  (current G = {g_current:.4f})\")\n    print(f\"\\nMinimum replications for target G:\")\n    print(f\"{'Facet':<20} {'G≥0.90':>8} {'G≥0.95':>8} {'G≥0.99':>8}\")\n    print(\"-\" * 48)\n    for facet in RANDOM_FACETS:\n        vals = [min_reps[str(t)].get(facet) for t in targets]\n        strs = [str(v) if v is not None else \">100\" for v in vals]\n        print(f\"{facet:<20} {strs[0]:>8} {strs[1]:>8} {strs[2]:>8}\")\n\n    print(f\"\\n→ {output_path}\")\n    return results\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(\n        description=\"G-theory D-study projections\"\n    )\n    parser.add_argument(\n        \"--input\", required=True, help=\"Path to variance_components.json\"\n    )\n    parser.add_argument(\"--output\", default=\"results/d_study_results.json\")\n    args = parser.parse_args()\n    run_d_study(args.input, args.output)\n",
+                "numLines": 178,
+                "startLine": 1,
+                "totalLines": 178
+              }
+            }
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "Now I have a clear picture of the existing code. Let me write the two new files.\n\nKey observations from the existing code:\n\n1. `compute_ss` - computes Type-I SS for main effects and 2-way interactions in a balanced crossed design\n2. `estimate_variance_components` - solves EMS equations using Henderson Method I\n3. `compute_text_exact_match` - adds text_exact_match column\n4. `bootstrap_ci` - resamples items with replacement, re-runs ANOVA each time\n5. D-study: computes G coefficient by partitioning into universe-score variance (fixed facets only) and error variance (≥1 random facet)\n\n\n6. For exp-001, I'm working with 7 facets including model as a new random facet, which gives me 7 main effects plus 21 two-way interactions to analyze, and I need to sweep model counts from 1-10 in the D-study\n\nFor the first file, I'll import the existing functions and reuse them, define the expanded facet lists with model included, add glob support for reading multiple JSONL files, and run the full analysis pipeline.\n\nFor the second file, I'm realizing that both files should leverage the same generic variance decomposition functions since they work with any facet configuration. The bootstrap approach will resample items with replacement to compute confidence intervals for each variance component, and it'll import those same reusable functions. Writing the implementation...",
+              "signature": "[ATTACHMENT_DATA_REDACTED]"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "85a970fe-2270-41f8-ac4b-37eaa10b9225",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uab4YU7AGoAyLDruBLJNEN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2361,
+                "cache_read_input_tokens": 28883,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2361
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have a clear picture. The core functions `compute_ss` and `estimate_variance_components` are already generic — they accept any facet list. I'll write both new modules that reuse them."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "ef51990a-0aee-4edd-88b0-c101f0aee4c4",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uab4YU7AGoAyLDruBLJNEN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2361,
+                "cache_read_input_tokens": 28883,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2361
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01TKrnjgDZp87LjTcJtMqydX",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/analysis/model_facet_analysis.py",
+                "content": "\"\"\"Multi-model G-theory variance decomposition (exp-001).\n\nExtends the MVP single-model analysis to a fully-crossed design with 7 facets:\nmodel, precision, temperature, prompt_template, seed, ordering, item_id.\n\nEstimates all 7 main effects + 21 two-way interactions + residual using\nHenderson Method I (ANOVA-based), identical to the MVP approach but with\nmodel added as a crossed random facet.\n\nInput:  One or more JSONL files from multi-model experiments. Each row has\n        model, precision, temperature, prompt_template, seed, ordering,\n        item_id, correct, generated_text.\nOutput: JSON with variance components, G coefficient, and D-study projections.\n\"\"\"\n\nimport argparse\nimport glob\nimport json\nfrom math import prod\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\n\nfrom src.analysis.variance_decomposition import (\n    compute_ss,\n    compute_text_exact_match,\n    estimate_variance_components,\n)\n\nALL_FACETS = [\n    \"model\", \"precision\", \"temperature\",\n    \"prompt_template\", \"seed\", \"ordering\", \"item_id\",\n]\nFIXED_FACETS = [\"precision\", \"temperature\"]\nRANDOM_FACETS = [\"model\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\n\n\ndef load_jsonl_glob(patterns: list[str]) -> pd.DataFrame:\n    \"\"\"Load and concatenate JSONL files matching one or more glob patterns.\n\n    Args:\n        patterns: List of file paths or glob patterns (e.g. [\"results/*.jsonl\"]).\n\n    Returns:\n        Combined DataFrame.\n    \"\"\"\n    paths = []\n    for pat in patterns:\n        expanded = sorted(glob.glob(pat))\n        if not expanded:\n            raise FileNotFoundError(f\"No files matched pattern: {pat}\")\n        paths.extend(expanded)\n\n    frames = [pd.read_json(p, lines=True) for p in paths]\n    df = pd.concat(frames, ignore_index=True)\n    print(f\"Loaded {len(df)} observations from {len(paths)} file(s)\")\n    return df\n\n\ndef compute_g_coefficient(\n    variance_components: dict[str, float],\n    random_n: dict[str, int],\n) -> tuple[float, float, float]:\n    \"\"\"Compute generalizability coefficient for a D-study design.\n\n    Universe-score variance (sigma_tau): components involving only fixed facets.\n    Relative error variance (sigma_delta): components with >= 1 random facet,\n    each divided by the product of sample sizes of the random facets it contains.\n\n    Args:\n        variance_components: {component_name: estimate} from G-study.\n        random_n: Number of levels for each random facet in the D-study design.\n\n    Returns:\n        (G, sigma_tau, sigma_delta).\n    \"\"\"\n    fixed_set = set(FIXED_FACETS)\n    sigma_tau = 0.0\n    sigma_delta = 0.0\n\n    for component, est in variance_components.items():\n        if component == \"residual\":\n            divisor = prod(random_n.get(f, 1) for f in RANDOM_FACETS)\n            sigma_delta += est / divisor\n            continue\n\n        facets_in = component.split(\":\")\n        random_in = [f for f in facets_in if f not in fixed_set]\n\n        if len(random_in) == 0:\n            sigma_tau += est\n        else:\n            divisor = prod(random_n.get(f, 1) for f in random_in)\n            sigma_delta += est / divisor\n\n    total = sigma_tau + sigma_delta\n    g = sigma_tau / total if total > 0 else 0.0\n    return g, sigma_tau, sigma_delta\n\n\ndef d_study_model_sweep(\n    variance_components: dict[str, float],\n    base_levels: dict[str, int],\n    max_models: int = 10,\n) -> list[dict]:\n    \"\"\"Sweep model count from 1 to max_models, holding other facets fixed.\n\n    Args:\n        variance_components: G-study variance component estimates.\n        base_levels: Baseline replication counts for all random facets.\n        max_models: Maximum number of models to project.\n\n    Returns:\n        List of {n_models, g, sigma_tau, sigma_delta} dicts.\n    \"\"\"\n    results = []\n    for n in range(1, max_models + 1):\n        levels = base_levels.copy()\n        levels[\"model\"] = n\n        g, tau, delta = compute_g_coefficient(variance_components, levels)\n        results.append({\n            \"n_models\": n,\n            \"g\": round(g, 6),\n            \"sigma_tau\": round(tau, 8),\n            \"sigma_delta\": round(delta, 8),\n        })\n    return results\n\n\ndef run_analysis(\n    data_patterns: list[str],\n    output_path: str,\n    response_var: str = \"correct\",\n) -> dict:\n    \"\"\"Full multi-model G-theory analysis.\n\n    Args:\n        data_patterns: Glob patterns for input JSONL files.\n        output_path: Destination JSON path.\n        response_var: \"correct\" or \"text_exact_match\".\n\n    Returns:\n        Results dict (also written to output_path).\n    \"\"\"\n    df = load_jsonl_glob(data_patterns)\n\n    for f in ALL_FACETS:\n        df[f] = df[f].astype(str)\n\n    if response_var == \"text_exact_match\":\n        df = compute_text_exact_match(df)\n\n    print(f\"Running 7-facet G-study on {len(df)} observations (response={response_var})\")\n\n    effects, n_levels = compute_ss(df, response_var, ALL_FACETS)\n    vc = estimate_variance_components(effects, ALL_FACETS, n_levels)\n    total_var = sum(vc.values())\n\n    # G coefficient at observed design\n    observed_random_n = {f: n_levels[f] for f in RANDOM_FACETS}\n    g_current, tau, delta = compute_g_coefficient(vc, observed_random_n)\n\n    # D-study: sweep model count\n    model_sweep = d_study_model_sweep(vc, observed_random_n, max_models=10)\n\n    results = {\n        \"variance_components\": {\n            k: {\n                \"estimate\": v,\n                \"pct\": v / total_var * 100 if total_var > 0 else 0.0,\n            }\n            for k, v in vc.items()\n        },\n        \"total_variance\": total_var,\n        \"n_observations\": len(df),\n        \"n_levels\": {k: int(v) for k, v in n_levels.items()},\n        \"fixed_facets\": FIXED_FACETS,\n        \"random_facets\": RANDOM_FACETS,\n        \"all_facets\": ALL_FACETS,\n        \"anova_table\": {\n            k: {\"ss\": v[\"ss\"], \"df\": v[\"df\"], \"ms\": v[\"ms\"]}\n            for k, v in effects.items()\n        },\n        \"g_coefficient\": {\n            \"g\": round(g_current, 6),\n            \"sigma_tau\": round(tau, 8),\n            \"sigma_delta\": round(delta, 8),\n        },\n        \"d_study_model_sweep\": model_sweep,\n    }\n\n    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as fout:\n        json.dump(results, fout, indent=2)\n\n    _print_summary(results)\n    print(f\"\\n-> {output_path}\")\n    return results\n\n\ndef _print_summary(results: dict) -> None:\n    \"\"\"Print formatted variance decomposition table.\"\"\"\n    vc = results[\"variance_components\"]\n    n_obs = results[\"n_observations\"]\n    g = results[\"g_coefficient\"][\"g\"]\n\n    print(f\"\\nMulti-model G-theory Variance Decomposition  ({n_obs} obs, 7 facets)\")\n    print(f\"G coefficient = {g:.4f}\\n\")\n\n    header = f\"{'Component':<30} {'Estimate':>10} {'%':>8}\"\n    print(header)\n    print(\"-\" * len(header))\n    for name, info in sorted(vc.items(), key=lambda x: -x[1][\"estimate\"]):\n        print(f\"{name:<30} {info['estimate']:>10.6f} {info['pct']:>7.1f}%\")\n\n    print(f\"\\nD-study: model count sweep\")\n    print(f\"{'n_models':>10} {'G':>10}\")\n    print(\"-\" * 22)\n    for row in results[\"d_study_model_sweep\"]:\n        print(f\"{row['n_models']:>10} {row['g']:>10.4f}\")\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(\n        description=\"Multi-model G-theory variance decomposition (exp-001)\"\n    )\n    parser.add_argument(\n        \"--data\", nargs=\"+\", required=True,\n        help=\"JSONL file(s) or glob pattern(s) (e.g. results/exp001/*.jsonl)\",\n    )\n    parser.add_argument(\n        \"--response-var\", default=\"correct\",\n        choices=[\"correct\", \"text_exact_match\"],\n        help=\"Response variable (default: correct)\",\n    )\n    parser.add_argument(\n        \"--output\", default=\"results/analysis/model_variance_components.json\",\n        help=\"Output JSON path\",\n    )\n    args = parser.parse_args()\n    run_analysis(args.data, args.output, args.response_var)\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "baa54750-28b6-43af-a6c5-334d1a33574b",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uab4YU7AGoAyLDruBLJNEN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2361,
+                "cache_read_input_tokens": 28883,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2361
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T23:39:19.570Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01TKrnjgDZp87LjTcJtMqydX",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/analysis/model_facet_analysis.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "4d3fe7ac-a6c3-4cf5-b772-2ebbe0d91de6",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/analysis/model_facet_analysis.py",
+              "content": "\"\"\"Multi-model G-theory variance decomposition (exp-001).\n\nExtends the MVP single-model analysis to a fully-crossed design with 7 facets:\nmodel, precision, temperature, prompt_template, seed, ordering, item_id.\n\nEstimates all 7 main effects + 21 two-way interactions + residual using\nHenderson Method I (ANOVA-based), identical to the MVP approach but with\nmodel added as a crossed random facet.\n\nInput:  One or more JSONL files from multi-model experiments. Each row has\n        model, precision, temperature, prompt_template, seed, ordering,\n        item_id, correct, generated_text.\nOutput: JSON with variance components, G coefficient, and D-study projections.\n\"\"\"\n\nimport argparse\nimport glob\nimport json\nfrom math import prod\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\n\nfrom src.analysis.variance_decomposition import (\n    compute_ss,\n    compute_text_exact_match,\n    estimate_variance_components,\n)\n\nALL_FACETS = [\n    \"model\", \"precision\", \"temperature\",\n    \"prompt_template\", \"seed\", \"ordering\", \"item_id\",\n]\nFIXED_FACETS = [\"precision\", \"temperature\"]\nRANDOM_FACETS = [\"model\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\n\n\ndef load_jsonl_glob(patterns: list[str]) -> pd.DataFrame:\n    \"\"\"Load and concatenate JSONL files matching one or more glob patterns.\n\n    Args:\n        patterns: List of file paths or glob patterns (e.g. [\"results/*.jsonl\"]).\n\n    Returns:\n        Combined DataFrame.\n    \"\"\"\n    paths = []\n    for pat in patterns:\n        expanded = sorted(glob.glob(pat))\n        if not expanded:\n            raise FileNotFoundError(f\"No files matched pattern: {pat}\")\n        paths.extend(expanded)\n\n    frames = [pd.read_json(p, lines=True) for p in paths]\n    df = pd.concat(frames, ignore_index=True)\n    print(f\"Loaded {len(df)} observations from {len(paths)} file(s)\")\n    return df\n\n\ndef compute_g_coefficient(\n    variance_components: dict[str, float],\n    random_n: dict[str, int],\n) -> tuple[float, float, float]:\n    \"\"\"Compute generalizability coefficient for a D-study design.\n\n    Universe-score variance (sigma_tau): components involving only fixed facets.\n    Relative error variance (sigma_delta): components with >= 1 random facet,\n    each divided by the product of sample sizes of the random facets it contains.\n\n    Args:\n        variance_components: {component_name: estimate} from G-study.\n        random_n: Number of levels for each random facet in the D-study design.\n\n    Returns:\n        (G, sigma_tau, sigma_delta).\n    \"\"\"\n    fixed_set = set(FIXED_FACETS)\n    sigma_tau = 0.0\n    sigma_delta = 0.0\n\n    for component, est in variance_components.items():\n        if component == \"residual\":\n            divisor = prod(random_n.get(f, 1) for f in RANDOM_FACETS)\n            sigma_delta += est / divisor\n            continue\n\n        facets_in = component.split(\":\")\n        random_in = [f for f in facets_in if f not in fixed_set]\n\n        if len(random_in) == 0:\n            sigma_tau += est\n        else:\n            divisor = prod(random_n.get(f, 1) for f in random_in)\n            sigma_delta += est / divisor\n\n    total = sigma_tau + sigma_delta\n    g = sigma_tau / total if total > 0 else 0.0\n    return g, sigma_tau, sigma_delta\n\n\ndef d_study_model_sweep(\n    variance_components: dict[str, float],\n    base_levels: dict[str, int],\n    max_models: int = 10,\n) -> list[dict]:\n    \"\"\"Sweep model count from 1 to max_models, holding other facets fixed.\n\n    Args:\n        variance_components: G-study variance component estimates.\n        base_levels: Baseline replication counts for all random facets.\n        max_models: Maximum number of models to project.\n\n    Returns:\n        List of {n_models, g, sigma_tau, sigma_delta} dicts.\n    \"\"\"\n    results = []\n    for n in range(1, max_models + 1):\n        levels = base_levels.copy()\n        levels[\"model\"] = n\n        g, tau, delta = compute_g_coefficient(variance_components, levels)\n        results.append({\n            \"n_models\": n,\n            \"g\": round(g, 6),\n            \"sigma_tau\": round(tau, 8),\n            \"sigma_delta\": round(delta, 8),\n        })\n    return results\n\n\ndef run_analysis(\n    data_patterns: list[str],\n    output_path: str,\n    response_var: str = \"correct\",\n) -> dict:\n    \"\"\"Full multi-model G-theory analysis.\n\n    Args:\n        data_patterns: Glob patterns for input JSONL files.\n        output_path: Destination JSON path.\n        response_var: \"correct\" or \"text_exact_match\".\n\n    Returns:\n        Results dict (also written to output_path).\n    \"\"\"\n    df = load_jsonl_glob(data_patterns)\n\n    for f in ALL_FACETS:\n        df[f] = df[f].astype(str)\n\n    if response_var == \"text_exact_match\":\n        df = compute_text_exact_match(df)\n\n    print(f\"Running 7-facet G-study on {len(df)} observations (response={response_var})\")\n\n    effects, n_levels = compute_ss(df, response_var, ALL_FACETS)\n    vc = estimate_variance_components(effects, ALL_FACETS, n_levels)\n    total_var = sum(vc.values())\n\n    # G coefficient at observed design\n    observed_random_n = {f: n_levels[f] for f in RANDOM_FACETS}\n    g_current, tau, delta = compute_g_coefficient(vc, observed_random_n)\n\n    # D-study: sweep model count\n    model_sweep = d_study_model_sweep(vc, observed_random_n, max_models=10)\n\n    results = {\n        \"variance_components\": {\n            k: {\n                \"estimate\": v,\n                \"pct\": v / total_var * 100 if total_var > 0 else 0.0,\n            }\n            for k, v in vc.items()\n        },\n        \"total_variance\": total_var,\n        \"n_observations\": len(df),\n        \"n_levels\": {k: int(v) for k, v in n_levels.items()},\n        \"fixed_facets\": FIXED_FACETS,\n        \"random_facets\": RANDOM_FACETS,\n        \"all_facets\": ALL_FACETS,\n        \"anova_table\": {\n            k: {\"ss\": v[\"ss\"], \"df\": v[\"df\"], \"ms\": v[\"ms\"]}\n            for k, v in effects.items()\n        },\n        \"g_coefficient\": {\n            \"g\": round(g_current, 6),\n            \"sigma_tau\": round(tau, 8),\n            \"sigma_delta\": round(delta, 8),\n        },\n        \"d_study_model_sweep\": model_sweep,\n    }\n\n    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as fout:\n        json.dump(results, fout, indent=2)\n\n    _print_summary(results)\n    print(f\"\\n-> {output_path}\")\n    return results\n\n\ndef _print_summary(results: dict) -> None:\n    \"\"\"Print formatted variance decomposition table.\"\"\"\n    vc = results[\"variance_components\"]\n    n_obs = results[\"n_observations\"]\n    g = results[\"g_coefficient\"][\"g\"]\n\n    print(f\"\\nMulti-model G-theory Variance Decomposition  ({n_obs} obs, 7 facets)\")\n    print(f\"G coefficient = {g:.4f}\\n\")\n\n    header = f\"{'Component':<30} {'Estimate':>10} {'%':>8}\"\n    print(header)\n    print(\"-\" * len(header))\n    for name, info in sorted(vc.items(), key=lambda x: -x[1][\"estimate\"]):\n        print(f\"{name:<30} {info['estimate']:>10.6f} {info['pct']:>7.1f}%\")\n\n    print(f\"\\nD-study: model count sweep\")\n    print(f\"{'n_models':>10} {'G':>10}\")\n    print(\"-\" * 22)\n    for row in results[\"d_study_model_sweep\"]:\n        print(f\"{row['n_models']:>10} {row['g']:>10.4f}\")\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(\n        description=\"Multi-model G-theory variance decomposition (exp-001)\"\n    )\n    parser.add_argument(\n        \"--data\", nargs=\"+\", required=True,\n        help=\"JSONL file(s) or glob pattern(s) (e.g. results/exp001/*.jsonl)\",\n    )\n    parser.add_argument(\n        \"--response-var\", default=\"correct\",\n        choices=[\"correct\", \"text_exact_match\"],\n        help=\"Response variable (default: correct)\",\n    )\n    parser.add_argument(\n        \"--output\", default=\"results/analysis/model_variance_components.json\",\n        help=\"Output JSON path\",\n    )\n    args = parser.parse_args()\n    run_analysis(args.data, args.output, args.response_var)\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_013yVUpCE7SeW46XZivDhzzo",
+              "name": "Write",
+              "input": {
+                "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/analysis/bootstrap_ci.py",
+                "content": "\"\"\"Bootstrap confidence intervals for G-theory variance components.\n\nResamples items (the object of measurement) with replacement, preserving\nall observations within each item. Each resample re-runs the full ANOVA\nvariance decomposition, producing an empirical distribution for every\nvariance component. Reports percentile-based 95% CIs.\n\nSupports both the MVP 6-facet design and the exp-001 7-facet design\n(with model as an additional crossed random facet).\n\nInput:  JSONL data files (same format as model_facet_analysis.py).\nOutput: JSON with point estimates and bootstrap CIs for each component.\n\"\"\"\n\nimport argparse\nimport glob\nimport json\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\n\nfrom src.analysis.variance_decomposition import (\n    compute_ss,\n    compute_text_exact_match,\n    estimate_variance_components,\n)\n\nFACETS_6 = [\n    \"precision\", \"temperature\",\n    \"prompt_template\", \"seed\", \"ordering\", \"item_id\",\n]\nFACETS_7 = [\n    \"model\", \"precision\", \"temperature\",\n    \"prompt_template\", \"seed\", \"ordering\", \"item_id\",\n]\n\n\ndef load_jsonl_glob(patterns: list[str]) -> pd.DataFrame:\n    \"\"\"Load and concatenate JSONL files matching glob patterns.\n\n    Args:\n        patterns: File paths or glob patterns.\n\n    Returns:\n        Combined DataFrame.\n    \"\"\"\n    paths = []\n    for pat in patterns:\n        expanded = sorted(glob.glob(pat))\n        if not expanded:\n            raise FileNotFoundError(f\"No files matched pattern: {pat}\")\n        paths.extend(expanded)\n\n    frames = [pd.read_json(p, lines=True) for p in paths]\n    df = pd.concat(frames, ignore_index=True)\n    print(f\"Loaded {len(df)} observations from {len(paths)} file(s)\")\n    return df\n\n\ndef detect_facets(df: pd.DataFrame) -> list[str]:\n    \"\"\"Auto-detect whether data has 6 or 7 facets based on column presence.\n\n    Args:\n        df: Input DataFrame.\n\n    Returns:\n        Facet list (FACETS_7 if 'model' column exists with >1 unique value,\n        else FACETS_6).\n    \"\"\"\n    if \"model\" in df.columns and df[\"model\"].nunique() > 1:\n        return FACETS_7\n    return FACETS_6\n\n\ndef bootstrap_variance_components(\n    df: pd.DataFrame,\n    response: str,\n    facets: list[str],\n    n_bootstrap: int = 1000,\n    alpha: float = 0.05,\n    seed: int = 42,\n) -> tuple[dict[str, float], dict[str, dict[str, float]]]:\n    \"\"\"Bootstrap CIs for variance components by resampling items.\n\n    Each bootstrap iteration:\n    1. Sample N items with replacement from the unique item_ids.\n    2. Collect all observations for the sampled items, re-indexing item_id\n       to maintain a balanced design.\n    3. Run ANOVA and estimate variance components.\n\n    Args:\n        df: Full dataset with facet columns and response variable.\n        response: Name of the response column.\n        facets: List of facet names for the G-study.\n        n_bootstrap: Number of bootstrap iterations.\n        alpha: Significance level for CIs (default 0.05 -> 95% CI).\n        seed: Random seed for reproducibility.\n\n    Returns:\n        (point_estimates, cis) where point_estimates maps component -> float,\n        and cis maps component -> {\"lower\": float, \"upper\": float}.\n    \"\"\"\n    # Point estimates from full data\n    effects, n_levels = compute_ss(df, response, facets)\n    point_est = estimate_variance_components(effects, facets, n_levels)\n\n    rng = np.random.RandomState(seed)\n    items = df[\"item_id\"].unique()\n    n_items = len(items)\n\n    boot_vcs: list[dict[str, float]] = []\n    n_failed = 0\n\n    print(f\"Bootstrap ({n_bootstrap} iterations, {n_items} items) ...\")\n    for i in range(n_bootstrap):\n        sampled = rng.choice(items, size=n_items, replace=True)\n        frames = []\n        for new_idx, item in enumerate(sampled):\n            sub = df[df[\"item_id\"] == item].copy()\n            sub[\"item_id\"] = f\"boot_{new_idx}\"\n            frames.append(sub)\n        boot_df = pd.concat(frames, ignore_index=True)\n\n        try:\n            eff, nl = compute_ss(boot_df, response, facets)\n            vc = estimate_variance_components(eff, facets, nl)\n            boot_vcs.append(vc)\n        except Exception:\n            n_failed += 1\n            continue\n\n        if (i + 1) % 200 == 0:\n            print(f\"  ... {i + 1}/{n_bootstrap}\")\n\n    if n_failed > 0:\n        print(f\"  {n_failed}/{n_bootstrap} iterations failed (skipped)\")\n\n    lo_pct = 100 * alpha / 2\n    hi_pct = 100 * (1 - alpha / 2)\n    cis: dict[str, dict[str, float]] = {}\n    for key in point_est:\n        values = [bv.get(key, 0.0) for bv in boot_vcs]\n        cis[key] = {\n            \"lower\": float(np.percentile(values, lo_pct)),\n            \"upper\": float(np.percentile(values, hi_pct)),\n        }\n\n    return point_est, cis\n\n\ndef run_bootstrap(\n    data_patterns: list[str],\n    output_path: str,\n    response_var: str = \"correct\",\n    n_bootstrap: int = 1000,\n    seed: int = 42,\n) -> dict:\n    \"\"\"Run bootstrap CI analysis and save results.\n\n    Args:\n        data_patterns: Glob patterns for input JSONL files.\n        output_path: Destination JSON path.\n        response_var: \"correct\" or \"text_exact_match\".\n        n_bootstrap: Number of bootstrap iterations.\n        seed: Random seed.\n\n    Returns:\n        Results dict (also written to output_path).\n    \"\"\"\n    df = load_jsonl_glob(data_patterns)\n    facets = detect_facets(df)\n\n    for f in facets:\n        df[f] = df[f].astype(str)\n\n    if response_var == \"text_exact_match\":\n        df = compute_text_exact_match(df)\n\n    print(f\"Facets: {facets} ({len(facets)}-facet design)\")\n\n    point_est, cis = bootstrap_variance_components(\n        df, response_var, facets,\n        n_bootstrap=n_bootstrap, seed=seed,\n    )\n\n    total_var = sum(point_est.values())\n    results = {\n        \"variance_components\": {\n            k: {\n                \"estimate\": v,\n                \"pct\": v / total_var * 100 if total_var > 0 else 0.0,\n                \"ci_95\": cis[k],\n            }\n            for k, v in point_est.items()\n        },\n        \"total_variance\": total_var,\n        \"n_observations\": len(df),\n        \"facets\": facets,\n        \"n_bootstrap\": n_bootstrap,\n        \"response_var\": response_var,\n    }\n\n    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as fout:\n        json.dump(results, fout, indent=2)\n\n    _print_summary(results)\n    print(f\"\\n-> {output_path}\")\n    return results\n\n\ndef _print_summary(results: dict) -> None:\n    \"\"\"Print formatted table with point estimates and CIs.\"\"\"\n    vc = results[\"variance_components\"]\n    n_obs = results[\"n_observations\"]\n    n_boot = results[\"n_bootstrap\"]\n    n_facets = len(results[\"facets\"])\n\n    print(f\"\\nBootstrap Variance Components  ({n_obs} obs, {n_facets} facets, {n_boot} boots)\")\n    header = f\"{'Component':<30} {'Estimate':>10} {'%':>8}  {'95% CI':>24}\"\n    print(header)\n    print(\"-\" * len(header))\n    for name, info in sorted(vc.items(), key=lambda x: -x[1][\"estimate\"]):\n        lo, hi = info[\"ci_95\"][\"lower\"], info[\"ci_95\"][\"upper\"]\n        print(\n            f\"{name:<30} {info['estimate']:>10.6f} {info['pct']:>7.1f}%  \"\n            f\"[{lo:.6f}, {hi:.6f}]\"\n        )\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(\n        description=\"Bootstrap CIs for G-theory variance components\"\n    )\n    parser.add_argument(\n        \"--data\", nargs=\"+\", required=True,\n        help=\"JSONL file(s) or glob pattern(s)\",\n    )\n    parser.add_argument(\n        \"--response-var\", default=\"correct\",\n        choices=[\"correct\", \"text_exact_match\"],\n        help=\"Response variable (default: correct)\",\n    )\n    parser.add_argument(\n        \"--n-bootstrap\", type=int, default=1000,\n        help=\"Number of bootstrap iterations (default: 1000)\",\n    )\n    parser.add_argument(\n        \"--seed\", type=int, default=42,\n        help=\"Random seed (default: 42)\",\n    )\n    parser.add_argument(\n        \"--output\", default=\"results/analysis/bootstrap_ci.json\",\n        help=\"Output JSON path\",\n    )\n    args = parser.parse_args()\n    run_bootstrap(args.data, args.output, args.response_var, args.n_bootstrap, args.seed)\n"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "c43e698c-0034-4231-8ec9-0af25f09926d",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Uab4YU7AGoAyLDruBLJNEN",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 2361,
+                "cache_read_input_tokens": 28883,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 2361
+                },
+                "output_tokens": 10,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T23:39:49.160Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_013yVUpCE7SeW46XZivDhzzo",
+              "type": "tool_result",
+              "content": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/analysis/bootstrap_ci.py"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "e39e361b-f05d-4125-8fcd-2f46f035fffc",
+            "tool_use_result": {
+              "type": "create",
+              "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/analysis/bootstrap_ci.py",
+              "content": "\"\"\"Bootstrap confidence intervals for G-theory variance components.\n\nResamples items (the object of measurement) with replacement, preserving\nall observations within each item. Each resample re-runs the full ANOVA\nvariance decomposition, producing an empirical distribution for every\nvariance component. Reports percentile-based 95% CIs.\n\nSupports both the MVP 6-facet design and the exp-001 7-facet design\n(with model as an additional crossed random facet).\n\nInput:  JSONL data files (same format as model_facet_analysis.py).\nOutput: JSON with point estimates and bootstrap CIs for each component.\n\"\"\"\n\nimport argparse\nimport glob\nimport json\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\n\nfrom src.analysis.variance_decomposition import (\n    compute_ss,\n    compute_text_exact_match,\n    estimate_variance_components,\n)\n\nFACETS_6 = [\n    \"precision\", \"temperature\",\n    \"prompt_template\", \"seed\", \"ordering\", \"item_id\",\n]\nFACETS_7 = [\n    \"model\", \"precision\", \"temperature\",\n    \"prompt_template\", \"seed\", \"ordering\", \"item_id\",\n]\n\n\ndef load_jsonl_glob(patterns: list[str]) -> pd.DataFrame:\n    \"\"\"Load and concatenate JSONL files matching glob patterns.\n\n    Args:\n        patterns: File paths or glob patterns.\n\n    Returns:\n        Combined DataFrame.\n    \"\"\"\n    paths = []\n    for pat in patterns:\n        expanded = sorted(glob.glob(pat))\n        if not expanded:\n            raise FileNotFoundError(f\"No files matched pattern: {pat}\")\n        paths.extend(expanded)\n\n    frames = [pd.read_json(p, lines=True) for p in paths]\n    df = pd.concat(frames, ignore_index=True)\n    print(f\"Loaded {len(df)} observations from {len(paths)} file(s)\")\n    return df\n\n\ndef detect_facets(df: pd.DataFrame) -> list[str]:\n    \"\"\"Auto-detect whether data has 6 or 7 facets based on column presence.\n\n    Args:\n        df: Input DataFrame.\n\n    Returns:\n        Facet list (FACETS_7 if 'model' column exists with >1 unique value,\n        else FACETS_6).\n    \"\"\"\n    if \"model\" in df.columns and df[\"model\"].nunique() > 1:\n        return FACETS_7\n    return FACETS_6\n\n\ndef bootstrap_variance_components(\n    df: pd.DataFrame,\n    response: str,\n    facets: list[str],\n    n_bootstrap: int = 1000,\n    alpha: float = 0.05,\n    seed: int = 42,\n) -> tuple[dict[str, float], dict[str, dict[str, float]]]:\n    \"\"\"Bootstrap CIs for variance components by resampling items.\n\n    Each bootstrap iteration:\n    1. Sample N items with replacement from the unique item_ids.\n    2. Collect all observations for the sampled items, re-indexing item_id\n       to maintain a balanced design.\n    3. Run ANOVA and estimate variance components.\n\n    Args:\n        df: Full dataset with facet columns and response variable.\n        response: Name of the response column.\n        facets: List of facet names for the G-study.\n        n_bootstrap: Number of bootstrap iterations.\n        alpha: Significance level for CIs (default 0.05 -> 95% CI).\n        seed: Random seed for reproducibility.\n\n    Returns:\n        (point_estimates, cis) where point_estimates maps component -> float,\n        and cis maps component -> {\"lower\": float, \"upper\": float}.\n    \"\"\"\n    # Point estimates from full data\n    effects, n_levels = compute_ss(df, response, facets)\n    point_est = estimate_variance_components(effects, facets, n_levels)\n\n    rng = np.random.RandomState(seed)\n    items = df[\"item_id\"].unique()\n    n_items = len(items)\n\n    boot_vcs: list[dict[str, float]] = []\n    n_failed = 0\n\n    print(f\"Bootstrap ({n_bootstrap} iterations, {n_items} items) ...\")\n    for i in range(n_bootstrap):\n        sampled = rng.choice(items, size=n_items, replace=True)\n        frames = []\n        for new_idx, item in enumerate(sampled):\n            sub = df[df[\"item_id\"] == item].copy()\n            sub[\"item_id\"] = f\"boot_{new_idx}\"\n            frames.append(sub)\n        boot_df = pd.concat(frames, ignore_index=True)\n\n        try:\n            eff, nl = compute_ss(boot_df, response, facets)\n            vc = estimate_variance_components(eff, facets, nl)\n            boot_vcs.append(vc)\n        except Exception:\n            n_failed += 1\n            continue\n\n        if (i + 1) % 200 == 0:\n            print(f\"  ... {i + 1}/{n_bootstrap}\")\n\n    if n_failed > 0:\n        print(f\"  {n_failed}/{n_bootstrap} iterations failed (skipped)\")\n\n    lo_pct = 100 * alpha / 2\n    hi_pct = 100 * (1 - alpha / 2)\n    cis: dict[str, dict[str, float]] = {}\n    for key in point_est:\n        values = [bv.get(key, 0.0) for bv in boot_vcs]\n        cis[key] = {\n            \"lower\": float(np.percentile(values, lo_pct)),\n            \"upper\": float(np.percentile(values, hi_pct)),\n        }\n\n    return point_est, cis\n\n\ndef run_bootstrap(\n    data_patterns: list[str],\n    output_path: str,\n    response_var: str = \"correct\",\n    n_bootstrap: int = 1000,\n    seed: int = 42,\n) -> dict:\n    \"\"\"Run bootstrap CI analysis and save results.\n\n    Args:\n        data_patterns: Glob patterns for input JSONL files.\n        output_path: Destination JSON path.\n        response_var: \"correct\" or \"text_exact_match\".\n        n_bootstrap: Number of bootstrap iterations.\n        seed: Random seed.\n\n    Returns:\n        Results dict (also written to output_path).\n    \"\"\"\n    df = load_jsonl_glob(data_patterns)\n    facets = detect_facets(df)\n\n    for f in facets:\n        df[f] = df[f].astype(str)\n\n    if response_var == \"text_exact_match\":\n        df = compute_text_exact_match(df)\n\n    print(f\"Facets: {facets} ({len(facets)}-facet design)\")\n\n    point_est, cis = bootstrap_variance_components(\n        df, response_var, facets,\n        n_bootstrap=n_bootstrap, seed=seed,\n    )\n\n    total_var = sum(point_est.values())\n    results = {\n        \"variance_components\": {\n            k: {\n                \"estimate\": v,\n                \"pct\": v / total_var * 100 if total_var > 0 else 0.0,\n                \"ci_95\": cis[k],\n            }\n            for k, v in point_est.items()\n        },\n        \"total_variance\": total_var,\n        \"n_observations\": len(df),\n        \"facets\": facets,\n        \"n_bootstrap\": n_bootstrap,\n        \"response_var\": response_var,\n    }\n\n    Path(output_path).parent.mkdir(parents=True, exist_ok=True)\n    with open(output_path, \"w\") as fout:\n        json.dump(results, fout, indent=2)\n\n    _print_summary(results)\n    print(f\"\\n-> {output_path}\")\n    return results\n\n\ndef _print_summary(results: dict) -> None:\n    \"\"\"Print formatted table with point estimates and CIs.\"\"\"\n    vc = results[\"variance_components\"]\n    n_obs = results[\"n_observations\"]\n    n_boot = results[\"n_bootstrap\"]\n    n_facets = len(results[\"facets\"])\n\n    print(f\"\\nBootstrap Variance Components  ({n_obs} obs, {n_facets} facets, {n_boot} boots)\")\n    header = f\"{'Component':<30} {'Estimate':>10} {'%':>8}  {'95% CI':>24}\"\n    print(header)\n    print(\"-\" * len(header))\n    for name, info in sorted(vc.items(), key=lambda x: -x[1][\"estimate\"]):\n        lo, hi = info[\"ci_95\"][\"lower\"], info[\"ci_95\"][\"upper\"]\n        print(\n            f\"{name:<30} {info['estimate']:>10.6f} {info['pct']:>7.1f}%  \"\n            f\"[{lo:.6f}, {hi:.6f}]\"\n        )\n\n\nif __name__ == \"__main__\":\n    parser = argparse.ArgumentParser(\n        description=\"Bootstrap CIs for G-theory variance components\"\n    )\n    parser.add_argument(\n        \"--data\", nargs=\"+\", required=True,\n        help=\"JSONL file(s) or glob pattern(s)\",\n    )\n    parser.add_argument(\n        \"--response-var\", default=\"correct\",\n        choices=[\"correct\", \"text_exact_match\"],\n        help=\"Response variable (default: correct)\",\n    )\n    parser.add_argument(\n        \"--n-bootstrap\", type=int, default=1000,\n        help=\"Number of bootstrap iterations (default: 1000)\",\n    )\n    parser.add_argument(\n        \"--seed\", type=int, default=42,\n        help=\"Random seed (default: 42)\",\n    )\n    parser.add_argument(\n        \"--output\", default=\"results/analysis/bootstrap_ci.json\",\n        help=\"Output JSON path\",\n    )\n    args = parser.parse_args()\n    run_bootstrap(args.data, args.output, args.response_var, args.n_bootstrap, args.seed)\n",
+              "structuredPatch": [],
+              "originalFile": null,
+              "userModified": false
+            }
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now let me verify imports and CLI help."
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "55c40a91-86f7-42f0-b393-7bfd6ea422a3",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012DDnt6MRD9hJ1qNjwrruus",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6273,
+                "cache_read_input_tokens": 31244,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6273
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01YTb3TXJVzEfQzYgkUjscVt",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code && python -c \"import src.analysis.model_facet_analysis; import src.analysis.bootstrap_ci; print('imports OK')\"",
+                "description": "Verify imports work"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "c3234daa-d6af-4093-83b8-6c9a6b8c2626",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012DDnt6MRD9hJ1qNjwrruus",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 6273,
+                "cache_read_input_tokens": 31244,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 6273
+                },
+                "output_tokens": 3,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T23:39:52.603Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 127\n/bin/bash: line 1: python: command not found",
+              "is_error": true,
+              "tool_use_id": "toolu_01YTb3TXJVzEfQzYgkUjscVt"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "1b6b7254-e40a-409c-9d0f-2fe575e3bf6c",
+            "tool_use_result": "Error: Exit code 127\n/bin/bash: line 1: python: command not found"
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01UJx9iCVx9Dvw6WCWCd6Wzd",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code && python3 -c \"import src.analysis.model_facet_analysis; import src.analysis.bootstrap_ci; print('imports OK')\"",
+                "description": "Verify imports with python3"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "829b4247-4f96-4e19-b0ad-d21f5f147c15",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01YEA2x2vUkfX8fTDQWSE8kW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 185,
+                "cache_read_input_tokens": 37517,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 185
+                },
+                "output_tokens": 73,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T23:39:55.448Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "type": "tool_result",
+              "content": "Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import src.analysis.model_facet_analysis; import src.analysis.bootstrap_ci; print('imports OK')\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/analysis/model_facet_analysis.py\", line 23, in <module>\n    import pandas as pd\nModuleNotFoundError: No module named 'pandas'",
+              "is_error": true,
+              "tool_use_id": "toolu_01UJx9iCVx9Dvw6WCWCd6Wzd"
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "0e35e051-ec67-4c7f-a56d-1af1f603ac0a",
+            "tool_use_result": "Error: Exit code 1\nTraceback (most recent call last):\n  File \"<string>\", line 1, in <module>\n    import src.analysis.model_facet_analysis; import src.analysis.bootstrap_ci; print('imports OK')\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/analysis/model_facet_analysis.py\", line 23, in <module>\n    import pandas as pd\nModuleNotFoundError: No module named 'pandas'"
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01T7vdm67JdQY4hMVNRrRV44",
+              "name": "Bash",
+              "input": {
+                "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code && python3 -c \"\nimport ast, sys\nfor mod in ['src.analysis.model_facet_analysis', 'src.analysis.bootstrap_ci']:\n    path = mod.replace('.', '/') + '.py'\n    tree = ast.parse(open(path).read())\n    print(f'{mod}: parsed OK')\nprint('AST parse OK')\n\"",
+                "description": "Verify syntax via AST parse (no runtime deps needed)"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "39f5eefd-4016-4f73-b947-7c0cbb03a922",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01U5S1QNGK2jirA7CQvdo2e2",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 302,
+                "cache_read_input_tokens": 37702,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 302
+                },
+                "output_tokens": 69,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T23:39:59.431Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01T7vdm67JdQY4hMVNRrRV44",
+              "type": "tool_result",
+              "content": "src.analysis.model_facet_analysis: parsed OK\nsrc.analysis.bootstrap_ci: parsed OK\nAST parse OK",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "077c9fe5-1d1d-464d-9883-2599ab52e010",
+            "tool_use_result": {
+              "stdout": "src.analysis.model_facet_analysis: parsed OK\nsrc.analysis.bootstrap_ci: parsed OK\nAST parse OK",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01E98pTBLUrS61NpwXQq3MLZ",
+              "name": "Bash",
+              "input": {
+                "command": "pip3 install pandas numpy 2>&1 | tail -3",
+                "description": "Install pandas/numpy for import verification"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "f43f6684-d119-4362-bf31-b08a10061b57",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01GpcBXGAH8uW6PiY2JGxRKy",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 241,
+                "cache_read_input_tokens": 38004,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 241
+                },
+                "output_tokens": 41,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T23:40:04.413Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01E98pTBLUrS61NpwXQq3MLZ",
+              "type": "tool_result",
+              "content": "note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.\nhint: See PEP 668 for the detailed specification.",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "a34b4361-4251-43ed-910c-797d9aefaa56",
+            "tool_use_result": {
+              "stdout": "note: If you believe this is a mistake, please contact your Python installation or OS distribution provider. You can override this, at the risk of breaking your Python installation or OS, by passing --break-system-packages.\nhint: See PEP 668 for the detailed specification.",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_0188Pts1cHyR5pdxCJHEC12K",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -m venv /tmp/test_venv && source /tmp/test_venv/bin/activate && pip install pandas numpy -q && python -c \"import src.analysis.model_facet_analysis; import src.analysis.bootstrap_ci; print('imports OK')\"",
+                "description": "Verify imports in temporary venv"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "abe9ece1-764b-4ae5-917d-bc0b36095d07",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01CEpTKHjkxzbkHJF6iA9pc5",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 160,
+                "cache_read_input_tokens": 38245,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 160
+                },
+                "output_tokens": 58,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_started",
+                "task_id": "bmq0xcynb",
+                "tool_use_id": "toolu_0188Pts1cHyR5pdxCJHEC12K",
+                "description": "Verify imports in temporary venv",
+                "task_type": "local_bash",
+                "uuid": "8582f052-9d59-46e8-b0c5-0204fdc38b51",
+                "session_id": "67a77edd-0146-4307-a649-116c020fe2e4"
+              }
+            }
+          ],
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": null,
+          "role": "system",
+          "content": [
+            {
+              "type": "json",
+              "value": {
+                "type": "system",
+                "subtype": "task_notification",
+                "task_id": "bmq0xcynb",
+                "tool_use_id": "toolu_0188Pts1cHyR5pdxCJHEC12K",
+                "status": "completed",
+                "output_file": "",
+                "summary": "Verify imports in temporary venv",
+                "uuid": "e617a1b9-11b0-43e3-ae80-4d18abc7b48f",
+                "session_id": "67a77edd-0146-4307-a649-116c020fe2e4"
+              }
+            }
+          ],
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T23:40:19.338Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_0188Pts1cHyR5pdxCJHEC12K",
+              "type": "tool_result",
+              "content": "imports OK",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "7a1c3da6-c5d3-4d80-ab65-e639b7c50047",
+            "tool_use_result": {
+              "stdout": "imports OK",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_01WZpQWkiRUXTU4gv68bJytQ",
+              "name": "Bash",
+              "input": {
+                "command": "source /tmp/test_venv/bin/activate && python -m src.analysis.model_facet_analysis --help && echo \"---\" && python -m src.analysis.bootstrap_ci --help",
+                "description": "Verify CLI --help output"
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "533d9bfd-fbaa-47c8-be17-112192b5e663",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_012ByYP8FrxtsQV5Ze481Ayi",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 154,
+                "cache_read_input_tokens": 38405,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 154
+                },
+                "output_tokens": 72,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T23:40:25.901Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_01WZpQWkiRUXTU4gv68bJytQ",
+              "type": "tool_result",
+              "content": "usage: python -m src.analysis.model_facet_analysis [-h] --data DATA [DATA ...]\n                                                   [--response-var {correct,text_exact_match}]\n                                                   [--output OUTPUT]\n\nMulti-model G-theory variance decomposition (exp-001)\n\noptions:\n  -h, --help            show this help message and exit\n  --data DATA [DATA ...]\n                        JSONL file(s) or glob pattern(s) (e.g.\n                        results/exp001/*.jsonl)\n  --response-var {correct,text_exact_match}\n                        Response variable (default: correct)\n  --output OUTPUT       Output JSON path\n---\nusage: python -m src.analysis.bootstrap_ci [-h] --data DATA [DATA ...]\n                                           [--response-var {correct,text_exact_match}]\n                                           [--n-bootstrap N_BOOTSTRAP]\n                                           [--seed SEED] [--output OUTPUT]\n\nBootstrap CIs for G-theory variance components\n\noptions:\n  -h, --help            show this help message and exit\n  --data DATA [DATA ...]\n                        JSONL file(s) or glob pattern(s)\n  --response-var {correct,text_exact_match}\n                        Response variable (default: correct)\n  --n-bootstrap N_BOOTSTRAP\n                        Number of bootstrap iterations (default: 1000)\n  --seed SEED           Random seed (default: 42)\n  --output OUTPUT       Output JSON path",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "d3afdb8e-15b0-4bad-ab1c-0e7f7e563458",
+            "tool_use_result": {
+              "stdout": "usage: python -m src.analysis.model_facet_analysis [-h] --data DATA [DATA ...]\n                                                   [--response-var {correct,text_exact_match}]\n                                                   [--output OUTPUT]\n\nMulti-model G-theory variance decomposition (exp-001)\n\noptions:\n  -h, --help            show this help message and exit\n  --data DATA [DATA ...]\n                        JSONL file(s) or glob pattern(s) (e.g.\n                        results/exp001/*.jsonl)\n  --response-var {correct,text_exact_match}\n                        Response variable (default: correct)\n  --output OUTPUT       Output JSON path\n---\nusage: python -m src.analysis.bootstrap_ci [-h] --data DATA [DATA ...]\n                                           [--response-var {correct,text_exact_match}]\n                                           [--n-bootstrap N_BOOTSTRAP]\n                                           [--seed SEED] [--output OUTPUT]\n\nBootstrap CIs for G-theory variance components\n\noptions:\n  -h, --help            show this help message and exit\n  --data DATA [DATA ...]\n                        JSONL file(s) or glob pattern(s)\n  --response-var {correct,text_exact_match}\n                        Response variable (default: correct)\n  --n-bootstrap N_BOOTSTRAP\n                        Number of bootstrap iterations (default: 1000)\n  --seed SEED           Random seed (default: 42)\n  --output OUTPUT       Output JSON path",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Import 和 CLI 均验证通过。\n\n两个文件已写入 `artifacts/code/src/analysis/`:\n\n**model_facet_analysis.py** — 7 facets 全交叉 G-study:\n- 复用 `variance_decomposition.py` 的 `compute_ss`、`estimate_variance_components`、`compute_text_exact_match`\n- 7 main effects + 21 two-way interactions + residual\n- G coefficient（model 作为 random facet）\n- D-study 投影：sweep model count 1-10\n- Glob 输入支持多 JSONL 合并\n\n**bootstrap_ci.py** — Bootstrap 置信区间:\n- 以 item 为 resampling unit，有放回抽样\n- 自动检测 6-facet 或 7-facet 设计\n- 每次 resample 重新跑完整 ANOVA → 方差分量\n- 输出 point estimate + [2.5%, 97.5%] percentile CI"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "uuid": "4c3290db-d0c2-4b1a-ad25-0a9bf21c56e9",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01Bsx661EgDjFrNrK2fiS9NW",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 491,
+                "cache_read_input_tokens": 38559,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 491
+                },
+                "output_tokens": 1,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Import 和 CLI 均验证通过。\n\n两个文件已写入 `artifacts/code/src/analysis/`:\n\n**model_facet_analysis.py** — 7 facets 全交叉 G-study:\n- 复用 `variance_decomposition.py` 的 `compute_ss`、`estimate_variance_components`、`compute_text_exact_match`\n- 7 main effects + 21 two-way interactions + residual\n- G coefficient（model 作为 random facet）\n- D-study 投影：sweep model count 1-10\n- Glob 输入支持多 JSONL 合并\n\n**bootstrap_ci.py** — Bootstrap 置信区间:\n- 以 item 为 resampling unit，有放回抽样\n- 自动检测 6-facet 或 7-facet 设计\n- 每次 resample 重新跑完整 ANOVA → 方差分量\n- 输出 point estimate + [2.5%, 97.5%] percentile CI"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 153967,
+            "duration_api_ms": 141694,
+            "num_turns": 13,
+            "stop_reason": "end_turn",
+            "session_id": "67a77edd-0146-4307-a649-116c020fe2e4",
+            "total_cost_usd": 0.54111625,
+            "usage": {
+              "input_tokens": 12,
+              "cache_creation_input_tokens": 27209,
+              "cache_read_input_tokens": 352730,
+              "output_tokens": 7713,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 27209,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 272,
+                  "cache_read_input_tokens": 38559,
+                  "cache_creation_input_tokens": 491,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 491
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 1705,
+                "outputTokens": 21,
+                "cacheReadInputTokens": 0,
+                "cacheCreationInputTokens": 0,
+                "webSearchRequests": 0,
+                "costUSD": 0.00181,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 12,
+                "outputTokens": 7713,
+                "cacheReadInputTokens": 352730,
+                "cacheCreationInputTokens": 27209,
+                "webSearchRequests": 0,
+                "costUSD": 0.53930625,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "820c480b-6bc2-4a9b-9edc-f24e9e1d8dba"
+          },
+          "id": "event-000039"
+        }
+      ],
+      "message_count": 39
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-analysis-framework.md"
+}

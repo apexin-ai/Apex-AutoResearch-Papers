@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "459762aec9f84eb4a29b",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops supplementary material check",
+  "task_key": "worker_ops_supplementary-material-check_20260524T092529",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_supplementary-material-check_20260524T092529_result.json",
+    "occurrence": 1,
+    "bytes": 1290,
+    "sha256": "edf943e84dc32998b3d9896b690b98a8360e16a2adbb7a2988b1352b5d6443bf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 1. 论文路径引用\n- 论文 tex 文件中无 `\\url{}` 或 `\\href{}` 指向 repo 内部路径\n- 所有 URL 均在 bibliography 中，指向 arXiv/ACL Anthology/DOI 等外部资源\n- GitHub URL 仅两处：`acl-org/acl-style-files`（模板）和 `EleutherAI/lm-evaluation-harness`（第三方工具），均为合法引用\n- `conclusion.tex` 中写明 \"Code, data, and a D-study calculator will be released upon publication.\"，无匿名 repo URL 泄露\n- `paper/figures/` 目录存在，与 `\\graphicspath` 一致\n\n## 2. README 状态\n**已补全。** 原 README 缺少：\n- 具体 Quick Start 步骤（仅有 \"See scripts/\"）\n- D-study calculator 入口说明\n\n已更新为包含 4 步 Quick Start（数据准备→推理→G-study→D-study）、D-study calculator 模块说明、清晰的目录结构。\n\n## 3. 匿名化\n**通过。**\n- `Cao` — 仅出现在 references.bib 中作为被引文献作者 \"Hao Cao\"，非本文作者\n- `Xiaoyu`、`caoxiaoyuyuyuyuyu` — 未找到\n- `TUM`、`Technical University of Munich`、`Tsinghua` — 未找到\n- GitHub URL — 仅 acl-org 和 EleutherAI，无个人账户\n\n## 4. 总结\n已 commit 并 push README 更新至 `anonymous-nlp-2026-2/nlp_variance_gtheory` main 分支（`a50868a`）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-supplementary-material-check.md"
+}

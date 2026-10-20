@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfcbd7e12c12e1d3bcf3",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "paper writing method",
+  "task_key": "worker_paper_writing_method_20260521T201904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_method_20260521T201904_result.json",
+    "occurrence": 1,
+    "bytes": 1434,
+    "sha256": "c0f692c66f9e42deb0b064a50bb6869a9bea2a83342e286adb1176c45a56fc92"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`method.tex` written and registered. Summary:\n\n**Structure**: 6 subsections (§3.1 G-Theory Background, §3.2 MMLU Design, §3.3 Cross-Benchmark Extension, §3.4 Evaluation Protocol, §3.5 Binary Data Assumptions, §3.6 Model-as-Facet Justification), ~1250 words.\n\n**Included**:\n- Table 1 (`tab:design_matrix`): 7 facets with level counts for exp-001 and exp-002, booktabs format\n- Figure 2 reference (`fig2_design_diagram`): crossing structure diagram\n- Equation 1: generalizability coefficient $G_\\text{item}$\n- All notation ($p, M, \\pi, \\delta, s, \\tau, o, \\sigma^2_x$) introduced in §3.1\n- Four-line binary data defense with simulation, GLMM, accuracy-range stability, estimator guarantee\n- D-study cross-validation ($\\Delta = 0.004$), LOMO stability, forward projection in §3.6\n\n**Consistency with experiments.tex**: Henderson Method~I, binary correctness, generalizability coefficient, `\\texttt{item\\_id}`, `model$\\times$item`, $G_\\text{item}$, $G \\geq 0.80$, all record counts (239,200 / 345,600 / 921,600).\n\n**Style**: 0 em-dashes, 0 explanatory en-dashes, 0 `\\hline`, 0 consecutive transition words, 0 -ing phrase endings, all 11 citation keys verified in `references.bib`.\n\n**Note**: `main.tex` still has the inline `\\section{Method}` placeholder at line 58. It needs to be replaced with `\\input{method}` (and the `\\section{Method}` line removed since method.tex includes it)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-method.md"
+}

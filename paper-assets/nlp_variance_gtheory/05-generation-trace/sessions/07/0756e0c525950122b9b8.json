@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0756e0c525950122b9b8",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code exp001 design inference",
+  "task_key": "worker_code_exp001_design_inference_20260520T193652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp001_design_inference_20260520T193652_result.json",
+    "occurrence": 1,
+    "bytes": 777,
+    "sha256": "617f3f0fe078c96a35cadd1c65b9b2d4b8764e5d3333c22ea9758ee4cfee98d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 files modified, all syntax-clean. Summary of changes:\n\n| File | Change |\n|------|--------|\n| `vllm_runner.py` | `enforce_eager=True` + `VLLM_USE_V1=0` (V0 engine for all precisions); `generate()` accepts `logprobs` param, extracts `answer_logprob` and `top_logprobs` from first token |\n| `generate_design.py` | 4 models × 3 precisions × 3 temps × 6 templates × 6 seeds × 4 orderings = **5,184 conditions** |\n| `prompt_templates.py` | Templates 4–6 added (dash-list, \"Option X:\", lowercase compact); all use same `{subject}`, `{question}`, `{A}`–`{D}`, `{answer}` placeholders — compatible with `format_prompt()` |\n| `run_experiment.py` | Calls `generate(..., logprobs=5)`; writes `answer_logprob` and `top_logprobs` into each JSONL record |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp001-design-inference.md"
+}

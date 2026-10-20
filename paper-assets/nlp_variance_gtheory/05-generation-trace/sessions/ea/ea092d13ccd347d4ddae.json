@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ea092d13ccd347d4ddae",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis lomo 8model mmlu",
+  "task_key": "worker_analysis_lomo_8model_mmlu_20260522T012249",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lomo_8model_mmlu_20260522T012249_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "d4683e2a40c62065fee82d80469dc9c411821db8a9816bd05d2b71ae754fcacf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果已保存到 `results/exp004_8model_analysis/lomo_8model_mmlu.json`。\n\n| Dropped Model | item_id% | model×item% | G_item | N |\n|---|---|---|---|---|\n| DeepSeek-7B | 39.14% | 29.59% | 0.8888 | 403,200 |\n| Gemma-2-9B | 37.29% | 29.73% | 0.8830 | 403,200 |\n| InternLM2.5-7B | 36.62% | 30.35% | 0.8769 | 403,200 |\n| Llama-3.1-8B | 36.37% | 31.36% | 0.8773 | 403,200 |\n| Mistral-7B-v0.3 | 37.05% | 30.30% | 0.8822 | 403,200 |\n| OLMo-2-7B | 36.98% | 29.85% | 0.8817 | 403,200 |\n| Qwen3-8B | 38.23% | 28.78% | 0.8877 | 403,200 |\n| Yi-1.5-9B | 40.94% | 31.74% | 0.8876 | 403,200 |\n\n**Full 8-model**: item_id=37.88%, G_item=0.8962\n\n**LOMO range**: G_item [0.8769, 0.8888], item_id% [36.37%, 40.94%]\n\nG_item 在所有 7-model subsets 中稳定在 0.877–0.889，与 8-model baseline (0.896) 相差不大。Dropping InternLM2.5 或 Llama 导致最低 G_item；dropping DeepSeek 导致最高。结论对 model composition 不敏感。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-lomo-8model-mmlu.md"
+}

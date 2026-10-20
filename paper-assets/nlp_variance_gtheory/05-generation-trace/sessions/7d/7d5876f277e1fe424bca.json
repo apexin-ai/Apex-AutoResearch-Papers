@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7d5876f277e1fe424bca",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops server audit and backup",
+  "task_key": "worker_ops_server_audit_and_backup_20260523T194953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_server_audit_and_backup_20260523T194953_result.json",
+    "occurrence": 1,
+    "bytes": 755,
+    "sha256": "e84ef7bc04e95a102e7d6cb989906de72d8caac86b8c91ae8e6378015148c995"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台 agent 完成，76 个分析 JSON 已全部备份到本地。\n\n备份分布：\n- `analysis_json/`: 44 个文件（results/analysis/ 32个 + exp001_analysis/ 8个 + 其他4个）\n- `exp004_json/`: 30 个文件（8model_analysis 28个 + ff_residual 2个）\n- `exp003_json/`: 4 个文件\n\n所有文件大小已与服务器原始文件核对一致。\n\n---\n\n**总结**：审计和本地备份已完成。\n\n| 已完成 | 待手动执行 |\n|--------|-----------|\n| 76 个分析 JSON 已备份到本地 | scp 拉取两个 tar 包（476MB + 67MB） |\n| 两台服务器 tar 包已打好 | 验证 tar MD5 |\n| 完整 MD5 清单已记录 | 检查 westd-13176 控制台状态 |\n| 审计报告已生成 | 确认后释放服务器 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-server-audit-and-backup.md"
+}

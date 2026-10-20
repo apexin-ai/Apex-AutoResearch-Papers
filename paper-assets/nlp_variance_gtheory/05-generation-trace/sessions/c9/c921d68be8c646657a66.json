@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c921d68be8c646657a66",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis fixed vs random",
+  "task_key": "worker_analysis_fixed_vs_random_20260521T040030",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fixed_vs_random_20260521T040030_result.json",
+    "occurrence": 1,
+    "bytes": 1581,
+    "sha256": "029eef1f2d85f47330741d93659890f9e64105430b1f38f546df0d1fd075ac0a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存。汇报如下：\n\n---\n\n**Fixed vs Random sensitivity (binary_correct):**\n\n| Scenario | G | Delta% | ΔG vs baseline |\n|---|---|---|---|\n| all_random (baseline) | 0.6108 | 38.92% | — |\n| temperature_fixed | 0.6233 | 36.92% | +0.0125 |\n| ordering_fixed | 0.6145 | 38.32% | +0.0037 |\n| precision_fixed | 0.6458 | 33.49% | +0.0350 |\n| temp_prec_fixed | 0.6595 | 31.54% | +0.0487 |\n| three_fixed (temp+ord+prec) | 0.6638 | 30.94% | +0.0530 |\n\n**text_exact_match sensitivity:**\n\n| Scenario | G | Delta% |\n|---|---|---|\n| all_random | 0.0066 | 99.34% |\n| temperature_fixed | 0.0454 | 13.94% |\n| temp_prec_fixed | 0.0598 | 10.43% |\n| three_fixed | 0.0610 | 10.21% |\n\n---\n\n**Key finding: binary_correct 的 G 系数对 fixed/random 选择不敏感。** 即使最保守场景（temperature + ordering + precision 全部 fixed），G 仅从 0.611 升到 0.664（+0.053），结论不变——item 方差占主导（61.1%），评估可靠性中等偏上。\n\n**text_exact_match 则对 temperature 的 fixed/random 选择极其敏感：** temperature 主效应占 79.7% 总方差。当 temperature 设为 random 时，这巨大方差计入 error term，G 降至 0.007（几乎为零）；设为 fixed 后 G 升至 0.045。但无论哪种假设，text_exact_match 的 G 系数都很低（<0.07），说明该指标本身可靠性差。\n\n这为回应 reviewer 提供了有力论据：**方差分解的实质结论（item 是最大方差源、binary_correct 可靠性远高于 text_exact_match）不随 fixed/random 假设改变。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fixed-vs-random.md"
+}

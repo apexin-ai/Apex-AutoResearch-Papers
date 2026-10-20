@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9efcb3ff9f3ea15770c5",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops sync anon repo conclusion",
+  "task_key": "worker_ops_sync-anon-repo-conclusion_20260524T073557",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-anon-repo-conclusion_20260524T073557_result.json",
+    "occurrence": 1,
+    "bytes": 206,
+    "sha256": "edbd41830b17ff1a0028091b3034e32ad5466b96cf40dca700b86227615ad26e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **Commit**: `94b3265`\n- **Push**: 成功\n- **Diff**: `paper/conclusion.tex` 1 insertion, 1 deletion（新增 format-invariant 那句关于 MC vs FF variance 分布差异的贡献描述）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-anon-repo-conclusion.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fba0384c3941cb04b08d",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis cohens d benchmark ci",
+  "task_key": "worker_analysis_cohens_d_benchmark_ci_20260522T084105",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cohens_d_benchmark_ci_20260522T084105_result.json",
+    "occurrence": 1,
+    "bytes": 1041,
+    "sha256": "3674c1e0f88333d812179effe1c50012dd4e053a936fe82af8e1d0d4230affaa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已保存到 `artifacts/exp004/data/cohens_d_ci.json`。\n\n关键结果：\n\n**Benchmark-level d:**\n- Cohen's d = **7.90**（MC mean 70.0% vs FF mean 36.4%，s_pooled = 4.25）\n- NCT 95% CI: **[-18.26, 36.51]** — df=3 太小，CI 跨零，NCT 方法在此 n 下基本无信息量\n- Bootstrap 95% CI: **[7.59, 64.73]** — 不跨零但上界极端（n=2 的 FF 组 variance 估计极不稳定，571/10000 次 resample 产生 NaN）\n\n**Item-level propagated d:**\n- d = **7.90**（同点估计）\n- Parametric bootstrap 95% CI: **[4.26, 11.72]** — 比 benchmark-level bootstrap 窄很多，因为每个 benchmark 的 item-related% 不确定性通过其自身 bootstrap CI 传入，提供了额外约束\n- Median = 6.57（低于点估计，分布右偏）\n\n核心结论：MC 与 FF 的 item-related% 差异巨大（~34 个百分点），d > 4 即使在最保守估计下也远超 \"large effect\" 阈值。但 benchmark-level 的 NCT CI 跨零纯粹是 n=5 的统计功效不足，不应解读为差异不显著。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cohens-d-benchmark-ci.md"
+}

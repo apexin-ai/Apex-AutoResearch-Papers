@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0e14de9554b261a596d7",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix math routing and autostart",
+  "task_key": "worker_fix_math_routing_and_autostart_20260521T120018",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_math_routing_and_autostart_20260521T120018_result.json",
+    "occurrence": 1,
+    "bytes": 596,
+    "sha256": "f777cbd7c857750a1a9d2f3d043e09b3ef4716d022a33869d879b9b75456e266"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 Fix 均已完成。\n\n**Fix (a)**: `_build_prompt` 对 `benchmark == \"math\"` 直接调用 `format_math_prompt()`，不依赖 `BENCHMARK_TEMPLATES[\"math\"]`。`prompt_templates.py` 的 `try/except ImportError: pass` 虽然确实失败（`MATH_TEMPLATES` 是函数局部变量），但没有代码路径受影响。**安全，无需修复。**\n\n**Fix (b)**: `auto_start.sh` 已添加 filesize 检查（Yi ≥ 17GB, OLMo ≥ 13GB），位于 shard 数量检查之后。旧进程 PID 7309 已终止，新进程 PID 11066 已启动并正常运行在下载等待循环中。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-math-routing-and-autostart.md"
+}

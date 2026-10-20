@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d70debb8920460dd9930",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra qwen final check",
+  "task_key": "worker_infra_qwen_final_check_20260521T024513",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_qwen_final_check_20260521T024513_result.json",
+    "occurrence": 1,
+    "bytes": 645,
+    "sha256": "d077cdb0d0c021f00b7110e76695369fcc383803c8c03c27f783631c96e47f29"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇报：\n\n- **Qwen download**: 完成 — 16G total, 5 safetensors (3.8G + 3.8G + 3.7G + 3.0G + 1.2G)。HF 缓存目录有 2 个 `.incomplete` 文件但所有模型文件已到位，下载进程（PID 63161）仍在跑可能在处理残余元数据\n- **Model config**: model_type=qwen3, hidden_size=4096, layers=36\n- **Qwen shards**: 已生成 — 4 × 324 conditions（含 header 每文件 325 行，总计 1,296 conditions）。路径 `results/exp001_qwen/shards/shard_{0-3}.csv`\n- **Path match**: 已匹配 — `model_paths.py` 已更新，`\"Qwen/Qwen3-8B\"` → `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-qwen-final-check.md"
+}

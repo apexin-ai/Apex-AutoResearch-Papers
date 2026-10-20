@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "679a705ebbb344a12c80",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "audit data end to end",
+  "task_key": "worker_audit_data_end_to_end_20260523T102339",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_data_end_to_end_20260523T102339_result.json",
+    "occurrence": 1,
+    "bytes": 1695,
+    "sha256": "d5c95fe8bf24f47ba3bc4e6c75274eff9e25fa0bdee8ce2f6d159b49c47f7fa2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Audit Complete\n\n**47 checks performed. 44 passed, 3 issues found (0 critical).**\n\n### Key Results\n\n**Record counts** — All verified. 2,304,000 total = 8 models × 5 benchmarks × 57,600. OLMo/Yi HellaSwag data stored as checksummed binary blobs in analysis scripts rather than JSONL (functional but unusual).\n\n**Henderson Method I** — Script verified correct: balanced crossed design, proper EMS equations, negative variance truncated to 0, bootstrap CIs via item-level resampling.\n\n**Variance components** — All sum to 100% across all benchmarks. G_item values match data within rounding tolerance everywhere.\n\n**Cross-references** — All major claims (G_item range 0.863–0.896, partial-credit 0.863→0.768, item budgets 178/552/55, 3.1× reduction, fixed/random ΔG 0.077–0.113, 48.1% arithmetic correctness) are consistent across abstract, experiments, method, limitations, and appendix.\n\n### 3 Issues to Address\n\n| ID | Severity | Issue |\n|---|---|---|\n| **VC-1** | Medium | Table 3 \"prompt†\" row doesn't match data for MC benchmarks. Footnote says \"prompt×item interaction\" but MMLU shows 2.5% vs actual prompt:item 0.95%. The 2.5% is actually the sum of ALL unlisted components. ARC is even more inconsistent (0.4% in table vs 1.45% prompt:item). |\n| **VC-2** | Low | Table 3 HellaSwag mod×prmpt: 0.6% vs data 0.19% |\n| **VC-3** | Low | Table 3 MATH mod×prmpt: 2.0% vs data 1.68% |\n\nNone of these affect the paper's main conclusions — the dominant components (item, model×item, residual, model) are correct across all benchmarks, and D-study projections are computed from full variance components, not from the rounded table."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-data-end-to-end.md"
+}

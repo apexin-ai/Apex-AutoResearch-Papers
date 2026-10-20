@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1f915211d2018e0d29d6",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code exp002 generate design",
+  "task_key": "worker_code_exp002_generate_design_20260521T081528",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002_generate_design_20260521T081528_result.json",
+    "occurrence": 1,
+    "bytes": 481,
+    "sha256": "93f55aefaa88964cd47a5c7b6d0929d11e2287daf6b843ee7f118fff7437368e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n- **exp001**（向后兼容）：5,184 行，列 = `condition_id, model, precision, temperature, top_p, prompt_template, seed, ordering`，无 `benchmark` 列\n- **exp002**：9,216 行，新增 `benchmark` 和 `items_file` 列\n  - 4 benchmarks 各 2,304 条，分布均匀\n  - 精度仅 `bfloat16, float16`（排除 FP32 confound）\n  - 温度仅 `0.0, 0.7`（排除 T=0.3）\n  - `items_file` 正确映射到各 benchmark 的数据文件"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp002-generate-design.md"
+}

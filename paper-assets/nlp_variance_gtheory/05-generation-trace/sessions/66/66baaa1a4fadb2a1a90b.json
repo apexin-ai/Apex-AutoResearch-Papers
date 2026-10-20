@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66baaa1a4fadb2a1a90b",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code exp002 analysis pipeline",
+  "task_key": "worker_code_exp002_analysis_pipeline_20260521T100021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002_analysis_pipeline_20260521T100021_result.json",
+    "occurrence": 1,
+    "bytes": 1276,
+    "sha256": "81a71c587409100b4c5f018be229519d081d3f1465b245d301116e6af5afccdf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 6/6 脚本语法验证通过。\n\n总结：\n\n**完成状态**\n\n| 脚本 | 本地 dry-run | 服务器传输 | 语法检查 |\n|---|---|---|---|\n| `per_benchmark_gstudy.py` | OK | OK (10865B) | OK |\n| `gradient_permutation_test.py` | OK | OK (10580B) | OK |\n| `leave_one_benchmark_out.py` | OK | OK (8430B) | OK |\n| `within_format_gradient.py` | OK | OK (10215B) | OK |\n| `gsm8k_answer_reextract.py` | OK | OK (6900B) | OK |\n| `cross_benchmark_dstudy.py` | OK | OK (7923B) | OK |\n\n**输出结构**（每个脚本的 JSON 结构已验证）：\n- `exp002_per_benchmark_gstudy.json` — 每 benchmark 的 variance components + G_item + D-study curve\n- `gradient_permutation_test.json` — item_id 递减 / model:item 递增的精确置换检验 (k!=24)\n- `leave_one_benchmark_out.json` — 逐一移除 benchmark 后梯度是否保持\n- `within_format_gradient.json` — MC 组内梯度 + MC vs free-form 方差结构对比\n- `gsm8k_answer_reextract.json` — 停止序列截断重提取 + 准确率 delta\n- `cross_benchmark_dstudy.json` — 跨 benchmark D-study 曲线 + G≥0.80/0.90/0.95 最低 item 数\n\n脚本已就位在 `westd-32570:/root/nlp_variance_gtheory/scripts/exp002_analysis/`，等 exp-002 数据到齐后直接运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp002-analysis-pipeline.md"
+}

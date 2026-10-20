@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34d99979d11940a868f2",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp gemma cron diagnose",
+  "task_key": "worker_exp_gemma_cron_diagnose_20260521T022136",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma_cron_diagnose_20260521T022136_result.json",
+    "occurrence": 1,
+    "bytes": 1097,
+    "sha256": "260c9fbfb071ae5753c5e81586a43f28bf7651d336d535043c7c16c270e7bc5a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "```\nexp001_gemma: 部分完成（1/3 precision）\n判断依据: 4 GPU 全部崩溃在同一错误 — vLLM 拒绝以 float16 加载 gemma2 模型\n  错误: \"The model type 'gemma2' does not support float16. Reason: Numerical instability.\"\n\n已完成部分 (bfloat16):\n- Total: 86,400 / 259,200 (33.3%)\n- Conditions: 432/1296 (全部 bfloat16 conditions 完成)\n- Accuracy: 0.7311\n- bfloat16: 0.7311 | float32: 未跑 | float16: 不支持\n- T=0.0: 0.7348 | T=0.3: 0.7338 | T=0.7: 0.7248\n- Null predictions: 0 (0.0%)\n- All 432 conditions have exactly 200 items ✓\n\n未完成部分:\n- float32: 432 conditions (86,400 records) — 可恢复，需重跑\n- float16: 432 conditions — Gemma2 架构不支持，无法运行\n\n执行顺序: bfloat16 ✓ → float16 ✗(崩溃) → float32 未到达\n\n建议修复方案:\n1. 用 `--precision bfloat16` 过滤已跳过（已完成），用 `--precision float32` 单独重跑 float32 部分\n2. float16 需要从实验设计中移除或替换（如改为 float8_e5m2），因为 Gemma2 架构层面不支持 float16\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-gemma-cron-diagnose.md"
+}

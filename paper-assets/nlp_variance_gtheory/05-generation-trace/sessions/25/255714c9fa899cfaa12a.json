@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "255714c9fa899cfaa12a",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis exp004 per benchmark gstudy ff",
+  "task_key": "worker_analysis_exp004_per_benchmark_gstudy_ff_20260521T213125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp004_per_benchmark_gstudy_ff_20260521T213125_result.json",
+    "occurrence": 1,
+    "bytes": 1949,
+    "sha256": "254532580e26dfc362dcfd93cd18259def8571fbce12a01ec053bdb534a4edfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Here are the full results:\n\n## Results Summary\n\n### GSM8K (8 models, 460,800 obs)\n| Facet | σ²% | 95% CI |\n|-------|-----|--------|\n| **residual** | 39.89% | — |\n| **item_id** | 16.86% | [13.32, 19.95] |\n| **model:item_id** | 14.55% | [13.26, 15.82] |\n| **model** | 10.75% | [9.14, 12.67] |\n| **model:prompt_template** | 8.53% | [7.56, 9.75] |\n| **prompt_template** | 5.41% | — |\n| prompt_template:item_id | 3.06% | — |\n| G_item = **0.2837** | CI: [0.2386, 0.3302] |\n\n### MATH (7 models, 403,200 obs)\n| Facet | σ²% | 95% CI |\n|-------|-----|--------|\n| **residual** | 43.24% | [40.96, 45.45] |\n| **item_id** | **26.48%** | [22.98, 29.84] |\n| **model:item_id** | 16.07% | [14.69, 17.65] |\n| **model** | 6.96% | [5.81, 8.29] |\n| prompt_template:item_id | 3.39% | — |\n| model:prompt_template | 1.69% | — |\n| prompt_template | 1.09% | — |\n| G_item = **0.3625** | CI: [0.3230, 0.4012] |\n\n### Key Findings\n\n1. **MATH item_id% = 26.48% (>20%)** — MATH is NOT methodology-dominated. CIs don't overlap with 20%: [22.98, 29.84].\n\n2. **GSM8K item_id% = 16.86% (<20%)** — GSM8K IS methodology-dominated, as expected. CI upper bound touches 20% (19.95%).\n\n3. **GSM8K vs MATH item_id% diff = −9.62 pp** — MATH has substantially more item variance than GSM8K.\n\n4. **Simple format-conditional dichotomy does NOT hold**: both are free-form, but their variance structures differ. MATH shows a mix of item-driven and methodology-driven variance, while GSM8K is more methodology-driven.\n\n5. **Possible explanation**: MATH items span multiple difficulty levels (algebra to competition problems), creating higher item heterogeneity. GSM8K items are more uniform in difficulty structure.\n\n6. **Ordering facet**: confirmed as structural no-op (0% variance) for both benchmarks.\n\n### JSON output\n`results/exp004_8model_analysis/per_benchmark_gstudy_ff.json` on westd-32570."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp004-per-benchmark-gstudy-ff.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4fd589bee2e2fbcb8230",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "paper research cluster5 6 combined",
+  "task_key": "worker_paper_research_cluster5_6_combined_20260521T193401",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_cluster5_6_combined_20260521T193401_result.json",
+    "occurrence": 1,
+    "bytes": 1116,
+    "sha256": "aa3d5a2798be0cc920149fa1f3617b6524b9f0d76791039b4dfabf5e0de19edc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "YAML validated. 36 papers total, both new categories have exactly 5 papers each. All 10 new entries verified.\n\n**Summary:**\n\n| Cluster | Papers added |\n|---|---|\n| **Cluster 5: Reproducibility & Evaluation Design** | Henderson 2018 (AAAI), Dodge 2020 (arXiv), Biderman 2024 (arXiv), Dehghani 2021 (arXiv), Magnusson 2023 (ACL Findings) |\n| **Cluster 6: Binary Data & Psychometrics** | Jiang & Skorupski 2018 (BRM), Mushquash & O'Connor 2006 (BRM), Shavelson et al. 1989 (Am. Psych.), Li 2023 (PLoS ONE), Tuerlinckx et al. 2006 (BJMSP) |\n\n**Notes:**\n- **Jiang & Skorupski**: No 2017 \"logistic link G-theory\" paper found. Used their 2018 BRM paper on Bayesian multivariate G-theory, which is the closest verified match and provides the GLMM bridge for binary data.\n- **Dodge et al. 2020**: arXiv preprint (2002.06305), not published in EMNLP proceedings despite the task description.\n- **Extra papers**: Magnusson 2023 (NLP reproducibility checklist analysis), Li 2023 (bootstrap estimation bias for dichotomous G-theory data), Tuerlinckx 2006 (GLMM inference review for binary responses)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-cluster5-6-combined.md"
+}

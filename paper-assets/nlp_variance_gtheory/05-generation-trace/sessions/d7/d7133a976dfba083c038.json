@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "d7133a976dfba083c038",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "analysis exp004 per benchmark gstudy ff",
+  "task_key": "worker_analysis_exp004_per_benchmark_gstudy_ff_20260521T213125",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp004_per_benchmark_gstudy_ff_20260521T213125.log",
+    "occurrence": 1,
+    "bytes": 998004,
+    "sha256": "3dd9daf69497c9163b15452330f4938291b89812c0ba704ad1f480e331e11bab"
+  },
+  "statistics": {
+    "messages": 718,
+    "user_turns": 0,
+    "tool_calls": 316,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 82,
+      "tool_call": 316,
+      "tool_result": 316,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 718,
+      "chunks": [
+        {
+          "path": "d7133a976dfba083c038-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "d7133a976dfba083c038-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "d7133a976dfba083c038-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "d7133a976dfba083c038-part-0004.json",
+          "message_count": 178
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-exp004-per-benchmark-gstudy-ff.md"
+}

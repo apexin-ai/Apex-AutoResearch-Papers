@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c5fe5f8f4e062243ba9c",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "run llama math gpu1 immediate",
+  "task_key": "worker_run_llama_math_gpu1_immediate_20260521T124317",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_llama_math_gpu1_immediate_20260521T124317_result.json",
+    "occurrence": 1,
+    "bytes": 866,
+    "sha256": "842c9548e26cbfb2f2046f8939a115cc926f91929e0faf4086e7b35e7cf78c3a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部就绪。汇总：\n\n**Llama MATH 推理**\n- **PID**: 162258\n- **GPU 1**: 88GB 显存占用，69% 利用率\n- **进度**: 第一个 condition (4897) 正在处理 200 math items，速度 ~2100 toks/s input\n- **输出**: `results/exp002/llama_math.jsonl`\n- **日志**: `/tmp/math_llama.log`\n\n**4 个 MATH shard 文件**（均 289 行 = 1 header + 288 conditions）\n\n| Shard 文件 | 模型 | Condition ID 范围 |\n|---|---|---|\n| `shard_qwen_math.csv` | Qwen3-8B | 4609–4896 |\n| `shard_llama_math.csv` | Llama-3.1-8B-Instruct | 4897–5184 |\n| `shard_gemma_math.csv` | gemma-2-9b-it | 5185–5472 |\n| `shard_mistral_math.csv` | Mistral-7B-Instruct-v0.3 | 5473–5760 |\n\nCondition ID 从 4609 起编，避免与现有 4-benchmark 结果（1–4608）冲突。其他 3 个模型 GSM8K 一结束即可用对应 shard 启动 MATH。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-llama-math-gpu1-immediate.md"
+}

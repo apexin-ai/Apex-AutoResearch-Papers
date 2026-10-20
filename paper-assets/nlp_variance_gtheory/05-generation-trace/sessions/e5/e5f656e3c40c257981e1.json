@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e5f656e3c40c257981e1",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra qwen completion shards",
+  "task_key": "worker_infra_qwen_completion_shards_20260521T022059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_qwen_completion_shards_20260521T022059_result.json",
+    "occurrence": 1,
+    "bytes": 499,
+    "sha256": "99c98c2a6cee3d8fa009d474472d64eae9d487d5fcfd23bf76936b8db1bf53da"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**状态汇报：**\n\n- **Qwen download: 进行中** — 15GB / ~15.3GB (总 5 个 shard)\n  - shard 1-4: 已完成 (3.8G + 3.8G + 3.7G + 3.0G)\n  - shard 5 (model-00005-of-00005.safetensors): **74% (882M/1.16G)**，速度 ~480 kB/s，预计剩余 **~10 分钟**\n- **Model validation**: 待下载完成\n- **Qwen shards**: 待生成\n\n注意：当前有两个下载进程同时在跑（HF hub PID 63161 + ModelScope PID 70309），均在下载 shard 5。不干预，等待完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-qwen-completion-shards.md"
+}

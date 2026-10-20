@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d0f1fde223f08fde49f1",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis verify gsm8k model prompt pct",
+  "task_key": "worker_analysis_verify_gsm8k_model_prompt_pct_20260522T012212",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_verify_gsm8k_model_prompt_pct_20260522T012212_result.json",
+    "occurrence": 1,
+    "bytes": 1359,
+    "sha256": "d848db25cbb5c1aa7aa85b930e3df6028f1258b4a6253631173b8935c88e53c9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Confirmed. Both JSON files show GSM8K `model:prompt_template` = **8.5311%**. Here's the full analysis:\n\n## 各文件中 GSM8K model:prompt_template 的值\n\n| 来源 | 值 | 一致性 |\n|------|------|--------|\n| `per_benchmark_gstudy_ff.json` | **8.5311%** (estimate 0.021308241) | 权威数据 |\n| `three_in_one_8model.json` | **8.5311%** (same estimate) | 一致 |\n| `ff_gstudy_8model_results.md` | **8.53%** [7.56, 9.75] | 一致 |\n| `docs/paper/experiments.tex` (Table 1 + 正文) | **12.9%** | **错误** |\n\n## 差异原因\n\n论文 `experiments.tex:73` 的 GSM 列存在数值错误。验证方法——论文表格 GSM 列求和：\n\n```\n16.9 + 14.6 + 10.7 + 5.0 + 12.9 + 39.9 = 100.0  (无空间给 \"all others\")\n```\n\n但实际 JSON 中\"all others\"约 **4.0%**（主要是 prompt_template:item_id = 3.06%、temperature:item_id = 0.60%）。论文错误地将这些成分吸收进了 model:prompt_template，导致从 8.5% 膨胀到 12.9%。同时 prompt 也从 5.4% 被压低到 5.0%。\n\n## 最终权威值\n\n- **model:prompt_template = 8.53%**\n- Bootstrap 95% CI: **[7.56%, 9.75%]**（mean 8.65%，1000 resamples）\n- Estimate: 0.021308241，total variance 0.2497718596\n\n论文 `experiments.tex` 第 56 行和第 73 行需要修正：12.9% → 8.5%，prompt 5.0% → 5.4%，\"all others\" <1.0% → ~4.0%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-verify-gsm8k-model-prompt-pct.md"
+}

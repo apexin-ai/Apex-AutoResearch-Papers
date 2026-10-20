@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9101beae4a1e55406c90",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "review reference audit",
+  "task_key": "worker_review_reference_audit_20260523T173713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_reference_audit_20260523T173713_result.json",
+    "occurrence": 1,
+    "bytes": 2513,
+    "sha256": "b93975f39fbe2ad856ac20276d3a4bad8c428d79b4ae9401a72d0646bbcb692c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有文件已读取完毕，开始交叉分析。\n\n---\n\n## Reference 审计报告\n\n### 1. 总量统计\n\n| 指标 | 数量 |\n|------|------|\n| 正文 unique cite keys | **59** |\n| Bib 条目数 | **59** |\n\n### 2. Undefined Citations（正文 cite 了但 bib 没有）\n\n**0 个。** 所有正文引用均有对应 bib 条目。\n\n### 3. Unused Bib Entries（bib 有但未 cite）\n\n**0 个。** 所有 bib 条目均在正文中被引用。\n\n### 4. 重复条目\n\n**0 个。**\n\n### 5. 不完整条目\n\n所有条目均具备 author（或 editor）、title、year、venue 四个基本字段。**无缺失。**\n\n### 6. Key-Metadata 不一致（需关注）\n\n| 条目 key | 问题 | 详情 |\n|----------|------|------|\n| `wei2025gtheory` | **Key 与首作者不符** | Key 暗示首作者 \"Wei\"，实际首作者是 **Song, Dan**。应为 `song2025gtheory` |\n| `varannot2025gtheory` | **Key 年份与实际年份不符** | Key 写 `2025`，但 year 字段为 **2026**，arXiv ID `2601` 确认为 2026 年 1 月发表 |\n\n### 7. 格式一致性问题\n\n#### 7a. `and others` 缩写（3 处）\n以下条目用 `and others` 代替完整作者列表，与其余 56 条目（列出全部作者）不一致：\n- `qian2026benchmark` — `Qian, Qi and Huang, Chengsong and Xu, Jingwen and others`\n- `burnell2023rethink` — `Burnell, Ryan and Schellaert, Wout and Burden, John and others`\n- `liang2023helm` — `Liang, Percy and ... and Kumar, Ananya and others`\n\n#### 7b. 缺少 `url` 字段（3 处）\n大部分条目都有 `url`，以下三个没有：\n- `qian2026benchmark`\n- `liang2023helm`\n- `kiela2021dynabench`\n\n#### 7c. `brittlebench2026` key 格式\n该 key 未包含首作者姓名（其他所有条目均以 `lastname+year` 命名），虽不影响编译但风格不统一。首作者是 Romanou，建议改为 `romanou2026brittlebench`。\n\n### 8. 总结\n\n| 类别 | 数量 |\n|------|------|\n| Undefined citations | 0 |\n| Unused entries | 0 |\n| 重复条目 | 0 |\n| 缺必要字段 | 0 |\n| Key-metadata 不一致 | **2** (`wei2025gtheory`, `varannot2025gtheory`) |\n| `and others` 缩写不一致 | **3** |\n| 缺 url | **3** |\n| Key 命名风格不一致 | **1** (`brittlebench2026`) |\n\n整体引用质量良好，无编译阻断性问题。主要建议修正 2 个 key-metadata 不一致项（`wei2025gtheory` → `song2025gtheory`，`varannot2025gtheory` → `varannot2026gtheory`）和补全 3 个 `and others` 的完整作者列表。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-reference-audit.md"
+}

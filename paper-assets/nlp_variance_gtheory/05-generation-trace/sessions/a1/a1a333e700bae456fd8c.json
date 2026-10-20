@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a1a333e700bae456fd8c",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops llama70b startup verify",
+  "task_key": "worker_ops_llama70b_startup_verify_20260523T160608",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama70b_startup_verify_20260523T160608_result.json",
+    "occurrence": 1,
+    "bytes": 224,
+    "sha256": "524e89a737bf4b57bb36f434e0138c91a13b545ebc415d477f5777e97fa1c9d1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型权重已成功加载到 4 张 GPU（各 ~87GB/98GB），KV Cache 分配完毕。shard 损坏问题已修复。vLLM 引擎正在完成最后的初始化步骤，60 秒后再次检查是否开始推理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama70b-startup-verify.md"
+}

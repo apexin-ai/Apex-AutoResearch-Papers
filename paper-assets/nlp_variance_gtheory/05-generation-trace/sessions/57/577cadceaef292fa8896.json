@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "577cadceaef292fa8896",
+  "project": "nlp_variance_gtheory",
+  "kind": "history",
+  "title": "director / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_1.md",
+    "occurrence": 1,
+    "bytes": 4665,
+    "sha256": "33072a0646314787dd824f98429fcb904506f71e556efe2287d6e84d62e5ac90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_messages\nupdated: '2026-05-21T06:07:13+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用 westd-32570 的 cuda:0-3（4× RTX PRO 6000 96GB），不可用其他服务器的卡\n- Gemma2 不支持 float16 推理（vLLM 架构限制），cross-model 分析只用 bf16+fp32（D005）\n- Qwen3-8B 就是 instruct 版本（不存在 Qwen3-8B-Instruct），模型名写 \"Qwen/Qwen3-8B\"\n- G coefficient 对比必须用一致的 tau 定义（M007 教训）：G_item 用 item_id 作 tau，G_condition 用 precision+temp 作 tau，不可混用\n- D-study 输出必须有 monotonicity assertion：G 随 n_items 单调递增（M006 教训）\n- Worker 报告异常结果时不许合理化，必须质疑计算（M006 AI rationalization 教训）\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32570 (connect.westd.seetacloud.com)，工作目录 /root/nlp_variance_gtheory\n- Python：服务器上的默认 python3（非 conda）\n- HF cache：/root/autodl-tmp/.hf_cache（根分区 41%/18G free，数据盘 27%/~260G free）\n- 模型路径（model_paths.py）：\n  - Llama: /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct\n  - Gemma: /root/autodl-tmp/.hf_cache/LLM-Research/gemma-2-9b-it\n  - Mistral: /root/autodl-tmp/.hf_cache/LLM-Research/Mistral-7B-Instruct-v0___3\n  - Qwen: /root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B\n- 活跃：Qwen 推理 4 GPU（PIDs 91484+, auto_chain 启动），cron 已注册\n- 分析结果目录：results/analysis/（gstudy, bootstrap, irt, temperature_stratified 等 JSON）\n- 平衡数据集：results/analysis/balanced_datasets/（Dataset A: 3m×bf16, Dataset B: 2m×2p×2t）\n\n### 3. 📊 当前状态\n**刚做完**：\n- 6 项防御性分析全部完成（Bernoulli 非假象、fixed/random 不敏感、bootstrap=jackknife、温度分层、IRT vs G-theory、D-study 公式修复）\n- 3-model 平衡 G-study（Dataset A）：item_id=42.8%, model×item=31.7%, G_item=0.777\n- 2-model 平衡 G-study（Dataset B）：item_id=52.3%, model×item=12.2%, G_item=0.866\n- REML vs Henderson I 对比：差异 <0.5pp，Henderson I 在平衡设计下无偏\n- paper_framing.md 全面更新：4 contributions, 9 Methodological Defenses, 5 figures, 实际数据填入\n- Dream #3 (dream_20260521T044739) 已提交，full review mode，等待结果回调\n\n**RUNNING**：\n- exp001_qwen：4 GPU 推理中，预计 ~3h，auto_chain 启动，cron 监控已注册\n- Dream #3：pending/writing/reviewing 中\n\n**等待回调**：\n- Qwen 完成 → 4-model 全量 G-study（最终版本）\n- Dream #3 完成 → 评估分数是否达标\n\n### 4. 📋 待办（条件触发式）\n- Qwen 推理完成 → 注册 DONE → 构建 4-model 平衡数据集 → 跑 4-model G-study（G_item 预测 ~0.82）→ 更新 framing 用最终数据\n- Dream #3 回调 → Read dream-report-action skill → 逐条处理三档审稿 → 如 median ≥ 4/6 且 worst ≥ 3.5/6 → 进入论文写作阶段\n- Dream #3 worst 仍 3/6 → 分析哪些问题未解决 → 针对性补充实验或调整 framing → re-dream #4\n- 4-model G-study 完成 → 开始画 5 张图（draw-paper-figure skill）→ 派 Paper Agent 启动写作\n- exp-003 Manager 回复有第二种 GPU → 立即设计 multi-hardware 实验 → 升级 Claim 2\n- exp-003 确认无法执行 → Claim 2 正式 scope 到 \"single-architecture precision separability\"，降级为 supporting finding\n- Llama FP32 temp=0.0 缺失 100 conditions → 如影响 4-model 分析平衡性，补跑\n\n### 5. 🎯 战略上下文\n- **决策链**：D001(MVP PASS) → D002(dual-metric) → D003(Dream#1 framing修订) → D004(Dream#2通过,exp-001批准) → D005(Gemma fp16 N/A, cross-model用bf16+fp32)\n- **核心发现**：model×item interaction (31.7%) 是单模型分析看不到的\"隐藏第二大方差源\"——这比原计划的\"cross-benchmark gradient\"更有力，已升级为 Contribution #1\n- **最容易判断错的事**：三个 G-study 数据集（不平衡/Dataset A/Dataset B）设计不同，不能简单并排比较。论文中每个 G 值必须标注具体设计。Reviewer 已多次警告混淆变量\n- **分低主因是 proposal 而非实验**：Dream reviewers 最大批评是\"纯诊断无建设性贡献\"——已新增 Contribution #4（practitioner toolkit）来解决。图表缺失是第二大问题——5 张图已规划\n- **错题本重点**：M005(Worker 跑错模型)、M006(D-study公式反转+AI rationalization)、M007(G tau定义混用)。审批分析结果时优先检查物理意义一致性\n- **AAAI DDL**：Jul 28（~9 weeks），时间充裕。exp-002（multi-benchmark）是下一个大实验（200h GPU），需要 exp-001 完成后启动\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1.md"
+}

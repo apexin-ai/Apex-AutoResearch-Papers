@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d0497498d5740844041",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis phase2 defensive analyses",
+  "task_key": "worker_analysis_phase2_defensive_analyses_20260521T224314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_defensive_analyses_20260521T224314_result.json",
+    "occurrence": 1,
+    "bytes": 1534,
+    "sha256": "36d0f540b87c3a47a16914b5f75241c1b83a183891f94da010c7f78be631d2df"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Results saved to `results/exp004_8model_analysis/defensive_analyses.json` on westd-32570. Summary:\n\n### Part A: Bernoulli Baseline\n| Benchmark | Observed Var | Bernoulli Var | Ratio |\n|-----------|-------------|---------------|-------|\n| MMLU | 0.0973 | 0.0001 | **980x** |\n| ARC | 0.0753 | 0.0001 | **987x** |\n| HellaSwag | 0.0800 | 0.0001 | **685x** |\n| GSM8K | 0.0488 | 0.0001 | **462x** |\n| MATH | 0.0647 | 0.0001 | **609x** |\n\nItem difficulty differences are 460-987x larger than Bernoulli sampling noise. Reviewer concern fully addressed.\n\n### Part B: MMLU Subsampling Stability\n| n_items | item_id% | G_item |\n|---------|----------|--------|\n| 50 | 37.59 ± 4.43 | 0.8923 ± 0.0195 |\n| 100 | 38.31 ± 2.31 | 0.8976 ± 0.0097 |\n| 150 | 37.67 ± 1.53 | 0.8951 ± 0.0065 |\n| 200* | 37.88 | 0.8962 |\n\nAll subsample sizes recover the 200-item reference within 1 SD. Results are not an artifact of specific item selection.\n\n### Part C: LOBO Stability\nFull set: MC mean = 36.0%, FF mean = 21.7%, diff = 14.3pp (MC > FF).\n\n| Dropped | MC mean | FF mean | Diff | Stable |\n|---------|---------|---------|------|--------|\n| MMLU | 35.04 | 21.67 | 13.38 | Yes |\n| ARC | 35.04 | 21.67 | 13.37 | Yes |\n| HellaSwag | 37.88 | 21.67 | 16.22 | Yes |\n| GSM8K | 35.99 | 26.48 | 9.51 | Yes |\n| MATH | 35.99 | 16.86 | 19.13 | Yes |\n\n**All 5/5 drops stable.** Removing HellaSwag (lowest MC) or MATH (highest FF) does not flip the MC > FF conclusion. Minimum gap is 9.5pp when dropping GSM8K."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase2-defensive-analyses.md"
+}

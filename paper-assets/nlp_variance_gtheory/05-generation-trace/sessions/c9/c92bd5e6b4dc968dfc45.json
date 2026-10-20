@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c92bd5e6b4dc968dfc45",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops llama70b download check",
+  "task_key": "worker_ops_llama70b_download_check_20260523T110628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama70b_download_check_20260523T110628_result.json",
+    "occurrence": 1,
+    "bytes": 1505,
+    "sha256": "bbcf8de683ee0199283234477a9b1899fb50a3ef2957c84e2170872fac4913b7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 下载状态报告\n\n**进程**: 存活。PID 318630/318664 运行 ~5h06m。\n\n**实际下载路径**（非预期的 `/root/autodl-tmp/models/` ）:\n- 完成文件: `/root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-70B-Instruct/`\n- 临时文件: `/root/autodl-tmp/.hf_cache/._____temp/LLM-Research/Meta-Llama-3.1-70B-Instruct/`\n\n**Safetensors 进度** (30 个分片):\n| 状态 | 文件 | 大小 |\n|------|------|------|\n| 已完成 | model-00001, model-00002 | 8.7G |\n| 下载中 | model-00003 ~ model-00010 (8个) | 6.8G / ~37G |\n| 未开始 | model-00011 ~ model-00030 (20个) | ~90G |\n\n**⚠️ 关键问题: `ignore_file_pattern` 未生效**\n正在同时下载 7 个 `original/consolidated.*.pth` 文件，已占 **108G**（各文件 60-98% 完成，总计约 131G）。这些文件是不需要的，白白消耗带宽和磁盘空间。\n\n**磁盘空间**:\n- 数据盘: 350G 总 / 132G 已用 / **219G 可用**\n- HF cache 当前: 125G\n- 预计总需: ~266G（safetensors ~135G + pth ~131G）→ 空间够但很紧\n\n**速度**: safetensors ~1-2 MB/s/文件，pth ~500KB/s/文件。\n\n**预计剩余时间**: ~3-4 小时（safetensors + pth 共享带宽）。\n\n**建议**: \n- 让下载跑完（pth 已下载 108G 的 80%+，杀掉浪费）\n- 下载完成后删除 pth 文件释放 ~131G 空间\n- 下载完成后创建软链接 `/root/autodl-tmp/models/Llama-3.1-70B-Instruct/ → /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-70B-Instruct/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama70b-download-check.md"
+}

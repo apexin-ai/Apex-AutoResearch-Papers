@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2e194d6e6be4cc203345",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "research round5 citation verification",
+  "task_key": "worker_research_round5_citation_verification_20260522T121326",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_round5_citation_verification_20260522T121326_result.json",
+    "occurrence": 1,
+    "bytes": 2435,
+    "sha256": "66656a6ca04fd88ed7739babd34538c694a7e28a47e3866c0f7de72990fafebf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "6 篇全部验证完毕。结果如下：\n\n| # | 引用 | 标题 | 作者 | 年份 | 来源 | 状态 |\n|---|------|------|------|------|------|------|\n| 1 | Holland & Wainer (1993) | *Differential Item Functioning* | Paul W. Holland, Howard Wainer (Eds.) | 1993 | Lawrence Erlbaum Associates, Hillsdale, NJ | ✅ 完全匹配 |\n| 2 | Clauser & Mazor (1998) | *Using Statistical Procedures to Identify Differentially Functioning Test Items* | Brian E. Clauser, Kathleen M. Mazor | 1998 | *Educational Measurement: Issues and Practice*, 17(1), 31–44 | ✅ 真实存在，ERIC ID: EJ564712 |\n| 3 | Webb, Shavelson & Haertel (2006) | *Reliability Coefficients and Generalizability Theory* | Noreen M. Webb, Richard J. Shavelson, Edward H. Haertel | 2006 | *Handbook of Statistics*, Vol. 26, pp. 81–124. DOI: 10.1016/S0169-7161(06)26004-8 | ✅ 完全匹配 |\n| 4 | arXiv:2602.11674 | *Benchmark Health Index: A Systematic Framework for Benchmarking the Benchmarks of LLMs* | Longyuan Zhu, Hairan Hua, Linlin Miao, Bing Zhao | 2026-02 | arXiv:2602.11674 | ✅ 真实存在 |\n| 5 | arXiv:2511.04703 | *Measuring what Matters: Construct Validity in Large Language Model Benchmarks* | Andrew M. Bean et al. (42 authors) | 2025-11 | arXiv:2511.04703, NeurIPS 2025 D&B | ✅ 真实存在 |\n| 6 | arXiv:2603.15121 | *Establishing Construct Validity in LLM Capability Benchmarks Requires Nomological Networks* | Timo Freiesleben | 2026-03 | arXiv:2603.15121 | ✅ 真实存在 |\n\n**结论：6 篇引用全部通过验证，均为真实出版物，无幻觉引用。**\n\n注意事项：\n- #3 的标题是 \"Reliability Coefficients and Generalizability Theory\"（书章节），不是单独关于 \"random vs fixed facet\"——如果 bib 条目标题有误需要核对。\n- #4 的作者列表请与 bib 条目核对是否一致。\n\nSources:\n- [Holland & Wainer (1993) - Routledge](https://www.routledge.com/Differential-Item-Functioning/Holland-Wainer/p/book/9781138967694)\n- [Clauser & Mazor (1998) - ERIC](https://eric.ed.gov/?id=EJ564712)\n- [Webb, Shavelson & Haertel (2006) - ScienceDirect](https://www.sciencedirect.com/science/article/abs/pii/S0169716106260048)\n- [arXiv:2602.11674 - Benchmark Health Index](https://arxiv.org/abs/2602.11674)\n- [arXiv:2511.04703 - Measuring what Matters](https://arxiv.org/abs/2511.04703)\n- [arXiv:2603.15121 - Nomological Networks](https://arxiv.org/abs/2603.15121)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-round5-citation-verification.md"
+}

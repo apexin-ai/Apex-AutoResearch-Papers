@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bb562f5eb5afe4bada0e",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis temperature stratified",
+  "task_key": "worker_analysis_temperature_stratified_20260521T042035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_temperature_stratified_20260521T042035_result.json",
+    "occurrence": 1,
+    "bytes": 1789,
+    "sha256": "f6dc1760f4f80d0b74a90b801d13600364d29d7638ee5be0b3dd19a11776c0f8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成，结果已保存。\n\n---\n\n**PART 1 — Stratified G coefficients:**\n\n| Temperature | G(correct) | G(text) | Mean(correct) | Mean(text) |\n|---|---|---|---|---|\n| T=0.0 | 0.7605 | 0.0085 | 0.6987 | 0.9653 |\n| T=0.3 | 0.6105 | 0.0673 | 0.6795 | 0.1524 |\n| T=0.7 | 0.5492 | 0.0218 | 0.6699 | 0.0222 |\n\n`correct` 指标：温度固定后 G 从全量的 0.007 恢复到 0.55–0.76，T=0.0 最高（76%方差来自 item_id）。随温度升高，residual 和 seed:item_id 交互增大（T=0.7 时 seed:item_id 占 14.8%），G 下降——采样随机性在侵蚀信号。\n\n`text_exact_match`：即使分层后 G 仍极低（0.008–0.067）。T=0.0 时 precision 占 52.5%（float32 vs bf16/fp16 的文本匹配率差异巨大）；T=0.3/0.7 时 residual 占 75–82%，说明文本匹配在非零温度下几乎是纯噪声。\n\n---\n\n**PART 2 — Practical D-study（precision + temperature 固定）:**\n\n- G(correct) = 0.6595，item_id 占 61.08%，delta 占 31.54%\n- G(text_exact_match) = 0.0598（不可用）\n- **Minimum items for G≥0.80 = 10**（D-study 反转：当前 200 items 远超所需，G 随 n_items 减少反而升高，因为 item variance 被放大）\n\n---\n\n**PART 3 — precision:temperature 交互:**\n\n- `correct`: **0.05%** — 几乎不存在交互，precision 对准确率的影响不随温度变化\n- `text_exact_match`: **4.15%** — 存在实质性交互\n\nCell means 揭示了交互本质：\n- bf16/fp16 在 T=0.0 时文本匹配率 99.96%，到 T=0.7 骤降至 0.6%\n- float32 在 T=0.0 时只有 74.09%，但 T=0.7 时仍有 5.39%（下降更平缓）\n\nfloat32 的 KV cache 精度更高，在有采样随机性时反而保留了更多文本一致性。这就是 precision:temperature 交互的来源。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-temperature-stratified.md"
+}

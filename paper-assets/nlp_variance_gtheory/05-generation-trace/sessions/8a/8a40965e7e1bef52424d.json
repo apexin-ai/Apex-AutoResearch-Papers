@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a40965e7e1bef52424d",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix dstudy formula critical",
+  "task_key": "worker_fix_dstudy_formula_critical_20260521T043738",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_dstudy_formula_critical_20260521T043738_result.json",
+    "occurrence": 1,
+    "bytes": 1646,
+    "sha256": "95db2ab7c0290446576048e58ad5d9e810a668fcde22418508a668aeb7684651"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`gstudy_full.py` 运行正常，assertion 通过，D-study G 值单调递增。\n\n## 汇报\n\n### 1. 错误代码位置和修复\n- **错误文件**: `temperature_stratified_analysis.json` 中的 `practical.d_study_correct` 和 `practical.min_items_G80`\n- **原始生成脚本已不存在**，用 `scripts/fix_dstudy_formula.py` 修复\n- **公式修正**: `ni / n_actual` → `n_actual / ni`\n\n### 2. 修复前后 D-study G 值对比\n\n| n_items | 修复前 (错) | 修复后 (对) |\n|---------|-----------|-----------|\n| 25      | 0.9394    | 0.1949    |\n| 50      | 0.8857    | 0.3262    |\n| 100     | 0.7948    | 0.4919    |\n| 200     | 0.6595    | 0.6595    |\n| 500     | 0.4365    | 0.8288    |\n| 1000    | 0.2792    | 0.9064    |\n\n- **min_items_G80**: 10 → **414**\n\n### 3. gstudy_full.py\n**不受影响**。该脚本已使用正确公式 `n_items_actual / ni`，`llama_single_model_gstudy.json` 的 D-study 值单调递增（25→0.164, 500→0.797）。已添加 monotonicity assertion。\n\n### 4. 全量 Sanity Check\n所有 7 个 JSON 文件检查通过，无非单调 D-study 值：\n- `binary_data_limitation.json`: clean\n- `bootstrap_vs_jackknife.json`: clean\n- `cross_model_gstudy.json`: clean\n- `fixed_vs_random_sensitivity.json`: clean\n- `irt_vs_gtheory.json`: clean\n- `llama_single_model_gstudy.json`: D-study OK ✓\n- `temperature_stratified_analysis.json`: D-study OK ✓ (修复后)\n\n### 5. 修复后完整 JSON\n已在上方输出完整的 `temperature_stratified_analysis.json` 内容，D-study 部分现在正确地从 0.1949（25 items）单调递增到 0.9064（1000 items）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-dstudy-formula-critical.md"
+}

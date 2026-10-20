@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cfb56222be6f0b9cb71f",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code exp001 data sampling",
+  "task_key": "worker_code_exp001_data_sampling_20260520T195748",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp001_data_sampling_20260520T195748_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "46d53394eae13d2ab09ac646872190dad9bafcf7129509cb419be947c70f94cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个文件语法检查通过。修改总结：\n\n1. **`sample_mmlu.py`** — 无需修改，已有 10 subjects × 20 items = 200，且包含 `--n-items` / `--n-subjects` 参数。\n\n2. **`few_shot.py`** — 已有 4 orderings。新增 `--n-orderings` CLI 参数（默认 4），函数签名增加 `n_orderings` 参数，内部循环和打印使用该参数。\n\n3. **`sample_benchmarks.py`** — 重写为统一 schema 输出。三个 benchmark（gsm8k/arc_challenge/hellaswag）各 200 items，每条记录包含 `item_id, benchmark, question, choices, answer_idx, answer, metadata`。GSM8K 用 `####` 正则提取数字答案，choices/answer_idx 为 null。支持 `--benchmark` 单采和 `--all` + `--output-dir` 批量采样。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp001-data-sampling.md"
+}

@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "2c727704f23919b4b1a2",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "analysis bootstrap ci all benchmarks",
+  "task_key": "worker_analysis_bootstrap_ci_all_benchmarks_20260522T024307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap_ci_all_benchmarks_20260522T024307.log",
+    "occurrence": 1,
+    "bytes": 953452,
+    "sha256": "b19ef3ea36d968add1420b0ad0c5bf336a56afb5da78d82315b2a2f8642d75ca"
+  },
+  "statistics": {
+    "messages": 376,
+    "user_turns": 2,
+    "tool_calls": 151,
+    "roles": {
+      "log": 1,
+      "system": 32,
+      "record": 1,
+      "assistant": 37,
+      "tool_call": 151,
+      "user": 2,
+      "tool_result": 151,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "2c727704f23919b4b1a2-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 28,
+      "chunks": [
+        {
+          "path": "2c727704f23919b4b1a2-part-0001.json",
+          "message_count": 28
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 342,
+      "chunks": [
+        {
+          "path": "2c727704f23919b4b1a2-part-0001.json",
+          "message_count": 146
+        },
+        {
+          "path": "2c727704f23919b4b1a2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "2c727704f23919b4b1a2-part-0003.json",
+          "message_count": 16
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-bootstrap-ci-all-benchmarks.md"
+}

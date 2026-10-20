@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4cf26299d75f798d3a3a",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis irt multifacet g verification",
+  "task_key": "worker_analysis_irt_multifacet_g_verification_20260522T090122",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_irt_multifacet_g_verification_20260522T090122_result.json",
+    "occurrence": 1,
+    "bytes": 961,
+    "sha256": "cfc18ecb6904f866fc1e6bfd22c1aea459a64f5d66bd1b67134068f8c8bea2c4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n**Multi-facet G at n=116: 取决于哪个分析框架。**\n\n| 分析 | Conditions | G@116 | G@200 |\n|------|-----------|-------|-------|\n| exp-001 单模型 (Llama, 1296 cond) | 1296 | **0.895** | 0.936 |\n| exp-004 8模型 (2304 cond) | 2304 | **0.834** | 0.896 |\n\n**0.895 = 正确**，但有重要限定：\n\n- 这个数字来自 `single_condition_dstudy.md`，基于 **exp-001 单模型 (Llama)** 分析，1296 conditions = 3 prec × 3 temp × 6 prompts × 6 seeds × 4 orderings\n- paper_framing 中标注为 \"8-model Henderson I\" 是**标注错误**——实际来源是 exp-001 单模型 D-study（259,200 records，6 facets）\n- 8 模型 Henderson I 分析（exp-004）给出的是 G@116 = 0.834，G@200 = 0.896，n(G≥0.80) = 93\n\n**如果 reviewer 要求的 \"IRT items + multi-facet\" 行用于 8 模型分析**，正确值是 G=0.834 而非 0.895。8 模型分析中 G=0.895 对应 n≈198（≈200 items）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-irt-multifacet-g-verification.md"
+}

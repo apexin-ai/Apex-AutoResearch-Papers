@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "632b3f4318e6b1b53abb",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis budget sensitivity figure",
+  "task_key": "worker_analysis_budget_sensitivity_figure_20260522T201151",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_budget_sensitivity_figure_20260522T201151_result.json",
+    "occurrence": 1,
+    "bytes": 468,
+    "sha256": "8295a2fc8a45e005986e8bc3a164eb01c042d2ebde9e35cfec1e726fc4d6bccd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 个文件已生成：\n\n- `budget_sensitivity_curves.pdf` (28KB) — G vs n_items 曲线，5 benchmarks × 3 designs，可见 ARC 全设计无法达 G=0.80，Single 设计多数 benchmark 存在 asymptote\n- `budget_sensitivity_curves.png` (188KB)\n- `budget_sensitivity_band.pdf` (28KB) — 森林图，显示 |ΔG|=0.035 对应的 n_items 不确定性范围，~23% budget increase 跨所有 benchmark 一致\n- `budget_sensitivity_band.png` (105KB)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-budget-sensitivity-figure.md"
+}

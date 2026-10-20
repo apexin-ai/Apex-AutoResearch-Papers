@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2cb7756c7fc3b54cdae",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "run auto gsm8k to math monitor",
+  "task_key": "worker_run_auto_gsm8k_to_math_monitor_20260521T124749",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_run_auto_gsm8k_to_math_monitor_20260521T124749_result.json",
+    "occurrence": 1,
+    "bytes": 556,
+    "sha256": "de96b31ab7e052de5e24a28d4863f4c2f2fa5bec90ca4285cad8d5fe9e8e29c0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "监控脚本运行正常。\n\n**部署完成：**\n\n| 项目 | 状态 |\n|------|------|\n| 监控脚本 PID | **163199** |\n| 日志文件 | `/tmp/gsm8k_to_math_monitor.log` |\n| Mistral GSM8K | 54,400 / 57,600 (94%) — 预计最先完成 |\n| Qwen GSM8K | 44,000 / 57,600 (76%) |\n| Gemma GSM8K | 41,600 / 57,600 (72%) |\n\n脚本每 30 秒轮询一次，某模型 GSM8K 行数达到 57,600 后立即在对应 GPU 上启动 MATH 推理。三个模型全部切换后脚本自动退出。Llama (GPU 1) 的 MATH 已在跑，不受影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/run-auto-gsm8k-to-math-monitor.md"
+}

@@ -1,0 +1,73 @@
+{
+  "schema_version": "1.0",
+  "id": "008b05cbbc51088da591",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "infra model predownload",
+  "task_key": "worker_infra_model_predownload_20260520T203331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_model_predownload_20260520T203331.log",
+    "occurrence": 1,
+    "bytes": 1040756,
+    "sha256": "d08a27bbac437dee4ea72854a9e1c6bb87d33c0dfd131c361c978fa64e35373d"
+  },
+  "statistics": {
+    "messages": 810,
+    "user_turns": 1,
+    "tool_calls": 319,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 164,
+      "tool_call": 319,
+      "tool_result": 319,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 791,
+      "chunks": [
+        {
+          "path": "008b05cbbc51088da591-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "008b05cbbc51088da591-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "008b05cbbc51088da591-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "008b05cbbc51088da591-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "008b05cbbc51088da591-part-0005.json",
+          "message_count": 71
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 19,
+      "chunks": [
+        {
+          "path": "008b05cbbc51088da591-part-0005.json",
+          "message_count": 19
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-model-predownload.md"
+}

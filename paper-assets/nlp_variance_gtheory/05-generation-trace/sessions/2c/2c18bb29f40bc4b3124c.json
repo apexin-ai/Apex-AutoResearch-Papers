@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c18bb29f40bc4b3124c",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp pilot final read",
+  "task_key": "worker_exp_pilot_final_read_20260520T235925",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_pilot_final_read_20260520T235925_result.json",
+    "occurrence": 1,
+    "bytes": 823,
+    "sha256": "d0b15bff564767f197b7c5562766d814fa7fe9ce5518a159494508ec91c72997"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Pilot 推理全部完成。** 汇总：\n\n| 指标 | 值 |\n|------|-----|\n| 总记录数 | 20,000 |\n| Overall accuracy | 61.6% |\n| 字段完整性 | All 15 present |\n| 磁盘占用 | 13MB |\n\n**Per-GPU:**\n- gpu0: 5000 records, acc=60.5%, avg_lat=174.4ms\n- gpu1: 5000 records, acc=62.2%, avg_lat=184.7ms\n- gpu2: 5000 records, acc=62.7%, avg_lat=183.1ms\n- gpu3: 5000 records, acc=61.0%, avg_lat=181.5ms\n\n**条件覆盖:**\n- Precision: float32 only — 100 conditions（20,000 / 200 items）\n- Temperature: T=0.0 only — 100 conditions\n\n注意：当前 pilot 只跑了 **float32 + T=0.0** 这一个精度×温度组合。如果设计上 pilot 只测这个组合的 100 个 seed/prompt/ordering 条件，这是符合预期的。如果原计划包含多精度/多温度，需要检查配置。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-pilot-final-read.md"
+}

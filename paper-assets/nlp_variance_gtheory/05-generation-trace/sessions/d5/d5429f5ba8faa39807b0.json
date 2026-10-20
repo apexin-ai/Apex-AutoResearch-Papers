@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5429f5ba8faa39807b0",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra westd32570 start internlm deepseek now",
+  "task_key": "worker_infra_westd32570_start_internlm_deepseek_now_20260521T163905",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd32570_start_internlm_deepseek_now_20260521T163905_result.json",
+    "occurrence": 1,
+    "bytes": 1046,
+    "sha256": "d4227eba0e29249fa25f8382ef489e2dd46ff815358c735297be71ca2e9c619b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All running and producing output. Summary:\n\n### 状态报告\n\n**GPU 利用率** — 4/4 GPU 全负载运行:\n| GPU | 任务 | PID | VRAM | Util |\n|-----|------|-----|------|------|\n| 0 | Qwen MATH | 166536 | 88.5 GB | 97% |\n| 1 | **InternLM MMLU** | 177670 | 88.0 GB | 97% |\n| 2 | Gemma MATH | 167468 | 88.4 GB | 82% |\n| 3 | **DeepSeek MMLU** | 178495 | 87.9 GB | 97% |\n\n**InternLM/DeepSeek 初始进度** — MMLU 推理已开始，正在逐条件处理（200 items/condition，~5s/condition）:\n- InternLM: condition 5771 处理中，141/200 correct\n- DeepSeek: condition 7202 处理中，107/200 correct\n\n**Chain 脚本已部署** — 每条链按 mmlu → arc → hellaswag → gsm8k → math 顺序自动接力，跳过已完成的 benchmark。\n\n**Qwen/Gemma MATH 进度**:\n- Qwen: 50,800 / 57,600 = **88%**\n- Gemma: 36,000 / 57,600 = **63%**\n\n**Monitor 已 kill** — `math_then_new_models.sh`（PID 174350/174351）已终止，避免与手动启动冲突。`auto_start_new_models.sh` 不会被触发。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd32570-start-internlm-deepseek-now.md"
+}

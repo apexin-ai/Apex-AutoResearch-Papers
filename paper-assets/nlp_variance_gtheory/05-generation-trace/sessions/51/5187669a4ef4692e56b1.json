@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5187669a4ef4692e56b1",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis budget sensitivity delta g",
+  "task_key": "worker_analysis_budget_sensitivity_delta_g_20260522T145118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_budget_sensitivity_delta_g_20260522T145118_result.json",
+    "occurrence": 1,
+    "bytes": 956,
+    "sha256": "55e876540d72c586c3d21ede43b36452bc8b264265c69a9ecd935999241f06a5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存。\n\n**Summary Table — Budget Sensitivity to |ΔG|=0.035**\n\n| Benchmark | σ²(item) | σ²(δ)₃ₓ₃ | n@0.800 | n@0.765 | n@0.835 | Δn (pessimistic) | %increase |\n|-----------|----------|-----------|---------|---------|---------|-------------------|-----------|\n| MMLU | 0.1271 | 0.0282 | 178 | 145 | 225 | +41 | 23.0% |\n| ARC | 0.0671 | 0.0044 | 53 | 43 | 66 | +13 | 24.5% |\n| HellaSwag | 0.0705 | 0.0071 | 81 | 66 | 103 | +19 | 23.5% |\n| GSM8K | 0.0421 | 0.0153 | 291 | 237 | 368 | +67 | 23.0% |\n| MATH | 0.0497 | 0.0136 | 220 | 179 | 278 | +51 | 23.2% |\n\n**Δn interpretation**: If the actual G at planned n items is 0.035 lower than predicted (pessimistic), achieving G=0.800 requires ~23% more items. This percentage is constant across benchmarks because the ratio `(G/(1-G)) × ((1-G')/(G'))` depends only on the G values, not the variance components. Absolute Δn ranges from 13 (ARC) to 67 (GSM8K)."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-budget-sensitivity-delta-g.md"
+}

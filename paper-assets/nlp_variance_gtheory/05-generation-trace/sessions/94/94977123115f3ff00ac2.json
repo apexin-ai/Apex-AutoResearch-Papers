@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "94977123115f3ff00ac2",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "fix reml 500iter",
+  "task_key": "worker_fix_reml_500iter_20260521T060958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_reml_500iter_20260521T060958.log",
+    "occurrence": 1,
+    "bytes": 1078939,
+    "sha256": "6b3de48e61c7416fe17a6e782f30ea41fe0b0b0ea2c54aa3cc8c0f234b2c7179"
+  },
+  "statistics": {
+    "messages": 887,
+    "user_turns": 0,
+    "tool_calls": 376,
+    "roles": {
+      "log": 1,
+      "system": 19,
+      "assistant": 113,
+      "tool_call": 376,
+      "tool_result": 376,
+      "record": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 887,
+      "chunks": [
+        {
+          "path": "94977123115f3ff00ac2-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "94977123115f3ff00ac2-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "94977123115f3ff00ac2-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "94977123115f3ff00ac2-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "94977123115f3ff00ac2-part-0005.json",
+          "message_count": 167
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-reml-500iter.md"
+}

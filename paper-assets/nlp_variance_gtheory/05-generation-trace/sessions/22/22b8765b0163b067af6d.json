@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "22b8765b0163b067af6d",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "code fix ff gstudy gitem bug",
+  "task_key": "worker_code_fix_ff_gstudy_gitem_bug_20260522T000548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_ff_gstudy_gitem_bug_20260522T000548.log",
+    "occurrence": 1,
+    "bytes": 518968,
+    "sha256": "71e3d3f3d3e2684961c192cd4b0db3359ea4b8b4bdb7e3147dcba9cfc8fc9adf"
+  },
+  "statistics": {
+    "messages": 387,
+    "user_turns": 0,
+    "tool_calls": 176,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 176,
+      "tool_result": 176,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 387,
+      "chunks": [
+        {
+          "path": "22b8765b0163b067af6d-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "22b8765b0163b067af6d-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "22b8765b0163b067af6d-part-0003.json",
+          "message_count": 27
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-fix-ff-gstudy-gitem-bug.md"
+}

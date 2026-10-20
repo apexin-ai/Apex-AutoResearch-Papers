@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6faf0afbe4e250cca1bf",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis llama70b henderson",
+  "task_key": "worker_analysis_llama70b_henderson_20260523T185433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama70b_henderson_20260523T185433_result.json",
+    "occurrence": 1,
+    "bytes": 1780,
+    "sha256": "f14ba7b8dc5cbd8c8a6a71fbde53734193540cc8ca7f7ec3e41933b943ee53f9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果如下：\n\n## 1. 方差分量表\n\n| Component | σ² | % |\n|---|---|---|\n| item_id | 0.1125 | **74.51%** |\n| residual | 0.0180 | 11.92% |\n| seed:item_id | 0.0076 | 5.02% |\n| prompt_template:item_id | 0.0064 | 4.24% |\n| temperature:item_id | 0.0044 | 2.92% |\n| ordering:item_id | 0.0020 | 1.33% |\n| temperature:seed | 0.0001 | 0.05% |\n| 其余所有 main effects 和 interactions | 0.0 | 0.0% |\n\n## 2. G_item = **0.9566**\n\n## 3. 与 Qwen2.5-72B 对比\n\n| Metric | Llama-3.1-70B | Qwen2.5-72B |\n|---|---|---|\n| Grand mean | 0.8157 | 0.8703 |\n| item_id % | **74.51%** | **83.25%** |\n| G_item | **0.9566** | **0.9785** |\n\n**Facet 排序差异**：\n- Llama: item_id > residual > **seed:item_id** > prompt:item > temp:item > order:item\n- Qwen: item_id > residual > **prompt:item** > order:item > seed:item > temp:item\n\nLlama 的 seed:item_id 交互显著更大（5.02% vs Qwen 0.93%），说明 Llama-70B 对 random seed 更敏感。\n\n## 4. 结论\n\nG-theory 方差结构在两个模型家族间**部分一致**：\n- **一致**：item_id 是绝对主导方差源（两个模型均 >74%），所有 main effects（temperature, prompt, seed, ordering 单独）方差为零，residual 排第二\n- **不一致**：(1) Llama item_id% 低 8.7 个百分点，residual 高 4.5 个百分点 → Llama 有更多未建模的高阶交互；(2) interaction 排序不同（Llama 的 seed 敏感性远高于 Qwen）；(3) G_item 低 0.022 → 需要更多 items 达到同等可靠性\n- 总体：core structure 一致（item dominance + zero main effects），但 Llama 在 seed/temperature 维度的 item-level 不稳定性更高\n\n## 5. JSON 结果路径\n`/root/nlp_variance_gtheory/data/exp_llama70b/llama70b_mmlu_gstudy.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama70b-henderson.md"
+}

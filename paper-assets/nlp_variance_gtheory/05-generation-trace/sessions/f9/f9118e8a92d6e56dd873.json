@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f9118e8a92d6e56dd873",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis within mmlu subject gradient",
+  "task_key": "worker_analysis_within_mmlu_subject_gradient_20260521T093652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_within_mmlu_subject_gradient_20260521T093652_result.json",
+    "occurrence": 1,
+    "bytes": 1186,
+    "sha256": "3706f95442bc5741506e2224e2bc1f9accd92160e22b7abaf4a675c8a0b01236"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Task 8 完成。输出写入 `results/analysis/within_mmlu_subject_gradient.json`。\n\n关键发现：\n\n| Subject | Acc | item_id% | model×item% |\n|---|---|---|---|\n| professional_medicine | 0.810 | **7.5%** | **65.7%** |\n| high_school_mathematics | 0.415 | 10.9% | 46.0% |\n| abstract_algebra | 0.510 | 19.6% | 42.1% |\n| us_foreign_policy | 0.893 | 31.9% | 46.3% |\n| college_physics | 0.501 | 39.5% | 31.4% |\n| computer_security | 0.796 | 41.5% | 27.6% |\n| philosophy | 0.837 | 41.2% | 28.1% |\n| world_religions | 0.861 | 46.1% | 22.5% |\n| clinical_knowledge | 0.620 | 57.7% | 32.0% |\n| international_law | 0.772 | 57.7% | 27.0% |\n\n- **item_id% 跨 subject 梯度巨大**：从 7.5%（professional_medicine）到 57.7%（clinical_knowledge / international_law），CV=0.48\n- **但不随 accuracy 线性变化**：Pearson r=0.301 (p=0.399)，无统计显著性\n- **model×item 交互同样有大梯度**：22.5%–65.7%，range=43.2%\n- **professional_medicine 是极端异类**：item_id 主效应仅 7.5%，但 model×item 高达 65.7%——说明不同模型对哪些题目难/易的判断高度分歧，item 难度几乎完全是 model-dependent 的"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-within-mmlu-subject-gradient.md"
+}

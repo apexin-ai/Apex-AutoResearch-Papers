@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "752f533be097f7bec6b9",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "infra westd15695 setup and run",
+  "task_key": "worker_infra_westd15695_setup_and_run_20260521T102428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd15695_setup_and_run_20260521T102428.log",
+    "occurrence": 1,
+    "bytes": 637494,
+    "sha256": "2962999211fb083f90a2fa2b7c0b40babc0db7492416d5e1bd74de117d64663a"
+  },
+  "statistics": {
+    "messages": 279,
+    "user_turns": 0,
+    "tool_calls": 90,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 95,
+      "tool_call": 90,
+      "tool_result": 90,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 279,
+      "chunks": [
+        {
+          "path": "752f533be097f7bec6b9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "752f533be097f7bec6b9-part-0002.json",
+          "message_count": 99
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-westd15695-setup-and-run.md"
+}

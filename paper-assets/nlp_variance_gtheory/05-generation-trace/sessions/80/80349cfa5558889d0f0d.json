@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "80349cfa5558889d0f0d",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp mistral pid cron",
+  "task_key": "worker_exp_mistral_pid_cron_20260521T043553",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mistral_pid_cron_20260521T043553_result.json",
+    "occurrence": 1,
+    "bytes": 787,
+    "sha256": "f3efea1f3812c18cf172fc0ad3c70fe679a7c394a9fd7fb0b97731f77dcb44bc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n**1. Mistral 进程 PID**\n\n| GPU | PID |\n|-----|------|\n| 0 | 79682 |\n| 1 | 79683 |\n| 2 | 79684 |\n| 3 | 79685 |\n\n**2. Qwen 自动启动脚本** — 已部署并在后台运行（PID 86043）。脚本每 60 秒检测 Mistral 进程，全部退出后自动在 4 个 GPU 上启动 Qwen 推理。注意：我在 Qwen 启动命令中补了 `--items` 和 `--few-shot` 参数（与 Mistral 一致），确保推理配置完整。\n\n**3. Mistral 进度**\n\n| Shard | 已完成行数 |\n|-------|-----------|\n| shard_0 | 50,000 |\n| shard_1 | 48,800 |\n| shard_2 | 49,400 |\n| shard_3 | 52,400 |\n| **总计** | **200,600** |\n\n每个 shard CSV 有 324 个任务（325 行含表头）。进程已运行约 56 分钟，CPU 占用率 ~121%，状态正常。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-mistral-pid-cron.md"
+}

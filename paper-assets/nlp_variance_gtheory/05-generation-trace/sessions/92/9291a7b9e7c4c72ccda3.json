@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9291a7b9e7c4c72ccda3",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis fixed vs random model",
+  "task_key": "worker_analysis_fixed_vs_random_model_20260522T132959",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_fixed_vs_random_model_20260522T132959_result.json",
+    "occurrence": 1,
+    "bytes": 1735,
+    "sha256": "2f5706c253952ef95b771f63508c799ebd6cd0f2ebdada34a5d7d3a3e171e367"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Computations verified. Here are the results:\n\n## Fixed vs Random Model Sensitivity Analysis\n\n| Benchmark | G_random | G_fixed | ΔG | σ²(m:i)/n_m as % of δ |\n|-----------|----------|---------|--------|----------------------|\n| MMLU | 0.8962 | 0.9841 | +0.088 | 86.0% |\n| ARC | 0.8917 | 0.9900 | +0.098 | 91.7% |\n| HellaSwag | 0.8716 | 0.9842 | +0.113 | 89.1% |\n| GSM8K | 0.8629 | 0.9514 | +0.089 | 67.9% |\n| MATH | 0.8880 | 0.9651 | +0.077 | 71.3% |\n| **Mean** | **0.8821** | **0.9750** | **+0.093** | |\n\nD-study n_items for G≥0.80: trivially **1** for both random and fixed, since even single-item G already exceeds 0.80. The G coefficient measures item-level reliability across evaluation conditions, not test-level reliability — so adding items doesn't enter the formula.\n\n**Key findings:**\n\n1. **Treating model as fixed inflates G by +0.077 to +0.113 (mean +0.093).** All fixed-model G values exceed 0.95, which would obscure the substantial model-dependent item difficulty variation.\n\n2. **σ²(model:item)/n_model accounts for 68–92% of the total relative error variance.** This is the single dominant error component. Removing it (fixed-model assumption) eliminates most of the measurement error.\n\n3. **The random-model treatment is defensible and more conservative.** Under fixed-model, the artificially high G values would suggest benchmarks are almost perfectly reliable — masking the reality that item rankings shift substantially across models. Since practitioners routinely apply benchmarks to new models not in the original 8, the random-model assumption better reflects the intended generalization scope.\n\nJSON saved to `artifacts/exp004/data/fixed_vs_random_model.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-fixed-vs-random-model.md"
+}

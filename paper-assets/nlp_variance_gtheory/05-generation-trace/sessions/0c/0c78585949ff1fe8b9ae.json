@@ -1,0 +1,84 @@
+{
+  "schema_version": "1.0",
+  "id": "0c78585949ff1fe8b9ae",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "ops final anon push v2",
+  "task_key": "worker_ops_final_anon_push_v2_20260523T193944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_final_anon_push_v2_20260523T193944.log",
+    "occurrence": 1,
+    "bytes": 1405687,
+    "sha256": "7b7bc0e11a3f27441ff58857b634e1d39e3c9537717ca69bad63467d93f94073"
+  },
+  "statistics": {
+    "messages": 841,
+    "user_turns": 2,
+    "tool_calls": 283,
+    "roles": {
+      "log": 1,
+      "system": 229,
+      "record": 2,
+      "assistant": 40,
+      "tool_call": 283,
+      "tool_result": 283,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 108,
+      "chunks": [
+        {
+          "path": "0c78585949ff1fe8b9ae-part-0001.json",
+          "message_count": 108
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 484,
+      "chunks": [
+        {
+          "path": "0c78585949ff1fe8b9ae-part-0001.json",
+          "message_count": 72
+        },
+        {
+          "path": "0c78585949ff1fe8b9ae-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c78585949ff1fe8b9ae-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0c78585949ff1fe8b9ae-part-0004.json",
+          "message_count": 52
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 249,
+      "chunks": [
+        {
+          "path": "0c78585949ff1fe8b9ae-part-0004.json",
+          "message_count": 128
+        },
+        {
+          "path": "0c78585949ff1fe8b9ae-part-0005.json",
+          "message_count": 121
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-final-anon-push-v2.md"
+}

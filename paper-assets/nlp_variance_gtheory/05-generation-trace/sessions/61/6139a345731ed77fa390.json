@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6139a345731ed77fa390",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "review data correctness audit",
+  "task_key": "worker_review_data_correctness_audit_20260523T191757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_data_correctness_audit_20260523T191757_result.json",
+    "occurrence": 1,
+    "bytes": 644,
+    "sha256": "d305c63dc888d89d030678a33890ab485b281c610ba6444fef22b627b9a27594"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "核查完成。结果：\n\n**105项检查，102 PASS，2 FAIL（已修复），1 UNVERIFIED**\n\n### 已修复（experiments.tex line 120）\n1. **83.3% → 83.2%**：Qwen-72B item_id 源值 83.2482%，四舍五入应为 83.2%\n2. **8.8pp → 8.7pp**：83.25−74.51=8.74pp，四舍五入应为 8.7pp\n\nLaTeX 重新编译成功，PDF 已更新。\n\n### 未验证\n- §4.1 text-exact-match \"temperature dominates at 79.7%\" — 服务器上未找到对应的 259K text-exact-match 分析 JSON。风险低（辅助对比分析），但建议找到或重跑该分析确认。\n\n完整报告：`artifacts/verification_report.md`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/review-data-correctness-audit.md"
+}

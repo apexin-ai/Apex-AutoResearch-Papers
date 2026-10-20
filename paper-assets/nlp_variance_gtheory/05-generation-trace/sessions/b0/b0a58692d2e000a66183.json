@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b0a58692d2e000a66183",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "research round3 citation verification",
+  "task_key": "worker_research_round3_citation_verification_20260522T090113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_round3_citation_verification_20260522T090113_result.json",
+    "occurrence": 1,
+    "bytes": 4033,
+    "sha256": "ab6c0f2ab2de01a14c6f81c3eee23a7d988b600769f57156ed7ca731c6cad5ca"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All verification complete. Here are the results:\n\n---\n\n### [1] MetaBench (Kipnis et al.)\n- **状态**：存在\n- **标题**：metabench -- A Sparse Benchmark of Reasoning and Knowledge in Large Language Models\n- **作者**：Alex Kipnis, Konstantinos Voudouris, Luca Schulze Buschoff, Eric Schulz\n- **发表状态**：ICLR 2025 Conference（已确认）\n- **BibTeX**：\n```bibtex\n@inproceedings{kipnis2025metabench,\n    title={metabench -- A Sparse Benchmark of Reasoning and Knowledge in Large Language Models},\n    author={Kipnis, Alex and Voudouris, Konstantinos and Schulze Buschoff, Luca and Schulz, Eric},\n    booktitle={Proceedings of the International Conference on Learning Representations},\n    year={2025}\n}\n```\n- **备注**：arXiv:2407.12844, 初投 2024-07-04, 修订 2025-02-20\n\n---\n\n### [2] ATLAS (Li et al.)\n- **状态**：存在，已从 ICLR 2026 撤稿\n- **标题**：Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\n- **作者**：Peiyu Li, Xiuxiu Tang, Si Chen, Ying Cheng, Ronald Metoyer, Ting Hua, Nitesh V. Chawla\n- **发表状态**：ICLR 2026 Withdrawn Submission（OpenReview ID: iX39LhePyd, 提交 2025-09-19, 撤回 2026-01-02）。只能引为 arXiv preprint。\n- **BibTeX**：\n```bibtex\n@article{li2025atlas,\n    title={Adaptive Testing for {LLM} Evaluation: A Psychometric Alternative to Static Benchmarks},\n    author={Li, Peiyu and Tang, Xiuxiu and Chen, Si and Cheng, Ying and Metoyer, Ronald and Hua, Ting and Chawla, Nitesh V.},\n    journal={arXiv preprint arXiv:2511.04689},\n    year={2025}\n}\n```\n- **备注**：Reviewer 信息确认——已撤稿，不可标注 ICLR\n\n---\n\n### [3] Waldis et al. (2024)\n- **状态**：需要 Director 确认具体引哪篇\n- **最可能候选**：Holmes (TACL 2024)\n- **标题**：Holmes: A Benchmark to Assess the Linguistic Competence of Language Models\n- **作者**：Andreas Waldis, Yotam Perlitz, Leshem Choshen, Yufang Hou, Iryna Gurevych\n- **发表状态**：Transactions of the Association for Computational Linguistics (TACL), Vol. 12, pp. 1616–1647, 2024\n- **BibTeX**：\n```bibtex\n@article{waldis-etal-2024-holmes,\n    title={Holmes: A Benchmark to Assess the Linguistic Competence of Language Models},\n    author={Waldis, Andreas and Perlitz, Yotam and Choshen, Leshem and Hou, Yufang and Gurevych, Iryna},\n    journal={Transactions of the Association for Computational Linguistics},\n    volume={12},\n    pages={1616--1647},\n    year={2024},\n    doi={10.1162/tacl_a_00718}\n}\n```\n- **备注**：经过对 Waldis 的全部 2024 出版物排查（Google Scholar、DBLP、个人主页），**他没有直接关于 \"evaluation robustness / benchmark variance\" 的论文**。Holmes 是他最相关的 benchmark 论文，但主题是 linguistic competence probing，不是 evaluation reliability/variance。如果 Director 需要的是 evaluation robustness 方向的论文，可能混淆了以下论文之一：\n  - Perlitz et al. \"Do These LLM Benchmarks Agree? Fixing Benchmark Evaluation with BenchBench\" (arXiv 2407.13696, NeurIPS 2025) — Waldis 不是作者\n  - Madaan et al. \"Quantifying Variance in Evaluation Benchmarks\" (arXiv 2406.10229) — Waldis 不是作者\n  - Siska et al. \"Examining the Robustness of LLM Evaluation to the Distributional Assumptions of Benchmarks\" (ACL 2024) — Waldis 不是作者\n\n  **建议**：请 Director 确认是引 Holmes，还是实际需要 Perlitz 或其他人的 evaluation robustness 工作。\n\n---\n\nSources:\n- [MetaBench arXiv](https://arxiv.org/abs/2407.12844)\n- [MetaBench ICLR 2025 Proceedings](https://proceedings.iclr.cc/paper_files/paper/2025/hash/4ebc26584810a189ef1e4f173aba4319-Abstract-Conference.html)\n- [ATLAS arXiv](https://arxiv.org/abs/2511.04689)\n- [ATLAS OpenReview (Withdrawn)](https://openreview.net/forum?id=iX39LhePyd)\n- [Holmes ACL Anthology](https://aclanthology.org/2024.tacl-1.88/)\n- [Andreas Waldis personal page](https://tresiwald.github.io/)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-round3-citation-verification.md"
+}

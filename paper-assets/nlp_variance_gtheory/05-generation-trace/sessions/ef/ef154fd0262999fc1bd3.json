@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ef154fd0262999fc1bd3",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "paper research cluster2 infra",
+  "task_key": "worker_paper_research_cluster2_infra_20260521T181537",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_cluster2_infra_20260521T181537_result.json",
+    "occurrence": 1,
+    "bytes": 1409,
+    "sha256": "4ae0cf9259df448e43f5040c9534fa219f9369eb352cb021665d4548e8bc75db"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "5 infrastructure_variance papers, all verified. Here's the summary:\n\n## Infrastructure Variance Cluster — 5 papers verified\n\n| # | Key | Paper | Venue | Status |\n|---|-----|-------|-------|--------|\n| 1 | `yuan2025layercast` | Yuan et al. — LayerCast, up to 9% accuracy variation from precision/GPU | NeurIPS 2025 (Oral) | verified, authors+venue updated |\n| 2 | `messina2026background` | Messina & Scotta — background temperature T_bg formalization | arXiv 2604.22411 | verified, title+authors corrected |\n| 3 | `thinkingmachines2025batch` | He & Thinking Machines Lab — batch-invariant kernels, 80/1000 unique at T=0 | Connectionism blog, DOI: 10.64434/tml.20250910 | verified, title+authors+URL+DOI added |\n| 4 | `shanmugavelu2024floating` | Shanmugavelu et al. — FP non-associativity in CUDA reductions | SC'24 Workshops (IEEE) | **NEW**, verified |\n| 5 | `zhang2025tbik` | Zhang et al. — TBIK for TP-invariant deterministic inference | arXiv 2511.17826 | **NEW**, verified |\n\nKey corrections made:\n- Yuan et al. venue upgraded from \"arXiv\" to \"NeurIPS 2025 (Oral)\", full 10-author list added\n- Messina authors corrected: Alberto Messina → `Messina, A.`, Stefano Scotta → `Scotta, S.`\n- ThinkingMachines title updated to official citation \"Defeating Nondeterminism in LLM Inference\", author Horace He added, DOI added\n- `total_papers` updated 16 → 18"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-cluster2-infra.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34fea5e196641be38e27",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops disk cleanup and llama70b download",
+  "task_key": "worker_ops_disk_cleanup_and_llama70b_download_20260523T090601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_disk_cleanup_and_llama70b_download_20260523T090601_result.json",
+    "occurrence": 1,
+    "bytes": 1081,
+    "sha256": "1cb8ceca5c7e98b252713c748f86f4ed8622c5503e65115b68f93ef7b447ecc1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载正在进行，进程存活。速度约 1.4-2.5 MB/s，下载的是 `consolidated.*.pth` 文件（每个约 16.4GB）。按当前速度预估需要较长时间。\n\n---\n\n## 汇报\n\n### 磁盘清理\n\n| 指标 | 清理前 | 清理后 |\n|------|--------|--------|\n| 已用 | 321G | 182G |\n| 可用 | 30G | **169G** |\n| **释放** | — | **139G** |\n\n已删除：LLM-Research（61G）、pip cache（7G）、Yi/01ai（17G）、InternLM（14G）、DeepSeek（13G）、OLMo/allenai（27G）。Qwen 缓存完整保留。\n\n### Llama-3.1-70B-Instruct 下载\n\n- **方式**：ModelScope（HF 无 token 且直连不通）\n- **PID**：313198，正在运行\n- **当前进度**：刚启动，正在下载 `consolidated.*.pth`（并行多文件），速度 ~1.4-2.5 MB/s\n- **预估大小**：~140GB（多个 16.4GB 的 pth 文件）\n- **预估时间**：当前速度下需要数小时\n\n轮询命令（后续检查）：\n```bash\ntail -5 /tmp/llama70b_download.log\ndu -sh /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama*\ndf -h /root/autodl-tmp/\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-disk-cleanup-and-llama70b-download.md"
+}

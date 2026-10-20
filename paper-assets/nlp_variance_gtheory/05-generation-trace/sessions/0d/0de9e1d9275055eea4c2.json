@@ -1,0 +1,399 @@
+{
+  "schema_version": "1.0",
+  "id": "0de9e1d9275055eea4c2",
+  "project": "nlp_variance_gtheory",
+  "kind": "conversation",
+  "title": "research round4 citation verification",
+  "task_key": "worker_research_round4_citation_verification_20260522T101638",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_round4_citation_verification_20260522T101638.jsonl",
+    "occurrence": 1,
+    "bytes": 20456,
+    "sha256": "a2209eaed9c8f079f147e82464ef3e221c62f1380137b50d6165790b817f635c"
+  },
+  "statistics": {
+    "messages": 19,
+    "user_turns": 0,
+    "tool_calls": 9,
+    "roles": {
+      "tool_call": 9,
+      "tool_result": 9,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T10:18:13.084296+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebFetch,WebSearch",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T10:18:13.084701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T10:18:13.084966+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2410.03492",
+              "prompt": "Extract the exact title, all authors, submission date, and any conference/venue information. Also check if the paper mentions being accepted at any conference or workshop."
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T10:18:13.085167+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://arxiv.org/abs/2601.03986",
+              "prompt": "Extract the exact title, all authors, submission date, and any conference/venue information. Check the actual year of submission carefully."
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T10:18:13.085323+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Yin 2025 \"From Crowdsourcing to Benchmarking\" LLM evaluation human preferences"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T10:18:13.085485+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Burnell \"Rethink reporting of evaluation results in AI\" 2023"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T10:18:13.085620+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Exact Title:**\n\"Towards Reproducible LLM Evaluation: Quantifying Uncertainty in LLM Benchmark Scores\"\n\n**Authors:**\n- Robert E. Blackwell\n- Jon Barry\n- Anthony G. Cohn\n\n**Submission Date:**\nSubmitted on 4 October 2024 (v1); last revised 27 June 2025 (v2)\n\n**Conference/Venue Information:**\nThe document does not indicate acceptance at any conference or workshop. The paper appears to be a standalone arXiv preprint classified under Computer Science > Computation and Language (cs.CL). It is described as a 4-page work with 1 figure, suggesting it may be formatted as a workshop paper, but no specific conference or venue acceptance is mentioned in the provided content."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T10:18:13.085747+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "# Paper Information\n\n**Title:** \"Benchmark^2: Systematic Evaluation of LLM Benchmarks\"\n\n**Authors:** Qi Qian, Chengsong Huang, Jingwen Xu, Changze Lv, Muling Wu, Wenhao Liu, Xiaohua Wang, Zhenghua Wang, Zisu Huang, Muzhao Tian, Jianhan Xu, Kun Hu, He-Da Wang, Yao Hu, Xuanjing Huang, Xiaoqing Zheng\n\n**Submission Date:** January 7, 2026\n\n**arXiv Identifier:** 2601.03986\n\n**Venue/Conference:** No conference or venue information is provided. The paper appears to be a standalone arXiv preprint in the Computation and Language category (cs.CL)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T10:18:13.085887+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Burnell \"Rethink reporting of evaluation results in AI\" 2023\"\n\nLinks: [{\"title\":\"Burnell, R. et al. (2023). Rethink Reporting of Evaluation Results in AI. Science, 380, 136-138. - References - Scientific Research Publishing\",\"url\":\"https://www.scirp.org/reference/referencespapers?referenceid=3535042\"},{\"title\":\"Rethink reporting of evaluation results in AI - White Rose Research Online\",\"url\":\"https://eprints.whiterose.ac.uk/id/eprint/198211/\"},{\"title\":\"Rethink reporting of evaluation results in AI\",\"url\":\"https://eprints.whiterose.ac.uk/id/eprint/198211/1/Burnell%20et%20al%20-%202023%20-%20Rethink%20reporting%20of%20evaluation%20results%20in%20AI%20(Pre-print).pdf\"},{\"title\":\"Rethink reporting of evaluation results in AI | Science\",\"url\":\"https://www.science.org/doi/10.1126/science.adf6369\"},{\"title\":\"(PDF) Rethink reporting of evaluation results in AI\",\"url\":\"https://www.researchgate.net/publication/370002303_Rethink_reporting_of_evaluation_results_in_AI\"},{\"title\":\"Rethink reporting of evaluation results in AI Aggregate metrics and lack of access to results limit understanding - Polytechnic University of Valencia\",\"url\":\"https://panorama.upv.es/en/ipublic/item/10192858\"},{\"title\":\"Rethink reporting of evaluation results in AI\",\"url\":\"https://ryanburnell.com/wp-content/uploads/Burnell-et-al-2023-Rethink-reporting-of-evaluation-results-in-AI.pdf\"},{\"title\":\"Rethink reporting of evaluation results in AI | Montreal AI Ethics Institute\",\"url\":\"https://montrealethics.ai/rethink-reporting-of-evaluation-results-in-ai/\"}]\n\nI found the paper! Here are the details:\n\n**\"Rethink Reporting of Evaluation Results in AI\"** is an article by Burnell, R. et al. published in Science in 2023, Volume 380, pages 136-138.\n\nThe article was authored by Ryan Burnell, Wout Schellaert, John Burden, Tomer D. Ullman, Fernando Martinez-Plumed, Joshua B. Tenenbaum, Danaja Rutar, Lucy G. Cheke, Jascha Sohl-Dickstein, Melanie Mitchell, Douwe Kiela, Murray Shanahan, El\n…[truncated 771 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T10:18:13.086052+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Yin 2025 \"From Crowdsourcing to Benchmarking\" LLM evaluation human preferences\"\n\nLinks: [{\"title\":\"From Crowdsourced Data to High-Quality Benchmarks: Arena-Hard and   BenchBuilder Pipeline\",\"url\":\"https://arxiv.org/pdf/2406.11939\"},{\"title\":\"Chatbot Arena: An Open Platform for Evaluating LLMs by Human Preference\",\"url\":\"https://arxiv.org/pdf/2403.04132\"},{\"title\":\"LLM-Crowdsourced: A Benchmark-Free Paradigm for Mutual Evaluation of Large Language Models\",\"url\":\"https://arxiv.org/html/2507.22359v1\"},{\"title\":\"Unpacking Human Preference for LLMs: Demographically Aware Evaluation with the HUMAINE Framework\",\"url\":\"https://arxiv.org/html/2603.04409\"},{\"title\":\"LLM Evaluation: The New Bottleneck in AI\",\"url\":\"https://mlfrontiers.substack.com/p/llm-evaluation-the-new-bottleneck\"},{\"title\":\"Unpacking Human Preference for LLMs: Demographically Aware Evaluation with the HUMAINE Framework\",\"url\":\"https://arxiv.org/pdf/2603.04409\"}]\n\nI found several relevant papers on LLM evaluation and human preferences. Here are the key results:\n\n1. **Arena-Hard and BenchBuilder Pipeline** - This work outlines that an LLM chatbot benchmark should have alignment with human preference as a key property, addressing the challenges in creating effective evaluation benchmarks.\n\n2. **Chatbot Arena** - Chatbot Arena is a benchmarking platform for LLMs that features anonymous, randomized battles in a crowdsourced setting, where users cast a vote for the model that delivers the preferred response, and this crowdsourced method effectively gathers diverse fresh user prompts.\n\n3. **LLM-Crowdsourced** - This paper proposes a novel benchmark-free evaluation paradigm based on LLM-Crowdsourced, where multiple LLMs take turns generating questions, answer independently, and evaluate mutually, with final capability rankings computed by aggregating scores.\n\n4. **HUMAINE Framework** - To address the limits of automated benchmarks, direct human preference evaluation has emerged, with\n…[truncated 476 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T10:18:13.086233+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Gruber \"Towards Reproducible LLM Evaluation\" \"Quantifying Uncertainty\" 2024"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T10:18:13.086361+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Yin \"crowdsourcing\" \"benchmarking\" \"framework\" LLM evaluation 2025"
+            }
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T10:18:13.086520+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebFetch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "WebFetch",
+            "tool_args": {
+              "url": "https://www.science.org/doi/10.1126/science.adf6369",
+              "prompt": "Extract the exact title, all authors, publication date, volume, pages, and DOI."
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T10:18:13.086641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Request failed with status code 403"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "WebFetch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T10:18:13.086770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Gruber \"Towards Reproducible LLM Evaluation\" \"Quantifying Uncertainty\" 2024\"\n\nLinks: [{\"title\":\"[2410.03492] Towards Reproducible LLM Evaluation: Quantifying Uncertainty in LLM Benchmark Scores\",\"url\":\"https://arxiv.org/abs/2410.03492\"},{\"title\":\"Towards Reproducible LLM Evaluation: Quantifying Uncertainty in LLM Benchmark Scores\",\"url\":\"https://arxiv.org/html/2410.03492v1\"},{\"title\":\"Towards Reproducible LLM Evaluation: Quantifying Uncertainty in LLM Benchmark Scores\",\"url\":\"https://arxiv.org/pdf/2410.03492\"},{\"title\":\"Towards Reproducible LLM Evaluation: Quantifying Uncertainty in LLM Benchmark Scores. - White Rose Research Online\",\"url\":\"https://eprints.whiterose.ac.uk/id/eprint/237881/\"},{\"title\":\"Quantifying Uncertainty in LLM Benchmark Scores.\",\"url\":\"https://eprints.whiterose.ac.uk/id/eprint/237881/1/2410.03492v2.pdf\"},{\"title\":\"(PDF) Towards Reproducible LLM Evaluation: Quantifying Uncertainty in LLM Benchmark Scores\",\"url\":\"https://www.researchgate.net/publication/384680294_Towards_Reproducible_LLM_Evaluation_Quantifying_Uncertainty_in_LLM_Benchmark_Scores\"}]\n\nI found the paper you're searching for! Here are the key details:\n\nThe paper \"Towards Reproducible LLM Evaluation: Quantifying Uncertainty in LLM Benchmark Scores\" was published in 2024 by Blackwell, R.E., Barry, J., and Cohn, A.G.\n\nThe research addresses the fact that Large Language Models are stochastic and may not give deterministic answers even with temperature set to zero and a fixed random seed, and that few benchmark studies attempt to quantify uncertainty partly due to time and cost constraints.\n\nThe authors use benchmarks designed for testing LLMs' capacity to reason about cardinal directions to explore the impact of experimental repeats on mean score and prediction intervals, and suggest a simple method for cost-effectively quantifying the uncertainty of a benchmark score with recommendations for reproducible LLM evaluation.\n\nThe paper is available on arXiv (24\n…[truncated 180 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-22T10:18:13.086938+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Yin \"crowdsourcing\" \"benchmarking\" \"framework\" LLM evaluation 2025\"\n\nLinks: [{\"title\":\"Evaluation and Benchmarking of LLM Agents: A Survey Mahmoud Mohammadi\",\"url\":\"https://arxiv.org/pdf/2507.21504\"},{\"title\":\"Benchmark Health Index: A Systematic Framework for Benchmarking the Benchmarks of LLMs\",\"url\":\"https://arxiv.org/pdf/2602.11674\"},{\"title\":\"LLM-Crowdsourced: A Benchmark-Free Paradigm for Mutual Evaluation of Large Language Models | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/llm-crowdsourced-benchmark-free-paradigm-mutual-evaluation\"},{\"title\":\"Rethinking LLM Evaluation: Can We Evaluate LLMs with 200× Less Data?\",\"url\":\"https://arxiv.org/html/2510.10457\"},{\"title\":\"LLM-Crowdsourced: A Benchmark-Free Paradigm for Mutual Evaluation of Large Language Models\",\"url\":\"https://arxiv.org/html/2507.22359v1\"},{\"title\":\"A Survey on Evaluation of LLM-based Agents\",\"url\":\"https://arxiv.org/html/2503.16416v2\"},{\"title\":\"League of LLMs: A Benchmark-Free Paradigm for Mutual Evaluation of\",\"url\":\"https://www.arxiv.org/pdf/2507.22359\"},{\"title\":\"AI Idea Bench 2025: AI Research Idea Generation Benchmark\",\"url\":\"https://arxiv.org/pdf/2504.14191\"}]\n\nI found relevant results for your search. Here's what the web search returned:\n\n## Key Findings\n\nThe research proposes a novel benchmark-free evaluation paradigm called \"LLM-Crowdsourced\" where multiple LLMs take turns generating questions, answer independently, and evaluate mutually, with final capability rankings computed by aggregating scores across rounds.\n\nExperiments on two classical domains, mathematics and programming, demonstrate that LLM-Crowdsourced can not only effectively distinguish differences in LLM capability, but also identify phenomena that are difficult to detect using traditional methods, such as \"memorization-based answering.\"\n\nThe framework and experimental code have been publicly released to support community evaluation of new LLMs and to promote the st\n…[truncated 383 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-22T10:18:13.087129+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Yin \"evaluating LLMs\" \"human preferences\" framework benchmark 2024 2025 arxiv"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-22T10:18:13.087271+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Yin \"evaluating LLMs\" \"human preferences\" framework benchmark 2024 2025 arxiv\"\n\nLinks: [{\"title\":\"Unpacking Human Preference for LLMs: Demographically Aware Evaluation with the HUMAINE Framework\",\"url\":\"https://arxiv.org/pdf/2603.04409\"},{\"title\":\"Nonparametric LLM Evaluation from Preference Data\",\"url\":\"https://arxiv.org/pdf/2601.21816\"},{\"title\":\"[2403.16950] Aligning with Human Judgement: The Role of Pairwise Preference in Large Language Model Evaluators\",\"url\":\"https://arxiv.org/abs/2403.16950\"},{\"title\":\"Published as a conference paper at ICLR 2025\",\"url\":\"https://arxiv.org/pdf/2406.04412v2\"},{\"title\":\"Aligning MLLM Benchmark With Human Preferences via Structural Equation Modeling\",\"url\":\"https://arxiv.org/html/2506.21572\"}]\n\nBased on the search results, I found several relevant papers on evaluating LLMs with human preferences and frameworks/benchmarks from 2024-2025 on arXiv:\n\n1. **\"Unpacking Human Preference for LLMs: Demographically Aware Evaluation with the HUMAINE Framework\"** (arxiv.org/pdf/2603.04409) - This work addresses the \"evaluation gap\" where methods for measuring LLM models have not kept pace with their real-world impact, and proposes the HUMAINE framework for demographically aware evaluation.\n\n2. **\"Nonparametric LLM Evaluation from Preference Data\"** (arxiv.org/pdf/2601.21816, January 2026) - This paper discusses how collecting preferences is often simpler and more reliable than assigning absolute quality scores, with a typical setup where two LLMs are prompted with the same task and evaluators indicate which response is preferred.\n\n3. **\"Aligning with Human Judgement: The Role of Pairwise Preference in Large Language Model Evaluators\"** by Yinhong Liu et al. (arxiv 2403.16950, last revised January 2025) - This work conducts a systematic study of misalignment between LLM evaluators and human evaluation, revealing that existing calibration methods are insufficient for effectively aligning LLM evaluators.\n\n4. **\"Ali\n…[truncated 457 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-22T10:18:13.087499+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证完成。以下是结果：\n\n---\n\n### [1] Gruber et al. (2024) — \"Towards Reproducible LLM Evaluation: Quantifying Uncertainty in LLM Benchmark Scores\"\n- **状态：信息有误（作者错误）**\n- 实际标题：Towards Reproducible LLM Evaluation: Quantifying Uncertainty in LLM Benchmark Scores（标题正确）\n- **实际作者：Robert E. Blackwell, Jon Barry, Anthony G. Cohn** — 无任何 Gruber\n- 年份：2024（正确）\n- Venue：arXiv preprint（未发表于会议）\n- arXiv：2410.03492\n- BibTeX：\n```bibtex\n@article{blackwell2024towards,\n  title={Towards Reproducible LLM Evaluation: Quantifying Uncertainty in LLM Benchmark Scores},\n  author={Blackwell, Robert E. and Barry, Jon and Cohn, Anthony G.},\n  journal={arXiv preprint arXiv:2410.03492},\n  year={2024}\n}\n```\n\n---\n\n### [2] Wang et al. (2025) — \"Benchmark2: Systematic Evaluation of LLM Benchmarks\"\n- **状态：信息有误（作者和年份均错）**\n- 实际标题：Benchmark\\^2: Systematic Evaluation of LLM Benchmarks（标题基本正确，`^2` 非 `2`）\n- **实际第一作者：Qi Qian**（Wang 仅为中间共同作者之一）\n- 全部作者：Qi Qian, Chengsong Huang, Jingwen Xu, Changze Lv, Muling Wu, Wenhao Liu, Xiaohua Wang, Zhenghua Wang, Zisu Huang, Muzhao Tian, Jianhan Xu, Kun Hu, He-Da Wang, Yao Hu, Xuanjing Huang, Xiaoqing Zheng\n- **实际年份：2026**（2601 = 2026年1月，非声称的2025）\n- Venue：arXiv preprint\n- arXiv：2601.03986\n- BibTeX：\n```bibtex\n@article{qian2026benchmark,\n  title={Benchmark$^2$: Systematic Evaluation of LLM Benchmarks},\n  author={Qian, Qi and Huang, Chengsong and Xu, Jingwen and Lv, Changze and Wu, Muling and Liu, Wenhao and Wang, Xiaohua and Wang, Zhenghua and Huang, Zisu and Tian, Muzhao and Xu, Jianhan and Hu, Kun and Wang, He-Da and Hu, Yao and Huang, Xuanjing and Zheng, Xiaoqing},\n  journal={arXiv preprint arXiv:2601.03986},\n  year={2026}\n}\n```\n\n---\n\n### [3] Yin et al. (2025) — \"From Crowdsourcing to Benchmarking: A Framework for Evaluating LLMs with Human Preferences\"\n- **状态：不存在（疑似幻觉）**\n- 多次搜索（精确标题、关键词组合、作者+领域）均未找到任何匹配\n- 相关领域存在类似主题的论文（如 Chatbot Arena、LLM-Crowdsourced），但没有任何 Yin 作者发表过该标题的工作\n- **建议：删除此引用**\n\n---\n\n### [4] Burnell et al. (2023) — \"Rethink reporting of evaluation results in AI\"\n- **状态：存在（信息正确）**\n- 实际标题：Rethink reporting of evaluation results in AI（完全匹配）\n- 作者：Ryan Burnell, Wout Schellaert, John Burden, Tomer D. Ullman, Fernando Martinez-Plumed, Joshua B. Tenenbaum, Danaja Rutar, Lucy G. Cheke, Jascha Sohl-Dickstein, Melanie Mitchell, Douwe Kiela, Murray Shanahan, Ellen M. Voorhees, Anthony G. Cohn, Joel Z. Leibo, Jose Hernandez-Orallo\n- 年份：2023\n- **Venue：Science, Vol. 380, pp. 136–138**\n- DOI：10.1126/science.adf6369\n- BibTeX：\n```bibtex\n@article{burnell2023rethink,\n  title={Rethink reporting of evaluation results in {AI}},\n  author={Burnell, Ryan and Schellaert, Wout and Burden, John and Ullman, Tomer D. and Martinez-Plumed, Fernando and Tenenbaum, Joshua B. and Rutar, Danaja and Cheke, Lucy G. and Sohl-Dickstein, Jascha and Mitchell, Melanie and Kiela, Douwe and Shanahan, Murray and Voorhees, Ellen M. and Cohn, Anthony G. and Leibo, Joel Z. and Hernandez-Orallo, Jose},\n  journal={Science},\n  volume={380},\n  number={6641},\n  pages={136--138},\n  year={2023},\n  doi={10.1126/science.adf6369}\n}\n```\n\n---\n\n## 汇总\n\n| # | 声称引用 | 状态 | 问题 |\n|---|---------|------|------|\n| 1 | Gruber et al. (2024) | **信息有误** | 作者是 Blackwell, Barry & Cohn，无 Gruber |\n| 2 | Wang et al. (2025) | **信息有误** | 第一作者是 Qian；年份是 2026 非 2025 |\n| 3 | Yin et al. (2025) | **不存在** | 疑似幻觉，建议删除 |\n| 4 | Burnell et al. (2023) | **正确** | Science 期刊，信息完全匹配 |\n\n**可用引用：仅 #4 可直接使用。#1 和 #2 需修正作者/年份后可用。#3 必须删除。**"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_round4_citation_verification_20260522T101638"
+          },
+          "id": "event-000019"
+        }
+      ],
+      "message_count": 19
+    }
+  ],
+  "readable_path": "readable/conversations/research-round4-citation-verification.md"
+}

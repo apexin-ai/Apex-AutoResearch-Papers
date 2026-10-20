@@ -1,0 +1,181 @@
+{
+  "schema_version": "1.0",
+  "id": "0499b7d56dac3b015e3f",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "infra env setup",
+  "task_key": "worker_infra_env_setup_20260520T142053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env_setup_20260520T142053.log",
+    "occurrence": 1,
+    "bytes": 5052056,
+    "sha256": "2f7f77a16d6cc3a0424babd4584b7a0bafd72c1c6c97ee7cd646de4303775c20"
+  },
+  "statistics": {
+    "messages": 3692,
+    "user_turns": 5,
+    "tool_calls": 1592,
+    "roles": {
+      "log": 1,
+      "system": 34,
+      "record": 1,
+      "assistant": 466,
+      "tool_call": 1592,
+      "tool_result": 1592,
+      "user": 5,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 908,
+      "chunks": [
+        {
+          "path": "0499b7d56dac3b015e3f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0006.json",
+          "message_count": 8
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 598,
+      "chunks": [
+        {
+          "path": "0499b7d56dac3b015e3f-part-0006.json",
+          "message_count": 172
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0008.json",
+          "message_count": 180
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0009.json",
+          "message_count": 66
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 452,
+      "chunks": [
+        {
+          "path": "0499b7d56dac3b015e3f-part-0009.json",
+          "message_count": 114
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0010.json",
+          "message_count": 180
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0011.json",
+          "message_count": 158
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "boundary": "recorded_user_message",
+      "message_count": 416,
+      "chunks": [
+        {
+          "path": "0499b7d56dac3b015e3f-part-0011.json",
+          "message_count": 22
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0012.json",
+          "message_count": 180
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0013.json",
+          "message_count": 180
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0014.json",
+          "message_count": 34
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "boundary": "recorded_user_message",
+      "message_count": 920,
+      "chunks": [
+        {
+          "path": "0499b7d56dac3b015e3f-part-0014.json",
+          "message_count": 146
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0015.json",
+          "message_count": 180
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0016.json",
+          "message_count": 180
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0017.json",
+          "message_count": 180
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0018.json",
+          "message_count": 180
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0019.json",
+          "message_count": 54
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "boundary": "recorded_user_message",
+      "message_count": 398,
+      "chunks": [
+        {
+          "path": "0499b7d56dac3b015e3f-part-0019.json",
+          "message_count": 126
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0020.json",
+          "message_count": 180
+        },
+        {
+          "path": "0499b7d56dac3b015e3f-part-0021.json",
+          "message_count": 92
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-env-setup.md"
+}

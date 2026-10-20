@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc88dd8e40bc88d8da85",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops scale validation download monitor",
+  "task_key": "worker_ops_scale_validation_download_monitor_20260522T050429",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scale_validation_download_monitor_20260522T050429_result.json",
+    "occurrence": 1,
+    "bytes": 53,
+    "sha256": "47052f4ed1ceffc0dceadfb58661ee37fc4ff42c593e0c7798a4d038beaf5cd1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 分钟后继续检查下载进度。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scale-validation-download-monitor.md"
+}

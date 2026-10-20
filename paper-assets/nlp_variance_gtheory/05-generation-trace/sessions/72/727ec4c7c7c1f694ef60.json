@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "727ec4c7c7c1f694ef60",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra westd19912 olmo math fix",
+  "task_key": "worker_infra_westd19912_olmo_math_fix_20260521T173859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd19912_olmo_math_fix_20260521T173859_result.json",
+    "occurrence": 1,
+    "bytes": 1331,
+    "sha256": "6005af03946f2c73f823d4a0cbb35035d90ded61c25f92596bab3eae4111fff9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修复完成。汇总如下：\n\n## 执行结果\n\n### GPU 布局\n| GPU | 任务 | PID | 状态 |\n|-----|------|-----|------|\n| 0 | OLMo MATH（新启动） | 57889 | 运行中，400/57600 行 |\n| 1 | 空闲 | - | 等待 Yi |\n| 2 | 空闲 | - | 等待 Yi |\n| 3 | OLMo GSM8K | 52660 | 运行中，47000/57600 行（~82%） |\n\n### OLMo benchmark 进度（exp002_olmo, 目标各 57600 行*）\n| Benchmark | 行数 | 状态 |\n|-----------|------|------|\n| MMLU | 288,000 | 完成 |\n| ARC | 288,000 | 完成 |\n| HellaSwag | 288,000 | 完成 |\n| GSM8K | 47,000 | ~82%，GPU 3 |\n| **MATH** | **400** | **已修复启动，GPU 0** |\n\n*MMLU/ARC/HellaSwag 各 288 条件 × 1000 items = 288000；GSM8K/MATH 各 288 条件 × 200 items = 57600\n\n### Yi benchmark 进度\n尚未开始。`yi_after_olmo_v2.sh`（PID 58498）等待 OLMo GSM8K + MATH 两个都完成后自动在 4 GPU 上启动 Yi 全部 5 个 benchmark。\n\n### 磁盘清理\nModelScope 临时目录不存在，无需清理。\n\n### 磁盘状态\n- 根分区：14G/30G（46%）\n- 数据盘：124G/250G（50%）\n\n### 修复措施\n1. 杀掉原 `yi_after_olmo.sh`（会跳过 MATH 直接启动 Yi）\n2. 在空闲 GPU 0 启动 OLMo MATH 与 GPU 3 的 GSM8K 并行\n3. 部署 `yi_after_olmo_v2.sh` 等待两个 OLMo PID 完成后再启动 Yi"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd19912-olmo-math-fix.md"
+}

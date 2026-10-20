@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9a65f7487e13aedf2cd1",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis dual metric deep",
+  "task_key": "worker_analysis_dual_metric_deep_20260520T215443",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dual_metric_deep_20260520T215443_result.json",
+    "occurrence": 1,
+    "bytes": 1193,
+    "sha256": "542ebe995c250b34cbf97b4b3aaed83cf9d0de5f34ad87b34caa91f742f69862"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。产出：\n\n**文件**:\n- `artifacts/analysis/dual_metric_analysis.md` — 完整分析报告\n- `artifacts/analysis/fig1_variance_decomposition_comparison.png` — 方差分解对比\n- `artifacts/analysis/fig2_item_scatter.png` — Item-level 散点图\n- `artifacts/analysis/fig3_facet_heatmap.png` — Facet 效应热力图\n\n**核心发现**:\n\n1. **两个 metric 测量完全不同的构念** — binary_correct 由 item 难度主导（58.4%），text_exact_match 由 prompt_template:item_id 交互（37.5%）和 temperature（16.9%）主导。二者方差结构几乎无重叠。\n\n2. **Temperature 对准确性几乎无影响，但对确定性有决定性影响** — temp=0.5 时 text_exact_match 从 0.247 骤降至 0.019，而 binary_correct 仅微变（0.643→0.669）。采样随机性改变文字表述但不改变答案字母。\n\n3. **Item-level 无显著相关**（Spearman ρ = −0.21, p = 0.14）。最不一致的 items 全是\"高准确-低确定\"型：总是答对但每次文本不同。\n\n4. **两个 metric 必须同时保留**：binary_correct 测评估有效性，text_exact_match 测可复现性，它们提供正交信息。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dual-metric-deep.md"
+}

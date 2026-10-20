@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e329024894d18dd3d629",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "paper figure",
+  "task_key": "worker_paper_figure_20260521T175548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_figure_20260521T175548_result.json",
+    "occurrence": 1,
+    "bytes": 822,
+    "sha256": "7a7e3ada4a18436c16e5b9f61bf198b526d3c7b34148bb0d4b154598ec715d0e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Figure 2 生成完成。\n\n**输出文件**:\n- PDF: `figures/paper/fig2_design_diagram.pdf` (35 KB)\n- PNG: `figures/paper/fig2_design_diagram.png` (180 KB, 300 DPI)\n- 脚本: `figures/paper/gen_fig2_design_diagram.py`\n\n**内容**:\n- 中心节点 Item (p) 蓝色圆角矩形，标注 \"200 MMLU items, 10 subjects × 20\"\n- 6 个外围 facet 节点等间距辐射排列，各带独立配色和详细参数\n- 所有节点间灰色细线表示 fully crossed；Model×Item 加粗线 + \"33.6%\" 标注\n- 三个分组标注：Infrastructure (Precision)、Methodology (Prompt/Seed/Temp/Ordering)、Measurement (Item)\n- Model 节点右上方箭头指向 \"quasi-random facet\" 标签\n- 底部信息栏：exp-001 (345,600 records) / exp-002 (921,600 records)\n\nArtifact 已注册: `art_20260521_f4e0f9`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-figure-copy-3.md"
+}

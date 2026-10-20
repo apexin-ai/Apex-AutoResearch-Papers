@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c8b6b3908fe2469212d1",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra download mistral",
+  "task_key": "worker_infra_download_mistral_20260521T005229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download_mistral_20260521T005229_result.json",
+    "occurrence": 1,
+    "bytes": 573,
+    "sha256": "5f6dccb0cb7e70a211a2d1d7f03c482cd8b61688da4bedfb46e186b57a066034"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Mistral-7B-Instruct-v0.3 下载已完成，无需恢复。\n\n```\nMistral-7B-Instruct-v0.3: 完成 (14GB, /root/autodl-tmp/.hf_cache/LLM-Research/Mistral-7B-Instruct-v0___3/, 3个safetensors文件)\n```\n\n文件清单：\n- 3 个 safetensors (4.7G + 4.7G + 4.3G)\n- config.json, tokenizer.json, tokenizer.model 等全部就绪\n- 0 个 .incomplete 文件\n\n注意：路径是 ModelScope 格式 (`LLM-Research/Mistral-7B-Instruct-v0___3`)，不是 HuggingFace 格式 (`mistralai/Mistral-7B-Instruct-v0.3`)。项目代码加载模型时需用实际路径。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-mistral.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "af2f3c5dbd172a6b794f",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "analysis phase2 gstudy hellaswag 8model",
+  "task_key": "worker_analysis_phase2_gstudy_hellaswag_8model_20260521T222217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_gstudy_hellaswag_8model_20260521T222217.log",
+    "occurrence": 1,
+    "bytes": 886622,
+    "sha256": "e74180d9823cbea3dd5fdd3a9c06c5d413f0c3be6215db9a357264ec1b36eaac"
+  },
+  "statistics": {
+    "messages": 299,
+    "user_turns": 1,
+    "tool_calls": 98,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 95,
+      "tool_call": 98,
+      "tool_result": 98,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 237,
+      "chunks": [
+        {
+          "path": "af2f3c5dbd172a6b794f-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "af2f3c5dbd172a6b794f-part-0002.json",
+          "message_count": 57
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 62,
+      "chunks": [
+        {
+          "path": "af2f3c5dbd172a6b794f-part-0002.json",
+          "message_count": 62
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-phase2-gstudy-hellaswag-8model.md"
+}

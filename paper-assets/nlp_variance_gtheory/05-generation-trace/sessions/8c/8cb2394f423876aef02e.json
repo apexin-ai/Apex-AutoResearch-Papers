@@ -1,0 +1,321 @@
+{
+  "schema_version": "1.0",
+  "id": "8cb2394f423876aef02e",
+  "project": "nlp_variance_gtheory",
+  "kind": "conversation",
+  "title": "analysis budget sensitivity delta g",
+  "task_key": "worker_analysis_budget_sensitivity_delta_g_20260522T145118",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_budget_sensitivity_delta_g_20260522T145118.jsonl",
+    "occurrence": 1,
+    "bytes": 26552,
+    "sha256": "2090b755fb2931ea0b498142491a0ebcfa00f3b56c4204d72988599f196c4c0a"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-22T14:56:33.089548+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_budget_sensitivity_delta_g_20260522T145118",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "artifacts/exp004/data/*.json",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-22T14:56:33.089876+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/exp004/data/mmlu_gstudy_ref.json\nartifacts/exp004/data/defensive_analyses.json\nartifacts/exp004/data/bootstrap_ci_mmlu.json\nartifacts/exp004/data/bootstrap_ci_arc.json\nartifacts/exp004/data/bootstrap_ci_hellaswag.json\nartifacts/exp004/data/dstudy_arc_1f8f63.json\nartifacts/exp004/data/dstudy_arc.json\nartifacts/exp004/data/dstudy_hellaswag.json\nartifacts/exp004/data/bootstrap_ci_gsm8k.json\nartifacts/exp004/data/dstudy_gsm8k.json\nartifacts/exp004/data/dstudy_math.json\nartifacts/exp004/data/bootstrap_ci_math.json\nartifacts/exp004/data/dstudy_bootstrap_ci_ec5ab0.json\nartifacts/exp004/data/dstudy_bootstrap_ci.json\nartifacts/exp004/data/exp001_bf16_2temp_comparison.json\nartifacts/exp004/data/exp003_scale_gstudy.json\nartifacts/exp004/data/cohens_d_ci.json\nartifacts/exp004/data/binary_sim_ranking_consistency.json\nartifacts/exp004/data/unbundled_permutation_test.json\nartifacts/exp004/data/unbundled_permutation_test_960adb.json\nartifacts/exp004/data/deepseek_lomo_cross_benchmark_af5fea.json\nartifacts/exp004/data/deepseek_lomo_cross_benchmark.json\nartifacts/exp004/data/cross_benchmark_difficulty_heterogeneity.json\nartifacts/exp004/data/stratified_bootstrap_comparison.json\nartifacts/exp004/data/intermediate_dstudy_table.json\nartifacts/exp004/data/exp003_scale_crossed_gstudy_3b7b.json\nartifacts/exp004/data/deepseek_math_integrity.json\nartifacts/exp004/data/math_8model_gstudy.json\nartifacts/exp004/data/exp001b_resampling_henderson_i.json\nartifacts/exp004/data/math_deepseek_lomo.json\nartifacts/exp004/data/fixed_vs_random_model.json\nartifacts/exp004/data/fixed_vs_random_model_4aac03.json\nartifacts/exp004/data/cohens_kappa_pairwise.json\nartifacts/exp004/data/cohens_kappa_pairwise_eed41d.json\nartifacts/exp004/data/lomo_8x5_full_364b40.json\nartifacts/exp004/data/lomo_8x5_full.json\nartifacts/exp004/data/teaser_figure_data.json\nartifacts/exp004/data/teaser_figure_data_a9d230.json\nartifacts/exp004/data/mmlu_subject_level_analysis_5fe22f.json\nartifacts/exp004/data/mmlu_subject_le\n…[truncated 71 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_budget_sensitivity_delta_g_20260522T145118",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-22T14:56:33.090044+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_budget_sensitivity_delta_g_20260522T145118",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/intermediate_dstudy_table.json"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-22T14:56:33.090229+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"source\": \"exp-001 single-model (Llama-3.1-8B-Instruct) MMLU, Henderson I 6-facet, 259200 records\",\n3\t  \"method\": \"D-study with Spearman-Brown projection for item count\",\n4\t  \"formula\": \"G(n) = tau*n / (tau*n + N_study*delta), delta = sum(vc_facet:item / n_facet) + residual / prod(n_facets)\",\n5\t  \"N_study\": 200,\n6\t  \"variance_components\": {\n7\t    \"tau_item_id\": 0.1271120031,\n8\t    \"precision_x_item\": 0.0071904578,\n9\t    \"temperature_x_item\": 0.0063796481,\n10\t    \"prompt_template_x_item\": 0.0118973392,\n11\t    \"seed_x_item\": 0.0102602214,\n12\t    \"ordering_x_item\": 0.0016752615,\n13\t    \"residual\": 0.0502927384\n14\t  },\n15\t  \"note_on_precision_facet\": \"The original study has 6 facets including precision (FP16/BF16/FP32). For practical designs (rows 1-6), precision is fixed at 1 level (practitioners use one precision). The Full multi-facet row uses all 3 precision levels to match the study's full design.\",\n16\t  \"designs\": [\n17\t    {\n18\t      \"name\": \"Single-condition (typical)\",\n19\t      \"n_precision\": 1,\n20\t      \"n_temperature\": 1,\n21\t      \"n_prompt\": 1,\n22\t      \"n_seed\": 1,\n23\t      \"n_ordering\": 1,\n24\t      \"total_conditions_per_item\": 1,\n25\t      \"sigma_delta\": 0.0876956664,\n26\t      \"g_at_200\": 0.591748,\n27\t      \"n_for_g80\": 552,\n28\t      \"g_projections\": {\n29\t        \"25\": 0.153391,\n30\t        \"50\": 0.265983,\n31\t        \"75\": 0.352143,\n32\t        \"100\": 0.4202,\n33\t        \"150\": 0.520866,\n34\t        \"200\": 0.591748,\n35\t        \"300\": 0.68496,\n36\t        \"500\": 0.783722,\n37\t        \"1000\": 0.878749\n38\t      }\n39\t    },\n40\t    {\n41\t      \"name\": \"Minimal upgrade\",\n42\t      \"n_precision\": 1,\n43\t      \"n_temperature\": 1,\n44\t      \"n_prompt\": 2,\n45\t      \"n_seed\": 1,\n46\t      \"n_ordering\": 1,\n47\t      \"total_conditions_per_item\": 2,\n48\t      \"sigma_delta\": 0.0566006276,\n49\t      \"g_at_200\": 0.691907,\n50\t      \"n_for_g80\": 357,\n51\t      \"g_projections\": {\n52\t        \"25\": 0.21919,\n53\t        \"50\": 0.359567,\n54\t        \"75\": 0.45716,\n55\t        \"100\": 0.528943,\n…[truncated 3274 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_budget_sensitivity_delta_g_20260522T145118",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-22T14:56:33.090439+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_budget_sensitivity_delta_g_20260522T145118",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/dstudy_arc.json"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-22T14:56:33.090615+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"benchmark\": \"arc\",\n3\t  \"n_models\": 8,\n4\t  \"n_items_actual\": 200,\n5\t  \"variance_components\": {\n6\t    \"item\": 0.0671248004,\n7\t    \"model_item\": 0.0597623659,\n8\t    \"temperature_item\": 0.0003782411,\n9\t    \"prompt_item\": 0.0025655713,\n10\t    \"seed_item\": 0.0002977664,\n11\t    \"ordering_item\": 0.0,\n12\t    \"residual\": 0.0273654728\n13\t  },\n14\t  \"multi_facet\": {\n15\t    \"conditions\": 2304,\n16\t    \"sigma2_delta_per_item\": 0.0081485166,\n17\t    \"sigma2_delta\": 1.62970332,\n18\t    \"n_G80\": 98,\n19\t    \"G_200\": 0.891748,\n20\t    \"d_study_curve\": {\n21\t      \"25\": 0.507319,\n22\t      \"50\": 0.67314,\n23\t      \"75\": 0.755449,\n24\t      \"100\": 0.804643,\n25\t      \"116\": 0.826925,\n26\t      \"150\": 0.86069,\n27\t      \"200\": 0.891748,\n28\t      \"300\": 0.92513,\n29\t      \"500\": 0.953691,\n30\t      \"1000\": 0.976297\n31\t    },\n32\t    \"monotonic\": true\n33\t  },\n34\t  \"partial_4\": {\n35\t    \"conditions\": 4,\n36\t    \"sigma2_delta_per_item\": 0.068413644,\n37\t    \"sigma2_delta\": 13.68272881,\n38\t    \"n_G80\": 816,\n39\t    \"G_200\": 0.495245,\n40\t    \"d_study_curve\": {\n41\t      \"25\": 0.109247,\n42\t      \"50\": 0.196974,\n43\t      \"75\": 0.268971,\n44\t      \"100\": 0.32912,\n45\t      \"116\": 0.362681,\n46\t      \"150\": 0.42392,\n47\t      \"200\": 0.495245,\n48\t      \"300\": 0.595427,\n49\t      \"500\": 0.710389,\n50\t      \"1000\": 0.830675\n51\t    },\n52\t    \"monotonic\": true\n53\t  },\n54\t  \"single_condition\": {\n55\t    \"conditions\": 1,\n56\t    \"sigma2_delta_per_item\": 0.0903694175,\n57\t    \"sigma2_delta\": 18.0738835,\n58\t    \"n_G80\": 1078,\n59\t    \"G_200\": 0.426205,\n60\t    \"d_study_curve\": {\n61\t      \"25\": 0.084959,\n62\t      \"50\": 0.156613,\n63\t      \"75\": 0.21786,\n64\t      \"100\": 0.270813,\n65\t      \"116\": 0.301097,\n66\t      \"150\": 0.357775,\n67\t      \"200\": 0.426205,\n68\t      \"300\": 0.527002,\n69\t      \"500\": 0.649977,\n70\t      \"1000\": 0.787862\n71\t    },\n72\t    \"monotonic\": true\n73\t  },\n74\t  \"ratio_single_vs_multi\": 11.0\n75\t}\n76\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_budget_sensitivity_delta_g_20260522T145118",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-22T14:56:33.090754+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_budget_sensitivity_delta_g_20260522T145118",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/dstudy_hellaswag.json"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-22T14:56:33.090904+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"benchmark\": \"hellaswag\",\n3\t  \"n_models\": 8,\n4\t  \"n_items_actual\": 200,\n5\t  \"variance_components\": {\n6\t    \"item\": 0.0705466971,\n7\t    \"model_item\": 0.0741053211,\n8\t    \"temperature_item\": 0.0005886942,\n9\t    \"prompt_item\": 0.004399445,\n10\t    \"seed_item\": 0.000496811,\n11\t    \"ordering_item\": 0.0,\n12\t    \"residual\": 0.0440750888\n13\t  },\n14\t  \"multi_facet\": {\n15\t    \"conditions\": 2304,\n16\t    \"sigma2_delta_per_item\": 0.0103926847,\n17\t    \"sigma2_delta\": 2.07853694,\n18\t    \"n_G80\": 118,\n19\t    \"G_200\": 0.871599,\n20\t    \"d_study_curve\": {\n21\t      \"25\": 0.459025,\n22\t      \"50\": 0.629221,\n23\t      \"75\": 0.717956,\n24\t      \"100\": 0.77242,\n25\t      \"116\": 0.797452,\n26\t      \"150\": 0.835826,\n27\t      \"200\": 0.871599,\n28\t      \"300\": 0.910572,\n29\t      \"500\": 0.944353,\n30\t      \"1000\": 0.97138\n31\t    },\n32\t    \"monotonic\": true\n33\t  },\n34\t  \"partial_4\": {\n35\t    \"conditions\": 4,\n36\t    \"sigma2_delta_per_item\": 0.0881609155,\n37\t    \"sigma2_delta\": 17.6321831,\n38\t    \"n_G80\": 1000,\n39\t    \"G_200\": 0.444507,\n40\t    \"d_study_curve\": {\n41\t      \"25\": 0.09093,\n42\t      \"50\": 0.166702,\n43\t      \"75\": 0.230814,\n44\t      \"100\": 0.285766,\n45\t      \"116\": 0.316995,\n46\t      \"150\": 0.37506,\n47\t      \"200\": 0.444507,\n48\t      \"300\": 0.545518,\n49\t      \"500\": 0.666723,\n50\t      \"1000\": 0.800041\n51\t    },\n52\t    \"monotonic\": true\n53\t  },\n54\t  \"single_condition\": {\n55\t    \"conditions\": 1,\n56\t    \"sigma2_delta_per_item\": 0.1236653601,\n57\t    \"sigma2_delta\": 24.73307202,\n58\t    \"n_G80\": 1403,\n59\t    \"G_200\": 0.363246,\n60\t    \"d_study_curve\": {\n61\t      \"25\": 0.066562,\n62\t      \"50\": 0.124815,\n63\t      \"75\": 0.176225,\n64\t      \"100\": 0.221931,\n65\t      \"116\": 0.248611,\n66\t      \"150\": 0.299646,\n67\t      \"200\": 0.363246,\n68\t      \"300\": 0.461119,\n69\t      \"500\": 0.587826,\n70\t      \"1000\": 0.740416\n71\t    },\n72\t    \"monotonic\": true\n73\t  },\n74\t  \"ratio_single_vs_multi\": 11.9\n75\t}\n76\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_budget_sensitivity_delta_g_20260522T145118",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-22T14:56:33.091038+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_budget_sensitivity_delta_g_20260522T145118",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/dstudy_gsm8k.json"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-22T14:56:33.091181+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"benchmark\": \"gsm8k\",\n3\t  \"n_models\": 8,\n4\t  \"n_items_actual\": 200,\n5\t  \"variance_components\": {\n6\t    \"item\": 0.0421014063,\n7\t    \"model_item\": 0.036345528,\n8\t    \"temperature_item\": 0.0014897687,\n9\t    \"prompt_item\": 0.0076536034,\n10\t    \"seed_item\": 0.0005097925,\n11\t    \"ordering_item\": 0.0,\n12\t    \"residual\": 0.0996441838\n13\t  },\n14\t  \"multi_facet\": {\n15\t    \"conditions\": 2304,\n16\t    \"sigma2_delta_per_item\": 0.0066918897,\n17\t    \"sigma2_delta\": 1.33837794,\n18\t    \"n_G80\": 128,\n19\t    \"G_200\": 0.862852,\n20\t    \"d_study_curve\": {\n21\t      \"25\": 0.440223,\n22\t      \"50\": 0.611326,\n23\t      \"75\": 0.702317,\n24\t      \"100\": 0.758786,\n25\t      \"116\": 0.784901,\n26\t      \"150\": 0.825131,\n27\t      \"200\": 0.862852,\n28\t      \"300\": 0.904188,\n29\t      \"500\": 0.940222,\n30\t      \"1000\": 0.96919\n31\t    },\n32\t    \"monotonic\": true\n33\t  },\n34\t  \"partial_4\": {\n35\t    \"conditions\": 4,\n36\t    \"sigma2_delta_per_item\": 0.0668280406,\n37\t    \"sigma2_delta\": 13.36560812,\n38\t    \"n_G80\": 1270,\n39\t    \"G_200\": 0.386502,\n40\t    \"d_study_curve\": {\n41\t      \"25\": 0.073001,\n42\t      \"50\": 0.136068,\n43\t      \"75\": 0.191101,\n44\t      \"100\": 0.239543,\n45\t      \"116\": 0.267613,\n46\t      \"150\": 0.320882,\n47\t      \"200\": 0.386502,\n48\t      \"300\": 0.48586,\n49\t      \"500\": 0.611649,\n50\t      \"1000\": 0.759035\n51\t    },\n52\t    \"monotonic\": true\n53\t  },\n54\t  \"single_condition\": {\n55\t    \"conditions\": 1,\n56\t    \"sigma2_delta_per_item\": 0.1456428764,\n57\t    \"sigma2_delta\": 29.12857528,\n58\t    \"n_G80\": 2768,\n59\t    \"G_200\": 0.224249,\n60\t    \"d_study_curve\": {\n61\t      \"25\": 0.034874,\n62\t      \"50\": 0.067398,\n63\t      \"75\": 0.097801,\n64\t      \"100\": 0.126284,\n65\t      \"116\": 0.143588,\n66\t      \"150\": 0.178175,\n67\t      \"200\": 0.224249,\n68\t      \"300\": 0.30246,\n69\t      \"500\": 0.41951,\n70\t      \"1000\": 0.591063\n71\t    },\n72\t    \"monotonic\": true\n73\t  },\n74\t  \"ratio_single_vs_multi\": 21.6\n75\t}\n76\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_budget_sensitivity_delta_g_20260522T145118",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-22T14:56:33.091317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_budget_sensitivity_delta_g_20260522T145118",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/dstudy_math.json"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-22T14:56:33.091495+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t{\n2\t  \"benchmark\": \"math\",\n3\t  \"n_models\": 8,\n4\t  \"n_items_actual\": 200,\n5\t  \"variance_components\": {\n6\t    \"item\": 0.0497668223,\n7\t    \"model_item\": 0.0357840757,\n8\t    \"temperature_item\": 0.0014443229,\n9\t    \"prompt_item\": 0.0059255092,\n10\t    \"seed_item\": 0.0003153339,\n11\t    \"ordering_item\": 0.0,\n12\t    \"residual\": 0.0908925174\n13\t  },\n14\t  \"multi_facet\": {\n15\t    \"conditions\": 2304,\n16\t    \"sigma2_delta_per_item\": 0.0062747613,\n17\t    \"sigma2_delta\": 1.25495226,\n18\t    \"n_G80\": 101,\n19\t    \"G_200\": 0.888034,\n20\t    \"d_study_curve\": {\n21\t      \"25\": 0.497843,\n22\t      \"50\": 0.664746,\n23\t      \"75\": 0.748379,\n24\t      \"100\": 0.798616,\n25\t      \"116\": 0.821433,\n26\t      \"150\": 0.856083,\n27\t      \"200\": 0.888034,\n28\t      \"300\": 0.922462,\n29\t      \"500\": 0.951988,\n30\t      \"1000\": 0.975404\n31\t    },\n32\t    \"monotonic\": true\n33\t  },\n34\t  \"partial_4\": {\n35\t    \"conditions\": 4,\n36\t    \"sigma2_delta_per_item\": 0.0630719495,\n37\t    \"sigma2_delta\": 12.6143899,\n38\t    \"n_G80\": 1014,\n39\t    \"G_200\": 0.441044,\n40\t    \"d_study_curve\": {\n41\t      \"25\": 0.089776,\n42\t      \"50\": 0.164761,\n43\t      \"75\": 0.228331,\n44\t      \"100\": 0.28291,\n45\t      \"116\": 0.313963,\n46\t      \"150\": 0.371775,\n47\t      \"200\": 0.441044,\n48\t      \"300\": 0.542035,\n49\t      \"500\": 0.663597,\n50\t      \"1000\": 0.797785\n51\t    },\n52\t    \"monotonic\": true\n53\t  },\n54\t  \"single_condition\": {\n55\t    \"conditions\": 1,\n56\t    \"sigma2_delta_per_item\": 0.1343617591,\n57\t    \"sigma2_delta\": 26.87235182,\n58\t    \"n_G80\": 2160,\n59\t    \"G_200\": 0.270283,\n60\t    \"d_study_curve\": {\n61\t      \"25\": 0.044251,\n62\t      \"50\": 0.084751,\n63\t      \"75\": 0.121958,\n64\t      \"100\": 0.156258,\n65\t      \"116\": 0.176839,\n66\t      \"150\": 0.217402,\n67\t      \"200\": 0.270283,\n68\t      \"300\": 0.357158,\n69\t      \"500\": 0.480785,\n70\t      \"1000\": 0.649365\n71\t    },\n72\t    \"monotonic\": true\n73\t  },\n74\t  \"ratio_single_vs_multi\": 21.4\n75\t}\n76\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_budget_sensitivity_delta_g_20260522T145118",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-22T14:56:33.091826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_budget_sensitivity_delta_g_20260522T145118",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cat << 'PYEOF' | python3\nimport json, math\n\n# Variance components from the D-study files\n# For multi-benchmark files: model_item is EXCLUDED (model is fixed for single-model evaluation)\n# sigma2_delta_per_item for 3x3 design (n_prompt=3, n_seed=3, n_temp=1, n_ordering=1)\n# = temp/1 + prompt/3 + seed/3 + ordering/1 + residual/(1*3*3*1)\n\nbenchmarks = {}\n\n# MMLU (single-model study, has precision facet)\n# From intermediate_dstudy_table.json \"Moderate\" row\nmmlu_tau = 0.1271120031\nmmlu_vc = {\n    \"precision_x_item\": 0.0071904578,\n    \"temperature_x_item\": 0.0063796481,\n    \"prompt_template_x_item\": 0.0118973392,\n    \"seed_x_item\": 0.0102602214,\n    \"ordering_x_item\": 0.0016752615,\n    \"residual\": 0.0502927384\n}\n# 3x3 design: n_precision=1, n_temp=1, n_prompt=3, n_seed=3, n_ordering=1\nmmlu_delta = (mmlu_vc[\"precision_x_item\"]/1 + mmlu_vc[\"temperature_x_item\"]/1 +\n              mmlu_vc[\"prompt_template_x_item\"]/3 + mmlu_vc[\"seed_x_item\"]/3 +\n              mmlu_vc[\"ordering_x_item\"]/1 + mmlu_vc[\"residual\"]/(1*1*3*3*1))\nprint(f\"MMLU delta_per_item: {mmlu_delta:.10f} (expected ~0.028219303)\")\n\nbenchmarks[\"mmlu\"] = {\"tau\": mmlu_tau, \"delta_per_item\": mmlu_delta, \"N\": 200}\n\n# ARC (8-model, model_item excluded)\narc_tau = 0.0671248004\narc_vc = {\"temperature_item\": 0.0003782411, \"prompt_item\": 0.0025655713,\n           \"seed_item\": 0.0002977664, \"ordering_item\": 0.0, \"residual\": 0.0273654728}\narc_delta = (arc_vc[\"temperature_item\"]/1 + arc_vc[\"prompt_item\"]/3 +\n             arc_vc[\"seed_item\"]/3 + arc_vc[\"ordering_item\"]/1 + arc_vc[\"residual\"]/(3*3))\nbenchmarks[\"arc\"] = {\"tau\": arc_tau, \"delta_per_item\": arc_delta, \"N\": 200}\n\n# HellaSwag\nhella_tau = 0.0705466971\nhella_vc = {\"temperature_item\": 0.0005886942, \"prompt_item\": 0.004399445,\n            \"seed_item\": 0.000496811, \"ordering_item\": 0.0, \"residual\": 0.0440750888}\nhella_delta = (hella_vc[\"temperature_item\"]/1 + hella_vc[\"prompt_item\"]/3 +\n               hella_vc[\"seed_item\"]/3 + hella_vc[\"ordering_item\"]/1 + hella_vc[\"residual\"]/(3*3))\nbenchmarks[\"hellaswag\"] = {\"tau\": hella_tau, \"delta_per_item\": hella_delta, \"N\": 200}\n\n# GSM8K\ngsm_tau = 0.0421014063\ngsm_vc = {\"temperature_item\": 0.0014897687, \"prompt_item\": 0.0076536034,\n           \"seed_item\": 0.0005097925, \"ordering_item\": 0.0, \"residual\": 0.0996441838}\ngsm_delta = (gsm_vc[\"temperature_item\"]/1 + gsm_vc[\"prompt_item\"]/3 +\n             gsm_vc[\"seed_item\"]/3 + gsm_vc[\"ordering_item\"]/1 + gsm_vc[\"residual\"]/(3*3))\nbenchmarks[\"gsm8k\"] = {\"tau\": gsm_tau, \"delta_per_item\": gsm_delta, \"N\": 200}\n\n# MATH\nmath_tau = 0.0497668223\nmath_vc = {\"temperature_item\": 0.0014443229, \"prompt_item\": 0.0059255092,\n           \"seed_item\": 0.0003153339, \"ordering_item\": 0.0, \"residual\": 0.0908925174}\nmath_delta = (math_vc[\"temperature_item\"]/1 + math_vc[\"prompt_item\"]/3 +\n              math_vc[\"seed_item\"]/3 + math_vc[\"ordering_item\"]/1 + math_vc[\"residual\"]/(3*3))\nbenchmarks[\"math\"] = {\"tau\": math_tau, \"delta_per_item\": math_delta, \"N\": 200}\n\n# Compute n_items at different G targets\n# Formula: G(n) = tau*n / (tau*n + N*delta_per_item)\n# Solving: n = G * N * delta / [(1-G) * tau]\n\nG_targets = {\"G800\": 0.800, \"G765\": 0.765, \"G835\": 0.835}\n\nresults = {\n    \"forward_prediction_error\": 0.035,\n    \"design\": \"recommended_3x3 (3 prompts × 3 seeds)\",\n    \"note\": \"For multi-benchmark studies (arc/hellaswag/gsm8k/math), model×item variance is excluded (model fixed). MMLU is single-model study with precision facet at 1 level.\",\n    \"formula\": \"G(n) = tau*n / (tau*n + N*delta_per_item); n = G*N*delta / [(1-G)*tau]\",\n    \"N_study\": 200,\n    \"benchmarks\": {},\n    \"summary\": {}\n}\n\nall_delta_n = []\nall_pct = []\n\nprint(\"\\n\" + \"=\"*90)\nprint(f\"{'Benchmark':<12} {'σ²(item)':<10} {'σ²(δ)_3x3':<12} {'n@0.800':<10} {'n@0.765':<10} {'n@0.835':<10} {'Δn_pess':<10} {'%inc':<8}\")\nprint(\"=\"*90)\n\nfor bname, bdata in benchmarks.items():\n    tau = bdata[\"tau\"]\n    delta = bdata[\"delta_per_item\"]\n    N = bdata[\"N\"]\n    \n    n_vals = {}\n    for gname, gval in G_targets.items():\n        n = gval * N * delta / ((1 - gval) * tau)\n        n_vals[gname] = n\n    \n    # Pessimistic interpretation: if we planned for G=0.800 at n_planned items,\n    # but actual G is only 0.765, the variance components are worse.\n    # To still achieve G=0.800 with worse components, we need more items.\n    # sigma2_delta_actual = n_planned * tau * (1-0.765)/0.765\n    # n_needed = 0.800 * sigma2_delta_actual / (0.200 * tau) = n_planned * (0.800/0.200) * (0.235/0.765)\n    # Ratio = 4.0 * 0.30719 = 1.22876\n    \n    n_planned = math.ceil(n_vals[\"G800\"])\n    ratio_pessimistic = (0.800/0.200) * (0.235/0.765)  # = 1.22876\n    n_pessimistic = math.ceil(n_planned * ratio_pessimistic)\n    delta_n = n_pessimistic - n_planned\n    pct_increase = (delta_n / n_planned) * 100\n    \n    all_delta_n.append(delta_n)\n    all_pct.append(pct_increase)\n    \n    bm_result = {\n        \"sigma2_item\": round(tau, 10),\n        \"sigma2_delta_3x3\": round(delta, 10),\n        \"n_items_at_G800\": n_planned,\n        \"n_items_at_G765\": math.ceil(n_vals[\"G765\"]),\n        \"n_items_at_G835\": math.ceil(n_vals[\"G835\"]),\n        \"n_items_at_G800_with_pessimistic_components\": n_pessimistic,\n        \"delta_n_pessimistic\": delta_n,\n        \"pct_increase_pessimistic\": round(pct_increase, 1)\n    }\n    results[\"benchmarks\"][bname] = bm_result\n    \n    print(f\"{bname:<12} {tau:<10.6f} {delta:<12.8f} {n_planned:<10} {math.ceil(n_vals['G765']):<10} {math.ceil(n_vals['G835']):<10} {delta_n:<10} {pct_increase:<8.1f}%\")\n\nprint(\"=\"*90)\n\n# Summary\nresults[\"summary\"] = {\n    \"mean_delta_n\": round(sum(all_delta_n) / len(all_delta_n), 1),\n    \"max_delta_n\": max(all_delta_n),\n    \"min_delta_n\": min(all_delta_n),\n    \"pct_increase_all_benchmarks\": 22.9,\n    \"interpretation\": (\n        \"A |ΔG|=0.035 estimation error translates to ~23% budget increase across all benchmarks. \"\n        \"The percentage is constant because the G-formula ratio (0.800/0.200)×(0.235/0.765)=1.229 \"\n        \"is independent of variance components. Absolute Δn ranges from \"\n        f\"{min(all_delta_n)} to {max(all_delta_n)} items depending on benchmark difficulty heterogeneity.\"\n    )\n}\n\nprint(f\"\\nMean Δn: {results['summary']['mean_delta_n']}, Max: {max(all_delta_n)}, Min: {min(all_delta_n)}\")\nprint(f\"Budget increase: ~22.9% uniformly across benchmarks\")\n\n# Also add the \"simple sensitivity\" view: n at different G TARGETS (not accounting for component shift)\nprint(\"\\n\\nSimple sensitivity (same components, different G targets):\")\nprint(f\"{'Benchmark':<12} {'n@0.765':<10} {'n@0.800':<10} {'n@0.835':<10}\")\nprint(\"-\"*42)\nfor bname, bdata in benchmarks.items():\n    tau = bdata[\"tau\"]\n    delta = bdata[\"delta_per_item\"]\n    N = bdata[\"N\"]\n    n765 = math.ceil(0.765 * N * delta / (0.235 * tau))\n    n800 = math.ceil(0.800 * N * delta / (0.200 * tau))\n    n835 = math.ceil(0.835 * N * delta / (0.165 * tau))\n    print(f\"{bname:<12} {n765:<10} {n800:<10} {n835:<10}\")\n\n# Save\noutpath = \"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/budget_sensitivity_delta_g.json\"\nwith open(outpath, 'w') as f:\n    json.dump(results, f, indent=2, ensure_ascii=False)\nprint(f\"\\nSaved to {outpath}\")\nPYEOF",
+              "description": "Compute budget sensitivity to |ΔG|=0.035 for all benchmarks"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-22T14:56:33.092059+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "MMLU delta_per_item: 0.0282193030 (expected ~0.028219303)\n\n==========================================================================================\nBenchmark    σ²(item)   σ²(δ)_3x3    n@0.800    n@0.765    n@0.835    Δn_pess    %inc    \n==========================================================================================\nmmlu         0.127112   0.02821930   178        145        225        41         23.0    %\narc          0.067125   0.00437330   53         43         66         13         24.5    %\nhellaswag    0.070547   0.00711801   81         66         103        19         23.5    %\ngsm8k        0.042101   0.01528248   291        237        368        67         23.0    %\nmath         0.049767   0.01362377   220        179        278        51         23.2    %\n==========================================================================================\n\nMean Δn: 38.2, Max: 67, Min: 13\nBudget increase: ~22.9% uniformly across benchmarks\n\n\nSimple sensitivity (same components, different G targets):\nBenchmark    n@0.765    n@0.800    n@0.835   \n------------------------------------------\nmmlu         145        178        225       \narc          43         53         66        \nhellaswag    66         81         103       \ngsm8k        237        291        368       \nmath         179        220        278       \n\nSaved to /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/data/budget_sensitivity_delta_g.json"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_budget_sensitivity_delta_g_20260522T145118",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-22T14:56:33.092255+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存。\n\n**Summary Table — Budget Sensitivity to |ΔG|=0.035**\n\n| Benchmark | σ²(item) | σ²(δ)₃ₓ₃ | n@0.800 | n@0.765 | n@0.835 | Δn (pessimistic) | %increase |\n|-----------|----------|-----------|---------|---------|---------|-------------------|-----------|\n| MMLU | 0.1271 | 0.0282 | 178 | 145 | 225 | +41 | 23.0% |\n| ARC | 0.0671 | 0.0044 | 53 | 43 | 66 | +13 | 24.5% |\n| HellaSwag | 0.0705 | 0.0071 | 81 | 66 | 103 | +19 | 23.5% |\n| GSM8K | 0.0421 | 0.0153 | 291 | 237 | 368 | +67 | 23.0% |\n| MATH | 0.0497 | 0.0136 | 220 | 179 | 278 | +51 | 23.2% |\n\n**Δn interpretation**: If the actual G at planned n items is 0.035 lower than predicted (pessimistic), achieving G=0.800 requires ~23% more items. This percentage is constant across benchmarks because the ratio `(G/(1-G)) × ((1-G')/(G'))` depends only on the G values, not the variance components. Absolute Δn ranges from 13 (ARC) to 67 (GSM8K)."
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_budget_sensitivity_delta_g_20260522T145118"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-budget-sensitivity-delta-g.md"
+}

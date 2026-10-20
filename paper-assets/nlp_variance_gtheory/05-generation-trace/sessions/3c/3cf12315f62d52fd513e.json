@@ -1,0 +1,57 @@
+{
+  "schema_version": "1.0",
+  "id": "3cf12315f62d52fd513e",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "fix qwen shard3 patch",
+  "task_key": "worker_fix_qwen_shard3_patch_20260521T070049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_qwen_shard3_patch_20260521T070049.log",
+    "occurrence": 1,
+    "bytes": 742401,
+    "sha256": "92eeeff92c8e3fad12411b0d61ce4c49acc321053735f7b6ea77a469ed56acd4"
+  },
+  "statistics": {
+    "messages": 708,
+    "user_turns": 0,
+    "tool_calls": 320,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 64,
+      "tool_call": 320,
+      "tool_result": 320,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 708,
+      "chunks": [
+        {
+          "path": "3cf12315f62d52fd513e-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "3cf12315f62d52fd513e-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "3cf12315f62d52fd513e-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3cf12315f62d52fd513e-part-0004.json",
+          "message_count": 168
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/fix-qwen-shard3-patch.md"
+}

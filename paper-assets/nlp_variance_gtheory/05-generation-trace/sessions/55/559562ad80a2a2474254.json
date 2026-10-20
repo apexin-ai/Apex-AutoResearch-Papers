@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "559562ad80a2a2474254",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis phase2 hellaswag 2temp fix",
+  "task_key": "worker_analysis_phase2_hellaswag_2temp_fix_20260521T230301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_hellaswag_2temp_fix_20260521T230301_result.json",
+    "occurrence": 1,
+    "bytes": 2239,
+    "sha256": "bc7b29a0d084e8ef4b13abda5c1dc41e97cb7ad1860e036913f2320c4c715ee1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All other benchmarks are clean. The bug was isolated to the 8-model HellaSwag analysis (JSONL float `0.7000000000000001` + binary blob float `0.7` → 3 phantom temp levels).\n\n---\n\n## Results Summary\n\n### Temperature Diagnosis\n\n| Model | T=0.0 | T=0.3 | T=0.7 | Total |\n|-------|-------|-------|-------|-------|\n| Llama-3.1-8B | 28,800 | 0 | 28,800 | 57,600 |\n| Qwen3-8B | 28,800 | 0 | 28,800 | 57,600 |\n| Mistral-7B-v0.3 | 28,800 | 0 | 28,800 | 57,600 |\n| Gemma-2-9B | 28,800 | 0 | 28,800 | 57,600 |\n| DeepSeek-7B | 28,800 | 0 | 28,800 | 57,600 |\n| InternLM2.5-7B | 28,800 | 0 | 28,800 | 57,600 |\n| OLMo-2-7B | 28,800 | 0 | 28,800 | 57,600 |\n| Yi-1.5-9B | 28,800 | 0 | 28,800 | 57,600 |\n\n**No T=0.3 contamination in raw data.** Root cause: `pd.read_json` parses JSON `0.7` as `np.float64(0.7000000000000001)`. After `.astype(str)`, this became `\"0.7000000000000001\"` ≠ `\"0.7\"` (from OLMo/Yi binary), creating a phantom 3rd temperature with zero-filled tensor cells → massive artificial temperature variance.\n\n### Variance Decomposition: 3-temp (broken) vs 2-temp (fixed)\n\n| Component | 3-temp % | 2-temp % | Change |\n|-----------|----------|----------|--------|\n| **item_id** | **8.91%** | **34.27%** | +25.4pp |\n| model:item_id | 10.84% | 36.00% | +25.2pp |\n| model:temperature | 36.44% | 0.04% | -36.4pp (artifact) |\n| temperature | 20.80% | 0.02% | -20.8pp (artifact) |\n| residual | 17.81% | 21.41% | +3.6pp |\n| model | 0.00% | 5.35% | +5.4pp |\n| prompt_template:item_id | 0.63% | 2.14% | +1.5pp |\n| ordering:item_id | 0.00% | 0.00% | ✓ confirmed zero |\n\n### G_item\n\n| Metric | 3-temp (broken) | 2-temp (fixed) |\n|--------|-----------------|----------------|\n| G_item | 0.7510 | **0.8716** |\n| 95% CI | [0.719, 0.780] | **[0.843, 0.897]** |\n| σ²(τ) | 0.0270 | 0.0705 |\n| σ²(δ) | 0.0090 | 0.0104 |\n\n### Fix applied\n- Script: `scripts/hellaswag_2temp_gstudy_v2.py` — adds `df[\"temperature\"] = df[\"temperature\"].round(1)` before `.astype(str)`\n- Output: `results/exp004_8model_analysis/per_benchmark_gstudy_hellaswag_2temp.json`\n- N = 460,800 (8 × 2 × 6 × 6 × 4 × 200) ✓\n- Bootstrap: 500 iterations\n- ordering:item_id = 0% across all 8 models ✓"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase2-hellaswag-2temp-fix.md"
+}

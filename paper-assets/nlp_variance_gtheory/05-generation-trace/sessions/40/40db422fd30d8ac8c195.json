@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40db422fd30d8ac8c195",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis gsm8k partial credit pilot",
+  "task_key": "worker_analysis_gsm8k_partial_credit_pilot_20260522T135301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_gsm8k_partial_credit_pilot_20260522T135301_result.json",
+    "occurrence": 1,
+    "bytes": 1418,
+    "sha256": "5718472b89451aa2d401d91dc8da2c5407183d4afd55bcbadceaf2067264d556"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results saved. Summary:\n\n**Binary vs Partial-Credit Variance Decomposition (Llama-3.1-8B, GSM8K, n=57,600)**\n\n| Component | Binary % | Partial % | Δ |\n|---|---|---|---|\n| prompt_template | 25.49 | 1.16 | **-24.33** |\n| item_id | 19.98 | 12.74 | -7.24 |\n| prompt_template:item_id | 18.24 | 24.84 | +6.60 |\n| temperature:item_id | 5.62 | 10.44 | +4.82 |\n| seed:item_id | 2.33 | 4.67 | +2.34 |\n| residual | 28.16 | 45.96 | **+17.79** |\n| **G_item** | **0.759** | **0.553** | **-0.206** |\n\nItem-mean rank correlation: ρ = 0.26 (p < 0.001).\n\nKey findings for Reviewer Q5 response:\n\n1. **Scoring rubric drastically reshapes variance structure.** The prompt_template main effect drops from 25.5% → 1.2% — binary scoring inflates prompt effects because it captures \"which items flip correct/incorrect\" rather than reasoning quality.\n\n2. **G_item drops 0.21** — reliability of item discrimination is substantially lower under partial credit, meaning the same measurement design that yields adequate reliability under binary scoring may be insufficient for finer-grained assessment.\n\n3. **Item rankings change substantially** (ρ = 0.26) — items ranked as \"hard\" under binary aren't necessarily the ones where models produce poor reasoning.\n\n4. **Residual balloons** (+17.8pp) — partial credit reveals unmodeled variance that binary scoring masks via floor/ceiling effects."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-gsm8k-partial-credit-pilot.md"
+}

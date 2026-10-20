@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "12a31158fe513bc21b5c",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis 4model gstudy",
+  "task_key": "worker_analysis_4model_gstudy_20260521T072418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_4model_gstudy_20260521T072418_result.json",
+    "occurrence": 1,
+    "bytes": 1981,
+    "sha256": "d6649152de2e41657cf7a311b15454aee0af6034a772e2cc6973bf95a9ea518b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。以下是 exp-001 四模型 G-study 最终结果。\n\n---\n\n## 1. 模型准确率\n\n| Model | Accuracy |\n|-------|----------|\n| gemma-2-9b-it | 0.7311 |\n| qwen3-8b | 0.7263 |\n| llama-3.1-8b-instruct | 0.7108 |\n| mistral-7b-instruct-v0.3 | 0.6376 |\n\nGrand mean = 0.7015, N = 345,600 (4 models × 432 conditions × 200 items)\n\n## 2. 方差分量 (EMS, %) + 95% Bootstrap CI\n\n| Component | % | 95% CI |\n|-----------|---|--------|\n| **item_id** | **42.07** | [36.03, 48.76] |\n| **model×item_id** | **33.64** | [28.40, 37.86] |\n| residual | 19.55 | [17.08, 21.66] |\n| prompt_template×item_id | 1.43 | [1.20, 1.67] |\n| seed×item_id | 1.32 | [1.08, 1.66] |\n| model | 0.73 | [0.16, 2.07] |\n| temperature×item_id | 0.65 | [0.43, 0.91] |\n| ordering×item_id | 0.54 | [0.40, 0.72] |\n\n## 3. G_item\n\n**G_item = 0.8200** [0.7816, 0.8609]\n\n## 4. D-study (n_models sweep)\n\n| n_models | G_item |\n|----------|--------|\n| 1 | 0.5495 |\n| 2 | 0.7044 |\n| 3 | 0.7775 |\n| **4** | **0.8200** |\n| 5 | 0.8479 |\n| 6 | 0.8675 |\n| 8 | 0.8934 |\n| 10 | 0.9096 |\n\n## 5. 与 3-model 对比\n\n| Metric | 3-Model | 4-Model | Delta |\n|--------|---------|---------|-------|\n| item_id % | 42.80 | 42.07 | -0.73 |\n| model×item % | 31.68 | 33.64 | +1.96 |\n| G_item | 0.7766 | 0.8200 | **+0.0434** |\n\nitem_id 和 model×item 的相对比例基本稳定。G_item 从 0.777 提升到 0.820，符合 D-study 预测（3-model 预测 n=4 时 G=0.816）。\n\n## 6. 各模型对 model×item 交互的贡献\n\n| Model | Contribution |\n|-------|-------------|\n| mistral-7b-instruct-v0.3 | **29.25%** |\n| qwen3-8b | 27.11% |\n| gemma-2-9b-it | 23.95% |\n| llama-3.1-8b-instruct | 19.69% |\n\nMistral 对 model×item 交互贡献最大（29.25%），因为它整体准确率最低且在不同 item 上的表现模式与其他模型差异最大。Qwen 紧随其后（27.11%）。\n\n结果已保存至 `results/analysis/dataset_a4_gstudy.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-4model-gstudy.md"
+}

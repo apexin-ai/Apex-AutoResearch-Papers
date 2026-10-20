@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b3cce0a65ea5348d95cd",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis exp002 full pipeline",
+  "task_key": "worker_analysis_exp002_full_pipeline_20260521T134340",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp002_full_pipeline_20260521T134340_result.json",
+    "occurrence": 1,
+    "bytes": 2239,
+    "sha256": "a35e540510f4ad81e49b20fae2883943608b5b2872861c1a51deed08c3a406eb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 执行状态\n\n| # | 脚本 | 状态 | 输出文件 |\n|---|------|------|----------|\n| 1 | per_benchmark_gstudy | **OK** (14.8s) | 12K |\n| 2 | gradient_permutation_test | **OK** (15.0s) | 2.4K |\n| 3 | leave_one_benchmark_out | **OK** (15.1s) | 3.1K |\n| 4 | within_format_gradient | **OK** (15.2s) | 3.3K |\n| 5 | gsm8k_answer_reextract | **FAILED** | 无输出 |\n| 6 | cross_benchmark_dstudy | **OK** (15.0s) | 2.5K |\n\n**Script 5 错误**：`gsm8k_answer_reextract.py:70` — `original_predicted` 列含 NaN（float），`normalize_numeric` 未处理。修复：在函数开头加 `if pd.isna(answer): return None`。\n\n---\n\n## per_benchmark_gstudy 核心结果\n\n| Benchmark | item_id% | model:item_id% | G_item | min_n(G≥0.80) |\n|-----------|----------|----------------|--------|---------------|\n| **arc** | **48.90%** | 38.20% | 0.8307 | 164 |\n| hellaswag | 44.47% | 32.31% | 0.8324 | 162 |\n| mmlu | 41.55% | 32.81% | 0.8159 | 181 |\n| gsm8k | 11.99% | 12.09% | 0.7289 | 298 |\n\nMATH（来自 gradient_permutation_test 输出）：item_id% = **4.78%**，model:item% = **46.07%**\n\n梯度方向符合预期：MC 题 item_id% 高（arc 49% → mmlu 42%），自由格式低（gsm8k 12% → math 5%）。model:item% 反向梯度在 MATH 上最突出（46%），说明模型间在 MATH 难题上的差异交互最大。\n\n---\n\n## gradient_permutation_test\n\n- item_id 递减：**p = 0.0083**（显著）\n- model:item 递增：**p = 0.0083**（显著）\n- 联合检验：**p = 0.0000**\n- 单调性：均为 False（arc > hellaswag > mmlu 的排序不完美，但整体趋势显著）\n\n---\n\n## cross_benchmark_dstudy — G≥0.80 所需 items\n\n| Benchmark | 当前 G | G≥0.80 | G≥0.90 | G≥0.95 |\n|-----------|--------|--------|--------|--------|\n| hellaswag | 0.8324 | **162** | 363 | 766 |\n| arc | 0.8307 | **164** | 367 | 775 |\n| mmlu | 0.8159 | **181** | 407 | 858 |\n| gsm8k | 0.7289 | **298** | 670 | 1413 |\n\nGSM8K 需要近 300 题才能达 G≥0.80，是 MC 类 benchmark 的 ~1.8 倍。要达 G≥0.95，GSM8K 需 1413 题——当前 200 题远远不够。\n\n---\n\n**待修复**：`gsm8k_answer_reextract.py` 第 70 行的 NaN 处理。需要我现在修吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp002-full-pipeline.md"
+}

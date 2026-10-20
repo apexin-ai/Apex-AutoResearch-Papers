@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d97454c8561cc343ff36",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "figure fig1 8model stacked bar",
+  "task_key": "worker_figure_fig1_8model_stacked_bar_20260522T001703",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_figure_fig1_8model_stacked_bar_20260522T001703_result.json",
+    "occurrence": 1,
+    "bytes": 984,
+    "sha256": "36a1cf0561aaf2f2035933bb849dd73990c37d8dfead58338d548df1651749a6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "图表生成成功。\n\n**输出路径**:\n- PDF: `/root/nlp_variance_gtheory/results/exp004_8model_analysis/fig1_variance_decomposition.pdf` (29KB)\n- PNG: `/root/nlp_variance_gtheory/results/exp004_8model_analysis/fig1_variance_decomposition.png` (110KB)\n\n**各 benchmark 数值 (item_id / model:item / model / prompt / residual / other)**:\n\n| Benchmark | Item | Model×Item | Model | Prompt | Residual | Other |\n|-----------|------|-----------|-------|--------|----------|-------|\n| MMLU (MC) | 37.9% | 30.2% | 2.8% | 2.5% | 25.0% | 1.5% |\n| ARC (MC) | 37.9% | 33.7% | 3.1% | 9.5% | 15.4% | 0.4% |\n| HellaSwag (MC) | 34.3% | 36.0% | 5.4% | 2.3% | 21.4% | 0.6% |\n| GSM8K (FF) | 16.9% | 14.6% | 10.7% | 17.0% | 39.9% | 1.0% |\n| MATH (FF) | 24.0% | 17.3% | 8.5% | 5.4% | 43.9% | 0.9% |\n\n\"Prompt\" 组 = prompt_template + model:prompt_template + prompt_template:item_id。MC 组 item_id 占 34–38%，FF 组降至 17–24%，residual 反升至 40–44%。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/figure-fig1-8model-stacked-bar.md"
+}

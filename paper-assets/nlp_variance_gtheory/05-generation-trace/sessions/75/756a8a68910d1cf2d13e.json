@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "756a8a68910d1cf2d13e",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code exp001 data benchmarks",
+  "task_key": "worker_code_exp001_data_benchmarks_20260520T195645",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp001_data_benchmarks_20260520T195645_result.json",
+    "occurrence": 1,
+    "bytes": 838,
+    "sha256": "e1f9f42ca2a7381646a11a0d52193009e73aad435b9cb6522c72d6951c60a342"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。变更总结：\n\n**sample_mmlu.py** — 10 subjects × 20 items = 200 items。新增 5 个 subjects（high_school_mathematics, computer_security, philosophy, clinical_knowledge, international_law）。CLI 新增 `--n-items` 和 `--n-subjects` 参数，默认值向后兼容产出 200 items。\n\n**few_shot.py** — `N_ORDERINGS` 从 2 扩展到 4，`SELECTED_SUBJECTS` 同步扩展到 10 个。与 `generate_design.py` 中 `ordering: [1, 2, 3, 4]` 匹配。每个 ordering 用 `seed + ordering_id` 保持确定性。\n\n**sample_benchmarks.py** — 新建。支持 GSM8K（按答案数值范围分层）、ARC-Challenge（按 answerKey 分层）、HellaSwag（随机采样）。统一输出格式含 `item_id`, `question`, `benchmark` 等字段。CLI 参数：`--benchmark`, `--n-items`, `--output`, `--seed`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp001-data-benchmarks.md"
+}

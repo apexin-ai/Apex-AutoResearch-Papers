@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "3b2103ccacac28453926",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra env setup",
+  "task_key": "worker_infra_env_setup_20260520T142053",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_env_setup_20260520T142053_result.json",
+    "occurrence": 1,
+    "bytes": 2393757,
+    "sha256": "b75fd906d75626f96a0abed767307a18e813d741712b07a00b9a49b231f90a28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2393777,
+                "serialized_sha256": "fbec522c34d5b1afcf50a0ce03c7f5d737ae3d596ae49bc501d3fb634f320aab",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-env-setup.md"
+}

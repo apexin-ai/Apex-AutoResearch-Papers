@@ -1,0 +1,1809 @@
+{
+  "schema_version": "1.0",
+  "id": "0fc738914502110435cb",
+  "project": "nlp_variance_gtheory",
+  "kind": "conversation",
+  "title": "analysis exp004 cross model and permutation",
+  "task_key": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_analysis_exp004_cross_model_and_permutation_20260521T213143.jsonl",
+    "occurrence": 1,
+    "bytes": 128451,
+    "sha256": "dd4dd2d063a121194959a480bcdfec1c059638409e658c1c736b07bbbe84ecbb"
+  },
+  "statistics": {
+    "messages": 91,
+    "user_turns": 0,
+    "tool_calls": 45,
+    "roles": {
+      "tool_call": 45,
+      "tool_result": 45,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T21:43:32.683433+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute,mcp__agent-ml-research__detect_image",
+              "max_results": "3"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T21:43:32.683728+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T21:43:32.683888+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "ls /root/nlp_variance_gtheory/scripts/exp002_analysis/"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T21:43:32.684014+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "ls /root/nlp_variance_gtheory/results/"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T21:43:32.684132+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "ls /root/nlp_variance_gtheory/scripts/"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T21:43:32.684254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"__pycache__\\\\ncross_benchmark_dstudy.py\\\\ngradient_permutation_test.py\\\\ngsm8k_answer_reextract.py\\\\nleave_one_benchmark_out.py\\\\nper_benchmark_gstudy.py\\\\nwithin_format_gradient.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.22}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T21:43:32.684382+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"all_results.jsonl\\\\nanalysis\\\\nbf16_eager_results.jsonl\\\\nd_study_results.json\\\\nd_study_results_text.json\\\\ndesign_matrix_exp001_full.csv\\\\ndryrun_exp001.jsonl\\\\nexp001_analysis\\\\nexp001_gemma\\\\nexp001_gemma_fp32\\\\nexp001_llama\\\\nexp001_mistral\\\\nexp001_pilot\\\\nexp001_qwen\\\\nexp001b\\\\nexp002\\\\nexp002_pilot\\\\nfigures\\\\nfloat32_results.jsonl\\\\nhenderson_i_unified_numbers.json\\\\nsanity_check.json\\\\nvariance_components.json\\\\nvariance_components_text.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T21:43:32.684588+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"audit_g_item.py\\\\nauto_start_new_models.sh\\\\nauto_start_qwen.sh\\\\nbalance_cross_model.py\\\\nbernoulli_adjustment.py\\\\nbf16_fp16_sensitivity.py\\\\nbootstrap_vs_jackknife.py\\\\nchain_single_gpu.sh\\\\ncompute_g_coefficients.py\\\\ndataset_a_gstudy.py\\\\ndry_run_exp002.py\\\\ndstudy_progressive_validation.py\\\\ndstudy_single_condition.py\\\\nexp001_4model_gstudy.py\\\\nexp001_4model_gstudy_v2.py\\\\nexp001_llama_bf16only_5facet.py\\\\nexp001b_gstudy.py\\\\nexp002_analysis\\\\nfix_dstudy_formula.py\\\\nfix_g_item.py\\\\nfixed_vs_random_sensitivity.py\\\\ngenerate_exp001b_design.py\\\\nglmm_logistic_link.py\\\\ngpu0_internlm_math_accel.sh\\\\ngsm8k_to_math_monitor.sh\\\\ngstudy_dataset_b.py\\\\ngstudy_full.py\\\\nhenderson_i_gstudy.py\\\\nleave_one_model_out.py\\\\nlomo_matched_spec.py\\\\nm022_henderson_unified.py\\\\nmath_then_new_models.sh\\\\nmodel_as_fixed_gstudy.py\\\\npost_exp002_master.sh\\\\nprepare_few_shot_exp002.py\\\\nr1_w4_ordering_dstudy.py\\\\nrun_exp001b.sh\\\\nrun_exp002_full.sh\\\\nrun_exp002_pilot.sh\\\\nsample_benchmarks.py\\\\nsample_math.py\\\\nsample_resampling.py\\\\nsensitivity_analyses.py\\\\nsimulation_binary_recovery.py\\\\nsimulation_binary_recovery_matched.py\\\\ntask8_subject_gradient.py\\\\ntemp_stratified_seed.py\\\\nwithin_mmlu_gradient_4model.py\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.53}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T21:43:32.684725+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cat /root/nlp_variance_gtheory/scripts/exp002_analysis/gradient_permutation_test.py"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T21:43:32.684996+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Gradient permutation test across benchmarks.\\\\n\\\\nTests whether item_id% monotonically decreases (and model:item_id% monotonically\\\\nincreases) across benchmarks ordered by cognitive complexity, using Spearman rho\\\\nas the test statistic with an exact permutation test.\\\\n\\\\nInput:  Per-benchmark G-study results (exp-002) + optionally exp-001 MMLU results.\\\\nOutput: results/analysis/gradient_permutation_test.json\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002\\\\n  python scripts/exp002_analysis/gradient_permutation_test.py --data-dir results/exp002 --exp001-gstudy results/analysis/exp001_gstudy.json\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations, permutations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\nfrom scipy.stats import spearmanr, kendalltau\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\n\\\\nBENCHMARK_ORDER = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"math\\\\\\\"]\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\\n…[truncated 7358 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T21:43:32.685150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cat /root/nlp_variance_gtheory/scripts/exp002_analysis/leave_one_benchmark_out.py"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T21:43:32.685440+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Leave-one-benchmark-out gradient robustness test.\\\\n\\\\nFor each of the 4 (or 5) benchmarks, remove it and check whether the\\\\ngradient pattern (item_id% decreasing, model:item_id% increasing) is\\\\npreserved on the remaining benchmarks.\\\\n\\\\nInput:  exp-002 JSONL data\\\\nOutput: results/analysis/leave_one_benchmark_out.json\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/leave_one_benchmark_out.py --data-dir results/exp002\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations, permutations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\nBENCHMARK_ORDER = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\", \\\\\\\"gsm8k\\\\\\\"]\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_variance_pcts(df: pd.DataFrame, facets: list[str]) -> dict[str, float]:\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Compute Henderson I variance component percentages.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    grand_mean = df[\\\\\\\"correct\\\\\\\"].mean()\\\\n    N = len(df)\\\\n    n_levels = {f: df[f].nunique() for f in facets}\\\\n\\\\n    effe\n…[truncated 7263 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T21:43:32.685608+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cat /root/nlp_variance_gtheory/scripts/exp002_analysis/cross_benchmark_dstudy.py"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T21:43:32.685733+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "ls /root/nlp_variance_gtheory/results/exp002/"
+            }
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T21:43:32.685956+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Cross-benchmark D-study comparison.\\\\n\\\\nFor each benchmark, computes:\\\\n  - D-study curves (item count vs G coefficient)\\\\n  - Minimum items needed for G >= 0.80 / 0.90 / 0.95\\\\n\\\\nInput:  exp-002 JSONL data\\\\nOutput: results/analysis/cross_benchmark_dstudy.json\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/cross_benchmark_dstudy.py --data-dir results/exp002\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\", \\\\\\\"gsm8k\\\\\\\"]\\\\nITEM_COUNTS = [10, 25, 50, 75, 100, 150, 200, 300, 500, 750, 1000]\\\\nG_TARGETS = [0.80, 0.90, 0.95]\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_henderson_i(df: pd.DataFrame, facets: list[str]) -> tuple[dict, dict]:\\\\n    grand_mean = df[\\\\\\\"correct\\\\\\\"].mean()\\\\n    N = len(df)\\\\n    n_levels = {f: df[f].nunique() for f in facets}\\\\n\\\\n    effects = {}\\\\n    for f in facets:\\\\n        group_means = df.gr\n…[truncated 7138 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T21:43:32.686135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"chain_deepseek.log\\\\nchain_internlm.log\\\\ndeepseek_arc.jsonl\\\\ndeepseek_gsm8k.jsonl\\\\ndeepseek_hellaswag.jsonl\\\\ndeepseek_math.jsonl\\\\ndeepseek_math_gpu2.jsonl\\\\ndeepseek_mmlu.jsonl\\\\ndesign_matrix_exp002_full.csv\\\\ndesign_matrix_new_models.csv\\\\nfull_run.log\\\\ngemma_arc.jsonl\\\\ngemma_gsm8k.jsonl\\\\ngemma_hellaswag.jsonl\\\\ngemma_math.jsonl\\\\ngemma_mmlu.jsonl\\\\ngpu0_internlm_math.log\\\\ngpu0_qwen.log\\\\ngpu1_internlm_arc.log\\\\ngpu1_internlm_gsm8k.log\\\\ngpu1_internlm_hellaswag.log\\\\ngpu1_internlm_mmlu.log\\\\ngpu1_llama.log\\\\ngpu2_deepseek_math.log\\\\ngpu2_gemma.log\\\\ngpu3_deepseek_arc.log\\\\ngpu3_deepseek_gsm8k.log\\\\ngpu3_deepseek_hellaswag.log\\\\ngpu3_deepseek_mmlu.log\\\\ngpu3_mistral.log\\\\ninternlm_arc.jsonl\\\\ninternlm_gsm8k.jsonl\\\\ninternlm_hellaswag.jsonl\\\\ninternlm_math.jsonl\\\\ninternlm_mmlu.jsonl\\\\nllama_arc.jsonl\\\\nllama_gsm8k.jsonl\\\\nllama_hellaswag.jsonl\\\\nllama_math.jsonl\\\\nllama_mmlu.jsonl\\\\nmath_then_new_models.log\\\\nmistral_arc.jsonl\\\\nmistral_gsm8k.jsonl\\\\nmistral_hellaswag.jsonl\\\\nmistral_math.jsonl\\\\nmistral_mmlu.jsonl\\\\nqwen_arc.jsonl\\\\nqwen_gsm8k.jsonl\\\\nqwen_hellaswag.jsonl\\\\nqwen_math.jsonl\\\\nqwen_mmlu.jsonl\\\\nshard_0_qwen.csv\\\\nshard_1_llama.csv\\\\nshard_2_gemma.csv\\\\nshard_3_mistral.csv\\\\nshard_deepseek_arc.csv\\\\nshard_deepseek_gsm8k.csv\\\\nshard_deepseek_hellaswag.csv\\\\nshard_deepseek_math.csv\\\\nshard_deepseek_mmlu.csv\\\\nshard_gemma_arc.csv\\\\nshard_gemma_gsm8k.csv\\\\nshard_gemma_hellaswag.csv\\\\nshard_gemma_math.csv\\\\nshard_gemma_mmlu.csv\\\\nshard_internlm_arc.csv\\\\nshard_internlm_gsm8k.csv\\\\nshard_internlm_hellaswag.csv\\\\nshard_internlm_math.csv\\\\nshard_internlm_mmlu.csv\\\\nshard_llama_arc.csv\\\\nshard_llama_gsm8k.csv\\\\nshard_llama_hellaswag.csv\\\\nshard_llama_math.csv\\\\nshard_llama_mmlu.csv\\\\nshard_mistral_arc.csv\\\\nshard_mistral_gsm8k.csv\\\\nshard_mistral_hellaswag.csv\\\\nshard_mistral_math.csv\\\\nshard_mistral_mmlu.csv\\\\nshard_qwen_arc.csv\\\\nshard_qwen_gsm8k.csv\\\\nshard_qwen_hellaswag.csv\\\\nshard_qwen_mat\n…[truncated 134 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T21:43:32.686310+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "head -1 /root/nlp_variance_gtheory/results/exp002/qwen_mmlu.jsonl"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T21:43:32.686474+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"condition_id\\\\\\\": 1, \\\\\\\"item_id\\\\\\\": \\\\\\\"abstract_algebra_81\\\\\\\", \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\", \\\\\\\"subject\\\\\\\": \\\\\\\"abstract_algebra\\\\\\\", \\\\\\\"model\\\\\\\": \\\\\\\"Qwen/Qwen3-8B\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.0, \\\\\\\"top_p\\\\\\\": null, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 42, \\\\\\\"ordering\\\\\\\": 1, \\\\\\\"generated_text\\\\\\\": \\\\\\\"A\\\\\\\\n\\\\\\\\nStatement 1 | The set of all real numbers is a field.\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"A\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"D\\\\\\\", \\\\\\\"correct\\\\\\\": 0, \\\\\\\"text_exact_match\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 25.67, \\\\\\\"answer_logprob\\\\\\\": -0.02428486943244934, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\" A\\\\\\\": -0.02428486943244934, \\\\\\\" D\\\\\\\": -4.524284839630127, \\\\\\\" C\\\\\\\": -4.649284839630127, \\\\\\\" B\\\\\\\": -5.649284839630127, \\\\\\\" E\\\\\\\": -10.774285316467285}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T21:43:32.686603+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "ls /root/nlp_variance_gtheory/results/analysis/"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T21:43:32.686740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"bernoulli_adjustment.json\\\\nbf16_fp16_only_gstudy.json\\\\nbinary_data_limitation.json\\\\nbinary_simulation_recovery_matched.json\\\\nbootstrap_vs_jackknife.json\\\\ncross_benchmark_dstudy.json\\\\ncross_model_2way_precision.csv\\\\ncross_model_2way_precision_meta.json\\\\ncross_model_3way_bf16.csv\\\\ncross_model_3way_bf16_meta.json\\\\ncross_model_4way_bf16.csv\\\\ncross_model_balanced.csv\\\\ncross_model_balanced.jsonl\\\\ncross_model_balanced_meta.json\\\\ncross_model_bootstrap.json\\\\ncross_model_g_coefficients.json\\\\ncross_model_gstudy.json\\\\ncross_model_llama_gemma.csv\\\\ncross_model_llama_gemma.jsonl\\\\ncross_model_reml.json\\\\ncross_model_reml_500iter.json\\\\ndataset_a4_gstudy.json\\\\ndataset_a_gstudy.json\\\\ndataset_b_gstudy.json\\\\ndstudy_progressive_validation.json\\\\nexp001_llama_bf16only_5facet.json\\\\nexp001b_resampling_gstudy.json\\\\nexp002_per_benchmark_gstudy.json\\\\nexp002_prep_report.md\\\\nfixed_vs_random_sensitivity.json\\\\nglmm_logistic_link.json\\\\ngradient_permutation_test.json\\\\ngsm8k_answer_reextract.json\\\\nirt_vs_gtheory.json\\\\nleave_one_benchmark_out.json\\\\nleave_one_model_out.json\\\\nllama_full.csv\\\\nllama_full_259200.csv\\\\nllama_precision_balanced.csv\\\\nllama_precision_balanced_meta.json\\\\nllama_single_model_gstudy.json\\\\nlomo_matched_spec.json\\\\nmodel_as_fixed_gstudy.json\\\\nsimulation_binary_recovery.json\\\\ntemp_stratified_seed.json\\\\ntemperature_stratified_analysis.json\\\\nunified_henderson_i_numbers.json\\\\nwithin_format_gradient.json\\\\nwithin_mmlu_subject_gradient_BUGGY_DO_NOT_USE.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T21:43:32.686871+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cat /root/nlp_variance_gtheory/scripts/exp002_analysis/per_benchmark_gstudy.py"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T21:43:32.687107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\\\\\"\\\\\\\"\\\\\\\"Per-benchmark Henderson I variance decomposition for exp-002.\\\\n\\\\nInput:  Merged exp-002 JSONL (4 models x 4 benchmarks x bf16 x 2 temps x 6 prompts x 6 seeds x 4 orderings).\\\\nOutput: results/analysis/exp002_per_benchmark_gstudy.json\\\\n        — per-benchmark variance components, G_item, D-study projections.\\\\n\\\\nFacets (7, within each benchmark):\\\\n  model, temperature, prompt_template, seed, ordering, item_id\\\\n  + all 2-way interactions. Residual absorbs >=3-way.\\\\n\\\\nUsage:\\\\n  python scripts/exp002_analysis/per_benchmark_gstudy.py --data-dir results/exp002\\\\n\\\\\\\"\\\\\\\"\\\\\\\"\\\\n\\\\nimport argparse\\\\nimport json\\\\nimport sys\\\\nimport time\\\\nfrom itertools import combinations\\\\nfrom math import prod\\\\nfrom pathlib import Path\\\\n\\\\nimport numpy as np\\\\nimport pandas as pd\\\\n\\\\nsys.path.insert(0, str(Path(__file__).resolve().parents[2]))\\\\nfrom src.config.model_paths import normalize_model_name\\\\n\\\\nFACETS = [\\\\\\\"model\\\\\\\", \\\\\\\"temperature\\\\\\\", \\\\\\\"prompt_template\\\\\\\", \\\\\\\"seed\\\\\\\", \\\\\\\"ordering\\\\\\\", \\\\\\\"item_id\\\\\\\"]\\\\nBENCHMARKS = [\\\\\\\"mmlu\\\\\\\", \\\\\\\"gsm8k\\\\\\\", \\\\\\\"arc\\\\\\\", \\\\\\\"hellaswag\\\\\\\"]\\\\n\\\\n\\\\ndef load_exp002_data(data_dir: str) -> pd.DataFrame:\\\\n    data_path = Path(data_dir)\\\\n    jsonl_files = sorted(data_path.glob(\\\\\\\"*.jsonl\\\\\\\"))\\\\n    if not jsonl_files:\\\\n        raise FileNotFoundError(f\\\\\\\"No JSONL files in {data_dir}\\\\\\\")\\\\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\\\\n    df = pd.concat(frames, ignore_index=True)\\\\n    if \\\\\\\"top_logprobs\\\\\\\" in df.columns:\\\\n        df.drop(columns=[\\\\\\\"top_logprobs\\\\\\\"], inplace=True)\\\\n    df[\\\\\\\"model\\\\\\\"] = df[\\\\\\\"model\\\\\\\"].map(normalize_model_name).fillna(df[\\\\\\\"model\\\\\\\"])\\\\n    for f in FACETS:\\\\n        df[f] = df[f].astype(str)\\\\n    return df\\\\n\\\\n\\\\ndef compute_henderson_i(df: pd.DataFrame, response: str, facets: list[str]):\\\\n    \\\\\\\"\\\\\\\"\\\\\\\"Henderson Method I: SS -> EMS -> variance components.\\\\\\\"\\\\\\\"\\\\\\\"\\\\n    gra\n…[truncated 7246 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T21:43:32.687257+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cat /root/nlp_variance_gtheory/scripts/exp001_4model_gstudy_v2.py"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T21:43:32.687498+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"import pandas as pd\\\\nimport numpy as np\\\\nimport json\\\\nfrom numpy.random import default_rng\\\\n\\\\ndf = pd.read_csv('results/analysis/cross_model_4way_bf16.csv')\\\\nN = len(df)\\\\ngrand_mean = df['correct'].mean()\\\\ntotal_var = df['correct'].var()\\\\nss_total = total_var * (N - 1)\\\\n\\\\nn_m, n_t, n_p, n_s, n_o, n_i = 4, 3, 6, 6, 4, 200\\\\n\\\\nprint(f\\\\\\\"N={N}, grand_mean={grand_mean:.6f}, total_var={total_var:.6f}\\\\\\\")\\\\n\\\\nmodel_acc = df.groupby('model')['correct'].mean().to_dict()\\\\nprint(\\\\\\\"\\\\\\\\nModel accuracies:\\\\\\\")\\\\nfor m, a in sorted(model_acc.items()):\\\\n    print(f\\\\\\\"  {m}: {a:.6f}\\\\\\\")\\\\n\\\\n# Build 6D array\\\\nmodels_sorted = sorted(df['model'].unique())\\\\ntemps_sorted = sorted(df['temperature'].unique())\\\\nprompts_sorted = sorted(df['prompt_template'].unique())\\\\nseeds_sorted = sorted(df['seed'].unique())\\\\norders_sorted = sorted(df['ordering'].unique())\\\\nitems_sorted = sorted(df['item_id'].unique())\\\\n\\\\nmodel_map = {v: i for i, v in enumerate(models_sorted)}\\\\ntemp_map = {v: i for i, v in enumerate(temps_sorted)}\\\\nprompt_map = {v: i for i, v in enumerate(prompts_sorted)}\\\\nseed_map = {v: i for i, v in enumerate(seeds_sorted)}\\\\norder_map = {v: i for i, v in enumerate(orders_sorted)}\\\\nitem_map = {v: i for i, v in enumerate(items_sorted)}\\\\n\\\\nY = np.full((n_m, n_t, n_p, n_s, n_o, n_i), np.nan)\\\\nfor _, row in df.iterrows():\\\\n    Y[model_map[row['model']], temp_map[row['temperature']], prompt_map[row['prompt_template']],\\\\n      seed_map[row['seed']], order_map[row['ordering']], item_map[row['item_id']]] = row['correct']\\\\n\\\\nprint(f\\\\\\\"Array shape: {Y.shape}, NaN: {np.isnan(Y).sum()}\\\\\\\")\\\\n\\\\ndef compute_gstudy(Y_arr):\\\\n    nm, nt, np_, ns, no, ni = Y_arr.shape\\\\n    N_arr = nm * nt * np_ * ns * no * ni\\\\n    gm = np.nanmean(Y_arr)\\\\n    \\\\n    mean_m = np.nanmean(Y_arr, axis=(1,2,3,4,5))\\\\n    mean_t = np.nanmean(Y_arr, axis=(0,2,3,4,5))\\\\n    mean_p = np.nanmean(Y_arr, axis=(0,1,3,4,5))\\\\n    me\n…[truncated 6726 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T21:43:32.687690+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "python3 -c \"import pandas as pd, glob; frames=[pd.read_json(f,lines=True) for f in sorted(glob.glob('/root/nlp_variance_gtheory/results/exp002/*.jsonl'))]; df=pd.concat(frames); print('Models:',sorted(df['model'].unique())); print('Benchmarks:',sorted(df['benchmark'].unique())); print('Total:',len(df))\" 2>&1"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T21:43:32.687824+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter ';' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T21:43:32.687944+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "ls /root/nlp_variance_gtheory/results/exp001_gemma/ /root/nlp_variance_gtheory/results/exp001_llama/ /root/nlp_variance_gtheory/results/exp001_mistral/ /root/nlp_variance_gtheory/results/exp001_qwen/ 2>&1"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T21:43:32.688063+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '>' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T21:43:32.688177+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "ls /root/nlp_variance_gtheory/results/exp001b/"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T21:43:32.688299+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"master.log\\\\nsample1\\\\nsample2\\\\nsample3\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T21:43:32.688432+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \"\nimport pandas as pd, glob\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob('results/exp002/*.jsonl'))]\ndf=pd.concat(frames)\nprint('Models:', sorted(df['model'].unique()))\nprint('Benchmarks:', sorted(df['benchmark'].unique()))\nprint('N_models:', df['model'].nunique())\nprint('Total obs:', len(df))\nfor bm in sorted(df['benchmark'].unique()):\n    sub = df[df['benchmark']==bm]\n    print(f'  {bm}: {len(sub)} obs, {sub[\\\"model\\\"].nunique()} models')\n\"\n"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T21:43:32.688575+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && python3 -c \\\\\\\"\\\\\\\\nimport pandas as pd, glob\\\\\\\\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob(\\\\\\\\'results/exp002/*.jsonl\\\\\\\\'))]\\\\\\\\ndf=pd.concat(frames)\\\\\\\\nprint(\\\\\\\\'Models:\\\\\\\\', sorted(df[\\\\\\\\'model\\\\\\\\'].unique()))\\\\\\\\nprint(\\\\\\\\'Benchmarks:\\\\\\\\', sorted(df[\\\\\\\\'benchmark\\\\\\\\'].unique()))\\\\\\\\nprint(\\\\\\\\'N_models:\\\\\\\\', df[\\\\\\\\'model\\\\\\\\'].nunique())\\\\\\\\nprint(\\\\\\\\'Total obs:\\\\\\\\', len(df))\\\\\\\\nfor bm in sorted(df[\\\\\\\\'benchmark\\\\\\\\'].unique()):\\\\\\\\n    sub = df[df[\\\\\\\\'benchmark\\\\\\\\']==bm]\\\\\\\\n    print(f\\\\\\\\'  {bm}: {len(sub)} obs, {sub[\\\\\\\\\\\\\\\\\\\\\\\"model\\\\\\\\\\\\\\\\\\\\\\\"].nunique()} models\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 5, in <module>\\\\nTypeError: '<' not supported between instances of 'float' and 'str'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 25.87}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T21:43:32.688714+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 -c \"\nimport pandas as pd, glob\nfrom src.config.model_paths import normalize_model_name\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob('results/exp002/*.jsonl'))]\ndf=pd.concat(frames)\ndf['model'] = df['model'].map(normalize_model_name).fillna(df['model'])\nprint('Models:', sorted(df['model'].dropna().unique()))\nprint('Benchmarks:', sorted(df['benchmark'].unique()))\nprint('N_models:', df['model'].nunique())\nprint('Total obs:', len(df))\nfor bm in sorted(df['benchmark'].unique()):\n    sub = df[df['benchmark']==bm]\n    print(f'  {bm}: {len(sub)} obs, {sub.model.nunique()} models: {sorted(sub.model.dropna().unique())}')\n\"\n"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T21:43:32.688861+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Encountered a bad command exit code!\\\\n\\\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 -c \\\\\\\"\\\\\\\\nimport pandas as pd, glob\\\\\\\\nfrom src.config.model_paths import normalize_model_name\\\\\\\\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob(\\\\\\\\'results/exp002/*.jsonl\\\\\\\\'))]\\\\\\\\ndf=pd.concat(frames)\\\\\\\\ndf[\\\\\\\\'model\\\\\\\\'] = df[\\\\\\\\'model\\\\\\\\'].map(normalize_model_name).fillna(df[\\\\\\\\'model\\\\\\\\'])\\\\\\\\nprint(\\\\\\\\'Models:\\\\\\\\', sorted(df[\\\\\\\\'model\\\\\\\\'].dropna().unique()))\\\\\\\\nprint(\\\\\\\\'Benchmarks:\\\\\\\\', sorted(df[\\\\\\\\'benchmark\\\\\\\\'].unique()))\\\\\\\\nprint(\\\\\\\\'N_models:\\\\\\\\', df[\\\\\\\\'model\\\\\\\\'].nunique())\\\\\\\\nprint(\\\\\\\\'Total obs:\\\\\\\\', len(df))\\\\\\\\nfor bm in sorted(df[\\\\\\\\'benchmark\\\\\\\\'].unique()):\\\\\\\\n    sub = df[df[\\\\\\\\'benchmark\\\\\\\\']==bm]\\\\\\\\n    print(f\\\\\\\\'  {bm}: {len(sub)} obs, {sub.model.nunique()} models: {sorted(sub.model.dropna().unique())}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nExit code: 1\\\\n\\\\nStdout:\\\\n\\\\nModels: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\\\n\\\\nStderr:\\\\n\\\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\nTraceback (most recent call last):\\\\n  File \\\\\\\"<string>\\\\\\\", line 8, in <module>\\\\nTypeError: '<' not supported between instances of 'float' and 'str'\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 26.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T21:43:32.689024+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 -c \"\nimport pandas as pd, glob\nfrom src.config.model_paths import normalize_model_name\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob('results/exp002/*.jsonl'))]\ndf=pd.concat(frames)\ndf['model'] = df['model'].map(normalize_model_name).fillna(df['model'])\nprint('Benchmarks:', sorted(df['benchmark'].dropna().unique()))\nprint('Total obs:', len(df))\nprint('NaN benchmark:', df['benchmark'].isna().sum())\nfor bm in sorted(df['benchmark'].dropna().unique()):\n    sub = df[df['benchmark']==bm]\n    print(f'  {bm}: {len(sub)} obs, models={sorted(sub.model.dropna().unique())}')\n\"\n"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T21:43:32.689150+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "ls /root/nlp_variance_gtheory/results/exp001_llama/"
+            }
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T21:43:32.689274+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cat /root/nlp_variance_gtheory/results/analysis/exp002_per_benchmark_gstudy.json"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-21T21:43:32.689423+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Benchmarks: ['arc', 'gsm8k', 'hellaswag', 'math', 'mmlu']\\\\nTotal obs: 1765600\\\\nNaN benchmark: 57600\\\\n  arc: 345600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\\\n  gsm8k: 345600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\\\n  hellaswag: 345600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\\\n  math: 325600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\\\n  mmlu: 345600 obs, models=['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\\\n\\\", \\\"stderr\\\": \\\"Error while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 28.24}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-21T21:43:32.689555+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"llama_fp32_t0_backfill.jsonl\\\\nllama_shard_0.jsonl\\\\nllama_shard_1.jsonl\\\\nllama_shard_2.jsonl\\\\nllama_shard_3.jsonl\\\\nshards\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-21T21:43:32.689879+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-002\\\\\\\",\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"per_benchmark_henderson_i_gstudy\\\\\\\",\\\\n  \\\\\\\"facets\\\\\\\": [\\\\n    \\\\\\\"model\\\\\\\",\\\\n    \\\\\\\"temperature\\\\\\\",\\\\n    \\\\\\\"prompt_template\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\",\\\\n    \\\\\\\"ordering\\\\\\\",\\\\n    \\\\\\\"item_id\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"benchmark\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"n_observations\\\\\\\": 230400,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 4,\\\\n        \\\\\\\"temperature\\\\\\\": 2,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 200\\\\n      },\\\\n      \\\\\\\"grand_mean_accuracy\\\\\\\": 0.700247,\\\\n      \\\\\\\"variance_components\\\\\\\": {\\\\n        \\\\\\\"item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0876133124,\\\\n          \\\\\\\"pct\\\\\\\": 41.5471\\\\n        },\\\\n        \\\\\\\"model:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0691895248,\\\\n          \\\\\\\"pct\\\\\\\": 32.8103\\\\n        },\\\\n        \\\\\\\"residual\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.043262815,\\\\n          \\\\\\\"pct\\\\\\\": 20.5156\\\\n        },\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0029608526,\\\\n          \\\\\\\"pct\\\\\\\": 1.4041\\\\n        },\\\\n        \\\\\\\"seed:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0025039227,\\\\n          \\\\\\\"pct\\\\\\\": 1.1874\\\\n        },\\\\n        \\\\\\\"temperature:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.00249588,\\\\n          \\\\\\\"pct\\\\\\\": 1.1836\\\\n        },\\\\n        \\\\\\\"model\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0015897059,\\\\n          \\\\\\\"pct\\\\\\\": 0.7539\\\\n        },\\\\n        \\\\\\\"ordering:item_id\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 0.0010917321,\\\\n          \\\\\\\"pct\\\\\\\": 0.5177\\\\n        },\\\\n        \\\\\\\"model:temperature\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 6.01697e-05,\\\\n          \\\\\\\"pct\\\\\\\": 0.0285\\\\n        },\\\\n        \\\\\\\"model:prompt_template\\\\\\\": {\\\\n          \\\\\\\"estimate\\\\\\\": 3.90555e-05,\\\\n          \\\\\\\"\n…[truncated 8518 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-21T21:43:32.690175+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cat > /root/nlp_variance_gtheory/scripts/exp004_cross_benchmark_analysis.py << 'PYEOF'\n\"\"\"exp-004: Cross-benchmark comprehensive analysis (6 models × 5 benchmarks).\n\nB1: Permutation test (Spearman rho, exact, 5! = 120)\nB2: Leave-one-benchmark-out stability\nB3: D-study projections (per-benchmark, all 6 models)\nB4: Cross-model G-study (6 models, model-as-facet)\n\nOutput: results/exp004_8model_analysis/\n\"\"\"\n\nimport argparse\nimport json\nimport sys\nimport time\nfrom itertools import combinations, permutations\nfrom math import prod\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.stats import spearmanr, kendalltau\n\nsys.path.insert(0, str(Path(__file__).resolve().parents[1]))\nfrom src.config.model_paths import normalize_model_name\n\nFACETS = [\"model\", \"temperature\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\nBENCHMARK_ORDER = [\"mmlu\", \"arc\", \"hellaswag\", \"gsm8k\", \"math\"]\nG_TARGETS = [0.80, 0.90, 0.95]\nITEM_COUNTS = [10, 25, 50, 75, 100, 150, 200, 300, 500, 750, 1000]\n\n\ndef load_data(data_dir: str) -> pd.DataFrame:\n    data_path = Path(data_dir)\n    jsonl_files = sorted(data_path.glob(\"*.jsonl\"))\n    if not jsonl_files:\n        raise FileNotFoundError(f\"No JSONL files in {data_dir}\")\n    frames = [pd.read_json(f, lines=True) for f in jsonl_files]\n    df = pd.concat(frames, ignore_index=True)\n    if \"top_logprobs\" in df.columns:\n        df.drop(columns=[\"top_logprobs\"], inplace=True)\n    df = df.dropna(subset=[\"benchmark\"])\n    df[\"model\"] = df[\"model\"].map(normalize_model_name).fillna(df[\"model\"])\n    for f in FACETS:\n        df[f] = df[f].astype(str)\n    return df\n\n\ndef compute_henderson_i(df: pd.DataFrame, facets: list[str]) -> tuple[dict, dict]:\n    \"\"\"Henderson Method I -> variance components.\"\"\"\n    grand_mean = df[\"correct\"].mean()\n    N = len(df)\n    n_levels = {f: df[f].nunique() for f in facets}\n\n    effects = {}\n    for f in facets:\n        group_means = df.groupby(f, observed=True)[\"correct\"].mean()\n        n_per = N // n_levels[f]\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\n        df_eff = n_levels[f] - 1\n        effects[f] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n\n    for fi, fj in combinations(facets, 2):\n        cell_means = df.groupby([fi, fj], observed=True)[\"correct\"].mean()\n        main_fi = df.groupby(fi, observed=True)[\"correct\"].mean()\n        main_fj = df.groupby(fj, observed=True)[\"correct\"].mean()\n        n_per = N // (n_levels[fi] * n_levels[fj])\n        ss = 0.0\n        for (li, lj), cm in cell_means.items():\n            interaction = cm - main_fi[li] - main_fj[lj] + grand_mean\n            ss += n_per * interaction ** 2\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\n        effects[f\"{fi}:{fj}\"] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n\n    ss_total = float(((df[\"correct\"] - grand_mean) ** 2).sum())\n    ss_model_sum = sum(e[\"ss\"] for e in effects.values())\n    ss_res = max(0.0, ss_total - ss_model_sum)\n    df_res = N - 1 - sum(e[\"df\"] for e in effects.values())\n    effects[\"residual\"] = {\"ss\": ss_res, \"df\": df_res, \"ms\": ss_res / df_res if df_res > 0 else 0.0}\n\n    ms_res = effects[\"residual\"][\"ms\"]\n    vc = {}\n    for fi, fj in combinations(facets, 2):\n        key = f\"{fi}:{fj}\"\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\n        raw = (effects[key][\"ms\"] - ms_res) / coeff if coeff > 0 else 0.0\n        vc[key] = max(0.0, raw)\n\n    for fi in facets:\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\n        interaction_contrib = 0.0\n        for fj in facets:\n            if fj == fi:\n                continue\n            int_key = f\"{fi}:{fj}\" if f\"{fi}:{fj}\" in vc else f\"{fj}:{fi}\"\n            coeff_ij = prod(n_levels[f] for f in facets if f not in (fi, fj))\n            interaction_contrib += coeff_ij * vc[int_key]\n        raw = (effects[fi][\"ms\"] - interaction_contrib - ms_res) / coeff_main if coeff_main > 0 else 0.0\n        vc[fi] = max(0.0, raw)\n\n    vc[\"residual\"] = ms_res\n    return vc, {k: int(v) for k, v in n_levels.items()}\n\n\ndef compute_pcts(vc: dict) -> dict[str, float]:\n    total = sum(vc.values())\n    return {k: v / total * 100 if total > 0 else 0.0 for k, v in vc.items()}\n\n\n# ============================================================\n# B1: Permutation test\n# ============================================================\ndef spearman_permutation_test(values: dict, order: list, direction: str):\n    \"\"\"Exact permutation test using Spearman rho.\"\"\"\n    observed = [values[bm] for bm in order]\n    n = len(order)\n    if direction == \"decreasing\":\n        expected = list(range(n, 0, -1))\n    else:\n        expected = list(range(1, n + 1))\n\n    obs_rho, _ = spearmanr(expected, observed)\n    obs_tau, tau_p = kendalltau(expected, observed)\n\n    all_perms = list(permutations(range(n)))\n    n_extreme = 0\n    for perm in all_perms:\n        perm_vals = [observed[i] for i in perm]\n        rho, _ = spearmanr(expected, perm_vals)\n        if direction == \"decreasing\":\n            if rho >= obs_rho:\n                n_extreme += 1\n        else:\n            if rho >= obs_rho:\n                n_extreme += 1\n\n    p_value = n_extreme / len(all_perms)\n    return {\n        \"observed_values\": {bm: round(values[bm], 4) for bm in order},\n        \"observed_rho\": round(float(obs_rho), 6),\n        \"p_value\": round(p_value, 6),\n        \"n_extreme\": n_extreme,\n        \"n_permutations\": len(all_perms),\n        \"significant_at_0.05\": p_value < 0.05,\n        \"kendall_tau\": round(float(obs_tau), 6),\n        \"kendall_p\": round(float(tau_p), 6),\n    }\n\n\ndef run_b1_permutation_test(df: pd.DataFrame, output_dir: Path):\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"B1: Permutation test (5 benchmarks)\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n    benchmark_stats = {}\n    available = [bm for bm in BENCHMARK_ORDER if bm in df[\"benchmark\"].unique()]\n\n    for bm in available:\n        df_bm = df[df[\"benchmark\"] == bm].reset_index(drop=True)\n        vc, _ = compute_henderson_i(df_bm, FACETS)\n        pcts = compute_pcts(vc)\n        benchmark_stats[bm] = {\n            \"item_id_pct\": pcts.get(\"item_id\", 0.0),\n            \"model_item_pct\": pcts.get(\"model:item_id\", 0.0),\n            \"n_obs\": len(df_bm),\n            \"accuracy\": float(df_bm[\"correct\"].mean()),\n        }\n        print(f\"  {bm}: item_id={pcts.get('item_id', 0):.2f}%, \"\n              f\"model:item={pcts.get('model:item_id', 0):.2f}%\", flush=True)\n\n    item_pcts = {bm: benchmark_stats[bm][\"item_id_pct\"] for bm in available}\n    model_item_pcts = {bm: benchmark_stats[bm][\"model_item_pct\"] for bm in available}\n\n    test_item = spearman_permutation_test(item_pcts, available, \"decreasing\")\n    test_model_item = spearman_permutation_test(model_item_pcts, available, \"increasing\")\n\n    result = {\n        \"experiment\": \"exp-004 (6 models × 5 benchmarks)\",\n        \"test_statistic\": \"spearman_rho\",\n        \"n_benchmarks\": len(available),\n        \"n_permutations\": test_item[\"n_permutations\"],\n        \"benchmark_order_hypothesis\": BENCHMARK_ORDER,\n        \"benchmarks_used\": available,\n        \"benchmark_stats\": benchmark_stats,\n        \"item_id_gradient\": {\n            \"hypothesis\": \"MC benchmarks (MMLU/ARC/HellaSwag) > FF benchmarks (GSM8K/MATH)\",\n            \"direction\": \"decreasing (knowledge-retrieval → reasoning)\",\n            **test_item,\n        },\n        \"model_item_gradient\": {\n            \"hypothesis\": \"model×item increases from MC to FF\",\n            \"direction\": \"increasing\",\n            **test_model_item,\n        },\n    }\n\n    out_path = output_dir / \"permutation_test_5bm.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(result, f, indent=2)\n\n    print(f\"\\n  item_id gradient:    rho={test_item['observed_rho']:.4f}, \"\n          f\"p={test_item['p_value']:.4f}\", flush=True)\n    print(f\"  model:item gradient: rho={test_model_item['observed_rho']:.4f}, \"\n          f\"p={test_model_item['p_value']:.4f}\", flush=True)\n    print(f\"  -> {out_path}\", flush=True)\n    return result\n\n\n# ============================================================\n# B2: Leave-one-benchmark-out\n# ============================================================\ndef run_b2_lobo(df: pd.DataFrame, benchmark_stats: dict, output_dir: Path):\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"B2: Leave-one-benchmark-out stability\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n    available = [bm for bm in BENCHMARK_ORDER if bm in benchmark_stats]\n\n    full_item_vals = [benchmark_stats[bm][\"item_id_pct\"] for bm in available]\n    full_mi_vals = [benchmark_stats[bm][\"model_item_pct\"] for bm in available]\n\n    print(f\"  Full set item_id%:    {[f'{v:.2f}' for v in full_item_vals]}\", flush=True)\n    print(f\"  Full set model:item%: {[f'{v:.2f}' for v in full_mi_vals]}\", flush=True)\n\n    lobo_results = {}\n    for drop_bm in available:\n        remaining = [bm for bm in available if bm != drop_bm]\n        item_vals = {bm: benchmark_stats[bm][\"item_id_pct\"] for bm in remaining}\n        mi_vals = {bm: benchmark_stats[bm][\"model_item_pct\"] for bm in remaining}\n\n        test_item = spearman_permutation_test(item_vals, remaining, \"decreasing\")\n        test_mi = spearman_permutation_test(mi_vals, remaining, \"increasing\")\n\n        item_list = [item_vals[bm] for bm in remaining]\n        mi_list = [mi_vals[bm] for bm in remaining]\n        item_monotonic = all(item_list[i] >= item_list[i + 1] for i in range(len(item_list) - 1))\n        mi_monotonic = all(mi_list[i] <= mi_list[i + 1] for i in range(len(mi_list) - 1))\n\n        lobo_results[drop_bm] = {\n            \"dropped\": drop_bm,\n            \"remaining\": remaining,\n            \"item_id_values\": {bm: round(benchmark_stats[bm][\"item_id_pct\"], 4) for bm in remaining},\n            \"model_item_values\": {bm: round(benchmark_stats[bm][\"model_item_pct\"], 4) for bm in remaining},\n            \"item_id_monotonic_decreasing\": item_monotonic,\n            \"model_item_monotonic_increasing\": mi_monotonic,\n            \"both_monotonic\": item_monotonic and mi_monotonic,\n            \"item_id_spearman_rho\": test_item[\"observed_rho\"],\n            \"item_id_p_value\": test_item[\"p_value\"],\n            \"model_item_spearman_rho\": test_mi[\"observed_rho\"],\n            \"model_item_p_value\": test_mi[\"p_value\"],\n        }\n\n        status = \"PRESERVED\" if (item_monotonic and mi_monotonic) else \"BROKEN\"\n        print(f\"  Drop {drop_bm}: {status} | item rho={test_item['observed_rho']:.3f} \"\n              f\"p={test_item['p_value']:.3f}, mi rho={test_mi['observed_rho']:.3f} \"\n              f\"p={test_mi['p_value']:.3f}\", flush=True)\n\n    n_preserved = sum(1 for r in lobo_results.values() if r[\"both_monotonic\"])\n\n    result = {\n        \"experiment\": \"exp-004\",\n        \"analysis\": \"leave_one_benchmark_out\",\n        \"benchmark_order\": available,\n        \"full_set\": {\n            \"item_id_values\": {bm: round(benchmark_stats[bm][\"item_id_pct\"], 4) for bm in available},\n            \"model_item_values\": {bm: round(benchmark_stats[bm][\"model_item_pct\"], 4) for bm in available},\n        },\n        \"lobo_results\": lobo_results,\n        \"summary\": {\n            \"n_benchmarks\": len(available),\n            \"n_drops\": len(lobo_results),\n            \"n_gradient_preserved\": n_preserved,\n            \"gradient_robust\": n_preserved == len(lobo_results),\n        },\n    }\n\n    out_path = output_dir / \"lobo_stability.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(result, f, indent=2)\n    print(f\"  Gradient preserved: {n_preserved}/{len(lobo_results)}\", flush=True)\n    print(f\"  -> {out_path}\", flush=True)\n    return result\n\n\n# ============================================================\n# B3: D-study projections\n# ============================================================\ndef compute_g_for_n_items(vc: dict, n_levels: dict, n_items: int, facets: list[str]) -> float:\n    sigma_item = vc.get(\"item_id\", 0.0)\n    n_actual = n_levels[\"item_id\"]\n    non_item = [f for f in facets if f != \"item_id\"]\n\n    sigma_delta_actual = 0.0\n    for comp, est in vc.items():\n        if est == 0.0 or comp == \"item_id\":\n            continue\n        if comp == \"residual\":\n            sigma_delta_actual += est / prod(n_levels[f] for f in non_item)\n            continue\n        facets_in = set(comp.split(\":\"))\n        if \"item_id\" not in facets_in:\n            continue\n        other = [f for f in facets_in if f != \"item_id\"]\n        sigma_delta_actual += est / (prod(n_levels[f] for f in other) if other else 1)\n\n    sigma_delta_n = sigma_delta_actual * (n_actual / n_items)\n    total = sigma_item + sigma_delta_n\n    return sigma_item / total if total > 0 else 0.0\n\n\ndef find_min_items(vc: dict, n_levels: dict, target_g: float, facets: list[str], max_items: int = 5000):\n    for ni in range(1, max_items + 1):\n        g = compute_g_for_n_items(vc, n_levels, ni, facets)\n        if g >= target_g:\n            return ni\n    return None\n\n\ndef run_b3_dstudy(df: pd.DataFrame, output_dir: Path):\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"B3: D-study projections (per-benchmark, all models)\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n    available = [bm for bm in BENCHMARK_ORDER if bm in df[\"benchmark\"].unique()]\n    n_models = df[\"model\"].nunique()\n    print(f\"  Models: {n_models}, Benchmarks: {available}\", flush=True)\n\n    results = {}\n    for bm in available:\n        df_bm = df[df[\"benchmark\"] == bm].reset_index(drop=True)\n        vc, n_levels = compute_henderson_i(df_bm, FACETS)\n        total_var = sum(vc.values())\n        pcts = compute_pcts(vc)\n\n        g_current = compute_g_for_n_items(vc, n_levels, n_levels[\"item_id\"], FACETS)\n\n        curve = {}\n        for ni in ITEM_COUNTS:\n            g = compute_g_for_n_items(vc, n_levels, ni, FACETS)\n            curve[str(ni)] = round(g, 6)\n\n        min_items = {}\n        for target in G_TARGETS:\n            n = find_min_items(vc, n_levels, target, FACETS)\n            min_items[str(target)] = n\n\n        # Multi-facet vs single-condition ratio\n        sigma_item = vc.get(\"item_id\", 0.0)\n        sigma_delta_multi = sum(v for k, v in vc.items() if k != \"item_id\")\n        sigma_single = total_var - sigma_item  # all non-item variance\n        ratio = sigma_single / sigma_delta_multi if sigma_delta_multi > 0 else float(\"inf\")\n\n        results[bm] = {\n            \"n_observations\": len(df_bm),\n            \"n_levels\": n_levels,\n            \"accuracy\": round(float(df_bm[\"correct\"].mean()), 6),\n            \"G_current\": round(g_current, 6),\n            \"item_id_pct\": round(pcts.get(\"item_id\", 0), 4),\n            \"model_item_pct\": round(pcts.get(\"model:item_id\", 0), 4),\n            \"d_study_curve\": curve,\n            \"min_items_for_G\": min_items,\n            \"variance_components_pct\": {k: round(v, 4) for k, v in sorted(pcts.items(), key=lambda x: -x[1]) if v > 0.01},\n        }\n\n        m80 = min_items.get(\"0.8\", \">5000\")\n        m90 = min_items.get(\"0.9\", \">5000\")\n        m95 = min_items.get(\"0.95\", \">5000\")\n        print(f\"  {bm:<10} G={g_current:.4f} | min items: G>=.80={m80}, G>=.90={m90}, G>=.95={m95}\", flush=True)\n\n    result = {\n        \"experiment\": \"exp-004\",\n        \"analysis\": \"dstudy_projections\",\n        \"n_models\": n_models,\n        \"models\": sorted(df[\"model\"].unique()),\n        \"facets\": FACETS,\n        \"g_targets\": G_TARGETS,\n        \"benchmarks\": results,\n    }\n\n    out_path = output_dir / \"dstudy_8model.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(result, f, indent=2)\n    print(f\"  -> {out_path}\", flush=True)\n    return result\n\n\n# ============================================================\n# B4: Cross-model G-study (model-as-facet)\n# ============================================================\ndef run_b4_cross_model_gstudy(df: pd.DataFrame, output_dir: Path):\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"B4: Cross-model G-study (model-as-facet, MMLU)\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n    df_mmlu = df[df[\"benchmark\"] == \"mmlu\"].reset_index(drop=True)\n    n_models = df_mmlu[\"model\"].nunique()\n    print(f\"  MMLU: {len(df_mmlu)} obs, {n_models} models\", flush=True)\n    print(f\"  Models: {sorted(df_mmlu['model'].unique())}\", flush=True)\n\n    vc_mmlu, nl_mmlu = compute_henderson_i(df_mmlu, FACETS)\n    pcts_mmlu = compute_pcts(vc_mmlu)\n    g_item_mmlu = compute_g_for_n_items(vc_mmlu, nl_mmlu, nl_mmlu[\"item_id\"], FACETS)\n\n    print(f\"  item_id%:       {pcts_mmlu.get('item_id', 0):.2f}%\", flush=True)\n    print(f\"  model:item_id%: {pcts_mmlu.get('model:item_id', 0):.2f}%\", flush=True)\n    print(f\"  model%:         {pcts_mmlu.get('model', 0):.2f}%\", flush=True)\n    print(f\"  G_item:         {g_item_mmlu:.6f}\", flush=True)\n\n    # Compare with 4-model results\n    prev_4model = {\n        \"item_id_pct\": 41.55,\n        \"model_item_pct\": 32.81,\n        \"model_pct\": 0.75,\n        \"G_item\": 0.8159,\n        \"n_models\": 4,\n    }\n\n    # Per-benchmark cross-model analysis\n    per_bm = {}\n    for bm in BENCHMARK_ORDER:\n        df_bm = df[df[\"benchmark\"] == bm].reset_index(drop=True)\n        if len(df_bm) == 0:\n            continue\n        vc, nl = compute_henderson_i(df_bm, FACETS)\n        pcts = compute_pcts(vc)\n        g_item = compute_g_for_n_items(vc, nl, nl[\"item_id\"], FACETS)\n\n        per_bm[bm] = {\n            \"n_obs\": len(df_bm),\n            \"n_levels\": nl,\n            \"accuracy\": round(float(df_bm[\"correct\"].mean()), 6),\n            \"item_id_pct\": round(pcts.get(\"item_id\", 0), 4),\n            \"model_item_pct\": round(pcts.get(\"model:item_id\", 0), 4),\n            \"model_pct\": round(pcts.get(\"model\", 0), 4),\n            \"G_item\": round(g_item, 6),\n            \"top_components\": {k: round(v, 4) for k, v in sorted(pcts.items(), key=lambda x: -x[1])[:6]},\n        }\n\n    result = {\n        \"experiment\": \"exp-004\",\n        \"analysis\": \"cross_model_gstudy\",\n        \"n_models\": n_models,\n        \"models\": sorted(df[\"model\"].unique()),\n        \"facets\": FACETS,\n        \"mmlu_focus\": {\n            \"n_observations\": len(df_mmlu),\n            \"n_levels\": nl_mmlu,\n            \"item_id_pct\": round(pcts_mmlu.get(\"item_id\", 0), 4),\n            \"model_item_pct\": round(pcts_mmlu.get(\"model:item_id\", 0), 4),\n            \"model_pct\": round(pcts_mmlu.get(\"model\", 0), 4),\n            \"G_item\": round(g_item_mmlu, 6),\n            \"variance_components_pct\": {k: round(v, 4) for k, v in sorted(pcts_mmlu.items(), key=lambda x: -x[1]) if v > 0.01},\n        },\n        \"comparison_4model\": prev_4model,\n        \"delta_vs_4model\": {\n            \"item_id_pct_change\": round(pcts_mmlu.get(\"item_id\", 0) - prev_4model[\"item_id_pct\"], 4),\n            \"model_item_pct_change\": round(pcts_mmlu.get(\"model:item_id\", 0) - prev_4model[\"model_item_pct\"], 4),\n            \"G_item_change\": round(g_item_mmlu - prev_4model[\"G_item\"], 6),\n        },\n        \"per_benchmark\": per_bm,\n    }\n\n    out_path = output_dir / \"cross_model_gstudy_8model.json\"\n    with open(out_path, \"w\") as f:\n        json.dump(result, f, indent=2)\n\n    print(f\"\\n  Per-benchmark summary:\", flush=True)\n    print(f\"  {'Benchmark':<12} {'item_id%':>9} {'m:item%':>9} {'model%':>8} {'G_item':>8}\", flush=True)\n    print(f\"  {'-'*48}\", flush=True)\n    for bm in per_bm:\n        r = per_bm[bm]\n        print(f\"  {bm:<12} {r['item_id_pct']:>8.2f}% {r['model_item_pct']:>8.2f}% \"\n              f\"{r['model_pct']:>7.2f}% {r['G_item']:>8.4f}\", flush=True)\n\n    print(f\"\\n  vs 4-model: item_id% {pcts_mmlu.get('item_id',0):.2f} vs {prev_4model['item_id_pct']:.2f}, \"\n          f\"model:item% {pcts_mmlu.get('model:item_id',0):.2f} vs {prev_4model['model_item_pct']:.2f}\", flush=True)\n    print(f\"  -> {out_path}\", flush=True)\n    return result\n\n\ndef main():\n    parser = argparse.ArgumentParser(description=\"exp-004 cross-benchmark analysis\")\n    parser.add_argument(\"--data-dir\", default=\"results/exp002\")\n    parser.add_argument(\"--output-dir\", default=\"results/exp004_8model_analysis\")\n    args = parser.parse_args()\n\n    t0 = time.time()\n    output_dir = Path(args.output_dir)\n    output_dir.mkdir(parents=True, exist_ok=True)\n\n    print(\"Loading data...\", flush=True)\n    df = load_data(args.data_dir)\n    print(f\"Loaded {len(df)} records, {df['model'].nunique()} models, \"\n          f\"{df['benchmark'].nunique()} benchmarks ({time.time()-t0:.1f}s)\", flush=True)\n    print(f\"Models: {sorted(df['model'].unique())}\", flush=True)\n    print(f\"Benchmarks: {sorted(df['benchmark'].unique())}\", flush=True)\n\n    # B1\n    b1 = run_b1_permutation_test(df, output_dir)\n\n    # B2 (reuse B1's benchmark_stats)\n    run_b2_lobo(df, b1[\"benchmark_stats\"], output_dir)\n\n    # B3\n    run_b3_dstudy(df, output_dir)\n\n    # B4\n    run_b4_cross_model_gstudy(df, output_dir)\n\n    print(f\"\\n{'=' * 70}\", flush=True)\n    print(f\"All analyses complete. Runtime: {time.time()-t0:.1f}s\", flush=True)\n    print(f\"Output: {output_dir}/\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"Script written.\"\n"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-21T21:43:32.690548+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.51}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-21T21:43:32.690701+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 scripts/exp004_cross_benchmark_analysis.py 2>&1",
+              "warn": "True"
+            }
+          },
+          "id": "event-000043"
+        },
+        {
+          "source_line": 44,
+          "timestamp": "2026-05-21T21:43:32.690835+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 scripts/exp004_cross_benchmark_analysis.py 2>&1'\\\\n\\\\nStdout:\\\\n\\\\nLoading data...\\\\n\\\\nStderr:\\\\n\\\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.42}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000044"
+        },
+        {
+          "source_line": 45,
+          "timestamp": "2026-05-21T21:43:32.690985+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && nohup python3 scripts/exp004_cross_benchmark_analysis.py > /tmp/exp004_run.log 2>&1 & echo \"PID=$!\""
+            }
+          },
+          "id": "event-000045"
+        },
+        {
+          "source_line": 46,
+          "timestamp": "2026-05-21T21:43:32.691115+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && nohup python3 scripts/exp004_cross_benchmark_analysis.py > /tmp/exp004_run.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=201424\\\\n\\\\nStderr:\\\\n\\\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 31.05}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000046"
+        },
+        {
+          "source_line": 47,
+          "timestamp": "2026-05-21T21:43:32.691255+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "tail -30 /tmp/exp004_run.log"
+            }
+          },
+          "id": "event-000047"
+        },
+        {
+          "source_line": 48,
+          "timestamp": "2026-05-21T21:43:32.691374+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.92}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000048"
+        },
+        {
+          "source_line": 49,
+          "timestamp": "2026-05-21T21:43:32.691519+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "tail -50 /tmp/exp004_run.log"
+            }
+          },
+          "id": "event-000049"
+        },
+        {
+          "source_line": 50,
+          "timestamp": "2026-05-21T21:43:32.691643+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\nLoaded 1939200 records, 8 models, 5 benchmarks (36.5s)\\\\nModels: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\\\nBenchmarks: ['arc', 'gsm8k', 'hellaswag', 'math', 'mmlu']\\\\n\\\\n======================================================================\\\\nB1: Permutation test (5 benchmarks)\\\\n======================================================================\\\\n  mmlu: item_id=40.48%, model:item=31.60%\\\\n  arc: item_id=42.46%, model:item=38.05%\\\\n  hellaswag: item_id=32.20%, model:item=37.14%\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000050"
+        },
+        {
+          "source_line": 51,
+          "timestamp": "2026-05-21T21:43:32.691783+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "tail -60 /tmp/exp004_run.log"
+            }
+          },
+          "id": "event-000051"
+        },
+        {
+          "source_line": 52,
+          "timestamp": "2026-05-21T21:43:32.691928+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\nLoaded 1939200 records, 8 models, 5 benchmarks (36.5s)\\\\nModels: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\\\nBenchmarks: ['arc', 'gsm8k', 'hellaswag', 'math', 'mmlu']\\\\n\\\\n======================================================================\\\\nB1: Permutation test (5 benchmarks)\\\\n======================================================================\\\\n  mmlu: item_id=40.48%, model:item=31.60%\\\\n  arc: item_id=42.46%, model:item=38.05%\\\\n  hellaswag: item_id=32.20%, model:item=37.14%\\\\n  gsm8k: item_id=16.86%, model:item=14.55%\\\\n  math: item_id=24.42%, model:item=17.02%\\\\n\\\\n  item_id gradient:    rho=0.8000, p=0.0667\\\\n  model:item gradient: rho=-0.6000, p=0.8833\\\\n  -> results/exp004_8model_analysis/permutation_test_5bm.json\\\\n\\\\n======================================================================\\\\nB2: Leave-one-benchmark-out stability\\\\n======================================================================\\\\n  Full set item_id%:    ['40.48', '42.46', '32.20', '16.86', '24.42']\\\\n  Full set model:item%: ['31.60', '38.05', '37.14', '14.55', '17.02']\\\\n  Drop mmlu: BROKEN | item rho=0.800 p=0.167, mi rho=-0.800 p=0.958\\\\n  Drop arc: BROKEN | item rho=0.800 p=0.167, mi rho=-0.600 p=0.833\\\\n  Drop hellaswag: BROKEN | item rho=0.600 p=0.208, mi rho=-0.600 p=0.833\\\\n  Drop gsm8k: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\\\n  Drop math: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\\\n  Gradient preserved: 0/5\\\\n  -> results/exp004_8model_analysis/lobo_stability.json\\\\n\\\\n======================================================================\\\\nB3: D-study projections (per-benchmark, all models)\\\\n======================================================================\\\\n  Models: 8, Benchmarks: ['mmlu', 'arc', 'hellaswag', 'gsm8k', 'math']\\\\n  mmlu       G=0.8705 | min items: G>=.80=119, G>=.90=26\n…[truncated 909 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000052"
+        },
+        {
+          "source_line": 53,
+          "timestamp": "2026-05-21T21:43:32.692063+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "tail -30 /tmp/exp004_run.log"
+            }
+          },
+          "id": "event-000053"
+        },
+        {
+          "source_line": 54,
+          "timestamp": "2026-05-21T21:43:32.692191+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  hellaswag  G=0.8240 | min items: G>=.80=171, G>=.90=385, G>=.95=812\\\\n  gsm8k      G=0.8629 | min items: G>=.80=128, G>=.90=287, G>=.95=604\\\\n  math       G=0.8913 | min items: G>=.80=98, G>=.90=220, G>=.95=464\\\\n  -> results/exp004_8model_analysis/dstudy_8model.json\\\\n\\\\n======================================================================\\\\nB4: Cross-model G-study (model-as-facet, MMLU)\\\\n======================================================================\\\\n  MMLU: 345600 obs, 6 models\\\\n  Models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B']\\\\n  item_id%:       40.48%\\\\n  model:item_id%: 31.60%\\\\n  model%:         3.05%\\\\n  G_item:         0.870521\\\\n\\\\n  Per-benchmark summary:\\\\n  Benchmark     item_id%   m:item%   model%   G_item\\\\n  ------------------------------------------------\\\\n  mmlu            40.48%    31.60%    3.05%   0.8705\\\\n  arc             42.46%    38.05%    5.23%   0.8623\\\\n  hellaswag       32.20%    37.14%    6.69%   0.8240\\\\n  gsm8k           16.86%    14.55%   10.75%   0.8629\\\\n  math            24.42%    17.02%    8.08%   0.8913\\\\n\\\\n  vs 4-model: item_id% 40.48 vs 41.55, model:item% 31.60 vs 32.81\\\\n  -> results/exp004_8model_analysis/cross_model_gstudy_8model.json\\\\n\\\\n======================================================================\\\\nAll analyses complete. Runtime: 47.8s\\\\nOutput: results/exp004_8model_analysis/\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000054"
+        },
+        {
+          "source_line": 55,
+          "timestamp": "2026-05-21T21:43:32.692365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 -c \"\nimport pandas as pd, glob\nfrom src.config.model_paths import normalize_model_name\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob('results/exp002/*.jsonl'))]\ndf=pd.concat(frames)\ndf = df.dropna(subset=['benchmark'])\ndf['model'] = df['model'].map(normalize_model_name).fillna(df['model'])\nfor bm in sorted(df['benchmark'].unique()):\n    sub = df[df['benchmark']==bm]\n    print(f'{bm}: {sub.model.nunique()} models = {sorted(sub.model.unique())}')\n\"\n"
+            }
+          },
+          "id": "event-000055"
+        },
+        {
+          "source_line": 56,
+          "timestamp": "2026-05-21T21:43:32.692528+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && python3 -c \\\\\\\"\\\\\\\\nimport pandas as pd, glob\\\\\\\\nfrom src.config.model_paths import normalize_model_name\\\\\\\\nframes=[pd.read_json(f,lines=True) for f in sorted(glob.glob(\\\\\\\\'results/exp002/*.jsonl\\\\\\\\'))]\\\\\\\\ndf=pd.concat(frames)\\\\\\\\ndf = df.dropna(subset=[\\\\\\\\'benchmark\\\\\\\\'])\\\\\\\\ndf[\\\\\\\\'model\\\\\\\\'] = df[\\\\\\\\'model\\\\\\\\'].map(normalize_model_name).fillna(df[\\\\\\\\'model\\\\\\\\'])\\\\\\\\nfor bm in sorted(df[\\\\\\\\'benchmark\\\\\\\\'].unique()):\\\\\\\\n    sub = df[df[\\\\\\\\'benchmark\\\\\\\\']==bm]\\\\\\\\n    print(f\\\\\\\\'{bm}: {sub.model.nunique()} models = {sorted(sub.model.unique())}\\\\\\\\')\\\\\\\\n\\\\\\\"\\\\\\\\n'\\\\n\\\\nStdout:\\\\n\\\\n\\\\n\\\\nStderr:\\\\n\\\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000056"
+        },
+        {
+          "source_line": 57,
+          "timestamp": "2026-05-21T21:43:32.692654+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "grep -l \"OLMo\\|Yi-1.5\\|olmo\\|yi\" /root/nlp_variance_gtheory/results/exp002/*.jsonl"
+            }
+          },
+          "id": "event-000057"
+        },
+        {
+          "source_line": 58,
+          "timestamp": "2026-05-21T21:43:32.692770+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"[ssh_read_only] Command blocked: Shell metacharacter '|' not allowed in read-only mode. Only read-only commands are permitted (cat/ls/grep/find/tail/head/wc/stat/etc.).\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000058"
+        },
+        {
+          "source_line": 59,
+          "timestamp": "2026-05-21T21:43:32.692884+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/permutation_test_5bm.json"
+            }
+          },
+          "id": "event-000059"
+        },
+        {
+          "source_line": 60,
+          "timestamp": "2026-05-21T21:43:32.693058+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-004 (6 models \\\\\\\\u00d7 5 benchmarks)\\\\\\\",\\\\n  \\\\\\\"test_statistic\\\\\\\": \\\\\\\"spearman_rho\\\\\\\",\\\\n  \\\\\\\"n_benchmarks\\\\\\\": 5,\\\\n  \\\\\\\"n_permutations\\\\\\\": 120,\\\\n  \\\\\\\"benchmark_order_hypothesis\\\\\\\": [\\\\n    \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"arc\\\\\\\",\\\\n    \\\\\\\"hellaswag\\\\\\\",\\\\n    \\\\\\\"gsm8k\\\\\\\",\\\\n    \\\\\\\"math\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"benchmarks_used\\\\\\\": [\\\\n    \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"arc\\\\\\\",\\\\n    \\\\\\\"hellaswag\\\\\\\",\\\\n    \\\\\\\"gsm8k\\\\\\\",\\\\n    \\\\\\\"math\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"benchmark_stats\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"item_id_pct\\\\\\\": 40.48276678578829,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 31.603590700649608,\\\\n      \\\\\\\"n_obs\\\\\\\": 345600,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.6694762731481482\\\\n    },\\\\n    \\\\\\\"arc\\\\\\\": {\\\\n      \\\\\\\"item_id_pct\\\\\\\": 42.45972536691959,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 38.04902782203434,\\\\n      \\\\\\\"n_obs\\\\\\\": 345600,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7903935185185185\\\\n    },\\\\n    \\\\\\\"hellaswag\\\\\\\": {\\\\n      \\\\\\\"item_id_pct\\\\\\\": 32.20167896386697,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 37.1442293164112,\\\\n      \\\\\\\"n_obs\\\\\\\": 345600,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.7192013888888888\\\\n    },\\\\n    \\\\\\\"gsm8k\\\\\\\": {\\\\n      \\\\\\\"item_id_pct\\\\\\\": 16.855944611612735,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 14.551490334109179,\\\\n      \\\\\\\"n_obs\\\\\\\": 460800,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.5819227430555556\\\\n    },\\\\n    \\\\\\\"math\\\\\\\": {\\\\n      \\\\\\\"item_id_pct\\\\\\\": 24.422687467416722,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 17.018510947463135,\\\\n      \\\\\\\"n_obs\\\\\\\": 441600,\\\\n      \\\\\\\"accuracy\\\\\\\": 0.2936911231884058\\\\n    }\\\\n  },\\\\n  \\\\\\\"item_id_gradient\\\\\\\": {\\\\n    \\\\\\\"hypothesis\\\\\\\": \\\\\\\"MC benchmarks (MMLU/ARC/HellaSwag) > FF benchmarks (GSM8K/MATH)\\\\\\\",\\\\n    \\\\\\\"direction\\\\\\\": \\\\\\\"decreasing (knowledge-retrieval \\\\\\\\u2192 reasoning)\\\\\\\",\\\\n    \\\\\\\"observed_values\\\\\\\": {\\\\n      \\\\\\\"mmlu\\\\\\\": 40.4828,\\\\n      \\\\\\\"arc\\\\\\\": 42.4597,\\\\n      \\\\\\\"hellaswag\\\\\\\": 32.2017,\\\\n      \\\\\\\"gsm8k\\\\\\\": 16.8559,\\\\n  \n…[truncated 991 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000060"
+        },
+        {
+          "source_line": 61,
+          "timestamp": "2026-05-21T21:43:32.693227+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/dstudy_8model.json"
+            }
+          },
+          "id": "event-000061"
+        },
+        {
+          "source_line": 62,
+          "timestamp": "2026-05-21T21:43:32.693358+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/cross_model_gstudy_8model.json"
+            }
+          },
+          "id": "event-000062"
+        },
+        {
+          "source_line": 63,
+          "timestamp": "2026-05-21T21:43:32.693493+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cat /root/nlp_variance_gtheory/results/exp004_8model_analysis/lobo_stability.json"
+            }
+          },
+          "id": "event-000063"
+        },
+        {
+          "source_line": 64,
+          "timestamp": "2026-05-21T21:43:32.693740+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-004\\\\\\\",\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"dstudy_projections\\\\\\\",\\\\n  \\\\\\\"n_models\\\\\\\": 8,\\\\n  \\\\\\\"models\\\\\\\": [\\\\n    \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n    \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n    \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n    \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n    \\\\\\\"Mistral-7B-v0.3\\\\\\\",\\\\n    \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n    \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"Yi-1.5-9B\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"facets\\\\\\\": [\\\\n    \\\\\\\"model\\\\\\\",\\\\n    \\\\\\\"temperature\\\\\\\",\\\\n    \\\\\\\"prompt_template\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\",\\\\n    \\\\\\\"ordering\\\\\\\",\\\\n    \\\\\\\"item_id\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"g_targets\\\\\\\": [\\\\n    0.8,\\\\n    0.9,\\\\n    0.95\\\\n  ],\\\\n  \\\\\\\"benchmarks\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"n_observations\\\\\\\": 345600,\\\\n      \\\\\\\"n_levels\\\\\\\": {\\\\n        \\\\\\\"model\\\\\\\": 6,\\\\n        \\\\\\\"temperature\\\\\\\": 2,\\\\n        \\\\\\\"prompt_template\\\\\\\": 6,\\\\n        \\\\\\\"seed\\\\\\\": 6,\\\\n        \\\\\\\"ordering\\\\\\\": 4,\\\\n        \\\\\\\"item_id\\\\\\\": 200\\\\n      },\\\\n      \\\\\\\"accuracy\\\\\\\": 0.669476,\\\\n      \\\\\\\"G_current\\\\\\\": 0.870521,\\\\n      \\\\\\\"item_id_pct\\\\\\\": 40.4828,\\\\n      \\\\\\\"model_item_pct\\\\\\\": 31.6036,\\\\n      \\\\\\\"d_study_curve\\\\\\\": {\\\\n        \\\\\\\"10\\\\\\\": 0.251588,\\\\n        \\\\\\\"25\\\\\\\": 0.456642,\\\\n        \\\\\\\"50\\\\\\\": 0.626979,\\\\n        \\\\\\\"75\\\\\\\": 0.716008,\\\\n        \\\\\\\"100\\\\\\\": 0.770728,\\\\n        \\\\\\\"150\\\\\\\": 0.834504,\\\\n        \\\\\\\"200\\\\\\\": 0.870521,\\\\n        \\\\\\\"300\\\\\\\": 0.909787,\\\\n        \\\\\\\"500\\\\\\\": 0.943846,\\\\n        \\\\\\\"750\\\\\\\": 0.96185,\\\\n        \\\\\\\"1000\\\\\\\": 0.971112\\\\n      },\\\\n      \\\\\\\"min_items_for_G\\\\\\\": {\\\\n        \\\\\\\"0.8\\\\\\\": 119,\\\\n        \\\\\\\"0.9\\\\\\\": 268,\\\\n        \\\\\\\"0.95\\\\\\\": 566\\\\n      },\\\\n      \\\\\\\"variance_components_pct\\\\\\\": {\\\\n        \\\\\\\"item_id\\\\\\\": 40.4828,\\\\n        \\\\\\\"model:item_id\\\\\\\": 31.6036,\\\\n        \\\\\\\"residual\\\\\\\": 21.9449,\\\\n        \\\\\\\"model\\\\\\\": 3.051,\\\\n        \\\\\\\"prompt_template:item_id\\\\\\\": 1.015,\\\\n        \\\\\\\"temperature:item_id\\\\\\\": 0.7282,\\\\n        \\\\\\\"seed:item_id\\\\\\\": 0.7076,\\\\n        \\\\\\\"or\n…[truncated 6347 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000064"
+        },
+        {
+          "source_line": 65,
+          "timestamp": "2026-05-21T21:43:32.693987+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-004\\\\\\\",\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"cross_model_gstudy\\\\\\\",\\\\n  \\\\\\\"n_models\\\\\\\": 6,\\\\n  \\\\\\\"models\\\\\\\": [\\\\n    \\\\\\\"DeepSeek-7B\\\\\\\",\\\\n    \\\\\\\"Gemma-2-9B\\\\\\\",\\\\n    \\\\\\\"InternLM2.5-7B\\\\\\\",\\\\n    \\\\\\\"Llama-3.1-8B\\\\\\\",\\\\n    \\\\\\\"Mistral-7B-v0.3\\\\\\\",\\\\n    \\\\\\\"OLMo-2-7B\\\\\\\",\\\\n    \\\\\\\"Qwen3-8B\\\\\\\",\\\\n    \\\\\\\"Yi-1.5-9B\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"facets\\\\\\\": [\\\\n    \\\\\\\"model\\\\\\\",\\\\n    \\\\\\\"temperature\\\\\\\",\\\\n    \\\\\\\"prompt_template\\\\\\\",\\\\n    \\\\\\\"seed\\\\\\\",\\\\n    \\\\\\\"ordering\\\\\\\",\\\\n    \\\\\\\"item_id\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"mmlu_focus\\\\\\\": {\\\\n    \\\\\\\"n_observations\\\\\\\": 345600,\\\\n    \\\\\\\"n_levels\\\\\\\": {\\\\n      \\\\\\\"model\\\\\\\": 6,\\\\n      \\\\\\\"temperature\\\\\\\": 2,\\\\n      \\\\\\\"prompt_template\\\\\\\": 6,\\\\n      \\\\\\\"seed\\\\\\\": 6,\\\\n      \\\\\\\"ordering\\\\\\\": 4,\\\\n      \\\\\\\"item_id\\\\\\\": 200\\\\n    },\\\\n    \\\\\\\"item_id_pct\\\\\\\": 40.4828,\\\\n    \\\\\\\"model_item_pct\\\\\\\": 31.6036,\\\\n    \\\\\\\"model_pct\\\\\\\": 3.051,\\\\n    \\\\\\\"G_item\\\\\\\": 0.870521,\\\\n    \\\\\\\"variance_components_pct\\\\\\\": {\\\\n      \\\\\\\"item_id\\\\\\\": 40.4828,\\\\n      \\\\\\\"model:item_id\\\\\\\": 31.6036,\\\\n      \\\\\\\"residual\\\\\\\": 21.9449,\\\\n      \\\\\\\"model\\\\\\\": 3.051,\\\\n      \\\\\\\"prompt_template:item_id\\\\\\\": 1.015,\\\\n      \\\\\\\"temperature:item_id\\\\\\\": 0.7282,\\\\n      \\\\\\\"seed:item_id\\\\\\\": 0.7076,\\\\n      \\\\\\\"ordering:item_id\\\\\\\": 0.3607,\\\\n      \\\\\\\"model:prompt_template\\\\\\\": 0.0513,\\\\n      \\\\\\\"model:temperature\\\\\\\": 0.0183,\\\\n      \\\\\\\"model:seed\\\\\\\": 0.0119,\\\\n      \\\\\\\"temperature\\\\\\\": 0.0112\\\\n    }\\\\n  },\\\\n  \\\\\\\"comparison_4model\\\\\\\": {\\\\n    \\\\\\\"item_id_pct\\\\\\\": 41.55,\\\\n    \\\\\\\"model_item_pct\\\\\\\": 32.81,\\\\n    \\\\\\\"model_pct\\\\\\\": 0.75,\\\\n    \\\\\\\"G_item\\\\\\\": 0.8159,\\\\n    \\\\\\\"n_models\\\\\\\": 4\\\\n  },\\\\n  \\\\\\\"delta_vs_4model\\\\\\\": {\\\\n    \\\\\\\"item_id_pct_change\\\\\\\": -1.0672,\\\\n    \\\\\\\"model_item_pct_change\\\\\\\": -1.2064,\\\\n    \\\\\\\"G_item_change\\\\\\\": 0.054621\\\\n  },\\\\n  \\\\\\\"per_benchmark\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"n_obs\\\\\\\": 345600,\\\\n      \\\\\\\"n_leve\n…[truncated 3853 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000065"
+        },
+        {
+          "source_line": 66,
+          "timestamp": "2026-05-21T21:43:32.694227+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\n  \\\\\\\"experiment\\\\\\\": \\\\\\\"exp-004\\\\\\\",\\\\n  \\\\\\\"analysis\\\\\\\": \\\\\\\"leave_one_benchmark_out\\\\\\\",\\\\n  \\\\\\\"benchmark_order\\\\\\\": [\\\\n    \\\\\\\"mmlu\\\\\\\",\\\\n    \\\\\\\"arc\\\\\\\",\\\\n    \\\\\\\"hellaswag\\\\\\\",\\\\n    \\\\\\\"gsm8k\\\\\\\",\\\\n    \\\\\\\"math\\\\\\\"\\\\n  ],\\\\n  \\\\\\\"full_set\\\\\\\": {\\\\n    \\\\\\\"item_id_values\\\\\\\": {\\\\n      \\\\\\\"mmlu\\\\\\\": 40.4828,\\\\n      \\\\\\\"arc\\\\\\\": 42.4597,\\\\n      \\\\\\\"hellaswag\\\\\\\": 32.2017,\\\\n      \\\\\\\"gsm8k\\\\\\\": 16.8559,\\\\n      \\\\\\\"math\\\\\\\": 24.4227\\\\n    },\\\\n    \\\\\\\"model_item_values\\\\\\\": {\\\\n      \\\\\\\"mmlu\\\\\\\": 31.6036,\\\\n      \\\\\\\"arc\\\\\\\": 38.049,\\\\n      \\\\\\\"hellaswag\\\\\\\": 37.1442,\\\\n      \\\\\\\"gsm8k\\\\\\\": 14.5515,\\\\n      \\\\\\\"math\\\\\\\": 17.0185\\\\n    }\\\\n  },\\\\n  \\\\\\\"lobo_results\\\\\\\": {\\\\n    \\\\\\\"mmlu\\\\\\\": {\\\\n      \\\\\\\"dropped\\\\\\\": \\\\\\\"mmlu\\\\\\\",\\\\n      \\\\\\\"remaining\\\\\\\": [\\\\n        \\\\\\\"arc\\\\\\\",\\\\n        \\\\\\\"hellaswag\\\\\\\",\\\\n        \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"math\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"item_id_values\\\\\\\": {\\\\n        \\\\\\\"arc\\\\\\\": 42.4597,\\\\n        \\\\\\\"hellaswag\\\\\\\": 32.2017,\\\\n        \\\\\\\"gsm8k\\\\\\\": 16.8559,\\\\n        \\\\\\\"math\\\\\\\": 24.4227\\\\n      },\\\\n      \\\\\\\"model_item_values\\\\\\\": {\\\\n        \\\\\\\"arc\\\\\\\": 38.049,\\\\n        \\\\\\\"hellaswag\\\\\\\": 37.1442,\\\\n        \\\\\\\"gsm8k\\\\\\\": 14.5515,\\\\n        \\\\\\\"math\\\\\\\": 17.0185\\\\n      },\\\\n      \\\\\\\"item_id_monotonic_decreasing\\\\\\\": false,\\\\n      \\\\\\\"model_item_monotonic_increasing\\\\\\\": false,\\\\n      \\\\\\\"both_monotonic\\\\\\\": false,\\\\n      \\\\\\\"item_id_spearman_rho\\\\\\\": 0.8,\\\\n      \\\\\\\"item_id_p_value\\\\\\\": 0.166667,\\\\n      \\\\\\\"model_item_spearman_rho\\\\\\\": -0.8,\\\\n      \\\\\\\"model_item_p_value\\\\\\\": 0.958333\\\\n    },\\\\n    \\\\\\\"arc\\\\\\\": {\\\\n      \\\\\\\"dropped\\\\\\\": \\\\\\\"arc\\\\\\\",\\\\n      \\\\\\\"remaining\\\\\\\": [\\\\n        \\\\\\\"mmlu\\\\\\\",\\\\n        \\\\\\\"hellaswag\\\\\\\",\\\\n        \\\\\\\"gsm8k\\\\\\\",\\\\n        \\\\\\\"math\\\\\\\"\\\\n      ],\\\\n      \\\\\\\"item_id_values\\\\\\\": {\\\\n        \\\\\\\"mmlu\\\\\\\": 40.4828,\\\\n        \\\\\\\"hellaswag\\\\\\\": 32.2017,\\\\n        \\\\\\\"gsm8k\\\\\\\": 16.8559,\\\\n   \n…[truncated 3527 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000066"
+        },
+        {
+          "source_line": 67,
+          "timestamp": "2026-05-21T21:43:32.694449+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "find /root/nlp_variance_gtheory/results/exp002/ -name \"olmo*\" -o -name \"yi*\" -o -name \"OLMo*\" -o -name \"Yi*\""
+            }
+          },
+          "id": "event-000067"
+        },
+        {
+          "source_line": 68,
+          "timestamp": "2026-05-21T21:43:32.694593+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"/root/nlp_variance_gtheory/results/exp002/olmo_gsm8k.jsonl\\\\n/root/nlp_variance_gtheory/results/exp002/olmo_math.jsonl\\\\n/root/nlp_variance_gtheory/results/exp002/yi_gsm8k.jsonl\\\\n/root/nlp_variance_gtheory/results/exp002/yi_math.jsonl\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000068"
+        },
+        {
+          "source_line": 69,
+          "timestamp": "2026-05-21T21:43:32.694715+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "head -1 /root/nlp_variance_gtheory/results/exp002/deepseek_gsm8k.jsonl"
+            }
+          },
+          "id": "event-000069"
+        },
+        {
+          "source_line": 70,
+          "timestamp": "2026-05-21T21:43:32.694854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"{\\\\\\\"condition_id\\\\\\\": 7489, \\\\\\\"item_id\\\\\\\": \\\\\\\"gsm8k_91\\\\\\\", \\\\\\\"benchmark\\\\\\\": \\\\\\\"gsm8k\\\\\\\", \\\\\\\"subject\\\\\\\": null, \\\\\\\"model\\\\\\\": \\\\\\\"deepseek-ai/deepseek-llm-7b-chat\\\\\\\", \\\\\\\"precision\\\\\\\": \\\\\\\"bfloat16\\\\\\\", \\\\\\\"temperature\\\\\\\": 0.0, \\\\\\\"top_p\\\\\\\": null, \\\\\\\"prompt_template\\\\\\\": 1, \\\\\\\"seed\\\\\\\": 42, \\\\\\\"ordering\\\\\\\": 1, \\\\\\\"generated_text\\\\\\\": \\\\\\\"Cindy has four pets.\\\\\\\\nMarcia has two more pets than Cindy, so Marcia has 4+2=<<4+2=6>>6 pets.\\\\\\\\nJan has three times the number of pets as Marcia, so Jan has 6*3=<<6*3=18>>18 pets.\\\\\\\\nTogether, they have 4+6+18=<<4+6+18=28>>28 pets.\\\\\\\\n#### 28\\\\\\\", \\\\\\\"predicted_answer\\\\\\\": \\\\\\\"28\\\\\\\", \\\\\\\"gold_answer\\\\\\\": \\\\\\\"28\\\\\\\", \\\\\\\"correct\\\\\\\": 1, \\\\\\\"text_exact_match\\\\\\\": 0, \\\\\\\"latency_ms\\\\\\\": 172.42, \\\\\\\"answer_logprob\\\\\\\": -1.0769131183624268, \\\\\\\"top_logprobs\\\\\\\": {\\\\\\\"C\\\\\\\": -1.0769131183624268, \\\\\\\"If\\\\\\\": -1.5769131183624268, \\\\\\\"First\\\\\\\": -1.8269131183624268, \\\\\\\"Marc\\\\\\\": -2.3269131183624268, \\\\\\\"1\\\\\\\": -2.9519131183624268}}\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000070"
+        },
+        {
+          "source_line": 71,
+          "timestamp": "2026-05-21T21:43:32.695091+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cat > /root/nlp_variance_gtheory/scripts/exp004_cross_benchmark_analysis_v2.py << 'PYEOF'\n\"\"\"exp-004 v2: Cross-benchmark analysis with balanced 6-model design.\n\nFixes: filters to 6 common models for B1/B2 to ensure fair comparison.\nAlso runs B3/B4 with both 6-model (balanced) and 8-model (full) variants.\n\"\"\"\n\nimport argparse\nimport json\nimport sys\nimport time\nfrom itertools import combinations, permutations\nfrom math import prod\nfrom pathlib import Path\n\nimport numpy as np\nimport pandas as pd\nfrom scipy.stats import spearmanr, kendalltau\n\nsys.path.insert(0, str(Path(__file__).resolve().parents[1]))\nfrom src.config.model_paths import normalize_model_name\n\nFACETS = [\"model\", \"temperature\", \"prompt_template\", \"seed\", \"ordering\", \"item_id\"]\nBENCHMARK_ORDER = [\"mmlu\", \"arc\", \"hellaswag\", \"gsm8k\", \"math\"]\nG_TARGETS = [0.80, 0.90, 0.95]\nITEM_COUNTS = [10, 25, 50, 75, 100, 150, 200, 300, 500, 750, 1000]\n\n\ndef load_data(data_dir):\n    data_path = Path(data_dir)\n    frames = [pd.read_json(f, lines=True) for f in sorted(data_path.glob(\"*.jsonl\"))]\n    df = pd.concat(frames, ignore_index=True)\n    if \"top_logprobs\" in df.columns:\n        df.drop(columns=[\"top_logprobs\"], inplace=True)\n    df = df.dropna(subset=[\"benchmark\"])\n    df[\"model\"] = df[\"model\"].map(normalize_model_name).fillna(df[\"model\"])\n    for f in FACETS:\n        df[f] = df[f].astype(str)\n    return df\n\n\ndef get_common_models(df):\n    benchmarks = df[\"benchmark\"].unique()\n    models_per_bm = [set(df[df[\"benchmark\"] == bm][\"model\"].unique()) for bm in benchmarks]\n    return sorted(set.intersection(*models_per_bm))\n\n\ndef compute_henderson_i(df, facets):\n    grand_mean = df[\"correct\"].mean()\n    N = len(df)\n    n_levels = {f: df[f].nunique() for f in facets}\n    effects = {}\n    for f in facets:\n        group_means = df.groupby(f, observed=True)[\"correct\"].mean()\n        n_per = N // n_levels[f]\n        ss = float(n_per * ((group_means - grand_mean) ** 2).sum())\n        df_eff = n_levels[f] - 1\n        effects[f] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n    for fi, fj in combinations(facets, 2):\n        cell_means = df.groupby([fi, fj], observed=True)[\"correct\"].mean()\n        main_fi = df.groupby(fi, observed=True)[\"correct\"].mean()\n        main_fj = df.groupby(fj, observed=True)[\"correct\"].mean()\n        n_per = N // (n_levels[fi] * n_levels[fj])\n        ss = 0.0\n        for (li, lj), cm in cell_means.items():\n            ss += n_per * (cm - main_fi[li] - main_fj[lj] + grand_mean) ** 2\n        df_eff = (n_levels[fi] - 1) * (n_levels[fj] - 1)\n        effects[f\"{fi}:{fj}\"] = {\"ss\": ss, \"df\": df_eff, \"ms\": ss / df_eff if df_eff > 0 else 0.0}\n    ss_total = float(((df[\"correct\"] - grand_mean) ** 2).sum())\n    ss_model_sum = sum(e[\"ss\"] for e in effects.values())\n    ss_res = max(0.0, ss_total - ss_model_sum)\n    df_res = N - 1 - sum(e[\"df\"] for e in effects.values())\n    effects[\"residual\"] = {\"ss\": ss_res, \"df\": df_res, \"ms\": ss_res / df_res if df_res > 0 else 0.0}\n    ms_res = effects[\"residual\"][\"ms\"]\n    vc = {}\n    for fi, fj in combinations(facets, 2):\n        key = f\"{fi}:{fj}\"\n        coeff = prod(n_levels[f] for f in facets if f not in (fi, fj))\n        vc[key] = max(0.0, (effects[key][\"ms\"] - ms_res) / coeff if coeff > 0 else 0.0)\n    for fi in facets:\n        coeff_main = prod(n_levels[f] for f in facets if f != fi)\n        ic = 0.0\n        for fj in facets:\n            if fj == fi: continue\n            ik = f\"{fi}:{fj}\" if f\"{fi}:{fj}\" in vc else f\"{fj}:{fi}\"\n            ic += prod(n_levels[f] for f in facets if f not in (fi, fj)) * vc[ik]\n        vc[fi] = max(0.0, (effects[fi][\"ms\"] - ic - ms_res) / coeff_main if coeff_main > 0 else 0.0)\n    vc[\"residual\"] = ms_res\n    return vc, {k: int(v) for k, v in n_levels.items()}\n\n\ndef pcts(vc):\n    t = sum(vc.values())\n    return {k: v / t * 100 if t > 0 else 0 for k, v in vc.items()}\n\n\ndef g_for_n(vc, nl, ni, facets):\n    si = vc.get(\"item_id\", 0.0)\n    na = nl[\"item_id\"]\n    non_item = [f for f in facets if f != \"item_id\"]\n    sd = 0.0\n    for c, e in vc.items():\n        if e == 0 or c == \"item_id\": continue\n        if c == \"residual\":\n            sd += e / prod(nl[f] for f in non_item)\n            continue\n        fs = set(c.split(\":\"))\n        if \"item_id\" not in fs: continue\n        other = [f for f in fs if f != \"item_id\"]\n        sd += e / (prod(nl[f] for f in other) if other else 1)\n    sd_n = sd * (na / ni)\n    return si / (si + sd_n) if (si + sd_n) > 0 else 0.0\n\n\ndef find_min(vc, nl, tgt, facets, mx=5000):\n    for n in range(1, mx + 1):\n        if g_for_n(vc, nl, n, facets) >= tgt:\n            return n\n    return None\n\n\ndef spearman_perm(values, order, direction):\n    obs = [values[bm] for bm in order]\n    n = len(order)\n    exp = list(range(n, 0, -1)) if direction == \"decreasing\" else list(range(1, n + 1))\n    obs_rho, _ = spearmanr(exp, obs)\n    obs_tau, tau_p = kendalltau(exp, obs)\n    ne = sum(1 for p in permutations(range(n))\n             if spearmanr(exp, [obs[i] for i in p])[0] >= obs_rho)\n    pv = ne / len(list(permutations(range(n))))\n    return {\n        \"observed_values\": {bm: round(values[bm], 4) for bm in order},\n        \"observed_rho\": round(float(obs_rho), 6),\n        \"p_value\": round(pv, 6),\n        \"n_extreme\": ne,\n        \"n_permutations\": len(list(permutations(range(n)))),\n        \"significant_at_0.05\": pv < 0.05,\n        \"kendall_tau\": round(float(obs_tau), 6),\n        \"kendall_p\": round(float(tau_p), 6),\n    }\n\n\ndef main():\n    parser = argparse.ArgumentParser()\n    parser.add_argument(\"--data-dir\", default=\"results/exp002\")\n    parser.add_argument(\"--output-dir\", default=\"results/exp004_8model_analysis\")\n    args = parser.parse_args()\n\n    t0 = time.time()\n    out = Path(args.output_dir)\n    out.mkdir(parents=True, exist_ok=True)\n\n    print(\"Loading data...\", flush=True)\n    df = load_data(args.data_dir)\n    common_models = get_common_models(df)\n    all_models = sorted(df[\"model\"].unique())\n    print(f\"Total: {len(df)} obs, {len(all_models)} models, {df['benchmark'].nunique()} benchmarks\", flush=True)\n    print(f\"All models: {all_models}\", flush=True)\n    print(f\"Common models (in all 5 benchmarks): {common_models} ({len(common_models)})\", flush=True)\n\n    df_balanced = df[df[\"model\"].isin(common_models)].reset_index(drop=True)\n    print(f\"Balanced subset: {len(df_balanced)} obs\", flush=True)\n\n    # =============== B1: Permutation test (balanced 6-model) ===============\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"B1: Permutation test (5 benchmarks, 6 common models)\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n    bm_stats = {}\n    avail = [bm for bm in BENCHMARK_ORDER if bm in df_balanced[\"benchmark\"].unique()]\n    for bm in avail:\n        d = df_balanced[df_balanced[\"benchmark\"] == bm].reset_index(drop=True)\n        vc, nl = compute_henderson_i(d, FACETS)\n        p = pcts(vc)\n        bm_stats[bm] = {\n            \"item_id_pct\": p.get(\"item_id\", 0),\n            \"model_item_pct\": p.get(\"model:item_id\", 0),\n            \"n_obs\": len(d),\n            \"n_models\": nl[\"model\"],\n            \"accuracy\": round(float(d[\"correct\"].mean()), 6),\n        }\n        print(f\"  {bm}: item_id={p.get('item_id', 0):.2f}%, model:item={p.get('model:item_id', 0):.2f}%, \"\n              f\"n={len(d)}, models={nl['model']}\", flush=True)\n\n    ip = {bm: bm_stats[bm][\"item_id_pct\"] for bm in avail}\n    mip = {bm: bm_stats[bm][\"model_item_pct\"] for bm in avail}\n    t_item = spearman_perm(ip, avail, \"decreasing\")\n    t_mi = spearman_perm(mip, avail, \"increasing\")\n\n    b1 = {\n        \"experiment\": f\"exp-004 ({len(common_models)} common models × 5 benchmarks)\",\n        \"design_note\": \"Filtered to 6 models present in ALL benchmarks for fair comparison\",\n        \"common_models\": common_models,\n        \"test_statistic\": \"spearman_rho\",\n        \"n_benchmarks\": len(avail),\n        \"n_permutations\": 120,\n        \"benchmark_order_hypothesis\": BENCHMARK_ORDER,\n        \"benchmarks_used\": avail,\n        \"benchmark_stats\": bm_stats,\n        \"item_id_gradient\": {\n            \"hypothesis\": \"item_id% decreasing: MC (MMLU/ARC/HellaSwag) > FF (GSM8K/MATH)\",\n            \"direction\": \"decreasing\",\n            **t_item,\n        },\n        \"model_item_gradient\": {\n            \"hypothesis\": \"model:item% increasing from MC to FF\",\n            \"direction\": \"increasing\",\n            **t_mi,\n        },\n    }\n    with open(out / \"permutation_test_5bm.json\", \"w\") as f:\n        json.dump(b1, f, indent=2)\n    print(f\"\\n  item_id:    rho={t_item['observed_rho']:.4f}, p={t_item['p_value']:.4f} \"\n          f\"{'*' if t_item['significant_at_0.05'] else 'n.s.'}\", flush=True)\n    print(f\"  model:item: rho={t_mi['observed_rho']:.4f}, p={t_mi['p_value']:.4f} \"\n          f\"{'*' if t_mi['significant_at_0.05'] else 'n.s.'}\", flush=True)\n    print(f\"  -> {out / 'permutation_test_5bm.json'}\", flush=True)\n\n    # =============== B2: LOBO (balanced 6-model) ===============\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"B2: Leave-one-benchmark-out stability (6 common models)\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n    lobo = {}\n    for drop in avail:\n        rem = [bm for bm in avail if bm != drop]\n        iv = {bm: bm_stats[bm][\"item_id_pct\"] for bm in rem}\n        mv = {bm: bm_stats[bm][\"model_item_pct\"] for bm in rem}\n        ti = spearman_perm(iv, rem, \"decreasing\")\n        tm = spearman_perm(mv, rem, \"increasing\")\n        il = [iv[bm] for bm in rem]\n        ml = [mv[bm] for bm in rem]\n        i_mono = all(il[i] >= il[i + 1] for i in range(len(il) - 1))\n        m_mono = all(ml[i] <= ml[i + 1] for i in range(len(ml) - 1))\n        lobo[drop] = {\n            \"dropped\": drop,\n            \"remaining\": rem,\n            \"item_id_values\": {bm: round(iv[bm], 4) for bm in rem},\n            \"model_item_values\": {bm: round(mv[bm], 4) for bm in rem},\n            \"item_id_monotonic\": i_mono,\n            \"model_item_monotonic\": m_mono,\n            \"both_monotonic\": i_mono and m_mono,\n            \"item_id_rho\": ti[\"observed_rho\"],\n            \"item_id_p\": ti[\"p_value\"],\n            \"model_item_rho\": tm[\"observed_rho\"],\n            \"model_item_p\": tm[\"p_value\"],\n        }\n        s = \"OK\" if (i_mono and m_mono) else \"BROKEN\"\n        print(f\"  Drop {drop}: {s} | item rho={ti['observed_rho']:.3f} p={ti['p_value']:.3f}, \"\n              f\"mi rho={tm['observed_rho']:.3f} p={tm['p_value']:.3f}\", flush=True)\n\n    np_ = sum(1 for r in lobo.values() if r[\"both_monotonic\"])\n    b2 = {\n        \"experiment\": \"exp-004\",\n        \"design_note\": \"6 common models, balanced\",\n        \"benchmark_order\": avail,\n        \"full_set\": {\n            \"item_id_values\": {bm: round(bm_stats[bm][\"item_id_pct\"], 4) for bm in avail},\n            \"model_item_values\": {bm: round(bm_stats[bm][\"model_item_pct\"], 4) for bm in avail},\n        },\n        \"lobo_results\": lobo,\n        \"summary\": {\"n_benchmarks\": len(avail), \"n_drops\": len(lobo),\n                     \"n_gradient_preserved\": np_, \"gradient_robust\": np_ == len(lobo)},\n    }\n    with open(out / \"lobo_stability.json\", \"w\") as f:\n        json.dump(b2, f, indent=2)\n    print(f\"  Gradient preserved: {np_}/{len(lobo)}\", flush=True)\n    print(f\"  -> {out / 'lobo_stability.json'}\", flush=True)\n\n    # =============== B3: D-study (both balanced and full) ===============\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"B3: D-study projections\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n    ds_results = {}\n    for label, dfx in [(\"6model_balanced\", df_balanced), (\"full\", df)]:\n        ds_results[label] = {}\n        print(f\"\\n  --- {label} ({dfx['model'].nunique()} models) ---\", flush=True)\n        for bm in avail:\n            d = dfx[dfx[\"benchmark\"] == bm].reset_index(drop=True)\n            if len(d) == 0: continue\n            vc, nl = compute_henderson_i(d, FACETS)\n            p = pcts(vc)\n            gc = g_for_n(vc, nl, nl[\"item_id\"], FACETS)\n            curve = {str(ni): round(g_for_n(vc, nl, ni, FACETS), 6) for ni in ITEM_COUNTS}\n            mi = {str(t): find_min(vc, nl, t, FACETS) for t in G_TARGETS}\n            ds_results[label][bm] = {\n                \"n_obs\": len(d), \"n_levels\": nl,\n                \"accuracy\": round(float(d[\"correct\"].mean()), 6),\n                \"G_current\": round(gc, 6),\n                \"item_id_pct\": round(p.get(\"item_id\", 0), 4),\n                \"model_item_pct\": round(p.get(\"model:item_id\", 0), 4),\n                \"d_study_curve\": curve,\n                \"min_items_for_G\": mi,\n                \"top_variance_pct\": {k: round(v, 4) for k, v in sorted(p.items(), key=lambda x: -x[1])[:8] if v > 0.01},\n            }\n            print(f\"    {bm:<10} G={gc:.4f} n_m={nl['model']} | \"\n                  f\"G>=.80={mi.get('0.8', '>5k')}, G>=.90={mi.get('0.9', '>5k')}, G>=.95={mi.get('0.95', '>5k')}\", flush=True)\n\n    b3 = {\n        \"experiment\": \"exp-004\",\n        \"facets\": FACETS,\n        \"g_targets\": G_TARGETS,\n        \"common_models\": common_models,\n        \"all_models\": all_models,\n        \"balanced_6model\": ds_results[\"6model_balanced\"],\n        \"full_data\": ds_results[\"full\"],\n    }\n    with open(out / \"dstudy_8model.json\", \"w\") as f:\n        json.dump(b3, f, indent=2)\n    print(f\"  -> {out / 'dstudy_8model.json'}\", flush=True)\n\n    # =============== B4: Cross-model G-study ===============\n    print(\"\\n\" + \"=\" * 70, flush=True)\n    print(\"B4: Cross-model G-study\", flush=True)\n    print(\"=\" * 70, flush=True)\n\n    prev_4model = {\"item_id_pct\": 41.55, \"model_item_pct\": 32.81, \"model_pct\": 0.75, \"G_item\": 0.8159, \"n_models\": 4}\n\n    per_bm_6 = {}\n    per_bm_full = {}\n    for label, dfx, target in [(\"6model\", df_balanced, per_bm_6), (\"full\", df, per_bm_full)]:\n        print(f\"\\n  --- {label} ---\", flush=True)\n        for bm in avail:\n            d = dfx[dfx[\"benchmark\"] == bm].reset_index(drop=True)\n            if len(d) == 0: continue\n            vc, nl = compute_henderson_i(d, FACETS)\n            p = pcts(vc)\n            gi = g_for_n(vc, nl, nl[\"item_id\"], FACETS)\n            target[bm] = {\n                \"n_obs\": len(d), \"n_levels\": nl,\n                \"accuracy\": round(float(d[\"correct\"].mean()), 6),\n                \"item_id_pct\": round(p.get(\"item_id\", 0), 4),\n                \"model_item_pct\": round(p.get(\"model:item_id\", 0), 4),\n                \"model_pct\": round(p.get(\"model\", 0), 4),\n                \"G_item\": round(gi, 6),\n                \"top_components\": {k: round(v, 4) for k, v in sorted(p.items(), key=lambda x: -x[1])[:6]},\n            }\n            print(f\"    {bm:<10} item_id={p.get('item_id',0):.2f}% m:item={p.get('model:item_id',0):.2f}% \"\n                  f\"model={p.get('model',0):.2f}% G={gi:.4f} (n_m={nl['model']})\", flush=True)\n\n    mmlu_6 = per_bm_6.get(\"mmlu\", {})\n    b4 = {\n        \"experiment\": \"exp-004\",\n        \"common_models\": common_models,\n        \"all_models\": all_models,\n        \"facets\": FACETS,\n        \"mmlu_6model\": mmlu_6,\n        \"comparison_4model\": prev_4model,\n        \"delta_vs_4model\": {\n            \"item_id_pct_change\": round(mmlu_6.get(\"item_id_pct\", 0) - prev_4model[\"item_id_pct\"], 4),\n            \"model_item_pct_change\": round(mmlu_6.get(\"model_item_pct\", 0) - prev_4model[\"model_item_pct\"], 4),\n            \"G_item_change\": round(mmlu_6.get(\"G_item\", 0) - prev_4model[\"G_item\"], 6),\n        },\n        \"per_benchmark_6model\": per_bm_6,\n        \"per_benchmark_full\": per_bm_full,\n    }\n    with open(out / \"cross_model_gstudy_8model.json\", \"w\") as f:\n        json.dump(b4, f, indent=2)\n    print(f\"  -> {out / 'cross_model_gstudy_8model.json'}\", flush=True)\n\n    print(f\"\\n{'=' * 70}\", flush=True)\n    print(f\"All done. Runtime: {time.time()-t0:.1f}s\", flush=True)\n    print(f\"Files: {out}/\", flush=True)\n    for f in sorted(out.glob(\"*.json\")):\n        print(f\"  {f.name}\", flush=True)\n\n\nif __name__ == \"__main__\":\n    main()\nPYEOF\necho \"v2 script written.\"\n"
+            }
+          },
+          "id": "event-000071"
+        },
+        {
+          "source_line": 72,
+          "timestamp": "2026-05-21T21:43:32.695367+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"v2 script written.\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.5}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000072"
+        },
+        {
+          "source_line": 73,
+          "timestamp": "2026-05-21T21:43:32.695517+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_execute"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && nohup python3 scripts/exp004_cross_benchmark_analysis_v2.py > /tmp/exp004_v2.log 2>&1 & echo \"PID=$!\""
+            }
+          },
+          "id": "event-000073"
+        },
+        {
+          "source_line": 74,
+          "timestamp": "2026-05-21T21:43:32.695648+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"Command did not complete within 30 seconds!\\\\n\\\\nCommand: 'cd /root/nlp_variance_gtheory && source /root/miniconda3/etc/profile.d/conda.sh && conda activate base && export PYTHONPATH=/root/nlp_variance_gtheory:$PYTHONPATH && nohup python3 scripts/exp004_cross_benchmark_analysis_v2.py > /tmp/exp004_v2.log 2>&1 & echo \\\\\\\"PID=$!\\\\\\\"'\\\\n\\\\nStdout:\\\\n\\\\nPID=202230\\\\n\\\\nStderr:\\\\n\\\\nError while loading conda entry point: conda-libmamba-solver (module 'libmambapy' has no attribute 'QueryFormat')\\\\n\\\\n\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 30.41}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_execute",
+            "elapsed_ms": 0
+          },
+          "id": "event-000074"
+        },
+        {
+          "source_line": 75,
+          "timestamp": "2026-05-21T21:43:32.695780+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "tail -50 /tmp/exp004_v2.log"
+            }
+          },
+          "id": "event-000075"
+        },
+        {
+          "source_line": 76,
+          "timestamp": "2026-05-21T21:43:32.695899+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.98}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000076"
+        },
+        {
+          "source_line": 77,
+          "timestamp": "2026-05-21T21:43:32.696013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "tail -60 /tmp/exp004_v2.log"
+            }
+          },
+          "id": "event-000077"
+        },
+        {
+          "source_line": 78,
+          "timestamp": "2026-05-21T21:43:32.696135+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\nTotal: 1940400 obs, 8 models, 5 benchmarks\\\\nAll models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\\\nCommon models (in all 5 benchmarks): ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B'] (6)\\\\nBalanced subset: 1710000 obs\\\\n\\\\n======================================================================\\\\nB1: Permutation test (5 benchmarks, 6 common models)\\\\n======================================================================\\\\n  mmlu: item_id=40.48%, model:item=31.60%, n=345600, models=6\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000078"
+        },
+        {
+          "source_line": 79,
+          "timestamp": "2026-05-21T21:43:32.696258+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "tail -80 /tmp/exp004_v2.log"
+            }
+          },
+          "id": "event-000079"
+        },
+        {
+          "source_line": 80,
+          "timestamp": "2026-05-21T21:43:32.696407+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\nTotal: 1940400 obs, 8 models, 5 benchmarks\\\\nAll models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\\\nCommon models (in all 5 benchmarks): ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B'] (6)\\\\nBalanced subset: 1710000 obs\\\\n\\\\n======================================================================\\\\nB1: Permutation test (5 benchmarks, 6 common models)\\\\n======================================================================\\\\n  mmlu: item_id=40.48%, model:item=31.60%, n=345600, models=6\\\\n  arc: item_id=42.46%, model:item=38.05%, n=345600, models=6\\\\n  hellaswag: item_id=32.20%, model:item=37.14%, n=345600, models=6\\\\n  gsm8k: item_id=14.58%, model:item=13.48%, n=345600, models=6\\\\n  math: item_id=20.49%, model:item=17.69%, n=327600, models=6\\\\n\\\\n  item_id:    rho=0.8000, p=0.0667 n.s.\\\\n  model:item: rho=-0.6000, p=0.8833 n.s.\\\\n  -> results/exp004_8model_analysis/permutation_test_5bm.json\\\\n\\\\n======================================================================\\\\nB2: Leave-one-benchmark-out stability (6 common models)\\\\n======================================================================\\\\n  Drop mmlu: BROKEN | item rho=0.800 p=0.167, mi rho=-0.800 p=0.958\\\\n  Drop arc: BROKEN | item rho=0.800 p=0.167, mi rho=-0.600 p=0.833\\\\n  Drop hellaswag: BROKEN | item rho=0.600 p=0.208, mi rho=-0.600 p=0.833\\\\n  Drop gsm8k: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\\\n  Drop math: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\\\n  Gradient preserved: 0/5\\\\n  -> results/exp004_8model_analysis/lobo_stability.json\\\\n\\\\n======================================================================\\\\nB3: D-study projections\\\\n======================================================================\\\\n\\\\n  --- 6model_balanced (6 models) ---\\\\n    mmlu       G=0.8705 n_m=6 |\n…[truncated 142 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000080"
+        },
+        {
+          "source_line": 81,
+          "timestamp": "2026-05-21T21:43:32.696545+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "tail -100 /tmp/exp004_v2.log"
+            }
+          },
+          "id": "event-000081"
+        },
+        {
+          "source_line": 82,
+          "timestamp": "2026-05-21T21:43:32.696685+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Loading data...\\\\nTotal: 1940400 obs, 8 models, 5 benchmarks\\\\nAll models: ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'OLMo-2-7B', 'Qwen3-8B', 'Yi-1.5-9B']\\\\nCommon models (in all 5 benchmarks): ['DeepSeek-7B', 'Gemma-2-9B', 'InternLM2.5-7B', 'Llama-3.1-8B', 'Mistral-7B-v0.3', 'Qwen3-8B'] (6)\\\\nBalanced subset: 1710000 obs\\\\n\\\\n======================================================================\\\\nB1: Permutation test (5 benchmarks, 6 common models)\\\\n======================================================================\\\\n  mmlu: item_id=40.48%, model:item=31.60%, n=345600, models=6\\\\n  arc: item_id=42.46%, model:item=38.05%, n=345600, models=6\\\\n  hellaswag: item_id=32.20%, model:item=37.14%, n=345600, models=6\\\\n  gsm8k: item_id=14.58%, model:item=13.48%, n=345600, models=6\\\\n  math: item_id=20.49%, model:item=17.69%, n=327600, models=6\\\\n\\\\n  item_id:    rho=0.8000, p=0.0667 n.s.\\\\n  model:item: rho=-0.6000, p=0.8833 n.s.\\\\n  -> results/exp004_8model_analysis/permutation_test_5bm.json\\\\n\\\\n======================================================================\\\\nB2: Leave-one-benchmark-out stability (6 common models)\\\\n======================================================================\\\\n  Drop mmlu: BROKEN | item rho=0.800 p=0.167, mi rho=-0.800 p=0.958\\\\n  Drop arc: BROKEN | item rho=0.800 p=0.167, mi rho=-0.600 p=0.833\\\\n  Drop hellaswag: BROKEN | item rho=0.600 p=0.208, mi rho=-0.600 p=0.833\\\\n  Drop gsm8k: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\\\n  Drop math: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\\\n  Gradient preserved: 0/5\\\\n  -> results/exp004_8model_analysis/lobo_stability.json\\\\n\\\\n======================================================================\\\\nB3: D-study projections\\\\n======================================================================\\\\n\\\\n  --- 6model_balanced (6 models) ---\\\\n    mmlu       G=0.8705 n_m=6 |\n…[truncated 656 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000082"
+        },
+        {
+          "source_line": 83,
+          "timestamp": "2026-05-21T21:43:32.696824+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "tail -40 /tmp/exp004_v2.log"
+            }
+          },
+          "id": "event-000083"
+        },
+        {
+          "source_line": 84,
+          "timestamp": "2026-05-21T21:43:32.696963+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"  -> results/exp004_8model_analysis/permutation_test_5bm.json\\\\n\\\\n======================================================================\\\\nB2: Leave-one-benchmark-out stability (6 common models)\\\\n======================================================================\\\\n  Drop mmlu: BROKEN | item rho=0.800 p=0.167, mi rho=-0.800 p=0.958\\\\n  Drop arc: BROKEN | item rho=0.800 p=0.167, mi rho=-0.600 p=0.833\\\\n  Drop hellaswag: BROKEN | item rho=0.600 p=0.208, mi rho=-0.600 p=0.833\\\\n  Drop gsm8k: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\\\n  Drop math: BROKEN | item rho=0.800 p=0.167, mi rho=-0.400 p=0.792\\\\n  Gradient preserved: 0/5\\\\n  -> results/exp004_8model_analysis/lobo_stability.json\\\\n\\\\n======================================================================\\\\nB3: D-study projections\\\\n======================================================================\\\\n\\\\n  --- 6model_balanced (6 models) ---\\\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\\\n    arc        G=0.8623 n_m=6 | G>=.80=128, G>=.90=288, G>=.95=607\\\\n    hellaswag  G=0.8240 n_m=6 | G>=.80=171, G>=.90=385, G>=.95=812\\\\n    gsm8k      G=0.8111 n_m=6 | G>=.80=187, G>=.90=420, G>=.95=885\\\\n    math       G=0.8324 n_m=6 | G>=.80=162, G>=.90=363, G>=.95=765\\\\n\\\\n  --- full (8 models) ---\\\\n    mmlu       G=0.8705 n_m=6 | G>=.80=119, G>=.90=268, G>=.95=566\\\\n    arc        G=0.8623 n_m=6 | G>=.80=128, G>=.90=288, G>=.95=607\\\\n    hellaswag  G=0.8240 n_m=6 | G>=.80=171, G>=.90=385, G>=.95=812\\\\n    gsm8k      G=0.8629 n_m=8 | G>=.80=128, G>=.90=287, G>=.95=604\\\\n    math       G=0.8915 n_m=8 | G>=.80=98, G>=.90=220, G>=.95=463\\\\n  -> results/exp004_8model_analysis/dstudy_8model.json\\\\n\\\\n======================================================================\\\\nB4: Cross-model G-study\\\\n======================================================================\\\\n\\\\n  --- 6model ---\\\\n    mmlu       item_id=40.48% m:item=31.6\n…[truncated 288 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000084"
+        },
+        {
+          "source_line": 85,
+          "timestamp": "2026-05-21T21:43:32.697096+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "tail -20 /tmp/exp004_v2.log"
+            }
+          },
+          "id": "event-000085"
+        },
+        {
+          "source_line": 86,
+          "timestamp": "2026-05-21T21:43:32.697228+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"    gsm8k      G=0.8629 n_m=8 | G>=.80=128, G>=.90=287, G>=.95=604\\\\n    math       G=0.8915 n_m=8 | G>=.80=98, G>=.90=220, G>=.95=463\\\\n  -> results/exp004_8model_analysis/dstudy_8model.json\\\\n\\\\n======================================================================\\\\nB4: Cross-model G-study\\\\n======================================================================\\\\n\\\\n  --- 6model ---\\\\n    mmlu       item_id=40.48% m:item=31.60% model=3.05% G=0.8705 (n_m=6)\\\\n    arc        item_id=42.46% m:item=38.05% model=5.23% G=0.8623 (n_m=6)\\\\n    hellaswag  item_id=32.20% m:item=37.14% model=6.69% G=0.8240 (n_m=6)\\\\n    gsm8k      item_id=14.58% m:item=13.48% model=12.55% G=0.8111 (n_m=6)\\\\n    math       item_id=20.49% m:item=17.69% model=11.10% G=0.8324 (n_m=6)\\\\n\\\\n  --- full ---\\\\n    mmlu       item_id=40.48% m:item=31.60% model=3.05% G=0.8705 (n_m=6)\\\\n    arc        item_id=42.46% m:item=38.05% model=5.23% G=0.8623 (n_m=6)\\\\n    hellaswag  item_id=32.20% m:item=37.14% model=6.69% G=0.8240 (n_m=6)\\\\n    gsm8k      item_id=16.86% m:item=14.55% model=10.75% G=0.8629 (n_m=8)\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000086"
+        },
+        {
+          "source_line": 87,
+          "timestamp": "2026-05-21T21:43:32.697363+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "tail -5 /tmp/exp004_v2.log"
+            }
+          },
+          "id": "event-000087"
+        },
+        {
+          "source_line": 88,
+          "timestamp": "2026-05-21T21:43:32.697502+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"Files: results/exp004_8model_analysis/\\\\n  cross_model_gstudy_8model.json\\\\n  dstudy_8model.json\\\\n  lobo_stability.json\\\\n  permutation_test_5bm.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000088"
+        },
+        {
+          "source_line": 89,
+          "timestamp": "2026-05-21T21:43:32.697629+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "ls -la /root/nlp_variance_gtheory/results/exp004_8model_analysis/"
+            }
+          },
+          "id": "event-000089"
+        },
+        {
+          "source_line": 90,
+          "timestamp": "2026-05-21T21:43:32.697748+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"total 32\\\\ndrwxr-xr-x  2 root root   150 May 22 05:37 .\\\\ndrwxr-xr-x 15 root root  4096 May 22 05:35 ..\\\\n-rw-r--r--  1 root root  7234 May 22 05:42 cross_model_gstudy_8model.json\\\\n-rw-r--r--  1 root root 10959 May 22 05:42 dstudy_8model.json\\\\n-rw-r--r--  1 root root  3840 May 22 05:42 lobo_stability.json\\\\n-rw-r--r--  1 root root  2415 May 22 05:42 permutation_test_5bm.json\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.43}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000090"
+        },
+        {
+          "source_line": 91,
+          "timestamp": "2026-05-21T21:43:32.697936+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### 数据概况\n- 8 models 总计，但仅 **6 个模型** 覆盖全部 5 benchmarks（OLMo-2-7B / Yi-1.5-9B 仅在 GSM8K/MATH）\n- B1/B2 用 6 common models 做 balanced comparison，B3/B4 同时报告 6-model balanced 和 full 两版\n\n---\n\n### B1: Permutation Test (6 common models × 5 benchmarks)\n\n| Benchmark | item_id% | model:item% |\n|-----------|----------|-------------|\n| mmlu | 40.48 | 31.60 |\n| arc | 42.46 | 38.05 |\n| hellaswag | 32.20 | 37.14 |\n| gsm8k | 14.58 | 13.48 |\n| math | 20.49 | 17.69 |\n\n- **item_id% decreasing**: ρ = 0.80, **p = 0.067** (n.s. at 0.05, marginal)\n- **model:item% increasing**: ρ = −0.60, **p = 0.883** (n.s., **wrong direction**)\n\nMC vs FF 二分明显（MC 组 32-42% vs FF 组 15-20%），但组内排序非单调（arc > mmlu; math > gsm8k），导致不显著。\n\n---\n\n### B2: LOBO Stability\n- **0/5** drops preserve both monotonic gradients\n- item_id 方向一致（所有 drops rho > 0），但都不显著（p ≥ 0.167）\n- model:item 方向**一致反转**（rho < 0 in all drops）\n\n---\n\n### B3: D-study (6 models balanced)\n\n| Benchmark | G_current | min(≥.80) | min(≥.90) | min(≥.95) |\n|-----------|-----------|-----------|-----------|-----------|\n| mmlu | 0.8705 | 119 | 268 | 566 |\n| arc | 0.8623 | 128 | 288 | 607 |\n| hellaswag | 0.8240 | 171 | 385 | 812 |\n| gsm8k | 0.8111 | 187 | 420 | 885 |\n| math | 0.8324 | 162 | 363 | 765 |\n\nWith full data (8 models for GSM8K/MATH): gsm8k G→0.863, math G→0.892（更多 model 增加 model:item 从而提高 G）\n\n---\n\n### B4: Cross-model G-study\n\n**MMLU 6-model vs 4-model**:\n| Metric | 6-model | 4-model | Δ |\n|--------|---------|---------|---|\n| item_id% | 40.48 | 41.55 | −1.07 |\n| model:item% | 31.60 | 32.81 | −1.21 |\n| model% | 3.05 | 0.75 | +2.30 |\n| G_item | 0.8705 | 0.8159 | +0.055 |\n\n添加 2 个 model 后 model 主效应大幅增加（0.75%→3.05%），item_id%/model:item% 略降，G_item 提升 0.055。\n\n---\n\n### 输出文件\n```\nresults/exp004_8model_analysis/\n  permutation_test_5bm.json\n  lobo_stability.json\n  dstudy_8model.json\n  cross_model_gstudy_8model.json\n```\n\n**核心发现**：MC vs FF 的 format dichotomy 在 item_id% 上清晰（40% vs 17%），但 model:item% 不是假设的递增方向——MC 组反而更高。这意味着 model:item 交互更多受 format/item-type 复杂度驱动，而非简单的 \"reasoning 越多 interaction 越大\" 叙事。论文可以改 framing 为 \"format-conditional variance structure\" 而非 \"monotonic gradient\"。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_analysis_exp004_cross_model_and_permutation_20260521T213143"
+          },
+          "id": "event-000091"
+        }
+      ],
+      "message_count": 91
+    }
+  ],
+  "readable_path": "readable/conversations/analysis-exp004-cross-model-and-permutation.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2cba80247d6e07fb5041",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra westd19912 olmo rerun after yi",
+  "task_key": "worker_infra_westd19912_olmo_rerun_after_yi_20260521T183301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd19912_olmo_rerun_after_yi_20260521T183301_result.json",
+    "occurrence": 1,
+    "bytes": 2878,
+    "sha256": "78e6f1f733185865efb28bb1c7e9af73b2bfd62be38fbfc28415c3030a411df8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**情况与预期不同，OLMo 重跑已经在运行了。** 先详细汇报两台服务器状态。\n\n---\n\n## westd-19912 状态\n\n### GPU 分配（4/4 占满）\n| GPU | 任务 | 显存 | 利用率 |\n|-----|------|------|--------|\n| 0 | OLMo GSM8K 重跑 | 88,904/97,887 MiB | 96% |\n| 1 | OLMo MATH 重跑 | 88,904/97,887 MiB | 98% |\n| 2 | Yi HellaSwag (chain: MMLU→HellaSwag→MATH) | 89,094/97,887 MiB | 100% |\n| 3 | Yi GSM8K (chain: ARC→GSM8K) | 89,094/97,887 MiB | 96% |\n\n### Yi 进度\n| Benchmark | 行数 | 目标 | 状态 |\n|-----------|------|------|------|\n| MMLU | 57,600 | 57,600 | **完成** |\n| ARC | 57,600 | 57,600 | **完成** |\n| HellaSwag | 19,200 | 57,600 | 33% 运行中 (GPU 2) |\n| GSM8K | 2,200 | 57,600 | 4% 运行中 (GPU 3) |\n| MATH | - | 57,600 | 排队中 (GPU 2 chain, HellaSwag 完成后启动) |\n\n### OLMo 进度\n| Benchmark | 行数 | 目标 | 状态 |\n|-----------|------|------|------|\n| MMLU | 57,600 | 57,600 | **完成** |\n| ARC | 57,600 | 57,600 | **完成** |\n| HellaSwag | 57,600 | 57,600 | **完成** |\n| GSM8K | 6,200 | 57,600 | 11% **重跑中** (GPU 0) |\n| MATH | 3,000 | 57,600 | 5% **重跑中** (GPU 1) |\n\n### 关键发现\n**OLMo GSM8K 和 MATH 已经在 GPU 0/1 上重跑了**，使用完整 design_matrix：\n```\npython -m src.inference.run_experiment --design results/exp002/design_matrix_olmo.csv --benchmark gsm8k --gpu-id 0 --output results/exp002_olmo/exp002_olmo_gsm8k.jsonl\npython -m src.inference.run_experiment --design results/exp002/design_matrix_olmo.csv --benchmark math --gpu-id 0 --output results/exp002_olmo/exp002_olmo_math.jsonl\n```\n- 启动时间：02:27（约 6 分钟前）\n- 不需要 shard 文件，`--benchmark` 参数已做过滤\n- **yi_done_then_olmo.sh 不需要部署了**\n\n---\n\n## westd-32570 状态\n\n### GPU 分配（4/4 占满）\n| GPU | 任务 | 显存 | 利用率 |\n|-----|------|------|--------|\n| 0 | InternLM MATH | 88,472/97,887 MiB | 67% |\n| 1 | InternLM GSM8K | 88,226/97,887 MiB | 97% |\n| 2 | Gemma MATH (即将完成) | 88,732/97,887 MiB | 90% |\n| 3 | DeepSeek GSM8K | 88,010/97,887 MiB | 88% |\n\n### Gemma MATH\n- **57,200/57,600 行 (99%)**，还差 400 行，预计几分钟内完成\n\n### DeepSeek MATH Watcher\n- **Watcher 正常运行中** (PID 188947: `gemma_to_deepseek_math.sh`)\n- 最新日志 `02:33:28`: \"Gemma MATH progress: 57200/57600 (99%)\"\n- DeepSeek MATH 尚未启动，等待 Gemma MATH 完成后接管 GPU 2\n\n---\n\n## 汇总\n\n1. **westd-19912**: yi_done_then_olmo.sh **无需部署** — OLMo GSM8K/MATH 已经在独立重跑。4 GPU 全部占满，Yi 3 个 benchmark 待完成（HellaSwag 33%、GSM8K 4%、MATH 排队）\n2. **westd-32570**: Gemma MATH 即将完成 (99%)，watcher 状态正常，DeepSeek MATH 将在几分钟后自动启动\n3. 两台服务器共 8 GPU 全部满载运行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd19912-olmo-rerun-after-yi.md"
+}

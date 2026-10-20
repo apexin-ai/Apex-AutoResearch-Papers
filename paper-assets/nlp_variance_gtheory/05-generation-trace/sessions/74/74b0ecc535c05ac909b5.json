@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "74b0ecc535c05ac909b5",
+  "project": "nlp_variance_gtheory",
+  "kind": "history",
+  "title": "director / loop_3.md",
+  "task_key": "loop_3",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/director/loop_3.md",
+    "occurrence": 1,
+    "bytes": 3310,
+    "sha256": "9143edf5b476b73ded6042f1bb2d80e30e70dcff1fd860c860afb07287f15077"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 3\nreason: max_messages\nupdated: '2026-05-25T06:01:32+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 只能用项目配置 `execution.gpu_ids` 白名单内的卡（westd-32570 和 westd-19912 各 4× RTX PRO 6000 96GB）\n- 匿名 repo 已公开（HTTPS），任何 commit 都会立即可见——推送前必须确认无去匿名化信息（作者名/机构/服务器路径）\n- EMNLP 2026 ARR DDL 是 2026-05-25（今天），main text 严格 ≤ 8 页，abstract ≤ 200 words\n- 论文只能有一个 Limitations section 在正文里，appendix 不能有 limitations section\n- ARR Responsible NLP Checklist 在 OpenReview submission form 里手动填写，不在论文 PDF 里\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32570 (connect.westd.seetacloud.com) + westd-19912，各 4× RTX PRO 6000 96GB\n- 代码路径：`/root/nlp_variance_gtheory`\n- 本地论文：`/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/`\n- 匿名 repo：`https://github.com/anonymous-nlp-2026-2/nlp_variance_gtheory`\n- 全部 GPU 空闲，无 RUNNING 实验，无活跃进程\n- GOOGLE_API_KEY 已存储（key_id: google_api_key），用于 PaperBanana\n\n### 3. 📊 当前状态\n**正在进行**：Agent 正在处理最新排版任务——pages 3-6 没有 figure（只有 tables），需要新增 3 张 matplotlib figure（factorial design 示意图 / variance component 柱状图 / budget sensitivity 图移回正文）。这是用户（曹晓玉）的反馈。Agent 尚未回复。\n\n**已完成本轮**：\n- 主图从 Appendix 移回 main text 为 Figure 1，空白裁剪\n- Related Work 5→3 subsection，精简 40%\n- Table 2 加宽（+95% CI 列）\n- 正文从 3 张图增至 5 张（+heatmap +stacked bar），但分布仍不均——pages 3-6 全是 tables\n- 缩写定义自检完成（12 处修复：D-study/IRT/ANOVA/MC/FF/GLMM/REML/CV/BF16/FP16/FP32/LOMO + MMLU/ARC/GSM8K 全称）\n- Positioning table、LOMO table、model overview table 加入正文\n\n**Registry**: 36 实验（22 pending / 14 done / 12 success），全部空闲\n\n### 4. 📋 待办\n- Agent 回复排版修改结果 → 编译验证每页 figure 分布 → 如果 pages 3-6 仍无 figure 则追加指令\n- 用户确认最终 PDF 满意 → 提醒用户在 OpenReview 提交 ARR（DDL 今天 5/25）\n- 如果 PaperBanana 再次幻觉 → 改用 matplotlib 手动画所有新 figure\n- 审稿阶段仍活跃（review_chat_id: oc_265de443abfe4594f91451b075b582ca）——提交后等 Review Director 反馈\n\n### 5. 🎯 战略上下文\n- 论文核心：G-theory 多 facet 方差分解应用于 LLM benchmark 评测，C1=D-study reproducibility budgets (3×3→178 items, 3.1× reduction)，C2=format-associated variance patterns (MC vs FF)\n- Score trajectory: R5(3.5)→R6(3.0)→R7(3.5)→R8(3.5)→R9(3.5)→R10(3.5 fresh)，稳定在 3.5 borderline\n- 12 个成功实验 / ~2.36M records / 8 models + 72B + Llama-70B out-of-sample validation\n- Rebuttal 预案已准备（docs/rebuttal_prep.md），覆盖 4 个预期攻击点\n- **易错点**：排版修改容易超 8 页——每次加 figure 必须编译验证页数。PaperBanana 内容忠实度不稳定，优先用 matplotlib\n- 两位用户（周俊伟、曹晓玉）都在给排版意见，优先级最高是让 figure 均匀分布到每页\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-3.md"
+}

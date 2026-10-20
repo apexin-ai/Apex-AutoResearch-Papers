@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e106ea1b5ebb553919c8",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp pilot final v2",
+  "task_key": "worker_exp_pilot_final_v2_20260520T235604",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_pilot_final_v2_20260520T235604_result.json",
+    "occurrence": 1,
+    "bytes": 93,
+    "sha256": "40c7356fcb1cd825bf5f42c28c5fbc64e411cdaf5bc66c2041e4160fa84e285b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "等待脚本已在服务器后台运行，约 5 分钟后自动检查结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-pilot-final-v2.md"
+}

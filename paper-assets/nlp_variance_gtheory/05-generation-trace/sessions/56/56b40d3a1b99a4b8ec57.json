@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "56b40d3a1b99a4b8ec57",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops insert overview fig and sync",
+  "task_key": "worker_ops_insert-overview-fig-and-sync_20260524T112951",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_insert-overview-fig-and-sync_20260524T112951_result.json",
+    "occurrence": 1,
+    "bytes": 323,
+    "sha256": "7557f969c1c85c4685e6b35ad0909910baaaeb3d4048439f43a691da6c0e1863"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成：\n\n- **编译**：latexmk 编译成功，**18 页**，无错误\n- **Commit**：`d821bd7` — 2 files changed（method.tex +7 行，fig_overview_pipeline.pdf 3.3MB）\n- **Push**：已推送到 anonymous repo `main` 分支\n- **页数**：18 页（figure* 占浮动位置，未增加页数）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-insert-overview-fig-and-sync.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "810b822154abfd0b8348",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops llama70b check and infer",
+  "task_key": "worker_ops_llama70b_check_and_infer_20260523T144433",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama70b_check_and_infer_20260523T144433_result.json",
+    "occurrence": 1,
+    "bytes": 1632,
+    "sha256": "83f0d8150289c820c3130408c4aca8fa837b1af3a444400c0f801a66c816f672"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 状态报告\n\n### 1. 下载状态：**IN_PROGRESS** (28/30)\n\n| 分片 | 状态 | 进度 | 速度 | ETA |\n|------|------|------|------|-----|\n| 00020 | 下载中 | ~65% (2.81G/4.34G) | 410 kB/s | ~60 min |\n| 00027 | 下载中 | 51% (2.23G/4.34G) | 732 kB/s | ~52 min |\n| 其余 28 个 | 完成 | 100% | - | - |\n\n**预计完成时间**：约 50-60 分钟（受限于 model-00020 的慢速连接）\n\n### 2. 磁盘空间\n- 数据盘：350G 总量，283G 已用（81%），68G 可用\n- pth 原始文件占用 116G（下载完成后可删除释放空间）\n\n### 3. 推理脚本已就绪\n- 脚本路径：`/root/nlp_variance_gtheory/scripts/exp_llama70b/run_llama70b_inference.py`\n- 输出目录：`/root/nlp_variance_gtheory/data/exp_llama70b/`\n- 设计：5 benchmarks × 288 conditions × 200 items = 288,000 evals\n- 每 benchmark：2 temps × 6 prompts × 6 seeds × 4 orderings = 288 条件\n- MMLU 优先运行\n- TP=4（全部 4 张 RTX PRO 6000）\n- Dry-run 验证通过\n\n### 4. 下载完成后需执行的步骤\n\na) 删除 pth 文件释放 116G：\n```bash\nrm -rf /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-70B-Instruct/original/\nrm -rf /root/autodl-tmp/.hf_cache/._____temp/\n```\n\nb) 创建软链接：\n```bash\nln -sfn /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-70B-Instruct /root/autodl-tmp/models/Llama-3.1-70B-Instruct\n```\n\nc) 验证模型完整性\n\nd) 启动推理命令：\n```\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/nlp_variance_gtheory && python scripts/exp_llama70b/run_llama70b_inference.py\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama70b-check-and-infer.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93247768d90a0ccd4ed3",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "prep math benchmark",
+  "task_key": "worker_prep_math_benchmark_20260521T102232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_math_benchmark_20260521T102232_result.json",
+    "occurrence": 1,
+    "bytes": 1587,
+    "sha256": "65d79924d1abef5ec5711813270de1d5e8fa2c854b990e0a332381af27519848"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Here's the summary:\n\n## 完成内容\n\n### Step 1: MATH 数据集下载 + 采样\n- 数据源: `DigitalLearningGmbH/MATH-lighteval` (5000 test, 7500 train)\n- **`data/math_items_exp002.json`**: 200 items, 按 difficulty(1-5) × subject(7类) 分层抽样\n  - Difficulty 分布: {1: 42, 2: 42, 3: 42, 4: 39, 5: 35}\n  - Subject 覆盖: Algebra(29), Counting & Probability(29), Geometry(29), Intermediate Algebra(29), Number Theory(28), Prealgebra(28), Precalculus(28)\n\n### Step 2: Few-shot 示例\n- **`data/few_shot_math.json`**: 5 examples, 每个 difficulty level 一个, solution < 800 chars\n\n### Step 3: 代码适配\n- **`src/inference/benchmark_utils.py`** (新增): MATH_TEMPLATES (6 变体), `format_math_prompt`, `extract_math_answer` (\\\\boxed{} > \"The answer is\" > ####), `_normalize_math_answer` (\\\\frac→float 等), `score_math` (float comparison + normalized string match)\n- max_tokens: 512, stop_seqs 与 GSM8K 一致\n\n### Step 4: 设计矩阵更新\n- **`src/design/generate_design.py`**: exp002 新增 \"math\" benchmark, expected_total 4608→5760 (1152 MATH conditions)\n\n### Step 5: Runner 更新\n- **`src/inference/run_experiment.py`**: `_build_prompt`, `_extract_and_score`, `DEFAULT_ITEMS`, `DEFAULT_FEW_SHOT`, argparse choices 均已添加 \"math\"\n\n### 验证结果\n- Answer extraction: 6/6 通过 (含 \\\\boxed{}, nested braces, decimals, ####)\n- Scoring: 5/5 通过 (含 \\\\frac→float 转换)\n- 6 个 prompt template 变体均正确生成\n- Design matrix: 5760 conditions, MATH 1152 rows, items_file 正确"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-math-benchmark.md"
+}

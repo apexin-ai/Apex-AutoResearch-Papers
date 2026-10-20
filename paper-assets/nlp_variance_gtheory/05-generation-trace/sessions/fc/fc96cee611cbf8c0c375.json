@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc96cee611cbf8c0c375",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis phase2 gitem consistency check",
+  "task_key": "worker_analysis_phase2_gitem_consistency_check_20260521T230320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_gitem_consistency_check_20260521T230320_result.json",
+    "occurrence": 1,
+    "bytes": 1707,
+    "sha256": "50fe389d7c49f6442949804a8657887e6a25ed5a500fa5a2ae06a350c62c0cb9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 诊断结论\n\n**根本原因：`exp004_ff_gstudy.py` 中的 bug**\n\n`compute_g_item` 函数（约第120行）将 residual 除以 `1` 而非 `prod(non_item_facet_levels) = 2304`，导致 σ²(δ) 被膨胀约 2300 倍。\n\n### Step 1: Facet 结构对比\n\n| | 4-model 脚本 | 8-model FF 脚本 |\n|---|---|---|\n| Facets | model/temp/prompt/seed/ordering/item_id | 相同 |\n| Henderson I | 相同实现 | 相同实现 |\n| **residual in G_item** | **`÷ prod(non_item) = 1152`** | **`÷ 1` ← BUG** |\n\n### Step 2: Bug 确认\n\n| | G_item |\n|---|---|\n| 8-model buggy (÷1) | **0.2837** ← 匹配报告值 |\n| 8-model correct (÷2304) | **0.8629** |\n| 4-model subset (correct) | **0.7289** ← 精确匹配原值 |\n\n### Step 3: 逐步加模型（correct 公式）\n\n| Models | G_item | Δ |\n|---|---|---|\n| 4 (base) | 0.7289 | — |\n| 5 (+InternLM) | 0.7916 | +0.063 |\n| 6 (+DeepSeek) | 0.8111 | +0.020 |\n| 7 (+OLMo) | 0.8412 | +0.030 |\n| 8 (+Yi) | 0.8629 | +0.022 |\n\nG_item **单调递增**，与报告的骤降完全相反。MMLU 同样趋势（0.816→0.896）。\n\n### Step 4: Pairwise 相关\n\n- 原4模型平均 r = 0.518\n- 新4模型平均 r = 0.558\n- 跨组平均 r = 0.564\n- Qwen3-8B 与 DeepSeek 相关最低（r=0.196）\n\n### 需要修复\n\n`scripts/exp004_ff_gstudy.py` 第 ~120 行和 ~145 行，`compute_g_item` 和 `d_study_curve` 中：\n```python\n# 错误：\nif key == \"residual\":\n    divisor = 1\n# 应改为：\nif key == \"residual\":\n    non_item = [f for f in FACETS if f != \"item_id\"]\n    divisor = prod(n_levels[f] for f in non_item)\n```\n\nJSON 已保存到 `results/exp004_8model_analysis/gitem_consistency_check.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase2-gitem-consistency-check.md"
+}

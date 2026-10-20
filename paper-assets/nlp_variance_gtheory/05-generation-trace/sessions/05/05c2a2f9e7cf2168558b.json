@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05c2a2f9e7cf2168558b",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops gpu status check",
+  "task_key": "worker_ops_gpu_status_check_20260522T203119",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_gpu_status_check_20260522T203119_result.json",
+    "occurrence": 1,
+    "bytes": 848,
+    "sha256": "848aaad9431e0cd55b6dda2d4467c956220981e94ece212ce2f4d73954f89dee"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**汇报：**\n\n**1. GPU（4× NVIDIA RTX PRO 6000 Blackwell, 各 96GB）**\n\n| GPU | 利用率 | 显存 | 温度 | 功耗 |\n|-----|--------|------|------|------|\n| 0 | 0% | 0 / 97887 MiB | 31°C | 36W/600W |\n| 1 | 0% | 0 / 97887 MiB | 30°C | 35W/600W |\n| 2 | 0% | 0 / 97887 MiB | 31°C | 35W/600W |\n| 3 | 0% | 0 / 97887 MiB | 30°C | 33W/600W |\n\n四卡全部空闲，无 GPU 进程。\n\n**2. Python 进程**\n无用户 Python 训练进程。仅有系统服务：Jupyter Lab、TensorBoard、autopanel、一个 SimpleHTTPServer（端口 18999）。\n\n**3. 磁盘**\n\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| `/`（根） | 30G | 19G | 12G | 63% |\n| `/root/autodl-tmp`（数据盘） | 350G | 321G | 30G | 92% |\n\n数据盘 92% 已满，剩余 30G，需注意空间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-gpu-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "520ffb2761d747065ceb",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "check westd32570 full status",
+  "task_key": "worker_check_westd32570_full_status_20260521T104440",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_westd32570_full_status_20260521T104440_result.json",
+    "occurrence": 1,
+    "bytes": 4380,
+    "sha256": "ed4a68e5fa96f06c3aa8a8304df2335fdcd682abcc4bcf0266387cca6169c8fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## westd-32570 全面状态报告\n\n---\n\n### 1. exp-002 进度\n\n**主进程 PID 133392**: 存活，运行 `run_exp002_full.sh`\n\n**full_run.log 内容**:\n```\n=== exp-002 full run start: Thu May 21 17:08:46 CST 2026 ===\nPIDs: qwen=133428 llama=133429 gemma=133431 mistral=133433\nGPU0 qwen FAILED\n```\n\n**各 jsonl 文件记录数**:\n\n| 文件 | 行数 | 状态 |\n|------|------|------|\n| qwen_mmlu.jsonl | 57,600 | ✅ 完成 |\n| qwen_arc.jsonl | 57,600 | ✅ 完成 |\n| qwen_hellaswag.jsonl | 57,600 | ✅ 完成 |\n| llama_mmlu.jsonl | 57,600 | ✅ 完成 |\n| llama_arc.jsonl | 57,600 | ✅ 完成 |\n| llama_hellaswag.jsonl | 57,600 | ✅ 完成 |\n| llama_gsm8k.jsonl | 10,400 | 🔄 运行中 |\n| gemma_mmlu.jsonl | 57,600 | ✅ 完成 |\n| gemma_arc.jsonl | 57,600 | ✅ 完成 |\n| gemma_hellaswag.jsonl | 55,400 | 🔄 运行中 |\n| mistral_mmlu.jsonl | 57,600 | ✅ 完成 |\n| mistral_arc.jsonl | 57,600 | ✅ 完成 |\n| mistral_hellaswag.jsonl | 57,600 | ✅ 完成 |\n| mistral_gsm8k.jsonl | 4,600 | 🔄 运行中 |\n| **总计** | **704,000** | |\n\n**GPU0 (qwen)** — mmlu/arc/hellaswag 全完成。gsm8k **崩溃**，SyntaxError:\n```\nFile \"/root/nlp_variance_gtheory/src/inference/benchmark_utils.py\", line 439\n    m = \n        ^\nSyntaxError: invalid syntax\n```\nqwen_gsm8k 未产出任何 jsonl。GPU0 已释放（0% 利用率，0 MiB 显存）。\n\n**GPU1 (llama)** — mmlu/arc/hellaswag 完成，gsm8k 运行中。最新日志显示 condition ~1492，10,400 行已写入。\n\n**GPU2 (gemma)** — mmlu/arc 完成，hellaswag 运行中。最新日志显示 condition ~3445 (152/200 correct)，55,400 行已写入（接近 57,600 完成线）。gsm8k 尚未开始。\n\n**GPU3 (mistral)** — mmlu/arc/hellaswag 完成，gsm8k 运行中。最新日志显示 condition ~3767 (94/200 correct)，4,600 行已写入。\n\n**预计剩余**：gemma 的 hellaswag 即将完成后会进入 gsm8k；llama 和 mistral 的 gsm8k 仍在跑。但 gsm8k 会在所有 GPU 上遇到同一个 SyntaxError（`benchmark_utils.py:439`），需要立即修复。\n\n---\n\n### 2. GPU 利用率\n\n| GPU | 型号 | 利用率 | 显存 |\n|-----|------|--------|------|\n| 0 | NVIDIA RTX PRO 6000 Blackwell | **0%** | **0 MiB** / 97,887 MiB |\n| 1 | NVIDIA RTX PRO 6000 Blackwell | 68% | 87,795 MiB / 97,887 MiB |\n| 2 | NVIDIA RTX PRO 6000 Blackwell | 96% | 88,461 MiB / 97,887 MiB |\n| 3 | NVIDIA RTX PRO 6000 Blackwell | 97% | 88,685 MiB / 97,887 MiB |\n\nGPU 1/2/3 被 exp-002 占用。GPU0 空闲（qwen gsm8k 崩溃后释放）。\n\n---\n\n### 3. 模型下载进度\n\n所有下载通过 ModelScope，目标目录在 `/root/autodl-tmp/.hf_cache/` 下。\n\n| 模型 | PID | 当前文件 | 进度 | 速度 | 磁盘占用 |\n|------|-----|---------|------|------|---------|\n| InternLM2.5-7B-Chat | 149391 (存活) | model-00005-of-00008.safetensors | 46% (860M/1.84G) | 783 kB/s | 32K (待归档) |\n| DeepSeek-LLM-7B-Chat | 149538 (存活) | pytorch_model-00001-of-00002.bin | 9% (841M/9.28G) | 793 kB/s | 4.5M |\n| Yi-1.5-9B-Chat | 运行中 | model-00004-of-00004.safetensors (最后一片) | 39% (1.01G/2.59G) | 391 kB/s | 4.6M |\n| OLMo-2-1124-7B-Instruct | 运行中 | model-00002-of-00003.safetensors | 18% (860M/4.64G) | 426 kB/s | 9.4M |\n\n磁盘占用小是因为 ModelScope 下载到临时目录，完成后才移入最终路径。下载速度约 400-800 kB/s，所有模型预计还需数小时。\n\n---\n\n### 4. 磁盘空间\n\n| 分区 | 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|------|--------|\n| 根分区 (/) | 30G | 17G | 14G | 57% |\n| 数据盘 (/root/autodl-tmp) | 350G | 115G | 236G | 33% |\n\n数据盘空间充足。\n\n---\n\n### 5. exp002 分析脚本\n\n`/root/nlp_variance_gtheory/scripts/exp002_analysis/` 下 6 个脚本已就绪：\n\n| 脚本 | 大小 |\n|------|------|\n| per_benchmark_gstudy.py | 10,865 B |\n| gradient_permutation_test.py | 10,580 B |\n| within_format_gradient.py | 10,215 B |\n| leave_one_benchmark_out.py | 8,430 B |\n| cross_benchmark_dstudy.py | 7,923 B |\n| gsm8k_answer_reextract.py | 6,900 B |\n\n---\n\n### 关键问题\n\n**`benchmark_utils.py:439` 有 SyntaxError** — `m = ` 后面缺表达式。这已经导致 qwen_gsm8k 崩溃，gemma/llama/mistral 到 gsm8k 阶段也会遇到同样的错误。需要立即修复此文件并重跑 gsm8k。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-westd32570-full-status.md"
+}

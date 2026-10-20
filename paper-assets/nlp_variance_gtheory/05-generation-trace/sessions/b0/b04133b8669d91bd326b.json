@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b04133b8669d91bd326b",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops anon repo integrity check",
+  "task_key": "worker_ops_anon-repo-integrity-check_20260524T065542",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anon-repo-integrity-check_20260524T065542_result.json",
+    "occurrence": 1,
+    "bytes": 3342,
+    "sha256": "269433cd32e827ddb2be7628042884f34cafb6bcc2cce5a6bac9cc49598859dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "`fig3_dstudy_curves.pdf` exists in `paper/figures/` but is not referenced anywhere in the paper. All other figures are properly referenced. Here's the full report:\n\n---\n\n## 1. 身份泄露扫描\n\n| 关键词 | 结果 |\n|--------|------|\n| `Cao Xiaoyu` / `曹` / `caoxiaoyu` / `caoxiaoyuyuyuyuyu` | 未发现 |\n| `TUM` / `Technical University of Munich` / `München` | 未发现 |\n| `Tsinghua` / `清华` / `Peking` / `北大` / `PKU` | 未发现 |\n| `@tum.de` / `@gmail.com` / `@qq.com` / `@outlook.com` / `@163.com` | 未发现 |\n| 非匿名 GitHub URL | **2 处**，均为合法第三方引用：`github.com/EleutherAI/lm-evaluation-harness`（references.bib）、`github.com/acl-org/acl-style-files/`（acl.sty 注释）。无身份泄露。 |\n| `ssh-rsa` / `ssh-ed25519` / `github_deploy` | 未发现 |\n| `westd-` / `autodl` / `192.168` / `10.0.` | 未发现 |\n| `ghp_` / `sk-` / `hf_` / `API_KEY` | 未发现 |\n| `TOKEN` | 仅匹配变量名 `BENCHMARK_MAX_TOKENS`，非泄露 |\n| `agent-ml-research` / `idea_gen` | 未发现 |\n| Git 提交作者 | `Anonymous <anonymous@example.com>` — 干净 |\n| 论文 `\\author` 字段 | `\\author{Anonymous}` — 干净 |\n\n## 2. 敏感文件检查\n\n未发现任何 `.env`、`.pem`、`.key`、`*credential*`、`*secret*`、`*token*`、`_anonymous_repo.json`、`.log`、`.ssh` 文件。\n\n## 3. 文件清单\n\n**论文源码** — 齐全：main.tex, abstract.tex, introduction.tex, method.tex, experiments.tex, related_work.tex, conclusion.tex, limitations.tex, appendix.tex, references.bib, main.bbl, acl.sty, acl_natbib.bst\n\n**论文图表** — 齐全：fig0_teaser_dstudy.pdf, fig1_cross_benchmark.pdf, fig2_design_diagram.pdf, fig4_difficulty_scatter.pdf, budget_sensitivity_band.pdf 均存在且被引用。`fig3_dstudy_curves.pdf` 存在但未被论文引用（冗余文件）。\n\n**实验代码** — 齐全：`src/` 含 inference、analysis、design、data、config 模块；`scripts/` 含大量实验脚本\n\n**数据** — 齐全：`data/` 含 benchmark item JSON 文件\n\n**配置** — 齐全：requirements.txt + pyproject.toml\n\n**README.md** — 存在\n\n**Tests** — 存在：`tests/test_prompt_templates_multi.py`\n\n**注意**：`docs/paper/abstract.tex` 是一个旧版本的 abstract 副本（与 `paper/abstract.tex` 内容不同），属冗余文件。`figures/paper/` 目录包含 fig1 的副本和生成脚本。\n\n## 4. 代码可运行性\n\n- **README.md**：包含概述、依赖要求（Python 3.10+, vLLM）、安装命令 `pip install -r requirements.txt`、目录结构说明\n- **requirements.txt**：存在且非空，12 个依赖，覆盖所有关键第三方包（vllm, torch, transformers, datasets, generalizit, statsmodels, matplotlib, pandas, numpy, scipy, seaborn, tqdm）\n- **Import 覆盖**：所有第三方 import 均在 requirements.txt 中\n\n## 5. 总结\n\n**通过** — 匿名化完整，无身份泄露，文件齐全，代码可运行。\n\n**Minor 建议**（不影响通过）：\n1. `docs/paper/abstract.tex` 是旧版 abstract 副本，建议删除以免审稿人困惑\n2. `paper/figures/fig3_dstudy_curves.pdf` 未被论文引用，建议删除或确认是否遗漏引用\n3. `figures/paper/` 根目录下有重复的 fig1 文件和生成脚本 `gen_fig1_cross_benchmark.py`，建议清理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anon-repo-integrity-check.md"
+}

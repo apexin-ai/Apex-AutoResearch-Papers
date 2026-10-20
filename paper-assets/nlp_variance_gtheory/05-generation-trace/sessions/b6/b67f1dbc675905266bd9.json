@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "b67f1dbc675905266bd9",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "prep exp002 infra",
+  "task_key": "worker_prep_exp002_infra_20260521T075051",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_exp002_infra_20260521T075051.log",
+    "occurrence": 1,
+    "bytes": 529848,
+    "sha256": "7b25168e0eb926587ffc429d523ad85be31c817d75329b956e65a06deb41b92f"
+  },
+  "statistics": {
+    "messages": 250,
+    "user_turns": 0,
+    "tool_calls": 93,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 60,
+      "tool_call": 93,
+      "tool_result": 93,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 250,
+      "chunks": [
+        {
+          "path": "b67f1dbc675905266bd9-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "b67f1dbc675905266bd9-part-0002.json",
+          "message_count": 70
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/prep-exp002-infra.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b90259a4f57b5c58b7ca",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code exp002 run experiment",
+  "task_key": "worker_code_exp002_run_experiment_20260521T080403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002_run_experiment_20260521T080403_result.json",
+    "occurrence": 1,
+    "bytes": 1195,
+    "sha256": "5246326ffd42092108f76434f195db511609b5f61c62595221783c8c53da1e4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**79/79 tests passed.** All changes deployed and verified:\n\n### What was done\n\n1. **`src/inference/benchmark_utils.py`** (NEW) — Prompt templates (6 variants each), answer extractors, and scorers for GSM8K, ARC-Challenge, HellaSwag:\n   - GSM8K: extracts `#### N` or last number, float comparison scoring, 512 max_tokens for CoT\n   - ARC: variable-choice MC with label mapping, letter extraction\n   - HellaSwag: 4-choice sentence completion, idx→letter gold mapping\n\n2. **`src/inference/vllm_runner.py`** (MODIFIED) — `generate()` now accepts `max_tokens` parameter (default 16, backward compatible)\n\n3. **`src/inference/run_experiment.py`** (REWRITTEN) — Multi-benchmark support via `--benchmark` flag:\n   - `_build_prompt()` routes to correct prompt builder per benchmark\n   - `_extract_and_score()` routes to correct extraction/scoring\n   - `--items` auto-selects per benchmark if omitted; `--few-shot` only used for MMLU\n   - Output adds `benchmark` and `text_exact_match` fields\n   - Default `mmlu` — existing exp-001 CLI invocations unchanged\n\n4. **`scripts/dry_run_exp002.py`** (NEW) — CPU-only test covering all extraction/scoring/prompt logic"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp002-run-experiment.md"
+}

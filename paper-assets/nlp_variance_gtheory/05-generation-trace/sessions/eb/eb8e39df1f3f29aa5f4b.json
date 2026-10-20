@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "eb8e39df1f3f29aa5f4b",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra model download restart",
+  "task_key": "worker_infra_model_download_restart_20260521T003255",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_model_download_restart_20260521T003255_result.json",
+    "occurrence": 1,
+    "bytes": 364,
+    "sha256": "3a15ee8d4306d2fb6c2996295ab6c2757793e692d6fc5887b58d84244c9d5f6a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前状态：\n- **Mistral-7B-Instruct-v0.3**: 已完成 (14GB, `/root/autodl-tmp/.hf_cache/LLM-Research/Mistral-7B-Instruct-v0___3/`)\n- **Qwen3-8B**: 下载中 (ModelScope, ~5MB/s, 预计约 50 分钟)\n\n注意：`Qwen3-8B-Instruct` 不存在，Qwen3 没有单独的 Instruct 版本，改为下载 `Qwen/Qwen3-8B`。4-5 分钟后自动轮询。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-model-download-restart.md"
+}

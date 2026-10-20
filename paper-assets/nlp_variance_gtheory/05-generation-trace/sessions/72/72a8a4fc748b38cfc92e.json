@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "72a8a4fc748b38cfc92e",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis phase3 dstudy 259k",
+  "task_key": "worker_analysis_phase3_dstudy_259k_20260521T215534",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase3_dstudy_259k_20260521T215534_result.json",
+    "occurrence": 1,
+    "bytes": 558,
+    "sha256": "8175c85173c7e9966658a8e4c62c9122a4a50d7db3badb94f582cd8e09de4e02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**6-facet (259,200 records)**\n- G_at_200 = 0.9361 (matches expected 0.9361)\n- n_{G≥0.80} = 55, n_{G≥0.90} = 123, n_{G≥0.95} = 260\n- Top variance: item_id 58.39%, residual 23.11%\n\n**BF16 5-facet (86,400 records)**\n- G_at_200 = 0.9578 (matches expected 0.9578)\n- n_{G≥0.80} = 36, n_{G≥0.90} = 80, n_{G≥0.95} = 168\n- Top variance: item_id 70.94%, residual 13.61%\n\nJSON 已写入 `results/exp001_analysis/dstudy_henderson_i_259k.json`，脚本在 `scripts/exp001_analysis/dstudy_henderson_i.py`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase3-dstudy-259k.md"
+}

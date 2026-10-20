@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de4227d6dd8b0a205fa8",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops appendix bootstrap update",
+  "task_key": "worker_ops_appendix-bootstrap-update_20260524T101500",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_appendix-bootstrap-update_20260524T101500_result.json",
+    "occurrence": 1,
+    "bytes": 183,
+    "sha256": "acf4b99572f494b3ec0508ad9689d53316c80e073f26f0b62e854c61f268e1ec"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n- **编译**：0 errors，1 warning（`h` float specifier → `ht`，正常）\n- **Commit**：`dedf0f4`\n- **Push**：成功，`paper/appendix.tex` +2 行"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-appendix-bootstrap-update.md"
+}

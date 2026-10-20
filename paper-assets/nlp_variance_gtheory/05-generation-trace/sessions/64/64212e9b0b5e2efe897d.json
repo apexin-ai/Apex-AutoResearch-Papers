@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "64212e9b0b5e2efe897d",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops anon repo verify",
+  "task_key": "worker_ops_anon_repo_verify_20260523T144442",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_anon_repo_verify_20260523T144442_result.json",
+    "occurrence": 1,
+    "bytes": 583,
+    "sha256": "480e29968e3b3816ef0202b2ffc63b980f382fa738c149c3b2d40f1fb8acf745"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 匿名仓库验证报告\n\n| 检查项 | 结果 |\n|--------|------|\n| **敏感信息（用户名/手机/服务器/路径）** | 未发现 |\n| **敏感信息（邮箱/wandb/huggingface）** | 未发现 |\n| **文件总数** | 148 |\n| **Git Author** | `Anonymous <anonymous@example.com>` |\n| **README** | 合理，无个人信息，描述为 \"anonymous submission to EMNLP 2026\" |\n| **大文件 (>1MB)** | 无 |\n\n### 总体评估：**PASS**\n\n仓库匿名化完整，无敏感信息泄露，author 已匿名化，文件结构完整，无异常大文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-anon-repo-verify.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2bc55c3b0e5416233dbb",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp exp001 llama completion",
+  "task_key": "worker_exp_exp001_llama_completion_20260521T010536",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp001_llama_completion_20260521T010536_result.json",
+    "occurrence": 1,
+    "bytes": 157,
+    "sha256": "aedcedc790e4cce2658f03d29c089d72e31a4e7d9fea8b296f1a50e243189caa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "后台等待脚本已启动。当前进度 218,400/259,200 (84.3%)，约 15-20 分钟后完成。我会在 ~4.5 分钟后自动检查结果。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp001-llama-completion.md"
+}

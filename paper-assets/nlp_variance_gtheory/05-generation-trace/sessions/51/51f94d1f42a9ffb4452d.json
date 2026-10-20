@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "51f94d1f42a9ffb4452d",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops sync anon repo introduction",
+  "task_key": "worker_ops_sync-anon-repo-introduction_20260524T081540",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-anon-repo-introduction_20260524T081540_result.json",
+    "occurrence": 1,
+    "bytes": 113,
+    "sha256": "1c606fdeff96837c9ca25f2af0121724798c7e626d794f729e5ec2e49fe62387"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "- **Commit**: `e9946fc`\n- **Push**: 成功\n- **Diff**: 1 file changed, 2 insertions, 2 deletions"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-anon-repo-introduction.md"
+}

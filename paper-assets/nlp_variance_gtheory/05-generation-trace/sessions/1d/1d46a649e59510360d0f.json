@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1d46a649e59510360d0f",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis exp001 bf16 5facet baseline",
+  "task_key": "worker_analysis_exp001_bf16_5facet_baseline_20260521T084612",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp001_bf16_5facet_baseline_20260521T084612_result.json",
+    "occurrence": 1,
+    "bytes": 1277,
+    "sha256": "eccdb709a35b7ccea5bdc5f96e7c5b0e85147411887e770368116997d0d8363d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。核心发现：\n\n### 对比表\n\n| Metric | bf16-5f baseline | Sample1 | Sample2 | Sample3 | Mean±Std | Delta |\n|--------|----------------:|--------:|--------:|--------:|---------:|------:|\n| item_id% | **74.00** | 75.88 | 75.38 | 72.18 | 74.48±2.01 | +0.48 |\n| prompt×item% | 4.65 | 4.42 | 4.35 | 5.38 | 4.72±0.58 | +0.06 |\n| seed×item% | 5.42 | 5.41 | 4.87 | 5.32 | 5.20±0.29 | -0.22 |\n| temp×item% | 1.84 | 1.64 | 1.45 | 2.17 | 1.75±0.37 | -0.09 |\n| order×item% | 0.84 | 0.54 | 0.50 | 0.63 | 0.56±0.07 | -0.29 |\n| G_item | **0.7400** | 0.7590 | 0.7540 | 0.7220 | 0.745±0.020 | +0.005 |\n\n### Delta 分解\n\n之前 6-facet→exp-001b 的 13.4pp 差异现在被分解为：\n\n- **Precision facet 移除效应**: 74.00 − 61.08 = **+12.92 pp** (6-facet → bf16-5f)\n- **Item 选择效应**: 74.48 − 74.00 = **+0.48 pp** (bf16-5f → exp-001b mean)\n\n结论：几乎全部差异来自 precision facet 的移除（12.92pp），item 选择效应仅 0.48pp，在 exp-001b 三个 sample 的 ±2.01 标准差范围内。bf16 matched baseline 的 G_item=0.740 与 exp-001b 均值 0.745 几乎一致，确认 exp-001b 的 resampling 结果是可靠的。\n\n输出已保存到 `results/analysis/exp001_llama_bf16only_5facet.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp001-bf16-5facet-baseline.md"
+}

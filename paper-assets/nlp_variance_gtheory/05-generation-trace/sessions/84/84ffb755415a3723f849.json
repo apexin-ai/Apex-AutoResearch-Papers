@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84ffb755415a3723f849",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "prep exp002 completion pipeline",
+  "task_key": "worker_prep_exp002_completion_pipeline_20260521T123715",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_exp002_completion_pipeline_20260521T123715_result.json",
+    "occurrence": 1,
+    "bytes": 1440,
+    "sha256": "732f6f413f8775ce4ce7418e00680093c753230daf518d1c20ff98b8d158a34f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Part A: GSM8K 进度\n\n| 模型 | 完成 | 目标 | 进度 | GPU 状态 |\n|------|------|------|------|----------|\n| **llama** | 57,600 | 57,600 | **100%** ✓ | GPU 1 空闲 (0%) |\n| **mistral** | 49,600 | 57,600 | **86.1%** (248/288 cond) | GPU 3 活跃 |\n| **qwen** | 39,800 | 57,600 | **69.1%** (199/288 cond) | GPU 0 73% |\n| **gemma** | 37,600 | 57,600 | **65.3%** (188/288 cond) | GPU 2 97% |\n\n**时间参照**：Llama 全跑完用了 ~2h9min（18:27→20:36），288 conditions。\n\n**预估完成时间**（当前约 20:39 CST）：\n- Mistral：剩 40 conditions → **~21:00 CST**\n- Qwen：剩 89 conditions → **~21:35 CST**\n- Gemma：剩 100 conditions，有 KV cache preemption 警告，速度偏慢 → **~21:40-21:50 CST**\n\n**瓶颈是 Gemma**，预计全部 GSM8K 在 ~21:50 CST 前完成（约 1 小时后）。\n\n## Part B: Master 脚本\n\n`/root/nlp_variance_gtheory/scripts/post_exp002_master.sh` 已就绪，语法检查通过。\n\n流程：\n1. **验证** 16 个 JSONL（4 模型 × 4 benchmark，各 57,600 records），任何不完整则 abort\n2. **串行执行** 6 个分析脚本（per_benchmark_gstudy → cross_benchmark_dstudy）\n3. **生成 MATH shards**（从 `/tmp/design_matrix_exp002_with_math.csv` 过滤 benchmark=math，按模型拆分为 4 个 shard × 288 conditions），然后 4 GPU 并行启动 MATH 推理\n\n执行命令：`bash scripts/post_exp002_master.sh`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-exp002-completion-pipeline.md"
+}

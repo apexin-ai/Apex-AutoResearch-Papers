@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "757b0e4953a85cc7cb4a",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis mmlu subject scatter",
+  "task_key": "worker_analysis_mmlu_subject_scatter_20260522T135350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mmlu_subject_scatter_20260522T135350_result.json",
+    "occurrence": 1,
+    "bytes": 773,
+    "sha256": "6f9b32129aa10ef8bfd583ed0b71c85c3dc14fc8d79b5dadc8550d5ef91eec87"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n**数据**: 200 MMLU items 覆盖 10 个 subjects（每个 20 items），8 models × 2 temperatures × 6 prompts × 6 seeds × 4 orderings。\n\n**核心发现**: Difficulty dispersion (SD of item accuracy) 与 item_id variance share 之间有强正相关：\n- **Spearman ρ = 0.81, p = 0.005**\n- 线性回归 R² = 0.67, slope = 183.7\n\n**极端值**:\n- high_school_mathematics: 最低 SD(p_i) = 0.20, 最低 item_id% = 10.4%\n- clinical_knowledge: 最高 SD(p_i) = 0.36, 最高 item_id% = 47.5%\n\n**输出文件**:\n- JSON: `artifacts/exp004/data/mmlu_subject_level_analysis.json`\n- PDF/PNG: `artifacts/figures/mmlu_subject_scatter.pdf/.png`\n- 服务器脚本: `/root/nlp_variance_gtheory/scripts/mmlu_subject_scatter.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mmlu-subject-scatter.md"
+}

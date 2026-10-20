@@ -1,0 +1,330 @@
+{
+  "schema_version": "1.0",
+  "id": "3778957a53d62e790d2e",
+  "project": "nlp_variance_gtheory",
+  "kind": "conversation",
+  "title": "research related work notes",
+  "task_key": "worker_research_related_work_notes_20260520T171046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_research_related_work_notes_20260520T171046.jsonl",
+    "occurrence": 1,
+    "bytes": 18580,
+    "sha256": "b63d43c69e738ee20d9ab537474b9b39839fda90b040998b12975dfd784acbd2"
+  },
+  "statistics": {
+    "messages": 15,
+    "user_turns": 0,
+    "tool_calls": 7,
+    "roles": {
+      "tool_call": 7,
+      "tool_result": 7,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T17:12:16.942108+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_related_work_notes_20260520T171046",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-research.skill.md"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T17:12:16.942587+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: LLM Evaluation Variance — Research Patterns\n3\tdescription: Experimental consensus on variance sources, decomposition methods, and gaps in LLM evaluation reproducibility (10 papers, 2024-2026)\n4\ttype: research\n5\tsource_papers: 10\n6\t---\n7\t\n8\t## Variance Source Taxonomy\n9\t\n10\t**Infrastructure variance** (4/10; high confidence):\n11\t- Numerical precision: BF16→9% accuracy std; FP32→~0% (Yuan 2025). Reasoning models most affected.\n12\t- Batch-size dependence: 80/1000 unique completions at T=0 from batch-invariance failure in RMSNorm/GEMM/attention (ThinkingMachines 2025).\n13\t- Background randomness at T=0: GPT~0.075, Gemini~0.065, Claude~0 effective temperature (Messina TMLR 2026).\n14\t\n15\t**Methodological variance** (6/10; high confidence):\n16\t- Judge choice dominates safety eval (43.8% variance); prompt~50% in open models, ~25% commercial (Mesting 2026, Brittlebench 2026).\n17\t- Much apparent prompt sensitivity is evaluation artifact — LLM-judge raises rank correlation 0.30→0.95 (Hua EMNLP 2025).\n18\t- Standard CIs omit 40-60% uncertainty; naive 95% CIs→79% coverage at scale (Mesting 2026).\n19\t\n20\t## Decomposition Frameworks\n21\t\n22\t| Framework | Paper | Method |\n23\t|-----------|-------|--------|\n24\t| TEE (G-theory) | Mesting 2026 | REML + D-study, facets: item/prompt/judge/temp |\n25\t| Total Variance | Brittlebench 2026 | V_data + V_brittleness via ANOVA |\n26\t| Intent Decomp | Kunievsky 2025 | intent/articulation/model uncertainty |\n27\t| Background Temp | Messina 2026 | Reference calibration→single T_bg scalar |\n28\t\n29\tG-theory adaptation is the most rigorous approach (Mesting). 4/10 papers use variance decomposition. **High confidence.**\n30\t\n31\t## Benchmarks & Models\n32\t\n33\tTop benchmarks: MMLU (3), GPQA (3), MATH (3), ARC (2), TruthfulQA (2). Models: Llama/Qwen/GPT families (5 papers each); 7B-8B open-weight as standard testbed. 10-100 runs per config is norm. **High confidence.**\n34\t\n35\t## Mitigations\n36\t\n37\t- LayerCast (BF16 store+FP32 compute): <3.4% diver\n…[truncated 732 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_related_work_notes_20260520T171046",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T17:12:16.942756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_related_work_notes_20260520T171046",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/skills/projects/nlp_variance_gtheory/distilled-writing.skill.md"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T17:12:16.943025+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t---\n2\tname: LLM Evaluation Variance — Writing Patterns\n3\tdescription: Narrative strategies, figure/table conventions from LLM evaluation variance papers (8 deep-read, 2024-2026)\n4\ttype: writing\n5\tsource_papers: 8\n6\t---\n7\t\n8\t## Story Types\n9\t\n10\t- **Breaking limitations** (3/8): Brittlebench, Yuan, ThinkingMachines. \"Everyone assumed X, we show it fails.\" High.\n11\t- **Simplification** (2/8): Hua, GeneralizIT. \"Complex problem, simpler real answer.\" Medium.\n12\t- **Unifying framework** (2/8): Kunievsky, Messina. \"Scattered observations, one formalism.\" Medium.\n13\t- **Cross-domain transfer** (1/8): Mesting (psychometrics→ML). Our paper fits this type — study Mesting's structure. Low but critical.\n14\t\n15\t## Hook: Counter-Intuitive Claim Dominates (4/8, high)\n16\t\n17\t\"Greedy≠deterministic\" (Yuan), \"80/1000 unique at T=0\" (ThinkingMachines), \"sensitivity is artifact\" (Hua), \"95% CIs→79% coverage\" (Mesting). **Pattern**: open with a concrete number violating expectations. Avoid vague \"X is important.\"\n18\t\n19\t## Tension: \"Everyone's Doing It Wrong\" (4/8, high)\n20\t\n21\t(1) Cite widespread practice, (2) quantified evidence it fails, (3) identify overlooked factor. ThinkingMachines adds a twist: debunk the accepted explanation before presenting the correct one.\n22\t\n23\t## Intro: 4 Paragraphs + 3 Contributions (mode)\n24\t\n25\t(1) Context, (2) existing approaches + limitation, (3) gap/surprise, (4) contributions. 3 contributions standard: framework + empirical finding + practical tool. **Support: 5/8, high.**\n26\t\n27\t## Figure Conventions\n28\t\n29\t**Figure 1**: problem_illustration (4/8) — show problem exists before solution. Concrete examples with before/after or divergence visualization. **High.**\n30\t\n31\t**Result figures**: bar charts primary (5/8); stacked bars for variance decomposition (2/8, Mesting/Brittlebench — expected idiom for our paper); line plots for trends (3/8); heatmaps for divergence (2/8). **High.**\n32\t\n33\t**Figure count**: 4-6 total. **Flow**: problem illustration →\n…[truncated 1032 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_related_work_notes_20260520T171046",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T17:12:16.943183+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_related_work_notes_20260520T171046",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__read_project_file,mcp__agent-ml-research__register_artifact",
+              "max_results": "2"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T17:12:16.943305+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_related_work_notes_20260520T171046",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T17:12:16.943458+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_related_work_notes_20260520T171046",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "nlp_variance_gtheory",
+              "file": "ideas.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T17:12:16.943600+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {}, \\\"error\\\": \\\"No ideas.md found for 'nlp_variance_gtheory'.\\\", \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_related_work_notes_20260520T171046",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T17:12:16.943717+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__read_project_file"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_related_work_notes_20260520T171046",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "tool_args": {
+              "project": "nlp_variance_gtheory",
+              "file": "ROADMAP.md",
+              "max_chars": "12000"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T17:12:16.943854+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"path\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/ROADMAP.md\\\", \\\"content\\\": \\\"# nlp_variance_gtheory — Research Dashboard\\\\n\\\\n> 最后更新: 2026-05-20 14:17 UTC | 更新原因: 服务器就绪，MVP 调整为 Phase A（单硬件三精度 108 条件），Agent 已派出部署\\\\n\\\\n## 核心方向\\\\n用 Generalizability Theory 联合分解 LLM 评估中基础设施因素（硬件类型、数值精度）与方法论因素（prompt 措辞、随机种子、温度、few-shot 顺序）的方差，检验 \\\\\\\"separability 假设\\\\\\\"。产出可量化的 reproducibility budget（D-study）。\\\\n\\\\n## 当前进展\\\\n- 阶段: MVP 验证\\\\n- 服务器: westd-32570（4× RTX 6000 PRO 96GB）已绑定，4 卡全部分配\\\\n- 代码: 18 文件已完成，Agent 正在部署到服务器\\\\n- 文献图谱: 10 篇核心论文，蒸馏完成（v1）\\\\n- 第二种 GPU 类型: 已向 Manager 申请（A100/H100），等待回复\\\\n\\\\n## MVP 验证方案（Phase A — 单硬件 + 三精度）\\\\n**核心假设**: G-theory 可成功分解 infrastructure × methodology 交叉方差分量。\\\\n\\\\n**调整后设计**（因当前只有 1 种 GPU 类型）:\\\\n- 1 模型: Llama-3.1-8B-Instruct\\\\n- 1 硬件: RTX 6000 PRO 96GB\\\\n- 3 精度: FP32, BF16, FP16（96GB VRAM 支持 FP32）\\\\n- 3 prompt paraphrases × 3 seeds × 2 温度 × 2 orderings\\\\n- 共 **108 条件** × 50 MMLU items = 5,400 次推理\\\\n\\\\n**Pass/Fail（已量化）**:\\\\n- PASS: (a) pipeline 完整运行; (b) 方差分解收敛; (c) ≥2 个方差分量占总方差 ≥5% 或 bootstrap 95% CI 不含零（含 ≥1 precision×methodology 交互项）\\\\n- FAIL: 分解不收敛 / 全条件零方差 / 种子控制失效\\\\n\\\\n**Phase B（待第二种 GPU 到位）**: 加入硬件因素，完成 hardware × methodology 交叉。\\\\n\\\\n## 近期任务\\\\n- [x] GPU 服务器配置\\\\n- [ ] Agent 环境搭建 + 代码部署（进行中）\\\\n- [ ] Seed determinism sanity check（同配置 10 次重复）\\\\n- [ ] 正式 MVP Phase A（108 条件）\\\\n- [ ] 方差分解分析 → pass/fail 判定\\\\n- [ ] 等待 Manager 回复第二种 GPU 类型\\\\n\\\\n## GPU 预算\\\\n- 本项目分配: westd-32570 cuda:0-3（4× RTX 6000 PRO 96GB）\\\\n- MVP Phase A 预估: ~8 GPU·h\\\\n- 全研究预估: ~2,200 GPU·h（需额外 A100/H100）\\\\n\\\\n## 投稿目标\\\\n- 主投: AAAI 2027（abstract Jul 21, paper Jul 28 — 10 周）\\\\n- 备选: ACL 2027 ARR Oct 15（21 周）/ TACL rolling\\\\n\\\", \\\"total_chars\\\": 1451, \\\"truncated\\\": false}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_related_work_notes_20260520T171046",
+            "tool": "mcp__agent-ml-research__read_project_file",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T17:12:16.944046+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Write"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_related_work_notes_20260520T171046",
+            "tool": "Write",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/related_work_notes.md",
+              "content": "# Related Work — Structured Notes\n\n> 用于论文 Related Work 章节起草。按 3 个子类组织。基于 10 篇蒸馏论文 + ROADMAP 定位。\n\n## (a) G-theory & Variance Decomposition in NLP/ML\n\n### [Mesting et al., 2026] — TEE: Generalizability Theory for NLG Evaluation\n- **核心发现**: 将心理测量学的 G-theory（REML + D-study）引入 NLG 评估；发现 judge 选择贡献 43.8% 方差，prompt 在开源模型中贡献~50%、商用模型~25%；标准 95% CI 实际覆盖率仅 79%\n- **与本工作关系**: extends — 我们直接继承其 TEE 框架和 REML 方法，将其扩展到 infrastructure facets\n- **差异化**: Mesting 只分解方法论 facets（item/prompt/judge/temp），未纳入硬件/精度等基础设施因素；我们的 G-theory 框架联合分解 infrastructure × methodology\n\n### [Kunievsky et al., 2025] — Prompt Sensitivity Variance Decomposition\n- **核心发现**: 将 prompt sensitivity 分解为 intent（意图）、articulation（表述）、model uncertainty（模型不确定性）三个独立分量\n- **与本工作关系**: complements — 提供了 prompt 方差的细粒度分解视角，其 articulation 分量对应我们框架中 prompt paraphrase facet\n- **差异化**: 专注 prompt 单一维度的语义分解，未涉及基础设施方差，也未采用 G-theory 的交叉设计\n\n### [Nalisnick et al.] — GeneralizIT: Software for G-theory in ML\n- **核心发现**: 为 ML 场景提供 G-theory 计算工具包，简化 REML 估计和 D-study 设计流程\n- **与本工作关系**: complements — 提供可复用的计算基础设施，我们的实验可能使用或参考其实现\n- **差异化**: 是通用工具而非针对特定方差源的实证研究；我们提供具体的 LLM 评估方差分解实证结果和 reproducibility budget\n\n## (b) Infrastructure Variance\n\n### [Yuan et al., 2025] — LayerCast: Mixed-Precision Inference Variance\n- **核心发现**: BF16 推理导致 9% 的 accuracy 标准差，FP32 接近 0%；提出 LayerCast（BF16 存储 + FP32 计算），将 divergence 控制在 <3.4% 同时节省 34% 显存；推理模型受影响最大\n- **与本工作关系**: addresses limitation of — 量化了精度对推理结果的影响，但未将其纳入统一的方差分解框架\n- **差异化**: Yuan 只刻画精度这一个 infrastructure 因素并提出缓解方案；我们将精度作为 G-theory 框架中的一个 facet，与方法论因素联合分解\n\n### [Messina et al., 2026 (TMLR)] — Background Temperature Effects on GPU Computation\n- **核心发现**: 即使 T=0，API 模型仍存在 \"背景随机性\"：GPT~0.075、Gemini~0.065、Claude~0 有效温度；提出 reference calibration 方法量化为单一标量 T_bg\n- **与本工作关系**: complements — 揭示了一类此前被忽视的 infrastructure 方差源（硬件层面的非确定性），为我们纳入硬件 facet 提供实证依据\n- **差异化**: Messina 聚焦 API 层面的背景温度刻画，未进行多因素交叉分解；我们将此类硬件非确定性纳入 G-theory 的交叉设计\n\n### [ThinkingMachines, 2025] — Batch Invariance Failure in LLM Inference\n- **核心发现**: T=0 下 1000 次推理产生 80 种不同输出；根因是 RMSNorm/GEMM/attention 的 batch-size 依赖性而非随机种子；提出确定性内核方案，代价为 1.6-2.1× 延迟\n- **与本工作关系**: addresses limitation of — 发现并解释了 batch 非确定性这一关键 infrastructure 方差源，但止步于工程修复\n- **差异化**: 仅刻画 batch-size 这一个因素并提出工程缓解方案；我们将 batch 非确定性与其他 infrastructure/methodology 因素一起纳入 G-theory 分解\n\n## (c) Prompt Sensitivity & Methodological Variance\n\n### [Brittlebench, 2026] — Prompt Brittleness Benchmark\n- **核心发现**: 系统性评估 prompt 脆弱性；通过 ANOVA 分解 V_data + V_brittleness；prompt 措辞贡献约 50% 方差（开源模型），商用模型约 25%\n- **与本工作关系**: complements — 提供了大规模 prompt 脆弱性的实证基准，其 V_brittleness 分量对应我们框架中 prompt facet 的方差\n- **差异化**: 使用传统 ANOVA 而非 G-theory，只分解 data vs. brittleness 两个分量；我们的框架支持更多 facets 的联合分解和交互项估计\n\n### [Hua et al., 2025 (EMNLP)] — Scoring Artifacts in LLM Evaluation\n- **核心发现**: 大量表观的 prompt sensitivity 实际上是评估方法的 artifact——使用 LLM-judge 后 rank correlation 从 0.30 跃升至 0.95\n- **与本工作关系**: complements — 警示区分\"真实方差\"与\"评估 artifact\"的重要性，为我们的实验设计提供方法论参考\n- **差异化**: Hua 聚焦揭示 artifact 现象而非系统性分解方差来源；我们的 G-theory 框架可将 scoring method 作为 facet 纳入，从而量化其贡献\n\n### \"Same Prompt, Different Outcomes\" — Seed/Sampling Variance\n- **核心发现**: [需补充]\n- **与本工作关系**: [需补充] — 预期与我们框架中 seed facet 直接相关\n- **差异化**: [需补充]\n\n### [Bui et al.] — Seed Sensitivity in LLM Evaluation\n- **核心发现**: [需补充]\n- **与本工作关系**: [需补充] — 预期聚焦 seed 这一单一因素\n- **差异化**: [需补充]\n\n## 定位总结\n\n本项目是首个用 Generalizability Theory 联合分解 infrastructure（硬件类型、数值精度、batch 非确定性）与 methodology（prompt 措辞、随机种子、温度、few-shot 顺序）方差的工作。现有研究要么只用 G-theory 分解方法论 facets（Mesting），要么只刻画单一 infrastructure 因素并提出工程修复（Yuan、ThinkingMachines、Messina），没有工作在一个统一的交叉设计中同时容纳两类因素并检验其 separability。我们的 D-study 产出可量化的 reproducibility budget，为社区提供实验设计的决策依据。\n"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T17:12:16.944224+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File created successfully at: /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/related_work_notes.md"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_related_work_notes_20260520T171046",
+            "tool": "Write",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T17:12:16.944347+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__register_artifact"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_related_work_notes_20260520T171046",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "tool_args": {
+              "name": "related_work_notes",
+              "type": "report",
+              "description": "Related Work 结构化笔记：10 篇论文按 G-theory/Infrastructure/Prompt-Methodology 三类组织，每篇含核心发现、与本工作关系、差异化。2 篇信息不足标注[需补充]。",
+              "project": "nlp_variance_gtheory",
+              "source_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/related_work_notes.md",
+              "tags": "['related-work', 'literature', 'paper-writing']"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T17:12:16.944543+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"artifact\\\": {\\\"id\\\": \\\"art_20260520_a9accf\\\", \\\"name\\\": \\\"related_work_notes\\\", \\\"type\\\": \\\"report\\\", \\\"description\\\": \\\"Related Work 结构化笔记：10 篇论文按 G-theory/Infrastructure/Prompt-Methodology 三类组织，每篇含核心发现、与本工作关系、差异化。2 篇信息不足标注[需补充]。\\\", \\\"path\\\": \\\"projects/nlp_variance_gtheory/artifacts/_project/report/related_work_notes.md\\\", \\\"url\\\": null, \\\"project\\\": \\\"nlp_variance_gtheory\\\", \\\"exp_id\\\": null, \\\"skill\\\": \\\"\\\", \\\"created_at\\\": \\\"2026-05-20T17:12:11.794421+00:00\\\", \\\"tags\\\": [\\\"related-work\\\", \\\"literature\\\", \\\"paper-writing\\\"]}, \\\"manifest\\\": \\\"/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/manifest.yaml\\\"}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_related_work_notes_20260520T171046",
+            "tool": "mcp__agent-ml-research__register_artifact",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T17:12:16.944703+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成，写入 `artifacts/related_work_notes.md` 并注册。\n\n覆盖 8 篇论文的完整笔记（3 行格式：核心发现 / 与本工作关系 / 差异化），按 (a) G-theory & Variance Decomposition、(b) Infrastructure Variance、(c) Prompt Sensitivity & Methodological Variance 三类组织。\"Same Prompt, Different Outcomes\" 和 Bui et al. 两篇在蒸馏 skill 中无足够信息，已标注 `[需补充]`。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_research_related_work_notes_20260520T171046"
+          },
+          "id": "event-000015"
+        }
+      ],
+      "message_count": 15
+    }
+  ],
+  "readable_path": "readable/conversations/research-related-work-notes.md"
+}

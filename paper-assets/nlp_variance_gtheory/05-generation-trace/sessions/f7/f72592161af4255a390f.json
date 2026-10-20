@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f72592161af4255a390f",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "research round6 citation verification",
+  "task_key": "worker_research_round6_citation_verification_20260522T133034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_round6_citation_verification_20260522T133034_result.json",
+    "occurrence": 1,
+    "bytes": 1350,
+    "sha256": "bea62c80ab1a4a3adf98746e898836c2dd3c82e598af798dc968dd99f814711a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "BibTeX 文件已保存。验证结果：\n\n| # | 引用 | 状态 | 标题 | 期刊/出版社 | 卷/页 | DOI |\n|---|------|------|------|-------------|-------|-----|\n| 1 | Mizrahi et al. (2024) | ✅ | State of What Art? A Call for Multi-Prompt LLM Evaluation | TACL | 12, 933–949 | `10.1162/tacl_a_00681` |\n| 2 | Liang et al. (2023) | ⚠️ | Holistic Evaluation of Language Models | **NYAS** (非 NeurIPS) | 1525(1), 140–146 | `10.1111/nyas.15007` |\n| 3 | Meredith (1993) | ✅ | Measurement Invariance, Factor Analysis and Factorial Invariance | Psychometrika | 58(4), 525–543 | `10.1007/BF02294825` |\n| 4 | Putnick & Bornstein (2016) | ✅ | Measurement Invariance Conventions and Reporting: The State of the Art... | Developmental Review | 41, 71–90 | `10.1016/j.dr.2016.06.004` |\n| 5 | Efron & Tibshirani (1993) | ✅ | An Introduction to the Bootstrap | Chapman & Hall | 436pp | ISBN 978-0-412-04231-7 |\n\n**关键发现：** Reviewer 声称 HELM 发表于 NeurIPS 2023，这是**错误的**。正式发表在 Annals of the New York Academy of Sciences（Wiley, 2023），且该版本仅 7 页（Bommasani 为一作）。400+ 页的完整版（Liang 为一作）仅存于 arXiv:2211.09110。BibTeX 中已用 NYAS 正式发表版本并加注说明。\n\n文件位置：`artifacts/exp004/data/round6_new_refs.bib`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-round6-citation-verification.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1e455acf9ba9990c8fb1",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra check nohup monitors",
+  "task_key": "worker_infra_check_nohup_monitors_20260521T153923",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_check_nohup_monitors_20260521T153923_result.json",
+    "occurrence": 1,
+    "bytes": 1239,
+    "sha256": "5203dbcc8068cdda805b988d360b123d2bf7ae378121118e591bb4db6538fecb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两台服务器状态确认完毕。\n\n## 结果汇总\n\n### westd-32570 — `math_then_new_models.sh`\n| 项目 | 值 |\n|------|-----|\n| PID | 174350 (wrapper) → 174351 (script) |\n| PPID | **1 (init)** — nohup 正确 |\n| TTY | `?` (已脱离终端) |\n| 状态 | **正常，无需修复** |\n\n**MATH 最新进度** (23:57): llama=95%, mistral=94%, qwen=68%, gemma=47%，5 个推理进程并行运行。\n\n---\n\n### westd-15695 — `auto_chain.sh`\n| 项目 | 值 |\n|------|-----|\n| PID | 26843 (`prepare_and_chain.sh`) → 27326 (`auto_chain.sh`) |\n| PPID | 26843 → **1 (init)** — nohup 正确 |\n| TTY | `?` (已脱离终端) |\n| 状态 | **正常，无需修复** |\n\n**推理进度**:\n- Yi MMLU: **完成** (86400 行)\n- OLMo MMLU: **完成** (50MB)\n- OLMo ARC: **完成** (86400 行, 50.9MB)\n- OLMo GSM8K: **进行中** (1.9MB, auto_chain 正在跑，GPU 利用率 98%)\n\n`wait_yi_and_chain.log` 里有一个 `httpx.ConnectTimeout` SSL 错误（HF 下载超时），但不影响当前推理 — auto_chain 已经在正常推理 OLMo GSM8K。\n\n---\n\n**结论：两台服务器的 monitor 脚本均以 nohup 方式运行（顶层 PPID=1, TTY=?），SSH 断开不会影响。无需修复。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-check-nohup-monitors.md"
+}

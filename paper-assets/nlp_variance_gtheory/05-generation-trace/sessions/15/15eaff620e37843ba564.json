@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "15eaff620e37843ba564",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp gemma float32 restart",
+  "task_key": "worker_exp_gemma_float32_restart_20260521T022454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gemma_float32_restart_20260521T022454_result.json",
+    "occurrence": 1,
+    "bytes": 714,
+    "sha256": "f962de33a33b46e2998bcf69c61ed679b78c5b3598bdb935eb41ff21ba474b3f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部启动完成。汇报：\n\n**GPU 状态**: 4 GPU 全部已加载模型，各占用 ~35.9 GB 显存\n- GPU 0: 35925 MiB | PID 71647\n- GPU 1: 35925 MiB | PID 71648\n- GPU 2: 35925 MiB | PID 71649\n- GPU 3: 35925 MiB | PID 71650\n\n**Shard 设计**: 432 float32 conditions → 4 shards × 108 conditions\n\n**完成监控**: PID 74625，完成后写入 `/tmp/gemma_fp32_results.txt`\n\n**预计运行时间**: 108 conditions × 200 items/condition per GPU。参考 bfloat16 批次（432 conditions 用 4 GPU 完成了 86,400 records），float32 同等规模，预计产出 86,400 records。float32 推理比 bfloat16 慢约 1.5-2x（显存带宽瓶颈更大），估计需要 **3-5 小时**。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-gemma-float32-restart.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "621e69018444f73500c9",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "prep math benchmark",
+  "task_key": "worker_prep_math_benchmark_20260521T102232",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_math_benchmark_20260521T102232.log",
+    "occurrence": 1,
+    "bytes": 905790,
+    "sha256": "ed5bc646dc58499cd83db4b314a7a5590142120d84c09357532d1071fcf09903"
+  },
+  "statistics": {
+    "messages": 281,
+    "user_turns": 1,
+    "tool_calls": 95,
+    "roles": {
+      "log": 1,
+      "system": 38,
+      "record": 1,
+      "assistant": 49,
+      "tool_call": 95,
+      "user": 1,
+      "tool_result": 95,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 7,
+      "chunks": [
+        {
+          "path": "621e69018444f73500c9-part-0001.json",
+          "message_count": 7
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 274,
+      "chunks": [
+        {
+          "path": "621e69018444f73500c9-part-0001.json",
+          "message_count": 173
+        },
+        {
+          "path": "621e69018444f73500c9-part-0002.json",
+          "message_count": 101
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/prep-math-benchmark.md"
+}

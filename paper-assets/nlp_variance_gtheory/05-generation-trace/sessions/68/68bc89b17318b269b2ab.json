@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68bc89b17318b269b2ab",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code post mvp updates",
+  "task_key": "worker_code_post_mvp_updates_20260520T185622",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_post_mvp_updates_20260520T185622_result.json",
+    "occurrence": 1,
+    "bytes": 431,
+    "sha256": "da5044942a87b07ec0642e60fe6661f7b804f94e72c60b1a20067bba57fbe76f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两项修改完成：\n\n1. **requirements.txt** — vllm 版本约束更新为 `>=0.9.0`，顶部加了 Blackwell GPU 注释\n2. **variance_decomposition.py** — 新增 `--response-var` CLI 参数（`correct` / `text_exact_match`）、`compute_text_exact_match()` 函数（per-item canonical text 比较）、输出文件名按 response_var 区分（`variance_components.json` vs `variance_components_text.json`）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-post-mvp-updates.md"
+}

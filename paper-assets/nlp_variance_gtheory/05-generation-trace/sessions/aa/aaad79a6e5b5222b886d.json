@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aaad79a6e5b5222b886d",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis difficulty heterogeneity",
+  "task_key": "worker_analysis_difficulty_heterogeneity_20260522T104048",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_difficulty_heterogeneity_20260522T104048_result.json",
+    "occurrence": 1,
+    "bytes": 1917,
+    "sha256": "bb5904010ee67b22780febe37ee442d855a845c2972c5a16cca5b0a96a19d3b9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n## Item Difficulty Heterogeneity 结果\n\n| Benchmark | n_models | std(p_i) | item_id% |\n|-----------|----------|----------|----------|\n| MMLU | 8 | **0.3112** | 37.88% |\n| ARC | 8 | 0.2737 | 37.88% |\n| HellaSwag | 6 | 0.2822 | 34.27% |\n| GSM8K | 8 | 0.2203 | 16.86% |\n| MATH | 7 | 0.2283 | 24.03% |\n\n**Spearman ρ = 0.82, p = 0.089** — 强正相关，item difficulty heterogeneity 越大，item_id 方差成分越大。5 个点接近但未达显著性。\n\n## Within-format 梯度分析\n\n**MC benchmarks (MMLU/ARC/HellaSwag):**\n- std(p_i) 排序：MMLU (0.31) > HellaSwag (0.28) > ARC (0.27)\n- item_id% 排序：MMLU (37.88) = ARC (37.88) > HellaSwag (34.27)\n- **部分一致**：MMLU 一致排首位；HellaSwag 和 ARC 在两个指标上互换位置，但差异很小（0.2822 vs 0.2737，仅差 0.008）。MMLU 和 ARC 的 item_id% 完全相同（37.88%），但 MMLU 的 difficulty heterogeneity 更大——可能因为 MMLU 涵盖 57 个学科，天然 item difficulty 范围更广。\n\n**FF benchmarks (GSM8K/MATH):**\n- std(p_i) 排序：MATH > GSM8K\n- item_id% 排序：MATH > GSM8K\n- **完全一致** (Spearman ρ = 1.0)\n\n## 关键结论\n\nformat-conditional variance structure 不是 trivial artifact。即使在同一 format 内，difficulty heterogeneity 也能部分解释 item variance component 的差异。MC benchmarks 整体 std(p_i) 更高、item_id% 也更高；FF benchmarks 较低。这支持 difficulty heterogeneity 是 item variance 的驱动因素。\n\n**产出路径：**\n- 脚本：服务器 `/root/nlp_variance_gtheory/scripts/difficulty_heterogeneity.py`\n- JSON：本地 `artifacts/exp004/data/cross_benchmark_difficulty_heterogeneity.json`\n- PDF/PNG：本地 `artifacts/exp004/figures/difficulty_vs_item_variance.pdf`\n- HellaSwag 使用 6 models（无 OLMo/Yi 数据），MATH 使用 7 models（无 gemma）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-difficulty-heterogeneity.md"
+}

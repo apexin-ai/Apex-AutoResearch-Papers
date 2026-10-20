@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e2087426e54f1ab43fcb",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis w3 exp001 record gap",
+  "task_key": "worker_analysis_w3_exp001_record_gap_20260521T203950",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_w3_exp001_record_gap_20260521T203950_result.json",
+    "occurrence": 1,
+    "bytes": 1408,
+    "sha256": "b59850528674492fab34342fe71a95df6f520d1723b6073cbfd415dec6faa322"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 调查结论\n\n### Facet Levels（均符合设计）\n| Facet | Levels | Values |\n|-------|--------|--------|\n| precision | 3 | bfloat16, float16, float32 |\n| temperature | 3 | 0.0, 0.3, 0.7 |\n| prompt_template | 6 | 1–6 |\n| seed | 6 | 42, 123, 456, 789, 1024, 2048 |\n| ordering | 4 | 1–4 |\n\n### 理论 vs 实际\n- 理论：3×3×6×6×4 = **1,296 conditions** (259,200 records)\n- 实际：**1,196 conditions** (239,200 records)\n- 缺失：**100 conditions** (20,000 records)\n\n### 缺失模式\n**所有 100 个缺失条件都是 `float32 × temperature=0.0`**，其他 precision×temperature 组合完整无缺。\n\n细分：\n- **prompts 1–4**：在 float32×temp=0.0 下**全部缺失**（4 prompts × 6 seeds × 4 orderings = 96 条件）\n- **prompt 5**：仅 seed=42 缺失（4 orderings = 4 条件）\n- **prompt 6**：完整\n\n### 原因推断\nfloat32 占用 2 倍显存（相比 bf16/fp16），temp=0.0 批次很可能触发了 **OOM 或 GPU 崩溃**。从缺失分布看，batch 按 prompt_template 顺序执行：prompts 1–4 全部丢失，prompt 5 在 seed=42 处中断，之后恢复，prompt 6 正常完成。\n\n### 补救\n只需补跑 100 个缺失条件：`float32 × temp=0.0 × (prompts 1–4 全部 + prompt 5 seed=42) × 全部 orderings`。\n\n### 报告路径\n`/root/nlp_variance_gtheory/results/exp001_analysis/w3_record_gap_analysis.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-w3-exp001-record-gap.md"
+}

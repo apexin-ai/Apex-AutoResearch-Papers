@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "93912ed4f517cb7a692c",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops 72b inference launch",
+  "task_key": "worker_ops_72b_inference_launch_20260522T155515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_72b_inference_launch_20260522T155515_result.json",
+    "occurrence": 1,
+    "bytes": 2196561,
+    "sha256": "47343e09c1c570ea375b62d1408b18ace2116e99fecbd4f8e615032d93df881d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2196581,
+                "serialized_sha256": "308a26cb4e26554f428c3e158ec3f3cfcc821be279258ec6af28014ab467b028",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-72b-inference-launch.md"
+}

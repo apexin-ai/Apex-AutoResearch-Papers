@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e399d4d04b23cb454859",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code partial credit multimodel",
+  "task_key": "worker_code_partial_credit_multimodel_20260523T090334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_partial_credit_multimodel_20260523T090334_result.json",
+    "occurrence": 1,
+    "bytes": 1621,
+    "sha256": "3407c3b5cc1590d54d33c8cc6b008b4f53d442021bd5f28675e66a070acc1bc6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。结果汇总：\n\n## 数据检查\n8 模型 GSM8K 数据全部可用（每模型 57,600 条，共 460,800 条），`generated_text` 包含完整 CoT 推理步骤。\n\n## Partial-Credit 评分\n- 评分方法：从 CoT 文本提取算术表达式（`<<a+b=c>>` 和 `a + b = c` 格式），逐步验证计算正确性\n- 正确答案 → 1.0；错误答案 → 正确算术步骤占比；无可提取步骤 → 0.0\n- 错误答案中：48.1% 所有算术步骤都正确（问题设置错），39.1% 部分正确，12.7% 全错\n\n## Henderson I G-study：Binary vs Partial-Credit\n\n| 指标 | Binary | Partial-Credit | Δ |\n|------|--------|----------------|---|\n| Grand Mean | 0.582 | 0.899 | +0.317 |\n| G_item | **0.863** | **0.768** | **-0.095** |\n| σ²_item % | 16.9% | 10.3% | -6.6% |\n| σ²_residual % | 39.9% | 64.9% | +25.0% |\n| σ²_model % | 10.7% | 4.0% | -6.8% |\n\n## Per-Model G_item（5-facet）\n\n| Model | Acc | G_binary | G_partial | ΔG |\n|-------|-----|----------|-----------|-----|\n| OLMo-2-7B | .701 | .919 | .894 | -.025 |\n| Gemma-2-9B | .805 | .903 | .750 | -.152 |\n| Llama-3.1-8B | .490 | .759 | .450 | **-.309** |\n| Qwen3-8B | .622 | .760 | .707 | -.054 |\n\nPartial credit 一致降低 G_item，因为大量\"算术正确但设置错误\"的响应获得高分，增大了 response-level 残差方差。\n\n## 产出\n- 服务器：`/root/nlp_variance_gtheory/results/partial_credit_multimodel/` （scored jsonl + gstudy json）\n- 本地：已注册 artifact `art_20260523_f3d17f`\n- 脚本：`/root/nlp_variance_gtheory/partial_credit_multimodel.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-partial-credit-multimodel.md"
+}

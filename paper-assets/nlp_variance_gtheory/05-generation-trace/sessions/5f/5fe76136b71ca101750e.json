@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fe76136b71ca101750e",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp pilot result read",
+  "task_key": "worker_exp_pilot_result_read_20260520T235802",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_pilot_result_read_20260520T235802_result.json",
+    "occurrence": 1,
+    "bytes": 359,
+    "sha256": "41952d445c0b6216c8ac97b574af6cb342bc126c586763ee29e1040342bb4f5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Pilot 仍在运行。当前状态：\n\n- **活跃进程数**: 6\n- **已完成记录数**:\n  - gpu0.jsonl: 5000 行\n  - gpu1.jsonl: 3400 行\n  - gpu2.jsonl: 3200 行\n  - gpu3.jsonl: 3000 行\n  - **总计: 14,600 / 20,000 行 (73%)**\n\ngpu0 已跑完（5000 行 = 满额），其余三个 GPU 还在推理中，预计还需一段时间。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-pilot-result-read.md"
+}

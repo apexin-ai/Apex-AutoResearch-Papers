@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d3ee946c7819b1338ed8",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops verify fixes and repo",
+  "task_key": "worker_ops_verify_fixes_and_repo_20260523T185747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_verify_fixes_and_repo_20260523T185747_result.json",
+    "occurrence": 1,
+    "bytes": 1444,
+    "sha256": "a9761506c3096e5034a19b43feae2172278155f2544c8dc34286ce98f8ecfe57"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have all results. Here's the summary:\n\n---\n\n## Part 1: 匿名 repo HTTPS 检查\n\n**HTTPS** — remote URL 为 `https://github.com/anonymous-nlp-2026-2/nlp_variance_gtheory.git`，格式正确。\n\n## Part 2: 论文修复验证\n\n| # | 检查项 | 结果 |\n|---|--------|------|\n| 1 | model main effect \"3--5%\" / \"9--11%\" | **NOT_FIXED** — 第20行仍有 `3--5\\% (MC) and 9--11\\% (FF)`，但后面有脚注说明了精确值（2.8--5.4% / 8.5--10.7%），是有意保留的四舍五入写法 |\n| 2 | CI 标注 \"71 to 162\" | **CONFIRMED** — 第115行已改为 `Bootstrap CIs (71--162 items) and LOMO analysis`，有 CI 说明 |\n| 3 | 硬编码章节号 (\\S4.1 等) | **CONFIRMED** — experiments.tex / method.tex / limitations.tex 均无 `\\S` + 数字编号匹配，已使用 `\\ref` 交叉引用 |\n| 4 | Abstract \"multi-condition\" | **CONFIRMED** — abstract.tex 无命中，术语已统一 |\n| 5 | Table 1 温度注释 | **CONFIRMED** — 温度行显示 `0.0 / 0.3 / 0.7`（3 levels），`460,800$^\\dagger$` 有 dagger 标注 |\n| 6 | 旧 sections/experiments.tex | **CONFIRMED (CLEANED)** — 文件不存在 |\n| 7 | BibTeX key wei2025gtheory / varannot2025gtheory | **CONFIRMED** — 0 匹配，已清除 |\n\n**注意**: 检查 1 中 \"3--5%\" 和 \"9--11%\" 仍在文中，但带有脚注给出精确值。如果原意是彻底移除这些四舍五入数字，则需进一步修改。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-verify-fixes-and-repo.md"
+}

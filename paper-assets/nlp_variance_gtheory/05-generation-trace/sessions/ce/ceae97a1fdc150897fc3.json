@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ceae97a1fdc150897fc3",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops llama70b verify running",
+  "task_key": "worker_ops_llama70b_verify_running_20260523T152842",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama70b_verify_running_20260523T152842_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "9a263523197bdfeb6a4e03ab1c28affff18b6f38c6f8c7e616b047c9c3c5666c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论：**FAILED**\n\n| 检查项 | 状态 |\n|--------|------|\n| tmux session | 无法通过 read_only 检查，但进程列表中无 tmux 相关进程 |\n| PID 330822 | **DEAD** — 不在进程列表中 |\n| GPU 利用率 | 4× GPU 全部 **0% / 0 MiB** — 无任何推理负载 |\n| 日志 | 有错误日志 |\n\n### 错误原因\n\nvLLM 加载模型权重时失败，关键错误：\n\n```\nsafetensors_rust.SafetensorError: Error while deserializing header: \nincomplete metadata, file not fully covered\n```\n\n**EXIT_CODE=1**，进程已退出。\n\n这说明模型权重文件损坏或下载不完整（safetensors 文件的 metadata 与实际文件大小不匹配）。需要重新下载模型权重后再启动推理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama70b-verify-running.md"
+}

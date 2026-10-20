@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "f21b14d1fd6ceec941be",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "infra install vllm and sanity",
+  "task_key": "worker_infra_install_vllm_and_sanity_20260520T180418",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_install_vllm_and_sanity_20260520T180418.log",
+    "occurrence": 1,
+    "bytes": 1068549,
+    "sha256": "eb39de27cd1d3d0a53ba730fc5e507fe365cb874ee9a2a28c133f45ada8f317f"
+  },
+  "statistics": {
+    "messages": 725,
+    "user_turns": 0,
+    "tool_calls": 283,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 155,
+      "tool_call": 283,
+      "tool_result": 283,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 725,
+      "chunks": [
+        {
+          "path": "f21b14d1fd6ceec941be-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "f21b14d1fd6ceec941be-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "f21b14d1fd6ceec941be-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "f21b14d1fd6ceec941be-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "f21b14d1fd6ceec941be-part-0005.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-install-vllm-and-sanity.md"
+}

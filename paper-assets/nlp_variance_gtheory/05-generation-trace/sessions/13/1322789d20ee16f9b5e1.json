@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1322789d20ee16f9b5e1",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops 72b status and paper check",
+  "task_key": "worker_ops_72b_status_and_paper_check_20260522T125912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_72b_status_and_paper_check_20260522T125912_result.json",
+    "occurrence": 1,
+    "bytes": 1117,
+    "sha256": "d434c18a1c8f6a2022768254806b525aa88ff7a2974804a884f4d6bb079d47b5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Clean compilation. Here's the summary:\n\n---\n\n## Part 1: 72B 下载状态\n\n| 指标 | 值 |\n|------|-----|\n| **Safetensors** | 27/37 (73%) |\n| **已下载** | ~100GB / 140GB |\n| **活跃下载** | shard 28 (57%), shard 33 (11%) |\n| **下载速度** | ~300-350 kB/s (ModelScope, 2路并行) |\n| **Watchdog v3** | PID 249737 存活，正常轮询中 |\n| **推理** | 未启动（预期行为） |\n| **磁盘** | 299GB/350GB used (52GB free，够用) |\n| **ETA** | 剩余 ~40GB，以 ~600kB/s 合计速度算，**约 18-20 小时**（明天下午左右） |\n\nWatchdog 运行正常，无需干预。下载完成后会自动启动 TP=4 推理。\n\n## Part 2: 论文完整性\n\n| 指标 | 结果 |\n|------|------|\n| **bib 条目总数** | 46 |\n| **Orphan（在 bib 中未被引用）** | 1: `embretson2000irt` |\n| **Missing（在 tex 中引用但 bib 缺失）** | 0 |\n| **编译状态** | 无 warning，无 error，main.pdf up-to-date |\n\n唯一问题：`embretson2000irt` 是 orphan entry，在 bib 中存在但未被任何 tex 文件引用。可以删除或找个地方引用它。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-72b-status-and-paper-check.md"
+}

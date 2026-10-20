@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5de29ed9f555357c2653",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix permutation test spearman",
+  "task_key": "worker_fix_permutation_test_spearman_20260521T142846",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_permutation_test_spearman_20260521T142846_result.json",
+    "occurrence": 1,
+    "bytes": 1129,
+    "sha256": "1edc582cba6d78dd4d41884cd86899a52b71a90eaaf9163a78c4ada06a96bd47"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "修改完成，脚本已用 Spearman ρ 替换了二元 is_monotonic 统计量。\n\n**结果汇总（5 benchmarks: mmlu → arc → hellaswag → gsm8k → math）：**\n\n### item_id% 梯度（假设递减）\n| Benchmark | item_id% |\n|-----------|----------|\n| mmlu | 41.55 |\n| arc | 48.90 |\n| hellaswag | 44.47 |\n| gsm8k | 11.99 |\n| math | 0.00 |\n\n- **ρ = -0.70**, exact p = 0.1167（14/120 permutations）\n- **τ = -0.60**, p = 0.233\n- 不显著（p > 0.05），主要因为 arc > mmlu 打破了严格单调，但整体趋势是递减的\n\n### model:item_id% 梯度（假设递增）\n| Benchmark | model:item% |\n|-----------|-------------|\n| mmlu | 32.81 |\n| arc | 38.20 |\n| hellaswag | 32.31 |\n| gsm8k | 12.09 |\n| math | 28.35 |\n\n- **ρ = -0.80**, exact p = 0.9583\n- **τ = -0.60**, p = 0.233\n- model:item 实际上是**递减**而非递增，假设不成立\n\n### 注意\nMATH 的 item_id%=0.00 是异常值（可能是数据问题或所有 item 难度一致），5 benchmark 结果中 model:item 梯度方向与假设相反。可能需要排除 MATH 用 4 benchmarks 重新分析。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-permutation-test-spearman.md"
+}

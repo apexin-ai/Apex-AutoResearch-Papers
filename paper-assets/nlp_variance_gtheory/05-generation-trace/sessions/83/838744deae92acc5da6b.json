@@ -1,0 +1,888 @@
+{
+  "schema_version": "1.0",
+  "id": "838744deae92acc5da6b",
+  "project": "nlp_variance_gtheory",
+  "kind": "conversation",
+  "title": "code exp001 design inference",
+  "task_key": "worker_code_exp001_design_inference_20260520T193652",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_code_exp001_design_inference_20260520T193652.jsonl",
+    "occurrence": 1,
+    "bytes": 44690,
+    "sha256": "b085302f9d0e429c0b8c2c6d4d350c252f02ac4dbea304cbf600e8e7e91b76a4"
+  },
+  "statistics": {
+    "messages": 43,
+    "user_turns": 0,
+    "tool_calls": 21,
+    "roles": {
+      "tool_call": 21,
+      "tool_result": 21,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-20T19:39:05.087317+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/inference/vllm_runner.py"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-20T19:39:05.087752+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"vLLM offline inference runner for the G-theory variance study.\n2\t\n3\tLoads a model once via ``vllm.LLM`` and supports batched generation\n4\twith explicit seed control at three levels:\n5\t  1. ``LLM(seed=...)``           — engine-level RNG\n6\t  2. ``torch.cuda.manual_seed``  — CUDA kernel RNG\n7\t  3. ``SamplingParams(seed=...)`` — per-request sampling RNG\n8\t\n9\tCUDA_VISIBLE_DEVICES is set from ``gpu_id`` *before* any CUDA call.\n10\t\n11\tInput:  model name + generation parameters.\n12\tOutput: list of ``InferenceResult`` dataclass instances (JSON-serialisable).\n13\t\"\"\"\n14\t\n15\timport argparse\n16\timport json\n17\timport os\n18\timport time\n19\tfrom dataclasses import asdict, dataclass\n20\tfrom typing import Optional\n21\t\n22\timport torch\n23\tfrom vllm import LLM, SamplingParams\n24\t\n25\t\n26\t@dataclass\n27\tclass InferenceResult:\n28\t    prompt: str\n29\t    generated_text: str\n30\t    finish_reason: str\n31\t    model: str\n32\t    dtype: str\n33\t    temperature: float\n34\t    top_p: Optional[float]\n35\t    seed: int\n36\t    gpu_id: int\n37\t    latency_ms: float\n38\t\n39\t\n40\tclass VLLMRunner:\n41\t    \"\"\"Manages a single vLLM model instance for batched inference.\n42\t\n43\t    Create one runner per (model, dtype, gpu_id) combination to avoid\n44\t    model reloads.  Different temperatures / seeds reuse the same runner.\n45\t    \"\"\"\n46\t\n47\t    def __init__(\n48\t        self,\n49\t        model_name: str,\n50\t        gpu_id: int = 0,\n51\t        dtype: str = \"bfloat16\",\n52\t        seed: int = 42,\n53\t    ):\n54\t        os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(gpu_id)\n55\t\n56\t        torch.manual_seed(seed)\n57\t        if torch.cuda.is_available():\n58\t            torch.cuda.manual_seed(seed)\n59\t            torch.cuda.manual_seed_all(seed)\n60\t\n61\t        self.model_name = model_name\n62\t        self.gpu_id = gpu_id\n63\t        self.dtype = dtype\n64\t        self.seed = seed\n65\t\n66\t        self.llm = LLM(\n67\t            model=model_name,\n68\t            dtype=dtype,\n69\t            seed=seed,\n70\t            tensor_parallel_size=1,\n…[truncated 3508 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-20T19:39:05.088028+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/design/generate_design.py"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-20T19:39:05.088323+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Generate fully crossed factorial design matrix for the G-theory MVP.\n2\t\n3\tFactors and levels\n4\t------------------\n5\tmodel              : [Llama-3.1-8B-Instruct]          (1)\n6\tprecision          : [float32, bfloat16, float16]       (3)\n7\ttemperature config : [greedy (T=0), stochastic (T=0.5, top_p=0.9)]  (2)\n8\tprompt_template    : [1, 2, 3]                          (3)\n9\tseed               : [42, 123, 456]                     (3)\n10\tordering           : [1, 2]                             (2)\n11\t\n12\tTotal: 1 × 3 × 2 × 3 × 3 × 2 = 108 conditions.\n13\t\n14\tOutput: CSV with one row per condition.\n15\t\"\"\"\n16\t\n17\timport argparse\n18\timport itertools\n19\tfrom pathlib import Path\n20\t\n21\timport pandas as pd\n22\t\n23\tDESIGN = {\n24\t    \"model\": [\"meta-llama/Llama-3.1-8B-Instruct\"],\n25\t    \"precision\": [\"float32\", \"bfloat16\", \"float16\"],\n26\t    \"temperature_config\": [\n27\t        {\"temperature\": 0.0, \"top_p\": None},\n28\t        {\"temperature\": 0.5, \"top_p\": 0.9},\n29\t    ],\n30\t    \"prompt_template\": [1, 2, 3],\n31\t    \"seed\": [42, 123, 456],\n32\t    \"ordering\": [1, 2],\n33\t}\n34\t\n35\t\n36\tdef generate_matrix(output_path: str = \"design_matrix.csv\") -> pd.DataFrame:\n37\t    \"\"\"Build the full factorial design and write to CSV.\n38\t\n39\t    Returns:\n40\t        DataFrame with 108 rows.\n41\t    \"\"\"\n42\t    rows: list[dict] = []\n43\t    condition_id = 0\n44\t\n45\t    for model, prec, temp_cfg, prompt, seed, ordering in itertools.product(\n46\t        DESIGN[\"model\"],\n47\t        DESIGN[\"precision\"],\n48\t        DESIGN[\"temperature_config\"],\n49\t        DESIGN[\"prompt_template\"],\n50\t        DESIGN[\"seed\"],\n51\t        DESIGN[\"ordering\"],\n52\t    ):\n53\t        condition_id += 1\n54\t        rows.append(\n55\t            {\n56\t                \"condition_id\": condition_id,\n57\t                \"model\": model,\n58\t                \"precision\": prec,\n59\t                \"temperature\": temp_cfg[\"temperature\"],\n60\t                \"top_p\": temp_cfg[\"top_p\"] if temp_cfg[\"top_p\"] is not None else \"\",\n61\t                \"prompt_temp\n…[truncated 729 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-20T19:39:05.088620+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/prompt_templates.py"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-20T19:39:05.088900+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"MMLU prompt templates — 3 semantically equivalent paraphrases.\n2\t\n3\tEach template formats a multiple-choice question with optional few-shot\n4\texamples.  Variation follows Brittlebench-style surface perturbation:\n5\tdifferent wording and layout, identical semantic content.\n6\t\n7\tOutput: a single string ready for LLM input.\n8\t\"\"\"\n9\t\n10\tTEMPLATES = {\n11\t    1: {\n12\t        \"system\": (\n13\t            \"The following are multiple choice questions (with answers) \"\n14\t            \"about {subject}.\\n\\n\"\n15\t        ),\n16\t        \"shot\": (\n17\t            \"{question}\\n\"\n18\t            \"A. {A}\\nB. {B}\\nC. {C}\\nD. {D}\\n\"\n19\t            \"Answer: {answer}\\n\\n\"\n20\t        ),\n21\t        \"query\": (\n22\t            \"{question}\\n\"\n23\t            \"A. {A}\\nB. {B}\\nC. {C}\\nD. {D}\\n\"\n24\t            \"Answer:\"\n25\t        ),\n26\t    },\n27\t    2: {\n28\t        \"system\": (\n29\t            \"Answer the following {subject} questions by selecting \"\n30\t            \"the correct option.\\n\\n\"\n31\t        ),\n32\t        \"shot\": (\n33\t            \"Question: {question}\\n\"\n34\t            \"(A) {A}  (B) {B}  (C) {C}  (D) {D}\\n\"\n35\t            \"Correct answer: {answer}\\n\\n\"\n36\t        ),\n37\t        \"query\": (\n38\t            \"Question: {question}\\n\"\n39\t            \"(A) {A}  (B) {B}  (C) {C}  (D) {D}\\n\"\n40\t            \"Correct answer:\"\n41\t        ),\n42\t    },\n43\t    3: {\n44\t        \"system\": (\n45\t            \"Below are {subject} multiple-choice problems. \"\n46\t            \"Pick the right letter.\\n\\n\"\n47\t        ),\n48\t        \"shot\": (\n49\t            \"Q: {question}\\n\"\n50\t            \"  A) {A}\\n  B) {B}\\n  C) {C}\\n  D) {D}\\n\"\n51\t            \"A: {answer}\\n\\n\"\n52\t        ),\n53\t        \"query\": (\n54\t            \"Q: {question}\\n\"\n55\t            \"  A) {A}\\n  B) {B}\\n  C) {C}\\n  D) {D}\\n\"\n56\t            \"A:\"\n57\t        ),\n58\t    },\n59\t}\n60\t\n61\tANSWER_MAP = {0: \"A\", 1: \"B\", 2: \"C\", 3: \"D\"}\n62\t\n63\t\n64\tdef format_prompt(\n65\t    template_id: int,\n66\t    subject: str,\n67\t    question: str,\n68\t    choices: list[str],\n69\t    few_sh\n…[truncated 1422 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-20T19:39:05.089157+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/inference/run_experiment.py"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-20T19:39:05.089486+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Execute the full G-theory experiment from a design matrix.\n2\t\n3\tReads the factorial design CSV, groups conditions by (model, precision) to\n4\tminimise model reloads, then for every condition × item constructs a prompt\n5\tand runs vLLM inference.  Results are scored via exact-match extraction of\n6\tA/B/C/D from generated text and written to a JSONL file.\n7\t\n8\tInput:\n9\t    - design_matrix.csv  (from ``generate_design.py``)\n10\t    - mmlu_items.json    (from ``sample_mmlu.py``)\n11\t    - few_shot_examples.json (from ``few_shot.py``)\n12\t\n13\tOutput:\n14\t    - results/experiment_results.jsonl — one JSON object per item × condition\n15\t\"\"\"\n16\t\n17\timport argparse\n18\timport json\n19\timport re\n20\timport sys\n21\tfrom pathlib import Path\n22\t\n23\timport pandas as pd\n24\t\n25\tfrom src.data.prompt_templates import ANSWER_MAP, format_prompt\n26\tfrom src.inference.vllm_runner import VLLMRunner\n27\t\n28\tANSWER_PATTERN = re.compile(r\"^\\s*([A-Da-d])\\b\")\n29\t\n30\t\n31\tdef extract_answer(text: str) -> str | None:\n32\t    \"\"\"Extract a single A/B/C/D letter from the start of generated text.\"\"\"\n33\t    m = ANSWER_PATTERN.match(text)\n34\t    return m.group(1).upper() if m else None\n35\t\n36\t\n37\tdef load_data(items_path: str, few_shot_path: str):\n38\t    with open(items_path) as f:\n39\t        items = json.load(f)\n40\t    with open(few_shot_path) as f:\n41\t        few_shot = json.load(f)\n42\t    return items, few_shot\n43\t\n44\t\n45\tdef run_experiment(\n46\t    design_path: str,\n47\t    items_path: str,\n48\t    few_shot_path: str,\n49\t    output_path: str,\n50\t    precision_filter: str | None = None,\n51\t    gpu_id: int = 0,\n52\t) -> None:\n53\t    \"\"\"Run all conditions in the design matrix.\n54\t\n55\t    Args:\n56\t        design_path: Path to ``design_matrix.csv``.\n57\t        items_path: Path to ``mmlu_items.json``.\n58\t        few_shot_path: Path to ``few_shot_examples.json``.\n59\t        output_path: Destination JSONL path.\n60\t        precision_filter: If set, only run conditions matching this precision.\n61\t        gpu_id: GPU devi\n…[truncated 4615 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-20T19:39:05.089833+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/inference/vllm_runner.py",
+              "old_string": "@dataclass\nclass InferenceResult:\n    prompt: str\n    generated_text: str\n    finish_reason: str\n    model: str\n    dtype: str\n    temperature: float\n    top_p: Optional[float]\n    seed: int\n    gpu_id: int\n    latency_ms: float",
+              "new_string": "@dataclass\nclass InferenceResult:\n    prompt: str\n    generated_text: str\n    finish_reason: str\n    model: str\n    dtype: str\n    temperature: float\n    top_p: Optional[float]\n    seed: int\n    gpu_id: int\n    latency_ms: float\n    answer_logprob: Optional[float] = None\n    top_logprobs: Optional[dict] = None"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-20T19:39:05.090104+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/inference/vllm_runner.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-20T19:39:05.090333+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/inference/vllm_runner.py",
+              "old_string": "        self.llm = LLM(\n            model=model_name,\n            dtype=dtype,\n            seed=seed,\n            tensor_parallel_size=1,\n            gpu_memory_utilization=0.90,\n            trust_remote_code=True,\n            max_model_len=4096,\n        )",
+              "new_string": "        os.environ[\"VLLM_USE_V1\"] = \"0\"\n\n        self.llm = LLM(\n            model=model_name,\n            dtype=dtype,\n            seed=seed,\n            tensor_parallel_size=1,\n            gpu_memory_utilization=0.90,\n            trust_remote_code=True,\n            max_model_len=4096,\n            enforce_eager=True,\n        )"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-20T19:39:05.090634+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/inference/vllm_runner.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-20T19:39:05.090876+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/inference/vllm_runner.py",
+              "old_string": "    def generate(\n        self,\n        prompts: list[str],\n        temperature: float = 0.0,\n        top_p: Optional[float] = None,\n        seed: Optional[int] = None,\n    ) -> list[InferenceResult]:\n        \"\"\"Run batched inference.\n\n        Args:\n            prompts: Prompt strings.\n            temperature: 0 for greedy, >0 for stochastic sampling.\n            top_p: Nucleus sampling threshold (ignored when temperature=0).\n            seed: Per-request RNG seed.  Falls back to constructor seed.\n\n        Returns:\n            One ``InferenceResult`` per prompt, in the same order.\n        \"\"\"\n        effective_seed = seed if seed is not None else self.seed\n\n        if torch.cuda.is_available():\n            torch.cuda.manual_seed(effective_seed)\n\n        params = SamplingParams(\n            temperature=temperature,\n            top_p=top_p if (top_p is not None and temperature > 0) else 1.0,\n            max_tokens=16,\n            seed=effective_seed,\n        )\n\n        t0 = time.perf_counter()\n        outputs = self.llm.generate(prompts, params)\n        elapsed_ms = (time.perf_counter() - t0) * 1000\n        per_prompt_ms = elapsed_ms / max(len(prompts), 1)\n\n        results: list[InferenceResult] = []\n        for output in outputs:\n            results.append(\n                InferenceResult(\n                    prompt=output.prompt,\n                    generated_text=output.outputs[0].text.strip(),\n                    finish_reason=output.outputs[0].finish_reason,\n                    model=self.model_name,\n                    dtype=self.dtype,\n                    temperature=temperature,\n                    top_p=top_p,\n                    seed=effective_seed,\n                    gpu_id=self.gpu_id,\n                    latency_ms=round(per_prompt_ms, 2),\n                )\n            )\n        return results",
+              "new_string": "    def generate(\n        self,\n        prompts: list[str],\n        temperature: float = 0.0,\n        top_p: Optional[float] = None,\n        seed: Optional[int] = None,\n        logprobs: Optional[int] = None,\n    ) -> list[InferenceResult]:\n        \"\"\"Run batched inference.\n\n        Args:\n            prompts: Prompt strings.\n            temperature: 0 for greedy, >0 for stochastic sampling.\n            top_p: Nucleus sampling threshold (ignored when temperature=0).\n            seed: Per-request RNG seed.  Falls back to constructor seed.\n            logprobs: Number of top log-probabilities to return per token.\n\n        Returns:\n            One ``InferenceResult`` per prompt, in the same order.\n        \"\"\"\n        effective_seed = seed if seed is not None else self.seed\n\n        if torch.cuda.is_available():\n            torch.cuda.manual_seed(effective_seed)\n\n        params = SamplingParams(\n            temperature=temperature,\n            top_p=top_p if (top_p is not None and temperature > 0) else 1.0,\n            max_tokens=16,\n            seed=effective_seed,\n            logprobs=logprobs,\n        )\n\n        t0 = time.perf_counter()\n        outputs = self.llm.generate(prompts, params)\n        elapsed_ms = (time.perf_counter() - t0) * 1000\n        per_prompt_ms = elapsed_ms / max(len(prompts), 1)\n\n        results: list[InferenceResult] = []\n        for output in outputs:\n            answer_logprob = None\n            top_lps = None\n            if logprobs and output.outputs[0].logprobs:\n                first_token_lps = output.outputs[0].logprobs[0]\n                chosen_token_id = next(iter(first_token_lps))\n                answer_logprob = first_token_lps[chosen_token_id].logprob\n                top_lps = {\n                    lp.decoded_token: lp.logprob\n                    for lp in first_token_lps.values()\n                }\n\n            results.append(\n                InferenceResult(\n                    prompt=output.prompt,\n                    generated_text=output.outputs[0].text.strip(),\n                    finish_reason=output.outputs[0].finish_reason,\n                    model=self.model_name,\n                    dtype=self.dtype,\n                    temperature=temperature,\n                    top_p=top_p,\n                    seed=effective_seed,\n                    gpu_id=self.gpu_id,\n                    latency_ms=round(per_prompt_ms, 2),\n                    answer_logprob=answer_logprob,\n                    top_logprobs=top_lps,\n                )\n            )\n        return results"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-20T19:39:05.091254+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/inference/vllm_runner.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-20T19:39:05.091542+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/design/generate_design.py",
+              "old_string": "\"\"\"Generate fully crossed factorial design matrix for the G-theory MVP.\n\nFactors and levels\n------------------\nmodel              : [Llama-3.1-8B-Instruct]          (1)\nprecision          : [float32, bfloat16, float16]       (3)\ntemperature config : [greedy (T=0), stochastic (T=0.5, top_p=0.9)]  (2)\nprompt_template    : [1, 2, 3]                          (3)\nseed               : [42, 123, 456]                     (3)\nordering           : [1, 2]                             (2)\n\nTotal: 1 × 3 × 2 × 3 × 3 × 2 = 108 conditions.\n\nOutput: CSV with one row per condition.\n\"\"\"",
+              "new_string": "\"\"\"Generate fully crossed factorial design matrix for the G-theory study.\n\nFactors and levels\n------------------\nmodel              : [Qwen3-8B, Llama-3.1-8B-Instruct,\n                      gemma-2-9b-it, Mistral-7B-Instruct-v0.3]  (4)\nprecision          : [float32, bfloat16, float16]                 (3)\ntemperature config : [greedy (T=0), T=0.3/top_p=0.9,\n                      T=0.7/top_p=0.9]                           (3)\nprompt_template    : [1, 2, 3, 4, 5, 6]                          (6)\nseed               : [42, 123, 456, 789, 1024, 2048]             (6)\nordering           : [1, 2, 3, 4]                                 (4)\n\nTotal: 4 × 3 × 3 × 6 × 6 × 4 = 5,184 conditions.\n\nOutput: CSV with one row per condition.\n\"\"\""
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-20T19:39:05.091853+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/design/generate_design.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-20T19:39:05.092093+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/design/generate_design.py",
+              "old_string": "DESIGN = {\n    \"model\": [\"meta-llama/Llama-3.1-8B-Instruct\"],\n    \"precision\": [\"float32\", \"bfloat16\", \"float16\"],\n    \"temperature_config\": [\n        {\"temperature\": 0.0, \"top_p\": None},\n        {\"temperature\": 0.5, \"top_p\": 0.9},\n    ],\n    \"prompt_template\": [1, 2, 3],\n    \"seed\": [42, 123, 456],\n    \"ordering\": [1, 2],\n}",
+              "new_string": "DESIGN = {\n    \"model\": [\n        \"Qwen/Qwen3-8B\",\n        \"meta-llama/Llama-3.1-8B-Instruct\",\n        \"google/gemma-2-9b-it\",\n        \"mistralai/Mistral-7B-Instruct-v0.3\",\n    ],\n    \"precision\": [\"float32\", \"bfloat16\", \"float16\"],\n    \"temperature_config\": [\n        {\"temperature\": 0.0, \"top_p\": None},\n        {\"temperature\": 0.3, \"top_p\": 0.9},\n        {\"temperature\": 0.7, \"top_p\": 0.9},\n    ],\n    \"prompt_template\": [1, 2, 3, 4, 5, 6],\n    \"seed\": [42, 123, 456, 789, 1024, 2048],\n    \"ordering\": [1, 2, 3, 4],\n}"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-20T19:39:05.092412+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/design/generate_design.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-20T19:39:05.092647+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/design/generate_design.py",
+              "old_string": "def generate_matrix(output_path: str = \"design_matrix.csv\") -> pd.DataFrame:\n    \"\"\"Build the full factorial design and write to CSV.\n\n    Returns:\n        DataFrame with 108 rows.\n    \"\"\"",
+              "new_string": "def generate_matrix(output_path: str = \"design_matrix.csv\") -> pd.DataFrame:\n    \"\"\"Build the full factorial design and write to CSV.\n\n    Returns:\n        DataFrame with 5,184 rows.\n    \"\"\""
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-20T19:39:05.092915+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/design/generate_design.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-20T19:39:05.093133+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/design/generate_design.py",
+              "old_string": "    assert len(df) == 108, f\"Expected 108 conditions, got {len(df)}\"",
+              "new_string": "    assert len(df) == 5184, f\"Expected 5184 conditions, got {len(df)}\""
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-20T19:39:05.093409+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/design/generate_design.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-20T19:39:05.093660+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/prompt_templates.py",
+              "old_string": "\"\"\"MMLU prompt templates — 3 semantically equivalent paraphrases.",
+              "new_string": "\"\"\"MMLU prompt templates — 6 semantically equivalent paraphrases."
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-20T19:39:05.093921+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/prompt_templates.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-20T19:39:05.094162+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/prompt_templates.py",
+              "old_string": "    3: {\n        \"system\": (\n            \"Below are {subject} multiple-choice problems. \"\n            \"Pick the right letter.\\n\\n\"\n        ),\n        \"shot\": (\n            \"Q: {question}\\n\"\n            \"  A) {A}\\n  B) {B}\\n  C) {C}\\n  D) {D}\\n\"\n            \"A: {answer}\\n\\n\"\n        ),\n        \"query\": (\n            \"Q: {question}\\n\"\n            \"  A) {A}\\n  B) {B}\\n  C) {C}\\n  D) {D}\\n\"\n            \"A:\"\n        ),\n    },\n}",
+              "new_string": "    3: {\n        \"system\": (\n            \"Below are {subject} multiple-choice problems. \"\n            \"Pick the right letter.\\n\\n\"\n        ),\n        \"shot\": (\n            \"Q: {question}\\n\"\n            \"  A) {A}\\n  B) {B}\\n  C) {C}\\n  D) {D}\\n\"\n            \"A: {answer}\\n\\n\"\n        ),\n        \"query\": (\n            \"Q: {question}\\n\"\n            \"  A) {A}\\n  B) {B}\\n  C) {C}\\n  D) {D}\\n\"\n            \"A:\"\n        ),\n    },\n    4: {\n        \"system\": (\n            \"Answer the following {subject} question by selecting \"\n            \"A, B, C, or D.\\n\\n\"\n        ),\n        \"shot\": (\n            \"{question}\\n\"\n            \"- A. {A}\\n- B. {B}\\n- C. {C}\\n- D. {D}\\n\"\n            \"Answer: {answer}\\n\\n\"\n        ),\n        \"query\": (\n            \"{question}\\n\"\n            \"- A. {A}\\n- B. {B}\\n- C. {C}\\n- D. {D}\\n\"\n            \"Answer:\"\n        ),\n    },\n    5: {\n        \"system\": (\n            \"Below is a {subject} exam question with four possible answers. \"\n            \"Choose the correct one.\\n\\n\"\n        ),\n        \"shot\": (\n            \"{question}\\n\"\n            \"Option A: {A}\\nOption B: {B}\\nOption C: {C}\\nOption D: {D}\\n\"\n            \"Correct: {answer}\\n\\n\"\n        ),\n        \"query\": (\n            \"{question}\\n\"\n            \"Option A: {A}\\nOption B: {B}\\nOption C: {C}\\nOption D: {D}\\n\"\n            \"Correct:\"\n        ),\n    },\n    6: {\n        \"system\": \"Question ({subject}):\\n\",\n        \"shot\": (\n            \"{question}\\n\"\n            \"Choices:\\n(a) {A} (b) {B} (c) {C} (d) {D}\\n\"\n            \"Your answer: {answer}\\n\\n\"\n        ),\n        \"query\": (\n            \"{question}\\n\"\n            \"Choices:\\n(a) {A} (b) {B} (c) {C} (d) {D}\\n\"\n            \"Your answer:\"\n        ),\n    },\n}"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-20T19:39:05.094514+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/prompt_templates.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-20T19:39:05.094777+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/prompt_templates.py",
+              "old_string": "        template_id: 1, 2, or 3.",
+              "new_string": "        template_id: 1–6."
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-20T19:39:05.095051+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/prompt_templates.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-20T19:39:05.095284+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/inference/run_experiment.py",
+              "old_string": "                results = runner.generate(prompts, temperature, top_p, seed)",
+              "new_string": "                results = runner.generate(prompts, temperature, top_p, seed, logprobs=5)"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-20T19:39:05.095582+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/inference/run_experiment.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-20T19:39:05.095819+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/inference/run_experiment.py",
+              "old_string": "                    record = {\n                        \"condition_id\": cond_id,\n                        \"item_id\": item[\"item_id\"],\n                        \"subject\": item[\"subject\"],\n                        \"model\": model_name,\n                        \"precision\": precision,\n                        \"temperature\": temperature,\n                        \"top_p\": top_p,\n                        \"prompt_template\": prompt_template,\n                        \"seed\": seed,\n                        \"ordering\": ordering,\n                        \"generated_text\": result.generated_text,\n                        \"predicted_answer\": predicted,\n                        \"gold_answer\": gold,\n                        \"correct\": correct,\n                        \"latency_ms\": result.latency_ms,\n                    }",
+              "new_string": "                    record = {\n                        \"condition_id\": cond_id,\n                        \"item_id\": item[\"item_id\"],\n                        \"subject\": item[\"subject\"],\n                        \"model\": model_name,\n                        \"precision\": precision,\n                        \"temperature\": temperature,\n                        \"top_p\": top_p,\n                        \"prompt_template\": prompt_template,\n                        \"seed\": seed,\n                        \"ordering\": ordering,\n                        \"generated_text\": result.generated_text,\n                        \"predicted_answer\": predicted,\n                        \"gold_answer\": gold,\n                        \"correct\": correct,\n                        \"latency_ms\": result.latency_ms,\n                        \"answer_logprob\": result.answer_logprob,\n                        \"top_logprobs\": result.top_logprobs,\n                    }"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-20T19:39:05.096125+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/inference/run_experiment.py has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-20T19:39:05.096365+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/inference/vllm_runner.py"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-20T19:39:05.096687+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"vLLM offline inference runner for the G-theory variance study.\n2\t\n3\tLoads a model once via ``vllm.LLM`` and supports batched generation\n4\twith explicit seed control at three levels:\n5\t  1. ``LLM(seed=...)``           — engine-level RNG\n6\t  2. ``torch.cuda.manual_seed``  — CUDA kernel RNG\n7\t  3. ``SamplingParams(seed=...)`` — per-request sampling RNG\n8\t\n9\tCUDA_VISIBLE_DEVICES is set from ``gpu_id`` *before* any CUDA call.\n10\t\n11\tInput:  model name + generation parameters.\n12\tOutput: list of ``InferenceResult`` dataclass instances (JSON-serialisable).\n13\t\"\"\"\n14\t\n15\timport argparse\n16\timport json\n17\timport os\n18\timport time\n19\tfrom dataclasses import asdict, dataclass\n20\tfrom typing import Optional\n21\t\n22\timport torch\n23\tfrom vllm import LLM, SamplingParams\n24\t\n25\t\n26\t@dataclass\n27\tclass InferenceResult:\n28\t    prompt: str\n29\t    generated_text: str\n30\t    finish_reason: str\n31\t    model: str\n32\t    dtype: str\n33\t    temperature: float\n34\t    top_p: Optional[float]\n35\t    seed: int\n36\t    gpu_id: int\n37\t    latency_ms: float\n38\t    answer_logprob: Optional[float] = None\n39\t    top_logprobs: Optional[dict] = None\n40\t\n41\t\n42\tclass VLLMRunner:\n43\t    \"\"\"Manages a single vLLM model instance for batched inference.\n44\t\n45\t    Create one runner per (model, dtype, gpu_id) combination to avoid\n46\t    model reloads.  Different temperatures / seeds reuse the same runner.\n47\t    \"\"\"\n48\t\n49\t    def __init__(\n50\t        self,\n51\t        model_name: str,\n52\t        gpu_id: int = 0,\n53\t        dtype: str = \"bfloat16\",\n54\t        seed: int = 42,\n55\t    ):\n56\t        os.environ[\"CUDA_VISIBLE_DEVICES\"] = str(gpu_id)\n57\t\n58\t        torch.manual_seed(seed)\n59\t        if torch.cuda.is_available():\n60\t            torch.cuda.manual_seed(seed)\n61\t            torch.cuda.manual_seed_all(seed)\n62\t\n63\t        self.model_name = model_name\n64\t        self.gpu_id = gpu_id\n65\t        self.dtype = dtype\n66\t        self.seed = seed\n67\t\n68\t        os.environ[\"VLLM_USE_V1\"] = \"0\"\n69\t\n70\t        self.\n…[truncated 4455 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-20T19:39:05.096947+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/design/generate_design.py"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-20T19:39:05.097236+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Generate fully crossed factorial design matrix for the G-theory study.\n2\t\n3\tFactors and levels\n4\t------------------\n5\tmodel              : [Qwen3-8B, Llama-3.1-8B-Instruct,\n6\t                      gemma-2-9b-it, Mistral-7B-Instruct-v0.3]  (4)\n7\tprecision          : [float32, bfloat16, float16]                 (3)\n8\ttemperature config : [greedy (T=0), T=0.3/top_p=0.9,\n9\t                      T=0.7/top_p=0.9]                           (3)\n10\tprompt_template    : [1, 2, 3, 4, 5, 6]                          (6)\n11\tseed               : [42, 123, 456, 789, 1024, 2048]             (6)\n12\tordering           : [1, 2, 3, 4]                                 (4)\n13\t\n14\tTotal: 4 × 3 × 3 × 6 × 6 × 4 = 5,184 conditions.\n15\t\n16\tOutput: CSV with one row per condition.\n17\t\"\"\"\n18\t\n19\timport argparse\n20\timport itertools\n21\tfrom pathlib import Path\n22\t\n23\timport pandas as pd\n24\t\n25\tDESIGN = {\n26\t    \"model\": [\n27\t        \"Qwen/Qwen3-8B\",\n28\t        \"meta-llama/Llama-3.1-8B-Instruct\",\n29\t        \"google/gemma-2-9b-it\",\n30\t        \"mistralai/Mistral-7B-Instruct-v0.3\",\n31\t    ],\n32\t    \"precision\": [\"float32\", \"bfloat16\", \"float16\"],\n33\t    \"temperature_config\": [\n34\t        {\"temperature\": 0.0, \"top_p\": None},\n35\t        {\"temperature\": 0.3, \"top_p\": 0.9},\n36\t        {\"temperature\": 0.7, \"top_p\": 0.9},\n37\t    ],\n38\t    \"prompt_template\": [1, 2, 3, 4, 5, 6],\n39\t    \"seed\": [42, 123, 456, 789, 1024, 2048],\n40\t    \"ordering\": [1, 2, 3, 4],\n41\t}\n42\t\n43\t\n44\tdef generate_matrix(output_path: str = \"design_matrix.csv\") -> pd.DataFrame:\n45\t    \"\"\"Build the full factorial design and write to CSV.\n46\t\n47\t    Returns:\n48\t        DataFrame with 5,184 rows.\n49\t    \"\"\"\n50\t    rows: list[dict] = []\n51\t    condition_id = 0\n52\t\n53\t    for model, prec, temp_cfg, prompt, seed, ordering in itertools.product(\n54\t        DESIGN[\"model\"],\n55\t        DESIGN[\"precision\"],\n56\t        DESIGN[\"temperature_config\"],\n57\t        DESIGN[\"prompt_template\"],\n58\t        DESIGN[\"seed\"],\n59\t        DESIGN[\"ordering\"],\n60\t\n…[truncated 1108 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-20T19:39:05.097516+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/data/prompt_templates.py"
+            }
+          },
+          "id": "event-000037"
+        },
+        {
+          "source_line": 38,
+          "timestamp": "2026-05-20T19:39:05.097819+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"MMLU prompt templates — 6 semantically equivalent paraphrases.\n2\t\n3\tEach template formats a multiple-choice question with optional few-shot\n4\texamples.  Variation follows Brittlebench-style surface perturbation:\n5\tdifferent wording and layout, identical semantic content.\n6\t\n7\tOutput: a single string ready for LLM input.\n8\t\"\"\"\n9\t\n10\tTEMPLATES = {\n11\t    1: {\n12\t        \"system\": (\n13\t            \"The following are multiple choice questions (with answers) \"\n14\t            \"about {subject}.\\n\\n\"\n15\t        ),\n16\t        \"shot\": (\n17\t            \"{question}\\n\"\n18\t            \"A. {A}\\nB. {B}\\nC. {C}\\nD. {D}\\n\"\n19\t            \"Answer: {answer}\\n\\n\"\n20\t        ),\n21\t        \"query\": (\n22\t            \"{question}\\n\"\n23\t            \"A. {A}\\nB. {B}\\nC. {C}\\nD. {D}\\n\"\n24\t            \"Answer:\"\n25\t        ),\n26\t    },\n27\t    2: {\n28\t        \"system\": (\n29\t            \"Answer the following {subject} questions by selecting \"\n30\t            \"the correct option.\\n\\n\"\n31\t        ),\n32\t        \"shot\": (\n33\t            \"Question: {question}\\n\"\n34\t            \"(A) {A}  (B) {B}  (C) {C}  (D) {D}\\n\"\n35\t            \"Correct answer: {answer}\\n\\n\"\n36\t        ),\n37\t        \"query\": (\n38\t            \"Question: {question}\\n\"\n39\t            \"(A) {A}  (B) {B}  (C) {C}  (D) {D}\\n\"\n40\t            \"Correct answer:\"\n41\t        ),\n42\t    },\n43\t    3: {\n44\t        \"system\": (\n45\t            \"Below are {subject} multiple-choice problems. \"\n46\t            \"Pick the right letter.\\n\\n\"\n47\t        ),\n48\t        \"shot\": (\n49\t            \"Q: {question}\\n\"\n50\t            \"  A) {A}\\n  B) {B}\\n  C) {C}\\n  D) {D}\\n\"\n51\t            \"A: {answer}\\n\\n\"\n52\t        ),\n53\t        \"query\": (\n54\t            \"Q: {question}\\n\"\n55\t            \"  A) {A}\\n  B) {B}\\n  C) {C}\\n  D) {D}\\n\"\n56\t            \"A:\"\n57\t        ),\n58\t    },\n59\t    4: {\n60\t        \"system\": (\n61\t            \"Answer the following {subject} question by selecting \"\n62\t            \"A, B, C, or D.\\n\\n\"\n63\t        ),\n64\t        \"shot\": (\n65\t            \"{qu\n…[truncated 2869 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000038"
+        },
+        {
+          "source_line": 39,
+          "timestamp": "2026-05-20T19:39:05.098081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code/src/inference/run_experiment.py"
+            }
+          },
+          "id": "event-000039"
+        },
+        {
+          "source_line": 40,
+          "timestamp": "2026-05-20T19:39:05.098405+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\"\"\"Execute the full G-theory experiment from a design matrix.\n2\t\n3\tReads the factorial design CSV, groups conditions by (model, precision) to\n4\tminimise model reloads, then for every condition × item constructs a prompt\n5\tand runs vLLM inference.  Results are scored via exact-match extraction of\n6\tA/B/C/D from generated text and written to a JSONL file.\n7\t\n8\tInput:\n9\t    - design_matrix.csv  (from ``generate_design.py``)\n10\t    - mmlu_items.json    (from ``sample_mmlu.py``)\n11\t    - few_shot_examples.json (from ``few_shot.py``)\n12\t\n13\tOutput:\n14\t    - results/experiment_results.jsonl — one JSON object per item × condition\n15\t\"\"\"\n16\t\n17\timport argparse\n18\timport json\n19\timport re\n20\timport sys\n21\tfrom pathlib import Path\n22\t\n23\timport pandas as pd\n24\t\n25\tfrom src.data.prompt_templates import ANSWER_MAP, format_prompt\n26\tfrom src.inference.vllm_runner import VLLMRunner\n27\t\n28\tANSWER_PATTERN = re.compile(r\"^\\s*([A-Da-d])\\b\")\n29\t\n30\t\n31\tdef extract_answer(text: str) -> str | None:\n32\t    \"\"\"Extract a single A/B/C/D letter from the start of generated text.\"\"\"\n33\t    m = ANSWER_PATTERN.match(text)\n34\t    return m.group(1).upper() if m else None\n35\t\n36\t\n37\tdef load_data(items_path: str, few_shot_path: str):\n38\t    with open(items_path) as f:\n39\t        items = json.load(f)\n40\t    with open(few_shot_path) as f:\n41\t        few_shot = json.load(f)\n42\t    return items, few_shot\n43\t\n44\t\n45\tdef run_experiment(\n46\t    design_path: str,\n47\t    items_path: str,\n48\t    few_shot_path: str,\n49\t    output_path: str,\n50\t    precision_filter: str | None = None,\n51\t    gpu_id: int = 0,\n52\t) -> None:\n53\t    \"\"\"Run all conditions in the design matrix.\n54\t\n55\t    Args:\n56\t        design_path: Path to ``design_matrix.csv``.\n57\t        items_path: Path to ``mmlu_items.json``.\n58\t        few_shot_path: Path to ``few_shot_examples.json``.\n59\t        output_path: Destination JSONL path.\n60\t        precision_filter: If set, only run conditions matching this precision.\n61\t        gpu_id: GPU devi\n…[truncated 4761 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000040"
+        },
+        {
+          "source_line": 41,
+          "timestamp": "2026-05-20T19:39:05.098706+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/code && python3 -c \"\nimport ast, sys\nfiles = [\n    'src/inference/vllm_runner.py',\n    'src/design/generate_design.py',\n    'src/data/prompt_templates.py',\n    'src/inference/run_experiment.py',\n]\nfor f in files:\n    try:\n        ast.parse(open(f).read())\n        print(f'{f}: OK')\n    except SyntaxError as e:\n        print(f'{f}: SYNTAX ERROR — {e}')\n        sys.exit(1)\n\"",
+              "description": "Syntax-check all 4 modified files"
+            }
+          },
+          "id": "event-000041"
+        },
+        {
+          "source_line": 42,
+          "timestamp": "2026-05-20T19:39:05.098934+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "src/inference/vllm_runner.py: OK\nsrc/design/generate_design.py: OK\nsrc/data/prompt_templates.py: OK\nsrc/inference/run_experiment.py: OK"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000042"
+        },
+        {
+          "source_line": 43,
+          "timestamp": "2026-05-20T19:39:05.099197+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 files modified, all syntax-clean. Summary of changes:\n\n| File | Change |\n|------|--------|\n| `vllm_runner.py` | `enforce_eager=True` + `VLLM_USE_V1=0` (V0 engine for all precisions); `generate()` accepts `logprobs` param, extracts `answer_logprob` and `top_logprobs` from first token |\n| `generate_design.py` | 4 models × 3 precisions × 3 temps × 6 templates × 6 seeds × 4 orderings = **5,184 conditions** |\n| `prompt_templates.py` | Templates 4–6 added (dash-list, \"Option X:\", lowercase compact); all use same `{subject}`, `{question}`, `{A}`–`{D}`, `{answer}` placeholders — compatible with `format_prompt()` |\n| `run_experiment.py` | Calls `generate(..., logprobs=5)`; writes `answer_logprob` and `top_logprobs` into each JSONL record |"
+            }
+          ],
+          "metadata": {
+            "session": "worker_code_exp001_design_inference_20260520T193652"
+          },
+          "id": "event-000043"
+        }
+      ],
+      "message_count": 43
+    }
+  ],
+  "readable_path": "readable/conversations/code-exp001-design-inference.md"
+}

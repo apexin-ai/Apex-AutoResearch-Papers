@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54fb6e7e024da8807241",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp pilot monitor",
+  "task_key": "worker_exp_pilot_monitor_20260520T231630",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_pilot_monitor_20260520T231630_result.json",
+    "occurrence": 1,
+    "bytes": 1228,
+    "sha256": "28a2824fc0b5f129b2e363577e42b5d80efeb534e3815f322a7a8f52841ef270"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "根因明确了。\n\n---\n\n**Pilot 完成状态：全部失败**\n\n三个进程全部在启动时立即崩溃，原因相同：\n\n**错误：** vLLM 无法加载模型 `Qwen/Qwen3-8B-Instruct`\n- 本地路径 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B-Instruct/` 存在但**为空**（模型未下载）\n- 远程 HF mirror (`hf-mirror.com`) 返回 **401 认证错误** — \"Repository Not Found / Invalid username or password\"\n\n```\n- float32 (GPU 0): 0 records [失败]\n- bfloat16 (GPU 1): 0 records [失败]\n- float16 (GPU 2): 0 records [失败]\n总计：0 records\nenforce_eager：未到达该阶段\n错误：401 HF mirror 认证失败，模型未下载\n```\n\n**需要修复：**\n1. 先下载模型到本地。推荐用 ModelScope（AutoDL 上 HF 下载极慢且需认证）：\n   ```bash\n   pip install modelscope\n   python -c \"from modelscope import snapshot_download; snapshot_download('Qwen/Qwen3-8B-Instruct', cache_dir='/root/autodl-tmp/.hf_cache')\"\n   ```\n2. 实验脚本中 `model_path` 改为本地绝对路径（如 `/root/autodl-tmp/.hf_cache/Qwen/Qwen3-8B-Instruct`），而非 HF repo ID\n3. 重新启动三个 pilot 进程\n\n是否现在执行模型下载和重新运行？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-pilot-monitor.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c2ac3ab85a912459a9cf",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code infinity fix analysis dryrun",
+  "task_key": "worker_code_infinity_fix_analysis_dryrun_20260521T020130",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_infinity_fix_analysis_dryrun_20260521T020130_result.json",
+    "occurrence": 1,
+    "bytes": 799,
+    "sha256": "86c704994874f143be817fbaf8cf55ff07af6840e3cfcdf43de645efc4ab18d0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部通过。汇报：\n\n---\n\n**-Infinity fix:**\n- **已修复**: `model_facet_analysis.py`、`bootstrap_ci.py` — 在 `load_jsonl_glob()` 中添加了 `answer_logprob` 列的 `-np.inf → NaN` 替换和 `top_logprobs` 字典中 `-inf → None` 的清洗\n- **无需修复**: `variance_decomposition.py` — `compute_ss()` 和 `estimate_variance_components()` 仅处理 `correct`/`text_exact_match`（0/1 整数），不涉及 logprob\n\n**variance_decomposition dry-run: 通过**\n- 5400 obs, 6 facets, 10 bootstrap iterations\n- item_id 占 58.4% 方差（最大），residual 17.6%，precision:item_id 7.2%\n- G 系数和 D-study 正常输出\n\n**bootstrap_ci dry-run: 通过**\n- 同样 5400 obs, 6-facet design, 10 boots\n- 点估计和 95% CI 均正常产出，无报错"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-infinity-fix-analysis-dryrun.md"
+}

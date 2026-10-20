@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0a446866d405685075d4",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "ops scale validation download monitor v2",
+  "task_key": "worker_ops_scale_validation_download_monitor_v2_20260522T050918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scale_validation_download_monitor_v2_20260522T050918.log",
+    "occurrence": 1,
+    "bytes": 513603,
+    "sha256": "349dcbc50f1555a4c1677f530c0cbfc67a668c648bfd52f32045a8f21472fe0a"
+  },
+  "statistics": {
+    "messages": 292,
+    "user_turns": 0,
+    "tool_calls": 76,
+    "roles": {
+      "log": 1,
+      "system": 40,
+      "record": 1,
+      "assistant": 88,
+      "tool_call": 76,
+      "tool_result": 76,
+      "result": 10
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 292,
+      "chunks": [
+        {
+          "path": "0a446866d405685075d4-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "0a446866d405685075d4-part-0002.json",
+          "message_count": 112
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-scale-validation-download-monitor-v2.md"
+}

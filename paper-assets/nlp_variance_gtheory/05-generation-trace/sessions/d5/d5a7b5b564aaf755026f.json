@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5a7b5b564aaf755026f",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis exp001 bf16only 2temp subset",
+  "task_key": "worker_analysis_exp001_bf16only_2temp_subset_20260522T035510",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp001_bf16only_2temp_subset_20260522T035510_result.json",
+    "occurrence": 1,
+    "bytes": 1147,
+    "sha256": "fd63beec5514d5a99791f56b44ba6ff7df06ae0ba75d90c9e27e871ecb423898"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n| 指标 | Full (6-facet) | Reduced (bf16×2temp) | Diff |\n|------|---------------|---------------------|------|\n| N | 259,200 | 57,600 | |\n| Grand mean | 0.6839 | 0.7089 | +0.025 |\n| item_id% | 58.39% | 68.45% | +10.06pp |\n| **G_item** | **0.9361** | **0.9369** | **+0.0008** |\n| prompt:item% | 5.47% | 5.50% | +0.03pp |\n| seed:item% | 4.71% | 5.60% | +0.89pp |\n| temp:item% | 2.93% | 4.94% | +2.01pp |\n| ordering:item% | 0.77% | 0.97% | +0.20pp |\n| residual% | 23.10% | 14.45% | -8.66pp |\n\n**结论**：Reduced crossing 不引入显著 confounding。G_item 差异仅 0.0008（0.9361 vs 0.9369）。item_id% 差异 +10pp 是因为 precision 相关分量（precision=0.91%, precision:item=3.30% 等共 ~4.5%）被移除后，剩余方差重新分配——不是 confounding，而是分解结构变化的必然结果。共享的非 precision 分量（prompt:item, seed:item, ordering:item）差异均 < 2pp。\n\n脚本已保存至服务器 `scripts/exp001_bf16_2temp_subset.py`，结果 JSON 已存至服务器 `results/exp001_bf16_2temp_comparison.json` 和本地 `artifacts/exp004/data/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp001-bf16only-2temp-subset.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "070704dd16984223b2b0",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "analysis simulation binary recovery",
+  "task_key": "worker_analysis_simulation_binary_recovery_20260521T093639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_simulation_binary_recovery_20260521T093639.log",
+    "occurrence": 1,
+    "bytes": 681839,
+    "sha256": "96b4c77c9f85ee89ecfa49009d4684ac733d009495424ffb81e229f3519d4d78"
+  },
+  "statistics": {
+    "messages": 173,
+    "user_turns": 1,
+    "tool_calls": 54,
+    "roles": {
+      "log": 1,
+      "system": 30,
+      "record": 1,
+      "assistant": 31,
+      "tool_call": 54,
+      "user": 1,
+      "tool_result": 54,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "070704dd16984223b2b0-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 167,
+      "chunks": [
+        {
+          "path": "070704dd16984223b2b0-part-0001.json",
+          "message_count": 160
+        },
+        {
+          "path": "070704dd16984223b2b0-part-0002.json",
+          "message_count": 7
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-simulation-binary-recovery.md"
+}

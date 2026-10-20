@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f688ef8c2132d8879514",
+  "project": "nlp_variance_gtheory",
+  "kind": "history",
+  "title": "reviewer / loop_1.md",
+  "task_key": "loop_1",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "task_context/history/reviewer/loop_1.md",
+    "occurrence": 1,
+    "bytes": 3936,
+    "sha256": "8d1190811c2c5216792320f1eadb1d82eea3154838691e0742c9fb2409333ad7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "note": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "note",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\nloop: 1\nreason: max_wall_time\nupdated: '2026-05-21T06:08:07+00:00'\n---\n\n### 1. 🔴 硬约束 / 红线\n- GPU 白名单：westd-32570:{0,1,2,3}，4 张 RTX PRO 6000 Blackwell (96GB)。越界即 CRITICAL。\n- Qwen 推理正在跑（PID 91484/91486/91488/91490，GPU 0-3），不要 kill 或抢占。\n- REML 结果 `converged: false`（100 iter），论文引用前必须用 `--max-iter 500` 重跑确认收敛。\n- 对比表引用不平衡数据数值时核对原始 JSON，Worker 报告中曾出现错误值（seed×item_id 写成 0.5% 实际 2.5%，model main 写成 3.1% 实际 0.2%）。\n\n### 2. 🖥️ 基础设施快照\n- 服务器：westd-32570，工作目录 `/root/nlp_variance_gtheory`\n- Python：`/root/miniconda3/bin/python`（conda base 环境）\n- 模型缓存：`/root/autodl-tmp/.hf_cache/`（Qwen3-8B 正在从此加载）\n- 数据：`/root/nlp_variance_gtheory/data/mmlu_items_exp001.json`（200 MMLU items）\n- 结果目录：`/root/nlp_variance_gtheory/results/`\n  - `exp001_llama/` — Llama-3.1-8B 完成 (4×64,800 = 259,200)\n  - `exp001_gemma/` + `exp001_gemma_fp32/` — Gemma-2-9B 完成\n  - `exp001_mistral/` — Mistral-7B 完成 (4×64,800 = 259,200)\n  - `exp001_qwen/` — Qwen3-8B 进行中（shards 已生成，推理刚启动）\n  - `analysis/` — 所有 G-study JSON 结果\n- 活跃进程：Qwen 推理 PID 91484-91490（auto_start_qwen.sh 链式启动，13:31:42 CST）\n- 本地 artifacts：`/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/`\n\n### 3. 📊 当前状态\n**刚完成的审查**：\n1. G_item 修正计算 (cross_model_g_coefficients.json) — PASS，G_item=0.707 验证通过\n2. Dataset B 平衡 G-study (dataset_b_gstudy.json) — WARNING，对比表数据有误+混淆变量\n3. Dataset A 三模型 G-study (dataset_a_gstudy.json) — PASS，G_item=0.777 验证通过\n4. REML 实现 (cross_model_reml.json) — WARNING，未收敛+重要推论（Henderson I 偏差很小）\n5. Mistral 完成确认 — PASS，259,200 条全部完整\n6. Qwen 自动链式启动确认 — 进行中\n\n**未发 review 的**：无积压。所有已完成 Worker 均已审查并 post 给 Director。\n\n**等待中**：\n- Qwen 推理完成通知\n- 可能的 REML 重跑（--max-iter 500）Worker\n- 可能的 Dataset A G-study 在平衡数据上的重跑\n\n### 4. 📋 待办\n- Qwen 推理完成 → 独立核实 shard 行数（期望 4×64,800=259,200）+ GPU 设备合规 + 准确率合理性\n- 4 模型 G-study 结果出来 → 核实 D-study 预测（之前预测 4-5 模型 G_item≈0.83+）是否兑现\n- REML 重跑结果 → 确认收敛 + 对比 100-iter 估计是否有实质变化\n- 论文章节提交审查 → 切换到审查模式 B，加载 paper-quality-lessons skill，按 5.1-5.2 维度审\n- exp-001 registry 条目 → 如果仍缺失，再次提醒 Director（已提醒多次）\n\n### 5. 🎯 战略上下文\n**核心结论链**：\n1. 单模型 item_id 主导方差（61.1%），G=0.611\n2. 跨模型 model×item_id 交互是第二大方差源（26-32%），说明 item 难度是 model-specific 的\n3. D-study 证明 n_models 是提升跨模型信度最有效的杠杆（3 模型 G≥0.78，5 模型 G≥0.84）\n4. REML 验证 Henderson I 在本数据集上偏差很小——平衡 vs 不平衡的差异主要来自设计差异（温度/精度水平不同），不是估计方法偏差\n\n**易判断错的事**：\n- Dataset B (G=0.866) vs 不平衡 (G=0.707) 的差异**不是**平衡修正效果——REML 已证明 Henderson I 偏差 <0.5pp。差异来自去掉 temp=0.0 和减少 precision 水平。论文中不能将 Dataset B 的高 G 归因于\"消除估计偏差\"。\n- G_condition (tau=fixed facets) 和 G_item (tau=item_id) 是完全不同的指标，不可并排比较。之前 Worker 曾犯过\"G 从 0.611 暴跌至 0.073\"的混淆。\n- Worker 报告中的对比表可能有手动输入的错误数值——必须回查原始 JSON 交叉验证。\n"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/context-notes/loop-1-copy-3.md"
+}

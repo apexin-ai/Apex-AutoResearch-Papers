@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f200b45d0d5a6829b23b",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra exp001 dryrun",
+  "task_key": "worker_infra_exp001_dryrun_20260520T215419",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_exp001_dryrun_20260520T215419_result.json",
+    "occurrence": 1,
+    "bytes": 1030,
+    "sha256": "aa3b601bcb587956323ee06277a35d16c5002efd55a58a83d3bcc86e5882ce41"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有验证完成。汇总结果：\n\n```\n代码部署：成功\n设计矩阵：5184 行（Llama 条件 1296 行）\n数据生成：200 items, 10 subjects, 4 orderings\nDry-run：50 records (10 conditions × 5 items), 所有字段 ✓\nenforce_eager：confirmed（vLLM 日志明确显示 enforce_eager=True）\n性能：avg 59.2ms/condition, VRAM 14.99/94.97 GB（模型权重），gpu_memory_utilization=0.90\n准确率：13/50 (26.0%)\n问题：\n  - Llama-3.1-8B-Instruct 是 gated model，HF 直接下载需要 token。已通过 ModelScope 下载到本地路径 /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-8B-Instruct\n  - 设计矩阵中 model 列需要使用本地路径而非 HF repo ID（已创建 design_matrix_exp001_llama_local.csv）\n  - 正式实验需要：(1) 配置 HF token 或 (2) 所有 gated 模型都用 ModelScope 下载后使用本地路径\n  - 准确率偏低（26%），可能因为 dry-run 只取了前 5 个 items（都来自 abstract_algebra，较难的 subject）\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-exp001-dryrun.md"
+}

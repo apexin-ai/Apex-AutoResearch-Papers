@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3994b9338dfba1a59f7c",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops llama70b mmlu priority",
+  "task_key": "worker_ops_llama70b_mmlu_priority_20260523T161601",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama70b_mmlu_priority_20260523T161601_result.json",
+    "occurrence": 1,
+    "bytes": 903,
+    "sha256": "f48a37cb4b487250abeed923f49473d5df8871f4f192969b80ca294f87e08310"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 项目 | 状态 |\n|------|------|\n| Kill 进程 | 334256 (force killed) + 335537 + 5个子进程 — 全部清除 |\n| GSM8K 输出 | `llama70b_gsm8k.jsonl` 已删除 |\n| exp_llama70b 目录 | 仅剩 `design_llama70b_gsm8k.csv` + `design_llama70b_mmlu.csv`，无 JSONL 输出 |\n| MMLU-only 脚本 | `/root/nlp_variance_gtheory/scripts/exp_llama70b/run_llama70b_mmlu_only.py` — `BENCHMARKS = [\"mmlu\"]` |\n| tmux session | `exp_llama70b` 已清理 |\n| GPU 状态 | 4x H800 全部空闲（0 MiB / 97887 MiB） |\n\n**启动命令**（通过 submit_training_job 提交）：\n\n```bash\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/nlp_variance_gtheory && python scripts/exp_llama70b/run_llama70b_mmlu_only.py\n```\n\n**预计运行时间**：288 conditions × ~73s ≈ **5.8 小时**（单 benchmark MMLU only）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama70b-mmlu-priority.md"
+}

@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "0937a850920b1e13c830",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "analysis mmlu subject scatter",
+  "task_key": "worker_analysis_mmlu_subject_scatter_20260522T135350",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mmlu_subject_scatter_20260522T135350.log",
+    "occurrence": 1,
+    "bytes": 657540,
+    "sha256": "4564b74f46a93e0da39dc6ad52a8f545e83d96d5fe56a749df532565aa7c6bbd"
+  },
+  "statistics": {
+    "messages": 165,
+    "user_turns": 0,
+    "tool_calls": 57,
+    "roles": {
+      "log": 8,
+      "system": 1,
+      "record": 1,
+      "assistant": 41,
+      "tool_call": 57,
+      "tool_result": 56,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 8,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 165,
+      "chunks": [
+        {
+          "path": "0937a850920b1e13c830-part-0001.json",
+          "message_count": 141
+        },
+        {
+          "path": "0937a850920b1e13c830-part-0002.json",
+          "message_count": 24
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-mmlu-subject-scatter.md"
+}

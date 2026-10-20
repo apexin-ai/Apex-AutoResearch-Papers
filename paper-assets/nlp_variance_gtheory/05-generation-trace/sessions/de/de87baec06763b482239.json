@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de87baec06763b482239",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops llama70b infer confirm",
+  "task_key": "worker_ops_llama70b_infer_confirm_20260523T160731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama70b_infer_confirm_20260523T160731_result.json",
+    "occurrence": 1,
+    "bytes": 1054,
+    "sha256": "06d774664d535d3e9258e6efbcb7772d3c7cb01518580ddeba35642e5d04b1de"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "汇总：\n\n## 状态：推理已开始 ✓\n\n| 项目 | 值 |\n|------|-----|\n| **推理状态** | YES — 正在运行 |\n| **当前基准** | gsm8k（第 2 个，共 5 个：mmlu/gsm8k/arc/hellaswag/math） |\n| **MMLU** | 已跳过（输出已存在） |\n| **GPU utilization** | 4 × 100%，各 ~87.7GB/98GB |\n| **进程** | PID 334256，运行 2 分钟 |\n\n## 进度与 ETA\n\n- **总量**：5 个基准 × 288 conditions × 200 items = **288,000 evals**\n- **gsm8k 进度**：Condition 1/288 完成（181/200 correct），Condition 2 刚开始\n- **Condition 1 耗时**：~73 秒（200 items，~2,627 input toks/s，~401 output toks/s）\n- **gsm8k 剩余**：287 conditions × 73s ≈ **5.8 小时**\n- **全部 4 个剩余基准**（gsm8k+arc+hellaswag+math）：4 × 288 × 73s ≈ **23.5 小时**（假设各基准速度相近）\n- **预计完成**：约 **5 月 25 日 00:00**（服务器时间，当前 00:08）\n\n速度可能因基准不同略有差异（不同 prompt 长度/生成长度），以上为粗略估算。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama70b-infer-confirm.md"
+}

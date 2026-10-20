@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "06101c1af568bb704f2c",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis deepseek lomo cross benchmark",
+  "task_key": "worker_analysis_deepseek_lomo_cross_benchmark_20260522T101628",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek_lomo_cross_benchmark_20260522T101628_result.json",
+    "occurrence": 1,
+    "bytes": 930,
+    "sha256": "7b94424c9eff18958880507026709e1a341809f1011058661530efa02e70062a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果摘要：\n\n| Benchmark | item_id% (7m) | Δ item_id | model:item% (7m) | Δ m:i | residual% (7m) | Δ res | G_item (7m) | ΔG |\n|-----------|---------|-----------|----------|-------|----------|-------|---------|------|\n| ARC | 41.34 | +3.45 | 31.70 | -2.03 | 13.79 | -1.65 | 0.8939 | +0.0022 |\n| HellaSwag | 36.85 | +2.57 | 35.99 | -0.01 | 19.41 | -2.00 | 0.8655 | -0.0061 |\n| GSM8K | 17.30 | +0.45 | 13.80 | -0.75 | 38.60 | -1.29 | 0.8541 | -0.0088 |\n\n去掉 DeepSeek-7B 后，所有 benchmark 的 G_item 变化均 < 0.01（max |ΔG| = 0.0088），与 MMLU LOMO 结果一致，确认测量稳定性。跨 benchmark 的共同模式：item_id% 略升（DeepSeek 对 item 难度梯度贡献较小），residual% 略降。\n\n输出文件：\n- 服务器：`results/exp004_8model_analysis/deepseek_lomo_cross_benchmark.json`\n- 本地：`artifacts/exp004/data/deepseek_lomo_cross_benchmark.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-lomo-cross-benchmark.md"
+}

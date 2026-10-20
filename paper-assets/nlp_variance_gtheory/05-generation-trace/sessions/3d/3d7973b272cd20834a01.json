@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d7973b272cd20834a01",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra model download status",
+  "task_key": "worker_infra_model_download_status_20260521T002937",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_model_download_status_20260521T002937_result.json",
+    "occurrence": 1,
+    "bytes": 864,
+    "sha256": "5dff67be4ee8e21393ef0f35c579a4b24ecc8c46e7a59b2d4a161d65867f059a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "模型下载状态：\n\n| 模型 | 状态 | 大小 | 本地路径 |\n|------|------|------|----------|\n| Qwen/Qwen3-8B-Instruct | **未完成** | 4KB（仅 .mdl 元数据） | — |\n| google/gemma-2-9b-it | **完成** | 18GB | `/root/autodl-tmp/.hf_cache/LLM-Research/gemma-2-9b-it/` |\n| mistralai/Mistral-7B-Instruct-v0.3 | **未完成** | 11GB（部分） | — |\n\n详情：\n- **Qwen3-8B-Instruct**：ModelScope 下载失败或中断，目录只有元数据文件，temp 目录也为空，无下载进程运行\n- **gemma-2-9b-it**：ModelScope 下载完整，config.json + 4/4 safetensors + tokenizer 齐全\n- **Mistral-7B-Instruct-v0.3**：HF hub 下载不完整，snapshot 中缺 `model-00002-of-00003.safetensors`，有 2 个 `.incomplete` blob 文件；ModelScope 目录为空\n\n磁盘：`/root/autodl-tmp/` 使用 89GB / 350GB (26%)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-model-download-status.md"
+}

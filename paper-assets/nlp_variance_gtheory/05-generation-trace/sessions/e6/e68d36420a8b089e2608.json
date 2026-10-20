@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e68d36420a8b089e2608",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix qwen restore and verify",
+  "task_key": "worker_fix_qwen_restore_and_verify_20260521T072039",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_qwen_restore_and_verify_20260521T072039_result.json",
+    "occurrence": 1,
+    "bytes": 757,
+    "sha256": "f2cc755988d83cc0b747d80af88374fb30eaa2ce6682b43719e6b71a9c92009e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n1. **补跑进程**：无运行中的补跑进程，无需 kill\n2. **每个 shard 行数**：均为 64,800\n3. **总计**：259,200 ✓\n4. **统计**：\n   - **精度分布**：bfloat16=100,200 / float16=79,600 / float32=79,400\n   - **温度分布**：0.0=87,000 / 0.3=84,800 / 0.7=87,400\n   - **Accuracy**：0.0000（`binary_correct` 字段全为 0，可能该字段名或计算逻辑不同）\n   - **Unique conditions**：1,227（少于预期的 1,296，差 69 个——shard_3 中部分 condition 有 400 条重复记录，说明 `_merged_with_dup` 文件确实含重复）\n\n注意点：accuracy 为 0 异常，建议检查正确性字段的实际 key 名。条件数 1,227 < 1,296 也值得确认是否符合预期。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-qwen-restore-and-verify.md"
+}

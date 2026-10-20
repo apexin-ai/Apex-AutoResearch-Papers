@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b795f5a9db4b602db76e",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis stratified bootstrap check",
+  "task_key": "worker_analysis_stratified_bootstrap_check_20260522T104144",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_stratified_bootstrap_check_20260522T104144_result.json",
+    "occurrence": 1,
+    "bytes": 776,
+    "sha256": "6e0de064e8cd532f527f1911328768537aea5446bb2bf2f671823e179a6722e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果：**分层对 CI 影响微小**（<10% 变化），不需要替换 simple bootstrap。\n\n关键数字对比：\n\n| 指标 | Simple CI width | Stratified CI width | 变化 |\n|------|----------------|-------------------|------|\n| G_item | 0.0395 | 0.0410 | **+3.95%** |\n| item_id% | 9.376 | 9.662 | **+3.05%** |\n| model:item_id | 6.392 | 6.358 | -0.53% |\n| residual | 4.177 | 4.226 | +1.16% |\n\nStratified bootstrap 的 CI 反而略宽（~3-4%），因为分层约束了每次 resample 必须包含所有 10 个 subject，减少了 bootstrap 样本的变异性空间。主要 component（item_id, model:item_id, residual）的 CI 差异均在 ±5% 以内。\n\n结论：simple bootstrap 的结果可靠，分层结构对 CI 估计无实质影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-stratified-bootstrap-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "23ee239ef93149850ee1",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops llama70b disk fix and restart",
+  "task_key": "worker_ops_llama70b_disk_fix_and_restart_20260523T105911",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama70b_disk_fix_and_restart_20260523T105911_result.json",
+    "occurrence": 1,
+    "bytes": 944,
+    "sha256": "1729d1428f8125fbcbc56b541f5bb009b6e2680e89de22057b8cdd8b9ea99687"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载已正常启动，多个分片并行下载中。\n\n---\n\n## 产出汇报\n\n| 项目 | 详情 |\n|------|------|\n| **清理前磁盘** | 350G 总 / 314G 用 / **37G 可用 (90%)** |\n| **清理后磁盘** | 350G 总 / 127G 用 / **224G 可用 (37%)** |\n| **释放空间** | **187G** |\n| **删除路径 1** | `LLM-Research/Meta-Llama-3___1-70B-Instruct/original/` — 17G（1个 .pth 文件） |\n| **删除路径 2** | `Qwen/` — 171G（含 `Qwen2.5-72B-Instruct` + `Qwen2___5-72B-Instruct` 两个副本） |\n| **新下载 PID** | **318630**（Python 子进程 318664） |\n| **下载速度** | ~1.5 MB/s，多分片并行 |\n| **待下载量** | 29 个分片 × ~4.5G ≈ **~126G safetensors** |\n| **预计完成时间** | 以当前 ~1.5 MB/s × 多线程（实测 ~5 MB/s 总速）：约 **7-8 小时** |\n\n额外处理：清除了上次 kill 后残留的 ModelScope 锁文件，否则新下载会一直阻塞。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama70b-disk-fix-and-restart.md"
+}

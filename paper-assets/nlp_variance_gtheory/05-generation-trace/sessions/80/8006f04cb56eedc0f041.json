@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8006f04cb56eedc0f041",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "paper writing",
+  "task_key": "worker_paper_writing_20260521T200146",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_writing_20260521T200146_result.json",
+    "occurrence": 1,
+    "bytes": 1107,
+    "sha256": "c1da5e1413f75543ad05609df6f17c856751b8a60248fe60afe97c910c7e6059"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "文件已写入 `projects/nlp_variance_gtheory/docs/paper/sections/experiments.tex`。\n\n结构概览：\n- **§4.1 Single-Model Baseline** — 6-facet G-study，item_id=61.1%，G=0.918\n- **§4.2 Cross-Model Variance** — Table 2: item_id 降至 42.1%，model×item=33.6%，含 D-study 验证（predicted 0.816 vs actual 0.820）\n- **§4.3 Format-Conditional Variance Structure** — Table 3: MC vs free-form 二分结构，Figure 1 引用，含 PLACEHOLDER 注释\n- **§4.4 Precision Separability** — BF16≈FP16 (Δ=0.23pp)，排除 FP32 后 precision=0.0006%\n- **§4.5 Design-Dependent Reproducibility Budgets** — Table 4: 72 vs 631 items (8.8×)，IRT 对比，Figure 3 引用\n- **§4.6 Robustness Checks** — 6 项检验压缩在一段内（~150 words）\n- **§4.7 PLACEHOLDER** 注释留给 8-model × 5-benchmark 扩展\n\n合规检查：无 em-dash，无 -ing 句尾，无连续过渡词，所有 `\\cite` key 均在 references.bib 中（已移除不存在的 `hendrycks2021mmlu`），booktabs 表格，caption 在 tabular 上方，图片路径用无扩展名文件名。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-writing-copy-4.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "68cf8fc8ecc21d13cadc",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops llama70b scale validation",
+  "task_key": "worker_ops_llama70b_scale_validation_20260523T090310",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama70b_scale_validation_20260523T090310_result.json",
+    "occurrence": 1,
+    "bytes": 1210,
+    "sha256": "a8443f070172c49fbba1802b77781f0a77d3bd6349c3c73b00f0d49bd6e41e8b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**磁盘占用明细：**\n\n| 路径 | 大小 | 备注 |\n|------|------|------|\n| `.hf_cache/Qwen/` | 171GB | Qwen2.5-72B-Instruct（当前实验在用） |\n| `.hf_cache/LLM-Research/` | 61GB | ModelScope 下载 |\n| `.hf_cache/01ai/` | 17GB | Yi 系列 |\n| `.hf_cache/Shanghai_AI_Laboratory/` | 15GB | InternLM 系列 |\n| `.hf_cache/allenai/` + OLMo blobs | 28GB | OLMo-2-7B |\n| `.hf_cache/deepseek-ai/` | 13GB | DeepSeek |\n| `pip-cache/` + `pip-tmp/` | 7.7GB | pip 缓存 |\n| **总已用** | **321GB / 350GB** | |\n\n**结论：无法继续。** 下载 Llama-3.1-70B-Instruct 需要 ~140GB，当前仅剩 30GB。即使清理 pip 缓存（7.7GB）也远远不够。\n\n**需要 Director 决策的清理候选项：**\n1. `LLM-Research/`（61GB）— 可能是 ModelScope 镜像的冗余副本\n2. `01ai/`（17GB）+ `Shanghai_AI_Laboratory/`（15GB）+ `deepseek-ai/`（13GB）— 如无后续实验需要可清理\n3. `allenai/` + OLMo blobs（28GB）— OLMo-2-7B 相关\n\n清理 2+3+pip 可释放 ~81GB，加上 1 可达 ~142GB，勉强够下载 70B 模型。但 **Qwen 171GB 不可删**（当前 G-study baseline）。\n\n等待 Director 批准清理方案或提供替代指令。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama70b-scale-validation.md"
+}

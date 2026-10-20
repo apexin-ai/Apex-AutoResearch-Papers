@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3cbdfe52efb14780f32f",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix exp002 bf16 only",
+  "task_key": "worker_fix_exp002_bf16_only_20260521T083543",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_exp002_bf16_only_20260521T083543_result.json",
+    "occurrence": 1,
+    "bytes": 608,
+    "sha256": "4b121e0685818fb8cecefc8e84cbffeb855a633db2f2352c93bd492bb9b8cfa3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部验证通过：\n\n- **总行数**: 4,608 ✓\n- **precision**: 仅 `bfloat16` ✓\n- **每个 benchmark**: 1,152 conditions ✓ (4 models × 1 precision × 2 temps × 6 prompts × 6 seeds × 4 orderings)\n- **4 benchmarks**: mmlu, gsm8k, arc, hellaswag ✓\n- **exp001 未改动** — 本地和远程 exp001 配置保持原样\n\n改动摘要：`generate_design.py` 中 exp002 的 `precision` 从 `[\"bfloat16\", \"float16\"]` → `[\"bfloat16\"]`，`expected_total` 从 9216 → 4608，docstring 同步更新。设计 CSV 已在服务器上重新生成为 `design_matrix_exp002.csv`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-exp002-bf16-only.md"
+}

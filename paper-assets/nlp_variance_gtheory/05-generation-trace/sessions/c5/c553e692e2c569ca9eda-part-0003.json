@@ -1,0 +1,252 @@
+{
+  "schema_version": "1.0",
+  "session_id": "c553e692e2c569ca9eda",
+  "rounds": [
+    {
+      "number": 2,
+      "messages": [
+        {
+          "source_line": 297,
+          "timestamp": null,
+          "role": "tool_call",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "tool_use",
+              "id": "toolu_011SYuhcDb37TM2Jhf9Vn9VC",
+              "name": "Bash",
+              "input": {
+                "command": "python3 -c \"\nimport json\n\n# Reconstruct from the 6 parts (concatenated compact JSON)\npart0 = '{\\\"benchmarks\\\":{\\\"mmlu\\\":{\\\"full_8model\\\":{\\\"item_id_pct\\\":37.8812,\\\"model_item_pct\\\":30.2095,\\\"g_item\\\":0.896176,\\\"total_variance\\\":0.230226254,\\\"n_models\\\":8},\\\"lomo\\\":[{\\\"removed\\\":\\\"DeepSeek-7B\\\",\\\"item_id_pct\\\":39.1436,\\\"model_item_pct\\\":29.5943,\\\"g_item\\\":0.888822,\\\"delta_g\\\":-0.007354,\\\"delta_item_pct\\\":1.2624,\\\"total_variance\\\":0.2240619459,\\\"variance_components_pct\\\":{\\\"item_id\\\":39.1436,\\\"model:item_id\\\":29.5943,\\\"residual\\\":24.7935,\\\"model\\\":1.9029,\\\"model:prompt_template\\\":1.8382,\\\"prompt_template:item_id\\\":1.0059,\\\"seed:item_id\\\":0.63,\\\"temperature:item_id\\\":0.5955,\\\"ordering:item_id\\\":0.3432,\\\"model:temperature\\\":0.0522,\\\"model:seed\\\":0.0325,\\\"model:ordering\\\":0.0321,\\\"temperature\\\":0.0156}},{\\\"removed\\\":\\\"Gemma-2-9B\\\",\\\"item_id_pct\\\":37.2935,\\\"model_item_pct\\\":29.7332,\\\"g_item\\\":0.883041,\\\"delta_g\\\":-0.013135,\\\"delta_item_pct\\\":-0.5876,\\\"total_variance\\\":0.2337017957,\\\"variance_components_pct\\\":{\\\"item_id\\\":37.2935,\\\"model:item_id\\\":29.7332,\\\"residual\\\":25.6322,\\\"model\\\":2.7133,\\\"model:prompt_template\\\":1.7826,\\\"prompt_template:item_id\\\":1.1363,\\\"seed:item_id\\\":0.6184,\\\"temperature:item_id\\\":0.6078,\\\"ordering:item_id\\\":0.3315,\\\"model:temperature\\\":0.0503,\\\"model:seed\\\":0.0338,\\\"model:ordering\\\":0.0301,\\\"temperature\\\":0.0189}},{\\\"removed\\\":\\\"InternLM2.5-7B\\\",\\\"item_id_pct\\\":36.6193,\\\"model_item_pct\\\":30.3526,\\\"g_item\\\":0.876883,\\\"delta_g\\\":-0.019293,\\\"delta_item_pct\\\":-1.2619,\\\"total_variance\\\":0.2328482649,\\\"variance_components_pct\\\":{\\\"item_id\\\":36.6193,\\\"model:item_id\\\":30.3526,\\\"residual\\\":25.0906,\\\"model\\\":3.0125,\\\"model:prompt_template\\\":1.8062,\\\"prompt_template:item_id\\\":1.1939,\\\"temperature:item_id\\\":0.8042,\\\"seed:item_id\\\":0.6059,\\\"ordering:item_id\\\":0.3633,\\\"model:temperature\\\":0.0487,\\\"model:seed\\\":0.0334,\\\"model:ordering\\\":0.0312,\\\"temperature\\\":0.0225}},{\\\"removed\\\":\\\"Llama-3.1-8B\\\",\\\"item_id_pct\\\":36.3663,\\\"model_item_pct\\\":31.3552,\\\"g_item\\\":0.877317,\\\"delta_g\\\":-0.018859,\\\"delta_item_pct\\\":-1.5149,\\\"total_variance\\\":0.2329394543,\\\"variance_components_pct\\\":{\\\"item_id\\\":36.3663,\\\"model:item_id\\\":31.3552,\\\"residual\\\":25.0118,\\\"model\\\":2.9684,\\\"model:prompt_template\\\":1.7796,\\\"prompt_template:item_id\\\":1.0808,\\\"temperature:item_id\\\":0.5047,\\\"seed:item_id\\\":0.4175,\\\"ordering:item_id\\\":0.3665,\\\"model:temperature\\\":0.0502,\\\"model:ordering\\\":0.0313,\\\"model:seed\\\":0.0308,\\\"temperature\\\":0.0209}},{\\\"removed\\\":\\\"Mistral-7B-v0.3\\\",\\\"item_id_pct\\\":37.0492,\\\"model_item_pct\\\":30.3031,\\\"g_item\\\":0.882185,\\\"delta_g\\\":-0.013991,\\\"delta_item_pct\\\":-0.832,\\\"total_variance\\\":0.2300743184,\\\"variance_components_pct\\\":{\\\"item_id\\\":37.0492,\\\"model:item_id\\\":30.3031,\\\"residual\\\":24.8651,\\\"model\\\":3.3336,\\\"model:prompt_template\\\":1.8168,\\\"prompt_template:item_id\\\":1.1385,\\\"seed:item_id\\\":0.5435,\\\"temperature:item_id\\\":0.4955,\\\"ordering:item_id\\\":0.3138,\\\"model:temperature\\\":0.0472,\\\"model:seed\\\":0.0307,\\\"model:ordering\\\":0.0275,\\\"temperature\\\":0.0117,\\\"temperature:seed\\\":0.0114}},{\\\"removed\\\":\\\"OLMo-2-7B\\\",\\\"item_id_pct\\\":36.9791,\\\"model_item_pct\\\":29.8494,\\\"g_item\\\":0.881672,\\\"delta_g\\\":-0.014504,\\\"delta_item_pct\\\":-0.9021,\\\"total_variance\\\":0.2292740775,\\\"variance_components_pct\\\":{\\\"item_id\\\":36.9791,\\\"model:item_id\\\":29.8494,\\\"residual\\\":25.297,\\\"model\\\":3.2782,\\\"model:prompt_template\\\":1.8423,\\\"prompt_template:item_id\\\":1.1084,\\\"temperature:item_id\\\":0.6663,\\\"seed:item_id\\\":0.4525,\\\"ordering:item_id\\\":0.3714,\\\"model:temperature\\\":0.0446,\\\"model:seed\\\":0.0348,\\\"model:ordering\\\":0.0321,\\\"temperature\\\":0.0287}},{\\\"removed\\\":\\\"Qwen3-8B\\\",\\\"item_id_pct\\\":38.23,\\\"model_item_pct\\\":28.7825,\\\"g_item\\\":0.887722,\\\"delta_g\\\":-0.008454,\\\"delta_item_pct\\\":0.3488,\\\"total_variance\\\":0.2336895302,\\\"variance_components_pct\\\":{\\\"item_id\\\":38.23,\\\"model:item_id\\\":28.7825,\\\"residual\\\":25.5514,\\\"model\\\":2.7536,\\\"model:prompt_template\\\":1.8079,\\\"prompt_tem'\n\npart1 = 'plate:item_id\\\":1.1323,\\\"temperature:item_id\\\":0.6848,\\\"seed:item_id\\\":0.5587,\\\"ordering:item_id\\\":0.3464,\\\"model:temperature\\\":0.0384,\\\"model:seed\\\":0.0332,\\\"temperature\\\":0.0324,\\\"model:ordering\\\":0.0309}},{\\\"removed\\\":\\\"Yi-1.5-9B\\\",\\\"item_id_pct\\\":40.9382,\\\"model_item_pct\\\":31.7353,\\\"g_item\\\":0.887585,\\\"delta_g\\\":-0.008591,\\\"delta_item_pct\\\":3.057,\\\"total_variance\\\":0.2252578609,\\\"variance_components_pct\\\":{\\\"item_id\\\":40.9382,\\\"model:item_id\\\":31.7353,\\\"residual\\\":22.0144,\\\"model\\\":2.6706,\\\"prompt_template:item_id\\\":0.8996,\\\"seed:item_id\\\":0.7733,\\\"temperature:item_id\\\":0.5713,\\\"ordering:item_id\\\":0.3036,\\\"model:prompt_template\\\":0.0453,\\\"model:temperature\\\":0.0183}}],\\\"stability\\\":{\\\"g_range\\\":0.011939,\\\"g_sd\\\":0.004318,\\\"g_mean\\\":0.883153,\\\"g_cv\\\":0.004889,\\\"max_abs_delta_g\\\":0.019293,\\\"max_delta_model\\\":\\\"InternLM2.5-7B\\\"}},\\\"arc\\\":{\\\"full_8model\\\":{\\\"item_id_pct\\\":37.8845,\\\"model_item_pct\\\":33.7293,\\\"g_item\\\":0.891748,\\\"total_variance\\\":0.1771825345,\\\"n_models\\\":8},\\\"lomo\\\":[{\\\"removed\\\":\\\"DeepSeek-7B\\\",\\\"item_id_pct\\\":41.3358,\\\"model_item_pct\\\":31.7029,\\\"g_item\\\":0.89393,\\\"delta_g\\\":0.002182,\\\"delta_item_pct\\\":3.4513,\\\"total_variance\\\":0.1652484472,\\\"variance_components_pct\\\":{\\\"item_id\\\":41.3358,\\\"model:item_id\\\":31.7029,\\\"residual\\\":13.7941,\\\"model:prompt_template\\\":9.7582,\\\"model\\\":1.5325,\\\"prompt_template:item_id\\\":1.4438,\\\"seed:item_id\\\":0.196,\\\"temperature:item_id\\\":0.1913,\\\"prompt_template\\\":0.0161,\\\"model:seed\\\":0.0146}},{\\\"removed\\\":\\\"Gemma-2-9B\\\",\\\"item_id_pct\\\":35.6092,\\\"model_item_pct\\\":34.2646,\\\"g_item\\\":0.869016,\\\"delta_g\\\":-0.022731,\\\"delta_item_pct\\\":-2.2753,\\\"total_variance\\\":0.184373746,\\\"variance_components_pct\\\":{\\\"item_id\\\":35.6092,\\\"model:item_id\\\":34.2646,\\\"residual\\\":16.4164,\\\"model:prompt_template\\\":8.7932,\\\"model\\\":2.6019,\\\"prompt_template:item_id\\\":1.8069,\\\"temperature:item_id\\\":0.2559,\\\"seed:item_id\\\":0.2105,\\\"model:seed\\\":0.0169,\\\"model:temperature\\\":0.0103}},{\\\"removed\\\":\\\"InternLM2.5-7B\\\",\\\"item_id_pct\\\":36.4343,\\\"model_item_pct\\\":33.8125,\\\"g_item\\\":0.873664,\\\"delta_g\\\":-0.018084,\\\"delta_item_pct\\\":-1.4503,\\\"total_variance\\\":0.1828385042,\\\"variance_components_pct\\\":{\\\"item_id\\\":36.4343,\\\"model:item_id\\\":33.8125,\\\"residual\\\":15.7145,\\\"model:prompt_template\\\":8.8757,\\\"model\\\":3.0053,\\\"prompt_template:item_id\\\":1.7223,\\\"temperature:item_id\\\":0.2312,\\\"seed:item_id\\\":0.1666,\\\"model:seed\\\":0.016}},{\\\"removed\\\":\\\"Llama-3.1-8B\\\",\\\"item_id_pct\\\":34.8838,\\\"model_item_pct\\\":34.6628,\\\"g_item\\\":0.866136,\\\"delta_g\\\":-0.025611,\\\"delta_item_pct\\\":-3.0008,\\\"total_variance\\\":0.1804330089,\\\"variance_components_pct\\\":{\\\"item_id\\\":34.8838,\\\"model:item_id\\\":34.6628,\\\"residual\\\":15.8797,\\\"model:prompt_template\\\":8.9253,\\\"model\\\":3.4275,\\\"prompt_template:item_id\\\":1.7639,\\\"temperature:item_id\\\":0.2237,\\\"seed:item_id\\\":0.1551,\\\"prompt_template\\\":0.0371,\\\"model:seed\\\":0.0168,\\\"model:temperature\\\":0.0106}},{\\\"removed\\\":\\\"Mistral-7B-v0.3\\\",\\\"item_id_pct\\\":37.476,\\\"model_item_pct\\\":31.8411,\\\"g_item\\\":0.88242,\\\"delta_g\\\":-0.009328,\\\"delta_item_pct\\\":-0.4085,\\\"total_variance\\\":0.1738188208,\\\"variance_components_pct\\\":{\\\"item_id\\\":37.476,\\\"model:item_id\\\":31.8411,\\\"residual\\\":15.6959,\\\"model:prompt_template\\\":9.3112,\\\"model\\\":3.5005,\\\"prompt_template:item_id\\\":1.7254,\\\"temperature:item_id\\\":0.2443,\\\"seed:item_id\\\":0.1642,\\\"model:seed\\\":0.0169,\\\"model:temperature\\\":0.0104}},{\\\"removed\\\":\\\"OLMo-2-7B\\\",\\\"item_id_pct\\\":36.6427,\\\"model_item_pct\\\":33.4718,\\\"g_item\\\":0.875544,\\\"delta_g\\\":-0.016204,\\\"delta_item_pct\\\":-1.2419,\\\"total_variance\\\":0.1767122319,\\\"variance_components_pct\\\":{\\\"item_id\\\":36.6427,\\\"model:item_id\\\":33.4718,\\\"residual\\\":15.015,\\\"model:prompt_template\\\":9.1942,\\\"model\\\":3.6419,\\\"prompt_template:item_id\\\":1.5626,\\\"temperature:item_id\\\":0.2616,\\\"seed:item_id\\\":0.1697,\\\"model:seed\\\":0.0163,\\\"model:temperature\\\":0.0109}},{\\\"re'\n\npart2 = 'moved\\\":\\\"Qwen3-8B\\\",\\\"item_id_pct\\\":37.6494,\\\"model_item_pct\\\":32.6777,\\\"g_item\\\":0.880075,\\\"delta_g\\\":-0.011673,\\\"delta_item_pct\\\":-0.2352,\\\"total_variance\\\":0.1845879029,\\\"variance_components_pct\\\":{\\\"item_id\\\":37.6494,\\\"model:item_id\\\":32.6777,\\\"residual\\\":16.1118,\\\"model:prompt_template\\\":8.775,\\\"model\\\":2.5482,\\\"prompt_template:item_id\\\":1.7268,\\\"temperature:item_id\\\":0.264,\\\"seed:item_id\\\":0.2061,\\\"model:seed\\\":0.0164,\\\"model:temperature\\\":0.0105}},{\\\"removed\\\":\\\"Yi-1.5-9B\\\",\\\"item_id_pct\\\":43.27,\\\"model_item_pct\\\":37.3613,\\\"g_item\\\":0.882967,\\\"delta_g\\\":-0.008781,\\\"delta_item_pct\\\":5.3855,\\\"total_variance\\\":0.169603351,\\\"variance_components_pct\\\":{\\\"item_id\\\":43.27,\\\"model:item_id\\\":37.3613,\\\"residual\\\":13.0697,\\\"model\\\":4.3436,\\\"prompt_template:item_id\\\":1.389,\\\"seed:item_id\\\":0.2438,\\\"temperature:item_id\\\":0.2386,\\\"model:prompt_template\\\":0.0604,\\\"model:temperature\\\":0.0115}}],\\\"stability\\\":{\\\"g_range\\\":0.027794,\\\"g_sd\\\":0.008281,\\\"g_mean\\\":0.877969,\\\"g_cv\\\":0.009432,\\\"max_abs_delta_g\\\":0.025611,\\\"max_delta_model\\\":\\\"Llama-3.1-8B\\\"}},\\\"hellaswag\\\":{\\\"full_8model\\\":{\\\"item_id_pct\\\":34.2733,\\\"model_item_pct\\\":36.0022,\\\"g_item\\\":0.871599,\\\"total_variance\\\":0.2058356365,\\\"n_models\\\":8},\\\"lomo\\\":[{\\\"removed\\\":\\\"DeepSeek-7B\\\",\\\"item_id_pct\\\":36.8473,\\\"model_item_pct\\\":35.9876,\\\"g_item\\\":0.865478,\\\"delta_g\\\":-0.006121,\\\"delta_item_pct\\\":2.574,\\\"total_variance\\\":0.1964568178,\\\"variance_components_pct\\\":{\\\"item_id\\\":36.8473,\\\"model:item_id\\\":35.9876,\\\"residual\\\":19.4122,\\\"model\\\":4.5822,\\\"prompt_template:item_id\\\":2.3755,\\\"temperature:item_id\\\":0.2721,\\\"seed:item_id\\\":0.2672,\\\"model:prompt_template\\\":0.2064,\\\"model:seed\\\":0.014,\\\"model:temperature\\\":0.012}},{\\\"removed\\\":\\\"Gemma-2-9B\\\",\\\"item_id_pct\\\":32.7562,\\\"model_item_pct\\\":35.9802,\\\"g_item\\\":0.850459,\\\"delta_g\\\":-0.02114,\\\"delta_item_pct\\\":-1.5171,\\\"total_variance\\\":0.2087702141,\\\"variance_components_pct\\\":{\\\"model:item_id\\\":35.9802,\\\"item_id\\\":32.7562,\\\"residual\\\":21.9504,\\\"model\\\":6.0374,\\\"prompt_template:item_id\\\":2.3694,\\\"temperature:item_id\\\":0.3318,\\\"seed:item_id\\\":0.2879,\\\"model:prompt_template\\\":0.1685,\\\"model:temperature\\\":0.0479,\\\"model:seed\\\":0.0262,\\\"temperature\\\":0.0217,\\\"temperature:seed\\\":0.0114}},{\\\"removed\\\":\\\"InternLM2.5-7B\\\",\\\"item_id_pct\\\":38.3043,\\\"model_item_pct\\\":34.2029,\\\"g_item\\\":0.874465,\\\"delta_g\\\":0.002866,\\\"delta_item_pct\\\":4.031,\\\"total_variance\\\":0.2167057661,\\\"variance_components_pct\\\":{\\\"item_id\\\":38.3043,\\\"model:item_id\\\":34.2029,\\\"residual\\\":21.6151,\\\"prompt_template:item_id\\\":2.5421,\\\"model\\\":2.4954,\\\"temperature:item_id\\\":0.2677,\\\"seed:item_id\\\":0.2666,\\\"model:prompt_template\\\":0.187,\\\"model:temperature\\\":0.0387,\\\"temperature\\\":0.0291,\\\"model:seed\\\":0.0254,\\\"temperature:seed\\\":0.0104}},{\\\"removed\\\":\\\"Llama-3.1-8B\\\",\\\"item_id_pct\\\":32.1099,\\\"model_item_pct\\\":37.4852,\\\"g_item\\\":0.843622,\\\"delta_g\\\":-0.027977,\\\"delta_item_pct\\\":-2.1635,\\\"total_variance\\\":0.204174992,\\\"variance_components_pct\\\":{\\\"model:item_id\\\":37.4852,\\\"item_id\\\":32.1099,\\\"residual\\\":20.9922,\\\"model\\\":6.2167,\\\"prompt_template:item_id\\\":2.3591,\\\"temperature:item_id\\\":0.3206,\\\"model:prompt_template\\\":0.2124,\\\"seed:item_id\\\":0.1988,\\\"model:temperature\\\":0.0493,\\\"model:seed\\\":0.0221,\\\"temperature\\\":0.0135}},{\\\"removed\\\":\\\"Mistral-7B-v0.3\\\",\\\"item_id_pct\\\":33.5081,\\\"model_item_pct\\\":36.1856,\\\"g_item\\\":0.852723,\\\"delta_g\\\":-0.018876,\\\"delta_item_pct\\\":-0.7652,\\\"total_variance\\\":0.2013029403,\\\"variance_components_pct\\\":{\\\"model:item_id\\\":36.1856,\\\"item_id\\\":33.5081,\\\"residual\\\":21.1389,\\\"model\\\":5.8629,\\\"prompt_template:item_id\\\":2.431,\\\"temperature:item_id\\\":0.3112,\\\"seed:item_id\\\":0.2802,\\\"model:prompt_template\\\":0.1646,\\\"model:temperature\\\":0.0515,\\\"model:seed\\\":0.0263,\\\"temperature\\\":0.0165,\\\"temperature:seed\\\":0.0136}},{\\\"removed\\\":\\\"OLMo-2-7B\\\",\\\"item_id_pct\\\":32.6053,\\\"model_item_pct\\\":36.4'\n\npart3 = '634,\\\"g_item\\\":0.848142,\\\"delta_g\\\":-0.023457,\\\"delta_item_pct\\\":-1.668,\\\"total_variance\\\":0.2010286307,\\\"variance_components_pct\\\":{\\\"model:item_id\\\":36.4634,\\\"item_id\\\":32.6053,\\\"residual\\\":21.8029,\\\"model\\\":5.812,\\\"prompt_template:item_id\\\":2.3509,\\\"temperature:item_id\\\":0.3624,\\\"seed:item_id\\\":0.27,\\\"model:prompt_template\\\":0.2081,\\\"model:temperature\\\":0.0462,\\\"model:seed\\\":0.0268,\\\"temperature\\\":0.0266,\\\"temperature:seed\\\":0.0137}},{\\\"removed\\\":\\\"Qwen3-8B\\\",\\\"item_id_pct\\\":33.2806,\\\"model_item_pct\\\":35.2063,\\\"g_item\\\":0.8543,\\\"delta_g\\\":-0.017299,\\\"delta_item_pct\\\":-0.9928,\\\"total_variance\\\":0.2088926324,\\\"variance_components_pct\\\":{\\\"model:item_id\\\":35.2063,\\\"item_id\\\":33.2806,\\\"residual\\\":22.056,\\\"model\\\":6.0177,\\\"prompt_template:item_id\\\":2.4921,\\\"temperature:item_id\\\":0.3482,\\\"seed:item_id\\\":0.2768,\\\"model:prompt_template\\\":0.2043,\\\"model:temperature\\\":0.0486,\\\"model:seed\\\":0.0241,\\\"temperature\\\":0.0199,\\\"temperature:seed\\\":0.0153}},{\\\"removed\\\":\\\"Yi-1.5-9B\\\",\\\"item_id_pct\\\":34.1214,\\\"model_item_pct\\\":36.6172,\\\"g_item\\\":0.854147,\\\"delta_g\\\":-0.017452,\\\"delta_item_pct\\\":-0.1519,\\\"total_variance\\\":0.2094583815,\\\"variance_components_pct\\\":{\\\"model:item_id\\\":36.6172,\\\"item_id\\\":34.1214,\\\"residual\\\":20.2202,\\\"model\\\":5.9116,\\\"prompt_template:item_id\\\":2.2168,\\\"seed:item_id\\\":0.324,\\\"temperature:item_id\\\":0.324,\\\"model:prompt_template\\\":0.1566,\\\"model:temperature\\\":0.0496,\\\"model:seed\\\":0.0181,\\\"temperature\\\":0.0161,\\\"temperature:seed\\\":0.0148}}],\\\"stability\\\":{\\\"g_range\\\":0.030843,\\\"g_sd\\\":0.009292,\\\"g_mean\\\":0.855417,\\\"g_cv\\\":0.010863,\\\"max_abs_delta_g\\\":0.027977,\\\"max_delta_model\\\":\\\"Llama-3.1-8B\\\"}},\\\"gsm8k\\\":{\\\"full_8model\\\":{\\\"item_id_pct\\\":16.8559,\\\"model_item_pct\\\":14.5515,\\\"g_item\\\":0.862852,\\\"total_variance\\\":0.2497718596,\\\"n_models\\\":8},\\\"lomo\\\":[{\\\"removed\\\":\\\"DeepSeek-7B\\\",\\\"item_id_pct\\\":17.3029,\\\"model_item_pct\\\":13.8014,\\\"g_item\\\":0.854078,\\\"delta_g\\\":-0.008774,\\\"delta_item_pct\\\":0.447,\\\"total_variance\\\":0.2445144115,\\\"variance_components_pct\\\":{\\\"residual\\\":38.6039,\\\"item_id\\\":17.3029,\\\"model:item_id\\\":13.8014,\\\"model\\\":9.4869,\\\"model:prompt_template\\\":9.107,\\\"prompt_template\\\":7.0569,\\\"prompt_template:item_id\\\":3.6793,\\\"temperature:item_id\\\":0.6262,\\\"seed:item_id\\\":0.2349,\\\"model:temperature\\\":0.0709}},{\\\"removed\\\":\\\"Gemma-2-9B\\\",\\\"item_id_pct\\\":15.4702,\\\"model_item_pct\\\":14.4527,\\\"g_item\\\":0.832807,\\\"delta_g\\\":-0.030045,\\\"delta_item_pct\\\":-1.3857,\\\"total_variance\\\":0.2546287677,\\\"variance_components_pct\\\":{\\\"residual\\\":40.8325,\\\"item_id\\\":15.4702,\\\"model:item_id\\\":14.4527,\\\"model\\\":8.7884,\\\"model:prompt_template\\\":8.6191,\\\"prompt_template\\\":7.0013,\\\"prompt_template:item_id\\\":3.707,\\\"temperature:item_id\\\":0.7243,\\\"seed:item_id\\\":0.2452,\\\"model:temperature\\\":0.104,\\\"temperature:prompt_template\\\":0.0195,\\\"temperature\\\":0.0185,\\\"model:seed\\\":0.0104}},{\\\"removed\\\":\\\"InternLM2.5-7B\\\",\\\"item_id_pct\\\":15.7325,\\\"model_item_pct\\\":14.8951,\\\"g_item\\\":0.839198,\\\"delta_g\\\":-0.023654,\\\"delta_item_pct\\\":-1.1234,\\\"total_variance\\\":0.2530529408,\\\"variance_components_pct\\\":{\\\"residual\\\":38.4613,\\\"item_id\\\":15.7325,\\\"model:item_id\\\":14.8951,\\\"model\\\":11.8274,\\\"model:prompt_template\\\":9.103,\\\"prompt_template\\\":5.8515,\\\"prompt_template:item_id\\\":3.2275,\\\"temperature:item_id\\\":0.5887,\\\"seed:item_id\\\":0.2121,\\\"model:temperature\\\":0.0645,\\\"temperature:prompt_template\\\":0.02}},{\\\"removed\\\":\\\"Llama-3.1-8B\\\",\\\"item_id_pct\\\":16.4301,\\\"model_item_pct\\\":15.8896,\\\"g_item\\\":0.838006,\\\"delta_g\\\":-0.024847,\\\"delta_item_pct\\\":-0.4258,\\\"total_variance\\\":0.2477100044,\\\"variance_components_pct\\\":{\\\"residual\\\":39.2222,\\\"item_id\\\":16.4301,\\\"model:item_id\\\":15.8896,\\\"model\\\":12.2263,\\\"model:prompt_template\\\":8.6623,\\\"prompt_template\\\":3.5289,\\\"prompt_template:item_id\\\":2.9293,\\\"temperature:item_id\\\":0.7231,\\\"seed:item_id\\\":0.2217,\\\"model:temperature\\\":0.098,\\\"t'\n\npart4 = 'emperature\\\":0.0345,\\\"temperature:prompt_template\\\":0.0172}},{\\\"removed\\\":\\\"Mistral-7B-v0.3\\\",\\\"item_id_pct\\\":18.2262,\\\"model_item_pct\\\":15.3234,\\\"g_item\\\":0.855004,\\\"delta_g\\\":-0.007849,\\\"delta_item_pct\\\":1.3702,\\\"total_variance\\\":0.2407440641,\\\"variance_components_pct\\\":{\\\"residual\\\":40.1889,\\\"item_id\\\":18.2262,\\\"model:item_id\\\":15.3234,\\\"model:prompt_template\\\":10.2453,\\\"model\\\":7.043,\\\"prompt_template\\\":4.876,\\\"prompt_template:item_id\\\":3.0141,\\\"temperature:item_id\\\":0.6814,\\\"seed:item_id\\\":0.233,\\\"model:temperature\\\":0.0872,\\\"temperature\\\":0.0461,\\\"temperature:prompt_template\\\":0.0183}},{\\\"removed\\\":\\\"OLMo-2-7B\\\",\\\"item_id_pct\\\":15.3709,\\\"model_item_pct\\\":12.8185,\\\"g_item\\\":0.842945,\\\"delta_g\\\":-0.019907,\\\"delta_item_pct\\\":-1.485,\\\"total_variance\\\":0.254030206,\\\"variance_components_pct\\\":{\\\"residual\\\":39.8521,\\\"item_id\\\":15.3709,\\\"model:item_id\\\":12.8185,\\\"model\\\":11.5409,\\\"model:prompt_template\\\":8.2446,\\\"prompt_template\\\":7.3691,\\\"prompt_template:item_id\\\":3.7051,\\\"temperature:item_id\\\":0.7143,\\\"seed:item_id\\\":0.2292,\\\"model:temperature\\\":0.104,\\\"temperature:prompt_template\\\":0.0164,\\\"temperature\\\":0.0162}},{\\\"removed\\\":\\\"Qwen3-8B\\\",\\\"item_id_pct\\\":19.2339,\\\"model_item_pct\\\":14.0862,\\\"g_item\\\":0.866905,\\\"delta_g\\\":0.004053,\\\"delta_item_pct\\\":2.378,\\\"total_variance\\\":0.2508543513,\\\"variance_components_pct\\\":{\\\"residual\\\":41.3057,\\\"item_id\\\":19.2339,\\\"model:item_id\\\":14.0862,\\\"model\\\":13.1426,\\\"model:prompt_template\\\":5.3177,\\\"prompt_template:item_id\\\":3.0801,\\\"prompt_template\\\":2.689,\\\"temperature:item_id\\\":0.7303,\\\"seed:item_id\\\":0.2498,\\\"model:temperature\\\":0.0984,\\\"temperature\\\":0.0318,\\\"temperature:prompt_template\\\":0.0194,\\\"model:seed\\\":0.0103}},{\\\"removed\\\":\\\"Yi-1.5-9B\\\",\\\"item_id_pct\\\":16.4558,\\\"model_item_pct\\\":15.1895,\\\"g_item\\\":0.841213,\\\"delta_g\\\":-0.021639,\\\"delta_item_pct\\\":-0.4002,\\\"total_variance\\\":0.2527698502,\\\"variance_components_pct\\\":{\\\"residual\\\":38.4949,\\\"item_id\\\":16.4558,\\\"model:item_id\\\":15.1895,\\\"model\\\":11.7454,\\\"model:prompt_template\\\":9.0243,\\\"prompt_template\\\":4.8546,\\\"prompt_template:item_id\\\":3.1031,\\\"temperature:item_id\\\":0.7131,\\\"seed:item_id\\\":0.2604,\\\"model:temperature\\\":0.0984,\\\"temperature\\\":0.0313,\\\"temperature:prompt_template\\\":0.016}}],\\\"stability\\\":{\\\"g_range\\\":0.034098,\\\"g_sd\\\":0.010602,\\\"g_mean\\\":0.84627,\\\"g_cv\\\":0.012528,\\\"max_abs_delta_g\\\":0.030045,\\\"max_delta_model\\\":\\\"Gemma-2-9B\\\"}},\\\"math\\\":{\\\"full_8model\\\":{\\\"item_id_pct\\\":24.0268,\\\"model_item_pct\\\":17.2761,\\\"g_item\\\":0.888034,\\\"total_variance\\\":0.2071307857,\\\"n_models\\\":8},\\\"lomo\\\":[{\\\"removed\\\":\\\"DeepSeek-7B\\\",\\\"item_id_pct\\\":26.4785,\\\"model_item_pct\\\":16.1094,\\\"g_item\\\":0.888941,\\\"delta_g\\\":0.000907,\\\"delta_item_pct\\\":2.4518,\\\"total_variance\\\":0.2171408296,\\\"variance_components_pct\\\":{\\\"residual\\\":43.2867,\\\"item_id\\\":26.4785,\\\"model:item_id\\\":16.1094,\\\"model\\\":6.9627,\\\"prompt_template:item_id\\\":3.4043,\\\"model:prompt_template\\\":1.6099,\\\"prompt_template\\\":1.0898,\\\"temperature:item_id\\\":0.7765,\\\"seed:item_id\\\":0.1778,\\\"model:temperature\\\":0.0389,\\\"temperature\\\":0.0319,\\\"temperature:prompt_template\\\":0.02}},{\\\"removed\\\":\\\"Gemma-2-9B\\\",\\\"item_id_pct\\\":22.6414,\\\"model_item_pct\\\":16.5585,\\\"g_item\\\":0.871823,\\\"delta_g\\\":-0.016211,\\\"delta_item_pct\\\":-1.3854,\\\"total_variance\\\":0.2016862035,\\\"variance_components_pct\\\":{\\\"residual\\\":44.365,\\\"item_id\\\":22.6414,\\\"model:item_id\\\":16.5585,\\\"model\\\":9.392,\\\"prompt_template:item_id\\\":3.119,\\\"model:prompt_template\\\":1.8357,\\\"prompt_template\\\":1.0192,\\\"temperature:item_id\\\":0.7878,\\\"seed:item_id\\\":0.1654,\\\"temperature\\\":0.0509,\\\"temperature:prompt_template\\\":0.0285,\\\"model:temperature\\\":0.0274}},{\\\"removed\\\":\\\"InternLM2.5-7B\\\",\\\"item_id_pct\\\":21.5463,\\\"model_item_pct\\\":18.0946,\\\"g_item\\\":0.85937,\\\"delta_g\\\":-0.028664,\\\"delta_item_pct\\\":-2.4804,\\\"total_variance\\\":0.2029918522,\\\"variance_components_p'\n\npart5 = 'ct\\\":{\\\"residual\\\":43.9169,\\\"item_id\\\":21.5463,\\\"model:item_id\\\":18.0946,\\\"model\\\":9.6452,\\\"prompt_template:item_id\\\":3.1176,\\\"model:prompt_template\\\":1.8627,\\\"prompt_template\\\":0.816,\\\"temperature:item_id\\\":0.7376,\\\"seed:item_id\\\":0.1848,\\\"temperature:prompt_template\\\":0.0259,\\\"model:temperature\\\":0.0239,\\\"temperature\\\":0.0166}},{\\\"removed\\\":\\\"Llama-3.1-8B\\\",\\\"item_id_pct\\\":24.0074,\\\"model_item_pct\\\":18.6774,\\\"g_item\\\":0.872588,\\\"delta_g\\\":-0.015445,\\\"delta_item_pct\\\":-0.0194,\\\"total_variance\\\":0.2116889596,\\\"variance_components_pct\\\":{\\\"residual\\\":41.9927,\\\"item_id\\\":24.0074,\\\"model:item_id\\\":18.6774,\\\"model\\\":9.344,\\\"prompt_template:item_id\\\":2.7425,\\\"model:prompt_template\\\":1.7714,\\\"temperature:item_id\\\":0.6653,\\\"prompt_template\\\":0.5534,\\\"seed:item_id\\\":0.1603,\\\"model:temperature\\\":0.0358,\\\"temperature\\\":0.0234,\\\"temperature:prompt_template\\\":0.014}},{\\\"removed\\\":\\\"Mistral-7B-v0.3\\\",\\\"item_id_pct\\\":26.6609,\\\"model_item_pct\\\":16.5581,\\\"g_item\\\":0.888261,\\\"delta_g\\\":0.000227,\\\"delta_item_pct\\\":2.6342,\\\"total_variance\\\":0.2181201694,\\\"variance_components_pct\\\":{\\\"residual\\\":43.7002,\\\"item_id\\\":26.6609,\\\"model:item_id\\\":16.5581,\\\"model\\\":6.1536,\\\"prompt_template:item_id\\\":3.1678,\\\"model:prompt_template\\\":1.7699,\\\"prompt_template\\\":0.893,\\\"temperature:item_id\\\":0.8186,\\\"seed:item_id\\\":0.1765,\\\"temperature\\\":0.0448,\\\"model:temperature\\\":0.0301,\\\"temperature:prompt_template\\\":0.0129}},{\\\"removed\\\":\\\"OLMo-2-7B\\\",\\\"item_id_pct\\\":21.3992,\\\"model_item_pct\\\":16.6869,\\\"g_item\\\":0.862615,\\\"delta_g\\\":-0.025419,\\\"delta_item_pct\\\":-2.6275,\\\"total_variance\\\":0.2075626274,\\\"variance_components_pct\\\":{\\\"residual\\\":44.4543,\\\"item_id\\\":21.3992,\\\"model:item_id\\\":16.6869,\\\"model\\\":9.9709,\\\"prompt_template:item_id\\\":3.6599,\\\"model:prompt_template\\\":1.6453,\\\"prompt_template\\\":1.1803,\\\"temperature:item_id\\\":0.732,\\\"seed:item_id\\\":0.1577,\\\"model:temperature\\\":0.0409,\\\"temperature\\\":0.0313,\\\"temperature:prompt_template\\\":0.0312}},{\\\"removed\\\":\\\"Qwen3-8B\\\",\\\"item_id_pct\\\":25.0879,\\\"model_item_pct\\\":17.1756,\\\"g_item\\\":0.880775,\\\"delta_g\\\":-0.007259,\\\"delta_item_pct\\\":1.0611,\\\"total_variance\\\":0.193698336,\\\"variance_components_pct\\\":{\\\"residual\\\":45.565,\\\"item_id\\\":25.0879,\\\"model:item_id\\\":17.1756,\\\"model\\\":6.9615,\\\"prompt_template:item_id\\\":2.8152,\\\"model:prompt_template\\\":0.8598,\\\"temperature:item_id\\\":0.8353,\\\"prompt_template\\\":0.386,\\\"seed:item_id\\\":0.1974,\\\"model:temperature\\\":0.0438,\\\"temperature\\\":0.0294,\\\"temperature:prompt_template\\\":0.0278}},{\\\"removed\\\":\\\"Yi-1.5-9B\\\",\\\"item_id_pct\\\":23.3987,\\\"model_item_pct\\\":18.4179,\\\"g_item\\\":0.866434,\\\"delta_g\\\":-0.0216,\\\"delta_item_pct\\\":-0.6281,\\\"total_variance\\\":0.2042697917,\\\"variance_components_pct\\\":{\\\"residual\\\":41.7491,\\\"item_id\\\":23.3987,\\\"model:item_id\\\":18.4179,\\\"model\\\":9.7982,\\\"prompt_template:item_id\\\":2.9015,\\\"model:prompt_template\\\":1.9204,\\\"temperature:item_id\\\":0.8782,\\\"prompt_template\\\":0.6274,\\\"seed:item_id\\\":0.1952,\\\"model:temperature\\\":0.0406,\\\"temperature:prompt_template\\\":0.0328,\\\"temperature\\\":0.0239}}],\\\"stability\\\":{\\\"g_range\\\":0.029571,\\\"g_sd\\\":0.010488,\\\"g_mean\\\":0.873851,\\\"g_cv\\\":0.012002,\\\"max_abs_delta_g\\\":0.028664,\\\"max_delta_model\\\":\\\"InternLM2.5-7B\\\"}}},\\\"global_max_abs_delta_g\\\":{\\\"value\\\":0.030045,\\\"benchmark\\\":\\\"gsm8k\\\",\\\"removed_model\\\":\\\"Gemma-2-9B\\\"}}'\n\nfull_json = part0 + part1 + part2 + part3 + part4 + part5\ndata = json.loads(full_json)\nprint(f'Parsed OK. Keys: {list(data.keys())}')\nprint(f'Benchmarks: {list(data[\\\"benchmarks\\\"].keys())}')\nfor bm in data['benchmarks']:\n    print(f'  {bm}: {len(data[\\\"benchmarks\\\"][bm][\\\"lomo\\\"])} LOMO entries')\n\n# Pretty-print and save\nout_path = 'artifacts/exp004/data/lomo_8x5_full.json'\nwith open(out_path, 'w') as f:\n    json.dump(data, f, indent=2)\nprint(f'Saved to {out_path} ({len(open(out_path).read())} bytes)')\n\"\n",
+                "description": "Reconstruct and save LOMO JSON from 6 parts",
+                "timeout": 30000
+              },
+              "caller": {
+                "type": "direct"
+              }
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bdf69564-1116-4c36-bfaa-5df4e88d0457",
+            "uuid": "66fa4f12-669d-4dda-beab-676ba2617954",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_01NgZvdQ84mpAy9U84sW965i",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 9433,
+                "cache_read_input_tokens": 43275,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 9433
+                },
+                "output_tokens": 59,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000297"
+        },
+        {
+          "source_line": 298,
+          "timestamp": "2026-05-22T13:54:04.774Z",
+          "role": "tool_result",
+          "recorded_role": "user",
+          "content": [
+            {
+              "tool_use_id": "toolu_011SYuhcDb37TM2Jhf9Vn9VC",
+              "type": "tool_result",
+              "content": "Parsed OK. Keys: ['benchmarks', 'global_max_abs_delta_g']\nBenchmarks: ['mmlu', 'arc', 'hellaswag', 'gsm8k', 'math']\n  mmlu: 8 LOMO entries\n  arc: 8 LOMO entries\n  hellaswag: 8 LOMO entries\n  gsm8k: 8 LOMO entries\n  math: 8 LOMO entries\nSaved to artifacts/exp004/data/lomo_8x5_full.json (32882 bytes)",
+              "is_error": false
+            }
+          ],
+          "metadata": {
+            "type": "user",
+            "parent_tool_use_id": null,
+            "session_id": "bdf69564-1116-4c36-bfaa-5df4e88d0457",
+            "uuid": "b52ed6a2-7611-43eb-a05d-3b1195d125f1",
+            "tool_use_result": {
+              "stdout": "Parsed OK. Keys: ['benchmarks', 'global_max_abs_delta_g']\nBenchmarks: ['mmlu', 'arc', 'hellaswag', 'gsm8k', 'math']\n  mmlu: 8 LOMO entries\n  arc: 8 LOMO entries\n  hellaswag: 8 LOMO entries\n  gsm8k: 8 LOMO entries\n  math: 8 LOMO entries\nSaved to artifacts/exp004/data/lomo_8x5_full.json (32882 bytes)",
+              "stderr": "",
+              "interrupted": false,
+              "isImage": false,
+              "noOutputExpected": false
+            }
+          },
+          "id": "event-000298"
+        },
+        {
+          "source_line": 299,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "thinking",
+              "thinking": "The JSON has been successfully reconstructed and saved locally. All 5 benchmarks × 8 models = 40 LOMO entries are present. Let me verify the file path is correct.",
+              "signature": "EukCCmMIDRgCKkA/wgESj8U22ppDYs03W9w5bSMno3tWlkUe+YQxO8KAg/4cgJysQYbJpijW86jVi9Z9ZeFpsxwvrIs+GbauWZNQMg9jbGF1ZGUtb3B1cy00LTY4AEIIdGhpbmtpbmcSDIsEQO8IuPWvWtWbHxoM/gV3PWqVEnbE72mfIjBZ84AMwa2F0dmwju8Sjvhp3GKFb4GcyTj6Utcbw0LPiu8ud3vcXcxIVwf6tXcFSjcqswELXlYbIVnIBKKKmjzc/k7Y/SkNhmDja7yuPm21NK3AMxhs8kzw7/Bzv8qs/AH2rlTI0usn0Cdux3kSwE311jLBcgoQW4eq5A7JQLoLKUe9RZP1mvs6fHaS3m1+X04xwzO7ULjk2aVvy31l668Lt6ZTK3YIp37D1DU3HUJkVXh+vUe3+LEfD5XCerZRPQ5LVEr3E7qz9aDFTj+ZZ4TtYg2p7T7PjeqjfJ3neLop3MNX8oVdjBgB"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bdf69564-1116-4c36-bfaa-5df4e88d0457",
+            "uuid": "e934f6f9-5ed9-4fc3-a558-5fa4f97ac46a",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018nzqkduCzhy3ynYYSjmFMv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10188,
+                "cache_read_input_tokens": 52708,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10188
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000299"
+        },
+        {
+          "source_line": 300,
+          "timestamp": null,
+          "role": "assistant",
+          "recorded_role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON saved successfully (32882 bytes, 5 benchmarks × 8 models = 40 LOMO sub-analyses).\n\n---\n\n## LOMO 8×5 Results Summary\n\n| Benchmark | G_full | Range | SD | CV | max\\|ΔG\\| | Most Impactful Removal |\n|-----------|--------|-------|-----|------|-----------|----------------------|\n| MMLU | 0.8962 | 0.0119 | 0.0043 | 0.49% | 0.0193 | InternLM2.5-7B |\n| ARC | 0.8917 | 0.0278 | 0.0083 | 0.94% | 0.0256 | Llama-3.1-8B |\n| HellaSwag | 0.8716 | 0.0308 | 0.0093 | 1.09% | 0.0280 | Llama-3.1-8B |\n| GSM8K | 0.8629 | 0.0341 | 0.0106 | 1.25% | 0.0300 | Gemma-2-9B |\n| MATH | 0.8880 | 0.0296 | 0.0105 | 1.20% | 0.0287 | InternLM2.5-7B |\n\n**Global max |ΔG| = 0.0300** (GSM8K, removing Gemma-2-9B)\n\n**Key findings:**\n- G_item 在所有 40 个 LOMO 子集中保持 >0.83，最低为 GSM8K 去掉 Gemma-2-9B 时的 0.833\n- CV 均 <1.3%，表明 G_item 对模型样本选择高度稳健\n- 最大绝对变化 0.030 发生在 GSM8K（数学推理任务模型间差异最大）\n- MMLU 最稳定（CV=0.49%），符合 knowledge-testing 类 benchmark 模型间一致性高的预期\n- Llama-3.1-8B 和 InternLM2.5-7B 对结果影响最大（各出现 2 次 max），可能因其在某些 benchmark 上的表现极端\n\n结果已保存到 `artifacts/exp004/data/lomo_8x5_full.json`。"
+            }
+          ],
+          "metadata": {
+            "type": "assistant",
+            "parent_tool_use_id": null,
+            "session_id": "bdf69564-1116-4c36-bfaa-5df4e88d0457",
+            "uuid": "aa87ad05-e5fd-4b3e-8035-d66c45ca0263",
+            "message": {
+              "model": "claude-opus-4-6",
+              "id": "msg_018nzqkduCzhy3ynYYSjmFMv",
+              "type": "message",
+              "stop_reason": null,
+              "stop_sequence": null,
+              "stop_details": null,
+              "usage": {
+                "input_tokens": 1,
+                "cache_creation_input_tokens": 10188,
+                "cache_read_input_tokens": 52708,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 0,
+                  "ephemeral_1h_input_tokens": 10188
+                },
+                "output_tokens": 8,
+                "service_tier": "standard",
+                "inference_geo": "not_available"
+              },
+              "diagnostics": null,
+              "context_management": null
+            }
+          },
+          "id": "event-000300"
+        },
+        {
+          "source_line": 301,
+          "timestamp": null,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON saved successfully (32882 bytes, 5 benchmarks × 8 models = 40 LOMO sub-analyses).\n\n---\n\n## LOMO 8×5 Results Summary\n\n| Benchmark | G_full | Range | SD | CV | max\\|ΔG\\| | Most Impactful Removal |\n|-----------|--------|-------|-----|------|-----------|----------------------|\n| MMLU | 0.8962 | 0.0119 | 0.0043 | 0.49% | 0.0193 | InternLM2.5-7B |\n| ARC | 0.8917 | 0.0278 | 0.0083 | 0.94% | 0.0256 | Llama-3.1-8B |\n| HellaSwag | 0.8716 | 0.0308 | 0.0093 | 1.09% | 0.0280 | Llama-3.1-8B |\n| GSM8K | 0.8629 | 0.0341 | 0.0106 | 1.25% | 0.0300 | Gemma-2-9B |\n| MATH | 0.8880 | 0.0296 | 0.0105 | 1.20% | 0.0287 | InternLM2.5-7B |\n\n**Global max |ΔG| = 0.0300** (GSM8K, removing Gemma-2-9B)\n\n**Key findings:**\n- G_item 在所有 40 个 LOMO 子集中保持 >0.83，最低为 GSM8K 去掉 Gemma-2-9B 时的 0.833\n- CV 均 <1.3%，表明 G_item 对模型样本选择高度稳健\n- 最大绝对变化 0.030 发生在 GSM8K（数学推理任务模型间差异最大）\n- MMLU 最稳定（CV=0.49%），符合 knowledge-testing 类 benchmark 模型间一致性高的预期\n- Llama-3.1-8B 和 InternLM2.5-7B 对结果影响最大（各出现 2 次 max），可能因其在某些 benchmark 上的表现极端\n\n结果已保存到 `artifacts/exp004/data/lomo_8x5_full.json`。"
+            }
+          ],
+          "metadata": {
+            "type": "result",
+            "subtype": "success",
+            "is_error": false,
+            "api_error_status": null,
+            "duration_ms": 1445694,
+            "duration_api_ms": 1340201,
+            "num_turns": 117,
+            "stop_reason": "end_turn",
+            "session_id": "bdf69564-1116-4c36-bfaa-5df4e88d0457",
+            "total_cost_usd": 7.1077670999999985,
+            "usage": {
+              "input_tokens": 118,
+              "cache_creation_input_tokens": 203216,
+              "cache_read_input_tokens": 8384692,
+              "output_tokens": 55464,
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 203216,
+                "ephemeral_5m_input_tokens": 0
+              },
+              "inference_geo": "",
+              "iterations": [
+                {
+                  "input_tokens": 1,
+                  "output_tokens": 698,
+                  "cache_read_input_tokens": 52708,
+                  "cache_creation_input_tokens": 10188,
+                  "cache_creation": {
+                    "ephemeral_5m_input_tokens": 0,
+                    "ephemeral_1h_input_tokens": 10188
+                  },
+                  "type": "message"
+                }
+              ],
+              "speed": "standard"
+            },
+            "modelUsage": {
+              "claude-haiku-4-5-20251001": {
+                "inputTokens": 2226,
+                "outputTokens": 248,
+                "cacheReadInputTokens": 21541,
+                "cacheCreationInputTokens": 24560,
+                "webSearchRequests": 0,
+                "costUSD": 0.0363201,
+                "contextWindow": 200000,
+                "maxOutputTokens": 32000
+              },
+              "claude-opus-4-6": {
+                "inputTokens": 1485,
+                "outputTokens": 58727,
+                "cacheReadInputTokens": 8548694,
+                "cacheCreationInputTokens": 211440,
+                "webSearchRequests": 0,
+                "costUSD": 7.071446999999999,
+                "contextWindow": 200000,
+                "maxOutputTokens": 64000
+              }
+            },
+            "permission_denials": [],
+            "terminal_reason": "completed",
+            "fast_mode_state": "off",
+            "uuid": "46f8c223-4284-43bf-bade-ba3f2d75ef2f"
+          },
+          "id": "event-000301"
+        }
+      ]
+    }
+  ]
+}

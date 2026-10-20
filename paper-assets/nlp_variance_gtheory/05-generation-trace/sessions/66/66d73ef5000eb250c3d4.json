@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66d73ef5000eb250c3d4",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops report md cleanup",
+  "task_key": "worker_ops_report_md_cleanup_20260522T114213",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_report_md_cleanup_20260522T114213_result.json",
+    "occurrence": 1,
+    "bytes": 381,
+    "sha256": "c4f36d6290afe819695caedb301d361f36239375bb8091f56d73ba6c7630c3dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。report.md 已清理：\n- 删除 22 个过时的 exp002 \"准备中\"条目\n- 删除 \"exp-002: 已被终止\" 误导性告警（那是重复条目被 kill）\n- 更新 exp-002 状态为已完成（8×5, 2.3M records, 40/40）\n- 添加 Round 4 + 额外优化分析结果摘要\n- 添加引用核实记录\n- 从 39 行压缩到 50 行，信息密度更高"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-report-md-cleanup.md"
+}

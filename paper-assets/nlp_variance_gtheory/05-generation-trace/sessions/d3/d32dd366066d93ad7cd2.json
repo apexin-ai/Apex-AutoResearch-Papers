@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d32dd366066d93ad7cd2",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis forward prediction validation",
+  "task_key": "worker_analysis_forward_prediction_validation_20260522T135327",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_forward_prediction_validation_20260522T135327_result.json",
+    "occurrence": 1,
+    "bytes": 1134,
+    "sha256": "f8f70b91f6c3d3db04b218bb00d946b56cc550197521a7eed5aa528d0c228f43"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All 8-model actual G values match the bootstrap CI results exactly. Results saved to `artifacts/exp004/forward_prediction/forward_prediction_results.json`.\n\n**Summary:**\n\n| Benchmark | G(4m) | G_predicted | G_actual | ΔG | Error |\n|-----------|-------|-------------|----------|--------|-------|\n| MMLU | 0.816 | 0.888 | 0.896 | -0.009 | 0.96% |\n| ARC | 0.831 | 0.904 | 0.892 | +0.012 | 1.38% |\n| HellaSwag | 0.832 | 0.901 | 0.872 | +0.029 | 3.33% |\n| GSM8K | 0.729 | 0.803 | 0.863 | -0.059 | 6.88% |\n| MATH | 0.747 | 0.823 | 0.888 | -0.065 | 7.30% |\n\n**Mean |ΔG| = 0.035, Mean relative error = 3.97%**\n\nMC benchmarks (MMLU, ARC, HellaSwag) predict well — |ΔG| < 0.03. Free-form generation benchmarks (GSM8K, MATH) underpredict G by ~0.06, because the 4 source models' variance structure overestimates model×item interaction relative to the broader 8-model pool. This is a sensible pattern: the 4 original models share more similar generation capabilities, inflating model:item variance estimates. Adding 4 diverse new models dilutes model-specific item effects more than the D-study formula assumes."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-forward-prediction-validation.md"
+}

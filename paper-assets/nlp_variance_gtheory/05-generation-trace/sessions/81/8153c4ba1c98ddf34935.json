@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8153c4ba1c98ddf34935",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis 72b vs 7b item correlation",
+  "task_key": "worker_analysis_72b_vs_7b_item_correlation_20260522T203114",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_72b_vs_7b_item_correlation_20260522T203114_result.json",
+    "occurrence": 1,
+    "bytes": 807,
+    "sha256": "7e96261f4e6b48e32866eb184574171f2deb1506788c4c789fbdbe768292a3f2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。\n\n**结果汇总：**\n\n| Pair | Pearson *r* | Spearman *ρ* | n |\n|------|------------|-------------|---|\n| 7B vs 72B | 0.428 (p=2.58e-10) | 0.571 (p=1.06e-18) | 200 |\n| 3B vs 72B | 0.450 (p=2.35e-11) | 0.509 (p=1.49e-14) | 200 |\n\nItem difficulty ordering 在 model scale 之间呈中等正相关（Spearman ρ ≈ 0.51–0.57），高度显著。散点图显示明显的 ceiling effect——72B 在大量 item 上达到 100% accuracy，压缩了分布范围，这解释了 Pearson r 偏低（受限范围衰减）。Spearman rank correlation 更高，说明 difficulty ranking 比 raw accuracy 更稳定。\n\n**输出文件：**\n- JSON: `artifacts/exp004/data/scale_item_difficulty_correlation.json`\n- PDF/PNG: `artifacts/figures/scale_item_difficulty_scatter.{pdf,png}`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-72b-vs-7b-item-correlation-copy-2.md"
+}

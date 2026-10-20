@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "200eb2161ff14a9146da",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis intermediate dstudy table",
+  "task_key": "worker_analysis_intermediate_dstudy_table_20260522T104120",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_intermediate_dstudy_table_20260522T104120_result.json",
+    "occurrence": 1,
+    "bytes": 1585,
+    "sha256": "4b1f4614ad77b78a2bc49ffe8f36e0c7cdd38f2d22a1d1d581fd218d7bdc6ef6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON saved. Here's the D-study results table:\n\n| Design | Prompts | Seeds | Temps | Orderings | Conditions | σ²(δ) | G@200 | n(G≥0.80) |\n|---|---|---|---|---|---|---|---|---|\n| Single-condition (typical) | 1 | 1 | 1 | 1 | 1 | 0.0877 | **0.592** | 552 |\n| Minimal upgrade | 2 | 1 | 1 | 1 | 2 | 0.0566 | 0.692 | 357 |\n| Easy upgrade | 2 | 2 | 1 | 1 | 4 | 0.0389 | 0.766 | 245 |\n| Moderate | 3 | 3 | 1 | 1 | 9 | 0.0282 | 0.818 | 178 |\n| Standard | 4 | 4 | 2 | 1 | 32 | 0.0192 | 0.869 | 121 |\n| Enhanced | 6 | 6 | 1 | 2 | 72 | 0.0188 | 0.871 | 119 |\n| Full multi-facet | 6 | 6 | 3† | 4 | 1296 | 0.0087 | **0.936** | 55 |\n\n†Full multi-facet includes all 3 precision levels (FP16/BF16/FP32) × 3 temperatures; for practical designs (rows 1–6), precision is fixed at 1 level.\n\nKey observations:\n- Just adding 1 extra prompt template (Minimal upgrade, 2× cost) raises G from 0.59 → 0.69\n- The **Easy upgrade** (2 prompts × 2 seeds, 4× cost) reaches G=0.77 — the biggest ROI point\n- **Moderate** (3×3, 9× cost) crosses the G=0.80 threshold at 200 items\n- Standard and Enhanced give nearly identical G (~0.87) despite very different condition counts (32 vs 72), because prompt and seed interactions dominate — temperature and ordering contribute much less\n- Going from Enhanced to Full multi-facet (adding all precision/temp levels) provides the last jump to 0.936 but requires 1296 conditions per item\n\nBoth anchors validated: single-condition G@200 = 0.5917 ✓, full multi-facet G@200 = 0.9361 ✓. Monotonicity holds across all rows."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-intermediate-dstudy-table.md"
+}

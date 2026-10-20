@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dff1b50560f6669fd1d9",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis dstudy progressive",
+  "task_key": "worker_analysis_dstudy_progressive_20260521T091708",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dstudy_progressive_20260521T091708_result.json",
+    "occurrence": 1,
+    "bytes": 789,
+    "sha256": "74a797e0ebc26fe4eda9633909b184499513359c280e561c3c97b2b8283b2fe1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果写入 `results/analysis/dstudy_progressive_validation.json`。\n\n**收敛性结论：converged**\n\n| 指标 | 50 items (CV) | 100 items (CV) | 150 items (CV) | 200 items | 150→200 变化 |\n|------|-------------|--------------|--------------|-----------|-------------|\n| item_id_pct | 62.46% (3.04%) | 61.61% (1.21%) | 61.99% (0.65%) | 61.08% | 1.47% |\n| G_item | 0.625 (3.04%) | 0.616 (1.21%) | 0.620 (0.65%) | 0.611 | 1.47% |\n| min_items_G80 | 483 (7.87%) | 499 (3.16%) | 491 (1.74%) | 510 | 3.87% |\n\n所有三项指标 150→200 变化均 <10%，CV 随 subset size 增大单调下降。D-study 投影使用 n_base=200 的公共基准，确保不同 subset sizes 间的 min_items_G80 可比。方差分量估计从 ~100 items 起已高度稳定。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dstudy-progressive.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "47be85555d2a6253a2fd",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp gpu status mistral launch",
+  "task_key": "worker_exp_gpu_status_mistral_launch_20260521T032003",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gpu_status_mistral_launch_20260521T032003_result.json",
+    "occurrence": 1,
+    "bytes": 719,
+    "sha256": "3d52ab8b9547050e09ec5a0aa47c92bc63998358907af0a70ec398c23a89d0e4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**Gemma fp32: 运行中 ~64%**\n\n| Shard | 已完成 | 总条件数 | 进度 |\n|-------|--------|----------|------|\n| shard_0 | 13,800 (69条件) | 21,600 (108条件) | 63.9% |\n| shard_1 | 14,000 (70条件) | 21,600 (108条件) | 64.8% |\n| shard_2 | 13,800 (69条件) | 21,600 (108条件) | 63.9% |\n| shard_3 | 14,000 (70条件) | 21,600 (108条件) | 64.8% |\n| **合计** | **55,600** | **86,400** | **64.4%** |\n\n- 4 GPU 全部满载（90-91GB VRAM, 87-100% util），活跃处理中（条件 2628-2751）\n- BF16 已完成：86,400 records\n\n**Mistral: 未启动**（无日志文件，结果目录为空）\n\nfp32 预计还需若干小时完成。完成后需合并数据并启动 Mistral。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-gpu-status-mistral-launch.md"
+}

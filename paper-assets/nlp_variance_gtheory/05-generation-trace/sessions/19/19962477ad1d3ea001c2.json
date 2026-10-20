@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "19962477ad1d3ea001c2",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis r1 w4 ordering facet check",
+  "task_key": "worker_analysis_r1_w4_ordering_facet_check_20260521T195344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r1_w4_ordering_facet_check_20260521T195344_result.json",
+    "occurrence": 1,
+    "bytes": 3106,
+    "sha256": "6f1ec6deacacd6158ffec9f755ab1b12b943b3f1793d5f6410a4d299590ee69f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整图景清晰。下面是结论。\n\n---\n\n## R1-W4 结论：Ordering facet 在 GSM8K/MATH 的实现检查\n\n### 1. 代码实现摘要\n\n`run_experiment.py:75-101` 的 `_build_prompt()` 函数按 benchmark 路由：\n\n| Benchmark | ordering 是否传入 prompt builder | 机制 |\n|-----------|------|------|\n| **MMLU** | **是** | `few_shot[subject][str(ordering)]` — 选择 5 个 dev-set 示例的不同排列 |\n| GSM8K | **否** | `format_gsm8k_prompt(template_id, question, few_shot)` — 无 ordering 参数 |\n| MATH | **否** | `format_math_prompt(template_id, question, few_shot)` — 无 ordering 参数 |\n| ARC | **否** | `format_arc_prompt(...)` — 无 ordering 参数 |\n| HellaSwag | **否** | `format_hellaswag_prompt(...)` — 无 ordering 参数 |\n\n**关键澄清**：ordering 的实际含义是 **few-shot 示例排列顺序**（不是 ABCD 选项轮转）。仅 MMLU 的 few-shot 数据按 `{subject → {ordering_id → [examples]}}` 组织，其他 benchmark 的 few-shot 是 flat list。\n\n### 2. 数据验证\n\n**GSM8K**（6 models）：\n\n| Model | Ordering 1 | 2 | 3 | 4 | Max-Min diff | Identical |\n|-------|-----------|---|---|---|-------------|-----------|\n| deepseek | 0.3858 | 0.3858 | 0.3871 | 0.3871 | 0.00134* | **True** |\n| gemma | 0.8047 | 0.8047 | 0.8047 | 0.8047 | 0.0 | True |\n| internlm | 0.6781 | 0.6781 | 0.6781 | 0.6781 | 0.0 | True |\n| llama | 0.4897 | 0.4897 | 0.4897 | 0.4897 | 0.0 | True |\n| mistral | 0.3065 | 0.3065 | 0.3065 | 0.3065 | 0.0 | True |\n| qwen | 0.6222 | 0.6222 | 0.6222 | 0.6222 | 0.0 | True |\n\n\\* deepseek 的差异因 ordering 3/4 各缺 1 个 condition（49 vs 50 conditions）。在完整匹配的 9800 行中，4 个 ordering 的 correct 值 **完全一致（0 差异行）**。\n\n**MATH**（4 models with ordering column）：全部 diff=0.0，perfectly identical。\n\n**ARC/HellaSwag**（llama 抽查）：diff=0.0，也是 no-op。\n\n**MMLU 对照**（llama）：diff=0.0042，ordering **有实际效应**。\n\n### 3. 结论\n\n**Ordering 在 GSM8K/MATH（以及 ARC/HellaSwag）上是结构性 no-op。** 这不是经验发现，而是代码逻辑决定的——prompt builder 对这些 benchmark 根本不读 ordering 值，4 个 ordering level 生成完全相同的 prompt，因此 SS(ordering) = 0 by construction。\n\n仅 MMLU 的 ordering facet 有实际效应（通过改变 few-shot 示例的呈现顺序影响准确率）。\n\n### 4. 论文写法建议\n\n1. **Design 章节**：将 ordering 定义为 \"the permutation order of few-shot demonstration examples\"（而非 ABCD 选项轮转），明确说明该 facet 仅对 MMLU 有操作性效应\n2. **方差分解讨论**：注明 GSM8K/MATH/ARC/HellaSwag 的 σ²(ordering) = 0 是结构性零（structurally zero），非经验结果。可在 footnote 或 Limitations 中简要说明\n3. **设计合理性**：保留全 benchmark 的 ordering 交叉是为了维持平衡析因结构，方便统一的 G-study 框架。但应避免将 ordering 对这些 benchmark 的零方差解读为\"ordering 不重要\"的经验证据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r1-w4-ordering-facet-check.md"
+}

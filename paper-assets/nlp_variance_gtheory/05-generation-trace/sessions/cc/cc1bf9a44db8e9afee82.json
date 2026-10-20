@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cc1bf9a44db8e9afee82",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "research round7 lm eval citation",
+  "task_key": "worker_research_round7_lm_eval_citation_20260522T145126",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_round7_lm_eval_citation_20260522T145126_result.json",
+    "occurrence": 1,
+    "bytes": 843,
+    "sha256": "299bc6f2402d424e44b82ece17e4c8f13ea77c4cd0f6785a04cb3e72d3519e99"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "验证结果：\n\n**标题修正**：正确标题是 \"A framework for few-shot language model evaluation\"，不含 \"and benchmark\"，词序也略有不同。\n\n**年份修正**：2023 年 12 月（Zenodo v0.4.0），不是 2024。\n\n**Venue**：这是一个 Zenodo 软件发布（DOI: 10.5281/zenodo.10256836），不是会议论文。无正式会议/期刊发表版。\n\n**两个可引用版本**：\n- `gao2023lmeval` — 软件本身的官方引用（来自 EleutherAI 仓库 CITATION.bib），24 位作者\n- `biderman2024lessons` — 配套方法论论文 \"Lessons from the Trenches on Reproducible Evaluation of Language Models\"（arXiv:2405.14782, 2024），30 位作者，截至 2026-05 仍为 preprint\n\n两个 entry 均已写入 `round7_refs.bib`，key 分别为 `gao2023lmeval` 和 `biderman2024lessons`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-round7-lm-eval-citation.md"
+}

@@ -1,0 +1,706 @@
+{
+  "schema_version": "1.0",
+  "id": "0c50251fe9107f425074",
+  "project": "nlp_variance_gtheory",
+  "kind": "conversation",
+  "title": "review reference audit",
+  "task_key": "worker_review_reference_audit_20260523T173713",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_review_reference_audit_20260523T173713.jsonl",
+    "occurrence": 1,
+    "bytes": 31976,
+    "sha256": "877c7bc282bf14cbbdf9eab79d45f54efe91e8bcd345156f86a52a1827b643b4"
+  },
+  "statistics": {
+    "messages": 35,
+    "user_turns": 0,
+    "tool_calls": 17,
+    "roles": {
+      "tool_call": 17,
+      "tool_result": 17,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-23T17:39:41.667266+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:mcp__agent-ml-research__ssh_read_only",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-23T17:39:41.667618+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-23T17:39:41.667795+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "find /root/nlp_variance_gtheory -name \"*.bib\" -type f"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-23T17:39:41.667926+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "find /root/nlp_variance_gtheory -name \"*.tex\" -type f"
+            }
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-23T17:39:41.668057+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.46}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-23T17:39:41.668180+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.52}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-23T17:39:41.668322+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "ls /root/nlp_variance_gtheory/"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-23T17:39:41.668485+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"artifacts\\\\ndata\\\\ndesign_matrix.csv\\\\ndesign_matrix_exp001.csv\\\\ndesign_matrix_exp001_full.csv\\\\ndesign_matrix_exp001_llama.csv\\\\ndesign_matrix_exp001_llama_local.csv\\\\ndesign_matrix_exp002.csv\\\\ndesign_matrix_exp003_3b.csv\\\\ndesign_matrix_exp003_72b.csv\\\\ndesign_matrix_exp003_7b.csv\\\\ndesign_matrix_exp003_scale.csv\\\\nfigures\\\\nmodels\\\\npartial_credit_multimodel.py\\\\npyproject.toml\\\\nrequirements.txt\\\\nresults\\\\nrun_bf16_eager.py\\\\nrun_float32_only.sh\\\\nrun_float32_v0.sh\\\\nrun_full_mvp.sh\\\\nrun_mmlu_after.sh\\\\nrun_mvp.sh\\\\nrun_reml_500.py\\\\nrun_reml_500.sh\\\\nrun_reml_500_v2.py\\\\nrun_reml_500_v3.py\\\\nscripts\\\\nsrc\\\\ntests\\\\nwait_and_collect.sh\\\\nwait_collect_output.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-23T17:39:41.668614+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__ssh_read_only"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "tool_args": {
+              "server": "westd-32570",
+              "command": "find /root/nlp_variance_gtheory -name \"*.bib\" -o -name \"*.tex\" -o -name \"*.bbl\""
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-23T17:39:41.668733+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.45}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "mcp__agent-ml-research__ssh_read_only",
+            "elapsed_ms": 0
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-23T17:39:41.668880+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.bib",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+            }
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-23T17:39:41.669000+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260521T122449/best/references.bib\nartifacts/exp004/data/round5_bibtex_entries.bib\nartifacts/exp-004/data/round5_bibtex_entries.bib\nartifacts/exp004/data/round6_new_refs.bib\nartifacts/exp004/data/round6_new_refs_a907a1.bib\nartifacts/exp004/data/round7_refs_e2a5dc.bib\nartifacts/exp004/data/round7_refs_522c27.bib\nartifacts/exp004/data/round7_refs.bib\ndocs/paper/references.bib"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-23T17:39:41.669114+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Glob"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Glob",
+            "tool_args": {
+              "pattern": "**/*.tex",
+              "path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory"
+            }
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-23T17:39:41.669232+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "artifacts/dream_reports/dream_20260520T190053/best/paper.tex\nartifacts/dream_reports/dream_20260520T190053/median/paper.tex\nartifacts/dream_reports/dream_20260520T190053/worst/paper.tex\nartifacts/dream_reports/dream_20260520T222113/best/paper.tex\nartifacts/dream_reports/dream_20260520T222113/median/paper.tex\nartifacts/dream_reports/dream_20260520T222113/worst/paper.tex\nartifacts/dream_reports/dream_20260521T032813/best/paper.tex\nartifacts/dream_reports/dream_20260521T032813/median/paper.tex\nartifacts/dream_reports/dream_20260521T032813/worst/paper.tex\nartifacts/dream_reports/dream_20260521T044739/best/paper.tex\nartifacts/dream_reports/dream_20260521T044739/median/paper.tex\nartifacts/dream_reports/dream_20260521T044739/worst/paper.tex\nartifacts/dream_reports/dream_20260521T075006/best/paper.tex\nartifacts/dream_reports/dream_20260521T075006/median/paper.tex\nartifacts/dream_reports/dream_20260521T075006/worst/paper.tex\nartifacts/dream_reports/dream_20260521T122449/best/paper.tex\nartifacts/dream_reports/dream_20260521T122449/median/paper.tex\nartifacts/dream_reports/dream_20260521T122449/worst/paper.tex\nartifacts/_project/paper/experiments.tex\ndocs/paper/sections/experiments.tex\nartifacts/_project/paper/method.tex\nartifacts/_project/paper/related_work.tex\nartifacts/_project/paper/abstract.tex\nartifacts/_project/paper/conclusion.tex\nartifacts/_project/paper/limitations.tex\ndocs/paper/main.tex\ndocs/paper/introduction.tex\ndocs/paper/related_work.tex\ndocs/paper/conclusion.tex\ndocs/paper/abstract.tex\ndocs/paper/limitations.tex\ndocs/paper/experiments.tex\ndocs/paper/method.tex\ndocs/paper/appendix.tex"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Glob",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-23T17:39:41.669414+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/main.tex"
+            }
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-23T17:39:41.669549+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\documentclass[11pt]{article}\n2\t\n3\t\\usepackage[review]{acl}\n4\t\n5\t\\usepackage{times}\n6\t\\usepackage{latexsym}\n7\t\\usepackage[T1]{fontenc}\n8\t\\usepackage[utf8]{inputenc}\n9\t\\usepackage{microtype}\n10\t\n11\t\\usepackage{graphicx}\n12\t\\usepackage{amsmath,amssymb}\n13\t\\usepackage{booktabs}\n14\t\\usepackage{multirow}\n15\t\\usepackage{xcolor}\n16\t\n17\t\\graphicspath{{../../figures/paper/}}\n18\t\n19\t\\title{Reproducibility Budgets for Open-Weight LLM Evaluation:\\\\A Generalizability Theory Study of 7--9B Instruction-Tuned Models}\n20\t\n21\t\\author{Anonymous}\n22\t\n23\t\\begin{document}\n24\t\\maketitle\n25\t\n26\t\\begin{abstract}\n27\t\\input{abstract}\n28\t\\end{abstract}\n29\t\n30\t% === INTRODUCTION ===\n31\t\\input{introduction}\n32\t\n33\t% === RELATED WORK ===\n34\t\\input{related_work}\n35\t\n36\t% === METHOD ===\n37\t\\input{method}\n38\t\n39\t% === EXPERIMENTS ===\n40\t\\input{experiments}\n41\t\n42\t% === CONCLUSION ===\n43\t\\input{conclusion}\n44\t\n45\t% === LIMITATIONS ===\n46\t\\input{limitations}\n47\t\n48\t\\bibliography{references}\n49\t\n50\t% === APPENDIX ===\n51\t\\input{appendix}\n52\t\n53\t\\end{document}\n54\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-23T17:39:41.669677+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/references.bib"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-23T17:39:41.669926+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t% references.bib — auto-generated from literature_map.yaml (29 cited papers)\n2\t% Last synced: 2026-05-21\n3\t\n4\t% ====== G-Theory & Evaluation Variance ======\n5\t\n6\t@article{messing2026hidden,\n7\t  title={Hidden Measurement Error in {LLM} Pipelines Distorts Annotation, Evaluation, and Benchmarking},\n8\t  author={Messing, Solomon},\n9\t  year={2026},\n10\t  journal={arXiv preprint arXiv:2604.11581},\n11\t  url={https://arxiv.org/abs/2604.11581}\n12\t}\n13\t\n14\t@article{wei2025gtheory,\n15\t  title={Exploring {LLM} Autoscoring Reliability in Large-Scale Writing Assessments Using Generalizability Theory},\n16\t  author={Song, Dan and Lee, Won-Chan and Jiao, Hong},\n17\t  year={2025},\n18\t  journal={arXiv preprint arXiv:2507.19980},\n19\t  url={https://arxiv.org/abs/2507.19980}\n20\t}\n21\t\n22\t@article{madaan2024quantifying,\n23\t  title={Quantifying Variance in Evaluation Benchmarks},\n24\t  author={Madaan, Lovish and Bhatia, Samarth and Tulio Ribeiro, Marco and Roth, Dan},\n25\t  year={2024},\n26\t  journal={arXiv preprint arXiv:2406.10229},\n27\t  url={https://arxiv.org/abs/2406.10229}\n28\t}\n29\t\n30\t@inproceedings{bouthillier2021accounting,\n31\t  title={Accounting for Variance in Machine Learning Benchmarks},\n32\t  author={Bouthillier, Xavier and Delaunay, Pierre and Bronzi, Mirko and Trofimov, Assya and Nichyporuk, Brennan and Szeto, Justin and Sepahvand, Nazanin Mohammadi and Raff, Edward and Madan, Kshitij and Voleti, Vikram and Kahou, Samira Ebrahimi and Michalski, Vincent and Arbel, Tal and Pal, Chris and Varoquaux, Ga{\\\"e}l and Vincent, Pascal},\n33\t  booktitle={Proceedings of Machine Learning and Systems (MLSys)},\n34\t  year={2021},\n35\t  url={https://arxiv.org/abs/2103.03098}\n36\t}\n37\t\n38\t@book{shavelson1991generalizability,\n39\t  title={Generalizability Theory: A Primer},\n40\t  author={Shavelson, Richard J. and Webb, Noreen M.},\n41\t  year={1991},\n42\t  publisher={SAGE Publications},\n43\t  isbn={978-0-8039-3744-4}\n44\t}\n45\t\n46\t@book{brennan2001generalizability,\n47\t  title={Generalizability Theory},\n48\t  aut\n…[truncated 23799 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-23T17:39:41.670078+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/abstract.tex"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-23T17:39:41.670203+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tLarge Language Model (LLM) evaluation results vary across reproductions, but variance sources interact, and their relative importance shifts with the benchmark format. We apply Generalizability theory (G-theory) in a fully crossed design with up to seven facets across eight open-weight instruction-tuned models (7--9B parameters) and five benchmarks, totaling approximately 2.3 million evaluation records. D-study projections show that, under binary correctness scoring, a recommended multi-condition design achieves $G \\geq 0.80$ with 178 items (1,602 evaluations per model), a 3.1$\\times$ item reduction over single-condition designs (552 items, 552 evaluations)---trading approximately 3$\\times$ more total evaluations for 3$\\times$ fewer items, a tradeoff that favors multi-condition designs when item construction is costly. Model$\\times$item interaction (up to 36\\%) indicates that models differ primarily in which items they find difficult, not in overall ability. Preliminary validation across a 3B--72B parameter range confirms stable variance structure within one architecture family. We release an open-source G-theory pipeline and D-study budget calculator for evaluation design optimization."
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-23T17:39:41.670336+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/introduction.tex"
+            }
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-23T17:39:41.670498+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Introduction}\n2\t\\label{sec:introduction}\n3\t\n4\tIn our analysis of five benchmarks, item selection drives 34--38\\% of evaluation variance on multiple-choice tasks while prompt wording is negligible ($<$3\\%). On the free-form reasoning task GSM8K, the structure shifts: model$\\times$prompt interaction alone accounts for approximately 9\\%, while item selection drops to 17\\%. These numbers, drawn from a factorial analysis of approximately 2.3 million evaluation records, reveal that the variance structure of LLM evaluation is not a fixed property of the pipeline but shifts qualitatively with the response format. Current evaluation practice treats variance sources as independent nuisance factors and controls them one at a time: one study perturbs prompts, another varies precision, a third changes item subsets. This piecemeal approach cannot capture interactions between sources, nor can it predict how the relative importance of each source changes across evaluation settings. Leaderboard rankings built on single-condition evaluations are therefore sensitive to methodological choices that remain unreported and uncontrolled \\citep{rodriguez2021leaderboards, dehghani2021benchmark}. No study has simultaneously crossed infrastructure and methodology facets in a unified factorial design across benchmarks to decompose these sources, quantify their interactions, and compare the resulting variance structure.\n5\t\n6\tExisting studies examine individual variance sources in isolation. \\citet{sclar2024formatting} and BrittleBench \\citep{brittlebench2026} documented 50--76\\% accuracy swings from prompt formatting; \\citet{yuan2025layercast} showed up to 9\\% variation from numerical precision; \\citet{pezeshkpour2024ordering}, \\citet{dodge2020finetuning}, and \\citet{henderson2018deep} documented ordering and hyperparameter sensitivity---each holding other factors fixed. \\citet{messing2026hidden} applied G-theory to LLM evaluation across five methodology facets on a single benchmark (j\n…[truncated 2900 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-23T17:39:41.670635+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/related_work.tex"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-23T17:39:41.670779+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Related Work}\n2\t\\label{sec:related}\n3\t\n4\t\\paragraph{Variance Decomposition in ML/NLP Evaluation.}\n5\tFactorial decomposition of evaluation variance has roots in the ML reproducibility literature. \\citet{bouthillier2021accounting} introduced an ANOVA-based template that decomposes benchmark variance across implementation details, hyperparameters, and data splits, establishing that design choices account for a substantial share of reproducibility failures. Subsequent studies applied similar decomposition to specific evaluation facets \\citep{dodge2020finetuning, henderson2018deep, magnusson2023reproducibility}. \\citet{messing2026hidden} brought Generalizability theory into LLM evaluation, decomposing variance across five methodology facets on a single benchmark (judge identity: 43.8\\%; see Positioning below for detailed comparison). \\citet{madaan2024quantifying} proposed per-factor variance metrics for LLM evaluation benchmarks but did not cross factors simultaneously. Holistic evaluation frameworks \\citep{liang2023helm, kiela2021dynabench} standardize multi-scenario comparison but do not decompose variance sources. \\citet{blackwell2024towards} quantified uncertainty in benchmark scores, and \\citet{qian2026benchmark} conducted systematic meta-evaluation of LLM benchmarks; \\citet{burnell2023rethink} called for rethinking evaluation reporting standards; \\citet{saxon2024metrology} advocated model metrology as a framework for rigorous benchmark design. Recently, G-theory has been applied to LLM-based writing assessment \\citep{wei2025gtheory} and annotation reliability \\citep{varannot2025gtheory}, but these studies address scoring consistency rather than benchmark evaluation variance. \\citet{kunievsky2025intent} proposed an alternative decomposition that separates intent uncertainty, articulation variance, and model uncertainty, but this framework does not cross infrastructure and methodology facets in a factorial design. Our work extends these approaches by cross\n…[truncated 4652 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-23T17:39:41.670918+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/method.tex"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-23T17:39:41.671096+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Method and Experimental Design}\n2\t\\label{sec:method}\n3\t\n4\t\\subsection{Generalizability Theory}\n5\t\\label{sec:gtheory}\n6\t\n7\tGeneralizability theory (G-theory) treats each measurement as one observation from a universe of admissible conditions defined by the crossed facets of an evaluation design \\cite{shavelson1991generalizability, brennan2001generalizability}. The \\emph{object of measurement} is the entity whose consistency is of interest. In our setting, test items ($p$) serve as the object of measurement, and the goal is to determine how reliably item-level scores generalize across the methodological conditions under which they are collected.\n8\t\n9\tA \\emph{G-study} decomposes total observed variance into components $\\sigma^2_x$ for each facet $x$ and their interactions. Each component quantifies how much variability that source contributes to the overall measurement. Large interaction components (e.g., $\\sigma^2_{pM}$ for item-by-model) indicate that facets do not affect items uniformly but instead create differential difficulty profiles. We estimate variance components via Henderson Method~I, an unbiased ANOVA-based estimator for balanced designs \\cite[Ch.~3]{brennan2001generalizability}, with 1,000-resample bootstrap confidence intervals \\cite{efron1993bootstrap} (item-level resampling with replacement, preserving the fully-crossed structure across all other facets) \\cite{li2023bootstrap}.\n10\t\n11\tA \\emph{D-study} projects the generalizability coefficient under hypothetical designs with different numbers of conditions per facet:\n12\t\\begin{equation}\n13\tG_\\text{item} = \\frac{\\sigma^2_p}{\\sigma^2_p + \\sigma^2_\\text{rel}}\n14\t\\label{eq:gcoeff}\n15\t\\end{equation}\n16\twhere $\\sigma^2_\\text{rel} = \\sum_i \\sigma^2_{p \\times f_i} / n_{f_i} + \\sigma^2_\\text{residual} / \\prod_i n_{f_i}$ aggregates all item-by-facet interaction variances, each divided by the number of conditions for the corresponding facets \\cite[Ch.~4]{brennan2001generalizability}. A D-study projects \n…[truncated 11788 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-23T17:39:41.671238+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/experiments.tex"
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-23T17:39:41.671433+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Experiments}\n2\t\n3\tAll experiments use open-weight 7--9B parameter models evaluated with vLLM~0.9.2 on a single NVIDIA RTX PRO 6000 GPU (96GB) with binary correctness scoring.\n4\t\n5\t\\subsection{Single-Model Baseline}\n6\t\n7\tWe first establish the variance structure within a single model (Llama-3.1-8B-Instruct) on MMLU to isolate methodological facet contributions before introducing cross-model variation.\n8\t\n9\t\\paragraph{Design.} The G-study crosses six facets: 200 items $\\times$ 3 numerical precisions (BF16, FP16, FP32) $\\times$ 6 prompt templates $\\times$ 6 random seeds $\\times$ 3 temperature levels (0.0, 0.3, 0.7) $\\times$ 4 answer orderings, yielding 259,200 binary observations. Variance components are estimated via Henderson Method~I with bootstrap confidence intervals (1,000 resamples).\n10\t\n11\t\\paragraph{Results.} Under binary scoring, item difficulty (\\texttt{item\\_id}) accounts for 58.4\\% of total variance, with the residual term contributing 23.1\\%. All main facet effects are negligible ($<$1\\% each): precision 0.9\\%, prompt template, temperature, seed, and ordering each $<$0.5\\%. The interesting structure appears in item-conditional interactions: prompt$\\times$item is the largest at 5.5\\%, followed by seed$\\times$item (4.7\\%), precision$\\times$item (3.3\\%), temperature$\\times$item (2.9\\%), and ordering$\\times$item (0.8\\%). This pattern indicates that methodological choices do not shift performance uniformly across items; instead, specific items are differentially sensitive to specific facets---prompt template variation produces the largest item-conditional effect.\n12\t\n13\tThe resulting generalizability coefficient is $G_\\text{item} = 0.936$, indicating that 200 items under multi-facet conditions produce highly reliable rankings. A D-study projection shows $G \\geq 0.80$ is achievable with as few as 55 items in this multi-facet design.\n14\t\n15\tFor text-exact-match scoring (requiring verbatim string matches), the variance structure shifts dramatically: te\n…[truncated 9407 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-23T17:39:41.671579+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/conclusion.tex"
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-23T17:39:41.671701+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tA recommended 3-prompt $\\times$ 3-seed design reduces item requirements from 552 to 178 for $G \\geq 0.80$, confirmed across five benchmarks under binary scoring; multi-facet designs minimize items when item construction is costly, while single-condition designs suit compute-constrained settings. $G_\\text{item}$ and $G_\\text{model}$ have different bottlenecks---item count for the former, prompt standardization for the latter---providing orthogonal optimization paths: adding items improves item reliability, while controlling prompt and seed conditions improves model discriminability. All budgets assume binary scoring; extending to other model scales and continuous metrics is a priority. We recommend that benchmark designers adopt multi-facet validation (at minimum 3 prompts $\\times$ 3 seeds) as standard practice when sizing pilot studies, and that leaderboard operators average over prompt and seed conditions to improve ranking stability. Code, data, and a D-study calculator will be released upon publication."
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-23T17:39:41.671826+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/limitations.tex"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-23T17:39:41.671952+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Limitations}\n2\t\\label{sec:limitations}\n3\t\n4\tOur eight models share the 2024--2025 instruction-tuning paradigm; temporal correlation may limit exchangeability, and results do not generalize to API-based or base models. Preliminary within-family 72B validation (\\S4.6) suggests stable variance structure across scales, but is limited to a single architecture (Qwen2.5); the Qwen2.5 family shares training recipes and tokenizer, so validating with architecturally distinct families (e.g., Llama-3 70B, Mistral-Large) is necessary before extrapolating budget recommendations to arbitrary model families.\n5\t\n6\tThe benchmark sample ($n = 5$) limits statistical power for format-associated observations ($p = 0.10$); other formats (code generation, multi-turn dialogue) may differ. All D-study budgets reported in this paper are strictly valid only under binary correctness scoring. Our partial-credit analysis (GSM8K, 8 models) shows $G$ drops from 0.86 to 0.77 (crossed design) with all models showing $G_\\text{partial} < G_\\text{binary}$, suggesting limited transferability to finer-grained scoring rubrics; the analysis is limited to a single benchmark, and its generalizability to other tasks is unknown. Our temperature range (0.0--0.7) does not cover high-temperature regimes ($\\tau > 1.0$) sometimes used in generation tasks. Our design varies few-shot example ordering but not example identity, a known variance source. Results depend on vLLM~0.9.2; different inference engines or vLLM versions may alter CUDA-level nondeterminism patterns.\n7\t\n8\tAll eight models may have encountered benchmark items during pre-training; differential contamination across architectures could inflate model$\\times$item interaction \\citep{golchin2023contamination, oren2024proving}, though consistent variance structures across three independently constructed MC benchmarks provide indirect evidence against contamination as the sole driver. Contamination affects absolute budget estimates but has limited \n…[truncated 130 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-23T17:39:41.672082+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/appendix.tex"
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-23T17:39:41.672338+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\\section{Additional Robustness Analyses}\n3\t\\label{app:robustness}\n4\t\n5\tWe report nine robustness analyses that verify the stability of the variance decomposition under alternative analytical choices.\n6\t\n7\t\\paragraph{GLMM complement.} A generalized linear mixed model (GLMM) with marginal logit link produces variance component rankings that perfectly preserve all seven grouped component orderings ($\\rho = 1.0$) relative to Henderson Method~I \\cite{jiang2018bayesian, tuerlinckx2006glmm}. This confirms that the linear variance decomposition is robust to the binary outcome distribution.\n8\t\n9\t\\paragraph{Accuracy-range stability.} The \\texttt{item\\_id} variance share remains stable across subsets with mean accuracy from 0.62 to 0.72 ($r = -0.048$). This rules out distortion from binary floor or ceiling effects at observed accuracy levels.\n10\t\n11\t\\paragraph{Estimator robustness.} We compare Henderson Method~I with restricted maximum likelihood (REML-EM, 500 iterations, practical convergence $\\Delta < 0.003$ percentage points). All variance components differ by $<$0.5 percentage points between estimators. The largest discrepancy occurs on the residual component (0.47pp); all substantive components (item, model$\\times$item, model) differ by $<$0.3pp. Henderson Method~I is preferred for our balanced designs because it produces unbiased estimates without distributional assumptions \\cite[Ch.~12]{brennan2001generalizability}.\n12\t\n13\t\\paragraph{Probit simulation.} A probit simulation matched to our 1,296-condition design confirms that Henderson Method~I recovers variance component rankings from dichotomized data (Spearman $\\rho = 0.732$ between binary and continuous rankings, excluding residual; \\texttt{item\\_id} dominant in all 100 replications; top-5 ordering correct in 79\\% of replications). Bias analysis by difficulty stratum shows $|\\text{bias}| = 0.28$--$0.37$ for items with $p \\in [0.5, 0.8]$, where the Bernoulli variance ceiling $p(1{-}p)$ is largest. This an\n…[truncated 26927 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-23T17:39:41.672620+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有文件已读取完毕，开始交叉分析。\n\n---\n\n## Reference 审计报告\n\n### 1. 总量统计\n\n| 指标 | 数量 |\n|------|------|\n| 正文 unique cite keys | **59** |\n| Bib 条目数 | **59** |\n\n### 2. Undefined Citations（正文 cite 了但 bib 没有）\n\n**0 个。** 所有正文引用均有对应 bib 条目。\n\n### 3. Unused Bib Entries（bib 有但未 cite）\n\n**0 个。** 所有 bib 条目均在正文中被引用。\n\n### 4. 重复条目\n\n**0 个。**\n\n### 5. 不完整条目\n\n所有条目均具备 author（或 editor）、title、year、venue 四个基本字段。**无缺失。**\n\n### 6. Key-Metadata 不一致（需关注）\n\n| 条目 key | 问题 | 详情 |\n|----------|------|------|\n| `wei2025gtheory` | **Key 与首作者不符** | Key 暗示首作者 \"Wei\"，实际首作者是 **Song, Dan**。应为 `song2025gtheory` |\n| `varannot2025gtheory` | **Key 年份与实际年份不符** | Key 写 `2025`，但 year 字段为 **2026**，arXiv ID `2601` 确认为 2026 年 1 月发表 |\n\n### 7. 格式一致性问题\n\n#### 7a. `and others` 缩写（3 处）\n以下条目用 `and others` 代替完整作者列表，与其余 56 条目（列出全部作者）不一致：\n- `qian2026benchmark` — `Qian, Qi and Huang, Chengsong and Xu, Jingwen and others`\n- `burnell2023rethink` — `Burnell, Ryan and Schellaert, Wout and Burden, John and others`\n- `liang2023helm` — `Liang, Percy and ... and Kumar, Ananya and others`\n\n#### 7b. 缺少 `url` 字段（3 处）\n大部分条目都有 `url`，以下三个没有：\n- `qian2026benchmark`\n- `liang2023helm`\n- `kiela2021dynabench`\n\n#### 7c. `brittlebench2026` key 格式\n该 key 未包含首作者姓名（其他所有条目均以 `lastname+year` 命名），虽不影响编译但风格不统一。首作者是 Romanou，建议改为 `romanou2026brittlebench`。\n\n### 8. 总结\n\n| 类别 | 数量 |\n|------|------|\n| Undefined citations | 0 |\n| Unused entries | 0 |\n| 重复条目 | 0 |\n| 缺必要字段 | 0 |\n| Key-metadata 不一致 | **2** (`wei2025gtheory`, `varannot2025gtheory`) |\n| `and others` 缩写不一致 | **3** |\n| 缺 url | **3** |\n| Key 命名风格不一致 | **1** (`brittlebench2026`) |\n\n整体引用质量良好，无编译阻断性问题。主要建议修正 2 个 key-metadata 不一致项（`wei2025gtheory` → `song2025gtheory`，`varannot2025gtheory` → `varannot2026gtheory`）和补全 3 个 `and others` 的完整作者列表。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_review_reference_audit_20260523T173713"
+          },
+          "id": "event-000035"
+        }
+      ],
+      "message_count": 35
+    }
+  ],
+  "readable_path": "readable/conversations/review-reference-audit.md"
+}

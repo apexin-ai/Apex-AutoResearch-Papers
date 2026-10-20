@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dc7af2884a107cd7580f",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra fix westd19912 shard filter and yi",
+  "task_key": "worker_infra_fix_westd19912_shard_filter_and_yi_20260521T181909",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix_westd19912_shard_filter_and_yi_20260521T181909_result.json",
+    "occurrence": 1,
+    "bytes": 1964,
+    "sha256": "9edd8bf4a72b42d89cf72c459d118a50496e079b3bd83ae830350029fd8795dc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 4 GPU 满载运行，6 个实验进程活跃：\n\n| GPU | 任务 | PID | 状态 |\n|-----|------|-----|------|\n| GPU 0 | OLMo GSM8K | 64773 | 运行中 |\n| GPU 1 | OLMo MATH | 64774 | 运行中 |\n| GPU 2 | Yi HellaSwag (chain) | 67686 | 运行中 |\n| GPU 3 | Yi GSM8K (chain) | 67099 | 运行中 |\n\nYi MMLU ✅ 和 Yi ARC ✅ 已完成，chain 已自动接力启动 HellaSwag 和 GSM8K。\n\n---\n\n## 完整状态总结\n\n### 1. Kill 的进程\n| PID | 任务 | 原因 |\n|-----|------|------|\n| 52660 | OLMo GSM8K (旧) | 未过滤 DM，1440 而非 288 条件 |\n| 57889 | OLMo MATH (旧) | 同上 |\n| 57884 | MATH bash 父进程 | 同上 |\n| 58168, 55085 | 孤儿 vLLM 引擎 | OLMo 残留 |\n| 61914, 61956, 61969, 61972 | 孤儿 vLLM 引擎 | Yi 旧进程残留 |\n\n### 2. 修复\n- `src/inference/run_experiment.py` 第 162-167 行：添加 `df = df[df[\"benchmark\"] == benchmark]` 过滤\n- 更新 DEFAULT_ITEMS[\"mmlu\"] 指向 `mmlu_items_exp001.json` (200 items)\n\n### 3. 已清理数据\nOLMo MMLU/ARC/HellaSwag：从 288,000 行（1440 条件混杂）过滤为 57,600 行（288 正确条件）。备份保留在 `.bak_unfiltered`。\n\n### 4. 当前 4 GPU 运行状态\n| GPU | 当前任务 | 后续 chain | 预计 ETA |\n|-----|---------|-----------|---------|\n| GPU 0 | OLMo GSM8K | — | ~03:40 (~70 min) |\n| GPU 1 | OLMo MATH | — | ~04:50 (~140 min) |\n| GPU 2 | Yi HellaSwag → Yi MATH | Yi MATH ~2.5h | ~05:10 |\n| GPU 3 | Yi GSM8K | — | ~04:00 (~90 min) |\n\n### 5. 接力脚本\n- GPU 2 chain (PID 66961): Yi MMLU ✅ → Yi HellaSwag 🔄 → Yi MATH ⏳\n- GPU 3 chain (PID 66962): Yi ARC ✅ → Yi GSM8K 🔄\n\n### 6. ETA 汇总\n- MC benchmarks (MMLU/ARC/HellaSwag): ~5-6 min/benchmark on Blackwell（~1 sec/condition）\n- CoT benchmarks (GSM8K): ~70-90 min/model\n- MATH: ~140-150 min/model\n- **全部完成预计: ~05:10 CST（约 2.5 小时后）**\n- **关键路径: GPU 2 上的 Yi MATH**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-westd19912-shard-filter-and-yi.md"
+}

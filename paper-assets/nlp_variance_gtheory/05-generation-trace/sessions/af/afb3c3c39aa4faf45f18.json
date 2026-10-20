@@ -1,0 +1,51 @@
+{
+  "schema_version": "1.0",
+  "id": "afb3c3c39aa4faf45f18",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra westd32570 symlink and deepseek math accel",
+  "task_key": "worker_infra_westd32570_symlink_and_deepseek_math_accel_20260521T182028",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd32570_symlink_and_deepseek_math_accel_20260521T182028_result.json",
+    "occurrence": 1,
+    "bytes": 1689,
+    "sha256": "1ad6b2c40b862f1fbc794d77e90b807cbbf9838aabd9a03a2195d8bec9e58e04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两个 watcher 均正常运行。\n\n---\n\n## 汇总\n\n### 1. InternLM MATH\n- **`internlm_math.jsonl`**: 57,600 行占位文件 (`{\"_placeholder\": true}`)，chain 会跳过 — 不会浪费时间重跑\n- **`internlm_math_gpu0.jsonl`**: 5,200/57,600 (9%)，GPU 0 accelerator 正在跑\n- **Symlink watcher** (PID 188816): 监控 gpu0 文件，达到 57,600 行后自动用 symlink 替换占位文件\n- **ETA**: ~05:00 CST\n\n### 2. Gemma MATH → DeepSeek MATH\n- **Gemma MATH**: 55,600/57,600 (96%)，~10-15 分钟内完成\n- **Watcher** (PID 188947) 分 4 阶段执行：\n  1. 等 Gemma MATH 完成\n  2. 创建 57,600 行占位 `deepseek_math.jsonl` 阻止 GPU 3 chain 重跑\n  3. 在 GPU 2 启动 DeepSeek MATH（输出到 `deepseek_math_gpu2.jsonl`）\n  4. 完成后用 symlink 替换占位文件\n- **DeepSeek MATH 预计启动**: ~02:35 CST\n- **DeepSeek MATH ETA**: ~05:30 CST\n\n### 3. 各 GPU 当前状态\n\n| GPU | 任务 | 进度 | ETA |\n|-----|------|------|-----|\n| 0 | InternLM MATH accelerator | 5,200/57,600 (9%) | ~05:00 |\n| 1 | InternLM chain → GSM8K | 13,000/57,600 (23%) | GSM8K ~03:42, 然后 MATH 跳过 → chain 结束 |\n| 2 | Gemma MATH → (DeepSeek MATH) | 55,600/57,600 (96%) | Gemma ~02:35, DeepSeek ~05:30 |\n| 3 | DeepSeek chain → GSM8K | 6,200/57,600 (11%) | GSM8K ~04:52, 然后 MATH 跳过 → chain 结束 |\n\n### 4. Chain 跳过逻辑验证\n- **InternLM MATH**: chain 检查 `internlm_math.jsonl` → 57,600 行占位 → **SKIP** (已确认)\n- **DeepSeek MATH**: watcher 会在 GPU 2 启动 DeepSeek MATH 前创建 57,600 行占位 → chain 到达时 **SKIP** (已部署)"
+            }
+          ],
+          "metadata": {
+            "data": {
+              "_placeholder": true
+            }
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd32570-symlink-and-deepseek-math-accel.md"
+}

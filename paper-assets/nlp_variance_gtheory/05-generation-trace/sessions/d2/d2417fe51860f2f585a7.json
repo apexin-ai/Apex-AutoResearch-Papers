@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2417fe51860f2f585a7",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops install tmux",
+  "task_key": "worker_ops_install_tmux_20260523T152617",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_install_tmux_20260523T152617_result.json",
+    "occurrence": 1,
+    "bytes": 92,
+    "sha256": "721b79643fd9ae6d48b330c22ad3351877315d2192d2fc830b89624e3ad26939"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "安装成功：\n- **路径**: `/usr/bin/tmux`\n- **版本**: 3.2a-4ubuntu0.2"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-install-tmux.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "30f608f1eff7e6652bd5",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis phase2 math 8model verify and clean permutation",
+  "task_key": "worker_analysis_phase2_math_8model_verify_and_clean_permutation_20260521T234320",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_math_8model_verify_and_clean_permutation_20260521T234320_result.json",
+    "occurrence": 1,
+    "bytes": 1336,
+    "sha256": "83af47d5716eff0b8d6b5b9c40b60bcfd3eccd65e43b5ee4c05bf5ee560e8ac4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Part A: MATH 8-model Henderson I\n\n| 指标 | 值 |\n|------|------|\n| 数据 | 8 models × 57,600 = 460,800 records |\n| item_id% | **24.03%** [95% CI: 20.73%, 27.17%] |\n| G_item | **0.888** |\n| model:item_id% | 17.28% |\n| model% | 8.51% |\n| residual% | 43.88% |\n| grand mean accuracy | 0.2858 |\n\n**与 7-model 对比**: 26.48% → 24.03% (**-2.45pp**)。加入 DeepSeek 后 item_id% 略降，但在 bootstrap CI 范围内，变化不显著。\n\n### Part B: Clean MC vs FF Permutation Test\n\n| 指标 | 值 |\n|------|------|\n| MC benchmarks | MMLU (37.88%), ARC (37.88%), HellaSwag (34.27%) |\n| FF benchmarks | GSM8K (16.86%), MATH (24.03%) |\n| MC mean | **36.68%** |\n| FF mean | **20.45%** |\n| Difference | **16.23pp** |\n| p-value (one-sided) | **0.10** (1/10, exhaustive) |\n| Cohen's d | **1.73** [95% CI: 1.72, 1.83] |\n| Diff 95% CI | [11.44, 21.02]pp |\n\n观测到的 MC-FF 差异（16.23pp）是所有 C(5,3)=10 种排列中最大的。p=0.10 是 n=5 时理论最小 p 值，描述的是 **format-conditional variance structure**（MC 格式的 item_id% 系统性高于 FF 格式），而非传统统计显著性。Cohen's d=1.73 表明效应量很大。\n\nJSON 已保存至 `results/exp004_8model_analysis/math_8model_verified.json` 和 `clean_permutation_test.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase2-math-8model-verify-and-clean-permutation.md"
+}

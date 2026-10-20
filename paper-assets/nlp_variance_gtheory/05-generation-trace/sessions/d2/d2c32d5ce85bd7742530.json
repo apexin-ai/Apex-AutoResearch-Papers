@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2c32d5ce85bd7742530",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "research related work notes",
+  "task_key": "worker_research_related_work_notes_20260520T171046",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related_work_notes_20260520T171046_result.json",
+    "occurrence": 1,
+    "bytes": 443,
+    "sha256": "f77761600d823d07bc2a7156d5145d78cadfc6515d924979ed0429609332304b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成，写入 `artifacts/related_work_notes.md` 并注册。\n\n覆盖 8 篇论文的完整笔记（3 行格式：核心发现 / 与本工作关系 / 差异化），按 (a) G-theory & Variance Decomposition、(b) Infrastructure Variance、(c) Prompt Sensitivity & Methodological Variance 三类组织。\"Same Prompt, Different Outcomes\" 和 Bui et al. 两篇在蒸馏 skill 中无足够信息，已标注 `[需补充]`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-notes.md"
+}

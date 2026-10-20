@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5fe9275ed3368451fb0c",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra fp32 t0 backfill westd19912",
+  "task_key": "worker_infra_fp32_t0_backfill_westd19912_20260521T205613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fp32_t0_backfill_westd19912_20260521T205613_result.json",
+    "occurrence": 1,
+    "bytes": 856,
+    "sha256": "82c1cb34fe25cfc6f1aac3a1aece162841abe4a3b13ea6946425658eb52c3dbc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "补跑完成，验证通过：\n\n| 指标 | 数值 |\n|------|------|\n| 补跑条件数 | 100 (condition_id 1297-1396) |\n| 补跑行数 | 20,000 |\n| 合并后总行数 | **259,200** (= 1,296 conditions × 200 items) |\n| 唯一 condition_id | **1,296** (无缺失，无重复) |\n| 每条件 items | 全部 200，无异常 |\n| 补跑精度 | 全部 float32 × temperature=0.0 |\n| 补跑准确率 | 71.38%（与其他条件一致） |\n| 合并后总准确率 | 68.39% |\n| 运行时间 | ~10 分钟 |\n| GPU | westd-19912 GPU 0 (RTX PRO 6000 Blackwell) |\n| PID | 75785（已完成） |\n\n数据位置：\n- westd-32570: `results/exp001_llama/llama_fp32_t0_backfill.jsonl`（已传输，与原 4 个 shard 并列）\n- westd-19912: `results/exp001_llama/llama_fp32_t0_backfill.jsonl`（原始产出）\n\n已清理临时 SSH 密钥。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fp32-t0-backfill-westd19912.md"
+}

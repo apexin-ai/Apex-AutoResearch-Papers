@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e8693d42ef8195b3e435",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra westd15695 setup and run",
+  "task_key": "worker_infra_westd15695_setup_and_run_20260521T102428",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd15695_setup_and_run_20260521T102428_result.json",
+    "occurrence": 1,
+    "bytes": 1555,
+    "sha256": "d1d5ff836203cd53a81fddcbec424c26dbb9a67d5de532d020a3dfc3a515aa90"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## 状态汇报\n\n### 环境\n| 项目 | 状态 |\n|------|------|\n| Python | 3.12.3 (conda base) |\n| PyTorch | 2.11.0+cu130 |\n| vLLM | 0.21.0 |\n| CUDA | 13.0 / toolkit 12.8 |\n| GPU | **1× NVIDIA RTX PRO 6000 Blackwell (98GB VRAM)** |\n\n**注意**: 实例只有 1 个 GPU（非预期的 4 个），已调整为串行运行。\n\n### GPU 信息\n- 型号: NVIDIA RTX PRO 6000 Blackwell Server Edition\n- 显存: 98GB — 单卡足以运行 9B 模型 (bf16 ~18GB)\n- 计算能力: 12.0 (Blackwell)\n\n### 项目文件\n已从 westd-32570 传输：src/ (inference/design/config/data modules) + data/ (mmlu_items_exp001.json, few_shot_exp001.json)\n\n### 设计矩阵\n- `results/design_yi.csv`: 432 conditions (bf16 × 3 temps × 6 prompts × 6 seeds × 4 orderings)\n- `results/design_olmo.csv`: 432 conditions（同上）\n\n### 模型下载进度\n7 路 wget 并行下载中，总速度 ~3.5 MB/s：\n- **Yi-1.5-9B-Chat**: ~400MB / ~18GB (4 shards)\n- **OLMo-2-1124-7B-Instruct**: ~650MB / ~14GB (3 shards)\n- **预计完成**: ~2-3 小时\n\n### 推理计划\n`auto_start.sh` (PID 7309) 正在后台运行，会：\n1. 每分钟检查 wget 是否全部完成\n2. 验证模型分片完整性\n3. 先跑 Yi (432 conditions, GPU 0) → 再跑 OLMo (432 conditions, GPU 0)\n\n### 监控命令\n```bash\n# 查看下载进度\ncat /tmp/auto_start.log\n\n# 查看模型大小\ndu -sh /root/autodl-tmp/.hf_cache/01ai/ /root/autodl-tmp/.hf_cache/allenai/\n\n# 查看推理日志（启动后）\ntail -f results/exp001_yi/run.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd15695-setup-and-run.md"
+}

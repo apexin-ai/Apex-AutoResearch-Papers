@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "243d3221650e0ed862f9",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix lazy import math templates",
+  "task_key": "worker_fix_lazy_import_math_templates_20260521T104813",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_lazy_import_math_templates_20260521T104813_result.json",
+    "occurrence": 1,
+    "bytes": 294,
+    "sha256": "21e789347d278f083754eb315ab04174aa4934ef79f8ed3a8f0f3da0a8c58758"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。`MATH_TEMPLATES` 已从 module-level 定义移入 `format_math_prompt` 函数体内。语法检查和所有 import 验证通过。正在运行的 GSM8K/HellaSwag 进程不受影响（已加载旧代码），新进程导入非 MATH 函数时不再触碰 MATH_TEMPLATES。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-lazy-import-math-templates.md"
+}

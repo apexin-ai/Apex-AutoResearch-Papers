@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "590342085866d66e8b9e",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops download fig1 via ssh tools",
+  "task_key": "worker_ops_download_fig1_via_ssh_tools_20260522T003832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download_fig1_via_ssh_tools_20260522T003832_result.json",
+    "occurrence": 1,
+    "bytes": 167,
+    "sha256": "72913b258cc181e57757b1d9556b11042a8f343da927c4835755c4a3950c7fc4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "任务完成。两个文件已从 westd-32570 下载到本地 artifacts 目录，文件完整性已通过 MD5 验证。服务器临时文件已清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-download-fig1-via-ssh-tools.md"
+}

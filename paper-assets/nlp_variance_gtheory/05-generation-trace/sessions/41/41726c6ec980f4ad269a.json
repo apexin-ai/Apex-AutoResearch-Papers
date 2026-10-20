@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "41726c6ec980f4ad269a",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra download qwen",
+  "task_key": "worker_infra_download_qwen_20260521T005242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_download_qwen_20260521T005242_result.json",
+    "occurrence": 1,
+    "bytes": 368,
+    "sha256": "3e9f28c5daa88531e00049d745adb8671cda8f53c17ffc614f36ce6f992e8be1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "状态更新：\n\n- **Qwen3-8B-Instruct 在 HuggingFace 上不存在**（401 返回，ModelScope 也是 404）。Qwen3 不区分 base/Instruct — `Qwen/Qwen3-8B` 本身就是对话模型（有 chat_template，标记 conversational）\n- 已改为下载 **Qwen/Qwen3-8B**，PID 63161，15 个文件正在下载中\n- 约 4.5 分钟后自动轮询进度"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-download-qwen.md"
+}

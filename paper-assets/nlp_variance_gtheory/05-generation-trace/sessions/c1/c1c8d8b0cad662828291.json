@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "c1c8d8b0cad662828291",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "analysis phase2 defensive analyses",
+  "task_key": "worker_analysis_phase2_defensive_analyses_20260521T224314",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_defensive_analyses_20260521T224314.log",
+    "occurrence": 1,
+    "bytes": 638409,
+    "sha256": "63fdbe3923fb8f35e05978242a6a5c8ca2d9a14710c50a08d8ccb55a6164824f"
+  },
+  "statistics": {
+    "messages": 257,
+    "user_turns": 1,
+    "tool_calls": 91,
+    "roles": {
+      "log": 1,
+      "system": 46,
+      "record": 1,
+      "assistant": 25,
+      "tool_call": 91,
+      "user": 1,
+      "tool_result": 91,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "c1c8d8b0cad662828291-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 251,
+      "chunks": [
+        {
+          "path": "c1c8d8b0cad662828291-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "c1c8d8b0cad662828291-part-0002.json",
+          "message_count": 77
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-phase2-defensive-analyses.md"
+}

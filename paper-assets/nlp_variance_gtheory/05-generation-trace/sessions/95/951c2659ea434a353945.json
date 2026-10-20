@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "951c2659ea434a353945",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code exp002 pilot",
+  "task_key": "worker_code_exp002_pilot_20260521T084707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002_pilot_20260521T084707_result.json",
+    "occurrence": 1,
+    "bytes": 1308,
+    "sha256": "990cf196962b5c05364049c2a176f5c42332e88f6ffd9cc0c9c59c396323608d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全量 exp-002 已成功启动并稳定运行中。\n\n## 总结\n\n**Phase 1: Pilot 验证 — 通过**\n\n| Benchmark | Records | Accuracy | Extraction | 状态 |\n|-----------|---------|----------|------------|------|\n| MMLU | 2,000 | 70.6% | 100% | ✓ |\n| GSM8K | 600 (v2) | 64.5% | 100% | ✓ (修复后) |\n| ARC | 2,000 | 81.5% | 98% | ✓ |\n| HellaSwag | 2,000 | 68.5% | 100% | ✓ |\n\n**关键修复**：GSM8K 添加了 stop sequences（`\\nQ:`, `\\nQuestion:`, `\\nProblem:`, `\\n\\n## `），防止模型在回答后继续生成新题目导致答案提取错误。准确率从 30% → 64.5%。\n\n**Phase 2: 全量启动 — 运行中**\n\n- 4 GPU 并行，按模型分 shard：\n  - GPU 0: Qwen3-8B (14/288 MMLU done)\n  - GPU 1: Llama-3.1-8B (15/288 MMLU done)\n  - GPU 2: Gemma-2-9B (12/288 MMLU done)\n  - GPU 3: Mistral-7B (13/288 MMLU done)\n- 每 GPU 跑 4 benchmarks 串行（mmlu → arc → hellaswag → gsm8k）\n- **PID**: 133392\n- **ETA**: ~2.7 小时（约 19:45 CST）\n- 每 GPU 产出：288 conditions × 200 items × 4 benchmarks = 230,400 records\n- 总产出：921,600 records\n\n**监控命令**：\n```bash\ngrep -c \"Condition\" results/exp002/gpu*_*.log   # 各GPU进度\ngrep \"===\" results/exp002/gpu*_*.log             # benchmark切换时间\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp002-pilot.md"
+}

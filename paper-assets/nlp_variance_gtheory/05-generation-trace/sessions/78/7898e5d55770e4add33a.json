@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7898e5d55770e4add33a",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops sync anon repo experiments tex",
+  "task_key": "worker_ops_sync-anon-repo-experiments-tex_20260524T050454",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_sync-anon-repo-experiments-tex_20260524T050454_result.json",
+    "occurrence": 1,
+    "bytes": 480,
+    "sha256": "82280c1fb3d47158ef3b8dac4b14d1f3917bf2cc3d8835cd24a4e34b0c9c8643"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "| 项目 | 结果 |\n|---|---|\n| **Commit hash** | `ed6fbbe` |\n| **Push** | 成功 (`8c21e8e..ed6fbbe main -> main`) |\n| **Diff** | 1 file changed, 3 insertions(+), 3 deletions(-) |\n| **§4.3 交叉引用** | `Table~\\ref{tab:ff_residual}`, `Figure~\\ref{fig:difficulty_scatter}`, `Table~\\ref{tab:subject_gstudy}` ✓ |\n| **§4.5 交叉引用** | `Figure~\\ref{fig:budget_sensitivity}` ✓ |\n| **Token 清理** | 已清理 |\n| **临时目录** | 已清理 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-sync-anon-repo-experiments-tex.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "71ed4f27186058099291",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis binary vs continuous dstudy",
+  "task_key": "worker_analysis_binary_vs_continuous_dstudy_20260523T030219",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_binary_vs_continuous_dstudy_20260523T030219_result.json",
+    "occurrence": 1,
+    "bytes": 1058,
+    "sha256": "223be50ce660562a1d0fbccb3f0107885c83348b6ad9a955fc419ae9898a6150"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。结果总结：\n\n**D-study budget (n_items for G≥0.80)**\n\n| Case | G at 200 items | n_min G≥0.80 | δ/τ ratio |\n|------|---------------|-------------|-----------|\n| Continuous (TRUE_VC) | 0.890 | **99** | 0.124 |\n| Binary observed (real data) | 0.936 | **55** | 0.068 |\n| Binary oracle (simulation p=0.7) | 0.856 | **135** | 0.168 |\n\n**两组对比：**\n\n1. **公平对比（同一模拟内）**：continuous 99 vs binary oracle 135 → 二值化增加 36% 的 item budget。方向符合预期：Bernoulli 噪声将 residual 从 16%→41%，压缩 item_id 从 50%→32%，恶化 δ/τ 比。\n\n2. **跨源对比（模拟 vs 实际数据）**：continuous 99 vs observed binary 55 → continuous 反而多需 80% items。原因是 TRUE_VC 的 facet×item 交互项相对于 item_id 比实际数据更大（δ/τ=0.124 vs 0.068），这是模拟设计与实际方差结构不匹配导致的，不代表连续数据天然劣于二值数据。\n\n输出已保存并注册：`exp004/data/binary_vs_continuous_dstudy.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-binary-vs-continuous-dstudy.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8645c557d6b004ebf30",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix kill extra reml",
+  "task_key": "worker_fix_kill_extra_reml_20260521T061912",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_kill_extra_reml_20260521T061912_result.json",
+    "occurrence": 1,
+    "bytes": 88,
+    "sha256": "bebbb020dc99b579f998c8394e56bc73da91605c8b1ae52deb8bd44085d731fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "102937 已终止。当前只剩 102750（`run_reml_500.py`）在运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-kill-extra-reml.md"
+}

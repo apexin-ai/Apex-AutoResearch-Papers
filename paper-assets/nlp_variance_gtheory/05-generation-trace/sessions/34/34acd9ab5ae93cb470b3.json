@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34acd9ab5ae93cb470b3",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp exp001 llama full",
+  "task_key": "worker_exp_exp001_llama_full_20260521T001014",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp001_llama_full_20260521T001014_result.json",
+    "occurrence": 1,
+    "bytes": 268,
+    "sha256": "c1df2db73f3c3801db0d529504483f28090c20b4d8f61d5ca03a8f8d0a60b545"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**启动完成，进入监控阶段。**\n\n- 4 个 shard 各 299 conditions，precision/temperature 分布均匀\n- 4 GPU 并行加载模型中，进程正常\n- 预计总耗时 ~3 小时\n- 每 30 分钟自动轮询进度，全部完成后汇总结果"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp001-llama-full.md"
+}

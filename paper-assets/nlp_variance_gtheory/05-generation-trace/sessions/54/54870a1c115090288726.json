@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "54870a1c115090288726",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix qwen accuracy recompute",
+  "task_key": "worker_fix_qwen_accuracy_recompute_20260521T074236",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_qwen_accuracy_recompute_20260521T074236_result.json",
+    "occurrence": 1,
+    "bytes": 428,
+    "sha256": "a995a14ad14dd3498750a580e5583c195a1c937889726fdff7cdcbb8a1c1ae74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**exp001_qwen overall accuracy（259,200 条）：0.7252**\n\n| precision | correct | total | accuracy |\n|-----------|---------|-------|----------|\n| bfloat16 | 72,749 | 100,200 | 0.7260 |\n| float16 | 57,769 | 79,600 | 0.7257 |\n| float32 | 57,446 | 79,400 | 0.7235 |\n\n三种 precision 差异极小（< 0.3pp），float32 略低。共 1,227 个 unique condition_id，3 档 temperature（0.0 / 0.3 / 0.7）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-qwen-accuracy-recompute.md"
+}

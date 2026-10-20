@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "207de91a573a30f58d3f",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "analysis phase2 crossmodel perm dstudy",
+  "task_key": "worker_analysis_phase2_crossmodel_perm_dstudy_20260521T224225",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_crossmodel_perm_dstudy_20260521T224225.log",
+    "occurrence": 1,
+    "bytes": 598927,
+    "sha256": "99969dcb833d5b589a5f205a276822cf6956f43d98f83058aa02a2170e169c9b"
+  },
+  "statistics": {
+    "messages": 165,
+    "user_turns": 0,
+    "tool_calls": 54,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 53,
+      "tool_call": 54,
+      "tool_result": 54,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 165,
+      "chunks": [
+        {
+          "path": "207de91a573a30f58d3f-part-0001.json",
+          "message_count": 162
+        },
+        {
+          "path": "207de91a573a30f58d3f-part-0002.json",
+          "message_count": 3
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-phase2-crossmodel-perm-dstudy.md"
+}

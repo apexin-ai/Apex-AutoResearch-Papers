@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0d3d88b379353b629cc6",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "research bootstrap jackknife check",
+  "task_key": "worker_research_bootstrap_jackknife_check_20260522T115334",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_bootstrap_jackknife_check_20260522T115334_result.json",
+    "occurrence": 1,
+    "bytes": 2175,
+    "sha256": "5dee56f900fda0068a35e0a94b1656bf0f81ef8c19e0cafcd529ace8f46579e0"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results are clear. Here's the summary:\n\n---\n\n## 1. 论文中 Bootstrap vs Jackknife 对比的位置\n\n**两处**都有写入：\n\n- **`docs/paper/appendix.tex:13`** — Appendix A 的完整段落：\n  > **CI method comparison.** Bootstrap (1,000 item-level resamples with replacement) and delete-1 jackknife confidence intervals agree closely: width ratios range from 0.96 to 1.04 across all variance components. The agreement indicates that the dependence structure introduced by item-level bootstrap resampling (which creates ~127 unique items per 200-item resample) does not materially distort interval estimates. Stratified resampling by subject (10 subjects × 20 items) produces CIs within 4% of simple item-level bootstrap...\n\n- **`docs/paper/sections/experiments.tex:142`** — §4.6 Robustness Checks 中的简述：\n  > **CI method**: bootstrap and jackknife confidence intervals agree closely (width ratio 0.96–1.04 across components).\n\n## 2. 数字与数据一致性\n\n论文引用的 \"width ratio 0.96–1.04\" 与 worker 分析结果（`worker_analysis_bootstrap_vs_jackknife_20260521T040103_result.json`）完全一致：\n\n| Component | Boot CI width | Jack CI width | Ratio |\n|---|---|---|---|\n| item_id | 10.02 | 10.33 | 0.97 |\n| residual | 5.12 | 5.26 | 0.97 |\n| seed:item_id | 2.40 | 2.37 | 1.01 |\n| prompt_template:item_id | 2.33 | 2.23 | **1.04** |\n| temperature:item_id | 0.94 | 0.98 | **0.96** |\n\n范围确实是 [0.96, 1.04]，数字可追溯。\n\n## 3. 数据 Artifact\n\n- **服务器端**：worker result 显示结果保存到 `results/analysis/bootstrap_vs_jackknife.json`（服务器路径），SSH 当前无法访问验证。\n- **本地 artifacts/**：无已注册的 bootstrap_vs_jackknife artifact（不在 `manifest.yaml` 中）。数据来源仅可追溯到 worker log 的 result JSON。\n\n## 4. 是否需要额外工作\n\n**不需要**。Bootstrap vs jackknife 对比已完整写入论文（appendix 详细版 + main text 摘要版），数字与分析结果一致。唯一的小问题是数据文件未注册到本地 artifact manifest，但 worker result JSON 提供了完整的可追溯性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-bootstrap-jackknife-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a32ad5bc1c0722db0b8a",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "check exp002 completion status",
+  "task_key": "worker_check_exp002_completion_status_20260521T134117",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp002_completion_status_20260521T134117_result.json",
+    "occurrence": 1,
+    "bytes": 1389,
+    "sha256": "68c398dd5edf22d85bd7e8978e995f6c8a5497173de3efe04a19cfada54e8563"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## exp-002 状态汇总\n\n### 1. 核心 16 文件（4 models × 4 benchmarks）\n\n| 文件 | 行数 | 状态 |\n|------|------|------|\n| llama_{mmlu,arc,hellaswag,gsm8k} | 57,600 × 4 | OK |\n| qwen_{mmlu,arc,hellaswag,gsm8k} | 57,600 × 4 | OK |\n| gemma_{mmlu,arc,hellaswag,gsm8k} | 57,600 × 4 | OK |\n| mistral_{mmlu,arc,hellaswag,gsm8k} | 57,600 × 4 | OK |\n\n**判断：exp-002 核心实验 SUCCESS** — 全部 16 文件 × 57,600 行完整。\n\n### 2. MATH 接力推理（进行中）\n\n| 文件 | 行数 | 进度 | 启动时间 | PID |\n|------|------|------|----------|-----|\n| llama_math | 16,400 | 28.5% | 20:45 | 162292 |\n| mistral_math | 13,600 | 23.6% | 20:58 | 163851 |\n| qwen_math | 2,200 | 3.8% | 21:33 | 166536 |\n| gemma_math | 600 | 1.0% | 21:37 | 167468 |\n\nGSM8K→MATH 自动切换已成功执行，monitor 在 21:37 确认全部 3 个模型（mistral/qwen/gemma）切换完毕后退出。llama_math 在 20:45 单独启动。\n\n### 3. GPU 状态\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 86% | 87.9 / 97.9 GiB |\n| 1 | 81% | 88.0 / 97.9 GiB |\n| 2 | 89% | 87.1 / 97.9 GiB |\n| 3 | 80% | 88.5 / 97.9 GiB |\n\n4 GPU 全满载跑 MATH 推理。\n\n### 4. MATH 预计完成时间\n\n按 llama/mistral 的稳定速率（~300 lines/min），4 个 MATH 文件预计还需 **~3-3.5 小时**（约 01:00 CST 前后完成）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp002-completion-status.md"
+}

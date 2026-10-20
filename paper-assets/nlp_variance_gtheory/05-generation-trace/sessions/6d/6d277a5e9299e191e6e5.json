@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6d277a5e9299e191e6e5",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops 72b download status check",
+  "task_key": "worker_ops_72b_download_status_check_20260522T103922",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_72b_download_status_check_20260522T103922_result.json",
+    "occurrence": 1,
+    "bytes": 1055,
+    "sha256": "841c5991429becc8f9bc13b66919a6773a17dae2d3422c364d7dc316395e9ddd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总报告\n\n### 72B 模型下载\n\n| 项目 | 状态 |\n|------|------|\n| 进程 | **活跃**（PID 229326，从 13:06 开始运行，已约 5.5 小时） |\n| 已完成分片 | 19/37 safetensors 已落盘（70GB） |\n| 正在下载 | 8 个分片并行下载中（model-00019~00027），当前在 temp 目录（21GB） |\n| 待下载 | 10 个分片（model-00028~00037）尚未开始 |\n| 已下载总量 | ~91GB / ~140GB（**约 65%**） |\n| 下载速度 | ~370-400 KB/s（受 AutoDL 代理带宽限制） |\n| 预计剩余 | 按当前速度约 **3-4 小时** |\n\n### 推理结果\n\n| 模型 | 状态 | 行数 |\n|------|------|------|\n| Qwen2.5-3B MMLU | 完成 | 57,600 |\n| Qwen2.5-7B MMLU | 完成 | 57,600 |\n| Qwen2.5-72B | **未开始**（等模型下载完成） |\n\n### 磁盘空间\n\n| 总量 | 已用 | 可用 | 使用率 |\n|------|------|------|--------|\n| 350G | 276G | 75G | 79% |\n\n72B 模型剩余约 50GB 待下载，加上推理时 vLLM 加载开销，75GB 剩余空间足够。无 tmux 会话运行。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-72b-download-status-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "190508cc03886014434e",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis within mmlu subject gradient 4model",
+  "task_key": "worker_analysis_within_mmlu_subject_gradient_4model_20260521T113035",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_within_mmlu_subject_gradient_4model_20260521T113035_result.json",
+    "occurrence": 1,
+    "bytes": 1399,
+    "sha256": "e515ea97552b28ed9f7e8e3368ce2ff3710ac5383346d6ed7f6e7a3449653e02"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果写入 `results/exp001_analysis/within_mmlu_subject_gradient_4model.json`。\n\n**关键发现**：\n\n| Subject | item_id% | model:item% | G_item | acc | 类别 |\n|---------|----------|-------------|--------|-----|------|\n| international_law | 57.71% | 27.01% | 0.8905 | 0.77 | HUM |\n| clinical_knowledge | 57.68% | 31.98% | 0.8742 | 0.62 | OTHER |\n| world_religions | 46.15% | 22.47% | 0.8703 | 0.86 | HUM |\n| computer_security | 41.53% | 27.58% | 0.8408 | 0.80 | STEM |\n| philosophy | 41.25% | 28.12% | 0.8362 | 0.84 | HUM |\n| college_physics | 39.53% | 31.35% | 0.8206 | 0.50 | STEM |\n| us_foreign_policy | 31.91% | 46.34% | 0.7242 | 0.89 | OTHER |\n| abstract_algebra | 19.56% | 42.12% | 0.6222 | 0.51 | STEM |\n| high_school_math | 10.93% | 46.03% | 0.4516 | 0.41 | STEM |\n| professional_medicine | 7.46% | 65.71% | 0.3057 | 0.81 | OTHER |\n| **ALL MERGED** | **42.08%** | **33.64%** | **0.8200** | 0.70 | — |\n\n**STEM vs Humanities 梯度**：STEM mean item_id% = 27.89%, Humanities mean = 48.37%。Humanities 科目的 item 方差占比更高（题目本身差异主导），STEM 科目的 model×item 交互更大（模型对不同题的差异表现更不一致）。\n\n注：修正了之前分析中 G_item 的计算 bug（residual 需除以所有非 item facet 的 level 乘积），G_item 从全 0 修正到 0.31–0.89 的合理范围。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-within-mmlu-subject-gradient-4model.md"
+}

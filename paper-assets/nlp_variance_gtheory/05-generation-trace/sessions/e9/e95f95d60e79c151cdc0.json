@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "e95f95d60e79c151cdc0",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "infra fix westd15695 olmo yi",
+  "task_key": "worker_infra_fix_westd15695_olmo_yi_20260521T151037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix_westd15695_olmo_yi_20260521T151037.log",
+    "occurrence": 1,
+    "bytes": 563220,
+    "sha256": "4e63731c24430083450927da0819e56c3cd319e211193a835fce73e440ff7477"
+  },
+  "statistics": {
+    "messages": 274,
+    "user_turns": 0,
+    "tool_calls": 98,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 74,
+      "tool_call": 98,
+      "tool_result": 98,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 274,
+      "chunks": [
+        {
+          "path": "e95f95d60e79c151cdc0-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "e95f95d60e79c151cdc0-part-0002.json",
+          "message_count": 94
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-fix-westd15695-olmo-yi.md"
+}

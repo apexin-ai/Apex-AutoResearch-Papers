@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3664a5e3c71394fb5b7c",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis dataset b gstudy",
+  "task_key": "worker_analysis_dataset_b_gstudy_20260521T053605",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dataset_b_gstudy_20260521T053605_result.json",
+    "occurrence": 1,
+    "bytes": 2447,
+    "sha256": "5b4db5ebf8ac0b2fc2f39306684690e81b5ac3fc298c3f9f5d26d2b870016a3c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "G-study 完成。结果保存至 `results/analysis/dataset_b_gstudy.json`。\n\n---\n\n## 结果汇总\n\n### 1. 方差分量（% of total SS）\n\n| 分量 | % |\n|---|---|\n| **item_id** | **52.28%** |\n| residual | 25.46% |\n| model×item_id | 12.23% |\n| seed×item_id | 4.28% |\n| prompt_template×item_id | 2.53% |\n| precision×item_id | 1.06% |\n| model | 0.62% |\n| ordering×item_id | 0.44% |\n| temperature×item_id | 0.38% |\n| model×precision | 0.33% |\n| precision | 0.32% |\n\n### 2. G 系数\n\n| 系数 | 值 |\n|---|---|\n| **G_item** | **0.866** |\n| **G_condition** | **0.942** |\n\n### 3. D-study\n\n**G_item vs n_models:**\n\n| n_models | 1 | 2 | 3 | 4 | 5 | 10 |\n|---|---|---|---|---|---|---|\n| G_item | 0.786 | 0.866 | 0.896 | 0.912 | 0.922 | 0.943 |\n\n**G_item vs n_seeds:**\n\n| n_seeds | 1 | 2 | 3 | 6 | 10 | 20 |\n|---|---|---|---|---|---|---|\n| G_item | 0.816 | 0.845 | 0.856 | 0.866 | 0.870 | 0.873 |\n\n**G_item vs n_prompts:**\n\n| n_prompts | 1 | 2 | 3 | 6 | 10 | 20 |\n|---|---|---|---|---|---|---|\n| G_item | 0.835 | 0.853 | 0.860 | 0.866 | 0.868 | 0.870 |\n\n### 4. 平衡 vs 不平衡对比\n\n| 分量 | 不平衡 (N=325,600) | 平衡 (N=230,400) | 变化 |\n|---|---|---|---|\n| item_id | 37.90% | 52.28% | **+14.38** |\n| model×item_id | 26.20% | 12.23% | **−13.97** |\n| residual | 24.50% | 25.46% | +0.96 |\n| seed×item_id | 0.50% | 4.28% | **+3.78** |\n| model | 3.10% | 0.62% | −2.48 |\n| G_item | 0.707 | 0.866 | **+0.159** |\n\n### 5. 关键发现\n\n**平衡设计大幅改变了方差分解结构：**\n\n- **item_id 从 37.9% 升至 52.3%**（排名不变，仍是第一大来源）——平衡设计消除混淆后，题目难度差异更加突出\n- **model×item_id 从 26.2% 降至 12.2%**——仍是第二大来源，但不平衡数据中该项被高估了约一倍（可能因缺失 cell 导致方差混入交互项）\n- **seed×item_id 从 0.5% 升至 4.3%**——不平衡中被严重低估，平衡后显示种子对不同题目的影响比之前认为的大\n- **precision 相关分量**（新增）合计约 1.7%——precision 本身和 precision×item_id 贡献不大，但 model×precision 有 0.33%\n- **G_item 从 0.707 升至 0.866**——平衡设计下测量信度显著提升，主要因为 model×item_id 误差项的下降\n- **结论一致性**：model×item_id 仍是第二大来源——平衡设计没有改变基本排序，但修正了数值"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dataset-b-gstudy.md"
+}

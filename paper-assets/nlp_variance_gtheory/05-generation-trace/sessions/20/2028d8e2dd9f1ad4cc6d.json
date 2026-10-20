@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2028d8e2dd9f1ad4cc6d",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code analysis framework",
+  "task_key": "worker_code_analysis_framework_20260520T233759",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_analysis_framework_20260520T233759_result.json",
+    "occurrence": 1,
+    "bytes": 725,
+    "sha256": "d4bfdd6a76076524f9ab382573c4ad98146b69c83f5eb7fd4d0462232538da44"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Import 和 CLI 均验证通过。\n\n两个文件已写入 `artifacts/code/src/analysis/`:\n\n**model_facet_analysis.py** — 7 facets 全交叉 G-study:\n- 复用 `variance_decomposition.py` 的 `compute_ss`、`estimate_variance_components`、`compute_text_exact_match`\n- 7 main effects + 21 two-way interactions + residual\n- G coefficient（model 作为 random facet）\n- D-study 投影：sweep model count 1-10\n- Glob 输入支持多 JSONL 合并\n\n**bootstrap_ci.py** — Bootstrap 置信区间:\n- 以 item 为 resampling unit，有放回抽样\n- 自动检测 6-facet 或 7-facet 设计\n- 每次 resample 重新跑完整 ANOVA → 方差分量\n- 输出 point estimate + [2.5%, 97.5%] percentile CI"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-analysis-framework.md"
+}

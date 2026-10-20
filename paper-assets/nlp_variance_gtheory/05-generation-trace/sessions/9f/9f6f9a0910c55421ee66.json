@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9f6f9a0910c55421ee66",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra disk cleanup",
+  "task_key": "worker_infra_disk_cleanup_20260520T193629",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_disk_cleanup_20260520T193629_result.json",
+    "occurrence": 1,
+    "bytes": 862,
+    "sha256": "d15278f3ca5bb9c5c2ae8642151aa852580a1ec58bd5b8961d3641a02a55c86d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 磁盘清理报告\n\n| | 清理前 | 清理后 |\n|---|---|---|\n| 根分区 `/` | 91% (3.0G free) | 91% (3.0G free) |\n| 数据盘 `/root/autodl-tmp` | 10% (318G free) | 不变 |\n\n**清理的内容**：27 个 pip 日志（/tmp）、5 个 `__pycache__` 目录 — 总共仅几 MB，对使用率无实质影响。\n\n**根分区占用分布**：\n- `/root/miniconda3/` — 13G（conda 环境，不可删）\n- `/root/nlp_variance_gtheory/models/.hf_cache/` — **15G**（Llama-3.1-8B-Instruct 模型）\n\n**真正能释放空间的操作**：将模型缓存迁移到数据盘。执行的话可以释放 ~15G，根分区降至约 41%：\n\n```bash\nmv /root/nlp_variance_gtheory/models/.hf_cache /root/autodl-tmp/.hf_cache\nln -s /root/autodl-tmp/.hf_cache /root/nlp_variance_gtheory/models/.hf_cache\n```\n\n需要我执行模型迁移吗？"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-disk-cleanup.md"
+}

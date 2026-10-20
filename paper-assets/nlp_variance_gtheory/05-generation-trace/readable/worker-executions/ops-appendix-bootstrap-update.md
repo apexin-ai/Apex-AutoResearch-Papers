@@ -1,0 +1,2823 @@
+# ops appendix bootstrap update
+
+**Reproducibility Budgets for Open-Weight LLM Evaluation: A Generalizability Theory Study of 7–9B Instruction-Tuned Models** · Worker execution logs
+
+This page is a human-readable rendering of one source record. It preserves the recorded order and wording; the linked JSON keeps the complete machine-readable structure.
+
+## Record overview
+
+- **Events:** 54
+- **Recorded user turns:** 0
+- **Tool calls:** 18
+- **Original source:** `logs/workers/worker_ops_appendix-bootstrap-update_20260524T101500.log`
+- **Structured JSON:** [`b8fbb6bf0fb2cc557132.json`](../../sessions/b8/b8fbb6bf0fb2cc557132.json)
+
+## Before a recorded user message
+
+54 recorded events
+
+### Log line
+
+_source line 1_
+
+Warning: no stdin data received in 3s, proceeding without it. If piping from a slow command, redirect stdin explicitly: < /dev/null to skip, or wait longer.
+
+---
+
+### System
+
+_source line 2_
+
+```json
+{
+  "type": "system",
+  "subtype": "init",
+  "cwd": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory",
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "tools": [
+    "Task",
+    "AskUserQuestion",
+    "Bash",
+    "CronCreate",
+    "CronDelete",
+    "CronList",
+    "Edit",
+    "EnterPlanMode",
+    "EnterWorktree",
+    "ExitPlanMode",
+    "ExitWorktree",
+    "Glob",
+    "Grep",
+    "ListMcpResourcesTool",
+    "Monitor",
+    "NotebookEdit",
+    "PushNotification",
+    "Read",
+    "ReadMcpResourceTool",
+    "RemoteTrigger",
+    "ScheduleWakeup",
+    "Skill",
+    "TaskOutput",
+    "TaskStop",
+    "TodoWrite",
+    "ToolSearch",
+    "WebFetch",
+    "WebSearch",
+    "Write",
+    "mcp__agent-ml-research__detect_image",
+    "mcp__agent-ml-research__kill_job",
+    "mcp__agent-ml-research__ssh_execute",
+    "mcp__agent-ml-research__ssh_read_only"
+  ],
+  "mcp_servers": [
+    {
+      "name": "agent-ml-research",
+      "status": "connected"
+    }
+  ],
+  "model": "claude-opus-4-6",
+  "permissionMode": "bypassPermissions",
+  "slash_commands": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api",
+    "clear",
+    "compact",
+    "context",
+    "heapdump",
+    "init",
+    "review",
+    "security-review",
+    "extra-usage",
+    "usage",
+    "insights",
+    "team-onboarding"
+  ],
+  "apiKeySource": "none",
+  "claude_code_version": "2.1.126",
+  "output_style": "default",
+  "agents": [
+    "claude",
+    "Explore",
+    "general-purpose",
+    "Plan",
+    "statusline-setup"
+  ],
+  "skills": [
+    "update-config",
+    "debug",
+    "simplify",
+    "batch",
+    "fewer-permission-prompts",
+    "loop",
+    "schedule",
+    "claude-api"
+  ],
+  "plugins": [],
+  "analytics_disabled": false,
+  "uuid": "8c926017-45b8-4d42-9d3f-392396f6bf28",
+  "memory_paths": {
+    "auto": "/home/ubuntu/.claude-account-3/projects/-home-ubuntu--agent-ml-research-idea-gen-0519-projects-nlp-variance-gtheory/memory/"
+  },
+  "fast_mode_state": "off"
+}
+```
+
+---
+
+### Runtime record
+
+_source line 3_
+
+```json
+{
+  "type": "rate_limit_event",
+  "rate_limit_info": {
+    "status": "allowed",
+    "resetsAt": 1779628200,
+    "rateLimitType": "five_hour",
+    "overageStatus": "rejected",
+    "overageDisabledReason": "org_level_disabled",
+    "isUsingOverage": false
+  },
+  "uuid": "d29f3376-735f-4b8d-8275-71d49c1e2155",
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991"
+}
+```
+
+---
+
+### Assistant
+
+_source line 4_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Let me break this task down:
+1. SSH to the server, read appendix.tex, add a bootstrap CI paragraph
+2. Compile the LaTeX document
+3. Sync to local anonymous repo
+4. Commit and push
+5. Verify
+
+Let me start by loading the SSH tools and then executing the steps.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "61932d61-be31-427b-97a4-68155da29c10",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RreemNR3ciUZLKAUKsydfJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12456,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12456
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 5_
+
+<details open><summary>🔧 Tool call — ToolSearch · `toolu_01UUKkmJh6wWfZAHV9QU2xiG`</summary>
+
+```json
+{
+  "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+  "max_results": 2
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "ab0d962c-0115-44e1-a92e-fa04f186bac9",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RreemNR3ciUZLKAUKsydfJ",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 2,
+      "cache_creation_input_tokens": 12456,
+      "cache_read_input_tokens": 11841,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 12456
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 6 · 2026-05-24T10:15:14.946Z_
+
+<details><summary>↩ Tool result · `toolu_01UUKkmJh6wWfZAHV9QU2xiG`</summary>
+
+````text
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_read_only"
+}
+```
+
+```json
+{
+  "type": "tool_reference",
+  "tool_name": "mcp__agent-ml-research__ssh_execute"
+}
+```
+````
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "36fbb522-0097-40c4-86cf-7f4514a73ae6",
+  "tool_use_result": {
+    "matches": [
+      "mcp__agent-ml-research__ssh_read_only",
+      "mcp__agent-ml-research__ssh_execute"
+    ],
+    "query": "select:mcp__agent-ml-research__ssh_read_only,mcp__agent-ml-research__ssh_execute",
+    "total_deferred_tools": 23
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 7_
+
+读取服务器上的 appendix.tex。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "e6876303-a7a6-4cb1-ad94-0894f354e5a2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GdTr17ufbavRSkBbEG49n7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 756,
+      "cache_read_input_tokens": 24297,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 756
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 8_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_015CnQ9TjQigP6quqbZ7HfKd`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "cat /root/nlp_variance_gtheory/docs/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "cd662868-66ea-454f-a836-4d18948d233e",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01GdTr17ufbavRSkBbEG49n7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 3,
+      "cache_creation_input_tokens": 756,
+      "cache_read_input_tokens": 24297,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 756
+      },
+      "output_tokens": 2,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 9 · 2026-05-24T10:15:21.063Z_
+
+<details><summary>↩ Tool result · `toolu_015CnQ9TjQigP6quqbZ7HfKd`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/nlp_variance_gtheory/docs/paper/appendix.tex: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.04}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "b71aead0-7a72-4388-9a28-dc68ce7dcdd4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"cat: /root/nlp_variance_gtheory/docs/paper/appendix.tex: No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 1.04}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"cat: /root/nlp_variance_gtheory/docs/paper/appendix.tex: No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 1.04}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 10_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01F7j2QrBQo5YwM3HBZZazZU`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory -name appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "454c7c7a-c7d5-4662-97f5-4db933756f05",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_012uQ3WBU5KDmLfE2xe8N4Fy",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 230,
+      "cache_read_input_tokens": 25053,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 230
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 11 · 2026-05-24T10:15:25.100Z_
+
+<details><summary>↩ Tool result · `toolu_01F7j2QrBQo5YwM3HBZZazZU`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "8ef0da2a-e63d-410e-a987-95d307a1a8a1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 12_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_017Rs7HW9sx98JQNEgHaLc8s`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory/docs -type f -name \"*.tex\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "3da1753d-4115-47ef-9b72-93acf19e4265",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01PX7GEjQxdzvXauHuaLJKTv",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 175,
+      "cache_read_input_tokens": 25283,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 175
+      },
+      "output_tokens": 63,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 13 · 2026-05-24T10:15:29.883Z_
+
+<details><summary>↩ Tool result · `toolu_017Rs7HW9sx98JQNEgHaLc8s`</summary>
+
+```text
+{"result":"{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/nlp_variance_gtheory/docs': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "95807a57-acc5-4853-8a0c-83ac13879192",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": false, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"find: '/root/nlp_variance_gtheory/docs': No such file or directory\\\\n\\\", \\\"return_code\\\": 1}, \\\"error\\\": \\\"exit code 1\\\", \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": false, \"data\": {\"stdout\": \"\", \"stderr\": \"find: '/root/nlp_variance_gtheory/docs': No such file or directory\\n\", \"return_code\": 1}, \"error\": \"exit code 1\", \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 14_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_01WsbmQSQ78W1Phg8nFBUpwu`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory -type f -name \"*.tex\""
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "92c71225-7f3d-4c6f-bc7a-bb71c3f69a5a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_019x8ZcTFC3q9V38A6nysHGp",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 208,
+      "cache_read_input_tokens": 25458,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 208
+      },
+      "output_tokens": 71,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 15 · 2026-05-24T10:15:33.736Z_
+
+<details><summary>↩ Tool result · `toolu_01WsbmQSQ78W1Phg8nFBUpwu`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "f71c536f-3c05-49c5-9445-9c59f587a3d4",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 16_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_018MnD2orNs2ys2w4bzSLHTf`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "ls /root/nlp_variance_gtheory/"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "b48067fb-df96-4658-82cd-38282a706c8d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Y3ZWrKCFrqmEZa8RpvTfkY",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 178,
+      "cache_read_input_tokens": 25666,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 178
+      },
+      "output_tokens": 72,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 17 · 2026-05-24T10:15:37.355Z_
+
+<details><summary>↩ Tool result · `toolu_018MnD2orNs2ys2w4bzSLHTf`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"artifacts\\ndata\\ndesign_matrix.csv\\ndesign_matrix_exp001.csv\\ndesign_matrix_exp001_full.csv\\ndesign_matrix_exp001_llama.csv\\ndesign_matrix_exp001_llama_local.csv\\ndesign_matrix_exp002.csv\\ndesign_matrix_exp003_3b.csv\\ndesign_matrix_exp003_72b.csv\\ndesign_matrix_exp003_7b.csv\\ndesign_matrix_exp003_scale.csv\\nfigures\\nmodels\\npartial_credit_multimodel.py\\npyproject.toml\\nrequirements.txt\\nresults\\nrun_bf16_eager.py\\nrun_float32_only.sh\\nrun_float32_v0.sh\\nrun_full_mvp.sh\\nrun_mmlu_after.sh\\nrun_mvp.sh\\nrun_reml_500.py\\nrun_reml_500.sh\\nrun_reml_500_v2.py\\nrun_reml_500_v3.py\\nscripts\\nsrc\\ntests\\nwait_and_collect.sh\\nwait_collect_output.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "57a935d1-cf9e-4102-9da2-a23000fc7bb1",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"artifacts\\\\ndata\\\\ndesign_matrix.csv\\\\ndesign_matrix_exp001.csv\\\\ndesign_matrix_exp001_full.csv\\\\ndesign_matrix_exp001_llama.csv\\\\ndesign_matrix_exp001_llama_local.csv\\\\ndesign_matrix_exp002.csv\\\\ndesign_matrix_exp003_3b.csv\\\\ndesign_matrix_exp003_72b.csv\\\\ndesign_matrix_exp003_7b.csv\\\\ndesign_matrix_exp003_scale.csv\\\\nfigures\\\\nmodels\\\\npartial_credit_multimodel.py\\\\npyproject.toml\\\\nrequirements.txt\\\\nresults\\\\nrun_bf16_eager.py\\\\nrun_float32_only.sh\\\\nrun_float32_v0.sh\\\\nrun_full_mvp.sh\\\\nrun_mmlu_after.sh\\\\nrun_mvp.sh\\\\nrun_reml_500.py\\\\nrun_reml_500.sh\\\\nrun_reml_500_v2.py\\\\nrun_reml_500_v3.py\\\\nscripts\\\\nsrc\\\\ntests\\\\nwait_and_collect.sh\\\\nwait_collect_output.log\\\\n\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"artifacts\\ndata\\ndesign_matrix.csv\\ndesign_matrix_exp001.csv\\ndesign_matrix_exp001_full.csv\\ndesign_matrix_exp001_llama.csv\\ndesign_matrix_exp001_llama_local.csv\\ndesign_matrix_exp002.csv\\ndesign_matrix_exp003_3b.csv\\ndesign_matrix_exp003_72b.csv\\ndesign_matrix_exp003_7b.csv\\ndesign_matrix_exp003_scale.csv\\nfigures\\nmodels\\npartial_credit_multimodel.py\\npyproject.toml\\nrequirements.txt\\nresults\\nrun_bf16_eager.py\\nrun_float32_only.sh\\nrun_float32_v0.sh\\nrun_full_mvp.sh\\nrun_mmlu_after.sh\\nrun_mvp.sh\\nrun_reml_500.py\\nrun_reml_500.sh\\nrun_reml_500_v2.py\\nrun_reml_500_v3.py\\nscripts\\nsrc\\ntests\\nwait_and_collect.sh\\nwait_collect_output.log\\n\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 18_
+
+服务器上没有 `docs/paper/` 目录。论文 tex 文件可能在本地匿名 repo 中。让我检查本地。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "5737d506-1817-4f4f-b228-dc905ad3ad20",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzH6FqcuSjg4BxCjjp746X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 478,
+      "cache_read_input_tokens": 25844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 478
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 19_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01MabZ3TRbqa1wrDgpKDiGXf`</summary>
+
+```json
+{
+  "command": "find /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory -name appendix.tex -not -path '*/.git/*'",
+  "description": "Find appendix.tex in local anon repo"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "52b8a97a-f999-4da8-a609-23ce1119b893",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01EzH6FqcuSjg4BxCjjp746X",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 478,
+      "cache_read_input_tokens": 25844,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 478
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 20 · 2026-05-24T10:15:44.344Z_
+
+<details><summary>↩ Tool result · `toolu_01MabZ3TRbqa1wrDgpKDiGXf`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/appendix.tex
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "e9cc5842-aaa6-4d97-b1b6-6db176b10f9e",
+  "tool_use_result": {
+    "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/appendix.tex",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 21_
+
+找到了。读取文件内容。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "9bf8e6b7-7011-4c6e-8667-0caa4cfb2001",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Qwec2JmG9ieBADgpTzt6y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 244,
+      "cache_read_input_tokens": 26322,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 244
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 22_
+
+<details open><summary>🔧 Tool call — Read · `toolu_01JXVtejfHEyQYmhrSKNSk1H`</summary>
+
+```json
+{
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/appendix.tex"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "cc2dabaf-de64-444a-aba7-85ef7b0f1638",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_018Qwec2JmG9ieBADgpTzt6y",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 244,
+      "cache_read_input_tokens": 26322,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 244
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 23 · 2026-05-24T10:15:48.841Z_
+
+<details><summary>↩ Tool result · `toolu_01JXVtejfHEyQYmhrSKNSk1H`</summary>
+
+```text
+1	\appendix
+2	\section{Additional Robustness Analyses}
+3	\label{app:robustness}
+4	
+5	We report nine robustness analyses that verify the stability of the variance decomposition under alternative analytical choices.
+6	
+7	\paragraph{GLMM complement.} A generalized linear mixed model (GLMM) with marginal logit link produces variance component rankings that perfectly preserve all seven grouped component orderings ($\rho = 1.0$) relative to Henderson Method~I \cite{jiang2018bayesian, tuerlinckx2006glmm}. This confirms that the linear variance decomposition is robust to the binary outcome distribution.
+8	
+9	\paragraph{Accuracy-range stability.} The \texttt{item\_id} variance share remains stable across subsets with mean accuracy from 0.62 to 0.72 ($r = -0.048$). This rules out distortion from binary floor or ceiling effects at observed accuracy levels.
+10	
+11	\paragraph{Estimator robustness.} We compare Henderson Method~I with restricted maximum likelihood (REML-EM, 500 iterations, practical convergence $\Delta < 0.003$ percentage points). All variance components differ by $<$0.5 percentage points between estimators. The largest discrepancy occurs on the residual component (0.47pp); all substantive components (item, model$\times$item, model) differ by $<$0.3pp. Henderson Method~I is preferred for our balanced designs because it produces unbiased estimates without distributional assumptions \cite[Ch.~12]{brennan2001generalizability}.
+12	
+13	\paragraph{Probit simulation.} A probit simulation matched to our 1,296-condition design confirms that Henderson Method~I recovers variance component rankings from dichotomized data (Spearman $\rho = 0.732$ between binary and continuous rankings, excluding residual; \texttt{item\_id} dominant in all 100 replications; top-5 ordering correct in 79\% of replications). Bias analysis by difficulty stratum shows $|\text{bias}| = 0.28$--$0.37$ for items with $p \in [0.5, 0.8]$, where the Bernoulli variance ceiling $p(1{-}p)$ is largest. This analysis covers the observed accuracy range ($p \in [0.3, 0.9]$); extreme-difficulty items ($p < 0.3$ or $p > 0.9$) are rare in our sample ($<$8\% of items) and may exhibit larger deviations. Henderson Method~I absorbs this Bernoulli-inherent variance into the residual, explaining inflated bias near medium difficulty; systematic component ordering is robustly recovered across all replications. Binary scoring inflates residual variance by absorbing the Bernoulli $p(1{-}p)$ ceiling, which enters $\sigma^2_\text{rel}$ and increases D-study item requirements. Within a matched probit simulation, binarization increases D-study budgets by approximately 36\% (99 $\to$ 135 items for $G \geq 0.80$), driven by residual inflation (16\% $\to$ 41\%) and item variance compression (50\% $\to$ 32\%). Facet$\times$item interactions---the components entering $\sigma^2_\text{rel}$---are best preserved under binarization (MAPE = 12.8\%, range 8.7--17.5\%), while residual variance inflates as expected from Bernoulli $p(1{-}p)$ noise (MAPE = 156\%). D-study budgets derived from binary data are therefore conservative: continuous-scored designs would require equal or fewer items for the same $G$ threshold. Null calibration (ratio $= 1.0008$) confirms that this conservatism does not distort relative component magnitudes.
+14	
+15	\paragraph{CI method comparison.} Bootstrap (1,000 item-level resamples with replacement) and delete-1 jackknife confidence intervals agree closely: width ratios range from 0.96 to 1.04 across all variance components. Bootstrap CIs capture item-sampling variability conditional on these 8 specific models; model-level stability is assessed separately via LOMO (below). The agreement indicates that the dependence structure introduced by item-level bootstrap resampling (which creates $\sim$127 unique items per 200-item resample) does not materially distort interval estimates. Stratified resampling by subject (10 subjects $\times$ 20 items) produces CIs within 4\% of simple item-level bootstrap, confirming that the within-subject dependence structure does not materially affect interval estimates.
+16	
+17	\paragraph{Facet specification sensitivity.} Treating temperature and ordering as fixed (rather than random) facets changes $G_\text{item}$ by only 0.37 percentage points (all-random: 0.820 vs.\ fixed temperature+ordering: 0.824). The small difference reflects the negligible temperature$\times$item (0.65\%) and ordering$\times$item (0.54\%) variance shares. The random-facet assumption is therefore robust to facet classification.
+18	
+19	\paragraph{Leave-one-model-out (LOMO).} Across all 40 leave-one-model-out subsets (8 models $\times$ 5 benchmarks), $G_\text{item}$ ranges from 0.833 to 0.919, with CV $\leq$ 1.25\% per benchmark. No single model removal changes $G$ by more than 0.030 (GSM8K, removing Gemma-2-9B). Item-related variance rankings are preserved in all 40 subsets. Table~\ref{tab:lomo_full} reports per-benchmark stability. This supports treating models as exchangeable within the target universe of 7--9B instruction-tuned models (\S\ref{sec:model_facet}).
+20	
+21	\begin{table}[h]
+22	\centering
+23	\caption{LOMO stability across five benchmarks (8 models $\times$ 5 benchmarks = 40 subsets).}
+24	\label{tab:lomo_full}
+25	\scriptsize
+26	\begin{tabular}{lrrrr}
+27	\toprule
+28	Benchmark & $G_\text{full}$ & CV (\%) & Max $|\Delta G|$ & Most impactful \\
+29	\midrule
+30	MMLU & 0.896 & 0.49 & 0.019 & InternLM2.5-7B \\
+31	ARC & 0.892 & 0.94 & 0.026 & Llama-3.1-8B \\
+32	HellaSwag & 0.872 & 1.09 & 0.028 & Llama-3.1-8B \\
+33	GSM8K & 0.863 & 1.25 & 0.030 & Gemma-2-9B \\
+34	MATH & 0.888 & 1.20 & 0.029 & InternLM2.5-7B \\
+35	\bottomrule
+36	\end{tabular}
+37	\end{table}
+38	
+39	\paragraph{Inter-model agreement.} We computed pairwise Cohen's $\kappa$ and Fleiss' $\kappa$ across all model pairs on each benchmark. Mean pairwise $\kappa$ ranges from 0.326 (MATH) to 0.461 (MMLU); Fleiss' $\kappa$ ranges from 0.309 (GSM8K) to 0.456 (MMLU). HellaSwag uses six models ($\kappa = 0.332$) due to missing OLMo and Yi data. The fair-to-moderate agreement independently confirms that the model$\times$item interaction (30--36\% of variance) reflects genuine differential item functioning: models disagree substantially on which items are difficult, consistent with prior DIF findings in educational measurement \cite{holland1993dif, clauser1998dif}.
+40	
+41	\paragraph{Scoring metric sensitivity.}
+42	\label{sec:partial_credit}
+43	To probe metric conditionality, we compared binary correctness with step-level partial credit on GSM8K using the full 8-model crossed design (200 items, 2,304 conditions per item). Under partial credit, $G_\text{item}$ drops from 0.863 to 0.768, with residual variance rising from 39.9\% to 64.9\% and item variance falling from 16.9\% to 10.3\%. All eight models individually show $G_\text{partial} < G_\text{binary}$ (mean $\Delta G = -0.135$, range $-0.025$ to $-0.309$), with $\Delta G$ magnitude moderated by model accuracy: higher-accuracy models have fewer incorrect responses whose scores shift under partial credit (e.g., OLMo at 70.1\% accuracy shows $\Delta G = -0.025$, while Llama at 49.0\% shows $\Delta G = -0.309$). The mechanism is clear: 48.1\% of incorrect responses have numerically correct arithmetic steps but incorrect problem setup, receiving partial score $= 1.0$ despite binary score $= 0$---this compresses item discrimination and inflates residual variance. Binary scoring amplifies prompt sensitivity by collapsing reasoning quality into pass/fail, confirming that all findings in this paper are metric-conditional.
+44	
+45	\paragraph{Facet specification sensitivity: random vs.\ fixed model.} Table~\ref{tab:fixed_vs_random} reports per-benchmark generalizability coefficients under random and fixed model specifications. The consistent $\Delta G$ of 0.077--0.113 confirms that random-model budgets are strictly more conservative across all benchmarks.
+46	
+47	\begin{table}[h]
+48	\centering
+49	\caption{Generalizability coefficients under random vs.\ fixed model facet specification across five benchmarks.}
+50	\label{tab:fixed_vs_random}
+51	\scriptsize
+52	\begin{tabular}{lrrr}
+53	\toprule
+54	Benchmark & $G_\text{random}$ & $G_\text{fixed}$ & $\Delta G$ \\
+55	\midrule
+56	MMLU & 0.896 & 0.984 & $+$0.088 \\
+57	ARC & 0.892 & 0.990 & $+$0.098 \\
+58	HellaSwag & 0.872 & 0.984 & $+$0.113 \\
+59	GSM8K & 0.863 & 0.951 & $+$0.089 \\
+60	MATH & 0.888 & 0.965 & $+$0.077 \\
+61	\midrule
+62	Mean & 0.882 & 0.975 & $+$0.093 \\
+63	\bottomrule
+64	\end{tabular}
+65	\end{table}
+66	
+67	\paragraph{Null calibration.} We generate 100 Bernoulli-distributed datasets with item difficulties matched to the empirical distribution but no systematic facet effects. The observed-to-null variance ratio is 1.0008, confirming that Henderson Method~I does not introduce systematic bias when applied to binary outcomes. The null simulation also verifies that the item variance share (58.4\%) is not an artifact of the Bernoulli $p(1{-}p)$ ceiling: the null produces item variance of 0.08\%, three orders of magnitude below the observed value. Across all 100 replications, the same three components (item, model$\times$item, residual) emerge as the top three (set consistency 100\%), with Kendall's $\tau = 0.81$ between binary and continuous rankings.
+68	
+69	\paragraph{Reduced crossing validation.} To verify that the reduced crossing in exp-002 (BF16 only $\times$ 2 temperatures) does not introduce confounding, we extracted the corresponding subset from the fully crossed exp-001 design. The generalizability coefficient differs by only 0.0008 ($G = 0.9361$ vs.\ $0.9369$), and all non-precision variance components differ by less than 2 percentage points. The 10pp increase in item variance share (58.4\% $\to$ 68.5\%) is fully explained by the removal of precision-related components ($\sim$4.5\% total), which redistributes across remaining sources. This confirms that the exp-002 design preserves the variance structure of the full crossing.
+70	
+71	\section{Cross-Model D-Study Projections}
+72	\label{app:dstudy_cross}
+73	
+74	Table~\ref{tab:dstudy_cross} extends the single-model D-study (Table~\ref{tab:dstudy} in main text) to per-benchmark cross-model projections with bootstrap confidence intervals (1,000 item-level resamples, 8 models, 2,304 conditions per item). The efficiency ratio is format-associated: MC benchmarks show 11--13$\times$ (mean 12.0$\times$ [11.6, 12.5]), while FF benchmarks show 21--22$\times$ (mean 21.5$\times$ [20.4, 22.8]).
+75	
+76	\begin{table}[h]
+77	\centering
+78	\caption{Cross-model D-study reproducibility budgets with 95\% bootstrap CIs. $n_{G \geq 0.80}$: items needed. Multi = multi-facet (2,304 cond.); Total = items $\times$ 2,304. Single = single-condition (total evals = item count).}
+79	\label{tab:dstudy_cross}
+80	\scriptsize
+81	\resizebox{\columnwidth}{!}{%
+82	\begin{tabular}{l rr r rr r}
+83	\toprule
+84	 & \multicolumn{3}{c}{Multi-facet (2,304 cond.)} & \multicolumn{2}{c}{Single-cond.} & \\
+85	\cmidrule(lr){2-4} \cmidrule(lr){5-6}
+86	 & Items & 95\% CI & Total & Items & 95\% CI & Ratio [95\% CI] \\
+87	\midrule
+88	\multicolumn{7}{l}{\textit{Multiple-choice}} \\
+89	MMLU & 93 & [76, 116] & 214K & 1{,}216 & [1004, 1491] & 13.1 [12.5, 13.7] \\
+90	ARC & 98 & [71, 139] & 226K & 1{,}078 & [793, 1512] & 11.0 [10.7, 11.4] \\
+91	Hella. & 118 & [93, 151] & 272K & 1{,}403 & [1120, 1790] & 11.9 [11.5, 12.3] \\
+92	\midrule
+93	\multicolumn{7}{l}{\textit{Free-form}} \\
+94	GSM8K & 128 & [103, 162] & 295K & 2{,}768 & [2230, 3531] & 21.6 [20.7, 23.0] \\
+95	MATH & 101 & [86, 122] & 233K & 2{,}160 & [1853, 2631] & 21.4 [20.2, 22.5] \\
+96	\bottomrule
+97	\end{tabular}%
+98	}
+99	\end{table}
+100	
+101	The higher item requirements relative to the single-model analysis (55 items in Table~\ref{tab:dstudy}) reflect the additional model$\times$item interaction variance that enters $\sigma^2_\text{rel}$ when models are crossed as a facet. The format-associated ratio pattern---FF benchmarks showing $\sim$2$\times$ the MC ratio---is consistent with the distributed variance structure observed in \S\ref{sec:format_conditional}, where FF benchmarks allocate more variance to model and model$\times$prompt components.
+102	
+103	\paragraph{Internal consistency check.} Table~\ref{tab:forward_pred} reports consistency checks from four exp-001 models (DeepSeek, Llama, Mistral, Qwen3) to the full eight-model design across all five benchmarks. MC benchmarks show $|\Delta G| \leq 0.029$ ($<$3.5\% error), while FF benchmarks show larger deviations ($|\Delta G| \leq 0.065$, $\sim$7\%) due to limited model diversity in the four-model subset. FF predictions consistently underestimate actual $G$ (conservative); MC predictions show mixed directions with small deviations ($|\Delta G| \leq 0.029$).
+104	
+105	\begin{table}[h]
+106	\centering
+107	\caption{Internal consistency: four-model subset vs.\ eight-model $G_\text{item}$. FF subsets underestimate actual $G$ (conservative); MC shows mixed directions with small deviations.}
+108	\label{tab:forward_pred}
+109	\small
+110	\begin{tabular}{lrrrr}
+111	\toprule
+112	Benchmark & Predicted $G$ & Actual $G$ & $|\Delta G|$ & Error\% \\
+113	\midrule
+114	\multicolumn{5}{l}{\textit{Multiple-choice}} \\
+115	MMLU & 0.888 & 0.896 & 0.009 & 0.96 \\
+116	ARC & 0.904 & 0.892 & 0.012 & 1.38 \\
+117	HellaSwag & 0.901 & 0.872 & 0.029 & 3.33 \\
+118	\midrule
+119	\multicolumn{5}{l}{\textit{Free-form}} \\
+120	GSM8K & 0.803 & 0.863 & 0.059 & 6.88 \\
+121	MATH & 0.823 & 0.888 & 0.065 & 7.30 \\
+122	\midrule
+123	Mean & --- & --- & 0.035 & 3.97 \\
+124	\bottomrule
+125	\end{tabular}
+126	\end{table}
+127	
+128	\paragraph{Budget sensitivity to estimation error.}
+129	\label{app:budget_sensitivity}
+130	Figure~\ref{fig:budget_sensitivity} shows the effect of $|\Delta G| = 0.035$ estimation error on item budgets across all five benchmarks. The percentage increase is remarkably stable (23.0--24.5\%, mean 23.2\%), because the relative budget adjustment $\Delta n / n$ depends on the $G$-formula ratio rather than on absolute variance components. Absolute $\Delta n$ ranges from 13 (ARC) to 67 (GSM8K), scaling with the baseline budget.
+131	
+132	\begin{figure}[h]
+133	\centering
+134	\includegraphics[width=0.75\columnwidth]{budget_sensitivity_band}
+135	\caption{Effect of $|\Delta G| = 0.035$ estimation error on item budgets across five benchmarks. The $\sim$23\% budget increase is consistent across all benchmarks, indicating D-study budgets are robust to estimation uncertainty.}
+136	\label{fig:budget_sensitivity}
+137	\end{figure}
+138	
+139	\paragraph{Cross-benchmark $G$ stability.}
+140	\label{app:cross_benchmark_transfer}
+141	$G_\text{item}$ values cluster in a narrow band across all five benchmarks (0.863--0.896, CV = 1.4\%), despite qualitatively different variance structures: MC benchmarks concentrate 68--72\% in item-related components while GSM8K disperses variance across item (17\%), model (11\%), and interaction (15\%) sources (Table~\ref{tab:cross_benchmark}). This stability implies that D-study budget recommendations calibrated on one benchmark provide reasonable order-of-magnitude guidance for others. However, the 0.033 range in $G_\text{item}$ translates to a 71--128 item range for multi-facet $G \geq 0.80$ (Table~\ref{tab:dstudy_cross}), and the variance compositions differ substantially---benchmark-specific G-studies remain necessary to identify dominant variance sources and optimize condition selection.
+142	
+143	\section{Intermediate D-Study Designs}
+144	\label{app:intermediate_dstudy}
+145	
+146	Table~\ref{tab:intermediate_dstudy} shows how reliability improves as evaluation designs increase from single-condition to full multi-facet crossing. The steepest gain occurs at the ``minimal upgrade'' level (2 prompts): $G_{200}$ jumps from 0.592 to 0.692 at 2$\times$ cost. A minimal sufficient design for $G \geq 0.80$ is 3 prompts $\times$ 3 seeds (9 conditions, $G_{200} = 0.818$, $n_{G \geq 0.80} = 178$). Beyond the ``standard'' level (32 conditions), adding orderings provides negligible benefit (ordering$\times$item $<$1\%), confirming that prompt and seed diversity are the primary reliability drivers.
+147	
+148	\begin{table}[h]
+149	\centering
+150	\caption{Intermediate D-study designs (single-model, MMLU). Designs are ordered by increasing conditions per item; $G_{200}$ and $n_{G \geq 0.80}$ are D-study projections from exp-001 variance components.}
+151	\label{tab:intermediate_dstudy}
+152	\scriptsize
+153	\begin{tabular}{llrrr}
+154	\toprule
+155	Design & Conditions & $G_{200}$ & $n_{G{\geq}.80}$ \\
+156	\midrule
+157	Single-condition & 1 & .592 & 552 \\
+158	Minimal upgrade (2p) & 2 & .692 & 357 \\
+159	Easy upgrade (2p$\times$2s) & 4 & .766 & 245 \\
+160	Moderate (3p$\times$3s) & 9 & .818 & 178 \\
+161	Standard (4p$\times$4s$\times$2t) & 32 & .869 & 121 \\
+162	Enhanced (+4 orderings) & 72 & .871 & 119 \\
+163	Full multi-facet & 1{,}296 & .936 & 55 \\
+164	\bottomrule
+165	\end{tabular}
+166	\end{table}
+167	
+168	\section{Format-Associated Variance: Per-Benchmark Details}
+169	\label{app:format_details}
+170	
+171	This section supplements the compressed format-associated analysis in \S\ref{sec:format_conditional} with per-benchmark details.
+172	
+173	\paragraph{MC benchmark exceptions.} HellaSwag is the sole MC case where model$\times$item slightly exceeds item (36.0\% vs.\ 34.3\%), though their sum (70.3\%) remains in the MC range (68--72\%). Among MC benchmarks, ARC-Challenge shows an anomalously high model$\times$prompt interaction (8.0\% vs.\ $<$2\% for MMLU and HellaSwag), suggesting that science-domain items are differentially sensitive to option formatting across model families.
+174	
+175	\paragraph{FF benchmark patterns.} Free-form benchmarks differ markedly from MC. On GSM8K, variance distributes across item (16.9\%), model$\times$item (14.6\%), model (10.7\%), and model$\times$prompt (8.5\%); prompt main effect is 5.4\%. MATH shows an intermediate pattern: item leads at 24.0\% with model$\times$item at 17.3\%, but residual variance is substantially larger (43.9\%). Item-level regression reveals that FF residual variance is predominantly explained by the Bernoulli variance ceiling $p(1{-}p)$ ($R^2 = 0.47$--$0.86$; Appendix~\ref{app:ff_residual}): medium-difficulty items maximize binary outcome variance regardless of facet structure, so the elevated FF residuals reflect measurement resolution rather than unmodeled substantive sources.
+176	
+177	\paragraph{Difficulty dispersion as variance predictor.} Difficulty dispersion ($\text{std}(p_i)$) strongly predicts item variance share ($\rho = 0.82$, $n = 5$ benchmarks; Appendix~\ref{app:difficulty_scatter}; reasoning-heavy subjects show $G_\text{item}$ as low as 0.614, Appendix~\ref{app:subject_gstudy}). Format constrains the noise floor, but difficulty heterogeneity determines variance magnitude within it.
+178	
+179	\section{Cross-Benchmark Difficulty Heterogeneity}
+180	\label{app:difficulty_scatter}
+181	
+182	Figure~\ref{fig:difficulty_scatter} plots item difficulty heterogeneity ($\text{std}(p_i)$ across models) against \texttt{item\_id} variance share for all five benchmarks. MC benchmarks cluster at higher dispersion ($0.24$--$0.31$) and higher item variance ($34$--$38\%$), while FF benchmarks occupy the lower-left region ($0.22$--$0.23$, $17$--$24\%$). The cross-benchmark Spearman $\rho = 0.82$ ($p = 0.089$, $n = 5$) is consistent in direction with the within-MMLU correlation ($\rho = 0.806$, $p = 0.005$, $n = 10$ subjects); these are independent analyses at different granularities (benchmarks vs.\ subjects within MMLU), providing multi-scale support for the item difficulty heterogeneity mechanism discussed in \S\ref{sec:format_conditional}.
+183	
+184	\begin{figure}[h]
+185	\centering
+186	\includegraphics[width=0.75\columnwidth]{fig4_difficulty_scatter}
+187	\caption{Item difficulty heterogeneity ($\text{std}(p_i)$, computed over available models per benchmark, 6--8 models) versus \texttt{item\_id} variance share (as reported in Table~\ref{tab:cross_benchmark}) across five benchmarks. MC benchmarks (filled) exhibit higher difficulty dispersion and item variance than FF benchmarks (open). Spearman $\rho = 0.82$, $p = 0.089$.}
+188	\label{fig:difficulty_scatter}
+189	\end{figure}
+190	
+191	\section{MMLU Subject-Level Variance Decomposition}
+192	\label{app:subject_gstudy}
+193	
+194	Table~\ref{tab:subject_gstudy} reports per-subject variance decomposition for 10 MMLU subjects (20 items each, 8 models, 2,304 conditions per item). $G_\text{item}$ ranges from 0.614 (\texttt{high\_school\_mathematics}) to 0.930 (\texttt{international\_law}), with mean 0.843. Knowledge-intensive subjects (\texttt{international\_law}, \texttt{clinical\_knowledge}, \texttt{world\_religions}) show \texttt{item\_id} $>$ 40\%, while reasoning-heavy subjects (\texttt{high\_school\_mathematics}, \texttt{abstract\_algebra}) show model$\times$item $>$ \texttt{item\_id}, consistent with models differing more in reasoning strategies than in factual recall. The \texttt{high\_school\_mathematics} \texttt{item\_id} of 10.4\% referenced in \S\ref{sec:format_conditional} is the lowest across all subjects, below even GSM8K (16.9\%).
+195	
+196	\begin{table}[h]
+197	\centering
+198	\caption{Subject-level variance decomposition within MMLU (20 items per subject, 8 models, 2,304 conditions per item). Sorted by $G_\text{item}$ descending.}
+199	\label{tab:subject_gstudy}
+200	\scriptsize
+201	\begin{tabular}{lrrrr}
+202	\toprule
+203	Subject & Acc. & item\% & mod.$\times$it.\% & $G_\text{item}$ \\
+204	\midrule
+205	international\_law & .717 & 44.4 & 24.1 & .930 \\
+206	clinical\_knowledge & .581 & 47.5 & 30.0 & .923 \\
+207	world\_religions & .826 & 42.2 & 27.1 & .910 \\
+208	computer\_security & .740 & 37.0 & 24.9 & .908 \\
+209	college\_physics & .436 & 31.6 & 30.1 & .876 \\
+210	philosophy & .782 & 33.0 & 36.1 & .868 \\
+211	abstract\_algebra & .457 & 24.1 & 32.8 & .822 \\
+212	us\_foreign\_policy & .864 & 20.4 & 36.9 & .802 \\
+213	professional\_medicine & .671 & 19.9 & 41.7 & .778 \\
+214	high\_school\_math & .385 & 10.4 & 41.9 & .614 \\
+215	\midrule
+216	Mean & --- & 31.1 & 32.6 & .843 \\
+217	\bottomrule
+218	\end{tabular}
+219	\end{table}
+220	
+221	\section{FF Residual Variance Analysis}
+222	\label{app:ff_residual}
+223	
+224	To investigate whether the elevated residual variance in free-form benchmarks (GSM8K 39.9\%, MATH 43.9\%) reflects unmodeled substantive sources or measurement properties of binary scoring, we regress item-level residual variance on item characteristics across all five benchmarks (Table~\ref{tab:ff_residual}).
+225	
+226	The dominant predictor is the quadratic difficulty effect ($p < 10^{-5}$ on all benchmarks): items near $p = 0.5$ show maximal residual variance, while items near the floor or ceiling show minimal residual. This inverted-U pattern directly mirrors the Bernoulli variance ceiling $p(1{-}p)$. Item content features (number of reasoning steps, answer length) are not significant predictors for GSM8K ($p > 0.38$), confirming that the difficulty--residual relationship is statistical rather than content-driven.
+227	
+228	FF benchmarks show substantially higher $R^2$ (mean 0.66) than MC benchmarks (mean 0.25), consistent with FF items spanning a wider difficulty range. The MC--FF contrast in residual magnitude is therefore a mathematical consequence of the difficulty distribution under binary scoring, not evidence of additional unmodeled variance sources in free-form evaluation.
+229	
+230	\begin{table}[h]
+231	\centering
+232	\caption{Item-level residual variance regression. Difficulty$^2$ = quadratic (inverted-U) term reflecting the Bernoulli $p(1{-}p)$ ceiling. GSM8K additionally tests n\_steps and answer\_length (both $p > 0.38$).}
+233	\label{tab:ff_residual}
+234	\scriptsize
+235	\begin{tabular}{lrrr}
+236	\toprule
+237	Benchmark & $R^2$ (full) & $R^2$ (diff.\ only) & Diff.$^2$ $p$ \\
+238	\midrule
+239	\multicolumn{4}{l}{\textit{Multiple-choice}} \\
+240	MMLU & 0.377 & 0.347 & $<$0.001 \\
+241	ARC & 0.221 & 0.204 & $<$0.001 \\
+242	HellaSwag & 0.156 & 0.140 & $<$0.001 \\
+243	\midrule
+244	\multicolumn{4}{l}{\textit{Free-form}} \\
+245	GSM8K & 0.468 & 0.449 & $<$0.001 \\
+246	MATH & 0.856 & 0.845 & $<$0.001 \\
+247	\bottomrule
+248	\end{tabular}
+249	\end{table}
+250	
+251	\section{Model and Prompt Details}
+252	\label{app:models}
+253	
+254	\paragraph{Models.} Table~\ref{tab:model_ids} lists the eight models with their HuggingFace identifiers.
+255	
+256	\begin{table}[h]
+257	\centering
+258	\caption{Models used in all experiments.}
+259	\label{tab:model_ids}
+260	\scriptsize
+261	\begin{tabular}{llr}
+262	\toprule
+263	Short name & HuggingFace identifier & Params \\
+264	\midrule
+265	Llama-3.1-8B & \texttt{meta-llama/Llama-3.1-8B-Instruct} & 8B \\
+266	Gemma-2-9B & \texttt{google/gemma-2-9b-it} & 9B \\
+267	Mistral-7B-v0.3 & \texttt{mistralai/Mistral-7B-Instruct-v0.3} & 7B \\
+268	Qwen3-8B & \texttt{Qwen/Qwen3-8B} & 8B \\
+269	Yi-1.5-9B & \texttt{01-ai/Yi-1.5-9B-Chat} & 9B \\
+270	OLMo-2-7B & \texttt{allenai/OLMo-2-1124-7B-Instruct} & 7B \\
+271	InternLM2.5-7B & \texttt{internlm/internlm2\_5-7b-chat} & 7B \\
+272	DeepSeek-7B & \texttt{deepseek-ai/deepseek-llm-7b-chat} & 7B \\
+273	\bottomrule
+274	\end{tabular}
+275	\end{table}
+276	
+277	\paragraph{Prompt templates.} Our six prompt templates follow a surface perturbation design inspired by BrittleBench \cite{brittlebench2026}. For multiple-choice benchmarks, templates vary along three dimensions: option layout (lettered vs.\ numbered), instruction wording (direct vs.\ contextual), and answer prompt cue. For free-form benchmarks, templates vary chain-of-thought elicitation strategy. All six templates are semantically equivalent---they request the same task with different surface forms---to isolate formatting effects from content effects. ARC-Challenge and HellaSwag use the same six surface patterns as MMLU with domain-appropriate system instructions; MATH mirrors the GSM8K pattern with \texttt{\textbackslash boxed\{\}} answer formatting.
+278	
+279	\smallskip\noindent\textit{MMLU templates (representative MC format):}
+280	\begin{enumerate}\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}\setlength{\topsep}{0pt}
+281	\item \texttt{The following are multiple choice questions (with answers) about \{subject\}.\textbackslash n\textbackslash n\{question\}\textbackslash nA. ... D. ...\textbackslash nAnswer:}
+282	\item \texttt{Answer the following \{subject\} questions by selecting the correct option.\textbackslash nQuestion: \{question\}\textbackslash n(A) ... (B) ... (C) ... (D) ...\textbackslash nCorrect answer:}
+283	\item \texttt{Below are \{subject\} multiple-choice problems. Pick the right letter.\textbackslash nQ: \{question\}\textbackslash n~~A) ... B) ... C) ... D) ...\textbackslash nA:}
+284	\item \texttt{Answer the following \{subject\} question by selecting A, B, C, or D.\textbackslash n\{question\}\textbackslash n- A. ... - B. ... - C. ... - D. ...\textbackslash nAnswer:}
+285	\item \texttt{Below is a \{subject\} exam question with four possible answers. Choose the correct one.\textbackslash n\{question\}\textbackslash nOption A: ... Option B: ... Option C: ... Option D: ...\textbackslash nCorrect:}
+286	\item \texttt{Question (\{subject\}):\textbackslash n\{question\}\textbackslash nChoices: (A) ... (B) ... (C) ... (D) ...\textbackslash nYour answer:}
+287	\end{enumerate}
+288	
+289	\smallskip\noindent\textit{GSM8K templates (representative FF format):}
+290	\begin{enumerate}\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}\setlength{\topsep}{0pt}
+291	\item \texttt{Solve the following math problem step by step.\textbackslash nQ: \{question\}\textbackslash nA: Let's think step by step.}
+292	\item \texttt{Answer the following math word problem. Show your work.\textbackslash nQuestion: \{question\}\textbackslash nSolution:}
+293	\item \texttt{Solve each problem below. Write your reasoning, then give the final answer after \#\#\#\#.\textbackslash nProblem: \{question\}\textbackslash nReasoning:}
+294	\item \texttt{You are a math tutor. Solve the problem and show your steps.\textbackslash n\{question\}\textbackslash nSteps:}
+295	\item \texttt{Work through this math question carefully.\textbackslash nQ: \{question\}\textbackslash nWork:}
+296	\item \texttt{Math problem:\textbackslash n\{question\}\textbackslash nLet's solve this step by step.}
+297	\end{enumerate}
+298	
+299	\section{Use of AI Assistants}
+300	\label{app:ai-assistants}
+301	
+302	We used Claude (Anthropic) as an AI coding and writing assistant throughout this work. Specifically:
+303	\begin{itemize}
+304	    \item \textbf{Code:} drafting experiment scripts, data-processing pipelines, and analysis utilities; debugging and refactoring.
+305	    \item \textbf{Writing:} drafting and revising paper sections, polishing prose, and reformatting \LaTeX{}.
+306	    \item \textbf{Literature:} summarizing related papers to inform related-work section.
+307	\end{itemize}
+308	
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "29f39a9a-007e-47bd-aa94-cb44b312b885",
+  "tool_use_result": {
+    "type": "text",
+    "file": {
+      "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/appendix.tex",
+      "content": "\\appendix\n\\section{Additional Robustness Analyses}\n\\label{app:robustness}\n\nWe report nine robustness analyses that verify the stability of the variance decomposition under alternative analytical choices.\n\n\\paragraph{GLMM complement.} A generalized linear mixed model (GLMM) with marginal logit link produces variance component rankings that perfectly preserve all seven grouped component orderings ($\\rho = 1.0$) relative to Henderson Method~I \\cite{jiang2018bayesian, tuerlinckx2006glmm}. This confirms that the linear variance decomposition is robust to the binary outcome distribution.\n\n\\paragraph{Accuracy-range stability.} The \\texttt{item\\_id} variance share remains stable across subsets with mean accuracy from 0.62 to 0.72 ($r = -0.048$). This rules out distortion from binary floor or ceiling effects at observed accuracy levels.\n\n\\paragraph{Estimator robustness.} We compare Henderson Method~I with restricted maximum likelihood (REML-EM, 500 iterations, practical convergence $\\Delta < 0.003$ percentage points). All variance components differ by $<$0.5 percentage points between estimators. The largest discrepancy occurs on the residual component (0.47pp); all substantive components (item, model$\\times$item, model) differ by $<$0.3pp. Henderson Method~I is preferred for our balanced designs because it produces unbiased estimates without distributional assumptions \\cite[Ch.~12]{brennan2001generalizability}.\n\n\\paragraph{Probit simulation.} A probit simulation matched to our 1,296-condition design confirms that Henderson Method~I recovers variance component rankings from dichotomized data (Spearman $\\rho = 0.732$ between binary and continuous rankings, excluding residual; \\texttt{item\\_id} dominant in all 100 replications; top-5 ordering correct in 79\\% of replications). Bias analysis by difficulty stratum shows $|\\text{bias}| = 0.28$--$0.37$ for items with $p \\in [0.5, 0.8]$, where the Bernoulli variance ceiling $p(1{-}p)$ is largest. This analysis covers the observed accuracy range ($p \\in [0.3, 0.9]$); extreme-difficulty items ($p < 0.3$ or $p > 0.9$) are rare in our sample ($<$8\\% of items) and may exhibit larger deviations. Henderson Method~I absorbs this Bernoulli-inherent variance into the residual, explaining inflated bias near medium difficulty; systematic component ordering is robustly recovered across all replications. Binary scoring inflates residual variance by absorbing the Bernoulli $p(1{-}p)$ ceiling, which enters $\\sigma^2_\\text{rel}$ and increases D-study item requirements. Within a matched probit simulation, binarization increases D-study budgets by approximately 36\\% (99 $\\to$ 135 items for $G \\geq 0.80$), driven by residual inflation (16\\% $\\to$ 41\\%) and item variance compression (50\\% $\\to$ 32\\%). Facet$\\times$item interactions---the components entering $\\sigma^2_\\text{rel}$---are best preserved under binarization (MAPE = 12.8\\%, range 8.7--17.5\\%), while residual variance inflates as expected from Bernoulli $p(1{-}p)$ noise (MAPE = 156\\%). D-study budgets derived from binary data are therefore conservative: continuous-scored designs would require equal or fewer items for the same $G$ threshold. Null calibration (ratio $= 1.0008$) confirms that this conservatism does not distort relative component magnitudes.\n\n\\paragraph{CI method comparison.} Bootstrap (1,000 item-level resamples with replacement) and delete-1 jackknife confidence intervals agree closely: width ratios range from 0.96 to 1.04 across all variance components. Bootstrap CIs capture item-sampling variability conditional on these 8 specific models; model-level stability is assessed separately via LOMO (below). The agreement indicates that the dependence structure introduced by item-level bootstrap resampling (which creates $\\sim$127 unique items per 200-item resample) does not materially distort interval estimates. Stratified resampling by subject (10 subjects $\\times$ 20 items) produces CIs within 4\\% of simple item-level bootstrap, confirming that the within-subject dependence structure does not materially affect interval estimates.\n\n\\paragraph{Facet specification sensitivity.} Treating temperature and ordering as fixed (rather than random) facets changes $G_\\text{item}$ by only 0.37 percentage points (all-random: 0.820 vs.\\ fixed temperature+ordering: 0.824). The small difference reflects the negligible temperature$\\times$item (0.65\\%) and ordering$\\times$item (0.54\\%) variance shares. The random-facet assumption is therefore robust to facet classification.\n\n\\paragraph{Leave-one-model-out (LOMO).} Across all 40 leave-one-model-out subsets (8 models $\\times$ 5 benchmarks), $G_\\text{item}$ ranges from 0.833 to 0.919, with CV $\\leq$ 1.25\\% per benchmark. No single model removal changes $G$ by more than 0.030 (GSM8K, removing Gemma-2-9B). Item-related variance rankings are preserved in all 40 subsets. Table~\\ref{tab:lomo_full} reports per-benchmark stability. This supports treating models as exchangeable within the target universe of 7--9B instruction-tuned models (\\S\\ref{sec:model_facet}).\n\n\\begin{table}[h]\n\\centering\n\\caption{LOMO stability across five benchmarks (8 models $\\times$ 5 benchmarks = 40 subsets).}\n\\label{tab:lomo_full}\n\\scriptsize\n\\begin{tabular}{lrrrr}\n\\toprule\nBenchmark & $G_\\text{full}$ & CV (\\%) & Max $|\\Delta G|$ & Most impactful \\\\\n\\midrule\nMMLU & 0.896 & 0.49 & 0.019 & InternLM2.5-7B \\\\\nARC & 0.892 & 0.94 & 0.026 & Llama-3.1-8B \\\\\nHellaSwag & 0.872 & 1.09 & 0.028 & Llama-3.1-8B \\\\\nGSM8K & 0.863 & 1.25 & 0.030 & Gemma-2-9B \\\\\nMATH & 0.888 & 1.20 & 0.029 & InternLM2.5-7B \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Inter-model agreement.} We computed pairwise Cohen's $\\kappa$ and Fleiss' $\\kappa$ across all model pairs on each benchmark. Mean pairwise $\\kappa$ ranges from 0.326 (MATH) to 0.461 (MMLU); Fleiss' $\\kappa$ ranges from 0.309 (GSM8K) to 0.456 (MMLU). HellaSwag uses six models ($\\kappa = 0.332$) due to missing OLMo and Yi data. The fair-to-moderate agreement independently confirms that the model$\\times$item interaction (30--36\\% of variance) reflects genuine differential item functioning: models disagree substantially on which items are difficult, consistent with prior DIF findings in educational measurement \\cite{holland1993dif, clauser1998dif}.\n\n\\paragraph{Scoring metric sensitivity.}\n\\label{sec:partial_credit}\nTo probe metric conditionality, we compared binary correctness with step-level partial credit on GSM8K using the full 8-model crossed design (200 items, 2,304 conditions per item). Under partial credit, $G_\\text{item}$ drops from 0.863 to 0.768, with residual variance rising from 39.9\\% to 64.9\\% and item variance falling from 16.9\\% to 10.3\\%. All eight models individually show $G_\\text{partial} < G_\\text{binary}$ (mean $\\Delta G = -0.135$, range $-0.025$ to $-0.309$), with $\\Delta G$ magnitude moderated by model accuracy: higher-accuracy models have fewer incorrect responses whose scores shift under partial credit (e.g., OLMo at 70.1\\% accuracy shows $\\Delta G = -0.025$, while Llama at 49.0\\% shows $\\Delta G = -0.309$). The mechanism is clear: 48.1\\% of incorrect responses have numerically correct arithmetic steps but incorrect problem setup, receiving partial score $= 1.0$ despite binary score $= 0$---this compresses item discrimination and inflates residual variance. Binary scoring amplifies prompt sensitivity by collapsing reasoning quality into pass/fail, confirming that all findings in this paper are metric-conditional.\n\n\\paragraph{Facet specification sensitivity: random vs.\\ fixed model.} Table~\\ref{tab:fixed_vs_random} reports per-benchmark generalizability coefficients under random and fixed model specifications. The consistent $\\Delta G$ of 0.077--0.113 confirms that random-model budgets are strictly more conservative across all benchmarks.\n\n\\begin{table}[h]\n\\centering\n\\caption{Generalizability coefficients under random vs.\\ fixed model facet specification across five benchmarks.}\n\\label{tab:fixed_vs_random}\n\\scriptsize\n\\begin{tabular}{lrrr}\n\\toprule\nBenchmark & $G_\\text{random}$ & $G_\\text{fixed}$ & $\\Delta G$ \\\\\n\\midrule\nMMLU & 0.896 & 0.984 & $+$0.088 \\\\\nARC & 0.892 & 0.990 & $+$0.098 \\\\\nHellaSwag & 0.872 & 0.984 & $+$0.113 \\\\\nGSM8K & 0.863 & 0.951 & $+$0.089 \\\\\nMATH & 0.888 & 0.965 & $+$0.077 \\\\\n\\midrule\nMean & 0.882 & 0.975 & $+$0.093 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Null calibration.} We generate 100 Bernoulli-distributed datasets with item difficulties matched to the empirical distribution but no systematic facet effects. The observed-to-null variance ratio is 1.0008, confirming that Henderson Method~I does not introduce systematic bias when applied to binary outcomes. The null simulation also verifies that the item variance share (58.4\\%) is not an artifact of the Bernoulli $p(1{-}p)$ ceiling: the null produces item variance of 0.08\\%, three orders of magnitude below the observed value. Across all 100 replications, the same three components (item, model$\\times$item, residual) emerge as the top three (set consistency 100\\%), with Kendall's $\\tau = 0.81$ between binary and continuous rankings.\n\n\\paragraph{Reduced crossing validation.} To verify that the reduced crossing in exp-002 (BF16 only $\\times$ 2 temperatures) does not introduce confounding, we extracted the corresponding subset from the fully crossed exp-001 design. The generalizability coefficient differs by only 0.0008 ($G = 0.9361$ vs.\\ $0.9369$), and all non-precision variance components differ by less than 2 percentage points. The 10pp increase in item variance share (58.4\\% $\\to$ 68.5\\%) is fully explained by the removal of precision-related components ($\\sim$4.5\\% total), which redistributes across remaining sources. This confirms that the exp-002 design preserves the variance structure of the full crossing.\n\n\\section{Cross-Model D-Study Projections}\n\\label{app:dstudy_cross}\n\nTable~\\ref{tab:dstudy_cross} extends the single-model D-study (Table~\\ref{tab:dstudy} in main text) to per-benchmark cross-model projections with bootstrap confidence intervals (1,000 item-level resamples, 8 models, 2,304 conditions per item). The efficiency ratio is format-associated: MC benchmarks show 11--13$\\times$ (mean 12.0$\\times$ [11.6, 12.5]), while FF benchmarks show 21--22$\\times$ (mean 21.5$\\times$ [20.4, 22.8]).\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-model D-study reproducibility budgets with 95\\% bootstrap CIs. $n_{G \\geq 0.80}$: items needed. Multi = multi-facet (2,304 cond.); Total = items $\\times$ 2,304. Single = single-condition (total evals = item count).}\n\\label{tab:dstudy_cross}\n\\scriptsize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{l rr r rr r}\n\\toprule\n & \\multicolumn{3}{c}{Multi-facet (2,304 cond.)} & \\multicolumn{2}{c}{Single-cond.} & \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-6}\n & Items & 95\\% CI & Total & Items & 95\\% CI & Ratio [95\\% CI] \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{Multiple-choice}} \\\\\nMMLU & 93 & [76, 116] & 214K & 1{,}216 & [1004, 1491] & 13.1 [12.5, 13.7] \\\\\nARC & 98 & [71, 139] & 226K & 1{,}078 & [793, 1512] & 11.0 [10.7, 11.4] \\\\\nHella. & 118 & [93, 151] & 272K & 1{,}403 & [1120, 1790] & 11.9 [11.5, 12.3] \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{Free-form}} \\\\\nGSM8K & 128 & [103, 162] & 295K & 2{,}768 & [2230, 3531] & 21.6 [20.7, 23.0] \\\\\nMATH & 101 & [86, 122] & 233K & 2{,}160 & [1853, 2631] & 21.4 [20.2, 22.5] \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nThe higher item requirements relative to the single-model analysis (55 items in Table~\\ref{tab:dstudy}) reflect the additional model$\\times$item interaction variance that enters $\\sigma^2_\\text{rel}$ when models are crossed as a facet. The format-associated ratio pattern---FF benchmarks showing $\\sim$2$\\times$ the MC ratio---is consistent with the distributed variance structure observed in \\S\\ref{sec:format_conditional}, where FF benchmarks allocate more variance to model and model$\\times$prompt components.\n\n\\paragraph{Internal consistency check.} Table~\\ref{tab:forward_pred} reports consistency checks from four exp-001 models (DeepSeek, Llama, Mistral, Qwen3) to the full eight-model design across all five benchmarks. MC benchmarks show $|\\Delta G| \\leq 0.029$ ($<$3.5\\% error), while FF benchmarks show larger deviations ($|\\Delta G| \\leq 0.065$, $\\sim$7\\%) due to limited model diversity in the four-model subset. FF predictions consistently underestimate actual $G$ (conservative); MC predictions show mixed directions with small deviations ($|\\Delta G| \\leq 0.029$).\n\n\\begin{table}[h]\n\\centering\n\\caption{Internal consistency: four-model subset vs.\\ eight-model $G_\\text{item}$. FF subsets underestimate actual $G$ (conservative); MC shows mixed directions with small deviations.}\n\\label{tab:forward_pred}\n\\small\n\\begin{tabular}{lrrrr}\n\\toprule\nBenchmark & Predicted $G$ & Actual $G$ & $|\\Delta G|$ & Error\\% \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{Multiple-choice}} \\\\\nMMLU & 0.888 & 0.896 & 0.009 & 0.96 \\\\\nARC & 0.904 & 0.892 & 0.012 & 1.38 \\\\\nHellaSwag & 0.901 & 0.872 & 0.029 & 3.33 \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{Free-form}} \\\\\nGSM8K & 0.803 & 0.863 & 0.059 & 6.88 \\\\\nMATH & 0.823 & 0.888 & 0.065 & 7.30 \\\\\n\\midrule\nMean & --- & --- & 0.035 & 3.97 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Budget sensitivity to estimation error.}\n\\label{app:budget_sensitivity}\nFigure~\\ref{fig:budget_sensitivity} shows the effect of $|\\Delta G| = 0.035$ estimation error on item budgets across all five benchmarks. The percentage increase is remarkably stable (23.0--24.5\\%, mean 23.2\\%), because the relative budget adjustment $\\Delta n / n$ depends on the $G$-formula ratio rather than on absolute variance components. Absolute $\\Delta n$ ranges from 13 (ARC) to 67 (GSM8K), scaling with the baseline budget.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{budget_sensitivity_band}\n\\caption{Effect of $|\\Delta G| = 0.035$ estimation error on item budgets across five benchmarks. The $\\sim$23\\% budget increase is consistent across all benchmarks, indicating D-study budgets are robust to estimation uncertainty.}\n\\label{fig:budget_sensitivity}\n\\end{figure}\n\n\\paragraph{Cross-benchmark $G$ stability.}\n\\label{app:cross_benchmark_transfer}\n$G_\\text{item}$ values cluster in a narrow band across all five benchmarks (0.863--0.896, CV = 1.4\\%), despite qualitatively different variance structures: MC benchmarks concentrate 68--72\\% in item-related components while GSM8K disperses variance across item (17\\%), model (11\\%), and interaction (15\\%) sources (Table~\\ref{tab:cross_benchmark}). This stability implies that D-study budget recommendations calibrated on one benchmark provide reasonable order-of-magnitude guidance for others. However, the 0.033 range in $G_\\text{item}$ translates to a 71--128 item range for multi-facet $G \\geq 0.80$ (Table~\\ref{tab:dstudy_cross}), and the variance compositions differ substantially---benchmark-specific G-studies remain necessary to identify dominant variance sources and optimize condition selection.\n\n\\section{Intermediate D-Study Designs}\n\\label{app:intermediate_dstudy}\n\nTable~\\ref{tab:intermediate_dstudy} shows how reliability improves as evaluation designs increase from single-condition to full multi-facet crossing. The steepest gain occurs at the ``minimal upgrade'' level (2 prompts): $G_{200}$ jumps from 0.592 to 0.692 at 2$\\times$ cost. A minimal sufficient design for $G \\geq 0.80$ is 3 prompts $\\times$ 3 seeds (9 conditions, $G_{200} = 0.818$, $n_{G \\geq 0.80} = 178$). Beyond the ``standard'' level (32 conditions), adding orderings provides negligible benefit (ordering$\\times$item $<$1\\%), confirming that prompt and seed diversity are the primary reliability drivers.\n\n\\begin{table}[h]\n\\centering\n\\caption{Intermediate D-study designs (single-model, MMLU). Designs are ordered by increasing conditions per item; $G_{200}$ and $n_{G \\geq 0.80}$ are D-study projections from exp-001 variance components.}\n\\label{tab:intermediate_dstudy}\n\\scriptsize\n\\begin{tabular}{llrrr}\n\\toprule\nDesign & Conditions & $G_{200}$ & $n_{G{\\geq}.80}$ \\\\\n\\midrule\nSingle-condition & 1 & .592 & 552 \\\\\nMinimal upgrade (2p) & 2 & .692 & 357 \\\\\nEasy upgrade (2p$\\times$2s) & 4 & .766 & 245 \\\\\nModerate (3p$\\times$3s) & 9 & .818 & 178 \\\\\nStandard (4p$\\times$4s$\\times$2t) & 32 & .869 & 121 \\\\\nEnhanced (+4 orderings) & 72 & .871 & 119 \\\\\nFull multi-facet & 1{,}296 & .936 & 55 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Format-Associated Variance: Per-Benchmark Details}\n\\label{app:format_details}\n\nThis section supplements the compressed format-associated analysis in \\S\\ref{sec:format_conditional} with per-benchmark details.\n\n\\paragraph{MC benchmark exceptions.} HellaSwag is the sole MC case where model$\\times$item slightly exceeds item (36.0\\% vs.\\ 34.3\\%), though their sum (70.3\\%) remains in the MC range (68--72\\%). Among MC benchmarks, ARC-Challenge shows an anomalously high model$\\times$prompt interaction (8.0\\% vs.\\ $<$2\\% for MMLU and HellaSwag), suggesting that science-domain items are differentially sensitive to option formatting across model families.\n\n\\paragraph{FF benchmark patterns.} Free-form benchmarks differ markedly from MC. On GSM8K, variance distributes across item (16.9\\%), model$\\times$item (14.6\\%), model (10.7\\%), and model$\\times$prompt (8.5\\%); prompt main effect is 5.4\\%. MATH shows an intermediate pattern: item leads at 24.0\\% with model$\\times$item at 17.3\\%, but residual variance is substantially larger (43.9\\%). Item-level regression reveals that FF residual variance is predominantly explained by the Bernoulli variance ceiling $p(1{-}p)$ ($R^2 = 0.47$--$0.86$; Appendix~\\ref{app:ff_residual}): medium-difficulty items maximize binary outcome variance regardless of facet structure, so the elevated FF residuals reflect measurement resolution rather than unmodeled substantive sources.\n\n\\paragraph{Difficulty dispersion as variance predictor.} Difficulty dispersion ($\\text{std}(p_i)$) strongly predicts item variance share ($\\rho = 0.82$, $n = 5$ benchmarks; Appendix~\\ref{app:difficulty_scatter}; reasoning-heavy subjects show $G_\\text{item}$ as low as 0.614, Appendix~\\ref{app:subject_gstudy}). Format constrains the noise floor, but difficulty heterogeneity determines variance magnitude within it.\n\n\\section{Cross-Benchmark Difficulty Heterogeneity}\n\\label{app:difficulty_scatter}\n\nFigure~\\ref{fig:difficulty_scatter} plots item difficulty heterogeneity ($\\text{std}(p_i)$ across models) against \\texttt{item\\_id} variance share for all five benchmarks. MC benchmarks cluster at higher dispersion ($0.24$--$0.31$) and higher item variance ($34$--$38\\%$), while FF benchmarks occupy the lower-left region ($0.22$--$0.23$, $17$--$24\\%$). The cross-benchmark Spearman $\\rho = 0.82$ ($p = 0.089$, $n = 5$) is consistent in direction with the within-MMLU correlation ($\\rho = 0.806$, $p = 0.005$, $n = 10$ subjects); these are independent analyses at different granularities (benchmarks vs.\\ subjects within MMLU), providing multi-scale support for the item difficulty heterogeneity mechanism discussed in \\S\\ref{sec:format_conditional}.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{fig4_difficulty_scatter}\n\\caption{Item difficulty heterogeneity ($\\text{std}(p_i)$, computed over available models per benchmark, 6--8 models) versus \\texttt{item\\_id} variance share (as reported in Table~\\ref{tab:cross_benchmark}) across five benchmarks. MC benchmarks (filled) exhibit higher difficulty dispersion and item variance than FF benchmarks (open). Spearman $\\rho = 0.82$, $p = 0.089$.}\n\\label{fig:difficulty_scatter}\n\\end{figure}\n\n\\section{MMLU Subject-Level Variance Decomposition}\n\\label{app:subject_gstudy}\n\nTable~\\ref{tab:subject_gstudy} reports per-subject variance decomposition for 10 MMLU subjects (20 items each, 8 models, 2,304 conditions per item). $G_\\text{item}$ ranges from 0.614 (\\texttt{high\\_school\\_mathematics}) to 0.930 (\\texttt{international\\_law}), with mean 0.843. Knowledge-intensive subjects (\\texttt{international\\_law}, \\texttt{clinical\\_knowledge}, \\texttt{world\\_religions}) show \\texttt{item\\_id} $>$ 40\\%, while reasoning-heavy subjects (\\texttt{high\\_school\\_mathematics}, \\texttt{abstract\\_algebra}) show model$\\times$item $>$ \\texttt{item\\_id}, consistent with models differing more in reasoning strategies than in factual recall. The \\texttt{high\\_school\\_mathematics} \\texttt{item\\_id} of 10.4\\% referenced in \\S\\ref{sec:format_conditional} is the lowest across all subjects, below even GSM8K (16.9\\%).\n\n\\begin{table}[h]\n\\centering\n\\caption{Subject-level variance decomposition within MMLU (20 items per subject, 8 models, 2,304 conditions per item). Sorted by $G_\\text{item}$ descending.}\n\\label{tab:subject_gstudy}\n\\scriptsize\n\\begin{tabular}{lrrrr}\n\\toprule\nSubject & Acc. & item\\% & mod.$\\times$it.\\% & $G_\\text{item}$ \\\\\n\\midrule\ninternational\\_law & .717 & 44.4 & 24.1 & .930 \\\\\nclinical\\_knowledge & .581 & 47.5 & 30.0 & .923 \\\\\nworld\\_religions & .826 & 42.2 & 27.1 & .910 \\\\\ncomputer\\_security & .740 & 37.0 & 24.9 & .908 \\\\\ncollege\\_physics & .436 & 31.6 & 30.1 & .876 \\\\\nphilosophy & .782 & 33.0 & 36.1 & .868 \\\\\nabstract\\_algebra & .457 & 24.1 & 32.8 & .822 \\\\\nus\\_foreign\\_policy & .864 & 20.4 & 36.9 & .802 \\\\\nprofessional\\_medicine & .671 & 19.9 & 41.7 & .778 \\\\\nhigh\\_school\\_math & .385 & 10.4 & 41.9 & .614 \\\\\n\\midrule\nMean & --- & 31.1 & 32.6 & .843 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{FF Residual Variance Analysis}\n\\label{app:ff_residual}\n\nTo investigate whether the elevated residual variance in free-form benchmarks (GSM8K 39.9\\%, MATH 43.9\\%) reflects unmodeled substantive sources or measurement properties of binary scoring, we regress item-level residual variance on item characteristics across all five benchmarks (Table~\\ref{tab:ff_residual}).\n\nThe dominant predictor is the quadratic difficulty effect ($p < 10^{-5}$ on all benchmarks): items near $p = 0.5$ show maximal residual variance, while items near the floor or ceiling show minimal residual. This inverted-U pattern directly mirrors the Bernoulli variance ceiling $p(1{-}p)$. Item content features (number of reasoning steps, answer length) are not significant predictors for GSM8K ($p > 0.38$), confirming that the difficulty--residual relationship is statistical rather than content-driven.\n\nFF benchmarks show substantially higher $R^2$ (mean 0.66) than MC benchmarks (mean 0.25), consistent with FF items spanning a wider difficulty range. The MC--FF contrast in residual magnitude is therefore a mathematical consequence of the difficulty distribution under binary scoring, not evidence of additional unmodeled variance sources in free-form evaluation.\n\n\\begin{table}[h]\n\\centering\n\\caption{Item-level residual variance regression. Difficulty$^2$ = quadratic (inverted-U) term reflecting the Bernoulli $p(1{-}p)$ ceiling. GSM8K additionally tests n\\_steps and answer\\_length (both $p > 0.38$).}\n\\label{tab:ff_residual}\n\\scriptsize\n\\begin{tabular}{lrrr}\n\\toprule\nBenchmark & $R^2$ (full) & $R^2$ (diff.\\ only) & Diff.$^2$ $p$ \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Multiple-choice}} \\\\\nMMLU & 0.377 & 0.347 & $<$0.001 \\\\\nARC & 0.221 & 0.204 & $<$0.001 \\\\\nHellaSwag & 0.156 & 0.140 & $<$0.001 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Free-form}} \\\\\nGSM8K & 0.468 & 0.449 & $<$0.001 \\\\\nMATH & 0.856 & 0.845 & $<$0.001 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Model and Prompt Details}\n\\label{app:models}\n\n\\paragraph{Models.} Table~\\ref{tab:model_ids} lists the eight models with their HuggingFace identifiers.\n\n\\begin{table}[h]\n\\centering\n\\caption{Models used in all experiments.}\n\\label{tab:model_ids}\n\\scriptsize\n\\begin{tabular}{llr}\n\\toprule\nShort name & HuggingFace identifier & Params \\\\\n\\midrule\nLlama-3.1-8B & \\texttt{meta-llama/Llama-3.1-8B-Instruct} & 8B \\\\\nGemma-2-9B & \\texttt{google/gemma-2-9b-it} & 9B \\\\\nMistral-7B-v0.3 & \\texttt{mistralai/Mistral-7B-Instruct-v0.3} & 7B \\\\\nQwen3-8B & \\texttt{Qwen/Qwen3-8B} & 8B \\\\\nYi-1.5-9B & \\texttt{01-ai/Yi-1.5-9B-Chat} & 9B \\\\\nOLMo-2-7B & \\texttt{allenai/OLMo-2-1124-7B-Instruct} & 7B \\\\\nInternLM2.5-7B & \\texttt{internlm/internlm2\\_5-7b-chat} & 7B \\\\\nDeepSeek-7B & \\texttt{deepseek-ai/deepseek-llm-7b-chat} & 7B \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Prompt templates.} Our six prompt templates follow a surface perturbation design inspired by BrittleBench \\cite{brittlebench2026}. For multiple-choice benchmarks, templates vary along three dimensions: option layout (lettered vs.\\ numbered), instruction wording (direct vs.\\ contextual), and answer prompt cue. For free-form benchmarks, templates vary chain-of-thought elicitation strategy. All six templates are semantically equivalent---they request the same task with different surface forms---to isolate formatting effects from content effects. ARC-Challenge and HellaSwag use the same six surface patterns as MMLU with domain-appropriate system instructions; MATH mirrors the GSM8K pattern with \\texttt{\\textbackslash boxed\\{\\}} answer formatting.\n\n\\smallskip\\noindent\\textit{MMLU templates (representative MC format):}\n\\begin{enumerate}\\setlength{\\itemsep}{0pt}\\setlength{\\parsep}{0pt}\\setlength{\\topsep}{0pt}\n\\item \\texttt{The following are multiple choice questions (with answers) about \\{subject\\}.\\textbackslash n\\textbackslash n\\{question\\}\\textbackslash nA. ... D. ...\\textbackslash nAnswer:}\n\\item \\texttt{Answer the following \\{subject\\} questions by selecting the correct option.\\textbackslash nQuestion: \\{question\\}\\textbackslash n(A) ... (B) ... (C) ... (D) ...\\textbackslash nCorrect answer:}\n\\item \\texttt{Below are \\{subject\\} multiple-choice problems. Pick the right letter.\\textbackslash nQ: \\{question\\}\\textbackslash n~~A) ... B) ... C) ... D) ...\\textbackslash nA:}\n\\item \\texttt{Answer the following \\{subject\\} question by selecting A, B, C, or D.\\textbackslash n\\{question\\}\\textbackslash n- A. ... - B. ... - C. ... - D. ...\\textbackslash nAnswer:}\n\\item \\texttt{Below is a \\{subject\\} exam question with four possible answers. Choose the correct one.\\textbackslash n\\{question\\}\\textbackslash nOption A: ... Option B: ... Option C: ... Option D: ...\\textbackslash nCorrect:}\n\\item \\texttt{Question (\\{subject\\}):\\textbackslash n\\{question\\}\\textbackslash nChoices: (A) ... (B) ... (C) ... (D) ...\\textbackslash nYour answer:}\n\\end{enumerate}\n\n\\smallskip\\noindent\\textit{GSM8K templates (representative FF format):}\n\\begin{enumerate}\\setlength{\\itemsep}{0pt}\\setlength{\\parsep}{0pt}\\setlength{\\topsep}{0pt}\n\\item \\texttt{Solve the following math problem step by step.\\textbackslash nQ: \\{question\\}\\textbackslash nA: Let's think step by step.}\n\\item \\texttt{Answer the following math word problem. Show your work.\\textbackslash nQuestion: \\{question\\}\\textbackslash nSolution:}\n\\item \\texttt{Solve each problem below. Write your reasoning, then give the final answer after \\#\\#\\#\\#.\\textbackslash nProblem: \\{question\\}\\textbackslash nReasoning:}\n\\item \\texttt{You are a math tutor. Solve the problem and show your steps.\\textbackslash n\\{question\\}\\textbackslash nSteps:}\n\\item \\texttt{Work through this math question carefully.\\textbackslash nQ: \\{question\\}\\textbackslash nWork:}\n\\item \\texttt{Math problem:\\textbackslash n\\{question\\}\\textbackslash nLet's solve this step by step.}\n\\end{enumerate}\n\n\\section{Use of AI Assistants}\n\\label{app:ai-assistants}\n\nWe used Claude (Anthropic) as an AI coding and writing assistant throughout this work. Specifically:\n\\begin{itemize}\n    \\item \\textbf{Code:} drafting experiment scripts, data-processing pipelines, and analysis utilities; debugging and refactoring.\n    \\item \\textbf{Writing:} drafting and revising paper sections, polishing prose, and reformatting \\LaTeX{}.\n    \\item \\textbf{Literature:} summarizing related papers to inform related-work section.\n\\end{itemize}\n",
+      "numLines": 308,
+      "startLine": 1,
+      "totalLines": 308
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 24_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+Now I need to find the `\label{app:format_details}` section and add the bootstrap CI paragraph at its end. Looking at the file:
+
+- Line 169: `\section{Format-Associated Variance: Per-Benchmark Details}` with `\label{app:format_details}`
+- The section content goes from line 170 to line 177
+- Line 179: Next section starts `\section{Cross-Benchmark Difficulty Heterogeneity}`
+
+So I need to add the paragraph after line 177 (the last paragraph in that section about "Difficulty dispersion as variance predictor") and before line 179 (the next section).
+
+
+Now I'm inserting the bootstrap CI paragraph into the file at the correct location.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "abdc9f48-7991-4ff9-8a25-2aeb536f2a9a",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011W8mUP5qas2EY1xbDpEUAN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10216,
+      "cache_read_input_tokens": 26566,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10216
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 25_
+
+找到了。`\label{app:format_details}` 在 line 169，该 section 到 line 177 结束，下一个 `\section` 在 line 179。在 line 177 之后插入段落。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "905bd8b7-ad7c-41fd-a8b3-8d8b489523ef",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011W8mUP5qas2EY1xbDpEUAN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10216,
+      "cache_read_input_tokens": 26566,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10216
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 26_
+
+<details open><summary>🔧 Tool call — Edit · `toolu_01YAphE6BijaEmfGCRUdHURL`</summary>
+
+```json
+{
+  "replace_all": false,
+  "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/appendix.tex",
+  "old_string": "\\paragraph{Difficulty dispersion as variance predictor.} Difficulty dispersion ($\\text{std}(p_i)$) strongly predicts item variance share ($\\rho = 0.82$, $n = 5$ benchmarks; Appendix~\\ref{app:difficulty_scatter}; reasoning-heavy subjects show $G_\\text{item}$ as low as 0.614, Appendix~\\ref{app:subject_gstudy}). Format constrains the noise floor, but difficulty heterogeneity determines variance magnitude within it.\n\n\\section{Cross-Benchmark Difficulty Heterogeneity}",
+  "new_string": "\\paragraph{Difficulty dispersion as variance predictor.} Difficulty dispersion ($\\text{std}(p_i)$) strongly predicts item variance share ($\\rho = 0.82$, $n = 5$ benchmarks; Appendix~\\ref{app:difficulty_scatter}; reasoning-heavy subjects show $G_\\text{item}$ as low as 0.614, Appendix~\\ref{app:subject_gstudy}). Format constrains the noise floor, but difficulty heterogeneity determines variance magnitude within it.\n\n\\paragraph{Item-level bootstrap stability.} Bootstrap resampling (1,000 item resamples per benchmark) confirms that the MC--FF separation is robust to item selection: 95\\% CIs for item-related variance (item + model$\\times$item) are [65.2, 75.0]\\% (MC) and [28.0, 44.2]\\% (FF), with no overlap (minimum gap 21.0 percentage points).\n\n\\section{Cross-Benchmark Difficulty Heterogeneity}"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "39cc426b-7d3a-46ec-8f3c-9b22c1dfdaeb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_011W8mUP5qas2EY1xbDpEUAN",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 10216,
+      "cache_read_input_tokens": 26566,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 10216
+      },
+      "output_tokens": 8,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 27 · 2026-05-24T10:16:05.706Z_
+
+<details><summary>↩ Tool result · `toolu_01YAphE6BijaEmfGCRUdHURL`</summary>
+
+```text
+The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/appendix.tex has been updated successfully.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "d6b4c67f-e8ec-47b2-8981-6ac27878a4fa",
+  "tool_use_result": {
+    "filePath": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/appendix.tex",
+    "oldString": "\\paragraph{Difficulty dispersion as variance predictor.} Difficulty dispersion ($\\text{std}(p_i)$) strongly predicts item variance share ($\\rho = 0.82$, $n = 5$ benchmarks; Appendix~\\ref{app:difficulty_scatter}; reasoning-heavy subjects show $G_\\text{item}$ as low as 0.614, Appendix~\\ref{app:subject_gstudy}). Format constrains the noise floor, but difficulty heterogeneity determines variance magnitude within it.\n\n\\section{Cross-Benchmark Difficulty Heterogeneity}",
+    "newString": "\\paragraph{Difficulty dispersion as variance predictor.} Difficulty dispersion ($\\text{std}(p_i)$) strongly predicts item variance share ($\\rho = 0.82$, $n = 5$ benchmarks; Appendix~\\ref{app:difficulty_scatter}; reasoning-heavy subjects show $G_\\text{item}$ as low as 0.614, Appendix~\\ref{app:subject_gstudy}). Format constrains the noise floor, but difficulty heterogeneity determines variance magnitude within it.\n\n\\paragraph{Item-level bootstrap stability.} Bootstrap resampling (1,000 item resamples per benchmark) confirms that the MC--FF separation is robust to item selection: 95\\% CIs for item-related variance (item + model$\\times$item) are [65.2, 75.0]\\% (MC) and [28.0, 44.2]\\% (FF), with no overlap (minimum gap 21.0 percentage points).\n\n\\section{Cross-Benchmark Difficulty Heterogeneity}",
+    "originalFile": "\\appendix\n\\section{Additional Robustness Analyses}\n\\label{app:robustness}\n\nWe report nine robustness analyses that verify the stability of the variance decomposition under alternative analytical choices.\n\n\\paragraph{GLMM complement.} A generalized linear mixed model (GLMM) with marginal logit link produces variance component rankings that perfectly preserve all seven grouped component orderings ($\\rho = 1.0$) relative to Henderson Method~I \\cite{jiang2018bayesian, tuerlinckx2006glmm}. This confirms that the linear variance decomposition is robust to the binary outcome distribution.\n\n\\paragraph{Accuracy-range stability.} The \\texttt{item\\_id} variance share remains stable across subsets with mean accuracy from 0.62 to 0.72 ($r = -0.048$). This rules out distortion from binary floor or ceiling effects at observed accuracy levels.\n\n\\paragraph{Estimator robustness.} We compare Henderson Method~I with restricted maximum likelihood (REML-EM, 500 iterations, practical convergence $\\Delta < 0.003$ percentage points). All variance components differ by $<$0.5 percentage points between estimators. The largest discrepancy occurs on the residual component (0.47pp); all substantive components (item, model$\\times$item, model) differ by $<$0.3pp. Henderson Method~I is preferred for our balanced designs because it produces unbiased estimates without distributional assumptions \\cite[Ch.~12]{brennan2001generalizability}.\n\n\\paragraph{Probit simulation.} A probit simulation matched to our 1,296-condition design confirms that Henderson Method~I recovers variance component rankings from dichotomized data (Spearman $\\rho = 0.732$ between binary and continuous rankings, excluding residual; \\texttt{item\\_id} dominant in all 100 replications; top-5 ordering correct in 79\\% of replications). Bias analysis by difficulty stratum shows $|\\text{bias}| = 0.28$--$0.37$ for items with $p \\in [0.5, 0.8]$, where the Bernoulli variance ceiling $p(1{-}p)$ is largest. This analysis covers the observed accuracy range ($p \\in [0.3, 0.9]$); extreme-difficulty items ($p < 0.3$ or $p > 0.9$) are rare in our sample ($<$8\\% of items) and may exhibit larger deviations. Henderson Method~I absorbs this Bernoulli-inherent variance into the residual, explaining inflated bias near medium difficulty; systematic component ordering is robustly recovered across all replications. Binary scoring inflates residual variance by absorbing the Bernoulli $p(1{-}p)$ ceiling, which enters $\\sigma^2_\\text{rel}$ and increases D-study item requirements. Within a matched probit simulation, binarization increases D-study budgets by approximately 36\\% (99 $\\to$ 135 items for $G \\geq 0.80$), driven by residual inflation (16\\% $\\to$ 41\\%) and item variance compression (50\\% $\\to$ 32\\%). Facet$\\times$item interactions---the components entering $\\sigma^2_\\text{rel}$---are best preserved under binarization (MAPE = 12.8\\%, range 8.7--17.5\\%), while residual variance inflates as expected from Bernoulli $p(1{-}p)$ noise (MAPE = 156\\%). D-study budgets derived from binary data are therefore conservative: continuous-scored designs would require equal or fewer items for the same $G$ threshold. Null calibration (ratio $= 1.0008$) confirms that this conservatism does not distort relative component magnitudes.\n\n\\paragraph{CI method comparison.} Bootstrap (1,000 item-level resamples with replacement) and delete-1 jackknife confidence intervals agree closely: width ratios range from 0.96 to 1.04 across all variance components. Bootstrap CIs capture item-sampling variability conditional on these 8 specific models; model-level stability is assessed separately via LOMO (below). The agreement indicates that the dependence structure introduced by item-level bootstrap resampling (which creates $\\sim$127 unique items per 200-item resample) does not materially distort interval estimates. Stratified resampling by subject (10 subjects $\\times$ 20 items) produces CIs within 4\\% of simple item-level bootstrap, confirming that the within-subject dependence structure does not materially affect interval estimates.\n\n\\paragraph{Facet specification sensitivity.} Treating temperature and ordering as fixed (rather than random) facets changes $G_\\text{item}$ by only 0.37 percentage points (all-random: 0.820 vs.\\ fixed temperature+ordering: 0.824). The small difference reflects the negligible temperature$\\times$item (0.65\\%) and ordering$\\times$item (0.54\\%) variance shares. The random-facet assumption is therefore robust to facet classification.\n\n\\paragraph{Leave-one-model-out (LOMO).} Across all 40 leave-one-model-out subsets (8 models $\\times$ 5 benchmarks), $G_\\text{item}$ ranges from 0.833 to 0.919, with CV $\\leq$ 1.25\\% per benchmark. No single model removal changes $G$ by more than 0.030 (GSM8K, removing Gemma-2-9B). Item-related variance rankings are preserved in all 40 subsets. Table~\\ref{tab:lomo_full} reports per-benchmark stability. This supports treating models as exchangeable within the target universe of 7--9B instruction-tuned models (\\S\\ref{sec:model_facet}).\n\n\\begin{table}[h]\n\\centering\n\\caption{LOMO stability across five benchmarks (8 models $\\times$ 5 benchmarks = 40 subsets).}\n\\label{tab:lomo_full}\n\\scriptsize\n\\begin{tabular}{lrrrr}\n\\toprule\nBenchmark & $G_\\text{full}$ & CV (\\%) & Max $|\\Delta G|$ & Most impactful \\\\\n\\midrule\nMMLU & 0.896 & 0.49 & 0.019 & InternLM2.5-7B \\\\\nARC & 0.892 & 0.94 & 0.026 & Llama-3.1-8B \\\\\nHellaSwag & 0.872 & 1.09 & 0.028 & Llama-3.1-8B \\\\\nGSM8K & 0.863 & 1.25 & 0.030 & Gemma-2-9B \\\\\nMATH & 0.888 & 1.20 & 0.029 & InternLM2.5-7B \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Inter-model agreement.} We computed pairwise Cohen's $\\kappa$ and Fleiss' $\\kappa$ across all model pairs on each benchmark. Mean pairwise $\\kappa$ ranges from 0.326 (MATH) to 0.461 (MMLU); Fleiss' $\\kappa$ ranges from 0.309 (GSM8K) to 0.456 (MMLU). HellaSwag uses six models ($\\kappa = 0.332$) due to missing OLMo and Yi data. The fair-to-moderate agreement independently confirms that the model$\\times$item interaction (30--36\\% of variance) reflects genuine differential item functioning: models disagree substantially on which items are difficult, consistent with prior DIF findings in educational measurement \\cite{holland1993dif, clauser1998dif}.\n\n\\paragraph{Scoring metric sensitivity.}\n\\label{sec:partial_credit}\nTo probe metric conditionality, we compared binary correctness with step-level partial credit on GSM8K using the full 8-model crossed design (200 items, 2,304 conditions per item). Under partial credit, $G_\\text{item}$ drops from 0.863 to 0.768, with residual variance rising from 39.9\\% to 64.9\\% and item variance falling from 16.9\\% to 10.3\\%. All eight models individually show $G_\\text{partial} < G_\\text{binary}$ (mean $\\Delta G = -0.135$, range $-0.025$ to $-0.309$), with $\\Delta G$ magnitude moderated by model accuracy: higher-accuracy models have fewer incorrect responses whose scores shift under partial credit (e.g., OLMo at 70.1\\% accuracy shows $\\Delta G = -0.025$, while Llama at 49.0\\% shows $\\Delta G = -0.309$). The mechanism is clear: 48.1\\% of incorrect responses have numerically correct arithmetic steps but incorrect problem setup, receiving partial score $= 1.0$ despite binary score $= 0$---this compresses item discrimination and inflates residual variance. Binary scoring amplifies prompt sensitivity by collapsing reasoning quality into pass/fail, confirming that all findings in this paper are metric-conditional.\n\n\\paragraph{Facet specification sensitivity: random vs.\\ fixed model.} Table~\\ref{tab:fixed_vs_random} reports per-benchmark generalizability coefficients under random and fixed model specifications. The consistent $\\Delta G$ of 0.077--0.113 confirms that random-model budgets are strictly more conservative across all benchmarks.\n\n\\begin{table}[h]\n\\centering\n\\caption{Generalizability coefficients under random vs.\\ fixed model facet specification across five benchmarks.}\n\\label{tab:fixed_vs_random}\n\\scriptsize\n\\begin{tabular}{lrrr}\n\\toprule\nBenchmark & $G_\\text{random}$ & $G_\\text{fixed}$ & $\\Delta G$ \\\\\n\\midrule\nMMLU & 0.896 & 0.984 & $+$0.088 \\\\\nARC & 0.892 & 0.990 & $+$0.098 \\\\\nHellaSwag & 0.872 & 0.984 & $+$0.113 \\\\\nGSM8K & 0.863 & 0.951 & $+$0.089 \\\\\nMATH & 0.888 & 0.965 & $+$0.077 \\\\\n\\midrule\nMean & 0.882 & 0.975 & $+$0.093 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Null calibration.} We generate 100 Bernoulli-distributed datasets with item difficulties matched to the empirical distribution but no systematic facet effects. The observed-to-null variance ratio is 1.0008, confirming that Henderson Method~I does not introduce systematic bias when applied to binary outcomes. The null simulation also verifies that the item variance share (58.4\\%) is not an artifact of the Bernoulli $p(1{-}p)$ ceiling: the null produces item variance of 0.08\\%, three orders of magnitude below the observed value. Across all 100 replications, the same three components (item, model$\\times$item, residual) emerge as the top three (set consistency 100\\%), with Kendall's $\\tau = 0.81$ between binary and continuous rankings.\n\n\\paragraph{Reduced crossing validation.} To verify that the reduced crossing in exp-002 (BF16 only $\\times$ 2 temperatures) does not introduce confounding, we extracted the corresponding subset from the fully crossed exp-001 design. The generalizability coefficient differs by only 0.0008 ($G = 0.9361$ vs.\\ $0.9369$), and all non-precision variance components differ by less than 2 percentage points. The 10pp increase in item variance share (58.4\\% $\\to$ 68.5\\%) is fully explained by the removal of precision-related components ($\\sim$4.5\\% total), which redistributes across remaining sources. This confirms that the exp-002 design preserves the variance structure of the full crossing.\n\n\\section{Cross-Model D-Study Projections}\n\\label{app:dstudy_cross}\n\nTable~\\ref{tab:dstudy_cross} extends the single-model D-study (Table~\\ref{tab:dstudy} in main text) to per-benchmark cross-model projections with bootstrap confidence intervals (1,000 item-level resamples, 8 models, 2,304 conditions per item). The efficiency ratio is format-associated: MC benchmarks show 11--13$\\times$ (mean 12.0$\\times$ [11.6, 12.5]), while FF benchmarks show 21--22$\\times$ (mean 21.5$\\times$ [20.4, 22.8]).\n\n\\begin{table}[h]\n\\centering\n\\caption{Cross-model D-study reproducibility budgets with 95\\% bootstrap CIs. $n_{G \\geq 0.80}$: items needed. Multi = multi-facet (2,304 cond.); Total = items $\\times$ 2,304. Single = single-condition (total evals = item count).}\n\\label{tab:dstudy_cross}\n\\scriptsize\n\\resizebox{\\columnwidth}{!}{%\n\\begin{tabular}{l rr r rr r}\n\\toprule\n & \\multicolumn{3}{c}{Multi-facet (2,304 cond.)} & \\multicolumn{2}{c}{Single-cond.} & \\\\\n\\cmidrule(lr){2-4} \\cmidrule(lr){5-6}\n & Items & 95\\% CI & Total & Items & 95\\% CI & Ratio [95\\% CI] \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{Multiple-choice}} \\\\\nMMLU & 93 & [76, 116] & 214K & 1{,}216 & [1004, 1491] & 13.1 [12.5, 13.7] \\\\\nARC & 98 & [71, 139] & 226K & 1{,}078 & [793, 1512] & 11.0 [10.7, 11.4] \\\\\nHella. & 118 & [93, 151] & 272K & 1{,}403 & [1120, 1790] & 11.9 [11.5, 12.3] \\\\\n\\midrule\n\\multicolumn{7}{l}{\\textit{Free-form}} \\\\\nGSM8K & 128 & [103, 162] & 295K & 2{,}768 & [2230, 3531] & 21.6 [20.7, 23.0] \\\\\nMATH & 101 & [86, 122] & 233K & 2{,}160 & [1853, 2631] & 21.4 [20.2, 22.5] \\\\\n\\bottomrule\n\\end{tabular}%\n}\n\\end{table}\n\nThe higher item requirements relative to the single-model analysis (55 items in Table~\\ref{tab:dstudy}) reflect the additional model$\\times$item interaction variance that enters $\\sigma^2_\\text{rel}$ when models are crossed as a facet. The format-associated ratio pattern---FF benchmarks showing $\\sim$2$\\times$ the MC ratio---is consistent with the distributed variance structure observed in \\S\\ref{sec:format_conditional}, where FF benchmarks allocate more variance to model and model$\\times$prompt components.\n\n\\paragraph{Internal consistency check.} Table~\\ref{tab:forward_pred} reports consistency checks from four exp-001 models (DeepSeek, Llama, Mistral, Qwen3) to the full eight-model design across all five benchmarks. MC benchmarks show $|\\Delta G| \\leq 0.029$ ($<$3.5\\% error), while FF benchmarks show larger deviations ($|\\Delta G| \\leq 0.065$, $\\sim$7\\%) due to limited model diversity in the four-model subset. FF predictions consistently underestimate actual $G$ (conservative); MC predictions show mixed directions with small deviations ($|\\Delta G| \\leq 0.029$).\n\n\\begin{table}[h]\n\\centering\n\\caption{Internal consistency: four-model subset vs.\\ eight-model $G_\\text{item}$. FF subsets underestimate actual $G$ (conservative); MC shows mixed directions with small deviations.}\n\\label{tab:forward_pred}\n\\small\n\\begin{tabular}{lrrrr}\n\\toprule\nBenchmark & Predicted $G$ & Actual $G$ & $|\\Delta G|$ & Error\\% \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{Multiple-choice}} \\\\\nMMLU & 0.888 & 0.896 & 0.009 & 0.96 \\\\\nARC & 0.904 & 0.892 & 0.012 & 1.38 \\\\\nHellaSwag & 0.901 & 0.872 & 0.029 & 3.33 \\\\\n\\midrule\n\\multicolumn{5}{l}{\\textit{Free-form}} \\\\\nGSM8K & 0.803 & 0.863 & 0.059 & 6.88 \\\\\nMATH & 0.823 & 0.888 & 0.065 & 7.30 \\\\\n\\midrule\nMean & --- & --- & 0.035 & 3.97 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Budget sensitivity to estimation error.}\n\\label{app:budget_sensitivity}\nFigure~\\ref{fig:budget_sensitivity} shows the effect of $|\\Delta G| = 0.035$ estimation error on item budgets across all five benchmarks. The percentage increase is remarkably stable (23.0--24.5\\%, mean 23.2\\%), because the relative budget adjustment $\\Delta n / n$ depends on the $G$-formula ratio rather than on absolute variance components. Absolute $\\Delta n$ ranges from 13 (ARC) to 67 (GSM8K), scaling with the baseline budget.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{budget_sensitivity_band}\n\\caption{Effect of $|\\Delta G| = 0.035$ estimation error on item budgets across five benchmarks. The $\\sim$23\\% budget increase is consistent across all benchmarks, indicating D-study budgets are robust to estimation uncertainty.}\n\\label{fig:budget_sensitivity}\n\\end{figure}\n\n\\paragraph{Cross-benchmark $G$ stability.}\n\\label{app:cross_benchmark_transfer}\n$G_\\text{item}$ values cluster in a narrow band across all five benchmarks (0.863--0.896, CV = 1.4\\%), despite qualitatively different variance structures: MC benchmarks concentrate 68--72\\% in item-related components while GSM8K disperses variance across item (17\\%), model (11\\%), and interaction (15\\%) sources (Table~\\ref{tab:cross_benchmark}). This stability implies that D-study budget recommendations calibrated on one benchmark provide reasonable order-of-magnitude guidance for others. However, the 0.033 range in $G_\\text{item}$ translates to a 71--128 item range for multi-facet $G \\geq 0.80$ (Table~\\ref{tab:dstudy_cross}), and the variance compositions differ substantially---benchmark-specific G-studies remain necessary to identify dominant variance sources and optimize condition selection.\n\n\\section{Intermediate D-Study Designs}\n\\label{app:intermediate_dstudy}\n\nTable~\\ref{tab:intermediate_dstudy} shows how reliability improves as evaluation designs increase from single-condition to full multi-facet crossing. The steepest gain occurs at the ``minimal upgrade'' level (2 prompts): $G_{200}$ jumps from 0.592 to 0.692 at 2$\\times$ cost. A minimal sufficient design for $G \\geq 0.80$ is 3 prompts $\\times$ 3 seeds (9 conditions, $G_{200} = 0.818$, $n_{G \\geq 0.80} = 178$). Beyond the ``standard'' level (32 conditions), adding orderings provides negligible benefit (ordering$\\times$item $<$1\\%), confirming that prompt and seed diversity are the primary reliability drivers.\n\n\\begin{table}[h]\n\\centering\n\\caption{Intermediate D-study designs (single-model, MMLU). Designs are ordered by increasing conditions per item; $G_{200}$ and $n_{G \\geq 0.80}$ are D-study projections from exp-001 variance components.}\n\\label{tab:intermediate_dstudy}\n\\scriptsize\n\\begin{tabular}{llrrr}\n\\toprule\nDesign & Conditions & $G_{200}$ & $n_{G{\\geq}.80}$ \\\\\n\\midrule\nSingle-condition & 1 & .592 & 552 \\\\\nMinimal upgrade (2p) & 2 & .692 & 357 \\\\\nEasy upgrade (2p$\\times$2s) & 4 & .766 & 245 \\\\\nModerate (3p$\\times$3s) & 9 & .818 & 178 \\\\\nStandard (4p$\\times$4s$\\times$2t) & 32 & .869 & 121 \\\\\nEnhanced (+4 orderings) & 72 & .871 & 119 \\\\\nFull multi-facet & 1{,}296 & .936 & 55 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Format-Associated Variance: Per-Benchmark Details}\n\\label{app:format_details}\n\nThis section supplements the compressed format-associated analysis in \\S\\ref{sec:format_conditional} with per-benchmark details.\n\n\\paragraph{MC benchmark exceptions.} HellaSwag is the sole MC case where model$\\times$item slightly exceeds item (36.0\\% vs.\\ 34.3\\%), though their sum (70.3\\%) remains in the MC range (68--72\\%). Among MC benchmarks, ARC-Challenge shows an anomalously high model$\\times$prompt interaction (8.0\\% vs.\\ $<$2\\% for MMLU and HellaSwag), suggesting that science-domain items are differentially sensitive to option formatting across model families.\n\n\\paragraph{FF benchmark patterns.} Free-form benchmarks differ markedly from MC. On GSM8K, variance distributes across item (16.9\\%), model$\\times$item (14.6\\%), model (10.7\\%), and model$\\times$prompt (8.5\\%); prompt main effect is 5.4\\%. MATH shows an intermediate pattern: item leads at 24.0\\% with model$\\times$item at 17.3\\%, but residual variance is substantially larger (43.9\\%). Item-level regression reveals that FF residual variance is predominantly explained by the Bernoulli variance ceiling $p(1{-}p)$ ($R^2 = 0.47$--$0.86$; Appendix~\\ref{app:ff_residual}): medium-difficulty items maximize binary outcome variance regardless of facet structure, so the elevated FF residuals reflect measurement resolution rather than unmodeled substantive sources.\n\n\\paragraph{Difficulty dispersion as variance predictor.} Difficulty dispersion ($\\text{std}(p_i)$) strongly predicts item variance share ($\\rho = 0.82$, $n = 5$ benchmarks; Appendix~\\ref{app:difficulty_scatter}; reasoning-heavy subjects show $G_\\text{item}$ as low as 0.614, Appendix~\\ref{app:subject_gstudy}). Format constrains the noise floor, but difficulty heterogeneity determines variance magnitude within it.\n\n\\section{Cross-Benchmark Difficulty Heterogeneity}\n\\label{app:difficulty_scatter}\n\nFigure~\\ref{fig:difficulty_scatter} plots item difficulty heterogeneity ($\\text{std}(p_i)$ across models) against \\texttt{item\\_id} variance share for all five benchmarks. MC benchmarks cluster at higher dispersion ($0.24$--$0.31$) and higher item variance ($34$--$38\\%$), while FF benchmarks occupy the lower-left region ($0.22$--$0.23$, $17$--$24\\%$). The cross-benchmark Spearman $\\rho = 0.82$ ($p = 0.089$, $n = 5$) is consistent in direction with the within-MMLU correlation ($\\rho = 0.806$, $p = 0.005$, $n = 10$ subjects); these are independent analyses at different granularities (benchmarks vs.\\ subjects within MMLU), providing multi-scale support for the item difficulty heterogeneity mechanism discussed in \\S\\ref{sec:format_conditional}.\n\n\\begin{figure}[h]\n\\centering\n\\includegraphics[width=0.75\\columnwidth]{fig4_difficulty_scatter}\n\\caption{Item difficulty heterogeneity ($\\text{std}(p_i)$, computed over available models per benchmark, 6--8 models) versus \\texttt{item\\_id} variance share (as reported in Table~\\ref{tab:cross_benchmark}) across five benchmarks. MC benchmarks (filled) exhibit higher difficulty dispersion and item variance than FF benchmarks (open). Spearman $\\rho = 0.82$, $p = 0.089$.}\n\\label{fig:difficulty_scatter}\n\\end{figure}\n\n\\section{MMLU Subject-Level Variance Decomposition}\n\\label{app:subject_gstudy}\n\nTable~\\ref{tab:subject_gstudy} reports per-subject variance decomposition for 10 MMLU subjects (20 items each, 8 models, 2,304 conditions per item). $G_\\text{item}$ ranges from 0.614 (\\texttt{high\\_school\\_mathematics}) to 0.930 (\\texttt{international\\_law}), with mean 0.843. Knowledge-intensive subjects (\\texttt{international\\_law}, \\texttt{clinical\\_knowledge}, \\texttt{world\\_religions}) show \\texttt{item\\_id} $>$ 40\\%, while reasoning-heavy subjects (\\texttt{high\\_school\\_mathematics}, \\texttt{abstract\\_algebra}) show model$\\times$item $>$ \\texttt{item\\_id}, consistent with models differing more in reasoning strategies than in factual recall. The \\texttt{high\\_school\\_mathematics} \\texttt{item\\_id} of 10.4\\% referenced in \\S\\ref{sec:format_conditional} is the lowest across all subjects, below even GSM8K (16.9\\%).\n\n\\begin{table}[h]\n\\centering\n\\caption{Subject-level variance decomposition within MMLU (20 items per subject, 8 models, 2,304 conditions per item). Sorted by $G_\\text{item}$ descending.}\n\\label{tab:subject_gstudy}\n\\scriptsize\n\\begin{tabular}{lrrrr}\n\\toprule\nSubject & Acc. & item\\% & mod.$\\times$it.\\% & $G_\\text{item}$ \\\\\n\\midrule\ninternational\\_law & .717 & 44.4 & 24.1 & .930 \\\\\nclinical\\_knowledge & .581 & 47.5 & 30.0 & .923 \\\\\nworld\\_religions & .826 & 42.2 & 27.1 & .910 \\\\\ncomputer\\_security & .740 & 37.0 & 24.9 & .908 \\\\\ncollege\\_physics & .436 & 31.6 & 30.1 & .876 \\\\\nphilosophy & .782 & 33.0 & 36.1 & .868 \\\\\nabstract\\_algebra & .457 & 24.1 & 32.8 & .822 \\\\\nus\\_foreign\\_policy & .864 & 20.4 & 36.9 & .802 \\\\\nprofessional\\_medicine & .671 & 19.9 & 41.7 & .778 \\\\\nhigh\\_school\\_math & .385 & 10.4 & 41.9 & .614 \\\\\n\\midrule\nMean & --- & 31.1 & 32.6 & .843 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{FF Residual Variance Analysis}\n\\label{app:ff_residual}\n\nTo investigate whether the elevated residual variance in free-form benchmarks (GSM8K 39.9\\%, MATH 43.9\\%) reflects unmodeled substantive sources or measurement properties of binary scoring, we regress item-level residual variance on item characteristics across all five benchmarks (Table~\\ref{tab:ff_residual}).\n\nThe dominant predictor is the quadratic difficulty effect ($p < 10^{-5}$ on all benchmarks): items near $p = 0.5$ show maximal residual variance, while items near the floor or ceiling show minimal residual. This inverted-U pattern directly mirrors the Bernoulli variance ceiling $p(1{-}p)$. Item content features (number of reasoning steps, answer length) are not significant predictors for GSM8K ($p > 0.38$), confirming that the difficulty--residual relationship is statistical rather than content-driven.\n\nFF benchmarks show substantially higher $R^2$ (mean 0.66) than MC benchmarks (mean 0.25), consistent with FF items spanning a wider difficulty range. The MC--FF contrast in residual magnitude is therefore a mathematical consequence of the difficulty distribution under binary scoring, not evidence of additional unmodeled variance sources in free-form evaluation.\n\n\\begin{table}[h]\n\\centering\n\\caption{Item-level residual variance regression. Difficulty$^2$ = quadratic (inverted-U) term reflecting the Bernoulli $p(1{-}p)$ ceiling. GSM8K additionally tests n\\_steps and answer\\_length (both $p > 0.38$).}\n\\label{tab:ff_residual}\n\\scriptsize\n\\begin{tabular}{lrrr}\n\\toprule\nBenchmark & $R^2$ (full) & $R^2$ (diff.\\ only) & Diff.$^2$ $p$ \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Multiple-choice}} \\\\\nMMLU & 0.377 & 0.347 & $<$0.001 \\\\\nARC & 0.221 & 0.204 & $<$0.001 \\\\\nHellaSwag & 0.156 & 0.140 & $<$0.001 \\\\\n\\midrule\n\\multicolumn{4}{l}{\\textit{Free-form}} \\\\\nGSM8K & 0.468 & 0.449 & $<$0.001 \\\\\nMATH & 0.856 & 0.845 & $<$0.001 \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\section{Model and Prompt Details}\n\\label{app:models}\n\n\\paragraph{Models.} Table~\\ref{tab:model_ids} lists the eight models with their HuggingFace identifiers.\n\n\\begin{table}[h]\n\\centering\n\\caption{Models used in all experiments.}\n\\label{tab:model_ids}\n\\scriptsize\n\\begin{tabular}{llr}\n\\toprule\nShort name & HuggingFace identifier & Params \\\\\n\\midrule\nLlama-3.1-8B & \\texttt{meta-llama/Llama-3.1-8B-Instruct} & 8B \\\\\nGemma-2-9B & \\texttt{google/gemma-2-9b-it} & 9B \\\\\nMistral-7B-v0.3 & \\texttt{mistralai/Mistral-7B-Instruct-v0.3} & 7B \\\\\nQwen3-8B & \\texttt{Qwen/Qwen3-8B} & 8B \\\\\nYi-1.5-9B & \\texttt{01-ai/Yi-1.5-9B-Chat} & 9B \\\\\nOLMo-2-7B & \\texttt{allenai/OLMo-2-1124-7B-Instruct} & 7B \\\\\nInternLM2.5-7B & \\texttt{internlm/internlm2\\_5-7b-chat} & 7B \\\\\nDeepSeek-7B & \\texttt{deepseek-ai/deepseek-llm-7b-chat} & 7B \\\\\n\\bottomrule\n\\end{tabular}\n\\end{table}\n\n\\paragraph{Prompt templates.} Our six prompt templates follow a surface perturbation design inspired by BrittleBench \\cite{brittlebench2026}. For multiple-choice benchmarks, templates vary along three dimensions: option layout (lettered vs.\\ numbered), instruction wording (direct vs.\\ contextual), and answer prompt cue. For free-form benchmarks, templates vary chain-of-thought elicitation strategy. All six templates are semantically equivalent---they request the same task with different surface forms---to isolate formatting effects from content effects. ARC-Challenge and HellaSwag use the same six surface patterns as MMLU with domain-appropriate system instructions; MATH mirrors the GSM8K pattern with \\texttt{\\textbackslash boxed\\{\\}} answer formatting.\n\n\\smallskip\\noindent\\textit{MMLU templates (representative MC format):}\n\\begin{enumerate}\\setlength{\\itemsep}{0pt}\\setlength{\\parsep}{0pt}\\setlength{\\topsep}{0pt}\n\\item \\texttt{The following are multiple choice questions (with answers) about \\{subject\\}.\\textbackslash n\\textbackslash n\\{question\\}\\textbackslash nA. ... D. ...\\textbackslash nAnswer:}\n\\item \\texttt{Answer the following \\{subject\\} questions by selecting the correct option.\\textbackslash nQuestion: \\{question\\}\\textbackslash n(A) ... (B) ... (C) ... (D) ...\\textbackslash nCorrect answer:}\n\\item \\texttt{Below are \\{subject\\} multiple-choice problems. Pick the right letter.\\textbackslash nQ: \\{question\\}\\textbackslash n~~A) ... B) ... C) ... D) ...\\textbackslash nA:}\n\\item \\texttt{Answer the following \\{subject\\} question by selecting A, B, C, or D.\\textbackslash n\\{question\\}\\textbackslash n- A. ... - B. ... - C. ... - D. ...\\textbackslash nAnswer:}\n\\item \\texttt{Below is a \\{subject\\} exam question with four possible answers. Choose the correct one.\\textbackslash n\\{question\\}\\textbackslash nOption A: ... Option B: ... Option C: ... Option D: ...\\textbackslash nCorrect:}\n\\item \\texttt{Question (\\{subject\\}):\\textbackslash n\\{question\\}\\textbackslash nChoices: (A) ... (B) ... (C) ... (D) ...\\textbackslash nYour answer:}\n\\end{enumerate}\n\n\\smallskip\\noindent\\textit{GSM8K templates (representative FF format):}\n\\begin{enumerate}\\setlength{\\itemsep}{0pt}\\setlength{\\parsep}{0pt}\\setlength{\\topsep}{0pt}\n\\item \\texttt{Solve the following math problem step by step.\\textbackslash nQ: \\{question\\}\\textbackslash nA: Let's think step by step.}\n\\item \\texttt{Answer the following math word problem. Show your work.\\textbackslash nQuestion: \\{question\\}\\textbackslash nSolution:}\n\\item \\texttt{Solve each problem below. Write your reasoning, then give the final answer after \\#\\#\\#\\#.\\textbackslash nProblem: \\{question\\}\\textbackslash nReasoning:}\n\\item \\texttt{You are a math tutor. Solve the problem and show your steps.\\textbackslash n\\{question\\}\\textbackslash nSteps:}\n\\item \\texttt{Work through this math question carefully.\\textbackslash nQ: \\{question\\}\\textbackslash nWork:}\n\\item \\texttt{Math problem:\\textbackslash n\\{question\\}\\textbackslash nLet's solve this step by step.}\n\\end{enumerate}\n\n\\section{Use of AI Assistants}\n\\label{app:ai-assistants}\n\nWe used Claude (Anthropic) as an AI coding and writing assistant throughout this work. Specifically:\n\\begin{itemize}\n    \\item \\textbf{Code:} drafting experiment scripts, data-processing pipelines, and analysis utilities; debugging and refactoring.\n    \\item \\textbf{Writing:} drafting and revising paper sections, polishing prose, and reformatting \\LaTeX{}.\n    \\item \\textbf{Literature:} summarizing related papers to inform related-work section.\n\\end{itemize}\n",
+    "structuredPatch": [
+      {
+        "oldStart": 176,
+        "oldLines": 6,
+        "newStart": 176,
+        "newLines": 8,
+        "lines": [
+          " ",
+          " \\paragraph{Difficulty dispersion as variance predictor.} Difficulty dispersion ($\\text{std}(p_i)$) strongly predicts item variance share ($\\rho = 0.82$, $n = 5$ benchmarks; Appendix~\\ref{app:difficulty_scatter}; reasoning-heavy subjects show $G_\\text{item}$ as low as 0.614, Appendix~\\ref{app:subject_gstudy}). Format constrains the noise floor, but difficulty heterogeneity determines variance magnitude within it.",
+          " ",
+          "+\\paragraph{Item-level bootstrap stability.} Bootstrap resampling (1,000 item resamples per benchmark) confirms that the MC--FF separation is robust to item selection: 95\\% CIs for item-related variance (item + model$\\times$item) are [65.2, 75.0]\\% (MC) and [28.0, 44.2]\\% (FF), with no overlap (minimum gap 21.0 percentage points).",
+          "+",
+          " \\section{Cross-Benchmark Difficulty Heterogeneity}",
+          " \\label{app:difficulty_scatter}",
+          " "
+        ]
+      }
+    ],
+    "userModified": false,
+    "replaceAll": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 28_
+
+本地 anon repo 已更新。现在将相同内容写入服务器。先创建服务器上的 paper 目录结构并写入文件。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "1baa35a1-33f4-41a3-b1c0-f61fc0da6f05",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DpozmhQkWdh8NWDgNB6HjX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 855,
+      "cache_read_input_tokens": 36782,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 855
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 29_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_execute · `toolu_01Kraj5ZKELsL95fNuPNnnRx`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "mkdir -p /root/nlp_variance_gtheory/docs/paper"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "96125958-62fd-44e2-9863-a0c47be02b74",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01DpozmhQkWdh8NWDgNB6HjX",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 855,
+      "cache_read_input_tokens": 36782,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 855
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 30 · 2026-05-24T10:16:12.273Z_
+
+<details><summary>↩ Tool result · `toolu_01Kraj5ZKELsL95fNuPNnnRx`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "d9e046a9-7338-446f-859c-c59882fd86ee",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 31_
+
+<details open><summary>🔧 Tool call — mcp__agent-ml-research__ssh_read_only · `toolu_0131izuHWkByzHAzLR2WTUSd`</summary>
+
+```json
+{
+  "server": "westd-32570",
+  "command": "find /root/nlp_variance_gtheory -name \"main.tex\" -type f"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "446faff1-306f-47df-bb45-29aa89b39dd4",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01VkKdcKPUky6wQeLFQjopnF",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 219,
+      "cache_read_input_tokens": 37637,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 219
+      },
+      "output_tokens": 54,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 32 · 2026-05-24T10:16:16.688Z_
+
+<details><summary>↩ Tool result · `toolu_0131izuHWkByzHAzLR2WTUSd`</summary>
+
+```text
+{"result":"{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "050df6a5-45bd-428c-b113-070d4842878f",
+  "tool_use_result": {
+    "content": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"stdout\\\": \\\"\\\", \\\"stderr\\\": \\\"\\\", \\\"return_code\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {\\\"elapsed_seconds\\\": 0.44}}\"}",
+    "structuredContent": {
+      "result": "{\"success\": true, \"data\": {\"stdout\": \"\", \"stderr\": \"\", \"return_code\": 0}, \"error\": null, \"metadata\": {\"elapsed_seconds\": 0.44}}"
+    }
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 33_
+
+<details><summary>Logged reasoning block</summary>
+
+```text
+The server doesn't have the paper directory or main.tex at all. The paper files only exist in the local anon repo. Let me check if there's a paper directory in the anon repo that has main.tex and can be compiled there.
+
+Let me check the anon repo structure for the paper.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "74e9b334-2f5d-468b-b920-61430ed71025",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mwjabp8zpq6un7jvg1E7oz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 179,
+      "cache_read_input_tokens": 37856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 179
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 34_
+
+服务器上没有论文 tex 文件。论文仅在本地 anon repo 中。检查本地是否能编译。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "6de64a06-8440-4a09-ab97-00319f5054eb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mwjabp8zpq6un7jvg1E7oz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 179,
+      "cache_read_input_tokens": 37856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 179
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 35_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01Mnn23wrY6oGckApNoberYA`</summary>
+
+```json
+{
+  "command": "ls /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/main.tex 2>/dev/null && echo \"EXISTS\" || echo \"NOT_FOUND\"",
+  "description": "Check if main.tex exists in anon repo"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "8af69518-b855-4c7b-b04f-3c21a24953fe",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Mwjabp8zpq6un7jvg1E7oz",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 179,
+      "cache_read_input_tokens": 37856,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 179
+      },
+      "output_tokens": 9,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 36 · 2026-05-24T10:16:23.749Z_
+
+<details><summary>↩ Tool result · `toolu_01Mnn23wrY6oGckApNoberYA`</summary>
+
+```text
+/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/main.tex
+EXISTS
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "ed5fb4a0-8d28-413e-b505-1d8111088058",
+  "tool_use_result": {
+    "stdout": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper/main.tex\nEXISTS",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 37_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01E2FszTUNjmFSFeVBSkjKRw`</summary>
+
+```json
+{
+  "command": "which latexmk 2>/dev/null || which pdflatex 2>/dev/null || echo \"NO_LATEX\"",
+  "description": "Check if LaTeX is available locally"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "62ebf1ce-8eac-4170-8354-8e40cf189fd2",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Xfa7XskbR2nVH3kxYgdkGt",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 329,
+      "cache_read_input_tokens": 38035,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 329
+      },
+      "output_tokens": 51,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 38 · 2026-05-24T10:16:27.660Z_
+
+<details><summary>↩ Tool result · `toolu_01E2FszTUNjmFSFeVBSkjKRw`</summary>
+
+```text
+/usr/bin/latexmk
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "67d9768e-9d07-4035-8ea4-76b3983e212a",
+  "tool_use_result": {
+    "stdout": "/usr/bin/latexmk",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 39_
+
+本地有 latexmk。编译验证。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "f91036e0-1c6d-4ced-9fa8-aa8c275da521",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CtRC5Q735KNJhrHwTBY9f7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 125,
+      "cache_read_input_tokens": 38364,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 125
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 40_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01FFYowbFfeBZzmv2BcdMxnF`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory/paper && latexmk -pdf main.tex 2>&1 | tail -30",
+  "description": "Compile LaTeX paper to check for errors",
+  "timeout": 120000
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "5da199d5-3fd0-46c9-aa8d-0b7f745b8914",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01CtRC5Q735KNJhrHwTBY9f7",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 125,
+      "cache_read_input_tokens": 38364,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 125
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### System
+
+_source line 41_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_started",
+  "task_id": "b8p9oh46f",
+  "tool_use_id": "toolu_01FFYowbFfeBZzmv2BcdMxnF",
+  "description": "Compile LaTeX paper to check for errors",
+  "task_type": "local_bash",
+  "uuid": "0acd1568-f9d6-4487-a2d3-3c25c17b9a71",
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991"
+}
+```
+
+---
+
+### System
+
+_source line 42_
+
+```json
+{
+  "type": "system",
+  "subtype": "task_notification",
+  "task_id": "b8p9oh46f",
+  "tool_use_id": "toolu_01FFYowbFfeBZzmv2BcdMxnF",
+  "status": "completed",
+  "output_file": "",
+  "summary": "Compile LaTeX paper to check for errors",
+  "uuid": "ef01bfea-5092-4579-a070-851b626c8bd6",
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991"
+}
+```
+
+---
+
+### Tool result
+
+_source line 43 · 2026-05-24T10:16:35.357Z_
+
+<details><summary>↩ Tool result · `toolu_01FFYowbFfeBZzmv2BcdMxnF`</summary>
+
+```text
+fonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
+m/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9
+.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>&lt;/
+usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb>&lt;/usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>&lt;/usr/share/texliv
+e/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-
+dist/fonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr/share/texlive/texmf-dist/fon
+ts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmsy5.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publ
+ic/amsfonts/cm/cmsy6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsf
+onts/cm/cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.
+pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>&lt;/usr/sha
+re/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/t
+exmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts
+/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/time
+s/utmri8a.pfb>
+Output written on main.pdf (17 pages, 554356 bytes).
+Transcript written on main.log.
+Latexmk: Getting log file 'main.log'
+Latexmk: Examining 'main.fls'
+Latexmk: Examining 'main.log'
+Latexmk: Found input bbl file 'main.bbl'
+Latexmk: Log file says output to 'main.pdf'
+Latexmk: Using bibtex to make bibliography file(s).
+  ===Source file 'main.bbl' for 'pdflatex'
+Latexmk: Found bibliography file(s):
+  ./references.bib
+Latexmk: All targets (main.pdf) are up-to-date
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "e1c1c281-2914-42bd-9ebe-6fe0aa340f8f",
+  "tool_use_result": {
+    "stdout": "fonts/cm/cmmi7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c\nm/cmmi8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi9\n.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb>&lt;/\nusr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr5.pfb>&lt;/usr/shar\ne/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb>&lt;/usr/share/texliv\ne/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb>&lt;/usr/share/texlive/texmf-\ndist/fonts/type1/public/amsfonts/cm/cmr9.pfb>&lt;/usr/share/texlive/texmf-dist/fon\nts/type1/public/amsfonts/cm/cmsy10.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/typ\ne1/public/amsfonts/cm/cmsy5.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/publ\nic/amsfonts/cm/cmsy6.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsf\nonts/cm/cmsy7.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm\n/cmsy8.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.\npfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/courier/ucrr8a.pfb>&lt;/usr/sha\nre/texlive/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb>&lt;/usr/share/texlive/t\nexmf-dist/fonts/type1/urw/times/utmb8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts\n/type1/urw/times/utmr8a.pfb>&lt;/usr/share/texlive/texmf-dist/fonts/type1/urw/time\ns/utmri8a.pfb>\nOutput written on main.pdf (17 pages, 554356 bytes).\nTranscript written on main.log.\nLatexmk: Getting log file 'main.log'\nLatexmk: Examining 'main.fls'\nLatexmk: Examining 'main.log'\nLatexmk: Found input bbl file 'main.bbl'\nLatexmk: Log file says output to 'main.pdf'\nLatexmk: Using bibtex to make bibliography file(s).\n  ===Source file 'main.bbl' for 'pdflatex'\nLatexmk: Found bibliography file(s):\n  ./references.bib\nLatexmk: All targets (main.pdf) are up-to-date",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 44_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01XkvFe73jJt6WE3zg72p4oW`</summary>
+
+```json
+{
+  "command": "grep -c \"^!\" main.log; grep \"LaTeX Warning\" main.log | head -5",
+  "description": "Check for errors and warnings in LaTeX log"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "fb8d4223-fd80-4e7e-9687-b1590841e748",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Ahht6y7o8Dq8yvp4pdD2a1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 1141,
+      "cache_read_input_tokens": 38489,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 1141
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 45 · 2026-05-24T10:16:40.792Z_
+
+<details><summary>↩ Tool result · `toolu_01XkvFe73jJt6WE3zg72p4oW`</summary>
+
+```text
+0
+LaTeX Warning: `h' float specifier changed to `ht'.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "f883a025-8bd0-4791-82b3-9fe6fc87b134",
+  "tool_use_result": {
+    "stdout": "0\nLaTeX Warning: `h' float specifier changed to `ht'.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 46_
+
+编译成功：0 errors，1 warning（float specifier `h` → `ht`，无影响）。现在 commit & push。
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "68c4f1ba-9075-4576-9fa5-44664877b1bb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0131wgixuyGNV1rybMVt91E1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 129,
+      "cache_read_input_tokens": 39630,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 129
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 47_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_016HQ5EczZsFscbKkwzr8Sys`</summary>
+
+```json
+{
+  "command": "cd /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/anon_repo/nlp_variance_gtheory && git remote set-url origin \"https://[REDACTED]@github.com/anonymous-nlp-2026-2/nlp_variance_gtheory.git\" && git pull origin main 2>&1 | tail -5",
+  "description": "Set remote URL and pull latest"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "6a739aa2-b7bb-4906-a356-af95359e4945",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_0131wgixuyGNV1rybMVt91E1",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 129,
+      "cache_read_input_tokens": 39630,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 129
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 48 · 2026-05-24T10:16:51.851Z_
+
+<details><summary>↩ Tool result · `toolu_016HQ5EczZsFscbKkwzr8Sys`</summary>
+
+```text
+From https://github.com/anonymous-nlp-2026-2/nlp_variance_gtheory
+ * branch            main       -> FETCH_HEAD
+Already up to date.
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "9efa4219-ce5d-4361-afd7-d00c74110e59",
+  "tool_use_result": {
+    "stdout": "From https://github.com/anonymous-nlp-2026-2/nlp_variance_gtheory\n * branch            main       -> FETCH_HEAD\nAlready up to date.",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 49_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_014sKLXxsxvTnTGDsu2bm2sy`</summary>
+
+```json
+{
+  "command": "git add paper/appendix.tex && git commit --author=\"Anonymous &lt;anonymous@example.com>\" -m \"Appendix: add bootstrap CI paragraph for MC-FF item-related variance separation\" && git push origin main 2>&1",
+  "description": "Commit and push appendix change"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "3eb29dac-d626-4a08-84cf-4b23e8b94461",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01RBeRY3KuVnHyZ8gjJSy2PT",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 304,
+      "cache_read_input_tokens": 39759,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 304
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 50 · 2026-05-24T10:16:58.103Z_
+
+<details><summary>↩ Tool result · `toolu_014sKLXxsxvTnTGDsu2bm2sy`</summary>
+
+```text
+[main dedf0f4] Appendix: add bootstrap CI paragraph for MC-FF item-related variance separation
+ Author: Anonymous &lt;anonymous@example.com>
+ Committer: Ubuntu &lt;ubuntu@ip-172-31-15-62.ap-northeast-1.compute.internal>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly. Run the
+following command and follow the instructions in your editor to edit
+your configuration file:
+
+    git config --global --edit
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 1 file changed, 2 insertions(+)
+To https://github.com/anonymous-nlp-2026-2/nlp_variance_gtheory.git
+   a50868a..dedf0f4  main -> main
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "a583229c-540a-4754-a4aa-cce53bcb34de",
+  "tool_use_result": {
+    "stdout": "[main dedf0f4] Appendix: add bootstrap CI paragraph for MC-FF item-related variance separation\n Author: Anonymous &lt;anonymous@example.com>\n Committer: Ubuntu &lt;ubuntu@ip-172-31-15-62.ap-northeast-1.compute.internal>\nYour name and email address were configured automatically based\non your username and hostname. Please check that they are accurate.\nYou can suppress this message by setting them explicitly. Run the\nfollowing command and follow the instructions in your editor to edit\nyour configuration file:\n\n    git config --global --edit\n\nAfter doing this, you may fix the identity used for this commit with:\n\n    git commit --amend --reset-author\n\n 1 file changed, 2 insertions(+)\nTo https://github.com/anonymous-nlp-2026-2/nlp_variance_gtheory.git\n   a50868a..dedf0f4  main -> main",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool call
+
+_source line 51_
+
+<details open><summary>🔧 Tool call — Bash · `toolu_01LdSmcGXaNwscQ8C9mDrJN1`</summary>
+
+```json
+{
+  "command": "git log --oneline -3 && echo \"---\" && git diff HEAD~1 --stat",
+  "description": "Verify commit and diff"
+}
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "a0991d03-36d1-4372-9a76-08963f6ecfdb",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01WJExa6Bdte4HY3ZYp1556C",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 352,
+      "cache_read_input_tokens": 40063,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 352
+      },
+      "output_tokens": 69,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Tool result
+
+_source line 52 · 2026-05-24T10:17:03.142Z_
+
+<details><summary>↩ Tool result · `toolu_01LdSmcGXaNwscQ8C9mDrJN1`</summary>
+
+```text
+dedf0f4 Appendix: add bootstrap CI paragraph for MC-FF item-related variance separation
+a50868a Improve README: add quick start guide and D-study calculator entry
+e9946fc Update introduction.tex: discovery-leading framing + C2 effect size d=1.73
+---
+ paper/appendix.tex | 2 ++
+ 1 file changed, 2 insertions(+)
+```
+
+</details>
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "user",
+  "type": "user",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "b0006e01-fdf0-48cf-9120-d8c097c2704d",
+  "tool_use_result": {
+    "stdout": "dedf0f4 Appendix: add bootstrap CI paragraph for MC-FF item-related variance separation\na50868a Improve README: add quick start guide and D-study calculator entry\ne9946fc Update introduction.tex: discovery-leading framing + C2 effect size d=1.73\n---\n paper/appendix.tex | 2 ++\n 1 file changed, 2 insertions(+)",
+    "stderr": "",
+    "interrupted": false,
+    "isImage": false,
+    "noOutputExpected": false
+  }
+}
+```
+
+</details>
+
+---
+
+### Assistant
+
+_source line 53_
+
+完成。
+
+- **编译**：0 errors，1 warning（`h` float specifier → `ht`，正常）
+- **Commit**：`dedf0f4`
+- **Push**：成功，`paper/appendix.tex` +2 行
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": "assistant",
+  "type": "assistant",
+  "parent_tool_use_id": null,
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "uuid": "716fcf37-be04-45f7-87f5-ca76e87acc3d",
+  "message": {
+    "model": "claude-opus-4-6",
+    "id": "msg_01Dn66Lyf1XkEh2m8GYzWJHV",
+    "type": "message",
+    "stop_reason": null,
+    "stop_sequence": null,
+    "stop_details": null,
+    "usage": {
+      "input_tokens": 1,
+      "cache_creation_input_tokens": 203,
+      "cache_read_input_tokens": 40415,
+      "cache_creation": {
+        "ephemeral_5m_input_tokens": 0,
+        "ephemeral_1h_input_tokens": 203
+      },
+      "output_tokens": 1,
+      "service_tier": "standard",
+      "inference_geo": "not_available"
+    },
+    "diagnostics": null,
+    "context_management": null
+  }
+}
+```
+
+</details>
+
+---
+
+### Task result
+
+_source line 54_
+
+完成。
+
+- **编译**：0 errors，1 warning（`h` float specifier → `ht`，正常）
+- **Commit**：`dedf0f4`
+- **Push**：成功，`paper/appendix.tex` +2 行
+
+<details><summary>Recorded metadata</summary>
+
+```json
+{
+  "recorded_role": null,
+  "type": "result",
+  "subtype": "success",
+  "is_error": false,
+  "api_error_status": null,
+  "duration_ms": 122549,
+  "duration_api_ms": 115064,
+  "num_turns": 19,
+  "stop_reason": "end_turn",
+  "session_id": "95eaa095-01d7-4fa6-92ee-2ce80de75991",
+  "total_cost_usd": 0.56721025,
+  "usage": {
+    "input_tokens": 22,
+    "cache_creation_input_tokens": 28777,
+    "cache_read_input_tokens": 603360,
+    "output_tokens": 3359,
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 28777,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [
+      {
+        "input_tokens": 1,
+        "output_tokens": 71,
+        "cache_read_input_tokens": 40415,
+        "cache_creation_input_tokens": 203,
+        "cache_creation": {
+          "ephemeral_5m_input_tokens": 0,
+          "ephemeral_1h_input_tokens": 203
+        },
+        "type": "message"
+      }
+    ],
+    "speed": "standard"
+  },
+  "modelUsage": {
+    "claude-haiku-4-5-20251001": {
+      "inputTokens": 1504,
+      "outputTokens": 17,
+      "cacheReadInputTokens": 0,
+      "cacheCreationInputTokens": 0,
+      "webSearchRequests": 0,
+      "costUSD": 0.001589,
+      "contextWindow": 200000,
+      "maxOutputTokens": 32000
+    },
+    "claude-opus-4-6": {
+      "inputTokens": 22,
+      "outputTokens": 3359,
+      "cacheReadInputTokens": 603360,
+      "cacheCreationInputTokens": 28777,
+      "webSearchRequests": 0,
+      "costUSD": 0.5656212500000001,
+      "contextWindow": 200000,
+      "maxOutputTokens": 64000
+    }
+  },
+  "permission_denials": [],
+  "terminal_reason": "completed",
+  "fast_mode_state": "off",
+  "uuid": "22cabb5c-2a6b-420b-9c2b-d40a4851e892"
+}
+```
+
+</details>
+
+---

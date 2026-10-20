@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "82f9c313c0f2ba177823",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix cross model balance",
+  "task_key": "worker_fix_cross_model_balance_20260521T045353",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_cross_model_balance_20260521T045353_result.json",
+    "occurrence": 1,
+    "bytes": 1928,
+    "sha256": "47d18f4d63d3dcc2ce7a0ac5520415352d176e280269eb4626ad10f58fdd3327"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "三个 fully crossed 数据集全部生成成功。验证通过，每个 cell 都是 200 items。\n\n## 汇报\n\n### 1. Llama FP32 缺失原因\n- 缺失 **100 个 conditions**，全部集中在 **temp=0.0**（44/144 存在，100/144 缺失）\n- temp=0.3 和 0.7 完整（各 144/144）\n- 原因：FP32 推理在 temp=0.0 时某些 shard 未跑完（可能是实验中途中断）\n\n### 2. 各模型 seed 分布\n所有模型使用 **相同 seed 集** {42, 123, 456, 789, 1024, 2048}，无需重编码。\n\n| 模型 | BF16 | FP16 | FP32 |\n|------|------|------|------|\n| Llama | 86,400 ✓ | 86,400 ✓ | **66,400** (缺 temp=0.0 的 100 conds) |\n| Gemma | 86,400 ✓ | — | 86,400 ✓ |\n| Mistral | 86,400 ✓ | 86,400 ✓ | **56,000** (三个温度均缺，散布各因子) |\n\n### 3. 生成的平衡数据集\n\n| 数据集 | 用途 | 记录数 | Cells | 设计 |\n|--------|------|--------|-------|------|\n| `cross_model_3way_bf16.csv` | 跨模型方差分解 | 259,200 | 1,296 | 3 model × 3 temp × 6 prompt × 6 seed × 4 order |\n| `cross_model_2way_precision.csv` | 精度效应分析 | 230,400 | 1,152 | 2 model × 2 prec × 2 temp × 6 prompt × 6 seed × 4 order |\n| `llama_precision_balanced.csv` | Llama 单模型精度 | 115,200 | 576 | 2 prec × 2 temp × 6 prompt × 6 seed × 4 order |\n\n全部 fully crossed，每 cell 200 items，Henderson Method I 可直接使用。\n\n### 4. 平衡前后对比\n- **旧** `cross_model_llama_gemma.jsonl`：325,600 条，设计不平衡（Llama fp32 缺 100 条件），Henderson Method I 估计有偏\n- **新 Dataset B**：230,400 条，fully crossed，代价是丢弃 temp=0.0（因 Llama fp32 在该温度大量缺失）和 Mistral（fp32 全面不完整）\n- **新 Dataset A**：259,200 条，3 模型 bf16-only，保留全部温度，丢弃精度因子\n\n脚本：`scripts/balance_cross_model.py`，输出目录：`results/analysis/`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cross-model-balance.md"
+}

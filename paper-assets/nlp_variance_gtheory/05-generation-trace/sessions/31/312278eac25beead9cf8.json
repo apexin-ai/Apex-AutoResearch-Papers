@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "312278eac25beead9cf8",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "paper research cluster4 irt",
+  "task_key": "worker_paper_research_cluster4_irt_20260521T185524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_paper_research_cluster4_irt_20260521T185524_result.json",
+    "occurrence": 1,
+    "bytes": 972,
+    "sha256": "520c38927c8f604886a060c0297c0dfece4d062cdb3ae5fa0994b6876f1eda78"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cluster 4 完成。6 篇论文已添加到 `literature_map.yaml`，category `irt_benchmarking`，total_papers 更新为 26。\n\n| key | paper | venue | role |\n|-----|-------|-------|------|\n| `polo2024tinybenchmarks` | tinyBenchmarks: evaluating LLMs with fewer examples | ICML 2024 | method-component |\n| `lalor2019irt` | Learning Latent Parameters without Human Response Patterns: IRT with Artificial Crowds | EMNLP-IJCNLP 2019 | foundational |\n| `rodriguez2021leaderboards` | Evaluation Examples are not Equally Informative | ACL 2021 | foundational |\n| `perlitz2023efficient` | Efficient Benchmarking of Language Models | arXiv 2023 | method-component |\n| `zhou2026irt` | Lost in Benchmarks? Rethinking LLM Benchmarking with IRT (PSN-IRT) | AAAI 2026 Oral | direct-competitor |\n| `li2025atlas` | Adaptive Testing for LLM Evaluation (ATLAS) | arXiv 2025 | method-component |\n\n注：Lalor 2019 实际发表于 EMNLP-IJCNLP 2019（非 NAACL）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/paper-research-cluster4-irt.md"
+}

@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "1b7ba282c2c15daf9afb",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "ops server audit and backup",
+  "task_key": "worker_ops_server_audit_and_backup_20260523T194953",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_server_audit_and_backup_20260523T194953.log",
+    "occurrence": 1,
+    "bytes": 611672,
+    "sha256": "576e72e30c0360503283db10fc18da35230711e74bbff31ccbbfeef801d680d6"
+  },
+  "statistics": {
+    "messages": 378,
+    "user_turns": 0,
+    "tool_calls": 63,
+    "roles": {
+      "log": 1,
+      "system": 212,
+      "record": 5,
+      "assistant": 33,
+      "tool_call": 63,
+      "tool_result": 63,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 378,
+      "chunks": [
+        {
+          "path": "1b7ba282c2c15daf9afb-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "1b7ba282c2c15daf9afb-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "1b7ba282c2c15daf9afb-part-0003.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-server-audit-and-backup.md"
+}

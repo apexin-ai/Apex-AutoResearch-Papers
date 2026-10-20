@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd14ed096d5eb5673d16",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra olmo data recovery verify",
+  "task_key": "worker_infra_olmo_data_recovery_verify_20260521T193747",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_olmo_data_recovery_verify_20260521T193747_result.json",
+    "occurrence": 1,
+    "bytes": 1515,
+    "sha256": "4e3627338e762f88c0afcc3c5462c5ebcd5693aa377d9bf7fefa776b572fbffa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 报告\n\n### OLMo-2-7B 数据状态\n\n| Benchmark | 行数 | Conditions | 状态 |\n|-----------|------|-----------|------|\n| **MMLU** | 57,600 | 288/288 | **OK** — 已从 288K 过滤恢复，原始备份在 `.bak_unfiltered` |\n| **ARC** | 57,600 | 288/288 | **OK** — 同上 |\n| **HellaSwag** | 57,600 | 288/288 | **OK** — 同上 |\n| **GSM8K** | 57,600 | 288/288 | **OK** — 完整 |\n| **MATH** | ~42,000 | 210/288 | **运行中** (PID 64774) — 还差 78 conditions，全在 temp=0.7 的 prompt 3-6 |\n\n设计矩阵：2 temps × 6 prompts × 6 seeds × 4 orderings = 288 conditions × 200 items = 57,600/benchmark。MMLU/ARC/HellaSwag/GSM8K 全部匹配，无需额外操作。\n\n### Accuracy 合理性\n\n| Benchmark | Accuracy |\n|-----------|----------|\n| MMLU | 61.56% |\n| ARC | 76.11% |\n| HellaSwag | 63.37% |\n| GSM8K | 70.10% |\n| MATH | 29.38% (不完整数据) |\n\n均在 OLMo-2-7B-Instruct 的合理范围内。\n\n### MATH 缺失分析\n- 80 个缺失 condition 全在 **temp=0.7**\n- 按 prompt 分布：prompt 3 缺 8，prompt 4/5/6 各缺 24\n- 当前 PID 64774 正在补跑，预计还需处理 78 conditions × 200 items = 15,600 条\n\n### Yi 状态（附带）\nYi 的 ARC/GSM8K/HellaSwag/MMLU 均 57,600 完整，MATH 56,600（也在跑，PID 68476）。\n\n### 结论\n- MMLU/ARC/HellaSwag/GSM8K 已恢复完成，**无需任何操作**\n- OLMo MATH 和 Yi MATH 正在 GPU 上补跑，等进程结束即可\n- 不存在需要手动过滤或恢复的数据"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-olmo-data-recovery-verify.md"
+}

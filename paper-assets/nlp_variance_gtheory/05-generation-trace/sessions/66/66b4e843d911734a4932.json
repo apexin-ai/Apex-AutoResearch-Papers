@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "66b4e843d911734a4932",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix regenerate corrected g item json",
+  "task_key": "worker_fix_regenerate_corrected_g_item_json_20260521T120107",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_regenerate_corrected_g_item_json_20260521T120107_result.json",
+    "occurrence": 1,
+    "bytes": 1308,
+    "sha256": "e58cc6e466f92f0ebd79285d1a95fd54ff807ddfe7e8fef7fba070eb653507fc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部修正完成。汇总如下：\n\n### 文件 1: `llama_single_model_gstudy.json`\n\n| 指标 | 修正前 | 修正后 |\n|------|--------|--------|\n| correct G_coefficient | 0.6108 | **0.9184** |\n| text_exact_match G_coefficient | 0.0066 | **0.0** (Henderson I 下 σ²_item ≈ 0，无可靠 item 排序) |\n\n### 文件 2: `exp001b_resampling_gstudy.json`\n\n| Sample | 修正前 | 修正后 | min_items_g80 |\n|--------|--------|--------|---------------|\n| baseline | 0.6108 | **0.9184** | — |\n| sample1 | 0.7588 | **0.9637** | 31 |\n| sample2 | 0.7538 | **0.9620** | 32 |\n| sample3 | 0.7218 | **0.9548** | 38 |\n| **stability mean** | 0.7448 | **0.9602** | — |\n| stability CV | 2.70% | **~0.5%** | — |\n\n### 文件 3: `dstudy_progressive_validation.json`\n\n| Subset | 修正前 G_item | 修正后 G_item | min_items_G80 |\n|--------|---------------|---------------|---------------|\n| 50×3 seeds | 0.612–0.652 | **0.913–0.939** | 13–20 |\n| 100×3 seeds | 0.611–0.627 | **0.915–0.924** | 33–38 |\n| 150×3 seeds | 0.614–0.623 | **0.918–0.926** | 48–54 |\n| 200 (full) | 0.6108 | **0.9184** | **72** |\n\n**D-study 结论**：G≥0.80 所需最小 item 数从 ~510 降至 **72**（200 items 基准）。方差分量同步更新为 Henderson I 估计。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-regenerate-corrected-g-item-json.md"
+}

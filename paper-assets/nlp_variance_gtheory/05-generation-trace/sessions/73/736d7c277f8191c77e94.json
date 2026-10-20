@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "736d7c277f8191c77e94",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp exp001 llama nohup monitor",
+  "task_key": "worker_exp_exp001_llama_nohup_monitor_20260521T010837",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp001_llama_nohup_monitor_20260521T010837_result.json",
+    "occurrence": 1,
+    "bytes": 380,
+    "sha256": "346be3c743ea154e866076aad7fc46d10c332cb9d1f9955df90afe8c3dbb242c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "nohup 收集脚本已启动，确认运行中。\n\n- **PID**: 63972\n- **脚本**: `/tmp/collect_exp001_llama.sh`（后台轮询 `pgrep -f run_experiment`，每 30s 一次）\n- **结果文件**: 推理结束后写入 `/tmp/exp001_llama_results.txt`\n- **日志**: `/tmp/collect_exp001_llama.log`\n- **预计完成**: ~20 分钟后（推理结束即自动收集）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp001-llama-nohup-monitor.md"
+}

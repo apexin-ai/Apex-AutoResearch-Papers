@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "6e0370c52cbe0ca5b8c6",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra westd15695 auto chain",
+  "task_key": "worker_infra_westd15695_auto_chain_20260521T152904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd15695_auto_chain_20260521T152904_result.json",
+    "occurrence": 1,
+    "bytes": 1978,
+    "sha256": "db37d1554387e38595d556fb8ab3e8b2f86a6c4443188d2a9515df7e0440133d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "12,600 lines already — progressing fast. At this rate (~12.6K lines per minute), 86,400 lines will take ~7 minutes. Here's the full status report:\n\n---\n\n**Deployment Status:**\n\n| Component | Status |\n|-----------|--------|\n| **Yi MMLU** | Complete (86,400 lines) |\n| **auto_chain.sh** | Running — OLMo ARC in progress (12,600/86,400 lines) |\n| **Items sampled** | GSM8K (200), ARC (200) |\n| **HellaSwag items** | Download in progress (5.9MB/~13MB parquet), will generate items when download completes |\n\n**Chain order (4 tasks now, 2 deferred):**\n1. OLMo ARC — **running now**\n2. OLMo GSM8K — queued\n3. Yi ARC — queued\n4. Yi GSM8K — queued\n5. OLMo HellaSwag — skipped (items file not yet ready)\n6. Yi HellaSwag — skipped (items file not yet ready)\n\n**Scripts deployed:**\n- `scripts/auto_chain.sh` — main chain, skips benchmarks with missing items files\n- `scripts/prepare_and_chain.sh` — wrapper that waits for HellaSwag download\n- `scripts/wait_hellaswag_download.sh` — background monitor to create HellaSwag items once parquet download completes (PID 27762)\n\n**Commands used per task:**\n```bash\npython3 -m src.inference.run_experiment \\\n    --design results/design_olmo.csv \\   # or design_yi.csv\n    --items data/arc_items_exp002.json \\  # per benchmark\n    --benchmark arc \\                     # arc/gsm8k/hellaswag\n    --output results/exp001_olmo/olmo_arc.jsonl \\\n    --gpu-id 0 --resume\n```\n\n**Notes:**\n- No \"MATH\" benchmark in codebase — supported benchmarks are mmlu, gsm8k, arc, hellaswag\n- Non-MMLU benchmarks run zero-shot (no few-shot files available for arc/gsm8k/hellaswag)\n- 432 conditions × 200 items = 86,400 expected lines per task\n- HellaSwag can be run separately with `--resume` after items file is created — just re-run `auto_chain.sh`\n\n**Time estimate:** ~5-7 min per task × 4 tasks = **20-28 min** for ARC+GSM8K. HellaSwag adds ~10-14 min once items are ready."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd15695-auto-chain.md"
+}

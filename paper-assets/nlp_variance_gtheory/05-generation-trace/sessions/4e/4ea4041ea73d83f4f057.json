@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ea4041ea73d83f4f057",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis phase2 gstudy mmlu 8model",
+  "task_key": "worker_analysis_phase2_gstudy_mmlu_8model_20260521T220400",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_gstudy_mmlu_8model_20260521T220400_result.json",
+    "occurrence": 1,
+    "bytes": 1700,
+    "sha256": "fb82141c0880c8d6433037ee68704f7590d51a57f31ef85f539d6e92aad9a269"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## MMLU 8-Model Henderson I G-Study 结果\n\n**N = 460,800** (8 models × 2 temps × 6 prompts × 6 seeds × 4 orderings × 200 items)\n**Grand mean accuracy = 0.6457**\n**Models**: DeepSeek-7B, Gemma-2-9B, InternLM2.5-7B, Llama-3.1-8B, Mistral-7B-v0.3, OLMo-2-7B, Qwen3-8B, Yi-1.5-9B\n\n### 方差分解表\n\n| Facet | σ²% | 95% CI |\n|---|---:|---:|\n| item_id | 37.88% | [33.12%, 42.17%] |\n| model:item_id | 30.21% | [26.81%, 33.32%] |\n| residual | 25.01% | [22.89%, 27.22%] |\n| model | 2.83% | [1.89%, 4.47%] |\n| model:prompt_template | 1.59% | [1.27%, 2.07%] |\n| prompt_template:item_id | 0.95% | [0.82%, 1.08%] |\n| temperature:item_id | 0.56% | [0.38%, 0.78%] |\n| seed:item_id | 0.53% | [0.41%, 0.64%] |\n| ordering:item_id | 0.31% | [0.25%, 0.38%] |\n| model:temperature | 0.04% | [0.03%, 0.12%] |\n| model:seed | 0.03% | [0.03%, 0.07%] |\n| model:ordering | 0.03% | [0.02%, 0.07%] |\n| temperature | 0.02% | [0.00%, 0.06%] |\n| 其余 10 个分量 | <0.01% each | — |\n\n### G_item\n\n**G_item = 0.8962  [0.8742, 0.9152]**\n\n- σ²(τ) = 0.0872 (item_id)\n- σ²(δ) = 0.0101 (item interactions + residual/n_conditions)\n\n### 与已有结果对比\n\n| Benchmark | n_models | item_id% | G_item |\n|---|---:|---:|---:|\n| MMLU (8) | 8 | 37.88% | 0.8962 |\n| MMLU (6) | 6 | ~42% | — |\n| GSM8K (8) | 8 | 16.86% | 0.2837 |\n| MATH (7) | 7 | 26.48% | 0.3625 |\n\nMMLU item_id% 从 6-model 的 ~42% 降至 37.88%（model:item_id 吸收了部分方差），但 G_item = 0.8962 远高于 GSM8K/MATH，说明 MMLU items 在 8 个模型间的难度排序高度可靠。\n\nJSON 已保存至 `westd-32570:results/exp004_8model_analysis/per_benchmark_gstudy_mmlu.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase2-gstudy-mmlu-8model.md"
+}

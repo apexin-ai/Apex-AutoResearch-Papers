@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1a737dcbe5922321bce1",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis scale validation 3b 7b gstudy",
+  "task_key": "worker_analysis_scale_validation_3b_7b_gstudy_20260522T070132",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_scale_validation_3b_7b_gstudy_20260522T070132_result.json",
+    "occurrence": 1,
+    "bytes": 1135,
+    "sha256": "bc7e94d71f48ce3933f12425c47fc667dcfbbfec146a58afb808e26486dc9e14"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "分析完成。结果摘要：\n\n| | **Qwen2.5-3B** | **Qwen2.5-7B** | **exp001 ref (Llama)** |\n|---|---|---|---|\n| grand_mean | 0.682 | 0.742 | — |\n| item_id% | 75.32% | 73.37% | ~68% |\n| prompt_template:item_id% | 8.83% | 12.20% | — |\n| residual% | 11.02% | 9.71% | — |\n| ordering:item_id% | 1.81% | 2.96% | — |\n| **item_related_total** | **88.90%** | **90.21%** | **68.45%** |\n| **G_item** | **0.963** | **0.956** | **0.937** |\n\n关键发现：\n- 3B/7B 单模型的 item_related 方差（~89-90%）远高于 exp001 8-model 参考值（68.45%），因为 exp001 含 precision facet 分散了部分 item 方差\n- G_item 两个模型都 >0.95，高于参考值 0.937，说明 200 items 的测量信度很高\n- Ranking 在 #2/#3 位有差异：3B 是 residual > prompt:item，7B 是 prompt:item > residual。7B 对 prompt 模板更敏感\n- 所有验证通过：pct sum = 100%，D-study 单调递增，G_item 在合理范围\n\n输出文件：\n- 服务器：`results/exp003_scale_gstudy.json`\n- 本地：`artifacts/exp004/data/exp003_scale_gstudy.json`\n- 脚本：`scripts/exp003_scale_gstudy.py`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scale-validation-3b-7b-gstudy.md"
+}

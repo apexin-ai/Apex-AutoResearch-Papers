@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cf55245f27103f976117",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis simulation binary recovery",
+  "task_key": "worker_analysis_simulation_binary_recovery_20260521T093639",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_simulation_binary_recovery_20260521T093639_result.json",
+    "occurrence": 1,
+    "bytes": 1588,
+    "sha256": "8eb9b21dbb8859ec55e65682c614edbd426e89397fc14297cd1ee00585295f9e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Simulation complete. Results saved to `results/analysis/simulation_binary_recovery.json` on server.\n\n## Results Summary\n\n**Design**: 100 replications × 4 accuracy levels (p=0.5–0.8) × 3 sample sizes (n=50, 100, 200), 432 conditions/item, probit latent model with 22 known variance components.\n\n**Validation**: Fast numpy Henderson I matches DataFrame implementation (max diff = 1.39e-17).\n\n### Key Findings\n\n| Metric | Result |\n|---|---|\n| **item_id dominant** (excl. residual) | **99–100%** across all conditions |\n| **Spearman rho** (excl. residual) | **0.685–0.734** (mean 0.708) |\n| **Top-5 systematic set correct** | **58–82%** (mean 72%) |\n| **Coverage (95% CI)** | **86–100%** |\n\n### Binary vs Continuous Control\n\n| | Binary (mean) | Continuous (mean) |\n|---|---|---|\n| Spearman rho (no residual) | 0.708 | 0.703 |\n\nBinary performs **equivalently** to continuous — the probit binarization does not degrade ranking recovery.\n\n### Binary-Scale Distortion\n\nResidual inflates from 16% (latent) to ~40% (binary scale) because it absorbs the within-cell Bernoulli variance p(1-p). However, the **systematic component ordering is perfectly preserved** in the oracle:\n\n- Latent: item_id (50%) > prec:item (7%) > temp:item (6%) > prompt:item (5%)\n- Binary oracle: item_id (33%) > prec:item (6.3%) > temp:item (5.1%) > prompt:item (4.3%)\n\n### Robustness\n\n- **Bias by accuracy**: 0.34–0.42% (flat, no increase at p=0.8)\n- **Rho by accuracy**: 0.70–0.71 (stable)\n- **Rho improves with n_items**: 0.69 (n=50) → 0.72 (n=200)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-simulation-binary-recovery.md"
+}

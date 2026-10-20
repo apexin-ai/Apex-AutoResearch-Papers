@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f32cd54719435b8e65b7",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis bootstrap ci all benchmarks",
+  "task_key": "worker_analysis_bootstrap_ci_all_benchmarks_20260522T024307",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap_ci_all_benchmarks_20260522T024307_result.json",
+    "occurrence": 1,
+    "bytes": 870,
+    "sha256": "4e9cfb7bbef007c5aa917399e8e1d00027ecd4aa6004d4ea6b0d1c9fd8d73cdf"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Results summary — all 5 benchmarks × 8 models × 460,800 records × 1000 bootstrap resamples completed in 316s total:\n\n| Benchmark | G_item | 95% CI | Top 3 components (%) |\n|-----------|--------|--------|---------------------|\n| **MMLU** | 0.896 | [0.874, 0.914] | item_id 37.9%, model:item_id 30.2%, residual 25.0% |\n| **ARC** | 0.892 | [0.852, 0.919] | item_id 37.9%, model:item_id 33.7%, residual 15.4% |\n| **HellaSwag** | 0.872 | [0.842, 0.896] | model:item_id 36.0%, item_id 34.3%, residual 21.4% |\n| **GSM8K** | 0.863 | [0.832, 0.887] | residual 39.9%, item_id 16.9%, model:item_id 14.6% |\n| **MATH** | 0.888 | [0.868, 0.903] | residual 43.9%, item_id 24.0%, model:item_id 17.3% |\n\nFiles saved to:\n- Server: `results/exp004_8model_analysis/bootstrap_ci_{benchmark}.json`\n- Local: `artifacts/exp004/data/bootstrap_ci_{benchmark}.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-ci-all-benchmarks.md"
+}

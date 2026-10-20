@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "4485414f948539be8f67",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "code exp002 pilot",
+  "task_key": "worker_code_exp002_pilot_20260521T084707",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002_pilot_20260521T084707.log",
+    "occurrence": 1,
+    "bytes": 1211282,
+    "sha256": "be1324295492df2a8484d51fda8ead2c4e6b8552446e4cb4f823f708eb22acbc"
+  },
+  "statistics": {
+    "messages": 639,
+    "user_turns": 1,
+    "tool_calls": 246,
+    "roles": {
+      "log": 1,
+      "system": 42,
+      "record": 1,
+      "assistant": 101,
+      "tool_call": 246,
+      "tool_result": 246,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "4485414f948539be8f67-part-0001.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 629,
+      "chunks": [
+        {
+          "path": "4485414f948539be8f67-part-0001.json",
+          "message_count": 170
+        },
+        {
+          "path": "4485414f948539be8f67-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "4485414f948539be8f67-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "4485414f948539be8f67-part-0004.json",
+          "message_count": 99
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/code-exp002-pilot.md"
+}

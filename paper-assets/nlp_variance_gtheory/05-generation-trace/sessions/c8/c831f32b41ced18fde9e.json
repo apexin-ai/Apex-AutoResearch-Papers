@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c831f32b41ced18fde9e",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp pilot collect",
+  "task_key": "worker_exp_pilot_collect_20260520T235059",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_pilot_collect_20260520T235059_result.json",
+    "occurrence": 1,
+    "bytes": 377,
+    "sha256": "06e77c2118279b02615563f401de5622a41092a5703c457ffe41a8a942c11991"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已设定 ~5 分钟后自动唤醒，届时再查进度。当前状态：\n\n- GPU 0: 3000/5000 records (15/25 conditions) — 领先\n- GPU 1: 1000/5000 (5/25)\n- GPU 2: 800/5000 (4/25)\n- GPU 3: 600/5000 (3/25)\n- 总计: 5400/20000 (27%)\n\n日志文件 `/tmp/pilot_gpu*.log` 可能路径不对（返回 NO_LOGS），但进程正常运行且在产出数据。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-pilot-collect.md"
+}

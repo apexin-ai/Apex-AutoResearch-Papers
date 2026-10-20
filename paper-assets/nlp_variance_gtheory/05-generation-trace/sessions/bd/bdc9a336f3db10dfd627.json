@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bdc9a336f3db10dfd627",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code dstudy calculator v2",
+  "task_key": "worker_code_dstudy_calculator_v2_20260522T140839",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_dstudy_calculator_v2_20260522T140839_result.json",
+    "occurrence": 1,
+    "bytes": 430,
+    "sha256": "f549dfa88aa645e583efb25f0abbcc4e9208d2677b0f6a08433816e970660876"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "工具已完成，验证通过：\n\n- **Full design** (precision=3, temp=3, prompt=6, seed=6, ordering=4): G = 0.9360 ≈ 0.936 ✓\n- **Single condition** (所有 n_levels=1): G = 0.5914 ≈ 0.592 ✓\n- `--sweep` 正常工作，展示单个 facet 从 1 到 max 的 G 变化曲线\n- 零依赖，仅用 `json`, `argparse`, `math`, `sys`\n\n文件位于 `artifacts/exp004/tools/dstudy_calculator.py`，已注册。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-dstudy-calculator-v2.md"
+}

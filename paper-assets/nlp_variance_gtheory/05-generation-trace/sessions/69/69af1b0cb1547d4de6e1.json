@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69af1b0cb1547d4de6e1",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis scale validation prep",
+  "task_key": "worker_analysis_scale_validation_prep_20260522T041731",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_scale_validation_prep_20260522T041731_result.json",
+    "occurrence": 1,
+    "bytes": 535,
+    "sha256": "038137a50504b141c297cda7c89fbf91c7d81bd3cd08572bb9d5e0b740163216"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "方案已保存到 `artifacts/exp004/data/scale_validation_plan.md`。\n\n**总结：**\n\n- **模型**：Qwen2.5-3B-Instruct + Qwen2.5-72B-Instruct（同系列隔离 scale 变量）\n- **代码改动 4 处**：model_paths.py 加映射、vllm_runner.py 参数化 TP、generate_design.py 加 exp004_scale 配置、run_experiment.py 加 --tensor-parallel CLI 参数\n- **GPU 时间**：3B ~20min (1卡)，72B ~2.5hr (4卡 TP)\n- **主要风险**：磁盘紧张（72B 占 140GB，下载后仅剩 55GB）和 72B 独占 4 卡"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-scale-validation-prep.md"
+}

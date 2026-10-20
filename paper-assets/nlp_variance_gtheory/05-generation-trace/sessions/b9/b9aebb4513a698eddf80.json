@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b9aebb4513a698eddf80",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code scale validation 3b setup and run",
+  "task_key": "worker_code_scale_validation_3b_setup_and_run_20260522T042422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scale_validation_3b_setup_and_run_20260522T042422_result.json",
+    "occurrence": 1,
+    "bytes": 1022,
+    "sha256": "dacc04e902d82be210a8621ff4cf04624f529e791b1b9e5857536e24a1588a4e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Code modifications complete, model download in progress. Summary:\n\n**Done:**\n- `src/config/model_paths.py` — Added Qwen2.5-3B-Instruct and Qwen2.5-72B-Instruct mappings (path: `/root/autodl-tmp/.hf_cache/Qwen/Qwen2___5-3B-Instruct`)\n- `src/inference/vllm_runner.py` — Added `tensor_parallel_size` parameter; skips `CUDA_VISIBLE_DEVICES` restriction when TP > 1\n- `src/design/generate_design.py` — Added `exp003_scale` config (2 models × bf16 × 2 temps × 6 prompts × 6 seeds × 4 orderings = 576 conditions)\n- `src/inference/run_experiment.py` — Added `--tensor-parallel` CLI argument\n- Generated `design_matrix_exp003_3b.csv` (288 conditions for 3B only)\n- Created `scripts/run_exp003_3b.sh` run script\n\n**In progress:**\n- Qwen2.5-3B-Instruct downloading via ModelScope (~600KB/s, ~2h for 5.75GB)\n- Cron monitoring every 8 minutes — will auto-start inference in tmux once download completes\n\nExpected output: `results/exp003_scale_3b_mmlu.jsonl` with 288 × 200 = 57,600 records."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scale-validation-3b-setup-and-run.md"
+}

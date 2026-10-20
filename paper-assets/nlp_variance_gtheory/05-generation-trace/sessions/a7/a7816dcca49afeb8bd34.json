@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a7816dcca49afeb8bd34",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix reml 500iter",
+  "task_key": "worker_fix_reml_500iter_20260521T060958",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_reml_500iter_20260521T060958_result.json",
+    "occurrence": 1,
+    "bytes": 1324,
+    "sha256": "f13961271760b4e4bb5340e2e1b0454836565a6063a93b6bff7cb73652c8e0ad"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇报\n\n### 1. 收敛状态\n**converged = false**，500 迭代仍未达到 tol=1e-8。最终 Δ=2.12e-03（从 100 迭代时的 ~1.1e-02 降至 ~2.1e-03）。EM 算法的线性收敛特性导致需要远超 500 次迭代才能达到 1e-8 精度。\n\n### 2. 实际迭代次数\n500 次，耗时 1304.9 秒（~21.7 分钟）。\n\n### 3. 新旧差异\n**没有任何分量差异超过 0.1pp。** 最大差异仅 0.003pp（model 分量：0.488% → 0.490%）。所有主要分量在小数点后第三位完全一致。\n\n### 4. 完整方差分量表\n\n| Component | Estimate | % |\n|---|---|---|\n| item_id | 0.081097 | 38.424% |\n| model:item_id | 0.055636 | 26.361% |\n| residual | 0.051517 | 24.409% |\n| prompt_template:item_id | 0.005960 | 2.824% |\n| seed:item_id | 0.005283 | 2.503% |\n| precision:item_id | 0.004184 | 1.982% |\n| model:precision | 0.002767 | 1.311% |\n| temperature:item_id | 0.002155 | 1.021% |\n| ordering:item_id | 0.001332 | 0.631% |\n| model | 0.001035 | 0.490% |\n| 其余 18 个分量 | — | < 0.02% each |\n\n**结论：100 迭代的结果虽然 converged=false，但估计值已经实质收敛。500 迭代结果与 100 迭代差异微乎其微（<0.003pp），可以放心使用。** 500 迭代结果保存在 `results/analysis/cross_model_reml_500iter.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-reml-500iter.md"
+}

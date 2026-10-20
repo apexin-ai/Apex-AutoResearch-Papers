@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "77111554161996973ebf",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis deepseek math integrity",
+  "task_key": "worker_analysis_deepseek_math_integrity_20260522T121318",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_deepseek_math_integrity_20260522T121318_result.json",
+    "occurrence": 1,
+    "bytes": 1074,
+    "sha256": "88c563e65aae1d766b0a2f13bff734e91ac5595df7b64d3ab812d47de590cb5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果\n\n### 1. 数据完整性\n`deepseek_math.jsonl` **完全完整**：57,600/57,600 行有效，0 null，0 空值。完全交叉设计（1 model × 200 items × 2 temps × 6 prompts × 6 seeds × 4 orderings）。之前分析注明 37,400/57,600 是**错误的**。\n\n### 2. 8-model MATH G-study（已存在）\n服务器上已有 `math_8model_verified.json`，包含全部 8 个模型（DeepSeek, Gemma, InternLM, Llama, Mistral, OLMo, Qwen, Yi）的 Henderson I 方差分解：\n\n| Component | % |\n|---|---|\n| residual | 43.88% |\n| item_id | 24.03% |\n| model:item_id | 17.28% |\n| model | 8.51% |\n| prompt_template:item_id | 2.86% |\n| model:prompt_template | 1.67% |\n| 其余 | < 1% |\n\n**G_item = 0.888**，grand mean accuracy = 0.286。\n\n### 3. 与 7-model 对比\n- item_id: 26.48% → 24.03%（-2.45pp）\n- 加入 DeepSeek 后 model 相关方差略增，item 方差占比相应下降，但整体结构不变。\n\n### 4. 结论\nMATH 可以直接升级为 **8-model 分析**，数据完整无缺失。已保存至本地 artifacts。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-deepseek-math-integrity.md"
+}

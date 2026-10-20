@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8b8eae8760407a1f32c3",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp mvp phase a",
+  "task_key": "worker_exp_mvp_phase_a_20260520T183626",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mvp_phase_a_20260520T183626_result.json",
+    "occurrence": 1,
+    "bytes": 3857,
+    "sha256": "9b1df65f1f8e7097b6e3707b6875cbec8db6db4ba485d693384773d22a986625"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "---\n\n## MVP Phase A 完整结果\n\n### 1. 推理统计\n| 指标 | 值 |\n|------|-----|\n| 总记录数 | **5,400** (108 条件 × 50 items) |\n| 条件数 | **108** |\n| 总体准确率 | **0.6557** |\n| bfloat16 | 0.6844 (1,800 records) |\n| float16 | 0.6833 (1,800 records) |\n| float32 | 0.5994 (1,800 records) |\n\n**注意**: float32 准确率显著低于 bf16/fp16（~8.5pp 差距）。float32 使用了 V0 引擎（`enforce_eager`，无 CUDA graph）因为 V1 引擎的 torch.compile 对 float32 触发 `InductorError: PassManager::run failed`。这个引擎差异本身可能引入方差。\n\n### 2. 方差分量排名（占总方差 %）\n\n| 排名 | 分量 | 估计值 | % 总方差 | 95% CI |\n|------|------|--------|----------|--------|\n| 1 | **item_id** | 0.1343 | **58.44%** | [0.0885, 0.1736] |\n| 2 | **residual** | 0.0404 | **17.59%** | [0.0279, 0.0527] |\n| 3 | **precision:item_id** | 0.0166 | **7.24%** | [0.0097, 0.0247] |\n| 4 | **temperature:item_id** | 0.0157 | **6.85%** | [0.0042, 0.0294] |\n| 5 | **prompt_template:item_id** | 0.0132 | **5.73%** | [0.0061, 0.0225] |\n| 6 | **seed:item_id** | 0.0062 | **2.70%** | [0.0020, 0.0108] |\n| 7 | **precision** | 0.0020 | **0.87%** | [0.0, 0.0069] |\n| 8 | ordering:item_id | 0.0010 | 0.44% | [0.0001, 0.0022] |\n| 其他 | (所有交互项) | < 0.0001 | < 0.04% | — |\n\n### 3. 关键交互项\n\n| 交互项 | 估计值 | % 总方差 | CI 含零? |\n|--------|--------|----------|---------|\n| precision × prompt_template | 4.50e-5 | 0.020% | CI 含零 |\n| precision × seed | 0.0 | 0.0% | CI 含零 |\n| precision × temperature | 3.84e-6 | 0.002% | CI 含零 |\n| precision × item_id | **0.0166** | **7.24%** | **CI 不含零** |\n\n**方法论层面的 precision × methodology 交互极小**。但 **precision × item_id 交互占 7.24%**——说明不同精度对不同题目的影响不同（某些题目对精度更敏感）。\n\n### 4. D-study\n\n| 指标 | 值 |\n|------|-----|\n| 当前 G 系数 | **0.357** |\n| 达到 G≥0.90 | **不可达**（所有 facet sweep 到 n=20 仍远低于 0.90） |\n| 达到 G≥0.95 | 不可达 |\n| 达到 G≥0.99 | 不可达 |\n\nG 系数极低的原因：**item_id 方差占 58.4%**，它是实验的对象（object of measurement），代表的是不同测试题目的内在难度差异。这导致条件间的方差信号很弱（σ²_τ = 0.002），相对于误差（σ²_δ = 0.004）。\n\n关键发现：**增加 item 数量是提升 G 系数的唯一有效途径**（从 n=50 到 n=200 时 G ≈ 0.184，仍远不够）。这说明当前实验设计中，方法论变量（prompt template, seed, ordering）引入的方差极小，绝大部分方差来自 item 难度差异和残差。\n\n### 5. Pass/Fail 判定\n\n| 标准 | 结果 |\n|------|------|\n| (a) Pipeline 完整运行 | **PASS** — 108 条件全部完成，5400 条记录 |\n| (b) ≥2 分量占总方差 ≥5% 或 CI 不含零 | **PASS** — item_id (58.4%), residual (17.6%), precision:item_id (7.2%), temperature:item_id (6.9%), prompt_template:item_id (5.7%) |\n| (c) ≥1 precision×methodology 交互显著 | **PARTIAL** — precision×methodology 直接交互极小（<0.02%），但 precision×item_id (7.24%, CI 不含零) 显著 |\n\n### 产出文件\n- `results/all_results.jsonl` (5,400 行)\n- `results/variance_components.json`\n- `results/d_study_results.json`\n- `results/figures/variance_components.png`\n- `results/figures/interaction_heatmap.png`\n- `results/figures/d_study_curves.png`\n\n### 技术问题记录\n- float32 + vLLM V1 引擎触发 `InductorError: PassManager::run failed`，回退到 V0 引擎 (`VLLM_USE_V1=0`) 解决\n- float32 推理速度约为 bf16/fp16 的 1/30（每 batch 10s vs 0.3s）\n- float32 准确率显著偏低（0.60 vs 0.68），可能与 V0/V1 引擎差异或精度本身有关"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-mvp-phase-a.md"
+}

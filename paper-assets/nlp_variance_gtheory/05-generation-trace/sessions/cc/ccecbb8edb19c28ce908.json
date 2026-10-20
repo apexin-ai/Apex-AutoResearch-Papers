@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "ccecbb8edb19c28ce908",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp gpu status check",
+  "task_key": "worker_exp_gpu_status_check_20260521T043227",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_gpu_status_check_20260521T043227_result.json",
+    "occurrence": 1,
+    "bytes": 1548,
+    "sha256": "564cbd645640a7b48bd5460fab52097d37a6e0c71d7310e8aeed13f2a6b95600"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 实验状态汇总\n\n### GPU\n4 卡全部 **100% 利用率**，显存 ~90GB/97GB，推理进程活跃。\n\n### Gemma bf16 (`exp001_gemma`) — **已完成**\n| Shard | Lines | 状态 |\n|-------|-------|------|\n| 0 | 23,200 | done |\n| 1 | 20,400 | done |\n| 2 | 21,400 | done |\n| 3 | 21,400 | done |\n| **Total** | **86,400** | |\n\n### Gemma fp32 (`exp001_gemma_fp32`) — **已完成**\n| Shard | Lines | 状态 |\n|-------|-------|------|\n| 0-3 | 21,600 × 4 | done |\n| **Total** | **86,400** | |\n\n日志确认 `Experiment complete → results/exp001_gemma_fp32/shard_0.jsonl`，完成时间 ~11:49。\n\n### Mistral bf16 (`exp001_mistral`) — **运行中 ~76%**\n每 shard 324 conditions，每 condition 200 items：\n\n| Shard | Lines | Conditions Done | Progress |\n|-------|-------|----------------|----------|\n| 0 | 49,200 | 246/324 | 75.9% |\n| 1 | 48,000 | 240/324 | 74.1% |\n| 2 | 48,400 | 242/324 | 74.7% |\n| 3 | 51,600 | 258/324 | 79.6% |\n\n日志显示正在处理 condition ~4100-4300 区间，每 condition ~42s。剩余 ~80 conditions，**预计 ~1 小时内完成**。\n\n### Qwen (`exp001_qwen`) — **待运行**\n4 个 shard CSV 已就绪，无输出文件。\n\n### nohup 链式脚本\n未找到 chain log 文件和 nohup.out。该脚本可能已在 Gemma fp32 完成后成功启动 Mistral，自身退出。但 **Mistral 完成后是否会自动启动 Qwen 需要确认**——如果链式脚本已退出，Qwen 可能需要手动启动。\n\n### .done 标记\n未找到任何 `.done` 文件。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-gpu-status-check.md"
+}

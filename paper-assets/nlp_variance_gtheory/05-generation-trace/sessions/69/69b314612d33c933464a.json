@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "69b314612d33c933464a",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis mmlu subject gstudy",
+  "task_key": "worker_analysis_mmlu_subject_gstudy_20260522T201138",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mmlu_subject_gstudy_20260522T201138_result.json",
+    "occurrence": 1,
+    "bytes": 1863,
+    "sha256": "4e9dac2457772b8994c6dcdfa09cf5d7a91cc6e6c4af73c5b4d66a9b8bb31de6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已保存。Summary table:\n\n```\nSubject                          item_id%  model:item%   G_item\n================================================================================\nabstract_algebra                    24.12        32.84   0.8221\nclinical_knowledge                  47.45        30.02   0.9227\ncollege_physics                     31.64        30.14   0.8762\ncomputer_security                   37.03        24.90   0.9076\nhigh_school_mathematics             10.37        41.88   0.6140\ninternational_law                   44.35        24.11   0.9303\nphilosophy                          33.00        36.06   0.8680\nprofessional_medicine               19.93        41.67   0.7781\nus_foreign_policy                   20.43        36.94   0.8022\nworld_religions                     42.16        27.08   0.9097\n--------------------------------------------------------------------------------\nMean                                31.05                0.8431\nSD                                  12.12                0.0961\nFull 200 items                       37.9                 0.896\n```\n\n关键发现：\n- **item_id% 跨 subject 变异大**：CV=0.39，range 10.4%–47.5%。`high_school_mathematics` 最低（10.4%），`clinical_knowledge` 最高（47.5%）。\n- **model:item_id% 与 item_id% 呈互补关系**：item_id% 低的 subject（hs_math, prof_medicine）model:item% 反而最高（~42%），说明这些 subject 的 item 难度差异小但模型间差异行为大。\n- **G_item 9/10 subjects ≥ 0.78**，仅 `high_school_mathematics`（0.614）偏低——该 subject residual 占 38%，items 区分度不足。\n- 全 200 items 的 item_id%=37.9 和 G_item=0.896 高于 subject-level 均值（31.05 / 0.843），因为 pooling 200 items 引入了跨 subject 难度差异，放大了 item 方差。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mmlu-subject-gstudy.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "34d6a4db16a49b88d9af",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp exp001 llama monitor",
+  "task_key": "worker_exp_exp001_llama_monitor_20260521T010312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_exp001_llama_monitor_20260521T010312_result.json",
+    "occurrence": 1,
+    "bytes": 213,
+    "sha256": "1ba569edaa27ad2dba30957906f55a78b278ac8de2d14bca713d2277aff0d06c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进度快照：\n- shard_0: 53,200 / 64,800\n- shard_1: 53,000 / 64,800\n- shard_2: 52,600 / 64,800\n- shard_3: 54,800 / 64,800\n- **总计: 213,600 / 259,200 (82.4%)**\n\n3 分钟后再次检查。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-exp001-llama-monitor.md"
+}

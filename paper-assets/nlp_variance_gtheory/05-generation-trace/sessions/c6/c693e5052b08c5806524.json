@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c693e5052b08c5806524",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra diagnose env",
+  "task_key": "worker_infra_diagnose_env_20260520T180238",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_diagnose_env_20260520T180238_result.json",
+    "occurrence": 1,
+    "bytes": 1529,
+    "sha256": "b80cd7158dfd46e5cbc7e7a54f99aef6effbff676d385a09538cd6ec677362ce"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整诊断结果：\n\n```\n=== TORCH ===\ntorch=2.7.0+cu128, cuda=True, gpus=4\n\n=== VLLM ===\nModuleNotFoundError: No module named 'vllm'\n\n=== PIP LIST ===\nnvidia-cublas-cu12                       12.8.3.14\nnvidia-cuda-cupti-cu12                   12.8.57\nnvidia-cuda-nvrtc-cu12                   12.8.61\nnvidia-cuda-runtime-cu12                 12.8.57\nnvidia-cudnn-cu12                        9.7.1.26\nnvidia-cufft-cu12                        11.3.3.41\nnvidia-cufile-cu12                       1.13.0.11\nnvidia-curand-cu12                       10.3.9.55\nnvidia-cusolver-cu12                     11.7.2.55\nnvidia-cusparse-cu12                     12.5.7.53\nnvidia-cusparselt-cu12                   0.6.3\nnvidia-ml-py                             13.595.45\nnvidia-nccl-cu12                         2.26.2\nnvidia-nvjitlink-cu12                    12.8.61\nnvidia-nvtx-cu12                         12.8.55\ntorch                                    2.7.0+cu128\ntorchaudio                               2.11.0+cu128\ntorchvision                              0.22.0+cu128\n\n=== DISK ===\nFilesystem      Size  Used Avail Use% Mounted on\noverlay          30G   24G  6.5G  79% /\n/dev/md0        350G  8.4G  342G   3% /root/autodl-tmp\n\n=== RUNNING ===\n(无正在运行的下载/安装进程)\n```\n\n摘要：\n- **PyTorch 2.7.0+cu128**，4 GPU，CUDA 可用\n- **vLLM 未安装**，flash-attn 未安装\n- **根分区 79% 已用（剩 6.5G）**，数据盘 342G 空闲\n- 无后台安装进程"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-diagnose-env.md"
+}

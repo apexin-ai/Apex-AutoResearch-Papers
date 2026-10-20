@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a01882a530722edeb8b5",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis phase2 single condition dstudy",
+  "task_key": "worker_analysis_phase2_single_condition_dstudy_20260521T232312",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_single_condition_dstudy_20260521T232312_result.json",
+    "occurrence": 1,
+    "bytes": 985,
+    "sha256": "e2aa1fa06afec87a321b5a11a185c0c4d36007e00ac9a332064c435bd97bd07d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存到服务器，artifact 已注册。汇总：\n\n## D-Study 结果（3 种设计，Spearman-Brown 投影）\n\n| 设计 | 条件数/item | σ²_δ | n(G≥0.80) | G@116 | G@200 |\n|------|-----------|------|-----------|-------|-------|\n| **Multi-facet** | 1,296 | 0.00867 | **55** | 0.895 | 0.936 |\n| **Partial (2p×2s)** | 4 | 0.03890 | **245** | 0.655 | 0.766 |\n| **Single-condition** | 1 | 0.08770 | **552** | 0.457 | 0.592 |\n\n### Ratios (论文 [TBD-RATIO] 数字)\n- **single / multi = 552 / 55 = 10.0×**\n- **partial / multi = 245 / 55 = 4.5×**\n\n关键发现：单条件评估需要 **552 items** 才能达到 G≥0.80，是满配设计（55 items）的 **10倍**。即使用 4 条件的 partial 设计也需要 245 items（4.5倍）。MMLU 的 116 items/subject 在单条件下仅 G=0.457，远不及 0.80 阈值。\n\n验证：multi-facet 投影与已有 `d_study` 8 个值完全吻合（diff=0.000000），单调性 3 个设计均 PASS。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase2-single-condition-dstudy.md"
+}

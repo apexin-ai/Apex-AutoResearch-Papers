@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8235e3a45916ab339d79",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis exp004 audit",
+  "task_key": "worker_analysis_exp004_audit_20260522T114156",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp004_audit_20260522T114156_result.json",
+    "occurrence": 1,
+    "bytes": 5108,
+    "sha256": "cd7c33a99162b186e30eed45cdc6b129b2df56b966aa7d71e9e40d6cd7e3aa7b"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I have the full picture. Here's the audit:\n\n---\n\n## exp-004 分析项审计\n\n### 一、已完成分析项（有 artifact 文件）\n\n| # | 分析项 | Artifact 文件 |\n|---|--------|---------------|\n| 1 | 8-model Henderson I bootstrap CI (5 benchmarks) | `bootstrap_ci_{mmlu,arc,hellaswag,gsm8k,math}.json` |\n| 2 | D-study bootstrap CI propagation (5 benchmarks) | `dstudy_bootstrap_ci.json`, `dstudy_bootstrap_ci_ec5ab0.json` |\n| 3 | Per-benchmark D-study (ARC/HellaSwag/GSM8K/MATH) | `dstudy_{arc,hellaswag,gsm8k,math}.json`, `dstudy_arc_1f8f63.json` |\n| 4 | BF16-only × 2-temp subset comparison | `exp001_bf16_2temp_comparison.json`, `exp001_bf16_2temp_subset.py` |\n| 5 | Cohen's d CI (bundled + unbundled) | `cohens_d_ci.json` |\n| 6 | Binary simulation ranking consistency | `binary_sim_ranking_consistency.json` |\n| 7 | Unbundled item_id% permutation test | `unbundled_permutation_test.json`, `unbundled_permutation_test_960adb.json` |\n| 8 | DeepSeek LOMO cross-benchmark | `deepseek_lomo_cross_benchmark.json`, `deepseek_lomo_cross_benchmark_af5fea.json` |\n| 9 | IRT/multifacet G verification | `gitem_consistency_check_pointer.txt` (server-side) |\n| 10 | Difficulty heterogeneity + scatter plot | `cross_benchmark_difficulty_heterogeneity.json`, `difficulty_vs_item_variance.{pdf,png}` |\n| 11 | Intermediate D-study recommendation table | `intermediate_dstudy_table.json` |\n| 12 | Stratified bootstrap comparison | `stratified_bootstrap_comparison.json` |\n| 13 | Scale validation 3B/7B G-study (single + crossed) | `exp003_scale_gstudy.json`, `exp003_scale_crossed_gstudy_3b7b.json` |\n| 14 | 8-model per-benchmark G-study ×5 | `mmlu_gstudy_ref.json`, `per_benchmark_gstudy_hellaswag_2temp_ref.txt`, server-side `three_in_one_8model.json` |\n| 15 | MMLU subject gradient (8-model) | `mmlu_subject_gradient_8model_pointer.txt` (server-side) |\n| 16 | Defensive analyses (包含 fixed-vs-random sensitivity 等) | `defensive_analyses.json` (server-side pointer) |\n| 17 | Fig 1 variance decomposition | `fig1_variance_decomposition.{pdf,png}` |\n\n### 二、未完成分析项\n\n| # | 分析项 | 状态 | 原因 |\n|---|--------|------|------|\n| 1 | **Scale validation 72B** | ⏳ 阻塞 | `exp003_scale_72b` registry = PENDING，模型下载中 (~19/140GB) |\n| 2 | **(d) REML vs Henderson I comparison** | 未执行 | experiment_plan 列出但未见 artifact。D006 Reviewer 已确认 Henderson I 无偏差问题，优先级降低 |\n| 3 | **(e) Logprob-based scoring** | 未执行 | experiment_plan (e)+(p) 列出，未见 artifact。需额外推理收集 logprob 数据 |\n| 4 | **(f) Ranking stability (precision×temp alter rankings?)** | 部分完成 | `binary_sim_ranking_consistency.json` 可能覆盖，但 experiment_plan 原始描述更广 |\n| 5 | **(g) Higher-order interaction estimation** | 未见独立 artifact | 可能包含在 defensive_analyses.json 中 |\n| 6 | **(i) Power analysis** | 未见 artifact | experiment_plan 列出，未独立产出 |\n| 7 | **(j) Practitioner protocol guide** | 不需独立 artifact | 属论文 Discussion/Appendix 写作任务 |\n| 8 | **(k) Fixed vs random sensitivity** | 可能已完成 | 可能在 defensive_analyses.json 中 |\n| 9 | **(l) Binary data limitation (Bernoulli p(1-p))** | 可能已完成 | 可能在 defensive_analyses.json 中 |\n| 10 | **(m) Bootstrap vs jackknife CI comparison** | 未见 artifact | experiment_plan 列出 |\n| 11 | **(n) Cross-benchmark design asymmetry (matched 2×2)** | ✅ 已完成 | `exp001_bf16_2temp_comparison.json` |\n| 12 | **(o) G-coefficient at full benchmark size (14K MMLU)** | 未见 artifact | D-study 可外推但无独立产出 |\n| 13 | **(p) Logprob scoring across all benchmarks** | 未执行 | 同 (e) |\n| 14 | **(q) GPU cost analysis** | 未见 artifact | 属论文写作任务 |\n\n### 三、建议\n\n**仍值得做：**\n\n1. **72B scale validation** — 已在进行中，等下载完自动推理即可。这是 ROADMAP Phase 3 的核心任务，直接加固 reviewer 关注的 scale-invariance claim。\n2. **Bootstrap vs jackknife CI comparison (m)** — 纯计算，无需新数据，~30 min 工作量。能预防 reviewer 质疑 bootstrap 依赖假设。\n\n**可跳过：**\n\n3. **REML vs Henderson I (d)** — D006 Reviewer 已确认 Dataset B 差异归因于设计差异而非估计方法偏差，风险很低。\n4. **Logprob scoring (e/p)** — 需要重新推理收集 logprob，GPU 成本高，且 D021 已将 contribution 重构为 D-study budgets 为主，logprob 不再是核心 claim。\n5. **Power analysis (i)** — 8-model × 5-benchmark × 200 items 的设计规模下，bootstrap CI 已隐式回答了检验力问题。\n6. **G at 14K items (o)** — D-study 外推表已覆盖此功能。\n7. **GPU cost analysis (q)** — 论文写作时顺手加一段即可，不需要独立分析。\n\n**需确认（server-side defensive_analyses.json 内容）：**\n- (g) higher-order interactions、(k) fixed-vs-random、(l) binary limitation 可能已在 `defensive_analyses.json` 中完成，需要 SSH 读取确认。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp004-audit.md"
+}

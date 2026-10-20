@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8219223edf36ee7c76b6",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra fix westd15695 olmo yi",
+  "task_key": "worker_infra_fix_westd15695_olmo_yi_20260521T151037",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fix_westd15695_olmo_yi_20260521T151037_result.json",
+    "occurrence": 1,
+    "bytes": 1600,
+    "sha256": "8f0b8b1b1c13fb99179607471037e879b9ffda100987c92ee1ad9b884d9c242e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Yi 推理正常运行。以下是完整汇报。\n\n---\n\n## 汇报\n\n### 1. OLMo 崩溃原因\n\n**不是崩溃**。原始运行使用了错误的 items 文件 `data/mmlu_items.json`（50 items）而非 `data/mmlu_items_exp001.json`（200 items）。432 条件 × 50 items = 21,600 行，运行实际上已正常完成，只是输出只有预期的 25%。\n\n### 2. OLMo 重启状态\n\n- **已完成** — 86,400/86,400 行，432 条件 × 200 items\n- 用时约 5 分钟（Blackwell sm120 非常快）\n- 输出: `results/exp001_olmo/olmo_mmlu.jsonl`\n- 修复措施：\n  - 添加了 `VLLM_USE_FLASHINFER_SAMPLER=0` 绕过 flashinfer 不支持 Blackwell sm120 的问题\n  - Patch 了 flashinfer 的 `check_cuda_arch()` \n  - 给 `run_experiment.py` 加了 `--resume` 功能（条件级别跳过）\n  - 旧数据备份在 `olmo_mmlu_50items_backup.jsonl`\n\n### 3. Yi 排队状态\n\n- **已自动启动** — 监控脚本检测到 OLMo 完成后于 23:25:51 自动启动\n- PID: 24023，GPU 99% 利用率\n- 当前进度: 2,600/86,400 (3%)，约 5 分钟可完成\n- 输出: `results/exp001_yi/yi_mmlu.jsonl`\n\n### 4. westd-32570 MATH 进度\n\n| 模型 | 行数 | 目标 | 进度 |\n|------|------|------|------|\n| Gemma | 21,000 | 57,600 | 36.5% |\n| Qwen | 29,800 | 57,600 | 51.7% |\n| Mistral | 44,200 | 57,600 | 76.7% |\n| Llama | 45,600 | 57,600 | 79.2% |\n\n4 张 GPU 均在 88-100% 利用率运行。\n\n### 5. OLMo 完成时间\n\n已完成。从启动到完成约 5 分钟（~1.15 条件/秒，Blackwell RTX PRO 6000 96GB）。Yi 预计也是约 5-7 分钟完成。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-fix-westd15695-olmo-yi.md"
+}

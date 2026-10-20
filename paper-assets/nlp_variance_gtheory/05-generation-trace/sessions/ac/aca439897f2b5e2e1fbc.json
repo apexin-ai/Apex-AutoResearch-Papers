@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "aca439897f2b5e2e1fbc",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix simulation matched design",
+  "task_key": "worker_fix_simulation_matched_design_20260521T102020",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_simulation_matched_design_20260521T102020_result.json",
+    "occurrence": 1,
+    "bytes": 1437,
+    "sha256": "9f6fdcb1b8923420e90838460f726f4d61ff6312d04309d9000f3212795391cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "确认 `conditions_per_item = 1,296`，与 exp-001 的 seed=6, ordering=4 设计匹配。\n\n## 新旧结果对比\n\n| 指标 | Original (432 cond/item) | Matched (1,296 cond/item) | 变化 |\n|------|--------------------------|---------------------------|------|\n| **Spearman rho (no residual)** | | | |\n| 均值 | 0.708 | 0.732 | **+0.024** |\n| 范围 | 0.685–0.734 | 0.716–0.751 | 下界提升明显 |\n| **rho by accuracy** | | | |\n| p=0.5 | 0.714 | 0.741 | +0.027 |\n| p=0.6 | 0.714 | 0.731 | +0.017 |\n| p=0.7 | 0.703 | 0.731 | +0.028 |\n| p=0.8 | 0.702 | 0.724 | +0.022 |\n| **Top-1 (item_id) recovery** | 100% (99% at p=0.8) | **100%** all conditions | 更稳定 |\n| **Top-5 no-residual recovery** | 72% avg (58–82%) | **79% avg** (71–88%) | **+7pp** |\n| **Top-5 all-components** | 92% avg | **97% avg** | +5pp |\n| **Mean \\|bias\\| by accuracy** | | | |\n| p=0.5 | 0.361 | 0.299 | **−0.062** |\n| p=0.6 | 0.342 | 0.279 | **−0.063** |\n| p=0.7 | 0.415 | 0.340 | **−0.075** |\n| p=0.8 | 0.404 | 0.368 | **−0.036** |\n| **Conditions/item** | 432 | **1,296** | ×3 |\n\n**结论**：matched 设计（1,296 conditions/item）下，Henderson I 的 binary recovery 全面优于原始设计——Spearman rho 提升 ~0.024，top-5 ranking recovery 提升 7pp，bias 下降 0.04–0.08pp。更多 conditions 提供了更充分的方差分解信息，符合预期。原始结果文件未被覆盖。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-simulation-matched-design.md"
+}

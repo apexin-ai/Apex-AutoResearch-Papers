@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bc178602259a0d94153d",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis glmm logistic link",
+  "task_key": "worker_analysis_glmm_logistic_link_20260521T085643",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_glmm_logistic_link_20260521T085643_result.json",
+    "occurrence": 1,
+    "bytes": 915,
+    "sha256": "aaadda8c8a15654549370918010960414bdd901654fc4533de5c613a1b686a52"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Analysis complete. Results in `results/analysis/glmm_logistic_link.json`.\n\n**Key findings:**\n\n| Method | Ranking |\n|--------|---------|\n| Henderson I (linear) | item_id > model:item_id > model > prompt > temp > seed > ordering |\n| Marginal logit ANOVA | item_id > model:item_id > model > prompt > temp > seed > ordering |\n\n- **Spearman ρ = 1.0** across all 7 major components (3 item-related + 5 non-item main effects, deduplicating model)\n- Top 3 components (item_id 42%, model:item_id 34%, model 0.7%) = 76.4% of total variance — identical order under logistic transform\n- MQL-1 analytical result: for p̄ = 0.70, logistic transform applies constant scaling 1/[p̄(1−p̄)]² = 22.8, preserving all rankings exactly\n- BinomialBayesMixedGLM (VB) converged on 25-item subsample but produced inflated estimates due to underspecification — noted as supplementary evidence, not primary"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-glmm-logistic-link.md"
+}

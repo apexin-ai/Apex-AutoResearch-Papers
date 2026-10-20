@@ -1,0 +1,85 @@
+{
+  "schema_version": "1.0",
+  "id": "b6e46769b914969ef2f7",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "ops 72b inference launch",
+  "task_key": "worker_ops_72b_inference_launch_20260522T155515",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_72b_inference_launch_20260522T155515.log",
+    "occurrence": 1,
+    "bytes": 2861988,
+    "sha256": "3e725212cdc6519a05ef5d3645317abe93bab557b98f96b924401c76bd33d8ff"
+  },
+  "statistics": {
+    "messages": 1308,
+    "user_turns": 1,
+    "tool_calls": 436,
+    "roles": {
+      "log": 1,
+      "system": 390,
+      "record": 2,
+      "assistant": 41,
+      "tool_call": 436,
+      "tool_result": 436,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 135,
+      "chunks": [
+        {
+          "path": "b6e46769b914969ef2f7-part-0001.json",
+          "message_count": 135
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 1173,
+      "chunks": [
+        {
+          "path": "b6e46769b914969ef2f7-part-0001.json",
+          "message_count": 45
+        },
+        {
+          "path": "b6e46769b914969ef2f7-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "b6e46769b914969ef2f7-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "b6e46769b914969ef2f7-part-0004.json",
+          "message_count": 180
+        },
+        {
+          "path": "b6e46769b914969ef2f7-part-0005.json",
+          "message_count": 180
+        },
+        {
+          "path": "b6e46769b914969ef2f7-part-0006.json",
+          "message_count": 180
+        },
+        {
+          "path": "b6e46769b914969ef2f7-part-0007.json",
+          "message_count": 180
+        },
+        {
+          "path": "b6e46769b914969ef2f7-part-0008.json",
+          "message_count": 48
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-72b-inference-launch.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8ed89aac235535a38518",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "check exp001b completion",
+  "task_key": "worker_check_exp001b_completion_20260521T083611",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_check_exp001b_completion_20260521T083611_result.json",
+    "occurrence": 1,
+    "bytes": 588,
+    "sha256": "443cce7e02c667bb7e515ebf17ad0b002baea49fc1f7a4412d4f335aef6ae693"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "当前 session 没有活跃 cron，监控已不存在（可能在之前的 session 中创建并已自行清除）。\n\n**exp001b_resampling 实验完成，总结：**\n\n- 3 组 × 86,400 records = 259,200 总记录，数据完整\n- Accuracy：Sample 1 = 0.7207, Sample 2 = 0.6212, Sample 3 = 0.6860\n- 运行时间 ~29 分钟（15:58 → 16:27）\n- Registry 已标记 DONE/success，metrics 已记录\n\n值得注意：3 组 accuracy 差异较大（0.62–0.72），说明 item sampling 对整体准确率有显著影响，后续 G-theory 分解可以量化这一点。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/check-exp001b-completion.md"
+}

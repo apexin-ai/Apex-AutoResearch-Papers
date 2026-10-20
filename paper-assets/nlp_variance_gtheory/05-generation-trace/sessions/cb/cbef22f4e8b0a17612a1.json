@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cbef22f4e8b0a17612a1",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code scale validation 7b run",
+  "task_key": "worker_code_scale_validation_7b_run_20260522T044344",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_scale_validation_7b_run_20260522T044344_result.json",
+    "occurrence": 1,
+    "bytes": 265,
+    "sha256": "94ba490ba6b191e855507e92834ab269666937fd3cd2ad3cb5ca8edeecf7a394"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "下载进行中，15 分钟后自动检查。当前状态：\n- 模型下载：~1GB/14.4GB，PID 228383\n- 代码修改：已完成\n- 设计矩阵：288 条件 × 200 items = 57,600 records（单模型）\n- 待下载完成后在 cuda:1 启动推理"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-scale-validation-7b-run.md"
+}

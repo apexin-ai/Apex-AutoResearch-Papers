@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "de78ea97a23eeb383cbf",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra disk migration",
+  "task_key": "worker_infra_disk_migration_20260520T195817",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_disk_migration_20260520T195817_result.json",
+    "occurrence": 1,
+    "bytes": 571,
+    "sha256": "a7d67b34ccc14f6db81694a81fae4da15c294e3fe93d49a9b877e0a587fe8324"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "迁移报告：\n\n| 项目 | 状态 |\n|------|------|\n| 根分区 | 41% (13G/30G) — 无变化，因为符号链接已存在，缓存本就在数据盘 |\n| 符号链接 | `/root/nlp_variance_gtheory/models/.hf_cache` → `/root/autodl-tmp/.hf_cache` ✓ |\n| HF_HOME 持久化 | `export HF_HOME=/root/autodl-tmp/.hf_cache` 已写入 `.bashrc` ✓ |\n| 数据盘 | 10% (33G/350G)，剩余 318G |\n\n符号链接此前已正确配置，本次补齐了 `.bashrc` 中缺失的 `HF_HOME` 环境变量。根分区 41% 使用率健康，无需额外清理。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-disk-migration.md"
+}

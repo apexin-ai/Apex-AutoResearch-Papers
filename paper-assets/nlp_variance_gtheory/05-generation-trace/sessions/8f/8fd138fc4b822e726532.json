@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8fd138fc4b822e726532",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra westd32570 gpu0 utilize",
+  "task_key": "worker_infra_westd32570_gpu0_utilize_20260521T175858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd32570_gpu0_utilize_20260521T175858_result.json",
+    "occurrence": 1,
+    "bytes": 2440,
+    "sha256": "6947b1757afeafb82b629291f5ac44f595aa85cdb872a060edfdf33026c2c45d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "所有 4 卡已满载。汇总报告：\n\n---\n\n## 完整数据盘点\n\n| Model | MMLU | ARC | HellaSwag | GSM8K | MATH | 完成度 |\n|-------|------|-----|-----------|-------|------|--------|\n| **Llama** | 57600 ✓ | 57600 ✓ | 57600 ✓ | 57600 ✓ | 57600 ✓ | **5/5** |\n| **Mistral** | 57600 ✓ | 57600 ✓ | 57600 ✓ | 57600 ✓ | 57600 ✓ | **5/5** |\n| **Qwen** | 57600 ✓ | 57600 ✓ | 57600 ✓ | 57600 ✓ | 57600 ✓ | **5/5** |\n| **Gemma** | 57600 ✓ | 57600 ✓ | 57600 ✓ | 57600 ✓ | 52800 (91.7%) | **4/5** |\n| **InternLM** | 57600 ✓ | 57600 ✓ | 57600 ✓ | 4200 (7.3%) | GPU0 刚启动 | **3/5** |\n| **DeepSeek** | 57600 ✓ | 57600 ✓ | 57600 ✓ | 1200 (2.1%) | 待 GSM8K 后 | **3/5** |\n\n**已完成: 23/30 runs，进行中: 5，待启动: 2 (DeepSeek MATH, InternLM MATH 已抢跑)**\n\n## GPU 分配\n\n| GPU | 任务 | 进度 | 预计完成 |\n|-----|------|------|----------|\n| **GPU 0** | InternLM MATH (PID 187391) | 刚启动，模型已加载在跑 | ~05:30 CST |\n| **GPU 1** | InternLM GSM8K (chain) | 4200/57600 (7.3%) | ~02:30 CST |\n| **GPU 2** | Gemma MATH | 52800/57600 (91.7%) | ~02:45 CST |\n| **GPU 3** | DeepSeek GSM8K (chain) | 1200/57600 (2.1%) | ~02:35 CST |\n\n## GPU 0 加速策略\n\n`run_experiment.py` 用 `open(\"w\")` 写文件，无 resume 逻辑——两个进程写同一文件会截断数据。因此：\n\n1. 创建了 placeholder `internlm_math.jsonl`（57600 行）→ chain 到 MATH 时检测到行数 ≥ 57600，自动 SKIP\n2. GPU 0 真实 MATH 写入 `internlm_math_gpu0.jsonl`（独立文件，无冲突）\n3. 完成后自动 `mv` 覆盖 placeholder\n\n**效果：** InternLM MATH 提前 ~25 分钟开跑（不用等 chain 跑完 GSM8K）。Chain 跑完 GSM8K 后跳过 MATH，GPU 1 提前释放。\n\n## Chain 后续流程\n\n- **InternLM chain (GPU 1):** GSM8K → 检查 MATH → 发现 placeholder 57600 行 → **SKIP** → \"ALL DONE\" → GPU 1 ~02:30 空闲\n- **DeepSeek chain (GPU 3):** GSM8K → **MATH 正常启动** → ~05:35 完成\n\n## GPU 2 建议（Gemma MATH 完成后）\n\nGemma MATH ~02:45 完成后 GPU 2 空闲。DeepSeek chain 在 GPU 3 上 ~02:35 已经启动 MATH（早于 GPU 2 空闲），所以 GPU 2 无法加速 DeepSeek MATH。\n\n**GPU 2 空闲后无剩余 GPU 任务。** 可选操作：\n- 开始跑分析脚本（CPU 任务，不需要 GPU）\n- 等所有 MATH 跑完后统一验证数据完整性"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-westd32570-gpu0-utilize.md"
+}

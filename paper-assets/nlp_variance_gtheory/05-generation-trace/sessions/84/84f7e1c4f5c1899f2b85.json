@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "84f7e1c4f5c1899f2b85",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "research roadmap task audit",
+  "task_key": "worker_research_roadmap_task_audit_20260522T113644",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_roadmap_task_audit_20260522T113644_result.json",
+    "occurrence": 1,
+    "bytes": 2256,
+    "sha256": "c8039a765018feed848d4c0f7ee7b12cd1685ce1c6ec377fd2a7695b004b2800"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 任务清理结果\n\n### 已完成（确认）\n\n| 任务 | 证据 |\n|------|------|\n| Phase 1: 数据收集 | ROADMAP ✅ |\n| Phase 2: Paper Agent 修订 + Reviewer 审查 | ROADMAP ✅, review_issues 17/17 resolved |\n| exp-001 (4-model MMLU) | experiment_plan: done |\n| exp-001b (item resampling) | experiment_plan: done |\n| exp-002 (8×5 推理, 2.3M records) | D012 确认 40/40 完成 |\n| exp003_scale_3b, exp003_scale_7b | registry: success |\n| Round 4 全部修订 | review_issues.yaml: FR4-MF1~3, SF1~7 全部 resolved |\n\n### 可立即推进（无外部依赖）\n\n| 优先级 | 任务 | 预估工作量 | 说明 |\n|--------|------|-----------|------|\n| **P0** | Figure 3 标注修复 + \"nearly double\" 微调 | ~1h | 纯写作，Paper Agent 可直接执行 |\n| **P0** | exp003_scale_72b 审批 + 启动推理 | ~0.5h + 2.5h GPU | PENDING 等待人工审批，模型下载状态需确认 |\n| **P0** | exp-004 剩余分析项清理 | ~2-3h | 大量子分析已在 Round 4 修订中完成（bootstrap CI、LOMO、permutation test 等），需盘点哪些 (a)-(q) 尚未执行 |\n\n### 阻塞中\n\n| 任务 | 阻塞原因 |\n|------|----------|\n| Scale validation → Paper Agent patch | 等 exp003_scale_72b 完成 |\n| Re-submit to ARR (continue mode) | 等 Figure 3 修复 + scale validation patch 全部完成 |\n| exp-005 (14B scale) | P1, 需 ≥48GB 不同 GPU 类型，非投稿必需 |\n| exp-006 (Fine-tuning G-study) | P1, 200 GPU·h，非投稿必需 |\n| exp-007 (LayerCast) | P2，非投稿必需 |\n\n### 需清理的异常\n\n- **report.md 中 22 个 exp002_deepseek/internlm 子任务仍显示\"准备中\"**，但 D012 确认 8×5 已全部完成。这些是过时条目，应清理。\n- **report.md 告警 \"exp-002: 已被终止\"** 与 D012 \"40/40 完成\" 矛盾，可能是注册表状态未同步。\n- **exp-002 在 experiment_plan.yaml 仍标 \"running\"**，应更新为 done。\n\n### 建议推进顺序\n\n1. **Figure 3 标注修复**（最快闭环，无依赖）\n2. **审批 exp003_scale_72b** → 确认 72B 模型下载状态 → 启动推理\n3. **盘点 exp-004 剩余分析项**（许多已在 Round 4 中完成，避免重复劳动）\n4. 全部完成后 → re-submit ARR"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-roadmap-task-audit.md"
+}

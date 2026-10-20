@@ -1,0 +1,493 @@
+{
+  "phase1": {
+    "figure_check": {
+      "passed": false,
+      "critical": [
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'budget_sensitivity_band' which does not exist",
+          "location": "appendix.tex:84"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig_item_heatmap' which does not exist",
+          "location": "experiments.tex:47"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig4_difficulty_scatter' which does not exist",
+          "location": "experiments.tex:77"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig1_cross_benchmark' which does not exist",
+          "location": "experiments.tex:111"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig_overview_pipeline' which does not exist",
+          "location": "introduction.tex:3"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig0_teaser_dstudy' which does not exist",
+          "location": "introduction.tex:31"
+        },
+        {
+          "kind": "missing_image",
+          "message": "\\includegraphics references 'fig3_dstudy_curves' which does not exist",
+          "location": "method.tex:27"
+        }
+      ],
+      "warning": [
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:gtheory} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:ai-assistants} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:cross_benchmark_transfer} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:exp002} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:method} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:exp001} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:introduction} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:related} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:partial_credit} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:protocol} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{sec:conclusion} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "label_without_ref",
+          "message": "\\label{app:budget_sensitivity} is never referenced",
+          "location": "cross-file"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "experiments.tex:174"
+        },
+        {
+          "kind": "resizebox_on_table",
+          "message": "\\resizebox on table — consider \\small or splitting the table",
+          "location": "method.tex:49"
+        },
+        {
+          "kind": "missing_required_section",
+          "message": "Venue requires a 'Ethics Statement' section but none was found",
+          "location": "cross-file"
+        }
+      ],
+      "info": [],
+      "summary": "7 critical, 15 warning, 0 info"
+    },
+    "consistency": {
+      "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper",
+      "sections": [
+        {
+          "file": "abstract.tex",
+          "role": "headline",
+          "num_numbers": 0,
+          "num_cites": 0
+        },
+        {
+          "file": "conclusion.tex",
+          "role": "headline",
+          "num_numbers": 1,
+          "num_cites": 0
+        },
+        {
+          "file": "experiments.tex",
+          "role": "result",
+          "num_numbers": 165,
+          "num_cites": 3
+        },
+        {
+          "file": "introduction.tex",
+          "role": "intro",
+          "num_numbers": 8,
+          "num_cites": 13
+        },
+        {
+          "file": "limitations.tex",
+          "role": "other",
+          "num_numbers": 3,
+          "num_cites": 0
+        },
+        {
+          "file": "method.tex",
+          "role": "other",
+          "num_numbers": 35,
+          "num_cites": 12
+        },
+        {
+          "file": "related_work.tex",
+          "role": "other",
+          "num_numbers": 4,
+          "num_cites": 25
+        }
+      ],
+      "critical": [],
+      "warning": [
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'dehghani2021benchmark' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'henderson2018deep' is never cited.",
+          "location": "references.bib"
+        },
+        {
+          "kind": "orphan_bib_key",
+          "message": "references.bib entry 'tuerlinckx2006glmm' is never cited.",
+          "location": "references.bib"
+        }
+      ],
+      "info": [
+        {
+          "kind": "notation_per_section",
+          "message": "Inline math symbols collected per section.",
+          "data": {
+            "abstract": [
+              "\\times"
+            ],
+            "conclusion": [
+              "\\geq",
+              "\\times"
+            ],
+            "experiments": [
+              "\\Delta",
+              "\\dagger",
+              "\\ddagger",
+              "\\geq",
+              "\\leq",
+              "\\rho",
+              "\\sim",
+              "\\times"
+            ],
+            "introduction": [
+              "\\geq",
+              "\\kappa",
+              "\\rho",
+              "\\sim",
+              "\\times"
+            ],
+            "method": [
+              "\\Delta",
+              "\\dagger",
+              "\\delta",
+              "\\geq",
+              "\\pi",
+              "\\rho",
+              "\\sigma",
+              "\\tau",
+              "\\times"
+            ],
+            "related_work": [
+              "\\times"
+            ]
+          }
+        }
+      ],
+      "summary": {
+        "critical": 0,
+        "warning": 3,
+        "info": 1
+      }
+    },
+    "compile_result": {
+      "success": true,
+      "passed": true,
+      "compiled": {
+        "success": true,
+        "pdf_path": "<compiled-in-isolated-tmpdir>",
+        "paper_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/_audit_compile_0ze2v0fp",
+        "main_tex": "main.tex",
+        "log_tail": " []\n\n\nUnderfull \\hbox (badness 1735) in paragraph at lines 197--198\n[]\\T1/zi4/m/n/10.95 You are a math tutor. Solve\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 197--198\n\\T1/zi4/m/n/10.95 the problem and show your\n []\n\n\nUnderfull \\hbox (badness 1622) in paragraph at lines 198--199\n[]\\T1/zi4/m/n/10.95 Work through this math question\n []\n\n\nUnderfull \\hbox (badness 10000) in paragraph at lines 199--200\n[]\\T1/zi4/m/n/10.95 Math problem:\\n{question}\\nLet's\n []\n\nLaTeX Font Info:    Trying to load font information for TS1+ptm on input line 2\n07.\n(/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ptm.fd\nFile: ts1ptm.fd 2001/06/04 font definitions for TS1/ptm.\n)\nUnderfull \\hbox (badness 1092) in paragraph at lines 207--208\n[]\\T1/ptm/b/n/10.95 (+20) Code: \\T1/ptm/m/n/10.95 (+20) draft-ing ex-per-i-ment\n scripts, data-\n []\n\n) [15\n\n] (./main.aux)\n ***********\nLaTeX2e <2025-11-01>\nL3 programming layer <2026-01-19>\n ***********\nPackage rerunfilecheck Info: File `main.out' has not changed.\n(rerunfilecheck)             Checksum: CEF861DBA3CDCA0EA0B5E38F20E14C7A;4616.\n ) \nHere is how much of TeX's memory you used:\n 16503 strings out of 469438\n 261411 string characters out of 5468411\n 729516 words of memory out of 5000000\n 44310 multiletter control sequences out of 15000+600000\n 708620 words of font info for 401 fonts, out of 8000000 for 9000\n 59 hyphenation exceptions out of 8191\n 84i,12n,93p,1913b,648s stack positions out of 10000i,1000n,20000p,200000b,200000s\n</usr/share/texlive/texmf-dist/fonts/type1/public/inconsolata/Inconsolata-zi4\nr.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>\n</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/\nshare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/t\nexlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr/share/texlive/\ntexmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-d\nist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fon\nts/type1/public/amsfonts/cm/cmmi9.pfb></usr/share/texlive/texmf-dist/fonts/type\n1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/publi\nc/amsfonts/cm/cmr5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfon\nts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cm\nr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb><\n/usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr9.pfb></usr/sha\nre/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/tex\nlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy5.pfb></usr/share/texlive/te\nxmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/texlive/texmf-dis\nt/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts\n/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/\npublic/amsfonts/cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/\namsfonts/symbols/msam7.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/helve\ntic/uhvb8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmb8a.pfb>\n</usr/share/texlive/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></usr/share/tex\nlive/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>\nOutput written on main.pdf (15 pages, 2842636 bytes).\nPDF statistics:\n 1162 PDF objects out of 1200 (max. 8388607)\n 835 compressed objects within 9 object streams\n 150 named destinations out of 1000 (max. 500000)\n 77563 words of extra memory for PDF output out of 89155 (max. 10000000)\n",
+        "error": "",
+        "pages": 15,
+        "warnings": [
+          "`h' float specifier changed to `ht'."
+        ]
+      },
+      "pages": 15,
+      "page_status": "ok",
+      "max_pages": null,
+      "min_pages": null,
+      "critical_warnings": [],
+      "minor_warnings": [
+        "`h' float specifier changed to `ht'.",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 12--13",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 12--13",
+        "Underfull \\hbox (badness 4429) in paragraph at lines 87--88",
+        "Underfull \\hbox (badness 5893) in paragraph at lines 114--38",
+        "Underfull \\hbox (badness 3009) in paragraph at lines 54--54",
+        "Underfull \\hbox (badness 6758) in paragraph at lines 112--112",
+        "Underfull \\hbox (badness 1629) in paragraph at lines 112--112",
+        "Underfull \\hbox (badness 3128) in paragraph at lines 118--119",
+        "Underfull \\hbox (badness 1622) in paragraph at lines 118--119",
+        "Underfull \\hbox (badness 1460) in paragraph at lines 172--173",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 91--97",
+        "Underfull \\hbox (badness 4739) in paragraph at lines 91--97",
+        "Underfull \\hbox (badness 1117) in paragraph at lines 172--178",
+        "Underfull \\hbox (badness 3965) in paragraph at lines 8--9",
+        "Overfull \\hbox (6.11235pt too wide) in paragraph at lines 64--80",
+        "Underfull \\hbox (badness 1342) in paragraph at lines 104--105",
+        "Underfull \\hbox (badness 5756) in paragraph at lines 118--119",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 118--119",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 118--119",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 118--119",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 118--119",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 118--119",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 118--119",
+        "Underfull \\hbox (badness 1122) in paragraph at lines 156--156",
+        "Underfull \\hbox (badness 4416) in paragraph at lines 178--179",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 178--179",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 178--179",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 178--179",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 178--179",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 178--179",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 178--179",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 178--179",
+        "Underfull \\hbox (badness 6445) in paragraph at lines 184--185",
+        "Underfull \\hbox (badness 8000) in paragraph at lines 185--186",
+        "Underfull \\hbox (badness 1087) in paragraph at lines 185--186",
+        "Underfull \\hbox (badness 8000) in paragraph at lines 187--188",
+        "Overfull \\hbox (33.6723pt too wide) in paragraph at lines 189--190",
+        "Underfull \\hbox (badness 2781) in paragraph at lines 195--196",
+        "Underfull \\hbox (badness 3590) in paragraph at lines 196--197",
+        "Underfull \\hbox (badness 1735) in paragraph at lines 197--198",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 197--198",
+        "Underfull \\hbox (badness 1622) in paragraph at lines 198--199",
+        "Underfull \\hbox (badness 10000) in paragraph at lines 199--200",
+        "Underfull \\hbox (badness 1092) in paragraph at lines 207--208"
+      ],
+      "issues": [],
+      "summary": "PASS"
+    },
+    "refs_result": null,
+    "internal_leak": {
+      "passed": true,
+      "critical": [],
+      "warning": [],
+      "info": [],
+      "summary": "0 critical, 0 warning, 0 info"
+    }
+  },
+  "content_findings": [
+    {
+      "severity": "critical",
+      "dimension": "叙事一致性",
+      "message": "Abstract 和 Intro C2 声称 model×item interaction 占 \"30--36%\"，但此范围仅适用于 MC benchmarks（MMLU 30.2%, ARC 33.7%, HellaSwag 36.0%）。FF benchmarks 的 model×item 仅 14.6%（GSM8K）和 17.3%（MATH），远低于声称范围。Abstract 称其为 \"dominant variance source\" 但 FF 中 residual 才是 dominant（GSM8K 39.9%, MATH 43.9%）。建议：将 30--36% 限定为 \"across MC benchmarks\" 或改为全范围 14.6--36.0%，并在 Abstract 中加 MC/FF 区分。"
+    },
+    {
+      "severity": "critical",
+      "dimension": "叙事一致性",
+      "message": "introduction.tex:23 C2 声称 \"exceeds the model main effect by an order of magnitude across all five benchmarks\"，但实际比值：MMLU 10.8×, ARC 10.9×, HellaSwag 6.7×, GSM8K 1.4×, MATH 2.0×。仅 2/5 达到 \"order of magnitude\"（10×），GSM8K 和 MATH 差距巨大。必须修正为 \"in MC benchmarks\" 或降低表述强度。"
+    },
+    {
+      "severity": "critical",
+      "dimension": "叙事一致性",
+      "message": "experiments.tex:25 正文写 \"(contamination implications in Limitations)\" 前向引用 Limitations 段落讨论 contamination，但 limitations.tex 完全未提及 contamination。审稿人会直接标记为承诺未兑现。"
+    },
+    {
+      "severity": "critical",
+      "dimension": "叙事一致性",
+      "message": "Conclusion（conclusion.tex）仅 2 句话，完全遗漏 C2（model×item interaction dominance——论文声称的核心发现）。仅提到 C1（budget reduction）和 C3（format-dependent），叙事在 Conclusion 处断裂。Conclusion 与 Intro 贡献列表不对应。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节结构",
+      "message": "论文无 Discussion section。Experiments 直接跳到 2 句话的 Conclusion，缺少对结果的高层解读（如：为什么 model×item interaction 如此大？对 benchmark 设计社区的实际建议？与 IRT 的互补性如何落地？）。审稿人会认为分析深度不足。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "章节结构",
+      "message": "Conclusion 极度单薄（2 句话，~40 words），缺少：(a) 核心发现的 high-level summary (b) broader implications (c) future directions。顶会论文的 Conclusion 通常至少 1 段，总结所有贡献并指出 open questions。"
+    },
+    {
+      "severity": "info",
+      "dimension": "章节结构",
+      "message": "Abstract 内含 \\footnote（代码发布链接）。部分审稿人认为 Abstract 不应含 footnote；建议移至 Introduction 末尾或正文其他位置。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "贡献-范围",
+      "message": "Abstract 称 \"reducing item requirements from over 1,000 to roughly 100\" 但 Table 6 的 cross-model multi-facet 范围是 93--128 items，single-condition 是 1,078--2,768。\"over 1,000\" 准确但 \"roughly 100\" 偏低——GSM8K 需要 128 items。建议用更精确的表述如 \"93--128 items\"。"
+    },
+    {
+      "severity": "critical",
+      "dimension": "Claim强度",
+      "message": "Abstract \"the dominant variance source...is the model×item interaction\" 作为全局性陈述是 overclaim。对 FF benchmarks（GSM8K, MATH），residual 才是 dominant source，model×item 排第三/第四。此 claim 应限定为 MC benchmarks 或改写为 \"among substantive (non-residual) sources\"。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Claim强度",
+      "message": "C3 标注为 \"exploratory\" 且给出 $p = 0.10$，hedging 适当。introduction.tex:25 使用 \"observation\" 而非 \"finding\"，强度匹配合理。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "主结果表（Table 4, Table 6）提供 95% bootstrap CI，符合统计报告规范。LOMO stability analysis（Table 3）提供 CV 和 max |ΔG|。"
+    },
+    {
+      "severity": "info",
+      "dimension": "实验严谨性",
+      "message": "Scale validation（§5.6）只用了 Qwen2.5-72B 和 Llama-3.1-70B 两个模型，且仅在 MMLU 上。声称 \"preliminary support\" 是恰当的 hedging。"
+    },
+    {
+      "severity": "info",
+      "dimension": "可复现性",
+      "message": "Seeds 描述为 \"six fixed values\" 但未给出具体数值。虽然有代码发布链接，但在论文正文或 Appendix 中列出具体 seed 值有助于 quick reproducibility。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "符号一致性",
+      "message": "$p$ 双重含义：G-theory 中 $p$ = item（method.tex:21 footnote），但 experiments.tex:85 和 introduction.tex:25 用 $p = 0.10$ 表示 p-value。虽有 footnote 说明，但同一符号在不同语义间切换会增加审稿人认知负担。建议 p-value 统一使用不同格式（如无前导零 $.10$ 或明确标注 \"$p\\text{-value} = 0.10$\"）。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "逻辑流",
+      "message": "Experiments 最后一个 subsection（Scale Validation）直接跳到 Conclusion，无任何过渡。Scale Validation 是一个 \"补充验证\" 性质的 subsection，以它结尾然后直接进入 2 句话 Conclusion 显得突兀。"
+    },
+    {
+      "severity": "info",
+      "dimension": "Limitations",
+      "message": "61 words，3 个 distinct limitations（model scale, benchmark sample, binary scoring）。符合用户自定义规则 \"[EMNLP 2026] Limitations 章节只需要写一小段，覆盖 3 个点左右\"。但缺失 contamination limitation（正文 experiments.tex:25 承诺在此讨论但实际未写）。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "LaTeX em-dash `---` 在正文中大量使用（非表格占位符）：abstract.tex:1 \"choices---prompt\", abstract.tex:3 \"seed---it is\", introduction.tex:11 \"configuration---one prompt\", introduction.tex:17 \"precision---it is\", experiments.tex:125 \"552 items---a\", conclusion.tex:4 \"format-dependent---MC\", method.tex:28 \"require 552---a\"。共 10+ 处解释性 em-dash，是 AI 写作最显著标志。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "去AI",
+      "message": "多处 -ing 分词短语结尾：introduction.tex:25 \"suggesting that reproducibility standards should be calibrated per format\", experiments.tex:25 \"confirming that models differ primarily in which items they find difficult\", related_work.tex:15 \"demonstrating that IRT item selection and G-theory protocol optimization are orthogonal\", method.tex:21 \"enabling independent verification of all budget projections\"。应改写为独立句。"
+    },
+    {
+      "severity": "info",
+      "dimension": "内部信息",
+      "message": "\"exp-001\" 和 \"exp-002\" 作为实验标签在正文中使用（method.tex:41, method.tex:51 等）。虽功能上是论文内部标签，但命名风格偏向实验室内部编号。可考虑改为更描述性的名称（如 \"MMLU study\" / \"cross-benchmark study\"）。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Abstract 约 197 words（含 LaTeX 命令和 footnote 标记），实际渲染后纯文本应 < 200 words。符合 \"[EMNLP 2026] abstract 不要超过 200 words\" 约束。"
+    },
+    {
+      "severity": "info",
+      "dimension": "写作规则",
+      "message": "Limitations section 仅一个，位于正文中（limitations.tex），Appendix 无 limitations section。符合 \"[EMNLP 2026] 一篇文章只能有一个 limitations section\" 约束。"
+    },
+    {
+      "severity": "warning",
+      "dimension": "审稿规则",
+      "message": "主文页数需确认是否 ≤ 8 页。main.tex 使用 `\\enlargethispage{1\\baselineskip}` 暗示空间紧张，正文包含 7 个 figure + 7 个 table，内容密度极高。Phase 1 报告总计 15 页（含 appendix/references/limitations）。建议编译后精确测量主文页数以确认合规。"
+    }
+  ],
+  "visual_findings": [
+    {
+      "severity": "critical",
+      "dimension": "page 9",
+      "message": "[审稿规则] 主文超出 EMNLP 2026 严格 8 页限制。Section 5 Conclusion 从第 9 页顶部开始，意味着正文（Sections 1-5，不含 Limitations）跨越约 8.1-8.2 页。Limitations 虽然不计入页数限制，但 Conclusion 仍属正文，必须在第 8 页内结束。需压缩正文内容（如精简 Section 4 表格、缩短 Related Work）使 Conclusion 在第 8 页内完成"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 1",
+      "message": "[写作规则] Abstract 篇幅较长（目测约 190-210 words），接近或可能超过 EMNLP 2026 的 200 words 上限。需用源码精确统计词数，如超出则需删减"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 8",
+      "message": "页面排版节奏失衡——单页包含 3 个表格（Table 7/8/9）且无任何 figure，视觉上非常沉重。建议将 Table 8（中间设计方案表）移入 Appendix 或与 Table 7 合并，腾出空间也有助于解决超页问题"
+    },
+    {
+      "severity": "warning",
+      "dimension": "page 6",
+      "message": "Figure 7 热力图使用红蓝渐变色标，对红绿色盲不友好。虽然单元格内有数值标注部分缓解了问题，但建议改用蓝黄/Viridis 色标以确保色盲可及性"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 1",
+      "message": "首页为纯文本（Title/Abstract/Introduction），无 display item。Figure 1 出现在第 2 页，在前 3 页内有视觉锚点（✓），但若能将 Figure 1 的 pipeline 概览图提前到第 1 页底部，可更快建立审稿人认知锚定"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 6",
+      "message": "Figure 6 堆叠柱状图含多个方差分量，最小分量（如 model, prompt, seed 各 <1%）在视觉上几乎不可辨。考虑对 <2% 的分量合并为 \"other\" 类别，或在 caption 中注明小分量已省略"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 5",
+      "message": "Figure 4 的 x 轴标签和 tick labels 字号偏小（约为正文字号的 60-65%），建议增大至正文字号的 70% 以上"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 15",
+      "message": "末页（Appendix H: Use of AI Assistants）仅占页面约 1/3，剩余约 2/3 为空白。作为 appendix 末页不影响审稿，但如需压缩总页数可将此内容合并到上一页"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 2",
+      "message": "Figure 1 pipeline 概览图信息传达清晰，caption 自包含且详细，能独立理解论文核心方法——作为第一个 display item 质量良好"
+    },
+    {
+      "severity": "info",
+      "dimension": "page 3",
+      "message": "Table 1 使用 booktabs 风格、✓/— 标记清晰，scope 对比一目了然。全文表格格式统一（booktabs），符合规范"
+    },
+    {
+      "severity": "info",
+      "dimension": "pages 2-7",
+      "message": "正文 display item 密度合理：9 个 figure + 9 个 table = 18 个 display items 跨 8 页正文，平均 ~2.25/页，对于实证为主的论文属正常偏高端。节奏良好——除首页外每页至少有 1 个 display item"
+    }
+  ],
+  "counts": {
+    "critical": 13,
+    "warning": 74,
+    "info": 16
+  },
+  "error": "",
+  "timestamp": "2026-05-25T16:51:33.602532+00:00"
+}

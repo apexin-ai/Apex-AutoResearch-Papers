@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76818510786dad236df1",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis 3x3 dstudy budget",
+  "task_key": "worker_analysis_3x3_dstudy_budget_20260522T145106",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_3x3_dstudy_budget_20260522T145106_result.json",
+    "occurrence": 1,
+    "bytes": 1585,
+    "sha256": "587d81feae375ee6acea34319429019383f43c9dbd5c59ef4c666597ae7f05c7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "File saved correctly. Here's the summary:\n\n**D-study: Model-as-Object — min items for G_model ≥ 0.80**\n\n| Benchmark | Full (288/item) | 3×3 (9/item) | Single (1/item) |\n|-----------|-----------------|--------------|-----------------|\n| **MMLU** | 75 items → 21,600 evals | 347 items → 3,123 evals | **impossible** (max G=0.63) |\n| **ARC** | **impossible** (max G=0.70) | **impossible** (max G=0.53) | **impossible** (max G=0.28) |\n| **HellaSwag** | 29 items → 8,352 evals | 32 items → 288 evals | 53 items → 53 evals |\n| **GSM8K** | 13 items → 3,744 evals | **impossible** (max G=0.79) | **impossible** (max G=0.55) |\n| **MATH** | 10 items → 2,880 evals | 15 items → 135 evals | 146 items → 146 evals |\n\nKey findings:\n\n1. **ARC** can never reach G≥0.80 under any design — σ²(model:prompt) = 0.0142 is 2.6× σ²(model) = 0.0054. Model rankings on ARC are fundamentally prompt-dependent.\n\n2. **GSM8K** needs the full 6-prompt design; 3×3 barely misses (asymptotic G=0.79) because model:prompt interaction is huge (0.0213).\n\n3. **HellaSwag** is the most robust — reaches G≥0.80 with just 32 items × 9 conditions = 288 evals.\n\n4. **3×3 cost savings** are dramatic where feasible: MMLU 3,123 vs 21,600 evals (85% reduction); MATH 135 vs 2,880 (95% reduction); HellaSwag 288 vs 8,352 (97% reduction).\n\n5. **Single-condition** evaluation can only reach G≥0.80 for HellaSwag (53 items) and MATH (146 items). For the rest, no amount of items suffices.\n\nOutput saved to `artifacts/exp004/data/dstudy_3x3_budget.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-3x3-dstudy-budget.md"
+}

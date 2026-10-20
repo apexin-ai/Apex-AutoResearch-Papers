@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7e339508c9a4045d5ebd",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops llama70b check and submit",
+  "task_key": "worker_ops_llama70b_check_and_submit_20260523T093824",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama70b_check_and_submit_20260523T093824_result.json",
+    "occurrence": 1,
+    "bytes": 904,
+    "sha256": "07d6733e113607acd833b2820090a17334478c3364f73f78ce1c28cd792a7c28"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**下载仍在进行中。**\n\n状态：\n- PID 313198 运行中，已过 30 分 40 秒\n- 8 个 shard 全部在并行下载（在 `._____temp/` 临时目录）\n- 总进度：~32GB / ~131GB ≈ **25%**\n\n各 shard 进度：\n| Shard | 已下载 | 进度 |\n|-------|--------|------|\n| consolidated.00 | 3.1GB / 16.4GB | 19% |\n| consolidated.01 | 3.6GB / 16.4GB | 22% |\n| consolidated.02 | 3.9GB / 16.4GB | 24% |\n| consolidated.03 | 3.3GB / 16.4GB | 20% |\n| consolidated.04 | 4.1GB / 16.4GB | 25% |\n| consolidated.05 | 4.8GB / 16.4GB | 29% |\n| consolidated.06 | 6.6GB / 16.4GB | 40% |\n| consolidated.07 | 2.6GB / 16.4GB | 16% |\n\n速度差异大（714KB/s ~ 10.5MB/s），平均聚合约 17.9MB/s。\n\n**预计剩余时间：1.5 ~ 2 小时**（按平均速度估算 ~92 分钟，瓶颈 shard 可能更慢）。\n\n磁盘空间充足：130GB 可用，足够容纳剩余 ~99GB。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama70b-check-and-submit.md"
+}

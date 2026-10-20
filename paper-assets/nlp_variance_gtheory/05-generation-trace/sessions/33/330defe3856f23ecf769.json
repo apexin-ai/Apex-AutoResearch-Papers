@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "330defe3856f23ecf769",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis mmlu r2 inconsistency check",
+  "task_key": "worker_analysis_mmlu_r2_inconsistency_check_20260522T193351",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_mmlu_r2_inconsistency_check_20260522T193351_result.json",
+    "occurrence": 1,
+    "bytes": 1238,
+    "sha256": "0c1c83ee4360bd3835d064f6537c5d5b0aa7120ee897bde9c7b454b191add478"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 排查结论\n\n### 1. 两个数字的来源\n\n- **0.347** = `difficulty_only_R2`（仅 difficulty + difficulty²），scatter plot 标注的值。**来自正确的 difficulty-only 回归。**\n- **0.377** = `R2`（full model，含 difficulty + difficulty² + n_choices + question_length + 5个 subject dummy），table 中 R²(full) 列的值。\n\n### 2. 错误在哪\n\n**Table 有误。** `appendix.tex` 第184行的 `R²(diff. only)` 列错误地复制了 R²(full) 的值。这是系统性错误——**所有三个 MC benchmark 都受影响**：\n\n| Benchmark | Table 写的 diff-only | 正确值 |\n|-----------|---------------------|--------|\n| MMLU | 0.377 | **0.347** |\n| ARC | 0.221 | **0.204** |\n| HellaSwag | 0.156 | **0.140** |\n\nFF benchmarks (GSM8K, MATH) 的两列数字正确。\n\n### 3. Scatter plot 是对的\n\nScatter plot 标注的 R²=0.347 是正确的 difficulty-only R²。\n\n### 4. 修正方案\n\n修改 `docs/paper/appendix.tex` 第184-186行：\n```latex\nMMLU & 0.377 & 0.347 & $<$0.001 \\\\\nARC & 0.221 & 0.204 & $<$0.001 \\\\\nHellaSwag & 0.156 & 0.140 & $<$0.001 \\\\\n```\n\n排查结果已保存到 `artifacts/exp004/ff_residual_analysis/mmlu_r2_inconsistency_note.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-mmlu-r2-inconsistency-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d8415123da8527232a15",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ssh check 72b download",
+  "task_key": "worker_ssh_check_72b_download_20260522T141706",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ssh_check_72b_download_20260522T141706_result.json",
+    "occurrence": 1,
+    "bytes": 487,
+    "sha256": "b239c67b0ba949d2b9ecc860cc9c9e506afa88a9330a97504728f5d64f8a4899"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## Qwen2.5-72B-Instruct 下载进度\n\n| 指标 | 结果 |\n|------|------|\n| **已完成 shards** | **29 / 37** (78%) |\n| **缺失 shards** | 028, 031, 032, 033, 034, 035, 036, 037 |\n| **磁盘占用** | **107 GB** |\n| **下载进程** | **未检测到活跃下载进程** |\n| **最新文件时间** | model-00030 — May 22 21:55 |\n\n下载**已停止**，还差 8 个 shard。注意 shard 028 也缺失（从 027 直接跳到 029）。需要重新启动下载。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ssh-check-72b-download.md"
+}

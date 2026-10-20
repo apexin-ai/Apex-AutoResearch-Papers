@@ -1,0 +1,80 @@
+{
+  "schema_version": "1.0",
+  "id": "3488bcf2e452c8294b8f",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "analysis phase2 gstudy arc 8model",
+  "task_key": "worker_analysis_phase2_gstudy_arc_8model_20260521T220409",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_gstudy_arc_8model_20260521T220409.log",
+    "occurrence": 1,
+    "bytes": 1141145,
+    "sha256": "f1f1562f91347b69b63afd27c2bb74bcd8411d0a6bf3ba948a719f715fd9d2d2"
+  },
+  "statistics": {
+    "messages": 635,
+    "user_turns": 2,
+    "tool_calls": 231,
+    "roles": {
+      "log": 1,
+      "system": 51,
+      "record": 1,
+      "assistant": 117,
+      "tool_call": 231,
+      "tool_result": 231,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 165,
+      "chunks": [
+        {
+          "path": "3488bcf2e452c8294b8f-part-0001.json",
+          "message_count": 165
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 184,
+      "chunks": [
+        {
+          "path": "3488bcf2e452c8294b8f-part-0001.json",
+          "message_count": 15
+        },
+        {
+          "path": "3488bcf2e452c8294b8f-part-0002.json",
+          "message_count": 169
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 286,
+      "chunks": [
+        {
+          "path": "3488bcf2e452c8294b8f-part-0002.json",
+          "message_count": 11
+        },
+        {
+          "path": "3488bcf2e452c8294b8f-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "3488bcf2e452c8294b8f-part-0004.json",
+          "message_count": 95
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-phase2-gstudy-arc-8model.md"
+}

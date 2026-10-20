@@ -1,0 +1,76 @@
+{
+  "schema_version": "1.0",
+  "id": "c553e692e2c569ca9eda",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "analysis lomo 8x5 full",
+  "task_key": "worker_analysis_lomo_8x5_full_20260522T133021",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_lomo_8x5_full_20260522T133021.log",
+    "occurrence": 1,
+    "bytes": 980152,
+    "sha256": "9e991789f68b4348eeb2cd0fd78bf005530c97ba68ea2b721096c6b9e9ce9a49"
+  },
+  "statistics": {
+    "messages": 301,
+    "user_turns": 2,
+    "tool_calls": 116,
+    "roles": {
+      "log": 1,
+      "system": 7,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 116,
+      "tool_result": 116,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 10,
+      "chunks": [
+        {
+          "path": "c553e692e2c569ca9eda-part-0001.json",
+          "message_count": 10
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 256,
+      "chunks": [
+        {
+          "path": "c553e692e2c569ca9eda-part-0001.json",
+          "message_count": 170
+        },
+        {
+          "path": "c553e692e2c569ca9eda-part-0002.json",
+          "message_count": 86
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 35,
+      "chunks": [
+        {
+          "path": "c553e692e2c569ca9eda-part-0002.json",
+          "message_count": 30
+        },
+        {
+          "path": "c553e692e2c569ca9eda-part-0003.json",
+          "message_count": 5
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-lomo-8x5-full.md"
+}

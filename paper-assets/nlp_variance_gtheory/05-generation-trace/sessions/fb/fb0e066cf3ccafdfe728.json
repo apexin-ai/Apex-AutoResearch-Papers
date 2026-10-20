@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fb0e066cf3ccafdfe728",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis r1 w4 dstudy ordering impact",
+  "task_key": "worker_analysis_r1_w4_dstudy_ordering_impact_20260521T201438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_r1_w4_dstudy_ordering_impact_20260521T201438_result.json",
+    "occurrence": 1,
+    "bytes": 1530,
+    "sha256": "d809a7b6b821c35f6d322c1ec62ab0bed550134109ed7b705c23551a5d5421cd"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "JSON 已保存。以下是完整结果汇总：\n\n---\n\n## R1-W4 Ordering Facet Impact 结果\n\n### 1. Ordering 验证\n- **0 / 14,400 cells** 在不同 ordering 下有不同 `correct` 值 → **完美 no-op**\n\n### 2. G_item 对比\n\n| | Analysis A (with ordering) | Analysis B (without ordering) |\n|---|---|---|\n| Facets | temp, prompt, seed, ordering, item | temp, prompt, seed, item |\n| Records | 57,600 | 14,400 |\n| Conditions | 288 | 72 |\n| **G_item** | **0.836835** | **0.836835** |\n| σ²(δ) | 0.01126416 | 0.01126416 |\n\n**差异 = 0.00000000**\n\n### 3. Variance Components 对比（非零项）\n\n| Effect | σ² | % |\n|---|---|---|\n| item_id | 0.0578 | 22.09% |\n| prompt_id | 0.0670 | 25.62% |\n| prompt_id:item_id | 0.0218 | 8.34% |\n| temperature:item_id | 0.0052 | 1.97% |\n| temperature:prompt_id:item_id | 0.0454 | 17.35% |\n| temperature:seed:item_id | 0.0055 | 2.10% |\n| temperature:prompt_id:seed:item_id (residual) | 0.0588 | 22.50% |\n\n两个分析的所有共享 variance components **完全一致**（差异 = 0）。\n\n### 4. Ordering 相关项\n**全部 16 个含 ordering 的效应（主效应 + 所有交互）SS 和 σ² 均 = 0。**\n\n### 5. 结论\nOrdering 作为 pseudo-replicated facet 对 G 系数 **无任何影响**。因为 ordering 在非 MC benchmarks 上不改变输出，它只引入零方差项，在 δ 计算中完全抵消。移除 ordering facet 可以简化分析（从 31 个效应降到 15 个），但不改变 G 系数和方差分解结论。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-r1-w4-dstudy-ordering-impact.md"
+}

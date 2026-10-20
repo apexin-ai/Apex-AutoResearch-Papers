@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4d227650f8b9a491b37b",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops paper compile check",
+  "task_key": "worker_ops_paper_compile_check_20260523T150422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_paper_compile_check_20260523T150422_result.json",
+    "occurrence": 1,
+    "bytes": 1511,
+    "sha256": "593b093d1c4f4b958262f4be8536bb45e1bd034a61537e3457aba5e7c90e78b3"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 编译检查报告\n\n### 1. 编译状态\n**成功** — 0 errors，PDF 生成正常（551KB）。\n\nBibTeX 1 warning：`gao2024lmeval` 的 entry type 未在 bst 中定义（references.bib:496）。\n\n### 2. 页数\n| 区域 | 页码 | 页数 |\n|------|------|------|\n| 主文（Abstract → Conclusion） | 1–8 | **~7.5 页** |\n| Limitations | 8 (下半) | ~0.5 页 |\n| References | 9–11 | 3 页 |\n| Appendix | 12–17 | 6 页 |\n| **总计** | | **17 页** |\n\n**主文 ≤ 8 页 ✅**（Conclusion 和 Limitations 都在第 8 页，Limitations 不计入页数限制）\n\nAbstract：156 words ✅（限制 200 words）\n\n### 3. Warning 统计\n| 类型 | 数量 | 说明 |\n|------|------|------|\n| Underfull \\hbox | 61 | 大部分 badness 10000，集中在 appendix 的 prompt 模板 |\n| Underfull \\vbox | 3 | 排版松散页 |\n| Overfull \\hbox | 5 | 见下 |\n| Float specifier `h`→`ht` | 3 | 无害 |\n\n### 4. Undefined citation/reference\n**无** ✅ — 所有引用和标签均已解析。\n\n### 5. Critical Warnings\n\n**主文 Overfull hbox（1 处）：**\n- `method.tex` lines 36–51：**37.2pt too wide**（page 4）— 可能是公式或表格溢出，建议检查\n\n**Appendix Overfull hbox（4 处，优先级低）：**\n- 82.0pt, 26.7pt, 13.1pt, 6.1pt — 均在 prompt 模板区域，monospace 文本难以自动断行\n\n**BibTeX：** `gao2024lmeval` entry type 非标准（可能用了 `@software` 或自定义类型），建议改为 `@misc`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-paper-compile-check.md"
+}

@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "600411b4d5c4e0cf6545",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "review data correctness audit",
+  "task_key": "worker_review_data_correctness_audit_20260523T191757",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_review_data_correctness_audit_20260523T191757.log",
+    "occurrence": 1,
+    "bytes": 948913,
+    "sha256": "a1559aa4068652e0413157d47aff1f168c2b4086adfb81d73a40bec40ef9e2c6"
+  },
+  "statistics": {
+    "messages": 188,
+    "user_turns": 1,
+    "tool_calls": 67,
+    "roles": {
+      "log": 1,
+      "system": 4,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 67,
+      "tool_result": 67,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 150,
+      "chunks": [
+        {
+          "path": "600411b4d5c4e0cf6545-part-0001.json",
+          "message_count": 120
+        },
+        {
+          "path": "600411b4d5c4e0cf6545-part-0002.json",
+          "message_count": 30
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 38,
+      "chunks": [
+        {
+          "path": "600411b4d5c4e0cf6545-part-0002.json",
+          "message_count": 38
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/review-data-correctness-audit.md"
+}

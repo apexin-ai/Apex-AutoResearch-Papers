@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4146a3e3f8954d80d43d",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis verify dstudy design params",
+  "task_key": "worker_analysis_verify_dstudy_design_params_20260522T012230",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_verify_dstudy_design_params_20260522T012230_result.json",
+    "occurrence": 1,
+    "bytes": 1544,
+    "sha256": "9978c5682b2b632bfbd49dffa61e5e5580cf54d14f33d19944b0c32ad2a4fc19"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结论\n\n### 设计参数确认\n\n`single_condition_dstudy.json` 使用的是 **exp-001 单模型（Llama）设计**：\n\n| 参数 | 值 |\n|------|-----|\n| 数据源 | `unified_henderson_i_numbers.json` → `single_model_6facet` |\n| 记录数 | 259,200 |\n| Facets | precision(3), temperature(3), prompt(6), seed(6), ordering(4) |\n| Conditions | 1296 = 3×3×6×6×4 |\n| τ (item) | 0.1271 |\n| 方法 | Henderson I, negatives truncated |\n\n### 判断：不需要 8-model 重算\n\n当前设计**适用于论文上下文**。理由：\n\n1. **论文的 Claim 3 问的是**：\"practitioner 用单一配置评估单一模型，需要多少 items？\" — 这正是 exp-001 单模型 D-study 回答的问题。\n\n2. **8-model 设计回答的是不同问题**：如果 model 作为 facet，`model:item_id`（30.2%）会成为误差项，σ²_δ 会远超 τ，G < 0.5 — 这说明的是\"跨模型排名不一致\"，不是\"item count 效率\"。\n\n3. **ROADMAP 已确认**：`[TBD-RATIO]=10.0×` 已定稿，对应的就是 55 vs 552 items（单模型内的对比）。\n\n4. **概念一致性**：precision 是单模型评估中合理的变异来源（practitioner 选 fp16 还是 bf16 确实影响结果），纳入 facet 是正确的。\n\n### 唯一问题\n\n文件放在 `exp004_8model_analysis/` 目录下但内容是 exp-001 数据 — 这是组织问题，不影响正确性。8-model G-study（`per_benchmark_gstudy_mmlu.json`）已独立回答跨模型方差分解问题。\n\n**无需进一步计算。**"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-verify-dstudy-design-params.md"
+}

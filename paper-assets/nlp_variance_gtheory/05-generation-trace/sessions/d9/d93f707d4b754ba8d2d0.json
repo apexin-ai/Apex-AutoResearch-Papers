@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d93f707d4b754ba8d2d0",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis cohens kappa pairwise",
+  "task_key": "worker_analysis_cohens_kappa_pairwise_20260522T133438",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cohens_kappa_pairwise_20260522T133438_result.json",
+    "occurrence": 1,
+    "bytes": 1185,
+    "sha256": "24de44ad551a88319d188302a28af93c3aab40b94329f4bd3cfb900a17c6654d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "All done. Summary:\n\n| Benchmark | Models | Pairs | Mean κ | Min κ | Max κ | Fleiss κ |\n|-----------|--------|-------|--------|-------|-------|----------|\n| MMLU | 8 | 28 | 0.461 | 0.241 | 0.612 | 0.456 |\n| ARC | 8 | 28 | 0.376 | 0.042 | 0.741 | 0.331 |\n| GSM8K | 8 | 28 | 0.335 | 0.117 | 0.590 | 0.309 |\n| HellaSwag | 6 | 15 | 0.332 | 0.098 | 0.482 | 0.334 |\n| MATH | 8 | 28 | 0.326 | 0.014 | 0.607 | 0.325 |\n\nKey findings:\n- All κ values are positive (models agree more than chance), as expected\n- MMLU has highest inter-model agreement (mean κ=0.46, \"moderate\"), likely because its MC format constrains variance\n- MATH has lowest mean κ=0.33 (\"fair\") and widest range — Llama×Mistral κ=0.014 (near-random) while InternLM×Qwen κ=0.61\n- ARC has the widest spread (0.04–0.74); Yi-1.5-9B is a consistent outlier with very low agreement against most models on ARC\n- HellaSwag only has 6 models (OLMo/Yi missing)\n- Fleiss κ tracks closely with mean pairwise κ across all benchmarks\n\nScript saved at server `/root/nlp_variance_gtheory/scripts/exp004_cohens_kappa.py`, results at local `artifacts/exp004/data/cohens_kappa_pairwise.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cohens-kappa-pairwise.md"
+}

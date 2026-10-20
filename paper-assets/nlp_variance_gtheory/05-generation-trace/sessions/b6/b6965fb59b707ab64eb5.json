@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b6965fb59b707ab64eb5",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp pilot llama",
+  "task_key": "worker_exp_pilot_llama_20260520T225650",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_pilot_llama_20260520T225650_result.json",
+    "occurrence": 1,
+    "bytes": 138,
+    "sha256": "87eee81ccb23a2d91e20ed83e319655620f51e61501753e88d1d2f1a3d9a89a8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "3 个 GPU 并行推理任务已启动，每个约 6,600 次推理。4.5 分钟后首次检查模型加载和运行状态。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-pilot-llama.md"
+}

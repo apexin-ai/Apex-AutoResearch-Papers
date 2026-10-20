@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "cec268c698ce3753568c",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra model predownload",
+  "task_key": "worker_infra_model_predownload_20260520T203331",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_model_predownload_20260520T203331_result.json",
+    "occurrence": 1,
+    "bytes": 132,
+    "sha256": "569d4085d76481c46aeb55d80e8c94274110a9ac3961fa08eded085c2847f4f4"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Downloads progressing steadily at ~1.7 MB/s. Will poll again in ~4 minutes and proceed to dry-runs once all complete."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-model-predownload.md"
+}

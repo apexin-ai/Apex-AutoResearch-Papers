@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "id": "19a9b5b241e151e7220a",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "ops ff scatter plots download",
+  "task_key": "worker_ops_ff_scatter_plots_download_20260522T184205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ff_scatter_plots_download_20260522T184205.log",
+    "occurrence": 1,
+    "bytes": 1628880,
+    "sha256": "12e56ffe010c9dc5080cef11aafc71a7c97f4fb1285f5da95b480dcf6ea9027c"
+  },
+  "statistics": {
+    "messages": 701,
+    "user_turns": 1,
+    "tool_calls": 236,
+    "roles": {
+      "log": 1,
+      "system": 204,
+      "record": 1,
+      "assistant": 21,
+      "tool_call": 236,
+      "tool_result": 236,
+      "user": 1,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 93,
+      "chunks": [
+        {
+          "path": "19a9b5b241e151e7220a-part-0001.json",
+          "message_count": 93
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 608,
+      "chunks": [
+        {
+          "path": "19a9b5b241e151e7220a-part-0001.json",
+          "message_count": 87
+        },
+        {
+          "path": "19a9b5b241e151e7220a-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "19a9b5b241e151e7220a-part-0003.json",
+          "message_count": 180
+        },
+        {
+          "path": "19a9b5b241e151e7220a-part-0004.json",
+          "message_count": 161
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-ff-scatter-plots-download.md"
+}

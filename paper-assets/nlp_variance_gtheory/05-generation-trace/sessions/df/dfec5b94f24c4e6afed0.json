@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "dfec5b94f24c4e6afed0",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix westd15695 start olmo fix yi",
+  "task_key": "worker_fix_westd15695_start_olmo_fix_yi_20260521T142810",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_westd15695_start_olmo_fix_yi_20260521T142810_result.json",
+    "occurrence": 1,
+    "bytes": 840,
+    "sha256": "d5d910d08fb22ee645049d8fe20b47636636addc7b5dbf816aa7d95445b941e5"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "进展良好。\n\n**OLMo 推理状态：**\n- PID: 19586 (EngineCore: 19807)\n- 进度: condition 186/432 (43%)，9,600 行已输出\n- 速度: 740 prompts/s, ~425K input toks/s\n- 预计 3-4 分钟完成\n\n**Yi 下载状态：**\n- PID: 19064\n- shard 4: 65% (1.67G/2.59G, ~3 min)\n- shard 1: 20% (952M/4.59G, ~12 min)\n- shard 2、3 同步下载中\n- 预计 12-15 分钟全部完成\n\n**解决的问题：**\n- FlashInfer 0.6.8 不支持 Blackwell (sm_120) → 用 `VLLM_USE_FLASHINFER_SAMPLER=0` + `FLASHINFER_DISABLE_VERSION_CHECK=1` 绕过\n- Yi 目录在 `/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B-Chat/`（ModelScope 命名），shard 1/3/4 截断 → 删除后通过 ModelScope 重新下载\n- vLLM 0.21 不识别 `VLLM_USE_V1=0`（代码中已设置但被忽略）→ V1 引擎下禁用 FlashInfer 组件即可"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-westd15695-start-olmo-fix-yi.md"
+}

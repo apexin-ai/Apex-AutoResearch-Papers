@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0c9d331e42d6c3a2c151",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix qwen shard3 patch",
+  "task_key": "worker_fix_qwen_shard3_patch_20260521T070049",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_qwen_shard3_patch_20260521T070049_result.json",
+    "occurrence": 1,
+    "bytes": 933,
+    "sha256": "1d516e548c875c1df517bbd7d5d302445513ed956d4b86d465f3c1f9cc90cafa"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. 缺失的 69 condition IDs\n```\n[9, 17, 18, 20, 27, 36, 38, 39, 54, 104, 128, 151, 152, 153, 155, 158, 161, 176, 181, 191, \n 208, 226, 230, 246, 254, 256, 263, 284, 288, 302, 321, 323, 346, 404, 408, 878, 881, 897, \n 914, 957, 960, 993, 1015, 1020, 1046, 1061, 1075, 1085, 1089, 1090, 1103, 1116, 1121, 1135, \n 1150, 1160, 1178, 1187, 1192, 1214, 1222, 1226, 1228, 1261, 1267, 1273, 1275, 1285, 1286]\n```\n\n### 2. 补跑 PID\n- PID: 106052（已完成）\n\n### 3. 各 shard 行数\n| Shard | 行数 |\n|-------|------|\n| shard_0 | 64,800 |\n| shard_1 | 64,800 |\n| shard_2 | 64,800 |\n| shard_3 | 64,800 |\n| **总计** | **259,200** |\n\nshard_3 验证：324 unique conditions, 64,800 records。全量 4 shards 通过 assert 验证。\n\n### 4. 最终统计\n- **Accuracy**: 0.7252\n- **Precision 分布**: bfloat16=100,200 / float16=79,600 / float32=79,400\n- **Unique conditions**: 1,227"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-qwen-shard3-patch.md"
+}

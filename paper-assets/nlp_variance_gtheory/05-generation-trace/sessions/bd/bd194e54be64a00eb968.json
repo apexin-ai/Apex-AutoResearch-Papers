@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "bd194e54be64a00eb968",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis temp stratified seed",
+  "task_key": "worker_analysis_temp_stratified_seed_20260521T091722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_temp_stratified_seed_20260521T091722_result.json",
+    "occurrence": 1,
+    "bytes": 1622,
+    "sha256": "a46009c46b0a91faef6a87f7fa970e91538290b33e4a7a7cf06982aa5b0da0e9"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Now I understand the discrepancy. The existing `temperature_stratified_analysis.json` used SS proportions (not proper variance components), while my script uses Henderson Method I variance component estimation (the project's canonical method). My approach is methodologically correct.\n\nKey finding: T=0.0 is unbalanced (FP32 has only 8,800/28,800 expected records), but T=0.3, T=0.7, and T>0 combined are all balanced. Since the T=0.0 seed finding is qualitative (≈0), the imbalance doesn't affect the conclusion.\n\nResults saved to `results/analysis/temp_stratified_seed.json`:\n\n| Stratum | n | seed% | seed:item% | item_id% | G_item |\n|---------|-------|-------|------------|----------|--------|\n| T=0.0 | 66,400 | 0.000 | 0.043 | 68.25 | 0.683 |\n| T=0.3 | 86,400 | 0.000 | 6.157 | 56.43 | 0.564 |\n| T=0.7 | 86,400 | 0.007 | 17.404 | 49.36 | 0.494 |\n| T>0 | 172,800 | 0.000 | 10.556 | 51.95 | 0.520 |\n\n**Gradient**: seed:item monotonically increases 0.04% → 6.16% → 17.40%.\n\n**FP non-associativity**: T=0 seed:item = 0.043% (non-zero) — floating-point non-associativity evidence, but magnitude is negligible.\n\n**Key findings**:\n1. At T=0, seed effect is essentially zero — as expected for deterministic decoding. The 0.043% seed:item interaction is trace evidence of vLLM floating-point non-associativity.\n2. At T>0, seed:item interaction is the dominant seed-related variance source (not seed main effect), meaning seed sensitivity is item-dependent.\n3. Even at T=0.7, seed:item (17.4%) remains ≪ item_id (49.4%) — item selection dominates over stochastic sampling noise."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-temp-stratified-seed.md"
+}

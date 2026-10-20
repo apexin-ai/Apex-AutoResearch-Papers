@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b7b7d2dce0571bc170f2",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra scp models to westd19912",
+  "task_key": "worker_infra_scp_models_to_westd19912_20260521T171859",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_scp_models_to_westd19912_20260521T171859_result.json",
+    "occurrence": 1,
+    "bytes": 819,
+    "sha256": "c0eeb5ede36c9b88ee1c337022c5282add38b022207724cf0c99f8f0ab16706e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Watcher 已启动（PID 55951），正在等待 OLMo 4 个进程完成后自动启动 Yi。\n\n---\n\n**汇总：**\n\n| 项目 | 状态 |\n|------|------|\n| westd-32570 模型路径 | OLMo: `/root/autodl-tmp/.hf_cache/allenai/OLMo-2-1124-7B-Instruct` (14G), Yi: `/root/autodl-tmp/.hf_cache/01ai/Yi-1___5-9B-Chat` (17G) |\n| westd-19912 ModelScope 下载 | 已 kill（PID 48244, 48610），仅下载了 ~10MB |\n| scp 传输 | 完成，内网传输约 2 分钟搞定 31G |\n| OLMo 推理 | 正在运行，4 GPU 并行（mmlu/arc/hellaswag/gsm8k），刚开始处理 |\n| chain 脚本 bug | `run_job` 的 echo 被 `$(...)` 捕获导致 PID 变量污染，`wait` 失败 + `set -e` 退出 |\n| Yi 接力 | 已部署 `yi_after_olmo.sh`（PID 55951），监控 OLMo 完成后自动启动 Yi 5 个 benchmark |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-scp-models-to-westd19912.md"
+}

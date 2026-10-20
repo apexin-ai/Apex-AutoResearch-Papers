@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "1adc37f595259a8805b3",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code fix ff gstudy gitem bug",
+  "task_key": "worker_code_fix_ff_gstudy_gitem_bug_20260522T000548",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_fix_ff_gstudy_gitem_bug_20260522T000548_result.json",
+    "occurrence": 1,
+    "bytes": 657,
+    "sha256": "930f286c9e9c3939e11b899c06bee604ae6405a5f8052c508db77cd9f6aeea09"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "**MATH G_item = 0.888941** — matches expected ~0.888 (within ±0.005).\n\nBoth values verified:\n- GSM8K G_item = 0.862852 (expected ~0.863) ✓\n- MATH G_item = 0.888941 (expected ~0.888) ✓\n\nFix complete. The MATH bootstrap is now running (~10 min) but the core G_item values are confirmed correct. \n\n**Summary**: Changed `divisor = 1` to `divisor = prod(n_levels[f] for f in n_levels if f != \"item_id\")` on lines 118 and 138 of `scripts/exp004_ff_gstudy.py`. The residual variance component now correctly divides by the product of all non-item facet levels (2304 for GSM8K with 8 models, 2016 for MATH with 7 models) instead of 1."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-fix-ff-gstudy-gitem-bug.md"
+}

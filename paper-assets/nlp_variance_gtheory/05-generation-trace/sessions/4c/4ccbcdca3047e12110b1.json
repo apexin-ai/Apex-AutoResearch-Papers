@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "4ccbcdca3047e12110b1",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix gsm8k extraction urgent",
+  "task_key": "worker_fix_gsm8k_extraction_urgent_20260521T101957",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gsm8k_extraction_urgent_20260521T101957_result.json",
+    "occurrence": 1,
+    "bytes": 894,
+    "sha256": "b2bfa2100f1b16f661e4dcf5518273d7270a1799cd060d5d00a3f4dbd36c6f49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n| 项目 | 状态 |\n|------|------|\n| **benchmark_utils.py 修改时间** | `May 21 18:22`（刚修改） |\n| **当前各 GPU 进度** | GPU0(qwen): HellaSwag Condition ~1073；GPU1(llama): HellaSwag Condition ~2260。仍在跑 HellaSwag，GSM8K 未开始 |\n| **GSM8K 是否会使用修复后代码** | **会。** 脚本对每个 benchmark 启动独立 `python -m src.inference.run_experiment` 进程，GSM8K 是最后一个。新进程启动时会 import 修复后的 `benchmark_utils.py` |\n| **Post-hoc re-extraction** | 不需要 |\n\n修复内容：\n- **截断**：在 `\\nQ:` / `\\nQuestion:` / `\\nProblem:` / `\\n\\n##` 处截断，防止匹配幻觉文本\n- **优先级**：\"The answer is N\" > `#### N`（取最后一个）> 末尾数字\n- **正则**：小数点后必须跟数字 `(?:\\.\\d+)?`，避免贪心匹配句号\n- 9/9 测试全部通过"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gsm8k-extraction-urgent.md"
+}

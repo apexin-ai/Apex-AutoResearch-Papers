@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "59d65e77094014b784e1",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis llama single gstudy",
+  "task_key": "worker_analysis_llama_single_gstudy_20260521T034025",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_llama_single_gstudy_20260521T034025_result.json",
+    "occurrence": 1,
+    "bytes": 1751,
+    "sha256": "df277da6d696004ce7721c828cac2c3be569d1ec9c1ddbc01b24dd5b1ddafe1f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完整结果已获得。\n\n---\n\n**Llama single-model G-study (239,200 records, 1196 conditions × 200 items):**\n\n### binary_correct:\n| Component | % |\n|---|---|\n| item_id | 61.08% |\n| residual | 21.59% |\n| seed:item_id | 4.72% |\n| prompt_template:item_id | 4.58% |\n| precision:item_id | 4.16% |\n| temperature:item_id | 1.83% |\n| precision | 1.19% |\n\n**G coefficient: 0.6108** (MVP: 0.357)\n\n### text_exact_match:\n| Component | % |\n|---|---|\n| temperature | 79.72% |\n| residual | 8.85% |\n| precision:temperature | 4.15% |\n| precision | 2.81% |\n| temperature:item_id | 0.85% |\n| item_id | 0.66% |\n\n**G coefficient: 0.0066** (MVP: 0.975)\n\n### D-study (binary_correct):\n| n_items | G |\n|---|---|\n| 25 | 0.164 |\n| 50 | 0.282 |\n| 100 | 0.440 |\n| 200 | 0.611 |\n| 300 | 0.702 |\n| 500 | 0.797 |\n\nG>0.8 需要 ~510 items。\n\n### vs MVP 对比:\n\n**binary_correct — 稳定，方向一致，数值提升：**\n- item_id 从 58.4% → 61.1%（略升，4x items 采样更完整）\n- G 从 0.357 → 0.611（大幅提升，符合预期——200 items 比 50 items 降低了相对误差）\n- residual 从 17.6% → 21.6%（略升，更多 items 暴露了更多高阶交互未建模的变异）\n- 新发现的关键交互：seed:item_id=4.7%, prompt_template:item_id=4.6%, precision:item_id=4.2% — 这些 facet×item 交互在 50 items 时信号不足，200 items 后清晰浮现\n\n**text_exact_match — 结构剧变：**\n- MVP 的 G=0.975 降至 0.0066，因为 text_exact_match 在 200 items 下几乎完全被 temperature 主效应 (79.7%) 主导\n- item_id 仅占 0.66%，说明 text 层面的变异主要来自 temperature 的全局效应（高 temp → 文本不稳定），跨 item 无差异化"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-llama-single-gstudy.md"
+}

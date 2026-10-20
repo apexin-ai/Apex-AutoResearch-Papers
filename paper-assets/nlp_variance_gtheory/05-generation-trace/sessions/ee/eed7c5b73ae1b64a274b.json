@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "eed7c5b73ae1b64a274b",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "analysis dstudy bootstrap ci propagation",
+  "task_key": "worker_analysis_dstudy_bootstrap_ci_propagation_20260522T031753",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dstudy_bootstrap_ci_propagation_20260522T031753.log",
+    "occurrence": 1,
+    "bytes": 851434,
+    "sha256": "cad0e3049b5673c11c27a94270fdeeba84c6ccd67803490d88d91fa8451e86fc"
+  },
+  "statistics": {
+    "messages": 261,
+    "user_turns": 0,
+    "tool_calls": 100,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 57,
+      "tool_call": 100,
+      "tool_result": 100,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 261,
+      "chunks": [
+        {
+          "path": "eed7c5b73ae1b64a274b-part-0001.json",
+          "message_count": 124
+        },
+        {
+          "path": "eed7c5b73ae1b64a274b-part-0002.json",
+          "message_count": 137
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-dstudy-bootstrap-ci-propagation.md"
+}

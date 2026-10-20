@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7a91efbbbeb0a69ca871",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix unified model names",
+  "task_key": "worker_fix_unified_model_names_20260521T074947",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_unified_model_names_20260521T074947_result.json",
+    "occurrence": 1,
+    "bytes": 796,
+    "sha256": "3b911b41507efa2af931b52c353485eede473f015a105e57036c28f0f498ca5f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结修改：\n\n**`src/config/model_paths.py`** — 新增 `MODEL_DISPLAY_NAMES` 字典和 `normalize_model_name()` 函数，覆盖所有模型名变体（HF repo ID、目录名、小写名、完整路径）→ 统一简称：\n- `Llama-3.1-8B`、`Gemma-2-9B`、`Mistral-7B-v0.3`、`Qwen3-8B`\n\n**`scripts/bf16_fp16_sensitivity.py`** — 用 `normalize_model_name` 替换原来的 `split('/')[-1]` 逻辑\n\n**`scripts/leave_one_model_out.py`** — 读取 CSV 后立即 normalize 模型名\n\n**已重新生成的 JSON：**\n- `bf16_fp16_only_gstudy.json` — 模型名已从 `Meta-Llama-3___1-8B-Instruct` 更新为 `Llama-3.1-8B` 等，数值不变\n- `leave_one_model_out.json` — 模型名已从 `llama-3.1-8b-instruct` 更新为 `Llama-3.1-8B` 等，数值不变"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-unified-model-names.md"
+}

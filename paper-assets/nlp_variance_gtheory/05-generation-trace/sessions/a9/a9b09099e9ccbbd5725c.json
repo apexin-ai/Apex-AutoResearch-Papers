@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "a9b09099e9ccbbd5725c",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis dstudy single condition",
+  "task_key": "worker_analysis_dstudy_single_condition_20260521T132403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_dstudy_single_condition_20260521T132403_result.json",
+    "occurrence": 1,
+    "bytes": 953,
+    "sha256": "d446ce6474bd51a26a9bd4ac22ca2beaacbeb19dcdd778e901134d279363b387"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。关键结果：\n\n| 指标 | 值 |\n|------|-----|\n| **单条件 G @ 200 items** | 0.559 |\n| **单条件 G @ 116 items (IRT推荐)** | 0.424 |\n| **单条件 G≥0.80 所需 items** | 631 |\n| **Multi-facet G @ 72 items** | 0.802 (验证通过) |\n| **Multi-facet G @ 200 items** | 0.918 (验证通过) |\n| **Delta 比值 (single/multi)** | 8.86× |\n\n所有检查通过：\n- G 单调递增 ✓\n- 单条件 delta (0.089) 远大于 multi-facet delta (0.010) ✓\n- 单条件 G@200 (0.559) 远低于 multi-facet G@200 (0.918) ✓\n\n单条件下 residual 独占 53.5% 的误差方差（因为不再被 1296 个条件平均掉），precision×item 贡献 14%、seed×item 12.6%、prompt×item 12.2%。这意味着 IRT 的单条件假设下，即使 200 items 也只有 G=0.56——需要 631 items 才能达到 G≥0.80，是 multi-facet 的 8.8 倍。\n\n输出文件：`results/exp001_analysis/dstudy_single_condition.json`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-dstudy-single-condition.md"
+}

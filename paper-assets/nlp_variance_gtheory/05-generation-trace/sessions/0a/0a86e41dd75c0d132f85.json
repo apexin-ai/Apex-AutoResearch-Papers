@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "0a86e41dd75c0d132f85",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis held out prediction",
+  "task_key": "worker_analysis_held_out_prediction_20260523T074112",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_held_out_prediction_20260523T074112_result.json",
+    "occurrence": 1,
+    "bytes": 965,
+    "sha256": "d1437984a8c796d28fb670c1c0e19c1cfb149f9aa4b3e0c4575715e56f347e04"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。结果保存到 `artifacts/exp004/data/held_out_prediction.json`，已注册为 `art_20260523_1fc7c0`。\n\n核心发现：\n\n- **数学恒等式**：比例转移后 `predicted_G(target) = G(source)`，因为 total variance 在 G_item 比值中约掉了。预测误差本质上就是 `|G_source - G_target|`。\n- **绝对误差低**：5 个 benchmark 的 G_item 落在窄区间 0.863–0.896（CV=1.4%），因此 MAPE 都很小：\n  - Within-MC: 1.85%\n  - Within-FF: 2.88%\n  - Cross-format: 1.88%\n  - LOO: 1.62%\n- **排名反转**：LOO rank correlation rho = −0.90（p=0.037）。这是数学必然——hold out G 最高的 benchmark 后，剩余 4 个平均 G 最低，反之亦然。\n- **关键洞察**：item 测量信度 G_item ≈ 0.88 是跨 benchmark 的稳健属性，但这一相似性来自不同的方差组成（如 MMLU 的 model×item 占 30%、ARC 的 model×prompt 占 8.8%），而非共享的方差结构。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-held-out-prediction.md"
+}

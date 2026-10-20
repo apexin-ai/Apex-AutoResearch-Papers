@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "8a53d4d65c9efa3edd64",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis verify table2 table3 exact values",
+  "task_key": "worker_analysis_verify_table2_table3_exact_values_20260522T001642",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_verify_table2_table3_exact_values_20260522T001642_result.json",
+    "occurrence": 1,
+    "bytes": 4697,
+    "sha256": "ce512b1cd739de2492308d39c1d3b81a10bb43668ac51910abb8dbda151fbcfc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "I have all the data needed. The paper file at `docs/paper/experiments.tex` contains Table 2 and Table 3. Here are the comparisons:\n\n---\n\n## Table 2: MMLU 8-model G-study\n\nSource: `per_benchmark_gstudy_mmlu.json` vs paper Table 2 (`docs/paper/experiments.tex:28-42`)\n\nPaper caption says G_item = 0.896. JSON: G_item = 0.896. **OK**.\n\n| Component | JSON exact | Paper current | Diff (pp) | Action |\n|-----------|-----------|---------------|-----------|--------|\n| item\\_id | **37.88** | 37.9 | 0.02 | OK |\n| model×item | **30.21** | 33.0 | **2.79** | **FIX→30** |\n| residual | **25.01** | 23.1 | **1.91** | **FIX→25** |\n| model | **2.83** | 0.9 | **1.93** | **FIX→3** |\n| model×prompt | **1.59** | (in \"all others <0.2\") | **1.39** | **FIX→add row, 2%** |\n| prompt×item | **0.95** | 2.1 | **1.15** | **FIX→1** |\n| temp×item | **0.56** | 0.8 | 0.24 | OK (round to 1) |\n| seed×item | **0.53** | 1.5 | **0.97** | **FIX→1** |\n| ordering×item | **0.31** | 0.5 | 0.19 | OK (round to <1) |\n\n**7 of 9 rows need correction.** The paper values appear to be from an older 4-model analysis.\n\nKey text in body that also needs updating (line 21):\n- \"The model main effect remains below 1%\" → actually **2.83%**, should say \"below 3%\"\n- \"model×item interaction emerges as the second-largest component at up to 33%\" → actually **30%**\n\n---\n\n## Table 3: Cross-benchmark comparison (5 benchmarks)\n\nSources: `per_benchmark_gstudy_mmlu.json`, `per_benchmark_gstudy_arc.json`, `per_benchmark_gstudy_hellaswag_2temp.json`, `per_benchmark_gstudy_ff.json` (GSM8K section), `math_8model_verified.json`\n\nPaper Table 3 (`docs/paper/experiments.tex:65-78`)\n\n### MMLU\n| Component | JSON exact | Paper | Diff | Action |\n|-----------|-----------|-------|------|--------|\n| item | 37.88 | 38 | 0.1 | OK |\n| mod.×item | 30.21 | 33 | **2.8** | **FIX→30** |\n| model | 2.83 | 1 | **1.8** | **FIX→3** |\n| prompt | 0.00 | <1 | 0 | OK |\n| mod.×prmpt | 1.59 | <1 | **0.6+** | **FIX→2** |\n| residual | 25.01 | 23 | **2.0** | **FIX→25** |\n\n### ARC\n| Component | JSON exact | Paper | Diff | Action |\n|-----------|-----------|-------|------|--------|\n| item | 37.88 | 38 | 0.1 | OK |\n| mod.×item | 33.73 | 32 | **1.7** | **FIX→34** |\n| model | 3.08 | 1 | **2.1** | **FIX→3** |\n| prompt | 0.00 | <1 | 0 | OK |\n| mod.×prmpt | 8.00 | <1 | **7.0** | **FIX→8** |\n| residual | 15.44 | 22 | **6.6** | **FIX→15** |\n\n### HellaSwag\n| Component | JSON exact | Paper | Diff | Action |\n|-----------|-----------|-------|------|--------|\n| item | 34.27 | 34 | 0.3 | OK |\n| mod.×item | 36.00 | 34 | **2.0** | **FIX→36** |\n| model | 5.35 | 1 | **4.4** | **FIX→5** |\n| prompt | 0.00 | <1 | 0 | OK |\n| mod.×prmpt | 0.19 | <1 | 0 | OK |\n| residual | 21.41 | 25 | **3.6** | **FIX→21** |\n\n### GSM8K\n| Component | JSON exact | Paper | Diff | Action |\n|-----------|-----------|-------|------|--------|\n| item | 16.86 | 17 | 0.1 | OK |\n| mod.×item | 14.55 | 8 | **6.6** | **FIX→15** |\n| model | 10.75 | 15 | **4.3** | **FIX→11** |\n| prompt | 5.41 | 12 | **6.6** | **FIX→5** |\n| mod.×prmpt | 8.53 | 9 | 0.5 | OK |\n| residual | 39.89 | 30 | **9.9** | **FIX→40** |\n\n### MATH (from `math_8model_verified.json`)\n| Component | JSON exact | Paper | Diff | Action |\n|-----------|-----------|-------|------|--------|\n| item | 24.03 | 24 | 0.03 | OK |\n| mod.×item | 17.28 | 12 | **5.3** | **FIX→17** |\n| model | 8.51 | 10 | **1.5** | **FIX→9** |\n| prompt | 0.83 | 8 | **7.2** | **FIX→1** |\n| mod.×prmpt | 1.67 | 6 | **4.3** | **FIX→2** |\n| residual | 43.88 | 32 | **11.9** | **FIX→44** |\n\n### G_item and N (not currently in paper Table 3, but available)\n| Benchmark | G_item | N |\n|-----------|--------|---|\n| MMLU | 0.896 | 200 |\n| ARC | 0.892 | 200 |\n| HellaSwag | 0.872 | 200 |\n| GSM8K | 0.284 | 200 |\n| MATH | 0.888 | 200 |\n\n---\n\n## Summary\n\n**Table 2**: 7/9 displayed rows are wrong. The biggest errors: model×item (30→33, +2.8pp), model (2.8→0.9, -1.9pp), residual (25→23, -2pp). Additionally, model×prompt (1.59%) is incorrectly lumped into \"all others <0.2\".\n\n**Table 3**: 19/30 cells need correction. The worst errors are in:\n- **MATH**: residual off by 11.9pp, prompt off by 7.2pp, mod.×item off by 5.3pp\n- **GSM8K**: residual off by 9.9pp, prompt off by 6.6pp, mod.×item off by 6.6pp\n- **ARC**: mod.×prmpt off by 7.0pp, residual off by 6.6pp\n\nThe paper Table 3 also incorrectly states all MC benchmarks have model ≈ 1%, but JSON shows model = 2.83% (MMLU), 3.08% (ARC), 5.35% (HellaSwag). Body text at line 56 and line 73 needs updating accordingly."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-verify-table2-table3-exact-values.md"
+}

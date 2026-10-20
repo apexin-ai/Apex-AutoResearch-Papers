@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "b513099bc795f52ff8b5",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis exp004 sensitivity analyses",
+  "task_key": "worker_analysis_exp004_sensitivity_analyses_20260521T120000",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_exp004_sensitivity_analyses_20260521T120000_result.json",
+    "occurrence": 1,
+    "bytes": 944,
+    "sha256": "cb78f9fdd4d74f169038e11de59cc29ca0b740787cdb261bb69bf0a8a3dae27a"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Output looks correct. Results summary:\n\n### (k) Fixed vs Random\n- **All random G_item = 0.8200**, fixed(temp+ordering) **G_item = 0.8237**\n- Difference: **+0.37 pp** (delta reduced 2.47%)\n- Temperature:item_id (0.65%) and ordering:item_id (0.54%) are small — fixing them barely changes G_item\n\n### (d) REML vs Henderson I\n- For substantive components (>0.1% variance): **max diff = 0.43%**\n- Near-perfect agreement confirms Henderson I is appropriate for this balanced design\n- 3 boundary components (seed:ordering, seed, ordering — all Henderson I = 0, REML = 0)\n\n### (i) Power Analysis\n- Design is **massively overpowered**: even 0.01% interaction has 96.4% power\n- MDE at 80% power: **0.007%** of total variance\n- MDE at 95% power: **0.0095%** of total variance\n- F_obs = 744.5, p ≈ 0 for observed model:item_id (33.64% of variance)\n\nOutput saved to `results/exp001_analysis/sensitivity_analyses.json`."
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-exp004-sensitivity-analyses.md"
+}

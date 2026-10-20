@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "40575cebc0951f946416",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis bootstrap vs jackknife",
+  "task_key": "worker_analysis_bootstrap_vs_jackknife_20260521T040103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap_vs_jackknife_20260521T040103_result.json",
+    "occurrence": 1,
+    "bytes": 751,
+    "sha256": "aa3199033c455a8b79845b6d4ca560bcb8dc5f8f83ba0821f321dc76b875c20e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总耗时 825 秒（~13.8 分钟）。\n\n## Bootstrap vs Jackknife (binary_correct):\n\n| Component | Boot CI width | Jack CI width | Ratio |\n|---|---|---|---|\n| item_id | 10.02 | 10.33 | 0.97 |\n| residual | 5.12 | 5.26 | 0.97 |\n| seed:item_id | 2.40 | 2.37 | 1.01 |\n| prompt_template:item_id | 2.33 | 2.23 | 1.04 |\n| precision:item_id | 1.81 | 1.79 | 1.01 |\n| temperature:item_id | 0.94 | 0.98 | 0.96 |\n| precision | 1.35 | 1.33 | 1.01 |\n\n**结论: Bootstrap robust** — ratio 范围 [0.96, 1.04]，所有组分的 bootstrap 与 jackknife CI 宽度几乎一致。Bootstrap 重复采样 item 带来的独立性违反对 CI 估计无实质影响。结果已保存至 `results/analysis/bootstrap_vs_jackknife.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-bootstrap-vs-jackknife.md"
+}

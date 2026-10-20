@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "id": "b026c471ab15b5cd22f8",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "ops download fig1 via ssh tools",
+  "task_key": "worker_ops_download_fig1_via_ssh_tools_20260522T003832",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_download_fig1_via_ssh_tools_20260522T003832.log",
+    "occurrence": 1,
+    "bytes": 596859,
+    "sha256": "f33805cab25755e99074e640c86c1da51e955e3858faa398c44058c1afb38f58"
+  },
+  "statistics": {
+    "messages": 198,
+    "user_turns": 2,
+    "tool_calls": 63,
+    "roles": {
+      "log": 1,
+      "system": 21,
+      "record": 1,
+      "assistant": 46,
+      "tool_call": 63,
+      "tool_result": 63,
+      "user": 2,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 97,
+      "chunks": [
+        {
+          "path": "b026c471ab15b5cd22f8-part-0001.json",
+          "message_count": 97
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 58,
+      "chunks": [
+        {
+          "path": "b026c471ab15b5cd22f8-part-0001.json",
+          "message_count": 58
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "boundary": "recorded_user_message",
+      "message_count": 43,
+      "chunks": [
+        {
+          "path": "b026c471ab15b5cd22f8-part-0001.json",
+          "message_count": 25
+        },
+        {
+          "path": "b026c471ab15b5cd22f8-part-0002.json",
+          "message_count": 18
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/ops-download-fig1-via-ssh-tools.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e29fe45b980d41292514",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code exp003 crossed gstudy script",
+  "task_key": "worker_code_exp003_crossed_gstudy_script_20260522T070830",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp003_crossed_gstudy_script_20260522T070830_result.json",
+    "occurrence": 1,
+    "bytes": 1092,
+    "sha256": "5c33cdd07e502237ccf2fd31e09fcd2286f59fd28b62aa64f7676e4d668e594e"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 完成汇报\n\n### Part 1: 脚本\n\n`scripts/exp003_scale_crossed_gstudy.py` 已写入服务器。\n\n**2-model 测试结果（3B + 7B，115,200 records）**:\n\n| 指标 | 值 | 说明 |\n|------|-----|------|\n| Pct sum | 100.00% | ✓ |\n| D-study | 单调递增 | ✓ (0.236 → 0.861) |\n| G_item | 0.712 | ✓ 合理范围 |\n\nTop variance components:\n- item_id: 43.53%\n- model:item_id: 31.74%\n- residual: 15.93%\n- item_related total: 83.28%\n\n代码验证通过。72B 数据到手后运行 `python scripts/exp003_scale_crossed_gstudy.py`（不加 `--test`）即可。\n\n### Part 2: 72B 下载进度\n\n| 指标 | 状态 |\n|------|------|\n| 进程 | PID 229326 运行中 |\n| Watchdog | PID 232345 运行中 |\n| 已完成 | 7/37 safetensors (model-00001~00007) |\n| 进行中 | 8 个文件并行下载 (model-00008~00015) |\n| 已下载 | ~26GB 完成 + ~14GB 部分 ≈ 40GB / ~133GB |\n| 进度 | **~30%** |\n| 速度 | ~400KB/s × 8 streams ≈ 3.2 MB/s |\n| 预估剩余 | **~7-8 小时** |\n| 磁盘 | 122GB 可用（足够，133-40=93GB 需下载）|"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp003-crossed-gstudy-script.md"
+}

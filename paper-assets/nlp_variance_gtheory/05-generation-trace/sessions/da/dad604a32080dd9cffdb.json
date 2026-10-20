@@ -1,0 +1,752 @@
+{
+  "schema_version": "1.0",
+  "id": "dad604a32080dd9cffdb",
+  "project": "nlp_variance_gtheory",
+  "kind": "conversation",
+  "title": "paper research cluster4 irt",
+  "task_key": "worker_paper_research_cluster4_irt_20260521T185524",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/chats/worker_paper_research_cluster4_irt_20260521T185524.jsonl",
+    "occurrence": 1,
+    "bytes": 44934,
+    "sha256": "da7b7eab99c442afe6f5a261795880528360abc1c77bc47489ceee39bdd2a864"
+  },
+  "statistics": {
+    "messages": 37,
+    "user_turns": 0,
+    "tool_calls": 18,
+    "roles": {
+      "tool_call": 18,
+      "tool_result": 18,
+      "assistant": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "timestamp": "2026-05-21T18:58:00.218211+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/literature_map.yaml"
+            }
+          },
+          "id": "event-000001"
+        },
+        {
+          "source_line": 2,
+          "timestamp": "2026-05-21T18:58:00.218624+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\tmeta:\n2\t  last_updated: \"2026-05-21T12:00:00Z\"\n3\t  total_papers: 20\n4\t\n5\tcategories:\n6\t  - key: \"gtheory_evaluation\"\n7\t    name: \"G-Theory & Evaluation Variance\"\n8\t    narrative: \"Applying Generalizability Theory and variance decomposition to LLM evaluation reliability\"\n9\t  - key: \"infrastructure_variance\"\n10\t    name: \"Infrastructure-Induced Variance\"\n11\t    narrative: \"Hardware, precision, and CUDA-level nondeterminism as variance sources in LLM inference\"\n12\t  - key: \"prompt_sensitivity\"\n13\t    name: \"Prompt Sensitivity & Methodological Variance\"\n14\t    narrative: \"Prompt phrasing, seed, temperature, and ordering as variance sources\"\n15\t  - key: \"evaluation_methodology\"\n16\t    name: \"Evaluation Methodology\"\n17\t    narrative: \"Scoring artifacts, benchmark design, and evaluation protocol considerations\"\n18\t\n19\tpapers:\n20\t  mesting2026hidden:\n21\t    title: \"Hidden Measurement Error in LLM Pipelines Distorts Annotation, Evaluation, and Benchmarking\"\n22\t    authors:\n23\t      - \"Messing, S.\"\n24\t    year: 2026\n25\t    venue: \"arXiv\"\n26\t    url: \"https://arxiv.org/abs/2604.11581\"\n27\t    category: \"gtheory_evaluation\"\n28\t    role: \"direct-competitor\"\n29\t    relevance: \"Closest methodological precedent: G-theory decomposition of 5 facets (item, prompt, temperature, judge model, replication) on AILuminate/MMLU/Chatbot Arena. Found judge model=43.8%, prompt×judge=12.4%. Critically excludes infrastructure factors — our work extends this by crossing infrastructure with methodology.\"\n30\t    verified: true\n31\t    added_by: \"director\"\n32\t    added_at: \"2026-05-20T14:00:00Z\"\n33\t\n34\t  brittlebench2026:\n35\t    title: \"Brittlebench: Quantifying LLM Robustness via Prompt Sensitivity\"\n36\t    authors:\n37\t      - \"Romanou, A.\"\n38\t      - \"Ibrahim, M.\"\n39\t      - \"Ross, C.\"\n40\t      - \"Shaib, C.\"\n41\t      - \"Oktar, K.\"\n42\t      - \"Bell, S.J.\"\n43\t      - \"Ovalle, A.\"\n44\t      - \"Dodge, J.\"\n45\t      - \"Bosselut, A.\"\n46\t      - \"Sinha, K.\"\n47\t      - \"Williams, A.\"\n48\t    year: 2026\n49\t    \n…[truncated 13999 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000002"
+        },
+        {
+          "source_line": 3,
+          "timestamp": "2026-05-21T18:58:00.218841+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called ToolSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "ToolSearch",
+            "tool_args": {
+              "query": "select:WebSearch",
+              "max_results": "1"
+            }
+          },
+          "id": "event-000003"
+        },
+        {
+          "source_line": 4,
+          "timestamp": "2026-05-21T18:58:00.218982+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": ""
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "ToolSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000004"
+        },
+        {
+          "source_line": 5,
+          "timestamp": "2026-05-21T18:58:00.219124+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Polo et al 2024 \"tinyBenchmarks\" evaluating LLMs fewer examples IRT"
+            }
+          },
+          "id": "event-000005"
+        },
+        {
+          "source_line": 6,
+          "timestamp": "2026-05-21T18:58:00.219243+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Lalor 2019 NAACL \"Learning Latent Parameters without Human Response Patterns\" IRT NLP"
+            }
+          },
+          "id": "event-000006"
+        },
+        {
+          "source_line": 7,
+          "timestamp": "2026-05-21T18:58:00.219356+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Rodriguez 2021 ACL \"Evaluation Examples Are Not Equally Informative\" IRT NLP"
+            }
+          },
+          "id": "event-000007"
+        },
+        {
+          "source_line": 8,
+          "timestamp": "2026-05-21T18:58:00.219495+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Perlitz 2023 \"Efficient Benchmarking\" LLM evaluation"
+            }
+          },
+          "id": "event-000008"
+        },
+        {
+          "source_line": 9,
+          "timestamp": "2026-05-21T18:58:00.219616+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "item response theory LLM evaluation 2024 2025 computerized adaptive testing NLP benchmark"
+            }
+          },
+          "id": "event-000009"
+        },
+        {
+          "source_line": 10,
+          "timestamp": "2026-05-21T18:58:00.219729+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "benchmark subsampling efficiency large language model evaluation IRT 2024 2025"
+            }
+          },
+          "id": "event-000010"
+        },
+        {
+          "source_line": 11,
+          "timestamp": "2026-05-21T18:58:00.219864+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Polo et al 2024 \"tinyBenchmarks\" evaluating LLMs fewer examples IRT\"\n\nLinks: [{\"title\":\"tinyBenchmarks: evaluating LLMs with fewer examples | AI Research Paper Details\",\"url\":\"https://www.aimodels.fyi/papers/arxiv/tinybenchmarks-evaluating-llms-fewer-examples\"},{\"title\":\"tinyBenchmarks: evaluating LLMs with fewer examples for ICLR 2024 - IBM Research\",\"url\":\"https://research.ibm.com/publications/tinybenchmarks-evaluating-llms-with-fewer-examples\"},{\"title\":\"(PDF) tinyBenchmarks: evaluating LLMs with fewer examples\",\"url\":\"https://www.researchgate.net/publication/383238265_tinyBenchmarks_evaluating_LLMs_with_fewer_examples\"},{\"title\":\"GitHub - felipemaiapolo/tinyBenchmarks: Evaluating LLMs with fewer examples · GitHub\",\"url\":\"https://github.com/felipemaiapolo/tinyBenchmarks\"},{\"title\":\"tinyBenchmarks: evaluating LLMs with fewer examples for ICML 2024 - IBM Research\",\"url\":\"https://research.ibm.com/publications/tinybenchmarks-evaluating-llms-with-fewer-examples--1\"},{\"title\":\"[2402.14992] tinyBenchmarks: evaluating LLMs with fewer examples\",\"url\":\"https://arxiv.org/abs/2402.14992\"},{\"title\":\"tinyBenchmarks: evaluating LLMs with fewer examples\",\"url\":\"https://proceedings.mlr.press/v235/maia-polo24a.html\"},{\"title\":\"tinyBenchmarks: evaluating LLMs with fewer examples\",\"url\":\"https://arxiv.org/pdf/2402.14992\"}]\n\nI found the paper you're looking for! Here are the key details:\n\n**Paper Title:** tinyBenchmarks: evaluating LLMs with fewer examples\n\n**Authors:** Felipe Maia Polo, Lucas Weber, Leshem Choshen, Yuekai Sun, Gongjun Xu, Mikhail Yurochkin\n\n**Publication:** Proceedings of the 41st International Conference on Machine Learning, PMLR 235:34303-34326, 2024\n\n**Main Contribution:** The paper proposes tinyBenchmarks, an efficient evaluation method that uses IRT to model the discriminative power of benchmark examples, allowing the selection of a small yet representative subset of items that can accurately estimate performance.\n\n**Core Problem:\n…[truncated 528 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000011"
+        },
+        {
+          "source_line": 12,
+          "timestamp": "2026-05-21T18:58:00.220023+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Lalor 2019 NAACL \"Learning Latent Parameters without Human Response Patterns\" IRT NLP\"\n\nLinks: [{\"title\":\"Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds - ACL Anthology\",\"url\":\"https://aclanthology.org/D19-1434/\"},{\"title\":\"Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds | Request PDF\",\"url\":\"https://www.researchgate.net/publication/336999016_Learning_Latent_Parameters_without_Human_Response_Patterns_Item_Response_Theory_with_Artificial_Crowds\"},{\"title\":\"[PDF] Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Learning-Latent-Parameters-without-Human-Response-Lalor-Wu/df6cd8a8d836e75690141deb732f6d19f0176a2e\"},{\"title\":\"Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds - PubMed\",\"url\":\"https://pubmed.ncbi.nlm.nih.gov/31803865/\"},{\"title\":\"[1908.11421] Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds\",\"url\":\"https://arxiv.org/abs/1908.11421\"},{\"title\":\"Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds - PMC\",\"url\":\"https://pmc.ncbi.nlm.nih.gov/articles/PMC6892593/\"},{\"title\":\"Learning Latent Parameters without Human Response Patterns: Item   Response Theory with Artificial Crowds\",\"url\":\"https://arxiv.org/pdf/1908.11421\"},{\"title\":\"[1908.11421v1] Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds\",\"url\":\"https://arxiv.org/abs/1908.11421v1\"},{\"title\":\"John P. Lalor University of Notre Dame 338B Mendoza College of Business\",\"url\":\"https://d23loykajbcndr.cloudfront.net/jlalor1/pci/cv-1.pdf\"}]\n\nI found the paper! Here are the key details about the Lalor et al. 2019 work:\n\n**Paper Title:** \"Learning La\n…[truncated 1032 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000012"
+        },
+        {
+          "source_line": 13,
+          "timestamp": "2026-05-21T18:58:00.220184+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Rodriguez 2021 ACL \"Evaluation Examples Are Not Equally Informative\" IRT NLP\"\n\nLinks: [{\"title\":\"Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? - ACL Anthology\",\"url\":\"https://aclanthology.org/2021.acl-long.346/\"},{\"title\":\"Evaluation Examples Are Not Equally Informative: How Should That Change NLP Leaderboards?\",\"url\":\"https://www.pedro.ai/leaderboard-acl2021\"},{\"title\":\"Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? | Request PDF\",\"url\":\"https://www.researchgate.net/publication/353488536_Evaluation_Examples_are_not_Equally_Informative_How_should_that_change_NLP_Leaderboards\"},{\"title\":\"Figure 2 from Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Evaluation-Examples-are-not-Equally-Informative:-Rodriguez-Barrow/30f233eecca2239ee1dd754914324092e53f8f19/figure/2\"},{\"title\":\"GitHub - facebookresearch/irt-leaderboard: Leaderboards are widely used in NLP and push the field forward. While leaderboards are a straightforward ranking of NLP models, this simplicity can mask nuances in evaluation items (examples) and subjects (NLP models). Rather than replace leaderboards, we advocate a re-imagining so that they better highlight if and where progress is made. Building on educational testing, we create a Bayesian leaderboard where latent subject skill and latent item difficulty predict\",\"url\":\"https://github.com/facebookresearch/irt-leaderboard\"},{\"title\":\"Evaluation Examples Are Not Equally Informative:\",\"url\":\"https://par.nsf.gov/servlets/purl/10309824\"},{\"title\":\"[PDF] Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards? | Semantic Scholar\",\"url\":\"https://www.semanticscholar.org/paper/Evaluation-Examples-are-not-Equally-Informative:-Rodriguez-Barrow/30f233eecca2239ee1dd754914324092e53f8f19\"},{\"title\":\"Evaluation Exam\n…[truncated 1484 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000013"
+        },
+        {
+          "source_line": 14,
+          "timestamp": "2026-05-21T18:58:00.220337+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Perlitz 2023 \"Efficient Benchmarking\" LLM evaluation\"\n\nLinks: [{\"title\":\"Active Evaluation Acquisition for Efficient LLM Benchmarking\",\"url\":\"https://arxiv.org/html/2410.05952v1\"},{\"title\":\"Do These LLM Benchmarks Agree? Fixing Benchmark Evaluation with BenchBench\",\"url\":\"https://arxiv.org/html/2407.13696v2\"},{\"title\":\"EVALUATING LLMS WITH FEWER EXAMPLES\",\"url\":\"https://openreview.net/pdf/25ac9459dd5b345badfd3d9a2c5e56b32fd89b07.pdf\"},{\"title\":\"Evaluate your LLM using 99% less compute - IBM Research\",\"url\":\"https://research.ibm.com/blog/efficient-llm-benchmarking\"},{\"title\":\"Efficient multi-prompt evaluation of LLMs\",\"url\":\"https://arxiv.org/pdf/2405.17202\"},{\"title\":\"Efficient Evaluation of LLM Performance with Statistical Guarantees\",\"url\":\"https://arxiv.org/html/2601.20251v3\"},{\"title\":\"Efficient Evaluation of Large Language Models via Collaborative   Filtering\",\"url\":\"https://arxiv.org/pdf/2504.08781\"}]\n\nBased on the search results, I found information about the Perlitz et al. 2023 work on efficient benchmarking of language models:\n\n## Perlitz et al. 2023 - Efficient Benchmarking\n\nYotam Perlitz and colleagues published \"Efficient benchmarking (of language models)\" as an arXiv preprint (arXiv:2308.11696) in 2023.\n\n### Key Findings\n\nPerlitz et al. found that the model rankings on HELM can be accurately obtained by evaluating only a fraction of the examples. More specifically, Perlitz et al. found that evaluation on HELM relies on diversity across datasets, but the number of examples currently used is excessive.\n\n### Impact and Application\n\nWorking closely with Yotam Perlitz, an IBM researcher who specializes in LLM evaluation, the research first introduced efficient benchmarking in a pre-print paper on arXiv and caught the eye of AI researchers who were organizing an efficient LLM contest at NeurIPS 2023.\n\n### Methods and Approach\n\nThe stratified sampling approach proposed in this work has been verified as effective on HELM benchmark\n…[truncated 450 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000014"
+        },
+        {
+          "source_line": 15,
+          "timestamp": "2026-05-21T18:58:00.220515+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"benchmark subsampling efficiency large language model evaluation IRT 2024 2025\"\n\nLinks: [{\"title\":\"Published as a conference paper at ICLR 2025 RELIABLE AND EFFICIENT\",\"url\":\"https://openreview.net/pdf/397ca770a66185f7a77339189f2a6f4dc7beaf50.pdf\"},{\"title\":\"Resampling Benchmark for Efficient Comprehensive Evaluation of Large   Vision-Language Models\",\"url\":\"https://arxiv.org/pdf/2504.09979\"},{\"title\":\"Reliable and Efficient Amortized Model-based Evaluation\",\"url\":\"https://arxiv.org/html/2503.13335v1\"},{\"title\":\"metabench A Sparse Benchmark of Reasoning and Knowledge in Large Language Models\",\"url\":\"https://arxiv.org/html/2407.12844v2\"},{\"title\":\"Efficient Evaluation of LLM Performance with Statistical Guarantees\",\"url\":\"https://arxiv.org/pdf/2601.20251\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/html/2505.15055v2\"},{\"title\":\"An Interpretable and Scalable Framework for Evaluating Large Language Models\",\"url\":\"https://arxiv.org/html/2605.07046\"}]\n\nI found several relevant results about benchmark subsampling efficiency and large language model evaluation using Item Response Theory (IRT) from 2024-2025. Here are the key findings:\n\n## Efficient LLM Evaluation with IRT\n\nRecent work tackles large-scale generative model evaluation with a model-based approach grounded in IRT, substantially improving the reliability and efficiency of current common practices at a fraction of the cost. The growing size of generative models and benchmarking datasets has significantly increased evaluation costs, leading to a search for efficient LLM evaluation methods.\n\n## Recent Approaches and Research\n\nOne approach leverages IRT to reduce the number of examples needed for evaluating LLMs, minimizing computational costs while maintaining performance accuracy. Another approach filters prompts in a data-driven manner by first sub-sampling benchmark items and then characterizing ite\n…[truncated 976 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000015"
+        },
+        {
+          "source_line": 16,
+          "timestamp": "2026-05-21T18:58:00.220679+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"item response theory LLM evaluation 2024 2025 computerized adaptive testing NLP benchmark\"\n\nLinks: [{\"title\":\"(PDF) Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://www.researchgate.net/publication/391954139_Lost_in_Benchmarks_Rethinking_Large_Language_Model_Benchmarking_with_Item_Response_Theory\"},{\"title\":\"Confident Rankings with Fewer Items: Adaptive LLM Evaluation with Continuous Scores\",\"url\":\"https://arxiv.org/html/2601.13885\"},{\"title\":\"Confident Rankings with Fewer Items: Adaptive LLM Evaluation with\",\"url\":\"https://arxiv.org/pdf/2601.13885\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/html/2505.15055v2\"},{\"title\":\"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\",\"url\":\"https://arxiv.org/html/2511.04689\"},{\"title\":\"Leveraging Computerized Adaptive Testing for Cost-effective Evaluation of Large Language Models in Medical Benchmarking\",\"url\":\"https://arxiv.org/pdf/2603.23506\"},{\"title\":\"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\",\"url\":\"https://arxiv.org/pdf/2511.04689\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/pdf/2505.15055\"}]\n\nBased on the search results, here's what I found regarding item response theory (IRT), LLM evaluation, and computerized adaptive testing:\n\n## Key Research Areas (2024-2025)\n\n**Item Response Theory in LLM Benchmarking:**\nItem Response Theory offers a psychometric framework for finer-grained, item-level analysis, and within NLP has been utilized to diagnose fundamental item properties such as difficulty and discriminability, and more recently to inspire methods for improving evaluation efficiency through optimized item selection or adaptive testing paradigms.\n\n**Computerized Adaptive Testing (CAT) for LLMs\n…[truncated 1115 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "elapsed_ms": 1
+          },
+          "id": "event-000016"
+        },
+        {
+          "source_line": 17,
+          "timestamp": "2026-05-21T18:58:00.220849+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "Perlitz \"Efficient Benchmarking of Language Models\" arXiv 2308.11696 authors"
+            }
+          },
+          "id": "event-000017"
+        },
+        {
+          "source_line": 18,
+          "timestamp": "2026-05-21T18:58:00.220968+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\" authors venue 2025"
+            }
+          },
+          "id": "event-000018"
+        },
+        {
+          "source_line": 19,
+          "timestamp": "2026-05-21T18:58:00.221081+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "\"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\" arXiv 2511.04689 authors"
+            }
+          },
+          "id": "event-000019"
+        },
+        {
+          "source_line": 20,
+          "timestamp": "2026-05-21T18:58:00.221201+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"Perlitz \"Efficient Benchmarking of Language Models\" arXiv 2308.11696 authors\"\n\nLinks: [{\"title\":\"[2308.11696] Efficient Benchmarking of Language Models\",\"url\":\"https://arxiv.org/abs/2308.11696\"},{\"title\":\"[2308.11696v5] Efficient Benchmarking of Language Models\",\"url\":\"http://arxiv.org/abs/2308.11696v5\"},{\"title\":\"Paper page - Efficient Benchmarking (of Language Models)\",\"url\":\"https://huggingface.co/papers/2308.11696\"},{\"title\":\"Data Efficient Evaluation of Large Language Models and Text-to-Image Models via Adaptive Sampling\",\"url\":\"https://arxiv.org/html/2406.15527v1\"},{\"title\":\"Efficient Benchmarking of Language Models - ADS\",\"url\":\"https://ui.adsabs.harvard.edu/abs/2023arXiv230811696P/abstract\"},{\"title\":\"Efficient Benchmarking of Language Models\",\"url\":\"https://arxiv.org/pdf/2308.11696\"}]\n\nBased on the search results, the authors of the paper \"Efficient Benchmarking of Language Models\" (arXiv:2308.11696) are: Yotam Perlitz, Elron Bandel, Ariel Gera, Ofir Arviv, Liat Ein-Dor, Eyal Shnarch, Noam Slonim, Michal Shmueli-Scheuer, and Leshem Choshen.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000020"
+        },
+        {
+          "source_line": 21,
+          "timestamp": "2026-05-21T18:58:00.221370+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\" authors venue 2025\"\n\nLinks: [{\"title\":\"[2505.15055] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/abs/2505.15055\"},{\"title\":\"Paper page - Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://huggingface.co/papers/2505.15055\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory | Proceedings of the AAAI Conference on Artificial Intelligence\",\"url\":\"https://ojs.aaai.org/index.php/AAAI/article/view/40814\"},{\"title\":\"[Literature Review] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://www.themoonlight.io/en/review/lost-in-benchmarks-rethinking-large-language-model-benchmarking-with-item-response-theory\"},{\"title\":\"GitHub - Joe-Hall-Lee/PSN-IRT: [AAAI 2026 Oral] Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory · GitHub\",\"url\":\"https://github.com/Joe-Hall-Lee/PSN-IRT\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://chatpaper.com/paper/139423\"},{\"title\":\"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://arxiv.org/html/2505.15055v1\"},{\"title\":\"(PDF) Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\",\"url\":\"https://www.researchgate.net/publication/391954139_Lost_in_Benchmarks_Rethinking_Large_Language_Model_Benchmarking_with_Item_Response_Theory\"}]\n\nBased on the search results, here's the information about this paper:\n\n**Title:** Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\n\n**Authors:** Hongli Zhou, Hui Huang, Ziqing Zhao, Lvyuan Han, Huicheng Wang, Kehai Chen, Muyun Yang, \n…[truncated 553 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000021"
+        },
+        {
+          "source_line": 22,
+          "timestamp": "2026-05-21T18:58:00.221545+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"\"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\" arXiv 2511.04689 authors\"\n\nLinks: [{\"title\":\"[2511.04689] Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\",\"url\":\"https://arxiv.org/abs/2511.04689\"},{\"title\":\"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\",\"url\":\"https://arxiv.org/html/2511.04689\"},{\"title\":\"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks | OpenReview\",\"url\":\"https://openreview.net/forum?id=iX39LhePyd\"},{\"title\":\"ADAPTIVE TESTING FOR LLM EVALUATION: A\",\"url\":\"https://arxiv.org/pdf/2511.04689\"},{\"title\":\"Leveraging Computerized Adaptive Testing for Cost-effective Evaluation of Large Language Models in Medical Benchmarking\",\"url\":\"https://arxiv.org/pdf/2603.23506\"},{\"title\":\"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks | Request PDF\",\"url\":\"https://www.researchgate.net/publication/397441932_Adaptive_Testing_for_LLM_Evaluation_A_Psychometric_Alternative_to_Static_Benchmarks\"},{\"title\":\"From Static Benchmarks to Adaptive Testing: Psychometrics in AI Evaluation\",\"url\":\"https://arxiv.org/html/2306.10512v3\"}]\n\nBased on the search results, here's the information about the paper:\n\n**Title:** Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\n\n**arXiv ID:** 2511.04689\n\n**Authors:** Peiyu Li, Xiuxiu Tang, Si Chen, Ying Cheng, Ronald Metoyer, Ting Hua, Nitesh V. Chawla\n\n**Key Contribution:** The paper introduces ATLAS, an adaptive testing framework based on Item Response Theory (IRT) that estimates model ability using Fisher information-guided item selection. ATLAS reduces the number of required items by up to 90% while maintaining measurement precision.\n\n**Validation:** The framework was validated across five major benchmarks (WinoGrande, TruthfulQA, HellaSwag, GSM8K, ARC).\n\n\nREMINDER: You MUST include the sour\n…[truncated 65 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000022"
+        },
+        {
+          "source_line": 23,
+          "timestamp": "2026-05-21T18:58:00.221734+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called WebSearch"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "tool_args": {
+              "query": "site:arxiv.org 2511.04689 \"Adaptive Testing for LLM Evaluation\" venue accepted conference 2026"
+            }
+          },
+          "id": "event-000023"
+        },
+        {
+          "source_line": 24,
+          "timestamp": "2026-05-21T18:58:00.221869+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Web search results for query: \"site:arxiv.org 2511.04689 \"Adaptive Testing for LLM Evaluation\" venue accepted conference 2026\"\n\nLinks: [{\"title\":\"ADAPTIVE TESTING FOR LLM EVALUATION: A\",\"url\":\"https://arxiv.org/pdf/2511.04689\"},{\"title\":\"[2511.04689] Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\",\"url\":\"https://arxiv.org/abs/2511.04689\"},{\"title\":\"Confident Rankings with Fewer Items: Adaptive LLM Evaluation with Continuous Scores\",\"url\":\"https://arxiv.org/html/2601.13885\"},{\"title\":\"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\",\"url\":\"https://arxiv.org/html/2511.04689\"},{\"title\":\"Confident Rankings with Fewer Items: Adaptive LLM Evaluation with Continuous Scores\",\"url\":\"https://arxiv.org/pdf/2601.13885\"},{\"title\":\"Adaptive Testing for LLM-Based Applications: A Diversity-based Approach\",\"url\":\"https://arxiv.org/html/2501.13480v1\"}]\n\nBased on the search results, I found information about the arXiv paper 2511.04689:\n\nThe paper is titled \"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\" by Peiyu Li and 6 other authors.\n\nThe paper introduces ATLAS, an adaptive testing framework based on Item Response Theory (IRT) that estimates model ability using Fisher information-guided item selection, and reduces the number of required items by up to 90% while maintaining measurement precision.\n\nHowever, the search results do not contain information about the paper being accepted to a specific conference venue for 2026. The document itself appears to be a preprint from arXiv (posted October 26, 2025), but conference acceptance status is not mentioned in the available search results.\n\n\nREMINDER: You MUST include the sources above in your response to the user using markdown hyperlinks."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "WebSearch",
+            "elapsed_ms": 0
+          },
+          "id": "event-000024"
+        },
+        {
+          "source_line": 25,
+          "timestamp": "2026-05-21T18:58:00.222032+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/literature_map.yaml",
+              "old_string": "  total_papers: 20",
+              "new_string": "  total_papers: 26"
+            }
+          },
+          "id": "event-000025"
+        },
+        {
+          "source_line": 26,
+          "timestamp": "2026-05-21T18:58:00.222208+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000026"
+        },
+        {
+          "source_line": 27,
+          "timestamp": "2026-05-21T18:58:00.222331+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/literature_map.yaml",
+              "old_string": "  - key: \"evaluation_methodology\"\n    name: \"Evaluation Methodology\"\n    narrative: \"Scoring artifacts, benchmark design, and evaluation protocol considerations\"",
+              "new_string": "  - key: \"evaluation_methodology\"\n    name: \"Evaluation Methodology\"\n    narrative: \"Scoring artifacts, benchmark design, and evaluation protocol considerations\"\n  - key: \"irt_benchmarking\"\n    name: \"IRT & Efficient Benchmarking\"\n    narrative: \"Item Response Theory and efficient evaluation design for LLM benchmarks\""
+            }
+          },
+          "id": "event-000027"
+        },
+        {
+          "source_line": 28,
+          "timestamp": "2026-05-21T18:58:00.222537+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000028"
+        },
+        {
+          "source_line": 29,
+          "timestamp": "2026-05-21T18:58:00.222704+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/literature_map.yaml",
+              "old_string": "    added_at: \"2026-05-21T14:00:00Z\"",
+              "new_string": "    added_at: \"2026-05-21T14:00:00Z\"\n\n  polo2024tinybenchmarks:\n    title: \"tinyBenchmarks: evaluating LLMs with fewer examples\"\n    authors:\n      - \"Maia Polo, F.\"\n      - \"Weber, L.\"\n      - \"Choshen, L.\"\n      - \"Sun, Y.\"\n      - \"Xu, G.\"\n      - \"Yurochkin, M.\"\n    year: 2024\n    venue: \"ICML 2024\"\n    url: \"https://arxiv.org/abs/2402.14992\"\n    category: \"irt_benchmarking\"\n    role: \"method-component\"\n    relevance: \"Uses IRT to model item discriminative power and select small representative subsets for efficient LLM evaluation. Demonstrates accurate benchmark estimation with drastically fewer examples. Core reference for IRT-based subsampling approach our D-study projections relate to.\"\n    verified: true\n    added_by: \"worker\"\n    added_at: \"2026-05-21T16:00:00Z\"\n\n  lalor2019irt:\n    title: \"Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds\"\n    authors:\n      - \"Lalor, J.P.\"\n      - \"Wu, H.\"\n      - \"Yu, H.\"\n    year: 2019\n    venue: \"EMNLP-IJCNLP 2019\"\n    url: \"https://aclanthology.org/D19-1434/\"\n    category: \"irt_benchmarking\"\n    role: \"foundational\"\n    relevance: \"Pioneering work applying IRT to NLP evaluation without human response data, using artificial crowds of DNN models to estimate item parameters. Establishes the feasibility of IRT-based item analysis for NLP benchmarks that our work builds upon.\"\n    verified: true\n    added_by: \"worker\"\n    added_at: \"2026-05-21T16:00:00Z\"\n\n  rodriguez2021leaderboards:\n    title: \"Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards?\"\n    authors:\n      - \"Rodriguez, P.\"\n      - \"Barrow, J.\"\n      - \"Hoyle, A.\"\n      - \"Lalor, J.P.\"\n      - \"Jia, R.\"\n      - \"Boyd-Graber, J.\"\n    year: 2021\n    venue: \"ACL 2021\"\n    url: \"https://aclanthology.org/2021.acl-long.346/\"\n    category: \"irt_benchmarking\"\n    role: \"foundational\"\n    relevance: \"Creates Bayesian IRT-based leaderboard jointly inferring item difficulty, discriminability, and model skill. Shows IRT can identify annotation errors, detect overfitting, and guide annotation. Foundational work connecting IRT to NLP benchmark design.\"\n    verified: true\n    added_by: \"worker\"\n    added_at: \"2026-05-21T16:00:00Z\"\n\n  perlitz2023efficient:\n    title: \"Efficient Benchmarking of Language Models\"\n    authors:\n      - \"Perlitz, Y.\"\n      - \"Bandel, E.\"\n      - \"Gera, A.\"\n      - \"Arviv, O.\"\n      - \"Ein-Dor, L.\"\n      - \"Shnarch, E.\"\n      - \"Slonim, N.\"\n      - \"Shmueli-Scheuer, M.\"\n      - \"Choshen, L.\"\n    year: 2023\n    venue: \"arXiv\"\n    url: \"https://arxiv.org/abs/2308.11696\"\n    category: \"irt_benchmarking\"\n    role: \"method-component\"\n    relevance: \"Shows HELM model rankings can be accurately recovered from a fraction of examples via stratified subsampling. Demonstrates evaluation relies on dataset diversity, not example count. Complements IRT-based approaches with sampling-theoretic efficiency methods.\"\n    verified: true\n    added_by: \"worker\"\n    added_at: \"2026-05-21T16:00:00Z\"\n\n  zhou2026irt:\n    title: \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"\n    authors:\n      - \"Zhou, H.\"\n      - \"Huang, H.\"\n      - \"Zhao, Z.\"\n      - \"Han, L.\"\n      - \"Wang, H.\"\n      - \"Chen, K.\"\n      - \"Yang, M.\"\n      - \"Bao, W.\"\n      - \"Dong, J.\"\n      - \"Xu, B.\"\n      - \"Zhu, C.\"\n      - \"Cao, H.\"\n      - \"Zhao, T.\"\n    year: 2026\n    venue: \"AAAI 2026 (Oral)\"\n    url: \"https://arxiv.org/abs/2505.15055\"\n    category: \"irt_benchmarking\"\n    role: \"direct-competitor\"\n    relevance: \"Proposes PSN-IRT, an enhanced IRT framework with rich item parameters for LLM benchmarking. AAAI 2026 oral — represents state-of-the-art in IRT-based LLM evaluation. Directly relevant as concurrent work applying psychometric models to benchmark analysis.\"\n    verified: true\n    added_by: \"worker\"\n    added_at: \"2026-05-21T16:00:00Z\"\n\n  li2025atlas:\n    title: \"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\"\n    authors:\n      - \"Li, P.\"\n      - \"Tang, X.\"\n      - \"Chen, S.\"\n      - \"Cheng, Y.\"\n      - \"Metoyer, R.\"\n      - \"Hua, T.\"\n      - \"Chawla, N.V.\"\n    year: 2025\n    venue: \"arXiv\"\n    url: \"https://arxiv.org/abs/2511.04689\"\n    category: \"irt_benchmarking\"\n    role: \"method-component\"\n    relevance: \"Introduces ATLAS, an IRT-based computerized adaptive testing framework using Fisher information-guided item selection. Reduces required items by up to 90% while maintaining precision. Demonstrates CAT as a practical alternative to static benchmarks for LLM evaluation.\"\n    verified: true\n    added_by: \"worker\"\n    added_at: \"2026-05-21T16:00:00Z\""
+            }
+          },
+          "id": "event-000029"
+        },
+        {
+          "source_line": 30,
+          "timestamp": "2026-05-21T18:58:00.222875+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "<tool_use_error>Found 2 matches of the string to replace, but replace_all is false. To replace all occurrences, set replace_all to true. To replace only one occurrence, please provide more context to uniquely identify the instance.\nString:     added_at: \"2026-05-21T14:00:00Z\"</tool_use_error>"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000030"
+        },
+        {
+          "source_line": 31,
+          "timestamp": "2026-05-21T18:58:00.223016+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/literature_map.yaml",
+              "offset": "365"
+            }
+          },
+          "id": "event-000031"
+        },
+        {
+          "source_line": 32,
+          "timestamp": "2026-05-21T18:58:00.223145+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "365\t    title: \"Large Language Models Sensitivity to The Order of Options in Multiple-Choice Questions\"\n366\t    authors:\n367\t      - \"Pezeshkpour, P.\"\n368\t      - \"Hruschka, E.\"\n369\t    year: 2024\n370\t    venue: \"NAACL 2024 Findings\"\n371\t    url: \"https://aclanthology.org/2024.findings-naacl.130/\"\n372\t    category: \"prompt_sensitivity\"\n373\t    role: \"background\"\n374\t    relevance: \"Documents 13-75% performance gap from answer option reordering in MC benchmarks. Shows LLMs exhibit systematic positional bias favoring certain option identifiers. Demonstrates option ordering as a methodological variance source our G-study framework captures.\"\n375\t    verified: true\n376\t    added_by: \"worker\"\n377\t    added_at: \"2026-05-21T14:00:00Z\"\n378\t"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "Read",
+            "elapsed_ms": 0
+          },
+          "id": "event-000032"
+        },
+        {
+          "source_line": 33,
+          "timestamp": "2026-05-21T18:58:00.223297+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Edit"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "Edit",
+            "tool_args": {
+              "replace_all": "False",
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/literature_map.yaml",
+              "old_string": "    relevance: \"Documents 13-75% performance gap from answer option reordering in MC benchmarks. Shows LLMs exhibit systematic positional bias favoring certain option identifiers. Demonstrates option ordering as a methodological variance source our G-study framework captures.\"\n    verified: true\n    added_by: \"worker\"\n    added_at: \"2026-05-21T14:00:00Z\"",
+              "new_string": "    relevance: \"Documents 13-75% performance gap from answer option reordering in MC benchmarks. Shows LLMs exhibit systematic positional bias favoring certain option identifiers. Demonstrates option ordering as a methodological variance source our G-study framework captures.\"\n    verified: true\n    added_by: \"worker\"\n    added_at: \"2026-05-21T14:00:00Z\"\n\n  polo2024tinybenchmarks:\n    title: \"tinyBenchmarks: evaluating LLMs with fewer examples\"\n    authors:\n      - \"Maia Polo, F.\"\n      - \"Weber, L.\"\n      - \"Choshen, L.\"\n      - \"Sun, Y.\"\n      - \"Xu, G.\"\n      - \"Yurochkin, M.\"\n    year: 2024\n    venue: \"ICML 2024\"\n    url: \"https://arxiv.org/abs/2402.14992\"\n    category: \"irt_benchmarking\"\n    role: \"method-component\"\n    relevance: \"Uses IRT to model item discriminative power and select small representative subsets for efficient LLM evaluation. Demonstrates accurate benchmark estimation with drastically fewer examples. Core reference for IRT-based subsampling approach our D-study projections relate to.\"\n    verified: true\n    added_by: \"worker\"\n    added_at: \"2026-05-21T16:00:00Z\"\n\n  lalor2019irt:\n    title: \"Learning Latent Parameters without Human Response Patterns: Item Response Theory with Artificial Crowds\"\n    authors:\n      - \"Lalor, J.P.\"\n      - \"Wu, H.\"\n      - \"Yu, H.\"\n    year: 2019\n    venue: \"EMNLP-IJCNLP 2019\"\n    url: \"https://aclanthology.org/D19-1434/\"\n    category: \"irt_benchmarking\"\n    role: \"foundational\"\n    relevance: \"Pioneering work applying IRT to NLP evaluation without human response data, using artificial crowds of DNN models to estimate item parameters. Establishes the feasibility of IRT-based item analysis for NLP benchmarks that our work builds upon.\"\n    verified: true\n    added_by: \"worker\"\n    added_at: \"2026-05-21T16:00:00Z\"\n\n  rodriguez2021leaderboards:\n    title: \"Evaluation Examples are not Equally Informative: How should that change NLP Leaderboards?\"\n    authors:\n      - \"Rodriguez, P.\"\n      - \"Barrow, J.\"\n      - \"Hoyle, A.\"\n      - \"Lalor, J.P.\"\n      - \"Jia, R.\"\n      - \"Boyd-Graber, J.\"\n    year: 2021\n    venue: \"ACL 2021\"\n    url: \"https://aclanthology.org/2021.acl-long.346/\"\n    category: \"irt_benchmarking\"\n    role: \"foundational\"\n    relevance: \"Creates Bayesian IRT-based leaderboard jointly inferring item difficulty, discriminability, and model skill. Shows IRT can identify annotation errors, detect overfitting, and guide annotation. Foundational work connecting IRT to NLP benchmark design.\"\n    verified: true\n    added_by: \"worker\"\n    added_at: \"2026-05-21T16:00:00Z\"\n\n  perlitz2023efficient:\n    title: \"Efficient Benchmarking of Language Models\"\n    authors:\n      - \"Perlitz, Y.\"\n      - \"Bandel, E.\"\n      - \"Gera, A.\"\n      - \"Arviv, O.\"\n      - \"Ein-Dor, L.\"\n      - \"Shnarch, E.\"\n      - \"Slonim, N.\"\n      - \"Shmueli-Scheuer, M.\"\n      - \"Choshen, L.\"\n    year: 2023\n    venue: \"arXiv\"\n    url: \"https://arxiv.org/abs/2308.11696\"\n    category: \"irt_benchmarking\"\n    role: \"method-component\"\n    relevance: \"Shows HELM model rankings can be accurately recovered from a fraction of examples via stratified subsampling. Demonstrates evaluation relies on dataset diversity, not example count. Complements IRT-based approaches with sampling-theoretic efficiency methods.\"\n    verified: true\n    added_by: \"worker\"\n    added_at: \"2026-05-21T16:00:00Z\"\n\n  zhou2026irt:\n    title: \"Lost in Benchmarks? Rethinking Large Language Model Benchmarking with Item Response Theory\"\n    authors:\n      - \"Zhou, H.\"\n      - \"Huang, H.\"\n      - \"Zhao, Z.\"\n      - \"Han, L.\"\n      - \"Wang, H.\"\n      - \"Chen, K.\"\n      - \"Yang, M.\"\n      - \"Bao, W.\"\n      - \"Dong, J.\"\n      - \"Xu, B.\"\n      - \"Zhu, C.\"\n      - \"Cao, H.\"\n      - \"Zhao, T.\"\n    year: 2026\n    venue: \"AAAI 2026 (Oral)\"\n    url: \"https://arxiv.org/abs/2505.15055\"\n    category: \"irt_benchmarking\"\n    role: \"direct-competitor\"\n    relevance: \"Proposes PSN-IRT, an enhanced IRT framework with rich item parameters for LLM benchmarking. AAAI 2026 oral — represents state-of-the-art in IRT-based LLM evaluation. Directly relevant as concurrent work applying psychometric models to benchmark analysis.\"\n    verified: true\n    added_by: \"worker\"\n    added_at: \"2026-05-21T16:00:00Z\"\n\n  li2025atlas:\n    title: \"Adaptive Testing for LLM Evaluation: A Psychometric Alternative to Static Benchmarks\"\n    authors:\n      - \"Li, P.\"\n      - \"Tang, X.\"\n      - \"Chen, S.\"\n      - \"Cheng, Y.\"\n      - \"Metoyer, R.\"\n      - \"Hua, T.\"\n      - \"Chawla, N.V.\"\n    year: 2025\n    venue: \"arXiv\"\n    url: \"https://arxiv.org/abs/2511.04689\"\n    category: \"irt_benchmarking\"\n    role: \"method-component\"\n    relevance: \"Introduces ATLAS, an IRT-based computerized adaptive testing framework using Fisher information-guided item selection. Reduces required items by up to 90% while maintaining precision. Demonstrates CAT as a practical alternative to static benchmarks for LLM evaluation.\"\n    verified: true\n    added_by: \"worker\"\n    added_at: \"2026-05-21T16:00:00Z\""
+            }
+          },
+          "id": "event-000033"
+        },
+        {
+          "source_line": 34,
+          "timestamp": "2026-05-21T18:58:00.223612+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "The file /home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/literature_map.yaml has been updated successfully."
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "Edit",
+            "elapsed_ms": 0
+          },
+          "id": "event-000034"
+        },
+        {
+          "source_line": 35,
+          "timestamp": "2026-05-21T18:58:00.223756+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Bash"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "Bash",
+            "tool_args": {
+              "command": "python3 -c \"import yaml; data = yaml.safe_load(open('/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/literature_map.yaml')); papers = data['papers']; cats = [c['key'] for c in data['categories']]; irt = [k for k,v in papers.items() if v.get('category')=='irt_benchmarking']; print(f'total_papers meta: {data[\\\"meta\\\"][\\\"total_papers\\\"]}'); print(f'actual papers: {len(papers)}'); print(f'categories: {cats}'); print(f'irt_benchmarking papers: {irt}')\"",
+              "description": "Validate YAML structure and counts"
+            }
+          },
+          "id": "event-000035"
+        },
+        {
+          "source_line": 36,
+          "timestamp": "2026-05-21T18:58:00.223896+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "total_papers meta: 26\nactual papers: 26\ncategories: ['gtheory_evaluation', 'infrastructure_variance', 'prompt_sensitivity', 'evaluation_methodology', 'irt_benchmarking']\nirt_benchmarking papers: ['polo2024tinybenchmarks', 'lalor2019irt', 'rodriguez2021leaderboards', 'perlitz2023efficient', 'zhou2026irt', 'li2025atlas']"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524",
+            "tool": "Bash",
+            "elapsed_ms": 0
+          },
+          "id": "event-000036"
+        },
+        {
+          "source_line": 37,
+          "timestamp": "2026-05-21T18:58:00.224045+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "Cluster 4 完成。6 篇论文已添加到 `literature_map.yaml`，category `irt_benchmarking`，total_papers 更新为 26。\n\n| key | paper | venue | role |\n|-----|-------|-------|------|\n| `polo2024tinybenchmarks` | tinyBenchmarks: evaluating LLMs with fewer examples | ICML 2024 | method-component |\n| `lalor2019irt` | Learning Latent Parameters without Human Response Patterns: IRT with Artificial Crowds | EMNLP-IJCNLP 2019 | foundational |\n| `rodriguez2021leaderboards` | Evaluation Examples are not Equally Informative | ACL 2021 | foundational |\n| `perlitz2023efficient` | Efficient Benchmarking of Language Models | arXiv 2023 | method-component |\n| `zhou2026irt` | Lost in Benchmarks? Rethinking LLM Benchmarking with IRT (PSN-IRT) | AAAI 2026 Oral | direct-competitor |\n| `li2025atlas` | Adaptive Testing for LLM Evaluation (ATLAS) | arXiv 2025 | method-component |\n\n注：Lalor 2019 实际发表于 EMNLP-IJCNLP 2019（非 NAACL）。"
+            }
+          ],
+          "metadata": {
+            "session": "worker_paper_research_cluster4_irt_20260521T185524"
+          },
+          "id": "event-000037"
+        }
+      ],
+      "message_count": 37
+    }
+  ],
+  "readable_path": "readable/conversations/paper-research-cluster4-irt.md"
+}

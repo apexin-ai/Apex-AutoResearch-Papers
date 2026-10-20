@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "c252d9f11aa86fa8b41b",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis multifacet cost comparison",
+  "task_key": "worker_analysis_multifacet_cost_comparison_20260523T064410",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_multifacet_cost_comparison_20260523T064410_result.json",
+    "occurrence": 1,
+    "bytes": 809,
+    "sha256": "71ef660b5c5bb7bfd469102700233bbcc8d0e8651af718ec178860512e77d128"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "已完成。核心结论：\n\n**3×3 multi-facet vs 单条件设计，eval 数比为 2.90×（1602 vs 552），GPU 时间比也是 2.90×**，因为 per-eval 时间相同。但绝对成本极小：\n\n| 指标 | 3×3 multi-facet | 单条件 |\n|------|----------------|--------|\n| Items 需求 | 178 | 552 |\n| Evals/model/benchmark | 1,602 | 552 |\n| 5 benchmarks 总 GPU 时间 | **12.7 min** | **4.4 min** |\n| Items 需求比 | **32%** | 100% |\n\n- MC 类 benchmark（MMLU/ARC/HellaSwag）per-eval 24-36ms，FF 类（GSM8K/MATH）149-238ms\n- 整个 3×3 评估套件在单张 H800 上每个模型不到 13 分钟完成\n- 多出的 ~8 分钟额外推理时间换来方差分解的诊断能力（知道 prompt variation 贡献 15% vs seed 3%）\n\n产出已注册：`art_20260523_87c156`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-multifacet-cost-comparison.md"
+}

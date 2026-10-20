@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "865fbb8e751d0963d7da",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "infra fp32 t0 backfill westd19912",
+  "task_key": "worker_infra_fp32_t0_backfill_westd19912_20260521T205613",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_fp32_t0_backfill_westd19912_20260521T205613.log",
+    "occurrence": 1,
+    "bytes": 527372,
+    "sha256": "5200de02a64b0588824f01142316c00b4b090bfeb44d8a4831244184425c1093"
+  },
+  "statistics": {
+    "messages": 270,
+    "user_turns": 0,
+    "tool_calls": 104,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 58,
+      "tool_call": 104,
+      "tool_result": 104,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 270,
+      "chunks": [
+        {
+          "path": "865fbb8e751d0963d7da-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "865fbb8e751d0963d7da-part-0002.json",
+          "message_count": 90
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-fp32-t0-backfill-westd19912.md"
+}

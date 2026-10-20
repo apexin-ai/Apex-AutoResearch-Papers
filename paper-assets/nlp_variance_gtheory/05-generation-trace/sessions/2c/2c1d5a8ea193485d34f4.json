@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "2c1d5a8ea193485d34f4",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops final anon push v2",
+  "task_key": "worker_ops_final_anon_push_v2_20260523T193944",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_final_anon_push_v2_20260523T193944_result.json",
+    "occurrence": 1,
+    "bytes": 753,
+    "sha256": "6126331ec8dfedbb4f4524d7e2ca13884ba23f960ad6b2e1b0f08c079094c517"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。汇总：\n\n| 项目 | 结果 |\n|---|---|\n| **文件总数** | 173 |\n| **Commit hash** | `8c21e8ed3f8437d8cc656694fceed5cb8ee9ebf1` |\n| **作者信息** | `Anonymous <anonymous@example.com>` |\n| **敏感信息检查** | **CLEAN** |\n| **论文核心文件** | **PAPER_OK** (main.tex, experiments.tex, method.tex, references.bib, abstract.tex) |\n| **代码文件** | **CODE_OK** (src/, scripts/, data/, README.md) |\n| **Figures** | 6 个 PDF 全部就位 |\n| **Llama-70B §4.6** | experiments.tex 含 3 处 Llama 引用 |\n| **BibTeX key fix** | song2025gtheory 存在 |\n| **Data audit fix** | 83.2 存在 |\n| **Push** | 成功 (forced update) |\n| **Token 清理** | 已清理 |\n| **临时目录** | 已清理 |"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-final-anon-push-v2.md"
+}

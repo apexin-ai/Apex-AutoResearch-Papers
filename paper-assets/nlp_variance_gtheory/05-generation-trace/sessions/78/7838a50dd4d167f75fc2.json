@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7838a50dd4d167f75fc2",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis 72b gstudy final",
+  "task_key": "worker_analysis_72b_gstudy_final_20260522T190141",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_72b_gstudy_final_20260522T190141_result.json",
+    "occurrence": 1,
+    "bytes": 1608,
+    "sha256": "2b47340e92bd17ddcc410f0b5a1a4abf1a065625a6763b7905eee89c2cb4a9fb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 结果汇总\n\n### Part 1: 72B 单模型 Henderson I\n\n| Component | % |\n|---|---|\n| **item_id** | **83.25%** |\n| residual | 7.45% |\n| prompt_template:item_id | 6.81% |\n| ordering:item_id | 1.02% |\n| seed:item_id | 0.93% |\n| temperature:item_id | 0.51% |\n| 其余 | <0.05% |\n\n- Grand mean: 0.870 (87.0%)\n- **G_item = 0.979**\n\n**Scale 趋势（单模型 item_id% / G_item）**：\n- 3B: 75.3% / 0.963\n- 7B: 73.4% / 0.956\n- **72B: 83.2% / 0.979**\n\n72B 的 item variance 占比和 G 系数都显著高于 3B/7B——更大的模型对 evaluation facets 更稳定，item 难度成为更主导的方差来源。\n\n### Part 2: 3-model Crossed G-study\n\n| Component | % |\n|---|---|\n| **model:item_id** | **38.55%** |\n| **item_id** | **35.71%** |\n| residual | 15.94% |\n| model | 4.84% |\n| prompt_template:item_id | 3.09% |\n| ordering:item_id | 0.72% |\n| seed:item_id | 0.61% |\n| temperature:item_id | 0.45% |\n| 其余 | <0.1% |\n\n- **G_item = 0.720**\n\n**Crossed 对比**：\n\n| Design | item_id% | model:item% | G_item |\n|---|---|---|---|\n| 8-model (exp002) | 37.9% | 30.2% | 0.896 |\n| 2-model (3B+7B) | 43.5% | 31.7% | 0.713 |\n| **3-model (3B/7B/72B)** | **35.7%** | **38.5%** | **0.720** |\n\n72B 的加入使 model:item 交互超过了 item 主效应，成为最大方差源（38.5% > 35.7%）。这是因为 72B 与 3B/7B 在 item-level 上的 differential performance 比 3B 与 7B 之间更大。G_item=0.720 与 2-model 的 0.713 相近，远低于 8-model 的 0.896（8 模型的 n_model=8 在 δ 中分母更大，压低了 model:item 的贡献）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-72b-gstudy-final.md"
+}

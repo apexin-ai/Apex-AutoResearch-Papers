@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "76b3e8becb8676e3091f",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops llama70b urgent fix and launch",
+  "task_key": "worker_ops_llama70b_urgent_fix_and_launch_20260523T152243",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_llama70b_urgent_fix_and_launch_20260523T152243_result.json",
+    "occurrence": 1,
+    "bytes": 1638,
+    "sha256": "77d5db90ac701e44a740da33e07f94e0c96701e7524d9fd7906911ad3d55944c"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "没有找到 `submit_training_job` 工具。按用户指示，不自行启动，将命令写在报告中。\n\n---\n\n## 报告\n\n### 1. Kill 结果\n| PID | 状态 | 说明 |\n|-----|------|------|\n| 313232 | ✅ KILLED | 多余下载进程 |\n| 318664 | ✅ KILLED | 多余下载进程 |\n| 188816 | ✅ KILLED | 无关遗留进程 |\n| 318453 | ✅ 存活 | 保留的下载进程（带 ignore_file_pattern），运行 4h22m 后完成全部下载 |\n\n### 2. Safetensors 分片\n**30/30 完成。** Kill 多余进程后带宽集中，shard 27 在 Step 1 完成后几乎立即下载完毕。\n\n### 3. 磁盘清理\n- 删除 `original/` (.pth 文件) + `._____temp/`\n- **释放 ~132GB**（276G → 144G used，207G available）\n- 模型目录大小：128G（30 个 safetensors）\n\n### 4. Symlink 验证\n```\n/root/autodl-tmp/models/Llama-3.1-70B-Instruct -> /root/autodl-tmp/.hf_cache/LLM-Research/Meta-Llama-3___1-70B-Instruct\n```\n- 30/30 safetensors 可通过 symlink 访问 ✓\n\n### 5. 推理脚本验证\n- 路径：`/root/nlp_variance_gtheory/scripts/exp_llama70b/run_llama70b_inference.py`\n- `MODEL_PATH = \"/root/autodl-tmp/models/Llama-3.1-70B-Instruct\"` ✓\n- `TENSOR_PARALLEL = 4` ✓\n- `config.json`: model_type=llama, hidden=8192, layers=80 ✓\n- 5 benchmarks × 288 conditions × 200 items = 288,000 evaluations\n\n### 6. 启动命令（供 submit_training_job 提交）\n```\nsource /root/miniconda3/etc/profile.d/conda.sh && conda activate base && cd /root/nlp_variance_gtheory && python scripts/exp_llama70b/run_llama70b_inference.py\n```\n\n### 7. 失败项\n无。所有步骤均成功。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-llama70b-urgent-fix-and-launch.md"
+}

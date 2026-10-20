@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "fc528a870ea953e16ef7",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra qwen status mistral check",
+  "task_key": "worker_infra_qwen_status_mistral_check_20260521T020113",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_qwen_status_mistral_check_20260521T020113_result.json",
+    "occurrence": 1,
+    "bytes": 663,
+    "sha256": "dbb1354a71da928f9f23eb0c9d2ee2dc92469606b736b297b2087618267512cc"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n| 项目 | 状态 | 详情 |\n|------|------|------|\n| **Qwen3-8B 下载** | 进行中 | 4/5 shard 已完成，model-00005 (1.16GB) 下载中 ~2%，速度 ~1MB/s，预计 ~19 分钟完成。总计已 15GB。PID 70304 |\n| **Qwen shards** | 待生成 | 下载完成后生成 |\n| **Mistral shards** | 确认 | 4 shards × 324 conditions (含 header 共 1300 行)，字段: condition_id, model, precision, temperature, top_p, prompt_template, seed, ordering |\n| **磁盘** | 根 41% (18G free) / 数据盘 27% (259G free) | 空间充裕 |\n\nQwen3-8B 下载约 19 分钟后完成，届时需要运行 shard_design 生成 Qwen shards。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-qwen-status-mistral-check.md"
+}

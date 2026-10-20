@@ -1,0 +1,239 @@
+{
+  "schema_version": "1.0",
+  "session_id": "43d7fe325dc90230775f",
+  "rounds": [
+    {
+      "number": 21,
+      "messages": [
+        {
+          "source_line": 721,
+          "timestamp": "2026-05-25T21:21:24.494910+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\section{Conclusion}\n2\t\\label{sec:conclusion}\n3\t\n4\tThe dominant non-residual variance source in LLM evaluation is the model$\\times$item interaction (30--36\\% in MC, 15--17\\% in FF), revealing that models disagree on which items are difficult rather than differing uniformly in overall ability. Multi-facet evaluation designs absorb this interaction: a 3-prompt $\\times$ 3-seed protocol achieves $G \\geq 0.80$ with 178 MMLU items versus 552 under single-condition, with cross-benchmark budgets of 93--128 items. The variance structure is format-dependent: MC benchmarks concentrate 68--72\\% in item-related components while FF benchmarks disperse to 31--41\\%, motivating per-format budget calibration. We recommend three practices: adopt multi-facet designs for published results, report item-level accuracy to expose model$\\times$item interaction, and calibrate item budgets per benchmark format.\n5\t"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_265de443abfe4594f91451b075b582ca:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000721"
+        },
+        {
+          "source_line": 722,
+          "timestamp": "2026-05-25T21:21:24.495343+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called Read"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_265de443abfe4594f91451b075b582ca:reviewer_1",
+            "tool": "Read",
+            "tool_args": {
+              "file_path": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/docs/paper/appendix.tex"
+            }
+          },
+          "id": "event-000722"
+        },
+        {
+          "source_line": 723,
+          "timestamp": "2026-05-25T21:21:24.596107+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "1\t\\appendix\n2\t\n3\t\\section{Additional Robustness Analyses}\n4\t\\label{app:robustness}\n5\t\n6\tWe report nine robustness analyses that verify the stability of the variance decomposition under alternative analytical choices.\n7\t\n8\t\\paragraph{GLMM complement.} A generalized linear mixed model (GLMM) with marginal logit link produces variance component rankings that perfectly preserve all seven grouped component orderings ($\\rho = 1.0$) relative to Henderson Method~I \\cite{jiang2018bayesian, tuerlinckx2006glmm}. This confirms that the linear variance decomposition is robust to the binary outcome distribution.\n9\t\n10\t\\paragraph{Accuracy-range stability.} The \\texttt{item\\_id} variance share remains stable across subsets with mean accuracy from 0.62 to 0.72 ($r = -0.048$). This rules out distortion from binary floor or ceiling effects at observed accuracy levels.\n11\t\n12\t\\paragraph{Estimator robustness.} We compare Henderson Method~I with restricted maximum likelihood (REML-EM, 500 iterations, practical convergence $\\Delta < 0.003$ percentage points). All variance components differ by $<$0.5 percentage points between estimators. The largest discrepancy occurs on the residual component (0.47pp); all substantive components (item, model$\\times$item, model) differ by $<$0.3pp. Henderson Method~I is preferred for our balanced designs because it produces unbiased estimates without distributional assumptions \\cite[Ch.~12]{brennan2001generalizability}.\n13\t\n14\t\\paragraph{Probit simulation.} A probit simulation matched to our 1,296-condition design confirms that Henderson Method~I recovers variance component rankings from dichotomized data (Spearman $\\rho = 0.732$ between binary and continuous rankings, excluding residual; \\texttt{item\\_id} dominant in all 100 replications; top-5 ordering correct in 79\\% of replications). Bias analysis by difficulty stratum shows $|\\text{bias}| = 0.28$--$0.37$ for items with $p \\in [0.5, 0.8]$, where the Bernoulli variance ceiling $p(1{-}p)$ is largest. Thi\n…[truncated 21784 chars]"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_265de443abfe4594f91451b075b582ca:reviewer_1",
+            "tool": "Read",
+            "elapsed_ms": 100
+          },
+          "id": "event-000723"
+        },
+        {
+          "source_line": 724,
+          "timestamp": "2026-05-25T21:26:06.823741+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_265de443abfe4594f91451b075b582ca:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n# Reviewer 1 审稿意见 — 方法严谨性 + 实验设计\n\n## Summary\n\n本文将教育测量领域的概化理论（G-theory）引入LLM评估，通过Henderson Method I对8个7-9B开源模型在5个基准上约230万条二值记录进行方差分量分解，发现model×item交互是主要的非残差方差来源（MC 30-36%, FF 15-17%），并据此通过D-study投影给出可复现性预算建议（3-prompt × 3-seed设计将MMLU所需题目从552降至178）。这是G-theory在NLP评估领域的首次完整应用（含D-study投影），方法论框架扎实，实验规模大，且附有9项稳健性检验。主要关切集中在：格式关联模式的统计功效不足但在结论中被过度声称、Bootstrap CI仅捕获item层不确定性、以及二值评分限定下的实用范围偏窄。\n\n## Strengths\n\n**S1** [方法新颖性] 首次将G-theory的完整工作流（G-study方差分解 + D-study预算投影）系统应用于LLM评估，填补了已有工作（Bouthillier et al., 2021; Messing, 2026）在D-study投影和跨格式比较方面的空白（Table 1, Section 2清晰定位了贡献）。\n\n**S2** [实验规模与设计] 7 facet × 8 model × 5 benchmark的全因子/准全因子设计（exp-001: 460,800 records fully crossed on MMLU; exp-002: 2,304,000 records across 5 benchmarks）是该领域迄今最大规模的多面交叉方差分析。设计矩阵（Table 2）清晰、可复现。\n\n**S3** [稳健性检验充分] Appendix A提供9项独立稳健性分析（GLMM ρ=1.0、REML差异<0.5pp、probit simulation、null calibration ratio=1.0008、LOMO max|ΔG|=0.030、accuracy-range stability r=-0.048、CI方法对比、facet specification sensitivity、reduced crossing validation ΔG=0.0008），系统覆盖了估计方法、数据分布、样本稳定性等多个角度。\n\n**S4** [核心发现的洞察力] model×item交互主导（Section 4.2, Table 5）是一个非直觉但重要的发现：模型主要在\"哪些题目难\"上分歧，而非在整体能力上分歧。MMLU学科粒度分析（Table 12, Appendix E）进一步验证了这一机制在knowledge vs. reasoning维度上的梯度变化（G_item从0.614到0.930）。\n\n**S5** [实用产出] 开源G-theory pipeline和D-study calculator具有直接实用价值；Table 7-9的预算建议为benchmark开发者提供了可操作的参考。IRT与G-theory正交互补的论证（Table 7, Zhou et al. 2026的116题在multi-facet下G从0.457升至0.895）也有启发性。\n\n**S6** [Binary data处理的透明度] Section 3.5明确标注了binary scoring假设，probit simulation量化了binarization的代价（D-study预算+36%），partial-credit对比（GSM8K G: 0.86→0.77）和text-exact-match对比（G: 0.936→0.007）展示了metric conditionality的严重程度。这种透明度值得肯定。\n\n## Weaknesses\n\n### Must-Fix（影响接收决定）\n\n**W1** [critical] 格式关联模式在结论中被过度声称\n\n- 具体位置：Section 4.3（标题含\"Exploratory\"）vs. Section 5 Conclusion vs. Abstract\n- 问题：Section 4.3明确将MC/FF方差结构差异标记为\"exploratory\"和\"descriptive observation\"（permutation p=0.10, n=5 benchmarks, benchmark-level CI spans zero），但Section 5 Conclusion写道\"The variance structure is format-dependent: MC benchmarks concentrate 68-72%...motivating per-format budget calibration\"，完全去掉了\"exploratory\"限定词。Abstract虽未直接声称format-dependent，但第2页Contribution 3写\"Format-associated variance patterns (exploratory)\"后，后续Table 9的预算建议已按MC/FF分开给出，实际上将这一探索性发现当作已建立的结论用于实践推荐。\n- 为什么影响接收：在n=5（3 MC + 2 FF）、p=0.10的统计功效下，从descriptive observation升级为prescriptive budget separation，违反了统计推断的基本审慎原则。一位Area Chair可能仅读Conclusion而形成错误印象。\n- 建议修改方向：(1) Conclusion中保留\"exploratory/preliminary\"限定词；(2) Table 9的MC/FF分列可保留但需加注\"based on n=5 benchmarks; format-specific calibration requires replication with a larger benchmark sample\"；(3) 或提供per-benchmark budgets而非per-format budgets，避免跨越归纳推断的边界。\n\n**W2** [critical] Bootstrap CI仅捕获item-level不确定性，D-study预算的置信区间被低估\n\n- 具体位置：Table 9 (95% CI columns), Appendix A CI method comparison\n- 问题：论文明确承认\"Bootstrap CIs capture item-sampling variability conditional on these 8 specific models; model-level stability is assessed separately via LOMO\"（Appendix A）。但Table 9报告的95% CI（如MMLU: [76, 116] items）仅反映item-level resampling。LOMO分析显示max|ΔG|=0.030，对应~23%的预算变化（Figure 9），但这一model-level不确定性从未与item-level CI联合量化。读者看到Table 9的CI会误认为它是总不确定性的度量。\n- 为什么影响接收：D-study预算是本文最核心的实用产出。如果其CI被系统性低估，所有基于Table 9的实践建议（\"93-128 items for G≥0.80\"）的可靠性都受到质疑。\n- 建议修改方向：(1) 在Table 9标题或脚注中明确标注CI仅反映item-level sampling variability；(2) 提供联合item+model uncertainty的估计（如将LOMO的|ΔG|范围叠加到bootstrap CI上）；(3) 或至少在正文中讨论combined uncertainty的量级（item CI ~20% + model uncertainty ~23% → 总不确定性可能在30-35%量级）。\n\n### Should-Fix（影响评分但不一票否决）\n\n**W3** [warning] Model作为quasi-random facet的辩护链不完整\n\n- 具体位置：Section 3.6, Appendix A LOMO analysis\n- 问题：8个purposively selected模型被当作random facet，引用Meredith (1993)和Putnick & Barneeon (2016)，但这两篇文献是关于measurement invariance检验方法论的，并非关于justifying random-facet treatment for purposive samples。LOMO和four-model subset（Table 11: MC |ΔG|≤0.029, FF |ΔG|≤0.065）是within-sample stability checks，不等于out-of-sample generalization evidence。特别是FF的7.3% error（MATH, Table 11）意味着从4个模型预测8个模型的方差结构存在非 trivial的偏差。\n- 论文确实提供了\"treating models as random is more conservative\"的论证（G_random < G_fixed by 0.077-0.113，Table 10），这部分论证是有效的——如果模型实际上是固定的，那么random specification给出的是保守估计。但核心问题不在于random vs. fixed specification，而在于：从这8个特定模型估计的方差分量是否代表更广泛的7-9B模型宇宙？\n- 建议：(1) 更准确地引用G-theory文献中关于facet sampling的讨论（如Brennan, 2001, Ch. 5关于random vs. fixed facets的讨论）；(2) 明确讨论\"exchangeability within the target universe\"假设的可检验条件和局限；(3) 对FF benchmarks的较大预测偏差（7%）进行单独讨论。\n\n**W4** [warning] D-study投影的时间不变性假设未被充分讨论\n\n- 具体位置：Section 4.5最后一段 \"All projections assume the 2024-2025 model generation\"\n- 问题：D-study预算建议的实用性依赖于方差分量在时间上的稳定性。但LLM模型架构、训练数据和能力水平变化极快（2024到2025已经有significant shifts），论文仅以一句话带过这一关键假设。Scale validation（Section 4.6: Qwen2.5-72B, Llama-3.1-70B）提供了size维度的初步证据，但没有temporal维度的证据。\n- 建议：增加一段讨论方差分量temporal stability的分析。如果无法获得2025-2026模型的数据，至少应讨论哪些方差分量最可能随模型代际变化（如model×item interaction是否会随模型同质化而降低？）以及这对预算建议的影响方向。\n\n**W5** [warning] Partial-credit scoring的影响被低估\n\n- 具体位置：Section 3.5, Limitations, Appendix A Scoring metric sensitivity\n- 问题：GSM8K partial-credit G从0.86降至0.77（ΔG=-0.135），这一降幅超过了许多在论文中被详细讨论的其他效应。48.1%的incorrect responses有正确的中间步骤但错误的问题理解（Appendix A），这意味着binary scoring系统性地丢失了大量评估信息。然而，D-study预算建议（Table 9）完全基于binary scoring，而现实中越来越多的LLM评估采用partial-credit或连续评分（如GSM8K的step-level、MT-Bench的1-10评分）。\n- 建议：(1) 在正文（而非仅附录和Limitations）中更prominently讨论partial-credit的影响；(2) 至少对GSM8K给出partial-credit条件下的D-study预算以供对比；(3) 讨论binary→partial-credit transition对model×item interaction dominance结论的影响。\n\n**W6** [warning] Object of measurement的选择及其对实用性的影响未被讨论\n\n- 具体位置：Section 3.1\n- 问题：论文选择items作为object of measurement，G_item衡量的是\"item-level scores在不同条件下的泛化性\"。但LLM评估的主要用户关心的是model-level reliability（\"我的模型排名在不同评估条件下是否稳定？\"）。论文虽然间接地通过model×item interaction暗示了model-level的不可靠性，但从未直接量化model-level generalizability（将model作为object of measurement的G-study）。\n- 建议：至少在Discussion或Limitations中解释为什么选择items而非models作为object of measurement，以及两种选择下的G-coefficient有何关系。如可能，补充一个model作为object的G-study结果作为对照。\n\n### Minor（不影响接收）\n\n**M1** exp-002仅使用BF16精度和2个温度（0.0, 0.7），虽然Appendix A的reduced crossing validation显示ΔG=0.0008（在MMLU上），但这一验证仅基于MMLU——对于其他4个benchmark，precision×benchmark交互效应无法从数据中检验。建议在Appendix中加注这一局限。\n\n**M2** Abstract第一句\"up to 79 percentage points\"引用的是prior literature（Sclar et al., 2024等）的极端案例，非本研究发现。建议clarify这是\"prior work has shown\"而非本文的结果，避免在abstract中引发预期偏差。\n\n**M3** \"quasi-random facet\"不是G-theory标准术语（Brennan, 2001; Shavelson and Webb, 1991均使用\"random\"和\"fixed\"）。建议改用\"treated as random for the purpose of generalizability analysis\"或直接引用Brennan (2001, Ch. 5)关于facet universe definition的讨论。\n\n**M4** Benchmark contamination在Limitations中被提及但机制未讨论：如果部分item被contamination使得所有模型均答对，则这些item的model×item interaction为零，可能系统性地低估了model×item在clean benchmarks上的比例。值得一提。\n\n## Questions\n\n**Q1** Table 9的cross-model budgets假设n_M=8（8个模型同时评估）。如果用户仅评估1个模型，D-study预算应如何调整？请提供single-model cross-benchmark budgets（即将Table 7的方法应用到5个benchmark上）以增强实用性。\n\n**Q2** Probit simulation的ρ=0.732（excluding residual）意味着binary和continuous排名之间有约27%的rank discordance。论文论证\"qualitative ordering is preserved\"（top-5 correct in 79% of replications），但这是否足够精确以支持D-study budget projections中的quantitative claims（如\"178 items for G≥0.80\"）？\n\n**Q3** Scale validation（Section 4.6）仅覆盖Qwen和Llama家族，均已在main study中出现。是否有任何来自MoE架构或其他训练范式模型的证据？\n\n**Q4** Ordering facet在非MMLU benchmarks上σ²=0——这是因为ordering操作被执行但无效果，还是因为ordering操作未被应用到其他benchmark？请在正文中澄清。\n\n## Missing References\n\n- Cronbach, L. J., Gleser, G. C., Nanda, H., & Rajaratnam, N. (1972). *The Dependability of Behavioral Measurements*. Wiley. — G-theory的奠基文献，论文仅引用了Shavelson and Webb (1991)和Brennan (2001)作为G-theory来源，缺少对原始文献的致敬。\n- Webb, N. M., Shavelson, R. J., & Haertel, E. H. (2006). \"Reliability coefficients and generalizability theory.\" *Handbook of Statistics*, 26, 81-124. — 关于G-theory在non-standard data（包括binary）上应用的综述讨论。\n\n## 官方维度打分（ACL ARR Review Form）\n\n| 维度 | 分数 | 理由摘要 |\n|------|------|----------|\n| Soundness | 3.5/5 | Henderson Method I的技术应用基本正确，robustness checks充分（9项），但format pattern overclaim（W1）和CI underestimation（W2）是实质性方法论问题 |\n| Excitement | 3.5/5 | G-theory→LLM evaluation的框架迁移具有新颖性，model×item interaction发现有洞察力，但binary-only限定和n=5 benchmark的format分析限制了impact |\n| Reproducibility | 4/5 | 开源pipeline、详细的设计矩阵、完整的prompt templates（Appendix G）、模型ID（Appendix G）、统计方法描述充分；缺少的是raw data和具体采样种子 |\n| Overall Assessment | **3.5** (Borderline Conference) |\n| Confidence | 4/5 | 熟悉G-theory和LLM evaluation两个领域，仔细阅读了论文及全部附录 |\n\n## Overall Assessment 理由\n\n本文在方法论框架、实验规模和稳健性检验方面达到了高标准，核心发现（model×item interaction dominance + D-study budgets）具有实用价值和理论启发性。将其评为Borderline Conference (3.5)而非Conference (4.0)的主要原因是两个方法论问题的叠加：(1) format-associated pattern从\"exploratory\"到Conclusion中的\"established\"的不当升级，以及(2) D-study预算的CI系统性低估（仅item-level，未含model-level uncertainty）。这两个问题均可在修改中解决（W1可通过调整措辞和添加注释修复，W2可通过报告联合不确定性修复），但在当前版本中它们共同影响了论文的statistical rigor形象。如果作者在revision中修复W1和W2，并改善W3-W6的讨论深度，本文有潜力达到Conference (4.0)水平。\n",
+              "reviewer_id": "1",
+              "project": "nlp_variance_gtheory"
+            }
+          },
+          "id": "event-000724"
+        },
+        {
+          "source_line": 725,
+          "timestamp": "2026-05-25T21:26:10.487613+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_265de443abfe4594f91451b075b582ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_265de443abfe4594f91451b075b582ca:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3663
+          },
+          "id": "event-000725"
+        },
+        {
+          "source_line": 726,
+          "timestamp": "2026-05-25T21:26:16.264013+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__cleanup_pdf_images"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_265de443abfe4594f91451b075b582ca:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "tool_args": {
+              "output_dir": "/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/review_round_10/_pdf_images"
+            }
+          },
+          "id": "event-000726"
+        },
+        {
+          "source_line": 727,
+          "timestamp": "2026-05-25T21:26:16.314527+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"message\\\": \\\"目录不存在，无需清理\\\", \\\"deleted\\\": 0}, \\\"error\\\": null, \\\"metadata\\\": {}}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_265de443abfe4594f91451b075b582ca:reviewer_1",
+            "tool": "mcp__agent-ml-research__cleanup_pdf_images",
+            "elapsed_ms": 50
+          },
+          "id": "event-000727"
+        },
+        {
+          "source_line": 728,
+          "timestamp": "2026-05-25T21:26:28.062245+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "审稿意见已提交给 Review Director。\n\n总结：我给出 **Overall 3.5 (Borderline Conference)**。两个 Must-Fix 问题：(1) 格式关联模式（n=5, p=0.10）在 Conclusion 中从 \"exploratory\" 升级为 \"established\"；(2) Table 9 的 D-study 预算 CI 仅捕获 item-level 不确定性，未含 model-level uncertainty（LOMO 显示 ~23% 额外变动）。四个 Should-Fix：model quasi-random facet 辩护链不完整、时间不变性假设欠讨论、partial-credit 影响被低估、object of measurement 选择对实用性的影响未说明。两个 Must-Fix 均可在修改中解决，修复后有潜力达到 4.0。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_265de443abfe4594f91451b075b582ca:reviewer_1"
+          },
+          "id": "event-000728"
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "messages": [
+        {
+          "source_line": 729,
+          "timestamp": "2026-05-25T21:28:37.684968+00:00",
+          "recorded_role": "user",
+          "role": "user",
+          "content": [
+            {
+              "type": "text",
+              "text": "[Round 11 审稿请求]:\n以下是 Reviewer 2 的完整审稿意见。请逐条回应：对每个 Weakness 和 Question 标注 [AGREE] 同意并说明理由，或 [REBUT] 反驳并提供证据（cite 具体 Section/Table/Figure）。\n\n---\n\n# Reviewer 2 审稿意见 — Round 11 (新颖性 + 完整性 + 写作质量)\n\n## Summary\n\n本文将 Generalizability theory (G-theory) 应用于 LLM 评测方差分解，在 8 个 7–9B 指令微调模型和 5 个 benchmark 上交叉 7 个设计因子（共 2.3M 二值记录），发现 model×item 交互是主导非残差方差源（MC 30–36%，FF 15–17%），多因子设计可将所需 item 数从 500+ 降至 ~100（G ≥ 0.80），MC/FF 格式呈现不同的方差结构。论文提供开源 G-theory 流水线和 D-study 计算器。方法论扎实、鲁棒性验证全面，但在关键 framing 和 scope 声明上存在需要修正的问题。\n\n## Strengths\n\n**S1: 实验规模与系统性**\n7 facets × 8 models × 5 benchmarks 的全交叉设计是对 Messing (2026)（5 facets × 1 benchmark）的实质性扩展。2.3M 二值记录为方差分解提供了高置信度估计。\n\n**S2: D-study 预算 — 最具实用价值的贡献**\n将方差分解转化为可操作的 item 预算建议（Table 7, 8, 9），特别是推荐的 3-prompt × 3-seed 设计（178 items, §4.5）给出了平衡成本和可靠性的具体方案。IRT+G-theory 正交互补性（Table 7: IRT 116 items 在 single-condition 下 G=0.457，multi-facet 下 G=0.895）是一个新颖且有说服力的结果。\n\n**S3: 鲁棒性分析堪称典范**\nAppendix A 覆盖了 GLMM complement (ρ=1.0)、accuracy-range stability、Henderson vs REML (<0.5pp)、probit simulation、LOMO (Table 4, CV ≤ 1.25%)、inter-model κ (0.33–0.46)、scoring metric sensitivity 等 9 项检验。这种系统性验证在 NLP 论文中不多见。\n\n**S4: 方法论透明度**\nHenderson Method I 选择的合理性（balanced designs + binary data, §3.5）、notation 清晰（footnote 5）、设计矩阵完整（Table 2）、代码公开。quasi-random facet 处理（§3.6）的 fixed vs. random 对比（G 增加 0.077–0.113）增加了透明度。\n\n**S5: IRT 互补性揭示了一个被忽视的维度**\nTable 7 中 IRT baseline 一行（G=0.457 → 0.895）是全文最有说服力的单一结果，说明 item selection 和 protocol optimization 是独立的优化维度。这对 benchmark 开发者有直接的方法论启示。\n\n## Weaknesses\n\n### Must-Fix\n\n**W1 [critical]: \"10× fewer items\" framing 隐藏了 total evaluations 的剧增**\n- Abstract: \"reducing item requirements from over 1,000 to roughly 100\" — 仅描述 item 维度的缩减\n- 实际情况：full multi-facet (1,296 conditions) 下 item 从 552→55（10×），但 total evaluations 从 552→71,280（129× 增长）\n- 推荐的 3×3 设计虽然在 §4.5 披露了 \"2.9× total-evaluation increase for a 3.1× item reduction\"，但 abstract 和 Figure 1 overview 都只呈现了 item 维度\n- Title 用 \"Reproducibility Budgets\" 暗示效率提升，但对多数用户而言总计算量才是关键成本\n- 建议: Abstract 中应同时报告 item reduction 和 total evaluation overhead（至少对推荐的 3×3 设计）\n\n**W2 [critical]: Binary scoring scope 未在 title/abstract 中充分限定**\n- Title: \"Reproducibility Budgets for Open-Weight LLM Evaluation\" — 暗示适用于一般 LLM 评测\n- 但所有发现严格受限于 binary correctness scoring（§3.5）\n- Text-exact-match: G 从 0.936 崩溃到 0.007（§4.1）— 方差结构完全改变\n- Partial-credit (GSM8K): G 从 0.86 降至 0.77（§3.5）— 显著退化\n- 对于实际评测场景（code generation、open-ended QA、rubric-based evaluation），binary scoring 是例外而非常态\n- 建议: Title 添加限定语（如 \"under Binary Correctness Scoring\"），或 abstract 明确声明 scope\n\n**W3 [critical]: G_item 与 model ranking reliability 之间的概念鸿沟**\n- 论文以 items (p) 为 object of measurement（§3.1），计算 G_item 衡量 item-level 跨条件泛化能力\n- 但 benchmark 用户关心的是 model ranking reliability\n- G_item ≥ 0.80 保证 item scores 在不同 prompt/seed 下一致，但不直接等同于 model ranking 稳定\n- 论文提供了间接证据（LOMO Table 4, κ=0.33–0.46），但未直接计算 rank-order stability 或 G_model\n- 建议: 增加 model ranking stability 分析（如 Kendall's W 或 bootstrap 排名一致性），或至少讨论 G_item 向 model ranking reliability 的映射条件\n\n### Should-Fix\n\n**W4 [warning]: §4.3 format-associated patterns 占比失衡**\n- 探索性发现（n=5, permutation p=0.10, benchmark-level CI spans zero）在 8 页正文中占约 1 页\n- 贡献 C3 在 Introduction 中与 C1、C2 并列，但证据强度远不如前两者\n- 建议: 压缩 §4.3 为一段描述，将 Figure 7 和 Figure 8 移入 appendix\n\n**W5 [warning]: Table 6 caption 中 MC vs FF 不同量的标注易造成混淆**\n- \"prompt†\" 行对 MC 报告 prompt×item interaction，对 FF 报告 prompt main effect\n- 同一行代表不同统计量，读者自然期望同一行表示相同概念\n\n**W6 [warning]: Conclusion (§5) 过于简短，缺乏 practical implications 和 adoption pathway**\n- 全文仅 4 句话，缺失 benchmark 开发者建议、leaderboard 影响、future work、IRT pipeline 集成路径\n\n**W7 [warning]: Partial-credit transferability 仅在 GSM8K 单一 benchmark 上验证**\n- §3.5 声称 partial-credit 下 G 从 0.86 降至 0.77 (ΔG = −0.135)\n- 但仅 GSM8K 一个 benchmark\n- 建议: 明确声明 \"在 GSM8K 的 step-level partial credit 下初步观察到\"\n\n**W8 [warning]: 遗漏重要相关文献**\n- MMLU-Redux (Gema et al., 2024), MMLU-Pro (Wang et al., 2024), Contamination 检测文献\n\n### Minor\n\n**W9 [minor]: Abstract 约 201 词，略超 EMNLP 2026 的 200 词限制**\n**W10 [minor]: Abstract 数值密度过高（20+ 数值）**\n**W11 [minor]: main.tex line 43 使用 `\\enlargethispage{1\\baselineskip}`**\n**W12 [minor]: Table 1 (Positioning) 与 Messing (2026) 的对比需注明 facet 差异**\n\n## Questions\n\n**Q1**: 为什么选择 items 而非 models 作为 object of measurement？G_item ≥ 0.80 在什么条件下能保证 model ranking stability？\n**Q2**: 推荐的 3×3 设计在单 GPU 上的实际墙钟时间是多少？\n**Q3**: 200 items 通过 stratified sampling 选取。不同的 200-item 样本是否会产生类似的 G_item？\n**Q4**: Table 1 中与 Messing (2026) 的对比是否公平？两者评测范式不同。\n**Q5**: quasi-random 处理的合理性在什么条件下成立？\n\n## Missing References\n1. MMLU-Redux (Gema et al., 2024)\n2. MMLU-Pro (Wang et al., 2024)\n3. Contamination 检测文献 (Shi et al. 2023, Golchin & Surdeanu 2024)\n4. Evaluation harness 标准化集成\n\n## Overall Assessment\n**3.5** (Borderline Conference) | Confidence: 4/5"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_265de443abfe4594f91451b075b582ca:reviewer_1",
+            "source": "review_reviewer_1"
+          },
+          "id": "event-000729"
+        },
+        {
+          "source_line": 730,
+          "timestamp": "2026-05-25T21:30:47.932772+00:00",
+          "recorded_role": "tool",
+          "role": "tool_call",
+          "content": [
+            {
+              "type": "text",
+              "text": "called mcp__agent-ml-research__review_reviewer_post_to_director"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_265de443abfe4594f91451b075b582ca:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "tool_args": {
+              "text": "\n# Reviewer 1 对 Reviewer 2 审稿意见的逐条回应\n\n---\n\n## Weaknesses 回应\n\n### Must-Fix\n\n**[AGREE] R2-W1: \"10× fewer items\" framing 隐藏了 total evaluations 的剧增**\n\n同意这是一个 framing 问题。Abstract 写 \"reducing item requirements from over 1,000 to roughly 100\" 仅展示了 item 维度的缩减，而 full multi-facet 设计的 total evaluations 从 552 增长到 71,280（129×）。虽然 §4.5 在正文中披露了推荐的 3×3 设计的 tradeoff（\"2.9× total-evaluation increase for a 3.1× item reduction\"），但 abstract 和 Figure 1 overview 的 framing 确实容易让读者形成 \"免费午餐\" 的印象。\n\n不过，我认为此问题的严重程度介于 critical 和 warning 之间。理由：(1) §4.5 和 Table 8 已经完整展示了从 single-condition 到 full multi-facet 的连续 cost-reliability tradeoff；(2) 推荐方案（3×3, 178 items, 1,602 total evals）的 total evaluation overhead 是 2.9×，这在实际GPU时间上是可接受的；(3) 核心洞察——更少的 unique items + 更多的 conditions per item 比更多 unique items + 单一 condition 更可靠——是 G-theory 的标准结论，不存在误导意图。修改 abstract 加入 total evaluation overhead 即可解决。\n\n---\n\n**[AGREE] R2-W2: Binary scoring scope 未在 title/abstract 中充分限定**\n\n同意。这与我自己的审查发现一致。Title \"Reproducibility Budgets for Open-Weight LLM Evaluation\" 暗示了广泛适用性，但 §3.5 明确展示了 binary scoring 的极端 metric conditionality：text-exact-match G 从 0.936 崩溃到 0.007（§4.1），partial-credit G 从 0.86 降至 0.77（Appendix A）。论文的所有 D-study 预算、方差分解结论、format-associated patterns 均严格受限于 binary correctness scoring。\n\nTitle 添加限定语的建议合理。不过我补充一点：binary correctness scoring 在 MC benchmarks（MMLU、ARC、HellaSwag）中确实是标准做法，所以对 MC benchmarks 的结论不存在 scope 问题。问题主要出在 FF benchmarks（GSM8K、MATH），其中许多实际评测使用 partial credit 或更细粒度的 rubric。因此限定语可以更精确——如 \"under Binary Correctness Scoring\" 或在 abstract 中说明 \"all findings are conditioned on binary correctness scoring\"。\n\n---\n\n**[AGREE] R2-W3: G_item 与 model ranking reliability 之间的概念鸿沟**\n\n强烈同意。这与我在 W6 中提出的问题完全一致。论文以 items 为 object of measurement（§3.1），G_item 衡量的是 item-level scores 在不同条件下的泛化能力。但 benchmark 用户的核心需求是 model ranking reliability——\"我的模型在 benchmark 上的排名是否可复现？\"\n\n论文提供了一些间接证据（LOMO Table 4 显示 max|ΔG|=0.030；inter-model Cohen's κ = 0.33-0.46），但从未直接量化 model ranking stability。R2 建议增加 Kendall's W 或 bootstrap 排名一致性分析，我认为这是 actionable 且必要的——至少应讨论 G_item ≥ 0.80 在什么条件下蕴含 model ranking stability。\n\n---\n\n### Should-Fix\n\n**[REBUT] R2-W4: §4.3 format-associated patterns 占比失衡**\n\n部分不同意。R2 认为应将 §4.3 压缩为一段、Figure 7 和 Figure 8 移入 appendix。但我认为：\n\n1. §4.3 的 format-associated finding 虽然在统计上是 exploratory（n=5, p=0.10），但在 **描述层面** 提供了重要的结构信息：MC benchmarks 集中 68-72% 的 item-related variance，FF benchmarks 仅 31-41%。这一 30+ percentage point 的差异（Table 6）即使在 n=5 下也是 substantive 的描述性发现。\n2. Figure 7（item difficulty heterogeneity scatter, ρ=0.82）提供了 **机制解释**（difficulty dispersion drives variance structure），这不是可有可无的附属信息，而是帮助读者理解 WHY MC and FF differ。\n3. MMLU subject-level analysis（Table 12, Appendix E）在 n=10 subjects、p=0.005 下验证了同一机制，提供了跨粒度的 converging evidence。\n\n我同意的是：Conclusion（§5）中应保留 \"exploratory\" 限定词（这也是我在自己的 W1 中提出的核心问题）。但 §4.3 的篇幅（约1页）和 Figure 7-8 在正文中的存在是合理的，因为它们为 per-benchmark budget calibration（Table 9 按 MC/FF 分列）提供了必要的背景信息。\n\n---\n\n**[AGREE] R2-W5: Table 6 caption 中 MC vs FF 不同量的标注易造成混淆**\n\n同意。Table 6（即 Table 6/cross-benchmark variance decomposition）的 \"prompt†\" 行对 MC 报告 prompt×item interaction、对 FF 报告 prompt main effect，同一行代表不同统计量确实违反了表格设计的一致性原则。虽然 caption 中有 footnote 说明（\"†For MC, reports prompt×item interaction; for FF, reports prompt main effect\"），但读者自然期望同一行表示相同概念。建议拆为两行或使用更清晰的标注方式。\n\n---\n\n**[REBUT] R2-W6: Conclusion (§5) 过于简短**\n\n部分不同意。§5 虽然仅 4 句话，但覆盖了三个核心结论（model×item dominance、D-study budgets、format-associated patterns）和三条实践建议（adopt multi-facet designs、report item-level accuracy、calibrate budgets per format）。在 8 页篇幅限制下，简洁的 conclusion 将更多空间让给了方法和实验，这是合理的优先级选择。\n\n不过 R2 指出的一个具体缺失确实存在价值：**adoption pathway**——benchmark 开发者如何将 G-theory pipeline 集成到现有评测流程中？这可以在 Conclusion 或 Discussion 中用 1-2 句话补充，不需要一个完整的段落。Future work 可以在 camera-ready 中扩展，但不是当前版本的必要条件。\n\n---\n\n**[AGREE] R2-W7: Partial-credit transferability 仅在 GSM8K 单一 benchmark 上验证**\n\n同意。这与我在 W5 中的关切一致。GSM8K 的 step-level partial credit 分析（ΔG = -0.135, Appendix A）是唯一的 partial-credit 证据。论文应明确将这一发现限定为 \"在 GSM8K 的 step-level partial credit 下初步观察到\"，而非暗示对所有 partial-credit 评分方案的适用性。MATH 的 \\boxed{} 格式本身也支持 partial credit（中间推理步骤），但论文未做此分析。\n\n---\n\n**[REBUT] R2-W8: 遗漏重要相关文献**\n\n部分不同意：\n\n- **MMLU-Redux (Gema et al., 2024)** 和 **MMLU-Pro (Wang et al., 2024)**：这两篇关注 benchmark 质量和扩展，与本文的方差分解框架关联度有限。本文使用原版 MMLU 是因为它是最广泛使用的 benchmark，且 200-item stratified sample 已经控制了 item 质量。这些文献在 Related Work 中提及是可选的但非必要的。\n- **Contamination检测文献 (Shi et al. 2023, Golchin & Surdeanu 2024)**：Limitations 已提及 contamination 问题（\"Benchmark contamination in pretraining data may inflate item accuracy and compress variance\"）。引用具体检测方法论的文献确实可以增强这一讨论。同意补充。\n- **Evaluation harness 标准化集成**：论文使用自定义 vLLM pipeline 而非 lm-evaluation-harness 是有意为之的设计选择（控制 CUDA-level nondeterminism, §3.4），不需要引用 harness 集成文献。\n\n---\n\n### Minor\n\n**[AGREE] R2-W9: Abstract 约 201 词，略超 EMNLP 2026 的 200 词限制**\n\n同意。EMNLP 2026 硬性限制 abstract ≤ 200 words，201 词违规。必须修剪。\n\n---\n\n**[REBUT] R2-W10: Abstract 数值密度过高（20+ 数值）**\n\n不同意。本文是一篇 quantitative methods paper，其核心贡献就是具体数值（方差分量百分比、G coefficients、item budgets）。Abstract 中的数值密度反映了论文内容的本质。删除数值会使 abstract 变得空泛、无法传达方法论贡献。Methods papers 的 abstract 惯例允许高数值密度——参见 Bouthillier et al. (2021) 的 abstract 同样包含大量统计数字。\n\n---\n\n**[AGREE] R2-W11: `\\enlargethispage{1\\baselineskip}` 排版 hack**\n\n同意这是一个 minor formatting issue，但在实际投稿中很常见（几乎所有 8 页 camera-ready 都有类似调整）。只要不违反 page limit（正文 8 页），这不会被 reviewer 或 AC 标记。\n\n---\n\n**[AGREE] R2-W12: Table 1 与 Messing (2026) 的对比需注明 facet 差异**\n\n同意。Table 1 的 positioning 对比应注明两者评测范式的差异（Messing: single benchmark, judge-based; 本文: 5 benchmarks, generation-based scoring）。目前的对比格式可能暗示 apple-to-apple comparison，但实际上两者的 facet 定义和交叉结构不同。\n\n---\n\n## Questions 回应\n\n**Q1**: 同意这是一个重要的概念问题（已在 W3 回应和我自己的 W6 中讨论）。G_item ≥ 0.80 保证 item scores 的跨条件一致性，但 item-level reliability 向 model ranking reliability 的映射取决于 model main effect 相对于 model×item interaction 的比值。当 model×item 远大于 model main effect（如 MC: 30-36% vs 3-5%），model ranking stability 会低于 G_item 所暗示的水平。\n\n**Q2**: 论文未报告 wall-clock time。这对实用性讨论有价值但非必需——推荐的 3×3 设计（178 items × 9 conditions = 1,602 evaluations）在单 GPU 上应在分钟量级完成（vLLM 推理速度），不构成实际瓶颈。不过补充这一数据可以增强实践指导性。\n\n**Q3**: §4.5 报告了 3 次 MMLU resamples 的 CV=3.1%（§3.2 实为 CV=3.1%）。这提供了初步证据但样本量偏小（仅 3 次 resample）。更充分的验证需要更多 resamples 或 split-half analysis。这与我审查中的考虑一致。\n\n**Q4**: Table 1 的对比基本公平但需要 caveats（同 W12）。Messing (2026) 使用 judge-based evaluation on single benchmark，本文使用 generation-based scoring across 5 benchmarks——两者的 facet 定义不同但 G-theory 框架层面是可比的（都是多面交叉方差分解）。建议 Table 1 caption 中加注评测范式差异。\n\n**Q5**: Quasi-random 处理的合理性条件：(1) 目标 universe 可定义（本文定义为 \"open-weight, instruction-tuned, 7-9B models\"）；(2) 样本覆盖 universe 的主要维度（8 个模型来自 6+ 不同家族）；(3) exchangeability within sample（LOMO CV ≤ 1.25%）。条件 (3) 是 within-sample 验证，不保证 out-of-sample——这是 G-theory 应用中固有的局限，不特指本文。本文通过 random > fixed (conservative) 的论证（Table 10, ΔG = 0.077-0.113）提供了部分 safeguard。\n\n---\n\n## 总体评价\n\nReviewer 2 的审稿在 framing 和 scope 方面提出了有价值的问题（W1-W3），且与我自己的独立审查高度一致。W1（total evaluation framing）和 W2（binary scoring scope）是 presentation 问题而非 methodological flaws，可在修改中解决。W3（G_item vs model ranking）是更深层的概念问题，需要额外分析或充分讨论。\n\n我与 R2 的主要分歧在 W4（§4.3 篇幅）和 W10（abstract 数值密度）——前者的 format-associated 内容虽统计功效不足但描述性价值显著，后者是 methods paper 的惯例。\n\nR2 给出 3.5（Borderline Conference），与我的评分一致。两位 reviewer 的核心关切（format pattern overclaim、binary scope limitation、G_item vs model ranking gap）高度重叠，说明这些是论文的真实短板而非 reviewer 偏见。\n",
+              "reviewer_id": "1",
+              "project": "nlp_variance_gtheory"
+            }
+          },
+          "id": "event-000730"
+        },
+        {
+          "source_line": 731,
+          "timestamp": "2026-05-25T21:30:51.547641+00:00",
+          "recorded_role": "tool_result",
+          "role": "tool_result",
+          "content": [
+            {
+              "type": "text",
+              "text": "{\"result\":\"{\\\"success\\\": true, \\\"data\\\": {\\\"review_director_key\\\": \\\"feishu:group:oc_265de443abfe4594f91451b075b582ca:director\\\"}, \\\"error\\\": \\\"\\\"}\"}"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_265de443abfe4594f91451b075b582ca:reviewer_1",
+            "tool": "mcp__agent-ml-research__review_reviewer_post_to_director",
+            "elapsed_ms": 3614
+          },
+          "id": "event-000731"
+        },
+        {
+          "source_line": 732,
+          "timestamp": "2026-05-25T21:31:04.745628+00:00",
+          "recorded_role": "assistant",
+          "role": "assistant",
+          "content": [
+            {
+              "type": "text",
+              "text": "已提交对 Reviewer 2 的逐条回应。总结：\n\n- **6 条 AGREE**：W1（total eval framing）、W2（binary scope）、W3（G_item vs model ranking）、W5（Table 6 混合量）、W7（partial-credit 单 benchmark）、W9/W11/W12（minor issues）\n- **3 条 REBUT**：W4（§4.3 篇幅——描述性价值足够支撑正文存在）、W6（Conclusion 简短但内容完整）、W10（abstract 数值密度是 methods paper 惯例）\n- W8 部分同意（contamination 文献应补充，MMLU-Redux/Pro 非必需）\n\n两位 reviewer 的核心关切高度重叠：format pattern overclaim、binary scope limitation、G_item vs model ranking gap。"
+            }
+          ],
+          "metadata": {
+            "session": "feishu:group:oc_265de443abfe4594f91451b075b582ca:reviewer_1"
+          },
+          "id": "event-000732"
+        }
+      ]
+    }
+  ]
+}

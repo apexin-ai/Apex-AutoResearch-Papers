@@ -1,0 +1,49 @@
+{
+  "schema_version": "1.0",
+  "id": "c1d5ace0d4a4e4ed8606",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "analysis phase2 hellaswag 2temp fix",
+  "task_key": "worker_analysis_phase2_hellaswag_2temp_fix_20260521T230301",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_hellaswag_2temp_fix_20260521T230301.log",
+    "occurrence": 1,
+    "bytes": 626696,
+    "sha256": "a6080c38d2931e6accb84c8123e393776c1efca360f5e937ff366d68a367683c"
+  },
+  "statistics": {
+    "messages": 255,
+    "user_turns": 0,
+    "tool_calls": 93,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 65,
+      "tool_call": 93,
+      "tool_result": 93,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 255,
+      "chunks": [
+        {
+          "path": "c1d5ace0d4a4e4ed8606-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "c1d5ace0d4a4e4ed8606-part-0002.json",
+          "message_count": 75
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-phase2-hellaswag-2temp-fix.md"
+}

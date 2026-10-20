@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3144afa47a1597d33000",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code design update",
+  "task_key": "worker_code_design_update_20260520T142026",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_design_update_20260520T142026_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "db6e97956f0305fa2fc82c1a267836bbe5a775092f734467a91450f1ef3f8d5d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部完成。变更摘要：\n\n| 文件 | 变更 |\n|------|------|\n| `src/design/generate_design.py` | 删除 `hardware`，precision 扩展为 `[float32, bfloat16, float16]`，assert 改为 108 |\n| `src/inference/run_experiment.py` | `--hardware` → `--precision` 过滤 + `--gpu-id` 参数，删除 output record 中的 hardware 字段 |\n| `src/analysis/variance_decomposition.py` | ALL_FACETS 从 7→6，FIXED_FACETS 从 3→2，均删除 hardware |\n| `src/analysis/d_study.py` | FIXED_FACETS 删除 hardware |\n| `src/analysis/visualize.py` | ALL_FACETS、FACET_LABELS、FIXED_FACETS 均删除 hardware |\n| `run_mvp.sh` | 重写为 3 precision × 3 GPU 并行，无需传 hardware 参数 |\n| `src/inference/sanity_check.py` | 新建，seed determinism 检查脚本 |\n\n所有文件语法验证通过，`src/` 下无残留 hardware 引用。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-design-update.md"
+}

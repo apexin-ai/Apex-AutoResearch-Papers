@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3d399595b75bb9dbe03f",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops ff scatter plots download",
+  "task_key": "worker_ops_ff_scatter_plots_download_20260522T184205",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_ff_scatter_plots_download_20260522T184205_result.json",
+    "occurrence": 1,
+    "bytes": 753,
+    "sha256": "b4926ad6395936ab3555d3f4122f7a4428b1ee66eef85f6e8d9b9dd3ef95de74"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部 10 个文件下载完成，文件大小与服务器一致：\n\n| 文件 | 大小 |\n|------|------|\n| `difficulty_vs_residual_arc.pdf` | 24,815 |\n| `difficulty_vs_residual_arc.png` | 51,654 |\n| `difficulty_vs_residual_gsm8k.pdf` | 24,700 |\n| `difficulty_vs_residual_gsm8k.png` | 61,769 |\n| `difficulty_vs_residual_hellaswag.pdf` | 23,822 |\n| `difficulty_vs_residual_hellaswag.png` | 55,069 |\n| `difficulty_vs_residual_math.pdf` | 23,270 |\n| `difficulty_vs_residual_math.png` | 58,180 |\n| `difficulty_vs_residual_mmlu.pdf` | 23,257 |\n| `difficulty_vs_residual_mmlu.png` | 56,641 |\n\n所有文件路径：`/home/ubuntu/.agent-ml-research-idea_gen_0519/projects/nlp_variance_gtheory/artifacts/exp004/ff_residual_analysis/`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-ff-scatter-plots-download.md"
+}

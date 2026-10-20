@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "164a4c7846f6aeaddd37",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "infra quick progress check",
+  "task_key": "worker_infra_quick_progress_check_20260521T212745",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_quick_progress_check_20260521T212745_result.json",
+    "occurrence": 1,
+    "bytes": 1234,
+    "sha256": "4878df13360422369933ba032aba7e19ba3794b823fb0408a92607ff7cad68c6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇总\n\n### westd-32570 — GPU 状态\n\n| GPU | 利用率 | 状态 |\n|-----|--------|------|\n| 0 | 0% | 空闲 |\n| 1 | 0% | 空闲 |\n| 2 | 87% | **运行中** |\n| 3 | 0% | 空闲 |\n\n### westd-19912 — GPU 状态\n\n| GPU | 利用率 | 状态 |\n|-----|--------|------|\n| 0 | 0% | 空闲 |\n| 1 | 0% | 空闲 |\n| 2 | 0% | 空闲 |\n| 3 | 0% | 空闲 |\n\n### exp002 完成状态（目标 57,600 行/文件）\n\n| Model | MMLU | ARC | HellaSwag | GSM8K | MATH |\n|-------|------|-----|-----------|-------|------|\n| Llama | ✅ | ✅ | ✅ | ✅ | ✅ |\n| Qwen | ✅ | ✅ | ✅ | ✅ | ✅ |\n| Mistral | ✅ | ✅ | ✅ | ✅ | ✅ |\n| Gemma | ✅ | ✅ | ✅ | ✅ | ✅ |\n| InternLM | ✅ | ✅ | ✅ | ✅ | ✅ |\n| DeepSeek | ✅ | ✅ | ✅ | ✅ | ✅ |\n| OLMo | ✅ | ✅ | ✅ | ✅ | ✅ |\n| Yi | ✅ | ✅ | ✅ | ✅ | ✅ |\n\n**全部 8 模型 × 5 benchmark = 40 个文件，每个都是 57,600 行，全部完成。**\n\n注意：westd-32570 上还有一个 `deepseek_math_gpu2.jsonl`（36,200 行），看起来是额外/重复跑的文件，不影响主结果（`deepseek_math.jsonl` 已完成）。GPU2 仍在 87% 利用率运行，可能正在跑这个文件或其他任务。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/infra-quick-progress-check.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "989d0cbd1d45a8afacff",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "prep download internlm deepseek",
+  "task_key": "worker_prep_download_internlm_deepseek_20260521T102248",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_prep_download_internlm_deepseek_20260521T102248_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "50d5ee6b0fc78500c737cd1b8e8f1978e304978c69afed1b1742a615fdd9ab33"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。总结：\n\n**下载状态**（均后台 nohup 运行）：\n| 模型 | PID | 大小 | 速度 | 预计完成 |\n|------|-----|------|------|---------|\n| InternLM2.5-7B-Chat | 149391 | ~14GB (8 shards) | ~800kB/s | ~2-3h |\n| DeepSeek-LLM-7B-Chat | 149538 | ~18GB (2 shards) | ~870kB/s | ~3-4h |\n\n**model_paths.py 已更新**：\n- `MODEL_PATH_MAP`: 添加了 `internlm/internlm2_5-7b-chat` → ModelScope 本地路径，`deepseek-ai/deepseek-llm-7b-chat` → ModelScope 本地路径\n- `MODEL_DISPLAY_NAMES`: InternLM2.5-7B、DeepSeek-7B，含 HF repo ID / 目录名 / 全路径等多种变体\n\n**vLLM 兼容性**：\n- InternLM2.5：基于 InternLM2 架构，vLLM 0.9.x 支持，需 `trust_remote_code=True`\n- DeepSeek-LLM-7B：标准 LlamaForCausalLM 架构，vLLM 完全兼容\n\n**监控命令**：\n```bash\ntail -3 /tmp/download_internlm.log\ntail -3 /tmp/download_deepseek.log\n```"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/prep-download-internlm-deepseek.md"
+}

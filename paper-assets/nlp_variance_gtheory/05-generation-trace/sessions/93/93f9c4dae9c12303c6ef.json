@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "93f9c4dae9c12303c6ef",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix sync model paths to server",
+  "task_key": "worker_fix_sync_model_paths_to_server_20260521T104734",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_sync_model_paths_to_server_20260521T104734_result.json",
+    "occurrence": 1,
+    "bytes": 304,
+    "sha256": "ed31dc98e52842d277c7eddc5bb23e9b23ff572d71ddb1f63590d6cac09599b1"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "同步完成。服务器上 `model_paths.py` 已更新：\n\n- `MODEL_PATH_MAP`: 8 个条目（新增 InternLM2.5-7B-Chat、DeepSeek-LLM-7B-Chat）\n- `MODEL_DISPLAY_NAMES`: 35 个条目（新增两个模型的所有名称变体）\n- 导入验证通过，两个新模型均可正确识别"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-sync-model-paths-to-server.md"
+}

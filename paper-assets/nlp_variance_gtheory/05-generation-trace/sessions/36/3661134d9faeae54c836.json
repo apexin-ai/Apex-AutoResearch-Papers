@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "3661134d9faeae54c836",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix cross model g tau",
+  "task_key": "worker_fix_cross_model_g_tau_20260521T045422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_cross_model_g_tau_20260521T045422_result.json",
+    "occurrence": 1,
+    "bytes": 1516,
+    "sha256": "7f4f6bbfa6803be2f3ea816482bdaf5a64b01796e336567c9f9f7b785faba592"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "结果已计算完成。\n\n## 汇报\n\n### 1. G_item = 0.707\ntau = σ²_item = 0.0768 (37.9%)，delta = 0.0318。Delta 的分解：\n- **model×item: 83.2% of delta** — 绝对主导。不同模型对 item 难度的排序有显著差异\n- precision×item: 7.4%\n- prompt×item: 3.0%\n- temperature×item: 2.8%\n- seed×item: 2.6%\n- ordering×item: 1.0%\n- residual: 0.1%\n\n### 2. G_condition = 0.073（与原值吻合）\ntau = σ²_prec + σ²_temp + σ²_prec:temp = 0.000179，delta = 0.00228。条件效应微弱，被 item 和 model 的变异淹没。\n\n### 3. 单模型 vs 跨模型对比\n\n| 指标 | 单模型 | 跨模型 |\n|------|--------|--------|\n| ICC_item (σ²_item / σ²_total) | 0.611 | 0.379 |\n| G_item (D-study, observed design) | 0.611* | 0.707 |\n\n*单模型 G=0.611 实际上就是 ICC（σ²_item / σ²_total），不是 D-study G。\n\nICC 从 0.611 降到 0.379 的原因：model×item 交互（26.2%）从 item_id 的份额中\"偷走\"了方差。但 D-study 表明，即使存在这个交互，平均 2 个模型后 G_item = 0.707——item 难度排序在跨模型场景下仍然可靠。\n\n### 4. D-study 趋势\n\n| n_models | G_item |\n|----------|--------|\n| 1 | 0.568 |\n| 2 | 0.707 |\n| 3 | 0.770 |\n| 5 | 0.828 |\n| 10 | 0.879 |\n\n增加模型数量对 G_item 提升显著（因为 model×item 是 delta 的 83%）。3 个模型即可达到 G > 0.75，5 个达到 0.83。\n\n结果已保存至 `results/analysis/cross_model_g_coefficients.json`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cross-model-g-tau.md"
+}

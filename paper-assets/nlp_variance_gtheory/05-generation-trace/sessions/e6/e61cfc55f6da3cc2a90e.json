@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "e61cfc55f6da3cc2a90e",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis cross model llama gemma",
+  "task_key": "worker_analysis_cross_model_llama_gemma_20260521T043623",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_cross_model_llama_gemma_20260521T043623_result.json",
+    "occurrence": 1,
+    "bytes": 2431,
+    "sha256": "bf90732aaee3da1791c8bc1e864e60b5f2fb67b04a9e980ee373cf5009deb8e6"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "全部结果已获取。以下是跨模型 G-theory 分析汇总。\n\n---\n\n## 跨模型 G-theory 分析结果 (Llama + Gemma, N=325,600)\n\n### 方差分解 (按贡献排序)\n\n| Component | σ² | % | 95% CI |\n|---|---|---|---|\n| **item_id** | 0.0768 | **37.9%** | [0.0578, 0.0952] |\n| **model×item_id** | 0.0530 | **26.2%** | [0.0401, 0.0677] |\n| **residual** | 0.0497 | **24.5%** | [0.0440, 0.0555] |\n| prompt_template×item_id | 0.0057 | 2.8% | [0.0046, 0.0067] |\n| seed×item_id | 0.0050 | 2.5% | [0.0036, 0.0063] |\n| precision×item_id | 0.0047 | 2.3% | [0.0038, 0.0058] |\n| model×precision | 0.0029 | 1.4% | [0.0015, 0.0044] |\n| temperature×item_id | 0.0027 | 1.3% | [0.0020, 0.0034] |\n| ordering×item_id | 0.0013 | 0.6% | [0.0006, 0.0022] |\n| model (main) | 0.0004 | 0.2% | [0.0, 0.0053] |\n| 其他 | — | <0.1% | — |\n\n### 关键对比：单模型 vs 跨模型\n\n| 指标 | 单模型 (Llama) | 跨模型 (Llama+Gemma) | 变化 |\n|---|---|---|---|\n| **item_id** | **61.1%** | **37.9%** | ↓ 23.2pp |\n| **model×item_id** | — | **26.2%** | 新增 |\n| residual | 21.6% | 24.5% | ↑ 2.9pp |\n| **G 系数** | **0.611** | **0.073** | ↓↓↓ |\n\n### D-study: 模型数量扫描\n\n| n_models | G |\n|---|---|\n| 1 | 0.042 |\n| 2 | 0.073 |\n| 3 | 0.097 |\n| 5 | 0.131 |\n| 10 | 0.179 |\n\n### 关键发现 (Claim 1)\n\n1. **model×item_id 交互 = 26.2%**，是第二大方差来源。不同模型在不同 item 上的表现差异巨大——这直接说明「哪些题难」的判断取决于你用哪个模型。\n\n2. **item_id 从单模型 61.1% 降至 37.9%**（降幅 23.2pp）。引入 model facet 后，原来归因于 item 固有难度的方差中有大量被 model×item_id 交互吸收——item 难度不是模型无关的，而是 model-specific。\n\n3. **G 系数从 0.611 暴跌至 0.073**。这意味着单模型实验中看似可靠的 item 难度排序（G=0.61），在跨模型场景下几乎不可推广。Model 切换是破坏评测可推广性的最大因素。\n\n4. **D-study：即使增加到 10 个模型，G 仅达 0.18**。模型间的 item-level 交互极大，少量模型无法有效平均掉这部分方差。\n\n5. **model main effect 仅 0.2%**——模型总体准确率差异很小（Llama 66.4% vs Gemma 73.2%），但 model×item_id 交互（26.2%）才是真正的问题——模型在 item 级别的差异远大于整体均值差异。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-cross-model-llama-gemma.md"
+}

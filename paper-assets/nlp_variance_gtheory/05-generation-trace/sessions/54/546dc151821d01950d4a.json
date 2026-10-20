@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "546dc151821d01950d4a",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis 72b vs 7b item correlation",
+  "task_key": "worker_analysis_72b_vs_7b_item_correlation_20260522T205131",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_72b_vs_7b_item_correlation_20260522T205131_result.json",
+    "occurrence": 1,
+    "bytes": 919,
+    "sha256": "f5d077b428a84c1dbce7a1f3c6ab2cb090f001d0b1f90ab63eab0cc93677e892"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。输出文件：\n\n- **JSON**: `artifacts/supplementary_analyses/scale_item_difficulty_correlation.json`\n- **PDF**: `artifacts/supplementary_analyses/scale_difficulty_scatter.pdf`\n- **PNG**: `artifacts/supplementary_analyses/scale_difficulty_scatter.png`\n\n关键结果——item difficulty ordering 跨 model scale **不稳定**，ρ 远低于 0.9：\n\n| Pair | Pearson *r* | Spearman *ρ* |\n|------|------------|-------------|\n| 72B vs 7B | 0.428 | 0.571 |\n| 72B vs 3B | 0.450 | 0.509 |\n| 7B vs 3B | 0.589 | 0.680 |\n\n从散点图可以看到大量 item 的 accuracy 在 0 或 1 处聚集（ceiling/floor effect），且不同 scale 的 model 在这些极端点上的行为差异很大——72B 将很多 item \"解决\"到 p=1.0，而同样的 item 在 3B/7B 上分散在中间区域。越近的 scale pair（7B vs 3B）相关性越高，跨度大的（72B vs 3B）相关性越低。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-72b-vs-7b-item-correlation.md"
+}

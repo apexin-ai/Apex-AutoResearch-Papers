@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d5d65273687e291caacc",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix cancel phi35 download",
+  "task_key": "worker_fix_cancel_phi35_download_20260521T102055",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_cancel_phi35_download_20260521T102055_result.json",
+    "occurrence": 1,
+    "bytes": 572,
+    "sha256": "23569cb36b625ff95b29a6582ea610e8ba9efc0d57affb1a3d42a974dce09b49"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成汇报：\n\n**Phi-3.5-mini**\n- 进程 146434/146468 已 kill，仅下载了 2.5MB\n- `/root/autodl-tmp/.hf_cache/LLM-Research/Phi-3___5-mini-instruct` 已删除\n- `/tmp/download_phi.log` 已删除\n- `model_paths.py` 已移除所有 Phi-3.5 相关条目（本地 + 服务器）\n\n**Yi-1.5 下载进度**\n- `model-00001-of-00004.safetensors`: 12% (542M/4.59G)，~415kB/s\n\n**OLMo-2 下载进度**\n- `model-00001-of-00003.safetensors`: 8% (356M/4.63G)，~428kB/s\n\n**磁盘空间**\n- `/root/autodl-tmp`: 250GB 可用 / 350GB 总量 (29% 使用)"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-cancel-phi35-download.md"
+}

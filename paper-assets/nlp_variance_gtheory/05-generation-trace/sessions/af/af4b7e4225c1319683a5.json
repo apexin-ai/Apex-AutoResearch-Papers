@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "af4b7e4225c1319683a5",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp pilot final check",
+  "task_key": "worker_exp_pilot_final_check_20260520T235403",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_pilot_final_check_20260520T235403_result.json",
+    "occurrence": 1,
+    "bytes": 97,
+    "sha256": "0cb5fe0ef3955a576b426e2e9008bdcf441586877840aa007fc2b6dfb5d1e4d8"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "轮询 #1 完成。当前 9,400/20,000 (47%)。3 分钟后自动检查下一轮。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-pilot-final-check.md"
+}

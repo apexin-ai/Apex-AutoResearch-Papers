@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "df8e838b0f6fd2453bd9",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code cross model analysis prep",
+  "task_key": "worker_code_cross_model_analysis_prep_20260521T025228",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_cross_model_analysis_prep_20260521T025228_result.json",
+    "occurrence": 1,
+    "bytes": 749,
+    "sha256": "5f4c8a446abece027f8a52d5b9ecd50317047a84cba623b0503ca07cf3204978"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "语法检查通过（本地无 pandas，但远程服务器有）。\n\n**汇报**：\n\n- **merge_cross_model.py**: 创建 — JSONL glob 加载、`--cross-model` 精度过滤（默认 bfloat16,float32）、text_exact_match 多数票计算（按 model/precision/prompt_template/ordering/item_id 分组）、输出 CSV\n- **model_facet_analysis.py**: 修改 — 新增 `--input`（CSV 输入，与 `--data` 互斥）和 `--precisions`（精度过滤）参数\n- **bootstrap_ci.py**: 修改 — 新增 `--input`（CSV 输入，与 `--data` 互斥）和 `--n-boot` 别名\n- **run_cross_model_analysis.sh**: 创建 — 三步 pipeline（merge → G-study → bootstrap 200 resamples）\n- **dry-run**: 通过（AST 语法检查 3/3 OK）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-cross-model-analysis-prep.md"
+}

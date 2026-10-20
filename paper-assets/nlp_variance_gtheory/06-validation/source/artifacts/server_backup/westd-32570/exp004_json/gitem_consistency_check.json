@@ -1,0 +1,216 @@
+{
+  "step2_bug_confirmation": {
+    "eight_model_correct_G": 0.862852,
+    "eight_model_buggy_G": 0.283713,
+    "reported_8model_G": 0.283713,
+    "reported_4model_G": 0.728948,
+    "residual": 0.0996441838,
+    "prod_non_item": 2304,
+    "bug_location": "exp004_ff_gstudy.py:compute_g_item line ~120, divisor=1 for residual",
+    "correct_divisor": "prod(non_item_facets) = 2304"
+  },
+  "step2b_4model_subset": {
+    "subset_correct_G": 0.728948,
+    "subset_buggy_G": 0.246158,
+    "original_4model_G": 0.728948,
+    "match": "True"
+  },
+  "step3_incremental_gsm8k": [
+    {
+      "n_models": 4,
+      "added_model": "base-4",
+      "G_item_correct": 0.728948,
+      "G_item_buggy": 0.246158,
+      "sigma_item": 0.0316303,
+      "sigma_delta_correct": 0.01176141,
+      "sigma_delta_buggy": 0.09686541,
+      "item_pct": 11.99,
+      "model_item_pct": 12.09,
+      "residual_pct": 32.29
+    },
+    {
+      "n_models": 5,
+      "added_model": "InternLM2.5-7B",
+      "G_item_correct": 0.791584,
+      "G_item_buggy": 0.266621,
+      "sigma_item": 0.03664521,
+      "sigma_delta_correct": 0.00964831,
+      "sigma_delta_buggy": 0.10079792,
+      "item_pct": 14.34,
+      "model_item_pct": 12.16,
+      "residual_pct": 35.69
+    },
+    {
+      "n_models": 6,
+      "added_model": "DeepSeek-7B",
+      "G_item_correct": 0.811136,
+      "G_item_buggy": 0.258936,
+      "sigma_item": 0.037548,
+      "sigma_delta_correct": 0.00874263,
+      "sigma_delta_buggy": 0.10746075,
+      "item_pct": 14.58,
+      "model_item_pct": 13.48,
+      "residual_pct": 38.36
+    },
+    {
+      "n_models": 7,
+      "added_model": "OLMo-2-7B",
+      "G_item_correct": 0.841213,
+      "G_item_buggy": 0.283536,
+      "sigma_item": 0.04159524,
+      "sigma_delta_correct": 0.0078515,
+      "sigma_delta_buggy": 0.10510663,
+      "item_pct": 16.46,
+      "model_item_pct": 15.19,
+      "residual_pct": 38.49
+    },
+    {
+      "n_models": 8,
+      "added_model": "Yi-1.5-9B",
+      "G_item_correct": 0.862852,
+      "G_item_buggy": 0.283713,
+      "sigma_item": 0.04210141,
+      "sigma_delta_correct": 0.00669189,
+      "sigma_delta_buggy": 0.10629283,
+      "item_pct": 16.86,
+      "model_item_pct": 14.55,
+      "residual_pct": 39.89
+    }
+  ],
+  "step4_correlations": {
+    "models": [
+      "DeepSeek-7B",
+      "Gemma-2-9B",
+      "InternLM2.5-7B",
+      "Llama-3.1-8B",
+      "Mistral-7B-v0.3",
+      "OLMo-2-7B",
+      "Qwen3-8B",
+      "Yi-1.5-9B"
+    ],
+    "correlation_matrix": [
+      [
+        1.0,
+        0.4455,
+        0.5278,
+        0.6316,
+        0.6625,
+        0.5063,
+        0.1963,
+        0.4634
+      ],
+      [
+        0.4455,
+        1.0,
+        0.7124,
+        0.7218,
+        0.5124,
+        0.5357,
+        0.5298,
+        0.7575
+      ],
+      [
+        0.5278,
+        0.7124,
+        1.0,
+        0.6969,
+        0.5337,
+        0.6082,
+        0.4884,
+        0.723
+      ],
+      [
+        0.6316,
+        0.7218,
+        0.6969,
+        1.0,
+        0.6374,
+        0.6533,
+        0.4174,
+        0.6899
+      ],
+      [
+        0.6625,
+        0.5124,
+        0.5337,
+        0.6374,
+        1.0,
+        0.5094,
+        0.2896,
+        0.5423
+      ],
+      [
+        0.5063,
+        0.5357,
+        0.6082,
+        0.6533,
+        0.5094,
+        1.0,
+        0.432,
+        0.5202
+      ],
+      [
+        0.1963,
+        0.5298,
+        0.4884,
+        0.4174,
+        0.2896,
+        0.432,
+        1.0,
+        0.5432
+      ],
+      [
+        0.4634,
+        0.7575,
+        0.723,
+        0.6899,
+        0.5423,
+        0.5202,
+        0.5432,
+        1.0
+      ]
+    ],
+    "mean_off_diagonal": 0.5531,
+    "mean_original_4": 0.5181,
+    "mean_cross": 0.5644,
+    "mean_new_4": 0.5581
+  },
+  "step5_mmlu_incremental": [
+    {
+      "n_models": 4,
+      "added_model": "base-4",
+      "G_item_correct": 0.815919,
+      "G_item_buggy": 0.581742
+    },
+    {
+      "n_models": 5,
+      "added_model": "InternLM2.5-7B",
+      "G_item_correct": 0.86209,
+      "G_item_buggy": 0.609569
+    },
+    {
+      "n_models": 6,
+      "added_model": "DeepSeek-7B",
+      "G_item_correct": 0.870521,
+      "G_item_buggy": 0.591539
+    },
+    {
+      "n_models": 7,
+      "added_model": "OLMo-2-7B",
+      "G_item_correct": 0.887585,
+      "G_item_buggy": 0.600914
+    },
+    {
+      "n_models": 8,
+      "added_model": "Yi-1.5-9B",
+      "G_item_correct": 0.896176,
+      "G_item_buggy": 0.56316
+    }
+  ],
+  "conclusion": {
+    "root_cause": "BUG in exp004_ff_gstudy.py: compute_g_item divides residual by 1 instead of prod(non_item_facet_levels)",
+    "impact": "sigma_delta inflated ~2300x for residual term, causing G_item to appear much lower than reality",
+    "corrected_8model_gsm8k_G": 0.862852,
+    "real_phenomenon": "After bug fix, 4\u21928 model G_item change is small and should be verified in step3"
+  }
+}

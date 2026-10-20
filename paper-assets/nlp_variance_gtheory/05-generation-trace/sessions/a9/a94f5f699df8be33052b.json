@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "a94f5f699df8be33052b",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "infra westd15695 auto chain",
+  "task_key": "worker_infra_westd15695_auto_chain_20260521T152904",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_infra_westd15695_auto_chain_20260521T152904.log",
+    "occurrence": 1,
+    "bytes": 896049,
+    "sha256": "0bc22dddc44b498f4f7c245d053f4d15e83a568794a4d07b419a1a12cd9dc39e"
+  },
+  "statistics": {
+    "messages": 448,
+    "user_turns": 0,
+    "tool_calls": 181,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 82,
+      "tool_call": 181,
+      "tool_result": 181,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 448,
+      "chunks": [
+        {
+          "path": "a94f5f699df8be33052b-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "a94f5f699df8be33052b-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "a94f5f699df8be33052b-part-0003.json",
+          "message_count": 88
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/infra-westd15695-auto-chain.md"
+}

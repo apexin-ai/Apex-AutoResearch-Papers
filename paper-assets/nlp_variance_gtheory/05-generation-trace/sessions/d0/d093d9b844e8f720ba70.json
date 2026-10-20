@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d093d9b844e8f720ba70",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "analysis phase2 gstudy hellaswag 8model",
+  "task_key": "worker_analysis_phase2_gstudy_hellaswag_8model_20260521T222217",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_phase2_gstudy_hellaswag_8model_20260521T222217_result.json",
+    "occurrence": 1,
+    "bytes": 1175,
+    "sha256": "0b4407830eb24ed87b7655b6ed0ae712237320a47e17d80cf92daf3c4317a15d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "完成。HellaSwag 8-model Henderson I G-study 结果：\n\n## 方差分解（N=691,200, 8 models × 3 temps × 6 prompts × 6 seeds × 4 orderings × 200 items）\n\n| Component | % | 95% CI |\n|-----------|--:|--------|\n| model:temperature | 36.44 | [33.70, 39.77] |\n| temperature | 20.80 | [19.21, 22.71] |\n| residual | 17.81 | [16.08, 19.33] |\n| model:item_id | 10.84 | [9.48, 12.16] |\n| item_id | 8.91 | [6.96, 10.98] |\n| temperature:item_id | 4.43 | [3.58, 5.26] |\n| prompt_template:item_id | 0.63 | [0.53, 0.74] |\n| 其余 | <0.1 | — |\n| **ordering:item_id** | **0.00** | **[0.00, 0.00]** |\n\n## G_item\n**0.751** [0.719, 0.780] — 200 items 下 item 难度排序的可靠性中等偏高。D-study: 需 ~500 items 达到 G≥0.88。\n\n## R1-W4: ordering:item_id 交互\n\n**结论：8-model 分析中 ordering:item_id = 0.00%，500 次 bootstrap 中 100% 为零，所有 8 个模型单独分析均为零。**\n\n6-model 时 HellaSwag 的 3.93% 是一个采样 artifact（可能由 OLMo/Yi 缺失导致的不平衡设计引起），扩展到 8 个完全交叉模型后消失。选项排列顺序对 item 难度没有系统性差异影响。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/analysis-phase2-gstudy-hellaswag-8model.md"
+}

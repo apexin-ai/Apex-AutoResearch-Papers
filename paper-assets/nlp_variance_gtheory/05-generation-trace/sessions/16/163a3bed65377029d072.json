@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "163a3bed65377029d072",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix gsm8k reextract nan and rerun",
+  "task_key": "worker_fix_gsm8k_reextract_nan_and_rerun_20260521T134714",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_gsm8k_reextract_nan_and_rerun_20260521T134714_result.json",
+    "occurrence": 1,
+    "bytes": 846,
+    "sha256": "a0d23b2a6ef2e6a3e19654bcc717cfa1f9b0fc12526b1453015ee46805a6b11d"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "NaN bug 已修复，脚本成功运行。结果汇总：\n\n| 指标 | 值 |\n|---|---|\n| GSM8K 总记录数 | 230,400 |\n| 答案差异数 | 225,672 (97.95%) |\n| 原始准确率 | 0.5558 |\n| 重提取准确率 | 0.0177 |\n| 准确率变化 | **-0.5381** |\n| 翻对→错 | 125,452 |\n| 翻错→对 | 1,484 |\n\n**注意**：stop-sequence 截断（`\\n\\n` 等）导致准确率从 55.6% 暴跌到 1.8%。从样本看，GSM8K 的 chain-of-thought 推理步骤之间大量使用 `\\n\\n` 分隔，截断后只保留了第一步的中间数字，丢失了最终答案。这说明 `\\n\\n` 作为 stop sequence 对 GSM8K 的 CoT 格式是不适用的——原始提取逻辑反而更合理。\n\n输出文件：\n- 报告：`results/analysis/gsm8k_answer_reextract.json`\n- 修正 JSONL：`results/analysis/gsm8k_corrected.jsonl`"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-gsm8k-reextract-nan-and-rerun.md"
+}

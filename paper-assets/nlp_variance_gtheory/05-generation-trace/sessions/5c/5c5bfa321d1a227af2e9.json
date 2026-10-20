@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "5c5bfa321d1a227af2e9",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp pilot llama v2",
+  "task_key": "worker_exp_pilot_llama_v2_20260520T233718",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_pilot_llama_v2_20260520T233718_result.json",
+    "occurrence": 1,
+    "bytes": 343,
+    "sha256": "12009a315881ef0466e5d64ac4371218b5eec77784a5c7e095e9c0743b51dcdb"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "4 GPU 全部在跑，GPU 分配正确（每卡 ~89GB 独立显存）。10 分钟后轮询进度。\n\n当前状态：\n- GPU 0: 领先（已产出 1600+ records，~8/25 conditions）\n- GPU 1/2/3: 刚完成模型加载，开始推理第一个 condition\n- 预计总耗时：~15-20 分钟（GPU 1/2/3 落后 GPU 0 约 5 分钟）"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-pilot-llama-v2.md"
+}

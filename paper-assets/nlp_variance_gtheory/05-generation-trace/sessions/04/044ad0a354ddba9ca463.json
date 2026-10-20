@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0",
+  "id": "044ad0a354ddba9ca463",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops check main text pages",
+  "task_key": "worker_ops_check-main-text-pages_20260524T113229",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_check-main-text-pages_20260524T113229_result.json",
+    "occurrence": 1,
+    "bytes": 2098932,
+    "sha256": "5f5fff798e1ab89c9e811451dd7777b2834ae284d2a6dd4914107977666e68fe"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "Large source content is retained in the sanitized trace archive."
+            }
+          ],
+          "metadata": {
+            "large_content_blocks": [
+              {
+                "index": 0,
+                "storage": "sanitized-trace-archive",
+                "source_line": 1,
+                "serialized_bytes": 2098952,
+                "serialized_sha256": "6beebc5a265adf6d8e2b941437114825737f08f8dd533ef3e548fe9d69b0f949",
+                "note": "Complete sanitized source is retained in trace-files.tar.gz."
+              }
+            ]
+          },
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-check-main-text-pages.md"
+}

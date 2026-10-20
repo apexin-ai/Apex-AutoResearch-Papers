@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "316590c9c42dc12c5f10",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "audit g item calculation bug",
+  "task_key": "worker_audit_g_item_calculation_bug_20260521T115034",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_audit_g_item_calculation_bug_20260521T115034_result.json",
+    "occurrence": 1,
+    "bytes": 4926,
+    "sha256": "3dc8f4b2ba5d5e333c5780ac7fc0ccd2d0a60513bac91c1c696346917ebdb850"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "审计完成。以下是完整结果。\n\n---\n\n## G_item 计算 Bug 审计报告\n\n### 受影响文件汇总\n\n| 文件 | Bug? | Bug 类型 | 影响 |\n|------|------|----------|------|\n| `scripts/gstudy_full.py` (exp-001 单模型) | **YES** | SS比例当ICC，非Henderson I方差分量 | G严重低估 |\n| `scripts/exp001b_gstudy.py` (exp-001b) | **YES** | 同上 | G严重低估 |\n| `scripts/task8_subject_gradient.py` (旧within-MMLU) | **YES** | tau=σ²(fixed)而非σ²(item) | G≈0（已知bug） |\n| `scripts/compute_g_coefficients.py` (exp-001 cross-model) | **NO** | 正确公式 | — |\n| `scripts/within_mmlu_gradient_4model.py` (新within-MMLU) | **NO** | 正确公式 | — |\n| `scripts/dataset_a_gstudy.py` | **NO** | 正确公式 | — |\n| `scripts/model_as_fixed_gstudy.py` | **NO** | 正确公式 | — |\n| `src/analysis/variance_decomposition.py` | **N/A** | Henderson I实现正确 | — |\n\n---\n\n### Bug 详情\n\n#### Bug 1: `gstudy_full.py` + `exp001b_gstudy.py` — ICC冒充G系数\n\n**错误公式**（两个文件相同）:\n```python\n# gstudy_full.py line ~67\nG = tau = components.get(\"item_id\", 0) / total_var  # = SS(item)/SS(total)\n\n# exp001b_gstudy.py line ~53\nG_item = pct.get(\"item_id\", 0) / 100  # 同上\n```\n\n这是ICC（类内相关），不是G-theory的G系数。问题有二：\n1. 用SS比例代替Henderson I方差分量\n2. G_item = σ²(item)/Σσ² 而非 σ²(item)/[σ²(item)+σ²(δ)]\n\n**正确公式** (如 `compute_g_coefficients.py`):\n```python\ntau = vc['item_id']  # Henderson I估计的方差分量\ndelta = Σ(item交互项 / 非item facet levels) + residual / Π(所有非item levels)\nG_item = tau / (tau + delta)\n```\n\n#### Bug 2: `task8_subject_gradient.py` — tau定义错误\n\n```python\n# tau = σ²(固定facets): precision + temperature ≈ 0\nif len(random_in) == 0:\n    sigma_tau += est  # 只有 fixed facets 进 tau\n```\n\nitem_id 被放进 delta 而非 tau，导致 G ≈ 0。\n\n---\n\n### 修正前后数值对比\n\n#### exp-001 单模型 (n_levels: prec=3, temp=3, prompt=6, seed=6, order=4, item=200)\n\n| 指标 | 存储值 | 修正值 |\n|------|--------|--------|\n| G_item | 0.6108 | **0.9184** |\n\n修正后 delta 分解:\n| 分量 | σ² | 除数 | 贡献 |\n|------|-----|------|------|\n| precision:item_id | 0.01247 | 3 | 0.00416 |\n| seed:item_id | 0.01120 | 6 | 0.00187 |\n| temperature:item_id | 0.00543 | 3 | 0.00181 |\n| prompt_template:item_id | 0.01086 | 6 | 0.00181 |\n| ordering:item_id | 0.00145 | 4 | 0.00036 |\n| residual | 0.04760 | 1296 | 0.00004 |\n| **sigma_delta 合计** | | | **0.01004** |\n\ntau=0.1129, delta=0.0100 → G=0.1129/(0.1129+0.0100)=**0.918**\n\n#### exp-001b 重采样 (n_levels: temp=3, prompt=6, seed=6, order=4, item=200)\n\n| 样本 | 存储 G_item | 修正 G_item |\n|------|-------------|-------------|\n| sample1 | 0.7588 | **0.9637** |\n| sample2 | 0.7538 | **0.9620** |\n| sample3 | 0.7218 | **0.9548** |\n| **mean** | **0.745** | **0.960** |\n\n#### within-MMLU subject gradient\n\n| Subject | 旧 G_item (task8) | 新 G_item (4model) |\n|---------|-------------------|---------------------|\n| abstract_algebra | 0.0000 | 0.6222 |\n| clinical_knowledge | 0.0000 | 0.8742 |\n| college_physics | 0.0000 | 0.8206 |\n| computer_security | 0.0011 | 0.8408 |\n| high_school_mathematics | 0.0777 | 0.4516 |\n| international_law | 0.0000 | 0.8905 |\n| philosophy | 0.0000 | 0.8362 |\n| professional_medicine | 0.0000 | 0.3057 |\n| us_foreign_policy | 0.0000 | 0.7242 |\n| world_religions | 0.0142 | 0.8703 |\n\n---\n\n### 受影响的 JSON 结果文件\n\n1. **`results/analysis/llama_single_model_gstudy.json`** — `G_coefficient: 0.6108` → 应为 0.9184\n2. **`results/analysis/exp001b_resampling_gstudy.json`** — `G_item: 0.7588/0.7538/0.7218` → 应为 0.9637/0.9620/0.9548；`stability.G_item.mean: 0.7448` → 应为 0.9602\n3. **`results/analysis/within_mmlu_subject_gradient.json`** — 所有 `G_item` 值都错（≈0），已被 `within_mmlu_subject_gradient_4model.json` 替代\n\n不受影响的文件：\n- `results/analysis/cross_model_g_coefficients.json` — G_item=0.7069 ✓\n- `results/analysis/dataset_a_gstudy.json` — 使用正确公式 ✓\n- `results/analysis/model_as_fixed_gstudy.json` — 使用正确公式 ✓\n- `results/exp001_analysis/within_mmlu_subject_gradient_4model.json` — 使用正确公式 ✓\n\n---\n\n### 对论文的影响\n\n核心影响：**论文中如果引用了 exp-001 单模型 G=0.611 或 exp-001b G≈0.745 作为 item 信度指标，这些数字需要全部替换为修正值（0.918 和 0.960）**。\n\n修正后的叙事实际上更好：item difficulty ranking 在所有条件下都非常稳定（G>0.9），进一步强化了\"item是方差主要来源\"的结论。但具体数值变化很大（0.611→0.918），所以论文正文、表格和 D-study 曲线都需要更新。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/audit-g-item-calculation-bug.md"
+}

@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "853ccc151fb33bec66ed",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "fix table2 table3 data mismatch",
+  "task_key": "worker_fix_table2_table3_data_mismatch_20260523T104345",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_fix_table2_table3_data_mismatch_20260523T104345_result.json",
+    "occurrence": 1,
+    "bytes": 1309,
+    "sha256": "dbcfceac9ea9268f10ad44aae81474fb5cc11d7e9425c838d692330e1a6b23b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "编译通过，无错误。只有正常的浮动体和交叉引用 warning。\n\n## 修复总结\n\n**Table 2 (tab:cross_model)** — 3 项修复：\n1. `prompt×item`: 2.5% → **0.9%** (源: 0.9456%)\n2. 新增 3 行被错误归入 \"all others <0.1\" 的组件：`temp.×item` **0.6%**, `seed×item` **0.5%**, `ordering×item` **0.3%**\n3. \"all others (each) <0.1\" 现在准确（剩余组件最大为 model:temp 0.04%）\n\n**Table 3 (tab:cross_benchmark)** — 10 个单元格修复：\n| 单元格 | 旧值 | 新值 | 错误类型 |\n|--------|------|------|----------|\n| MMLU prompt† | 2.5 | **0.9** | 值过大 |\n| ARC prompt† | 0.4 | **1.4** | 方向反了 |\n| Hella prompt† | 2.3 | **2.1** | 小误差 |\n| MATH prompt† | 1.0 | **0.8** | 小误差 |\n| Hella m×p | 0.6 | **0.2** | 值过大 |\n| MATH m×p | 2.0 | **1.7** | 小误差 |\n| MMLU all others | <1.0 | **1.6** | 低估 |\n| ARC all others | 1.5 | **0.5** | 高估 |\n| Hella all others | <1.0 | **0.6** | 低估 |\n| MATH all others | 3.3 | **3.8** | 低估 |\n\n**§4.1 数值验证**: 所有 10 个数字与 `exp001_bf16_2temp_comparison.json` 一致，无需修改。\n\n**GSM8K 列**: 所有值已正确，无需修改。\n\n所有列总和 = 100.0%。修正对照表已注册为 `art_20260523_6b20ce`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/fix-table2-table3-data-mismatch.md"
+}

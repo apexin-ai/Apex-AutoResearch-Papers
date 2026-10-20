@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "05b9b3daa933e446b171",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "ops scale validation download monitor v2",
+  "task_key": "worker_ops_scale_validation_download_monitor_v2_20260522T050918",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_ops_scale_validation_download_monitor_v2_20260522T050918_result.json",
+    "occurrence": 1,
+    "bytes": 689,
+    "sha256": "03b34593f96776f45af428d96d0806c6fad4e7b48c9d51df01cc0eff022054b2"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 最终状态报告\n\n| 模型 | 状态 | Records | 详情 |\n|------|------|---------|------|\n| **3B** | ✅ DONE | 57,600 (288×200) | 下载 14:42 完成，推理 14:55 完成 |\n| **7B** | ✅ DONE | 57,600 (288×200) | 下载 13:24 完成，推理 13:48 完成 |\n| **72B** | ⏳ 下载中 | — | 19GB temp, 8/37 files, file 14 at 31%, ~631kB/s |\n\n**72B**: Watchdog v2 正在服务器持续监控，检测到 3B/7B 都已完成。一旦 72B 下载完毕，将自动在 4 卡 TP=4 启动推理。按当前速度预计还需 **数小时**（~100GB 剩余 at ~1MB/s）。\n\n**磁盘**: 350GB 用了约 51%，空间充足。\n\n**GPU**: 全部空闲，等待 72B。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/ops-scale-validation-download-monitor-v2.md"
+}

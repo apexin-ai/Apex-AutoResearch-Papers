@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "f8de898e4caec9996c5d",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "code exp002 prompt templates",
+  "task_key": "worker_code_exp002_prompt_templates_20260521T080422",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_code_exp002_prompt_templates_20260521T080422_result.json",
+    "occurrence": 1,
+    "bytes": 871,
+    "sha256": "7db5eb3ce591b995e9d5306439e5adbfd8d480cb024f6b850b75d78b3f0f59d7"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "ALL CHECKS PASSED。\n\n完成情况：\n\n1. **现有 MMLU 模板未改动** — 原 `TEMPLATES` + `format_prompt()` 完全保留\n2. **新增 3 个 benchmark 各 6 个模板变体**：\n   - **GSM8K**：生成式，全部 6 个变体都引导模型在 `####` 后给出答案。变体覆盖简洁指令(1)、步骤要求(2)、Q/A 格式(3)、角色设定(4)、CoT 引导(5)、紧凑格式(6)\n   - **ARC-Challenge**：动态选项数（3-5），6 种选项布局风格（vertical/inline/indented/bulleted/verbose/compact），已验证 5 选项正确生成 A-E 标签\n   - **HellaSwag**：句子补全 MC，6 个变体适配 continuation 语境\n3. **统一接口** `format_benchmark_prompt()` 支持所有 4 个 benchmark，MMLU 委托给原 `format_prompt()`\n4. **测试全部通过** — 3 benchmark × 6 模板 + zero-shot + ARC 5 选项动态测试"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/code-exp002-prompt-templates.md"
+}

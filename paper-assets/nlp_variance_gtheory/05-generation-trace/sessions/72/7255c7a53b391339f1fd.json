@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "7255c7a53b391339f1fd",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "research related work v2",
+  "task_key": "worker_research_related_work_v2_20260520T203349",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related_work_v2_20260520T203349_result.json",
+    "occurrence": 1,
+    "bytes": 975,
+    "sha256": "a39fd49835297cebefccb3e59c50a3079e49cc3f9ba0a94ad469d8cff8823901"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "更新完成。5 篇重点论文的主要补充：\n\n- **Mesting 2026**：补充了具体 5 个 facets 名称、测试基准（AILuminate/MMLU/Chatbot Arena）、prompt×judge 交互 12.4%、D-study 实用结果（3 judges→38% SE reduction）\n- **Yuan 2025**：补充了 9,000-token 回复长度偏移、reasoning models 最受影响、GPU 数量/类型也是变异源\n- **Brittlebench 2026**：补充了 63% 排名反转数据、我们参考其扰动协议生成 prompt paraphrase\n- **ThinkingMachines 2025**：补充了具体模型（Qwen3-8B）、框架（vLLM）、非确定性逐层定位（RMSNorm→GEMM→attention）、我们使用默认设置反映真实条件\n- **Messina 2026**：补充了浮点非结合性作为理论根因、precision × temperature 交互预期\n\n所有条目统一为 4 字段格式（核心发现/方法/与本工作的关系/我们的差异化）。Bui 和 Same Prompt 两篇信息不足处已标注 `[需补充]`。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-v2.md"
+}

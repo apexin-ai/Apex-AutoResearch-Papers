@@ -1,0 +1,53 @@
+{
+  "schema_version": "1.0",
+  "id": "bfe30150527d8051904c",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "analysis bootstrap vs jackknife",
+  "task_key": "worker_analysis_bootstrap_vs_jackknife_20260521T040103",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_bootstrap_vs_jackknife_20260521T040103.log",
+    "occurrence": 1,
+    "bytes": 573828,
+    "sha256": "27ef458707519ca5d3dbec6b3358f938e3a7e7444c7e285a91dbe38008361571"
+  },
+  "statistics": {
+    "messages": 518,
+    "user_turns": 0,
+    "tool_calls": 231,
+    "roles": {
+      "log": 1,
+      "system": 1,
+      "record": 1,
+      "assistant": 52,
+      "tool_call": 231,
+      "tool_result": 231,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 518,
+      "chunks": [
+        {
+          "path": "bfe30150527d8051904c-part-0001.json",
+          "message_count": 180
+        },
+        {
+          "path": "bfe30150527d8051904c-part-0002.json",
+          "message_count": 180
+        },
+        {
+          "path": "bfe30150527d8051904c-part-0003.json",
+          "message_count": 158
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-bootstrap-vs-jackknife.md"
+}

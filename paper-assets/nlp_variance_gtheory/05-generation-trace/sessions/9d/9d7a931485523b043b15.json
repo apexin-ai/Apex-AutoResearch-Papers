@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "9d7a931485523b043b15",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "exp mistral completion check",
+  "task_key": "worker_exp_mistral_completion_check_20260521T052858",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_exp_mistral_completion_check_20260521T052858_result.json",
+    "occurrence": 1,
+    "bytes": 1097,
+    "sha256": "c59e2b2d4e3b18309306e0fb2d1c5cec3fdee3c1bf2fd8f0cc50c62cb86e402f"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "## 汇报\n\n### 1. Mistral — 已完成 ✓\n\n全部 4 个 shard 正常结束，数据完整：\n\n| 指标 | 值 |\n|------|-----|\n| 总记录数 | **259,200** (= 预期 1,296 conditions × 200 items) |\n| 缺失 conditions | **0** |\n| 准确率 | **61.24%** (158,726/259,200) |\n| precision 覆盖 | bfloat16 / float16 / float32 各 86,400 (均分) |\n| temperature 覆盖 | 0.0 / 0.3 / 0.7 各 86,400 (均分) |\n| 每个 shard | 64,800 行 (324 conditions) |\n\n完成时间：2026-05-21 13:31:26 CST\n\n### 2. Qwen — 已自动启动 ✓\n\n`auto_start_qwen.sh` 检测到 Mistral 结束后，于 **13:31:42** 在 4 个 GPU 上启动了 Qwen 推理（PID 91484-91490）。目前处于 vLLM 引擎初始化阶段（刚检测到 CUDA 平台），日志文件都是刚创建的（76 bytes）。\n\n### 3. GPU 当前状态\n\n| GPU | 利用率 | 显存 |\n|-----|--------|------|\n| 0 | 0% | 0 / 98 GB |\n| 1 | 100% | 91 / 98 GB |\n| 2 | 100% | 91 / 98 GB |\n| 3 | 0% | 0 / 98 GB |\n\nGPU 1/2 正在加载 Qwen 模型，GPU 0/3 还未开始加载（可能在排队等待）。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/exp-mistral-completion-check.md"
+}

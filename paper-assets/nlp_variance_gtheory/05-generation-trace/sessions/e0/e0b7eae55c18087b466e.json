@@ -1,0 +1,61 @@
+{
+  "schema_version": "1.0",
+  "id": "e0b7eae55c18087b466e",
+  "project": "nlp_variance_gtheory",
+  "kind": "worker",
+  "title": "analysis temp stratified seed",
+  "task_key": "worker_analysis_temp_stratified_seed_20260521T091722",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_analysis_temp_stratified_seed_20260521T091722.log",
+    "occurrence": 1,
+    "bytes": 597167,
+    "sha256": "2f5d04bce81436da6711b586c831ecb0a7c35a9b3db15657697924c947a7bab3"
+  },
+  "statistics": {
+    "messages": 191,
+    "user_turns": 1,
+    "tool_calls": 61,
+    "roles": {
+      "log": 1,
+      "system": 36,
+      "record": 1,
+      "assistant": 29,
+      "tool_call": 61,
+      "user": 1,
+      "tool_result": 61,
+      "result": 1
+    },
+    "unparsed_lines_preserved": 1,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "message_count": 6,
+      "chunks": [
+        {
+          "path": "e0b7eae55c18087b466e-part-0001.json",
+          "message_count": 6
+        }
+      ]
+    },
+    {
+      "number": 1,
+      "boundary": "recorded_user_message",
+      "message_count": 185,
+      "chunks": [
+        {
+          "path": "e0b7eae55c18087b466e-part-0001.json",
+          "message_count": 174
+        },
+        {
+          "path": "e0b7eae55c18087b466e-part-0002.json",
+          "message_count": 11
+        }
+      ]
+    }
+  ],
+  "readable_path": "readable/worker-executions/analysis-temp-stratified-seed.md"
+}

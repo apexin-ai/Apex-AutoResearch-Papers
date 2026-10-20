@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "id": "d2c1ea6972c153117cbc",
+  "project": "nlp_variance_gtheory",
+  "kind": "result",
+  "title": "research related work placeholders",
+  "task_key": "worker_research_related_work_placeholders_20260520T210242",
+  "source": {
+    "archive": "trace-files.tar.gz",
+    "member": "logs/workers/worker_research_related_work_placeholders_20260520T210242_result.json",
+    "occurrence": 1,
+    "bytes": 683,
+    "sha256": "a08a8b01a1fc43ae473c32eb94b07f776381830310941b77439edcc6ec31c003"
+  },
+  "statistics": {
+    "messages": 1,
+    "user_turns": 0,
+    "tool_calls": 0,
+    "roles": {
+      "result": 1
+    },
+    "unparsed_lines_preserved": 0,
+    "reported_errors": 0
+  },
+  "rounds": [
+    {
+      "number": 0,
+      "boundary": "no_preceding_user_message_recorded",
+      "messages": [
+        {
+          "source_line": 1,
+          "role": "result",
+          "content": [
+            {
+              "type": "text",
+              "text": "两处 `[需补充]` 已替换：\n\n1. **Bui et al., 2025** — 补全为：RoBERTa-large（全参数微调）+ Llama3.2-3B（LoRA）在 GLUE/SuperGLUE 上以 10 种子重复；COPA 方差 16.83、RTE 方差 16.67（高敏感），QQP 仅 0.06（稳定）；LoRA 微调方差显著低于全参数微调。\n\n2. **Same Prompt, Different Outcomes (Cui & Alexander, 2026)** — 补全为：6 模型（Claude/GPT-5/Gemini 系列）× 2 prompting 策略 × 4 温度 × 10 重复，共 480 次；在政府任命记录数据分析任务上评估 completion/concordance/validity/consistency 四维指标；prompting 策略为主导方差源，T=0 下仍存在非确定性。"
+            }
+          ],
+          "id": "event-000001"
+        }
+      ],
+      "message_count": 1
+    }
+  ],
+  "readable_path": "readable/task-results/research-related-work-placeholders.md"
+}
